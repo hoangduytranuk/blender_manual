@@ -189,3 +189,42 @@ Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của tr�
 
   để xem danh sách các thay đổi.
   
+## Các tập lệnh có thể cần sử dụng 
+
+- Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây sẽ là một việc không tránh khỏi, chẳng hạn như lệnh tạo *html*. Tốt nhất là kèm chúng vào một tập lệnh ở thư mục **bin** địa phương và đặt nó là có quyền thi hành:
+    + Lệnh **makevidoc** trong dạng tập lệnh *Python*:
+
+```Python
+import os
+from argparse import ArgumentParser
+
+class MakingVIDocuments:
+    def __init__(self):
+        self.is_clean : bool = False
+        self.make_dir : str = None
+
+    def setVars(self, is_clean : bool, make_dir: str):
+        self.is_clean = (True if (is_clean) else False)
+        self.make_dir = (os.environ['BLENDER_MAN_EN'] if (make_dir == None) else make_dir)
+        
+    def run(self):
+        os.chdir(self.make_dir)
+        if (self.is_clean):
+            os.system("make clean")
+            os.system("find locale/vi/LC_MESSAGES -type f -name \"*.mo\" -exec rm -f {} {} \;")
+            
+        os.system("make -d --trace -w -B -e SPHINXOPTS=\"-D language='vi'\" 2>&1")
+        
+parser = ArgumentParser()
+#parser.add_argument("-c", "--clean", dest="clean_action", help="Clean before MAKE.", action='store_const', const=True)
+parser.add_argument("-c", "--clean", dest="clean_action", help="Clean before MAKE.", action='store_true')
+parser.add_argument("-d", "--dir", dest="make_dir", help="Directory where MAKE is performed")
+args = parser.parse_args()
+
+print("args: {}".format(args))
+
+x = MakingVIDocuments()
+x.setVars(args.clean_action, args.make_dir)
+x.run()
+```
+    
