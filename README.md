@@ -137,9 +137,10 @@ trong thư mục con
 
     ~/blender_docs/toos_maintenance
 
-Sao lấy một bản vào thư mục bin địa phương của bạn và thay tất cả các giá trị đề cập trong tập tin với các chi tiết cụ thể của mình, rồi sau mỗi lần thay đổi một tập tin phiên dịch, bạn nên thực hiện các lệnh sau:
+Sao lấy một bản vào thư mục **bin** địa phương của bạn và thay tất cả các giá trị đề cập trong tập tin với các chi tiết cụ thể của mình, rồi sau mỗi lần thay đổi một tập tin phiên dịch, bạn nên thực hiện các lệnh sau:
 
     $HOME/bin/change_placeholders.sh $BLENDER_MAN_VI
+    
     make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
 
 Xem các thay đổi ở địa phương bằng cách dùng trình duyệt mạng, vào thư mục
