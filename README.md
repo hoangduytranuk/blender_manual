@@ -43,7 +43,8 @@ Bản mà bạn đã tải xuống và cài đặt có thể không phải là p
   `
   sudo apt-get update
   sudo apt-get upgrade
-  sudo apt-get install -y subversion
+  sudo apt-get install -y git subversion
+  
   `
 Bạn còn có thể tải xuống máy bản [Kate trên Windows](https://kate-editor.org/2016/01/28/kate-on-windows/) làm một trình biên soạn văn bản bổ sung, thay cho cái hiện tại đang sử dụng.
 
@@ -83,45 +84,89 @@ Một khi make html đã được thực hiện, bạn có thể sử dụng tr�
 
 tại thư mục **blender_docs**. Sau khi xem, bạn có thể đánh dấu địa chỉ trang trên *Dấu trang ưa thích* (Favorite Bookmarks) của trình duyệt mạng, cho phép bạn truy cập trang này nhanh hơn ở những lần sau.
 
-Sau khi làm xong hướng dẫn ở trên thì bạn đã sẵn sàng làm theo quy trình cài đặt như đề cập đến trong 
+## Đăng ký tài khoản và tham gia làm một người đóng góp và đề án
+
+- Vào trang này: https://github.com/
+- Bấm nút 'Sign up'
+- Điền tên người dùng vào ô 'Username'. Nên dùng kiểu sau: hoangduytran1960 (không có dấu và không có khoảng trống cách chữ, cộng với năm sinh hoặc một số nào đấy)
+- Điền thư điện tử vào ô 'Email address'
+- Điền mật mã vào ô 'Password' (nhớ ghi lại vào đâu đó để về sau có quên thì lấy lại được) (Yêu cầu: 8 ký tự trở lên, gồm A-Z, 0-9, và có chữ Hoa, chữ Thường)
+- Bấm Verify và xem xem nó bảo làm gì để nó biết là mình không phải là thông tin từ máy mà là người thật.
+- Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi (hoangduytran1960@gmail.com) để tôi thêm vào làm người đóng góp  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
+
+## Lấy bản nguồn này xuống máy 
+
+- Bằng dòng lệnh:
+
+        git clone -b development https://github.com/hoangduytranuk/blender_manual.git
+
+- Tất cả các bài có nội dung tiếng Việt cần sửa, dịch nằm ở trong thư mục:
+        
+        ~/blender_docs/locale/vi/LC_MESSAGES     
+
+- ~/blender_docs là thư mục gốc
+- Làm theo hướng dẫn ở trang này: (chọn hệ điều hành tương thích với cái mình đang sử dụng). Ví dụ dưới đây là trong hệ điều hành Linux Ubuntu/Mint :
+        
+        https://docs.blender.org/manual/vi/dev/about/contribute/install/index.html
+        
+  như lấy các phần mềm cần có xuống máy:
+        
+            sudo apt-get install python python-pip git subversion
+            cd ~/blender_docs
+            sudo pip install -r requirements.txt
+            
+  và trang này:
+        
+        https://docs.blender.org/manual/vi/dev/about/contribute/build/index.html
+        
+  như biên tập bản tiếng Việt:
+            
+        make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1                
+            
+- Bạn nên tạo 2 biến môi trường sau và ghi vào trong tập lệnh '.bashrc' để 
+
+      export BLENDER_MAN_EN=$HOME/<thư mục tới>/blender_docs
+      export BLENDER_MAN_VI=$BLENDER_MAN_EN/locale/vi
+
+- Các tập tin mới được tạo sẽ chứa một số từ cần điền cho tác giả và ngày sửa đổi v.v. Nếu bạn cảm thấy công việc thay thế chúng lặp đi lặp lại, tẻ nhạt, thì hãy sử dụng tập lệnh 
+
+      change_placeholders.sh 
+
+trong thư mục con 
+
+    ~/blender_docs/toos_maintenance
+
+Sao lấy một bản vào thư mục bin địa phương của bạn và thay tất cả các giá trị đề cập trong tập tin với các chi tiết cụ thể của mình, rồi sau mỗi lần thay đổi một tập tin phiên dịch, bạn nên thực hiện các lệnh sau:
+
+    $HOME/bin/change_placeholders.sh $BLENDER_MAN_VI
+    make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
+
+Xem các thay đổi ở địa phương bằng cách dùng trình duyệt mạng, vào thư mục
+
+    $BLENDER_MAN_EN/build/html/index.html
+
+Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của trình duyệt mạng để lần sau cứ vào đấy bấm vào để xem trang đầu, F5 (làm tươi lại - refresh) để lấy các thay đổi gần đây nhất mà không phải mở lại 
+
+- Khi thay đổi xong và muốn nhập kho thì làm như sau:
+    + xem các thay đổi:
+    
+          git status
+          
+    + nhập kho vào ổ địa phương:
+        - (chỉ làm một lần, báo cho git biết là không ký lần nhập kho bằng mật mã riêng của cá nhân)
+            
+                git config commit.gpgsign false 
+
+         - (cái này chỉ làm một lần, báo cho git là lưu trữ tên người dùng và mật mã, dùng cho những lần sau)
+
+                git config credential.helper store 
+        
+         - (Đưa vào kho địa phương ở máy)
+            
+                git commit -am "<ghi chú về những gì đã làm trong thay đổi vừa rồi>"
+        
+         - (chuyển giao các thay đổi vào kho trên mạng, ở chi nhánh 'development')
+        
+                git push 
 
 
-
-
-- Vào trang này: https://github.com/ và bấm vào nút **Sign up** để đăng ký cho bản thân mình 
-
-You can use the [editor on GitHub](https://github.com/hoangduytranuk/blender_manual/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hoangduytranuk/blender_manual/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
