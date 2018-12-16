@@ -41,12 +41,10 @@ Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tư�
 
 Bản mà bạn đã tải xuống và cài đặt có thể không phải là phiên bản mới nhất, vì vậy hãy chạy các lệnh sau để cập nhật môi trường:
 
-  `
-  sudo apt-get update
-  sudo apt-get upgrade
-  sudo apt-get install -y git subversion
-  
-  `
+  `sudo apt-get update`
+  `sudo apt-get upgrade`
+  `sudo apt-get install -y git subversion`
+
 Bạn còn có thể tải xuống máy bản [Kate trên Windows](https://kate-editor.org/2016/01/28/kate-on-windows/) làm một trình biên soạn văn bản bổ sung, thay cho cái hiện tại đang sử dụng.
 
 ## Lưu Ý
