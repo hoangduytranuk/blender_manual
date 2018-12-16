@@ -1,4 +1,6 @@
-## Welcome to GitHub Pages
+## Đề án phiên dịch bản hướng dẫn sử dụng Blender (_Blender Reference Manual_)
+
+# Chuẩn bị (_Preparations_)
 
 You can use the [editor on GitHub](https://github.com/hoangduytranuk/blender_manual/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
