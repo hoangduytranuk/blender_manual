@@ -171,4 +171,21 @@ Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của tr�
         
                 git push 
 
+## Cài đặt bản *exclude* để bỏ qua những văn bản không cần thiết để nhập kho
 
+- Để tạo bản html ở máy PC địa phương của mình, lệnh **make** sẽ kiến tạo một số các thư mục, văn bản dành riêng cho mình, song những văn bản, thư mục này không cần thiết phải lưu lại và chúng sẽ thay đổi thường xuyên nữa. Để báo cho **git** bỏ qua chúng thì chúng ta phải biên soạn bản:
+
+      ~/.git/info/exclude
+
+  dùng hoặc là *kate*, hoặc là *vi*, hoặc *nano*, và điền nội dung sau ở dưới cùng, sau các dòng khởi đầu bằng *#*:
+  
+      blender_docs/build
+      *.mo
+      *.pyc
+
+  lưu các thay đổi, trước khi quay trở lại thư mục *blender_docs* và chạy lệnh:
+  
+      git status
+
+  để xem danh sách các thay đổi.
+  
