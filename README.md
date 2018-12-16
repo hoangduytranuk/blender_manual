@@ -194,6 +194,7 @@ Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của tr�
 - Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây sẽ là một việc không tránh khỏi, chẳng hạn như lệnh tạo *html*. Tốt nhất là kèm chúng vào một tập lệnh ở thư mục **bin** địa phương và đặt nó là có quyền thi hành:
     + Lệnh **makevidoc** trong dạng tập lệnh *Python*:
 
+
 ```Python
 import os
 from argparse import ArgumentParser
@@ -216,7 +217,6 @@ class MakingVIDocuments:
         os.system("make -d --trace -w -B -e SPHINXOPTS=\"-D language='vi'\" 2>&1")
         
 parser = ArgumentParser()
-#parser.add_argument("-c", "--clean", dest="clean_action", help="Clean before MAKE.", action='store_const', const=True)
 parser.add_argument("-c", "--clean", dest="clean_action", help="Clean before MAKE.", action='store_true')
 parser.add_argument("-d", "--dir", dest="make_dir", help="Directory where MAKE is performed")
 args = parser.parse_args()
@@ -227,4 +227,14 @@ x = MakingVIDocuments()
 x.setVars(args.clean_action, args.make_dir)
 x.run()
 ```
-    
+  + Lưu tập lệnh **makevidoc** này vào thư mục **$HOME/bin** của máy. Nhớ biên soạn bản *·bashrc* và đặt dòng sau để thư mục *$HOME/bin* nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
+  
+      ```bash
+        export MYBIN=$HOME/bin
+        export PATH=$MYBIN:$PATH
+      ```
+      
+  + Đặt tập lệnh này là **KHẢ THI HÀNH** bằng lệnh:
+      
+          
+      
