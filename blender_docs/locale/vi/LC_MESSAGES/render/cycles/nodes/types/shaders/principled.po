@@ -1,0 +1,385 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.79 Manual
+# package.
+# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.79 Manual 2.79\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-17 22:20+0000\n"
+"PO-Revision-Date: 2018-12-07 01:52+0000\n"
+"Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
+"Language: vi\n"
+"Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:5
+msgid "Principled BSDF"
+msgstr "BSDF Nguyên Tắc -- Principled BSDF"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:10
+msgid "Principled BSDF."
+msgstr "BSDF Nguyên Tắc."
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:12
+msgid ""
+"The *Principled* :abbr:`BSDF (Bidirectional scattering distribution "
+"function)` that combines multiple layers into a single easy to use node. "
+"It is based on the Disney principled model also known as the \"PBR\" "
+"shader, making it compatible with other software such as Pixar's "
+"Renderman\\ :sup:`®` and Unreal Engine\\ :sup:`®`. Image textures painted"
+" or baked from software like Substance Painter\\ :sup:`®` may be directly"
+" linked to the corresponding parameters in this shader."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:20
+msgid ""
+"This \"Uber\" shader includes multiple layers to create a wide variety of"
+" materials. The base layer is a user controlled mix between diffuse, "
+"metal, subsurface scattering and transmission. On top of that there is a "
+"specular layer, sheen layer and clearcoat layer."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:27
+msgid ""
+"The emphasis on compatibility with other software means that it "
+"interprets certain input parameters differently from older Blender nodes."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:32
+msgid "Inputs"
+msgstr "Đầu Vào -- Inputs"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:34
+msgid "Base Color"
+msgstr "Màu Cơ Sở -- Base Color"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:35
+msgid "Diffuse or metal surface color."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:38
+msgid "Subsurface"
+msgstr "Dưới Bề Mặt -- Subsurface"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:37
+msgid ""
+"Mix between diffuse and subsurface scattering. Rather than being a simple"
+" mix between Diffuse and Subsurface Scattering, it acts as a multiplier "
+"for the Subsurface Radius."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:44
+msgid "Subsurface Radius"
+msgstr "Bán Kính của Lớp Dưới Bề Mặt -- Subsurface Radius"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:41
+msgid ""
+"Average distance that light scatters below the surface. Higher radius "
+"gives a softer appearance, as light bleeds into shadows and through the "
+"object. The scattering distance is specified separately for the RGB "
+"channels, to render materials such as skin where red light scatters "
+"deeper. The X, Y and Z values are mapped to the R, G and B values, "
+"respectively."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:46
+msgid "Subsurface Color"
+msgstr "Màu Dưới Bề Mặt -- Subsurface Color"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:47
+msgid "Subsurface scattering base color."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:50
+msgid "Metallic"
+msgstr "Kim Loại -- Metallic"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:49
+msgid ""
+"Blends between a non-metallic and metallic material model. A value of 1.0"
+" gives a fully specular reflection tinted with the base color, without "
+"diffuse reflection or transmission. At 0.0 the material consists of a "
+"diffuse or transmissive base layer, with a specular reflection layer on "
+"top."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:68
+msgid "Specular"
+msgstr "Lóng Lánh -- Specular"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:53
+#, python-format
+msgid ""
+"Amount of dielectric specular reflection. Specifies facing (along normal)"
+" reflectivity in the most common 0 - 8% range."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:58
+msgid ""
+"To compute this value for a realistic material with a known index of "
+"refraction, you may use this special case of the Fresnel formula: "
+":math:`specular = ((ior - 1)/(ior + 1))^2 / 0.08`"
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:62
+msgid "For example:"
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:64
+msgid "water: ior = 1.33, specular = 0.25"
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:65
+msgid "glass: ior = 1.5, specular = 0.5"
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:66
+msgid "diamond: ior = 2.417, specular = 2.15"
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:68
+#, python-format
+msgid ""
+"Since materials with reflectivity above 8% do exist, the field allows "
+"values above 1."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:73
+msgid "Specular Tint"
+msgstr "Sắc Thái của Lóng Lánh -- Specular Tint"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:71
+msgid ""
+"Tints the facing specular reflection using the base color, while glancing"
+" reflection remains white."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:73
+msgid ""
+"Normal dielectrics have colorless reflection, so this parameter is not "
+"technically physically correct and is provided for faking the appearance "
+"of materials with complex surface structure."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:80
+msgid "Roughness"
+msgstr "Độ Ráp -- Roughness"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:76
+msgid ""
+"Specifies microfacet roughness of the surface for diffuse and specular "
+"reflection."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:80
+msgid ""
+"When converting from the older *Glossy BSDF* node, use the square root of"
+" the original value."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:83
+msgid "Anisotropic"
+msgstr "Dị Hướng -- Anisotropic"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:83
+msgid ""
+"Amount of anisotropy for specular reflection. Higher values give "
+"elongated highlights along the tangent direction; negative values give "
+"highlights shaped perpendicular to the tangent direction."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:91
+msgid "Anisotropic Rotation"
+msgstr "Xoay Chiều Dị Hướng -- Anisotropic Rotation"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:86
+msgid "Rotates the direction of anisotropy, with 1.0 going full circle."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:90
+msgid ""
+"Compared to the *Anisotropic BSDF* node, the direction of highlight "
+"elongation is rotated by 90°. Add 0.25 to the value to correct."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:94
+msgid "Sheen"
+msgstr "Bóng Bảy -- Sheen"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:94
+msgid ""
+"Amount of soft velvet like reflection near edges, for simulating "
+"materials such as cloth."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:96
+msgid "Sheen Tint"
+msgstr "Sắc Thái của Bóng Bảy -- Sheen Tint"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:97
+msgid "Mix between white and using base color for sheen reflection."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:99
+msgid "Clearcoat"
+msgstr "Lớp Sơn Bóng -- Clearcoat"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:99
+msgid ""
+"Extra white specular layer on top of others. This is useful for materials"
+" like car paint and the like."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:101
+msgid "Clearcoat Roughness:"
+msgstr "Độ Nhám của Lớp Sơn Bóng -- Clearcoat Roughness:"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:102
+msgid "Roughness of clearcoat specular."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:103
+msgid "IOR"
+msgstr "Chỉ Số Khúc Xạ (IOR) -- IOR"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:104
+msgid "Index of refraction for transmission."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:105
+msgid "Transmission"
+msgstr "Truyền Xạ -- Transmission"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:106
+msgid ""
+"Mix between fully opaque surface at zero and fully glass like "
+"transmission at one."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:107
+msgid "Transmission Roughness"
+msgstr "Độ Nhám trong Truyền Xạ -- Transmission Roughness"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:108
+msgid "With **GGX** distribution controls roughness used for transmitted light."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:109
+msgid "Normal"
+msgstr "Pháp Tuyến -- Normal"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:110
+msgid "Controls the normals of the base layers."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:111
+msgid "Clearcoat Normal"
+msgstr "Pháp Tuyến của Lớp Sơn Bóng -- Clearcoat Normal"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:112
+msgid "Controls the normals of the *Clearcoat* layer."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:115
+msgid "Tangent"
+msgstr "Tiếp Tuyến -- Tangent"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:114
+msgid "Controls the tangent for the *Anisotropic* layer."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:118
+msgid "Properties"
+msgstr "Tính Chất -- Properties"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:129
+msgid "Distribution"
+msgstr "Phân Phối -- Distribution"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:121
+msgid "Microfacet distribution to use."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:124
+msgid "GGX"
+msgstr "`GGX <https://www.cs.cornell.edu/~srm/publications/EGSR07-btdf.pdf>`__"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:124
+msgid ""
+"A method that is faster than *Multiple-scattering GGX* but is less "
+"physically accurate. Selecting it enables the *Transmission Roughness* "
+"input."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:129
+msgid "Multiple-scattering GGX"
+msgstr "Đa Tán Xạ GGX -- Multiple-scattering GGX"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:127
+msgid ""
+"Takes multiple bounce (scattering) events between microfacets into "
+"account. This gives a more energy conserving results, which would "
+"otherwise be visible as excessive darkening."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:144
+msgid "Subsurface Method"
+msgstr "Phương Pháp Dưới Bề Mặt -- Subsurface Method"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:132
+msgid "Rendering method to simulate subsurface scattering."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:135
+msgid "Christensen-Burley"
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:135
+msgid ""
+"Is an approximation to physically-based volume scattering. Gives less "
+"blurry results than Cubic and Gaussian functions."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:144
+msgid "Random Walk"
+msgstr "Tiến Bước Ngẫu Nhiên -- Random Walk"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:138
+msgid ""
+"Provides the most accurate results for thin and curved objects. This "
+"comes at the cost of increased render time or noise for more dense media "
+"like skin, but also better geometry detail preservation. Random Walk uses"
+" true volumetric scattering inside the mesh, which means that it works "
+"best for closed meshes. Overlapping faces and holes in the mesh can cause"
+" problems."
+msgstr ""
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:147
+msgid "Outputs"
+msgstr "Đầu Ra -- Outputs"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:151
+msgid "BSDF"
+msgstr "BSDF (`Hàm Phân Phối Tán Xạ Nhị Hướng -- Bidirectional Scattering Distribution Function <https://en.wikipedia.org/wiki/Bidirectional_scattering_distribution_function>`__)"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:150
+msgid "Standard shader output."
+msgstr "Đầu ra chuẩn của bộ tô bóng."
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:154
+msgid "Examples"
+msgstr "Các Ví Dụ -- Examples"
+
+#: ../../manual/render/cycles/nodes/types/shaders/principled.rst:156
+msgid ""
+"Below are some examples of how all the Principled BSDF's parameters "
+"interact with each other."
+msgstr ""

@@ -1,0 +1,632 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.79 Manual
+# package.
+# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.79 Manual 2.79\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-01 19:20+0000\n"
+"PO-Revision-Date: 2018-12-10 17:58+0000\n"
+"Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
+"Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:5
+msgid "Editing"
+msgstr "Biên Soạn -- Editing"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:10
+msgid "Pose Tools."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:12
+msgid ""
+"In *Pose Mode*, bones behave like objects. So the transform actions "
+"(grab/rotate/scale, etc.) are very similar to the same ones in *Object* "
+"mode (all available ones are regrouped in the :menuselection:`Pose --> "
+"Transform` submenu). However, there are some important specificities:"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:17
+msgid "Bones' relationships are crucial (see :ref:`bone-relations-parenting`)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:18
+msgid ""
+"The \"transform center\" of a given bone (i.e. its default pivot point, "
+"when it is the only selected one) is *its root*. Note by the way that "
+"some pivot point options seem to not work properly. In fact, except for "
+"the *3D Cursor* one, all others appear to always use the median point of "
+"the selection (and not e.g. the active bone's root when *Active Object* "
+"is selected, etc.)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:26
+msgid "Basic Posing"
+msgstr "-- Basic Posing"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:28
+msgid ""
+"As previously noted, bones' transformations are performed based on the "
+"*Rest Position* of the armature, which is its state as defined in *Edit "
+"Mode*. This means that in rest position, in *Pose Mode*, each bone has a "
+"scale of 1.0, and null rotation and position (as you can see it in the "
+"*Transform* panel, in the 3D Views)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:36
+msgid "An example of locally-Y-axis locked rotation, with two bones selected."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:38
+msgid ""
+"Note that the two green lines materializing the axes are centered on the "
+"armature's center, and not each bone's root..."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:41
+msgid ""
+"Moreover, the local space for these actions is the bone's own one "
+"(visible when you enable the *Axes* option of the *Armature* panel). This"
+" is especially important when using axis locking, for example, there is "
+"no specific \"bone roll\" tool in *Pose Mode*, as you can rotate around "
+"the bone's main axis just by locking on the local Y axis :kbd:`R Y Y`... "
+"This also works with several bones selected; each one is locked to its "
+"own local axis!"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:49
+msgid ""
+"When you pose your armature, you are supposed to have one or more objects"
+" skinned on it! And obviously, when you transform a bone in *Pose Mode*, "
+"its related objects or object's shape is moved/deformed accordingly, in "
+"real-time. Unfortunately, if you have a complex rig set-up and/or a heavy"
+" skin object, this might produce lag, and make interactive editing very "
+"painful. If you experience such troubles, try enabling the *Delay Deform*"
+" button of the *Armature* panel the skin objects will only be updated "
+"once you validate the transform operation."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:61
+msgid "Auto IK"
+msgstr "IK Tự Động -- Auto IK"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:63
+#: ../../manual/rigging/armatures/posing/editing.rst:78
+#: ../../manual/rigging/armatures/posing/editing.rst:108
+#: ../../manual/rigging/armatures/posing/editing.rst:137
+#: ../../manual/rigging/armatures/posing/editing.rst:151
+#: ../../manual/rigging/armatures/posing/editing.rst:168
+#: ../../manual/rigging/armatures/posing/editing.rst:190
+#: ../../manual/rigging/armatures/posing/editing.rst:266
+#: ../../manual/rigging/armatures/posing/editing.rst:311
+msgid "Reference"
+msgstr "Tham Chiếu -- Reference"
+
+#: ../../manual/rigging/armatures/posing/editing.rst
+msgid "Mode"
+msgstr "Chế Độ -- Mode"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:66
+#: ../../manual/rigging/armatures/posing/editing.rst:81
+#: ../../manual/rigging/armatures/posing/editing.rst:111
+#: ../../manual/rigging/armatures/posing/editing.rst:140
+#: ../../manual/rigging/armatures/posing/editing.rst:154
+#: ../../manual/rigging/armatures/posing/editing.rst:171
+#: ../../manual/rigging/armatures/posing/editing.rst:193
+#: ../../manual/rigging/armatures/posing/editing.rst:269
+msgid "Pose Mode"
+msgstr "Chế Độ Tư Thế -- Pose Mode"
+
+#: ../../manual/rigging/armatures/posing/editing.rst
+msgid "Panel"
+msgstr "Bảng -- Panel"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:67
+msgid ":menuselection:`Tool Shelf --> Options --> Pose Options`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:69
+msgid ""
+"The auto IK option in the Tool Shelf enables a temporary IK constraint "
+"when posing bones. The chain acts from the tip of the selected bone to "
+"root of the uppermost parent bone. Note that this mode lacks options, and"
+" only works by applying the resulting transform to the bones in the "
+"chain."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:76
+msgid "Clear Transform"
+msgstr "Xóa Biến Hóa -- Clear Transform"
+
+#: ../../manual/rigging/armatures/posing/editing.rst
+msgid "Menu"
+msgstr "Trình Đơn -- Menu"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:82
+msgid ":menuselection:`Pose --> Clear Transform`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst
+msgid "Hotkey"
+msgstr "Phím Tắt -- Hotkey"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:83
+msgid ":kbd:`Alt-G`, :kbd:`Alt-R`, :kbd:`Alt-S`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:85
+msgid ""
+"Once you have transformed some bones, if you want to return to their rest"
+" position, just clear their transformations."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:88
+msgid "Location, Rotation, Scale :kbd:`Alt-G`, :kbd:`Alt-R`, :kbd:`Alt-S`"
+msgstr " -- Location, Rotation, Scale :kbd:`Alt-G`, :kbd:`Alt-R`, :kbd:`Alt-S`"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:89
+msgid "Clears individual transforms."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:90
+msgid "All"
+msgstr "Toàn Bộ -- All"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:91
+msgid "To clear everything at once."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:97
+msgid "Reset Unkeyed"
+msgstr "Hoàn Lại về trạng thái Chưa Khóa Hóa -- Reset Unkeyed"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:93
+msgid ""
+"Clears the transforms to their keyframe state. This operator is also "
+"available in the :menuselection:`Specials --> Clear User Transform` menu."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:97
+msgid "Only Selected"
+msgstr "Đã Được Chọn Thôi -- Only Selected"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:97
+msgid "Operate on just the selected or all bones."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:99
+msgid ""
+"Note that in *Envelope* visualization, :kbd:`Alt-S` does not clear the "
+"scale, but rather scales the *Distance* influence area of the selected "
+"bones (also available through the :menuselection:`Pose --> Scale Envelope"
+" Distance` menu entry, which is only effective in *Envelope* "
+"visualization, even though it is always available...)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:106
+msgid "Apply"
+msgstr "Áp Dụng -- Apply"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:112
+msgid ":menuselection:`Pose --> Apply`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:113
+msgid ":kbd:`Ctrl-A`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:115
+msgid ""
+"Conversely, you may define the current pose as the new rest position "
+"(i.e. \"apply\" current transformations to the *Edit Mode*), using the "
+":menuselection:`Pose --> Apply Pose as Restpose` menu entry (or "
+":kbd:`Ctrl-A` and confirm the pop-up menu). When you do so, the skinned "
+"objects/geometry is **also** reset to its default, undeformed state, "
+"which generally means you will have to skin it again."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:124
+msgid "In-Betweens"
+msgstr "Trung Gian -- In-Betweens"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:126
+msgid "There are several tools for editing poses in an animation."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:128
+msgid ""
+"There are also in *Pose Mode* a bunch of armature-specific editing "
+"options/tools, like :ref:`auto-bones naming <armature-editing-naming-"
+"bones>`, :ref:`properties switching/enabling/disabling <armature-bone-"
+"properties>`, etc., that we already described in the armature editing "
+"pages. See the links above..."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:135
+msgid "Push Pose"
+msgstr "Đẩy Tư Thế -- Push Pose"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:141
+msgid ""
+":menuselection:`Tool Shelf --> Tool --> Tool --> Pose Tools --> In-"
+"Betweens: Push`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:142
+msgid ":menuselection:`Pose --> In-Betweens --> Push Pose`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:143
+msgid ":kbd:`Ctrl-E`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:145
+msgid "Push pose exaggerates the current pose."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:149
+msgid "Relax Pose"
+msgstr "Nới Lỏng Tư Thế -- Relax Pose"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:155
+msgid ":menuselection:`Tool Shelf --> Tool --> Pose Tools --> In-Betweens: Relax`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:156
+msgid ":menuselection:`Pose --> In-Betweens --> Relax Pose`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:157
+msgid ":kbd:`Alt-E`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:159
+msgid ""
+"Relax pose is somewhat related to the above topic, but it is only useful "
+"with keyframed bones. When you edit such a bone (and hence take it "
+"\"away\" from its \"keyed position\"), using this tool will progressively"
+" \"bring it back\" to its \"keyed position\", with smaller and smaller "
+"steps as it comes near it."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:166
+msgid "Breakdowner"
+msgstr "Máy Phân Tích -- Breakdowner"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:172
+msgid ""
+":menuselection:`Tool Shelf --> Tool --> Pose Tools --> In-Betweens: "
+"Breakdowner`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:173
+msgid ":menuselection:`Pose --> In-Betweens --> Pose Breakdowner`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:174
+msgid ":kbd:`Shift-E`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:176
+msgid "Creates a suitable breakdown pose on the current frame."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:178
+msgid ""
+"The Breakdowner tool can be constrained to work on specific transforms "
+"and axes, by pressing the following keys while the tool is active:"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:181
+msgid ":kbd:`G`, :kbd:`R`, :kbd:`S`: translate, rotate, scale"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:182
+msgid ":kbd:`B`: Bendy bones"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:183
+msgid ":kbd:`C`: custom properties"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:184
+msgid ":kbd:`X`, :kbd:`Y`, :kbd:`Z`: to the corresponding axes"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:188
+msgid "Copy/Paste Pose"
+msgstr "-- Copy/Paste Pose"
+
+#: ../../manual/rigging/armatures/posing/editing.rst
+msgid "Header"
+msgstr "Tiêu Đề -- Header"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:194
+msgid "Copy/Paste (|copy-paste|)"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:195
+msgid ":menuselection:`Tool Shelf --> Tool --> Pose Tools --> Pose: Copy, Paste`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:196
+msgid ""
+":menuselection:`Pose --> Copy Current Pose`, :menuselection:`Pose --> "
+"Paste Pose`, :menuselection:`Pose --> Paste X-Flipped Pose`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:200
+msgid ""
+"Blender allows you to copy and paste a pose, either through the *Pose* "
+"menu, or directly using the three copy/paste buttons found at the right "
+"part of the 3D View's header:"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:203
+msgid "Copy Current Pose"
+msgstr " -- Copy Current Pose"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:204
+msgid "Copy the current pose of selected bones into the pose buffer."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:205
+msgid "Paste Pose"
+msgstr "Dán Tư Thế -- Paste Pose"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:206
+msgid "Paste the buffered pose to the currently posed armature."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:208
+msgid "Paste X-Flipped Pose"
+msgstr "Dán Tư Thế Đảo-Lật theo Trục X -- Paste X-Flipped Pose"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:208
+msgid "Paste the *X axis mirrored* buffered pose to the currently posed armature."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:210
+msgid "Here are important points:"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:212
+msgid ""
+"This tool works at the Blender session level, which means you can use it "
+"across armatures, scenes, and even files. However, the pose buffer is not"
+" saved, so you lose it when you close Blender."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:214
+msgid "There is only one pose buffer."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:215
+msgid ""
+"Only the selected bones are taken into account during copying (i.e. you "
+"copy only selected bones' pose)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:216
+msgid ""
+"During pasting, on the other hand, bone selection has no importance. The "
+"copied pose is applied on a per-name basis (i.e. if you had a ``forearm``"
+" bone selected when you copied the pose, the ``forearm`` bone of the "
+"current posed armature will get its pose when you paste it -- and if "
+"there is no such named bone, nothing will happen...)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:221
+msgid ""
+"What is copied and pasted is in fact the position/rotation/scale of each "
+"bone, in its own space. This means that the resulting pasted pose might "
+"be very different from the originally copied one, depending on: - The "
+"rest position of the bones, - and the current pose of their parents."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:230
+msgid "The rest position of our original armature."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:234
+msgid "The rest position of our destination armature."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:236
+msgid "Examples of pose copy/paste."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:240
+msgid ""
+"The first copied pose (note that only two bones are selected and hence "
+"copied)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:244
+msgid "...pasted on the destination armature..."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:248
+#: ../../manual/rigging/armatures/posing/editing.rst:260
+msgid "...and mirror-pasted on the destination armature."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:252
+msgid ""
+"The same pose as above is copied, but this time with all bones selected, "
+"..."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:256
+msgid "... pasted on the destination armature..."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:264
+msgid "Propagate"
+msgstr "Lan Truyền -- Propagate"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:270
+msgid ":menuselection:`Tool Shelf --> Tool --> Pose Tools --> Pose: Propagate`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:271
+msgid ":menuselection:`Pose --> Propagate`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:272
+msgid ":kbd:`Alt-P`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:274
+msgid ""
+"The Propagate tool copies the pose of the selected bones on the current "
+"frame over to the keyframes delimited by the *Termination Mode*. It "
+"automates the process of copying and pasting."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:280
+msgid "Options"
+msgstr "Tùy Chọn -- Options"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:301
+msgid "Termination Mode"
+msgstr " -- Termination Mode"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:283
+msgid "Modes which determine how it decides when to stop overwriting keyframes."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:287
+msgid "While Held"
+msgstr "Trong Khi Có Cùng Giá Trị -- While Held"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:286
+msgid ""
+"The most complicated of the modes available, as it tries to guess when to"
+" stop propagating by examining the pauses in the animation curves per "
+"control (i.e. all F-Curves for a bone, instead of per F-Curve)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:289
+msgid "To Next Keyframe"
+msgstr "Đến Khung Khóa Tiếp Theo -- To Next Keyframe"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:290
+msgid ""
+"Simply copies the pose to the first keyframe after (but not including any"
+" keyframe on) the current frame."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:291
+msgid "To Last Keyframe"
+msgstr "Đến Khung Khóa Cuối Cùng -- To Last Keyframe"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:292
+msgid "Will simply replace the last keyframe. (i.e. making action cyclic)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:295
+msgid "Before Frame"
+msgstr "Trước Khung Hình -- Before Frame"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:294
+msgid ""
+"To all keyframes between current frame and the *End frame* option. This "
+"option is best suited for use from scripts due to the difficulties in "
+"setting this frame value, though it is possible to set this manually via "
+"the Operator panel if necessary."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:297
+msgid "Before Last Keyframe"
+msgstr "Trước Khung Khóa Cuối Cùng -- Before Last Keyframe"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:298
+msgid "To all keyframes from current frame until no more are found."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:299
+msgid "On Selected Keyframes"
+msgstr "Trên các Khung Khóa Được Chọn -- On Selected Keyframes"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:300
+msgid "Will apply the pose of the selected bones to all selected keyframes."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:301
+msgid "On Selected Markers"
+msgstr "Tại các Dấu Mốc đã Chọn -- On Selected Markers"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:302
+msgid ""
+"To all keyframes occurring on frames with Scene Markers after the current"
+" frame."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:306
+msgid "End Frame"
+msgstr "Khung Hình Cuối -- End Frame"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:304
+msgid ""
+"Defines the upper-bound for the frame range within which keyframes will "
+"be affected (with the lower bound being the current frame)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:309
+msgid "Show/Hide"
+msgstr "Hiện/Ẩn -- Show/Hide"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:314
+msgid "All Modes"
+msgstr "Toàn Bộ các Chế Độ -- All Modes"
+
+#: ../../manual/rigging/armatures/posing/editing.rst:315
+msgid ":menuselection:`Properties editor --> Bone --> Display`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:316
+msgid ":menuselection:`... --> Show/Hide`"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:318
+msgid ""
+"You do not have to use bone layers to show/hide some bones. As with "
+"objects, vertices or control points, you can use :kbd:`H`:"
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:321
+msgid ":kbd:`H` will hide the selected bone(s)."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:322
+msgid ":kbd:`Shift-H` will hide all bones *but the selected one(s)*."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:323
+msgid ":kbd:`Alt-H` will show all hidden bones."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:325
+msgid ""
+"You can also use the *Hide* checkbox of the :menuselection:`Bone tab --> "
+"Display panel`."
+msgstr ""
+
+#: ../../manual/rigging/armatures/posing/editing.rst:327
+msgid ""
+"Note that hidden bones are specific to a mode, i.e. you can hide some "
+"bones in *Edit Mode*, they will still be visible in *Pose Mode*, and vice"
+" versa. Hidden bones in *Pose Mode* are also invisible in *Object Mode*. "
+"And in *Edit Mode*, the bone to hide must be fully selected, not just his"
+" root or tip."
+msgstr ""
