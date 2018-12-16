@@ -37,7 +37,7 @@ Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tư�
     Bấm chuột phải và chọn Ubuntu 18.04 ‣ Đính vào trình đơn bắt đầu (pin to start)
     Bấm chuột phải và chọn Ubuntu 18.04 ‣ thêm (more) ‣ Đính vào thanh tác vụ (pin to taskbar)
 
-## Cập nhận hệ thống phụ Linux
+## Cập nhật hệ thống phụ Linux
 
 Bản mà bạn đã tải xuống và cài đặt có thể không phải là phiên bản mới nhất, vì vậy hãy chạy các lệnh sau để cập nhật môi trường:
 
