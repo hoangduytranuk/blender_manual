@@ -171,7 +171,7 @@ Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của tr�
         
                 git push 
 
-## Cài đặt bản *exclude* để bỏ qua những văn bản không cần thiết để nhập kho
+## Cài đặt bản *exclude* để bỏ qua những văn bản không cần thiết phải nhập kho
 
 - Để tạo bản html ở máy PC địa phương của mình, lệnh **make** sẽ kiến tạo một số các thư mục, văn bản dành riêng cho mình, song những văn bản, thư mục này không cần thiết phải lưu lại và chúng sẽ thay đổi thường xuyên nữa. Để báo cho **git** bỏ qua chúng thì chúng ta phải biên soạn bản:
 
