@@ -192,10 +192,11 @@ Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của tr�
 ## Các tập lệnh có thể cần sử dụng 
 
 - Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây sẽ là một việc không tránh khỏi, chẳng hạn như lệnh tạo *html*. Tốt nhất là kèm chúng vào một tập lệnh ở thư mục **bin** địa phương và đặt nó là có quyền thi hành:
-    + Lệnh **makevidoc** trong dạng tập lệnh *Python*:
+    + Lệnh **makevidoc.py** trong dạng tập lệnh *Python*:
 
 
 ```Python
+#!/usr/bin/python3 -d
 import os
 from argparse import ArgumentParser
 
@@ -217,8 +218,8 @@ class MakingVIDocuments:
         os.system("make -d --trace -w -B -e SPHINXOPTS=\"-D language='vi'\" 2>&1")
         
 parser = ArgumentParser()
-parser.add_argument("-c", "--clean", dest="clean_action", help="Clean before MAKE.", action='store_true')
-parser.add_argument("-d", "--dir", dest="make_dir", help="Directory where MAKE is performed")
+parser.add_argument("-c", "--clean", dest="clean_action", help="Xóa sạch các thư mục trước khi thi hành MAKE.", action='store_true')
+parser.add_argument("-d", "--dir", dest="make_dir", help="Thư mục nơi mà MAKE sẽ làm việc")
 args = parser.parse_args()
 
 print("args: {}".format(args))
@@ -227,7 +228,7 @@ x = MakingVIDocuments()
 x.setVars(args.clean_action, args.make_dir)
 x.run()
 ```
-  + Lưu tập lệnh **makevidoc** này vào thư mục **$HOME/bin** của máy. Nhớ biên soạn bản *·bashrc* và đặt dòng sau để thư mục *$HOME/bin* nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
+  + Lưu tập lệnh **makevidoc.py** này vào thư mục **$HOME/bin** của máy. Nhớ biên soạn bản *·bashrc* và đặt dòng sau để thư mục *$HOME/bin* nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
   
       ```bash
         export MYBIN=$HOME/bin
@@ -235,6 +236,30 @@ x.run()
       ```
       
   + Đặt tập lệnh này là **KHẢ THI HÀNH** bằng lệnh:
+      ```bash
+        chmod u+x $HOME/bin/makevidoc.py
+      ```
+  + Sau đó, chúng ta có thể chạy nó như các ví dụ sau:
+      - Xem hướng dẫn sử dụng
+      ```bash
+        makevidoc.py --help
+      ```
+      - Thi hành **make** nhưng không xóa bản cũ đi, viết đè lên. Phương pháp này sẽ nhanh hơn, song nhiều khi sẽ không cho kết quả chính xác:
+      ```bash
+        makevidoc.py
+      ```
+      - Thi hành **make** và xóa bản cũ đi:
+      ```bash
+        makevidoc.py -c
+      ```
+      - Thi hành **make** và xóa bản cũ đi, định thư mục nơi nó cần làm việc là thư mục hiện tại ($PWD = Print Working Directory: In ra thư mục làm việc):
+      ```bash
+        makevidoc.py -c $PWD
+      ```
+      
+      
+      
+  
       
           
       
