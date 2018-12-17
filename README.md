@@ -192,7 +192,7 @@ Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của tr�
 ## Các tập lệnh có thể cần sử dụng 
 
 - Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây sẽ là một việc không tránh khỏi, chẳng hạn như lệnh tạo *html*. Tốt nhất là kèm chúng vào một tập lệnh ở thư mục **bin** địa phương và đặt nó là có quyền thi hành:
-    * Lệnh **makevidoc.py** trong dạng tập lệnh *Python*:
+    1. Lệnh **makevidoc.py** trong dạng tập lệnh *Python*:
 
 
 ```Python
@@ -257,6 +257,15 @@ x.run()
         makevidoc.py -c $PWD
       ```
       
+      2. Lệnh **updatePO.sh**
+        - Tập lệnh này cho phép mình điền tên và e-mail của mình vào phần *COMMENT* của các văn bản mà mình sửa, đồng thời điền ngày giờ mình đã làm nữa. Nó dùng lệnh **svn** và **git** để tìm các văn bản có đuôi là **.po** đã thay đổi. Nếu phải tự lùng tìm ở một thư mục nào đó không phải là thư mục có thư mục **.svn** hoặc **.git** thì nó sẽ tìm các văn bản có đuôi là **.po** mà thôi và cách này là cách làm việc lâu nhất.
+        - Các từ mình cần điền chi tiết của cá nhân là:
+        ```bash
+          YOUR_NAME="Họ tên đầy đủ"
+          YOUR_EMAIL="địa-chỉ-email@máy_chủ.com"
+        ```
+        
+        
       
       
   
