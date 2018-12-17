@@ -85,7 +85,7 @@ Một khi make html đã được thực hiện, bạn có thể sử dụng tr�
 
 tại thư mục **blender_docs**. Sau khi xem, bạn có thể đánh dấu địa chỉ trang trên *Dấu trang ưa thích* (Favorite Bookmarks) của trình duyệt mạng, cho phép bạn truy cập trang này nhanh hơn ở những lần sau.
 
-## Đăng ký tài khoản và tham gia làm một người đóng góp và đề án
+## Đăng ký tài khoản và tham gia làm một người đóng góp vào đề án
 
 - Vào trang này: https://github.com/
 - Bấm nút 'Sign up'
@@ -93,7 +93,7 @@ tại thư mục **blender_docs**. Sau khi xem, bạn có thể đánh dấu đ�
 - Điền thư điện tử vào ô 'Email address'
 - Điền mật mã vào ô 'Password' (nhớ ghi lại vào đâu đó để về sau có quên thì lấy lại được) (Yêu cầu: 8 ký tự trở lên, gồm A-Z, 0-9, và có chữ Hoa, chữ Thường)
 - Bấm Verify và xem xem nó bảo làm gì để nó biết là mình không phải là thông tin từ máy mà là người thật.
-- Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi (hoangduytran1960@gmail.com) để tôi thêm vào làm người đóng góp  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
+- Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi (hoangduytran1960@gmail.com) để tôi thêm vào làm người hợp tác  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
 
 ## Lấy bản nguồn này xuống máy 
 
@@ -258,7 +258,7 @@ x.run()
         makevidoc.py -c $PWD
       ```
       
-2. Lệnh **updatePO.sh**
+2. Lệnh **change_placeholders.sh**
         
   + Tập lệnh này cho phép mình điền tên và e-mail của mình vào phần *COMMENT* của các văn bản mà mình sửa, đồng thời điền ngày giờ mình đã làm nữa. Nó dùng lệnh **svn** và **git** để tìm các văn bản có đuôi là **.po** đã thay đổi. Nếu phải tự lùng tìm ở một thư mục nào đó không phải là thư mục có thư mục **.svn** hoặc **.git** thì nó sẽ tìm các văn bản có đuôi là **.po** mà thôi và cách này là cách làm việc lâu nhất.
         - Các từ mình cần điền chi tiết của cá nhân là:
@@ -266,8 +266,13 @@ x.run()
           YOUR_NAME="Họ tên đầy đủ"
           YOUR_EMAIL="địa-chỉ-email@máy_chủ.com"
         
+  + Tập lệnh này thường được thi hành trong những trường hợp mà các văn bản **.po** bị thay đổi do:
+      * Bản thân mình biên soạn nó
+      * Sau khi thi hành lệnh 
+          
+            make update_po
         
-        
+        để cập nhất các thay đổi từ bản tiếng Anh sang. 
       
       
   
