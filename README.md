@@ -262,11 +262,10 @@ x.run()
         
   + Tập lệnh này cho phép mình điền tên và e-mail của mình vào phần *COMMENT* của các văn bản mà mình sửa, đồng thời điền ngày giờ mình đã làm nữa. Nó dùng lệnh **svn** và **git** để tìm các văn bản có đuôi là **.po** đã thay đổi. Nếu phải tự lùng tìm ở một thư mục nào đó không phải là thư mục có thư mục **.svn** hoặc **.git** thì nó sẽ tìm các văn bản có đuôi là **.po** mà thôi và cách này là cách làm việc lâu nhất.
         - Các từ mình cần điền chi tiết của cá nhân là:
-        
-        ```bash
+                
           YOUR_NAME="Họ tên đầy đủ"
           YOUR_EMAIL="địa-chỉ-email@máy_chủ.com"
-        ```
+        
         
         
       
