@@ -192,7 +192,7 @@ Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của tr�
 ## Các tập lệnh có thể cần sử dụng 
 
 - Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây sẽ là một việc không tránh khỏi, chẳng hạn như lệnh tạo *html*. Tốt nhất là kèm chúng vào một tập lệnh ở thư mục **bin** địa phương và đặt nó là có quyền thi hành:
-    + Lệnh **makevidoc.py** trong dạng tập lệnh *Python*:
+    * Lệnh **makevidoc.py** trong dạng tập lệnh *Python*:
 
 
 ```Python
