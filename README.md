@@ -161,7 +161,7 @@ Một khi make html đã được thực hiện, bạn có thể sử dụng tr�
     Tìm hiểu thêm về định dạng này ở đây [The Format of PO Files](https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html).
     Trong đó:
 
-    + `\#, fuzzy`: Nếu dòng có dấu này thì máy phiên dịch sẽ không sử dụng nội dung ở dòng `msgstr` và coi nó như là *không có phiên dịch* hoặc *phiên dịch bị lỗi thời*, *phiên dịch khả nghi về tính chính xác*. Chỉ xóa dòng này đi khi nào bản dịch là hoàn toàn đúng với bản tiếng Anh. Thêm dòng này vào nếu thấy phần phiên dịch là mập mờ, đáng khả nghi.
+    + `#, fuzzy`: Nếu dòng có dấu này thì máy phiên dịch sẽ không sử dụng nội dung ở dòng `msgstr` và coi nó như là *không có phiên dịch* hoặc *phiên dịch bị lỗi thời*, *phiên dịch khả nghi về tính chính xác*. Chỉ xóa dòng này đi khi nào bản dịch là hoàn toàn đúng với bản tiếng Anh. Thêm dòng này vào nếu thấy phần phiên dịch là mập mờ, đáng khả nghi.
     + `msgctxt`: Dòng đề ngữ cảnh sử dụng
     + `msgid`: Dòng nội dung tiếng Anh
     + `msgstr`: Dòng nội dung trong tiếng Việt (dòng để dịch)
@@ -317,7 +317,31 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 
             make update_po
 
-        để cập nhất các thay đổi từ bản tiếng Anh sang.
+    để cập nhất các thay đổi từ bản tiếng Anh sang, và quá trình này sẽ cập nhật các thay đổi từ các tập tin nguồn `~/blender_docs/manual/*.rst`, nó còn đánh dấu (không xóa đi) những phần văn bản đã bị xóa đi trong bản nguồn, bằng cách đánh dấu các dòng này với tiền tố **\#~**. Tập lệnh **change_placeholders.sh** cũng phát hiện cái này và xóa các dòng có tiền tố **\#~** ra khỏi văn bản **.po**.
+
+3. Các dòng lệnh mình đã đánh trong cửa sổ dòng lệnh được trình xử lý dòng lệnh ghi lại và trong khi làm việc trong cửa sổ dòng lệnh mình có thể
+    - Dùng các phim mũi tên *lên*, *xuống* để gọi lại các dòng lệnh đã đánh theo tuần tự.
+    - Lệnh **history** (Lịch Sử) liệt kê lại các lện đã từng đánh và được ghi lại. Số dòng được định trong tập **.bashrc**
+
+            # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+            HISTSIZE=1000
+            HISTFILESIZE=2000
+
+        Khi số dòng vượt quá hạn định này thì tất cả những dòng lịch sử trước sẽ bị xóa đi và những dòng mới sẽ được bắt đầu lại từ đầu. Nếu có những dòng lệnh đánh mà mình muốn lưu lại vào một tập tin khác thì mình có thể thi hành các lệnh sau - đặt tên cho tập lệnh là `savehistory.sh`:
+
+            #!/bin/bash
+            histfile=$HOME/Documents/my_history.txt
+            tempfile=$HOME/tmp.txt
+            history >> $histfile
+            cat $histfile | sort -nu > $tempfile
+            mv $tempfile $histfile
+
+    - Khi lệnh **history** (Lịch Sử) liệt kê casc dòng lệnh, nó còn liệt kê dòng số ở đầu. Mình có thể gọi lại dòng lệnh bằng cách điền con số dòng với dấu chấm than đứng trước, như sau:
+
+            !<số dòng>
+
+        và bấm 'Enter'. Lệnh ở dòng số này sẽ được thực hiện.
+
 
 
 
