@@ -95,13 +95,25 @@ Một khi make html đã được thực hiện, bạn có thể sử dụng tr�
 
 - Bằng dòng lệnh:
 
+        cd $HOME
         git clone -b development https://github.com/hoangduytranuk/blender_manual.git
+
+    Nếu cài Hệ Thống Phụ Linux (**WSL**) thì dùng:
+
+        cd $WIN_HOME
+        git clone -b development https://github.com/hoangduytranuk/blender_manual.git
+
+- Các thư mục sẽ tạo trong ổ cứng là
+
+        blender_manual/
+        ├── blender_docs
+
 
 - Tất cả các bài có nội dung tiếng Việt cần sửa, dịch nằm ở trong thư mục:
 
-        ~/blender_docs/locale/vi/LC_MESSAGES
+        $HOME/blender_manual/blender_docs/locale/vi/LC_MESSAGES
 
-    **~/blender_docs** là thư mục gốc
+    **blender_manual/blender_docs** là thư mục gốc. Nhớ thay thế $HOME sang $WIN_HOME nếu dùng **WSL**.
 
 ## Cài đặt các phần mềm cần thiết cho việc biên tập
 
@@ -127,7 +139,7 @@ Một khi make html đã được thực hiện, bạn có thể sử dụng tr�
 
 - Bạn nên tạo 2 biến môi trường sau và ghi vào trong tập lệnh **.bashrc** để
 
-        export BLENDER_MAN_EN=$HOME/<thư mục tới>/blender_docs
+        export BLENDER_MAN_EN=$HOME/blender_manual/blender_docs
         export BLENDER_MAN_VI=$BLENDER_MAN_EN/locale/vi
 
 
@@ -336,7 +348,7 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
             cat $histfile | sort -nu > $tempfile
             mv $tempfile $histfile
 
-    - Khi lệnh **history** (Lịch Sử) liệt kê casc dòng lệnh, nó còn liệt kê dòng số ở đầu. Mình có thể gọi lại dòng lệnh bằng cách điền con số dòng với dấu chấm than đứng trước, như sau:
+    - Khi lệnh **history** (Lịch Sử) liệt kê các dòng lệnh, nó còn liệt kê dòng số ở đầu. Mình có thể gọi lại dòng lệnh bằng cách điền con số dòng với dấu chấm than đứng trước, như sau:
 
             !<số dòng>
 
