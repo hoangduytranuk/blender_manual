@@ -108,6 +108,7 @@ Một khi make html đã được thực hiện, bạn có thể sử dụng tr�
         blender_manual/
         ├── blender_docs
 
+- Trong thư mục **blender_manual** mình sẽ tìm thấy thư mục **.git**. Thư mục này là thư mục *git* sử dụng để lưu các thay đổi của mình, cùng có các thư mục khác như **info/exlude** mà mình sẽ nói đến sau này.
 
 - Tất cả các bài có nội dung tiếng Việt cần sửa, dịch nằm ở trong thư mục:
 
@@ -124,7 +125,7 @@ Một khi make html đã được thực hiện, bạn có thể sử dụng tr�
     như lấy các phần mềm cần có xuống máy:
 
         sudo apt-get install python python-pip git subversion
-        cd ~/blender_docs
+        cd $HOME/blender_manual/blender_docs
         sudo pip install -r requirements.txt
 
     và trang này:
@@ -147,7 +148,7 @@ Một khi make html đã được thực hiện, bạn có thể sử dụng tr�
 
 - Để tạo bản html ở máy PC địa phương của mình, lệnh **make** sẽ kiến tạo một số các thư mục, văn bản dành riêng cho mình, song những văn bản, thư mục này không cần thiết phải lưu lại và chúng sẽ thay đổi thường xuyên nữa. Để báo cho **git** bỏ qua chúng thì chúng ta phải biên soạn bản:
 
-        ~/.git/info/exclude
+        .git/info/exclude
 
     dùng hoặc là **kate**, hoặc là **vi**, hoặc **nano**, và điền nội dung sau ở dưới cùng, sau các dòng khởi đầu bằng *#*:
 
@@ -202,7 +203,7 @@ Một khi make html đã được thực hiện, bạn có thể sử dụng tr�
 
     trong thư mục nhánh
 
-        ~/blender_docs/toos_maintenance
+        blender_docs/toos_maintenance
 
     Sao lấy một bản vào thư mục **bin** địa phương của bạn và thay tất cả các giá trị đề cập trong tập tin với các chi tiết cụ thể của mình, rồi sau mỗi lần thay đổi một tập tin phiên dịch, bạn nên thực hiện các lệnh sau:
 
@@ -282,7 +283,12 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
     x.setVars(args.clean_action, args.make_dir)
     x.run()
     ```
-  + Lưu tập lệnh **makevidoc.py** này vào thư mục **\$HOME/bin** của máy. Nhớ biên soạn bản **·bashrc** và đặt dòng sau để thư mục **\$HOME/bin** nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
+  + Lưu tập lệnh **makevidoc.py** này vào thư mục **\$HOME/bin** của máy. Nếu thư mục này chưa có thì làm theo các lệnh sau: (Có thể thay $HOME sang $WIN_HOME để có thể biên soạn các tập lệnh bằng các trình biên soạn văn bản của riêng mình một cách dễ dàng.)
+
+        cd $HOME
+        mkdir bin
+
+    Nhớ biên soạn bản **·bashrc** và đặt dòng sau để thư mục **\$HOME/bin** nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
 
         export MYBIN=$HOME/bin
         export PATH=$MYBIN:$PATH
@@ -313,7 +319,7 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 
   + Tập lệnh này nằm trong thư mục:
 
-        ~/blender_docs/toos_maintenance
+        blender_docs/toos_maintenance
 
     Sao lấy một bản vào thư mục **\$HOME/bin** của mình và đặt tập lệnh thành **Khả Thi Hành** (executable) như nói ở trên.
 
