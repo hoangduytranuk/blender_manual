@@ -99,12 +99,12 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 - Bằng dòng lệnh:
 
         cd $HOME
-        git clone -b development https://github.com/hoangduytranuk/blender_manual.git
+        git clone https://github.com/hoangduytranuk/blender_manual.git
 
     Nếu cài Hệ Thống Phụ Linux (**WSL**) thì dùng:
 
         cd $WIN_HOME
-        git clone -b development https://github.com/hoangduytranuk/blender_manual.git
+        git clone https://github.com/hoangduytranuk/blender_manual.git
 
 - Các thư mục sẽ tạo trong ổ cứng là
 
@@ -242,7 +242,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
                 git commit -am "<ghi chú về những gì đã làm trong thay đổi vừa rồi>"
 
-    + Chuyển giao các thay đổi vào kho trên mạng, ở chi nhánh **development**
+    + Chuyển giao các thay đổi vào kho trên mạng
 
             git push
 
