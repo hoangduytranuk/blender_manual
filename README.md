@@ -1,7 +1,8 @@
 # Đề án phiên dịch bản hướng dẫn sử dụng Blender (_Blender Reference Manual_)
 
-## Chuẩn bị (_Preparations_)
-- Tốt nhất là sử dụng hệ điều hành Linux. Nếu không làm được thì học cài đặt Hệ Thống Phụ Linux (**WSL**) trên "phiên bản Windows 10. Phương pháp  đã được ghi lại trên các trang này:
+## Chuẩn bị (Preparations)
+
+Tốt nhất là sử dụng hệ điều hành Linux. Nếu không làm được thì học cài đặt Hệ Thống Phụ Linux (**WSL**) trên phiên bản Windows 10. Phương pháp  đã được ghi lại trên các trang này:
 
   . [Hướng dẫn cài đặt trên Windows 10 -- Windows 10 Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
