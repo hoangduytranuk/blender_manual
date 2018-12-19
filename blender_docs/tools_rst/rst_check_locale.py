@@ -186,6 +186,7 @@ DOT="."
 PO=".po"
 RST=".rst"
 SVN=".svn"
+LC_MSG="LC_MESSAGES"
 REMOVAL_SCRIPT_NAME="remove_po_files{}".format(SHELL_EXT)
 REMOVAL_SCRIPT_PATH=os.path.join(HOME_DIR, REMOVAL_SCRIPT_NAME)
 
@@ -282,10 +283,10 @@ def warn_locale():
     If no entries are found (ie. for every PO files there exists a corresponding RST entry) then
     NO message and no script file are produced.
     """
-    find_by_dir=findParentDir(SVN)
+    find_by_dir=findParentDir(LC_MSG)
     listPath(LOCALE_DIR, find_by_dir)
     if (not find_by_dir.result):
-        raise Exception("Unable to find SVN directory.")
+        raise Exception("Unable to find {} directory.".format(LC_MSG))
 
     locale_dir = find_by_dir.result
     find_by_dir = findParentDir(PO_FIND_DIR)
@@ -294,11 +295,11 @@ def warn_locale():
 
     """
     Example how to use findFileByName using regular expression, listing out all index.po files
-    
+
     f_name = findFileByName("ind.*\.po")
     listPath(po_dir, f_name)
     result = f_name.result
-    print("result:{}".format(result))    
+    print("result:{}".format(result))
     """
 
     len_local_dir = len(locale_dir)
@@ -310,7 +311,7 @@ def warn_locale():
 
     unfound_unique_po_list=[]
     for po_file in po_file_list:
-        rst_file = changeExtension(po_file, ".rst")
+        rst_file = changeExtension(po_file, RST)
         rst_entry = os.path.join(RST_DIR, rst_file)
         is_file_existed = os.path.exists(rst_entry)
         if (not is_file_existed):

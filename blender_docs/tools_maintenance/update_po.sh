@@ -105,7 +105,7 @@ function printCommitMessages()
 function performUpdatePO()
 {
 	setBaseDirectory
-	updateLocaleDir
+	#updateLocaleDir
 	createPOTFiles
 	updatePOFiles
 	svnAddPOFiles
