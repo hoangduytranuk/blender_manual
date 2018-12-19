@@ -354,6 +354,17 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
             cat $histfile | sort -nu > $tempfile
             mv $tempfile $histfile
 
+        Nhớ lệnh **sort** có hai tham số:
+
+            -n : numerical, tức so sánh trong khi sắp xếp dùng giá trị số của dòng, hay lấy thứ tự những con số dẫn đầu, tức số dòng.
+            -u : unique, xóa đi những dòng hoàn toàn giống nhau.
+
+        xem thêm hướng dẫn về lệnh **sort** dùng:
+
+            man sort
+
+        vì lệnh này sắp xếp cách dòng lệnh theo con số dẫn đầu (số của dòng) (tham số **-n** của lệnh **sort**) và khi HISTSIZE > 1000, nó quay trở lại số 1 thì trật tự sẽ không còn nằm ở dưới, theo tuần tự thời gian mà mình nghĩ là nó sẽ nằm nữa.
+
     - Khi lệnh **history** (Lịch Sử) liệt kê các dòng lệnh, nó còn liệt kê dòng số ở đầu. Mình có thể gọi lại dòng lệnh bằng cách điền con số dòng với dấu chấm than đứng trước, như sau:
 
             !<số dòng>
