@@ -84,12 +84,12 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 ## Đăng ký tài khoản và tham gia làm một người đóng góp vào đề án
 
 - Vào trang này: https://github.com/
-- Bấm nút 'Sign up'
-- Điền tên người dùng vào ô 'Username'. Nên dùng kiểu sau: hoangduytran1960 (không có dấu và không có khoảng trống cách chữ, cộng với năm sinh hoặc một số nào đấy)
-- Điền thư điện tử vào ô 'Email address'
+- Bấm nút **Sign up**
+- Điền tên người dùng vào ô **Username**. Nên dùng kiểu sau: hoangduytran1960 (không có dấu và không có khoảng trống cách chữ, cộng với năm sinh hoặc một số nào đấy)
+- Điền thư điện tử vào ô **Email address**
 - Điền mật mã vào ô 'Password' (nhớ ghi lại vào đâu đó để về sau có quên thì lấy lại được) (Yêu cầu: 8 ký tự trở lên, gồm A-Z, 0-9, và có chữ Hoa, chữ Thường)
-- Bấm Verify và xem xem nó bảo làm gì để nó biết là mình không phải là thông tin từ máy mà là người thật.
-- Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi (hoangduytran1960@gmail.com) để tôi thêm vào làm người hợp tác  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
+- Bấm **Verify** và xem xem nó bảo làm gì để nó biết là mình không phải là thông tin từ máy mà là người thật.
+- Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi [hoangduytran1960@gmail.com](mailto:hoangduytran1960@gmail.com) để tôi thêm vào làm người hợp tác  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
 
 ## Lấy bản nguồn này xuống máy
 
