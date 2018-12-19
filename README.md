@@ -69,17 +69,17 @@ Lệnh
 
     export WIN_HOME=/mnt/c/Users/<windows_account_name>
 
-Địa điểm này giống hệt %userprofile%. Nạp lại .bashrc tại dấu nhắc lệnh:
+Địa điểm này giống hệt %userprofile%. Nạp lại **.bashrc** tại dấu nhắc lệnh:
 
     . ./.bashrc
 
-sau đó thay đổi thư mục làm việc hiện tại thành WIN_HOME:
+sau đó thay đổi thư mục làm việc hiện tại sang **$WIN_HOME** :
 
     cd "$WIN_HOME"
 
-Trước khi bắt đầu phần tiếp theo để xuất kho mã nguồn viết tài liệu.
+trước khi bắt đầu phần tiếp theo để xuất kho mã nguồn viết tài liệu.
 
-Một khi make html đã được thực hiện, bạn có thể sử dụng trình duyệt mạng của bạn để tiếp cận thư mục blender_docs tại **%userprofile%**  của bạn và xem tập tin `index.html` tại thư mục **blender_docs**. Sau khi xem, bạn có thể đánh dấu địa chỉ trang trên *Dấu trang ưa thích* (Favorite Bookmarks) của trình duyệt mạng, cho phép bạn truy cập trang này nhanh hơn ở những lần sau.
+Một khi `make html` đã được thực hiện, bạn có thể sử dụng trình duyệt mạng của bạn để tiếp cận thư mục blender_docs tại **%userprofile%**  của bạn và xem tập tin `index.html` tại thư mục **blender_docs**. Sau khi xem, bạn có thể đánh dấu địa chỉ trang trên *Dấu trang ưa thích* (Favorite Bookmarks) của trình duyệt mạng, cho phép bạn truy cập trang này nhanh hơn ở những lần sau.
 
 ## Đăng ký tài khoản và tham gia làm một người đóng góp vào đề án
 
