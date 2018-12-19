@@ -360,7 +360,7 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
         Nhớ lệnh **sort** có hai tham số:
 
             -n : numerical, tức so sánh trong khi sắp xếp dùng giá trị số của dòng, hay lấy thứ tự những con số dẫn đầu, tức số dòng.
-            -u : unique, xóa đi những dòng hoàn toàn giống nhau.
+            -u : unique, xóa đi những dòng hoàn toàn giống nhau, chỉ giữ lại một dòng.
 
         xem thêm hướng dẫn về lệnh **sort** dùng:
 
