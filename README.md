@@ -65,7 +65,7 @@ Lệnh
 
     xdg-open /home/<username>/blender_docs/build/html/index.html
 
-  không hoạt động. Bạn sẽ phải chỉnh sửa **.bashrc** bằng cách sử dụng nano hoặc vi, chọn cái nào mà cảm thấy mình quen thuộc nhất - nano có lẽ là lựa chọn tốt hơn khi bạn không thực sự cần phải học nhiều và danh sách phím tắt ở phía dưới sẽ giúp bạn bắt đầu nhanh hơn - và tạo một biến môi trường ở cuối tập tin, giống như sau:
+  không hoạt động. Bạn sẽ phải chỉnh sửa **.bashrc** bằng cách sử dụng trình soạn văn bản ở chế độ dòng lệnh, tên là *nano* hoặc *vi*, chọn cái nào mà cảm thấy mình quen thuộc nhất - nano có lẽ là lựa chọn tốt hơn khi bạn không thực sự cần phải học nhiều và danh sách phím tắt ở phía dưới sẽ giúp bạn bắt đầu nhanh hơn - và tạo một biến môi trường ở cuối tập tin, giống như sau:
 
     export WIN_HOME=/mnt/c/Users/<windows_account_name>
 
