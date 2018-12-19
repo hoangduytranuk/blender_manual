@@ -13,7 +13,7 @@
 
 ## Kiểm tra phiên bản Linux hiện có
 
-Trước tiên, hãy kiểm tra phiên bản Linux có sẵn tại trang web phân phối. Trong ví dụ này, chúng tôi đã chọn Ubuntu Desktop 18.04. Bạn có thể tìm hiểu thêm về phiên bản mới nhất [tại đây](https://www.ubuntu.com/download/desktop)
+Trước tiên, hãy kiểm tra phiên bản Linux có sẵn tại trang web phân phối. Trong ví dụ này, chúng tôi đã chọn **Ubuntu Desktop 18.04**. Bạn có thể tìm hiểu thêm về phiên bản mới nhất [tại đây](https://www.ubuntu.com/download/desktop)
 
 ## Cài đặt hệ thống phụ Linux
 
@@ -25,13 +25,13 @@ Khi làm xong, tắt nguồn và khởi động lại hệ thống là điều b
 
   `Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseBasicParsing`
 
-Việc làm này sẽ tải xuống Linux Ubuntu và lưu trữ trong tập tin Ubuntu.appx tại thư mục làm việc hiện tại, như được chỉ rõ trong tham số `-OutFile`. Bạn có thể chọn di chuyển nó sang thư mục khác sau khi tải xuống hoàn tất, bằng cách thực hiện:
+Việc làm này sẽ tải xuống *Linux Ubuntu* và lưu trữ trong tập tin `Ubuntu.appx` tại thư mục làm việc hiện tại, như được chỉ rõ trong tham số `-OutFile`. Bạn có thể chọn di chuyển nó sang thư mục khác sau khi tải xuống hoàn tất, bằng cách thực hiện:
 
   `mv Ubuntu.appx 'c:\Users\<your username>\Downloads'`
 
-Khi tập tin Ubuntu.appx đã được lấy xuống, sử dụng Explorer và xem thư mục lấy xuống, đảm bảo rằng tập tin nằm ở đó, sau đó nhấp đúp vào Ubuntu.appx để chạy cài đặt, nhập tên người dùng, và Mật Khẩu, cộng với xác minh mật khẩu cho tài khoản người dùng như được hiển thị trong cửa sổ dòng lệnh.
+Khi tập tin `Ubuntu.appx` đã được lấy xuống, sử dụng *Explorer* và xem thư mục lấy xuống, đảm bảo rằng tập tin nằm ở đó, sau đó nhấp đúp vào `Ubuntu.appx` để chạy cài đặt, nhập tên người dùng, và mật khẩu, cộng với xác minh mật khẩu cho tài khoản người dùng như được hiển thị trong cửa sổ dòng lệnh.
 
-Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tượng của Ubuntu trong Start Menu (Nút trình đơn Bắt Đầu), hoặc tìm kiếm trong Cortana, bằng cách gõ Ubuntuvào hộp tìm kiếm. Sau đó bạn có thể thực hiện một hoặc cả hai trong số những điều sau đây:
+Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tượng của *Ubuntu* trong *Start Menu* (nút trình đơn *Bắt Đầu*), hoặc tìm kiếm trong *Cortana*, bằng cách gõ `Ubuntu` vào hộp tìm kiếm. Sau đó bạn có thể thực hiện một hoặc cả hai trong số những điều sau đây:
 
 
     Bấm chuột phải và chọn Ubuntu 18.04 ‣ Đính vào trình đơn bắt đầu (pin to start)
@@ -45,29 +45,31 @@ Bản mà bạn đã tải xuống và cài đặt có thể không phải là p
     sudo apt-get upgrade
     sudo apt-get install -y git subversion
 
-Bạn còn có thể tải xuống máy bản [Kate trên Windows](https://kate-editor.org/2016/01/28/kate-on-windows/) làm một trình biên soạn văn bản bổ sung, thay cho cái hiện tại đang sử dụng.
+Bạn còn có thể tải xuống máy bản [Kate trên Windows](https://kate-editor.org/2016/01/28/kate-on-windows/) làm một trình biên soạn văn bản bổ sung, thay cho cái hiện tại đang sử dụng. Cái này cho phép nêu bật các chữ chìa khóa của tập tin **.po** phiên dịch, dễ làm việc hơn trên giao diện đồ họa.
 
 ## Lưu Ý
 
 Vị trí của bản Ubuntu 18.04 nằm tại:
 
-    C:\Users\<windows username>\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home\<Ubuntu's username>
+        C:\Users\<windows username>\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home\<Ubuntu's username>
 
 Mình có thể tìm thấy ánh xạ của ổ đĩa C: bằng cách sử dụng:
 
-    mount
+        mount
 
 và nó thường nằm ở:
 
-    C: on /mnt/c type drvfs (rw,noatime)
+        C: on /mnt/c type drvfs (rw,noatime)
 
 Lệnh
 
-    xdg-open /home/<username>/blender_docs/build/html/index.html
+        xdg-open /home/<username>/blender_docs/build/html/index.html
 
-  không hoạt động. Bạn sẽ phải chỉnh sửa **.bashrc** bằng cách sử dụng trình soạn văn bản ở chế độ dòng lệnh, tên là *nano* hoặc *vi*, chọn cái nào mà cảm thấy mình quen thuộc nhất - nano có lẽ là lựa chọn tốt hơn khi bạn không thực sự cần phải học nhiều và danh sách phím tắt ở phía dưới sẽ giúp bạn bắt đầu nhanh hơn - và tạo một biến môi trường ở cuối tập tin, giống như sau:
+không hoạt động. Bạn sẽ phải chỉnh sửa **.bashrc** bằng cách sử dụng trình soạn văn bản ở chế độ dòng lệnh, tên là *nano* hoặc *vi*, chọn cái nào mà cảm thấy mình quen thuộc nhất - *nano* có lẽ là lựa chọn tốt hơn khi bạn không thực sự cần phải học nhiều và danh sách phím tắt ở phía dưới sẽ giúp bạn bắt đầu nhanh hơn - và tạo một biến môi trường ở cuối tập tin, giống như sau:
 
-    export WIN_HOME=/mnt/c/Users/<windows_account_name>
+        export WIN_HOME=/mnt/c/Users/<windows_account_name>
+
+bản **.bashrc** trong Linux, Unix, macOS cũng tương tự như chức năng của bản *autoexec.bat* trong các phiên bản **Windows** cũ, nó khởi động khi mình bật cửa sổ dòng lệnh lên nên tất cả các biến môi trường và dòng lệnh trong đó sẽ được thi hành trước, trước khi chúng ta sử dụng dòng lệnh.
 
 Địa điểm này giống hệt %userprofile%. Nạp lại **.bashrc** tại dấu nhắc lệnh:
 
