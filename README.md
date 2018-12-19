@@ -69,7 +69,7 @@ không hoạt động. Bạn sẽ phải chỉnh sửa **.bashrc** bằng cách 
 
         export WIN_HOME=/mnt/c/Users/<windows_account_name>
 
-bản **.bashrc** trong Linux, Unix, macOS cũng tương tự như chức năng của bản *autoexec.bat* trong các phiên bản **Windows** cũ, nó khởi động khi mình bật cửa sổ dòng lệnh lên nên tất cả các biến môi trường và dòng lệnh trong đó sẽ được thi hành trước, trước khi chúng ta sử dụng dòng lệnh.
+bản **.bashrc** trong Linux, Unix, macOS cũng tương tự như chức năng của bản *autoexec.bat* trong các phiên bản **Windows** cũ, nó khởi động khi mình bật cửa sổ dòng lệnh lên, nên tất cả các biến môi trường và dòng lệnh trong đó sẽ được thi hành trước, trước khi chúng ta sử dụng dòng lệnh.
 
 Địa điểm này giống hệt %userprofile%. Nạp lại **.bashrc** tại dấu nhắc lệnh:
 
@@ -81,7 +81,7 @@ sau đó thay đổi thư mục làm việc hiện tại sang **$WIN_HOME** :
 
 trước khi bắt đầu phần tiếp theo để xuất kho mã nguồn viết tài liệu.
 
-Một khi `make html` đã được thực hiện, bạn có thể sử dụng trình duyệt mạng của bạn để tiếp cận thư mục blender_docs tại **%userprofile%**  của bạn và xem tập tin `index.html` tại thư mục **blender_docs**. Sau khi xem, bạn có thể đánh dấu địa chỉ trang trên *Dấu trang ưa thích* (Favorite Bookmarks) của trình duyệt mạng, cho phép bạn truy cập trang này nhanh hơn ở những lần sau.
+Một khi `make html` đã được thực hiện, bạn có thể sử dụng trình duyệt mạng của bạn để tiếp cận thư mục blender_docs tại **\%userprofile\%**  của bạn và xem tập tin `index.html` tại thư mục **blender_docs**. Sau khi xem, bạn có thể đánh dấu địa chỉ trang trên *Dấu trang ưa thích* (Favorite Bookmarks) của trình duyệt mạng, cho phép bạn truy cập trang này nhanh hơn ở những lần sau.
 
 ## Đăng ký tài khoản và tham gia làm một người đóng góp vào đề án
 
@@ -110,13 +110,13 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
         blender_manual/
         ├── blender_docs
 
-- Trong thư mục **blender_manual** mình sẽ tìm thấy thư mục **.git**. Thư mục này là thư mục *git* sử dụng để lưu các thay đổi của mình, cùng có các thư mục khác như **info/exlude** mà mình sẽ nói đến sau này.
+- Trong thư mục `blender_manual` mình sẽ tìm thấy thư mục `.git`. Thư mục này là thư mục `git` sử dụng để lưu các thay đổi của mình, cùng có các thư mục khác như `info/exlude` mà mình sẽ nói đến sau này.
 
 - Tất cả các bài có nội dung tiếng Việt cần sửa, dịch nằm ở trong thư mục:
 
         $HOME/blender_manual/blender_docs/locale/vi/LC_MESSAGES
 
-    **blender_manual/blender_docs** là thư mục gốc. Nhớ thay thế $HOME sang $WIN_HOME nếu dùng **WSL**.
+    `blender_manual/blender_docs` là thư mục gốc. Nhớ thay thế `\$HOME` sang `\$WIN_HOME` nếu dùng **WSL**.
 
 ## Cài đặt các phần mềm cần thiết cho việc biên tập
 
@@ -176,7 +176,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
     Tìm hiểu thêm về định dạng này ở đây [The Format of PO Files](https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html).
     Trong đó:
 
-    + `#, fuzzy`: Nếu dòng có dấu này thì máy phiên dịch sẽ không sử dụng nội dung ở dòng `msgstr` và coi nó như là *không có phiên dịch* hoặc *phiên dịch bị lỗi thời*, *phiên dịch khả nghi về tính chính xác*. Chỉ xóa dòng này đi khi nào bản dịch là hoàn toàn đúng với bản tiếng Anh. Thêm dòng này vào nếu thấy phần phiên dịch là mập mờ, đáng khả nghi.
+    + `#, fuzzy`: Nếu dòng có dấu này thì máy phiên dịch sẽ không sử dụng nội dung ở dòng **msgstr** và coi nó như là *không có phiên dịch* hoặc *phiên dịch bị lỗi thời*, *phiên dịch khả nghi về tính chính xác*. Chỉ xóa dòng này đi khi nào bản dịch là hoàn toàn đúng với bản tiếng Anh. Thêm dòng này vào nếu thấy phần phiên dịch là **mập mờ**, đáng khả nghi.
     + `msgctxt`: Dòng đề ngữ cảnh sử dụng
     + `msgid`: Dòng nội dung tiếng Anh
     + `msgstr`: Dòng nội dung trong tiếng Việt (dòng để dịch)
@@ -285,12 +285,12 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
     x.setVars(args.clean_action, args.make_dir)
     x.run()
     ```
-  + Lưu tập lệnh **makevidoc.py** này vào thư mục **\$HOME/bin** của máy. Nếu thư mục này chưa có thì làm theo các lệnh sau: (Có thể thay $HOME sang $WIN_HOME để có thể biên soạn các tập lệnh bằng các trình biên soạn văn bản của riêng mình một cách dễ dàng.)
+  + Lưu tập lệnh `makevidoc.py` này vào thư mục **\$HOME/bin** của máy. Nếu thư mục này chưa có thì làm theo các lệnh sau: (Có thể thay **\$HOME** sang **\$WIN_HOME** để có thể biên soạn các tập lệnh bằng các trình biên soạn văn bản của riêng mình một cách dễ dàng.)
 
         cd $HOME
         mkdir bin
 
-    Nhớ biên soạn bản **·bashrc** và đặt dòng sau để thư mục **\$HOME/bin** nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
+    Nhớ biên soạn bản `·bashrc` và đặt dòng sau để thư mục **\$HOME/bin** nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
 
         export MYBIN=$HOME/bin
         export PATH=$MYBIN:$PATH
@@ -325,7 +325,7 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 
     Sao lấy một bản vào thư mục **\$HOME/bin** của mình và đặt tập lệnh thành **Khả Thi Hành** (executable) như nói ở trên.
 
-  + Tập lệnh này cho phép mình điền tên và e-mail của mình vào phần *COMMENT* của các văn bản mà mình sửa, đồng thời điền ngày giờ mình đã làm nữa. Nó dùng lệnh **svn** và **git** để tìm các văn bản có đuôi là **.po** đã thay đổi. Nếu phải tự lùng tìm ở một thư mục nào đó không phải là thư mục có thư mục **.svn** hoặc **.git** thì nó sẽ tìm các văn bản có đuôi là **.po** mà thôi và cách này là cách làm việc lâu nhất.
+  + Tập lệnh này cho phép mình điền tên và e-mail của mình vào phần *COMMENT* của các văn bản mà mình sửa, đồng thời điền ngày giờ mình đã làm nữa. Nó dùng lệnh `svn` và `git` để tìm các văn bản có đuôi là `.po` đã thay đổi. Nếu phải tự lùng tìm ở một thư mục nào đó không phải là thư mục có thư mục `.svn` hoặc `.git` thì nó sẽ tìm các văn bản có đuôi là `.po` mà thôi và cách này là cách làm việc lâu nhất.
         - Các từ mình cần điền chi tiết của cá nhân là:
 
           YOUR_NAME="Họ tên đầy đủ"
