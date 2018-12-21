@@ -141,7 +141,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
 ## Biến Môi Trường cần thiết (Important environment variables)
 
-- Bạn nên tạo 2 biến môi trường sau và ghi vào trong tập lệnh **.bashrc** để
+- Bạn nên tạo 2 biến môi trường sau và ghi vào trong tập lệnh **.bashrc** để đơn giản hóa việc sử dụng dòng lệnh, tránh việc nhắc đi, nhắc lại. Tập lệnh này nằm ở địa chỉ **\$HOME** của mình:
 
         export BLENDER_MAN_EN=$HOME/blender_manual/blender_docs
         export BLENDER_MAN_VI=$BLENDER_MAN_EN/locale/vi
