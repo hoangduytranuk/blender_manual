@@ -208,6 +208,13 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
     . Sau nhiều thay đổi thì chuyển vào kho của bản chính bằng lệnh:
 
             git commit -am "miêu tả thay đổi"
+
+        rồi dùng:
+
+            git push --set-upstream origin <tên chi nhánh>
+
+        để đưa chi nhánh mới vào kho trên mạng. Nếu đã có rồi thì chỉ cần:
+
             git push
 
     . Đưa các thay đổi ở chi nhánh vào `master` (Có thể ghi các lệnh vào một tập lệnh ở thư mục `$HOME/bin` và đánh dấu nó là khả thi hành):
