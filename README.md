@@ -119,7 +119,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
     `blender_manual/blender_docs` là thư mục gốc. Nhớ thay thế `\$HOME` sang `\$WIN_HOME` nếu dùng **WSL**.
 
-## Cài đặt các phần mềm cần thiết cho việc biên tập (Install necessary compiling software)
+## Cài đặt các phần mềm cần thiết cho việc biên tập (Install softwares necessary for compilation)
 
 - Làm theo hướng dẫn ở trang này: (chọn hệ điều hành tương thích với cái mình đang sử dụng). Ví dụ dưới đây là trong hệ điều hành Linux Ubuntu/Mint :
 
@@ -227,7 +227,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
             git push
 
-- Đưa các thay đổi ở chi nhánh vào `master` (Có thể ghi các lệnh vào một tập lệnh ở thư mục `$HOME/bin` và đánh dấu nó là khả thi hành):
+- Đưa các thay đổi ở chi nhánh vào `master` (Có thể ghi các lệnh vào một tập lệnh ở thư mục `$HOME/bin` và đánh dấu nó là khả thi hành `chmod u+x <tên tập tin>`):
 
             cd $BLENDER_MAN_EN
             git checkout master
@@ -249,7 +249,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
             git branch -D <tên chi nhánh>
 
-    không cần biết là chi nhánh đã hội nhập với kho trên mạng hay không, bắt buộc xóa.
+    không cần biết là chi nhánh đã hội nhập với kho trên mạng hay không, ép buộc xóa.
 
 
 
@@ -265,14 +265,14 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
     Tìm hiểu thêm về định dạng này ở đây [The Format of PO Files](https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html).
     Trong đó:
 
-    + `#, fuzzy`: Nếu dòng có dấu này thì máy phiên dịch sẽ không sử dụng nội dung ở dòng **msgstr** và coi nó như là *không có phiên dịch* hoặc *phiên dịch bị lỗi thời*, *phiên dịch khả nghi về tính chính xác*. Chỉ xóa dòng này đi khi nào bản dịch là hoàn toàn đúng với bản tiếng Anh. Thêm dòng này vào nếu thấy phần phiên dịch là **mập mờ**, đáng khả nghi.
+    + `#, fuzzy`: Nếu dòng có dấu này thì máy phiên dịch sẽ không sử dụng nội dung ở dòng **msgstr** và coi nó như là *không có phiên dịch* hoặc *phiên dịch bị lỗi thời*, *phiên dịch khả nghi về tính chính xác*. Chỉ xóa dòng này đi khi nào bản dịch là hoàn toàn đúng với bản tiếng Anh. Thêm dòng này vào phía trên dòng cho `msgid` nếu thấy phần phiên dịch là **mập mờ**, đáng khả nghi.
     + `msgctxt`: Dòng đề ngữ cảnh sử dụng
     + `msgid`: Dòng nội dung tiếng Anh
     + `msgstr`: Dòng nội dung trong tiếng Việt (dòng để dịch)
 
-- Các dòng **Comment** luôn luôn khởi đầu bằng ký tự *#*. Các dòng này chỉ có tác dụng trong biên soạn mà thôi, nó sẽ bị bỏ đi trong quá trình biên dịch.
+- Các dòng **Comment** luôn luôn khởi đầu bằng ký tự **#**. Các dòng này chỉ có tác dụng trong biên soạn mà thôi, nó sẽ bị bỏ đi trong quá trình biên dịch.
 
-- Khi dịch thì chớ làm gì thay đổi dòng tiếng Anh ở mục `msgid`. Vì dòng chữ này đã được "bẻ gãy" (xuống dòng) với độ dài tối đa (76 ký tự), lúc sao chép nó vào bộ nhớ để dán lên trang [Google Translate](https://translate.google.com/#view=home&op=translate&sl=en&tl=vi) thì có thể các dấu ngoặc kép `"` có thể gây cản trở cho máy dịch và việc xóa chúng đi có thể là quá phiền toái, bạn nên đánh dòng lệnh sau:
+- Khi dịch thì chớ làm gì thay đổi dòng tiếng Anh, dòng `msgid`. Vì dòng chữ này đã được "bẻ gãy" (xuống dòng) với độ dài tối đa (76 ký tự), lúc sao chép nó vào bộ nhớ để dán lên trang [Google Translate](https://translate.google.com/#view=home&op=translate&sl=en&tl=vi) thì có thể các dấu ngoặc kép `"` có thể gây cản trở cho máy dịch và việc xóa chúng đi có thể là quá phiền toái, bạn nên đánh dòng lệnh sau:
 
         make gettext
 
@@ -282,7 +282,8 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
     + [Blender 2.80 Reference Manual](https://docs.blender.org/manual/en/dev/getting_started/index.html)
     + [Blender Documentation](https://docs.blender.org/api/blender_python_api_master/info_quickstart.html)
     + [Developer Documentation](https://wiki.blender.org/wiki/Main_Page)
-    + [Bản Phiên Dịch Giao Diện Người Dùng VI.PO](https://svn.blender.org/svnroot/bf-translations/trunk/po/vi.po) - nhớ đổi 'Text Encoding' (Giải/Mã Hóa Văn Bản) của trình duyệt mạng sang 'Unicode' hoặc 'UTF-8' để xem được tiếng Việt có dấu.
+    + [Bản Phiên Dịch Giao Diện Người Dùng VI.PO](https://svn.blender.org/svnroot/bf-translations/trunk/po/vi.po)
+        - nhớ đổi 'Text Encoding' (Chế độ Giải/Mã Hóa Văn Bản) của trình duyệt mạng sang 'Unicode' hoặc 'UTF-8' để xem được tiếng Việt có dấu. Trình duyệt mạng [Firefox](https://ftp.mozilla.org/pub/firefox/releases/) -- vào thư mục của bản có số phiên bản cao mà lấy cho mình một bản -- cho phép mình đổi chế độ giải mã (Bấm chuột phải ở thanh tiêu đề và chọn bật `Menu` lên, rồi vào `View ‣ Text Encoding ‣ Unicode`)
     + [Bảng Chú Giải Thuật Ngữ -- Glossary](https://docs.blender.org/manual/vi/dev/glossary/index.html)
     + [Youtube - Blender](https://www.youtube.com/user/BlenderFoundation)
     + [Từ Điển: Wiktionary tiếng Việt](https://vi.wiktionary.org/wiki/Trang_Ch%C3%ADnh)
@@ -311,7 +312,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 - Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của trình duyệt mạng để lần sau cứ vào đấy bấm vào để xem trang đầu, F5 (làm tươi lại - refresh) để lấy các thay đổi gần đây nhất mà không phải mở lại
 
 
-## Nhập kho các thay đổi (Committing changes to repository)
+### Nhập kho các thay đổi (Committing changes to repository)
 
 - Khi thay đổi xong và muốn nhập kho thì làm như sau:
     + xem các thay đổi:
@@ -428,10 +429,11 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 
             make update_po
 
-    để cập nhất các thay đổi từ bản tiếng Anh sang, và quá trình này sẽ cập nhật các thay đổi từ các tập tin nguồn `~/blender_docs/manual/*.rst`, nó còn đánh dấu (không xóa đi) những phần văn bản đã bị xóa đi trong bản nguồn, bằng cách đánh dấu các dòng này với tiền tố **\#~**. Tập lệnh **change_placeholders.sh** cũng phát hiện cái này và xóa các dòng có tiền tố **\#~** ra khỏi văn bản **.po**.
+    để cập nhất các thay đổi từ bản tiếng Anh sang, và quá trình này, ngoài việc cập nhật các thay đổi từ các tập tin nguồn `~/blender_docs/manual/*.rst`, nó còn đánh dấu (không xóa đi) những phần văn bản đã bị xóa đi trong bản nguồn, bằng cách đánh dấu các dòng này với tiền tố **\#~**. Tập lệnh **change_placeholders.sh** cũng phát hiện cái này và xóa các dòng có tiền tố **\#~** ra khỏi văn bản **.po**.
 
 3. Các dòng lệnh mình đã đánh trong cửa sổ dòng lệnh được trình xử lý dòng lệnh ghi lại và trong khi làm việc trong cửa sổ dòng lệnh mình có thể
-    - Dùng các phim mũi tên *lên*, *xuống* để gọi lại các dòng lệnh đã đánh theo tuần tự.
+    - Dùng các phim mũi tên *lên*, *xuống* để gọi lại các dòng lệnh đã đánh theo tuần tự. Mũi tên trái/phải sẽ quay trở lại/tiến về trước các ký tự dòng lệnh, `Home` để về đầu dòng, `End` để về cuối dòng, `Backspace`/`Delete` để xóa về trước hoặc sau. `Insert` để đổi chế độ viết đè lên ký tự cũ, hoặc chèn thêm và vị trí con trỏ. Dùng các phím cơ bản này mình có thể gọi lại các dòng lệnh cũ, biên soạn chúng để thi hành lệnh mới với các tham số khác nhau.
+
     - Lệnh **history** (Lịch Sử) liệt kê lại các lện đã từng đánh và được ghi lại. Số dòng được định trong tập **.bashrc**
 
             # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
@@ -464,12 +466,12 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 
         và bấm 'Enter'. Lệnh ở dòng số này sẽ được thực hiện.
 
-4. Tập lệnh **.bash_aliases**
-    - Tập lệnh này sẽ được thi hành bởi tập tin `.bashrc`, nên khi nạp lại tập tin `.bashrc` bằng lệnh `. .~/.bashrc` thì các lệnh viết tắt cũng sẽ được nạp vào bộ nhớ. Điều tra các lệnh viết tắt bằng cách đánh:
+4. Tập lệnh **.bash_aliases** (Biệt danh)
+    - Tập lệnh này sẽ được thi hành bởi tập tin `.bashrc`, nên khi nạp lại tập tin `.bashrc` bằng lệnh `. .~/.bashrc` thì các lệnh biệt danh (viết tắt) cũng sẽ được nạp vào bộ nhớ. Điều tra các lệnh viết tắt bằng cách đánh:
 
             alias
 
-        và bấm `Enter` sẽ thấy các lệnh được liệt kê.
+        và bấm `Enter` để thấy các lệnh được liệt kê.
 
     - Biên soạn tập tin này để cho các tên viết tắt của các lệnh, chẳng hạn:
 
