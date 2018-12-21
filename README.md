@@ -99,12 +99,12 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 - Bằng dòng lệnh:
 
         cd $HOME
-        git clone https://github.com/hoangduytranuk/blender_manual.git
+        git clone https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
 
     Nếu cài Hệ Thống Phụ Linux (**WSL**) thì dùng:
 
         cd $WIN_HOME
-        git clone https://github.com/hoangduytranuk/blender_manual.git
+        git clone https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
 
 - Các thư mục sẽ tạo trong ổ cứng là
 
@@ -205,9 +205,19 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
     bấm bánh xe chuột xuống để lấy con số mà mình đã chọn ở trên. Nếu đã chọn và 'Copy' vào bộ nhớ dùng bấm chuột phải thì có thể sử dụng bấm chuột phải và chọn 'Paste' để dán số mã từ bộ nhớ ra.
 
-    . Sau nhiều thay đổi thì chuyển vào kho của bản chính bằng lệnh:
+- Sau nhiều thay đổi thì chuyển vào kho bằng lệnh:
 
             git commit -am "miêu tả thay đổi"
+
+        hoặc
+
+            git add *
+            git commit -m "miêu tả thay đổi"
+
+        hoặc
+
+            git add <tên tập tin>
+            git commit -m "miêu tả thay đổi"
 
         rồi dùng:
 
@@ -217,10 +227,13 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
             git push
 
-    . Đưa các thay đổi ở chi nhánh vào `master` (Có thể ghi các lệnh vào một tập lệnh ở thư mục `$HOME/bin` và đánh dấu nó là khả thi hành):
+- Đưa các thay đổi ở chi nhánh vào `master` (Có thể ghi các lệnh vào một tập lệnh ở thư mục `$HOME/bin` và đánh dấu nó là khả thi hành):
 
+            cd $BLENDER_MAN_EN
             git checkout master
             git pull https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git <tên chi nhánh>
+            git add *
+            git commit -m "Cập nhật thay đổi từ chi nhánh sang master."
             git push
             git checkout <tên chi nhánh>
 
@@ -228,7 +241,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
             git clone -b <tên chi nhánh> https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
 
-    . Xóa chi nhánh:
+- Xóa chi nhánh:
 
             git branch -d <tên chi nhánh>
 
