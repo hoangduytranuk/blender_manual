@@ -219,12 +219,6 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
     . Đưa các thay đổi ở chi nhánh vào `master` (Có thể ghi các lệnh vào một tập lệnh ở thư mục `$HOME/bin` và đánh dấu nó là khả thi hành):
 
-            git checkout <tên chi nhánh>
-            git merge master
-            git push
-
-    hoặc
-
             git checkout master
             git pull https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git <tên chi nhánh>
             git push
