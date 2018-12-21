@@ -12,11 +12,11 @@ Tốt nhất là sử dụng hệ điều hành Linux. Nếu không làm đượ
 
 Điều này sẽ cho phép bạn truy cập vào tính năng phong phú mà môi trường dòng lệnh Linux cung cấp.
 
-## Kiểm tra phiên bản Linux hiện có
+## Kiểm tra phiên bản Linux hiện có (Find the current release's version)
 
 Trước tiên, hãy kiểm tra phiên bản Linux có sẵn tại trang web phân phối. Trong ví dụ này, chúng tôi đã chọn **Ubuntu Desktop 18.04**. Bạn có thể tìm hiểu thêm về phiên bản mới nhất [tại đây](https://www.ubuntu.com/download/desktop)
 
-## Cài đặt hệ thống phụ Linux
+## Cài đặt hệ thống phụ Linux (Setup the Linux subsystem)
 
 Có thể cách tốt hơn là cài đặt bằng cách sử dụng *PowerShell*. Mở *PowerShell* bằng cách nhập tên vào hộp tìm kiếm *Cortana*. Nhấp chuột phải vào mục *PowerShell* tìm thấy và chọn thi hành với tư cách *Quản trị viên* (run as Administrator). Điều đầu tiên, chúng ta cần kích hoạt hệ thống phụ Linux, sử dụng dòng lệnh sau:
 
@@ -38,7 +38,7 @@ Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tư�
     Bấm chuột phải và chọn Ubuntu 18.04 ‣ Đính vào trình đơn bắt đầu (pin to start)
     Bấm chuột phải và chọn Ubuntu 18.04 ‣ thêm (more) ‣ Đính vào thanh tác vụ (pin to taskbar)
 
-## Cập nhật hệ thống phụ Linux
+## Cập nhật hệ thống phụ Linux (Updating the Linux subsystem)
 
 Bản mà bạn đã tải xuống và cài đặt có thể không phải là phiên bản mới nhất, vì vậy hãy chạy các lệnh sau để cập nhật môi trường:
 
@@ -48,7 +48,7 @@ Bản mà bạn đã tải xuống và cài đặt có thể không phải là p
 
 Bạn còn có thể tải xuống máy bản [Kate trên Windows](https://kate-editor.org/2016/01/28/kate-on-windows/) làm một trình biên soạn văn bản bổ sung, thay cho cái hiện tại đang sử dụng. Cái này cho phép nêu bật các chữ chìa khóa của tập tin **.po** phiên dịch, dễ làm việc hơn trên giao diện đồ họa.
 
-## Lưu Ý
+## Lưu Ý (Note)
 
 Vị trí của bản Ubuntu 18.04 nằm tại:
 
@@ -84,7 +84,7 @@ trước khi bắt đầu phần tiếp theo để xuất kho mã nguồn viết
 
 Một khi `make html` đã được thực hiện, bạn có thể sử dụng trình duyệt mạng của bạn để tiếp cận thư mục blender_docs tại **\%userprofile\%**  của bạn và xem tập tin `index.html` tại thư mục **blender_docs**. Sau khi xem, bạn có thể đánh dấu địa chỉ trang trên *Dấu trang ưa thích* (Favorite Bookmarks) của trình duyệt mạng, cho phép bạn truy cập trang này nhanh hơn ở những lần sau.
 
-## Đăng ký tài khoản và tham gia làm một người đóng góp vào đề án
+## Đăng ký tài khoản và tham gia làm một người đóng góp vào đề án (Registering an user account and join to become a Project's collaborator)
 
 - Vào trang này: https://github.com/
 - Bấm nút **Sign up**
@@ -94,7 +94,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 - Bấm **Verify** và xem xem nó bảo làm gì để nó biết là mình không phải là thông tin từ máy mà là người thật.
 - Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi [hoangduytran1960@gmail.com](mailto:hoangduytran1960@gmail.com) để tôi thêm vào làm người hợp tác  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
 
-## Lấy bản nguồn này xuống máy
+## Lấy bản nguồn này xuống máy (Downloading the project's source code and documents)
 
 - Bằng dòng lệnh:
 
@@ -119,7 +119,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
     `blender_manual/blender_docs` là thư mục gốc. Nhớ thay thế `\$HOME` sang `\$WIN_HOME` nếu dùng **WSL**.
 
-## Cài đặt các phần mềm cần thiết cho việc biên tập
+## Cài đặt các phần mềm cần thiết cho việc biên tập (Install necessary compiling software)
 
 - Làm theo hướng dẫn ở trang này: (chọn hệ điều hành tương thích với cái mình đang sử dụng). Ví dụ dưới đây là trong hệ điều hành Linux Ubuntu/Mint :
 
@@ -139,14 +139,14 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
         make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
 
-## Biến Môi Trường cần thiết
+## Biến Môi Trường cần thiết (Important environment variables)
 
 - Bạn nên tạo 2 biến môi trường sau và ghi vào trong tập lệnh **.bashrc** để
 
         export BLENDER_MAN_EN=$HOME/blender_manual/blender_docs
         export BLENDER_MAN_VI=$BLENDER_MAN_EN/locale/vi
 
-## Cài đặt bản *exclude* để bỏ qua những văn bản không cần thiết
+## Cài đặt bản *exclude* để bỏ qua những văn bản không cần thiết (Configuring the *exclude* file to ignore objects)
 
 - Để tạo bản html ở máy PC địa phương của mình, lệnh **make** sẽ kiến tạo một số các thư mục, văn bản dành riêng cho mình, song những văn bản, thư mục này không cần thiết phải lưu lại và chúng sẽ thay đổi thường xuyên nữa. Để báo cho **git** bỏ qua chúng thì chúng ta phải biên soạn bản:
 
@@ -165,7 +165,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
     để xem danh sách các thay đổi.
 
 
-## Quy trình làm việc cần cân nhắc, tuy không bắt buộc
+## Quy trình làm việc cần cân nhắc, tuy không bắt buộc (Proposed operating procedure)
 
 - Học thêm về cách sử dụng **git**. Tìm trên mạng dùng từ *hướng dẫn sử dụng git*.
 - Tạo một chi nhánh cho mình để thử nghiệm và nếu cần thì có thể xóa chi nhánh đó đi.
@@ -195,7 +195,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
     để bỏ tất cả các thay đổi, không bao giờ lấy lại được nữa. Cẩn thận với lệnh này.
 
-    . Quay trở lại một phiên bản nào đó:
+- Quay trở lại một phiên bản nào đó:
 
             git log --all --decorate --oneline --graph
 
@@ -253,7 +253,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
 
 
-## Dịch các bản PO
+## Dịch các bản PO (Translating PO files)
 
 - Dùng một trình biên soạn văn bản có hỗ trợ định dạng phiên dịch **.po**, như bản **Kate** hoặc **Kwrite**. Trên Windows thì bạn còn có thể tự tạo cho mình một bản định nghĩa định dạng PO nữa, nếu sử dụng [NotePad++](https://notepad-plus-plus.org/). Có mấy từ chìa khóa (keywords):
 
@@ -282,11 +282,13 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
     + [Blender 2.80 Reference Manual](https://docs.blender.org/manual/en/dev/getting_started/index.html)
     + [Blender Documentation](https://docs.blender.org/api/blender_python_api_master/info_quickstart.html)
     + [Developer Documentation](https://wiki.blender.org/wiki/Main_Page)
+    + [Bản Phiên Dịch Giao Diện Người Dùng VI.PO](https://svn.blender.org/svnroot/bf-translations/trunk/po/vi.po) - nhớ đổi 'Text Encoding' (Giải/Mã Hóa Văn Bản) của trình duyệt mạng sang 'Unicode' hoặc 'UTF-8' để xem được tiếng Việt có dấu.
+    + [Bảng Chú Giải Thuật Ngữ -- Glossary](https://docs.blender.org/manual/vi/dev/glossary/index.html)
     + [Youtube - Blender](https://www.youtube.com/user/BlenderFoundation)
     + [Từ Điển: Wiktionary tiếng Việt](https://vi.wiktionary.org/wiki/Trang_Ch%C3%ADnh)
     + [Từ Điển: Soha Tra Từ](http://tratu.soha.vn/)
 
-## Biên tập và xử lý hậu kỳ các thay đổi
+## Biên tập và xử lý hậu kỳ các thay đổi (Compiling and post processing changes)
 
 - Các tập tin mới được tạo sẽ chứa một số từ cần điền cho tác giả và ngày sửa đổi v.v. Nếu bạn cảm thấy công việc thay thế chúng lặp đi lặp lại, tẻ nhạt, thì hãy sử dụng tập lệnh
 
@@ -309,7 +311,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 - Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của trình duyệt mạng để lần sau cứ vào đấy bấm vào để xem trang đầu, F5 (làm tươi lại - refresh) để lấy các thay đổi gần đây nhất mà không phải mở lại
 
 
-## Nhập kho các thay đổi
+## Nhập kho các thay đổi (Committing changes to repository)
 
 - Khi thay đổi xong và muốn nhập kho thì làm như sau:
     + xem các thay đổi:
@@ -334,7 +336,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
             git push
 
-## Các tập lệnh có thể cần sử dụng
+## Các tập lệnh có thể cần sử dụng (Favourable scripts)
 
 Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây sẽ là một việc không tránh khỏi, chẳng hạn như lệnh tạo *html*. Tốt nhất là kèm chúng vào một tập lệnh ở thư mục **bin** địa phương và đặt nó là có quyền thi hành:
 
