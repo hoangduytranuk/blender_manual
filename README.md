@@ -146,24 +146,98 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
         export BLENDER_MAN_EN=$HOME/blender_manual/blender_docs
         export BLENDER_MAN_VI=$BLENDER_MAN_EN/locale/vi
 
-
 ## Cài đặt bản *exclude* để bỏ qua những văn bản không cần thiết
 
 - Để tạo bản html ở máy PC địa phương của mình, lệnh **make** sẽ kiến tạo một số các thư mục, văn bản dành riêng cho mình, song những văn bản, thư mục này không cần thiết phải lưu lại và chúng sẽ thay đổi thường xuyên nữa. Để báo cho **git** bỏ qua chúng thì chúng ta phải biên soạn bản:
 
-        .git/info/exclude
+            .git/info/exclude
 
     dùng hoặc là **kate**, hoặc là **vi**, hoặc **nano**, và điền nội dung sau ở dưới cùng, sau các dòng khởi đầu bằng *#*:
 
-        blender_docs/build
-        *.mo
-        *.pyc
+            blender_docs/build
+            *.mo
+            *.pyc
 
     lưu các thay đổi, trước khi quay trở lại thư mục **blender_docs** và chạy lệnh:
 
-        git status
+            git status
 
     để xem danh sách các thay đổi.
+
+
+## Quy trình làm việc cần cân nhắc, tuy không bắt buộc
+
+- Học thêm về cách sử dụng **git**. Tìm trên mạng dùng từ *hướng dẫn sử dụng git*.
+- Tạo một chi nhánh cho mình để thử nghiệm và nếu cần thì có thể xóa chi nhánh đó đi.
+
+            cd $BLENDER_MAN_EN
+            git checkout -b <tên chi nhánh>
+
+    . Sau các sửa đổi thì dùng lệnh sau để chuyển vào kho địa phương của mình:
+
+            git commit -am "Lời miêu tả những thay đổi"
+
+    . Muốn bỏ các thay đổi ở `git_dia_phuong` thì có thể dùng:
+
+            git status
+
+    để xem các thay đổi và đường dẫn của các tập tin đã thay đổi.
+
+            git stash
+
+    để cất giấu các thay đổi để sau này mình có thể lấy lại nếu muốn.
+
+            git checkout -- <filename>
+
+    để bỏ các thay đổi trong tập tin <filename> hoàn toàn, lấy lại nội dung cũ.
+
+            git reset --hard
+
+    để bỏ tất cả các thay đổi, không bao giờ lấy lại được nữa. Cẩn thận với lệnh này.
+
+    . Quay trở lại một phiên bản nào đó:
+
+            git log --all --decorate --oneline --graph
+
+    cho mình xem danh sách các thay đổi và thấy số mã của các lần commit, đồng thời cho thấy mũi tên hiện nay đang chỉ vào chi nhánh nào, vào `master` hay một chi nhánh nào đó. Ghi nhớ hoặc dùng chuột quét và chọn số mã đó. Mìn còn có thể bấm chuột phải và chọn 'Copy' để đưa vào bộ nhớ. (Xem cách tạo lệnh viết tắt ở cuối bài để khỏi phải đánh lại các lệnh dài, hay sử dụng, nhiều lần)
+
+        git checkout <số mã phiên bản commit>
+
+    bấm bánh xe chuột xuống để lấy con số mà mình đã chọn ở trên. Nếu đã chọn và 'Copy' vào bộ nhớ dùng bấm chuột phải thì có thể sử dụng bấm chuột phải và chọn 'Paste' để dán số mã từ bộ nhớ ra.
+
+    . Sau nhiều thay đổi thì chuyển vào kho của bản chính bằng lệnh:
+
+            git commit -am "miêu tả thay đổi"
+            git push
+
+    . Đưa các thay đổi ở chi nhánh vào `master` (Có thể ghi các lệnh vào một tập lệnh ở thư mục `$HOME/bin` và đánh dấu nó là khả thi hành):
+
+            git checkout <tên chi nhánh>
+            git merge master
+            git push
+
+    hoặc
+
+            git checkout master
+            git pull https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git <tên chi nhánh>
+            git push
+            git checkout <tên chi nhánh>
+
+    . Lấy nội dung của một chi nhánh đã tồn tại trên mạng:
+
+            git clone -b <tên chi nhánh> https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
+
+    . Xóa chi nhánh:
+
+            git branch -d <tên chi nhánh>
+
+    nếu chi nhánh đã hoàn toàn hội nhập với chi nhánh ở kho trên mạng.
+
+            git branch -D <tên chi nhánh>
+
+    không cần biết là chi nhánh đã hội nhập với kho trên mạng hay không, bắt buộc xóa.
+
+
 
 ## Dịch các bản PO
 
@@ -226,7 +300,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 - Khi thay đổi xong và muốn nhập kho thì làm như sau:
     + xem các thay đổi:
 
-            git status
+                git status
 
     + nhập kho vào ổ địa phương:
 
@@ -374,6 +448,24 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 
         và bấm 'Enter'. Lệnh ở dòng số này sẽ được thực hiện.
 
+4. Tập lệnh **.bash_aliases**
+    - Tập lệnh này sẽ được thi hành bởi tập tin `.bashrc`, nên khi nạp lại tập tin `.bashrc` bằng lệnh `. .~/.bashrc` thì các lệnh viết tắt cũng sẽ được nạp vào bộ nhớ. Điều tra các lệnh viết tắt bằng cách đánh:
+
+            alias
+
+        và bấm `Enter` sẽ thấy các lệnh được liệt kê.
+
+    - Biên soạn tập tin này để cho các tên viết tắt của các lệnh, chẳng hạn:
+
+            alias graph="git log --all --decorate --oneline --graph"
+            alias ll='ls -alF'
+
+        để khi ở dòng lệnh chỉ cần đánh:
+
+            graph
+            ll
+
+        thay vì phải đánh toàn bộ.
 
 
 
