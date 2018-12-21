@@ -337,6 +337,16 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
             git push
 
+### Cập nhật các thay đổi ở chi nhánh chính **master**
+
+    + Lấy các thay đổi ở tất cả các chi nhánh trên mạng về máy mình, sử dụng:
+
+            git pull --all
+
+    + Sau mỗi lần `git commit` thì thi hành `git pull` để hội nhập các thay đổi ở máy chủ trên mạng với máy mình.
+
+
+
 ## Các tập lệnh có thể cần sử dụng (Favourable scripts)
 
 Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây sẽ là một việc không tránh khỏi, chẳng hạn như lệnh tạo *html*. Tốt nhất là kèm chúng vào một tập lệnh ở thư mục **bin** địa phương và đặt nó là có quyền thi hành:
