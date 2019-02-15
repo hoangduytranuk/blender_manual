@@ -19,17 +19,17 @@ Trước tiên, hãy kiểm tra phiên bản Linux có sẵn tại trang web ph�
 ## Cài đặt hệ thống phụ Linux (Setup the Linux subsystem)
 
 Có thể cách tốt hơn là cài đặt bằng cách sử dụng *PowerShell*. Mở *PowerShell* bằng cách nhập tên vào hộp tìm kiếm *Cortana*. Nhấp chuột phải vào mục *PowerShell* tìm thấy và chọn thi hành với tư cách *Quản trị viên* (run as Administrator). Điều đầu tiên, chúng ta cần kích hoạt hệ thống phụ Linux, sử dụng dòng lệnh sau:
-
-  `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux`
-
+```pwsh
+  Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
 Khi làm xong, tắt nguồn và khởi động lại hệ thống là điều bắt buộc, vì vậy, hãy khởi động lại hệ thống. Khi hệ thống được bật trở lại, hãy quay lại *PowerShell* và nhập lệnh sau:
-
-  `Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseBasicParsing`
-
+```pwsh
+  Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseBasicParsing
+```
 Việc làm này sẽ tải xuống *Linux Ubuntu* và lưu trữ trong tập tin `Ubuntu.appx` tại thư mục làm việc hiện tại, như được chỉ rõ trong tham số `-OutFile`. Bạn có thể chọn di chuyển nó sang thư mục khác sau khi tải xuống hoàn tất, bằng cách thực hiện:
-
-  `mv Ubuntu.appx 'c:\Users\<your username>\Downloads'`
-
+```bash
+  mv Ubuntu.appx 'c:\Users\<your username>\Downloads'
+```
 Khi tập tin `Ubuntu.appx` đã được lấy xuống, sử dụng *Explorer* và xem thư mục lấy xuống, đảm bảo rằng tập tin nằm ở đó, sau đó nhấp đúp vào `Ubuntu.appx` để chạy cài đặt, nhập tên người dùng, và mật khẩu, cộng với xác minh mật khẩu cho tài khoản người dùng như được hiển thị trong cửa sổ dòng lệnh.
 
 Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tượng của *Ubuntu* trong *Start Menu* (nút trình đơn *Bắt Đầu*), hoặc tìm kiếm trong *Cortana*, bằng cách gõ `Ubuntu` vào hộp tìm kiếm. Sau đó bạn có thể thực hiện một hoặc cả hai trong số những điều sau đây:
@@ -37,91 +37,93 @@ Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tư�
 
     Bấm chuột phải và chọn Ubuntu 18.04 ‣ Đính vào trình đơn bắt đầu (pin to start)
     Bấm chuột phải và chọn Ubuntu 18.04 ‣ thêm (more) ‣ Đính vào thanh tác vụ (pin to taskbar)
-
++
 ## Cập nhật hệ thống phụ Linux (Updating the Linux subsystem)
 
 Bản mà bạn đã tải xuống và cài đặt có thể không phải là phiên bản mới nhất, vì vậy hãy chạy các lệnh sau để cập nhật môi trường:
-
+```bash
     sudo apt-get update
     sudo apt-get upgrade
     sudo apt-get install -y git subversion
-
+```
 Bạn còn có thể tải xuống máy bản [Kate trên Windows](https://kate-editor.org/2016/01/28/kate-on-windows/) làm một trình biên soạn văn bản bổ sung, thay cho cái hiện tại đang sử dụng. Cái này cho phép nêu bật các chữ chìa khóa của tập tin **.po** phiên dịch, dễ làm việc hơn trên giao diện đồ họa.
 
 ## Lưu Ý (Note)
 
 Vị trí của bản Ubuntu 18.04 nằm tại:
 
-    ```
+```bat
     C:\Users\<windows username>\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home\<Ubuntu's username>
-    ```
+```
 
 Mình có thể tìm thấy ánh xạ của ổ đĩa C: bằng cách sử dụng:
 
-        ``` bash
+``` bash
         mount
-        ```
+```
 
 và nó thường nằm ở:
 
-        ``` bash
+``` bash
         C: on /mnt/c type drvfs (rw,noatime)
-        ```
+```
 
 Lệnh
-
+```bash
         xdg-open /home/<username>/blender_docs/build/html/index.html
-
+```
 không hoạt động. Bạn sẽ phải chỉnh sửa **.bashrc** bằng cách sử dụng trình soạn văn bản ở chế độ dòng lệnh, tên là *nano* hoặc *vi*, chọn cái nào mà cảm thấy mình quen thuộc nhất - *nano* có lẽ là lựa chọn tốt hơn khi bạn không thực sự cần phải học nhiều và danh sách phím tắt ở phía dưới sẽ giúp bạn bắt đầu nhanh hơn - và tạo một biến môi trường ở cuối tập tin, giống như sau:
-
+```bash
         export WIN_HOME=/mnt/c/Users/<windows_account_name>
-
+```
 bản **.bashrc** trong Linux, Unix, macOS cũng tương tự như chức năng của bản *autoexec.bat* trong các phiên bản **Windows** cũ, nó khởi động khi mình bật cửa sổ dòng lệnh lên, nên tất cả các biến môi trường và dòng lệnh trong đó sẽ được thi hành trước, trước khi chúng ta sử dụng dòng lệnh.
 
 Địa điểm này giống hệt %userprofile%. Nạp lại **.bashrc** tại dấu nhắc lệnh:
-
+```bash
     . ./.bashrc
-
+```
 sau đó thay đổi thư mục làm việc hiện tại sang **$WIN_HOME** :
-
+```bash
     cd "$WIN_HOME"
-
+```
 trước khi bắt đầu phần tiếp theo để xuất kho mã nguồn viết tài liệu.
 
 Một khi `make html` đã được thực hiện, bạn có thể sử dụng trình duyệt mạng của bạn để tiếp cận thư mục blender_docs tại **\%userprofile\%**  của bạn và xem tập tin `index.html` tại thư mục **blender_docs**. Sau khi xem, bạn có thể đánh dấu địa chỉ trang trên *Dấu trang ưa thích* (Favorite Bookmarks) của trình duyệt mạng, cho phép bạn truy cập trang này nhanh hơn ở những lần sau.
 
+------------------
+
 ## Đăng ký tài khoản và tham gia làm một người đóng góp vào đề án (Registering an user account and join to become a Project's collaborator)
 
-- Vào trang này: https://github.com/
-- Bấm nút **Sign up**
-- Điền tên người dùng vào ô **Username**. Nên dùng kiểu sau: hoangduytran1960 (không có dấu và không có khoảng trống cách chữ, cộng với năm sinh hoặc một số nào đấy)
-- Điền thư điện tử vào ô **Email address**
-- Điền mật mã vào ô 'Password' (nhớ ghi lại vào đâu đó để về sau có quên thì lấy lại được) (Yêu cầu: 8 ký tự trở lên, gồm A-Z, 0-9, và có chữ Hoa, chữ Thường)
-- Bấm **Verify** và xem xem nó bảo làm gì để nó biết là mình không phải là thông tin từ máy mà là người thật.
-- Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi [hoangduytran1960@gmail.com](mailto:hoangduytran1960@gmail.com) để tôi thêm vào làm người hợp tác  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
+    - Vào trang này: https://github.com/
+    - Bấm nút **Sign up**
+    - Điền tên người dùng vào ô **Username**. Nên dùng kiểu sau: hoangduytran1960 (không có dấu và không có khoảng trống cách chữ, cộng với năm sinh hoặc một số nào đấy)
+    - Điền thư điện tử vào ô **Email address**
+    - Điền mật mã vào ô 'Password' (nhớ ghi lại vào đâu đó để về sau có quên thì lấy lại được) (Yêu cầu: 8 ký tự trở lên, gồm A-Z, 0-9, và có chữ Hoa, chữ Thường)
+    - Bấm **Verify** và xem xem nó bảo làm gì để nó biết là mình không phải là thông tin từ máy mà là người thật.
+    - Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi [hoangduytran1960@gmail.com](mailto:hoangduytran1960@gmail.com) để tôi thêm vào làm người hợp tác  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
 
 ## Cài đặt các phần mềm cần thiết (Install required softwares)
 
 - Làm theo hướng dẫn ở trang này: (chọn hệ điều hành tương thích với cái mình đang sử dụng). Ví dụ dưới đây là trong hệ điều hành Linux Ubuntu/Mint :
 
-        https://docs.blender.org/manual/vi/dev/about/contribute/install/index.html
+        [Cài Đặt -- Install](https://docs.blender.org/manual/vi/dev/about/contribute/install/index.html)
 
     như lấy các phần mềm cần có xuống máy:
-
+```bash
         sudo apt-get install python python-pip git subversion
-
+```
 ## Lấy bản nguồn này xuống máy (Downloading the project's source code and documents)
 
 - Bằng dòng lệnh:
-
+```bash
         cd $HOME
         git clone https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
-
+```
     Nếu cài Hệ Thống Phụ Linux (**WSL**) thì dùng:
-
+```bash
         cd $WIN_HOME
         git clone https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
-
+```
 - Các thư mục sẽ tạo trong ổ cứng là
 
         blender_manual/
@@ -130,36 +132,36 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 - Trong thư mục `blender_manual` mình sẽ tìm thấy thư mục `.git`. Thư mục này là thư mục `git` sử dụng để lưu các thay đổi của mình, cùng có các thư mục khác như `info/exlude` mà mình sẽ nói đến sau này.
 
 - Tất cả các bài có nội dung tiếng Việt cần sửa, dịch nằm ở trong thư mục:
-
+```bash
         $HOME/blender_manual/blender_docs/locale/vi/LC_MESSAGES
-
+```
     `blender_manual/blender_docs` là thư mục gốc. Nhớ thay thế `\$HOME` sang `\$WIN_HOME` nếu dùng **WSL**.
 
 ## Cài đặt các phần mềm cần thiết cho việc biên tập (Install softwares necessary for compilation)
 
 - Lấy các phần mềm cần có để biên dịch xuống máy:
-
+```bash
         cd $HOME/blender_manual/blender_docs
         sudo pip install -r requirements.txt
-
+```
     như biên tập bản tiếng Việt dùng lệnh:
-
+```bash
         make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
-
+```
 - Cài đặt git:
-
+```bash
             cd $HOME/blender_manual/blender_docs
-
+```
     + Đặt tên người dùng:
-
+```bash
             git config --global user.name "Tên đầy đủ"
-
+```
     + Đăt địa chỉ e-mail:
-
+```bash
             git config --global user.email "địa-chỉ@máy-chủ.com"
-
+```
     + Những thông tin này thường được ghi ở tập tin `.gitconfig` ở thư mục **\$HOME**
-
+```bash
             [user]
                 name = Hoang Duy Tran
                 email = hoangduytran1960@googlemail.com
@@ -172,99 +174,102 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
                 program = gpg2
             [gui]
                 recentrepo = <đường dẫn đến thư mục git>
-
+```
         Xem ví dụ ở đây [brettz9/.gitconfig](https://gist.github.com/brettz9/8d8b6315f7d8f90edec0)
+
+------------------
 
 ## Biến Môi Trường cần thiết (Important environment variables)
 
 - Bạn nên tạo 2 biến môi trường sau và ghi vào trong tập lệnh **.bashrc** để đơn giản hóa việc sử dụng dòng lệnh, tránh việc nhắc đi, nhắc lại. Tập lệnh này nằm ở địa chỉ **\$HOME** của mình:
-
+```bash
         export BLENDER_MAN_EN=$HOME/blender_manual/blender_docs
         export BLENDER_MAN_VI=$BLENDER_MAN_EN/locale/vi
-
+```
 ## Cài đặt bản *exclude* để bỏ qua những văn bản không cần thiết (Configuring the *exclude* file to ignore objects)
 
 - Để tạo bản html ở máy PC địa phương của mình, lệnh **make** sẽ kiến tạo một số các thư mục, văn bản dành riêng cho mình, song những văn bản, thư mục này không cần thiết phải lưu lại và chúng sẽ thay đổi thường xuyên nữa. Để báo cho **git** bỏ qua chúng thì chúng ta phải biên soạn bản:
-
+```bash
             .git/info/exclude
-
+```
     dùng hoặc là **kate**, hoặc là **vi**, hoặc **nano**, và điền nội dung sau ở dưới cùng, sau các dòng khởi đầu bằng *#*:
-
+```bash
             blender_docs/build
             *.mo
             *.pyc
-
+```
     lưu các thay đổi, trước khi quay trở lại thư mục **blender_docs** và chạy lệnh:
-
+```bash
             git status
-
+```
     để xem danh sách các thay đổi.
 
+------------------
 
 ## Quy trình làm việc cần cân nhắc, tuy không bắt buộc (Proposed operating procedure)
 
 - Học thêm về cách sử dụng **git**. Tìm trên mạng dùng từ *hướng dẫn sử dụng git*.
 - Tạo một chi nhánh cho mình để thử nghiệm và nếu cần thì có thể xóa chi nhánh đó đi.
-
+```bash
             cd $BLENDER_MAN_EN
             git checkout -b <tên chi nhánh>
-
+```
     . Sau các sửa đổi thì dùng lệnh sau để chuyển vào kho địa phương của mình:
-
+```bash
             git commit -am "Lời miêu tả những thay đổi"
-
+```
     . Muốn bỏ các thay đổi ở `git_dia_phuong` thì có thể dùng:
-
+```bash
             git status
-
+```
     để xem các thay đổi và đường dẫn của các tập tin đã thay đổi.
-
+```bash
             git stash
-
+```
     để cất giấu các thay đổi để sau này mình có thể lấy lại nếu muốn.
-
+```bash
             git checkout -- <filename>
-
+```
     để bỏ các thay đổi trong tập tin <filename> hoàn toàn, lấy lại nội dung cũ.
-
+```bash
             git reset --hard
-
+```
     để bỏ tất cả các thay đổi, không bao giờ lấy lại được nữa. Cẩn thận với lệnh này.
 
 - Quay trở lại một phiên bản nào đó:
-
+```bash
             git log --all --decorate --oneline --graph
-
+```
     cho mình xem danh sách các thay đổi và thấy số mã của các lần commit, đồng thời cho thấy mũi tên hiện nay đang chỉ vào chi nhánh nào, vào `master` hay một chi nhánh nào đó. Ghi nhớ hoặc dùng chuột quét và chọn số mã đó. Mìn còn có thể bấm chuột phải và chọn 'Copy' để đưa vào bộ nhớ. (Xem cách tạo lệnh viết tắt ở cuối bài để khỏi phải đánh lại các lệnh dài, hay sử dụng, nhiều lần)
-
+```bash
         git checkout <số mã phiên bản commit>
-
+```
     bấm bánh xe chuột xuống để lấy con số mà mình đã chọn ở trên. Nếu đã chọn và 'Copy' vào bộ nhớ dùng bấm chuột phải thì có thể sử dụng bấm chuột phải và chọn 'Paste' để dán số mã từ bộ nhớ ra.
 
 - Sau nhiều thay đổi thì chuyển vào kho bằng lệnh:
-
+```bash
             git commit -am "miêu tả thay đổi"
-
+```
         hoặc
-
+```bash
             git add *
             git commit -m "miêu tả thay đổi"
-
+```
         hoặc
-
+```bash
             git add <tên tập tin>
             git commit -m "miêu tả thay đổi"
-
+```
         rồi dùng:
-
+```bash
             git push --set-upstream origin <tên chi nhánh>
-
+```
         để đưa chi nhánh mới vào kho trên mạng. Nếu đã có rồi thì chỉ cần:
-
+```bash
             git push
-
+```
 - Đưa các thay đổi ở chi nhánh vào `master` (Có thể ghi các lệnh vào một tập lệnh ở thư mục `$HOME/bin` và đánh dấu nó là khả thi hành `chmod u+x <tên tập tin>`):
-
+```bash
             cd $BLENDER_MAN_EN
             git checkout master
             git pull https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git <tên chi nhánh>
@@ -272,21 +277,22 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
             git commit -m "Cập nhật thay đổi từ chi nhánh sang master."
             git push
             git checkout <tên chi nhánh>
-
+```
     . Lấy nội dung của một chi nhánh đã tồn tại trên mạng:
-
+```bash
             git clone -b <tên chi nhánh> https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
-
+```
 - Xóa chi nhánh:
-
+```bash
             git branch -d <tên chi nhánh>
-
+```
     nếu chi nhánh đã hoàn toàn hội nhập với chi nhánh ở kho trên mạng.
-
+```bash
             git branch -D <tên chi nhánh>
-
+```
     không cần biết là chi nhánh đã hội nhập với kho trên mạng hay không, ép buộc xóa.
 
+------------------
 
 ## Dịch các bản PO (Translating PO files)
 
@@ -308,9 +314,9 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 - Các dòng **Comment** luôn luôn khởi đầu bằng ký tự **#**. Các dòng này chỉ có tác dụng trong biên soạn mà thôi, nó sẽ bị bỏ đi trong quá trình biên dịch.
 
 - Khi dịch thì chớ làm gì thay đổi dòng tiếng Anh, dòng `msgid`. Vì dòng chữ này đã được "bẻ gãy" (xuống dòng) với độ dài tối đa (76 ký tự), lúc sao chép nó vào bộ nhớ để dán lên trang [Google Translate](https://translate.google.com/#view=home&op=translate&sl=en&tl=vi) thì có thể các dấu ngoặc kép `"` có thể gây cản trở cho máy dịch và việc xóa chúng đi có thể là quá phiền toái, bạn nên đánh dòng lệnh sau:
-
+```bash
         make gettext
-
+```
     và vào thư mục **build** để thấy thư mục **locale**. Trong thư mục này sẽ có những tập tin với đuôi **.pot**. Các dòng **msgid** trong tập tin này là một dòng liên tục, không bị xuống dòng. Dùng một thực thể của trình biên soạn văn bản và bật xem văn bản **.pot** tương ứng với tập **.po**, sao chép (Ctrl+C) các dòng **msgid** vào bộ nhớ, trước khi dán (Ctrl+V) vào trang của [Google Translate](https://translate.google.com/#view=home&op=translate&sl=en&tl=vi), phần bên trái dành cho tiếng Anh, và lấy phần phiên dịch ở bên phải để đưa vào dòng **msgstr**, rồi sửa lại các từ nó viết sai và cách đặt câu cú, tránh sao cho quá dập khuôn tiếng Anh để người Việt đọc và cảm thấy quen thuộc. Một số nguồn đối chiếu sau mình có thể sử dụng được trong khi tra cứu và làm việc:
 
     + [Blender 3D: Noob to Pro](https://en.wikibooks.org/wiki/Blender_3D:_Noob_to_Pro)
@@ -323,27 +329,27 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
     + [Youtube - Blender](https://www.youtube.com/user/BlenderFoundation)
     + [Từ Điển: Wiktionary tiếng Việt](https://vi.wiktionary.org/wiki/Trang_Ch%C3%ADnh)
     + [Từ Điển: Soha Tra Từ](http://tratu.soha.vn/)
-
+------------------
 ## Biên tập và xử lý hậu kỳ các thay đổi (Compiling and post processing changes)
 
 - Các tập tin mới được tạo sẽ chứa một số từ cần điền cho tác giả và ngày sửa đổi v.v. Nếu bạn cảm thấy công việc thay thế chúng lặp đi lặp lại, tẻ nhạt, thì hãy sử dụng tập lệnh
-
+```bash
         change_placeholders.sh
-
+```
     trong thư mục nhánh
-
+```bash
         blender_docs/toos_maintenance
-
+```
     Sao lấy một bản vào thư mục **bin** địa phương của bạn và thay tất cả các giá trị đề cập trong tập tin với các chi tiết cụ thể của mình, rồi sau mỗi lần thay đổi một tập tin phiên dịch, bạn nên thực hiện các lệnh sau:
-
+```bash
         $HOME/bin/change_placeholders.sh $BLENDER_MAN_VI
 
         make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
-
+```
 - Xem các thay đổi ở địa phương bằng cách dùng trình duyệt mạng, vào thư mục
-
+```bash
         $BLENDER_MAN_EN/build/html/index.html
-
+```
 - Nên lưu địa chỉ này vào mục ưa thích (Favorites) (Ctrl+D) của trình duyệt mạng để lần sau cứ vào đấy bấm vào để xem trang đầu, F5 (làm tươi lại - refresh) để lấy các thay đổi gần đây nhất mà không phải mở lại
 
 
@@ -351,36 +357,36 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
 - Khi thay đổi xong và muốn nhập kho thì làm như sau:
     + xem các thay đổi:
-
+```bash
                 git status
-
+```
     + nhập kho vào ổ địa phương:
 
         . Báo cho git biết là không ký lần nhập kho bằng mật mã riêng của cá nhân. Chỉ làm một lần.
-
+```bash
                 git config commit.gpgsign false
-
+```
         . Báo cho git là lưu trữ tên người dùng và mật mã, dùng cho những lần sau. Chỉ làm một lần.
-
+```bash
                 git config credential.helper store
-
+```
         . Đưa vào kho địa phương ở máy
-
+```bash
                 git commit -am "<ghi chú về những gì đã làm trong thay đổi vừa rồi>"
-
+```
     + Chuyển giao các thay đổi vào kho trên mạng
-
+```bash
             git push
-
+```
 ### Cập nhật các thay đổi ở chi nhánh chính **master**
 
     + Lấy các thay đổi ở tất cả các chi nhánh trên mạng về máy mình, sử dụng:
-
+```bash
             git pull --all
-
+```
     + Sau mỗi lần `git commit` thì thi hành `git pull` để hội nhập các thay đổi ở máy chủ trên mạng với máy mình.
 
-
+------------------
 
 ## Các tập lệnh có thể cần sử dụng (Favourable scripts)
 
@@ -423,113 +429,115 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
     x.run()
     ```
   + Lưu tập lệnh `makevidoc.py` này vào thư mục **\$HOME/bin** của máy. Nếu thư mục này chưa có thì làm theo các lệnh sau: (Có thể thay **\$HOME** sang **\$WIN_HOME** để có thể biên soạn các tập lệnh bằng các trình biên soạn văn bản của riêng mình một cách dễ dàng.)
-
+```bash
         cd $HOME
         mkdir bin
-
+```
     Nhớ biên soạn bản `·bashrc` và đặt dòng sau để thư mục **\$HOME/bin** nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
-
+```bash
         export MYBIN=$HOME/bin
         export PATH=$MYBIN:$PATH
-
+```
   + Đặt tập lệnh này là **Khả Thi Hành** (executable) bằng lệnh:
-
+```bash
         chmod u+x $HOME/bin/makevidoc.py
-
+```
   + Sau đó, chúng ta có thể chạy nó như các ví dụ sau:
 
     . Xem hướng dẫn sử dụng
-
+```bash
                 makevidoc.py --help
-
+```
     . Thi hành **make** nhưng không xóa bản cũ đi, viết đè lên. Phương pháp này sẽ nhanh hơn, song nhiều khi sẽ không cho kết quả chính xác:
-
+```bash
                 makevidoc.py
-
+```
     . Thi hành **make** và xóa bản cũ đi:
-
+```bash
                 makevidoc.py -c
-
+```
     . Thi hành **make** và xóa bản cũ đi, định thư mục nơi nó cần làm việc là thư mục hiện tại ($PWD = Print Working Directory: In ra thư mục làm việc):
-
+```bash
                 makevidoc.py -c $PWD
-
+```
 2. Tập lệnh **change_placeholders.sh**
 
   + Tập lệnh này nằm trong thư mục:
-
+```bash
         blender_docs/toos_maintenance
-
+```
     Sao lấy một bản vào thư mục **\$HOME/bin** của mình và đặt tập lệnh thành **Khả Thi Hành** (executable) như nói ở trên.
 
   + Tập lệnh này cho phép mình điền tên và e-mail của mình vào phần *COMMENT* của các văn bản mà mình sửa, đồng thời điền ngày giờ mình đã làm nữa. Nó dùng lệnh `svn` và `git` để tìm các văn bản có đuôi là `.po` đã thay đổi. Nếu phải tự lùng tìm ở một thư mục nào đó không phải là thư mục có thư mục `.svn` hoặc `.git` thì nó sẽ tìm các văn bản có đuôi là `.po` mà thôi và cách này là cách làm việc lâu nhất.
         - Các từ mình cần điền chi tiết của cá nhân là:
-
+```bash
           YOUR_NAME="Họ tên đầy đủ"
           YOUR_EMAIL="địa-chỉ-email@máy_chủ.com"
-
+```
   + Tập lệnh này thường được thi hành trong những trường hợp mà các văn bản **.po** bị thay đổi do:
       * Bản thân mình biên soạn nó
       * Sau khi thi hành lệnh
-
+```bash
             make update_po
-
+```
     để cập nhất các thay đổi từ bản tiếng Anh sang, và quá trình này, ngoài việc cập nhật các thay đổi từ các tập tin nguồn `~/blender_docs/manual/*.rst`, nó còn đánh dấu (không xóa đi) những phần văn bản đã bị xóa đi trong bản nguồn, bằng cách đánh dấu các dòng này với tiền tố **\#~**. Tập lệnh **change_placeholders.sh** cũng phát hiện cái này và xóa các dòng có tiền tố **\#~** ra khỏi văn bản **.po**.
 
 3. Các dòng lệnh mình đã đánh trong cửa sổ dòng lệnh được trình xử lý dòng lệnh ghi lại và trong khi làm việc trong cửa sổ dòng lệnh mình có thể
     - Dùng các phim mũi tên *lên*, *xuống* để gọi lại các dòng lệnh đã đánh theo tuần tự. Mũi tên trái/phải sẽ quay trở lại/tiến về trước các ký tự dòng lệnh, `Home` để về đầu dòng, `End` để về cuối dòng, `Backspace`/`Delete` để xóa về trước hoặc sau. `Insert` để đổi chế độ viết đè lên ký tự cũ, hoặc chèn thêm và vị trí con trỏ. Dùng các phím cơ bản này mình có thể gọi lại các dòng lệnh cũ, biên soạn chúng để thi hành lệnh mới với các tham số khác nhau.
 
     - Lệnh **history** (Lịch Sử) liệt kê lại các lện đã từng đánh và được ghi lại. Số dòng được định trong tập **.bashrc**
-
+```bash
             # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
             HISTSIZE=1000
             HISTFILESIZE=2000
-
+```
         Khi số dòng vượt quá hạn định này thì tất cả những dòng lịch sử trước sẽ bị xóa đi và những dòng mới sẽ được bắt đầu lại từ đầu. Nếu có những dòng lệnh đánh mà mình muốn lưu lại vào một tập tin khác thì mình có thể thi hành các lệnh sau - đặt tên cho tập lệnh là `savehistory.sh`:
-
+```bash
             #!/bin/bash
             histfile=$HOME/Documents/my_history.txt
             tempfile=$HOME/tmp.txt
             history >> $histfile
             cat $histfile | sort -nu > $tempfile
             mv $tempfile $histfile
-
+```
         Nhớ lệnh **sort** có hai tham số:
-
+```bash
             -n : numerical, tức so sánh trong khi sắp xếp dùng giá trị số của dòng, hay lấy thứ tự những con số dẫn đầu, tức số dòng.
             -u : unique, xóa đi những dòng hoàn toàn giống nhau, chỉ giữ lại một dòng.
-
+```
         xem thêm hướng dẫn về lệnh **sort** dùng:
-
+```bash
             man sort
-
+```
         vì lệnh này sắp xếp cách dòng lệnh theo con số dẫn đầu (số của dòng) (tham số **-n** của lệnh **sort**) và khi HISTSIZE > 1000, nó quay trở lại số 1 thì trật tự sẽ không còn nằm ở dưới, theo tuần tự thời gian mà mình nghĩ là nó sẽ nằm nữa.
 
     - Khi lệnh **history** (Lịch Sử) liệt kê các dòng lệnh, nó còn liệt kê dòng số ở đầu. Mình có thể gọi lại dòng lệnh bằng cách điền con số dòng với dấu chấm than đứng trước, như sau:
-
+```bash
             !<số dòng>
-
-        và bấm 'Enter'. Lệnh ở dòng số này sẽ được thực hiện.
+            !123
+```
+        và bấm 'Enter'. Lệnh ở dòng số này sẽ được thực hiện (ví dụ thi hành lại lệnh ở dòng số 123)
 
 4. Tập lệnh **.bash_aliases** (Biệt danh)
     - Tập lệnh này sẽ được thi hành bởi tập tin `.bashrc`, nên khi nạp lại tập tin `.bashrc` bằng lệnh `. .~/.bashrc` thì các lệnh biệt danh (viết tắt) cũng sẽ được nạp vào bộ nhớ. Điều tra các lệnh viết tắt bằng cách đánh:
-
+```bash
             alias
-
+```
         và bấm `Enter` để thấy các lệnh được liệt kê.
 
     - Biên soạn tập tin này để cho các tên viết tắt của các lệnh, chẳng hạn:
-
+```bash
             alias graph="git log --all --decorate --oneline --graph"
             alias ll='ls -alF'
-
+```
         để khi ở dòng lệnh chỉ cần đánh:
-
+```bash
             graph
             ll
-
+```
         thay vì phải đánh toàn bộ.
 
+------------------
 
 ## Chuyển thư mục `/home` sang một ổ cứng ngoài
 
@@ -557,25 +565,25 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
     - Thi hành các dòng lệnh sau:
 
         1. Liệt kê các ổ cứng, xem cái mình sẽ xóa đi và cài hệ điều hành vào là cái nào, bằng lệnh:
-
+```bash
                 fdisk -l
-
+```
             Để ý tên thường là `/dev/sda` hoặc `/dev/sdb` v.v. Ghi nhớ cỡ của ổ cứng để phát hiện cho đúng. Ổ cứng thường có cỡ lớn hơn đĩa và thẻ USB rất nhiều. Nhớ đơn vị cỡ TB (Terabyte) = 1024 GB (Gigabyte), GB = 1024 MB (Megabyte), MB = 1024 KB (Kilobyte), KB = 1024 B (Byte). Giả dụ, ổ đĩa của chúng ta được hệ điều hành gán vào `/dev/sdb', thi hành lệnh:
 
         2. Xóa các rãnh của ổ cứng cũ. Ví dụ này chỉ xóa 1GB đầu tiên:
-
+```bash
                 dd if=/dev/zero of=/dev/sdb bs=1G count=1
-
+```
             để viết 1GB dữ liệu trống ra ổ cứng và xóa trắng 1GB mà thôi. Nếu muốn viết trắng toàn bộ ổ cứng thì viết:
-
+```bash
                 dd if=/dev/zero of=/dev/sdb bs=1G status=progress
-
+```
             để xóa trắng tất cả, đưa giá trị của các rãnh về giá trị 0 (`/dev/zero`) và phần mềm sẽ thông báo cho mình biết là nó làm việc đến đâu rồi, cùng tốc độ viết (`status=progress`).
 
         3. Sau khi viết xong, thi hành:
-
+```bash
                 partprobe /dev/sdb
-
+```
             để đọc lại cấu hình của ổ mà mình vừa xóa đi, vì cấu hình, sau khi đã xóa đi, không còn giống như cái cũ trước đây nữa.
 
         4. Bấm tổ hợp phím `Ctrl-Alt F7` để quay trở lại giao diện đồ họa. Bấm nút 'Install Linux Mint' trên mặt bàn làm việc (desktop) để khởi động cài đặt và điền các thông tin những hướng dẫn trên màn hình. Các bạn có thể chọn ngôn ngữ `tiếng Việt` ở vùng liệt kê danh sách ngôn ngữ trong cửa sổ bên trái và bấm nút `tiếp tục` để thi hành. Theo kinh nghiệm cá nhân, các bạn nên cài bằng tiếng Anh, rồi sau này cài thêm `ibus-unikey` và dùng `ibus` để đánh tiếng Việt thì hơn.
@@ -587,7 +595,9 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 
 - Khi đã đăng nhập thì bật `Terminal` lên và thi hành các lệnh sau:
 
+```bash
         sudo fsdisk -l
+```
 
     để vào chế độ người quản lý hệ thống và xem các ổ cứng, nhất là ổ dùng để làm $HOME gọi là gì.
 
@@ -595,16 +605,19 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 
 - Ví dụ, liệt kê ổ cứng:
 
-        hoang@mypc:~$ sudo fdisk -l
-        [sudo] password for hoang:
+```bash
+        sudo fdisk -l
+        [sudo] password for <username>:
         Disk /dev/sda: 111.8 GiB, 120034123264 bytes, 234441647 sectors
         Units: sectors of 1 * 512 = 512 bytes
         Sector size (logical/physical): 512 bytes / 512 bytes
         I/O size (minimum/optimal): 512 bytes / 512 bytes
+```
 
 - Biên soạn đĩa bằng lệnh `fsdisk`:
 
-        hoang@mypc:~$ sudo fdisk /dev/sda
+```bash
+        sudo fdisk /dev/sda
 
         Welcome to fdisk (util-linux 2.31.1).
         Changes will remain in memory only, until you decide to write them.
@@ -612,9 +625,11 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 
         Device does not contain a recognised partition table.
         Created a new DOS disklabel with disk identifier 0xe7e87b15.
+```
 
 - In thông tin bằng lệnh `p` (Print):
 
+```bash
         Command (m for help): p
         Disk /dev/sda: 111.8 GiB, 120034123264 bytes, 234441647 sectors
         Units: sectors of 1 * 512 = 512 bytes
@@ -622,9 +637,11 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         I/O size (minimum/optimal): 512 bytes / 512 bytes
         Disklabel type: dos
         Disk identifier: 0xe7e87b15
+```
 
 - Kiến tạo phần ổ cứng mới bằng lệnh `n` (New):
 
+```bash
         Command (m for help): n
         Partition type
         p   primary (0 primary, 0 extended, 4 free)
@@ -635,17 +652,21 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         Last sector, +sectors or +size{K,M,G,T,P} (2048-234441646, default 234441646):
 
         Created a new partition 1 of type 'Linux' and of size 111.8 GiB.
+```
 
 - Viết ra ổ cứng những thay đổi đã làm:
 
+```bash
         Command (m for help): w
         The partition table has been altered.
         Calling ioctl() to re-read partition table.
         Synching disks.
+```
 
 - Định dạng hệ thống tập tin cho phần ổ cứng vừa tạo sử dụng sắp đặt mặc định, để ý UUID (Universally Unique Identifier) mà hệ điều hành gán cho nó:
 
-        hoang@mypc:~$ sudo mke2fs -t ext4 /dev/sda1
+```bash
+        sudo mke2fs -t ext4 /dev/sda1
         mke2fs 1.44.1 (24-Mar-2018)
         Creating filesystem with 29304949 4k blocks and 7331840 inodes
         Filesystem UUID: f98b7efa-08fd-40a2-8f6d-94388c453b0d
@@ -657,17 +678,20 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         Writing inode tables: done
         Creating journal (131072 blocks): done
         Writing superblocks and filesystem accounting information: done
-
+```
 
 - Để liệt kê các thông tin này dùng lệnh
 
-        # sudo blkid /dev/sda1
+```bash
+        sudo blkid /dev/sda1
         /dev/sda1: UUID="f98b7efa-08fd-40a2-8f6d-94388c453b0d"  TYPE="ext4"
+```
 
 - Đổi nhãn hiệu để dễ nhận biết hơn bằng lệnh:
 
-        # sudo e2label /dev/sda1 "MY_HOME"
-
+```bash
+        sudo e2label /dev/sda1 "MY_HOME"
+```
 
 
 - Sao chép dòng thông tin về ổ mà mình sẽ sử dụng, chẳng hạn như `/dev/sdc1` ở trên.
@@ -676,57 +700,116 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 
 - Biên soạn `/etc/fstab` để đưa thông tin này vào đó, đặt ánh xạ sang ổ `/home` cho nó như sau:
 
+```bash
         nano /etc/fstab
+```
+- và điền dòng sau vào cuối cùng:
 
-    và điền dòng sau vào cuối cùng:
-
+```bash
         UUID=d21aebfe-716e-11e2-97f7-001a64633f00   /home   ext4    defaults    0   2
+```
 
-    nhớ xóa các ngoặc kép ở giá trị của `UUID`
+- nhớ xóa các ngoặc kép ở giá trị của `UUID`
 
-# Một số phương pháp có thể sử dụng để tăng hiệu suất làm việc
+------------------
 
-## Tăng lượng dòng định nghĩa từ gõ tắt trong bản macro của Unikey
+## Một số phương pháp có thể sử dụng để tăng hiệu suất làm việc
 
-    - Bản ibus-unikey ở kho lấy về có một giới hạn về số từ viết tắt trong bảng macro có thể ghi và nạp vào bộ nhớ là 1024 dòng, mỗi dòng là một định nghĩa. Tôi có viết thư cho anh Lê Quốc Tuấn, chủ nhân của phần mềm này, và làm theo sự hướng dẫn của anh, vào đây (https://github.com/vn-input/ibus-unikey) lấy bản mã nguồn dùng lệnh:
+### Tăng lượng dòng định nghĩa từ gõ tắt trong bản macro của Unikey
 
-            sudo apt-get install -y cmake g++ make pkg-config libibus-1.0-dev libgtk-3-dev
-            cd $HOME
-            mkdir sources/
-            cd sources
-            git clone https://github.com/vn-input/ibus-unik...
-            cd ibus-unikey
-            kwrite ukengine/keycons.h
+- Bản ibus-unikey ở kho lấy về có một giới hạn về số từ viết tắt trong bảng macro có thể ghi và nạp vào bộ nhớ là 1024 dòng, mỗi dòng là một định nghĩa. Tôi có viết thư cho anh Lê Quốc Tuấn, chủ nhân của phần mềm này, và làm theo sự hướng dẫn của anh, vào đây (https://github.com/vn-input/ibus-unikey) lấy bản mã nguồn dùng lệnh:
 
-        Đổi dòng:
+```bash
+        sudo apt-get install -y cmake g++ make pkg-config libibus-1.0-dev libgtk-3-dev
+        cd $HOME
+        mkdir sources/
+        cd sources
+        git clone https://github.com/vn-input/ibus-unik...
+        cd ibus-unikey
+        kwrite ukengine/keycons.h
+```
 
-            ``` C++
-            #define MAX_MACRO_ITEMS 1024
+- Đổi dòng:
 
-        thành
+```cpp
+        #define MAX_MACRO_ITEMS 1024
+```
 
-            ``` C++
-            #define MAX_MACRO_ITEMS 1024 * 4
+- thành
 
-        Tức tăng số dòng macro có thể sử dụng lên thành 4 lần (4096 dòng). Lưu thay đổi và quay trở lại dòng lệnh:
+```cpp
+        #define MAX_MACRO_ITEMS 1024 * 4
+```
 
-            mkdir build
-            cd build
-            cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=release -DLIBEXECDIR=/usr /lib/ibus ..
-            make
-            sudo make install
+- Tức tăng số dòng macro có thể sử dụng lên thành 4 lần (4096 dòng). Lưu thay đổi và quay trở lại dòng lệnh:
 
-    - Bấm chuột phải ở biểu tượng Unikey trên thanh tác vụ và chọn 'Restart' để tắt bản cũ đi, lấy bản mới vào bộ nhớ. Hoặc là biên soạn bản 'macro.txt' và cho thêm từ vào đó, rồi 'Import' nó vào hoặc 'import' từ một bản định nghĩa khác đã có vào. Sau khi 'Save' (Lưu) thì có thể vào thư mục '$HOME/.ibus/unikey' và kiểm tra số dòng của bản 'macro' trong đó, bằng
+```bash
+        mkdir build
+        cd build
+        cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=release -DLIBEXECDIR=/usr /lib/ibus ..
+        make
+        sudo make install
+```
 
-            cat macro | wc -l
 
-        hoặc dùng:
+- Bấm chuột phải ở biểu tượng Unikey trên thanh tác vụ và chọn 'Restart' để tắt bản cũ đi, lấy bản mới vào bộ nhớ. Hoặc là biên soạn bản 'macro.txt' và cho thêm từ vào đó, rồi 'Import' nó vào hoặc 'import' từ một bản định nghĩa khác đã có vào. Sau khi 'Save' (Lưu) thì có thể vào thư mục '$HOME/.ibus/unikey' và kiểm tra số dòng của bản 'macro' trong đó, bằng
 
-            kwrite macro
+```bash
+        cat macro | wc -l
+```
 
-        và kiểm tra số dòng mà phần mềm đã ghi. Hơn 1024 là được.
+- hoặc dùng:
+```bash
+        kwrite macro
+```
+- và kiểm tra số dòng mà phần mềm đã ghi. Hơn 1024 là được.
 
-    - Nhớ mỗi lần thay đổi nội dung của 'macro' trong bộ nhớ thì phải dùng phím chuyển ngôn ngữ (giữa tiếng Anh và tiếng Việt) để đổi sang tiếng Anh rồi quay trở lại tiếng Việt, để kích hoạt bản định nghĩa macro mới.
+- Nhớ mỗi lần thay đổi nội dung của 'macro' trong bộ nhớ thì phải dùng phím chuyển ngôn ngữ (giữa tiếng Anh và tiếng Việt) để đổi sang tiếng Anh rồi quay trở lại tiếng Việt, để kích hoạt bản định nghĩa macro mới.
 
-## Sử dụng microphone và chức năng dịch giọng nói đánh thành chữ của Google
-    [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document)
+### Sử dụng microphone và chức năng dịch giọng nói đánh thành chữ của Google
+- Chức năng này trong bản 'chromium' - bản nguồn mở - lấy ở kho không hoạt động, tuy hình microphone xuất hiện, song khi bấm vào đó thì nó sẽ nói 'no internet connection' và cho dù mình sửa đổi sắp đặt trong mục
+
+    Settings ‣ Advanced ‣ Privacy and security ‣ Content settings ‣ Microphone
+
+- và chọn 'Built-in Audio Analogue Stero' đi chăng nữa.
+
+- Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đây](https://www.tecmint.com/install-google-chrome-in-debian-ubuntu-linux-mint/),
+1. Cách thứ nhất là:
+
+```bash
+    cd Downloads
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+    sudo apt-get update
+    sudo apt-get install google-chrome-stable
+```
+
+2. Cách thứ hai là:
+```bash
+    cd Downloads
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo dpkg -i google-chrome-stable_current_amd64.deb
+```
+- Sau đó vào trình đơn 'Internet' và bấm thi hành 'Google Chrome' hoặc khởi động nó từ dòng lệnh:
+```bash
+    google-chrome-stable
+```
+- Bấm vào nút ba chấm ở bên phải của dòng địa chỉ, sát mép cửa sổ và vào thư mục:
+
+    Settings ‣ Advanced ‣ Privacy and security ‣ Content settings ‣ Microphone
+
+- bật nút 'Block' (Ngăn chặn) để nó chuyển thành 'Ask before accessing (recommended)' (Hỏi trước khi tiếp cận (đề cử))
+
+- Nếu máy có nhiều microphone thì có thể bấm vào nút ở đó và chọn cái mình muốn sử dụng.
+
+- Bật một 'Tab' mới (bấm dấu '+' ở trên cùng, hoặc bấm 'Ctrl+T'), và bấm vào nút hình cái microphone ở bên phải ở dòng đề 'Search Google or type a URL' (Tìm kiếm Google hoặc đánh máy chữ một dòng địa chỉ URL). Hình biểu tượng microphone màu đỏ hiện ra và bên trái dòng chữ chuyển từ 'Speak now..' (Nói đi) sang 'Listening' (đang lắng nghe). Nói một vài chữ tiếng Anh như 'Hello', hoặc 'Thank you', để nó tìm cho mình. Mình sẽ thấy các chữ ấy được sử dụng để tìm các trang và phim ảnh liên quan đến các chữ mình nói.
+
+- Lần đến trang [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document) và bấm vào nút dấu cộng '+' để lấy một bản tài liệu mới. Bấm vào nút 'Tools' (Các Công cụ) ở trình đơn và chọn 'Voice typing' (Đánh máy chữ bằng giọng nói). Hình biểu tượng cái microphone sẽ hiện ra ở bên trái lề.
+
+- Bấm vào nút đề 'English' ở đó và chọn đổi sang 'Tiếng Việt' để đổi ngôn ngữ nó lắng nghe và phiên dịch.
+
+- Dùng 'Kate' hoặc 'Kwrite' bật một bản dịch mình muốn làm. Xem dòng **msgid** và dịch nhẩm trong đầu, rồi bấm vào nút hình cái microphone (hiện lên màu đỏ) ở trang của [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document) và nói dòng đã dịch trong đầu ấy. Nó sẽ đánh ra các chữ mà nó nghĩ là đúng. Sau khi đã nói xong thì bấm vào hình biểu tượng cái microphone và tắt nó đi (màu đen).
+
+- Nếu cần phải đánh lại một chữ nào thì bấm và chọn chữ ấy (màu xanh dương), rồi nói lại chữ nó đánh sai. Gợi ý, để nó hiểu được những chữ khó, đôi khi phải nói vài từ trong ngữ cảnh đó, chẳng hạn, thay vì chỉ nó 'lý', thì nói 'lý thuyết' hoặc 'lý luận', hoặc để được chữ 'xương', thay vì 'sương' thì nói 'xương lợn', thay vì 'hạt sương'.
+
+- Dùng chuột quét để chọn và chép (Ctrl+C) nó vào bộ nhớ của máy. Chuyển sang bản mình đang dịch và bấm (Ctrl+V) để dán dòng chữ đã dịch vào. Sửa lại thành kiểu chữ thường hoặc hoa như mình muốn.
