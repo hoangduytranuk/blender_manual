@@ -52,15 +52,21 @@ Bạn còn có thể tải xuống máy bản [Kate trên Windows](https://kate-
 
 Vị trí của bản Ubuntu 18.04 nằm tại:
 
-        C:\Users\<windows username>\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home\<Ubuntu's username>
+    ```
+    C:\Users\<windows username>\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home\<Ubuntu's username>
+    ```
 
 Mình có thể tìm thấy ánh xạ của ổ đĩa C: bằng cách sử dụng:
 
+        ``` bash
         mount
+        ```
 
 và nó thường nằm ở:
 
+        ``` bash
         C: on /mnt/c type drvfs (rw,noatime)
+        ```
 
 Lệnh
 
@@ -654,6 +660,7 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 
 
 - Để liệt kê các thông tin này dùng lệnh
+
         # sudo blkid /dev/sda1
         /dev/sda1: UUID="f98b7efa-08fd-40a2-8f6d-94388c453b0d"  TYPE="ext4"
 
@@ -677,4 +684,49 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 
     nhớ xóa các ngoặc kép ở giá trị của `UUID`
 
+# Một số phương pháp có thể sử dụng để tăng hiệu suất làm việc
 
+## Tăng lượng dòng định nghĩa từ gõ tắt trong bản macro của Unikey
+
+    - Bản ibus-unikey ở kho lấy về có một giới hạn về số từ viết tắt trong bảng macro có thể ghi và nạp vào bộ nhớ là 1024 dòng, mỗi dòng là một định nghĩa. Tôi có viết thư cho anh Lê Quốc Tuấn, chủ nhân của phần mềm này, và làm theo sự hướng dẫn của anh, vào đây (https://github.com/vn-input/ibus-unikey) lấy bản mã nguồn dùng lệnh:
+
+            sudo apt-get install -y cmake g++ make pkg-config libibus-1.0-dev libgtk-3-dev
+            cd $HOME
+            mkdir sources/
+            cd sources
+            git clone https://github.com/vn-input/ibus-unik...
+            cd ibus-unikey
+            kwrite ukengine/keycons.h
+
+        Đổi dòng:
+
+            ``` C++
+            #define MAX_MACRO_ITEMS 1024
+
+        thành
+
+            ``` C++
+            #define MAX_MACRO_ITEMS 1024 * 4
+
+        Tức tăng số dòng macro có thể sử dụng lên thành 4 lần (4096 dòng). Lưu thay đổi và quay trở lại dòng lệnh:
+
+            mkdir build
+            cd build
+            cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=release -DLIBEXECDIR=/usr /lib/ibus ..
+            make
+            sudo make install
+
+    - Bấm chuột phải ở biểu tượng Unikey trên thanh tác vụ và chọn 'Restart' để tắt bản cũ đi, lấy bản mới vào bộ nhớ. Hoặc là biên soạn bản 'macro.txt' và cho thêm từ vào đó, rồi 'Import' nó vào hoặc 'import' từ một bản định nghĩa khác đã có vào. Sau khi 'Save' (Lưu) thì có thể vào thư mục '$HOME/.ibus/unikey' và kiểm tra số dòng của bản 'macro' trong đó, bằng
+
+            cat macro | wc -l
+
+        hoặc dùng:
+
+            kwrite macro
+
+        và kiểm tra số dòng mà phần mềm đã ghi. Hơn 1024 là được.
+
+    - Nhớ mỗi lần thay đổi nội dung của 'macro' trong bộ nhớ thì phải dùng phím chuyển ngôn ngữ (giữa tiếng Anh và tiếng Việt) để đổi sang tiếng Anh rồi quay trở lại tiếng Việt, để kích hoạt bản định nghĩa macro mới.
+
+## Sử dụng microphone và chức năng dịch giọng nói đánh thành chữ của Google
+    [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document)
