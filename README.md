@@ -313,7 +313,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
 - Các dòng **Comment** luôn luôn khởi đầu bằng ký tự **#**. Các dòng này chỉ có tác dụng trong biên soạn mà thôi, nó sẽ bị bỏ đi trong quá trình biên dịch.
 
-- Khi dịch thì chớ làm gì thay đổi dòng tiếng Anh, dòng `msgid`. Vì dòng chữ này đã được "bẻ gãy" (xuống dòng) với độ dài tối đa (76 ký tự), lúc sao chép nó vào bộ nhớ để dán lên trang [Google Translate](https://translate.google.com/#view=home&op=translate&sl=en&tl=vi) thì có thể các dấu ngoặc kép `"` có thể gây cản trở cho máy dịch và việc xóa chúng đi có thể là quá phiền toái, bạn nên đánh dòng lệnh sau:
+- Khi dịch thì chớ làm gì thay đổi dòng tiếng Anh, dòng `msgid`. Vì dòng chữ này đã được "bẻ gãy" (xuống dòng) với độ dài tối đa (76 ký tự), lúc sao chép nó vào bộ nhớ để dán lên trang [Google Translate](https://translate.google.com/#view=home&op=translate&sl=en&tl=vi) <a id="google-machine-translation"></a> thì có thể các dấu ngoặc kép `"` có thể gây cản trở cho máy dịch và việc xóa chúng đi có thể là quá phiền toái, bạn nên đánh dòng lệnh sau:
 ```bash
         make gettext
 ```
@@ -428,12 +428,12 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
     x.setVars(args.clean_action, args.make_dir)
     x.run()
     ```
-  + Lưu tập lệnh `makevidoc.py` này vào thư mục **\$HOME/bin** của máy. Nếu thư mục này chưa có thì làm theo các lệnh sau: (Có thể thay **\$HOME** sang **\$WIN_HOME** để có thể biên soạn các tập lệnh bằng các trình biên soạn văn bản của riêng mình một cách dễ dàng.)
++ Lưu tập lệnh `makevidoc.py` này vào thư mục **\$HOME/bin** của máy. Nếu thư mục này chưa có thì làm theo các lệnh sau: (Có thể thay **\$HOME** sang **\$WIN_HOME** để có thể biên soạn các tập lệnh bằng các trình biên soạn văn bản của riêng mình một cách dễ dàng.)
 ```bash
         cd $HOME
         mkdir bin
 ```
-    Nhớ biên soạn bản `·bashrc` và đặt dòng sau để thư mục **\$HOME/bin** nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
++ Nhớ biên soạn bản `·bashrc` và đặt dòng sau để thư mục **\$HOME/bin** nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
 ```bash
         export MYBIN=$HOME/bin
         export PATH=$MYBIN:$PATH
@@ -462,36 +462,36 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 ```
 2. Tập lệnh **change_placeholders.sh**
 
-  + Tập lệnh này nằm trong thư mục:
++ Tập lệnh này nằm trong thư mục:
 ```bash
         blender_docs/toos_maintenance
 ```
-    Sao lấy một bản vào thư mục **\$HOME/bin** của mình và đặt tập lệnh thành **Khả Thi Hành** (executable) như nói ở trên.
+Sao lấy một bản vào thư mục **\$HOME/bin** của mình và đặt tập lệnh thành **Khả Thi Hành** (executable) như nói ở trên.
 
-  + Tập lệnh này cho phép mình điền tên và e-mail của mình vào phần *COMMENT* của các văn bản mà mình sửa, đồng thời điền ngày giờ mình đã làm nữa. Nó dùng lệnh `svn` và `git` để tìm các văn bản có đuôi là `.po` đã thay đổi. Nếu phải tự lùng tìm ở một thư mục nào đó không phải là thư mục có thư mục `.svn` hoặc `.git` thì nó sẽ tìm các văn bản có đuôi là `.po` mà thôi và cách này là cách làm việc lâu nhất.
++ Tập lệnh này cho phép mình điền tên và e-mail của mình vào phần *COMMENT* của các văn bản mà mình sửa, đồng thời điền ngày giờ mình đã làm nữa. Nó dùng lệnh `svn` và `git` để tìm các văn bản có đuôi là `.po` đã thay đổi. Nếu phải tự lùng tìm ở một thư mục nào đó không phải là thư mục có thư mục `.svn` hoặc `.git` thì nó sẽ tìm các văn bản có đuôi là `.po` mà thôi và cách này là cách làm việc lâu nhất.
         - Các từ mình cần điền chi tiết của cá nhân là:
 ```bash
           YOUR_NAME="Họ tên đầy đủ"
           YOUR_EMAIL="địa-chỉ-email@máy_chủ.com"
 ```
-  + Tập lệnh này thường được thi hành trong những trường hợp mà các văn bản **.po** bị thay đổi do:
-      * Bản thân mình biên soạn nó
-      * Sau khi thi hành lệnh
++ Tập lệnh này thường được thi hành trong những trường hợp mà các văn bản **.po** bị thay đổi do:
+    * Bản thân mình biên soạn nó
+    * Sau khi thi hành lệnh
 ```bash
             make update_po
 ```
-    để cập nhất các thay đổi từ bản tiếng Anh sang, và quá trình này, ngoài việc cập nhật các thay đổi từ các tập tin nguồn `~/blender_docs/manual/*.rst`, nó còn đánh dấu (không xóa đi) những phần văn bản đã bị xóa đi trong bản nguồn, bằng cách đánh dấu các dòng này với tiền tố **\#~**. Tập lệnh **change_placeholders.sh** cũng phát hiện cái này và xóa các dòng có tiền tố **\#~** ra khỏi văn bản **.po**.
++ để cập nhất các thay đổi từ bản tiếng Anh sang, và quá trình này, ngoài việc cập nhật các thay đổi từ các tập tin nguồn `~/blender_docs/manual/*.rst`, nó còn đánh dấu (không xóa đi) những phần văn bản đã bị xóa đi trong bản nguồn, bằng cách đánh dấu các dòng này với tiền tố **\#~**. Tập lệnh **change_placeholders.sh** cũng phát hiện cái này và xóa các dòng có tiền tố **\#~** ra khỏi văn bản **.po**.
 
 3. Các dòng lệnh mình đã đánh trong cửa sổ dòng lệnh được trình xử lý dòng lệnh ghi lại và trong khi làm việc trong cửa sổ dòng lệnh mình có thể
-    - Dùng các phim mũi tên *lên*, *xuống* để gọi lại các dòng lệnh đã đánh theo tuần tự. Mũi tên trái/phải sẽ quay trở lại/tiến về trước các ký tự dòng lệnh, `Home` để về đầu dòng, `End` để về cuối dòng, `Backspace`/`Delete` để xóa về trước hoặc sau. `Insert` để đổi chế độ viết đè lên ký tự cũ, hoặc chèn thêm và vị trí con trỏ. Dùng các phím cơ bản này mình có thể gọi lại các dòng lệnh cũ, biên soạn chúng để thi hành lệnh mới với các tham số khác nhau.
+- Dùng các phim mũi tên *lên*, *xuống* để gọi lại các dòng lệnh đã đánh theo tuần tự. Mũi tên trái/phải sẽ quay trở lại/tiến về trước các ký tự dòng lệnh, `Home` để về đầu dòng, `End` để về cuối dòng, `Backspace`/`Delete` để xóa về trước hoặc sau. `Insert` để đổi chế độ viết đè lên ký tự cũ, hoặc chèn thêm và vị trí con trỏ. Dùng các phím cơ bản này mình có thể gọi lại các dòng lệnh cũ, biên soạn chúng để thi hành lệnh mới với các tham số khác nhau.
 
-    - Lệnh **history** (Lịch Sử) liệt kê lại các lện đã từng đánh và được ghi lại. Số dòng được định trong tập **.bashrc**
+- Lệnh **history** (Lịch Sử) liệt kê lại các lện đã từng đánh và được ghi lại. Số dòng được định trong tập **.bashrc**
 ```bash
             # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
             HISTSIZE=1000
             HISTFILESIZE=2000
 ```
-        Khi số dòng vượt quá hạn định này thì tất cả những dòng lịch sử trước sẽ bị xóa đi và những dòng mới sẽ được bắt đầu lại từ đầu. Nếu có những dòng lệnh đánh mà mình muốn lưu lại vào một tập tin khác thì mình có thể thi hành các lệnh sau - đặt tên cho tập lệnh là `savehistory.sh`:
+Khi số dòng vượt quá hạn định này thì tất cả những dòng lịch sử trước sẽ bị xóa đi và những dòng mới sẽ được bắt đầu lại từ đầu. Nếu có những dòng lệnh đánh mà mình muốn lưu lại vào một tập tin khác thì mình có thể thi hành các lệnh sau - đặt tên cho tập lệnh là `savehistory.sh`:
 ```bash
             #!/bin/bash
             histfile=$HOME/Documents/my_history.txt
@@ -500,42 +500,42 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
             cat $histfile | sort -nu > $tempfile
             mv $tempfile $histfile
 ```
-        Nhớ lệnh **sort** có hai tham số:
+Nhớ lệnh **sort** có hai tham số:
 ```bash
-            -n : numerical, tức so sánh trong khi sắp xếp dùng giá trị số của dòng, hay lấy thứ tự những con số dẫn đầu, tức số dòng.
-            -u : unique, xóa đi những dòng hoàn toàn giống nhau, chỉ giữ lại một dòng.
+-n : numerical, tức so sánh trong khi sắp xếp dùng giá trị số của dòng, hay lấy thứ tự những con số dẫn đầu, tức số dòng.
+-u : unique, xóa đi những dòng hoàn toàn giống nhau, chỉ giữ lại một dòng.
 ```
         xem thêm hướng dẫn về lệnh **sort** dùng:
 ```bash
             man sort
 ```
-        vì lệnh này sắp xếp cách dòng lệnh theo con số dẫn đầu (số của dòng) (tham số **-n** của lệnh **sort**) và khi HISTSIZE > 1000, nó quay trở lại số 1 thì trật tự sẽ không còn nằm ở dưới, theo tuần tự thời gian mà mình nghĩ là nó sẽ nằm nữa.
+vì lệnh này sắp xếp cách dòng lệnh theo con số dẫn đầu (số của dòng) (tham số **-n** của lệnh **sort**) và khi HISTSIZE > 1000, nó quay trở lại số 1 thì trật tự sẽ không còn nằm ở dưới, theo tuần tự thời gian mà mình nghĩ là nó sẽ nằm nữa.
 
-    - Khi lệnh **history** (Lịch Sử) liệt kê các dòng lệnh, nó còn liệt kê dòng số ở đầu. Mình có thể gọi lại dòng lệnh bằng cách điền con số dòng với dấu chấm than đứng trước, như sau:
+- Khi lệnh **history** (Lịch Sử) liệt kê các dòng lệnh, nó còn liệt kê dòng số ở đầu. Mình có thể gọi lại dòng lệnh bằng cách điền con số dòng với dấu chấm than đứng trước, như sau:
 ```bash
             !<số dòng>
             !123
 ```
-        và bấm 'Enter'. Lệnh ở dòng số này sẽ được thực hiện (ví dụ thi hành lại lệnh ở dòng số 123)
+và bấm 'Enter'. Lệnh ở dòng số này sẽ được thực hiện (ví dụ thi hành lại lệnh ở dòng số 123)
 
 4. Tập lệnh **.bash_aliases** (Biệt danh)
-    - Tập lệnh này sẽ được thi hành bởi tập tin `.bashrc`, nên khi nạp lại tập tin `.bashrc` bằng lệnh `. .~/.bashrc` thì các lệnh biệt danh (viết tắt) cũng sẽ được nạp vào bộ nhớ. Điều tra các lệnh viết tắt bằng cách đánh:
+- Tập lệnh này sẽ được thi hành bởi tập tin `.bashrc`, nên khi nạp lại tập tin `.bashrc` bằng lệnh `. .~/.bashrc` thì các lệnh biệt danh (viết tắt) cũng sẽ được nạp vào bộ nhớ. Điều tra các lệnh viết tắt bằng cách đánh:
 ```bash
             alias
 ```
-        và bấm `Enter` để thấy các lệnh được liệt kê.
+và bấm `Enter` để thấy các lệnh được liệt kê.
 
-    - Biên soạn tập tin này để cho các tên viết tắt của các lệnh, chẳng hạn:
+- Biên soạn tập tin này để cho các tên viết tắt của các lệnh, chẳng hạn:
 ```bash
             alias graph="git log --all --decorate --oneline --graph"
             alias ll='ls -alF'
 ```
-        để khi ở dòng lệnh chỉ cần đánh:
+để khi ở dòng lệnh chỉ cần đánh:
 ```bash
             graph
             ll
 ```
-        thay vì phải đánh toàn bộ.
+thay vì phải đánh toàn bộ.
 
 ------------------
 
@@ -564,46 +564,46 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
     - Điền `sudo -s` và bấm `Enter` để vào chế độ người quản lý hệ thống (Administrator, Linux gọi là `root`).
     - Thi hành các dòng lệnh sau:
 
-        1. Liệt kê các ổ cứng, xem cái mình sẽ xóa đi và cài hệ điều hành vào là cái nào, bằng lệnh:
+1. Liệt kê các ổ cứng, xem cái mình sẽ xóa đi và cài hệ điều hành vào là cái nào, bằng lệnh:
 ```bash
                 fdisk -l
 ```
-            Để ý tên thường là `/dev/sda` hoặc `/dev/sdb` v.v. Ghi nhớ cỡ của ổ cứng để phát hiện cho đúng. Ổ cứng thường có cỡ lớn hơn đĩa và thẻ USB rất nhiều. Nhớ đơn vị cỡ TB (Terabyte) = 1024 GB (Gigabyte), GB = 1024 MB (Megabyte), MB = 1024 KB (Kilobyte), KB = 1024 B (Byte). Giả dụ, ổ đĩa của chúng ta được hệ điều hành gán vào `/dev/sdb', thi hành lệnh:
+Để ý tên thường là `/dev/sda` hoặc `/dev/sdb` v.v. Ghi nhớ cỡ của ổ cứng để phát hiện cho đúng. Ổ cứng thường có cỡ lớn hơn đĩa và thẻ USB rất nhiều. Nhớ đơn vị cỡ TB (Terabyte) = 1024 GB (Gigabyte), GB = 1024 MB (Megabyte), MB = 1024 KB (Kilobyte), KB = 1024 B (Byte). Giả dụ, ổ đĩa của chúng ta được hệ điều hành gán vào `/dev/sdb', thi hành lệnh:
 
-        2. Xóa các rãnh của ổ cứng cũ. Ví dụ này chỉ xóa 1GB đầu tiên:
+2. Xóa các rãnh của ổ cứng cũ. Ví dụ này chỉ xóa 1GB đầu tiên:
 ```bash
                 dd if=/dev/zero of=/dev/sdb bs=1G count=1
 ```
-            để viết 1GB dữ liệu trống ra ổ cứng và xóa trắng 1GB mà thôi. Nếu muốn viết trắng toàn bộ ổ cứng thì viết:
+để viết 1GB dữ liệu trống ra ổ cứng và xóa trắng 1GB mà thôi. Nếu muốn viết trắng toàn bộ ổ cứng thì viết:
 ```bash
                 dd if=/dev/zero of=/dev/sdb bs=1G status=progress
 ```
-            để xóa trắng tất cả, đưa giá trị của các rãnh về giá trị 0 (`/dev/zero`) và phần mềm sẽ thông báo cho mình biết là nó làm việc đến đâu rồi, cùng tốc độ viết (`status=progress`).
+để xóa trắng tất cả, đưa giá trị của các rãnh về giá trị 0 (`/dev/zero`) và phần mềm sẽ thông báo cho mình biết là nó làm việc đến đâu rồi, cùng tốc độ viết (`status=progress`).
 
-        3. Sau khi viết xong, thi hành:
+3. Sau khi viết xong, thi hành:
 ```bash
                 partprobe /dev/sdb
 ```
-            để đọc lại cấu hình của ổ mà mình vừa xóa đi, vì cấu hình, sau khi đã xóa đi, không còn giống như cái cũ trước đây nữa.
+để đọc lại cấu hình của ổ mà mình vừa xóa đi, vì cấu hình, sau khi đã xóa đi, không còn giống như cái cũ trước đây nữa.
 
-        4. Bấm tổ hợp phím `Ctrl-Alt F7` để quay trở lại giao diện đồ họa. Bấm nút 'Install Linux Mint' trên mặt bàn làm việc (desktop) để khởi động cài đặt và điền các thông tin những hướng dẫn trên màn hình. Các bạn có thể chọn ngôn ngữ `tiếng Việt` ở vùng liệt kê danh sách ngôn ngữ trong cửa sổ bên trái và bấm nút `tiếp tục` để thi hành. Theo kinh nghiệm cá nhân, các bạn nên cài bằng tiếng Anh, rồi sau này cài thêm `ibus-unikey` và dùng `ibus` để đánh tiếng Việt thì hơn.
+4. Bấm tổ hợp phím `Ctrl-Alt F7` để quay trở lại giao diện đồ họa. Bấm nút 'Install Linux Mint' trên mặt bàn làm việc (desktop) để khởi động cài đặt và điền các thông tin những hướng dẫn trên màn hình. Các bạn có thể chọn ngôn ngữ `tiếng Việt` ở vùng liệt kê danh sách ngôn ngữ trong cửa sổ bên trái và bấm nút `tiếp tục` để thi hành. Theo kinh nghiệm cá nhân, các bạn nên cài bằng tiếng Anh, rồi sau này cài thêm `ibus-unikey` và dùng `ibus` để đánh tiếng Việt thì hơn.
 
 ### Cài ổ cứng riêng biệt cho phần $HOME
 
-- Sau khi cài đặt xong khởi động lại, cắm ổ sẽ dùng để làm $HOME vào.
-- Nếu ổ cứng mình là một ổ cũ và sử dụng hệ thống tập tin khác với những cái thuộc Linux, như `ext4`, thì nên sử dụng phần mềm `disks` (Đĩa) để định dạng (format) nó.
+Sau khi cài đặt xong khởi động lại, cắm ổ sẽ dùng để làm $HOME vào.
+Nếu ổ cứng mình là một ổ cũ và sử dụng hệ thống tập tin khác với những cái thuộc Linux, như `ext4`, thì nên sử dụng phần mềm `disks` (Đĩa) để định dạng (format) nó.
 
-- Khi đã đăng nhập thì bật `Terminal` lên và thi hành các lệnh sau:
+Khi đã đăng nhập thì bật `Terminal` lên và thi hành các lệnh sau:
 
 ```bash
         sudo fsdisk -l
 ```
 
-    để vào chế độ người quản lý hệ thống và xem các ổ cứng, nhất là ổ dùng để làm $HOME gọi là gì.
+để vào chế độ người quản lý hệ thống và xem các ổ cứng, nhất là ổ dùng để làm $HOME gọi là gì.
 
-- Nếu ổ cứng chưa được chuẩn bị thì sử dụng công cụ `disks` để định dạng (format) nó. Nên sử dụng hệ thống tập tin `ext4` (mặc định của Linux) thì hơn. Nhớ để ý chỉ danh `/dev/sd?` xem hệ điều hành gán cho nó là ổ gì. Các đơn giản với các ổ USB là bật `disks` lên và rút ổ ra/cắm ổ vào và xem sự thay đổi của danh sách.
+Nếu ổ cứng chưa được chuẩn bị thì sử dụng công cụ `disks` để định dạng (format) nó. Nên sử dụng hệ thống tập tin `ext4` (mặc định của Linux) thì hơn. Nhớ để ý chỉ danh `/dev/sd?` xem hệ điều hành gán cho nó là ổ gì. Các đơn giản với các ổ USB là bật `disks` lên và rút ổ ra/cắm ổ vào và xem sự thay đổi của danh sách.
 
-- Ví dụ, liệt kê ổ cứng:
+Ví dụ, liệt kê ổ cứng:
 
 ```bash
         sudo fdisk -l
@@ -614,7 +614,7 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         I/O size (minimum/optimal): 512 bytes / 512 bytes
 ```
 
-- Biên soạn đĩa bằng lệnh `fsdisk`:
+Biên soạn đĩa bằng lệnh `fsdisk`:
 
 ```bash
         sudo fdisk /dev/sda
@@ -627,7 +627,7 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         Created a new DOS disklabel with disk identifier 0xe7e87b15.
 ```
 
-- In thông tin bằng lệnh `p` (Print):
+In thông tin bằng lệnh `p` (Print):
 
 ```bash
         Command (m for help): p
@@ -639,7 +639,7 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         Disk identifier: 0xe7e87b15
 ```
 
-- Kiến tạo phần ổ cứng mới bằng lệnh `n` (New):
+Kiến tạo phần ổ cứng mới bằng lệnh `n` (New):
 
 ```bash
         Command (m for help): n
@@ -654,7 +654,7 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         Created a new partition 1 of type 'Linux' and of size 111.8 GiB.
 ```
 
-- Viết ra ổ cứng những thay đổi đã làm:
+Viết ra ổ cứng những thay đổi đã làm:
 
 ```bash
         Command (m for help): w
@@ -663,7 +663,7 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         Synching disks.
 ```
 
-- Định dạng hệ thống tập tin cho phần ổ cứng vừa tạo sử dụng sắp đặt mặc định, để ý UUID (Universally Unique Identifier) mà hệ điều hành gán cho nó:
+Định dạng hệ thống tập tin cho phần ổ cứng vừa tạo sử dụng sắp đặt mặc định, để ý UUID (Universally Unique Identifier) mà hệ điều hành gán cho nó:
 
 ```bash
         sudo mke2fs -t ext4 /dev/sda1
@@ -680,44 +680,48 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         Writing superblocks and filesystem accounting information: done
 ```
 
-- Để liệt kê các thông tin này dùng lệnh
+Để liệt kê các thông tin này dùng lệnh
 
 ```bash
         sudo blkid /dev/sda1
         /dev/sda1: UUID="f98b7efa-08fd-40a2-8f6d-94388c453b0d"  TYPE="ext4"
 ```
 
-- Đổi nhãn hiệu để dễ nhận biết hơn bằng lệnh:
+Đổi nhãn hiệu để dễ nhận biết hơn bằng lệnh:
 
 ```bash
         sudo e2label /dev/sda1 "MY_HOME"
 ```
 
 
-- Sao chép dòng thông tin về ổ mà mình sẽ sử dụng, chẳng hạn như `/dev/sdc1` ở trên.
+Sao chép dòng thông tin về ổ mà mình sẽ sử dụng, chẳng hạn như `/dev/sdc1` ở trên.
 
-- Tạm thời vào địa chỉ của ổ cứng, xem điểm `mount` ở đâu. Nếu dùng `disks` thì bấm nút mũi tên đen bên dưới để `mount` nó và xem điểm `mount` là ở đâu. Thường là
+Tạm thời vào địa chỉ của ổ cứng, xem điểm `mount` ở đâu. Nếu dùng `disks` thì bấm nút mũi tên đen bên dưới để `mount` nó và xem điểm `mount` là ở đâu. Thường là
 
-- Biên soạn `/etc/fstab` để đưa thông tin này vào đó, đặt ánh xạ sang ổ `/home` cho nó như sau:
+Biên soạn `/etc/fstab` để đưa thông tin này vào đó, đặt ánh xạ sang ổ `/home` cho nó như sau:
 
 ```bash
         nano /etc/fstab
 ```
-- và điền dòng sau vào cuối cùng:
+và điền dòng sau vào cuối cùng:
 
 ```bash
         UUID=d21aebfe-716e-11e2-97f7-001a64633f00   /home   ext4    defaults    0   2
 ```
 
-- nhớ xóa các ngoặc kép ở giá trị của `UUID`
+nhớ xóa các ngoặc kép ở giá trị của `UUID`
 
 ------------------
 
 ## Một số phương pháp có thể sử dụng để tăng hiệu suất làm việc
 
+### Dùng máy phiên dịch Google
+
+Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào trang [Google Translate](https://translate.google.com/#view=home&op=translate&sl=en&tl=vi) và thi hành làm như hướng dẫn
+
 ### Tăng lượng dòng định nghĩa từ gõ tắt trong bản macro của Unikey
 
-- Bản ibus-unikey ở kho lấy về có một giới hạn về số từ viết tắt trong bảng macro có thể ghi và nạp vào bộ nhớ là 1024 dòng, mỗi dòng là một định nghĩa. Tôi có viết thư cho anh Lê Quốc Tuấn, chủ nhân của phần mềm này, và làm theo sự hướng dẫn của anh, vào đây (https://github.com/vn-input/ibus-unikey) lấy bản mã nguồn dùng lệnh:
+Bản ibus-unikey ở kho lấy về có một giới hạn về số từ viết tắt trong bảng macro có thể ghi và nạp vào bộ nhớ là 1024 dòng, mỗi dòng là một định nghĩa. Tôi có viết thư cho anh Lê Quốc Tuấn, chủ nhân của phần mềm này, và làm theo sự hướng dẫn của anh, [vào đây](https://github.com/vn-input/ibus-unikey) lấy bản mã nguồn dùng lệnh:
 
 ```bash
         sudo apt-get install -y cmake g++ make pkg-config libibus-1.0-dev libgtk-3-dev
@@ -729,19 +733,19 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
         kwrite ukengine/keycons.h
 ```
 
-- Đổi dòng:
+Đổi dòng:
 
 ```cpp
         #define MAX_MACRO_ITEMS 1024
 ```
 
-- thành
+thành
 
 ```cpp
         #define MAX_MACRO_ITEMS 1024 * 4
 ```
 
-- Tức tăng số dòng macro có thể sử dụng lên thành 4 lần (4096 dòng). Lưu thay đổi và quay trở lại dòng lệnh:
+Tức tăng số dòng macro có thể sử dụng lên thành 4 lần (4096 dòng). Lưu thay đổi và quay trở lại dòng lệnh:
 
 ```bash
         mkdir build
@@ -752,28 +756,30 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 ```
 
 
-- Bấm chuột phải ở biểu tượng Unikey trên thanh tác vụ và chọn 'Restart' để tắt bản cũ đi, lấy bản mới vào bộ nhớ. Hoặc là biên soạn bản 'macro.txt' và cho thêm từ vào đó, rồi 'Import' nó vào hoặc 'import' từ một bản định nghĩa khác đã có vào. Sau khi 'Save' (Lưu) thì có thể vào thư mục '$HOME/.ibus/unikey' và kiểm tra số dòng của bản 'macro' trong đó, bằng
+Bấm chuột phải ở biểu tượng Unikey trên thanh tác vụ và chọn 'Restart' để tắt bản cũ đi, lấy bản mới vào bộ nhớ. Hoặc là biên soạn bản 'macro.txt' và cho thêm từ vào đó, rồi 'Import' nó vào hoặc 'import' từ một bản định nghĩa khác đã có vào. Sau khi 'Save' (Lưu) thì có thể vào thư mục '$HOME/.ibus/unikey' và kiểm tra số dòng của bản 'macro' trong đó, bằng
 
 ```bash
         cat macro | wc -l
 ```
 
-- hoặc dùng:
+hoặc dùng:
 ```bash
         kwrite macro
 ```
-- và kiểm tra số dòng mà phần mềm đã ghi. Hơn 1024 là được.
 
-- Nhớ mỗi lần thay đổi nội dung của 'macro' trong bộ nhớ thì phải dùng phím chuyển ngôn ngữ (giữa tiếng Anh và tiếng Việt) để đổi sang tiếng Anh rồi quay trở lại tiếng Việt, để kích hoạt bản định nghĩa macro mới.
+và kiểm tra số dòng mà phần mềm đã ghi. Hơn 1024 là được.
+
+Nhớ mỗi lần thay đổi nội dung của 'macro' trong bộ nhớ thì phải dùng phím chuyển ngôn ngữ (giữa tiếng Anh và tiếng Việt) để đổi sang tiếng Anh rồi quay trở lại tiếng Việt, để kích hoạt bản định nghĩa macro mới.
 
 ### Sử dụng microphone và chức năng dịch giọng nói đánh thành chữ của Google
-- Chức năng này trong bản 'chromium' - bản nguồn mở - lấy ở kho không hoạt động, tuy hình microphone xuất hiện, song khi bấm vào đó thì nó sẽ nói 'no internet connection' và cho dù mình sửa đổi sắp đặt trong mục
+Chức năng này trong bản 'chromium' - bản nguồn mở - lấy ở kho không hoạt động, tuy hình microphone xuất hiện, song khi bấm vào đó thì nó sẽ nói 'no internet connection' và cho dù mình sửa đổi sắp đặt trong mục
 
     Settings ‣ Advanced ‣ Privacy and security ‣ Content settings ‣ Microphone
 
-- và chọn 'Built-in Audio Analogue Stero' đi chăng nữa.
+và chọn 'Built-in Audio Analogue Stero' đi chăng nữa.
 
-- Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đây](https://www.tecmint.com/install-google-chrome-in-debian-ubuntu-linux-mint/),
+Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đây](https://www.tecmint.com/install-google-chrome-in-debian-ubuntu-linux-mint/),
+
 1. Cách thứ nhất là:
 
 ```bash
@@ -785,31 +791,35 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 ```
 
 2. Cách thứ hai là:
+
 ```bash
     cd Downloads
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
-- Sau đó vào trình đơn 'Internet' và bấm thi hành 'Google Chrome' hoặc khởi động nó từ dòng lệnh:
+
+Sau đó vào trình đơn 'Internet' của hệ điều hành và bấm thi hành 'Google Chrome' hoặc khởi động nó từ dòng lệnh:
+
 ```bash
-    google-chrome-stable
+    google-chrome-stable &
 ```
-- Bấm vào nút ba chấm ở bên phải của dòng địa chỉ, sát mép cửa sổ và vào thư mục:
 
-    Settings ‣ Advanced ‣ Privacy and security ‣ Content settings ‣ Microphone
+Bấm vào nút ba chấm ở bên phải của dòng địa chỉ, sát mép cửa sổ và vào thư mục:
 
-- bật nút 'Block' (Ngăn chặn) để nó chuyển thành 'Ask before accessing (recommended)' (Hỏi trước khi tiếp cận (đề cử))
+        Settings ‣ Advanced ‣ Privacy and security ‣ Content settings ‣ Microphone
 
-- Nếu máy có nhiều microphone thì có thể bấm vào nút ở đó và chọn cái mình muốn sử dụng.
+bật nút 'Block' (Ngăn chặn) để nó chuyển thành 'Ask before accessing (recommended)' (Hỏi trước khi truy cập (đề cử))
 
-- Bật một 'Tab' mới (bấm dấu '+' ở trên cùng, hoặc bấm 'Ctrl+T'), và bấm vào nút hình cái microphone ở bên phải ở dòng đề 'Search Google or type a URL' (Tìm kiếm Google hoặc đánh máy chữ một dòng địa chỉ URL). Hình biểu tượng microphone màu đỏ hiện ra và bên trái dòng chữ chuyển từ 'Speak now..' (Nói đi) sang 'Listening' (đang lắng nghe). Nói một vài chữ tiếng Anh như 'Hello', hoặc 'Thank you', để nó tìm cho mình. Mình sẽ thấy các chữ ấy được sử dụng để tìm các trang và phim ảnh liên quan đến các chữ mình nói.
+Nếu máy có nhiều microphone thì có thể bấm vào nút ở đó và chọn cái mình muốn sử dụng.
 
-- Lần đến trang [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document) và bấm vào nút dấu cộng '+' để lấy một bản tài liệu mới. Bấm vào nút 'Tools' (Các Công cụ) ở trình đơn và chọn 'Voice typing' (Đánh máy chữ bằng giọng nói). Hình biểu tượng cái microphone sẽ hiện ra ở bên trái lề.
+Bật một 'Tab' mới (bấm dấu '+' ở trên cùng, hoặc bấm 'Ctrl+T'), và bấm vào nút hình cái microphone ở bên phải ở dòng đề 'Search Google or type a URL' (Tìm kiếm Google hoặc đánh máy chữ một dòng địa chỉ URL). Hình biểu tượng microphone màu đỏ hiện ra và bên trái dòng chữ chuyển từ 'Speak now..' (Nói đi) sang 'Listening' (đang lắng nghe). Nói một vài chữ tiếng Anh như 'Hello', hoặc 'Thank you', để nó tìm cho mình. Mình sẽ thấy các chữ ấy được sử dụng để tìm các trang và phim ảnh liên quan đến các chữ mình nói.
 
-- Bấm vào nút đề 'English' ở đó và chọn đổi sang 'Tiếng Việt' để đổi ngôn ngữ nó lắng nghe và phiên dịch.
+Lần đến trang [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document) và bấm vào nút dấu cộng '+' để lấy một bản tài liệu mới. Bấm vào nút 'Tools' (Các Công cụ) ở trình đơn và chọn 'Voice typing' (Đánh máy chữ bằng giọng nói). Hình biểu tượng cái microphone sẽ hiện ra ở bên trái lề.
 
-- Dùng 'Kate' hoặc 'Kwrite' bật một bản dịch mình muốn làm. Xem dòng **msgid** và dịch nhẩm trong đầu, rồi bấm vào nút hình cái microphone (hiện lên màu đỏ) ở trang của [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document) và nói dòng đã dịch trong đầu ấy. Nó sẽ đánh ra các chữ mà nó nghĩ là đúng. Sau khi đã nói xong thì bấm vào hình biểu tượng cái microphone và tắt nó đi (màu đen).
+Bấm vào nút đề 'English' ở đó và chọn đổi sang 'Tiếng Việt' để đổi ngôn ngữ nó lắng nghe và phiên dịch.
 
-- Nếu cần phải đánh lại một chữ nào thì bấm và chọn chữ ấy (màu xanh dương), rồi nói lại chữ nó đánh sai. Gợi ý, để nó hiểu được những chữ khó, đôi khi phải nói vài từ trong ngữ cảnh đó, chẳng hạn, thay vì chỉ nó 'lý', thì nói 'lý thuyết' hoặc 'lý luận', hoặc để được chữ 'xương', thay vì 'sương' thì nói 'xương lợn', thay vì 'hạt sương'.
+Dùng 'Kate' hoặc 'Kwrite' bật một bản dịch mình muốn làm. Xem dòng **msgid** và dịch nhẩm trong đầu, rồi bấm vào nút hình cái microphone (hiện lên màu đỏ) ở trang của [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document) và nói dòng đã dịch trong đầu ấy. Nó sẽ đánh ra các chữ mà nó nghĩ là đúng. Sau khi đã nói xong thì bấm vào hình biểu tượng cái microphone và tắt nó đi (màu đen).
 
-- Dùng chuột quét để chọn và chép (Ctrl+C) nó vào bộ nhớ của máy. Chuyển sang bản mình đang dịch và bấm (Ctrl+V) để dán dòng chữ đã dịch vào. Sửa lại thành kiểu chữ thường hoặc hoa như mình muốn.
+Nếu cần phải đánh lại một chữ nào thì bấm và chọn chữ ấy (màu xanh dương), rồi nói lại chữ nó đánh sai. Gợi ý, để nó hiểu được những chữ khó, đôi khi phải nói vài từ trong ngữ cảnh đó, chẳng hạn, thay vì chỉ nó 'lý', thì nói 'lý thuyết' hoặc 'lý luận', hoặc để được chữ 'xương', thay vì 'sương' thì nói 'xương lợn', thay vì 'hạt sương'.
+
+Dùng chuột quét để chọn và chép (Ctrl+C) nó vào bộ nhớ của máy. Chuyển sang bản mình đang dịch và bấm (Ctrl+V) để dán dòng chữ đã dịch vào. Sửa lại thành kiểu chữ thường hoặc hoa như mình muốn.
