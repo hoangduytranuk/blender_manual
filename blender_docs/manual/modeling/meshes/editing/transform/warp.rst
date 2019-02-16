@@ -123,7 +123,7 @@ to the same Plane mesh when in different views.
 .. note:: Warping text
 
    If you want to warp text, you will need to convert it from a Text Object to Mesh
-   by pressing :kbd:`Alt-C` and selecting the *Mesh from Curve/Meta/Surf/Text* option.
+   using :ref:`object-convert-to`.
 
 
 Example

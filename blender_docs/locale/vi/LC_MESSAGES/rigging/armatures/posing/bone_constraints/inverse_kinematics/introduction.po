@@ -40,7 +40,7 @@ msgid ""
 "would inherit its location and rotation. Thus making tiny precise changes"
 " in poses becomes harder farther down the chain, as you may have to "
 "adjust all the parent bones first."
-msgstr ""
+msgstr "IK allows you to position the last bone in a bone chain and the other bones are positioned automatically. This is like how moving someone's finger would cause his arm to follow it. By normal posing techniques, you would have to start from the root bone, and set bones sequentially until you reach the tip bone: When each parent bone is moved, its child bone would inherit its location and rotation. Thus making tiny precise changes in poses becomes harder farther down the chain, as you may have to adjust all the parent bones first."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:18
 msgid "This effort is effectively avoided by use of IK."
@@ -72,7 +72,7 @@ msgstr "Bảng -- Panel"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:28
 msgid ":menuselection:`Tool Shelf --> Options --> Pose Options`"
-msgstr ""
+msgstr ":menuselection:`Tool Shelf --> Options --> Pose Options`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:30
 msgid ""
@@ -96,7 +96,7 @@ msgid ""
 "point sets it back to 0 (unlimited) again. Thus, you have to press :kbd"
 ":`Ctrl-PageUp` *more than once* from the initial state to set a finite "
 "chain length greater than 1."
-msgstr ""
+msgstr "The length of the chain is increased (if there is a connected parent available to add to it) with :kbd:`Ctrl-PageUp` or :kbd:`Ctrl-WheelDown`, and decreased with :kbd:`Ctrl-PageDown` or :kbd:`Ctrl-WheelUp`. However, the initial chain length is 0, which effectively means follow the connections to parent bones as far as possible, with no length limit. So pressing :kbd:`Ctrl-PageUp` the first time sets the chain length to 1 (move only the selected bone), and pressing :kbd:`Ctrl-PageDown` at this point sets it back to 0 (unlimited) again. Thus, you have to press :kbd:`Ctrl-PageUp` *more than once* from the initial state to set a finite chain length greater than 1."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:47
 msgid ""
@@ -113,15 +113,15 @@ msgid ""
 "IK is mostly done with bone constraints. They work by the same method but"
 " offer more choices and settings. Please refer to these pages for detail "
 "about the settings for the constraints:"
-msgstr ""
+msgstr "IK is mostly done with bone constraints. They work by the same method but offer more choices and settings. Please refer to these pages for detail about the settings for the constraints:"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:58
 msgid ":doc:`IK Solver </rigging/constraints/tracking/ik_solver>`"
-msgstr ""
+msgstr ":doc:`IK Solver </rigging/constraints/tracking/ik_solver>`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:59
 msgid ":doc:`Spline IK </rigging/constraints/tracking/spline_ik>`"
-msgstr ""
+msgstr ":doc:`Spline IK </rigging/constraints/tracking/spline_ik>`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:63
 msgid "Armature IK Panel"
@@ -129,14 +129,14 @@ msgstr "-- Armature IK Panel"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:69
 msgid ":menuselection:`Properties editor --> Armature --> Inverse Kinematics`"
-msgstr ""
+msgstr ":menuselection:`Properties editor --> Armature --> Inverse Kinematics`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:71
 msgid ""
 "This panel is used to select the IK Solver type for the armature: "
 "*Standard* or *iTaSC*. Most the time people will use the *Standard* IK "
 "solver."
-msgstr ""
+msgstr "This panel is used to select the IK Solver type for the armature: *Standard* or *iTaSC*. Most the time people will use the *Standard* IK solver."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:76
 msgid "The armature IK panel."
@@ -171,7 +171,7 @@ msgid ""
 "control directly the rotation of a bone relative to its parent. Those "
 "interested in the mathematics can find a short description of the method "
 "used to build the Jacobian here."
-msgstr ""
+msgstr "iTaSC uses a different method to compute the Jacobian, which makes it able to handle other constraints than just end effectors position and orientation: iTaSC is a generic multi-constraint IK solver. However, this capability is not yet fully exploited in the current implementation, only two other types of constraints can be handled: Distance in the Cartesian space, and Joint Rotation in the joint space. The first one allows maintaining an end effector inside, at, or outside a sphere centered on a target position, the second one is the capability to control directly the rotation of a bone relative to its parent. Those interested in the mathematics can find a short description of the method used to build the Jacobian here."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:104
 msgid ""
@@ -180,7 +180,7 @@ msgid ""
 "of each constraint. This is a major improvement from the current "
 "constraint system where constraints are solved one by one in order of "
 "definition so that conflicting constraints overwrite each other."
-msgstr ""
+msgstr "iTaSC accepts a mix of constraints, and multiple constraints per bone: the solver computes the optimal pose according to the respective weights of each constraint. This is a major improvement from the current constraint system where constraints are solved one by one in order of definition so that conflicting constraints overwrite each other."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:111
 msgid "Precision"
@@ -212,7 +212,7 @@ msgstr ""
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:121
 msgid ":abbr:`SDLS (Selective Damped Least Square)`"
-msgstr ""
+msgstr ":abbr:`SDLS (Selective Damped Least Square)`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:119
 msgid ""
@@ -225,7 +225,7 @@ msgstr ""
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:136
 msgid ":abbr:`DLS (Damped Least Square)`"
-msgstr ""
+msgstr ":abbr:`DLS (Damped Least Square)`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:124
 msgid ""
@@ -235,7 +235,7 @@ msgstr ""
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:127
 msgid "Damping Max"
-msgstr ""
+msgstr "-- Damping Max"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:127
 msgid ""
@@ -246,7 +246,7 @@ msgstr ""
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:131
 msgid "Damping Epsilon"
-msgstr ""
+msgstr "-- Damping Epsilon"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:130
 msgid ""
@@ -284,7 +284,7 @@ msgid ""
 "until the given precision is obtained. Still the new solver is usually "
 "faster than the old one and provides features that are inherent to iTaSC:"
 " multiple targets per bone and multiple types of constraints."
-msgstr ""
+msgstr "In Animation mode, iTaSC operates like an IK-solver: it is stateless and uses the pose from F-curves interpolation as the start pose before the IK convergence. The target velocity is ignored and the solver converges until the given precision is obtained. Still the new solver is usually faster than the old one and provides features that are inherent to iTaSC: multiple targets per bone and multiple types of constraints."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:157
 msgid "Simulation"
@@ -296,7 +296,7 @@ msgid ""
 "target's velocity, operates in a 'true time' context, ignores rotation "
 "from keyframes (except via a joint rotation constraint) and builds up a "
 "state cache automatically."
-msgstr ""
+msgstr "The Simulation mode is the stateful mode of the solver: it estimates the target's velocity, operates in a 'true time' context, ignores rotation from keyframes (except via a joint rotation constraint) and builds up a state cache automatically."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:179
 msgid "Reiteration"
@@ -342,7 +342,7 @@ msgid ""
 "guaranteed anymore in compensation of better precision on the end "
 "effector positions. It is an intermediate mode between *Animation* and "
 "real time *Simulation*."
-msgstr ""
+msgstr "The solver re-iterates on each frame until the given precision is achieved. This option omits most of the iTaSC dynamic behavior: the maximum joint velocity and the continuity between frames is not guaranteed anymore in compensation of better precision on the end effector positions. It is an intermediate mode between *Animation* and real time *Simulation*."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:193
 msgid "Auto Step"
@@ -359,7 +359,7 @@ msgid ""
 "processing and precision. It works by estimation of the nonlinearity of "
 "the pose and by limiting the amplitude of joint variation during a "
 "substep. It can be configured with next two parameters:"
-msgstr ""
+msgstr "Use this option if you want to let the solver set how many substeps should be executed for each frame. A substep is a subdivision on the time between two frames for which the solver evaluates the IK equation and updates the joint position. More substeps means more processing but better precision on tracking the targets. The auto step algorithm estimates the optimal number of steps to get the best trade-off between processing and precision. It works by estimation of the nonlinearity of the pose and by limiting the amplitude of joint variation during a substep. It can be configured with next two parameters:"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:191
 msgid "Min"
@@ -413,7 +413,7 @@ msgid ""
 " reason why the armature continues to move slightly in Simulation mode "
 "even if the target has stopped moving: the residual error is "
 "progressively suppressed frame after frame."
-msgstr ""
+msgstr "Coefficient on end effector position error to set corrective joint velocity. The time constant of the error correction is the inverse of the this value. However, this parameter has little effect on the dynamic of the armature since the algorithm evaluates the target velocity in any case. Setting this parameter to 0 means 'opening the loop': the solver tracks the velocity but not the position; the error will accumulate rapidly. Setting this value too high means an excessive amount of correction and risk of instability. The value should be in the range 20-100. Default value is 20, which means that tracking errors are corrected in a typical time of 100-200ms. The feedback coefficient is the reason why the armature continues to move slightly in Simulation mode even if the target has stopped moving: the residual error is progressively suppressed frame after frame."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:218
 msgid "Max Velocity"
@@ -434,7 +434,7 @@ msgstr "-- Bone IK Panel"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:229
 msgid ":menuselection:`Properties editor --> Bone --> Inverse Kinematics`"
-msgstr ""
+msgstr ":menuselection:`Properties editor --> Bone --> Inverse Kinematics`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:231
 msgid "This panel is used to control how the *Pose Bones* work in the IK chain."
@@ -485,7 +485,7 @@ msgid ""
 "If the :ref:`iTaSC IK Solver <rigging-armatures_posing_bone-"
 "constraints_ik_model_itasc>` is used, the bone IK panel changes to add "
 "these additional parameters."
-msgstr ""
+msgstr "If the :ref:`iTaSC IK Solver <rigging-armatures_posing_bone-constraints_ik_model_itasc>` is used, the bone IK panel changes to add these additional parameters."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:269
 msgid "Control Rotation"
@@ -524,13 +524,13 @@ msgid ""
 " locking is used to stop the forearm from bending, but the forearm can "
 "still be twisted manually by pressing :kbd:`R Y Y` in *Pose Mode*, or by "
 "using other constraints."
-msgstr ""
+msgstr "This arm uses two bones to overcome the twist problem for the forearm. IK locking is used to stop the forearm from bending, but the forearm can still be twisted manually by pressing :kbd:`R Y Y` in *Pose Mode*, or by using other constraints."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:282
 msgid ""
 "`IK Arm Example "
 "<https://wiki.blender.org/wiki/File:IK_Arm_Example.blend>`__."
-msgstr ""
+msgstr "`IK Arm Example <https://wiki.blender.org/wiki/File:IK_Arm_Example.blend>`__."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:285
 msgid ""

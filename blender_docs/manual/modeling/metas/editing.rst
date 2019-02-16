@@ -115,7 +115,7 @@ but here you have the option to keep the original *Meta* object
 Note that the resolution used for the new mesh is the *Wiresize* one,
 not the *Rendersize* one.
 
-To convert the meta, press :kbd:`Alt-C` in *Object Mode*, and select *Mesh/Text*.
+To convert the meta, using :ref:`object-convert-to` in Object Mode.
 
 
 Object Families

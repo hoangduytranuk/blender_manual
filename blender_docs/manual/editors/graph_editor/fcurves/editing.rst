@@ -102,7 +102,7 @@ By Times over Time 0
 By Values over Value 0
    Mirror vertically over value 0.
 By Times over First Selected Marker
-   Mirror horizontally the over the first selected *Marker*.
+   Mirror horizontally over the first selected *Marker*.
 
 
 Clean Keyframes

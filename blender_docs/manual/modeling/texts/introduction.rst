@@ -29,8 +29,10 @@ with various advanced layout options, like justifying and frames.
 By default, letters are just flat filled surfaces, exactly like any closed 2D curve.
 But, just like *Curves*, you can extrude them. And texts can follow other curves.
 
-You can convert *Text*, either to a curve, or directly to a mesh,
-with :kbd:`Alt-C` in *Object Mode*.
+.. tip::
+
+   You can convert *Text*, either to a curve, or directly to a mesh,
+   using :ref:`object-convert-to` in *Object Mode*.
 
 .. note::
 

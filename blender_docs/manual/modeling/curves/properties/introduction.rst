@@ -28,10 +28,6 @@ or the :menuselection:`Properties region --> Transform --> Radius`.
 
    One control point radius set to zero.
 
-.. tip::
-
-   Remember, these curves can be converted into meshes with :kbd:`Alt-C` in Object Mode.
-
 
 Tilt
 ----

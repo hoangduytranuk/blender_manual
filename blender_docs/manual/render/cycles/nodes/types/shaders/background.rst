@@ -10,7 +10,7 @@ Background
    Background Shader.
 
 The *Background* shader node is used to add background light emission.
-This node should only be used for the world surface output; it is ignored in other cases.
+This node should only be used for the world surface output.
 
 
 Inputs

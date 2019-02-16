@@ -99,9 +99,7 @@ Mesh Objects Collide
 ====================
 
 If your colliding object is not a mesh object, such as a NURBS surface, or text object,
-you must convert it to a mesh object. To do so, select the object in object mode,
-and in the 3D View header, select :menuselection:`Object --> Convert Object Type`
-:kbd:`Alt-C`, and select :menuselection:`Mesh` from the pop-up menu.
+you must convert it to a mesh object using :ref:`object-convert-to`.
 
 
 Cloth - Object Collisions

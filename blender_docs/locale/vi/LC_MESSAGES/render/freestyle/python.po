@@ -44,7 +44,7 @@ msgid ""
 "transform the feature edges into chains. Finally, the chains are "
 "transformed into stylized strokes by the stroke creation operator, which "
 "takes a list of user-defined stroke shaders."
-msgstr ""
+msgstr "A style module is composed of successive calls of five basic operators: selection, chaining, splitting, sorting and stroke creation. The selection operator identifies a subset of input feature edges based on one or more user-defined selection conditions (predicates). The selected edges are processed with the chaining, splitting and sorting operators to build chains of feature edges. These operators are also controlled by user-supplied predicates and functions in order to determine how to transform the feature edges into chains. Finally, the chains are transformed into stylized strokes by the stroke creation operator, which takes a list of user-defined stroke shaders."
 
 #: ../../manual/render/freestyle/python.rst:21
 msgid ""
@@ -78,13 +78,13 @@ msgstr ""
 msgid ""
 "(`File:Turning_Pages.zip "
 "<https://wiki.blender.org/wiki/File:Turning_Pages.zip>`__, CC0)."
-msgstr ""
+msgstr "(`File:Turning_Pages.zip <https://wiki.blender.org/wiki/File:Turning_Pages.zip>`__, CC0)."
 
 #: ../../manual/render/freestyle/python.rst:49
 msgid ""
 "(`File:Lily_Broken_Topology.zip "
 "<https://wiki.blender.org/wiki/File:Lily_Broken_Topology.zip>`__, CC0)."
-msgstr ""
+msgstr "(`File:Lily_Broken_Topology.zip <https://wiki.blender.org/wiki/File:Lily_Broken_Topology.zip>`__, CC0)."
 
 #: ../../manual/render/freestyle/python.rst:53
 msgid "Writing Style Modules"
@@ -104,7 +104,7 @@ msgstr ""
 msgid ""
 "There are five kinds of operations (listed with corresponding operator "
 "functions):"
-msgstr ""
+msgstr "There are five kinds of operations (listed with corresponding operator functions):"
 
 #: ../../manual/render/freestyle/python.rst:63
 msgid "Selection ``Operators.select()``"
@@ -168,7 +168,7 @@ msgid ""
 "``Operators.select()`` method takes as the argument a unary predicate "
 "that works on any ``Interface1D`` that represents a 1D element. For "
 "example::"
-msgstr ""
+msgstr "The selection operator goes through every element of the active set and keeps only the ones satisfying a certain predicate. The ``Operators.select()`` method takes as the argument a unary predicate that works on any ``Interface1D`` that represents a 1D element. For example::"
 
 #: ../../manual/render/freestyle/python.rst:98
 msgid ""
@@ -221,7 +221,7 @@ msgstr ""
 
 #: ../../manual/render/freestyle/python.rst:127
 msgid "The following is a code example of bidirectional chaining::"
-msgstr ""
+msgstr "The following is a code example of bidirectional chaining::"
 
 #: ../../manual/render/freestyle/python.rst:134
 msgid ""
@@ -261,7 +261,7 @@ msgid ""
 "predicate is satisfied, the chain is split into two chains. At the end of"
 " the sequential split operation, the active set of chains is set to the "
 "new chains. ::"
-msgstr ""
+msgstr "The splitting operation is used to refine the topology of each Chain. Splitting is performed either sequentially or recursively. Sequential splitting ``Operators.sequentialSplit()`` in its basic form, parses the Chain at a given arbitrary resolution and evaluates a unary predicate (working on 0D elements) at each point along the Chain. Every time the predicate is satisfied, the chain is split into two chains. At the end of the sequential split operation, the active set of chains is set to the new chains. ::"
 
 #: ../../manual/render/freestyle/python.rst:164
 msgid ""
@@ -271,7 +271,7 @@ msgid ""
 " second version can lead to a set of Chains that are disjoint or that "
 "overlap if the two predicates are different (see "
 "``Operators.sequentialSplit()`` for more details)."
-msgstr ""
+msgstr "In this example, the chain is split every 2 units. A more elaborated version uses two predicates instead of one: One to determine the starting point of the new chain and the other to determine its ending point. This second version can lead to a set of Chains that are disjoint or that overlap if the two predicates are different (see ``Operators.sequentialSplit()`` for more details)."
 
 #: ../../manual/render/freestyle/python.rst:170
 msgid ""
@@ -281,7 +281,7 @@ msgid ""
 "split into two at that point. This process is recursively repeated on "
 "each of the two new Chains, until the input Chain satisfies a user-"
 "specified stopping condition. ::"
-msgstr ""
+msgstr "Recursive splitting ``Operators.recursiveSplit()`` evaluates a function on the 0D elements along the Chain at a given resolution and find the point that gives the maximum value for the function. The Chain is then split into two at that point. This process is recursively repeated on each of the two new Chains, until the input Chain satisfies a user-specified stopping condition. ::"
 
 #: ../../manual/render/freestyle/python.rst:180
 msgid ""
@@ -300,7 +300,7 @@ msgid ""
 "The sorting operator ``Operators.sort()`` arranges the stacking order of "
 "active 1D elements. It takes as argument a binary predicate used as a "
 "\"smaller than\" operator to order two 1D elements. ::"
-msgstr ""
+msgstr "The sorting operator ``Operators.sort()`` arranges the stacking order of active 1D elements. It takes as argument a binary predicate used as a \"smaller than\" operator to order two 1D elements. ::"
 
 #: ../../manual/render/freestyle/python.rst:195
 msgid ""
@@ -333,7 +333,7 @@ msgid ""
 "that does not satisfy the condition will not lead to a Stroke. The second"
 " input is a list of shaders that will be responsible for the shading of "
 "each built stroke. ::"
-msgstr ""
+msgstr "Finally, the stroke creation operator ``Operators.create()`` takes the active set of Chains as input and build Strokes. The operator takes two arguments. The first is a unary predicate that works on ``Interface1D`` that is designed to make a last selection on the set of chains. A Chain that does not satisfy the condition will not lead to a Stroke. The second input is a list of shaders that will be responsible for the shading of each built stroke. ::"
 
 #: ../../manual/render/freestyle/python.rst:222
 msgid ""
@@ -378,4 +378,4 @@ msgid ""
 "defined by inheriting base classes and overriding appropriate methods. "
 "See :mod:`Freestyle python module <blender_api:freestyle>` for more "
 "information on the user-scriptable constructs."
-msgstr ""
+msgstr "Predicates, functions, chaining iterators, and stroke shaders can be defined by inheriting base classes and overriding appropriate methods. See :mod:`Freestyle python module <blender_api:freestyle>` for more information on the user-scriptable constructs."

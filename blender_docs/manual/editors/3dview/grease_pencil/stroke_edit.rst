@@ -101,7 +101,7 @@ Copy :kbd:`Ctrl-C`
 Paste :kbd:`Ctrl-V`
    Pastes the previously copied strokes.
 Paste & Merge
-   Pastes the previously copied strokes and merge in active layer.
+   Pastes the previously copied strokes and merges in active layer.
 
 Delete :kbd:`X`
    Points
@@ -119,7 +119,7 @@ Toggle Cyclic
    Close or open the selected stroke by adding an edge from the last to first point.
 
 Bend :kbd:`Shift-W`
-   Bends selected item between the 3D cursor and the mouse.
+   Bends selected items between the 3D cursor and the mouse.
 Mirror :kbd:`Ctrl-M`
    Mirrors selected strokes along one or more axes.
 Shear :kbd:`Shift-Ctrl-Alt-S`
@@ -175,7 +175,7 @@ To use these operators, there need to be Grease Pencil frames on both sides of t
 (Also, note that the current frame cannot be on one of the frames that the interpolation is occurring between).
 
 Interpolate :kbd:`Ctrl-Alt-E`
-   It allows you to interactively pick a new sketch interpolate from the neighboring sketches.
+   It allows you to interactively pick a new sketch interpolated from the neighboring sketches.
    This is equivalent to the *Breakdown* tool for armatures.
 Sequence :kbd:`Shift-Ctrl-E`
    This fills the space between a pair of Grease Pencil frames with interpolated frames.

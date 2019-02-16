@@ -29,7 +29,7 @@ msgid ""
 "especially :ref:`NURBS <curve-nurbs>` ones, carry directly over to NURBS "
 "surfaces, such as control points, *Order*, *Weight*, *Resolution*, etc. "
 "Here we will just talk about the differences."
-msgstr ""
+msgstr "Many of the concepts from :doc:`curves </modeling/curves/introduction>`, especially :ref:`NURBS <curve-nurbs>` ones, carry directly over to NURBS surfaces, such as control points, *Order*, *Weight*, *Resolution*, etc. Here we will just talk about the differences."
 
 #: ../../manual/modeling/surfaces/structure.rst:12
 msgid ""
@@ -39,7 +39,7 @@ msgid ""
 "differently. There are several attributes that separate them but the most"
 " important is that a NURBS curve has a single interpolation axis (U) and "
 "a NURBS surface has two interpolation axes (U and V)."
-msgstr ""
+msgstr "It is very important to understand the difference between NURBS curves and NURBS surfaces: the first one has one dimension, the latter has two. Blender internally treats NURBS surfaces and NURBS curves completely differently. There are several attributes that separate them but the most important is that a NURBS curve has a single interpolation axis (U) and a NURBS surface has two interpolation axes (U and V)."
 
 #: ../../manual/modeling/surfaces/structure.rst:18
 msgid ""
@@ -48,7 +48,7 @@ msgid ""
 "lesser extent, the filling of closed 2D curves). And you can have \"1D\" "
 "curves made of surfaces, like a NURBS surface with only one row (either "
 "in U or V direction) of control points produces only a curve..."
-msgstr ""
+msgstr "However, you can have \"2D\" surfaces made of curves (using the :doc:`extrusion tools </modeling/curves/properties/geometry>`, or, to a lesser extent, the filling of closed 2D curves). And you can have \"1D\" curves made of surfaces, like a NURBS surface with only one row (either in U or V direction) of control points produces only a curve..."
 
 #: ../../manual/modeling/surfaces/structure.rst:23
 msgid ""
@@ -57,7 +57,7 @@ msgid ""
 "one of the menu choices. Also, you can :doc:`extrude "
 "</modeling/curves/properties/geometry>` a whole NURBS surface curve to "
 "create a surface, but you cannot with a simple NURBS curve."
-msgstr ""
+msgstr "Visually you can tell which is which by entering *Edit Mode* and looking at the 3D View header: either the header shows *Surface* or *Curve* as one of the menu choices. Also, you can :doc:`extrude </modeling/curves/properties/geometry>` a whole NURBS surface curve to create a surface, but you cannot with a simple NURBS curve."
 
 #: ../../manual/modeling/surfaces/structure.rst:32
 msgid "Control Points, Rows and Grid"
@@ -78,14 +78,14 @@ msgid ""
 "rows\" in a NURBS surface. The key point is that *all* rows of a given "
 "type (U or V) have the *same* number of control points. Each control "
 "point belongs to exactly one U row and one V row."
-msgstr ""
+msgstr "A \"row\" is a set of control points forming one \"line\" in one interpolation direction (a bit similar to :ref:`edge loops <modeling-mesh-structure-edge-loops>` for meshes). So you have \"U rows\" and \"V rows\" in a NURBS surface. The key point is that *all* rows of a given type (U or V) have the *same* number of control points. Each control point belongs to exactly one U row and one V row."
 
 #: ../../manual/modeling/surfaces/structure.rst:44
 msgid ""
 "All this forms a \"grid\", or \"cage\", the shape of which controls the "
 "shape of the NURBS surface. A bit like a :doc:`lattice "
 "</rigging/lattice>`..."
-msgstr ""
+msgstr "All this forms a \"grid\", or \"cage\", the shape of which controls the shape of the NURBS surface. A bit like a :doc:`lattice </rigging/lattice>`..."
 
 #: ../../manual/modeling/surfaces/structure.rst:47
 msgid ""
@@ -96,7 +96,7 @@ msgid ""
 "the others. This also means that you will only be able to \"merge\" "
 "different pieces of surfaces if at least one of their rows matches "
 "together."
-msgstr ""
+msgstr "This is very important to grasp: you cannot add a single control point to a NURBS surface; you have to add a whole U or V row at once (in practice, you will usually use the Extrude tool, or perhaps the Duplicate one, to add those...), containing exactly the same number of points as the others. This also means that you will only be able to \"merge\" different pieces of surfaces if at least one of their rows matches together."
 
 #: ../../manual/modeling/surfaces/structure.rst:57
 msgid "Weight"
@@ -107,7 +107,7 @@ msgid ""
 "Guess what? Yes, it works exactly like :ref:`NURBS Curves <modeling-"
 "curve-weight>`! *Weight* specifies how much each control point \"pulls\" "
 "on the curve."
-msgstr ""
+msgstr "Guess what? Yes, it works exactly like :ref:`NURBS Curves <modeling-curve-weight>`! *Weight* specifies how much each control point \"pulls\" on the curve."
 
 #: ../../manual/modeling/surfaces/structure.rst:62
 msgid ""
@@ -115,7 +115,7 @@ msgid ""
 "\"C\", has had its *Weight* set to 5.0 while all others are at their "
 "default of 1.0. As you can see, that control point *pulls* the surface "
 "towards it."
-msgstr ""
+msgstr "In Fig. :ref:`fig-surface-intro-weight` a single control point, labeled \"C\", has had its *Weight* set to 5.0 while all others are at their default of 1.0. As you can see, that control point *pulls* the surface towards it."
 
 #: ../../manual/modeling/surfaces/structure.rst:70
 msgid "One control point with a weight of 5."
@@ -133,7 +133,7 @@ msgid ""
 "The *Weight* of any particular control point is visible in the "
 ":doc:`/editors/3dview/object/properties/transforms` :kbd:`N`, in the *W* "
 "field (and not the *Weight* field...)."
-msgstr ""
+msgstr "The *Weight* of any particular control point is visible in the :doc:`/editors/3dview/object/properties/transforms` :kbd:`N`, in the *W* field (and not the *Weight* field...)."
 
 #: ../../manual/modeling/surfaces/structure.rst:82
 msgid "Preset Weights"

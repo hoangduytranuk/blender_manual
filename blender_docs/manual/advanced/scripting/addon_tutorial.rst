@@ -255,7 +255,7 @@ As before, first we will start with a script, develop it, then convert it into a
    # Now we can place the object
    obj_new.location = cursor
 
-Now try copy this script into Blender and run it on the default Cube.
+Now try copying this script into Blender and run it on the default Cube.
 Make sure you click to move the 3D cursor before running as the duplicate will appear at the cursor's location.
 
 After running, notice that when you go into *Edit Mode* to change the Cube -- all of the copies change.
@@ -283,7 +283,7 @@ Next, we're going to do this in a loop, to make an array of objects between the 
        factor = i / total
        obj_new.location = (obj.location * factor) + (cursor * (1.0 - factor))
 
-Try run this script with the active object and the cursor spaced apart to see the result.
+Try running this script with the active object and the cursor spaced apart to see the result.
 
 With this script you'll notice we're doing some math with the object location and cursor,
 this works because both are 3D :class:`blender_api:mathutils. Vector` instances,

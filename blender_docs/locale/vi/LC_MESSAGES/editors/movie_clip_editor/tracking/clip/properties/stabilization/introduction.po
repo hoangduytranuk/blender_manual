@@ -5,6 +5,7 @@
 # Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.
 #
 #, fuzzy
+msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: \n"
@@ -33,11 +34,11 @@ msgid ""
 "understand how it works, introduces related terms and concepts, describes"
 " the available interface controls in detail and finally gives some hints "
 "about usage in practice."
-msgstr ""
+msgstr "The 2D video stabilization is a feature built on top of Blender's image feature tracking abilities: we use some *tracking points* to remove shakiness, bumps and jerks from video footage. Typically, image stabilization is part of a **2D workflow** to prepare and improve footage prior to further processing or modeling steps. This page helps to understand how it works, introduces related terms and concepts, describes the available interface controls in detail and finally gives some hints about usage in practice."
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/introduction.rst:13
 msgid "Typical **usage scenarios** of the stabilizer:"
-msgstr ""
+msgstr "Typical **usage scenarios** of the stabilizer:"
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/introduction.rst:15
 msgid "Fix minor deficiencies (shaky tripod, jerk in camera movement)."
@@ -78,7 +79,7 @@ msgstr ""
 msgid ""
 "This simplified model underlying the 2D stabilization as implemented here"
 " assumes movement by an **affine-linear transform**:"
-msgstr ""
+msgstr "This simplified model underlying the 2D stabilization as implemented here assumes movement by an **affine-linear transform**:"
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/introduction.rst:34
 msgid "The camera is pushed up/down/sideways by some **translation component**."
@@ -128,7 +129,7 @@ msgid ""
 "footage contains *perspective induced movements*, symmetrically placed "
 "tracking points above and below the horizon can be used to cancel out "
 "spurious movement and get stabilization to the focal area in between."
-msgstr ""
+msgstr "Thus, as foundation for any image stabilization, we need tracked image features to derive the movements. These *tracking points* or \"tracks\" can be established with Blender's :doc:`image feature tracking component </editors/movie_clip_editor/tracking/clip/introduction>` The right choice of points to track is somewhat tricky, yet crucial for successful image stabilization. Often, we're here because we'll have to deal with imperfect footage. In such cases, the *averaging of tracks* helps to work around image or tracking errors at some point. Moreover, when the footage contains *perspective induced movements*, symmetrically placed tracking points above and below the horizon can be used to cancel out spurious movement and get stabilization to the focal area in between."
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/introduction.rst:65
 msgid "Diverging movements caused by perspective."
@@ -136,7 +137,7 @@ msgstr ""
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/introduction.rst:67
 msgid "Tracks can be added in two groups:"
-msgstr ""
+msgstr "Tracks can be added in two groups:"
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/introduction.rst:69
 msgid ""
@@ -187,7 +188,7 @@ msgid ""
 " to perform any sensible rotation stabilization. Thus the canvas becomes,"
 " by definition, the reference for an undistorted display of the image "
 "contents."
-msgstr ""
+msgstr "Since the actual image elements, i.e. the subject of our footage can be considered stable now, we may use these as a new frame of reference: we consider them attached to a fixed backdrop, which we call the **canvas**. Introducing this concept of a \"canvas\" helps to deal with deliberate movements of the camera. And beyond that, it yields an additional benefit: It is very frequent for the pixels of video footage to be *non-square*. So we have to stretch and expand those pixels, before we're able to perform any sensible rotation stabilization. Thus the canvas becomes, by definition, the reference for an undistorted display of the image contents."
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/introduction.rst:97
 msgid ""
@@ -207,7 +208,7 @@ msgid ""
 "is to *move the final image frame along to the right*, thus following the"
 " originally intended panning movement. Of course, this time, we do want "
 "to perform this newly added panning movement in a smooth and clean way."
-msgstr ""
+msgstr "But when the camera was *moved intentionally*, we have to consider yet another frame of reference beyond the canvas: namely the frame (or *\"cadre\"*) of the **final image** we want to create. To understand this distinction, let's consider a hand-held, panning shot to the right: Since our camera was turned towards the right side, the actual image contents move towards the left side *within* the original image frame. But let's assume the stabilizer was successful with \"fixing\" any image contents relative to the *canvas* -- which in turn means, that the original image boundaries start to move irregularly towards the right side, and the *contents* of the image will begin to disappear gradually behind the left boundary of the original image. After some amount of panning, we'll have lost all of our original contents and just see an empty black image backdrop. The only solution to deal with that problem is to *move the final image frame along to the right*, thus following the originally intended panning movement. Of course, this time, we do want to perform this newly added panning movement in a smooth and clean way."
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/introduction.rst:114
 msgid "Stabilizing a panning shot."
@@ -226,7 +227,7 @@ msgid ""
 " the contents we have fixed onto the canvas. By *animating* those "
 "parameters, we're able to perform all kinds of deliberate camera "
 "movements in a smooth fashion."
-msgstr ""
+msgstr "To allow for such a compensation and to reintroduce deliberate panning, or tilting and zoom of the resulting image, the stabilizer offers a dedicated set of controls: *Expected position*, *Expected rotation* and *Expected scale*. These act like the controls of a virtual camera filming the contents we have fixed onto the canvas. By *animating* those parameters, we're able to perform all kinds of deliberate camera movements in a smooth fashion."
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/introduction.rst:133
 msgid "The \"Dancing\" Black Borders"

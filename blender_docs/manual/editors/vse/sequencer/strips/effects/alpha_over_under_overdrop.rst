@@ -12,7 +12,7 @@ So, you can use the *Alpha Over* / *Alpha Under* effect to composite the CGI Sce
 The result is your model doing whatever as if it was part of the movie.
 The :menuselection:`Edit Strip --> Opacity` controls how much the foreground is mixed over the background,
 fading in the foreground on top of the background. The colors of transparent foreground image
-areas is ignored and does not change the color of the background.
+areas are ignored and do not change the color of the background.
 
 
 .. _bpy.types.AlphaOverSequence:
@@ -55,7 +55,7 @@ Alpha Over Drop
 ===============
 
 *Alpha Over Drop* is between the two others: as with *Alpha Under*,
-the first strip selected will be the foreground, but as with *Alpha Over*,
+the first selected strip will be the foreground, but as with *Alpha Over*,
 the *Opacity* controls the transparency of this foreground.
 
 The Alpha Over Drop effect is much like the Cross,

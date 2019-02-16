@@ -27,14 +27,14 @@ Blend
    The layer blending operation to perform. See :term:`Color Blend Modes`.
 
    Modes *Merge Add* and *Merge Subtract*
-   gives better results when using a *Feather* on overlapping masks
+   give better results when using a *Feather* on overlapping masks
    than straightforward mathematical addition and subtraction.
 Falloff
    Type of the *Feather* falloff, controls the shape of the transition between black and white.
 Overlap
    Fills the self-intersecting areas.
 Holes
-   Overlapping splines from the same layer will generating holes in the mask.
+   Overlapping splines from the same layer will generate holes in the mask.
 
 .. list-table::
 

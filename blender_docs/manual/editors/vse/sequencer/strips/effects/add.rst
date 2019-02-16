@@ -4,7 +4,7 @@
 Add Effect
 **********
 
-The Add Effect adds the colors of two strips together,
+The Add Effect adds the colors of two strips together.
 Use this effect with a base image strip, and a modifier strip.
 The modifier strip is either a solid color or a black-and-white mask,
 or another image entirely.

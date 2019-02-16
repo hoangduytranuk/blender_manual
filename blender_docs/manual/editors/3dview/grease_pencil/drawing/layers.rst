@@ -47,7 +47,7 @@ Active Layer
    Parent (bone icon)
       Indicates that a parent has been set for the layer.
    Lock (padlock icon)
-      Locks the ability to edit the current layers layer.
+      Locks the ability to edit the current layer.
    Hide (eye icon) :kbd:`H`
       Hides the current layer in the drawing region.
    Unlock Color (color wheel with arrow icon)
@@ -94,7 +94,7 @@ Tint
       The amount that the *Tint Color* has on the layer.
 
 Thickness Change
-   A relative change in pixels to apply to the thickness of all stroke in the active layer
+   A relative change in pixels to apply to the thickness of all strokes in the active layer
    (works like a modifier).
 
    Apply (hand and bulged in blue line icon)

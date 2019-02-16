@@ -7,9 +7,9 @@ About Free Software and the GPL
    :align: right
 
 When one hears about "free software", the first thing that comes to mind might be "no cost".
-While this is typically true, the term "free software" as used by the Free Software Foundation
+While this is often true, the term "free software" as used by the Free Software Foundation
 (originators of the GNU Project and creators of the GNU General Public License)
-is intended to mean "free as in freedom" rather than the "no cost" sense
+is intended to mean "free as in freedom" rather than in the sense of "no cost"
 (which is usually referred to as "free as in free beer" or *gratis*).
 Free software in this sense is software which you are free to use, copy, modify, redistribute, with no limit.
 Contrast this with the licensing of most commercial software packages,
@@ -25,8 +25,8 @@ When a program is licensed under the GNU General Public License (the GPL):
 - You have the right to copy and distribute the program.
 - You have the right to improve the program, and release your own versions.
 
-In return for these rights, you have some responsibilities if you distribute a GPL'd program,
-responsibilities that are designed to protect your freedoms and the freedoms of others:
+In return for these rights, you have some responsibilities if you distribute a GPL'd program.
+These responsibilities are designed to protect your freedoms and the freedoms of others:
 
 - You must provide a copy of the GPL with the program,
   so that recipients are aware of their rights under the license.

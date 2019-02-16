@@ -5,6 +5,7 @@
 # Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.
 #
 #, fuzzy
+msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: \n"
@@ -121,7 +122,7 @@ msgid ""
 " deinterlace the footage to the *doubled frame rate*. This can be done "
 "with the `yadif <https://ffmpeg.org/ffmpeg-filters.html#yadif-1>`__ "
 "filter of FFmpeg: use the mode 1 (``send_field``)."
-msgstr ""
+msgstr "Prefer higher frame rates. The more *temporal resolution* the stabilizer has to work on, the better the results. If you have the option to choose between progressive and interlaced modes, by all means use interlaced and deinterlace the footage to the *doubled frame rate*. This can be done with the `yadif <https://ffmpeg.org/ffmpeg-filters.html#yadif-1>`__ filter of FFmpeg: use the mode 1 (``send_field``)."
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/workflow.rst:52
 msgid ""
@@ -131,7 +132,7 @@ msgid ""
 "shutter. Also, using a higher frame rate reduces the amount of rolling "
 "shutter; another reason to prefer interlaced over progressive for the "
 "purpose at hand."
-msgstr ""
+msgstr "Beware of `Rolling Shutter <https://en.wikipedia.org/wiki/Rolling_shutter>`__. Avoid fast lateral movements. If you can, prefer a camera which produces less rolling shutter. Also, using a higher frame rate reduces the amount of rolling shutter; another reason to prefer interlaced over progressive for the purpose at hand."
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/workflow.rst:56
 msgid ""
@@ -199,7 +200,7 @@ msgstr ""
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/workflow.rst:85
 msgid "Fine-tuning pass:"
-msgstr ""
+msgstr "Fine-tuning pass:"
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/workflow.rst:87
 msgid ""
@@ -227,7 +228,7 @@ msgid ""
 "very frame and then use the context menu of the animated UI control. "
 "(Hint: the color of the UI control changes when you have located at "
 "precisely the frame number of the keyframe)."
-msgstr ""
+msgstr "Animating some parameters over duration of the shot is often necessary, at least to get the final touch, including control of the scale factor to hide the dancing black borders. Unfortunately there is a **known limitation** in the current version: it is not possible to open the generic animation editors (Graph editor and Dope Sheet) for animation data beyond the 3D scene. So, while it *is possible* to set keyframes *right within the UI controls* of the stabilizer (either through pressing the :kbd:`I` key or with the help of the context menu), it is not possible to manipulate the resulting curves graphically. The only way to readjust or remove a misguided keyframe is to locate the timeline to the very frame and then use the context menu of the animated UI control. (Hint: the color of the UI control changes when you have located at precisely the frame number of the keyframe)."
 
 #: ../../manual/editors/movie_clip_editor/tracking/clip/properties/stabilization/workflow.rst:106
 msgid "Irregular Track Setup"
@@ -284,4 +285,4 @@ msgid ""
 "situation -- always strive at setting the animation keyframes onto "
 "precisely the same frame number for all the tracks and parameters "
 "involved."
-msgstr ""
+msgstr "Each track contributes to the overall result by the degree controlled through its *Stab Weight* parameter. It is evaluated on a per-frame basis, which enables us to control the influence of a track by *animating* this *Stab Weight*. You may imagine the overall working of the stabilizer as if each tracking point \"drags\" the image through a flexible spring: When you turn down the *Stab Weight* of a tracking point, you decrease the amount of \"drag\" it creates. Sometimes the contribution of different tracks has to work partially counter each other. This effect might be used to cancel out spurious movement, e.g. as caused by perspective. But when, in such a situation, one of the involved tracks suddenly goes away, a jump in image position or rotation might be the result. Thus, whenever we notice a jump at the very frame where some partially covered track starts or ends, we need to soften the transition. We do so by animating the *Stab Weight* gradually down, so that it reaches zero at the boundary point. In a similar vein, when we plan a \"handover\" between several partially covered tracks, we define a *cross-fade* over the duration where the tracks overlap, again by animating the *Stab Weight* parameters accordingly. But even with such cross-fade smoothing, some residual movement might remain, which then needs to be corrected with the *Expected Position* or *Expected rotation* parameters. It is crucial to avoid \"overshooting\" movements in such a situation -- always strive at setting the animation keyframes onto precisely the same frame number for all the tracks and parameters involved."

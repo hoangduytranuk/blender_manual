@@ -148,11 +148,14 @@ Converting to 3D Mesh
 It is possible to convert a Text Object to a 3D Mesh object.
 This can be useful so that you may edit the vertices in *Edit Mode*,
 but you will lose the ability to edit the text itself.
-To do this, go to *Object Mode* and select your Text Object.
-Press :kbd:`Alt-C` and select *Mesh From Curve/Meta/Surf/Text*.
+
+This can be done, using :ref:`object-convert-to` in *Object Mode*.
 Now you can return to *Edit Mode* and manually edit the vertices.
-They are usually a bit messy, so it may be useful to use a *Limited Dissolve* deletion or *Remesh* Object
-:doc:`Modifier </modeling/modifiers/index>` at a low threshold to clean up your mesh.
+
+.. tip::
+
+   The result is usually a bit messy, so it may be useful to use a *Limited Dissolve* deletion or *Remesh* Object
+   :doc:`Modifier </modeling/modifiers/index>` at a low threshold to clean up your mesh.
 
 
 Assigning Materials

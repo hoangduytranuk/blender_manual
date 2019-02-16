@@ -20,7 +20,7 @@ Options
 =======
 
 Default Fade
-   Automatically calculates a linear fade over the length of the stip.
+   Automatically calculates a linear fade over the length of the strip.
 
    Effect Fader
       Allows you to manually :doc:`keyframe </animation/keyframes/index>` a custom fade.

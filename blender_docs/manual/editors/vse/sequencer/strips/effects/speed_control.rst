@@ -109,5 +109,5 @@ Instead of producing ``5 × 60 × 30 = 9000`` frames,
 Blender would produce ``9000 / 1.25 = 7200 = 5 × 60 × 24`` frames.
 In this case, you set a *start* = 1 and *end* = 7200, set your Format output to ``jpeg`` 30fps,
 and image files ``0001.jpg`` through ``7200.jpg`` would be rendered out,
-but those images cover the entire 9000 frames. The image file ``7200.jpg`` is the same a frame 9000.
+but those images cover the entire 9000 frames. The image file ``7200.jpg`` is the same at frame 9000.
 When you read those images back into your film blend-file at 24 fps, the strip will last exactly 5 minutes.

@@ -64,7 +64,7 @@ Frame
       converting a scene frame to the frame number in the file name.
       This option does not affect tracking data or any other associated data.
 Match Movie Length
-   This button set image's user's length to the one of selected movie.
+   This button sets image's user's length to the one of selected movie.
 Auto Refresh
    Automatically refresh images on frame changes.
 Cyclic

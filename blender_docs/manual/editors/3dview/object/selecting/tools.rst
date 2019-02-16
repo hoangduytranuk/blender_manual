@@ -25,7 +25,7 @@ Note that this only works if there are no other objects under the mouse.
 Otherwise it just adds those to the selection. There appears to be no workaround for this bug.
 
 Also you can use :kbd:`Ctrl-RMB` and :kbd:`Shift-Ctrl-RMB` shortcut
-to select the object by its center point rather then its contents.
+to select the object by its center point rather than its contents.
 
 
 .. _bpy.ops.view3d.select_border:

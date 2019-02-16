@@ -10,14 +10,14 @@ Multiply
    Multiply Effect.
 
 The *Multiply* effect multiplies two colors.
-Blender uses values between (0.0 to 1.0) for the colors,
-this operation does not have to be normalized, the multiplication of two terms
+Blender uses values between (0.0 to 1.0) for the colors.
+This operation does not have to be normalized, the multiplication of two terms
 between (0.0 to 1.0) always gives a result between (0.0 to 1.0).
 
 (with the "traditional" representation of three bytes, like RGB(124, 255, 56),
 the multiplications give far too high results, like RGB(7316, 46410, 1848),
-that have to be, normalized (brought back) by dividing them by 256
-to fit in the range of (0 to 255) ...).
+that have to be normalized (brought back) by dividing them by 256
+to fit in the range of (0 to 255)...).
 
 This effect has two main usages:
 
@@ -46,8 +46,8 @@ vegetation becomes more lush, water becomes more Caribbean and inviting, skies b
 
    This effect reduces the global luminosity of the picture
    (the result will always be smaller than the smallest operand).
-   If one of the image is all white, the result is the other picture;
-   if one of the image is all black, the result is all black!
+   If one of the images is all white, the result is the other picture;
+   if one of the images is all black, the result is all black!
 
 
 Options

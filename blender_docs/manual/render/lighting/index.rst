@@ -10,10 +10,9 @@
    :maxdepth: 2
 
    introduction.rst
-   lights/index.rst
    volumetric_lights.rst
-   lamps/index.rst
    lighting_rigs.rst
+   lamp_panel.rst
 
 
 Lamp Types

@@ -65,7 +65,7 @@ msgid ""
 "For more details, see the :doc:`Light Paths "
 "</render/cycles/settings/scene/render/light_paths>` and :doc:`Integrator "
 "</render/cycles/settings/scene/render/integrator>` documentation."
-msgstr ""
+msgstr "For more details, see the :doc:`Light Paths </render/cycles/settings/scene/render/light_paths>` and :doc:`Integrator </render/cycles/settings/scene/render/integrator>` documentation."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:43
 msgid "Where Noise Comes From"
@@ -122,7 +122,7 @@ msgid ""
 "an example of using :ref:`Glossy Filter <render-cycles-integrator-filter-"
 "glossy>` and :doc:`Light Falloff "
 "</render/cycles/nodes/types/color/light_falloff>`."
-msgstr ""
+msgstr "With some tricks we can reduce this noise. If we blur the bright spots, they become bigger and less intense, making them easier to find and less noisy. This will not give the same exact result, but often it's close enough when viewed through a diffuse or soft glossy reflection. Below is an example of using :ref:`Glossy Filter <render-cycles-integrator-filter-glossy>` and :doc:`Light Falloff </render/cycles/nodes/types/color/light_falloff>`."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:91
 msgid "Using Glossy Filter & Light Falloff."
@@ -142,7 +142,7 @@ msgid ""
 "types. Diffuse surfaces typically can get away with fewer bounces, while "
 "glossy surfaces need a few more, and transmission shaders such as glass "
 "usually need the most."
-msgstr ""
+msgstr "In reality light will bounce a huge number of times due to the speed of light being very high. In practice more bounces will introduce more noise, and it might be good to use something like the Limited Global Illumination preset in the :ref:`Light Paths <render-cycles-integrator-light-paths>` Section that uses *fewer* bounces for different shader types. Diffuse surfaces typically can get away with fewer bounces, while glossy surfaces need a few more, and transmission shaders such as glass usually need the most."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:120
 msgid "No bounces."
@@ -180,7 +180,7 @@ msgid ""
 " <render-cycles-integrator-no-caustics>` option to disable glossy behind "
 "a diffuse reflection entirely. Many renderers will typically disable "
 "caustics by default."
-msgstr ""
+msgstr "Caustics are a well-known source of noise, causing fireflies. They happen because the renderer has difficulty finding specular highlights viewed through a soft glossy or diffuse reflection. There is a :ref:`No Caustics <render-cycles-integrator-no-caustics>` option to disable glossy behind a diffuse reflection entirely. Many renderers will typically disable caustics by default."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:156
 msgid "Default settings."
@@ -202,7 +202,7 @@ msgid ""
 "integrator-filter-glossy>` option to reduce the noise from such cases at "
 "the cost of accuracy. This will blur the sharp glossy reflection to make "
 "it easier to find, by increasing the shader Roughness."
-msgstr ""
+msgstr "However, using No Caustics will result in missing light, and it still does not cover the case where a sharp glossy reflection is viewed through a soft glossy reflection. There is a :ref:`Filter Glossy <render-cycles-integrator-filter-glossy>` option to reduce the noise from such cases at the cost of accuracy. This will blur the sharp glossy reflection to make it easier to find, by increasing the shader Roughness."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:174
 msgid ""
@@ -239,7 +239,7 @@ msgid ""
 "factor*, that can be used to reduce the maximum intensity a light can "
 "contribute to nearby surfaces. The images above show default falloff and "
 "smooth value 1.0."
-msgstr ""
+msgstr "To reduce this problem, the :doc:`Light Falloff </render/cycles/nodes/types/color/light_falloff>` node has a *Smooth factor*, that can be used to reduce the maximum intensity a light can contribute to nearby surfaces. The images above show default falloff and smooth value 1.0."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:207
 msgid "Multiple Importance Sampling"
@@ -255,7 +255,7 @@ msgid ""
 "the emission is not particularly bright, this will take samples away from"
 " other brighter light sources for which it is important to find them this"
 " way."
-msgstr ""
+msgstr "Materials with emission shaders can be configured to use Multiple Importance Sampling (:doc:`/render/cycles/materials/settings`). This means that they will get rays sent directly towards them, rather than ending up there based on rays randomly bouncing around. For very bright mesh light sources, this can reduce noise significantly. However, when the emission is not particularly bright, this will take samples away from other brighter light sources for which it is important to find them this way."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:217
 msgid ""
@@ -284,7 +284,7 @@ msgid ""
 "spots, and send light rays directly towards them. Again, enabling this "
 "option may take samples away from more important light sources if it is "
 "not needed."
-msgstr ""
+msgstr "The world background also has a *Multiple Importance* (:ref:`render-cycles-integrator-world-settings`) option. This is mostly useful for environment maps that have small bright spots in them, rather than being smooth. This option will then, in a preprocess, determine the bright spots, and send light rays directly towards them. Again, enabling this option may take samples away from more important light sources if it is not needed."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:244
 msgid "Glass and Transparent Shadows"
@@ -332,7 +332,7 @@ msgid ""
 "cycles-lamps-area-portals>`, these work by adding an :ref:`Area Lamp "
 "<render-cycles-lamps-area>`. You then will need to modify its shape to "
 "match that of the opening that you are trying to fill."
-msgstr ""
+msgstr "When rendering a daylight indoor scene where most of the light is coming in through a window or door opening, it is difficult for the integrator to find its way to them. To fix this, use :ref:`Light Portals <render-cycles-lamps-area-portals>`, these work by adding an :ref:`Area Lamp <render-cycles-lamps-area>`. You then will need to modify its shape to match that of the opening that you are trying to fill."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:289
 msgid "Denoising"
@@ -346,14 +346,14 @@ msgid ""
 "this enable :doc:`Denoising "
 "</render/cycles/settings/scene/render_layers/denoising>` in the *Render "
 "Layers* tab of the Properties editor."
-msgstr ""
+msgstr "Even with all the settings described above there will always end up being some render noise no matter how many samples you use. To fix this there is a post-processing technique to cleanup the final bit of noise. To use this enable :doc:`Denoising </render/cycles/settings/scene/render_layers/denoising>` in the *Render Layers* tab of the Properties editor."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:297
 msgid ""
 "Below is an example render by `The Pixelary "
 "<http://blog.thepixelary.com/post/160451378592/denoising-in-cycles-"
 "tested>`__."
-msgstr ""
+msgstr "Below is an example render by `The Pixelary <http://blog.thepixelary.com/post/160451378592/denoising-in-cycles-tested>`__."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:304
 msgid "Example render before denoising."
@@ -374,7 +374,7 @@ msgid ""
 "light ray sample will contribute to a pixel can be *clamped* to a maximum"
 " value with the integrator :ref:`Clamp setting <render-cycles-integrator-"
 "clamp-samples>`."
-msgstr ""
+msgstr "Ideally with all the previous tricks, fireflies would be eliminated, but they could still happen. For that, the *intensity* that any individual light ray sample will contribute to a pixel can be *clamped* to a maximum value with the integrator :ref:`Clamp setting <render-cycles-integrator-clamp-samples>`."
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:320
 msgid ""
@@ -391,5 +391,3 @@ msgstr ""
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:335
 msgid "With Clamp set to 4."
 msgstr ""
-
-

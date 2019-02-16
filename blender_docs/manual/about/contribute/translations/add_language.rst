@@ -7,7 +7,7 @@ Adding a Language
 *****************
 
 Preparations
-------------
+============
 
 If the language you want to translate has not been started by someone else already and
 you wish to create a set of new files for the desired language, say 'fr' (French),
@@ -32,7 +32,7 @@ Other platforms might vary slightly but should mainly the same.
 
 
 Trying the Make Process to Create HTML Files In English
--------------------------------------------------------
+=======================================================
 
 #. Ensure the previous instance of ``build`` directory is removed, if any exists::
 
@@ -52,7 +52,7 @@ Trying the Make Process to Create HTML Files In English
 
 
 Creating the Language Entry in the HTML Menu
---------------------------------------------
+============================================
 
 #. Create an entry for the language in the html menu by opening file ``./resources/theme/js/version_switch.js``
    (assuming you are at the ``blender_docs`` subdirectory).
@@ -73,7 +73,7 @@ Creating the Language Entry in the HTML Menu
 
 
 Setting the Local Configuration File
-------------------------------------
+====================================
 
 #. Open a text editor to enter the following texts,
    change the language code to whatever the language you will be translating:
@@ -92,7 +92,7 @@ Setting the Local Configuration File
 
 
 Generating the Set of Files for the Target Language
----------------------------------------------------
+===================================================
 
 #. Check out the current translation repository using the command::
 

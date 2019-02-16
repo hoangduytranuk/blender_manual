@@ -16,8 +16,6 @@ machine's hardware (the RAM or graphics card), and disable some options that are
 
 - Reduce undo steps
   :menuselection:`User Preferences --> Editing --> Undo Steps`.
-- Disable *Region Overlap* and *Triple buffering* at
-  :menuselection:`User Preferences --> System --> Window Draw Method`.
 - Using multisample, anti-aliasing also increases the memory usage and makes the display slower.
 - On Linux, the Window Manager (KDE, Gnome, Unity) may be using hardware accelerated effects
   (e.g. window shadows and transparency) that are using up the memory that Blender needs.

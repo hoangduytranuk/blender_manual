@@ -42,7 +42,7 @@ msgid ""
 "Blender. This library offers fine control over different :abbr:`LUT (Look"
 " Up Table)` along with integrating your own set of color profiles to keep"
 " your work linearized with other software."
-msgstr ""
+msgstr "To achieve color management in Blender, the `OpenColorIO <http://opencolorio.org/>`__ (OCIO) library has been integrated into Blender. This library offers fine control over different :abbr:`LUT (Look Up Table)` along with integrating your own set of color profiles to keep your work linearized with other software."
 
 #: ../../manual/render/post_process/color_management.rst:25
 msgid "Scene Linear Color Space"
@@ -54,7 +54,7 @@ msgid ""
 "needed for rendering display and storage of images. Rendering and "
 "compositing is best done in scene *linear* color space, which corresponds"
 " more closely to nature, and makes computations more physically accurate."
-msgstr ""
+msgstr "For correct results, different :term:`color spaces <color space>` are needed for rendering display and storage of images. Rendering and compositing is best done in scene *linear* color space, which corresponds more closely to nature, and makes computations more physically accurate."
 
 #: ../../manual/render/post_process/color_management.rst:34
 msgid "An example of a linear workflow."
@@ -92,7 +92,7 @@ msgstr "Bảng -- Panel"
 
 #: ../../manual/render/post_process/color_management.rst:55
 msgid ":menuselection:`Properties editor --> Scene --> Color Management`"
-msgstr ""
+msgstr ":menuselection:`Properties editor --> Scene --> Color Management`"
 
 #: ../../manual/render/post_process/color_management.rst:59
 msgid "Scene settings for color management."
@@ -108,7 +108,7 @@ msgid ""
 "color space, which can be configured here. A computer monitor works "
 "differently from a digital cinema projector HDTV. The scene properties "
 "have these settings:"
-msgstr ""
+msgstr "Correct display of renders requires a conversion to the display device color space, which can be configured here. A computer monitor works differently from a digital cinema projector HDTV. The scene properties have these settings:"
 
 #: ../../manual/render/post_process/color_management.rst:78
 msgid "Display Device"
@@ -181,7 +181,7 @@ msgstr ""
 
 #: ../../manual/render/post_process/color_management.rst:104
 msgid "Filmic"
-msgstr ""
+msgstr "-- Filmic"
 
 #: ../../manual/render/post_process/color_management.rst:104
 msgid ""
@@ -211,7 +211,7 @@ msgstr ""
 
 #: ../../manual/render/post_process/color_management.rst:113
 msgid "Raw"
-msgstr ""
+msgstr "Nguyên Thủy/Thô Sơ -- Raw"
 
 #: ../../manual/render/post_process/color_management.rst:113
 msgid ""
@@ -232,7 +232,7 @@ msgstr ""
 
 #: ../../manual/render/post_process/color_management.rst:118
 msgid "False Color"
-msgstr ""
+msgstr "-- False Color"
 
 #: ../../manual/render/post_process/color_management.rst:119
 msgid "Shows a heat map of image intensities, to visualize the dynamic range."
@@ -247,7 +247,7 @@ msgid ""
 "Used to control the image brightness (in stops) applied before color "
 "space conversion. It is calculated as follows: :math:`output\\_value = "
 "render\\_value × 2^{(exposure)}`"
-msgstr ""
+msgstr "Used to control the image brightness (in stops) applied before color space conversion. It is calculated as follows: :math:`output\\_value = render\\_value × 2^{(exposure)}`"
 
 #: ../../manual/render/post_process/color_management.rst:125
 msgid "Gamma"
@@ -280,7 +280,7 @@ msgstr "Dùng Đường Cong -- Use Curves"
 msgid ""
 "Adjust RGB Curves to control image colors before color space conversion. "
 "Read more about using the :ref:`ui-curve-widget`."
-msgstr ""
+msgstr "Adjust RGB Curves to control image colors before color space conversion. Read more about using the :ref:`ui-curve-widget`."
 
 #: ../../manual/render/post_process/color_management.rst:136
 msgid "Sequencer"
@@ -332,7 +332,7 @@ msgid ""
 "Image data-blocks will always store float buffers in memory in the scene "
 "linear color space, while a byte buffer in memory and files in a drive "
 "are stored in the color space specified with this setting:"
-msgstr ""
+msgstr "Image data-blocks will always store float buffers in memory in the scene linear color space, while a byte buffer in memory and files in a drive are stored in the color space specified with this setting:"
 
 #: ../../manual/render/post_process/color_management.rst:165
 msgid ""
@@ -358,7 +358,7 @@ msgid ""
 "is a render (it could be e.g. an image texture or displacement map). We "
 "need to specify that this is a render and that we want the "
 "transformations applied, with these two settings:"
-msgstr ""
+msgstr "By default only renders are displayed and saved with the render view transformations applied. These are the Render Result and Viewer image data-blocks, and the files saved directly to a drive with the Render Animation operator. However, when loading a render saved to an intermediate OpenEXR file, Blender cannot detect automatically that this is a render (it could be e.g. an image texture or displacement map). We need to specify that this is a render and that we want the transformations applied, with these two settings:"
 
 #: ../../manual/render/post_process/color_management.rst:185
 msgid "View as Render"
@@ -392,7 +392,7 @@ msgid ""
 "number of useful display devices and view transforms. The reference "
 "linear :term:`color space` used is the linear color space with Rec. 709 "
 "chromaticities and D65 white point."
-msgstr ""
+msgstr "Blender comes with a standard OpenColorIO configuration that contains a number of useful display devices and view transforms. The reference linear :term:`color space` used is the linear color space with Rec. 709 chromaticities and D65 white point."
 
 #: ../../manual/render/post_process/color_management.rst:200
 msgid ""
@@ -404,11 +404,11 @@ msgid ""
 "other than the default Blender one. More information about how to set up "
 "such a workflow can be found on the `OpenColorIO website "
 "<http://opencolorio.org/>`__."
-msgstr ""
+msgstr "However, OpenColorIO was also designed to give a consistent user experience across `multiple applications <http://opencolorio.org/CompatibleSoftware.html>`__, and for this, a single shared configuration file can be used. Blender will use the standard OCIO environment variable to read an OpenColorIO configuration other than the default Blender one. More information about how to set up such a workflow can be found on the `OpenColorIO website <http://opencolorio.org/>`__."
 
 #: ../../manual/render/post_process/color_management.rst:207
 msgid "We currently use the following color space rules:"
-msgstr ""
+msgstr "We currently use the following color space rules:"
 
 #: ../../manual/render/post_process/color_management.rst:209
 msgid "scene_linear"
@@ -461,4 +461,4 @@ msgid ""
 "OpenColorIO provides an `ACES configuration "
 "<http://opencolorio.org/configurations/index.html>`__ file, though it may"
 " need a few more tweaks to be usable in production."
-msgstr ""
+msgstr "The standard Blender configuration also includes some support for `ACES <https://www.oscars.org/science-technology/sci-tech-projects/aces>`__ (`code and documentation <https://github.com/ampas/aces-dev>`__), even though we have a different linear color space. It is possible to load and save EXR files with the Linear ACES color space, and the RRT view transform can be used to view images with their standard display transform. However, the ACES gamut is larger than the Rec. 709 gamut, so for best results, an ACES specific configuration file should be used. OpenColorIO provides an `ACES configuration <http://opencolorio.org/configurations/index.html>`__ file, though it may need a few more tweaks to be usable in production."

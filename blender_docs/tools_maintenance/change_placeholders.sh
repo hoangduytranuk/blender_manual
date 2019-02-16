@@ -19,7 +19,7 @@ YOUR_TRANSLATION_TEAM="your town/city, Country <$YOUR_EMAIL>"
 YOUR_LANGUAGE_CODE="vi"
 
 #executable date, change it to the actual location of your date binary
-date_bin=/usr/bin/date
+date_bin=$(which date)
 #get the timenow with format '2018-11-16 20:54+0000' - depending on the timezone you are in
 time_now=$($date_bin +"%F %H:%M%z")
 #the replace string for revision date, which include the time_now value
@@ -52,7 +52,7 @@ function findChangedFiles()
    elif [ -d ".svn" ]; then
       changed_list=$(svn status | grep 'M' | awk '{ print $2 }' | grep ".po")
    else #slowest option of all, find po files in any root directory
-      changed_list=$(find . -type f -name "*.po" -exec ls -al --time-style=+%D\ %H:%M:%S {} \; | grep `/usr/bin/date +%D` | awk '{ print $6,$7,$8 }' | sort | tail -1 | awk '{ print $3 }')
+      changed_list=$(find . -type f -name "*.po" -exec ls -al --time-style=+%D\ %H:%M:%S {} \; | grep `$date_bin +%D` | awk '{ print $6,$7,$8 }' | sort | tail -1 | awk '{ print $3 }')
    fi
 }
 
@@ -78,22 +78,36 @@ function removeCommentedLineInSingleFile()
 	fi
 }
 
+
+#Replace and report changes based on the differences of sha256sums before and after
+function replaceAndReport()
+{
+	changed_file="$1"
+	pattern="$2"
+	value="$3"
+	shasum_before=$(sha256sum $changed_file |  awk '{ print $1 }')
+	sed -i "s|${pattern}|${value}|g" $changed_file
+	shasum_after=$(sha256sum $changed_file |  awk '{ print $1 }')
+	if [ "$shasum_before" != "$shasum_after" ]; then
+		echo "Replaced: $pattern => $value"
+	fi
+}
+
 #Replacing placeholders as specified in pattern_list array
 function replaceRegularStrings()
 {
-   changed_file=$1
-   for i in "${!pattern_list[@]}"; do
-      pattern="$i"
-      value="${pattern_list[$i]}"
-      #echo "$pattern => $value"
-      sed -i "s|${pattern}|${value}|g" $changed_file
+	changed_file="$1"
+	for i in "${!pattern_list[@]}"; do
+		pattern="$i"
+		value="${pattern_list[$i]}"
+		replaceAndReport "$changed_file" "$pattern" "$value"
    done
 }
 
 #Test for duplication and inserting 'language=<value>' if it hasn't been inserted before
 function insertLanguageCode()
 {
-   changed_file=$1
+   changed_file="$1"
    current_line=$(grep $re_language_code $changed_file)
    #echo "current_line=[$current_line]"
    if [ "$current_line" != "" ]; then
@@ -102,8 +116,7 @@ function insertLanguageCode()
       for i in "${!pattern_insert[@]}"; do
             pattern="$i"
             value="${pattern_insert[$i]}"
-            #echo "Replacing: $pattern => $value"
-            sed -i "s|${pattern}|${value}|g" $changed_file
+            replaceAndReport "$changed_file" "$pattern" "$value"
       done
    fi
 }

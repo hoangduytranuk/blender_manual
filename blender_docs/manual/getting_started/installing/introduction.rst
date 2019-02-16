@@ -24,7 +24,7 @@ Download Blender
 The Blender Foundation distributes Blender in three different ways
 that you can choose from, to better suit your needs.
 
-The options comprise binary packages for all the supported platforms and the source code. Within the binary packages,
+The options comprise binary packages for all the supported platforms and the source code. Amongst the binary packages,
 you can choose from a stable release or a daily build. The first has the benefit of being more reliable, the latter
 provides the newest features, as they are developed. Blender is released approximately every three months.
 You can keep up to date with the latest changes
@@ -36,7 +36,7 @@ through the `release notes <https://www.blender.org/features/releases/>`__.
 `Daily Builds <https://builder.blender.org/download>`__
    This is a binary distribution of Blender that is updated daily to include the newest changes in development.
    These versions are not as thoroughly tested as the stable release, and might break,
-   although they are official and generally not highly experimental.
+   although they are official and usually not highly experimental.
 `Build from Source <https://wiki.blender.org/wiki/Building_Blender>`__
    Blender's source is available for reference and installation, with the following advantages:
 
@@ -46,7 +46,7 @@ through the `release notes <https://www.blender.org/features/releases/>`__.
 
    .. note::
 
-      This is included for completeness, but it is **not** expected
+      This information is included for the sake of completeness, but it is **not** expected
       that regular users should have to compile their own Blender builds.
 
 

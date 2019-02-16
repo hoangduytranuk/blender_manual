@@ -6,7 +6,7 @@ Multicam Selector
 
 The Multicam Selector strip is used for multi-camera editing.
 Multi-camera editing is when a scene is recorded using multiple cameras from different angles
-and then edited together after words. This process can be rather easy in the :abbr:`VSE (Video Sequence Editor)`
+and then edited together afterwards. This process can be rather easy in the :abbr:`VSE (Video Sequence Editor)`
 if you properly setup every to improve your workflow.
 
 
@@ -23,14 +23,14 @@ Cut To
 Workflow
 ========
 
-#. First your going to want to add in each of your video strips.
+#. First you are going to want to add in each of your video strips.
 #. Next, you will want to sync all your cameras by either using
    :doc:`Audio Waveforms </editors/vse/sequencer/strips/sound>` or by the movement of objects.
 
    .. tip::
 
-      To make syncing strips easier you can group cameras, there audio,
-      and there effects together using :doc:`Meta Strips </editors/vse/sequencer/meta>`.
+      To make syncing strips easier you can group cameras, their audio,
+      and their effects together using :doc:`Meta Strips </editors/vse/sequencer/meta>`.
 
 #. Add a viewer region for every input channel and to improve performance use 25% proxies.
 #. Add a Multicam Selector strip *above* all the channel tracks.

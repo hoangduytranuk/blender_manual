@@ -11,7 +11,7 @@ Real-world use-cases, you want to add some last finishing color correction on to
 your final sequence, timeline without messing with meta strips around.
 Just add an adjustment layer on top and activate the color balance.
 
-Or you can stack a primary color correction and several secondary color correction on top of
+Or you can stack a primary color correction and several secondary color corrections on top of
 each other (probably using the new mask input for area selection).
 
 

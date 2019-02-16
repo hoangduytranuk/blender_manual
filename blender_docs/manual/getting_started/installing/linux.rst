@@ -10,14 +10,14 @@ if you have not done so yet.
 Specific Packages for Distributions
 ===================================
 
-Some Linux distributions may have on their repositories a specific package for Blender.
+Some Linux distributions may have a specific package for Blender in their repositories.
 
 Installing Blender via the distribution's native mechanisms ensures consistency with other packages on the system
 and may provide other features (given by the package manager),
 such as listing of packages, update notifications and automatic menu configuration.
-Be aware, though, that the package may be outdated comparing to the latest official release,
+Be aware, though, that the package may be outdated compared to the latest official release,
 or not include some features of Blender.
-For example, some distributions do not build Blender with CUDA support for licensing reasons.
+For example, some distributions do not build Blender with CUDA support, for licensing reasons.
 
 If there is a specific package for your distribution, you may choose what is preferable and most convenient,
 otherwise, there is nothing wrong with the official binary on `blender.org <https://www.blender.org/download/>`__.
@@ -31,18 +31,19 @@ Download the Linux version for your architecture and uncompress the file to the 
 
 Blender can now be launched by double-clicking the executable.
 
-For easy access, you can configure your system by adding a menu entry or shortcut for Blender and associate and
-open blend-files with Blender when opening from the File browser.
-These settings typically belong to the Window Manager (KDE, Gnome, Unity).
+For ease of access, you can configure your system by adding a menu entry or shortcut for Blender.
+You may also associate blend-files with Blender so that when selected from the File browser,
+they will automatically open in Blender.
+These settings are typically found in conjunction with the Window Manager settings. (KDE, Gnome, Unity).
 
 
 Running from the Terminal
 =========================
 
 To run Blender from the terminal without needing to be in the executable directory,
-add the extracted folder to the environment ``PATH``.
-
-Add the following command to ``~/.bashrc`` or ``~/.profile`` pointing to the directory with Blender's binary:
+add the name of the folder into which Blender was extracted, to the ``PATH`` environment variable.
+This is achieved by adding the following line to your ``~/.bashrc`` or ``~/.profile`` file
+to point the path to the directory in which the Blender's binary is located:
 
 .. code-block:: sh
 

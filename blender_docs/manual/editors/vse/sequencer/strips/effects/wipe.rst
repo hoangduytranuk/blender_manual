@@ -36,14 +36,14 @@ Transition
       counterclockwise from the 9:00 position. As it sweeps, it reveals the next strip.
 
 Direction
-   Control whether to fade *In* or *Out*.
+   Controls whether to fade *In* or *Out*.
 Blur Width
    The width of the blur used to blur the transition.
 Angle
-   Control the angle of the line for *Single* and *Double* transition types.
+   Controls the angle of the line for *Single* and *Double* transition types.
 
 Default Fade
-   Automatically calculates a linear fade over the length of the stip.
+   Automatically calculates a linear fade over the length of the strip.
 
    Effect Fader
       Allows you to manually :doc:`keyframe </animation/keyframes/index>` a custom fade.

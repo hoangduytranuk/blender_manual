@@ -15,7 +15,7 @@ These files are kept in sync with those online via a repository,
 based on this the server will update the online manual.
 
 The manual is written in the `reStructuredText <http://www.sphinx-doc.org/en/stable/rest.html>`__
-(RST) markup language and can be edit using a plain text editor.
+(RST) markup language and can be edited using a plain text editor.
 For a local preview, you convert (build) the manual source files from RST into HTML web pages.
 
 

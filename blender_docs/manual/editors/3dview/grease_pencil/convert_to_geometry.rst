@@ -10,7 +10,6 @@ Convert to Geometry
    :Mode:      All Modes
    :Panel:     :menuselection:`Tool Shelf --> Grease Pencil --> Grease Pencil --> Tools: Convert to Geometry...`
    :Menu:      :menuselection:`GPencil --> Convert to Geometry...`
-   :Hotkey:    :kbd:`Alt-C`
 
 .. figure:: /images/interface_grease-pencil_convert-to-geometry_options.png
    :align: right

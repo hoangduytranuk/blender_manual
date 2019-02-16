@@ -3,8 +3,8 @@
 The Blender Community
 *********************
 
-Being freely available from the start, even while closed source,
-helped considerably for Blender's adoption by the community.
+Being freely available from the start, even while it was closed source,
+considerably helped Blender's adoption by the community.
 A large, stable, and active community of users has gathered around Blender since 1998.
 The community showed its support for Blender in 2002 when they helped raise
 €100,000 in seven weeks to enable Blender to go Open Source under
@@ -85,4 +85,4 @@ Other Useful Links
 
 - `Blender FAQ <https://www.blender.org/support/faq/>`__ (Can I use Blender commercially? What is GPL/GNU? ...)
 - `Demo and benchmark files <https://www.blender.org/download/demo-files/>`__
-- Developers `Ask Us Anything! <https://wiki.blender.org/wiki/Reference/AskUsAnything>`__
+- Developer's `Ask Us Anything! <https://wiki.blender.org/wiki/Reference/AskUsAnything>`__

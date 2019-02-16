@@ -100,10 +100,8 @@ Sub IDs
 
 .. figure:: /images/interface_controls_templates_data-block_subids.png
 
-   Example of Vertex Group IDs in Object Data tab in Properties Editor.
-
-Related types of IDs can be listed to specify their properties and
-relations to an object, depending on object types. Examples:
+Related types of IDs may become available to select a property or child object,
+depending on the object type.
 
 Vertex Group
    If the selected object in the *Name* field is a mesh or a lattice,
