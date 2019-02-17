@@ -42,6 +42,7 @@ extensions = [
     'vimeo',
     'sphinx.ext.mathjax',
     'sphinx.ext.intersphinx',
+    '404'
 ]
 
 # Is there a better way to check for PDF building?

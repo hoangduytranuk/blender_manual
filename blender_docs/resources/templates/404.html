@@ -2,63 +2,82 @@
 {%- set title = _('Not Found (404)') %}
 {%- set STATIC = "https://docs.blender.org/manual/en/dev/_static/" %}
 {%- block extrahead %}
+	<link rel="shortcut icon" href="{{ STATIC }}favicon.ico" />
 	<link rel="stylesheet" href="{{ STATIC }}css/theme.css" type="text/css" />
-	<link rel="stylesheet" href="{{ STATIC }}css/theme_overrides.css" type="text/css" />
+	<script src="{{ STATIC }}js/theme.js" type="text/javascript"></script>
+	<style>
+		.search404 {
+			margin: 15px 0;
+		}
+		.search404 input[type="text"] {
+			width: 100%;
+			border-radius: 50px;
+			padding-inline-start: 1em;
+		}
+	</style>
 {% endblock %}
 {%- block body %}
 <h1>{% trans %} Not Found (404) {% endtrans %}</h1>
 <p>{% trans %}It seems the page you are trying to find has been either moved or deleted.{% endtrans %}<br>
-   {% trans %}You can try one of the following things:{% endtrans %}</p>
+	{% trans %}You can try one of the following things:{% endtrans %}</p>
 
-<div class="centered">
+<div class="search404 centered">
   {% include "searchbox.html" %}
 </div>
 
-{# pathto(master_doc) #}
 <a href="{{ 'https://docs.blender.org/manual/' + language + '/dev/index.html' }}" class="btn btn-neutral" title="{{ _('Return Home') }}">
 <span class="fa fa-home"></span> {{ _('Return Home') }}</a>
 
+<noscript>
+<span style="font-style: italic">The search functionality needs JavaScript activated in order to work.</span>
+</noscript>
+<script>
+function init() {
+	var versions = getVersion();
+	if(versions !== null) {
+		replaceSearch(versions);
+		replaceLogo(versions);
+	}
+}
+/*get language and version from url*/
+function getVersion() {
+	var url = window.location.href;
+	var versions = url.match(/\/manual\/([\w\-\.]+)\/(dev|\d\.\d[\w\d\.]*)\//);
+	if(versions !== null) {
+		return [versions[1], versions[2]];
+	}
+	return null;
+}
+/*replace search form url*/
+function replaceSearch(version) {
+	var searchforms = document.getElementsByTagName("FORM");
+	for (let i = 0; i < searchforms.length; i++) {
+		searchforms[i].setAttribute("action", "/manual/" + version[0] + "/" + version[1] + "/search.html");
+	}
+	var searchtexts = document.getElementsByName("q");
+	for (let i = 0; i < searchtexts.length; i++) {
+		searchtexts[i].setAttribute("placeholder", "Search Docs (" + version[0] + " " + version[1] + ")" );
+	}
+}
+/*logo*/
+function replaceLogo(version) {
+	var imgs = document.getElementsByTagName("img");
+	for (let i = 0; i < imgs.length; i++) {
+		if(imgs[i].className === "logo") {
+			imgs[i].setAttribute("src", "/manual/" + version[0] + "/" + version[1] + "/" + imgs[i].getAttribute("src"));
+			break;
+		}
+	}
+}
+window.onload=init();
+</script>
 {%- endblock %}
 
 <!-- TODO Assess how much of this we want to keep -->
 <!--
 <ul id="linklist"></ul>
-<noscript><span style="font-style: italic">*JavaScript disabled:
- The inline script would adapt links to the current language and version.
- It would also add links to index pages (if they exist) .</span></noscript>
-<script>
-function init() {
- var versions = getVersion();
- if(versions !== null) {
-   replaceLinks(versions);
-   replaceSearch(versions);
- }
  insertbtns();
  indexPages();
-}
-/*get language and version from url*/
-function getVersion() {
- var url = window.location.href;
- var versions = url.match(/\/manual\/([\w\-\.]+\/(?:dev|\d\.\d[\w\d\.]*))\//);
- if(versions !== null) {
-   versions = versions[1];
-   var seperator = versions.search(/\//);
-   return [versions.substr(0, seperator), versions.substr(seperator + 1, versions.length)];
- }
- return null;
-}
-/*replace search form url*/
-function replaceSearch(version) {
- var searchform = document.getElementById("search");
- searchform.setAttribute("action", "/manual/" + version[0] + "/" + version[1] + "/search.html");
- var searchtext = document.getElementsByName("q")[0];
- searchtext.setAttribute("placeholder", "Search Docs (" + version[0] + " " + version[1] + ")" );
-}
-/*replace header home url*/
-function replaceLinks(version) {
- var home = document.getElementById("manual");
- var baseurl = "https://docs.blender.org/manual/";
- home.setAttribute("href", baseurl + version[0] + "/" + version[1] + "/");
 }
 /*add buttons to insert page name and the hash into the search field*/
 function insertbtns() {
@@ -144,6 +163,4 @@ function loadDoc(requestUrl, id, text, title) {
  xhttp.open("GET", requestUrl, true);
  xhttp.send();
 }
-window.onload=init();
-</script>
 -->
