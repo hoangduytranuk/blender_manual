@@ -188,11 +188,11 @@ There are 2 choices for the alternative python (providing /usr/bin/python).
 (Có 2 lựa chọn đối với các phương án thay thế có thể sử dụng python)
 ```
 
-*Selection*|*Path*|*Priority*|*Status*|*Comment*
-:---:|---|:---:|---|---|---
-*0|/usr/bin/python3.6|2|auto mode|(chế độ tự động)
-1|/usr/bin/python2.7|1|manual mode|(chế độ thủ công)
-2|/usr/bin/python3.6|2|manual mode|(chế độ thủ công)
+|*Selection*|*Path*|*Priority*|*Status*|*Comment*|
+|:---:|---|:---:|---|---|---|
+|*0|/usr/bin/python3.6|2|auto mode|(chế độ tự động)|
+|1|/usr/bin/python2.7|1|manual mode|(chế độ thủ công)|
+|2|/usr/bin/python3.6|2|manual mode|(chế độ thủ công)|
 
 
 - Đánh lệnh:
