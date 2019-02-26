@@ -37,7 +37,7 @@ Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tư�
 
     Bấm chuột phải và chọn Ubuntu 18.04 ‣ Đính vào trình đơn bắt đầu (pin to start)
     Bấm chuột phải và chọn Ubuntu 18.04 ‣ thêm (more) ‣ Đính vào thanh tác vụ (pin to taskbar)
-+
+
 ## Cập nhật hệ thống phụ Linux (Updating the Linux subsystem)
 
 Bản mà bạn đã tải xuống và cài đặt có thể không phải là phiên bản mới nhất, vì vậy hãy chạy các lệnh sau để cập nhật môi trường:
@@ -94,13 +94,19 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
 ## Đăng ký tài khoản và tham gia làm một người đóng góp vào đề án (Registering an user account and join to become a Project's collaborator)
 
-    - Vào trang này: https://github.com/
-    - Bấm nút **Sign up**
-    - Điền tên người dùng vào ô **Username**. Nên dùng kiểu sau: hoangduytran1960 (không có dấu và không có khoảng trống cách chữ, cộng với năm sinh hoặc một số nào đấy)
-    - Điền thư điện tử vào ô **Email address**
-    - Điền mật mã vào ô 'Password' (nhớ ghi lại vào đâu đó để về sau có quên thì lấy lại được) (Yêu cầu: 8 ký tự trở lên, gồm A-Z, 0-9, và có chữ Hoa, chữ Thường)
-    - Bấm **Verify** và xem xem nó bảo làm gì để nó biết là mình không phải là thông tin từ máy mà là người thật.
-    - Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi [hoangduytran1960@gmail.com](mailto:hoangduytran1960@gmail.com) để tôi thêm vào làm người hợp tác  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
+- Vào trang [này](https://github.com/):
+
+- Bấm nút **Sign up**
+
+- Điền tên người dùng vào ô **Username**. Nên dùng kiểu sau: hoangduytran1960 (không có dấu và không có khoảng trống cách chữ, cộng với năm sinh hoặc một số nào đấy)
+
+- Điền thư điện tử vào ô **Email address**
+
+- Điền mật mã vào ô 'Password' (nhớ ghi lại vào đâu đó để về sau có quên thì lấy lại được) (Yêu cầu: 8 ký tự trở lên, gồm A-Z, 0-9, và có chữ Hoa, chữ Thường)
+
+- Bấm **Verify** và xem xem nó bảo làm gì để nó biết là mình không phải là thông tin từ máy mà là người thật.
+
+- Sau khi làm xong thì báo cho tôi biết tên người dùng vào e-mail của tôi [hoangduytran1960@gmail.com](mailto:hoangduytran1960@gmail.com) để tôi thêm vào làm người hợp tác  (collaborator) và đặt quyền cho bạn được gửi các thay đổi lên đề án này.
 
 ## Cài đặt các phần mềm cần thiết (Install required softwares)
 
@@ -112,6 +118,7 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 ```bash
         sudo apt-get install python python-pip git subversion
 ```
+
 ## Lấy bản nguồn này xuống máy (Downloading the project's source code and documents)
 
 - Bằng dòng lệnh:
@@ -139,15 +146,73 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
 ## Cài đặt các phần mềm cần thiết cho việc biên tập (Install softwares necessary for compilation)
 
-- Lấy các phần mềm cần có để biên dịch xuống máy:
+Lấy các phần mềm cần có để biên dịch xuống máy:
 ```bash
+        sudo install build-essential git subversion
         cd $HOME/blender_manual/blender_docs
         sudo pip install -r requirements.txt
 ```
-    như biên tập bản tiếng Việt dùng lệnh:
+Nếu các bạn gặp khó khăn trong vấn đề về UTF-8 (tiếng Việt) trong khi biên soạn thì đổi sang sử dụng Python3:
+
+- Dùng lệnh:
+```bash
+            which python
+```
+      và lệnh:
+```bash
+            which python3
+```
+      để tìm xem địa chỉ của 'python' nằm ở đâu. Thường là ở '/usr/bin/'.
+- Lần vào đó và liệt kê để xem tên cụ thể:
+```bash
+            cd /usr/bin
+            ls -alF python
+```
+- Thường thì mình sẽ thấy là 'python' là kết nối mềm (softlink) của 'python2.7', và 'python3' là kết nối mềm của 'python3.6'
+
+- Đổi lệnh từ 'python' sang dùng 'python3', để khi đánh 'python' thì hệ điều hành tự động sử dụng 'python3':
+
+```bash
+        sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+        sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+```
+- Nếu đánh dòng lệnh:
+
+```bash
+        sudo update-alternatives --config python
+```
+- thì mình sẽ thấy bảng liệt kê của các lệnh trong bảng 'alternatives' (những phương án thay thế có thể sử dụng), ví dụ:
+
+```
+There are 2 choices for the alternative python (providing /usr/bin/python).
+(Có 2 lựa chọn đối với các phương án thay thế có thể sử dụng python)
+```
+
+*Selection*|*Path*|*Priority*|*Status*|*Comment*
+:---:|---|:---:|---|---|---
+*0|/usr/bin/python3.6|2|auto mode|(chế độ tự động)
+1|/usr/bin/python2.7|1|manual mode|(chế độ thủ công)
+2|/usr/bin/python3.6|2|manual mode|(chế độ thủ công)
+
+
+- Đánh lệnh:
+```bash
+        man update-alternatives
+```
+để xem bảng hướng dẫn sử dụng.
+
+- Cài đặt như hướng dẫn nhưng dùng 'pip3':
+```bash
+        sudo apt-get -y install python3-pip
+        cd $HOME/blender_manual/blender_docs
+        sudo pip3 install -r requirements.txt
+```
+
+- Biên tập bản tiếng Việt dùng lệnh:
 ```bash
         make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
 ```
+
 - Cài đặt git:
 ```bash
             cd $HOME/blender_manual/blender_docs
@@ -329,7 +394,9 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
     + [Youtube - Blender](https://www.youtube.com/user/BlenderFoundation)
     + [Từ Điển: Wiktionary tiếng Việt](https://vi.wiktionary.org/wiki/Trang_Ch%C3%ADnh)
     + [Từ Điển: Soha Tra Từ](http://tratu.soha.vn/)
+
 ------------------
+
 ## Biên tập và xử lý hậu kỳ các thay đổi (Compiling and post processing changes)
 
 - Các tập tin mới được tạo sẽ chứa một số từ cần điền cho tác giả và ngày sửa đổi v.v. Nếu bạn cảm thấy công việc thay thế chúng lặp đi lặp lại, tẻ nhạt, thì hãy sử dụng tập lệnh
