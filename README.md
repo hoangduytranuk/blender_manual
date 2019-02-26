@@ -728,7 +728,7 @@ Bản ibus-unikey ở kho lấy về có một giới hạn về số từ viế
         cd $HOME
         mkdir sources/
         cd sources
-        git clone https://github.com/vn-input/ibus-unik...
+        git clone https://github.com/vn-input/ibus-unikey.git
         cd ibus-unikey
         kwrite ukengine/keycons.h
 ```
