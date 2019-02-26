@@ -187,7 +187,7 @@ Nếu các bạn gặp khó khăn trong vấn đề về UTF-8 (tiếng Việt) 
 There are 2 choices for the alternative python (providing /usr/bin/python).
 (Có 2 lựa chọn đối với các phương án thay thế có thể sử dụng python)
 Selection   |Path               |Priority   |Status         |Comment
-(Lựa chọn)  |(Đường dẫn)        |(Uu tiên)  |(Trạng thái)   |(Chú giải)
+(Lựa chọn)  |(Đường dẫn)        |(Ưu tiên)  |(Trạng thái)   |(Chú giải)
 --------------------------------------------------------------------------
 *0          |/usr/bin/python3.6 |2          |auto mode      |(chế độ tự động)
 1           |/usr/bin/python2.7 |1          |manual mode    |(chế độ thủ công)
