@@ -550,20 +550,19 @@ không cần biết là chi nhánh đã hội nhập với kho trên mạng hay 
         make gettext
 ```
 
+và vào thư mục **build** để thấy thư mục **locale**. Trong thư mục này sẽ có những tập tin với đuôi **.pot**. Các dòng **msgid** trong tập tin này là một dòng liên tục, không bị xuống dòng. Dùng một thực thể của trình biên soạn văn bản và bật xem văn bản **.pot** tương ứng với tập **.po**, sao chép (Ctrl+C) các dòng **msgid** vào bộ nhớ, trước khi dán (Ctrl+V) vào trang của [Google Translate](https://translate.google.com/#view=home&op=translate&sl=en&tl=vi), phần bên trái dành cho tiếng Anh, và lấy phần phiên dịch ở bên phải để đưa vào dòng **msgstr**, rồi sửa lại các từ nó viết sai và cách đặt câu cú, tránh sao cho quá dập khuôn tiếng Anh để người Việt đọc và cảm thấy quen thuộc. Một số nguồn đối chiếu sau mình có thể sử dụng được trong khi tra cứu và làm việc:
 
 
-    và vào thư mục **build** để thấy thư mục **locale**. Trong thư mục này sẽ có những tập tin với đuôi **.pot**. Các dòng **msgid** trong tập tin này là một dòng liên tục, không bị xuống dòng. Dùng một thực thể của trình biên soạn văn bản và bật xem văn bản **.pot** tương ứng với tập **.po**, sao chép (Ctrl+C) các dòng **msgid** vào bộ nhớ, trước khi dán (Ctrl+V) vào trang của [Google Translate](https://translate.google.com/#view=home&op=translate&sl=en&tl=vi), phần bên trái dành cho tiếng Anh, và lấy phần phiên dịch ở bên phải để đưa vào dòng **msgstr**, rồi sửa lại các từ nó viết sai và cách đặt câu cú, tránh sao cho quá dập khuôn tiếng Anh để người Việt đọc và cảm thấy quen thuộc. Một số nguồn đối chiếu sau mình có thể sử dụng được trong khi tra cứu và làm việc:
-
-    + [Blender 3D: Noob to Pro](https://en.wikibooks.org/wiki/Blender_3D:_Noob_to_Pro)
-    + [Blender 2.80 Reference Manual](https://docs.blender.org/manual/en/dev/getting_started/index.html)
-    + [Blender Documentation](https://docs.blender.org/api/blender_python_api_master/info_quickstart.html)
-    + [Developer Documentation](https://wiki.blender.org/wiki/Main_Page)
-    + [Bản Phiên Dịch Giao Diện Người Dùng VI.PO](https://svn.blender.org/svnroot/bf-translations/trunk/po/vi.po)
-        - nhớ đổi 'Text Encoding' (Chế độ Giải/Mã Hóa Văn Bản) của trình duyệt mạng sang 'Unicode' hoặc 'UTF-8' để xem được tiếng Việt có dấu. Trình duyệt mạng [Firefox](https://ftp.mozilla.org/pub/firefox/releases/) -- vào thư mục của bản có số phiên bản cao mà lấy cho mình một bản -- cho phép mình đổi chế độ giải mã (Bấm chuột phải ở thanh tiêu đề và chọn bật `Menu` lên, rồi vào `View ‣ Text Encoding ‣ Unicode`)
-    + [Bảng Chú Giải Thuật Ngữ -- Glossary](https://docs.blender.org/manual/vi/dev/glossary/index.html)
-    + [Youtube - Blender](https://www.youtube.com/user/BlenderFoundation)
-    + [Từ Điển: Wiktionary tiếng Việt](https://vi.wiktionary.org/wiki/Trang_Ch%C3%ADnh)
-    + [Từ Điển: Soha Tra Từ](http://tratu.soha.vn/)
++ [Blender 3D: Noob to Pro](https://en.wikibooks.org/wiki/Blender_3D:_Noob_to_Pro)
++ [Blender 2.80 Reference Manual](https://docs.blender.org/manual/en/dev/getting_started/index.html)
++ [Blender Documentation](https://docs.blender.org/api/blender_python_api_master/info_quickstart.html)
++ [Developer Documentation](https://wiki.blender.org/wiki/Main_Page)
++ [Bản Phiên Dịch Giao Diện Người Dùng VI.PO](https://svn.blender.org/svnroot/bf-translations/trunk/po/vi.po)
+    - nhớ đổi 'Text Encoding' (Chế độ Giải/Mã Hóa Văn Bản) của trình duyệt mạng sang 'Unicode' hoặc 'UTF-8' để xem được tiếng Việt có dấu. Trình duyệt mạng [Firefox](https://ftp.mozilla.org/pub/firefox/releases/) -- vào thư mục của bản có số phiên bản cao mà lấy cho mình một bản -- cho phép mình đổi chế độ giải mã (Bấm chuột phải ở thanh tiêu đề và chọn bật `Menu` lên, rồi vào `View ‣ Text Encoding ‣ Unicode`)
++ [Bảng Chú Giải Thuật Ngữ -- Glossary](https://docs.blender.org/manual/vi/dev/glossary/index.html)
++ [Youtube - Blender](https://www.youtube.com/user/BlenderFoundation)
++ [Từ Điển: Wiktionary tiếng Việt](https://vi.wiktionary.org/wiki/Trang_Ch%C3%ADnh)
++ [Từ Điển: Soha Tra Từ](http://tratu.soha.vn/)
 
 ------------------
 
