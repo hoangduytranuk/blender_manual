@@ -183,22 +183,22 @@ Nếu các bạn gặp khó khăn trong vấn đề về UTF-8 (tiếng Việt) 
 ```
 - thì mình sẽ thấy bảng liệt kê của các lệnh trong bảng 'alternatives' (những phương án thay thế có thể sử dụng), ví dụ:
 
+```bash
+        There are 2 choices for the alternative python (providing /usr/bin/python).
+        (Có 2 lựa chọn đối với các phương án thay thế có thể sử dụng python)
+        ------------------------------------------------------------------------------
+        Selection   |Path               |Priority   |Status         |Comment
+        (Lựa chọn)  |(Đường dẫn)        |(Ưu tiên)  |(Trạng thái)   |(Chú giải)
+        ------------+-------------------+-----------+---------------+-----------------
+        *0          |/usr/bin/python3.6 |2          |auto mode      |(chế độ tự động)
+        1           |/usr/bin/python2.7 |1          |manual mode    |(chế độ thủ công)
+        2           |/usr/bin/python3.6 |2          |manual mode    |(chế độ thủ công)
+        ------------------------------------------------------------------------------
+        Press <enter> to keep the current choice[*], or type selection number:
+        (Bấm phím <enter> để duy trì lựa chọn hiện tại [*], hoặc điền số mình lựa chọn:)
 ```
-There are 2 choices for the alternative python (providing /usr/bin/python).
-(Có 2 lựa chọn đối với các phương án thay thế có thể sử dụng python)
-Selection   |Path               |Priority   |Status         |Comment
-(Lựa chọn)  |(Đường dẫn)        |(Ưu tiên)  |(Trạng thái)   |(Chú giải)
-------------|-------------------|-----------|---------------|-----------------
-*0          |/usr/bin/python3.6 |2          |auto mode      |(chế độ tự động)
-1           |/usr/bin/python2.7 |1          |manual mode    |(chế độ thủ công)
-2           |/usr/bin/python3.6 |2          |manual mode    |(chế độ thủ công)
-```
-    và dòng:
-```
-    Press <enter> to keep the current choice[*], or type selection number:
-    (Bấm phím <enter> để duy trì lựa chọn hiện tại [*], hoặc điền số mình lựa chọn:)
-```
-- Để đổi lại sử dụng python2.7 thì điền 1, rồi bấm <Enter>, để khi đánh 'python' thì nó sử dụng bản '2.7'. Để đổi lại sử dụng python3.6 thì điền 2, để khi đánh 'python' thì nó sử dụng bản '3.6'.
+
+- Để đổi lại sử dụng python2.7 thì điền 1, rồi bấm phím Enter, để khi đánh 'python' thì nó sử dụng bản '2.7'. Để đổi lại sử dụng python3.6 thì điền 2, để khi đánh 'python' thì nó sử dụng bản '3.6'.
 
 - Đánh lệnh:
 ```bash
