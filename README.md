@@ -199,12 +199,8 @@ và lệnh:
 ```
 There are 2 choices for the alternative python (providing /usr/bin/python).
 (Có 2 lựa chọn về phương án thay thế Python (chu cấp cho /usr/bin/python).)
+
 ```
-
-<table>
-
-    <tr>
-        <td>
 | Selection | Path | Priority | Status | Comment |
 | --- | --- | :---: | --- | --- |
 | *0 | /usr/bin/python3.6 | 2 | auto mode | (chế độ tự động) |
