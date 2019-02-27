@@ -166,12 +166,13 @@ Nếu các bạn gặp khó khăn trong vấn đề về UTF-8 (tiếng Việt) 
             which python
 ```
 
-    và lệnh:
+và lệnh:
 
 ```bash
             which python3
 ```
-      để tìm xem địa chỉ của 'python' nằm ở đâu. Thường là ở '/usr/bin/'.
+
+để tìm xem địa chỉ của 'python' nằm ở đâu. Thường là ở '/usr/bin/'.
 
 - Lần vào đó và liệt kê để xem tên cụ thể:
 
@@ -196,20 +197,15 @@ Nếu các bạn gặp khó khăn trong vấn đề về UTF-8 (tiếng Việt) 
 - thì mình sẽ thấy bảng liệt kê của các lệnh trong bảng 'alternatives' (những phương án thay thế có thể sử dụng), ví dụ:
 
 ```bash
-        There are 2 choices for the alternative python (providing /usr/bin/python).
-        (Có 2 lựa chọn đối với các phương án thay thế có thể sử dụng python)
 
-        ╒════════════╤════════════════════╤════════════╤══════════════╤═══════════════════╕
-        │ Selection  │ Path               │ Priority   │ Status       │ Comments          │
-        │ (Lựa chọn) │ (Đường dẫn)        │ (Ưu tiên)  │ (Trạng thái) │ (Chú giải)        │
-        ╞════════════╪════════════════════╪════════════╪══════════════╪═══════════════════╡
-        │ *0         │ /usr/bin/python3.6 │ 2          │ auto mode    │ (chế độ tự động)  │
-        ├────────────┼────────────────────┼────────────┼──────────────┼───────────────────┤
-        │ 1          │ /usr/bin/python2.7 │ 1          │ manual mode  │ (chế độ thủ công) │
-        ├────────────┼────────────────────┼────────────┼──────────────┼───────────────────┤
-        │ 2          │ /usr/bin/python3.6 │ 2          │ manual mode  │ (chế độ thủ công) │
-        ╘════════════╧════════════════════╧════════════╧══════════════╧═══════════════════╛
-
+        ------------------------------------------------------------------------------
+        Selection   |Path               |Priority   |Status         |Comment
+        (Lựa chọn)  |(Đường dẫn)        |(Ưu tiên)  |(Trạng thái)   |(Chú giải)
+        ------------+-------------------+-----------+---------------+-----------------
+        *0          |/usr/bin/python3.6 |2          |auto mode      |(chế độ tự động)
+        1           |/usr/bin/python2.7 |1          |manual mode    |(chế độ thủ công)
+        2           |/usr/bin/python3.6 |2          |manual mode    |(chế độ thủ công)
+        ------------------------------------------------------------------------------
         Press <enter> to keep the current choice[*], or type selection number:
         (Bấm phím <enter> để duy trì lựa chọn hiện tại [*], hoặc điền số mình lựa chọn:)
 ```
