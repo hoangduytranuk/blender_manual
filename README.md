@@ -196,8 +196,10 @@ và lệnh:
 ```
 - thì mình sẽ thấy bảng liệt kê của các lệnh trong bảng 'alternatives' (những phương án thay thế có thể sử dụng), ví dụ:
 
+```
 There are 2 choices for the alternative python (providing /usr/bin/python).
 (Có 2 lựa chọn về phương án thay thế Python (chu cấp cho /usr/bin/python).)
+```
 
 | Selection | Path | Priority | Status | Comment |
 | --- | --- | --- | --- | --- |
@@ -205,8 +207,10 @@ There are 2 choices for the alternative python (providing /usr/bin/python).
 | 1 | /usr/bin/python2.7 | 1 | manual mode | (chế độ thủ công) |
 | 2 | /usr/bin/python3.6 | 2 | manual mode | (chế độ thủ công) |
 
+```
 Press <enter> to keep the current choice[*], or type selection number:
 (Bấm phím <enter> để duy trì lựa chọn hiện tại [*], hoặc điền số mình lựa chọn:)
+```
 
 
 ```bash
