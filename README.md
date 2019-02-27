@@ -134,9 +134,11 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
 - Làm theo hướng dẫn ở trang này: (chọn hệ điều hành tương thích với cái mình đang sử dụng). Ví dụ dưới đây là trong hệ điều hành Linux Ubuntu/Mint :
 
-        [Cài Đặt -- Install](https://docs.blender.org/manual/vi/dev/about/contribute/install/index.html)
+[Cài Đặt -- Install](https://docs.blender.org/manual/vi/dev/about/contribute/install/index.html)
 
-    như lấy các phần mềm cần có xuống máy:
+
+như lấy các phần mềm cần có xuống máy:
+
 ```bash
         sudo apt-get install python python-pip git subversion
 ```
@@ -177,7 +179,8 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 
 
 
-    `blender_manual/blender_docs` là thư mục gốc. Nhớ thay thế `\$HOME` sang `\$WIN_HOME` nếu dùng **WSL**.
+`blender_manual/blender_docs` là thư mục gốc. Nhớ thay thế `\$HOME` sang `\$WIN_HOME` nếu dùng **WSL**.
+
 
 ## Cài đặt các phần mềm cần thiết cho việc biên tập (Install softwares necessary for compilation)
 
