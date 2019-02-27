@@ -442,9 +442,7 @@ cho mình xem danh sách các thay đổi và thấy số mã của các lần c
         git checkout <số mã phiên bản commit>
 ```
 
-
-
-    bấm bánh xe chuột xuống để lấy con số mà mình đã chọn ở trên. Nếu đã chọn và 'Copy' vào bộ nhớ dùng bấm chuột phải thì có thể sử dụng bấm chuột phải và chọn 'Paste' để dán số mã từ bộ nhớ ra.
+bấm bánh xe chuột xuống để lấy con số mà mình đã chọn ở trên. Nếu đã chọn và 'Copy' vào bộ nhớ dùng bấm chuột phải thì có thể sử dụng bấm chuột phải và chọn 'Paste' để dán số mã từ bộ nhớ ra.
 
 - Sau nhiều thay đổi thì chuyển vào kho bằng lệnh:
 
@@ -611,23 +609,27 @@ Sao lấy một bản vào thư mục **bin** địa phương của bạn và th
 
 ### Nhập kho các thay đổi (Committing changes to repository)
 
+
 - Khi thay đổi xong và muốn nhập kho thì làm như sau:
-    + xem các thay đổi:
+
++ xem các thay đổi:
 
 ```bash
                 git status
 ```
 
 
-    + nhập kho vào ổ địa phương:
++ nhập kho vào ổ địa phương:
 
-        . Báo cho git biết là không ký lần nhập kho bằng mật mã riêng của cá nhân. Chỉ làm một lần.
+Báo cho git biết là không ký lần nhập kho bằng mật mã riêng của cá nhân. Chỉ làm một lần.
+
 ```bash
                 git config commit.gpgsign false
 ```
 
 
-        . Báo cho git là lưu trữ tên người dùng và mật mã, dùng cho những lần sau. Chỉ làm một lần.
+Báo cho git là lưu trữ tên người dùng và mật mã, dùng cho những lần sau. Chỉ làm một lần.
+
 ```bash
                 git config credential.helper store
 ```
@@ -639,7 +641,8 @@ Sao lấy một bản vào thư mục **bin** địa phương của bạn và th
 ```
 
 
-    + Chuyển giao các thay đổi vào kho trên mạng
++ Chuyển giao các thay đổi vào kho trên mạng
+
 ```bash
             git push
 ```
@@ -647,13 +650,14 @@ Sao lấy một bản vào thư mục **bin** địa phương của bạn và th
 
 ### Cập nhật các thay đổi ở chi nhánh chính **master**
 
-    + Lấy các thay đổi ở tất cả các chi nhánh trên mạng về máy mình, sử dụng:
++ Lấy các thay đổi ở tất cả các chi nhánh trên mạng về máy mình, sử dụng:
+
 ```bash
             git pull --all
 ```
 
 
-    + Sau mỗi lần `git commit` thì thi hành `git pull` để hội nhập các thay đổi ở máy chủ trên mạng với máy mình.
++ Sau mỗi lần `git commit` thì thi hành `git pull` để hội nhập các thay đổi ở máy chủ trên mạng với máy mình.
 
 ------------------
 
@@ -700,6 +704,7 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 
 
 + Lưu tập lệnh `makevidoc.py` này vào thư mục **\$HOME/bin** của máy. Nếu thư mục này chưa có thì làm theo các lệnh sau: (Có thể thay **\$HOME** sang **\$WIN_HOME** để có thể biên soạn các tập lệnh bằng các trình biên soạn văn bản của riêng mình một cách dễ dàng.)
+
 ```bash
         cd $HOME
         mkdir bin
@@ -707,39 +712,46 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 
 
 + Nhớ biên soạn bản `·bashrc` và đặt dòng sau để thư mục **\$HOME/bin** nằm trong danh sách các đường dẫn mà hệ điều hành sẽ lùng tìm các bản tập lệnh khi chạy dòng lệnh:
+
 ```bash
         export MYBIN=$HOME/bin
         export PATH=$MYBIN:$PATH
 ```
 
 
-  + Đặt tập lệnh này là **Khả Thi Hành** (executable) bằng lệnh:
++ Đặt tập lệnh này là **Khả Thi Hành** (executable) bằng lệnh:
+
 ```bash
         chmod u+x $HOME/bin/makevidoc.py
 ```
 
 
-  + Sau đó, chúng ta có thể chạy nó như các ví dụ sau:
++ Sau đó, chúng ta có thể chạy nó như các ví dụ sau:
 
-    . Xem hướng dẫn sử dụng
+
+. Xem hướng dẫn sử dụng
+
 ```bash
                 makevidoc.py --help
 ```
 
 
-    . Thi hành **make** nhưng không xóa bản cũ đi, viết đè lên. Phương pháp này sẽ nhanh hơn, song nhiều khi sẽ không cho kết quả chính xác:
+. Thi hành **make** nhưng không xóa bản cũ đi, viết đè lên. Phương pháp này sẽ nhanh hơn, song nhiều khi sẽ không cho kết quả chính xác:
+
 ```bash
                 makevidoc.py
 ```
 
 
-    . Thi hành **make** và xóa bản cũ đi:
+. Thi hành **make** và xóa bản cũ đi:
+
 ```bash
                 makevidoc.py -c
 ```
 
 
-    . Thi hành **make** và xóa bản cũ đi, định thư mục nơi nó cần làm việc là thư mục hiện tại ($PWD = Print Working Directory: In ra thư mục làm việc):
+. Thi hành **make** và xóa bản cũ đi, định thư mục nơi nó cần làm việc là thư mục hiện tại ($PWD = Print Working Directory: In ra thư mục làm việc):
+
 ```bash
                 makevidoc.py -c $PWD
 ```
@@ -748,6 +760,7 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 2. Tập lệnh **change_placeholders.sh**
 
 + Tập lệnh này nằm trong thư mục:
+
 ```bash
         blender_docs/toos_maintenance
 ```
@@ -756,7 +769,9 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
 Sao lấy một bản vào thư mục **\$HOME/bin** của mình và đặt tập lệnh thành **Khả Thi Hành** (executable) như nói ở trên.
 
 + Tập lệnh này cho phép mình điền tên và e-mail của mình vào phần *COMMENT* của các văn bản mà mình sửa, đồng thời điền ngày giờ mình đã làm nữa. Nó dùng lệnh `svn` và `git` để tìm các văn bản có đuôi là `.po` đã thay đổi. Nếu phải tự lùng tìm ở một thư mục nào đó không phải là thư mục có thư mục `.svn` hoặc `.git` thì nó sẽ tìm các văn bản có đuôi là `.po` mà thôi và cách này là cách làm việc lâu nhất.
-        - Các từ mình cần điền chi tiết của cá nhân là:
+
+Các từ mình cần điền chi tiết của cá nhân là:
+
 ```bash
           YOUR_NAME="Họ tên đầy đủ"
           YOUR_EMAIL="địa-chỉ-email@máy_chủ.com"
@@ -777,6 +792,7 @@ Sao lấy một bản vào thư mục **\$HOME/bin** của mình và đặt tậ
 - Dùng các phim mũi tên *lên*, *xuống* để gọi lại các dòng lệnh đã đánh theo tuần tự. Mũi tên trái/phải sẽ quay trở lại/tiến về trước các ký tự dòng lệnh, `Home` để về đầu dòng, `End` để về cuối dòng, `Backspace`/`Delete` để xóa về trước hoặc sau. `Insert` để đổi chế độ viết đè lên ký tự cũ, hoặc chèn thêm và vị trí con trỏ. Dùng các phím cơ bản này mình có thể gọi lại các dòng lệnh cũ, biên soạn chúng để thi hành lệnh mới với các tham số khác nhau.
 
 - Lệnh **history** (Lịch Sử) liệt kê lại các lện đã từng đánh và được ghi lại. Số dòng được định trong tập **.bashrc**
+
 ```bash
             # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
             HISTSIZE=1000
@@ -785,6 +801,7 @@ Sao lấy một bản vào thư mục **\$HOME/bin** của mình và đặt tậ
 
 
 Khi số dòng vượt quá hạn định này thì tất cả những dòng lịch sử trước sẽ bị xóa đi và những dòng mới sẽ được bắt đầu lại từ đầu. Nếu có những dòng lệnh đánh mà mình muốn lưu lại vào một tập tin khác thì mình có thể thi hành các lệnh sau - đặt tên cho tập lệnh là `savehistory.sh`:
+
 ```bash
             #!/bin/bash
             histfile=$HOME/Documents/my_history.txt
@@ -797,12 +814,14 @@ Khi số dòng vượt quá hạn định này thì tất cả những dòng l�
 
 Nhớ lệnh **sort** có hai tham số:
 ```bash
+
 -n : numerical, tức so sánh trong khi sắp xếp dùng giá trị số của dòng, hay lấy thứ tự những con số dẫn đầu, tức số dòng.
 -u : unique, xóa đi những dòng hoàn toàn giống nhau, chỉ giữ lại một dòng.
 ```
 
 
-        xem thêm hướng dẫn về lệnh **sort** dùng:
+xem thêm hướng dẫn về lệnh **sort** dùng:
+
 ```bash
             man sort
 ```
@@ -811,6 +830,7 @@ Nhớ lệnh **sort** có hai tham số:
 vì lệnh này sắp xếp cách dòng lệnh theo con số dẫn đầu (số của dòng) (tham số **-n** của lệnh **sort**) và khi HISTSIZE > 1000, nó quay trở lại số 1 thì trật tự sẽ không còn nằm ở dưới, theo tuần tự thời gian mà mình nghĩ là nó sẽ nằm nữa.
 
 - Khi lệnh **history** (Lịch Sử) liệt kê các dòng lệnh, nó còn liệt kê dòng số ở đầu. Mình có thể gọi lại dòng lệnh bằng cách điền con số dòng với dấu chấm than đứng trước, như sau:
+
 ```bash
             !<số dòng>
             !123
@@ -821,6 +841,7 @@ và bấm 'Enter'. Lệnh ở dòng số này sẽ được thực hiện (ví d
 
 4. Tập lệnh **.bash_aliases** (Biệt danh)
 - Tập lệnh này sẽ được thi hành bởi tập tin `.bashrc`, nên khi nạp lại tập tin `.bashrc` bằng lệnh `. .~/.bashrc` thì các lệnh biệt danh (viết tắt) cũng sẽ được nạp vào bộ nhớ. Điều tra các lệnh viết tắt bằng cách đánh:
+
 ```bash
             alias
 ```
@@ -829,6 +850,7 @@ và bấm 'Enter'. Lệnh ở dòng số này sẽ được thực hiện (ví d
 và bấm `Enter` để thấy các lệnh được liệt kê.
 
 - Biên soạn tập tin này để cho các tên viết tắt của các lệnh, chẳng hạn:
+
 ```bash
             alias graph="git log --all --decorate --oneline --graph"
             alias ll='ls -alF'
@@ -836,6 +858,7 @@ và bấm `Enter` để thấy các lệnh được liệt kê.
 
 
 để khi ở dòng lệnh chỉ cần đánh:
+
 ```bash
             graph
             ll
@@ -872,6 +895,7 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
     - Thi hành các dòng lệnh sau:
 
 1. Liệt kê các ổ cứng, xem cái mình sẽ xóa đi và cài hệ điều hành vào là cái nào, bằng lệnh:
+
 ```bash
                 fdisk -l
 ```
@@ -880,12 +904,14 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 Để ý tên thường là `/dev/sda` hoặc `/dev/sdb` v.v. Ghi nhớ cỡ của ổ cứng để phát hiện cho đúng. Ổ cứng thường có cỡ lớn hơn đĩa và thẻ USB rất nhiều. Nhớ đơn vị cỡ TB (Terabyte) = 1024 GB (Gigabyte), GB = 1024 MB (Megabyte), MB = 1024 KB (Kilobyte), KB = 1024 B (Byte). Giả dụ, ổ đĩa của chúng ta được hệ điều hành gán vào `/dev/sdb', thi hành lệnh:
 
 2. Xóa các rãnh của ổ cứng cũ. Ví dụ này chỉ xóa 1GB đầu tiên:
+
 ```bash
                 dd if=/dev/zero of=/dev/sdb bs=1G count=1
 ```
 
 
 để viết 1GB dữ liệu trống ra ổ cứng và xóa trắng 1GB mà thôi. Nếu muốn viết trắng toàn bộ ổ cứng thì viết:
+
 ```bash
                 dd if=/dev/zero of=/dev/sdb bs=1G status=progress
 ```
@@ -894,6 +920,7 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 để xóa trắng tất cả, đưa giá trị của các rãnh về giá trị 0 (`/dev/zero`) và phần mềm sẽ thông báo cho mình biết là nó làm việc đến đâu rồi, cùng tốc độ viết (`status=progress`).
 
 3. Sau khi viết xong, thi hành:
+
 ```bash
                 partprobe /dev/sdb
 ```
