@@ -265,6 +265,7 @@ Press <enter> to keep the current choice[*], or type selection number:
 - Để đổi lại sử dụng python2.7 thì điền 1, rồi bấm phím Enter, để khi đánh 'python' thì nó sử dụng bản '2.7'. Để đổi lại sử dụng python3.6 thì điền 2, để khi đánh 'python' thì nó sử dụng bản '3.6'.
 
 - Đánh lệnh:
+
 ```bash
         man update-alternatives
 ```
@@ -282,6 +283,7 @@ Press <enter> to keep the current choice[*], or type selection number:
 
 
 - Biên tập bản tiếng Việt dùng lệnh:
+
 ```bash
         make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
 ```
@@ -289,24 +291,28 @@ Press <enter> to keep the current choice[*], or type selection number:
 
 
 - Cài đặt git:
+
 ```bash
             cd $HOME/blender_manual/blender_docs
 ```
 
 
-    + Đặt tên người dùng:
++ Đặt tên người dùng:
+
 ```bash
             git config --global user.name "Tên đầy đủ"
 ```
 
 
-    + Đăt địa chỉ e-mail:
++ Đăt địa chỉ e-mail:
+
 ```bash
             git config --global user.email "địa-chỉ@máy-chủ.com"
 ```
 
 
-    + Những thông tin này thường được ghi ở tập tin `.gitconfig` ở thư mục **\$HOME**
++ Những thông tin này thường được ghi ở tập tin `.gitconfig` ở thư mục **\$HOME**
+
 ```bash
             [user]
                 name = Hoang Duy Tran
@@ -323,7 +329,7 @@ Press <enter> to keep the current choice[*], or type selection number:
 ```
 
 
-        Xem ví dụ ở đây [brettz9/.gitconfig](https://gist.github.com/brettz9/8d8b6315f7d8f90edec0)
+Xem ví dụ ở đây [brettz9/.gitconfig](https://gist.github.com/brettz9/8d8b6315f7d8f90edec0)
 
 ------------------
 
@@ -455,9 +461,7 @@ hoặc
             git add *
             git commit -m "miêu tả thay đổi"
 ```
-
-
-
+<!--  -->
 hoặc
 
 ```bash
