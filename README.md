@@ -126,11 +126,14 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
         cd $HOME
         git clone https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
 ```
+
     Nếu cài Hệ Thống Phụ Linux (**WSL**) thì dùng:
+
 ```bash
         cd $WIN_HOME
         git clone https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
 ```
+
 - Các thư mục sẽ tạo trong ổ cứng là
 
         blender_manual/
@@ -139,14 +142,17 @@ Một khi `make html` đã được thực hiện, bạn có thể sử dụng t
 - Trong thư mục `blender_manual` mình sẽ tìm thấy thư mục `.git`. Thư mục này là thư mục `git` sử dụng để lưu các thay đổi của mình, cùng có các thư mục khác như `info/exlude` mà mình sẽ nói đến sau này.
 
 - Tất cả các bài có nội dung tiếng Việt cần sửa, dịch nằm ở trong thư mục:
+
 ```bash
         $HOME/blender_manual/blender_docs/locale/vi/LC_MESSAGES
 ```
+
     `blender_manual/blender_docs` là thư mục gốc. Nhớ thay thế `\$HOME` sang `\$WIN_HOME` nếu dùng **WSL**.
 
 ## Cài đặt các phần mềm cần thiết cho việc biên tập (Install softwares necessary for compilation)
 
 Lấy các phần mềm cần có để biên dịch xuống máy:
+
 ```bash
         sudo install build-essential git subversion
         cd $HOME/blender_manual/blender_docs
@@ -155,19 +161,25 @@ Lấy các phần mềm cần có để biên dịch xuống máy:
 Nếu các bạn gặp khó khăn trong vấn đề về UTF-8 (tiếng Việt) trong khi biên soạn thì đổi sang sử dụng Python3:
 
 - Dùng lệnh:
+
 ```bash
             which python
 ```
-      và lệnh:
+
+    và lệnh:
+
 ```bash
             which python3
 ```
       để tìm xem địa chỉ của 'python' nằm ở đâu. Thường là ở '/usr/bin/'.
+
 - Lần vào đó và liệt kê để xem tên cụ thể:
+
 ```bash
             cd /usr/bin
             ls -alF python
 ```
+
 - Thường thì mình sẽ thấy là 'python' là kết nối mềm (softlink) của 'python2.7', và 'python3' là kết nối mềm của 'python3.6'
 
 - Đổi lệnh từ 'python' sang dùng 'python3', để khi đánh 'python' thì hệ điều hành tự động sử dụng 'python3':
@@ -186,14 +198,18 @@ Nếu các bạn gặp khó khăn trong vấn đề về UTF-8 (tiếng Việt) 
 ```bash
         There are 2 choices for the alternative python (providing /usr/bin/python).
         (Có 2 lựa chọn đối với các phương án thay thế có thể sử dụng python)
-        ------------------------------------------------------------------------------
-        Selection   |Path               |Priority   |Status         |Comment
-        (Lựa chọn)  |(Đường dẫn)        |(Ưu tiên)  |(Trạng thái)   |(Chú giải)
-        ------------+-------------------+-----------+---------------+-----------------
-        *0          |/usr/bin/python3.6 |2          |auto mode      |(chế độ tự động)
-        1           |/usr/bin/python2.7 |1          |manual mode    |(chế độ thủ công)
-        2           |/usr/bin/python3.6 |2          |manual mode    |(chế độ thủ công)
-        ------------------------------------------------------------------------------
+
+        ╒════════════╤════════════════════╤════════════╤══════════════╤═══════════════════╕
+        │ Selection  │ Path               │ Priority   │ Status       │ Comments          │
+        │ (Lựa chọn) │ (Đường dẫn)        │ (Ưu tiên)  │ (Trạng thái) │ (Chú giải)        │
+        ╞════════════╪════════════════════╪════════════╪══════════════╪═══════════════════╡
+        │ *0         │ /usr/bin/python3.6 │ 2          │ auto mode    │ (chế độ tự động)  │
+        ├────────────┼────────────────────┼────────────┼──────────────┼───────────────────┤
+        │ 1          │ /usr/bin/python2.7 │ 1          │ manual mode  │ (chế độ thủ công) │
+        ├────────────┼────────────────────┼────────────┼──────────────┼───────────────────┤
+        │ 2          │ /usr/bin/python3.6 │ 2          │ manual mode  │ (chế độ thủ công) │
+        ╘════════════╧════════════════════╧════════════╧══════════════╧═══════════════════╛
+
         Press <enter> to keep the current choice[*], or type selection number:
         (Bấm phím <enter> để duy trì lựa chọn hiện tại [*], hoặc điền số mình lựa chọn:)
 ```
