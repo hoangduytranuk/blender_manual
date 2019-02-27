@@ -196,6 +196,14 @@ và lệnh:
 ```
 - thì mình sẽ thấy bảng liệt kê của các lệnh trong bảng 'alternatives' (những phương án thay thế có thể sử dụng), ví dụ:
 
+
+| Selection | Path | Priority | Status | Comment |
+| --- | --- | --- | --- | --- |
+| *0 | /usr/bin/python3.6 | 2 | auto mode | (chế độ tự động) |
+| 1 | /usr/bin/python2.7 | 1 | manual mode | (chế độ thủ công) |
+| 2 | /usr/bin/python3.6 | 2 | manual mode | (chế độ thủ công) |
+
+
 ```bash
 
         ------------------------------------------------------------------------------
