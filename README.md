@@ -153,8 +153,6 @@ như lấy các phần mềm cần có xuống máy:
         git clone https://<tên người dùng>@github.com/hoangduytranuk/blender_manual.git
 ```
 
-
-
     Nếu cài Hệ Thống Phụ Linux (**WSL**) thì dùng:
 
 ```bash
@@ -1199,9 +1197,11 @@ Nếu máy có nhiều microphone thì có thể bấm vào nút ở đó và ch
 
 Bật một 'Tab' mới (bấm dấu '+' ở trên cùng, hoặc bấm 'Ctrl+T'), và bấm vào nút hình cái microphone ở bên phải ở dòng đề 'Search Google or type a URL' (Tìm kiếm Google hoặc đánh máy chữ một dòng địa chỉ URL). Hình biểu tượng microphone màu đỏ hiện ra và bên trái dòng chữ chuyển từ 'Speak now..' (Nói đi) sang 'Listening' (đang lắng nghe). Nói một vài chữ tiếng Anh như 'Hello', hoặc 'Thank you', để nó tìm cho mình. Mình sẽ thấy các chữ ấy được sử dụng để tìm các trang và phim ảnh liên quan đến các chữ mình nói.
 
-Lần đến trang [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document) và bấm vào nút dấu cộng '+' để lấy một bản tài liệu mới. Bấm vào nút 'Tools' (Các Công cụ) ở trình đơn và chọn 'Voice typing' (Đánh máy chữ bằng giọng nói). Hình biểu tượng cái microphone sẽ hiện ra ở bên trái lề.
+Lần đến trang [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document) và bấm vào nút dấu cộng '+' để lấy một bản tài liệu mới. Bấm vào
 
-Bấm vào nút đề 'English' ở đó và chọn đổi sang 'Tiếng Việt' để đổi ngôn ngữ nó lắng nghe và phiên dịch.
+    File ‣ Language ‣ Tiếng Việt
+
+Để nó luôn luôn sử dụng tiếng Việt trong khi phiên dịch. Bấm vào nút 'Tools' (Các Công cụ) ở trình đơn và chọn 'Voice typing' (Đánh máy chữ bằng giọng nói). Hình biểu tượng cái microphone sẽ hiện ra ở bên trái lề. Nếu thấy nút ở trên hình cái microphone vẫn còn đề là 'English' thì bấm vào đó và chọn đổi sang 'Tiếng Việt' để đổi ngôn ngữ nó lắng nghe và phiên dịch. Phần mềm sẽ tự lưu các sắp đặt và nội dung của bản tài liệu mình đang sử dụng, lần sau, khi sử dụng lại thì nó sẽ nhớ là mình sử dụng tiếng Việt. Nhớ lưu lại dòng liên kết (Ctrl+D) và ghi nó vào một thư mục nào đó trong trình đơn Những Ưa Thích (*Favorites*) của mình, để lần sau, mình sử dụng lại thì chỉ cần bấm vào dòng liên kết là đến lại được.
 
 Dùng 'Kate' hoặc 'Kwrite' bật một bản dịch mình muốn làm. Xem dòng **msgid** và dịch nhẩm trong đầu, rồi bấm vào nút hình cái microphone (hiện lên màu đỏ) ở trang của [Trình biên soạn văn bản của Google trên mạng](https://docs.google.com/document) và nói dòng đã dịch trong đầu ấy. Nó sẽ đánh ra các chữ mà nó nghĩ là đúng. Sau khi đã nói xong thì bấm vào hình biểu tượng cái microphone và tắt nó đi (màu đen).
 
