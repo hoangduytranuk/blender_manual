@@ -7,6 +7,10 @@ Có hai bản hiện được biên tập:
 - Tất cả nội dung nằm trong [một tập tin index.html](blender_docs/build/blender_vietnamese_single.zip)
 - Nội dung được phân ra [nhiều bản html, mỗi tập tin một đề mục riêng](blender_docs/build/blender_vietnamese_html.zip)
 
+## Lấy bản phiên dịch giao diện *blender.mo* cho:
+- Phiên bản [2.79](gui/2.79/locale/vi/LC_MESSAGES/blender.mo)
+- Phiên bản [2.80](gui/2.80/locale/vi/LC_MESSAGES/blender.mo)
+Lưu ý: Xin xem hướng dẫn ở địa chỉ cũ [này](https://github.com/hoangduytran/blender-internationalisation/blob/master/README.md) để xem cách cài đặt bản *blender.mo* vào thư mục của phần mềm Blender.
 
 ## Chuẩn bị (Preparations)
 
