@@ -73,8 +73,8 @@ Object
 Camera
    Position coordinate in camera space.
 Window
-   Location of shading point on the screen, ranging from 0.0 to 1.
-   0 from the left to right side and bottom to top of the render.
+   Location of shading point on the screen, ranging from 0.0 to 1.0
+   from the left to right side and bottom to top of the render.
    This is well suited for blending two objects.
 Reflection
    Uses the direction of the reflection vector as coordinates.

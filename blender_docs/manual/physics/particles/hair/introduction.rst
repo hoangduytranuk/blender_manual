@@ -47,9 +47,9 @@ This is covered in the :ref:`Hair Dynamics <hair-dynamics>` page.
 Rendering
 =========
 
-Blender can render hairs in several different ways. Materials have a Strand section,
-which is covered in the materials section
-in the :doc:`Strands Page </render/blender_render/materials/properties/strands>`.
+With Cycles you can render hair with specialized hair BSDFs
+:doc:`/render/cycles/nodes/types/shaders/hair` or
+:doc:`/render/cycles/nodes/types/shaders/hair_principled`.
 
 Hair can also be used as a basis for
 the :doc:`Particle Instance Modifier </modeling/modifiers/simulate/particle_instance>`,

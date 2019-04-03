@@ -18,13 +18,13 @@ Ambient occlusion can be rendered as a separate pass in the Render Layers panel.
    :Panel:     :menuselection:`Render --> Ambient Occlusion`
 
 Distance
-   Distance of object that contribute to the ambient occlusion effect.
+   Distance of object that contributes to the ambient occlusion effect.
 
 Factor
    Blend factor for the ambient occlusion effect.
 
 Trace Precision
-   Increase precision of the effect but introduce more noise and lower the maximum trace distance.
+   Increases precision of the effect but introduces more noise and lowers the maximum trace distance.
    Increased precision also increases performance cost.
    Lower precision will also miss occluders and lead to undershadowing.
 

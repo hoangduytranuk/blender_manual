@@ -81,7 +81,7 @@ Hue
 Mix
    Combines the two images, averaging the two.
 Lighten
-   Like bleach makes your whites whiter. Use with a mask to lighten up a little.
+   Like bleach makes your whites whiter. Used with a mask to lighten up a little.
 Difference
    Kinda cute in that it takes out a color. The color needed to turn Yellow into White is Blue.
    Use this to compare two very similar images to see what had been done to one to make it the other;

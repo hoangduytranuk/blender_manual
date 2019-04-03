@@ -25,7 +25,7 @@ Shape
    A shape parameter that controls the transition in thickness between the root and tip.
    Negative values make the primitive rounded more towards the top,
    the value of zero makes the primitive linear,
-   and positive values makes the primitive rounded more towards the bottom.
+   and positive values make the primitive rounded more towards the bottom.
 
 
 Thickness

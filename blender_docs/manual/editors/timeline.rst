@@ -97,6 +97,118 @@ See the :doc:`Markers page </animation/markers>` for more information.
 Header
 ======
 
+Popovers
+--------
+
+.. _timeline-playback:
+
+Playback Popover
+^^^^^^^^^^^^^^^^
+
+The *Playback Popover* contains options controlling animation playback.
+
+Synchronize Playback
+   .. figure:: /images/editors_timeline_red-fps.png
+      :figwidth: 109px
+      :align: right
+
+      3D View red FPS.
+
+      60:54.75
+
+   When you play an animation, the FPS is displayed at the top left of the 3D View.
+   If the scene is detailed and playback is slower than the set
+   *Frame Rate* (see :ref:`render-tab-dimensions`),
+   these options are used to synchronize the playback.
+
+   No Sync
+      Do not sync, play every frame.
+   Frame Dropping
+      Drop frames if playback is too slow.
+   AV-sync
+      (Audio/Video Synchronization). Sync to audio clock, dropping frames if playback is slow.
+Audio Scrubbing
+   If your animation has sound, this option plays bits of the sound wave
+   while you move the time cursor with :kbd:`LMB` or keyboard arrows (like a moving playhead).
+Mute Audio
+   Mute the sound from Sequence Editors.
+Subframes
+   Display and allow changing the current scene sub-frame.
+Limit Playhead to Frame Range
+   Don't allow selecting frames outside of the playback range using the mouse.
+Follow Playhead
+   Animation editors can be setup to always follow the time indicator as animation is being played back.
+   Following will be done when animating and changing frame.
+   When the cursor reaches the end of the screen, the next range of frames of the same width will be displayed.
+Active Editor Only
+   While playing, updates the Timeline, if Animation Editors and All 3D View Editors disabled.
+All 3D View Editors
+   While playing, updates the 3D View and the Timeline.
+Animation Editors
+   While playing, updates the Timeline, Dope Sheet, Graph Editor, Video Sequence Editor.
+Property Editors
+   When the animation is playing, this will update the property values in the UI.
+Image Editors
+   The UV/Image editor in Mask mode.
+Sequencer Editors
+   While playing, updates the Video Sequence Editor.
+Node Editors
+   While playing, updates the Node properties for the Node Editor.
+Clip Editors
+   While playing, updates the Movie Clip Editor.
+
+.. _timeline-keying:
+
+Keying Popover
+^^^^^^^^^^^^^^
+
+The *Keying Popover* contains options that affect keyframe insertion.
+
+Active Keying Set
+   .. figure:: /images/editors_timeline_keying-sets.png
+      :align: right
+
+      Timeline Keying Sets.
+
+   *Keying Sets* are a set of keyframe channels in one.
+   They are made so the user can record multiple properties at the same time.
+   With a keying set selected, when you insert a keyframe,
+   Blender will add keyframes for the properties in the active *Keying Set*.
+   There are some built-in keying sets, *LocRotScale*, and also custom keying sets.
+   Custom keying sets can be defined in the panels
+   :menuselection:`Properties --> Scene --> Keying Sets + Active Keying Set`.
+
+   Insert Keyframes (plus icon)
+      Insert keyframes on the current frame for the properties in the active *Keying Set*.
+   Delete Keyframes (minus icon)
+      Delete keyframes on the current frame for the properties in the active *Keying Set*.
+
+New Keyframe Type
+   :ref:`keyframe-type` on insertion.
+
+Auto-Keyframing Mode
+   This controls how the Auto Keyframe mode works.
+   Only one mode can be used at a time.
+
+   Add & Replace
+      Add or Replace existing keyframes.
+   Replace
+      Only Replace existing keyframes.
+
+Auto Keying Set (two keys icon)
+   When enabled *Auto Keyframe* will insert new keyframes for the properties in the active *Keying Set*.
+
+Layered Recording
+   Adds a new NLA Track and strip for every loop/pass made over the animation to allow non-destructive tweaking.
+
+Cycle-Aware Keying
+   When inserting keyframes into :ref:`trivially cyclic curves <bpy.types.FModifierCycles>`, special handling
+   is applied to preserve the cycle integrity (most useful while tweaking an established cycle):
+
+   * If key insertion is attempted outside of the main time range of the cycle, it is remapped back inside the range.
+   * When overwriting one of the end keys, the other one is updated appropriately.
+
+
 Menus
 -----
 
@@ -155,56 +267,6 @@ within an animation. Like with most animation editors, markers are shown at the 
 For descriptions of the different marker tools see :ref:`Editing Markers <animation-markers-editing>`.
 
 
-Frame Menu
-^^^^^^^^^^
-
-Auto-Keyframing Mode
-   This controls how the Auto Keyframe mode works.
-   Only one mode can be used at a time.
-
-   Add & Replace
-      Add or Replace existing keyframes.
-   Replace
-      Only Replace existing keyframes.
-
-
-.. _timeline-playback:
-
-Playback Menu
-^^^^^^^^^^^^^
-
-Top-Left 3D Editor
-   While playing, updates the Timeline, if Animation Editors and All 3D View Editors disabled.
-All 3D View Editors
-   While playing, updates the 3D View and the Timeline.
-Animation Editors
-   While playing, updates the Timeline, Dope Sheet, Graph Editor, Video Sequence Editor.
-Property Editors
-   When the animation is playing, this will update the property values in the UI.
-Image Editors
-   The UV/Image editor in Mask mode.
-Sequencer Editors
-   While playing, updates the Video Sequence Editor.
-Node Editors
-   While playing, updates the Node properties for the Node Editor.
-Clip Editors
-   While playing, updates the Movie Clip Editor.
-Follow
-   Animation editors can be setup to always follow the time indicator as animation is being played back.
-   Following will be done when animating and changing frame.
-   When the cursor reaches the end of the screen, the next range of frames of the same width will be displayed.
-Frame Dropping
-   Play back dropping frames if frame display is too slow.
-AV-sync
-   Play back and sync with audio clock, dropping frames if frame display is too slow.
-   See `Synchronize Playback`_ for more info.
-Audio Muted
-   Mute the sound from Sequence Editors.
-Audio Scrubbing
-   If your animation has sound, this option plays bits of the sound wave
-   while you move the time cursor with :kbd:`LMB` or keyboard arrows (like a moving playhead).
-
-
 .. _animation-editors-timeline-headercontrols:
 
 Header Controls
@@ -227,8 +289,6 @@ Use Preview Range (clock icon)
    This is an alternative range used to preview animations.
    This works for the UI playback, this will not work for rendering an animation.
    See :ref:`graph-preview-range`.
-Lock Time Cursor to Playback Range (padlock icon)
-   This limits the *Time Cursor* to the *Playback Range*.
 
 
 Frame Control
@@ -271,32 +331,6 @@ Pause (|pause|) :kbd:`Alt-A`
    This stops the animation.
 
 
-Synchronize Playback
-^^^^^^^^^^^^^^^^^^^^
-
-.. figure:: /images/editors_timeline_red-fps.png
-   :figwidth: 109px
-   :align: right
-
-   3D View red FPS.
-
-   60:54.75
-
-When you play an animation, the FPS is displayed at the top left of the 3D View.
-If the scene is detailed and playback is slower than the set
-*Frame Rate* (see :ref:`render-tab-dimensions`),
-these options are used to synchronize the playback.
-
-No Sync
-   Do not sync, play every frame.
-Frame Dropping
-   Drop frames if playback is too slow.
-   This enables *Frame Dropping* from the *Playback Menu*.
-AV-sync
-   (Audio/Video Synchronization). Sync to audio clock, dropping frames if playback is slow.
-   This enables *AV-sync* and *Frame Dropping* from the *Playback Menu*.
-
-
 .. Move to animation?
 .. _animation-editors-timeline-autokeyframe:
 
@@ -320,34 +354,8 @@ Auto Keyframe
    Other use cases are :ref:`Fly/Walk Mode <3dview-walk-fly>` to record the walk/flight path
    and :ref:`Lock Camera to View <3dview-lock-camera-to-view>` to record the navigation in camera view.
 
-   Auto Keying Set (red record icon)
-      When enabled *Auto Keyframe* will insert new keyframes for the properties in the active *Keying Set*.
-   Layered (two keys icon)
-      Adds a new NLA Track and strip for every loop/pass made over the animation to allow non-destructive tweaking.
-
    .. note::
 
       Note that *Auto Keyframe* only works for transform properties (objects and bones),
       in the 3D Views (i.e. you can't use it e.g. to animate the colors of a material in the Properties editor...).
 
-Keyframe Type
-   :ref:`keyframe-type` on insertion.
-
-Active Keying Set
-   .. figure:: /images/editors_timeline_keying-sets.png
-      :align: right
-
-      Timeline Keying Sets.
-
-   *Keying Sets* are a set of keyframe channels in one.
-   They are made so the user can record multiple properties at the same time.
-   With a keying set selected, when you insert a keyframe,
-   Blender will add keyframes for the properties in the active *Keying Set*.
-   There are some built-in keying sets, *LocRotScale*, and also custom keying sets.
-   Custom keying sets can be defined in the panels
-   :menuselection:`Properties --> Scene --> Keying Sets + Active Keying Set`.
-
-   Insert Keyframes (key icon)
-      Insert keyframes on the current frame for the properties in the active *Keying Set*.
-   Delete Keyframes (striked through key icon)
-      Delete keyframes on the current frame for the properties in the active *Keying Set*.

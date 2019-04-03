@@ -66,6 +66,8 @@ For such effects it is be better to create a volume object surrounding the scene
 The size of this object will determine how much light is scattered or absorbed.
 
 
+.. _render-cycles-integrator-world-ao:
+
 Ambient Occlusion
 =================
 

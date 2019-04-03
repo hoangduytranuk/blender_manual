@@ -25,16 +25,15 @@ In the list below it shows a list of different types of node trees and where eac
      - Documentation
    * - .. figure:: /images/editors_node-editor_introduction_icons-material.png
      - Material Nodes
-     - Because there are two different render engines documentation is split between
-       :doc:`Blender Internal </render/blender_render/materials/nodes/index>` and
-       :doc:`Cycles </render/cycles/nodes/index>`.
+     - :doc:`Cycles </render/cycles/nodes/index>` and
+       :doc:`Eevee </render/eevee/materials/nodes/index>`.
    * - .. figure:: /images/editors_node-editor_introduction_icons-render-layers.png
      - Composite Nodes
      - Documentation can be found in the :doc:`Compositing </compositing/index>` section.
    * - .. figure:: /images/editors_node-editor_introduction_icons-texture.png
      - Texture Nodes
      - Texture Nodes are covered
-       in the :doc:`Blender Internal </editors/uv_image/uv/textures/nodes/introduction>` docs.
+       in the :doc:`UV/Image editor </editors/uv_image/uv/textures/nodes/introduction>` docs.
 
 After choosing what node context you want to use, you have to enable nodes with the *Use Nodes* button.
 

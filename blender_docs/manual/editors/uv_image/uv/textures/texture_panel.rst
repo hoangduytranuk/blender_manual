@@ -14,10 +14,11 @@ Texture Context
    the kind of texture that is being edited.
 
    World
-      :doc:`World Background </render/blender_render/world/world_panel>`.
+      :doc:`World Background </render/cycles/world>`.
    Material/Lamp
       Material type is described in the following section.
-      :doc:`/render/blender_render/lighting/lights/textures` in the lighting section.
+
+      .. todo 2.79: texture coordinates for lamps: rB1272ee4
    Brush
       Brush textures are applied in :doc:`/sculpt_paint/index`.
 

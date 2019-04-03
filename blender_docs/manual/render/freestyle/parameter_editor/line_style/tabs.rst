@@ -228,7 +228,6 @@ Texture
    Line Style Texture.
 
 Use Nodes/Textures
-   Blender Render uses texture mapping and influence panels.
    In Cycles textures are defined by means of
    shader :doc:`nodes </render/freestyle/parameter_editor/line_style/nodes/index>`.
 Spacing Along Stroke

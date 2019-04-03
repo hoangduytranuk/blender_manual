@@ -30,7 +30,19 @@ Color Mode
       For property sets like location XYZ, automatically set the set of colors to red, green, blue.
    User Defined
       Define a custom color for the active F-Curve.
+Auto Handle Smoothing
+   Selects the method used to compute automatic bezier handles (*Automatic*, *Auto Clamped*, *Vector*).
 
+   None
+      Only directly adjacent key values are considered when computing the handles.
+
+      This legacy method is very simple and predictable, but it can only produce
+      good smooth curves in the most trivial cases.
+
+   Continuous Acceleration
+      New default introduced in Blender 2.8. A system of equations is solved for
+      each continuous stretch of curve without manual handles in order to
+      avoid or minimize jumps in acceleration at every keyframe.
 
 Active Keyframe Panel
 =====================

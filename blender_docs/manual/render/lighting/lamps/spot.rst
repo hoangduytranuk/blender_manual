@@ -1,7 +1,7 @@
 
-************
-Introduction
-************
+****
+Spot
+****
 
 A *Spot* lamp emits a cone-shaped beam of light from the tip of the cone,
 in a given direction.
@@ -21,7 +21,7 @@ Lamp Options
 
 Distance, Energy and Color
    These settings are common to most types of lamps, and are described in
-   :doc:`Light Properties </render/lighting/lights/lamp_panel>`.
+   :doc:`Light Properties </render/lighting/lamp_panel>`.
 
 
 Shadows

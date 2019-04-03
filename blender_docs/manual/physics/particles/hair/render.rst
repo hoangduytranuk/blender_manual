@@ -9,7 +9,8 @@ Render
    :Panel:     :menuselection:`Particle System --> Render`
 
 Hair can be rendered as a Path, Object, or Group.
-See :doc:`Particle Visualization </physics/particles/emitter/render>` for descriptions.
+See :doc:`Particle Visualization </physics/particles/emitter/render>` for descriptions and
+the :doc:`Cycles settings </render/cycles/settings/objects/hair>`.
 
 .. seealso::
 

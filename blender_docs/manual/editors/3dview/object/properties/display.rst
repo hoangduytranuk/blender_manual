@@ -42,6 +42,5 @@ Maximum Draw Type
 .. _objects-display-object-color:
 
 Object Color
-   Allows to specify the color used when the *Object Color* in
-   :doc:`Material Options </render/blender_render/materials/properties/options>`
-   is enabled.
+   Allows to specify the object's color when using the Workbench renderer
+   with *Display Type* set to Rendered.

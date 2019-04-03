@@ -17,7 +17,7 @@ For instance if you quantize the result of the ambient occlusion you will not ge
 but an accumulation of a noisy quantized output which may or may not converge to a smooth result.
 (TODO 2.8 Image)
 
-If a Shader to RGB node is used, any upstream BSDF will invisible to the following effects:
+If a Shader to RGB node is used, any upstream BSDF will be invisible to the following effects:
 
 - Screen Space Reflection
 - Subsurface Scattering

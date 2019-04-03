@@ -41,8 +41,3 @@ For example, if you take a grid and distribute red and yellow pixels evenly acro
 the image would appear to be orange.
 
 The *Dither* value ranges from 0 to 2.
-
-.. note::
-
-   When using *Blender Internal* Render you get a few more options and these are discussed
-   :doc:`here </render/blender_render/post_processing/index>`.

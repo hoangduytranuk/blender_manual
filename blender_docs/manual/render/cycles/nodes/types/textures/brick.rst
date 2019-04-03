@@ -22,7 +22,7 @@ Scale
 Mortar Size
    The size of the filling between the bricks known as "mortar"; 0 means no mortar.
 Mortar Smooth
-   Blurs/softens then edge between the mortar and the bricks.
+   Blurs/softens the edge between the mortar and the bricks.
    This can be useful with a texture and displacement textures.
 Bias
    The color variation between *Color 1/2*.

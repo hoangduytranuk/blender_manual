@@ -152,7 +152,7 @@ Only Endpoints
    - The "eraser" end of the stylus can be used to erase strokes.
 
 Enable Editing
-   See :doc:`/interface/grease_pencil/stroke_edit`.
+   See :doc:`/editors/3dview/grease_pencil/stroke_edit`.
    An overlay is displayed in the top-right corner of editors when enabled.
 
 
@@ -160,4 +160,4 @@ Tools
 =====
 
 - :doc:`Convert to Geometry </editors/3dview/grease_pencil/convert_to_geometry>`
-- :doc:`/interface/ruler_protractor`
+- :doc:`/editors/3dview/ruler_protractor`

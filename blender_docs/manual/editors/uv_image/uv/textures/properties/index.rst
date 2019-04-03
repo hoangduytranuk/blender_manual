@@ -9,4 +9,3 @@
    preview.rst
    color.rst
    mapping.rst
-   influence/index.rst

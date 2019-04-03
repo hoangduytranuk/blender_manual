@@ -26,7 +26,7 @@ Lamp Options
 
 Distance, Energy and Color
    These settings are common to most types of lamps, and are described in
-   :doc:`Light Properties </render/lighting/lights/lamp_panel>`.
+   :doc:`Light Properties </render/lighting/lamp_panel>`.
 
 
 Shadows

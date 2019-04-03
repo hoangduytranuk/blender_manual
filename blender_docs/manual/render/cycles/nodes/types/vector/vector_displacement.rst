@@ -37,7 +37,7 @@ Vector
 Midlevel
    Neutral displacement value that causes no displacement.
    With the default 0.0, any lower values will cause the surfaces to be pushed inwards,
-   and any higher values will push it outwards.
+   and any higher values will push them outwards.
 Scale
    Increase or decrease the amount of displacement.
 

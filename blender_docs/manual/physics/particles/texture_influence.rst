@@ -1,6 +1,8 @@
 .. https://developer.blender.org/T46363
 .. left out: Mapping Coordinates
 
+.. _bpy.types.ParticleSettingsTextureSlot:
+
 *****************
 Texture Influence
 *****************

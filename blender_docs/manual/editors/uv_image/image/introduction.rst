@@ -89,7 +89,7 @@ Render Layer
    If you are using :doc:`Render Layers </render/post_process/layers>`,
    use this menu to select which layer is displayed.
 Render Pass
-   If you are using :doc:`Render Passes </render/blender_render/settings/passes>`,
+   If you are using :doc:`Render Passes </render/cycles/settings/scene/render_layers/passes>`,
    use this menu to select which pass is displayed.
 
 
@@ -107,7 +107,7 @@ Draw Channels
       Displays the Alpha channel a grayscale image. White areas are opaque, black areas have an alpha of 0.
    Z-Buffer
       Display the depth from the camera, from Clip Start to Clip End,
-      as specified in the :doc:`Camera settings </render/blender_render/camera/introduction>`.
+      as specified in the :doc:`Camera settings </render/cycles/camera>`.
    Red, Green, Blue
       Single Color Channel visualized as a grayscale image.
 

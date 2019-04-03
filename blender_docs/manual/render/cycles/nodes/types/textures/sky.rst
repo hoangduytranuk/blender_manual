@@ -55,4 +55,4 @@ Examples
 .. figure:: /images/render_cycles_nodes_types_textures_sky_example.jpg
    :width: 200px
 
-   Sky Texture.
+   Example of Sky Texture.

@@ -3,23 +3,17 @@
 Options
 *******
 
-Image
-=====
+Settings
+========
 
-In the *Image* panel we tell Blender which source file to use.
+In the *Settings* panel you can define which source file to use.
 
 Image
    The Image :ref:`ui-data-block`. For the options see :doc:`/editors/uv_image/image/image_settings`.
 
 
-Image Sampling
-==============
-
-In the *Image Sampling* panel we can control how the information is retrieved from the image.
-
-.. figure:: /images/render_blender-render_textures_types_image_options_image-sampling-panel.png
-
-   Image Sampling panel.
+Alpha
+=====
 
 Alpha
    Options related to transparency.
@@ -29,7 +23,7 @@ Alpha
       Where the alpha value in the image is less than 1.0,
       the object will be partially transparent and things behind it will be visible.
       Works with files like PNG and TGA that can save transparency information.
-      The *Use Alpha* in the `Image`_ panel must be enabled.
+      The *Use Alpha* in the `Settings`_ panel must be enabled.
 
    Calculate
       Calculate an alpha based on the RGB values of the Image.
@@ -54,37 +48,62 @@ Alpha
       Reverses the alpha value.
       Use this option if the mask image has white where you want it transparent and vice versa.
 
+
+Mapping
+=======
+
+.. figure:: /images/render_blender-render_textures_types_image_options_image-mapping-panel.png
+
+   Image Mapping panel.
+
+In the *Mapping* panel,
+you can control how the image is mapped or projected onto the 3D model.
+
 Flip X/Y Axis
    Rotates the image 90 degrees counterclockwise when rendered.
 
-Normal Map
-   This tells Blender that the image is to be used to create the illusion of a bumpy surface,
-   with each of the three RGB channels controlling how to fake a shadow from a surface irregularity.
-   Needs specially prepared input pictures.
-   See :doc:`Bump and Normal Maps </editors/uv_image/uv/textures/properties/influence/bump_normal>`.
+Extension
+   Extend
+      Outside the image the colors of the edges are extended.
+   Clip
+      Clip to image size and set exterior pixels as transparent.
+      Outside the image, an alpha value of 0.0 is returned.
+      This allows you to 'paste' a small logo on a large object.
+   Clip Cube
+      Clips to cubic-shaped area around the images and sets exterior pixels as transparent.
+      The same as Clip, but now the 'Z' coordinate is calculated as well.
+      An alpha value of 0.0 is returned outside a cube-shaped area around the image.
+   Repeat
+      The image is repeated horizontally and vertically.
 
-   Normal Map Space:
-      - *Tangent*
-      - *Object*
-      - *World*
-      - *Camera*
+      Repeat
+         X/Y repetition multiplier.
+      Mirror
+         Mirror on X/Y axes. These buttons allow you to map the texture as a mirror, or automatic flip of the image,
+         in the corresponding X and/or Y direction.
+   Checker
+      Checkerboards quickly made.
+      You can use the option *size* on the *Mapping* panel as well to create the desired number of checkers.
 
-Derivative Map
-   Use red and green as derivative values.
+      Even/Odd
+         Set even/odd tiles.
+      Distance
+         Governs the distance between the checkers in parts of the texture size.
 
-MIP Map
-   :term:`Mip-maps <mip-map>` are precalculated, smaller, filtered textures for a certain size.
-   A series of pictures is generated, each half the size of the former one.
-   This optimizes the filtering process. By default, this option is enabled and speeds up rendering.
-   When this option is OFF,
-   you generally get a sharper image, but this can significantly increase calculation time if the filter dimension
-   (see below) becomes large. Without mip-maps you may get varying pictures from slightly different camera angles,
-   when the textures become very small. This would be noticeable in an animation.
+Crop Minimum / Crop Maximum
+   The offset and the size of the texture in relation to the texture space.
+   Pixels outside this space are ignored.
+   Use these to crop, or choose a portion of a larger image to use as the texture.
 
-   MIP Map Gaussian filter
-      Used in conjunction with mip-mapping, it enables the mip-map to be made smaller based on color similarities.
-      In game engines, you want your textures, especially your mip-map textures,
-      to be as small as possible to increase rendering speed and frame rate.
+
+Sampling
+========
+
+In the *Sampling* panel you can control how the information is retrieved from the image.
+
+.. figure:: /images/render_blender-render_textures_types_image_options_image-sampling-panel.png
+
+   Image Sampling panel.
 
 Interpolation
    This option interpolates the pixels of an image.
@@ -105,6 +124,21 @@ Interpolation
              :width: 320px
 
              Enlarged Image texture with *Interpolation*.
+
+MIP Map
+   :term:`Mip-maps <mip-map>` are precalculated, smaller, filtered textures for a certain size.
+   A series of pictures is generated, each half the size of the former one.
+   This optimizes the filtering process. By default, this option is enabled and speeds up rendering.
+   When this option is OFF,
+   you generally get a sharper image, but this can significantly increase calculation time if the filter dimension
+   (see below) becomes large. Without mip-maps you may get varying pictures from slightly different camera angles,
+   when the textures become very small. This would be noticeable in an animation.
+
+   MIP Map Gaussian filter
+      Used in conjunction with mip-mapping, it enables the mip-map to be made smaller based on color similarities.
+      In game engines, you want your textures, especially your mip-map textures,
+      to be as small as possible to increase rendering speed and frame rate.
+
 
 Filter
    The filter size used in rendering, and also by the options *Mip Map* and *Interpolation*.
@@ -146,47 +180,3 @@ Filter
       The filter size used by MIP Map and Interpolation.
    Minimum Filter Size
       Use Filter Size as a minimal filter value in pixels.
-
-
-Image Mapping
-=============
-
-.. figure:: /images/render_blender-render_textures_types_image_options_image-mapping-panel.png
-
-   Image Mapping panel.
-
-In the *Image Mapping* panel,
-we can control how the image is mapped or projected onto the 3D model.
-
-Extension
-   Extend
-      Outside the image the colors of the edges are extended.
-   Clip
-      Clip to image size and set exterior pixels as transparent.
-      Outside the image, an alpha value of 0.0 is returned.
-      This allows you to 'paste' a small logo on a large object.
-   Clip Cube
-      Clips to cubic-shaped area around the images and sets exterior pixels as transparent.
-      The same as Clip, but now the 'Z' coordinate is calculated as well.
-      An alpha value of 0.0 is returned outside a cube-shaped area around the image.
-   Repeat
-      The image is repeated horizontally and vertically.
-
-      Repeat
-         X/Y repetition multiplier.
-      Mirror
-         Mirror on X/Y axes. These buttons allow you to map the texture as a mirror, or automatic flip of the image,
-         in the corresponding X and/or Y direction.
-   Checker
-      Checkerboards quickly made.
-      You can use the option *size* on the *Mapping* panel as well to create the desired number of checkers.
-
-      Even/Odd
-         Set even/odd tiles.
-      Distance
-         Governs the distance between the checkers in parts of the texture size.
-
-Crop Minimum / Crop Maximum
-   The offset and the size of the texture in relation to the texture space.
-   Pixels outside this space are ignored.
-   Use these to crop, or choose a portion of a larger image to use as the texture.

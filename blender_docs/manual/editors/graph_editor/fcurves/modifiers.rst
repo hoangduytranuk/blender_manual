@@ -124,6 +124,20 @@ Cycle Mode
 Before, After Cycles
    Set the number of times to cycle the data. A value of 0 cycles the data infinitely.
 
+Trivially Cyclic Curves
+^^^^^^^^^^^^^^^^^^^^^^^
+
+When the cycle mode for both ends is set to either *Repeat Motion* or
+*Repeat with Offset*, and no other options of the modifier are
+changed from their defaults, it defines a simple infinite cycle.
+
+This special case receives some additional support from other
+areas of Blender:
+
+* Automatic bezier handle placement is aware of the cycle and adjusts to achieve a smooth transition.
+* The :ref:`Cycle-Aware Keying <timeline-keying>` option can be enabled to take the
+  cycle into account when inserting new keyframes.
+
 
 .. _bpy.types.FModifierNoise:
 

@@ -17,7 +17,7 @@ So why should one use Environment Maps?
   You may even modify the precalculated Environment Map in an image editor.
 - Environment maps can also be blurred and render even faster because the resolution can then be lowered.
   Blurring a reflection with the ray tracer always adds to the render time, sometimes quite a lot.
-- :doc:`Halos </render/blender_render/materials/special_effects/halo>`
+- :ref:`Halos <particle-halo>`
   (a visualization type for particles) are not visible to ray-traced reflections,
   so you need to setup environment maps to reflect them.
 - :doc:`Keypoint strands </physics/particles/emitter/render>`

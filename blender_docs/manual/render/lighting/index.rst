@@ -10,8 +10,6 @@
    :maxdepth: 2
 
    introduction.rst
-   volumetric_lights.rst
-   lighting_rigs.rst
    lamp_panel.rst
 
 

@@ -28,7 +28,7 @@ Cube
       It is used to move entities (e.g. the cube) in the scene.
 Lamp
    The circle with a thin line to the bottom is a light source illuminating the cube.
-   Lights in: :doc:`Blender Internal </render/lighting/lights/index>`,
+   Lights in: :doc:`General Settings </render/lighting/index>`,
    :doc:`Cycles </render/cycles/lamps>`.
 
 Camera

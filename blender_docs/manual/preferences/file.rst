@@ -112,7 +112,7 @@ Compress File
    Using this option traces processor time for file size.
 Load UI
    Default setting is to load the Window layout
-   (the :doc:`Screens </interface/window_system/screens>`) of the saved file.
+   (the :doc:`workspaces </interface/window_system/workspaces>`) of the saved file.
    This can be changed individually when loading a file from
    the *Open blend-file* panel of the :doc:`File Browser </editors/file_browser/index>`.
 Filter File Extensions

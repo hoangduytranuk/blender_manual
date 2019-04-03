@@ -28,7 +28,7 @@ Half Resolution Trace
    Enabling this option reduces drastically video memory usage and increase performances at the cost of quality.
 
 Trace Precision
-   Increase precision of the ray trace but introduce more noise and lower the maximum trace distance.
+   Increases precision of the ray trace but introduces more noise and lowers the maximum trace distance.
    Increased precision also increases performance cost.
 
 Thickness

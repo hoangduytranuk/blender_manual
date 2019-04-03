@@ -107,7 +107,7 @@ Modifying your Image Texture
 
 .. seealso::
 
-   - :doc:`Render Bake </render/blender_render/bake>`
+   - :doc:`Render Bake </render/cycles/baking>`
    - :doc:`Texture Paint </sculpt_paint/painting/texture_paint/introduction>`.
 
 The advantage to saving as a separate file is that you can easily switch textures just by

@@ -32,7 +32,7 @@ Size (or Radius)
 
 Custom Limit
 
-   If enables uses *Distance* as the custom attenuation distance instead of global light threshold.
+   If enabled uses *Distance* as the custom attenuation distance instead of global light threshold.
    The *Distance* specify where light influence will be set to 0.
 
    .. seealso::
@@ -66,7 +66,7 @@ Spot Shape
 
 .. note::
 
-   Unlike in Cycles the *Size* of the light does not changes the softness of the cone.
+   Unlike in Cycles the *Size* of the light does not change the softness of the cone.
 
 
 Area Lamp

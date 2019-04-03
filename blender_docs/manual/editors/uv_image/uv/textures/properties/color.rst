@@ -9,7 +9,7 @@ Colors
    Colors panel.
 
 The *Ramp* button activates a color ramp which allows you to remap the colors of a texture to new ones.
-See :doc:`Ramps </render/blender_render/materials/properties/ramps>` for information on using ramps.
+See :ref:`Ramps <ui-color-ramp-widget>` for information on using ramps.
 
 The color of a texture can be modified with the *Brightness*, *Contrast*,
 and *Saturation* buttons. All textures with RGB values, including

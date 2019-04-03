@@ -1,7 +1,7 @@
 
-************
-Introduction
-************
+***
+Sun
+***
 
 A *Sun* lamp provides light of constant intensity emitted in a single direction from very far away.
 A *Sun* lamp can be very handy for a uniform clear daylight open-space illumination.
@@ -21,7 +21,7 @@ Lamp Options
 
 Energy and Color
    These settings are common to most types of lamps, and are described in
-   :doc:`Light Properties </render/lighting/lights/lamp_panel>`.
+   :doc:`Light Properties </render/lighting/lamp_panel>`.
 
 
 Shadow

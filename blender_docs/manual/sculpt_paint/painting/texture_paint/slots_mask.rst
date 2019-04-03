@@ -22,7 +22,7 @@ will also display the corresponding image in *UV/Image Editors*.
 Painting Mode
    The slot system includes two painting modes:
 
-   Image
+   Single Image
       You can just select an existing image and painting will use the active UV layer for painting.
 
       Canvas Image
@@ -44,26 +44,13 @@ Painting Mode
          A :ref:`ui-list-view` of slots.
          To activate a certain slot to use it for paint a just :kbd:`LMB` click on it.
 
+      .. (TODO 2.8) still available?
+
       UV Map
          Allows you to select a UV layer for the slot.
          The UV map selected in the *UV Map* nodes before an *Image Texture* will be used.
          If there is no *UV Map* nodes or it has a blank value,
          the active UV map of the mesh (*UV Maps* panel) will be used.
-
-      .. (TODO 2.8) Blender Internal (START)
-
-      For Blender Internal, texture paint slots are material texture slots that use images and UV mapping.
-      The UV map that is used during painting is either the assigned on the UV slot of the material texture UV slot,
-      or the active UV layer of the mesh (this is the highlighted UV map under the mesh tab in the properties editor)
-      if no UV map has been assigned. There are a few extra controls:
-
-      Add/Remove Texture Paint Slot
-         A menu that allows the addition of new slots which are added directly on the material.
-      Blend Type
-         Same as in the
-         :doc:`Texture Blending Modes </editors/uv_image/uv/textures/properties/influence/blending_modes>`.
-
-      .. (TODO 2.8) (END)
 
 Save All Images
    Repack (or save if external file) all edited images.

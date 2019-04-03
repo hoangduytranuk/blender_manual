@@ -109,16 +109,15 @@ There are several ways in which materials can be set up in Blender.
 Generally speaking, these are not compatible.
 You must choose which method you are going to use for each particular object in your scene:
 
-#. First, you can set the :doc:`Properties </render/blender_render/materials/properties/introduction>`
+#. First, you can set the :doc:`Settings </render/cycles/materials/settings>`
    in the various Material panels.
-#. Second, you can use :doc:`Nodes </render/blender_render/materials/nodes/index>`;
+#. Second, you can use :doc:`Nodes </render/cycles/nodes/index>`;
    a graphical nodes editor is available.
 #. Last, you can directly set the color of object surfaces using various special effects. Strictly speaking,
    these are not materials at all, but they are included here because they affect the appearance of your objects.
    These include :ref:`Vertex Painting <painting-vertex-index>`,
-   :doc:`Wire Rendering </render/blender_render/materials/special_effects/wire>`,
-   :doc:`Volume Rendering </render/blender_render/materials/special_effects/volume>`,
-   and :doc:`Halo Rendering </render/blender_render/materials/special_effects/halo>`.
+   :doc:`Volume Rendering </render/cycles/materials/volume>`, and
+   :doc:`Wire Rendering </render/cycles/nodes/types/input/wireframe>`.
 
 The exact effect of Material settings can be affected by a number of system settings.
 First and foremost is the renderer used:
@@ -136,18 +135,16 @@ the appropriate system settings before starting the design of materials.
 Surface Shader
 ==============
 
-The surface shader defines the light interaction at the surface of the mesh.
-
-.. seealso::
-
-   :doc:`Surface Shader </render/cycles/materials/surface>`.
+The :doc:`surface shader </render/cycles/materials/surface>` defines the light interaction at
+the surface of the mesh.
 
 
 Volume Shader
 =============
 
 When the surface shader does not reflect or absorb light, it enters into the volume.
-If no volume shader is specified, it will pass straight through to the other side of the mesh.
+If no :doc:`volume shader </render/cycles/materials/volume>` is specified,
+it will pass straight through to the other side of the mesh.
 
 If it is defined,
 a volume shader describes the light interaction as it passes through the volume of the mesh.
@@ -158,24 +155,17 @@ Using both may be useful for materials such as glass, water or ice,
 where you want some of the light to be absorbed as it passes through the surface,
 combined with e.g. a glass or glossy shader at the surface.
 
-.. seealso::
-
-   :doc:`Volume Shader </render/cycles/materials/volume>`.
-
 
 Displacement
 ============
 
-The shape of the surface and the volume inside it may be altered by displacement shaders.
+The shape of the surface and the volume inside it may be altered by
+:doc:`displacement </render/cycles/materials/displacement>`.
 This way, textures can then be used to make the mesh surface more detailed.
 
 Depending on the settings, the displacement may be virtual,
 only modifying the surface normals to give the impression of displacement,
 which is known as bump mapping, or a combination of real and virtual displacement.
-
-.. seealso::
-
-   :doc:`Displacement </render/cycles/materials/displacement>`.
 
 
 Energy Conservation

@@ -1,7 +1,4 @@
 .. _bpy.types.ShaderNodeVectorTransform:
-.. Editors Note: This page gets copied into :doc:`</render/blender_render/materials/nodes/types/vector/transform>`
-
-.. --- copy below this line ---
 
 *********************
 Vector Transform Node

@@ -10,11 +10,6 @@ By default, faces appear in the order in which they are stored in memory (by def
 The face/vertex order can be altered in Edit Mode by selecting
 :doc:`Sort Mesh Elements </modeling/meshes/editing/misc>` from the operator search menu :kbd:`Spacebar`.
 
-.. note::
-
-   When using Blender Render, if the material of the mesh is a halo rather than a standard one,
-   then the vertices of the mesh, not the faces, appear one after another.
-
 
 Options
 =======
@@ -28,7 +23,7 @@ Randomize
    Randomizes the order in which the faces are built.
 Seed
    The random seed.
-   Changing this value gives a different "random" order when *"Randomize"* is checked --
+   Changing this value gives a different "random" order when *Randomize* is checked --
    this order is always the same for a given seed/object set.
 Reversed
    The modifier will operate in reverse, essentially allowing it to be used as a "deconstruction" effect.

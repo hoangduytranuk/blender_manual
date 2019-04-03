@@ -26,7 +26,7 @@ Inputs
 Radius
    Width of the bevel effect on edges.
 Normal
-   Normal to apply bevel on top of, to combined with a Bump node for example.
+   Normal to apply bevel on top of, to be combined with a Bump node for example.
 
 
 Properties

@@ -13,11 +13,6 @@ As with any other object, you edit your armature in *Edit Mode* :kbd:`Tab`.
 
 The set of bone editing tools is quite similar to the one for
 :doc:`mesh </modeling/meshes/editing/introduction>` editing.
-Blender also features a more advanced "armature sketching" tool,
-called :doc:`Etch-a-Ton </rigging/armatures/bones/editing/sketching/introduction>`.
-The same tool might also be used in
-:ref:`templating <rigging-armatures-bones-editing-sketching-converting-templating>`,
-i.e. using another armature as template for the current one...
 
 .. important::
 

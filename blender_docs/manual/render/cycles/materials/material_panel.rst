@@ -77,15 +77,9 @@ Material added in edit mode. These toggles tell Blender where this material fits
 and what aspects of the material are to be rendered.
 
 Surface
-   Render object as a surface.
-Wire
-   Render the edges of faces as wires (not supported in ray tracing).
+   Render object as a :doc:`surface </render/cycles/materials/surface>`.
 Volume
-   Render object as a volume.
-   See :doc:`Volume </render/blender_render/materials/special_effects/volume>`.
-Halo
-   Render object as halo particles.
-   See :doc:`Halo </render/blender_render/materials/special_effects/halo>`.
+   Render object as a :doc:`volume </render/cycles/materials/volume>`.
 
 .. list-table::
 
@@ -93,14 +87,6 @@ Halo
 
           Surface.
 
-     - .. figure:: /images/render_blender-render_materials_material-panel_wire.jpg
-
-          Wire.
-
    * - .. figure:: /images/render_blender-render_materials_material-panel_volume.jpg
 
           Volume.
-
-     - .. figure:: /images/render_blender-render_materials_material-panel_halo.jpg
-
-          Halo.

@@ -48,10 +48,6 @@ Frames packed into a container.
 Deinterlace
    Removes fields in a video file. For example,
    if it is an analog video and it has even or odd interlacing fields.
-Fields
-   Sets the number of fields per rendered frame (2 fields is 1 frame).
-   Used with Fields and interlaced video,
-   it says whether each image has both odd and even, or just one.
 Frame
    Frames
       Sets the range of frames to use.
@@ -150,12 +146,3 @@ Use Alpha
       :term:`Alpha Channel`.
 
       Straight, Premultiplied
-
-Fields
-   Work with :doc:`/render/blender_render/post_processing/fields` images.
-   Video frames consist of two different images (fields) that are merged.
-   This option ensures that when fields are rendered,
-   the correct field of the image is used in the correct field of the rendering.
-   *Mip-mapping* cannot be combined with *Fields*. Order of video fields:
-
-   Upper First, Lower First.

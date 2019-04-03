@@ -22,6 +22,8 @@ However, they do have *Object* and *Editing* setting panels available
 which are displayed when a camera is the selected (active!) object.
 
 
+.. _camera-lens-type:
+
 Lens
 ====
 
@@ -304,7 +306,7 @@ Mist
    Toggles viewing of the mist limits on and off.
    The limits are shown as two connected white dots on the camera line of sight.
    The mist limits and other options are set in the *World* panel,
-   in the :doc:`Mist section </render/blender_render/world/mist>`.
+   in the :ref:`Mist section <render-cycles-integrator-world-mist>`.
 
 .. figure:: /images/render_blender-render_camera_object-data_display-view.png
 
@@ -487,11 +489,6 @@ in the *Render* tab or by activating the option again.
 .. container:: lead
 
    .. clear
-
-.. note::
-
-   When Render Border is activated, :doc:`Sampled Motion Blur </render/blender_render/settings/motion_blur>`
-   will become available to view in the 3D View.
 
 .. list-table:: Render border and associated render.
    :widths: 60 40

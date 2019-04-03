@@ -71,7 +71,6 @@ Known Limitations
 - Highly memory demanding: All mesh objects in a render layer are loaded at once.
 - Only faced mesh objects are supported. The following kinds of meshes are ignored:
 
-  - Mesh faces with wire materials.
   - Mesh faces with completely transparent materials.
   - Mesh faces with the *Cast Only* material option enabled.
 

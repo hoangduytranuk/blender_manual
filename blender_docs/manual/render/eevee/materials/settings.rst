@@ -81,6 +81,12 @@ Eevee does not support colored shadow maps.
 
 Half transparent shadows can be produced by using hashed transparent shadows and larger Soft value on shadow map.
 
+.. note::
+
+   This option does not change the behavior of contact shadows which are traced using the depth buffer. If the material
+   is writting to the depth buffer (in other words, if the blend mode is set to either *Opaque*, *Alpha Clip* or
+   *Alpha Hashed*), contact shadows will be casted by the surface material regardless of the *Transparent Shadow* type.
+
 None
    The surface will not cast any shadow.
 

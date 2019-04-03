@@ -6,9 +6,9 @@ Introduction
 Rendering is the process of creating a 2D image (or video) from your 3D scene.
 What that image looks like is based on four factors which the user can control:
 
-- A :doc:`Camera </render/blender_render/camera/introduction>`
+- A :doc:`Camera </render/cycles/camera>`
 - The :doc:`Lighting </render/lighting/introduction>` in your scene
-- The :doc:`Material </render/blender_render/materials/introduction>` of each object
+- The :doc:`Material </render/cycles/materials/introduction>` of each object
 - Various render settings (quality, image size, layers, etc.)
 
 Your computer will perform various complex calculations
@@ -49,7 +49,7 @@ to the math they use or core principles around which they were written.
 
 Blender includes two renderers by default:
 
-- :doc:`Blender Render </render/blender_render/index>`
+- :doc:`Eevee </render/eevee/index>`
 - :doc:`Cycles </render/cycles/index>`
 
 More renderers from third-party developers can also be added using

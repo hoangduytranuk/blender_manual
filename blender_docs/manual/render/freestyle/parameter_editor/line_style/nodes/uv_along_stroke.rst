@@ -11,9 +11,6 @@ UV Along Stroke Node
 The *UV Along Stroke* input node is maps textures along the stroke length,
 making it possible to mimic pencil, paintbrush, and other art medium marks.
 
-In Blender Render equivalent options can be found in
-:menuselection:`Properties editor --> Texture --> Mapping` panel.
-
 .. note::
 
    These UV maps become available only during the Freestyle rendering process.

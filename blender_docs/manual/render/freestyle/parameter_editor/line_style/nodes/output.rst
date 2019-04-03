@@ -11,9 +11,6 @@ Line Style Output Node
 The *Line Style Output* node specifies how to mix the texture information
 into the base color of line styles.
 
-In Blender Render equivalent options can be found in
-:menuselection:`Properties editor --> Texture --> Influence` panel.
-
 
 Inputs
 ======

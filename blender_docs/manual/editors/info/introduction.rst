@@ -63,14 +63,17 @@ Help
 See :ref:`help-menu`.
 
 
+Workspaces
+----------
+
+Tabs to select :doc:`workspaces </interface/window_system/workspaces>`.
+
+
 Controls
 --------
 
 Back to Previous
    A button shown when an area is maximized to return to tiled areas.
-Screen
-   :ref:`Data-block menu <ui-data-block>` used to select and
-   edit :doc:`Screens </interface/window_system/screens>` (window layouts).
 Scene
    :ref:`Data-block menu <ui-data-block>` to select different :doc:`Scenes </data_system/scenes/introduction>`.
    Having multiple Scenes allows you to work with separate virtual environments,
