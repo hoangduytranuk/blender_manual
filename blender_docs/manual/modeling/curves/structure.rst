@@ -15,7 +15,7 @@ The handles define the curvature of the segment.
 In the image below,
 the control points can be found in the middle of the pink line,
 while the handles comprise the extensions from the control point.
-The arrows visualize the normals of the curve, which indicate i.a.
+The arrows visualize the normals of the curve, which indicate i.e.
 the direction and the tilt.
 
 .. figure:: /images/modeling_curves_structure_control-points-handles.png

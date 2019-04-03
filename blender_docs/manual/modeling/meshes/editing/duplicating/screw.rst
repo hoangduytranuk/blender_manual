@@ -57,12 +57,12 @@ If the vector is created with only two vertices at the *same* XYZ location
 (which will not give Blender a vector value for height), this will create a normal "Spin".
 
 Having at least one vector line,
-you can add other closed support profiles that will follow this vector during the extrusions (See `Limitations`_).
+you can add other closed support profiles that will follow this vector during the extrusions (see `Limitations`_).
 The direction of the extrusions is calculated by two determinant factors,
 the point of view in Global Space and the position of the cursor in the 3D View using Global coordinates.
-The profile and the vector must be fully selected in *Edit Mode* before you click the *Screw Button*
+The profile and the vector must be fully selected in *Edit Mode* before you click the *Screw* button
 (see `Limitations`_).
-When you have the vector for the open profile and the other closed profiles selected, click the *Screw* Button.
+When you have the vector for the open profile and the other closed profiles selected, click the *Screw* button.
 
 
 Limitations
@@ -140,7 +140,7 @@ you can press :kbd:`Ctrl-Z` at any time in *Edit Mode*.
 
 The basic location of the cursor at the point of view (using Global coordinates)
 will determine around which axis the selection is extruded and spun at first
-(See Fig. :ref:`fig-mesh-screw-transform-panel`).
+(see Fig. :ref:`fig-mesh-screw-transform-panel`).
 Blender will copy the cursor location coordinates to
 the values present in the *Center* values of the *Screw* interactive Panel.
 Depending on the Global View position, Blender will automatically add a value of 1 to one of the Axis Vectors,
@@ -214,7 +214,7 @@ The Spring Example
    placing the cursor at (0, 0, 0) typing directly into the Cursor 3D Location.
 #. Add a circle using shortcut :kbd:`Shift-A` :menuselection:`--> Mesh --> Circle`.
 #. Rotate this circle using the shortcut :kbd:`R X 9 0` and :kbd:`Return`.
-#. Apply the Rotation using :kbd:`Ctrl-A` and choosing *Rotation*
+#. Apply the Rotation using :kbd:`Ctrl-A` and choosing *Rotation*.
 #. Grab and move this circle three Blender Units on the X axis to the left;
    you can use the shortcut :kbd:`Ctrl` while grabbing with the mouse using the standard transform widgets
    (clicking on the red arrow shown with the object and grabbing while using shortcut :kbd:`Ctrl`
@@ -360,10 +360,10 @@ will assembly perfectly with each other.
    click with :kbd:`LMB` on *File* --
    it is in the header of the Info editor (at the top left side), and choose *Save as*.
    You can name it e.g. "screw hardware example.blend".
-#. Press shortcut :kbd:`A` twice to de-select and select all vertices again.
+#. Press the shortcut :kbd:`A` twice to de-select and select all vertices again.
 #. Now press Screw.
 #. Change Steps and Turns as you like.
-   Fig. :ref:`fig-mesh-screw-generated-mesh` - Shows you an example of the results.
+   Fig. :ref:`fig-mesh-screw-generated-mesh` shows you an example of the results.
 
 .. list-table::
 
@@ -418,7 +418,7 @@ but also its starting angle. It means that Blender will connect the vertices wit
 in a way that they follow a continuous cycle along the extruded generated profile.
 
 In this example, you will learn how to create a simple Screw Tip
-(like the ones use for wood; as shown in the example at the beginning of this page).
+(like the ones used for wood; as shown in the example at the beginning of this page).
 To make this new example as short as possible, it will recycle the last example (again).
 
 #. Open Blender and click on *File* located in the header of the Info editor again;

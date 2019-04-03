@@ -50,9 +50,6 @@ function createPOTFiles()
 # note, this can be slow so (multi-process)
 function updatePOFiles()
 {
-	cmd=$(which sphinx-intl)
-	echo "command is: $cmd"
-
 	for lang in `find locale/ -maxdepth 1 -mindepth 1 -type d -not -iwholename '*.svn*' -printf '%f\n' | sort`; do
 		sphinx-intl update -p build/locale -l $lang &
 	done

@@ -25,7 +25,7 @@ UV Local View
 Draw Other Objects
    Draws the UVs of selected objects (Object Mode) in the background.
 Show Metadata
-   Draws the Metadata if they were set in the render tabs :doc:`/render/output/metadata` panel.
+   Draws the Metadata if they were set in the render tab's :doc:`/render/output/metadata` panel.
 Draw Texture Paint UVs
    Hides the UVs in Paint Mode.
 View Zoom In/Out

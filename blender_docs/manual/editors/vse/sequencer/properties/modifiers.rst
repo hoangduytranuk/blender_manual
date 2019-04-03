@@ -34,7 +34,7 @@ Copy to Selected Strips
 Common Options
 ==============
 
-Each modifiers have several buttons at their top:
+Each modifier has several buttons at its top:
 
 Mute (eye icon)
    Disables the modifier. Very useful to compare the image, with / without modifications.

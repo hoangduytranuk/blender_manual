@@ -1,5 +1,13 @@
 # Đề án phiên dịch bản hướng dẫn sử dụng Blender (_Blender Reference Manual_)
 
+## Lấy bản ZIP mới nhất của bản hướng dẫn sử dụng hiện đang làm:
+
+Có hai bản hiện được biên tập:
+
+- Tất cả nội dung nằm trong [một tập tin index.html](blender_docs/build/blender_vietnamese_single.zip)
+- Nội dung được phân ra [nhiều bản html, mỗi tập tin một đề mục riêng](blender_docs/build/blender_vietnamese_html.zip)
+
+
 ## Chuẩn bị (Preparations)
 
 Tốt nhất là [cài đặt và sử dụng hệ điều hành Linux](https://www.youtube.com/watch?v=uzpKjeZykoQ&list=PL9LmhZmBx5yBIcEMwhVcLn7mtlGWW2HWu). Nếu không làm được thì học cài đặt Hệ Thống Phụ Linux (**WSL**) trên phiên bản Windows 10. Phương pháp  đã được ghi lại trên các trang này:

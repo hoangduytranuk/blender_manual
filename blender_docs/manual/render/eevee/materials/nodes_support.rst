@@ -75,7 +75,7 @@ Translucent BSDF
 
 Principled BSDF
    Cumulate limitations from Diffuse BSDF, Glossy BSDF, Refraction BSDF and Subsurface Scattering.
-   Anisotropy is not supported. The Sheen layer is a crude approximation.
+   Anisotropy is not supported. Transmission Roughness is not supported. The Sheen layer is a crude approximation.
 
 Volume Absorption
    See volume Limitation.

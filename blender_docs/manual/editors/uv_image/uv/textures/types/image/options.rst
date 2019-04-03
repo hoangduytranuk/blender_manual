@@ -25,7 +25,7 @@ Alpha
    Options related to transparency.
 
    Use
-      Used the alpha channel information stored in the image.
+      Use the alpha channel information stored in the image.
       Where the alpha value in the image is less than 1.0,
       the object will be partially transparent and things behind it will be visible.
       Works with files like PNG and TGA that can save transparency information.
@@ -83,8 +83,8 @@ MIP Map
 
    MIP Map Gaussian filter
       Used in conjunction with mip-mapping, it enables the mip-map to be made smaller based on color similarities.
-      In the :doc:`Game Engine </game_engine/index>`, you want your textures,
-      especially your mip-map textures, to be as small as possible to increase rendering speed and frame rate.
+      In game engines, you want your textures, especially your mip-map textures,
+      to be as small as possible to increase rendering speed and frame rate.
 
 Interpolation
    This option interpolates the pixels of an image.
@@ -175,7 +175,7 @@ Extension
       Repeat
          X/Y repetition multiplier.
       Mirror
-         Mirror on X/Y axes. This buttons allow you to map the texture as a mirror, or automatic flip of the image,
+         Mirror on X/Y axes. These buttons allow you to map the texture as a mirror, or automatic flip of the image,
          in the corresponding X and/or Y direction.
    Checker
       Checkerboards quickly made.

@@ -1,8 +1,8 @@
 .. _bpy.types.OceanTexture:
 
-*************
-Ocean Texture
-*************
+*****
+Ocean
+*****
 
 .. figure:: /images/render_blender-render_textures_types_procedural_ocean_panel.png
    :align: right

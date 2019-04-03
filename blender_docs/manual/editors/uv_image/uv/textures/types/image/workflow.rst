@@ -51,8 +51,7 @@ or any external image painting program.
 .. note:: See Texture in 3D View but does not Render
 
    You may be able to see the texture in Textured display mode in the 3D View;
-   this is all that is required to have textures show up in Blender's Game Engine. Rendering, however,
-   requires a material.
+   rendering, however, requires a material.
    You must have a *Face Textures* material assigned to the mesh for it to render using the UV texture.
    In the Material settings, Add New material to a selected object and enable *Face Textures*.
 

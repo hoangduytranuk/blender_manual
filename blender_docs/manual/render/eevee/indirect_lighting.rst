@@ -4,9 +4,9 @@ Indirect Lighting Cache
 ***********************
 
 While not strictly correct, all lighting that is not coming straight out
-from a lamp object is considered indirect lighting in Eevee.
+from a lamp object is considered as indirect lighting in Eevee.
 That means distant HDRI lighting (or World) is considered as indirect lighting.
-Mesh objects using an Emission node is also considered as indirect lighting.
+Mesh objects using an Emission node are also considered as indirect lighting.
 
 In Eevee, indirect lighting is separated into two component: Diffuse and Specular.
 Both have different needs and representation. For efficiency,
@@ -25,7 +25,7 @@ Light Bounce
 ============
 
 To enable light bounces through large environment, the light baking process can be run multiple times
-while injecting previous bake result into the a bake.
+while injecting previous bake result into the bake.
 Total baking time is more or less multiplied by the number of bounce.
 
 Light bounces only concerns diffuse lighting.

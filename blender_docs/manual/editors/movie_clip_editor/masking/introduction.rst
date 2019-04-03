@@ -28,7 +28,7 @@ Mask Data-block
 ===============
 
 Mask data-block containing multiple mask layers and splines.
-They are the most high-level entity used for masking purposes.
+They are the most high-level entities used for masking purposes.
 Masks can be reused in different places, and hold global parameters for all the entities they consist of.
 
 

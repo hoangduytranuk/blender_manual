@@ -19,7 +19,7 @@ an earlier version of your model with intact UVs.
 Workflow
 --------
 
-#. :kbd:`RMB` Select the target mesh (to which you want to copy the UV map).
+#. :kbd:`RMB` select the target mesh (to which you want to copy the UV map).
 #. :kbd:`Shift` select the source mesh (that contains the intact UV map).
 #. :menuselection:`Object menu --> Make Links... --> Transfer UV Layouts` (Shortcut: :kbd:`Ctrl-L` ...).
 

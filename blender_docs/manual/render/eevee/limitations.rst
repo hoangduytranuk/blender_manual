@@ -64,6 +64,7 @@ Screen Space Refraction
 =======================
 
 - Only one refraction event is correctly modeled.
+- Only opaque and alpha hashed materials can be refracted.
 
 
 Ambient Occlusion

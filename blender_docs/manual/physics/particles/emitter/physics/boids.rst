@@ -178,7 +178,7 @@ Goal
    Predict
       Predict target's movements.
 Avoid
-   Avoid "predators" (objects with force fields and negative Strength).
+   Avoid "predators" (objects with force field and negative Strength).
 
    Predict
       Predict target's movements.

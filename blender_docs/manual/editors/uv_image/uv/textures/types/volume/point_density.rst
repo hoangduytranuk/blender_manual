@@ -99,7 +99,7 @@ Color Source
             The actual color of the point density texture is averaged from all vertex corners.
 
       Vertex Weight
-         Use a weights from a vertex group as intensity values.
+         Use weights from a vertex group as intensity values.
          An additional color ramp can be used to convert intensity to RGB colors.
       Vertex Normals
          Use object-space vertex normals as RGB values.

@@ -6,11 +6,11 @@ Tabs & Panels
 Tabs
 ====
 
-.. figure:: /images/game-engine_physics_introduction_tab-header.png
+.. figure:: /images/interface_window-system_tabs-panels_tabs_tabs-horizontal.png
 
    Horizontal tab header.
 
-.. figure:: /images/interface_window-system_tabs-panels_tabs.png
+.. figure:: /images/interface_window-system_tabs-panels_tabs-vertical.png
    :align: right
 
    Tools tab (selected), Create, etc.

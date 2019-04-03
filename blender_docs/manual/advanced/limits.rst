@@ -57,15 +57,15 @@ Time
    maxframe = 1048574
    for fps in (24, 25, 30, 60):
       seconds = maxframe / fps
-      print(":%d fps: %d hours, %d seconds." %
+      print(":%d fps: %d hours, %d minutes." %
             (fps, seconds // 3600, seconds % 3600 // 60))
 
 The maximum number of frames for each scene is currently 1,048,574, and allows for continuous shots for durations of:
 
-:24 fps: 12 hours, 8 seconds.
-:25 fps: 11 hours, 39 seconds.
-:30 fps: 9 hours, 42 seconds.
-:60 fps: 4 hours, 51 seconds.
+:24 fps: 12 hours, 8 minutes.
+:25 fps: 11 hours, 39 minutes.
+:30 fps: 9 hours, 42 minutes.
+:60 fps: 4 hours, 51 minutes.
 
 .. note::
 

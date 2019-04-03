@@ -19,7 +19,7 @@ then be connected to these nodes.
 
    Typical displacement node setup.
 
-Three displacement methods exits, with varying accuracy, performance and memory usage.
+Three displacement methods exist, with varying accuracy, performance and memory usage.
 
 .. figure:: /images/render_cycles_materials_displacement_example.jpg
 

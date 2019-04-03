@@ -46,7 +46,7 @@ Plus Icon
 
 Drag Handle
    If you have a large number of vertex groups and you want to see more
-   then a few Groups, you can :kbd:`LMB` on the small drag handle to tear
+   than a few Groups, you can :kbd:`LMB` on the small drag handle to tear
    the vertex groups list larger or smaller.
 
 Active Group

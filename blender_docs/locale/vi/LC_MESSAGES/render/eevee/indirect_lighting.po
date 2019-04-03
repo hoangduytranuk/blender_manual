@@ -9,11 +9,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.80 Manual 2.80\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-22 15:35+0000\n"
-"PO-Revision-Date: 2018-12-07 01:52+0000\n"
+"POT-Creation-Date: 2019-03-16 22:15+0000\n"
+"PO-Revision-Date: 2019-03-23 14:46+0000\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
-"Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
 "Language: vi\n"
+"Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,38 +25,23 @@ msgid "Indirect Lighting Cache"
 msgstr "-- Indirect Lighting Cache"
 
 #: ../../manual/render/eevee/indirect_lighting.rst:6
-msgid ""
-"While not strictly correct, all lighting that is not coming straight out "
-"from a lamp object is considered indirect lighting in Eevee. That means "
-"distant HDRI lighting (or World) is considered as indirect lighting. Mesh"
-" objects using an Emission node is also considered as indirect lighting."
+msgid "While not strictly correct, all lighting that is not coming straight out from a lamp object is considered as indirect lighting in Eevee. That means distant HDRI lighting (or World) is considered as indirect lighting. Mesh objects using an Emission node are also considered as indirect lighting."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:11
-msgid ""
-"In Eevee, indirect lighting is separated into two component: Diffuse and "
-"Specular. Both have different needs and representation. For efficiency, "
-"the indirect lighting data is precomputed on demand into a static "
-"lighting cache."
+msgid "In Eevee, indirect lighting is separated into two component: Diffuse and Specular. Both have different needs and representation. For efficiency, the indirect lighting data is precomputed on demand into a static lighting cache."
 msgstr "In Eevee, indirect lighting is separated into two component: Diffuse and Specular. Both have different needs and representation. For efficiency, the indirect lighting data is precomputed on demand into a static lighting cache."
 
 #: ../../manual/render/eevee/indirect_lighting.rst:15
-msgid ""
-"As of now the light cache is static and needs to be computed before "
-"rendering. It cannot be updated per frame (unless via scripting). This "
-"limitation is being worked on and will be removed in future versions."
+msgid "As of now the light cache is static and needs to be computed before rendering. It cannot be updated per frame (unless via scripting). This limitation is being worked on and will be removed in future versions."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:19
-msgid ""
-"Only view independent lighting can be baked. This is why Reflection "
-"Planes are not stored inside the light cache."
+msgid "Only view independent lighting can be baked. This is why Reflection Planes are not stored inside the light cache."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:21
-msgid ""
-"The visibility and collections used during the baking process are the "
-"ones in the current Active View Layer."
+msgid "The visibility and collections used during the baking process are the ones in the current Active View Layer."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:25
@@ -63,11 +49,7 @@ msgid "Light Bounce"
 msgstr "-- Light Bounce"
 
 #: ../../manual/render/eevee/indirect_lighting.rst:27
-msgid ""
-"To enable light bounces through large environment, the light baking "
-"process can be run multiple times while injecting previous bake result "
-"into the a bake. Total baking time is more or less multiplied by the "
-"number of bounce."
+msgid "To enable light bounces through large environment, the light baking process can be run multiple times while injecting previous bake result into the bake. Total baking time is more or less multiplied by the number of bounce."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:31
@@ -95,9 +77,7 @@ msgid "Auto Bake"
 msgstr " -- Auto Bake"
 
 #: ../../manual/render/eevee/indirect_lighting.rst:43
-msgid ""
-"Enabling this option will trigger baking when a probe is changed. Useful "
-"when positioning probes objects."
+msgid "Enabling this option will trigger baking when a probe is changed. Useful when positioning probes objects."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:46
@@ -121,10 +101,7 @@ msgid "Diffuse Occlusion Size"
 msgstr " -- Diffuse Occlusion Size"
 
 #: ../../manual/render/eevee/indirect_lighting.rst:52
-msgid ""
-"Each irradiance sample also store a shadow map that is used to minimize "
-"indirect light leaking. This parameter define the size of this shadow "
-"map."
+msgid "Each irradiance sample also store a shadow map that is used to minimize indirect light leaking. This parameter define the size of this shadow map."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:58
@@ -132,10 +109,7 @@ msgid "Irradiance Smoothing"
 msgstr " -- Irradiance Smoothing"
 
 #: ../../manual/render/eevee/indirect_lighting.rst:56
-msgid ""
-"Smoother irradiance interpolation but introduce light bleeding. The "
-"irradiance visibility term can make the lighting not interpolate smoothly"
-" on some surfaces. This relax the weights so that the interpolation."
+msgid "Smoother irradiance interpolation but introduce light bleeding. The irradiance visibility term can make the lighting not interpolate smoothly on some surfaces. This relax the weights so that the interpolation."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:61
@@ -143,9 +117,7 @@ msgid "Clamp Glossy"
 msgstr " -- Clamp Glossy"
 
 #: ../../manual/render/eevee/indirect_lighting.rst:61
-msgid ""
-"Clamp pixel intensity to reduce noise inside glossy reflections from "
-"reflection cubemaps (0 to disabled)."
+msgid "Clamp pixel intensity to reduce noise inside glossy reflections from reflection cubemaps (0 to disabled)."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:64
@@ -153,9 +125,7 @@ msgid "Filter Quality"
 msgstr " -- Filter Quality"
 
 #: ../../manual/render/eevee/indirect_lighting.rst:64
-msgid ""
-"Take more samples during cubemap filtering to remove artifacts. For now, "
-"only have effect on cubemaps"
+msgid "Take more samples during cubemap filtering to remove artifacts. For now, only have effect on cubemaps"
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:67
@@ -163,9 +133,7 @@ msgid "Cubemap Display"
 msgstr " -- Cubemap Display"
 
 #: ../../manual/render/eevee/indirect_lighting.rst:67
-msgid ""
-"Display the Reflection Cubemaps present in the cache directly in the 3D "
-"View."
+msgid "Display the Reflection Cubemaps present in the cache directly in the 3D View."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:70
@@ -177,7 +145,6 @@ msgid "Display the Irradiance Samples present in the cache in the 3D View."
 msgstr ""
 
 #: ../../manual/render/eevee/indirect_lighting.rst:74
-msgid ""
-"Cache data display only works in the viewport and only if the viewport "
-"uses the world lighting in lookdev mode of in rendered mode."
+msgid "Cache data display only works in the viewport and only if the viewport uses the world lighting in lookdev mode of in rendered mode."
 msgstr ""
+

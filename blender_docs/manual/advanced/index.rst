@@ -12,5 +12,6 @@ This chapter covers advanced use (topics which may not be required for typical u
    command_line/index.rst
    scripting/index.rst
    app_templates.rst
+   keymap_editing.rst
    limits.rst
    operators.rst

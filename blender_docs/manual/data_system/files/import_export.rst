@@ -23,6 +23,11 @@ these can be enabled in the User Preferences through the use of :doc:`Add-ons </
    If you are not interested in technical details,
    a good rule of thumb for selecting import/export formats for your project is:
 
+
+   Use :abbr:`glTF (Graphics Library Transmission Format)`
+      if you intend to export rich materials for :abbr:`PBR (Physically Based Rendering)`
+      or need the file to be in ready-to-render form for a wide variety of clients and viewers.
+      See the :doc:`glTF Import/Export Instructions </addons/io_gltf2>`.
    Use :abbr:`STL (STereoLithography)`
       if you intend to import/export the files for CAD software.
       This format is also commonly used for loading into 3D printing software.

@@ -199,7 +199,7 @@ Steps
    you can improve the stability by increasing the number of steps.
 Feedback
    Coefficient on end effector position error to set corrective joint velocity.
-   The time constant of the error correction is the inverse of the this value.
+   The time constant of the error correction is the inverse of this value.
    However, this parameter has little effect on the dynamic of the armature
    since the algorithm evaluates the target velocity in any case.
    Setting this parameter to 0 means 'opening the loop':

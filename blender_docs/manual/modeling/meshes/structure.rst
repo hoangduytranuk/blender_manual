@@ -26,7 +26,7 @@ It looks similar, but it is bigger and you cannot select it.
 
 .. figure:: /images/modeling_meshes_structure_cube-example.png
 
-   The vertex is labeled as "A", and "B" are object origin.
+   The vertex is labeled as "A", and "B" is object origin.
 
 
 Edges

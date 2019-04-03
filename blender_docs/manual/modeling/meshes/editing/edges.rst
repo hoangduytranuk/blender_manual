@@ -83,7 +83,7 @@ is used by the :doc:`Bevel Modifier </modeling/modifiers/generate/bevel>`
 to control the bevel intensity of the edges.
 This operator enters an interactive mode (a bit like transform tools),
 where by moving the mouse (or typing a value with the keyboard)
-you can set the bevel weight of selected edges. If two or more edge are selected,
+you can set the bevel weight of selected edges. If two or more edges are selected,
 this operator alters the average weight of the edges.
 
 .. seealso::
@@ -277,7 +277,7 @@ Edge Split
 
 *Edge Split* is similar to the *Rip* tool. When two or more touching interior edges,
 or a border edge is selected when using *Edge Split*,
-a hole will be created, and the selected edges are duplicated to form the border of the hole.
+a hole will be created, and the selected edges will be duplicated to form the border of the hole.
 
 .. list-table::
 
@@ -310,7 +310,7 @@ Connect Loops
    Open Loop
       Loops connected with open ends.
    Closed Loop
-      Tries to connect to a circular loop (where start and end is merged).
+      Tries to connect to a circular loop (where start and end are merged).
    Loop pairs
       Connects each even count of loops individually.
 Merge

@@ -92,7 +92,7 @@ Object (Keep Transform) Parent
 the *Child Objects* will remember any previous transformations applied to them from the previous *Parent Object*.
 
 Since explaining this in an easy to understand technical way is hard,
-lets instead use an example to demonstrate.
+let's instead use an example to demonstrate.
 
 Assume that we have a scene consisting of three objects,
 those being two Empty Objects named "EmptyA" and "EmptyB", and a Monkey object.
