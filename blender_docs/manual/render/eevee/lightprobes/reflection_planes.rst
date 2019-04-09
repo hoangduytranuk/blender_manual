@@ -10,10 +10,10 @@ Using reflection planes is really heavy on the render time
 because the scene needs to be rendered as many times as there is Reflection Planes in the view.
 
 Unless Screen Space Reflection is enabled,
-Reflection Planes only work on specular surfaces that have there roughness around 0.
+Reflection Planes only work on specular surfaces that have their roughness around 0.
 
-If Screen Space Reflection is enabled, Reflection Planes will serves as support buffers.
-This accelerate the tracing process and complete the missing data from the view space.
+If Screen Space Reflection is enabled, Reflection Planes will serve as support buffers.
+This accelerates the tracing process and completes the missing data from the view space.
 This also make reflection more correct for the affected surface that have medium roughness and
 disturbed normals (i.e. normal maps).
 

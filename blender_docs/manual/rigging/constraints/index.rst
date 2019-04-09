@@ -76,6 +76,7 @@ Relationship
    :maxdepth: 1
 
    relationship/action.rst
+   relationship/armature.rst
    relationship/child_of.rst
    relationship/floor.rst
    relationship/follow_path.rst

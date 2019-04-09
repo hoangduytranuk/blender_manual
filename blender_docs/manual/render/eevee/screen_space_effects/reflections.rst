@@ -25,7 +25,7 @@ Refractions
 
 Half Resolution Trace
    Use half resolution ray tracing. Only cast a ray for every fourth pixels.
-   Enabling this option reduces drastically video memory usage and increase performances at the cost of quality.
+   Enabling this option reduces drastically video memory usage and increased performance at the cost of quality.
 
 Trace Precision
    Increases precision of the ray trace but introduces more noise and lowers the maximum trace distance.

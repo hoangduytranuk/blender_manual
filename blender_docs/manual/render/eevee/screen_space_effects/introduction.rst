@@ -7,7 +7,7 @@ Eevee is not a ray tracing engine and cannot do ray-triangle intersection.
 Instead of this, Eevee uses the depth buffer as an approximated scene representation.
 This reduces the complexity of scene scale effects and allows high performances.
 However, only what is in inside the view can be considered when computing these effects.
-Also, since it only uses one layer of depth, only the frontmost pixel distance is known.
+Also, since it only uses one layer of depth, only the front-most pixel distance is known.
 
 These limitations creates a few problems:
 

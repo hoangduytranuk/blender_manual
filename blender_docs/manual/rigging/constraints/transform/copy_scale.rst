@@ -33,6 +33,11 @@ Offset
    When enabled, this control allows the owner to be scaled (using its current transform properties),
    relatively to its target's scale.
 
+Additive
+   Scale is a multiplicative quantity, so the *Offset* option by default multiplies
+   the owner scale by the target scale. With this option enabled it instead adds them
+   like legacy Blender.
+
 Space
    Standard conversion between spaces.
 

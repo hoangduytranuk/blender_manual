@@ -40,14 +40,14 @@ Custom properties can be edited using the panel available for data types that su
 Property Name
    The name of the custom property.
 Property Value
-   This does two things, first it sets the default value of the custom property
-   second, it define the type of property it is. For example, custom properties
-   can either be of type: Integers, Floats, or Booleans.
+   This does two things: first it sets the current value of the custom property, and
+   second, it defines the data type of the property.
+   For example, custom properties can either be of type: Integers, Floats, or Booleans.
    See the table below for a list of examples for each:
 
    :Integers: 1, 2, 3, 4...
    :Floats: 3.141, 5.0, 6.125,
-   :Booleans: True, False
+   :Booleans: ``True``, ``False``
 
    .. note::
 
@@ -56,7 +56,14 @@ Property Value
 
       At this point, the booleans will still look like integers but behave like
       booleans having one lower, off, value and a higher, on, value.
+Default Value
+   This sets the default value of the property used by the Reset to Default Value operator.
 
+   .. warning::
+
+      Default values are used as the basis of :ref:`NLA blending <nla-blend-modes>`,
+      and a nonsensical default (e.g. 0 for a property used for scaling) on a property intended for
+      being keyframed is likely to cause issues.
 Min
    The minimum value the custom property can take.
 Max
@@ -69,6 +76,9 @@ Use Soft Limits
       The minimum value for the soft limit.
    Soft Max
       The maximum value for the soft limit.
+Is Statically Overridable
+   Specifies if the property can be overridden via the Static Overrides system
+   (with an additional performance overhead).
 Tooltip
    Allows you to write a custom :doc:`Tooltip </getting_started/help>` for your property.
 

@@ -50,7 +50,7 @@ function findChangedFiles()
    if [ -d ".git" ]; then
       changed_list=$(git status | grep 'modified' | awk '{ print $2 }' | grep ".po")
    elif [ -d ".svn" ]; then
-      changed_list=$(svn status | grep 'M' | awk '{ print $2 }' | grep ".po")
+      changed_list=$(svn status | grep '^M' | awk '{ print $2 }' | grep ".po")
    else #slowest option of all, find po files in any root directory
       changed_list=$(find . -type f -name "*.po" -exec ls -al --time-style=+%D\ %H:%M:%S {} \; | grep `$date_bin +%D` | awk '{ print $6,$7,$8 }' | sort | tail -1 | awk '{ print $3 }')
    fi

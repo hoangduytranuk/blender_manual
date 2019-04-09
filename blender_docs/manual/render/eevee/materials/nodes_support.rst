@@ -28,7 +28,7 @@ Specular BSDF
 -------------
 
 This :doc:`node </render/eevee/materials/nodes/specular_bsdf>` implements the specular workflow
-found in other render engine.
+found in other render engines.
 
 
 Other Nodes Support

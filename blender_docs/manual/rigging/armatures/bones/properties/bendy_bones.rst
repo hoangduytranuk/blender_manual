@@ -19,7 +19,7 @@ Technical Details
 =================
 
 Blender treats the bone as a section of a Bézier curve passing through the bones' joints.
-Each *Segments* will bend and roll them to follow this invisible curve
+Each of the *Segments* will bend and roll to follow this invisible curve
 representing a tessellated point of the Bézier curve.
 The control points at each end of the curve are the endpoints of the bone.
 The shape of the B-Bones can be controlled using a series of properties or
@@ -33,7 +33,8 @@ When using the B-bone as a constraint target :ref:`ui-data-id` offers an option 
 .. note::
 
    However, if the bone is used as a target rather than to deform geometry,
-   the roll is not taken in account.
+   only *Armature* and *Copy Transforms* constraints will use the full
+   transformation including roll and scale.
 
 
 Display
@@ -45,7 +46,7 @@ When not visualized as *B-Bone*\ s, bones are always shown as rigid sticks,
 even though the bone segments are still present and effective.
 This means that even in e.g. *Octahedron* visualization,
 if some bones in a chain have several segments,
-they will nonetheless smoothly deform their geometry...
+they will nonetheless smoothly deform their geometry.
 
 
 Rest Pose
@@ -104,13 +105,13 @@ Segments
 
 The *Segments* number button allows you to set the number of segments, which the given bone is subdivided into.
 Segments are small, rigid linked child bones that interpolate between the root and the tip.
-The higher this setting, the smoother "bends" the bone, but the heavier the pose calculations...
+The higher this setting, the smoother "bends" the bone, but the heavier the pose calculations.
 
 
 Curve XY Offsets
 ----------------
 
-Applies an offsets the curve handle positions on the plane perpendicular to the bone's primary (Y) axis.
+Applies offsets to the curve handle positions on the plane perpendicular to the bone's primary (Y) axis.
 As a result, the handle moves per axis (XY) further from its original location, causing the curve to bend.
 
 
@@ -120,9 +121,10 @@ Roll
 Roll In, Out
    The roll value (or twisting around the main Y axis of the bone) is interpolated per segment,
    between the start and end roll values.
-   It is applied as a rotational offsets on top of the previous rotation.
+   It is applied as a rotational offset on top of the previous rotation.
 Inherit End Roll
-   ToDo ~2.78.
+   If enabled, the *Roll Out* value of the *Start Handle* bone (connected parent by default)
+   will be implicitly added to the *Roll In* setting of the current bone.
 
 
 Scale
@@ -157,19 +159,34 @@ Ease In, Out
           Bone.004 with In at 2.0, and Out at 0.0.
 
 
-Custom Handle Reference
------------------------
+Custom Handles
+--------------
 
-B-Bones can use custom bones as their reference bone handles, instead of only using the parent/child bones.
-To do so, enable the *Use Custom Reference Handles* toggle in Pose Mode.
-If none are specified, then the BBone will only use the Bendy Bone properties.
-When the option is on, just use the specified bones instead of using trying looking at the bone's neighbors.
+B-Bones can use custom bones as their reference bone handles, instead of only using the connected parent/child bones.
 
-Relative
-   Instead of using the endpoints of the bones as absolute points in 3D space
-   it computes how far the reference bone has moved away from its rest pose.
-   The delta transformation is then applied as to the bone's own endpoints to get the handle locations.
-   This is useful if the custom control bone is far away from its target.
+Start, End Handle Type
+   Specifies the type of the handle from the following choices:
+
+   Automatic (default)
+      The connected parent (or first connected child) of the bone is chosen as the handle.
+      Calculations are done according to the *Absolute* handle type below.
+   Absolute
+      The Bézier handle is controlled by the position of the head (tail) of the handle bone
+      relative to the head (tail) of the current bone. If the handle is also a B-Bone,
+      additional processing is applied to further smooth the transition, assuming that
+      the bones in effect form a chain.
+   Relative
+      The Bézier handle is controlled by the offset of the head (tail) of the handle bone from rest pose.
+      The use of this type is not recommended due to numerical stability issues near zero offset.
+   Tangent
+      The Bézier handle is controlled by the orientation of the handle bone, ignoring its location.
+
+Custom Handle
+   For types other than *Automatic*, a bone to use as handle has to be manually selected.
+   Switching to a custom handle type without selecting a bone can be used to effectively disable the handle.
+
+   It is legal for two bones to refer to each other as handles -- this in fact happens naturally
+   in connected chains with *Automatic* handles.
 
 .. tip:: Keying Set
 

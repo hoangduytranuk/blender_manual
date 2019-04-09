@@ -97,15 +97,15 @@ See the :doc:`Markers page </animation/markers>` for more information.
 Header
 ======
 
-Popovers
---------
+Pop-Overs
+---------
 
 .. _timeline-playback:
 
-Playback Popover
-^^^^^^^^^^^^^^^^
+Playback Pop-Over
+^^^^^^^^^^^^^^^^^
 
-The *Playback Popover* contains options controlling animation playback.
+The *Playback* pop-over contains options controlling animation playback.
 
 Synchronize Playback
    .. figure:: /images/editors_timeline_red-fps.png
@@ -157,12 +157,13 @@ Node Editors
 Clip Editors
    While playing, updates the Movie Clip Editor.
 
+
 .. _timeline-keying:
 
-Keying Popover
-^^^^^^^^^^^^^^
+Keying Pop-Over
+^^^^^^^^^^^^^^^
 
-The *Keying Popover* contains options that affect keyframe insertion.
+The *Keying* pop-over contains options that affect keyframe insertion.
 
 Active Keying Set
    .. figure:: /images/editors_timeline_keying-sets.png
@@ -187,13 +188,13 @@ New Keyframe Type
    :ref:`keyframe-type` on insertion.
 
 Auto-Keyframing Mode
-   This controls how the Auto Keyframe mode works.
+   This controls how the auto keyframe mode works.
    Only one mode can be used at a time.
 
    Add & Replace
-      Add or Replace existing keyframes.
+      Add or replace existing keyframes.
    Replace
-      Only Replace existing keyframes.
+      Only replace existing keyframes.
 
 Auto Keying Set (two keys icon)
    When enabled *Auto Keyframe* will insert new keyframes for the properties in the active *Keying Set*.
@@ -205,8 +206,8 @@ Cycle-Aware Keying
    When inserting keyframes into :ref:`trivially cyclic curves <bpy.types.FModifierCycles>`, special handling
    is applied to preserve the cycle integrity (most useful while tweaking an established cycle):
 
-   * If key insertion is attempted outside of the main time range of the cycle, it is remapped back inside the range.
-   * When overwriting one of the end keys, the other one is updated appropriately.
+   - If a key insertion is attempted outside of the main time range of the cycle, it is remapped back inside the range.
+   - When overwriting one of the end keys, the other one is updated appropriately.
 
 
 Menus

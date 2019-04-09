@@ -34,14 +34,39 @@ Action Extrapolation
    Nothing
       Neither.
 
+.. _nla-blend-modes:
+
 Action Blending
-   Affects the behavior when two tracks simultaneously have a curve affecting the same property.
+   Affects how the property values directly produced by the strip are combined with
+   the result of evaluating the stack below. The bottom-most strip is blended on top of
+   the default values of the properties.
 
    Replace
-      Causes the top strip to take precedence according to the parameters
-      of the Blend In/Out (see next option, below).
+      The top strip is linearly blended in with the accumulated result according to influence,
+      completely overwriting it if influence is set to 100%.
    Multiply, Subtract, Add
-      The weighted result of the strip is multiplied, subtracted, or added with the accumulated results.
+      The result of the strip is multiplied, subtracted, or added to the accumulated results,
+      and then blended in according to influence.
+
+      :math:`result = mix(previous, previous (+-*) value, influence)`
+   Combine
+      Depending on the type of each property, one of the following methods is automatically chosen:
+
+      Axis/Angle Rotation
+         :math:`result = previous + value * influence`
+
+         This results in averaging the axis and adding the amount of rotation.
+      Quaternion Rotation
+         Quaternion math is applied to all four channels of the property at once:
+
+         :math:`result = {previous} \times {value} ^ {influence}`
+      Proportional (Scale)
+         :math:`result = previous * (value / default) ^ {influence}`
+      Others
+         :math:`result = previous + (value - default) * {influence}`
+
+      This allows layering actions that can also be used as a standalone.
+      Properties keyframed at their default values remain at default.
 
 Action Influence
    Amount the active Action contributes to the result of the NLA stack.
