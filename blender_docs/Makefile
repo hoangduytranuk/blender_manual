@@ -17,8 +17,9 @@ endif
 # End System Vars
 # ---------------
 
-
-SPHINXOPTS    = -j "$(NPROCS)"
+VI_LANGUAGE_OPT= -D language='vi'
+#SPHINXOPTS    = -j "$(NPROCS) $(VI_LANGUAGE_OPT)"
+SPHINXOPTS    = -D language='vi'
 PAPER         =
 SPHINXBUILD   = sphinx-build
 BUILDDIR      = build
