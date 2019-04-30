@@ -167,7 +167,7 @@ B-Bones can use custom bones as their reference bone handles, instead of only us
 Start, End Handle Type
    Specifies the type of the handle from the following choices:
 
-   Automatic (default)
+   Automatic
       The connected parent (or first connected child) of the bone is chosen as the handle.
       Calculations are done according to the *Absolute* handle type below.
    Absolute
@@ -176,16 +176,16 @@ Start, End Handle Type
       additional processing is applied to further smooth the transition, assuming that
       the bones in effect form a chain.
    Relative
-      The Bézier handle is controlled by the offset of the head (tail) of the handle bone from rest pose.
+      The Bézier handle is controlled by the offset of the head (tail) of the handle bone from its rest pose.
       The use of this type is not recommended due to numerical stability issues near zero offset.
    Tangent
-      The Bézier handle is controlled by the orientation of the handle bone, ignoring its location.
+      The Bézier handle is controlled by the orientation of the handle bone, independent of its location.
 
 Custom Handle
    For types other than *Automatic*, a bone to use as handle has to be manually selected.
    Switching to a custom handle type without selecting a bone can be used to effectively disable the handle.
 
-   It is legal for two bones to refer to each other as handles -- this in fact happens naturally
+   It is valid for two bones to refer to each other as handles -- this correlation is applied
    in connected chains with *Automatic* handles.
 
 .. tip:: Keying Set

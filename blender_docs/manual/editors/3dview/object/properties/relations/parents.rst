@@ -39,9 +39,7 @@ The *Set Parent To* pop-up menu is context-sensitive, which means
 the number of entries it displays can change depending on what objects are selected
 when the :kbd:`Ctrl-P` shortcut is used.
 
-For non-inverse-mode, press :kbd:`Shift-Ctrl-P` instead. This creates an alternative
-parent-child-relationship where child objects exist entirely in the parent's coordinate system.
-This is the better choice for CAD purposes, for example.
+For parenting without `Parent Inverse`_, use the :kbd:`Shift-Ctrl-P` shortcut instead.
 
 Moving, rotating or scaling the parent will also usually move/rotate/scale the child/children.
 However, moving/rotating/scaling the child/children of the parent will not result in the parent
@@ -52,6 +50,24 @@ In general when using :kbd:`Ctrl-P` or :menuselection:`3D View Header --> Object
 to parent objects, the *Child Objects* can only have one *Parent Object*.
 If a *Child Object* already has a *Parent Object* and you give it another parent then
 Blender will remove the previous parent relationship.
+
+Parent Inverse
+--------------
+
+When objects are parented with :kbd:`Ctrl-P`, the current transformation of the parent
+is stored in a hidden *Parent Inverse* matrix. By using that, the location, rotation and
+scale properties of the child can continue to be effectively interpreted in world space,
+as long as the parent doesn't move.
+
+For parenting without assigning the matrix, use the :kbd:`Shift-Ctrl-P` shortcut instead.
+This creates an alternative parent-child-relationship where child object's properties are
+evaluated in the parent's coordinate system. This is the better choice for CAD purposes,
+for example.
+
+The matrix can also be cleared after parenting by using :ref:`Clear Parent Inverse <bpy.ops.object.parent_clear>`.
+
+Parent Types
+------------
 
 Blender supports many different types of parenting, listed below:
 
@@ -314,15 +330,10 @@ Clear and Keep Transformation
 
    See `Non-Uniform Scale`_ which may apply here.
 Clear Parent Inverse
-   Places the children with respect to the parent as if they were placed in the Global reference.
-   This effectively clears the parent's transformation from the children.
-   The hierarchical relationships are not removed, but the correcting matrix
-   (''parent inverse'') is cleared from the selected objects.
-
-   For example, if the parent is moved 10 units along the X axis and *Clear Parent Inverse* is invoked,
-   any selected children are freed and moved -10 units back along the X axis.
-   The "Inverse" only uses the last transformation; if the parent moved twice,
-   10 units each time for a total of 20 units, then the "Inverse" will only move the child back 10 units, not 20.
+   Instead of removing the hierarchical parent-child relationship, this clears
+   the `Parent Inverse`_ matrix from the selected objects. With an empty matrix,
+   the location, rotation and scale properties of the children are interpreted
+   in the coordinate space of the parent.
 
 
 Hints

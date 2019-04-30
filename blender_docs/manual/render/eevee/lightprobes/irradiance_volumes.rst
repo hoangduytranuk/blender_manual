@@ -88,7 +88,7 @@ Blending
 The lighting values from an Irradiance Volume will fade outwards until the volume bounds are reached.
 They will fade into the world's lighting or another Irradiance Volume's lighting.
 
-If multiple Irradiance Volumes overlaps, smaller (in volume) ones will always have more priority.
+If multiple Irradiance Volumes overlap, smaller (in volume) ones will always have more priority.
 
 If an object is not inside any Irradiance Volume, or if the indirect lighting has not been baked,
 the world's diffuse lighting will be used to shade it.

@@ -85,12 +85,12 @@ Local Space
    In this space type the parent of the object (or bone) is the frame of reference.
    Location is relative to the parent object origin.
    Rotation and Scale are oriented to the parent object axes.
-   Only transformations to the object itself are taken into account. Transformations to the object's parent and
-   any other constraints higher up in the constraint stack are **not** taken into account.
+   Only transformations to the object itself are taken into account.
+   Transformations to the object's parent are **not** taken into account.
 
 Local With Parent (bones only)
-   The bone properties are evaluated in its own local space,
-   *including* the transformations due to a possible parent relationship
+   The bone properties are evaluated relative to its rest pose location and orientation, thus
+   including both its own transformations and those caused by a possible parent relationship
    (i.e. the chain's transformations above the bone).
 
 Pose Space (bones only)

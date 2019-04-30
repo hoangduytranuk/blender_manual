@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-16 22:15+0000\n"
-"PO-Revision-Date: 2019-03-23 14:46+0000\n"
+"PO-Revision-Date: 2019-04-30 14:06+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
 "Language: vi\n"
 "Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
@@ -46,7 +46,6 @@ msgstr "-- Automatic IK"
 msgid "Reference"
 msgstr "Tham Chiếu -- Reference"
 
-#: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst
 msgid "Mode"
 msgstr "Chế Độ -- Mode"
 
@@ -56,13 +55,12 @@ msgstr "Chế Độ -- Mode"
 msgid "Pose Mode"
 msgstr "Chế Độ Tư Thế -- Pose Mode"
 
-#: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst
 msgid "Panel"
 msgstr "Bảng -- Panel"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:28
 msgid ":menuselection:`Tool Shelf --> Options --> Pose Options`"
-msgstr ":menuselection:`Tool Shelf --> Options --> Pose Options`"
+msgstr ":menuselection:`Giá Công Cụ (Tool Shelf) --> Tùy Chọn (Options) --> Tùy Chọn về Tư Thế (Pose Options)`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:30
 msgid "Automatic IK is a tool for quick posing, it can be enabled in the Tool Shelf in the 3D View, when in pose mode. When the Auto IK option is enabled, translating a bone will activate inverse kinematics and rotate the parent bone, and the parent's parent, and so on, to follow the selected bone. The IK chain can only extend from a child to a parent bone if the child is *connected* to it."
@@ -98,7 +96,7 @@ msgstr "-- Armature IK Panel"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:69
 msgid ":menuselection:`Properties editor --> Armature --> Inverse Kinematics`"
-msgstr ":menuselection:`Properties editor --> Armature --> Inverse Kinematics`"
+msgstr ":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --> Cốt (Armature) --> Động Học Ngược (IK) (Inverse Kinematics)`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:71
 msgid "This panel is used to select the IK Solver type for the armature: *Standard* or *iTaSC*. Most the time people will use the *Standard* IK solver."
@@ -134,7 +132,7 @@ msgstr "iTaSC accepts a mix of constraints, and multiple constraints per bone: t
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:111
 msgid "Precision"
-msgstr "Độ Chuẩn Xác -- Precision"
+msgstr "Chuẩn Xác -- Precision"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:110
 msgid "The maximum variation in Blender unit of the end effector between two successive iterations at which a pose is obtained that is stable enough and the solver should stop the iterations. Lower values means higher precision on the end effector position."
@@ -202,7 +200,7 @@ msgstr ""
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:147
 msgid "Animation"
-msgstr "Hoạt Hình -- Animation"
+msgstr "Hoạt Họa -- Animation"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:149
 msgid "In Animation mode, iTaSC operates like an IK-solver: it is stateless and uses the pose from F-curves interpolation as the start pose before the IK convergence. The target velocity is ignored and the solver converges until the given precision is obtained. Still the new solver is usually faster than the old one and provides features that are inherent to iTaSC: multiple targets per bone and multiple types of constraints."
@@ -246,7 +244,7 @@ msgstr "The solver re-iterates on each frame until the given precision is achiev
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:193
 msgid "Auto Step"
-msgstr " -- Auto Step"
+msgstr "-- Auto Step"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:182
 msgid "Use this option if you want to let the solver set how many substeps should be executed for each frame. A substep is a subdivision on the time between two frames for which the solver evaluates the IK equation and updates the joint position. More substeps means more processing but better precision on tracking the targets. The auto step algorithm estimates the optimal number of steps to get the best trade-off between processing and precision. It works by estimation of the nonlinearity of the pose and by limiting the amplitude of joint variation during a substep. It can be configured with next two parameters:"
@@ -281,9 +279,8 @@ msgid "Feedback"
 msgstr "Phản Hồi -- Feedback"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:201
-#, fuzzy
 msgid "Coefficient on end effector position error to set corrective joint velocity. The time constant of the error correction is the inverse of this value. However, this parameter has little effect on the dynamic of the armature since the algorithm evaluates the target velocity in any case. Setting this parameter to 0 means 'opening the loop': the solver tracks the velocity but not the position; the error will accumulate rapidly. Setting this value too high means an excessive amount of correction and risk of instability. The value should be in the range 20-100. Default value is 20, which means that tracking errors are corrected in a typical time of 100-200ms. The feedback coefficient is the reason why the armature continues to move slightly in Simulation mode even if the target has stopped moving: the residual error is progressively suppressed frame after frame."
-msgstr "Coefficient on end effector position error to set corrective joint velocity. The time constant of the error correction is the inverse of the this value. However, this parameter has little effect on the dynamic of the armature since the algorithm evaluates the target velocity in any case. Setting this parameter to 0 means 'opening the loop': the solver tracks the velocity but not the position; the error will accumulate rapidly. Setting this value too high means an excessive amount of correction and risk of instability. The value should be in the range 20-100. Default value is 20, which means that tracking errors are corrected in a typical time of 100-200ms. The feedback coefficient is the reason why the armature continues to move slightly in Simulation mode even if the target has stopped moving: the residual error is progressively suppressed frame after frame."
+msgstr "Coefficient on end effector position error to set corrective joint velocity. The time constant of the error correction is the inverse of this value. However, this parameter has little effect on the dynamic of the armature since the algorithm evaluates the target velocity in any case. Setting this parameter to 0 means 'opening the loop': the solver tracks the velocity but not the position; the error will accumulate rapidly. Setting this value too high means an excessive amount of correction and risk of instability. The value should be in the range 20-100. Default value is 20, which means that tracking errors are corrected in a typical time of 100-200ms. The feedback coefficient is the reason why the armature continues to move slightly in Simulation mode even if the target has stopped moving: the residual error is progressively suppressed frame after frame."
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:218
 msgid "Max Velocity"
@@ -299,7 +296,7 @@ msgstr "-- Bone IK Panel"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:229
 msgid ":menuselection:`Properties editor --> Bone --> Inverse Kinematics`"
-msgstr ":menuselection:`Properties editor --> Bone --> Inverse Kinematics`"
+msgstr ":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --> Xương (Bone) --> Động Học Ngược (IK) (Inverse Kinematics)`"
 
 #: ../../manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst:231
 msgid "This panel is used to control how the *Pose Bones* work in the IK chain."

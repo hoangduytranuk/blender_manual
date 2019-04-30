@@ -27,6 +27,16 @@ Window System
    window_system/tabs_panels.rst
 
 
+Keymap
+======
+
+.. toctree::
+   :maxdepth: 1
+
+   keymap/blender_default.rst
+   keymap/industry_compatible.rst
+
+
 Interface Controls
 ==================
 

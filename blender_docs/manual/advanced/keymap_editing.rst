@@ -13,7 +13,7 @@ When customizing keymaps its useful to use keys which won't conflict with Blende
 
 Here are keys which aren't used and aren't likely to be used in the future.
 
-F-Keys (:kbd:`F5` - :kbd:`F10`)
+F-Keys (:kbd:`F5` - :kbd:`F8`)
    These F-Keys (including modifier combination)
    have been intentionally kept free for users to bind their own keys to.
 :kbd:`OS-Key` (also known as the ``Windows-Key``, ``Cmd`` or ``Super``)

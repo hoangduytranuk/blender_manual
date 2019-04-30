@@ -28,4 +28,4 @@ Samples
    Number of samples to take for the motion blur effect.
 
 Shutter
-   Time taken in frames between shutter open and close.
+   Time (in frames) taken between shutter open and close.

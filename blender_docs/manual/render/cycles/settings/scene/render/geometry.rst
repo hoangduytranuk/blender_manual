@@ -48,7 +48,7 @@ Offscreen Scale
 .. _bpy.types.CyclesRenderSettings.max_subdivisions:
 
 Max Subdivisions
-   Stop subdividing when this level is reached even if the dice rate would produce finer :term:`tessellation`.
+   Stop subdividing when this level is reached even if the dicing rate would produce finer :term:`tessellation`.
 
 .. _bpy.types.CyclesRenderSettings.dicing_camera:
 

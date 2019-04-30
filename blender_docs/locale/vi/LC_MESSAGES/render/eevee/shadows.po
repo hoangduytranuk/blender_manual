@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.80 Manual 2.80\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 23:09-0500\n"
-"PO-Revision-Date: 2019-03-23 14:46+0000\n"
+"POT-Creation-Date: 2019-04-28 13:13+0100\n"
+"PO-Revision-Date: 2019-04-30 14:06+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
 "Language: vi\n"
 "Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
@@ -40,13 +40,12 @@ msgstr "-- Global Settings"
 msgid "Reference"
 msgstr "Tham Chiếu -- Reference"
 
-#: ../../manual/render/eevee/shadows.rst
 msgid "Panel"
 msgstr "Bảng -- Panel"
 
 #: ../../manual/render/eevee/shadows.rst:19
 msgid ":menuselection:`Render --> Shadows`"
-msgstr ":menuselection:`Render --> Shadows`"
+msgstr ":menuselection:`Kết Xuất (Render) --> Bóng Tối (Shadows)`"
 
 #: ../../manual/render/eevee/shadows.rst:37
 msgid "Method"
@@ -61,7 +60,7 @@ msgid ":abbr:`ESM (Exponential Shadow Mapping)`"
 msgstr ":abbr:`ESM (Exponential Shadow Mapping)`"
 
 #: ../../manual/render/eevee/shadows.rst:25
-msgid "They are fast to filter but suffer form light leaking near the occluder. This can be minimized by increasing the *Exponent* parameter. Another issue is the artifacts present at depth discontinuity. Unfortunately, there is no workaround for this issue and the only way to minimize it is to reduce the *Soft* parameter."
+msgid "They are fast to filter but light leaking may occur near a occluder. This can be minimized by increasing the *Exponent* parameter. Another issue is the artifacts present at depth discontinuity. Unfortunately, there is no workaround for this issue and the only way to minimize it is to reduce the *Soft* parameter."
 msgstr ""
 
 #: ../../manual/render/eevee/shadows.rst:37
@@ -69,7 +68,7 @@ msgid ":abbr:`VSM (Variance Shadow Mapping)`"
 msgstr ":abbr:`VSM (Variance Shadow Mapping)`"
 
 #: ../../manual/render/eevee/shadows.rst:32
-msgid "Filters nicely and gives smooth shadow map appearance across the whole shadow range. However it suffers from visible grainy artifacts when using low bit depth. It is also prone to light leaking when two occluders overlap. In this case the shadows can be overdarkened to reduce the leak, by using the *Bleed Bias* parameter. VSM uses twice as much memory as ESM, and are slower."
+msgid "Filters nicely and gives smooth shadow map appearance across the whole shadow range. However grainy artifacts will be visible when using a low bit depth. It is also prone to light leaking when two occluders overlap. In this case the shadows can be overdarkened to reduce the leak, by using the *Bleed Bias* parameter. VSM uses twice as much memory as ESM, and is slower."
 msgstr ""
 
 #: ../../manual/render/eevee/shadows.rst:41
@@ -82,7 +81,7 @@ msgstr ""
 
 #: ../../manual/render/eevee/shadows.rst:44
 msgid "Cascade Size"
-msgstr " -- Cascade Size"
+msgstr "-- Cascade Size"
 
 #: ../../manual/render/eevee/shadows.rst:44
 msgid "Size of one cascade used by *Cascaded Shadow Maps*. This is only for Sun lamps."
@@ -90,7 +89,7 @@ msgstr ""
 
 #: ../../manual/render/eevee/shadows.rst:48
 msgid "High Bitdepth"
-msgstr " -- High Bitdepth"
+msgstr "-- High Bitdepth"
 
 #: ../../manual/render/eevee/shadows.rst:47
 msgid "This option can help reduce some artifacts due to float imprecision inside the shadow maps. This option effectively double the memory usage of shadow maps and will slow down their update."
@@ -98,7 +97,7 @@ msgstr ""
 
 #: ../../manual/render/eevee/shadows.rst:51
 msgid "Soft Shadows"
-msgstr " -- Soft Shadows"
+msgstr "-- Soft Shadows"
 
 #: ../../manual/render/eevee/shadows.rst:51
 msgid "Randomize the shadow maps origin to create soft shadows. It needs a lot of samples to get rid of the banding."
@@ -106,18 +105,18 @@ msgstr ""
 
 #: ../../manual/render/eevee/shadows.rst:69
 msgid "Light Threshold"
-msgstr " -- Light Threshold"
+msgstr "-- Light Threshold"
 
 #: ../../manual/render/eevee/shadows.rst:54
 msgid "In order to avoid costly setup time, this distance is first computed automatically based on a light threshold. The distance is computed at the light origin and using the inverse square falloff. The setting can be found inside the :menuselection:`Render Settings panel --> Shadow tab`."
-msgstr "In order to avoid costly setup time, this distance is first computed automatically based on a light threshold. The distance is computed at the light origin and using the inverse square falloff. The setting can be found inside the :menuselection:`Render Settings panel --> Shadow tab`."
+msgstr "In order to avoid costly setup time, this distance is first computed automatically based on a light threshold. The distance is computed at the light origin and using the inverse square falloff. The setting can be found inside the :menuselection:`Bảng Sắp Đặt về Kết Xuất (Render Settings panel) --> Thẻ Bóng Tối (Shadow tab)`."
 
 #: ../../manual/render/eevee/shadows.rst:59
 msgid "This light threshold does not take the light shape into account and may not suit every case. That is why we provide a per-lamp override where you can just set the cut off distance (:menuselection:`Light Properties Panel --> Light --> Custom Distance`)."
-msgstr "This light threshold does not take the light shape into account and may not suit every case. That is why we provide a per-lamp override where you can just set the cut off distance (:menuselection:`Light Properties Panel --> Light --> Custom Distance`)."
+msgstr "This light threshold does not take the light shape into account and may not suit every case. That is why we provide a per-lamp override where you can just set the cut off distance (:menuselection:`Bảng Tính Chất của Nguồn Sáng (Light Properties Panel) --> Nguồn Sáng (Light) --> Khoảng Cách Tùy Chỉnh (Custom Distance)`)."
 
 #: ../../manual/render/eevee/shadows.rst:64
-msgid "The influence distance is also used as shadow far clip distance, which might affect how shadows looks. This influence distance does not concerns sun lights that still have a far clip distance."
+msgid "The influence distance is also used as shadow far clip distance, which might affect how shadows looks. This influence distance does not concern sun lights that still have a far clip distance."
 msgstr ""
 
 #: ../../manual/render/eevee/shadows.rst:69
@@ -142,7 +141,7 @@ msgstr "-- Common Parameters"
 
 #: ../../manual/render/eevee/shadows.rst:90
 msgid "Clip"
-msgstr "Cắt/Xén -- Clip"
+msgstr "Đoạn Phim -- Clip"
 
 #: ../../manual/render/eevee/shadows.rst:88
 msgid "Distance from the light object at which the shadow map starts and ends. Any object before this distance will not appear to cast shadows. *Clip End* will only appear for sun lamps."
@@ -226,54 +225,58 @@ msgid "Cascaded Shadow Map"
 msgstr "-- Cascaded Shadow Map"
 
 #: ../../manual/render/eevee/shadows.rst:139
-msgid "These special kind of shadow maps are used by Sun lights. This is because they can shadow large scenes by distributing multiple shadow maps over the frustum range. Each cascade covers a different portion of the view frustum. Do note that cascade shadow map are always updated because they are view dependent. This means they have a high performance impact."
+msgid "These special kind of shadow maps are used by Sun lights. This is because they can shadow large scenes by distributing multiple shadow maps over the frustum range. Each cascade covers a different portion of the view frustum. Do note that cascade shadow maps are always updated because they are view dependent. This means they have a high performance impact."
 msgstr ""
 
-#: ../../manual/render/eevee/shadows.rst:146
+#: ../../manual/render/eevee/shadows.rst:147
+msgid "In orthographic view the cascades cover the whole depth range of the camera with an evenly distrubuted shadow precision."
+msgstr ""
+
+#: ../../manual/render/eevee/shadows.rst:151
 msgid "Count"
 msgstr "Số Lượng -- Count"
 
-#: ../../manual/render/eevee/shadows.rst:146
-msgid "Number of cascade to use. More cascade means better precision but slower update."
-msgstr ""
-
-#: ../../manual/render/eevee/shadows.rst:150
-msgid "Fade"
-msgstr "Mờ Dần -- Fade"
-
-#: ../../manual/render/eevee/shadows.rst:149
-msgid "Fade transition area between two cascades. Higher values means less overall resolution because cascades need to overlap."
+#: ../../manual/render/eevee/shadows.rst:151
+msgid "Number of cascades to use. More cascade means better precision but slower update."
 msgstr ""
 
 #: ../../manual/render/eevee/shadows.rst:155
+msgid "Fade"
+msgstr "Mờ Dần -- Fade"
+
+#: ../../manual/render/eevee/shadows.rst:154
+msgid "Fade transition area between two cascades. Higher values means less overall resolution because cascades need to overlap."
+msgstr ""
+
+#: ../../manual/render/eevee/shadows.rst:160
 msgid "Max Distance"
 msgstr "Khoảng Cách Tối Đa -- Max Distance"
 
-#: ../../manual/render/eevee/shadows.rst:153
+#: ../../manual/render/eevee/shadows.rst:158
 msgid "Distance away from the view origin (or camera origin if in camera view) to cover with the cascade. If the view far clip distance is lower than Max Distance, the lowest of the two will be used. Only works in perspective view."
 msgstr ""
 
-#: ../../manual/render/eevee/shadows.rst:159
+#: ../../manual/render/eevee/shadows.rst:164
 msgid "Distribution"
 msgstr "Phân Phối -- Distribution"
 
-#: ../../manual/render/eevee/shadows.rst:158
+#: ../../manual/render/eevee/shadows.rst:163
 msgid "Puts more resolution towards the near clip plane. Only works in perspective view."
 msgstr ""
 
-#: ../../manual/render/eevee/shadows.rst:162
+#: ../../manual/render/eevee/shadows.rst:167
 msgid "Limitations"
 msgstr "Những Giới Hạn -- Limitations"
 
-#: ../../manual/render/eevee/shadows.rst:164
+#: ../../manual/render/eevee/shadows.rst:169
 msgid "Shadows are not supported on light instances (dupli objects, group instancing)."
 msgstr ""
 
-#: ../../manual/render/eevee/shadows.rst:165
+#: ../../manual/render/eevee/shadows.rst:170
 msgid "Only 128 active lights can be supported by Eevee in a scene."
 msgstr ""
 
-#: ../../manual/render/eevee/shadows.rst:166
+#: ../../manual/render/eevee/shadows.rst:171
 msgid "Only 8 Shadowed sun lights can be supported at the same time."
 msgstr ""
 

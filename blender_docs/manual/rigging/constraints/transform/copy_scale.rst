@@ -35,8 +35,7 @@ Offset
 
 Additive
    Scale is a multiplicative quantity, so the *Offset* option by default multiplies
-   the owner scale by the target scale. With this option enabled it instead adds them
-   like legacy Blender.
+   the owner scale by the target scale. With this option enabled it instead adds them.
 
 Space
    Standard conversion between spaces.

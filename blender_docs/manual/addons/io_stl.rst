@@ -4,7 +4,7 @@ STL
 ***
 
 :Name: STL format
-:Location: :menuselection:`File --> Import/Export > Stl (.stl)`
+:Location: :menuselection:`File --> Import/Export --> Stl (.stl)`
 :Version: 1.1.2
 :Blender: 2.74
 :Category: Import-Export

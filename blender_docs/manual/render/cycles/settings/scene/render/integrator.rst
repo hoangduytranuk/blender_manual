@@ -31,8 +31,8 @@ Seed
    Seed value for integrator to get different noise patterns.
 
    Animate Seed (clock icon)
-      This button which can be found on the right side of the *Seed*
-      value can be used to give different seed values. It is a good idea to enable this
+      This button, which can be found on the right side of the *Seed* value,
+      can be used to give different seed values. It is a good idea to enable this
       when making animation because in the real world each frame has a different noise pattern.
 
 .. _render-cycles-integrator-clamp-samples:
@@ -138,10 +138,10 @@ Volume Samples
    Number of volume scattering samples to take for each AA sample.
 
 Sample All Direct Lights
-   When enabled, Cycles will samples all lights in the scene for direct bounces, instead of randomly picking one.
+   When enabled, Cycles will sample all lights in the scene for direct bounces, instead of randomly picking one.
    Disabling this can improve performance, when using a lot of AA Samples anyway, to clear up the render.
 Sample All Indirect Lights
-   Similar to direct light, but for indirects lights. This can reduce noise in scenes with many lights.
+   Similar to direct light, but for indirect lights. This can reduce noise in scenes with many lights.
 
 
 .. _render-cycles-integrator-light-paths:

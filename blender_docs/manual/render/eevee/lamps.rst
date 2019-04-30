@@ -33,7 +33,7 @@ Size (or Radius)
 Custom Limit
 
    If enabled uses *Distance* as the custom attenuation distance instead of global light threshold.
-   The *Distance* specify where light influence will be set to 0.
+   The *Distance* specifies where light influence will be set to 0.
 
    .. seealso::
 

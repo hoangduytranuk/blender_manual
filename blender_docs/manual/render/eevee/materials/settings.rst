@@ -111,8 +111,8 @@ will do a raytrace against the depth buffer to find the most accurate refracted 
 This has a big performance cost if the surface covers a lot of pixels.
 
 Screen Space Reflections is not compatible with Screen Space Refraction.
-It will be disabled on the surfaces that uses it.
-Surfaces that uses Screen Space Refraction will not appear in Screen Space Reflections.
+It will be disabled on the surfaces that use it.
+Surfaces that use Screen Space Refraction will not appear in Screen Space Reflections.
 
 If this option is disabled or if the Screen Space Refraction raytrace fails,
 the refracted ray will use the color of the nearest probe.

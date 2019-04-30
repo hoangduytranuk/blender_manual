@@ -41,22 +41,30 @@ Chain Length
 Even Division
    Ignore the relative length of the bones when fitting to the curve.
 Chain Offset
-   Offset the entire chain relative to the root joint.
+   Retain the offset of the root joint from the start point of the curve.
 
 
 Chain Scaling
 -------------
 
-Y Stretch
-   Stretch the Y axis of the bones to fit the curve.
 Use Curve Radius
    Average radius of the endpoints is used to tweak the X and Z
    scaling of the bones, on top of the X and Z scale mode.
-XZ Scale Mode
-   Scaling that a bone undergoes to reach its target.
+Y Scale Mode
+   Specifies how the length of a bone is scaled when it is fitted to the curve,
+   in addition to the effects of target curve object scale and curvature.
 
    None
-      Do not scale the X and X axes.
+      The bone is reset to its rest pose length.
+   Fit Curve
+      The bones are stretched to cover the entire length of the curve.
+   Bone Original
+      The original Y axis scale of the bone is used.
+XZ Scale Mode
+   Scaling that a bone undergoes in the other two directions.
+
+   None
+      Do not scale the X and Z axes.
    Bone Original
       Use the original scaling of the bones.
    Inverse Scale

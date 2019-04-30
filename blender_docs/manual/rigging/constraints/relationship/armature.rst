@@ -7,7 +7,7 @@ Armature Constraint
 *******************
 
 *Armature* is the constraint version of the :ref:`Armature Modifier <bpy.types.ArmatureModifier>`,
-exactly reproducing the weight-blended bone transformation math and applying it to its owner orientation.
+exactly reproducing the weight-blended bone transformations and applying it to its owner orientation.
 It can be used like a variant of the :ref:`Child Of <bpy.types.ChildOfConstraint>` constraint
 that can handle multiple parents at once, but requires all of them to be bones.
 
@@ -24,13 +24,13 @@ Target Entries
    Each target bone has the following input fields and controls:
 
    Armature
-      Unlike the modifier, the constraint can use bones coming from different
-      armatures at the same time.
+      Unlike the modifier, the constraint can use bones coming from
+      different armatures at the same time.
 
    Bone
       Name of the target bone.
 
-   Remove Button (``-``)
+   Remove Button ``-``
       Removes the entry from the target list.
 
    Blend Weight
@@ -42,9 +42,10 @@ Normalize Weights
    This button normalizes all weight values in the target list so that they add up to 1.0.
 
 .. note::
-   Unlike the modifier, the constraint does not take the
-   :doc:`Deform </rigging/armatures/bones/properties/deform>`
-   checkbox of bones into account, and can use any bone as target.
+
+   Unlike the modifier, the constraint does not take
+   the :doc:`Deform </rigging/armatures/bones/properties/deform>` checkbox
+   of bones into account, and can use any bone as target.
 
 
 Options
@@ -57,19 +58,20 @@ Preserve Volume
    for preserving the volume of the object during deformation.
 
 Use Envelopes
-   To approximate envelope-only behavior of the modifier, add all relevant
-   bones with weight 1.0 and enable this option.
+   To approximate envelope-only behavior of the modifier,
+   add all relevant bones with weight 1.0 and enable this option.
 
    .. note::
+
       Unlike the modifier, the constraint always requires explicitly listing all
       of its target bones with associated weights. This option merely enables
       envelopes for all bones, as if they had :ref:`Envelope Multiply <armature-bones-envelope>` enabled.
 
 Use Current Location
-   Only for constraints on bones: Instead of using the rest location, use the
-   current location of the owner bone to compute envelope weights or binding to
-   B-Bone segments.
+   Only for constraints on bones: Instead of using the rest location,
+   use the current location of the owner bone to compute envelope weights or
+   binding to B-Bone segments.
 
    With envelope weights, this can be used to change the active "parent" bone
-   of the owner bone dependent on its location. For non-bones this mode is
-   always active, because they don't have a rest location.
+   of the owner bone dependent on its location. For non-bones this mode is always active,
+   because they don't have a rest location.

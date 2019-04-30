@@ -21,7 +21,7 @@ For the appropriate system, run the command in a terminal:
 Debian/Ubuntu
    .. code-block:: sh
 
-      sudo apt-get install python python-pip subversion
+      sudo apt-get install python3 python3-pip subversion
 
 Redhat/Fedora
    .. code-block:: sh
@@ -53,15 +53,15 @@ Setting up the Build Environment
      cd ~/blender_docs
 
 - Inside that folder is a file called ``requirements.txt`` which contains a list of all the dependencies we need.
-  To install these dependencies, we can use the ``pip`` command::
+  To install these dependencies, we can use the ``pip3`` command::
 
-     sudo pip install -r requirements.txt
+     sudo pip3 install -r requirements.txt
 
 .. note::
 
-   Every now and then you may want to make sure your lib dependencies are up to date using::
+   Every now and then you may want to make sure your dependencies are up to date using::
 
-      sudo pip install -r requirements.txt --upgrade
+      sudo pip3 install -r requirements.txt --upgrade
 
 
 ------------------------

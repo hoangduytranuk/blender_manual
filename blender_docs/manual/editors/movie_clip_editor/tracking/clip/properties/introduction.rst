@@ -86,8 +86,8 @@ Alpha Preview (black/white icon)
 .. _clip-tracking-weight:
 
 Weight
-   When several tracks are used for 3D camera reconstruction, it is possible
-   to assign a reduced weight to some tracks to control their influence on the solution result.
+   When several tracks are used for 3D camera reconstruction, it is possible to assign
+   a reduced weight to some tracks to control their influence on the solution result.
    This parameter can (and often need to) be animated.
 
    Altering the weights of problem tracking markers can correct or greatly reduce undesirable jumps

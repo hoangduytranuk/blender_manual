@@ -65,6 +65,19 @@ View Menu
 Sync Markers
    Sync Markers with keyframe edits.
 
+Show Handles and Interpolation
+   Instead of drawing all keyframes as diamonds, different icons are used to show the Bézier handle type.
+   When curves use a different interpolation type, a line is drawn between keys to highlight that.
+
+   If the two handles of a key have different handle types, or the icon represents multiple curves,
+   the "least automatic" handle type is chosen, with the ordering determined as
+   *Free* -- *Aligned* -- *Vector* -- *Automatic* -- *Auto Clamped*.
+Show Extremes
+   Detect keys where the curve changes direction based on comparing with the adjacent key values,
+   and display that by changing the keyframe icons to resemble an arrow.
+   A muted version of the icon is used if the curve overshoots the extreme,
+   or for groups with different results for contained curves.
+
 See Graph editor's :ref:`graph-view-menu`.
 
 

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-07 02:04+0000\n"
-"PO-Revision-Date: 2019-04-09 23:09+0100\n"
+"PO-Revision-Date: 2019-04-30 14:06+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
 "Language: vi\n"
 "Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:4
 msgid "Reducing Noise"
-msgstr " -- Reducing Noise"
+msgstr "-- Reducing Noise"
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:6
 msgid "When performing a final render, it is important to reduce noise as much as possible. Here we will discuss a number of tricks that, while breaking the laws of physics, are particularly important when rendering animations within a reasonable time. Click to enlarge the example images to see the noise differences well."
@@ -46,7 +46,7 @@ msgstr "For more details, see the :doc:`Light Paths </render/cycles/settings/sce
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:43
 msgid "Where Noise Comes From"
-msgstr " -- Where Noise Comes From"
+msgstr "-- Where Noise Comes From"
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:45
 msgid "To understand where noise can come from, take for example the scene below. When we trace a light ray into the location marked by the white circle on a red dot, the second image below gives an impression of what the diffuse shader \"sees\"."
@@ -108,7 +108,7 @@ msgstr ""
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:142
 msgid "Caustics and Filter Glossy"
-msgstr " -- Caustics and Filter Glossy"
+msgstr "-- Caustics and Filter Glossy"
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:144
 msgid "Caustics are a well-known source of noise, causing fireflies. They happen because the renderer has difficulty finding specular highlights viewed through a soft glossy or diffuse reflection. There is a :ref:`No Caustics <render-cycles-integrator-no-caustics>` option to disable glossy behind a diffuse reflection entirely. Many renderers will typically disable caustics by default."
@@ -180,7 +180,7 @@ msgstr "The world background also has a *Multiple Importance* (:ref:`render-cycl
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:244
 msgid "Glass and Transparent Shadows"
-msgstr " -- Glass and Transparent Shadows"
+msgstr "-- Glass and Transparent Shadows"
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:246
 msgid "With caustics disabled, glass will miss shadows, and with filter glossy they might be too soft. We can make a glass shader that will use a Glass BSDF when viewed *directly*, and a Transparent BSDF when viewed *indirectly*. The Transparent BSDF can be used for transparent shadows to find light sources straight through surfaces, and will give properly-colored shadows, but without the caustics. The Light Path node is used to determine when to use which of the two shaders."
@@ -204,7 +204,7 @@ msgstr ""
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:276
 msgid "Light Portals"
-msgstr " -- Light Portals"
+msgstr "-- Light Portals"
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:278
 msgid "When rendering a daylight indoor scene where most of the light is coming in through a window or door opening, it is difficult for the integrator to find its way to them. To fix this, use :ref:`Light Portals <render-cycles-lamps-area-portals>`, these work by adding an :ref:`Area Lamp <render-cycles-lamps-area>`. You then will need to modify its shape to match that of the opening that you are trying to fill."
@@ -232,7 +232,7 @@ msgstr ""
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:314
 msgid "Clamp Fireflies"
-msgstr " -- Clamp Fireflies"
+msgstr "-- Clamp Fireflies"
 
 #: ../../manual/render/cycles/optimizations/reducing_noise.rst:316
 msgid "Ideally with all the previous tricks, fireflies would be eliminated, but they could still happen. For that, the *intensity* that any individual light ray sample will contribute to a pixel can be *clamped* to a maximum value with the integrator :ref:`Clamp setting <render-cycles-integrator-clamp-samples>`."

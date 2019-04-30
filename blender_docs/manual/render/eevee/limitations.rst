@@ -3,7 +3,7 @@
 Limitations
 ***********
 
-Eevee's goal is to be an interactive render engines. Some features may not be there yet or
+Eevee's goal is to be an interactive render engine. Some features may not be there yet or
 may be impossible to implement into Eevee's architecture without compromising performance.
 
 Here is a rather exhaustive list of all the limitations you can expect while working with Eevee.
@@ -21,7 +21,7 @@ Lights
 - Shadows are not supported on light instances (dupli objects, group instancing).
 - Only 128 active lights can be supported by Eevee in a scene.
 - Only 8 Shadowed sun lights can be supported at the same time.
-- As of now, lights can only have one color and does not support light node trees.
+- As of now, lights can only have one color and do not support light node trees.
 
 
 Light Probes
@@ -101,7 +101,7 @@ Shader Nodes
 
 - All BSDF are using approximations to achieve realtime performance
   so there will always be small differences between Cycles and Eevee.
-- Some utility nodes are not yet compatible with Eevee (i.e. Sky Texture node).
+- Some utility nodes are not yet compatible with Eevee (e.g. Sky Texture node).
 
 .. seealso::
 
@@ -121,7 +121,7 @@ So if the scene is really heavy, the driver will swap things in and out to make 
 In practice, using too much GPU memory can make the GPU driver crash, freeze, or kill the application.
 So be careful of what you ask.
 
-There is no standard way of estimating if the resources will fit into the GPU memory and or
+There is no standard way of estimating if the resources will fit into the GPU memory and/or
 if the GPU will render them successfully.
 
 

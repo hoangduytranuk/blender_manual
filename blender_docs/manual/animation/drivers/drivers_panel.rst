@@ -56,7 +56,7 @@ Expression
 
 Expression
    Here you can add variables, real numbers, math operators, math functions, Python properties, driver functions.
-   See Driver Expression below for some examples. For an improved performance it is best to use
+   See Driver Expression below for some examples. For performance optimization it is best to use
    the `Simple Expressions`_ subset as much as possible.
 Use Self
    This allows for drivers to references their own data using the variable ``self``.
@@ -90,7 +90,7 @@ Functions
 
 Simple expressions are evaluated even when Python script execution is disabled.
 
-When an expression outside of this subset is used, Blender displays a *"Slow Python expression"* warning.
+When an expression outside of this subset is used, Blender displays a "Slow Python expression" warning.
 
 
 Driver Variables

@@ -2,8 +2,8 @@
 .. |last|  unicode:: U+023ED
 .. |rewind| unicode:: U+025C0
 .. |play|   unicode:: U+025B6
-.. |previous| unicode:: U+023EA
-.. |next|     unicode:: U+023E9
+.. |previous| unicode:: U+023EA U+0FE0E
+.. |next|     unicode:: U+023E9 U+0FE0E
 .. |pause| unicode:: U+023F8
 
 .. _bpy.types.SpaceTimeline:

@@ -75,7 +75,7 @@ Cull Faces
    (respectively the "back side") of the target's faces. The "side" of a face is determined
    by its normal (front being the side "from where" the normal "originates").
    
-   Off,  Front, Back
+   Off, Front, Back
 
 Invert Cull
    If Cull Faces is enabled, this option can be used to invert the *Front* or *Back* cull choice

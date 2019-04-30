@@ -26,7 +26,7 @@ Blending
 
 The lighting values from a Reflection Cubemap will fade outwards until the volume bounds are reached.
 They will fade into the world's lighting or another Reflection Cubemap's lighting.
-If multiple Reflection Cubemap overlaps, smaller (in volume) ones will always have more priority.
+If multiple Reflection Cubemaps overlap, smaller (in volume) ones will always have more priority.
 If an object is not inside any Reflection Cubemap influence,
 or if the indirect lighting has not been baked, the world's cubemap will be used to shade it.
 
@@ -57,7 +57,7 @@ Visibility Collection
    Sometimes, it is useful to limit which objects appear in the light probe's captured lighting.
    For instance, an object that is too close to a capture point might be better excluded.
    This is what the visibility collection does.
-   Only objects that are in this collection will be visible when this probes will capture the scene.
+   Only objects that are in this collection will be visible when this probe will capture the scene.
 
    There is also an option to invert this behavior and effectively hide the objects inside this collection.
 
@@ -76,8 +76,9 @@ Custom Parallax
    :Panel:     :menuselection:`Object Data --> Custom Parallax`
 
 By default, the influence volume is also the parallax volume.
-The parallax volume is a volume on which is projected the recorded lighting. It should roughly fit it surrounding.
-In some cases it may be better to adjust the parallax volume without touching the influence parameters.
+The parallax volume is a volume on which is projected the recorded lighting.
+It should roughly fit it surrounding area. In some cases it may be better to
+adjust the parallax volume without touching the influence parameters.
 In this case, just enable the *Custom Parallax* and
 change the shape and distance of the parallax volume independently.
 

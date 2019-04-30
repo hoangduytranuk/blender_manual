@@ -3,7 +3,7 @@
 Reflection Planes
 *****************
 
-These special types of Probe object is suited to smooth planar surfaces.
+These special types of Probe object are suited to smooth planar surfaces.
 They basically capture the whole scene with a flipped camera.
 
 Using reflection planes is really heavy on the render time
@@ -57,7 +57,7 @@ Visibility Collection
    Sometimes, it is useful to limit which objects appear in the light probe's captured lighting.
    For instance, an object that is too close to a capture point might be better excluded.
    This is what the visibility collection does.
-   Only objects that are in this collection will be visible when this probes will capture the scene.
+   Only objects that are in this collection will be visible when this probe will capture the scene.
 
    There is also an option to invert this behavior and effectively hide the objects inside this collection.
 

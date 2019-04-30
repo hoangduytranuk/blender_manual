@@ -34,7 +34,7 @@ Simply check out the Blender Manual's repository using::
       cd ~
       svn checkout https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs
 
-   The repository will now be downloaded which may take a few minutes depending on your internet connection.
+The repository will now be downloaded which may take a few minutes depending on your internet connection.
 
 
 Setting up the Build Environment

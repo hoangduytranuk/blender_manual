@@ -42,7 +42,7 @@ The number of diffuse reflection,
 glossy reflection and transmission bounces can also be controlled individually.
 
 Light paths are terminated probabilistically when specifying a minimum number of light bounces
-lower than the maximum. In that case paths longer than minimum will be randomly stopped when
+lower than the maximum. In that case, paths longer than minimum will be randomly stopped when
 they are expected to contribute less light to the image.
 This will still converge to the same image, but renders faster while possibly being noisier.
 
@@ -69,8 +69,8 @@ The maximum number of transparent bounces is controlled separately from other bo
 It is also possible to use probabilistic termination of transparent bounces,
 which might help rendering many layers of transparency.
 
-Note that while semantically the ray passes through as if no geometry was hit, rendering
-performance is affected as each transparency step requires executing the shader and tracing a ray.
+Note that, while semantically the ray passes through as if no geometry was hit,
+rendering performance is affected as each transparency step requires executing the shader and tracing a ray.
 
 .. seealso::
 

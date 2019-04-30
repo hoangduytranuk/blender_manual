@@ -439,3 +439,43 @@ a.external {color:#656AE0;}
 	outline-color: red;
 }
 /*end version*/
+
+/* start Sphinx 2.0 fixes */
+.rst-content .admonition > :last-child {margin-bottom: 0}
+.rst-content .document dl dt {
+	display: block;
+	margin: 0;
+	line-height: normal;
+	font-size: 100%;
+	background: transparent !important;
+	color: inherit !important;
+	border: none !important;
+	padding: 0px;
+}
+.rst-content dl.field-list {
+	display: grid;
+	grid-template-columns: minmax(min-content,max-content) auto;
+	column-gap: 20px;
+	row-gap: 5px;
+}
+.rst-content dl.field-list dt {
+	grid-column-start: 1;
+	grid-column-end: 2;
+	line-height: 24px;
+	font-size: 90%;
+}
+.rst-content dl.field-list dt:after {
+	content: ":";
+	display: inline;
+}
+.rst-content dl.field-list dd {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	margin: 0;
+}
+.rst-content dl.field-list dd > p {
+	font-size: 90%;
+	margin: 0 !important;
+}
+.refbox dl dt {font-weight: normal}
+/* end Sphinx 2.0 fixes */

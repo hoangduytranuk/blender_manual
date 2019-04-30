@@ -22,7 +22,7 @@ Method
    Select the shadow map type. It changes how shadows are stored and filtered.
 
    :abbr:`ESM (Exponential Shadow Mapping)`
-      They are fast to filter but suffer form light leaking near the occluder.
+      They are fast to filter but light leaking may occur near a occluder.
       This can be minimized by increasing the *Exponent* parameter.
       Another issue is the artifacts present at depth discontinuity.
       Unfortunately, there is no workaround for this issue and the only way
@@ -30,11 +30,11 @@ Method
 
    :abbr:`VSM (Variance Shadow Mapping)`
       Filters nicely and gives smooth shadow map appearance across the whole shadow range.
-      However it suffers from visible grainy artifacts when using low bit depth.
+      However grainy artifacts will be visible when using a low bit depth.
       It is also prone to light leaking when two occluders overlap.
       In this case the shadows can be overdarkened to reduce the leak,
       by using the *Bleed Bias* parameter.
-      VSM uses twice as much memory as ESM, and are slower.
+      VSM uses twice as much memory as ESM, and is slower.
 
 Cube Size
    Size of the shadow cubemaps used to shadow Point, Area and Spot lights.
@@ -62,7 +62,7 @@ Light Threshold
    (:menuselection:`Light Properties Panel --> Light --> Custom Distance`).
 
    The influence distance is also used as shadow far clip distance, which might affect how shadows looks.
-   This influence distance does not concerns sun lights that still have a far clip distance.
+   This influence distance does not concern sun lights that still have a far clip distance.
 
    .. seealso::
 
@@ -139,11 +139,16 @@ Cascaded Shadow Map
 These special kind of shadow maps are used by Sun lights.
 This is because they can shadow large scenes by distributing multiple shadow maps over the frustum range.
 Each cascade covers a different portion of the view frustum.
-Do note that cascade shadow map are always updated because they are view dependent.
+Do note that cascade shadow maps are always updated because they are view dependent.
 This means they have a high performance impact.
 
+.. note::
+
+   In orthographic view the cascades cover the whole depth range of the camera with an evenly distrubuted
+   shadow precision. 
+
 Count
-   Number of cascade to use. More cascade means better precision but slower update.
+   Number of cascades to use. More cascade means better precision but slower update.
 
 Fade
    Fade transition area between two cascades.
