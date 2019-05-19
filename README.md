@@ -1890,11 +1890,11 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
         /home/htran/.local/bin
 
-    nơi mà các bản thi hành được nằm, và thư mục:
+    nơi mà các bản thi hành được đặt ở đó, và thư mục:
 
         /home/htran/.local/lib
 
-    nơi các bản thư viện nằm.
+    là nơi các bản thư viện nằm.
 
 + Để khỏi phải lo lắng quá nhiều về mã văn bản UTF-8, mã tiếng Việt sử dụng, thì chúng ta nên chuyển Python sang sử dụng **python3**, như đã nhắc đến [ở đây](#cai-at-cac-phan-mem-can-thiet-cho-viec-bien-tap-install-softwares-necessary-for-compilation).
 
