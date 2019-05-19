@@ -722,49 +722,53 @@ Việc tách riêng hệ điều hành và thư mục $HOME của mình là mộ
 
     - In thông tin bằng lệnh `p` (Print):
 
-        Command (m for help): p
+            Command (m for help): p
 
-            Disk /dev/sda: 111.8 GiB, 120034123264 bytes, 234441647 sectors
-            Units: sectors of 1 * 512 = 512 bytes
-            Sector size (logical/physical): 512 bytes / 512 bytes
-            I/O size (minimum/optimal): 512 bytes / 512 bytes
-            Disklabel type: dos
-            Disk identifier: 0xe7e87b15
+                Disk /dev/sda: 111.8 GiB, 120034123264 bytes, 234441647 sectors
+                Units: sectors of 1 * 512 = 512 bytes
+                Sector size (logical/physical): 512 bytes / 512 bytes
+                I/O size (minimum/optimal): 512 bytes / 512 bytes
+                Disklabel type: dos
+                Disk identifier: 0xe7e87b15
 
     - Kiến tạo phần ổ cứng mới bằng lệnh `n` (New):
 
-        Command (m for help): n
-            Partition type
-            p   primary (0 primary, 0 extended, 4 free)
-            e   extended (container for logical partitions)
-            Select (default p): p (Chọn primary)
-            Partition number (1-4, default 1):
-            First sector (2048-234441646, default 2048):
-            Last sector, +sectors or +size{K,M,G,T,P} (2048-234441646, default 234441646):
-
-            Created a new partition 1 of type 'Linux' and of size 111.8 GiB.
+            Command (m for help): n
+                Partition type
+                p   primary (0 primary, 0 extended, 4 free)
+                e   extended (container for logical partitions)
+                Select (default p): p (Chọn primary)
+                Partition number (1-4, default 1):
+                First sector (2048-234441646, default 2048):
+                Last sector, +sectors or +size{K,M,G,T,P} (2048-234441646, default 234441646):
+                Created a new partition 1 of type 'Linux' and of size 111.8 GiB.
 
     - Viết ra ổ cứng những thay đổi đã làm:
 
-        Command (m for help): w
-            The partition table has been altered.
-            Calling ioctl() to re-read partition table.
-            Synching disks.
+            Command (m for help): w
+                The partition table has been altered.
+                Calling ioctl() to re-read partition table.
+                Synching disks.
+
 
     - Định dạng hệ thống tập tin cho phần ổ cứng vừa tạo sử dụng sắp đặt mặc định, để ý UUID (Universally Unique Identifier) mà hệ điều hành gán cho nó:
 
-        sudo mke2fs -t ext4 /dev/sda1
-            mke2fs 1.44.1 (24-Mar-2018)
-            Creating filesystem with 29304949 4k blocks and 7331840 inodes
-            Filesystem UUID: f98b7efa-08fd-40a2-8f6d-94388c453b0d
-            Superblock backups stored on blocks:
-                32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
-                4096000, 7962624, 11239424, 20480000, 23887872
+```bash
+            sudo mke2fs -t ext4 /dev/sda1
 
-            Allocating group tables: done
-            Writing inode tables: done
-            Creating journal (131072 blocks): done
-            Writing superblocks and filesystem accounting information: done
+                mke2fs 1.44.1 (24-Mar-2018)
+
+                Creating filesystem with 29304949 4k blocks and 7331840 inodes
+                Filesystem UUID: f98b7efa-08fd-40a2-8f6d-94388c453b0d
+                Superblock backups stored on blocks:
+                    32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
+                    4096000, 7962624, 11239424, 20480000, 23887872
+
+                Allocating group tables: done
+                Writing inode tables: done
+                Creating journal (131072 blocks): done
+                Writing superblocks and filesystem accounting information: done
+```
 
 + Để liệt kê các thông tin này dùng lệnh
 
