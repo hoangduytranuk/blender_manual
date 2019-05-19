@@ -1926,7 +1926,7 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     - Điền vào dùng biến môi trường **PYTHONPATH**. Đặt cái này trong bản **.bashrc** của mình bằng dòng:
 
-                export PYTHONPATH=$HOME/.local/lib/python3.6/site-packages
+                export PYTHONPATH=$HOME/.local/lib/python3.6/site-packages:$PYTHONPATH
 
         xem thêm thông tin về các biến môi trường của Python [ở đây](https://docs.python.org/3/using/cmdline.html?#environment-variables)
 
