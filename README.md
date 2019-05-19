@@ -857,6 +857,8 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
 
         chmod u+x refresh_unikey.sh
 
+    Nhớ là sau khi chạy lệnh **refresh_unikey.sh** ở dòng lệnh thì phải bấm `Ctrl+Spacebar` hai lần đề nó chuyển sang tiếng Anh, rồi tiếng Việt. Cách làm này sẽ giảm thiểu việc chúng ta phải vào trình đơn và dùng lệnh **import**.
+
 
 ### Sử dụng microphone và chức năng dịch giọng nói đánh thành chữ của Google
 
