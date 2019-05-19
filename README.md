@@ -1883,7 +1883,8 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     + Dùng chuột quét để chọn và chép (Ctrl+C) nó vào bộ nhớ của máy. Chuyển sang bản mình đang dịch và bấm (Ctrl+V) để dán dòng chữ đã dịch vào. Sửa lại thành kiểu chữ thường hoặc hoa như mình muốn.
 
-###Sử dụng Python để viết lập trình
+
+### Sử dụng Python để viết lập trình
 
 + Vì lượng thông tin trong các tài liệu là khá lớn và có thể có nhiều việc nhắc lại, tức là những việc mình có thể tự động hóa bằng lập trình, đồng thời tái sử dụng các chức năng của mã nguồn 'sphynx', mã nguồn được viết trong Python, nữa. Sau khi cài đặt xong thì mã này sẽ nằm trong thư mục:
 
