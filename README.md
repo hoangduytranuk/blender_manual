@@ -1821,9 +1821,10 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
     và khởi động lại **ibus-engine-unikey** tự động, sau mỗi lần thay đổi, hoặc điền thêm định nghĩa vào là dùng **kate** hoặc **kwrite** viết một bản mã **bash shell** tương tự như sau đây và đặt tên cho nó là **refresh_unikey.sh** chẳng hạn, ví dụ bản **macro.txt** nằm trong thư mục *~/Documents*:
 
         #!/bin/bash
+        pkill -9 ibus-engine-uni
         cp -a ~/Documents/macro.txt ~/.ibus/unikey/macro
         chmod 664 ~/.ibus/unikey/macro
-        ibus restart
+        /usr/ibus-engine-unikey --ibus &
 
     nhớ đổi chế độ cho bản **refresh_unikey.sh** sang bao gồm quyền thi hành, bằng dòng lệnh
 
@@ -2010,4 +2011,3 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
                 dist = DS(s1, s2)
 
         Đọc thêm về Levenshtein [tại đây](https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance)
-
