@@ -845,7 +845,7 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
 
         .ibus/unikey/macro
 
-    và khởi động lại **ibus-engine-unikey** tự động, sau mỗi lần thay đổi, hoặc điền thêm định nghĩa vào là dùng **kate** hoặc **kwrite** viết một bản mã **bash shell** tương tự như sau đây và đặt tên cho nó là **refresh_unikey.sh** chẳng hạn, ví dụ bản **macro.txt** nằm trong thư mục *~/Documents*:
+    và khởi động lại **ibus-engine-unikey** tự động, sau mỗi lần thay đổi, hoặc điền thêm định nghĩa vào, dùng **kate** hoặc **kwrite**, viết một bản mã **bash shell**, tương tự như sau đây và đặt tên cho nó là **refresh_unikey.sh**, chẳng hạn. Ví dụ này sắp đặt bản **macro.txt** nằm trong thư mục *~/Documents*:
 
         #!/bin/bash
         pkill -9 ibus-engine-uni
@@ -1956,4 +1956,59 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
                     # Because babel automatically encode strings, file should be open as binary mode.
                     with io.open(filename, 'wb') as f:
                         pofile.write_po(f, catalog, width=0)
+
+    - Trong quá trình **make gettext**, hoặc **make update_po**, các bản viết có đuôi *.rst* trong thư mục `blender_docs/manual` sẽ được biến hóa sang một bước trung gian bằng trình **parser** trong
+
+                .local/lib/python3.6/site-packages/docutils
+
+        cụ thể là bởi hàm
+
+                def publish(self, argv=None, usage=None, description=None,
+                settings_spec=None, settings_overrides=None,
+                config_section=None, enable_exit_status=False)
+
+        trong bản `core.py` trong thư mục đó. Dòng:
+
+                self.document = self.reader.read(self.source, self.parser, self.settings)
+
+        cung cấp cho chúng ta một bản tài liệu với các mã đánh dấu tương tự như trong ví dụ sau:
+
+                <document source="/home/<tên tài khoản người dùng>/<thư mục đến>/blender_docs/manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst">
+                <section ids="introduction" names="introduction">
+                <title>
+                Introduction
+                </title>
+                <paragraph>
+                IK simplifies the animation process,
+                and makes it possible to make more advanced animations with lesser effort.
+                </paragraph>
+                ...
+                </document>
+
+        Bản này đã được 'làm đẹp lại' bằng hàm **prettify** của [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/). Mình có thể viết thêm mã vào bản `core.py` để ghi lại mã của các bản **document**, dùng tên văn bản ở dòng:
+
+                <document source="...">
+
+        và sau đó dùng hàm [find_all](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all) để tìm các phần tử của bản tài liệu và phân tách chúng ra, hòng tiếp cận các giá trị. Mã định phần tử sẽ cho phép mình biết được tính chất của chúng trên bản **html** kết xuất.
+
+        Ví dụ, các dòng đầu đề, các dòng mục tiêu đề, tức các dòng được viết đậm, được nhóm trong các mã sau:
+
+        + title
+        + field_list
+        + term
+        + strong
+        + rubric
+        + bullet_list
+
+        Phân tích các dòng này để lấy lại được các dòng văn bản cũ là một điều không đơn giản. Sử dụng văn bản **.po** và **.rst**, cùng với công nghệ tìm kiếm *mơ hồ* (fuzzy search), chúng ta có thể lấy lại được dòng văn bản gốc, chẳng hạn:
+
+                pip3 install python-Levenshtein
+
+        và sử dụng bằng cách:
+
+                from Levenshtein import distance as DS
+                ...
+                dist = DS(s1, s2)
+
+        Đọc thêm về Levenshtein [tại đây](https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance)
 
