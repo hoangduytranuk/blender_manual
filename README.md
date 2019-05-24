@@ -2059,96 +2059,108 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
 + Đây là ví dụ về một bản tài liệu đã được phân tích:
 
-            docname = about/contribute/build/index
-            doctree = <document source="/.../blender_docs/manual/about/contribute/build/index.rst"><target refid="about-build-index"/><section ids="build about-build-index" names="build about-build-index"><title>Build</title><paragraph>The building process is different for each operating system, instructions have been written for:</paragraph><compound classes="toctree-wrapper"><toctree caption="None" entries="[('MS-Windows', 'about/contribute/build/windows'), ('macOS', 'about/contribute/build/macos'), ('Linux', 'about/contribute/build/linux')]" glob="False" hidden="False" includefiles="['about/contribute/build/windows', 'about/contribute/build/macos', 'about/contribute/build/linux']" includehidden="False" maxdepth="1" numbered="0" parent="about/contribute/build/index" titlesonly="False"/></compound><substitution_definition names="BLENDER_VERSION">2.80</substitution_definition></section></document>
+    ```html
+        docname = about/contribute/build/index
+        doctree = <document source="/.../blender_docs/manual/about/contribute/build/index.rst"><target refid="about-build-index"/><section ids="build about-build-index" names="build about-build-index"><title>Build</title><paragraph>The building process is different for each operating system, instructions have been written for:</paragraph><compound classes="toctree-wrapper"><toctree caption="None" entries="[('MS-Windows', 'about/contribute/build/windows'), ('macOS', 'about/contribute/build/macos'), ('Linux', 'about/contribute/build/linux')]" glob="False" hidden="False" includefiles="['about/contribute/build/windows', 'about/contribute/build/macos', 'about/contribute/build/linux']" includehidden="False" maxdepth="1" numbered="0" parent="about/contribute/build/index" titlesonly="False"/></compound><substitution_definition names="BLENDER_VERSION">2.80</substitution_definition></section></document>
+    ```
 
     Lưu ý: các dấu chấm `...` ám chỉ đường dẫn đến thư mục *blender_docs*.
 
     Ví dụ về viết bản mã để lắng nghe sự kiện **doctree-resolved**:
 
-            #!/usr/bin/env python3
-            # -*- coding: utf-8 -*-
-            import os
-            #cài BeautifulSoup bằng cách 'sudo pip3 install bs4'
-            from bs4 import BeautifulSoup
+    ```python
+        #!/usr/bin/env python3
+        # -*- coding: utf-8 -*-
+        import os
+        #cài BeautifulSoup bằng cách 'sudo pip3 install bs4'
+        from bs4 import BeautifulSoup
 
-            def process_doctree(app, doctree, docname):
+        def process_doctree(app, doctree, docname):
 
-                #đường dẫn thư mục để viết ra, dùng thư mục xây dựng làm phụ huynh
-                build_dir="build/rstdoc"
-                #tên văn bản sẽ viết ra, để là html để các phần mềm xem bài đánh dấu các mã đánh dấu bằng màu sắc, dễ nhìn hơn
-                output_file="{}.html".format(docname)
+            #đường dẫn thư mục để viết ra, dùng thư mục xây dựng làm phụ huynh
+            build_dir="build/rstdoc"
+            #tên văn bản sẽ viết ra, để là html để các phần mềm xem bài đánh dấu các mã đánh dấu bằng màu sắc, dễ nhìn hơn
+            output_file="{}.html".format(docname)
 
-                #thư mục nơi bản mã thi hành. Bản mã này phải năm trong thư mục 'blender_docs/exts, (Extensions)
-                local_path = os.path.dirname(os.path.abspath( __file__ ))
-                #lùi lại một nhánh để quay về gốc
-                blender_docs_path = os.path.dirname(local_path)
+            #thư mục nơi bản mã thi hành. Bản mã này phải năm trong thư mục 'blender_docs/exts, (Extensions)
+            local_path = os.path.dirname(os.path.abspath( __file__ ))
+            #lùi lại một nhánh để quay về gốc
+            blender_docs_path = os.path.dirname(local_path)
 
-                #gắn gốc vào build_dir
-                rst_output_location = os.path.join(blender_docs_path, build_dir)
-                #gắn đường dẫn và tên tập tin
-                output_path=os.path.join(rst_output_location, output_file)
-                #lấy ra đường dẫn toàn phần, trước tên của tập tin
-                dir_name = os.path.dirname(output_path)
+            #gắn gốc vào build_dir
+            rst_output_location = os.path.join(blender_docs_path, build_dir)
+            #gắn đường dẫn và tên tập tin
+            output_path=os.path.join(rst_output_location, output_file)
+            #lấy ra đường dẫn toàn phần, trước tên của tập tin
+            dir_name = os.path.dirname(output_path)
 
-                #biến nội dung của doctree thành một dòng văn bản
-                text = str(doctree)
+            #biến nội dung của doctree thành một dòng văn bản
+            text = str(doctree)
 
-                #Đề phòng có gì xảy ra thì in ra đường dẫn để biết khi xử lý có lỗi và nó nằm ở thời điểm xử lý tập tin nào
-                try:
-                    #nếu đường dẫn chưa có thì tạo nó trước đã
-                    os.makedirs(dir_name, exist_ok=True)
-                    #viết nội dung ra, không cần phải đóng (close(f)) vì 'with' đã làm điều này cho mình
-                    with open(output_path, "w") as f:
-                        #dùng BeautifulSoup để nó phân tích các mã và làm đẹp nội dung của bản tài liệu, dễ xem
-                        soup = BeautifulSoup(text, 'html.parser')
-                        text = soup.prettify()
-                        #Viết ra nội dung bản đã được 'làm đẹp'
-                        f.write(text);
-                except Exception as e:
-                    print("Exception writeTextFile:{}".format(output_path))
-                    raise e
+            #Đề phòng có gì xảy ra thì in ra đường dẫn để biết khi xử lý có lỗi và nó nằm ở thời điểm xử lý tập tin nào
+            try:
+                #nếu đường dẫn chưa có thì tạo nó trước đã
+                os.makedirs(dir_name, exist_ok=True)
+                #viết nội dung ra, không cần phải đóng (close(f)) vì 'with' đã làm điều này cho mình
+                with open(output_path, "w") as f:
+                    #dùng BeautifulSoup để nó phân tích các mã và làm đẹp nội dung của bản tài liệu, dễ xem
+                    soup = BeautifulSoup(text, 'html.parser')
+                    text = soup.prettify()
+                    #Viết ra nội dung bản đã được 'làm đẹp'
+                    f.write(text);
+            except Exception as e:
+                print("Exception writeTextFile:{}".format(output_path))
+                raise e
 
-                #Dòng này để thoát sau khi chạy 'make gettext' và xử lý một bản đầu tiên trong khi thử nghiệm
-                #exit(0)
+            #Dòng này để thoát sau khi chạy 'make gettext' và xử lý một bản đầu tiên trong khi thử nghiệm
+            #exit(0)
 
-            #bất cứ trình lắng nghe sự kiện nào cũng phải có dòng định nghĩa hàm này
-            def setup(app):
-                #event listener: replace node if not html builder
-                #tuy không dùng gì đến listender_id, nhưng viết ra đây để nhớ rằng mình có thể sử dụng nó nữa.
-                listender_id = app.connect('doctree-resolved', process_doctree)
+        #bất cứ trình lắng nghe sự kiện nào cũng phải có dòng định nghĩa hàm này
+        def setup(app):
+            #event listener: replace node if not html builder
+            #tuy không dùng gì đến listender_id, nhưng viết ra đây để nhớ rằng mình có thể sử dụng nó nữa.
+            listender_id = app.connect('doctree-resolved', process_doctree)
 
-                return {
-                    "parallel_read_safe": True,
-                }
+            return {
+                "parallel_read_safe": True,
+            }
+    ```
 
     Sau khi làm xong thì lưu thành tên **doctree_resolved_listener.py** và đưa vào thư mục:
 
-            blender_docs/exts
+    ```bash
+        blender_docs/exts
+    ```
 
     Quay trở lại thư mục:
 
-            blender_docs/manual
+    ```bash
+       blender_docs/manual
+    ```
 
     và biên soạn bản **conf.py**, lùng tìm biến **extensions**, tức chỉ danh của một bảng liệt kê các bản mã mở rộng. Điền tên **doctree_resolved_listener** vào cuối danh sách, ví dụ:
 
-            # Add any Sphinx extension module names here, as strings. They can be
-            # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-            # ones.
-            extensions = [
-                'youtube',
-                'vimeo',
-                'sphinx.ext.mathjax',
-                # Errors at the moment, disable - ideasman42.
-                # 'sphinx.ext.intersphinx',
-                '404',
-                'doctree_resolved_listener'
-            ]
+    ```python
+        # Add any Sphinx extension module names here, as strings. They can be
+        # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+        # ones.
+        extensions = [
+            'youtube',
+            'vimeo',
+            'sphinx.ext.mathjax',
+            # Errors at the moment, disable - ideasman42.
+            # 'sphinx.ext.intersphinx',
+            '404',
+            'doctree_resolved_listener'
+        ]
+    ```
 
     Sau đó, mở dòng lệnh và chuyển vào thư mục **blender_docs**, rồi thi hành (biến môi trường BLENDER_MAN_EN chỉ tới thư mục **blender_docs**):
 
-            cd $BLENDER_MAN_EN
-            make gettext
+    ```bash
+        cd $BLENDER_MAN_EN
+        make gettext
+    ```
 
     Chuyển vào thư mục **blender_docs/build/rstdoc** và xem các văn bản có đuôi *.html* ở đó.
 
@@ -2161,15 +2173,20 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
     #### 2. Trực tiếp gắn tập lệnh vào mã nguồn của Sphinx.
     Như đã nói đến ở trên, chúng ta có thể viết thêm trực tiếp vào:
 
-            .local/lib/python3.6/site-packages/docutils/core.py
+    ```bash
+        .local/lib/python3.6/site-packages/docutils/core.py
+    ```
 
     ngay sau dòng:
 
-            self.document = self.reader.read(self.source, self.parser, self.settings)
-
+    ```python
+       self.document = self.reader.read(self.source, self.parser, self.settings)
+    ```
     của hàm
 
-            def publish(self, .. )
+    ```python
+       def publish(self, .. )
+    ```
 
     Tại thời điểm này, mình có 2 giá trị mà mình cần biết:
 
@@ -2180,15 +2197,21 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
 + Chuẩn bị đường dẫn:
 
-            output_path = self.source.source_path.replace("manual", "build/rstdoc").replace(".rst", ".html")
+    ```python
+    output_path = self.source.source_path.replace("manual", "build/rstdoc").replace(".rst", ".html")
+    ```python
 
 + Chuẩn bị nội dung văn bản:
 
-            document = str(self.document)
+    ```python
+       document = str(self.document)
+    ```
 
     Chẳng hạn, lấy ví dụ, bản mã **myrsttohtml.py** mình viết nằm ở thư mục
 
-            /home/<username>/bin/python
+    ```bash
+       /home/<username>/bin/python
+    ```
 
     thì mình có thể viết kèm những dòng này:
 
@@ -2203,7 +2226,6 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
         MRH.writeDocument(self.source.source_path, self.document)
     ```
-
 
     Bản mã **myrsttohtml.py** có thể được viết như thế này:
 
