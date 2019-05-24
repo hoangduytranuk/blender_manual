@@ -1957,57 +1957,494 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
                     with io.open(filename, 'wb') as f:
                         pofile.write_po(f, catalog, width=0)
 
-    - Trong quá trình **make gettext**, hoặc **make update_po**, các bản viết có đuôi *.rst* trong thư mục `blender_docs/manual` sẽ được biến hóa sang một bước trung gian bằng trình **parser** trong
++ Một trong những ví dụ cần phải sử dụng Python trong khi phiên dịch là các dòng tiêu đề của bài viết, đề mục trong các phần của bài viết, sau một thời gian làm việc, số lượng dòng đã dịch sẽ tăng lên và chúng ta có sử dụng chúng để điền cho những dòng nhắc lại ở các bài chưa dịch. Sử dụng Python và những gì đã bàn về cách đọc, viết các bản **.po**, cùng với chức năng có sẵn trong thư viện của Python, như **json**, nói đến [ở đây](https://docs.python.org/3/library/json.html), chẳng hạn, chúng ta có thể thu thập các dòng đã phiên dịch trong tiếng Anh và nội dung phiên dịch trong tiếng Việt.
 
-                .local/lib/python3.6/site-packages/docutils
+    Hiện nay, các dòng tiêu đề và dòng đề mục, cùng các trình mục, cùng một số tổ hợp điều khiển (như nút chuột) là được bao gồm cả tiếng Anh và Việt để giúp người đọc liên hệ được với bản tiếng Anh, nhất là đối với  những người có khả năng đối chiếu giữa 2 ngôn ngữ. Việc bản dịch có khả năng xa rời nội dung nguyên bản, hoặc không được chính xác, gây sự hiểu nhầm là một việc không thể tránh khỏi. Những người có khả năng đối chiếu hoặc có kiến thức về ngoại ngữ (tiếng Anh), cùng các kiến thức chuyên ngành, có thể đọc và sửa bản dịch nữa, nên việc lưu các dấu vết để giúp việc đối chiếu là một điều rất nên làm, chưa nói đến khả năng nó là nguồn giúp nhận biết tiếng Anh cho những người cần học nữa. Cách sắp xếp hiện nay là ngăn cách bằng hai ký tự 'gạch ngang', như sau đây:
 
-        cụ thể là bởi hàm
+            phần phiên dịch tiếng Việt -- phần văn bản tiếng Anh
 
-                def publish(self, argv=None, usage=None, description=None,
-                settings_spec=None, settings_overrides=None,
-                config_section=None, enable_exit_status=False)
+    ví dụ:
 
-        trong bản `core.py` trong thư mục đó. Dòng:
+            Giao Diện Người Dùng -- User Interface
 
-                self.document = self.reader.read(self.source, self.parser, self.settings)
+    Từ điển được viết ra trong dạng **json** sẽ trông giống thế này:
 
-        cung cấp cho chúng ta một bản tài liệu với các mã đánh dấu tương tự như trong ví dụ sau:
+            {
+                "User Focused": "Chú Tâm vào Người Dùng",
+                "User Interface": "Giao Diện Người Dùng",
+                ..
 
-                <document source="/home/<tên tài khoản người dùng>/<thư mục đến>/blender_docs/manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst">
-                <section ids="introduction" names="introduction">
-                <title>
-                Introduction
-                </title>
-                <paragraph>
-                IK simplifies the animation process,
-                and makes it possible to make more advanced animations with lesser effort.
-                </paragraph>
-                ...
-                </document>
+            }
 
-        Bản này đã được 'làm đẹp lại' bằng hàm **prettify** của [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/). Mình có thể viết thêm mã vào bản `core.py` để ghi lại mã của các bản **document**, dùng tên văn bản ở dòng:
+    Nên nhớ, đây là định dạng từ điển hết sức đơn giản, không có định nghĩa về tính chất ngữ pháp của từng từ một, tuy có thể có cả định nghĩa của các đơn từ, và mang tính phổ thông nhiều hơn, có nghĩa là chúng không được quyền nhắc lại, bất kể ngữ cảnh sử dụng. Chính vì thế, chỉ sử dụng cái này cho những bước xây dựng đầu tiên mà thôi, và các bài viết cần phải được chỉnh đốn cụ thể cho trường hợp ngữ cảnh của bài viết.
 
-                <document source="...">
+    Nguồn đầu tiên có thể sử dụng làm nội dung cho từ điển là nội dung của bản
 
-        và sau đó dùng hàm [find_all](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all) để tìm các phần tử của bản tài liệu và phân tách chúng ra, hòng tiếp cận các giá trị. Mã định phần tử sẽ cho phép mình biết được tính chất của chúng trên bản **html** kết xuất.
+    + [2.79 - vi.po](https://github.com/hoangduytranuk/blender_manual/blob/master/gui/2.79/locale/vi/LC_MESSAGES/blender.mo)
+    + [2.80 - vi.po](https://github.com/hoangduytranuk/blender_manual/blob/master/gui/2.80/locale/vi/LC_MESSAGES/blender.mo)
 
-        Ví dụ, các dòng đầu đề, các dòng mục tiêu đề, tức các dòng được viết đậm, được nhóm trong các mã sau:
+    Sau đó là các dòng đầu đề đã dịch, song để biết được dòng nào là dòng tiêu đề, đề mục, tức những dòng được in đậm ở trang HTML, thì chúng ta phải dựa vào khả năng phân tích nội dung bản RST của phần mềm Sphinx. Quan sát cho thấy các dòng được bao quanh bởi các đấu đánh:
+    + title
+    + field_list
+    + term
+    + strong
+    + rubric
+    + bullet_list
+    là những dòng sẽ được in đậm và cần phải được dịch, cùng nhắc lại phần tiếng Anh.
 
-        + title
-        + field_list
-        + term
-        + strong
-        + rubric
-        + bullet_list
+    Trong quá trình **make gettext**, hoặc **make update_po**, các bản viết có đuôi *.rst* trong thư mục `blender_docs/manual` sẽ được biến hóa sang một bước trung gian bằng trình **parser** trong
 
-        Phân tích các dòng này để lấy lại được các dòng văn bản cũ là một điều không đơn giản. Sử dụng văn bản **.po** và **.rst**, cùng với công nghệ tìm kiếm *mơ hồ* (fuzzy search), chúng ta có thể lấy lại được dòng văn bản gốc, chẳng hạn:
+        .local/lib/python3.6/site-packages/docutils
 
-                pip3 install python-Levenshtein
+    cụ thể là bởi hàm
 
-        và sử dụng bằng cách:
+        def publish(self, argv=None, usage=None, description=None,
+        settings_spec=None, settings_overrides=None,
+        config_section=None, enable_exit_status=False)
 
-                from Levenshtein import distance as DS
-                ...
-                dist = DS(s1, s2)
+    trong bản `core.py` trong thư mục đó. Dòng:
 
-        Đọc thêm về Levenshtein [tại đây](https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance)
+        self.document = self.reader.read(self.source, self.parser, self.settings)
+
+    cung cấp cho chúng ta một bản tài liệu với các mã đánh dấu tương tự như trong ví dụ sau:
+
+        <document source="/home/<tên tài khoản người dùng>/<thư mục đến>/blender_docs/manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst">
+        <section ids="introduction" names="introduction">
+        <title>
+        Introduction
+        </title>
+        <paragraph>
+        IK simplifies the animation process,
+        and makes it possible to make more advanced animations with lesser effort.
+        </paragraph>
+        ...
+        </document>
+
+    Bản liệt kê ở đây đã được 'làm đẹp lại' bằng hàm **prettify** của [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), bản của Sphinx sẽ không có các ký tự xuống dòng. Mục đích của chúng ta là viết ra các bản này tại một thư mục khác, với cấu trúc cây thư mục tương tự như của
+
+            blender_docs/manual
+    hoặc
+            locale/vi/LC_MESSAGES
+
+    Trong bối cảnh của bản tài liệu này, chúng ta có thể tạm đặt nó ở
+
+            blender_docs/build/rstdoc/
+
+    Có hai cách để tiếp cận nội dung của bản tài liệu RST đã được phân tích sang định dạng có các mã đánh dấu này:
+
+    #### 1. Sử dụng chức năng có sẵn của Sphinx, tạo trình lắng nghe (listener) và thăm dò các sự kiện của phần mềm trong quá trình phân tích và biến đổi tài liệu từ định dạng RST sang HTML.
+
+
+    Các sự kiện này đã được nhắc đến ở [Trang tài liệu về Giao Diện Lập Trình Ứng Dụng -- API -- của Sphinx](https://www.sphinx-doc.org/en/master/extdev/appapi.html). Sự kiện mà chúng ta quan tâm hơn cả là:
+
+            doctree-resolved
+
+    Theo tài liệu thì sự kiện này được phát sinh sau khi cây cấu trúc của bản tài liệu đã được lý giải và toàn bộ các tham chiếu đã được bổ sung, và mục lục cũng đã được kiến tạo. Sự kiện có các tham số sau:
+
+            doctree-resolved(app, doctree, docname)
+
+>> |Tham Số|Chú Thích|
+>> |---:|:---|
+>> |app|Chứa môi trường của phần mềm đang hoạt động, cùng các cài đặt.|
+>> |doctree|Cây cấu trúc của bản tài liệu đã được phân tích, bao gồm các phần tử của bản tài liệu và văn bản chi tiết|
+>> |docname|Tên tương đối của bản tài liệu vừa được phân tích, không có đuôi, và không có |
+
++ Đây là ví dụ về một bản tài liệu đã được phân tích:
+
+            docname = about/contribute/build/index
+            doctree = <document source="/.../blender_docs/manual/about/contribute/build/index.rst"><target refid="about-build-index"/><section ids="build about-build-index" names="build about-build-index"><title>Build</title><paragraph>The building process is different for each operating system, instructions have been written for:</paragraph><compound classes="toctree-wrapper"><toctree caption="None" entries="[('MS-Windows', 'about/contribute/build/windows'), ('macOS', 'about/contribute/build/macos'), ('Linux', 'about/contribute/build/linux')]" glob="False" hidden="False" includefiles="['about/contribute/build/windows', 'about/contribute/build/macos', 'about/contribute/build/linux']" includehidden="False" maxdepth="1" numbered="0" parent="about/contribute/build/index" titlesonly="False"/></compound><substitution_definition names="BLENDER_VERSION">2.80</substitution_definition></section></document>
+
+    Lưu ý: các dấu chấm `...` ám chỉ đường dẫn đến thư mục *blender_docs*.
+
+    Ví dụ về viết bản mã để lắng nghe sự kiện **doctree-resolved**:
+
+            #!/usr/bin/env python3
+            # -*- coding: utf-8 -*-
+            import os
+            #cài BeautifulSoup bằng cách 'sudo pip3 install bs4'
+            from bs4 import BeautifulSoup
+
+            def process_doctree(app, doctree, docname):
+
+                #đường dẫn thư mục để viết ra, dùng thư mục xây dựng làm phụ huynh
+                build_dir="build/rstdoc"
+                #tên văn bản sẽ viết ra, để là html để các phần mềm xem bài đánh dấu các mã đánh dấu bằng màu sắc, dễ nhìn hơn
+                output_file="{}.html".format(docname)
+
+                #thư mục nơi bản mã thi hành. Bản mã này phải năm trong thư mục 'blender_docs/exts, (Extensions)
+                local_path = os.path.dirname(os.path.abspath( __file__ ))
+                #lùi lại một nhánh để quay về gốc
+                blender_docs_path = os.path.dirname(local_path)
+
+                #gắn gốc vào build_dir
+                rst_output_location = os.path.join(blender_docs_path, build_dir)
+                #gắn đường dẫn và tên tập tin
+                output_path=os.path.join(rst_output_location, output_file)
+                #lấy ra đường dẫn toàn phần, trước tên của tập tin
+                dir_name = os.path.dirname(output_path)
+
+                #biến nội dung của doctree thành một dòng văn bản
+                text = str(doctree)
+
+                #Đề phòng có gì xảy ra thì in ra đường dẫn để biết khi xử lý có lỗi và nó nằm ở thời điểm xử lý tập tin nào
+                try:
+                    #nếu đường dẫn chưa có thì tạo nó trước đã
+                    os.makedirs(dir_name, exist_ok=True)
+                    #viết nội dung ra, không cần phải đóng (close(f)) vì 'with' đã làm điều này cho mình
+                    with open(output_path, "w") as f:
+                        #dùng BeautifulSoup để nó phân tích các mã và làm đẹp nội dung của bản tài liệu, dễ xem
+                        soup = BeautifulSoup(text, 'html.parser')
+                        text = soup.prettify()
+                        #Viết ra nội dung bản đã được 'làm đẹp'
+                        f.write(text);
+                except Exception as e:
+                    print("Exception writeTextFile:{}".format(output_path))
+                    raise e
+
+                #Dòng này để thoát sau khi chạy 'make gettext' và xử lý một bản đầu tiên trong khi thử nghiệm
+                #exit(0)
+
+            #bất cứ trình lắng nghe sự kiện nào cũng phải có dòng định nghĩa hàm này
+            def setup(app):
+                #event listener: replace node if not html builder
+                #tuy không dùng gì đến listender_id, nhưng viết ra đây để nhớ rằng mình có thể sử dụng nó nữa.
+                listender_id = app.connect('doctree-resolved', process_doctree)
+
+                return {
+                    "parallel_read_safe": True,
+                }
+
+    Sau khi làm xong thì lưu thành tên **doctree_resolved_listener.py** và đưa vào thư mục:
+
+            blender_docs/exts
+
+    Quay trở lại thư mục:
+
+            blender_docs/manual
+
+    và biên soạn bản **conf.py**, lùng tìm biến **extensions**, tức chỉ danh của một bảng liệt kê các bản mã mở rộng. Điền tên **doctree_resolved_listener** vào cuối danh sách, ví dụ:
+
+            # Add any Sphinx extension module names here, as strings. They can be
+            # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+            # ones.
+            extensions = [
+                'youtube',
+                'vimeo',
+                'sphinx.ext.mathjax',
+                # Errors at the moment, disable - ideasman42.
+                # 'sphinx.ext.intersphinx',
+                '404',
+                'doctree_resolved_listener'
+            ]
+
+    Sau đó, mở dòng lệnh và chuyển vào thư mục **blender_docs**, rồi thi hành (biến môi trường BLENDER_MAN_EN chỉ tới thư mục **blender_docs**):
+
+            cd $BLENDER_MAN_EN
+            make gettext
+
+    Chuyển vào thư mục **blender_docs/build/rstdoc** và xem các văn bản có đuôi *.html* ở đó.
+
+    **Lưu ý**:*Phương pháp này có một điểm BẤT LỢI là thư mục `blender_docs` của mình sẽ được lệnh:*
+
+            svn status
+
+    *thông báo là thư mục đã bị thay đổi.*
+
+    #### 2. Trực tiếp gắn tập lệnh và mã nguồn của Sphinx.
+    Như đã nói đến ở trên, chúng ta có thể viết thêm trực tiếp vào:
+
+            .local/lib/python3.6/site-packages/docutils/core.py
+
+    ngay sau dòng:
+
+            self.document = self.reader.read(self.source, self.parser, self.settings)
+
+    của hàm
+
+            def publish(self, .. )
+
+    Tại thời điểm này, mình có 2 giá trị mà mình cần biết:
+
+>> |biến số |tính năng| ví dụ |
+>> | --- | --- | --- |
+>> |self.document|nội dung văn bản trong dạng html|&lt;document source=..&gt; ... &lt;/document&gt;|
+>> |self.source.source_path|đường dẫn của bản rst, gồm cả đuôi 'rst'|/home/.../blender_docs/manual/compositing/types/color/hue_saturation.rst|
+
++ Chuẩn bị đường dẫn:
+
+            output_path = self.source.source_path.replace("manual", "build/rstdoc").replace(".rst", ".html")
+
++ Chuẩn bị nội dung văn bản:
+
+            document = str(self.document)
+
+    Chẳng hạn, lấy ví dụ, bản mã **myrsttohtml.py** mình viết nằm ở thư mục
+
+            /home/<username>/bin/python
+
+    thì mình có thể viết kèm những dòng này:
+
+            import sys
+            sys.path.append("/home/<username>/bin/python")
+
+            import myrsttohtml as MRH
+
+            ....
+            self.document = self.reader.read(self.source, self.parser, self.settings)
+
+            MRH.writeDocument(self.source.source_path, self.document)
+
+    Bản mã **myrsttohtml.py** có thể được viết như thế này:
+
+            #!/usr/bin/env python3
+            # -*- coding: utf-8 -*-
+            import os
+            from pprint import pprint as pp
+
+            def writeDocument(path, document):
+
+                is_env_set = False
+                #đây là định nghĩa của biến môi trường dùng để khống chế việc thi hành việc viết các bản RST thành HTML
+                #nếu biến môi trường này đặt thành 'False' hoặc không có thì các dòng mã sau sẽ không bao giờ được thi hành cả.
+                env_var="RECORD_RST_AS_HTML"
+
+                #Những dòng này là để điều tra các biến môi trường
+                #print("os.environ")
+                #sorted_env = sorted(os.environ.items())
+                #pp(sorted_env)
+
+                #kiểm tra xem biến môi trường có trong bộ nhớ hay không
+                is_env_there=(env_var in os.environ)
+                #nếu có thì đổi giá trị của biến sang thành giá trị bool (đúng/sai = True/False)
+                if (is_env_there):
+                    is_env_set=bool(os.environ[env_var])
+
+                #nếu biến có giá trị là 'True' (Đúng) thì tiếp tục, không thì thoát ('return')
+                if (not is_env_set): return
+
+                #đầu tiên đổi giá trị đường dẫn path từ 'manual' sang 'build/rstdoc' và đuôi từ 'rst' sang 'html'
+                rst_path = path.replace("manual", "build/rstdoc").replace(".rst", ".html")
+                #biến document sang dạng văn bản
+                doc = str(document)
+
+                #Những dòng này là để điều tra các giá trị của biến số
+                #print("rst_path", rst_path)
+                #print("doc", doc)
+
+                #thử nghiệm các dòng sau
+                try:
+                    #tạo đường dẫn cho văn bản nếu cần
+                    os.makedirs(os.path.dirname(rst_path), exist_ok=True)
+                    #mở văn bản và viết nội dung văn bản vào đó
+                    with open(rst_path, "w") as f:
+                        f.write(doc);
+                #khi có lỗi thì in ra lỗi và đường dẫn, ngừng hoạt động
+                except Exception as e:
+                    print("Exception writeDocument:{}".format(rst_path))
+                    raise e
+
+                #bỏ dấu '#' của dòng sau trong khi điều tra để chỉ 1 trường hợp văn bản được thi hành mà thôi.
+                #exit(0)
+
+
+    Để thử nghiệm, mở dòng lệnh và thi hành:
+
+            cd $BLENDER_MAN_EN
+            export RECORD_RST_AS_HTML=True
+            make gettext
+
+**Lưu ý**:*Phương pháp này có một điểm LỢI là thư mục `blender_docs` của mình sẽ được giữ nguyên, song nếu chẳng may mình tháo phần mềm *Sphinx*, hoặc cập nhật các thay đổi thì có thể các dòng lệnh trong*
+
+        .local/lib/python3.6/site-packages/docutils/core.py
+
+
+*bị viết đè lên bằng bản mới và mất đi tính năng mà mình cần.*
+
++ Như đã nói, các dòng đầu đề, các dòng mục tiêu đề, tức các dòng được viết đậm, được nhóm trong các mã sau:
+    + title
+    + field_list
+    + term
+    + strong
+    + rubric
+    + bullet_list
+
+    Sau đó, dùng **BeautifulSoup** để lùng tìm các phần tử này trong bản *.html* đã viết ra ở một trong 2 phương pháp trên và đối chiếu nội dung tìm được với bản *.po* tương ứng, được nạp bằng lệnh:
+
+            po_doc = c.load_po(po_path)
+
+    Ví dụ về bản mã phân tích mã HTML, lùng tìm dòng văn bản trong bản PO và lưu các dòng này vào một bản từ điển địa phương.
+
+        class ParseHTML():
+            def __init__(self):
+                self.input_file = None  #biến lưu tên của bản *.html* sẽ được phân tích
+                self.term_list = []     #bảng liệt kê lưu thành phần các phần tử mà BeautifulSoup tìm thấy và được phân tích, biến hóa bởi các hàm 'parse_...'
+                self.po_path = None     #biến lưu tên của bản *.po* tương ứng
+                self.po_doc = None      #biến lưu nội dung của bản *.po* tương ứng
+
+                #đường dẫn của từ điển sẽ được viết ra
+                self.dic_file = "/home/.../dic_file.json"
+                #bảng liệt kê lưu trữ các dòng tìm thấy và văn bản phiên dịch, nếu có.
+                self.dic_list={}
+
+            def parseOneFile(self):
+
+                with open(self.input_file) as fp:
+                    self.soup = BeautifulSoup(fp, "html.parser")
+
+                self.loadHTMLData()
+                self.loadPOData()
+
+                kw = ['title', 'field_list', 'term', 'strong', 'rubric']
+                for k in kw:
+                    for elem in self.soup.find_all(k):
+                        self.parse_title(elem)
+                        self.parse_field_list(elem)
+                        self.parse_term(elem)
+                        self.parse_strong(elem)
+                        self.parse_rubric(elem)
+
+    các phần tử, sau khi đã được phân tích, sẽ được lưu trong **self.term_list**. Đây là một ví dụ về hàm phân tích **field_list**:
+
+            <field_list>
+                <field>
+                    <field_name>
+                        Mode
+                    </field_name>
+                    <field_body>
+                        <paragraph>
+                            Sculpt Mode
+                        </paragraph>
+                    </field_body>
+                </field>
+                <field>
+                    <field_name>
+                        Panel
+                    </field_name>
+                    <field_body>
+                        <paragraph>
+                            <inline classes="menuselection" rawtext=":menuselection:`Tool Shelf --&gt; Options`">
+                                Tool Shelf ‣ Options
+                            </inline>
+                        </paragraph>
+                    </field_body>
+                </field>
+            </field_list>
+
+    và đây là mã phân tích:
+
+            def parse_field_list(self, elem):
+                #nếu phần tử không phải là "field_list" thì thoát ra
+                if (not elem.name == "field_list"): return
+
+                #phân tích mỗi phần tử "field" trong "field_list"
+                for f in elem.find_all('field'):
+                    #tìm các phần tử "field_name"
+                    for f_name in f.find_all('field_name'):
+                        #đơn thuần bổ sung thêm vào 'term_list' văn bản của 'field_name'
+                        self.term_list.append(f_name.text)
+
+                    #tìm các phần tử "field_body"
+                    for f_body in f.find_all('field_body'):
+                        for para in f_body.find_all('paragraph'):
+                            for inline in f_body.find_all('inline', {'classes': 'menuselection'}):
+                                #lợi dụng kiến thức về 'raw_text' và trích xuất chúng ra
+                                raw_text = "{}".format(inline['rawtext'])
+                                #thay thế các từ &gt; '>' hoặc &lt; '<'
+                                raw_text = html.unescape(raw_text)
+                                #bổ sung thêm vào 'term_list'
+                                self.term_list.append(raw_text)
+
+    Sau khi đã lấy được các dòng văn bản rồi, kiểm tra chúng với các dòng có trong văn bản *.po* tương ứng, tìm xem cái nào gần nhất với cái tìm thấy. Để lấy lại được các dòng văn bản cũ, tương ứng, trong *.po* là một điều không đơn giản, vì các dấu đánh khác được kèm vào dưới nó. Chúng ta phải sử dụng công nghệ tìm kiếm *mơ hồ* (fuzzy search) để  có thể lấy lại được dòng văn bản gốc. Trước tiên cài đặt phần mềm cho phép tìm kiếm mơ hồ:
+
+            pip3 install python-Levenshtein
+
+    và sử dụng bằng cách:
+
+            from Levenshtein import distance as DS
+            ...
+            dist = DS(s1, s2)
+
+    Đọc thêm về Levenshtein [tại đây](https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance). Khi sử dụng cái này thì để ý một điều là khoảng cách *Levenshtein* (Levenshtein distance) tính toán trên cơ sở ký tự, không tính trên cơ sở cụm từ, khoảng cách lu mờ dần giữa từ nọ và từ kia. Ý định của thuật toán là tìm mức độ thay đổi giữa hai dòng chữ *s1* và *s2*, xem xem để biến đổi từ *s1* sang *s2*, số bước biến đổi phải làm là bao nhiêu. Các phép biến đổi tích trong bảng bao gồm:
+    + phép thay thế (replace),
+    + phép xóa đi (delete), và
+    + phép chèn thêm (insert).
+    với hy vọng là cái khớp với dòng tìm kiếm nhiều nhất, tức số lần cần phải biến đổi dùng 3 phép biến đổi ở trên là nhỏ nhất, ít nhất, song thuật toán không tính đến sự gần nhau của các từ trong dòng tìm kiếm khi so sánh, và do đó sinh ra những trường hợp như sau:
+
+    Ví dụ dòng tìm kiếm là
+
+            ::menuselection:`Mesh --> Vertices --> Merge...`
+
+    Vài kết quả tìm kiếm được liệt kê trong bảng dưới đây:
+
+>> |khoảng cách | dòng tìm thấy |chú thích|
+>> | --- | --- | --- |
+>> |7|':menuselection:`Mesh --> Vertices --> Separate`'|không đúng|
+>> |8|':menuselection:`Mesh --> Vertices --> Add Hook`'|không đúng|
+>> |37|':menuselection:`Mesh --> Vertices --> Merge...`|đúng|
+
+
++ Phương pháp giải quyết:
+
+    Trong trường hợp này chúng ta có thể dùng phép so sánh toàn bộ cụm từ tìm kiếm trong các dòng **msgid** tìm thấy trong bản *.po* và âm hóa giá trị khoảng cách tính được, chẳng hạn, hầu cho các dòng hoàn toàn khớp có giá trị nhỏ hơn 0, trong khi các giá trị không khớp hoàn toàn vẫn sử dụng giá trị dương tính toán được:
+
+            #s1 = dòng tìm kiếm
+            #s2 = dòng tìm thấy trong bản .po
+            possible_match = []
+            dist = DS(s1, s2)
+            is_a_subset = (s1 in s2)
+            if (is_a_subset):
+                possible_match.append((-dist, s2))
+            else:
+                possible_match.append((dist, s2))
+
+            sorted_possible_match = sorted(possible_match)
+
+    như vậy, sau khi sắp xếp lại bằng hàm **sorted**, các giá trị nhỏ sẽ nổi lên trên cùng.
+
++ Tìm kiếm mơ hồ:
+
+            for term in sorted_term_list:
+                term = term.strip()
+
+                is_found, msgid, msgstr = self.fuzzySearchPOData(term)
+
+    và:
+
+            def fuzzySearchPOData(self, msgid):
+
+                #danh sách cũng những trường hợp khớp, hoặc tương đối khớp với văn bản lùng tìm, nằm trong tham số 'msgid'
+                possible_match=[]
+                for m in self.po_doc:
+                    po_mid = m.id
+                    #bỏ qua nếu chông có ký tự nào trong đó. Trường hợp này xảy ra ở đầu bản PO.
+                    if (len(po_mid) == 0): continue
+
+                    #xóa hết các ký tự cách trống, hoặc ký tự xuống dòng.
+                    po_mstr = m.string.strip()
+
+                    #tính khoảng cách
+                    dist = DS(msgid, po_mid)
+
+                    #bỏ qua những trường hợp mà khoảng cách quá lớn, đồi hỏi quá nhiều bước để biến thành nguyên bản
+                    is_too_far = (dist > 50)
+                    if (is_too_far): continue
+
+                    #nếu là một phần, hoặc toàn phần, của bản đang tìm kiếm, thì âm hóa giá trị để nó sẽ nằm trên cùng, nếu khô thì sử dụng khoảng cách mà thuật toán Levenshtein đã tính được.
+                    is_a_subset = (msgid in po_mid)
+                    if (is_a_subset):
+                        possible_match.append((-dist, po_mid, po_mstr))
+                    else:
+                        possible_match.append((dist, po_mid, po_mstr))
+
+                #sắp xếp theo thứ tự của khoảng cách, cái nhỏ nhất ở trên cùng
+                sorted_possible_match = sorted(possible_match)
+
+                #nếu danh sách không trống rỗng thì lấy cái có giá trị thấp nhất
+                if (len(sorted_possible_match) > 0):
+                    dist, po_mid, po_mstr = (sorted_possible_match[0])
+                    return [True, po_mid, po_mstr]
+                else:
+                    return [False, None, None]
+
+
++ Sử dụng từ điển để điền các dòng, các chữ nhắc lại, giảm lượng phím bấm cần phải đánh:
