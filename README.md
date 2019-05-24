@@ -2190,16 +2190,16 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     Tại thời điểm này, mình có 2 giá trị mà mình cần biết:
 
->> |biến số |tính năng| ví dụ |
->> | --- | --- | --- |
->> |self.document|nội dung văn bản trong dạng html|&lt;document source=..&gt; ... &lt;/document&gt;|
->> |self.source.source_path|đường dẫn của bản rst, gồm cả đuôi 'rst'|/home/.../blender_docs/manual/compositing/types/color/hue_saturation.rst|
+    |biến số |tính năng| ví dụ |
+    | --- | --- | --- |
+    |self.source.source_path|đường dẫn của bản rst, gồm cả đuôi 'rst'|/home/.../blender_docs/manual/compositing/types/color/hue_saturation.rst|
+    |self.document|nội dung văn bản trong dạng html|&lt;document source=..&gt; ... &lt;/document&gt;|
 
 + Chuẩn bị đường dẫn:
 
     ```python
     output_path = self.source.source_path.replace("manual", "build/rstdoc").replace(".rst", ".html")
-    ```python
+    ```
 
 + Chuẩn bị nội dung văn bản:
 
