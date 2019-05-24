@@ -2516,39 +2516,39 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     ```python
     def fuzzySearchPOData(self, msgid):
-    #danh sách cũng những trường hợp khớp, hoặc tương đối khớp với văn bản lùng tìm, nằm trong tham số 'msgid'
-    possible_match=[]
-    for m in self.po_doc:
-        po_mid = m.id
-        #bỏ qua nếu chông có ký tự nào trong đó. Trường hợp này xảy ra ở đầu bản PO.
-        if (len(po_mid) == 0): continue
+        #danh sách cũng những trường hợp khớp, hoặc tương đối khớp với văn bản lùng tìm, nằm trong tham số 'msgid'
+        possible_match=[]
+        for m in self.po_doc:
+            po_mid = m.id
+            #bỏ qua nếu chông có ký tự nào trong đó. Trường hợp này xảy ra ở đầu bản PO.
+            if (len(po_mid) == 0): continue
 
-        #xóa hết các ký tự cách trống, hoặc ký tự xuống dòng.
-        po_mstr = m.string.strip()
+            #xóa hết các ký tự cách trống, hoặc ký tự xuống dòng.
+            po_mstr = m.string.strip()
 
-        #tính khoảng cách
-        dist = DS(msgid, po_mid)
+            #tính khoảng cách
+            dist = DS(msgid, po_mid)
 
-        #bỏ qua những trường hợp mà khoảng cách quá lớn, đồi hỏi quá nhiều bước để biến thành nguyên bản
-        is_too_far = (dist > 50)
-        if (is_too_far): continue
+            #bỏ qua những trường hợp mà khoảng cách quá lớn, đồi hỏi quá nhiều bước để biến thành nguyên bản
+            is_too_far = (dist > 50)
+            if (is_too_far): continue
 
-        #nếu là một phần, hoặc toàn phần, của bản đang tìm kiếm, thì âm hóa giá trị để nó sẽ nằm trên cùng, nếu khô thì sử dụng khoảng cách mà thuật toán Levenshtein đã tính được.
-        is_a_subset = (msgid in po_mid)
-        if (is_a_subset):
-            possible_match.append((-dist, po_mid, po_mstr))
-        else:
-            possible_match.append((dist, po_mid, po_mstr))
+            #nếu là một phần, hoặc toàn phần, của bản đang tìm kiếm, thì âm hóa giá trị để nó sẽ nằm trên cùng, nếu khô thì sử dụng khoảng cách mà thuật toán Levenshtein đã tính được.
+            is_a_subset = (msgid in po_mid)
+            if (is_a_subset):
+                possible_match.append((-dist, po_mid, po_mstr))
+            else:
+                possible_match.append((dist, po_mid, po_mstr))
 
-        #sắp xếp theo thứ tự của khoảng cách, cái nhỏ nhất ở trên cùng
-        sorted_possible_match = sorted(possible_match)
+            #sắp xếp theo thứ tự của khoảng cách, cái nhỏ nhất ở trên cùng
+            sorted_possible_match = sorted(possible_match)
 
-        #nếu danh sách không trống rỗng thì lấy cái có giá trị thấp nhất
-        if (len(sorted_possible_match) > 0):
-            dist, po_mid, po_mstr = (sorted_possible_match[0])
-            return [True, po_mid, po_mstr]
-        else:
-            return [False, None, None]
+            #nếu danh sách không trống rỗng thì lấy cái có giá trị thấp nhất
+            if (len(sorted_possible_match) > 0):
+                dist, po_mid, po_mstr = (sorted_possible_match[0])
+                return [True, po_mid, po_mstr]
+            else:
+                return [False, None, None]
     ```
 
 + Sử dụng từ điển để điền các dòng, các chữ nhắc lại, giảm lượng phím bấm cần phải đánh:
