@@ -1963,7 +1963,7 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
        export PYTHONPATH=$HOME/.local/lib/python3.6/site-packages:$PYTHONPATH
     ```
 
-        xem thêm thông tin về các biến môi trường của Python [ở đây](https://docs.python.org/3/using/cmdline.html?#environment-variables)
+    xem thêm thông tin về các biến môi trường của Python [ở đây](https://docs.python.org/3/using/cmdline.html?#environment-variables)
 
     - Điền 2 dòng sau ở đầu bản mã lập trình của mình (*.py), trước khi dùng lệnh **import** hoặc **from <tên> import** :
 
@@ -1986,7 +1986,7 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
        $HOME/.local/lib/python3.6/site-packages/sphinx_intl/catalog.py
     ```
 
-        không cho phép mình điều chỉnh cỡ dòng (số lượng ký tự trên một dòng, và nó sử dụng sắp đặt mặc định `width=76`). Để chủ động biến đổi cái này thì mình phải viết lại cụm mã này, ví dụ các dòng sau đây, và đặt `width=0`, để các dòng văn bản trong bản **.po** không xuống dòng nữa:
+    không cho phép mình điều chỉnh cỡ dòng (số lượng ký tự trên một dòng, và nó sử dụng sắp đặt mặc định `width=76`). Để chủ động biến đổi cái này thì mình phải viết lại cụm mã này, ví dụ các dòng sau đây, và đặt `width=0`, để các dòng văn bản trong bản **.po** không xuống dòng nữa:
 
     ```python
 
