@@ -2459,7 +2459,7 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
         dist = DS(s1, s2)
     ```
 
-    Đọc thêm về Levenshtein [tại đây](https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance). Khi sử dụng cái này thì để ý một điều là khoảng cách *Levenshtein* (Levenshtein distance) tính toán trên cơ sở ký tự, không tính trên cơ sở cụm từ, khoảng cách lu mờ dần giữa từ nọ và từ kia. Ý định của thuật toán là tìm mức độ thay đổi giữa hai dòng chữ *s1* và *s2*, xem xem để biến đổi từ *s1* sang *s2*, số bước biến đổi phải làm là bao nhiêu. Các phép biến đổi tích trong bảng bao gồm:
+    Đọc thêm về Levenshtein [tại đây](https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance). Khi sử dụng cái này thì để ý một điều là khoảng cách *Levenshtein* (Levenshtein distance) tính toán trên cơ sở ký tự, không tính trên cơ sở cụm từ, khoảng cách lu mờ dần giữa từ nọ và từ kia. Ý định của thuật toán là tìm mức độ thay đổi giữa hai dòng chữ *s1* và *s2*, xem xem để biến đổi từ *s1* sang *s2*, số bước biến đổi phải làm là bao nhiêu. Các phép biến đổi tính trong bảng bao gồm:
 
     + phép thay thế (replace),
     + phép xóa đi (delete), và
@@ -2504,7 +2504,8 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 + Tìm kiếm mơ hồ:
 
     ```python
-    # luân chuyển qua các thành phần trong self.term_list và gọi hàm lùng tìm mơ hồ để tìm dòng khớp gần nhất trong bản PO
+    # luân chuyển qua các thành phần trong self.term_list và gọi hàm lùng tìm mơ hồ
+    #để tìm dòng khớp gần nhất trong bản PO
     for term in self.term_list:
         #xóa những ký tự cách trống và xuống dòng không cần thiết
         term = term.strip()
@@ -2516,7 +2517,8 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     ```python
     def fuzzySearchPOData(self, msgid):
-        #danh sách cũng những trường hợp khớp, hoặc tương đối khớp với văn bản lùng tìm, nằm trong tham số 'msgid'
+        #danh sách cũng những trường hợp khớp, hoặc tương đối khớp với văn bản lùng tìm,
+        #nằm trong tham số 'msgid'
         possible_match=[]
         for m in self.po_doc:
             po_mid = m.id
@@ -2529,11 +2531,13 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
             #tính khoảng cách
             dist = DS(msgid, po_mid)
 
-            #bỏ qua những trường hợp mà khoảng cách quá lớn, đồi hỏi quá nhiều bước để biến thành nguyên bản
+            #bỏ qua những trường hợp mà khoảng cách quá lớn, đòi hỏi quá nhiều bước để biến thành nguyên bản
             is_too_far = (dist > 50)
             if (is_too_far): continue
 
-            #nếu là một phần, hoặc toàn phần, của bản đang tìm kiếm, thì âm hóa giá trị để nó sẽ nằm trên cùng, nếu khô thì sử dụng khoảng cách mà thuật toán Levenshtein đã tính được.
+            #nếu là một phần, hoặc toàn phần, của bản đang tìm kiếm, thì âm hóa giá trị
+            #để nó sẽ nằm trên cùng, nếu khô thì sử dụng khoảng cách mà thuật toán Levenshtein
+            #đã tính được.
             is_a_subset = (msgid in po_mid)
             if (is_a_subset):
                 possible_match.append((-dist, po_mid, po_mstr))
