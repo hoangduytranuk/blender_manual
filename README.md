@@ -1923,47 +1923,59 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
 + Kiểm tra xem đường dẫn đến các thư viện của hệ thống Python nằm ở đâu, bằng cách vào cửa sổ dòng lệnh và đánh các lệnh sau:
 
+    ```bash
         python3
         Python 3.6.7 (default, Oct 22 2018, 11:32:17)
         [GCC 8.2.0] on linux
         Type "help", "copyright", "credits" or "license" for more information.
         >>> import sys
         >>> sys.path
+    ```
 
     Lệnh này sẽ liệt kê các thư mục mà Python3, khi hoạt động, sẽ lùng tìm các thư viện của nó. Mình có thể điều khiển cái này bằng 2 cách:
 
     - Điền vào dùng biến môi trường **PYTHONPATH**. Đặt cái này trong bản **.bashrc** của mình bằng dòng:
 
-                export PYTHONPATH=$HOME/.local/lib/python3.6/site-packages:$PYTHONPATH
+    ```bash
+
+       export PYTHONPATH=$HOME/.local/lib/python3.6/site-packages:$PYTHONPATH
+    ```
 
         xem thêm thông tin về các biến môi trường của Python [ở đây](https://docs.python.org/3/using/cmdline.html?#environment-variables)
 
     - Điền 2 dòng sau ở đầu bản mã lập trình của mình (*.py), trước khi dùng lệnh **import** hoặc **from <tên> import** :
 
-                import sys
-                sys.path.append("/home/<tên tài khoản người dùng>/.local/lib/python3.6/site-packages")
+    ```python
+        import sys
+        sys.path.append("/home/<tên tài khoản người dùng>/.local/lib/python3.6/site-packages")
 
-                from sphinx_intl import catalog as c
+        from sphinx_intl import catalog as c
 
-                ....
-                po_doc = c.load_po(po_path)
-                ....
-                c.dump_po(po_path, po_doc)
+        ....
+        po_doc = c.load_po(po_path)
+        ....
+        c.dump_po(po_path, po_doc)
+    ```
 
         Nên nhớ, lệnh **c.dump_po** trong tập lệnh
 
-                $HOME/.local/lib/python3.6/site-packages/sphinx_intl/catalog.py
+    ```bash
+       $HOME/.local/lib/python3.6/site-packages/sphinx_intl/catalog.py
+    ```
 
         không cho phép mình điều chỉnh cỡ dòng (số lượng ký tự trên một dòng, và nó sử dụng sắp đặt mặc định `width=76`). Để chủ động biến đổi cái này thì mình phải viết lại cụm mã này, ví dụ các dòng sau đây, và đặt `width=0`, để các dòng văn bản trong bản **.po** không xuống dòng nữa:
 
-                def dump_po(self, filename, catalog):
-                    dirname = os.path.dirname(filename)
-                    if not os.path.exists(dirname):
-                        os.makedirs(dirname)
+    ```python
 
-                    # Because babel automatically encode strings, file should be open as binary mode.
-                    with io.open(filename, 'wb') as f:
-                        pofile.write_po(f, catalog, width=0)
+        def dump_po(self, filename, catalog):
+            dirname = os.path.dirname(filename)
+            if not os.path.exists(dirname):
+                os.makedirs(dirname)
+
+            # Because babel automatically encode strings, file should be open as binary mode.
+            with io.open(filename, 'wb') as f:
+                pofile.write_po(f, catalog, width=0)
+    ```
 
 + Một trong những ví dụ cần phải sử dụng Python trong khi phiên dịch là các dòng tiêu đề của bài viết, đề mục trong các phần của bài viết, sau một thời gian làm việc, số lượng dòng đã dịch sẽ tăng lên và chúng ta có sử dụng chúng để điền cho những dòng nhắc lại ở các bài chưa dịch. Sử dụng Python và những gì đã bàn về cách đọc, viết các bản **.po**, cùng với chức năng có sẵn trong thư viện của Python, như **json**, nói đến [ở đây](https://docs.python.org/3/library/json.html), chẳng hạn, chúng ta có thể thu thập các dòng đã phiên dịch trong tiếng Anh và nội dung phiên dịch trong tiếng Việt.
 
@@ -1977,12 +1989,14 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     Từ điển được viết ra trong dạng **json** sẽ trông giống thế này:
 
-            {
-                "User Focused": "Chú Tâm vào Người Dùng",
-                "User Interface": "Giao Diện Người Dùng",
-                ..
+    ```json
+        {
+            "User Focused": "Chú Tâm vào Người Dùng",
+            "User Interface": "Giao Diện Người Dùng",
+            ..
 
-            }
+        }
+    ```
 
     Nên nhớ, đây là định dạng từ điển hết sức đơn giản, không có định nghĩa về tính chất ngữ pháp của từng từ một, tuy có thể có cả định nghĩa của các đơn từ, và mang tính phổ thông nhiều hơn, có nghĩa là chúng không được quyền nhắc lại, bất kể ngữ cảnh sử dụng. Chính vì thế, chỉ sử dụng cái này cho những bước xây dựng đầu tiên mà thôi, và các bài viết cần phải được chỉnh đốn cụ thể cho trường hợp ngữ cảnh của bài viết.
 
@@ -2002,20 +2016,27 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     Trong quá trình **make gettext**, hoặc **make update_po**, các bản viết có đuôi *.rst* trong thư mục `blender_docs/manual` sẽ được biến hóa sang một bước trung gian bằng trình **parser** trong
 
+    ```bash
         .local/lib/python3.6/site-packages/docutils
+    ```
 
     cụ thể là bởi hàm
 
+    ```python
         def publish(self, argv=None, usage=None, description=None,
         settings_spec=None, settings_overrides=None,
         config_section=None, enable_exit_status=False)
+    ```
 
     trong bản `core.py` trong thư mục đó. Dòng:
 
+    ```python
         self.document = self.reader.read(self.source, self.parser, self.settings)
+    ```
 
     cung cấp cho chúng ta một bản tài liệu với các mã đánh dấu tương tự như trong ví dụ sau:
 
+    ```html
         <document source="/home/<tên tài khoản người dùng>/<thư mục đến>/blender_docs/manual/rigging/armatures/posing/bone_constraints/inverse_kinematics/introduction.rst">
         <section ids="introduction" names="introduction">
         <title>
@@ -2027,6 +2048,7 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
         </paragraph>
         ...
         </document>
+    ```
 
     Bản liệt kê ở đây đã được 'làm đẹp lại' bằng hàm **prettify** của [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), bản của Sphinx sẽ không có các ký tự xuống dòng. Mục đích của chúng ta là viết ra các bản này tại một thư mục khác, với cấu trúc cây thư mục tương tự như của
 
@@ -2051,11 +2073,11 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
             doctree-resolved(app, doctree, docname)
 
->> |Tham Số|Chú Thích|
->> |---:|:---|
->> |app|Chứa môi trường của phần mềm đang hoạt động, cùng các cài đặt.|
->> |doctree|Cây cấu trúc của bản tài liệu đã được phân tích, bao gồm các phần tử của bản tài liệu và văn bản chi tiết|
->> |docname|Tên tương đối của bản tài liệu vừa được phân tích, không có đuôi, và không có |
+    |Tham Số|Chú Thích|
+    |---:|:---|
+    |app|Chứa môi trường của phần mềm đang hoạt động, cùng các cài đặt.|
+    |doctree|Cây cấu trúc của bản tài liệu đã được phân tích, bao gồm các phần tử của bản tài liệu và văn bản chi tiết|
+    |docname|Tên tương đối của bản tài liệu vừa được phân tích, không có đuôi, và không có |
 
 + Đây là ví dụ về một bản tài liệu đã được phân tích:
 
@@ -2166,7 +2188,9 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     **Lưu ý**:*Phương pháp này có một điểm BẤT LỢI là thư mục `blender_docs` của mình sẽ được lệnh:*
 
-            svn status
+    ```bash
+       svn status
+    ```
 
     *thông báo là thư mục đã bị thay đổi.*
 
