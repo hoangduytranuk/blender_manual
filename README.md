@@ -1786,6 +1786,7 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
 
 + Bản ibus-unikey ở kho lấy về có một giới hạn về số từ viết tắt trong bảng macro có thể ghi và nạp vào bộ nhớ là 1024 dòng, mỗi dòng là một định nghĩa. Tôi có viết thư cho anh Lê Quốc Tuấn, chủ nhân của phần mềm này, và làm theo sự hướng dẫn của anh, [vào đây](https://github.com/vn-input/ibus-unikey) lấy bản mã nguồn dùng lệnh:
 
+    ```bash
         sudo apt-get install -y cmake g++ make pkg-config libibus-1.0-dev libgtk-3-dev
         cd $HOME
         mkdir sources/
@@ -1793,30 +1794,41 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
         git clone https://github.com/vn-input/ibus-unikey.git
         cd ibus-unikey
         kwrite ukengine/keycons.h
+    ```
 
 + Đổi dòng:
 
+    ```c++
         #define MAX_MACRO_ITEMS 1024
+    ```
 
     thành
 
+    ```c++
         #define MAX_MACRO_ITEMS 1024 * 4
+    ```
 
     Tức tăng số dòng macro có thể sử dụng lên thành 4 lần (4096 dòng). Lưu thay đổi và quay trở lại dòng lệnh:
 
+    ```bash
         mkdir build
         cd build
         cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=release -DLIBEXECDIR=/usr /lib/ibus ..
         make
         sudo make install
+    ```
 
 + Bấm chuột phải ở biểu tượng Unikey trên thanh tác vụ và chọn 'Restart' để tắt bản cũ đi, lấy bản mới vào bộ nhớ. Hoặc là biên soạn bản 'macro.txt' và cho thêm từ vào đó, rồi 'Import' nó vào hoặc 'import' từ một bản định nghĩa khác đã có vào. Sau khi 'Save' (Lưu) thì có thể vào thư mục '$HOME/.ibus/unikey' và kiểm tra số dòng của bản 'macro' trong đó, bằng
 
+    ```bash
         cat macro | wc -l
+    ```
 
     hoặc dùng:
 
+    ```bash
         kwrite macro
+    ```
 
     và kiểm tra số dòng mà phần mềm đã ghi. Hơn 1024 là được.
 
@@ -1828,15 +1840,19 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
 
     và khởi động lại **ibus-engine-unikey** tự động, sau mỗi lần thay đổi, hoặc điền thêm định nghĩa vào là dùng **kate** hoặc **kwrite** viết một bản mã **bash shell** tương tự như sau đây và đặt tên cho nó là **refresh_unikey.sh** chẳng hạn, ví dụ bản **macro.txt** nằm trong thư mục *~/Documents*:
 
+    ```bash
         #!/bin/bash
         pkill -9 ibus-engine-uni
         cp -a ~/Documents/macro.txt ~/.ibus/unikey/macro
         chmod 664 ~/.ibus/unikey/macro
         /usr/ibus-engine-unikey --ibus &
+    ```
 
     nhớ đổi chế độ cho bản **refresh_unikey.sh** sang bao gồm quyền thi hành, bằng dòng lệnh
 
+    ```bash
         chmod u+x refresh_unikey.sh
+    ```
 
     Nhớ là sau khi chạy lệnh **refresh_unikey.sh** ở dòng lệnh thì phải bấm `Ctrl+Spacebar` hai lần đề nó chuyển sang tiếng Anh, rồi tiếng Việt. Cách làm này sẽ giảm thiểu việc chúng ta phải vào trình đơn và dùng lệnh **import**.
 
@@ -1853,17 +1869,21 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
 1. Cách thứ nhất là:
 
+    ```bash
         cd Downloads
         wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
         sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         sudo apt-get update
         sudo apt-get install google-chrome-stable
+    ```
 
 2. Cách thứ hai là:
 
+    ```bash
         cd Downloads
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb
+    ```
 
     + Sau đó vào trình đơn 'Internet' của hệ điều hành và bấm thi hành 'Google Chrome' hoặc khởi động nó từ dòng lệnh:
 
@@ -1908,10 +1928,12 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
 + Theo mặc định thì bản **.profile** ở thư mục *$HOME* của mình sẽ có dòng này:
 
+    ```bash
         #set PATH so it includes user's private bin if it exists
         if [ -d "$HOME/.local/bin" ] ; then
             PATH="$HOME/.local/bin:$PATH"
         fi
+    ```
 
     và do đó, nếu mình liệt kê biến môi trường **PATH** ra, bằng lệnh:
 
@@ -1957,7 +1979,8 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
         c.dump_po(po_path, po_doc)
     ```
 
-        Nên nhớ, lệnh **c.dump_po** trong tập lệnh
+    Nên nhớ, lệnh **c.dump_po** trong tập lệnh
+
 
     ```bash
        $HOME/.local/lib/python3.6/site-packages/sphinx_intl/catalog.py
