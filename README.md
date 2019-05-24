@@ -56,9 +56,11 @@ Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tư�
 
 + Bản mà bạn đã tải xuống và cài đặt có thể không phải là phiên bản mới nhất, vì vậy hãy chạy các lệnh sau để cập nhật môi trường:
 
+```bash
     sudo apt-get update
     sudo apt-get upgrade
     sudo apt-get install -y git subversion
+```
 
 + Bạn còn có thể tải xuống máy bản [Kate trên Windows](https://kate-editor.org/2016/01/28/kate-on-windows/) làm một trình biên soạn văn bản bổ sung, thay cho cái hiện tại đang sử dụng. Cái này cho phép nêu bật các chữ chìa khóa của tập tin **.po** phiên dịch, dễ làm việc hơn trên giao diện đồ họa.
 
@@ -67,15 +69,21 @@ Khi quá trình cài đặt hoàn tất, bạn có thể tìm thấy biểu tư�
 
 + Vị trí của bản Ubuntu 18.04 nằm tại:
 
+```pwsh
         C:\Users\<windows username>\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home\<Ubuntu's username>
+```
 
     Mình có thể tìm thấy ánh xạ của ổ đĩa C: bằng cách sử dụng:
 
+```bash
         mount
+```
 
     và nó thường nằm ở:
 
+```bash
         C: on /mnt/c type drvfs (rw,noatime)
+```
 
 + Lệnh
 
@@ -2150,7 +2158,7 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     *thông báo là thư mục đã bị thay đổi.*
 
-    #### 2. Trực tiếp gắn tập lệnh và mã nguồn của Sphinx.
+    #### 2. Trực tiếp gắn tập lệnh vào mã nguồn của Sphinx.
     Như đã nói đến ở trên, chúng ta có thể viết thêm trực tiếp vào:
 
             .local/lib/python3.6/site-packages/docutils/core.py
@@ -2184,81 +2192,89 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     thì mình có thể viết kèm những dòng này:
 
-            import sys
-            sys.path.append("/home/<username>/bin/python")
+    ```python
+        import sys
+        sys.path.append("/home/<username>/bin/python")
 
-            import myrsttohtml as MRH
+        import myrsttohtml as MRH
 
-            ....
-            self.document = self.reader.read(self.source, self.parser, self.settings)
+        ....
+        self.document = self.reader.read(self.source, self.parser, self.settings)
 
-            MRH.writeDocument(self.source.source_path, self.document)
+        MRH.writeDocument(self.source.source_path, self.document)
+    ```
+
 
     Bản mã **myrsttohtml.py** có thể được viết như thế này:
 
-            #!/usr/bin/env python3
-            # -*- coding: utf-8 -*-
-            import os
-            from pprint import pprint as pp
+    ```python
+        #!/usr/bin/env python3
+        # -*- coding: utf-8 -*-
 
-            def writeDocument(path, document):
+        import os
+        from pprint import pprint as pp
 
-                is_env_set = False
-                #đây là định nghĩa của biến môi trường dùng để khống chế việc thi hành việc viết các bản RST thành HTML
-                #nếu biến môi trường này đặt thành 'False' hoặc không có thì các dòng mã sau sẽ không bao giờ được thi hành cả.
-                env_var="RECORD_RST_AS_HTML"
+        def writeDocument(path, document):
 
-                #Những dòng này là để điều tra các biến môi trường
-                #print("os.environ")
-                #sorted_env = sorted(os.environ.items())
-                #pp(sorted_env)
+            is_env_set = False
+            #đây là định nghĩa của biến môi trường dùng để khống chế việc thi hành việc viết các bản RST thành HTML
+            #nếu biến môi trường này đặt thành 'False' hoặc không có thì các dòng mã sau sẽ không bao giờ được thi hành cả.
+            env_var="RECORD_RST_AS_HTML"
 
-                #kiểm tra xem biến môi trường có trong bộ nhớ hay không
-                is_env_there=(env_var in os.environ)
-                #nếu có thì đổi giá trị của biến sang thành giá trị bool (đúng/sai = True/False)
-                if (is_env_there):
-                    is_env_set=bool(os.environ[env_var])
+            #Những dòng này là để điều tra các biến môi trường
+            #print("os.environ")
+            #sorted_env = sorted(os.environ.items())
+            #pp(sorted_env)
 
-                #nếu biến có giá trị là 'True' (Đúng) thì tiếp tục, không thì thoát ('return')
-                if (not is_env_set): return
+            #kiểm tra xem biến môi trường có trong bộ nhớ hay không
+            is_env_there=(env_var in os.environ)
+            #nếu có thì đổi giá trị của biến sang thành giá trị bool (đúng/sai = True/False)
+            if (is_env_there):
+                is_env_set=bool(os.environ[env_var])
 
-                #đầu tiên đổi giá trị đường dẫn path từ 'manual' sang 'build/rstdoc' và đuôi từ 'rst' sang 'html'
-                rst_path = path.replace("manual", "build/rstdoc").replace(".rst", ".html")
-                #biến document sang dạng văn bản
-                doc = str(document)
+            #nếu biến có giá trị là 'True' (Đúng) thì tiếp tục, không thì thoát ('return')
+            if (not is_env_set): return
 
-                #Những dòng này là để điều tra các giá trị của biến số
-                #print("rst_path", rst_path)
-                #print("doc", doc)
+            #đầu tiên đổi giá trị đường dẫn path từ 'manual' sang 'build/rstdoc' và đuôi từ 'rst' sang 'html'
+            rst_path = path.replace("manual", "build/rstdoc").replace(".rst", ".html")
+            #biến document sang dạng văn bản
+            doc = str(document)
 
-                #thử nghiệm các dòng sau
-                try:
-                    #tạo đường dẫn cho văn bản nếu cần
-                    os.makedirs(os.path.dirname(rst_path), exist_ok=True)
-                    #mở văn bản và viết nội dung văn bản vào đó
-                    with open(rst_path, "w") as f:
-                        f.write(doc);
-                #khi có lỗi thì in ra lỗi và đường dẫn, ngừng hoạt động
-                except Exception as e:
-                    print("Exception writeDocument:{}".format(rst_path))
-                    raise e
+            #Những dòng này là để điều tra các giá trị của biến số
+            #print("rst_path", rst_path)
+            #print("doc", doc)
 
-                #bỏ dấu '#' của dòng sau trong khi điều tra để chỉ 1 trường hợp văn bản được thi hành mà thôi.
-                #exit(0)
+            #thử nghiệm các dòng sau
+            try:
+                #tạo đường dẫn cho văn bản nếu cần
+                os.makedirs(os.path.dirname(rst_path), exist_ok=True)
+                #mở văn bản và viết nội dung văn bản vào đó
+                with open(rst_path, "w") as f:
+                    f.write(doc);
+            #khi có lỗi thì in ra lỗi và đường dẫn, ngừng hoạt động
+            except Exception as e:
+                print("Exception writeDocument:{}".format(rst_path))
+                raise e
 
+            #bỏ dấu '#' của dòng sau trong khi điều tra để chỉ 1 trường hợp văn bản được thi hành mà thôi.
+            #exit(0)
+    ```
 
     Để thử nghiệm, mở dòng lệnh và thi hành:
 
-            cd $BLENDER_MAN_EN
-            export RECORD_RST_AS_HTML=True
-            make gettext
+    ```bash
+        cd $BLENDER_MAN_EN
+        export RECORD_RST_AS_HTML=True
+        make gettext
+    ```
 
-**Lưu ý**:*Phương pháp này có một điểm LỢI là thư mục `blender_docs` của mình sẽ được giữ nguyên, song nếu chẳng may mình tháo phần mềm *Sphinx*, hoặc cập nhật các thay đổi thì có thể các dòng lệnh trong*
+    **Lưu ý**:*Phương pháp này có một điểm LỢI là thư mục `blender_docs` của mình sẽ được giữ nguyên, song nếu chẳng may mình tháo phần mềm *Sphinx*, hoặc cập nhật các thay đổi thì có thể các dòng lệnh trong*
 
-        .local/lib/python3.6/site-packages/docutils/core.py
+    ```bash
+    .local/lib/python3.6/site-packages/docutils/core.py
+    ```
 
-
-*bị viết đè lên bằng bản mới và mất đi tính năng mà mình cần.*
+    *bị viết đè lên bằng bản mới và mất đi tính năng mà mình cần.*
 
 + Như đã nói, các dòng đầu đề, các dòng mục tiêu đề, tức các dòng được viết đậm, được nhóm trong các mã sau:
     + title
@@ -2270,89 +2286,97 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     Sau đó, dùng **BeautifulSoup** để lùng tìm các phần tử này trong bản *.html* đã viết ra ở một trong 2 phương pháp trên và đối chiếu nội dung tìm được với bản *.po* tương ứng, được nạp bằng lệnh:
 
-            po_doc = c.load_po(po_path)
+    ```python
+        po_doc = c.load_po(po_path)
+    ```
 
     Ví dụ về bản mã phân tích mã HTML, lùng tìm dòng văn bản trong bản PO và lưu các dòng này vào một bản từ điển địa phương.
 
-        class ParseHTML():
-            def __init__(self):
-                self.input_file = None  #biến lưu tên của bản *.html* sẽ được phân tích
-                self.term_list = []     #bảng liệt kê lưu thành phần các phần tử mà BeautifulSoup tìm thấy và được phân tích, biến hóa bởi các hàm 'parse_...'
-                self.po_path = None     #biến lưu tên của bản *.po* tương ứng
-                self.po_doc = None      #biến lưu nội dung của bản *.po* tương ứng
+    ```python
+    class ParseHTML():
+        def __init__(self):
+            self.input_file = None  #biến lưu tên của bản *.html* sẽ được phân tích
+            self.term_list = []     #bảng liệt kê lưu thành phần các phần tử mà BeautifulSoup tìm thấy và được phân tích, biến hóa bởi các hàm 'parse_...'
+            self.po_path = None     #biến lưu tên của bản *.po* tương ứng
+            self.po_doc = None      #biến lưu nội dung của bản *.po* tương ứng
 
-                #đường dẫn của từ điển sẽ được viết ra
-                self.dic_file = "/home/.../dic_file.json"
-                #bảng liệt kê lưu trữ các dòng tìm thấy và văn bản phiên dịch, nếu có.
-                self.dic_list={}
+            #đường dẫn của từ điển sẽ được viết ra
+            self.dic_file = "/home/.../dic_file.json"
+            #bảng liệt kê lưu trữ các dòng tìm thấy và văn bản phiên dịch, nếu có.
+            self.dic_list={}
 
-            def parseOneFile(self):
+        def parseOneFile(self):
 
-                with open(self.input_file) as fp:
-                    self.soup = BeautifulSoup(fp, "html.parser")
+            with open(self.input_file) as fp:
+                self.soup = BeautifulSoup(fp, "html.parser")
 
-                self.loadHTMLData()
-                self.loadPOData()
+            self.loadHTMLData()
+            self.loadPOData()
 
-                kw = ['title', 'field_list', 'term', 'strong', 'rubric']
-                for k in kw:
-                    for elem in self.soup.find_all(k):
-                        self.parse_title(elem)
-                        self.parse_field_list(elem)
-                        self.parse_term(elem)
-                        self.parse_strong(elem)
-                        self.parse_rubric(elem)
+            kw = ['title', 'field_list', 'term', 'strong', 'rubric']
+            for k in kw:
+                for elem in self.soup.find_all(k):
+                    self.parse_title(elem)
+                    self.parse_field_list(elem)
+                    self.parse_term(elem)
+                    self.parse_strong(elem)
+                    self.parse_rubric(elem)
+    ```
 
     các phần tử, sau khi đã được phân tích, sẽ được lưu trong **self.term_list**. Đây là một ví dụ về hàm phân tích **field_list**:
 
-            <field_list>
-                <field>
-                    <field_name>
-                        Mode
-                    </field_name>
-                    <field_body>
-                        <paragraph>
-                            Sculpt Mode
-                        </paragraph>
-                    </field_body>
-                </field>
-                <field>
-                    <field_name>
-                        Panel
-                    </field_name>
-                    <field_body>
-                        <paragraph>
-                            <inline classes="menuselection" rawtext=":menuselection:`Tool Shelf --&gt; Options`">
-                                Tool Shelf ‣ Options
-                            </inline>
-                        </paragraph>
-                    </field_body>
-                </field>
-            </field_list>
+    ```html
+    <field_list>
+        <field>
+            <field_name>
+                Mode
+            </field_name>
+            <field_body>
+                <paragraph>
+                    Sculpt Mode
+                </paragraph>
+            </field_body>
+        </field>
+        <field>
+            <field_name>
+                Panel
+            </field_name>
+            <field_body>
+                <paragraph>
+                    <inline classes="menuselection" rawtext=":menuselection:`Tool Shelf --&gt; Options`">
+                        Tool Shelf ‣ Options
+                    </inline>
+                </paragraph>
+            </field_body>
+        </field>
+    </field_list>
+    ```
 
     và đây là mã phân tích:
 
-            def parse_field_list(self, elem):
-                #nếu phần tử không phải là "field_list" thì thoát ra
-                if (not elem.name == "field_list"): return
+    ```python
+        def parse_field_list(self, elem):
+            #nếu phần tử không phải là "field_list" thì thoát ra
+            if (not elem.name == "field_list"): return
 
-                #phân tích mỗi phần tử "field" trong "field_list"
-                for f in elem.find_all('field'):
-                    #tìm các phần tử "field_name"
-                    for f_name in f.find_all('field_name'):
-                        #đơn thuần bổ sung thêm vào 'term_list' văn bản của 'field_name'
-                        self.term_list.append(f_name.text)
+            #phân tích mỗi phần tử "field" trong "field_list"
+            for f in elem.find_all('field'):
+                #tìm các phần tử "field_name"
+                for f_name in f.find_all('field_name'):
+                    #đơn thuần bổ sung thêm vào 'term_list' văn bản của 'field_name'
+                    self.term_list.append(f_name.text)
 
-                    #tìm các phần tử "field_body"
-                    for f_body in f.find_all('field_body'):
-                        for para in f_body.find_all('paragraph'):
-                            for inline in f_body.find_all('inline', {'classes': 'menuselection'}):
-                                #lợi dụng kiến thức về 'raw_text' và trích xuất chúng ra
-                                raw_text = "{}".format(inline['rawtext'])
-                                #thay thế các từ &gt; '>' hoặc &lt; '<'
-                                raw_text = html.unescape(raw_text)
-                                #bổ sung thêm vào 'term_list'
-                                self.term_list.append(raw_text)
+                #tìm các phần tử "field_body"
+                for f_body in f.find_all('field_body'):
+                    for para in f_body.find_all('paragraph'):
+                        for inline in f_body.find_all('inline', {'classes': 'menuselection'}):
+                            #lợi dụng kiến thức về 'raw_text' và trích xuất chúng ra
+                            raw_text = "{}".format(inline['rawtext'])
+                            #thay thế các từ &gt; '>' hoặc &lt; '<'
+                            raw_text = html.unescape(raw_text)
+                            #bổ sung thêm vào 'term_list'
+                            self.term_list.append(raw_text)
+    ```
 
     Sau khi đã lấy được các dòng văn bản rồi, kiểm tra chúng với các dòng có trong văn bản *.po* tương ứng, tìm xem cái nào gần nhất với cái tìm thấy. Để lấy lại được các dòng văn bản cũ, tương ứng, trong *.po* là một điều không đơn giản, vì các dấu đánh khác được kèm vào dưới nó. Chúng ta phải sử dụng công nghệ tìm kiếm *mơ hồ* (fuzzy search) để  có thể lấy lại được dòng văn bản gốc. Trước tiên cài đặt phần mềm cho phép tìm kiếm mơ hồ:
 
@@ -2360,33 +2384,38 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     và sử dụng bằng cách:
 
-            from Levenshtein import distance as DS
-            ...
-            dist = DS(s1, s2)
+    ```python
+        from Levenshtein import distance as DS
+        ...
+        dist = DS(s1, s2)
+    ```
 
     Đọc thêm về Levenshtein [tại đây](https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance). Khi sử dụng cái này thì để ý một điều là khoảng cách *Levenshtein* (Levenshtein distance) tính toán trên cơ sở ký tự, không tính trên cơ sở cụm từ, khoảng cách lu mờ dần giữa từ nọ và từ kia. Ý định của thuật toán là tìm mức độ thay đổi giữa hai dòng chữ *s1* và *s2*, xem xem để biến đổi từ *s1* sang *s2*, số bước biến đổi phải làm là bao nhiêu. Các phép biến đổi tích trong bảng bao gồm:
+
     + phép thay thế (replace),
     + phép xóa đi (delete), và
     + phép chèn thêm (insert).
+
     với hy vọng là cái khớp với dòng tìm kiếm nhiều nhất, tức số lần cần phải biến đổi dùng 3 phép biến đổi ở trên là nhỏ nhất, ít nhất, song thuật toán không tính đến sự gần nhau của các từ trong dòng tìm kiếm khi so sánh, và do đó sinh ra những trường hợp như sau:
 
     Ví dụ dòng tìm kiếm là
 
-            ::menuselection:`Mesh --> Vertices --> Merge...`
+        ::menuselection:`Mesh --> Vertices --> Merge...`
 
     Vài kết quả tìm kiếm được liệt kê trong bảng dưới đây:
 
->> |khoảng cách | dòng tìm thấy |chú thích|
->> | --- | --- | --- |
->> |7|':menuselection:`Mesh --> Vertices --> Separate`'|không đúng|
->> |8|':menuselection:`Mesh --> Vertices --> Add Hook`'|không đúng|
->> |37|':menuselection:`Mesh --> Vertices --> Merge...`|đúng|
+    |khoảng cách | dòng tìm thấy |chú thích|
+    | --- | --- | --- |
+    |7|':menuselection:`Mesh --> Vertices --> Separate`'|không đúng|
+    |8|':menuselection:`Mesh --> Vertices --> Add Hook`'|không đúng|
+    |37|':menuselection:`Mesh --> Vertices --> Merge...`|đúng|
 
 
 + Phương pháp giải quyết:
 
     Trong trường hợp này chúng ta có thể dùng phép so sánh toàn bộ cụm từ tìm kiếm trong các dòng **msgid** tìm thấy trong bản *.po* và âm hóa giá trị khoảng cách tính được, chẳng hạn, hầu cho các dòng hoàn toàn khớp có giá trị nhỏ hơn 0, trong khi các giá trị không khớp hoàn toàn vẫn sử dụng giá trị dương tính toán được:
 
+    ```python
             #s1 = dòng tìm kiếm
             #s2 = dòng tìm thấy trong bản .po
             possible_match = []
@@ -2398,53 +2427,59 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
                 possible_match.append((dist, s2))
 
             sorted_possible_match = sorted(possible_match)
+    ```
 
     như vậy, sau khi sắp xếp lại bằng hàm **sorted**, các giá trị nhỏ sẽ nổi lên trên cùng.
 
+
 + Tìm kiếm mơ hồ:
 
-            for term in sorted_term_list:
-                term = term.strip()
-
-                is_found, msgid, msgstr = self.fuzzySearchPOData(term)
+    ```python
+    # luân chuyển qua các thành phần trong self.term_list và gọi hàm lùng tìm mơ hồ để tìm dòng khớp gần nhất trong bản PO
+    for term in self.term_list:
+        #xóa những ký tự cách trống và xuống dòng không cần thiết
+        term = term.strip()
+        #gọi hàm lùng tìm mơ hồ
+        is_found, msgid, msgstr = self.fuzzySearchPOData(term)
+    ```
 
     và:
 
-            def fuzzySearchPOData(self, msgid):
+    ```python
+    def fuzzySearchPOData(self, msgid):
+    #danh sách cũng những trường hợp khớp, hoặc tương đối khớp với văn bản lùng tìm, nằm trong tham số 'msgid'
+    possible_match=[]
+    for m in self.po_doc:
+        po_mid = m.id
+        #bỏ qua nếu chông có ký tự nào trong đó. Trường hợp này xảy ra ở đầu bản PO.
+        if (len(po_mid) == 0): continue
 
-                #danh sách cũng những trường hợp khớp, hoặc tương đối khớp với văn bản lùng tìm, nằm trong tham số 'msgid'
-                possible_match=[]
-                for m in self.po_doc:
-                    po_mid = m.id
-                    #bỏ qua nếu chông có ký tự nào trong đó. Trường hợp này xảy ra ở đầu bản PO.
-                    if (len(po_mid) == 0): continue
+        #xóa hết các ký tự cách trống, hoặc ký tự xuống dòng.
+        po_mstr = m.string.strip()
 
-                    #xóa hết các ký tự cách trống, hoặc ký tự xuống dòng.
-                    po_mstr = m.string.strip()
+        #tính khoảng cách
+        dist = DS(msgid, po_mid)
 
-                    #tính khoảng cách
-                    dist = DS(msgid, po_mid)
+        #bỏ qua những trường hợp mà khoảng cách quá lớn, đồi hỏi quá nhiều bước để biến thành nguyên bản
+        is_too_far = (dist > 50)
+        if (is_too_far): continue
 
-                    #bỏ qua những trường hợp mà khoảng cách quá lớn, đồi hỏi quá nhiều bước để biến thành nguyên bản
-                    is_too_far = (dist > 50)
-                    if (is_too_far): continue
+        #nếu là một phần, hoặc toàn phần, của bản đang tìm kiếm, thì âm hóa giá trị để nó sẽ nằm trên cùng, nếu khô thì sử dụng khoảng cách mà thuật toán Levenshtein đã tính được.
+        is_a_subset = (msgid in po_mid)
+        if (is_a_subset):
+            possible_match.append((-dist, po_mid, po_mstr))
+        else:
+            possible_match.append((dist, po_mid, po_mstr))
 
-                    #nếu là một phần, hoặc toàn phần, của bản đang tìm kiếm, thì âm hóa giá trị để nó sẽ nằm trên cùng, nếu khô thì sử dụng khoảng cách mà thuật toán Levenshtein đã tính được.
-                    is_a_subset = (msgid in po_mid)
-                    if (is_a_subset):
-                        possible_match.append((-dist, po_mid, po_mstr))
-                    else:
-                        possible_match.append((dist, po_mid, po_mstr))
+        #sắp xếp theo thứ tự của khoảng cách, cái nhỏ nhất ở trên cùng
+        sorted_possible_match = sorted(possible_match)
 
-                #sắp xếp theo thứ tự của khoảng cách, cái nhỏ nhất ở trên cùng
-                sorted_possible_match = sorted(possible_match)
-
-                #nếu danh sách không trống rỗng thì lấy cái có giá trị thấp nhất
-                if (len(sorted_possible_match) > 0):
-                    dist, po_mid, po_mstr = (sorted_possible_match[0])
-                    return [True, po_mid, po_mstr]
-                else:
-                    return [False, None, None]
-
+        #nếu danh sách không trống rỗng thì lấy cái có giá trị thấp nhất
+        if (len(sorted_possible_match) > 0):
+            dist, po_mid, po_mstr = (sorted_possible_match[0])
+            return [True, po_mid, po_mstr]
+        else:
+            return [False, None, None]
+    ```
 
 + Sử dụng từ điển để điền các dòng, các chữ nhắc lại, giảm lượng phím bấm cần phải đánh:
