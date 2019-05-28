@@ -1679,7 +1679,7 @@ Hai toán tử **==** và **<** được thực hiện bằng hàm **__eq__** v�
         hi  = len(sorted_list)
         while (lo < hi):
             #thử ở giữa bằng cách chia đôi bằng phép chia làm tròn - 'floor division', lấy số nguyên, bỏ qua phân số
-            #ví dụ 3 / 5 = 0.6; 3 // 5 = 0, vì các chỉ số và phần tử là số nguyên, như số trang, không có trang 3.5
+            #ví dụ: 3 / 5 = 0.6; 3 // 5 = 0; vì các chỉ số là số nguyên, như số trang, không có trang 3.5
             mid  = (lo + hi) // 2
             item_on_list, translation = sorted_list[mid]
 
@@ -1717,7 +1717,7 @@ Có nhiều trường hợp một số câu trong văn bản *HTML* không còn 
 được nhắc đến trong:
 
 ```bash
-        docutils/utils/smartquotes.py
+    docutils/utils/smartquotes.py
 ```
 
 cho nên, trước khi gọi hàm lùng tìm nhị phân *binarySearch*, chúng ta phải đổi văn bản lùng tìm dùng một hàm biến đổi ký tự. Tìm hiểu và xem xem cái nào cần.
@@ -1725,7 +1725,9 @@ cho nên, trước khi gọi hàm lùng tìm nhị phân *binarySearch*, chúng 
 #### Phương pháp tìm kiếm MƠ HỒ:
 Một phương pháp khác để lùng tìm và lấy lại văn bản cũ trong bản PO là sử dụng kỹ thuật tìm kiếm *mơ hồ* (fuzzy search). Tuy tốc độ tìm kiếm của phương pháp này khá chậm, song trình bày ở đây như một bàn luận về các phương pháp giải quyết vấn đề. Có khả năng, trong tương lai, chúng ta có thể sẽ gặp phải nan đề cần phải sử dụng nó. Trước tiên cài đặt phần mềm cho phép tìm kiếm mơ hồ:
 
-        pip3 install python-Levenshtein
+```bash
+   pip3 install python-Levenshtein
+```
 
 và sử dụng bằng cách:
 
@@ -1745,16 +1747,20 @@ với hy vọng là cái khớp với dòng tìm kiếm nhiều nhất, tức s�
 
 Ví dụ dòng tìm kiếm là
 
-    ::menuselection:`Mesh --> Vertices --> Merge...`
+    :menuselection:Mesh --> Vertices
 
 Vài kết quả tìm kiếm được liệt kê trong bảng dưới đây:
 
-|khoảng cách | dòng tìm thấy |chú thích|
-| --- | --- | --- |
-|7|':menuselection:`Mesh --> Vertices --> Separate`'|không đúng|
-|8|':menuselection:`Mesh --> Vertices --> Add Hook`'|không đúng|
-|37|':menuselection:`Mesh --> Vertices --> Merge...`|đúng|
+|khoảng cách | dòng tìm thấy |
+| --- | --- |
+|15|:menuselection:`Mesh --> AutoMerge Editing`|
+|15|:menuselection:`Mesh --> Vertices --> Add Hook`|
+|15|:menuselection:`Mesh --> Vertices --> Rip Fill`|
+|15|:menuselection:`Mesh --> Vertices --> Separate`|
+|22|:menuselection:`Mesh --> Vertices --> Extend Vertices`|
+|22|Selected vertex.|
 
+Trong những trường hợp trên, có nhiều trường hợp khoảng cách tìm được bằng nhau, trong khi nội dung hoàn toàn khác biệt.
 
 ##### Phương pháp giải quyết:
 
@@ -1774,10 +1780,10 @@ Trong trường hợp này chúng ta có thể dùng phép so sánh toàn bộ c
         sorted_possible_match = sorted(possible_match)
 ```
 
-như vậy, sau khi sắp xếp lại bằng hàm **sorted**, các giá trị nhỏ sẽ nổi lên trên cùng.
+như vậy, sau khi sắp xếp lại bằng hàm **sorted**, các giá trị nhỏ sẽ nổi lên trên cùng. Song nó sẽ không hoàn toàn giải quyết được vấn đề khi giá trị bằng nhau như đã thấy.
 
-
-+ Tìm kiếm mơ hồ:
+#### Phương pháp thực hành tìm kiếm mơ hồ:
+Trong Python, chúng ta có thể viết như sau:
 
 ```python
     # luân chuyển qua các thành phần trong self.term_list và gọi hàm lùng tìm mơ hồ
