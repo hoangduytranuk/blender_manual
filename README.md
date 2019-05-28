@@ -1818,7 +1818,7 @@ và:
             if (is_too_far): continue
 
             #nếu là một phần, hoặc toàn phần, của bản đang tìm kiếm, thì âm hóa giá trị
-            #để nó sẽ nằm trên cùng, nếu khô thì sử dụng khoảng cách mà thuật toán Levenshtein
+            #để nó sẽ nằm trên cùng, nếu không thì sử dụng khoảng cách mà thuật toán Levenshtein
             #đã tính được.
             is_a_subset = (msgid in po_mid)
             if (is_a_subset):
