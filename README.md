@@ -1352,7 +1352,7 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
                     #Viết ra nội dung bản đã được 'làm đẹp'
                     f.write(text);
             except Exception as e:
-                print("Exception writeTextFile:{}".format(output_path))
+                print("Exception process_doctree:{}".format(output_path))
                 raise e
 
             #Dòng này để thoát sau khi chạy 'make gettext' và xử lý một bản đầu tiên trong khi thử nghiệm
