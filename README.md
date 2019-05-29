@@ -1756,9 +1756,9 @@ có nghĩa là chỉ lùng tìm các ký tự không phải là các dấu đặ
 ```python
         if (is_found):
             if (is_fuzzy_search):
-                return [lst, trans]
+                return [item_on_list, translation]
             else:
-                return [item_to_find, trans]
+                return [item_to_find, translation]
         elif (lst < find):
             lo = mid + 1  # range in the higher part
         ...
