@@ -1723,6 +1723,50 @@ Hai toán tử **==** và **<** được thực hiện bằng hàm **__eq__** v�
 
 *Cái này đòi hỏi danh sách đọc được từ bản PO phải được sắp xếp lại và được trật tự hóa theo thứ tự alphabet, sau khi đã được đọc. Khi sắp xếp danh sách này, lưu ý đến các phần tử được coi là FUZZY (Mơ Hồ) và bỏ qua chúng.*
 
+Việc so sánh ở trên đòi hỏi sự chính xác của văn bản cũ và mới 100%, cái mà trong bài toán này, có những chỗ hoàn toàn không thể thực hiện được. Điều này được phát hiện ra sau khi nghiên cứu các lỗi không tìm thấy và so sánh giữa nội dung của bản HTML và bản PO. Một cách giải quyết là đổi định nghĩa của hàm tìm kiếm nhị phân trên thành:
+
+```python
+   def binSearch(self, sorted_list , item_to_find, is_fuzzy=False):
+```
+
+và viết thêm một phần, như sau:
+
+```python
+
+    is_found = (lst == find)
+
+    is_fuzzy_search = ((not is_found) and (is_fuzzy == True))
+    if (is_fuzzy_search):
+        #tìm các từ trong dòng lùng tìm, bỏ qua các ký hiệu hoặc ký tự dấu đặc biệt
+        word_list = cm.WORD_SEP.findall(item_to_find)
+        #lồng khóm '.*' vào giữa các từ, biến nó thành một định nghĩa Regular Expression (RE)
+        pattern_of_item_to_find = ".*".join(word_list)
+        #So sánh định nghĩa RE trên với dòng trong văn bản, đòi hỏi là các từ lùng tìm phải nằm trong dòng từ bản PO
+        is_found = (re.search(pattern_of_item_to_find, item_on_list) != None)
+```
+
+trong đó, định nghĩa của **WORD_SEP** là:
+
+```python
+    WORD_SEP = re.compile(r"([^\W]+)")
+```
+
+có nghĩa là chỉ lùng tìm các ký tự không phải là các dấu đặc biệt, hay nói cách khác, chỉ tìm các chữ đọc được mà thôi. Việc tìm kiếm này nảy ra một vấn đề: Dòng lấy từ bản HTML không còn giống với dòng đáng phải nằm trong định nghĩa từ điển nữa, mà phải là dòng **msgid** từ bản PO. Kết quả **return** từ hàm **binarySearch** này phải đưa lại hiện trạng này cho dòng sử dụng hàm **binarySearch**. Chẳng hạn:
+
+```python
+        if (is_found):
+            if (is_fuzzy_search):
+                return [lst, trans]
+            else:
+                return [item_to_find, trans]
+        elif (lst < find):
+            lo = mid + 1  # range in the higher part
+        ...
+
+    return [None, None]
+```
+
+
 Có nhiều trường hợp một số câu trong văn bản *HTML* không còn ở trong dạng cũ nữa, sau khi được trích xuất. Nguyên nhân là vì một số ký tự đặc biệt đã được biến đổi sang các ký tự *HTML*, ví dụ các ký tự:
 
 ```python
