@@ -1733,7 +1733,7 @@ và viết thêm một phần, như sau:
 
 ```python
 
-    is_found = (lst == find)
+    is_found = (item_on_list == item_to_find)
 
     is_fuzzy_search = ((not is_found) and (is_fuzzy == True))
     if (is_fuzzy_search):
