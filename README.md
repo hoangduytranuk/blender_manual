@@ -1658,6 +1658,22 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
 
     ```
 
+    Nên nhớ, các dòng mã ở đây được viết khi làm sơ khởi, và chỉ nhằm mục đích làm ví dụ mà thôi. Khi điều tra quá trình phân tích thì nên thu các dòng phát hiện và không tìm thấy được ra màn hình và dùng lệnh sau để ghi lại, ví dụ tập lệnh Python của mình có tên là *parseHTML.py* và mình muốn thu các dòng viết ra vào *$HOME/log.txt* :
+
+    ```bash
+        script $HOME/log.txt
+        parseHTML.py
+        exit
+    ```
+
+    Sau đó dùng bản *$HOME/log.txt* và điều tra lỗi in ra, đặc biệt là điều tra sự biến đổi giữa dòng văn bản từ bản HTML và dòng ở bản PO khác nhau thế nào. Đọc bản mã:
+
+    ```bash
+        .local/lib/python3.6/site-packages/bs4/element.py
+    ```
+
+    và tìm **class Tag** để tìm hiểu và biết thêm về các hàm có thể thi hành được với các **Tag**.
+
 #### Phương pháp tìm kiếm NHỊ PHÂN:
 Sau khi đã lấy được các dòng văn bản rồi, chúng ta có thể sử dụng kỹ thuật [Tìm Kiếm Nhị Phân -- Binary Search](https://interactivepython.org/runestone/static/pythonds/SortSearch/TheBinarySearch.html) để tìm lại dòng văn bản cũ trong bản **.po**, và do đó, lấy lại được dòng văn bản phiên dịch trong phần tử **msgstr**. Phương pháp này bắt nguồn từ việc lùng tìm trong từ điển in giấy mà chúng ta vẫn thường làm. Khi tìm một từ thì việc đầu tiên là mình biết từ thuộc thứ tự nào trong bảng chữ cái và mình sẽ bỏ qua hoàn toàn những trang nhỏ hơn, rồi những trang lớn hơn v.v.. mỗi lần, chúng ta luôn luôn bỏ qua một nửa và khoảng lùng tìm cứ nhỏ dần lại. Trong máy tính, điểm đầu tiên là lấy ở giữa. Nếu từ ở giữa không phải là từ lùng tìm thì mình thử xem giá trị của nó nhỏ hơn hay lớn hơn từ ở giữa. Nếu từ trong từ điển nhỏ hơn từ lùng tìm thì mình biết rằng từ lùng tìm sẽ nằm ở nửa danh sách sau từ đó:
 
