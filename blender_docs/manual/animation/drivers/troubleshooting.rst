@@ -20,7 +20,7 @@ Scripted Expression
 By default Blender will not autorun Python scripts.
 
 If using a *Scripted Expression* Driver Type, you will have to open the file as *Trusted Source*,
-or set *Auto Run Python Scripts* in :menuselection:`User Preferences --> File --> Auto Execution`.
+or set *Auto Run Python Scripts* in :menuselection:`Preferences --> File --> Auto Execution`.
 
 .. list-table::
    :widths: 40 60
@@ -31,7 +31,7 @@ or set *Auto Run Python Scripts* in :menuselection:`User Preferences --> File --
 
      - .. figure:: /images/animation_drivers_troubleshooting_autorun-user-preference.png
 
-          The Auto Run Python Scripts checkbox in the User Preferences.
+          The Auto Run Python Scripts checkbox in the Preferences.
 
 
 Rotational Properties are Radians

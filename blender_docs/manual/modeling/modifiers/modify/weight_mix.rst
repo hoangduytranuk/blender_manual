@@ -96,7 +96,7 @@ Texture Mask
 Texture Mask
    An additional texture, the values of which will be multiplied with the global influence value for each vertex.
 
-   This is a standard texture :doc:`data-block </data_system/data_blocks>` control.
+   This is a standard texture :doc:`data-block </files/data_blocks>` control.
    When set, it reveals other settings:
 
 Texture Coordinates

@@ -52,18 +52,20 @@ Type
 Subdivisions
    Recursively adds more geometry. For details on polygon counts, see the `Performance Considerations`_ section.
 
-   View
+   The right combination of these settings will allow you to keep a fast and lightweight approximation of your model
+   when interacting with it in 3D, but use a higher quality version when rendering.
+
+   Viewport
       The number of subdivision levels shown in the 3D View.
    Render
       The number of subdivision levels shown in renders.
+   Quality
+      TODO 2.8.
 
-The right combination of these settings will allow you to keep a fast and lightweight approximation of your model
-when interacting with it in 3D, but use a higher quality version when rendering.
+   .. tip::
 
-.. tip::
-
-   Be careful not to set the *View* subdivisions higher than the *Render* subdivisions,
-   this would mean the 3D View will be higher quality than the render.
+      Be careful not to set the *Viewport* subdivisions higher than the *Render* subdivisions,
+      this would mean the 3D View will be higher quality than the render.
 
 Options
    Subdivide UVs
@@ -90,33 +92,6 @@ Options
    Optimal Display
       When drawing the wireframe of this object, the wires of the new subdivided edges will be skipped
       (only draws the edges of the original geometry).
-   Opensubdiv
-      See the `OpenSubdiv`_ section.
-
-
-OpenSubdiv
-==========
-
-When *OpenSubdiv* is enabled, the modifier evaluation will happen on a compute device.
-To enable OpenSubdiv you must first choose the fastest compute device
-in the :ref:`User Preferences <prefs-system-opensubdiv>`.
-Most of the time the best performance will be achieved when using *GLSL*.
-As a result performance of the modifier will be much higher which is great for animations.
-
-.. seealso::
-
-   To find more on OpenSubdiv read
-   the `Release Notes <https://wiki.blender.org/wiki/Reference/Release_Notes/2.76/OpenSubdiv>`__.
-
-
-Improving Performance
----------------------
-
-In order to utilize maximum performance form OpenSubdiv the following things are required:
-
-- The modifier must be last in the :ref:`modifier stack <modifier-stack>`.
-- There should be no modifiers prior to the which changes mesh topology across the time.
-- Other objects should not use geometry of OpenSubdiv mesh
 
 
 Control
@@ -138,7 +113,7 @@ the Subdivision Surface modifier subdivides the geometry to give the edges a smo
 
    A subdivided cube with creased edges.
 
-The crease weight of selected edges can be changed in the *Transform* panel of the properties region
+The crease weight of selected edges can be changed in the *Transform* panel of the Sidebar region
 :kbd:`N`, or by using the shortcut :kbd:`Shift-E` and moving the mouse closer
 or further from the selected edges to adjust the crease weight.
 A higher value makes the edge "stronger" and more resistant to the smoothing effect of subdivision surfaces.
@@ -172,12 +147,6 @@ When using high levels of subdivision with a graphics card that has a low total 
 of VRAM, some parts of the geometry will disappear visually. Your mesh will actually be intact,
 because the render is generated using your Object Data,
 (even though it cannot be shown by your graphics card).
-
-.. tip::
-
-   To improve performance in the viewport try enabling `OpenSubdiv`_
-   or if you are using the Cycles Renderer consider using
-   :ref:`Adaptive Subdivision <render-cycles-settings-object-subdivision>`.
 
 
 Keyboard Shortcuts

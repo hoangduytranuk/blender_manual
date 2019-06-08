@@ -123,9 +123,9 @@ Merge Duplicates
 
 The spin operation leaves duplicate vertices along the profile.
 You can select all vertices at the seam with Border select :kbd:`B`
-(shown in Fig. :ref:`fig-mesh-screw-duplicate`) and perform a *Remove Doubles* operation.
+(shown in Fig. :ref:`fig-mesh-screw-duplicate`) and perform a *Merge by Distance* operation.
 
-Notice the selected vertex count before and after the *Remove Doubles* operation
+Notice the selected vertex count before and after the *Merge by Distance* operation
 ``Vertex count after removing doubles``. If all goes well, the final vertex count
 (38 in this example) should match the number of the original profile noted in
 :menuselection:`Mesh data --> Vertex and face numbers`.
@@ -137,8 +137,8 @@ Or, worse, too many vertices will have been merged.
    To merge (weld) two vertices together, select both of them by :kbd:`Shift-RMB`
    clicking on them. Press :kbd:`S` to start scaling and hold down :kbd:`Ctrl`
    while scaling to scale the points down to 0 units in the X, Y and Z axis. :kbd:`LMB`
-   to complete the scaling operation and click the *Remove Doubles* button in
-   the Tool Shelf in *Edit Mode* (also available with :menuselection:`Specials --> Remove Doubles`).
+   to complete the scaling operation and click the *Merge by Distance* button in
+   the Tool Shelf in *Edit Mode* (also available with :menuselection:`Specials --> Merge by Distance`).
 
    Alternatively, you can use :menuselection:`Specials --> Merge` from the same *Specials* menu
    (or :kbd:`Alt-M`). Then, in the new pop-up menu, choose whether the merged vertex will

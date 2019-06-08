@@ -17,8 +17,7 @@ The color of an object and the lighting of your scene is affected by:
 - Your ability to see different colors (partial color blindness is common).
 - The medium in which you are viewing the image (e.g. an LCD panel versus printed glossy paper).
 - The quality of the image (e.g. a ``jpeg`` at 0.4 compression versus 1.0).
-- The environment in which you are viewing the image
-  (e.g. a CRT monitor with glare versus in a dark room, or in a sunshiny blue room).
+- The environment in which you are viewing the image.
 - Your brain's perception of the color and intensity relative to
   those objects around it and the world background color,
   which can be changed using color manipulation techniques using Blender
@@ -30,19 +29,19 @@ Global Influences
 
 In Blender, the elements under your control which affect lighting are:
 
-- The color of the world :doc:`ambient light </render/cycles/world>`.
+- The color of the world :doc:`ambient light </render/engines/cycles/world>`.
 - The use of :ref:`Ambient Occlusion <render-cycles-integrator-world-ao>`
   as a way to cast that ambient light onto the object.
 - The degree to which the ambient light colors
-  the :doc:`material </render/cycles/materials/index>` of the object.
-- The use of :doc:`Indirect lighting </render/eevee/indirect_lighting>`,
+  the :doc:`material </render/engines/cycles/materials/index>` of the object.
+- The use of :doc:`Indirect lighting </render/engines/eevee/indirect_lighting>`,
   where the color of one object radiates onto another.
 - The :doc:`lamps </render/lighting/lamp_panel>` in your scene.
 
 The physics of light bouncing around in the real world is simulated by Ambient Occlusion (a world setting),
 buffer shadows (which approximate shadows being cast by objects), ray tracing
 (which traces the path of photons from a light source). Also,
-within Blender you can use :doc:`Indirect lighting </render/eevee/indirect_lighting>`.
+within Blender you can use :doc:`Indirect lighting </render/engines/eevee/indirect_lighting>`.
 Ray tracing, ambient occlusion, and indirect lighting are computationally intensive processes.
 Blender can perform much faster rendering with its internal scan line renderer,
 which is a very good scan line renderer indeed.
@@ -57,7 +56,7 @@ Only after the above global influences have been considered,
 do you start adding light from lamps in your scene.
 The main things under your control are the:
 
-- Type of light used (*Sun*, *Spot*, *Lamp*, *Hemi*, etc.).
+- Type of light used (*Sun*, *Spot*, *Area*, *Point*).
 - Color of the light.
 - Position of the light and its direction.
 - Settings for the light, including energy and falloff.
@@ -70,6 +69,8 @@ In this chapter we will analyze the different types of light in Blender and thei
 we will discuss their strong and weak points.
 
 
+.. TODO2.8 fix wording.
+
 Lighting in the Workflow
 ========================
 
@@ -78,7 +79,7 @@ you should set up your lighting before assigning materials to your meshes.
 Since the material shaders react to light, without proper lighting,
 the material shaders will not look right, and you will end up fighting the shaders,
 when it is really the bad lighting that is causing you grief.
-All of the example images in this section do not use any material setting at all on the ball,
+All of the example images in this section do not use any material setting at all on the sphere,
 cube or background.
 
 

@@ -63,7 +63,7 @@ Here are external links containing a lot of good information to start learning h
   First video in a series of video tutorials.
 - `Quickstart guide <https://en.wikibooks.org/wiki/Blender_3D:_Blending_Into_Python/2.5_quickstart>`__
   A quickstart guide for people who already have some familiarity with Python and Blender.
-- `Examples thread <http://blenderartists.org/forum/showthread.php?t=164765>`__
+- `Examples thread <https://blenderartists.org/t/scripting-examples-for-2-5-update-mar-26th-2010/456132>`__
   A forum thread containing many short working script examples.
 - `Introduction to Python
   <https://cgcookie.com/archive/introduction-to-scripting-with-python-in-blender/>`__
@@ -77,7 +77,7 @@ Add-ons
 -------
 
 Add-ons are scripts you can enable to gain extra functionality within Blender,
-they can be enabled from the User Preferences.
+they can be enabled from the Preferences.
 
 Outside of the Blender executable,
 there are literally hundreds of add-ons written by many people:
@@ -113,13 +113,13 @@ All scripts are loaded from the ``scripts`` folder of
 the :doc:`local, system and user paths </getting_started/installing/configuration/directories>`.
 
 You can setup an additional search path for scripts in
-:ref:`prefs-file-paths` :menuselection:`User Preferences --> File Paths`.
+:ref:`prefs-file-paths` :menuselection:`Preferences --> File Paths`.
 
 
 Installation
 ^^^^^^^^^^^^
 
-Add-ons are conveniently installed through Blender in the :doc:`User Preferences </preferences/addons>`.
+Add-ons are conveniently installed through Blender in the :doc:`Preferences </editors/preferences/addons>`.
 Click the :menuselection:`Install from File...` button and select the ``.py`` or ``.zip`` file.
 
 To manually install scripts or add-ons, place them in the ``add-ons``, ``modules``, ``presets``,

@@ -19,7 +19,7 @@ Therefore, it is simple to make a pencil-test/series of animated sketches:
 #. Jump to next relevant frame. Draw some more.
 #. Keep repeating process, and drawing until satisfied. Voilà! Animated sketches.
 
-.. (todo <2.8 add) keyframes, on properties.
+.. (TODO2.8 add) keyframes, on properties.
 
 .. seealso::
 
@@ -29,7 +29,7 @@ Therefore, it is simple to make a pencil-test/series of animated sketches:
 Compositing
 ===========
 
-The Grease pencil layers create a pass inside :doc:`OpenGL </render/opengl>` render result.
+The Grease pencil layers create a pass inside :doc:`Viewport Rendering </editors/3dview/viewport_render>` result.
 This result can be exported to ``EXR multilayer`` and used in composition.
 
 ToDo add.

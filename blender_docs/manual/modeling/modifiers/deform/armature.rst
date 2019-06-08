@@ -12,7 +12,7 @@ that object can be deformed accurately so that geometry does not have to be anim
 
 .. seealso::
 
-   For more details on armatures usage, see the :doc:`armature section </rigging/armatures/index>`.
+   For more details on armatures usage, see the :doc:`armature section </animation/armatures/index>`.
 
 
 Options
@@ -116,6 +116,14 @@ Bone Envelopes
           :width: 320px
 
           The same pose, but using envelopes method rather that vertex groups.
+
+.. tip::
+
+   When envelopes are disabled, Blender uses the set of existing vertex group names to
+   determine which bones are actually necessary to evaluate the modifier.
+   Removing empty vertex groups helps to reduce dependencies, and can be essential
+   if the mesh is used during evaluation of other bones in the same armature,
+   e.g. as the target of a :doc:`Shrinkwrap </animation/constraints/relationship/shrinkwrap>` constraint.
 
 
 Multi Modifier

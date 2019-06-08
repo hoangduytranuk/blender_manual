@@ -29,14 +29,14 @@ Underlying Structure
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Properties region --> Transform panel --> Type`,
+   :Panel:     :menuselection:`Sidebar region --> Transform panel --> Type`,
                :menuselection:`Metaball tab --> Active Element panel --> Type`
 
 Blender has five types of metas, each determined by its underlying (or directing) structure.
 
 In *Edit Mode*, you can change this structure,
 either using the relevant buttons in the :menuselection:`Metaball tab --> Active Element panel`,
-or the selector in the *Transform* panel in the Properties region.
+or the selector in the *Transform* panel in the Sidebar region.
 Depending on the structure, you might have additional parameters,
 located in both *Transform* panel and *Active Element* panel.
 

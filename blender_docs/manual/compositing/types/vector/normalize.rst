@@ -33,4 +33,4 @@ Outputs
 Value
    Standard value output.
 
-.. (TODO <2.8 add) more info and examples
+.. TODO2.8 Add more info and examples.

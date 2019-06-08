@@ -22,7 +22,7 @@ Z
    Z depth, to be linked to the "Depth" render pass.
 Speed
    Input for the "Vector" render pass.
-   See :doc:`Cycles render passes </render/cycles/settings/scene/render_layers/passes>`.
+   See :doc:`Cycles render passes </render/layers/passes>`.
 
 
 Properties

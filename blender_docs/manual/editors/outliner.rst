@@ -10,7 +10,7 @@ Outliner
    The Outliner editor.
 
 The *Outliner* is a list that organizes data in the blend-file.
-i.e. the scene data and also the User Preferences.
+i.e. the scene data and also the Preferences.
 
 
 .. rubric:: Usage
@@ -163,29 +163,29 @@ Current Scene
    Shows everything in the current scene.
 Visible Layers
    Shows everything on the visible (currently selected) layers in the current scene.
-   Use the :doc:`layer </editors/3dview/object/properties/relations/layers>` buttons
+   Use the :doc:`layer </scene_layout/object/properties/relations/layers>` buttons
    to make objects on a layer visible in the 3D View.
 Selected
    Lists the object(s) that are currently selected in the 3D View.
-   See :doc:`selecting in the 3D View </editors/3dview/object/selecting/index>` for more information.
+   See :doc:`selecting in the 3D View </scene_layout/object/selecting/index>` for more information.
 Active
    Lists only the active (often last selected) object.
 Same Types
    Lists only those objects in the current scene that are of the same types as those selected in the 3D View.
 Groups
-   Lists only :doc:`Groups </editors/3dview/object/properties/relations/groups>` and their members.
+   Lists only :doc:`Groups </scene_layout/object/properties/relations/groups>` and their members.
 Sequence
-   Lists :doc:`data-block </data_system/data_blocks>`
+   Lists :doc:`data-block </files/data_blocks>`
    that are used by the :doc:`Sequencer </editors/vse/index>`.
 Blender File
    Lists all data in the current blend-file.
 Data-Blocks
-   Lists every :doc:`data-block </data_system/data_blocks>` along with any properties that they might have.
-User Preferences
-   Lists options that can be found in the :doc:`User Preferences </preferences/index>`
+   Lists every :doc:`data-block </files/data_blocks>` along with any properties that they might have.
+Preferences
+   Lists options that can be found in the :doc:`Preferences </editors/preferences/index>`
    along with some other settings.
 Orphan Data
-   Lists :doc:`data-blocks </data_system/data_blocks>`
+   Lists :doc:`data-blocks </files/data_blocks>`
    which are unused and/or will be lost when the file is reloaded.
    It includes data-blocks which have only a fake user. You can add/remove Fake User
    by clicking on cross/tick icon in the right side of the Outliner editor.

@@ -97,6 +97,6 @@ Re-Key Points of Selected Shapes
 Show/Hide
 ---------
 
-- Hide selected :kbd:`H`
-- Hide unselected :kbd:`Shift-H`
-- Reveal :kbd:`Alt-H`
+- Hide Selected :kbd:`H`
+- Hide Unselected :kbd:`Shift-H`
+- Clear Restricted View :kbd:`Alt-H`

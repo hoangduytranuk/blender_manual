@@ -62,7 +62,7 @@ so you can change the default (described next).
 Setting Defaults
 ----------------
 
-In the *File* tab of the User Preferences,
+In the *File* tab of the Preferences,
 there is the toggle :ref:`Auto Run Python Scripts <prefs-auto-execution>`.
 
 This means the **Trusted Source** option in the File Browser will be enabled by default,
@@ -82,7 +82,7 @@ Command Line
 You may want to perform batch rendering or some other task from the command line --
 running Blender without an interface.
 
-In this case, the User Preferences are still used but you may want to override them:
+In this case, the Preferences are still used but you may want to override them:
 
 - Enable with ``-y`` or ``--enable-autoexec``
 - Disable with ``-Y`` or ``--disable-autoexec``
@@ -100,4 +100,4 @@ Rendering an animation in background mode, allowing drivers and other scripts to
 .. note::
 
    These command-line arguments can be used to start a regular Blender instance and
-   will still override the User Preferences.
+   will still override the Preferences.

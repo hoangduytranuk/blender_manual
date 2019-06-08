@@ -9,7 +9,7 @@
 ##################
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    splash.rst
 
@@ -35,6 +35,7 @@ Keymap
 
    keymap/blender_default.rst
    keymap/industry_compatible.rst
+   common_shortcuts.rst
 
 
 Interface Controls
@@ -67,8 +68,7 @@ Extended Controls
    controls/templates/color_ramp.rst
    controls/templates/curve.rst
    controls/templates/operator_search.rst
-
-   common_shortcuts.rst
+   controls/nodes/index.rst
 
 
 Tools

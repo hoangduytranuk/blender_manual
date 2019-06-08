@@ -39,4 +39,4 @@ by a harmonic effector with this physics type when the effect of the effector en
 
 Moreover, it can be very convenient to have particles at disposal
 (whose both Unborn and Died are visible on render)
-to groom vegetation and/or ecosystems using Object, Group or Billboard types of visualization.
+to groom vegetation and/or ecosystems using *Object* or *Group* types of visualization.

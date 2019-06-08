@@ -5,11 +5,6 @@
   Editors
 ###########
 
-.. figure:: /images/editors_index_menu.png
-   :align: center
-
-   The Editor Type selector.
-
 Blender provides a number of different editors for displaying and modifying different aspects of data.
 
 The *Editor Type* selector, the first button at the left side of a header,
@@ -19,6 +14,11 @@ and it is also possible to open the same type multiple times.
 
 See :doc:`User Interface </interface/index>` for documentation on the general interface.
 
+.. figure:: /images/editors_index_menu.png
+   :align: center
+
+   The Editor Type selector.
+
 
 General
 =======
@@ -27,8 +27,11 @@ General
    :maxdepth: 1
 
    3dview/index.rst
-   uv_image/index.rst
-   node_editor/index.rst
+   image/index.rst
+   uv/index.rst
+   shader_editor/index.rst
+   Compositor <../compositing/index.rst>
+   texture_node/index.rst
    vse/index.rst
    movie_clip_editor/index.rst
 
@@ -42,6 +45,7 @@ Animation
    dope_sheet/index.rst
    timeline.rst
    graph_editor/index.rst
+   ../animation/drivers/index.rst
    nla/index.rst
 
 
@@ -65,12 +69,4 @@ Data
    outliner.rst
    properties_editor.rst
    file_browser/index.rst
-
-
-Other
-=====
-
-.. toctree::
-   :maxdepth: 1
-
-   file_browser/index.rst
+   preferences/index.rst

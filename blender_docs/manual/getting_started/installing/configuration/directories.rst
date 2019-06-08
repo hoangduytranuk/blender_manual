@@ -55,10 +55,10 @@ SYSTEM
 
 .. note::
 
-   macOS stores the Blender binary in ``./blender.app/Contents/MacOS/blender``,
-   so the local path to data & config is:
+   macOS stores the Blender binary in ``./blender.app/Contents/MacOS/blender``.
+   The local path to data and config is:
 
-   .. parsed-literal:: ./blender.app/Contents/MacOS/|BLENDER_VERSION|/
+   .. parsed-literal:: ./blender.app/Contents/Resources/|BLENDER_VERSION|/
 
 
 Linux
@@ -121,7 +121,7 @@ Where ``./config/startup.blend`` could be ``~/.blender/|BLENDER_VERSION|/config/
    Search order: ``LOCAL, USER, SYSTEM``.
 
 ``./scripts/addons/*.py``
-   Python add-ons which may be enabled in the User Preferences include import/export format support,
+   Python add-ons which may be enabled in the Preferences include import/export format support,
    render engine integration and many handy utilities.
 
 ``./scripts/addons/modules/*.py``

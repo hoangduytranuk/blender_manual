@@ -218,7 +218,7 @@ Change
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties Region --> Strip Input`
+   :Panel:     :menuselection:`Sidebar region --> Strip Input`
    :Menu:      :menuselection:`Strip --> Change`
    :Hotkey:    :kbd:`C`
 

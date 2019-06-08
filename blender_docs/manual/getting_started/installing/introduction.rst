@@ -52,6 +52,7 @@ through the `release notes <https://www.blender.org/features/releases/>`__.
 
 Install Blender
 ===============
+
 The procedure for installing a binary, either the last stable release or a daily build, is the same.
 Follow the steps for your operative system:
 

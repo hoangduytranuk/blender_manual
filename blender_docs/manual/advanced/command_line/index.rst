@@ -8,3 +8,4 @@
 
    introduction.rst
    arguments.rst
+   render.rst

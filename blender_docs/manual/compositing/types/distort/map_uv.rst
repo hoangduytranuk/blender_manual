@@ -22,7 +22,7 @@ Image
    The new 2D texture.
 UV
    The input for UV render pass.
-   See :doc:`Cycles render passes </render/cycles/settings/scene/render_layers/passes>`.
+   See :doc:`Cycles render passes </render/layers/passes>`.
 
 .. hint::
 

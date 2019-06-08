@@ -8,7 +8,8 @@ glTF 2.0
 :Version: 0.9.x
 :Blender: 2.80
 :Category: Import-Export
-:Authors: Julien Duroure, Norbert Nopper, Urs Hanselmann, Moritz Becher, Benjamin Schmithüsen, Jim Eckerlein, Khronos Group, Mozilla, and many external contributors
+:Authors: Julien Duroure, Norbert Nopper, Urs Hanselmann, Moritz Becher, Benjamin Schmithüsen, Jim Eckerlein,
+          Khronos Group, Mozilla, and many external contributors.
 
 
 Usage
@@ -168,7 +169,7 @@ the correct image and will copy the strength setting into the glTF.
    The resulting baked image can be saved and plugged into to a new material using
    the Normal Map node as described above, allowing it to export correctly.
 
-   See: :doc:`Cycles Render Baking </render/cycles/baking>`
+   See: :doc:`Cycles Render Baking </render/engines/cycles/baking>`
 
 
 Emissive

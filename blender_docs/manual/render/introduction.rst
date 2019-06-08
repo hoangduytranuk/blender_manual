@@ -6,9 +6,9 @@ Introduction
 Rendering is the process of creating a 2D image (or video) from your 3D scene.
 What that image looks like is based on four factors which the user can control:
 
-- A :doc:`Camera </render/cycles/camera>`
+- A :doc:`Camera </render/camera>`
 - The :doc:`Lighting </render/lighting/introduction>` in your scene
-- The :doc:`Material </render/cycles/materials/introduction>` of each object
+- The :doc:`Material </render/engines/cycles/materials/introduction>` of each object
 - Various render settings (quality, image size, layers, etc.)
 
 Your computer will perform various complex calculations
@@ -16,10 +16,10 @@ based on those factors in order to give you your rendered image.
 This process may take some time depending on the complexity of the scene and your hardware.
 
 Once the render is complete, it is possible to do additional manipulation of the image,
-called :doc:`Post Processing </render/post_process/index>`.
+called :ref:`Post Processing <render-output-postprocess>`.
 
 Finally, the output can be saved to an image or video file
-using one of the :doc:`Output Formats </render/output/output>`.
+using one of the :doc:`Output Formats </render/output/settings>`.
 
 
 Workflow
@@ -49,8 +49,8 @@ to the math they use or core principles around which they were written.
 
 Blender includes two renderers by default:
 
-- :doc:`Eevee </render/eevee/index>`
-- :doc:`Cycles </render/cycles/index>`
+- :doc:`Eevee </render/engines/eevee/index>`
+- :doc:`Cycles </render/engines/cycles/index>`
 
 More renderers from third-party developers can also be added using
-:doc:`Add-ons </preferences/addons>`.
+:doc:`Add-ons </editors/preferences/addons>`.

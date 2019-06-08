@@ -9,7 +9,7 @@ F-Curve Modifiers
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties region --> Modifiers --> Modifiers`
+   :Panel:     :menuselection:`Sidebar region --> Modifiers --> Modifiers`
 
 F-Curve modifiers are similar to object modifiers, in that they add non-destructive effects,
 that can be adjusted at any time, and layered to create more complex effects.
@@ -22,7 +22,7 @@ Adding a Modifier
 
    Modifiers panel.
 
-The F-Curve modifier panel is located in the Properties region.
+The F-Curve modifier panel is located in the Sidebar region.
 Select a curve by selecting one of its curve points, or by selecting the channel list.
 Click on the *Add Modifier* menu to select a modifier.
 

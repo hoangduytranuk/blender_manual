@@ -1,7 +1,7 @@
 :orphan:
 
 .. RST versions of the "Get Involved" pages on blender.org related to the documentation project
-   :: Copy this file into the /manual folder to build it (but watch out not to accidentally committing it) 
+   :: Copy this file into the /manual folder to build it (but watch out not to accidentally committing it).
 
 ################################
   Documentation -- blender.org
@@ -22,7 +22,7 @@ Documentation
 About
 =====
 
-Blender's official documentation can be found in the online 
+Blender's official documentation can be found in the online
 `Blender Manual <https://docs.blender.org/manual/en/dev/>`__.
 The Blender Manual is written using reStructuredText (RST) and
 is built with `Sphinx <http://www.sphinx-doc.org/en/stable/>`__.
@@ -36,7 +36,7 @@ How to Get Started
 ==================
 
 #. `Install the manual locally <https://docs.blender.org/manual/en/dev/about/contribute/install/index.html>`__
-#. `Build the manual locally <https://docs.blender.org/manual/en/dev/about/contribute/build/index.html>`__ 
+#. `Build the manual locally <https://docs.blender.org/manual/en/dev/about/contribute/build/index.html>`__
 #. `Subscribe to the mailing list <http://projects.blender.org/mailman/listinfo/bf-docboard>`__
 #. Email the mailing list about your interest in helping
 

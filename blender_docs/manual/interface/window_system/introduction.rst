@@ -48,7 +48,7 @@ This workspace contains the following :doc:`/editors/index`:
 - Properties editor on bottom right.
 - Timeline on bottom left.
 
-.. todo 2.8 figure:: /images/interface_window-system_introduction_layout-workspace.png
+   .. TODO2.8: /images/interface_window-system_introduction_layout-workspace.png
 
    Blender's Layout Workspace with four editors.
 
@@ -71,8 +71,8 @@ with buttons, controls and widgets placed within them.
 
    The 3D View editor.
 
-   Header (green), Main region (yellow), Tool bar (blue),
-   Side bar (red) and Operator panel (pink).
+   Header (green), Main region (yellow), Toolbar (blue),
+   Sidebar (red) and Operator panel (pink).
 
 
 User Interface Principles
@@ -105,4 +105,4 @@ Blender allows for most of its interface color settings to be changed to suit th
 If you find that the colors you see on screen do not match those mentioned
 in the Manual then it could be that your default theme has been altered.
 Creating a new theme or selecting/altering a pre-existing one can be done by selecting
-the :doc:`User Preferences </preferences/index>` editor and clicking on the *Themes* tab.
+the :doc:`Preferences </editors/preferences/index>` editor and clicking on the *Themes* tab.

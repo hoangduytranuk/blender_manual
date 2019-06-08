@@ -12,18 +12,18 @@ The *Metadata* panel includes options for writing metadata into render output.
 .. note::
 
    Only some image formats support metadata:
-   See :doc:`image formats </data_system/files/media/image_formats>`.
+   See :doc:`image formats </files/files/media/image_formats>`.
 
 Stamp Output
    Add metadata as text to the render.
 
+   Font Size
+      Set the size of the text.
    Stamp Text Color
       Set the color and alpha of the stamp text.
    Stamp Background
       Set the color and alpha of the color behind the text.
-   Font Size
-      Set the size of the text.
-   Draw Labels
+   Include Labels
       Draws the labels before the metadata text. For example,
       "Camera" in front of the camera name, etc.
 
@@ -44,6 +44,8 @@ Scene
    Includes the name of the active scene.
 Memory
    Includes the peak memory usage.
+Hostname
+   Includes the rendering machine's `hostname <https://en.wikipedia.org/wiki/Hostname>`__.
 Note
    Includes a custom note.
 

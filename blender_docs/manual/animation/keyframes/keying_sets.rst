@@ -58,7 +58,7 @@ Export to File
 
 Keyframing Settings
    These options control all properties in the Keying Set.
-   Note that the same settings in *User Preferences* override these settings if enabled.
+   Note that the same settings in *Preferences* override these settings if enabled.
 
    Only Needed
       Only insert keyframes where they are needed in the relevant F-Curves.

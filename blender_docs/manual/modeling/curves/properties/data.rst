@@ -121,7 +121,7 @@ Follow
 .. note::
 
    Deprecated, but still available use.
-   A more future-proof method is the :doc:`/rigging/constraints/relationship/follow_path`.
+   A more future-proof method is the :doc:`/animation/constraints/relationship/follow_path`.
 
 
 Example

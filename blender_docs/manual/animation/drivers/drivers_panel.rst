@@ -8,7 +8,7 @@ Drivers Panel
 
    :Editor:    Graph editor
    :Mode:      Drivers
-   :Panel:     :menuselection:`Properties region --> Drivers --> Drivers`
+   :Panel:     :menuselection:`Sidebar region --> Drivers --> Drivers`
 
 .. figure:: /images/animation_drivers_drivers-panel_panel.png
    :align: right
@@ -125,7 +125,7 @@ Variable Type
       (see Fig. :ref:`fig-setup-single-property`)
       First select the type of ID-block, then the ID of the ID-block, then copy and
       paste an RNA property :kbd:`Ctrl-V`.
-      See also :doc:`/data_system/custom_properties`.
+      See also :doc:`/files/custom_properties`.
 
       ID Type
          The ID-block type. For example: Key, Image, Object, Material.
@@ -144,6 +144,10 @@ Variable Type
          This option is for armatures.
       Type
          For example, X Location, X Rotation, X Scale.
+
+         The *Average Scale* option retrieves the combined scale value,
+         computed as the cubic root of the total change in volume.
+         Unlike *X/Y/Z Scale*, this value can be negative if the object is flipped by negative scaling.
       Space
          World Space, Transform Space, Local Space.
 

@@ -6,7 +6,7 @@ Edit Strip Panel
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties region --> Strip --> Edit Strip`
+   :Panel:     :menuselection:`Sidebar region --> Strip --> Edit Strip`
 
 The *Edit Strip* panel is used to control placement and properties of strips.
 

@@ -36,8 +36,7 @@ Color
 Example
 =======
 
-In the Node editor, set the node tree to compositing in the header and check the *Use Nodes* checkbox.
-Add an input Image node and an output Viewer node.
+In the compositor, check the *Use Nodes* checkbox and add an input Image node and an output Viewer node.
 Connect the Input node to the viewer node and check the *Backdrop* checkbox in the header.
 Open an image you would like to pixelate using the open button on the image node.
 This image should now appear in the backdrop.

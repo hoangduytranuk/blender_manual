@@ -26,7 +26,7 @@ If you want to undo your last action, just press :kbd:`Ctrl-Z`.
 
 .. seealso::
 
-   :doc:`Editing Preferences </preferences/editing>` section on undo to change defaults.
+   :doc:`Editing Preferences </editors/preferences/editing>` section on undo to change defaults.
 
 
 .. _bpy.ops.ed.redo:

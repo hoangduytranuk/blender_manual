@@ -118,7 +118,7 @@ spring forces can be defined to control how far vertices can move from their ori
 
 Often :ref:`painting-weight-index` is used to adjust the weight comfortably.
 For non-mesh objects the *Weight* parameter of their vertices/control points
-is used instead; *Specials* menu :kbd:`W` in *Edit Mode* or use the *Transform* panel in the Properties region.
+is used instead; *Specials* menu :kbd:`W` in *Edit Mode* or use the *Transform* panel in the Sidebar region.
 The weight of *Hair* particles can also be painted in :doc:`Particle Edit Mode </physics/particles/mode>`.
 
 

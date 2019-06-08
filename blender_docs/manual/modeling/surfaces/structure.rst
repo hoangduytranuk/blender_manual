@@ -42,7 +42,7 @@ The key point is that *all* rows of a given type (U or V) have the *same* number
 Each control point belongs to exactly one U row and one V row.
 
 All this forms a "grid", or "cage", the shape of which controls the shape of the NURBS surface.
-A bit like a :doc:`lattice </rigging/lattice>`...
+A bit like a :doc:`lattice </animation/lattice>`...
 
 This is very important to grasp: you cannot add a single control point to a NURBS surface;
 you have to add a whole U or V row at once
@@ -74,7 +74,7 @@ It is the difference in the weights that cause the surface to move
 towards or away from a control point.
 
 The *Weight* of any particular control point is visible
-in the :doc:`/editors/3dview/object/properties/transforms`
+in the :doc:`/scene_layout/object/properties/transforms`
 :kbd:`N`, in the *W* field (and not the *Weight* field...).
 
 

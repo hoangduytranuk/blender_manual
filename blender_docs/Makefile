@@ -17,6 +17,7 @@ endif
 # End System Vars
 # ---------------
 
+
 SPHINXOPTS    = -j "$(NPROCS)"
 PAPER         =
 SPHINXBUILD   = sphinx-build
@@ -94,6 +95,14 @@ html: .FORCE .SPHINXBUILD_EXISTS
 
 	@echo "To view, run:"
 	@echo "  "$(OPEN_CMD) $(shell pwd)"/$(BUILDDIR)/html/$(CONTENTS_HTML)"
+
+text: .FORCE .SPHINXBUILD_EXISTS
+	# './' (input), './html/' (output)
+	QUICKY_CHAPTERS=$(QUICKY_CHAPTERS) \
+	$(SPHINXBUILD) -b text $(SPHINXOPTS) ./manual "$(BUILDDIR)/text"
+
+	@echo "To view, run:"
+	@echo "  "$(OPEN_CMD) $(shell pwd)"/$(BUILDDIR)/text/$(CONTENTS_HTML)"
 
 html_server: .FORCE .SPHINXBUILD_EXISTS
 	# './' (input), './html/' (output)

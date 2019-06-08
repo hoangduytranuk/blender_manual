@@ -9,9 +9,7 @@
    :maxdepth: 2
 
    introduction.rst
-   brush.rst
-   texture_tex_mask.rst
-   stroke_curve.rst
+   brush/index.rst
 
 
 Modes
@@ -20,5 +18,7 @@ Modes
 .. toctree::
    :maxdepth: 2
 
-   painting/index.rst
    sculpting/index.rst
+   texture_paint/index.rst
+   vertex_paint/index.rst
+   weight_paint/index.rst

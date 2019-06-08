@@ -7,7 +7,7 @@ Strip Input Panel
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties region --> Strip --> Strip Input`
+   :Panel:     :menuselection:`Sidebar region --> Strip --> Strip Input`
 
 .. figure:: /images/editors_vse_sequencer_properties_input_panel.png
    :align: right

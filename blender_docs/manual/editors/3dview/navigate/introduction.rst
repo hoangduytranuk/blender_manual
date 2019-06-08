@@ -16,7 +16,7 @@ Render Border... :kbd:`Ctrl-B`
 Clear Render Border :kbd:`Ctrl-Alt-B`
    See :ref:`Render Borders <editors-3dview-navigate-borders-render>`.
 Show all Layers :kbd:`Backtick`
-   Makes all :doc:`layers </editors/3dview/object/properties/relations/layers>` visible.
+   Makes all :doc:`layers </scene_layout/object/properties/relations/layers>` visible.
 View Local/Global :kbd:`NumpadSlash`
    Toggles :ref:`Local/Global Views <editors-3dview-navigate-views-local>`.
 View Selected :kbd:`NumpadPeriod`

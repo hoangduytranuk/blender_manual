@@ -95,7 +95,7 @@ Edit
    Jump
       Shows the Jump pop-up, which lets you select a line number where to jump to.
    Find...
-      Shows the Find panel in the Properties Region.
+      Shows the Find panel in the Sidebar region.
    Text Auto Complete :kbd:`Ctrl-Spacebar`
       Shows a selectable list of Python commands and matching against words already used in the text.
    Text To 3D Object

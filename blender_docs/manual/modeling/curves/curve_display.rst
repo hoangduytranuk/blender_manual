@@ -7,14 +7,14 @@ Curve Display
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Properties region --> Curve Display`
+   :Panel:     :menuselection:`Sidebar region --> Curve Display`
 
 .. figure:: /images/modeling_curves_curve-display_panel.png
    :align: right
 
    Curve Display panel.
 
-When in Edit Mode, the Properties region contains options
+When in Edit Mode, the Sidebar region contains options
 in the *Curve Display* panel for how curves are displayed in the 3D View.
 
 Handles

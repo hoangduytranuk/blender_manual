@@ -16,7 +16,7 @@ The manual has as a goal to provide
 Conventions
 ===========
 
-.. note: these conventions are for people reading the manual.
+.. Note that these conventions are for people reading the manual.
    we have more detailed list of conventions for authors under the writing style section.
 
 

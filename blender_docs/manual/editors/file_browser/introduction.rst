@@ -19,7 +19,7 @@ These include:
 - Opening and saving blend-files.
 - Importing/exporting other file formats.
 - Picking new locations for existing file paths (images, video, fonts...).
-- Browsing inside other blend-files, when using :doc:`Linked Libraries </data_system/linked_libraries>`.
+- Browsing inside other blend-files, when using :doc:`Linked Libraries </files/linked_libraries>`.
 
 You can also keep the File Browser open, as with any other editor type,
 to browse through the file system. In this case, confirm/cancel buttons will be absent.
@@ -116,7 +116,7 @@ Confirm
    The main button to Open Directory/File or Save (As) :kbd:`Return` or
    double-click with :kbd:`LMB` on the entry confirms with that file or data-block.
 
-   - :kbd:`Shift-LMB` -- Open the file externally (selected in :doc:`/preferences/file`).
+   - :kbd:`Shift-LMB` -- Open the file externally (selected in :ref:`prefs-file-paths`).
    - :kbd:`Alt-LMB` -- Open the directory externally (using the system's file manager).
 Cancel
    Cancels the Open or Save file selection and closes the File Browser :kbd:`Esc` or
@@ -157,7 +157,7 @@ Recent
 ------
 
 This is a list of recently accessed folders. You can control how many folders appear in this
-list by going to the *File* tab of the :doc:`User Preferences </preferences/file>`,
+list by going to the *File* tab of the :doc:`Preferences </editors/preferences/file_paths>`,
 in the *Recent Files* number button.
 
 
@@ -165,16 +165,16 @@ Operator Panel
 --------------
 
 Link/Append from Library
-   See :doc:`Linked libraries </data_system/linked_libraries>`.
+   See :doc:`Linked libraries </files/linked_libraries>`.
 Open, Save, Save As Blender File
-   See :doc:`/data_system/files/open` or :doc:`/data_system/files/save`.
+   See :doc:`/files/files/open` or :doc:`/files/files/save`.
 Open, Replace, Save As Image
-   See :doc:`/data_system/files/media/image_formats`.
+   See :doc:`/files/files/media/image_formats`.
 
 For the common option:
 
 Relative Path
-   See :doc:`Relative paths </data_system/files/relative_paths>`.
+   See :doc:`Relative paths </files/files/relative_paths>`.
 
 
 Main Region

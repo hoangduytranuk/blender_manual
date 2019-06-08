@@ -9,11 +9,11 @@ An area is subdivided into regions.
 .. figure:: /images/interface_window-system_regions_3d-view.png
    :align: center
 
-   The regions of the 3D View editor showing the Side bar and the
-   Operator panel after adding a Cube.
+   The regions of the 3D View editor showing the Sidebar and
+   the Operator panel after adding a Cube.
 
-   Header (green), Main region (yellow), Tool bar (blue),
-   Side bar (red) and Operator panel (pink).
+   Header (green), Main region (yellow), Toolbar (blue),
+   Sidebar (red) and Operator panel (pink).
 
 
 Main Region
@@ -46,11 +46,16 @@ the selected object and mode.
 All hotkeys you press will affect the contents of the editor where mouse pointer is located.
 
 
-Tool Bar
-========
+Toolbar
+=======
 
-The *Tool bar* (on the left side of editor area) contains the tool settings.
-:kbd:`T` toggles the visibility of Tool bar.
+The *Toolbar* (on the left side of editor area) contains the tool settings.
+:kbd:`T` toggles the visibility of Toolbar.
+
+.. tip::
+
+   Expand the Toolbar to show icons on two columns instead of one.
+   Expand the Toolbar even more to show icons with titles.
 
 
 Operator Panel
@@ -86,11 +91,6 @@ Changing the Size and Hiding
 
 Resizing regions works by dragging their border, the same way as
 :doc:`/interface/window_system/areas`.
-
-.. tip::
-
-   Expand the Tool bar to show icons on two columns instead of
-   one. Expand Tool bar more to show icons with titles.
 
 To hide a region resize it down to nothing.
 A hidden region leaves a little plus sign (see picture below).

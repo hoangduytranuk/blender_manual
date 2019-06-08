@@ -18,7 +18,7 @@ The Warp Modifier is a bit tricky at first, but it helps to understand how it wo
 The modifier requires two points, specified by object origins.
 The "from" point designates a point in space that is pulled toward the "to" point.
 It is akin to using
-the :doc:`Proportional Editing </editors/3dview/object/editing/transform/control/proportional_edit>`
+the :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`
 in Edit Mode.
 
 
@@ -44,7 +44,7 @@ Radius
    Sets the distance from the transforms that can be warped by the transform handles.
 Falloff Type
    Sets the way the strength of the warp change as it goes from the center of the transform to the Radius value.
-   See :doc:`Proportional Editing </editors/3dview/object/editing/transform/control/proportional_edit>`
+   See :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`
    for descriptions of the falloff types.
 Texture
    Specify a texture the strength is offset by to create variations in the displacement.
@@ -62,7 +62,7 @@ Usage
 
 The *Warp Modifier* can be awkward to use sometimes and the use case is rather small however,
 there are a couple of uses. For example, The *Warp Modifier* can be used to have an interactive
-:doc:`Proportional Editing </editors/3dview/object/editing/transform/control/proportional_edit>`
+:doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`
 that can be used for animation.
 
 Another way to use the *Warp Modifier* is to use it similar to

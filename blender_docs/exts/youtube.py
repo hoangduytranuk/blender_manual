@@ -97,7 +97,7 @@ def process_youtube_node(app, doctree, fromdocname):
             t = "A video can be found at "
             intex = nodes.Text(t, t)
             para += intex
-            
+
             href = "https://www.youtube.com/watch?v=%s" % node["id"]
             linknode = nodes.reference('', '', internal=False, refuri=href)
             innernode = nodes.inline('', href)

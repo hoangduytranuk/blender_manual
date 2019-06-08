@@ -21,7 +21,7 @@ The most elementary part of a mesh is the vertex which is a single point or posi
 The vertices (the plural form of vertex) are stored in an array of coordinates.
 
 It is usually invisible in rendering and in *Object Mode*.
-Do not mistake the :doc:`Origin Point </editors/3dview/object/origin>` of an object for a vertex.
+Do not mistake the :doc:`Origin Point </scene_layout/object/origin>` of an object for a vertex.
 It looks similar, but it is bigger and you cannot select it.
 
 .. figure:: /images/modeling_meshes_structure_cube-example.png

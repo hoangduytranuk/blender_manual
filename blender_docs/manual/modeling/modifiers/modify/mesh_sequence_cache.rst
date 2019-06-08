@@ -29,7 +29,7 @@ Override Frame
 Manual Transform Scale
    Value by which to enlarge or shrink the object with respect to the world's origin.
    (only applicable through
-   a :doc:`Transform Cache Constraint </rigging/constraints/transform/transform_cache>`).
+   a :doc:`Transform Cache Constraint </animation/constraints/transform/transform_cache>`).
 Object Path
    The path to the Alembic object inside the archive.
 

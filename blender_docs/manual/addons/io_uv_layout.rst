@@ -4,7 +4,7 @@ UV Layout
 *********
 
 :Name: UV Layout
-:Location: :menuselection:`UV/Image editor --> UVs --> Export UV Layout`
+:Location: :menuselection:`UV Editor --> UVs --> Export UV Layout`
 :Version: 1.1.1
 :Blender: 2.75
 :Category: Import-Export
@@ -19,8 +19,7 @@ Then save your changes, and back in Blender, use the :menuselection:`Image --> O
 to load it as your UV image for the mesh in Edit Mode for the desired (and active) UV map.
 
 As a way of communicating to an artist who is painting your UV Texture for you,
-Blender has a tool called *UV Layout*
-(located in the UV/Image Editor, :menuselection:`UVs --> Export UV Layout`)
+Blender has a tool called *UV Layout* (:menuselection:`UV Editor --> UVs --> Export UV Layout`)
 that saves an image as a ``Targa`` (``.tga``), ``EPS``, or ``SVG`` format for the object you have selected.
 
 The image will be lines defining the UV edges that are within the image area of the UV mapping area.
@@ -29,14 +28,14 @@ The artist will use this as a transparent layer in their paint program as a guid
 The example below shows Blender in the background, and the Gimp working on the texture, ​
 using the saved layout as a guide. Note that ``targa`` format supports the Alpha channel,
 so you can paint transparent areas of the mesh. For using images as textures, see the page on
-:doc:`Image Textures </editors/uv_image/uv/textures/types/image/index>`.
+:doc:`Image Textures </editors/uv/textures/types/image/index>`.
 
 .. list-table::
 
    * - .. figure:: /images/addons_io-uv-layout_uv-layout.png
           :width: 320px
 
-          A UV layout in the UV/Image Editor.
+          A UV layout in the UV Editor.
 
      - .. figure:: /images/addons_io-uv-layout_uv-layout-export.png
           :width: 320px

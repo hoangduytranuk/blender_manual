@@ -32,7 +32,7 @@ Scene
       (e.g. ``OpenEXR``) as an intermediate file store and then imported with Image input node again.
 
 Render layer
-   A list of available :doc:`Render Layers </render/post_process/layers>`.
+   A list of available :doc:`Render Layers </render/layers/index>`.
    The render button is a short hand to re-render the active scene.
 
 
@@ -48,7 +48,7 @@ Alpha
 .. rubric:: Render passes sockets
 
 Depending on the Render passes that are enabled, other sockets are available.
-See :doc:`Cycles render passes </render/cycles/settings/scene/render_layers/passes>`.
+See :doc:`Cycles render passes </render/layers/passes>`.
 
 Z
    By default the Z depth pass is enabled.

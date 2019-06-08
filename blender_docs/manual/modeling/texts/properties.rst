@@ -1,4 +1,4 @@
-.. (todo <2.8 move) split? move text style toggle to editing
+.. TODO2.8: Move/split? Move text style toggle to editing.
 
 **********
 Properties

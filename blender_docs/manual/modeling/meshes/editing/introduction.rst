@@ -14,10 +14,10 @@ as well as individual shortcut keys.
 
    All the "transform precision/snap" keys :kbd:`Ctrl` and/or :kbd:`Shift`
    work also for all these advanced operations... However, most of them do not have
-   :doc:`axis locking </editors/3dview/object/editing/transform/control/precision/axis_locking>` possibilities,
+   :doc:`axis locking </scene_layout/object/editing/transform/control/precision/axis_locking>` possibilities,
    and some of them do not take into account
-   :doc:`pivot point </editors/3dview/object/editing/transform/control/pivot_point/index>` and/or
-   :doc:`transform orientation </editors/3dview/object/editing/transform/control/orientations>`
+   :doc:`pivot point </scene_layout/object/editing/transform/control/pivot_point/index>` and/or
+   :doc:`transform orientation </scene_layout/object/editing/transform/control/orientations>`
    either.
 
 These transform tools are available

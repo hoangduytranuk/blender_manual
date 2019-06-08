@@ -13,10 +13,10 @@ Translation, Rotation, Scale
 
 Once you have a selection of one or more elements, you can grab/move :kbd:`G`,
 rotate :kbd:`R` or scale :kbd:`S` them, like many other things in Blender,
-as described in the :doc:`Manipulation in 3D Space </editors/3dview/object/editing/transform/introduction>` section.
+as described in the :doc:`Manipulation in 3D Space </scene_layout/object/editing/transform/introduction>` section.
 
 To move, rotate and scale selected components, either use the *Translate*, *Rotate*, and *Scale* buttons,
-the :doc:`transform manipulators </editors/3dview/object/editing/transform/control/manipulators>`,
+the :doc:`transform manipulators </scene_layout/object/editing/transform/control/manipulators>`,
 or the shortcuts:
 :kbd:`G`, :kbd:`R`, and :kbd:`S` respectively.
 After moving a selection, the options in the Operator Panel allow you to fine-tune your changes,
@@ -28,7 +28,7 @@ you also modify the implicitly related elements of other kinds (e.g. vertices an
 Pressing :kbd:`G` twice enters either *Edge Slide* or *Vertex Slide* tool depending on the selection.
 
 You also have in *Edit Mode* an extra option when using these basic manipulations:
-the :doc:`proportional editing </editors/3dview/object/editing/transform/control/proportional_edit>`.
+the :doc:`proportional editing </scene_layout/object/editing/transform/control/proportional_edit>`.
 
 
 Transform Panel
@@ -38,7 +38,7 @@ Transform Panel
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Properties region --> Transform`
+   :Panel:     :menuselection:`Sidebar region --> Transform`
 
 When nothing is selected, the panel is empty.
 When more than one vertex is selected, the median values is edited

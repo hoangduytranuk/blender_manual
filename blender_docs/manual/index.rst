@@ -11,15 +11,14 @@ This is the manual for the 3D animation software from `Blender.org <https://www.
 
 .. warning::
 
-   Blender Manual is being updated in preparation for 2.80
-   release. This is work in progress. Various sections of this manual
-   have not been updated, or they are updated only partially.
+   Blender Manual is being updated in preparation for 2.80 release. This is work in progress.
+   Various sections of this manual have not been updated, or they are updated only partially.
 
+.. see T64071 for why we don't use ':download:'
 .. only:: builder_html
 
-   - This site can be downloaded for offline use:
-     :download:`Download the full manual (zipped HTML files) <blender_manual.zip>`
-   - :doc:`/about/whats_new`
+   This site can be used offline:
+   `Download the full manual (zipped HTML files) <blender_manual.zip>`__.
 
 
 Getting Started
@@ -57,11 +56,11 @@ Sections
 
       .. container:: descr
 
-         .. figure:: /images/index_data.jpg
-            :target: data_system/index.html
+         .. figure:: /images/index_scene.jpg
+            :target: scene_layout/index.html
 
-         :doc:`/data_system/index`
-            Blender's data management of scene data and the structure of blend-files.
+         :doc:`/scene_layout/index`
+            Scene and object management.
 
       .. container:: descr
 
@@ -78,14 +77,6 @@ Sections
 
          :doc:`/sculpt_paint/index`
             The 3D texture painting and sculpting modes.
-
-      .. container:: descr
-
-         .. figure:: /images/index_rigging.jpg
-            :target: rigging/index.html
-
-         :doc:`/rigging/index`
-            Overview of armatures, pose mode and constraints.
 
       .. container:: descr
 
@@ -121,11 +112,11 @@ Sections
 
       .. container:: descr
 
-         .. figure:: /images/index_preferences.jpg
-            :target: preferences/index.html
+         .. figure:: /images/index_data.jpg
+            :target: files/index.html
 
-         :doc:`/preferences/index`
-            Blender's settings.
+         :doc:`/files/index`
+            Blender's data management of scene data and the structure of blend-files.
 
       .. container:: descr
 
@@ -163,15 +154,14 @@ Sections
       getting_started/index.rst
       interface/index.rst
       editors/index.rst
-      data_system/index.rst
+      scene_layout/index.rst
       modeling/index.rst
       sculpt_paint/index.rst
-      rigging/index.rst
       animation/index.rst
       physics/index.rst
       render/index.rst
       compositing/index.rst
-      preferences/index.rst
+      files/index.rst
       advanced/index.rst
       addons/index.rst
       pipeline/index.rst

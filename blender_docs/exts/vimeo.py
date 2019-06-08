@@ -97,7 +97,7 @@ def process_vimeo_node(app, doctree, fromdocname):
             t = "A video can be found at "
             intex = nodes.Text(t, t)
             para += intex
-            
+
             href = "https://vimeo.com/%s" % node["id"]
             linknode = nodes.reference('', '', internal=False, refuri=href)
             innernode = nodes.inline('', href)

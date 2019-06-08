@@ -26,6 +26,7 @@ Modify
    modify/weight_edit.rst
    modify/weight_mix.rst
    modify/weight_proximity.rst
+   modify/weighted_normal.rst
 
 
 Generate

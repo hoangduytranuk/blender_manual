@@ -30,7 +30,7 @@ But they are also used in many other areas of Blender, like for example:
 
 .. seealso::
 
-   :doc:`Skinning Mesh Objects </rigging/armatures/skinning/introduction>`.
+   :doc:`Skinning Mesh Objects </animation/armatures/skinning/introduction>`.
 
 Many more usage scenarios are possible.
 Actually you can use *Vertex Groups* for whatever makes sense to you.

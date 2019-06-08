@@ -151,7 +151,7 @@ Dynamic Effects
 ^^^^^^^^^^^^^^^
 
 These additional easing types imitate (fake) physics-based effects like bouncing/springing effects.
-The corresponding settings can be found in the :menuselection:`Properties region --> Active Keyframe panel`.
+The corresponding settings can be found in the :menuselection:`Sidebar region --> Active Keyframe panel`.
 
 Elastic
    Exponentially decaying sine wave, like an elastic band.

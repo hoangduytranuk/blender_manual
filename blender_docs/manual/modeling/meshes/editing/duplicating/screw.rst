@@ -155,7 +155,7 @@ Continuous operations without changing the selection will repeat the operation c
 
 .. figure:: /images/editors_3dview_3d-cursor_panel.png
 
-   :menuselection:`Properties region --> Cursor`.
+   :menuselection:`Sidebar region --> Cursor`.
 
 .. _fig-mesh-screw-interactive-panel:
 

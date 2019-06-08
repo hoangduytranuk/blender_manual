@@ -45,7 +45,7 @@ Mark Seam and Clear Seam
    :Menu:      :menuselection:`Mesh --> Edges --> Mark Seam/Clear Seam`
 
 Seams are a way to create separations, "islands", in UV maps.
-See the :ref:`UV Mapping section <editors-uv-image-index>` for more details.
+See the :ref:`UV Mapping section <editors-uv-index>` for more details.
 These operators set or unset this flag for selected edges.
 
 
@@ -76,7 +76,7 @@ Adjust Bevel Weight
 
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Edges --> Edge Bevel Weight`
-               :menuselection:`Properties Region --> Transform --> Edge Bevel Weight`
+               :menuselection:`Sidebar region --> Transform --> Edge Bevel Weight`
 
 This edge property, a value between (0.0 to 1.0),
 is used by the :doc:`Bevel Modifier </modeling/modifiers/generate/bevel>`
@@ -90,7 +90,7 @@ this operator alters the average weight of the edges.
 
    Vertices also have a bevel weight which can be edited.
 
-   .. todo <2.8 there are no docs for this yet.
+   .. TODO2.8 there are no docs for this yet.
 
 
 .. _modeling-edges-crease-subdivision:
@@ -104,7 +104,7 @@ Edge Crease
 
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Edges --> Edge Crease`
-               :menuselection:`Properties Region --> Transform --> Edge Crease`
+               :menuselection:`Sidebar region --> Transform --> Edge Crease`
    :Hotkey:    :kbd:`Shift-E`
 
 This edge property, a value between (0.0 to 1.0), is used by

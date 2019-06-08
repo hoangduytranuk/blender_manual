@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-18 20:54+0100\n"
-"PO-Revision-Date: 2019-04-30 14:06+0100\n"
+"POT-Creation-Date: 2019-06-05 00:07+0100\n"
+"PO-Revision-Date: 2019-06-08 07:43+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
 "Language: vi\n"
 "Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../../manual/advanced/scripting/addon_tutorial.rst:9
 msgid "Add-on Tutorial"
@@ -116,7 +116,7 @@ msgid "``bl_info``"
 msgstr ""
 
 #: ../../manual/advanced/scripting/addon_tutorial.rst:67
-msgid "is a dictionary containing add-on metadata such as the title, version and author to be displayed in the User Preferences add-on list."
+msgid "is a dictionary containing add-on metadata such as the title, version and author to be displayed in the Preferences add-on list."
 msgstr ""
 
 #: ../../manual/advanced/scripting/addon_tutorial.rst:70
@@ -152,7 +152,7 @@ msgid "So an add-on is just a way to encapsulate a Python module in a way a user
 msgstr ""
 
 #: ../../manual/advanced/scripting/addon_tutorial.rst:93
-msgid "Running this script within the Text editor won't print anything, to see the output it must be installed through the User Preferences. Messages will be printed when enabling and disabling."
+msgid "Running this script within the Text editor won't print anything, to see the output it must be installed through the Preferences. Messages will be printed when enabling and disabling."
 msgstr ""
 
 #: ../../manual/advanced/scripting/addon_tutorial.rst:99
@@ -168,7 +168,7 @@ msgid "For the first example we will make a script that simply moves all objects
 msgstr ""
 
 #: ../../manual/advanced/scripting/addon_tutorial.rst:109
-#: ../../manual/advanced/scripting/addon_tutorial.rst:233
+#: ../../manual/advanced/scripting/addon_tutorial.rst:232
 msgid "Write the Script"
 msgstr "Viết Tập Lệnh -- Write the Script"
 
@@ -225,7 +225,7 @@ msgid "Install the Add-on"
 msgstr "Cài Đặt Trình Bổ Sung -- Install the Add-on"
 
 #: ../../manual/advanced/scripting/addon_tutorial.rst:194
-msgid "Once you have your add-on within in Blender's Text editor, you will want to be able to install it so it can be enabled in the User Preferences to load on startup."
+msgid "Once you have your add-on within in Blender's Text editor, you will want to be able to install it so it can be enabled in the Preferences to load on startup."
 msgstr ""
 
 #: ../../manual/advanced/scripting/addon_tutorial.rst:197
@@ -241,248 +241,254 @@ msgid "Once the file is on disk, you can install it as you would for an add-on d
 msgstr ""
 
 #: ../../manual/advanced/scripting/addon_tutorial.rst:204
-msgid "Open the user :menuselection:`File --> User Preferences`, select the *Add-on* tab, press *Install Add-on...* and select the file."
+#, fuzzy
+msgid "Open the :menuselection:`Preferences --> Add-ons --> Install Add-on...` and select the file."
 msgstr "Open the user :menuselection:`Tập Tin (File) --> Sở Thích Người Dùng (User Preferences)`, select the *Add-on* tab, press *Install Add-on...* and select the file."
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:207
+#: ../../manual/advanced/scripting/addon_tutorial.rst:206
 msgid "Now the add-on will be listed and you can enable it by pressing the checkbox, if you want it to be enabled on restart, press *Save as Default*."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:212
+#: ../../manual/advanced/scripting/addon_tutorial.rst:211
 msgid "The destination of the add-on depends on your Blender configuration. When installing an add-on the source and destination paths are printed in the console. You can also find add-on path locations by running this in the Python Console."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:221
+#: ../../manual/advanced/scripting/addon_tutorial.rst:220
 msgid "More is written on this topic here: :ref:`Directory Layout <getting-started-installing-config-directories>`."
 msgstr "More is written on this topic here: :ref:`Directory Layout <getting-started-installing-config-directories>`."
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:226
+#: ../../manual/advanced/scripting/addon_tutorial.rst:225
 msgid "Your Second Add-on"
 msgstr "Trình Bổ Sung Thứ Hai của Bạn -- Your Second Add-on"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:228
+#: ../../manual/advanced/scripting/addon_tutorial.rst:227
 msgid "For our second add-on, we will focus on object instancing -- this is -- to make linked copies of an object in a similar way to what you may have seen with the array modifier."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:235
+#: ../../manual/advanced/scripting/addon_tutorial.rst:234
 msgid "As before, first we will start with a script, develop it, then convert it into an add-on. ::"
 msgstr "As before, first we will start with a script, develop it, then convert it into an add-on. ::"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:258
+#: ../../manual/advanced/scripting/addon_tutorial.rst:257
 msgid "Now try copying this script into Blender and run it on the default Cube. Make sure you click to move the 3D cursor before running as the duplicate will appear at the cursor's location."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:261
+#: ../../manual/advanced/scripting/addon_tutorial.rst:260
 msgid "After running, notice that when you go into *Edit Mode* to change the Cube -- all of the copies change. In Blender, this is known as *Linked Duplicates*."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:264
+#: ../../manual/advanced/scripting/addon_tutorial.rst:263
 msgid "Next, we're going to do this in a loop, to make an array of objects between the active object and the cursor. ::"
 msgstr "Next, we're going to do this in a loop, to make an array of objects between the active object and the cursor. ::"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:286
+#: ../../manual/advanced/scripting/addon_tutorial.rst:285
 msgid "Try running this script with the active object and the cursor spaced apart to see the result."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:288
+#: ../../manual/advanced/scripting/addon_tutorial.rst:287
 msgid "With this script you'll notice we're doing some math with the object location and cursor, this works because both are 3D :class:`blender_api:mathutils. Vector` instances, a convenient class provided by the :mod:`blender_api:mathutils` module which allows vectors to be multiplied by numbers and matrices."
 msgstr "With this script you'll notice we're doing some math with the object location and cursor, this works because both are 3D :class:`blender_api:mathutils. Vector` instances, a convenient class provided by the :mod:`blender_api:mathutils` module which allows vectors to be multiplied by numbers and matrices."
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:293
+#: ../../manual/advanced/scripting/addon_tutorial.rst:292
 msgid "If you are interested in this area, read into :class:`blender_api:mathutils.Vector` -- there are many handy utility functions such as getting the angle between vectors, cross product, dot products as well as more advanced functions in :mod:`blender_api:mathutils.geometry` such as Bézier spline interpolation and ray-triangle intersection."
 msgstr "If you are interested in this area, read into :class:`blender_api:mathutils.Vector` -- there are many handy utility functions such as getting the angle between vectors, cross product, dot products as well as more advanced functions in :mod:`blender_api:mathutils.geometry` such as Bézier spline interpolation and ray-triangle intersection."
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:298
+#: ../../manual/advanced/scripting/addon_tutorial.rst:297
 msgid "For now we will focus on making this script an add-on, but it's good to know that this 3D math module is available and can help you with more advanced functionality later on."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:303
+#: ../../manual/advanced/scripting/addon_tutorial.rst:302
 msgid "Write the Add-on"
 msgstr "Viết Trình Bổ Sung -- Write the Add-on"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:305
+#: ../../manual/advanced/scripting/addon_tutorial.rst:304
 msgid "The first step is to convert the script as-is into an add-on::"
 msgstr "The first step is to convert the script as-is into an add-on::"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:348
+#: ../../manual/advanced/scripting/addon_tutorial.rst:347
 msgid "Everything here has been covered in the previous steps, you may want to try run the add-on still and consider what could be done to make it more useful."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:351
+#: ../../manual/advanced/scripting/addon_tutorial.rst:350
 msgid "The two of the most obvious missing things are -- having the total fixed at 10, and having to access the operator from space-bar is not very convenient."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:354
+#: ../../manual/advanced/scripting/addon_tutorial.rst:353
 msgid "Both these additions are explained next, with the final script afterwards."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:358
+#: ../../manual/advanced/scripting/addon_tutorial.rst:357
 msgid "Operator Property"
 msgstr "Tính Chất của Operator -- Operator Property"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:360
+#: ../../manual/advanced/scripting/addon_tutorial.rst:359
 msgid "There are a variety of property types that are used for tool settings, common property types include: int, float, vector, color, boolean and string."
 msgstr "There are a variety of property types that are used for tool settings, common property types include: int, float, vector, color, boolean and string."
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:363
+#: ../../manual/advanced/scripting/addon_tutorial.rst:362
 msgid "These properties are handled differently to typical Python class attributes because Blender needs to display them in the interface, store their settings in key-maps and keep settings for reuse."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:367
+#: ../../manual/advanced/scripting/addon_tutorial.rst:366
 msgid "While this is handled in a fairly Pythonic way, be mindful that you are in fact defining tool settings that are loaded into Blender and accessed by other parts of Blender, outside of Python."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:370
+#: ../../manual/advanced/scripting/addon_tutorial.rst:369
 msgid "To get rid of the literal 10 for ``total``, we'll use an operator property. Operator properties are defined via bpy.props module, this is added to the class body::"
 msgstr "To get rid of the literal 10 for ``total``, we'll use an operator property. Operator properties are defined via bpy.props module, this is added to the class body::"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:380
+#: ../../manual/advanced/scripting/addon_tutorial.rst:379
 msgid "These properties from :mod:`blender_api:bpy.props` are handled specially by Blender when the class is registered so they display as buttons in the user interface. There are many arguments you can pass to properties to set limits, change the default and display a tooltip."
 msgstr "These properties from :mod:`blender_api:bpy.props` are handled specially by Blender when the class is registered so they display as buttons in the user interface. There are many arguments you can pass to properties to set limits, change the default and display a tooltip."
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:385
+#: ../../manual/advanced/scripting/addon_tutorial.rst:384
 msgid ":mod:`blender_api:bpy.props.IntProperty`"
 msgstr ":mod:`blender_api:bpy.props.IntProperty`"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:387
+#: ../../manual/advanced/scripting/addon_tutorial.rst:386
 msgid "This document doesn't go into details about using other property types. However, the link above includes examples of more advanced property usage."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:392
+#: ../../manual/advanced/scripting/addon_tutorial.rst:391
 msgid "Menu Item"
 msgstr "Trình Mục -- Menu Item"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:394
+#: ../../manual/advanced/scripting/addon_tutorial.rst:393
 msgid "Add-ons can add to the user interface of existing panels, headers and menus defined in Python."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:396
+#: ../../manual/advanced/scripting/addon_tutorial.rst:395
 msgid "For this example we'll add to an existing menu."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:400
+#: ../../manual/advanced/scripting/addon_tutorial.rst:399
 msgid "Menu Identifier."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:402
+#: ../../manual/advanced/scripting/addon_tutorial.rst:401
 msgid "To find the identifier of a menu, you can hover your mouse over the menu item and the identifier is displayed."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:404
+#: ../../manual/advanced/scripting/addon_tutorial.rst:403
 msgid "The method used for adding a menu item is to append a draw function into an existing class::"
 msgstr "The method used for adding a menu item is to append a draw function into an existing class::"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:412
+#: ../../manual/advanced/scripting/addon_tutorial.rst:411
 #, fuzzy
 msgid "For docs on extending menus, see: :class:`blender_api:bpy.types.Menu`."
 msgstr "For docs on extending menus, see: :doc:`blender_api:bpy.types.Menu`."
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:416
+#: ../../manual/advanced/scripting/addon_tutorial.rst:415
 msgid "Keymap"
 msgstr "Bố Trí Bàn Phím -- Keymap"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:418
+#: ../../manual/advanced/scripting/addon_tutorial.rst:417
 msgid "In Blender, add-ons have their own keymaps so as not to interfere with Blender's built-in key-maps."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:420
+#: ../../manual/advanced/scripting/addon_tutorial.rst:419
 msgid "In the example below, a new object mode :class:`blender_api:bpy.types.KeyMap` is added, then a :class:`blender_api:bpy.types.KeyMapItem` is added to the key-map which references our newly added operator, using :kbd:`Shift-Ctrl-Spacebar` as the key shortcut to activate it. ::"
 msgstr "In the example below, a new object mode :class:`blender_api:bpy.types.KeyMap` is added, then a :class:`blender_api:bpy.types.KeyMapItem` is added to the key-map which references our newly added operator, using :kbd:`Shift-Ctrl-Spacebar` as the key shortcut to activate it. ::"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:446
+#: ../../manual/advanced/scripting/addon_tutorial.rst:445
 msgid "Notice how the keymap item can have a ``total`` setting different than the default set by the operator, this allows you to have multiple keys accessing the same operator with different settings."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:451
+#: ../../manual/advanced/scripting/addon_tutorial.rst:450
 msgid "While :kbd:`Shift-Ctrl-Spacebar` is not a default Blender key shortcut, it is hard to make sure add-ons will not overwrite each other's keymaps, At least take care when assigning keys that they do not conflict with important functionality within Blender."
 msgstr "While :kbd:`Shift-Ctrl-Spacebar` is not a default Blender key shortcut, it is hard to make sure add-ons will not overwrite each other's keymaps, At least take care when assigning keys that they do not conflict with important functionality within Blender."
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:456
+#: ../../manual/advanced/scripting/addon_tutorial.rst:455
 msgid "For API documentation on the functions listed above, see:"
 msgstr "For API documentation on the functions listed above, see:"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:458
+#: ../../manual/advanced/scripting/addon_tutorial.rst:457
 msgid ":class:`blender_api:bpy.types.KeyMaps.new`,"
 msgstr ":class:`blender_api:bpy.types.KeyMaps.new`,"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:459
+#: ../../manual/advanced/scripting/addon_tutorial.rst:458
 msgid ":class:`blender_api:bpy.types.KeyMap`,"
 msgstr ":class:`blender_api:bpy.types.KeyMap`,"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:460
+#: ../../manual/advanced/scripting/addon_tutorial.rst:459
 msgid ":class:`blender_api:bpy.types.KeyMapItems.new`,"
 msgstr ":class:`blender_api:bpy.types.KeyMapItems.new`,"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:461
+#: ../../manual/advanced/scripting/addon_tutorial.rst:460
 msgid ":class:`blender_api:bpy.types.KeyMapItem`."
 msgstr ":class:`blender_api:bpy.types.KeyMapItem`."
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:465
+#: ../../manual/advanced/scripting/addon_tutorial.rst:464
 msgid "Bringing It All Together"
 msgstr "Tổng Hợp Toàn Bộ -- Bringing It All Together"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:539
+#: ../../manual/advanced/scripting/addon_tutorial.rst:538
 msgid "In the menu."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:541
-msgid "Run the script (or save it and add it through the User Preferences like before) and it will appear in the menu."
+#: ../../manual/advanced/scripting/addon_tutorial.rst:540
+msgid "Run the script (or save it and add it through the Preferences like before) and it will appear in the menu."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:545
+#: ../../manual/advanced/scripting/addon_tutorial.rst:544
 msgid "Operator Property."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:547
+#: ../../manual/advanced/scripting/addon_tutorial.rst:546
 msgid "After selecting it from the menu, you can choose how many instances of the cube you want create."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:551
-msgid "Directly executing the script multiple times will add the menu each time too. While not useful behavior, there's nothing to worry about since add-ons will not register themselves multiple times when enabled through the User Preferences."
+#: ../../manual/advanced/scripting/addon_tutorial.rst:550
+msgid "Directly executing the script multiple times will add the menu each time too. While not useful behavior, there's nothing to worry about since add-ons will not register themselves multiple times when enabled through the Preferences."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:557
+#: ../../manual/advanced/scripting/addon_tutorial.rst:556
 msgid "Conclusions"
 msgstr "Kết Luận -- Conclusions"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:559
+#: ../../manual/advanced/scripting/addon_tutorial.rst:558
 msgid "Add-ons can encapsulate certain functionality neatly for writing tools to improve your workflow or for writing utilities for others to use."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:562
+#: ../../manual/advanced/scripting/addon_tutorial.rst:561
 msgid "While there are limits to what Python can do within Blender, there is certainly a lot that can be achieved without having to dive into Blender's C/C++ code."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:565
+#: ../../manual/advanced/scripting/addon_tutorial.rst:564
 msgid "The example given in the tutorial is limited, but shows the Blender API used for common tasks that you can expand on to write your own tools."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:570
+#: ../../manual/advanced/scripting/addon_tutorial.rst:569
 msgid "Further Reading"
 msgstr "Đọc Thêm -- Further Reading"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:572
+#: ../../manual/advanced/scripting/addon_tutorial.rst:571
 msgid "Blender comes with commented templates which are accessible from the Text editor's header. If you have specific areas you want to see example code for, this is a good place to start."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:575
+#: ../../manual/advanced/scripting/addon_tutorial.rst:574
 msgid "Here are some sites you might like to check on after completing this tutorial."
 msgstr ""
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:577
+#: ../../manual/advanced/scripting/addon_tutorial.rst:576
 #, fuzzy
 msgid "`Blender/Python API Overview <https://docs.blender.org/api/blender_python_api_current/info_overview.html>`__ -- *For more background details on Blender/Python integration.*"
 msgstr ":ref:`Blender/Python API Overview <blender_api:info_overview>` -- *For more background details on Blender/Python integration.*"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:579
+#: ../../manual/advanced/scripting/addon_tutorial.rst:578
 msgid "`How to Think Like a Computer Scientist <http://interactivepython.org/courselib/static/thinkcspy/index.html>`__ -- *Great info for those who are still learning Python.*"
 msgstr "`How to Think Like a Computer Scientist <http://interactivepython.org/courselib/static/thinkcspy/index.html>`__ -- *Great info for those who are still learning Python.*"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:581
+#: ../../manual/advanced/scripting/addon_tutorial.rst:580
 msgid "`Blender Development (Wiki) <https://wiki.blender.org>`__ -- *Blender Development, general information and helpful links.*"
 msgstr "`Blender Development (Wiki) <https://wiki.blender.org>`__ -- *Blender Development, general information and helpful links.*"
 
-#: ../../manual/advanced/scripting/addon_tutorial.rst:583
+#: ../../manual/advanced/scripting/addon_tutorial.rst:582
 msgid "`Blender Artists (Coding Section) <https://blenderartists.org/forum/forumdisplay.php?47-Coding>`__ -- *forum where people ask Python development questions.*"
 msgstr "`Blender Artists (Coding Section) <https://blenderartists.org/forum/forumdisplay.php?47-Coding>`__ -- *forum where people ask Python development questions.*"
+
+
+
+
+
 

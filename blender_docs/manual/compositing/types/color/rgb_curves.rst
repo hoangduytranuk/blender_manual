@@ -98,7 +98,7 @@ which really might be their main purpose.
 In this example,
 the White Level is set to the color of a bright spot of the sand in the background,
 and the Black Level to the color in the center of the fish's eye.
-To do this efficiently it is best to bring up the UV/Image editor showing the original input image.
+To do this efficiently it is best to bring up the Image Editor showing the original input image.
 You can then use the levels' color picker to easily choose
 the appropriate colors from the input image, zooming into pixel level if necessary.
 The result can be fine-tuned with the R, G, and B curves like in the previous example.

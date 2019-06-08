@@ -38,7 +38,7 @@ Particles may be rendered as:
 - :ref:`Halos <particle-halo>` (for Flames, Smoke, Clouds).
 - Meshes which in turn may be animated (e.g. fish, bees, ...).
   In these cases, each particle "carries" another object.
-- :doc:`Strands </render/cycles/settings/objects/hair>`
+- :doc:`Strands </render/engines/cycles/settings/objects/hair>`
   (for :doc:`Hair, Fur, Grass </physics/particles/hair/index>`);
   the complete way of a particle will be shown as a strand.
   These strands can be manipulated in the 3D View (combing, adding, cutting, moving, etc.).

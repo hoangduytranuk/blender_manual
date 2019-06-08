@@ -208,8 +208,8 @@ Details
 Examples
 ========
 
-.. (TODO <2.8 add) some "simple" extrusion examples.
-   (TODO <2.8 add) some "bevel" extrusion with *Radius* examples.
+.. TODO2.8 Add some "simple" extrusion examples.
+   TODO2.8 Add some "bevel" extrusion with *Radius* examples.
 
 Let us taper a simple curve circle extruded object using a taper curve. Add a curve,
 then exit *Edit Mode*. Add another one (a closed one, like a circle); call it "BevelCurve",

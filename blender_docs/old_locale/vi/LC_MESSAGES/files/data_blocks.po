@@ -1,0 +1,774 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.79 Manual
+# package.
+# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.79 Manual 2.79\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-04 23:55+0100\n"
+"PO-Revision-Date: 2019-04-24 02:16+0100\n"
+"Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
+"Language: vi\n"
+"Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../manual/files/data_blocks.rst:6
+msgid "Data-Blocks"
+msgstr "Khối Dữ Liệu -- Data-Blocks"
+
+#: ../../manual/files/data_blocks.rst:8
+msgid ""
+"The base unit for any Blender project is the data-block. Examples of "
+"data-blocks include: meshes, objects, materials, textures, node trees, "
+"scenes, texts, brushes, and even screens."
+msgstr ""
+"The base unit for any Blender project is the data-block. Examples of "
+"data-blocks include: meshes, objects, materials, textures, node trees, "
+"scenes, texts, brushes, and even screens."
+
+#: ../../manual/files/data_blocks.rst:11
+msgid ""
+"Data-blocks are low level program representations for items inside "
+"Blender. When you consider Blender items at a low level, they are all "
+"Data-blocks, which have common Data-block properties. Data-block level is"
+" needed to handle items in Blender program. However, when considering a "
+"higher level, which is typically visible to users, Blender items are "
+"represented as meshes, objects, materials, textures etc. which are "
+"different things. Data-block level handles the same high level items "
+"(meshes, objects, materials, textures etc.), but only considers their low"
+" level common properties and functions."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:21
+msgid ""
+"For clarity, bones, sequence strips and vertex groups are **not** data-"
+"blocks, they belong to armature, scene and mesh types respectively."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:24
+msgid "Some common characteristics:"
+msgstr "Some common characteristics:"
+
+#: ../../manual/files/data_blocks.rst:26
+msgid "They are the primary contents of the blend-file."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:27
+msgid ""
+"They can link to each other, for reuse and instancing. (child/parent, "
+"object/object-data, with modifiers and constraints too)."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:29
+msgid "Their names are unique."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:30
+msgid "They can be added/removed/edited/duplicated."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:31
+msgid ""
+"They can be linked between files (only enabled for a limited set of data-"
+"blocks)."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:32
+msgid "They can have their own animation data."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:33
+#, fuzzy
+msgid "They can have :doc:`Custom Properties </files/custom_properties>`."
+msgstr "They can have :doc:`Custom Properties </data_system/custom_properties>`."
+
+#: ../../manual/files/data_blocks.rst:35
+msgid ""
+"When doing more complex projects, managing data-blocks becomes more "
+"important, especially when inter-linking blend-files."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:40
+msgid "Data-blocks view."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:44
+msgid "Users (Garbage Collection)"
+msgstr "Người Dùng (Quá Trình Thu Gom Rác) -- Users (Garbage Collection)"
+
+#: ../../manual/files/data_blocks.rst:46
+msgid ""
+"It is good to be aware of how Blender handles data-blocks lifetime, when "
+"they are freed and why."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:49
+msgid "Blender follows the general rule where unused data is eventually removed."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:51
+msgid ""
+"Since it is common to add and remove a lot of data while working, this "
+"has the advantage of not having to manually manage every single data-"
+"block."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:54
+msgid "This works by skipping zero user data-blocks when writing blend-files."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:56
+msgid ""
+"In some cases, you want to save a data-block even when it is unused "
+"(typically for re-usable asset libraries). See `Fake User`_."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:63
+msgid "Fake User"
+msgstr "Người Dùng Giả -- Fake User"
+
+#: ../../manual/files/data_blocks.rst:65
+msgid ""
+"Since zero user data-blocks are not saved, there are times when you want "
+"to force the data to be kept irrespective of its users."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:68
+msgid ""
+"If you are building a blend-file to serve as a library of things that you"
+" intend to link to and from other files, you will need to make sure that "
+"they do not accidentally get deleted from the library file."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:71
+msgid ""
+"Do this by giving the data-blocks a *Fake User*, by pressing the *F* "
+"button next to the name of the data-block. This prevents the user count "
+"from ever becoming zero: therefore, the data-block will not be deleted "
+"(since Blender does not keep track of how many other files link to this "
+"one)."
+msgstr ""
+"Do this by giving the data-blocks a *Fake User*, by pressing the *F* "
+"button next to the name of the data-block. This prevents the user count "
+"from ever becoming zero: therefore, the data-block will not be deleted "
+"(since Blender does not keep track of how many other files link to this "
+"one)."
+
+#: ../../manual/files/data_blocks.rst:77
+msgid "Users (Sharing)"
+msgstr "Người Dùng (Dùng Chung) -- Users (Sharing)"
+
+#: ../../manual/files/data_blocks.rst:79
+msgid "Many data-blocks can be shared among other data-blocks."
+msgstr "Nhiều khối dữ liệu có thể được dùng chung trong các khối dữ liệu khác."
+
+#: ../../manual/files/data_blocks.rst:81
+msgid "Examples where sharing data is common:"
+msgstr "Examples where sharing data is common:"
+
+#: ../../manual/files/data_blocks.rst:83
+msgid "Sharing textures among materials."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:84
+msgid "Sharing meshes between objects (instances)."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:85
+msgid ""
+"Sharing animated actions between objects, for example to make all the "
+"lights dim together."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:88
+msgid "You can also share data-blocks between files, see:"
+msgstr "You can also share data-blocks between files, see:"
+
+#: ../../manual/files/data_blocks.rst:90
+#, fuzzy
+msgid ":doc:`linked libraries </files/linked_libraries>`."
+msgstr ":doc:`linked libraries </data_system/linked_libraries>`."
+
+#: ../../manual/files/data_blocks.rst:97
+msgid "Make Single User"
+msgstr "Biến Thành Đơn Người Dùng -- Make Single User"
+
+#: ../../manual/files/data_blocks.rst:99
+msgid "Reference"
+msgstr "Tham Chiếu -- Reference"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Editor"
+msgstr "Trình Biên Soạn -- Editor"
+
+#: ../../manual/files/data_blocks.rst:102
+msgid "3D View"
+msgstr "Khung Nhìn 3D -- 3D View"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Mode"
+msgstr "Chế Độ -- Mode"
+
+#: ../../manual/files/data_blocks.rst:103
+msgid "Object Mode"
+msgstr "Chế Độ Vật Thể -- Object Mode"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Menu"
+msgstr "Trình Đơn -- Menu"
+
+#: ../../manual/files/data_blocks.rst:104
+msgid ":menuselection:`Object --> Make Single User`"
+msgstr ""
+":menuselection:`Vật Thể (Object) --> Biến Thành Đơn Người Dùng (Make "
+"Single User)`"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Hotkey"
+msgstr "Phím Tắt -- Hotkey"
+
+#: ../../manual/files/data_blocks.rst:105
+msgid ":kbd:`U`"
+msgstr ":kbd:`U`"
+
+#: ../../manual/files/data_blocks.rst:107
+msgid ""
+"Makes the selected or all objects data-blocks a single user, that is, not"
+" shared (linked) between other objects than the current one."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:112
+#: ../../manual/files/data_blocks.rst:187
+msgid "Type"
+msgstr "Thể Loại -- Type"
+
+#: ../../manual/files/data_blocks.rst:111
+msgid ""
+"These actions work on the selected objects, or on all the objects of the "
+"scene."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:113
+msgid "All, Selected Objects"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:118
+msgid "Data-blocks"
+msgstr "Khối Dữ Liệu -- Data-blocks"
+
+#: ../../manual/files/data_blocks.rst:115
+msgid ""
+"Lets you, in addition to the menu predefined selection, choose the type "
+"of data-blocks individually."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:117
+msgid "Object, Object Data, Materials, Textures, Object Animation"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:121
+msgid "Removing Data-Blocks"
+msgstr "Xóa Bỏ Khối Dữ Liệu -- Removing Data-Blocks"
+
+#: ../../manual/files/data_blocks.rst:123
+msgid ""
+"As covered in `Users (Garbage Collection)`_, data-blocks are typically "
+"removed when they are no longer used."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:125
+msgid "There are some exceptions to this, however."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:127
+msgid ""
+"The following data-blocks can be removed directly: Scene, Text, Group, "
+"and Screen."
+msgstr ""
+"The following data-blocks can be removed directly: Scene, Text, Group, "
+"and Screen."
+
+#: ../../manual/files/data_blocks.rst:129
+msgid ""
+"Other data-blocks such as Groups and Actions can be *Unlinked* from the "
+"*Outliner* context menu."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:133
+msgid ""
+"Some data (images especially) is hard to keep track of, especially since "
+"image views are counted as users."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:136
+msgid ""
+"For data-blocks that can be unlinked hold :kbd:`Shift`, while pressing on"
+" the *X* button. This force clears the user count, so the data-block will"
+" be removed on reloading."
+msgstr ""
+"For data-blocks that can be unlinked hold :kbd:`Shift`, while pressing on"
+" the *X* button. This force clears the user count, so the data-block will"
+" be removed on reloading."
+
+#: ../../manual/files/data_blocks.rst:143
+msgid "Data-Block Types"
+msgstr "Thể Loại của Khối Dữ Liệu -- Data-Block Types"
+
+#: ../../manual/files/data_blocks.rst:157
+msgid "Data-blocks types with their icon."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:159
+msgid "For reference, here is a table of data-blocks types stored in blend-files."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst ../../manual/files/data_blocks.rst:188
+msgid "Link"
+msgstr "Kết Nối -- Link"
+
+#: ../../manual/files/data_blocks.rst:162
+msgid "Library Linking, supports being linked into other blend-files."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst ../../manual/files/data_blocks.rst:189
+msgid "Pack"
+msgstr "Đóng Gói -- Pack"
+
+#: ../../manual/files/data_blocks.rst:164
+msgid ""
+"File Packing, supports file contents being packed into the blend-file "
+"*(not applicable for most data-blocks which have no file reference)*."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:190
+msgid "Description"
+msgstr "Miêu Tả -- Description"
+
+#: ../../manual/files/data_blocks.rst:191
+msgid "Action"
+msgstr "Hành Động -- Action"
+
+#: ../../manual/files/data_blocks.rst:192
+#: ../../manual/files/data_blocks.rst:198
+#: ../../manual/files/data_blocks.rst:203
+#: ../../manual/files/data_blocks.rst:207
+#: ../../manual/files/data_blocks.rst:211
+#: ../../manual/files/data_blocks.rst:215
+#: ../../manual/files/data_blocks.rst:216
+#: ../../manual/files/data_blocks.rst:220
+#: ../../manual/files/data_blocks.rst:226
+#: ../../manual/files/data_blocks.rst:231
+#: ../../manual/files/data_blocks.rst:232
+#: ../../manual/files/data_blocks.rst:236
+#: ../../manual/files/data_blocks.rst:246
+#: ../../manual/files/data_blocks.rst:250
+#: ../../manual/files/data_blocks.rst:254
+#: ../../manual/files/data_blocks.rst:259
+#: ../../manual/files/data_blocks.rst:264
+#: ../../manual/files/data_blocks.rst:269
+#: ../../manual/files/data_blocks.rst:274
+#: ../../manual/files/data_blocks.rst:279
+#: ../../manual/files/data_blocks.rst:284
+#: ../../manual/files/data_blocks.rst:290
+#: ../../manual/files/data_blocks.rst:295
+#: ../../manual/files/data_blocks.rst:300
+#: ../../manual/files/data_blocks.rst:315
+#: ../../manual/files/data_blocks.rst:316
+#: ../../manual/files/data_blocks.rst:320
+#: ../../manual/files/data_blocks.rst:325
+#: ../../manual/files/data_blocks.rst:330
+#: ../../manual/files/data_blocks.rst:335
+msgid "|tick|"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:193
+#: ../../manual/files/data_blocks.rst:199
+#: ../../manual/files/data_blocks.rst:204
+#: ../../manual/files/data_blocks.rst:208
+#: ../../manual/files/data_blocks.rst:212
+#: ../../manual/files/data_blocks.rst:221
+#: ../../manual/files/data_blocks.rst:227
+#: ../../manual/files/data_blocks.rst:237
+#: ../../manual/files/data_blocks.rst:241
+#: ../../manual/files/data_blocks.rst:251
+#: ../../manual/files/data_blocks.rst:255
+#: ../../manual/files/data_blocks.rst:260
+#: ../../manual/files/data_blocks.rst:265
+#: ../../manual/files/data_blocks.rst:270
+#: ../../manual/files/data_blocks.rst:280
+#: ../../manual/files/data_blocks.rst:285
+#: ../../manual/files/data_blocks.rst:291
+#: ../../manual/files/data_blocks.rst:296
+#: ../../manual/files/data_blocks.rst:301
+#: ../../manual/files/data_blocks.rst:306
+#: ../../manual/files/data_blocks.rst:311
+#: ../../manual/files/data_blocks.rst:321
+#: ../../manual/files/data_blocks.rst:331
+#: ../../manual/files/data_blocks.rst:336
+#: ../../manual/files/data_blocks.rst:340
+msgid "|none|"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Stores animation F-Curves."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used as data-block animation data,"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "and the Non-Linear-Editor."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:197
+msgid "Armature"
+msgstr "Cốt -- Armature"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Skeleton used to deform meshes."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used as object data & by the Armature Modifier."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:202
+msgid "Brush"
+msgstr "Bút Vẽ -- Brush"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by paint tools."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:206
+msgid "Camera"
+msgstr "Máy Quay Phim -- Camera"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used as object data."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:210
+msgid "Curve"
+msgstr "Đường Cong -- Curve"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by camera, font & surface objects."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:214
+msgid "Font"
+msgstr "Phông -- Font"
+
+#: ../../manual/files/data_blocks.rst
+msgid "References font files."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by Font object-data."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:219
+msgid "GreasePencil"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "2D/3D sketch data."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used as overlay *helper* info, by the"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "3D View, Image, Sequencer & Movie Clip editors."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:225
+msgid "Group"
+msgstr "Nhóm -- Group"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Reference object's."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by dupli-groups & often library linking."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:230
+msgid "Image"
+msgstr "Hình Ảnh -- Image"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Image files."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by textures & shader nodes."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:235
+msgid "Lamp"
+msgstr "Bóng Đèn -- Lamp"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used as object-data."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:239
+msgid "Lattice"
+msgstr "Giàn Lưới -- Lattice"
+
+#: ../../manual/files/data_blocks.rst:240
+#: ../../manual/files/data_blocks.rst:245
+#: ../../manual/files/data_blocks.rst:275
+#: ../../manual/files/data_blocks.rst:305
+#: ../../manual/files/data_blocks.rst:310
+#: ../../manual/files/data_blocks.rst:326
+#: ../../manual/files/data_blocks.rst:339
+msgid "|cross|"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Grid based lattice deformation."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used as object data and by the Lattice Modifier."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:244
+msgid "Library"
+msgstr "Thư Viện -- Library"
+
+#: ../../manual/files/data_blocks.rst
+msgid "References to external blend-files."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Access from the Outliner's blend-file view."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:249
+msgid "LineStyle"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by the FreeStyle renderer."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:253
+msgid "Mask"
+msgstr "Màn Chắn -- Mask"
+
+#: ../../manual/files/data_blocks.rst
+msgid "2D animated mask curves."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by compositing nodes & sequencer strip."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:258
+msgid "Material"
+msgstr "Nguyên Liệu -- Material"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Set shading and texturing render properties."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by objects, meshes & curves."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:263
+msgid "Mesh"
+msgstr "Khung Lưới -- Mesh"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Geometry vertices/edges/faces."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:268
+msgid "MetaBall"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "An isosurface in 3D space."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:273
+msgid "MovieClip"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Reference to an image sequence or video file."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used in the Movie Clip editor."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:278
+msgid "NodeGroup"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Collections of re-usable nodes."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used in the node editors."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:283
+msgid "Object"
+msgstr "Vật Thể -- Object"
+
+#: ../../manual/files/data_blocks.rst
+msgid "An entity in the scene with location,"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "scale, rotation."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by scenes & groups."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:289
+msgid "Particle"
+msgstr "Hạt -- Particle"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Particle settings."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by particle systems."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:294
+msgid "Palette"
+msgstr "Bảng Màu -- Palette"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Store color presets."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Access from the paint tools."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:299
+msgid "Scene"
+msgstr "Cảnh -- Scene"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Primary store of all data displayed and animated."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used as top-level storage for objects & animation."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:304
+msgid "Screen"
+msgstr "Màn Hình -- Screen"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Screen layout."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by each window, which has its own screen."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:309
+msgid "ShapeKeys"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Geometry shape storage, which can be animated."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by mesh, curve, and lattice objects."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:314
+msgid "Sounds"
+msgstr "Âm Thanh -- Sounds"
+
+#: ../../manual/files/data_blocks.rst
+msgid "References to sound files."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by speaker objects."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:319
+msgid "Speaker"
+msgstr "Loa -- Speaker"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Sound sources for a 3D scene."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:324
+msgid "Text"
+msgstr "Văn Bản -- Text"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Text data."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by Python scripts and OSL shaders."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:329
+msgid "Texture"
+msgstr "Chất Liệu -- Texture"
+
+#: ../../manual/files/data_blocks.rst
+msgid "2D/3D textures."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by materials, world and brushes."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:334
+msgid "World"
+msgstr "Thế Giới -- World"
+
+#: ../../manual/files/data_blocks.rst
+msgid "Used by scenes for render environment settings."
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst:338
+msgid "WindowManager"
+msgstr ""
+
+#: ../../manual/files/data_blocks.rst
+msgid ""
+"The overarching manager for all of Blender's UI; this includes screens, "
+"notification system, operators, and keymaps."
+msgstr ""
+
+#~ msgid "Used in the Node Editor."
+#~ msgstr ""
+

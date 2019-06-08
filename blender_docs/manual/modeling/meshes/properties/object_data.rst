@@ -54,12 +54,12 @@ Vertex Colors
 =============
 
 Color data can be applied directly to an object's vertices rather than using a texture or a material.
-Colors can are painted onto vertices in :doc:`Vertex Paint </sculpt_paint/painting/vertex_paint/index>` mode.
+Colors can are painted onto vertices in :doc:`Vertex Paint </sculpt_paint/vertex_paint/index>` mode.
 
 
 Geometry Data
 =============
 
 Mesh objects can have different types of custom data attached to them.
-This data is mostly used internally and can be exported by some :doc:`exporters </data_system/files/import_export>`.
+This data is mostly used internally and can be exported by some :doc:`exporters </files/files/import_export>`.
 See :doc:`/modeling/meshes/properties/custom_data` for more information.

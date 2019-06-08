@@ -6,7 +6,7 @@ Proxy/Timecode Panel
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties region --> Strip --> Proxy/Timecode`
+   :Panel:     :menuselection:`Sidebar region --> Strip --> Proxy/Timecode`
 
 Once you have chosen the Proxy/Timecode parameters,
 you need to use :menuselection:`Strip --> Rebuild Proxy and Timecode indices`
@@ -28,7 +28,7 @@ like scrubbing and scrolling and compositing functions like cross using these pr
 faster but gives a low-res result. Disable proxies before final rendering.
 
 In order to actually use the proxies, the proper Proxy Render Size selector value must
-be selected in the Properties region of the Sequencer View (where the edit plays back).
+be selected in the Sidebar region of the Sequencer View (where the edit plays back).
 
 Storage
    Defines whether the proxies are for individual strips or the entire sequence.

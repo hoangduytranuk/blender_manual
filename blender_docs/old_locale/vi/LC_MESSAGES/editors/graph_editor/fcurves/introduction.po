@@ -1,0 +1,565 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.79 Manual
+# package.
+# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.79 Manual 2.79\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-04 23:55+0100\n"
+"PO-Revision-Date: 2019-04-22 13:17+0100\n"
+"Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
+"Language: vi\n"
+"Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:4
+msgid "Introduction"
+msgstr "Giới Thiệu -- Introduction"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:6
+msgid ""
+"After animating some property in Blender using keyframes you can edit "
+"their corresponding curves. When something is \"animated\", it changes "
+"over time. This curve is shown as something called an F-Curve. Basically "
+"what an F-Curve does is an interpolation between two animated properties."
+" In Blender, animating an object means changing one of its properties, "
+"such as the object's location, or its scale."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:11
+msgid ""
+"As mentioned, Blender's fundamental unit of time is the \"frame\", which "
+"usually lasts just a fraction of a second, depending on the *frame rate* "
+"of the scene. As animation is composed of incremental changes spanning "
+"multiple frames, usually these properties are **not** manually modified "
+"*frame-by-frame*, because:"
+msgstr ""
+"As mentioned, Blender's fundamental unit of time is the \"frame\", which "
+"usually lasts just a fraction of a second, depending on the *frame rate* "
+"of the scene. As animation is composed of incremental changes spanning "
+"multiple frames, usually these properties are **not** manually modified "
+"*frame-by-frame*, because:"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:16
+msgid "It would take ages!"
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:17
+msgid ""
+"It would be very difficult to get smooth variations of the property "
+"(unless you compute mathematical functions and type a precise value for "
+"each frame, which would be crazy)."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:20
+msgid "This is why nearly all direct animation is done using *interpolation*."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:22
+msgid ""
+"The idea is simple: you define a few Keyframes, which are multiple frames"
+" apart. Between these keyframes, the properties' values are computed "
+"(interpolated) by Blender and filled in. Thus, the animators' workload is"
+" significantly reduced."
+msgstr ""
+"The idea is simple: you define a few Keyframes, which are multiple frames"
+" apart. Between these keyframes, the properties' values are computed "
+"(interpolated) by Blender and filled in. Thus, the animators' workload is"
+" significantly reduced."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:30
+msgid "Example of an interpolation."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:32
+msgid "For example, if you have:"
+msgstr "For example, if you have:"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:34
+msgid "A control point of value 0 at frame 0,"
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:35
+msgid "another one of value 10 at frame 25,"
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:36
+msgid "and you use linear interpolation, then, at frame 5 we get a value of 2."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:38
+msgid ""
+"The same goes for all intermediate frames: with just two points, you get "
+"a smooth increase from (0 to 10) along the 25 frames. Obviously, if you "
+"would like the frame 15 to have a value of 9, you would have to add "
+"another control point (or keyframe)..."
+msgstr ""
+"The same goes for all intermediate frames: with just two points, you get "
+"a smooth increase from (0 to 10) along the 25 frames. Obviously, if you "
+"would like the frame 15 to have a value of 9, you would have to add "
+"another control point (or keyframe)..."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:45
+msgid "Direction of Time"
+msgstr "Chiều Hướng của Thời Gian -- Direction of Time"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:47
+msgid ""
+"Although F-Curves are very similar to :ref:`curve-bezier`, there are some"
+" important differences."
+msgstr ""
+"Although F-Curves are very similar to :ref:`curve-bezier`, there are some"
+" important differences."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:50
+msgid ""
+"For obvious reasons, a property represented by a Curve cannot have more "
+"than **one** value at a given time, hence:"
+msgstr ""
+"For obvious reasons, a property represented by a Curve cannot have more "
+"than **one** value at a given time, hence:"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:53
+msgid ""
+"When you move a control point ahead of a control point that was "
+"previously ahead of the point that you are moving, the two control points"
+" switch their order in the edited curve, to avoid that the curve goes "
+"back in time."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:55
+msgid "For the above reason, it is impossible to have a closed F-Curve."
+msgstr "Vì nguyên nhân trên, một đường cong-F khép kín là một việc không thể."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:57
+msgid "Two control points switching: the curve cannot go back in time!"
+msgstr ""
+"Chuyển đổi giữa 2 điểm điều khiển: đường cong không thể quay trở ngược "
+"dòng thời gian!"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:61
+msgid "Before moving the second keyframe."
+msgstr "Trước khi di chuyển khung khóa thứ hai."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:65
+msgid "After moving the second keyframe."
+msgstr "Sau khi di chuyển khung khóa thứ hai."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:69
+msgid "Settings"
+msgstr "Sắp Đặt -- Settings"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:71
+msgid ""
+"F-Curves have three additional properties, which control the "
+"interpolation between points, extension behavior, and the type of "
+"handles."
+msgstr ""
+"Đường cong có 3 tính chất bổ sung điều khiển quá trình nội suy giữa các "
+"điểm, hành xử của sự nới rộng và thể loại của các tay cầm."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:78
+msgid "Interpolation Mode"
+msgstr "Chế Độ Nội Suy -- Interpolation Mode"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:80
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:185
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:209
+msgid "Reference"
+msgstr "Tham Chiếu -- Reference"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst
+msgid "Menu"
+msgstr "Trình Đơn -- Menu"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:83
+msgid ":menuselection:`Key --> Interpolation Mode`"
+msgstr ":menuselection:`Khóa (Key) --> Chế Độ Nội Suy (Interpolation Mode)`"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst
+msgid "Hotkey"
+msgstr "Phím Tắt -- Hotkey"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:84
+msgid ":kbd:`T`"
+msgstr ":kbd:`T`"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:86
+msgid "Mode for the :term:`Interpolation` between the current and next keyframe."
+msgstr "Mode for the :term:`Interpolation` between the current and next keyframe."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:90
+msgid "Interpolation"
+msgstr "Nội Suy -- Interpolation"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:100
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:226
+msgid "Constant"
+msgstr "Đồng Đều -- Constant"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:93
+msgid ""
+"There is no interpolation at all. The curve holds the value of its last "
+"keyframe, giving a discrete (stairway) \"curve\". Usually only used "
+"during the initial \"blocking\" stage in pose-to-pose animation "
+"workflows."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:100
+msgid "Constant."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:110
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:135
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:235
+msgid "Linear"
+msgstr "Tuyến Tính -- Linear"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:103
+msgid ""
+"This simple interpolation creates a straight segment, giving a non-"
+"continuous line. It can be useful when using only two keyframes and the "
+"*Extrapolation* extend mode, to easily get an infinite straight line "
+"(i.e. a linear curve)."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:110
+msgid "Linear."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:119
+msgid "Bézier"
+msgstr "Đường Cong Bézier -- Bézier"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:113
+msgid ""
+"The more powerful and useful interpolation, and the default one. It gives"
+" nicely smoothed curves, i.e. smooth animations!"
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:119
+msgid "Bézier."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:123
+msgid ""
+"Remember that some F-Curves can only take discrete values, in which case "
+"they are always shown as if constant interpolated, whatever option you "
+"chose."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:128
+msgid "Easing (by strength)"
+msgstr "Nới Lỏng (theo mức độ) -- Easing (by strength)"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:130
+msgid ""
+"Different methods of easing interpolations for F-Curve segment. The "
+"\"Robert Penner easing equations\" (basically, equations which define "
+"some preset ways that one keyframe transitions to another) which reduce "
+"the amount of manual work (inserting and tweaking keyframes) to achieve "
+"certain common effects. For example, snappy movements."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:136
+msgid "Sinusoidal"
+msgstr "Sin -- Sinusoidal"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:137
+msgid "Quadratic"
+msgstr "Bậc Hai -- Quadratic"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:138
+msgid "Cubic"
+msgstr "Lập Phương -- Cubic"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:139
+msgid "Quartic"
+msgstr "Bậc Bốn -- Quartic"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:140
+msgid "Quintic"
+msgstr "Bậc Năm -- Quintic"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:141
+msgid "Exponential"
+msgstr "Lũy Thừa -- Exponential"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:142
+msgid "Circular"
+msgstr "Vòng Tròn -- Circular"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:146
+msgid ""
+"For more info and a few live demos, see http://easings.net and "
+"http://www.robertpenner.com/easing/"
+msgstr ""
+"For more info and a few live demos, see http://easings.net and "
+"http://www.robertpenner.com/easing/"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:151
+msgid "Dynamic Effects"
+msgstr "Hiệu Ứng Năng Động -- Dynamic Effects"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:153
+#, fuzzy
+msgid ""
+"These additional easing types imitate (fake) physics-based effects like "
+"bouncing/springing effects. The corresponding settings can be found in "
+"the :menuselection:`Sidebar region --> Active Keyframe panel`."
+msgstr ""
+"These additional easing types imitate (fake) physics-based effects like "
+"bouncing/springing effects. The corresponding settings can be found in "
+"the :menuselection:`Vùng Tính Chất (Properties region) --> Bảng Khung "
+"Khóa Đang Hoạt Động (Active Keyframe panel)`."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:166
+msgid "Elastic"
+msgstr "Đàn Hồi -- Elastic"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:157
+msgid ""
+"Exponentially decaying sine wave, like an elastic band. This is like "
+"bending a stiff pole stuck to some surface, and watching it rebound and "
+"settle back to its original state."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:163
+msgid "Amplitude"
+msgstr "Biên Độ -- Amplitude"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:162
+msgid ""
+"The amplitude property controls how strongly the oscillation diverges "
+"from the basic curve. At 0.0, there is no oscillation (i.e. it just snaps"
+" to the B-value like an extreme exponential transition), and at 1.0 a "
+"profile similar to the one shown in the icon occurs."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:166
+msgid "Period"
+msgstr "Chu Kỳ -- Period"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:166
+msgid ""
+"The period property controls the frequency with which oscillations occur."
+" Higher values result in denser oscillations."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:169
+msgid "Bounce"
+msgstr "Nẩy -- Bounce"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:169
+msgid ""
+"Exponentially decaying parabolic bounce, like when objects collide. e.g. "
+"for Bouncing balls, etc."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:178
+msgid "Back"
+msgstr "Sau/Lưng/Quay Lại -- Back"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:172
+msgid ""
+"Cubic easing with overshoot and settle. Use this one when you want a bit "
+"of an overshoot coming into the next keyframe, or perhaps for some wind-"
+"up anticipation."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:177
+msgid ""
+"The back property controls the size and direction (i.e. above/below the "
+"curve) of the overshoot."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:183
+msgid "Easing Type"
+msgstr "Thể Loại Chậm Rãi -- Easing Type"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:188
+msgid ":menuselection:`Key --> Easing Type`"
+msgstr ":menuselection:`Khóa (Key) --> Thể Loại Chậm Rãi (Easing Type)`"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:189
+msgid ":kbd:`Ctrl-E`"
+msgstr ":kbd:`Ctrl-E`"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:191
+msgid ""
+"The Easing Type controls which end of the segment between the two "
+"keyframes that the easing effects apply to."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:194
+msgid "Automatic Easing"
+msgstr "Tự Động Chậm Rãi -- Automatic Easing"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:194
+msgid ""
+"The most commonly expected of the below behaviors is used. For the "
+"transitional effects, this is basically *ease in*, while for the physics "
+"effects it is *ease out*."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:196
+msgid "Ease In"
+msgstr "Nới Vào -- Ease In"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:197
+msgid "Effect builds up to the second keyframe."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:198
+msgid "Ease Out"
+msgstr "Nới Ra -- Ease Out"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:199
+msgid "Effect fades out from the first keyframe."
+msgstr "Hiệu ứng mờ dần ra khỏi khung khóa đầu tiên"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:202
+msgid "Ease In Out"
+msgstr "Nới Vào và Ra -- Ease In Out"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:201
+msgid "Effect occurs on both ends of the segment."
+msgstr "Ảnh hưởng xảy ra ở hai đầu của phân đoạn."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:207
+msgid "Extrapolation"
+msgstr "Ngoại Suy -- Extrapolation"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:212
+msgid ":menuselection:`Channel --> Extrapolation Mode`"
+msgstr ":menuselection:`Kênh (Channel) --> Chế Độ Ngoại Suy (Extrapolation Mode)`"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:213
+msgid ":kbd:`Shift-E`"
+msgstr ":kbd:`Shift-E`"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:215
+msgid ""
+"Extrapolation defines the behavior of a curve before the first and after "
+"the last keyframes."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:217
+msgid "There are two basic extrapolation modes:"
+msgstr "There are two basic extrapolation modes:"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:220
+msgid ""
+"The default one, curves before their first keyframe and after their last "
+"one have a constant value (the one of these first and last keyframes)."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:226
+msgid "Constant extrapolation."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:229
+msgid ""
+"Curves ends are straight lines (linear), as defined by their first two "
+"keyframes (respectively their last two keyframes)."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:235
+msgid "Linear extrapolation."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:237
+msgid ""
+"Additional extrapolation tools (e.g. the \"Cycles\" F-Modifier) are "
+"located in the :doc:`F-Curve Modifiers "
+"</editors/graph_editor/fcurves/modifiers>`."
+msgstr ""
+"Additional extrapolation tools (e.g. the \"Cycles\" F-Modifier) are "
+"located in the :doc:`F-Curve Modifiers "
+"</editors/graph_editor/fcurves/modifiers>`."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:244
+msgid "Handle Types"
+msgstr "Loại Tay Cầm -- Handle Types"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:246
+msgid ""
+"There is another curve option quite useful for Bézier-interpolated "
+"curves. You can set the type of handle to use for the curve points "
+":kbd:`V`."
+msgstr ""
+"There is another curve option quite useful for Bézier-interpolated "
+"curves. You can set the type of handle to use for the curve points "
+":kbd:`V`."
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:255
+msgid "Automatic"
+msgstr "Tự Động -- Automatic"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:250
+msgid "Keyframes are automatically interpolated."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:255
+msgid "Auto handles."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:264
+msgid "Vector"
+msgstr "Vectơ -- Vector"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:258
+msgid ""
+"Creates linear interpolation between keyframes. The linear segments "
+"remain if keyframe centers are moved. If handles are moved, the handle "
+"becomes Free."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:264
+msgid "Vector handles."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:272
+msgid "Aligned"
+msgstr "Thẳng Hàng -- Aligned"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:267
+msgid "Handle maintain rotation when moved, and curve tangent is maintained."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:272
+msgid "Aligned handles."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:280
+msgid "Free"
+msgstr "Tự Do -- Free"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:275
+msgid "Breaks handles tangents."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:280
+msgid "Free handles."
+msgstr ""
+
+#: ../../<generated>:1
+msgid "Auto Clamped"
+msgstr "Tự Động Hạn Định -- Auto Clamped"
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:283
+msgid "Auto handles clamped to not overshoot."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:288
+msgid "Auto clamped handles."
+msgstr ""
+

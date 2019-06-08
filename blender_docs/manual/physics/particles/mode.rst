@@ -297,7 +297,7 @@ If you want to create an X axis symmetrical haircut you have to do following ste
 
 It may happen that after mirroring two particles occupy nearly the same place.
 Since this would be a waste of memory and render time,
-you can *Remove doubles* either from the *Specials* :kbd:`W`
+you can use *Merge by Distance* either from the *Specials* :kbd:`W`
 or the *Particle* menu.
 
 

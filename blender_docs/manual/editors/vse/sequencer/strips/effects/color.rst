@@ -14,4 +14,4 @@ Options
 =======
 
 Color
-   Click on the color button in the Effect panel in the Properties region, to pick a different color.
+   Click on the color button in the Effect panel in the Sidebar region, to pick a different color.

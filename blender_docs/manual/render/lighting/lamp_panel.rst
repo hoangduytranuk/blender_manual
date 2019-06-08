@@ -23,39 +23,18 @@ Lamp
 ====
 
 Type
-   :doc:`Types of lamps </render/lighting/index>` share all or some of the options listed here:
+   Defines the physical light shape. There are several
+   :doc:`Types of lights </render/lighting/index>`
+   they all share all or some of the options listed below.
 Color
    The color of the light source's illumination.
-Energy
-   The intensity of the light source's illumination from (0.0 to 10.0).
-Distance
-   The *Distance* number button indicates the number of Blender Units (BU)
-   at which the intensity of the current light source will be half of its intensity.
-   Objects less than the number of BU away from the lamp will get more light,
-   while objects further away will receive less light.
-   Certain settings and lamp falloff types affect how the *Distance* is interpreted,
-   meaning that it will not always react the same.
+Power/Strength
+   Each light type has its own way to control the intensity of the light.
 
-   The *Sun* and *Hemi* Lamps are another class of Lamps which uses a constant falloff.
-   Those lamps do not have a *Distance* parameter, and are often called "Base Lighting Lamps".
+   .. note::
 
-
-.. _bi-lamp-influence:
-
-Influence
----------
-
-Every lamp has a set of switches that control which objects receive its light,
-and how it interacts with materials.
-
-Negative
-   Let the lamp cast negative light.
-   The light produced by the lamp is *subtracted* from the irradiance on the surfaces it hits,
-   which darkens these surfaces instead of brightening them.
-This Layer Only
-   The Lamp only illuminates objects on the same layer the lamp is on.
-   Causes the lamp to only light objects on the same layer.
-Specular
-   The Lamp creates specular highlights.
-Diffuse
-   The Lamp affects diffuse shading.
+      While this value can be negative, it will break the rules for conservation of energy
+      and will no longer be physically based (PBR).
+Radius/Size/Angle
+   Each light type has some way to control the physical size of the virtual light;
+   increasing this will result in softer shadows and shading.

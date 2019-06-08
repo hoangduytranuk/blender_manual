@@ -64,7 +64,7 @@ Axis
 
    X, Y, Z
 
-Direction 
+Direction
    This allows you to select the allowed direction(s) of the shrink along the selected axis.
    If both options are enabled, the modifier tries both ways and selects the closest hit.
 
@@ -74,7 +74,7 @@ Cull Faces
    This radio button allows you to prevent any projection over the "front side"
    (respectively the "back side") of the target's faces. The "side" of a face is determined
    by its normal (front being the side "from where" the normal "originates").
-   
+
    Off, Front, Back
 
 Invert Cull
@@ -140,4 +140,4 @@ is not always stable near 90 degree and sharper angles in the target mesh.
 
 .. seealso::
 
-   :doc:`Shrinkwrap Constraint </rigging/constraints/relationship/shrinkwrap>`.
+   :doc:`Shrinkwrap Constraint </animation/constraints/relationship/shrinkwrap>`.

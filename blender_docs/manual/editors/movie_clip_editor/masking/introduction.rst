@@ -3,7 +3,7 @@
 Introduction
 ************
 
-Masks can be created in the *UV/Image* and *Movie Clip* editors, by changing the mode to *Mask* in the header.
+Masks can be created in the *Image* and *Movie Clip* editors, by changing the mode to *Mask* in the header.
 This will add various tools and properties to the editor panels,
 while hiding others that are not needed for interacting with masks.
 
@@ -17,7 +17,7 @@ and so they can just as well be used for creating motion graphics or other effec
 
    Using the Mask node to isolate an object in compositing.
 
-While the *Movie Clip Editor* and *UV/Image Editor* are used to edit masks,
+While the *Movie Clip Editor* and *Image Editor* are used to edit masks,
 the *Compositor* and *Sequencer* are just using already created mask.
 
 Masks can be driven over the time so that they follow some object from the footage,

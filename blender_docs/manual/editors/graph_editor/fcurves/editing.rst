@@ -5,7 +5,7 @@ Editing
 
 By default, when new channels are added, the *Graph Editor* sets them to *Edit Mode*.
 
-Many of the hotkeys are the same as the :doc:`3D View ones </editors/3dview/object/index>`,
+Many of the hotkeys are the same as the :doc:`3D View ones </scene_layout/object/index>`,
 for example:
 
 - :kbd:`G` to grab
@@ -17,7 +17,7 @@ And of course you can lock the transformation along the X axis (time frame) or
 Y axis (value) by pressing :kbd:`X` or :kbd:`Y` during transformation.
 
 For precise control of the keyframe position and value,
-you can set values in the *Active Keyframe* of the Properties Region.
+you can set values in the *Active Keyframe* of the Sidebar region.
 
 
 Insert Keyframe
@@ -239,9 +239,9 @@ Square
 Show/Hide
 =========
 
-Hide :kbd:`H`
-   Hide selected curves.
+Hide Selected Curves :kbd:`H`
+   Hides the selected curves.
 Hide Unselected :kbd:`Shift-H`
    Show only the selected curve (and hide everything else).
-Show Hidden :kbd:`Alt-H`
+Reveal Curves :kbd:`Alt-H`
    Show all previous hidden curves.

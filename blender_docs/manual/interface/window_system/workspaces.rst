@@ -50,4 +50,4 @@ When you open a file, enabling the *Load UI* in the File Browser indicates that 
 use the file's screen layouts and overriding the current layout.
 See :ref:`Load UI <file-load-ui>`.
 
-A custom set of workspaces can be saved as a part of the :doc:`/data_system/files/startup_file`.
+A custom set of workspaces can be saved as a part of the :doc:`/files/files/startup_file`.

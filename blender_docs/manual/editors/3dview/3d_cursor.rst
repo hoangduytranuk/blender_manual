@@ -28,11 +28,11 @@ any combination of top :kbd:`Numpad7`, front :kbd:`Numpad1` and side :kbd:`Numpa
 That way you can control the positioning along two axes in one view and determine depth in the second view.
 
 By default the depth of the geometry under the cursor is used,
-this can be disabled using the *Cursor Depth* toggle in the :doc:`User Preferences </preferences/interface>`.
+this can be disabled using the *Cursor Depth* toggle in the :doc:`Preferences </editors/preferences/interface>`.
 
 .. seealso::
 
-   The :doc:`Snap Menu </editors/3dview/object/editing/transform/control/snap>`
+   The :doc:`Snap Menu </scene_layout/object/editing/transform/control/snap>`
    which allows the cursor placement relative to scene objects.
 
 
@@ -43,19 +43,19 @@ this can be disabled using the *Cursor Depth* toggle in the :doc:`User Preferenc
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Properties region --> 3D Cursor`
+   :Panel:     :menuselection:`Sidebar region --> 3D Cursor`
 
 .. figure:: /images/editors_3dview_3d-cursor_panel.png
 
-   The 3D Cursor panel of the properties region.
+   The 3D Cursor panel of the Sidebar region.
 
 The 3D cursor can also be positioned by editing the location coordinates values in
-the *3D cursor* panel of the properties region.
+the *3D cursor* panel of the Sidebar region.
 
 
 Usage
 =====
 
 The 3D Cursor is used as the origin for any added object, can be used and moved with
-the :doc:`snap tool </editors/3dview/object/editing/transform/control/snap>`, and is an option for
-the :doc:`pivot point </editors/3dview/object/editing/transform/control/pivot_point/index>`.
+the :doc:`snap tool </scene_layout/object/editing/transform/control/snap>`, and is an option for
+the :doc:`pivot point </scene_layout/object/editing/transform/control/pivot_point/index>`.

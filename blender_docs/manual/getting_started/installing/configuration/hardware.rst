@@ -27,7 +27,7 @@ Input Devices
 Blender supports various types of input devices:
 
 - Keyboard (recommended: keyboard with numeric keypad, English layout works best)
-- Mouse (recommended: 3 button mouse with scroll wheel)
+- Mouse (recommended: three button mouse with scroll wheel)
 - NDOF Devices (also known as *3D Mouse*)
 - Graphic Tablets
 
@@ -39,7 +39,7 @@ Mouse Button Emulation
 ^^^^^^^^^^^^^^^^^^^^^^
 
 If you do not have a 3 button mouse,
-you will need to emulate it by checking the option in the :doc:`User Preferences </preferences/input>`.
+you will need to emulate it by checking the option in the :doc:`Preferences </editors/preferences/input>`.
 
 The following table shows the combinations used:
 
@@ -68,7 +68,7 @@ however, removes quick access to layer visibility).
 
 .. seealso::
 
-   Read more about *Numpad Emulation* in the :doc:`User Preferences </preferences/input>`.
+   Read more about *Numpad Emulation* in the :doc:`Preferences </editors/preferences/input>`.
 
 
 Non-English Keyboards
@@ -80,7 +80,7 @@ your computer to the UK or US layout as long as you work with Blender.
 .. note::
 
    You can also change the default keymap and
-   default hotkeys from the :doc:`User Preferences </preferences/input>`,
+   default hotkeys from the :doc:`Preferences </editors/preferences/input>`,
    however, this manual assumes you are using the default keymap.
 
 
@@ -111,4 +111,4 @@ These devices allow you to explore a scene, as well as :ref:`Walk/Fly modes <3dv
 
 .. seealso::
 
-   See :doc:`Input Preference </preferences/input>` for more information on configuring peripherals.
+   See :doc:`Input Preference </editors/preferences/input>` for more information on configuring peripherals.

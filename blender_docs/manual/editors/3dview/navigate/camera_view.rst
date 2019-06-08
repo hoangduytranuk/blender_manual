@@ -68,7 +68,7 @@ and switches to camera view.
 Camera View Positioning
 -----------------------
 
-By enabling :ref:`Lock Camera to View <3dview-lock-camera-to-view>` in the View panel of the Properties region,
+By enabling :ref:`Lock Camera to View <3dview-lock-camera-to-view>` in the View panel of the Sidebar region,
 while in camera view, you can navigate the 3D View as usual,
 while remaining in camera view. Controls are exactly the same as when normally moving in 3D.
 
@@ -90,7 +90,7 @@ Vertical Pan or Pitch
    This is just a rotation along the local X axis. Press :kbd:`R` to enter object rotation mode, then :kbd:`X` twice
    (the first press selects the *global* axis, pressing the same letter a second time selects the *local* axis --
    this works with any axis;
-   see the :doc:`axis locking page </editors/3dview/object/editing/transform/control/precision/axis_locking>`).
+   see the :doc:`axis locking page </scene_layout/object/editing/transform/control/precision/axis_locking>`).
 Horizontal Pan or Yaw
    This corresponds to a rotation around the camera's local Y axis.
    Press :kbd:`R`, and then :kbd:`Y` twice.

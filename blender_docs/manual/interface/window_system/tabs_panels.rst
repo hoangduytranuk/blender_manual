@@ -6,31 +6,36 @@ Tabs & Panels
 Tabs
 ====
 
-.. figure:: /images/interface_window-system_tabs-panels_tabs_tabs-horizontal.png
-
-   Horizontal tab header.
-
-.. figure:: /images/interface_window-system_tabs-panels_tabs-vertical.png
+.. figure:: /images/interface_window-system_tabs-panels_tabs.png
    :align: right
+   :width: 200px
+   :figwidth: 200px
 
-   Tools tab (selected), Create, etc.
+   Vertical Tab header shows tab icons in the Properties Editor.
 
-Tabs are overlapping sections in the user interface.
-The Tabs header can be vertical (Tool Shelf) or
-horizontal (Properties Editor, User Preferences).
+Tabs are used to control overlapping sections in the user interface.
+Contents of only one Tab is visible at a time.
+Tabs are listed in *Tab header*, which can be vertical or horizontal.
+
+.. figure:: /images/interface_window-system_tabs-panels_tabs_horizontal.png
+   :align: center
+
+   Horizontal Tab header in the Top Bar.
+
+.. container:: lead
+
+   .. clear
 
 
 Switching/Cycling
 -----------------
 
-Vertical tabs can be switched with the :kbd:`Wheel` within the tab header and
-:kbd:`Ctrl-Wheel` changes tabs from anywhere in the region.
+Vertical tabs can be switched with :kbd:`Ctrl-Wheel` from anywhere in
+the region, and horizontal tabs with mouse cursor over tab headings.
 
-You can also cycling through tabs with :kbd:`Ctrl-Tab` and :kbd:`Shift-Ctrl-Tab`.
-
-.. container:: lead
-
-   .. clear
+You can also cycle through tabs with :kbd:`Ctrl-Tab` and
+:kbd:`Shift-Ctrl-Tab`, or press down :kbd:`LMB` and move mouse over
+tab header icons.
 
 
 .. _ui-panels:
@@ -41,24 +46,23 @@ Panels
 
 .. figure:: /images/interface_window-system_tabs-panels_panels.png
    :align: right
+   :width: 200px
 
-   Tool Shelf panels.
-
-   Orange: Panel Headers.
+   Panels in Properties Editor.
+   
+   Panel headers are highlighted in red and sub-panel header in yellow.
 
 The smallest organizational unit in the user interface is a panel.
-Panels can be collapsed to hide its contents.
-They are used in the *Properties Editor*, but also
-for example in the *Tool Shelf* and the *Properties region*.
-
-In the image on the right there are three panels: *Transform*, *Edit* and *History*.
-The *Edit* panel is expanded and the other two panels are collapsed.
+*Panel header* is always visible, and it shows the title for the panel.
+Panels may also include sub-panels.
 
 
 Collapsing and Expanding
 ------------------------
 
-A triangle on the left of the title shows the expanded (▼) and collapsed (►) state of the panel.
+Panels can be expanded to show, and collapsed to hide its contents,
+shown by a triangle on the Panel Header. Collapsed panel is indicated
+by down-arrow (▼) and expanded panel by right-arrow (►).
 
 - A click with the :kbd:`LMB` on the panel header expands or collapses it.
 - Pressing :kbd:`A` expand/collapses the panel under the mouse pointer.
@@ -70,22 +74,21 @@ A triangle on the left of the title shows the expanded (▼) and collapsed (►)
 Position
 --------
 
-You can change the position of a panel within its region by clicking and
-dragging it with the :kbd:`LMB` on the grip widget (\:\:\:\:) in the upper right corner.
+You can change the position of a panel within its region by clicking
+and dragging it with the :kbd:`LMB` on the grip widget (\:\:\:\:)
+located in Panel Header on the right side.
 
 
 Pinning
 -------
 
-Often it is desirable to view panels from different tabs at the same time.
+Sometimes it is desirable to view panels from different tabs at the same time.
 This has been solved by making panels pinnable.
 
 A pinned panel remains visible regardless of which tab has been selected.
-You can pin a panel by :kbd:`Shift` clicking its header,
-or by :kbd:`RMB` clicking on the header and choosing *Pin* in the context menu.
-
-In the image shown to the right,
-is an example of the *Mesh Options* pinned in the tools tab.
+You can pin a panel by clicking on the pin icon in its header.
+Panels that do not have a pin icon can also be pined by :kbd:`RMB` and selecting *Pin*,
+alternatively you use :kbd:`Shift-LMB` on the panel to also pin it.
 
 
 Zoom
@@ -95,13 +98,3 @@ The zoom factor of a whole region with panels can be changed by
 :kbd:`Ctrl-MMB` clicking and moving the mouse anywhere within that region
 or use the :kbd:`NumpadPlus` and :kbd:`NumpadMinus` to zoom in and out the contents.
 Pressing :kbd:`Home` (Show All) will reset the zooming at the screen/panel focused by the mouse pointer.
-
-
-Alignment
----------
-
-The alignment of the panels in the *Properties Editor* can be changed
-between vertical and horizontal. To do this click with :kbd:`RMB` somewhere
-within the main region of the *Properties Editor* and choose either
-*Horizontal* or *Vertical* from the appearing menu. Keep in mind though that
-the panels are optimized for vertical alignment.

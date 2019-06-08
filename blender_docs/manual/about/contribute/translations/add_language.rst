@@ -28,7 +28,8 @@ Other platforms might vary slightly but should mainly the same.
 #. Login the account and create a task with ``todo`` type, addressing an administrator in the *Subscribers* field,
    requesting for a committer right in order to transfer changes to the central repository of the translation team.
 #. Open an instance of the console application, such as Gnome-Terminal emulator.
-#. Change the current working directory to the directory of ``blender_docs``, where the instance of ``Makefile`` resides.
+#. Change the current working directory to the directory of ``blender_docs``,
+   where the instance of ``Makefile`` resides.
 
 
 Trying the Make Process to Create HTML Files In English
@@ -99,7 +100,8 @@ Generating the Set of Files for the Target Language
       svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale
 
    This will download all language sets available in the repository into the ``locale`` directory of your drive.
-   You can go to the ``locale`` directory to see the hidden subdirectory ``.svn`` within it, together with directories of languages.
+   You can go to the ``locale`` directory to see the hidden subdirectory ``.svn`` within it,
+   together with directories of languages.
    You'll need to add your own set of files for the language you're trying to translating to.
 
 #. From the ``blender_docs`` directory to generate a set of files for ``fr`` language::

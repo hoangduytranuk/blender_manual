@@ -7,7 +7,7 @@ Vertex Weights
    :class: refbox
 
    :Mode:      Edit and Weight Paint Modes
-   :Panel:     :menuselection:`Properties region --> Vertex Weights`
+   :Panel:     :menuselection:`Sidebar region --> Vertex Weights`
 
 .. figure:: /images/modeling_meshes_properties_vertex-groups_vertex-weights_panel-overview.png
    :width: 260px
@@ -22,7 +22,7 @@ Blender provides a *Vertex Weights* panel from where you can get (and edit)
 information about the weight values of each Vertex of a mesh.
 That is: to which Vertex Groups the vertex is assigned with which weight value.
 
-The Vertex Weights panel can be found in the right Properties region of the 3D View.
+The Vertex Weights panel can be found in the right Sidebar region of the 3D View.
 It is available in Edit Mode and in Weight Paint Mode
 (when Vertex Selection masking is enabled as well).
 
@@ -97,7 +97,7 @@ Display Weights in Edit Mode
 
 When you are in edit mode, you can make the Weights of the active Group visible on the mesh:
 
-Search the *Mesh Display* panel in the Properties region.
+Search the *Mesh Display* panel in the Sidebar region.
 And there enable the *Show Weights* option.
 Now you can see the weights of the active Vertex Group displayed on the mesh surface.
 

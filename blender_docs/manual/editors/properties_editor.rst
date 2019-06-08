@@ -34,10 +34,10 @@ These tabs are used to add features, and to change properties for the Active Sce
 .. _properties-render-tab:
 
 - :doc:`Render </render/output/index>` and Settings:
-  :doc:`Eevee </render/eevee/index>`, :doc:`Cycles </render/cycles/settings/index>`
-- :doc:`/render/post_process/layers`
-- :doc:`Scene </data_system/scenes/properties>`
-- World: :doc:`Eevee </render/eevee/world>`, :doc:`Cycles </render/cycles/world>`
+  :doc:`Eevee </render/engines/eevee/index>`, :doc:`Cycles </render/engines/cycles/settings/index>`
+- :doc:`/render/layers/index`
+- :doc:`Scene </scene_layout/scene/properties>`
+- World: :doc:`Eevee </render/engines/eevee/world>`, :doc:`Cycles </render/engines/cycles/world>`
 
 
 .. _properties-data-tabs:
@@ -55,8 +55,8 @@ These tabs are used to add features, and to change properties for the Active Obj
 
 The Object Data tabs shown depend on what type of object was selected last (the Active Object).
 
-- :doc:`Object </editors/3dview/object/properties/index>`
-- :doc:`/rigging/constraints/index`
+- :doc:`Object </scene_layout/object/properties/index>`
+- :doc:`/animation/constraints/index`
 - :doc:`/modeling/modifiers/index`
 
 ..
@@ -70,24 +70,24 @@ The Object Data tabs shown depend on what type of object was selected last (the 
 
 ..
 
-- :doc:`Armature </rigging/armatures/properties/index>`
-- :doc:`Bones </rigging/armatures/bones/properties/index>`
-- :doc:`Bone Constraints </rigging/armatures/posing/bone_constraints/introduction>`
-- :doc:`Lattice </rigging/lattice>`
+- :doc:`Armature </animation/armatures/properties/index>`
+- :doc:`Bones </animation/armatures/bones/properties/index>`
+- :doc:`Bone Constraints </animation/armatures/posing/bone_constraints/introduction>`
+- :doc:`Lattice </animation/lattice>`
 
 ..
 
-- :doc:`Speaker </render/audio/speaker>`
-- Camera: :doc:`Cycles </render/cycles/camera>`
+- :doc:`Speaker </render/output/audio/speaker>`
+- Camera: :doc:`Cycles </render/camera>`
 - Lamp: :doc:`General settings </render/lighting/lamp_panel>`,
-  :doc:`Cycles </render/cycles/lamps>`
+  :doc:`Cycles </render/engines/cycles/lighting>`
 
 ..
 
-- Material: :doc:`Eevee </render/eevee/materials/settings>`,
-  :doc:`Cycles </render/cycles/materials/index>`
-- Texture: :doc:`Texture Nodes </editors/uv_image/uv/textures/index>`,
-  :doc:`Cycles </render/cycles/materials/texture_editing>`
+- Material: :doc:`Eevee </render/engines/eevee/materials/settings>`,
+  :doc:`Cycles </render/engines/cycles/materials/index>`
+- Texture: :doc:`Texture Nodes </editors/uv/textures/index>`,
+  :doc:`Cycles </render/engines/cycles/materials/texture_editing>`
 - :doc:`Particles </physics/particles/index>`
 - :doc:`Physics </physics/index>`
 

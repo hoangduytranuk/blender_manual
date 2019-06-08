@@ -51,7 +51,7 @@ An application-template may define its own:
 
 Startup File
    The default file to load with this template.
-User Preferences
+Preferences
    Only certain user-preferences from a template are used:
 
    - Themes.

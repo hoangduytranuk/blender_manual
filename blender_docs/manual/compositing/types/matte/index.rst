@@ -10,7 +10,7 @@ One usage scenario is blue-screen or green-screen footage,
 where live action is shot in front of a blue or green backdrop for replacement by
 a matte painting or virtual background.
 
-In general, hook up these nodes to a viewer, set your UV/Image Editor to show the viewer node,
+In general, hook up these nodes to a viewer, set your Image Editor to show the viewer node,
 and play with the sliders in real-time using a sample image from the footage,
 to get the settings right. In some cases,
 small adjustments can eliminate artifacts or foreground image degradation.

@@ -25,7 +25,7 @@ causes them to move in an orbit-like fashion around the 3D cursor.
 Similar to *Edit Mode*,
 the Pivot Point is not taken into account and the results are view dependent.
 
-.. (TODO <2.8 remove): there is no Warp in Object Mode, maybe Bend?
+.. TODO2.8 Remove, there is no Warp in Object Mode, maybe Bend?
 
 
 Usage

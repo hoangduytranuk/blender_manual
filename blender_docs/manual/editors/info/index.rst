@@ -1,9 +1,9 @@
 .. _bpy.types.SpaceInfo:
 .. _bpy.ops.info:
 
-###############
-  Info Editor
-###############
+########
+  Info
+########
 
 .. toctree::
    :maxdepth: 2

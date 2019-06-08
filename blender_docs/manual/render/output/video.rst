@@ -91,13 +91,13 @@ Presets
    You can use the presets, which choose optimum settings for you for that type of output.
 Container
    Video container or file type. For a list of all available options, see
-   :doc:`video formats </data_system/files/media/video_formats>`.
+   :doc:`video formats </files/files/media/video_formats>`.
 Autosplit Output
    If your video is huge and exceeds 2GiB, enable Autosplit Output.
    This will automatically split the output into multiple files after the first file is 2Gig.
 Codec
    Chooses the method of compression and encoding.
-   For a list of all available options see :doc:`video formats </data_system/files/media/video_formats>`.
+   For a list of all available options see :doc:`video formats </files/files/media/video_formats>`.
 
 .. note:: Standards
 
@@ -159,7 +159,7 @@ Audio
 
 Audio Codec
    Audio format to use. For a list of all available options, see
-   :doc:`video formats </data_system/files/media/video_formats>`.
+   :doc:`video formats </files/files/media/video_formats>`.
 Bitrate
    For each codec, you can control the bit rate (quality) of the sound in the movie.
    Higher bit rates are bigger files that stream worse but sound better.

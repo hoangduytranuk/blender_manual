@@ -48,8 +48,8 @@ Rendering
 =========
 
 With Cycles you can render hair with specialized hair BSDFs
-:doc:`/render/cycles/nodes/types/shaders/hair` or
-:doc:`/render/cycles/nodes/types/shaders/hair_principled`.
+:doc:`/render/shaders/nodes/types/shaders/hair` or
+:doc:`/render/shaders/nodes/types/shaders/hair_principled`.
 
 Hair can also be used as a basis for
 the :doc:`Particle Instance Modifier </modeling/modifiers/simulate/particle_instance>`,

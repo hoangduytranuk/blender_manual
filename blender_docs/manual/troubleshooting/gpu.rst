@@ -98,15 +98,15 @@ Poor Performance
 
 - Update your graphics drivers (see above).
 - On laptops, make sure you are using a dedicated GPU (see above).
-- Try lowering quality settings in :menuselection:`Preferences --> System --> OpenGL`.
+- Try lowering quality settings in :menuselection:`Preferences --> System --> Memory & Limits`.
 - Try undoing settings in your graphics drivers, if you made any changes there.
 
 
 Render Errors
 -------------
 
-See :doc:`Eevee </render/eevee/limitations>` and
-:doc:`Cycles </render/cycles/gpu_rendering>` documentation respectively.
+See :doc:`Eevee </render/engines/eevee/limitations>` and
+:doc:`Cycles </render/engines/cycles/gpu_rendering>` documentation respectively.
 
 
 Wrong Selection in 3D Viewport

@@ -74,7 +74,7 @@ Quad View
 
    :Mode:      All modes
    :Menu:      :menuselection:`View --> Toggle Quad View`
-   :Panel:     :menuselection:`Properties region --> Display --> Toggle Quad View`
+   :Panel:     :menuselection:`Sidebar region --> Display --> Toggle Quad View`
    :Hotkey:    :kbd:`Ctrl-Alt-Q`
 
 Toggling Quad View will split the 3D View into four views:
@@ -102,7 +102,7 @@ In this arrangement, you can zoom and pan each view independently but you cannot
 Options
 -------
 
-These options can be found in :menuselection:`Properties region --> Display`.
+These options can be found in :menuselection:`Sidebar region --> Display`.
 
 Lock
    If you want to be able to rotate each view, you can uncheck the *Locked* option.

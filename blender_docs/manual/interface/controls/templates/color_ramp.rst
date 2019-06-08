@@ -5,14 +5,14 @@
 Color Ramp Widget
 *****************
 
-.. figure:: /images/interface_controls_templates_color-ramp_color-ramp.png
-
-   Color ramp.
-
 *Color Ramps* enables the user to specify a range of colors based on color stops.
 Color stops are similar to a mark indicating where exactly the chosen color should be.
 The interval from each of the stops, added to the ramp, is a result of the color interpolation and
 chosen interpolation method.
+
+.. figure:: /images/interface_controls_templates_color-ramp_color-ramp.png
+
+   Color ramp.
 
 
 Controls
@@ -59,10 +59,10 @@ Interpolation Options
       Far
          Furthest route around the wheel.
 
-      .. figure:: /images/interface_controls_templates_color-ramp_color-ramp_interpolation.png
-         :width: 600px
+   .. figure:: /images/interface_controls_templates_color-ramp_color-ramp_interpolation.png
+      :width: 600px
 
-         HSV and HSL interpolation options.
+      HSV and HSL interpolation options.
 
 Active Color Stop
    Index of the active color stop (shown as a dashed line).

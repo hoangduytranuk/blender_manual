@@ -16,15 +16,26 @@
 import sys
 import os
 
+
+# -----------------------------------------------------------------------------
+# Local Vars
+#
+# Not used directly by Sphinx, only used by this file.
+#
+
+blender_version = '2.80'
+# blender_url_suffix = 'latest'  # For regular releases.
+blender_url_suffix = 'dev'  # For development.
+
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath(os.path.join('..', 'exts')))
 
-# -- General configuration -----------------------------------------------------
 
-# local var only
-blender_version = "2.80"
+# -----------------------------------------------------------------------------
+# General Configuration
 
 # include at end of every file
 rst_epilog = """
@@ -43,7 +54,8 @@ extensions = [
     'sphinx.ext.mathjax',
     # Errors at the moment, disable - ideasman42.
     # 'sphinx.ext.intersphinx',
-    '404'
+    '404',
+    'vn_title'
 ]
 
 # Is there a better way to check for PDF building?
@@ -156,7 +168,7 @@ locale_dirs = ['../locale/']   # Path to locale
 gettext_compact = False     # optional.
 
 # Quit warnings about missing download file
-suppress_warnings = ['download.not_readable']
+# suppress_warnings = ['download.not_readable']
 
 # -- Options for HTML output ---------------------------------------------------
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -181,7 +193,7 @@ if html_theme == "sphinx_rtd_theme":
     "display_version": False,
     "collapse_navigation": True,
     "navigation_depth": 4,
-    "canonical_url": "https://docs.blender.org/manual/en/latest/",
+    "canonical_url": "https://docs.blender.org/manual/en/" + blender_url_suffix,
     }
 
 
@@ -258,7 +270,7 @@ html_show_copyright = True
 # contain a <link> tag referring to it.  The value of this option must be the
 # base URL from which the finished HTML is served.
 # Ed. Note: URL has to be adapted, when versioning is set up.
-html_use_opensearch = 'https://docs.blender.org/manual/' + language + '/dev'
+html_use_opensearch = 'https://docs.blender.org/manual/' + language + '/' + blender_url_suffix
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
 #html_file_suffix = None

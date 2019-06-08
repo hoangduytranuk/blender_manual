@@ -199,65 +199,8 @@ Noise Method
          From left to right, the domains' high resolution strengths are set to 0, 2, and 6.
 
 
-Smoke Groups
-============
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Smoke Groups`
-
-Flow Group
-   If set, only objects in the specified :doc:`Group </editors/3dview/object/properties/relations/groups>`
-   will be allowed to act as flow objects in this domain.
-Collision Group
-   If set, only objects in the specified :doc:`Group </editors/3dview/object/properties/relations/groups>`
-   will be allowed to act as collision objects in this domain.
-
-
-Smoke Cache
-===========
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Smoke Cache`
-
-See :doc:`Baking </physics/smoke/baking>`.
-
-
-.. _smoke-field-weights:
-
-Smoke Field Weights
-===================
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Smoke Field Weights`
-
-These settings determine how much gravity and :doc:`Force Fields </physics/force_fields/index>` affect the smoke.
-
-Effector Group
-   When set, smoke can only be influenced by force fields in the specified group.
-Gravity
-   How much the smoke is affected by Gravity.
-All
-   Overall influence of all force fields.
-
-The other settings determine how much influence individual force field types have.
-
-.. figure:: /images/physics_smoke_types_domain_force-field-demo.jpg
-   :width: 500px
-
-   Smoke with a wind force field.
-
-
 Note on Divisions and High Resolution
-=====================================
+-------------------------------------
 
 :ref:`High Resolution Divisions <smoke-high-resolution>`
 and :ref:`Domain Subdivisions <smoke-resolution>` are not equivalent.
@@ -278,3 +221,60 @@ divisions generally appear smaller in real-world scale
    :width: 550px
 
 High *Domain Division* simulations tend to appear larger in real-world scale, with many smaller details.
+
+
+Collections
+===========
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Type:      Domain
+   :Panel:     :menuselection:`Properties --> Physics --> Collections`
+
+Flow
+   If set, only objects in the specified :doc:`Collection </scene_layout/object/properties/relations/groups>`
+   will be allowed to act as flow objects in this domain.
+Collision
+   If set, only objects in the specified :doc:`Collection </scene_layout/object/properties/relations/groups>`
+   will be allowed to act as collision objects in this domain.
+
+
+Smoke Cache
+===========
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Type:      Domain
+   :Panel:     :menuselection:`Physics --> Smoke Cache`
+
+See :doc:`Baking </physics/smoke/baking>`.
+
+
+.. _smoke-field-weights:
+
+Field Weights
+=============
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Type:      Domain
+   :Panel:     :menuselection:`Properties --> Physics --> Field Weights`
+
+These settings determine how much gravity and :doc:`Force Fields </physics/force_fields/index>` affect the smoke.
+
+Effector Collection
+   When set, smoke can only be influenced by force fields in the specified collection.
+Gravity
+   How much the smoke is affected by Gravity.
+All
+   Overall influence of all force fields.
+
+The other settings determine how much influence individual force field types have.
+
+.. figure:: /images/physics_smoke_types_domain_force-field-demo.jpg
+   :width: 500px
+
+   Smoke with a wind force field.

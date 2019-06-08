@@ -22,10 +22,10 @@ Translation, Rotation, Scale
 
 Once you have a selection of one or more control points,
 you can grab/move :kbd:`G`, rotate :kbd:`R` or scale :kbd:`S` them, like many other things in Blender,
-as described in the :doc:`Manipulation in 3D Space </editors/3dview/object/editing/transform/introduction>` section.
+as described in the :doc:`Manipulation in 3D Space </scene_layout/object/editing/transform/introduction>` section.
 
 You also have in *Edit Mode* an extra option when using these basic manipulations:
-the :doc:`proportional editing </editors/3dview/object/editing/transform/control/proportional_edit>`.
+the :doc:`proportional editing </scene_layout/object/editing/transform/control/proportional_edit>`.
 
 
 Transform Panel
@@ -160,7 +160,6 @@ The corresponding surface's outer edges will join together to form a "closed" su
 .. note:: Inner and Outer
 
    Surfaces have an "inner" and "outer" face, the first being black whereas the latter is correctly shaded.
-   (There does not seem to be any "double sided" shading option for surfaces...).
    When you close a surface in one or two directions, you might get an entirely black object! In this case,
    just `Switch Direction`_ of your surface...
 
@@ -215,7 +214,7 @@ Selected
    The selection must abide by the following rules:
 
    - Whole rows, and only whole rows must be selected.
-   - Only rows along the same axis must be selected (i.e. you cannot delete both U  and V rows at the same time).
+   - Only rows along the same axis must be selected (i.e. you cannot delete both U and V rows at the same time).
 
    Also remember that NURBS order cannot be higher than its number of control points in a given axis,
    so it might decrease when you delete some control points...

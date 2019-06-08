@@ -26,12 +26,12 @@ Menus
 View
    This menu offers tools to :doc:`navigate </editors/3dview/navigate/index>` in 3D space.
 Select
-   Contains tools for :doc:`selecting </editors/3dview/object/selecting/index>` objects.
+   Contains tools for :doc:`selecting </scene_layout/object/selecting/index>` objects.
 Add
    Gives a list of different :ref:`objects types <objects-types>` that can be added to a scene.
 Object
    This menu appears when in Object Mode.
-   it contains tools to edit :doc:`objects </editors/3dview/object/editing/transform/introduction>`.
+   it contains tools to edit :doc:`objects </scene_layout/object/editing/transform/introduction>`.
    In edit mode, it will change to the appropriate menu with :doc:`editing tools </modeling/index>`.
 
 
@@ -58,14 +58,14 @@ Viewport Shading
 Pivot Point
    Used to change the reference point (or :term:`pivot point`) used by many mesh manipulation tools.
 
-   Read more about :doc:`Pivot Points </editors/3dview/object/editing/transform/control/pivot_point/index>`.
+   Read more about :doc:`Pivot Points </scene_layout/object/editing/transform/control/pivot_point/index>`.
 Transform Manipulator
    These handy selectors allow you to rotate or move objects by grabbing
    (clicking with your mouse) their controls and moving your mouse in the axis.
 
-   Read more about :doc:`Transform Manipulators </editors/3dview/object/editing/transform/control/manipulators>`.
+   Read more about :doc:`Transform Manipulators </scene_layout/object/editing/transform/control/manipulators>`.
 Layer
-   The Layers Widget is documented in the :doc:`Layers page </editors/3dview/object/properties/relations/layers>`.
+   The Layers Widget is documented in the :doc:`Layers page </scene_layout/object/properties/relations/layers>`.
 Lock to Scene
    By default, the "lock" button to the right of the layer buttons is enabled.
    This means that in this view, the active layers and camera are those of the whole scene
@@ -80,15 +80,12 @@ Lock to Scene
    Or to have several views with different active cameras. Remember that you can use
    :kbd:`Ctrl-Numpad0` to make the active object the active camera.
 
-   Read more about :doc:`Scenes </data_system/scenes/introduction>`.
+   Read more about :doc:`Scenes </scene_layout/scene/introduction>`.
 Proportional Edit
-   :doc:`Proportional Edit </editors/3dview/object/editing/transform/control/proportional_edit>`.
+   :doc:`Proportional Edit </scene_layout/object/editing/transform/control/proportional_edit>`.
 Snap
-   Controls the :doc:`snapping tools </editors/3dview/object/editing/transform/control/snap>`
+   Controls the :doc:`snapping tools </scene_layout/object/editing/transform/control/snap>`
    that help with transforming and modeling objects.
-OpenGL Render
-   The Render Buttons render an OpenGL version of the 3D View.
-   See the :doc:`OpenGL Rendering </render/opengl>` page for more information.
 
 
 Tool Shelf
@@ -99,11 +96,11 @@ The Tool Shelf is a context-sensitive region containing tools depending on the c
 
 For more information on specific tools available, see:
 
-- :doc:`Transformations </editors/3dview/object/editing/transform/index>`
+- :doc:`Transformations </scene_layout/object/editing/transform/index>`
 - :doc:`History </interface/undo_redo>`
 - :doc:`Creating Objects </modeling/meshes/editing/basics/adding>`
-- :doc:`Parents </editors/3dview/object/properties/relations/parents>`
-- :doc:`Groups </editors/3dview/object/properties/relations/groups>`
+- :doc:`Parents </scene_layout/object/properties/relations/parents>`
+- :doc:`Groups </scene_layout/object/properties/relations/groups>`
 - :ref:`animation-index`
 - :ref:`rigid-body-index`
 - :ref:`grease-pencil-index`
@@ -114,14 +111,14 @@ For more information on specific tools available, see:
 - :ref:`painting-texture-index`
 
 
-Properties Region
+Sidebar Region
 =================
 
-The Properties Region contains properties of the active object and selected objects (such as their locations),
+The Sidebar region contains properties of the active object and selected objects (such as their locations),
 as well as properties of the editor itself:
 
-- :doc:`Transform </editors/3dview/object/editing/transform/introduction>`
+- :doc:`Transform </scene_layout/object/editing/transform/introduction>`
 - :doc:`Grease Pencil </editors/3dview/grease_pencil/introduction>`
 - :doc:`Display & View Panels </editors/3dview/properties/panels>`
 - :doc:`Background Images </editors/3dview/properties/background_images>`
-- :doc:`Transform Orientations </editors/3dview/object/editing/transform/control/orientations>`
+- :doc:`Transform Orientations </scene_layout/object/editing/transform/control/orientations>`

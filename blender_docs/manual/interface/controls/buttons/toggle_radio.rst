@@ -8,6 +8,7 @@ Checkboxes & Toggle Buttons
 
 .. figure:: /images/interface_controls_buttons_toggle-radio_checkbox.png
    :align: right
+   :figwidth: 155px
 
    Checkboxes and Toggle buttons.
 

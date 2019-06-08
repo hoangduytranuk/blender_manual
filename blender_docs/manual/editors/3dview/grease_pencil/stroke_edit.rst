@@ -5,7 +5,7 @@ Stroke Edit Mode
 
 Enter Stroke Edit Mode with the *Mode* select menu in the 3D Views header or
 toggle the *Enable Editing* in the Grease Pencil panel
-*(only available in 2D editors such as UV/Image editor, Node editor, etc.)*, or use :kbd:`D-Tab`.
+*(only available in 2D editors such as Image editor, Video Sequencer, etc.)*, or use :kbd:`D-Tab`.
 In this mode, many common editing tools will operate on Grease Pencil stroke points instead.
 
 These tools let you move and reshape Grease pencil strokes after they have been drawn.
@@ -70,7 +70,7 @@ Selection Mask, Alpha
    See `Further Options`_.
 
 
-.. (todo <2.8 move) to a better place
+.. TODO2.8 Move to a better place.
 
 Menu
 ----

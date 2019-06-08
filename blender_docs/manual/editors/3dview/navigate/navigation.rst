@@ -8,7 +8,7 @@ Navigating in the 3D space is done with the use of both mouse movement and keybo
 To be able to work in the three-dimensional space that Blender uses,
 you must be able to change your viewpoint as well as the viewing direction of the scene.
 While we will describe the *3D View* editor, most of the other editors have similar functions.
-For example, it is possible to translate and zoom in the UV/Image editor.
+For example, it is possible to translate and zoom in the Image editor.
 
 .. tip:: Mouse Buttons and Numpad
 
@@ -39,7 +39,7 @@ or use :kbd:`Numpad4` and :kbd:`Numpad6` (or :kbd:`Ctrl-Alt-Wheel`)
 to rotate the scene around the global Z axis from your current point of view.
 Finally :kbd:`Numpad9` switches to the opposite side of the view.
 
-Alternatively, if the *Emulate 3 button mouse* option is select in the *User Preferences*
+Alternatively, if the *Emulate 3 button mouse* option is select in the *Preferences*
 you can press and hold :kbd:`Alt` while dragging :kbd:`LMB` in the viewport's area.
 
 .. note:: Hotkeys

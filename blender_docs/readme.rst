@@ -17,7 +17,7 @@ Complementary projects are:
 Project Status
 **************
 
-Currently, there are some old 2.4x parts of the manual that need to be updated.
+Currently, there are some old 2.7x parts of the manual that need to be updated.
 There are also tasks on the `current open tasks <https://developer.blender.org/project/profile/53>`__.
 
 

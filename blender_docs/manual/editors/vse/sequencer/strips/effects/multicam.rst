@@ -41,7 +41,7 @@ Workflow
 
       Multi-camera editing setup.
 
-#. Now select the Multicam strip, if you take a look at the strip options (Properties region),
+#. Now select the Multicam strip, if you take a look at the strip options (Sidebar region),
    you will notice, that Multicam is a rather simple effect strip:
    It just takes a selected channel as its input. That is all.
    The magic comes with the convenient keyboard layout.

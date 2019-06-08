@@ -4,7 +4,7 @@
 Data-Block Menu
 ***************
 
-A set of menu buttons used to link :doc:`/data_system/data_blocks` to
+A set of menu buttons used to link :doc:`/files/data_blocks` to
 each other. If data-blocks are linked the data will be updated across
 all of the :term:`data users <Data User>` when edited.
 
@@ -46,17 +46,17 @@ Sometimes there is a :ref:`list <ui-list-view>` of applied data-blocks
 
 .. seealso::
 
-   Data-blocks are discussed farther in the :doc:`Data System chapter </data_system/data_blocks>`.
+   Data-blocks are discussed farther in the :doc:`Data System chapter </files/data_blocks>`.
 
 
 Preview
 =======
 
+In the Tool Shelf is a version of the data-block menu with a bigger preview.
+
 .. figure:: /images/interface_controls_templates_data-block_preview.png
 
    The Data-Block menu with preview.
-
-In the Tool Shelf is a version of the data-block menu with a bigger preview.
 
 
 .. rename to selector?
@@ -67,6 +67,7 @@ Data ID
 =======
 
 .. figure:: /images/interface_controls_templates_data-block_data-id.png
+   :align: right
 
    A Data ID field.
 
@@ -98,10 +99,12 @@ Remove ``X``
 Sub IDs
 -------
 
-.. figure:: /images/interface_controls_templates_data-block_subids.png
-
 Related types of IDs may become available to select a property or child object,
 depending on the object type.
+
+.. figure:: /images/interface_controls_templates_data-block_subids.png
+
+   Sub ID Example.
 
 Vertex Group
    If the selected object in the *Name* field is a mesh or a lattice,
@@ -119,5 +122,5 @@ Bone
       while a value of one will point at the Tail/Tip of a Bone.
 
       Use B-Bone Shape
-         When the bone is a :doc:`/rigging/armatures/bones/properties/bendy_bones`,
+         When the bone is a :doc:`/animation/armatures/bones/properties/bendy_bones`,
          click on this button to make the point follow the curvature of the B-Spline between head and tail.

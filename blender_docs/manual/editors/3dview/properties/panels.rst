@@ -11,10 +11,10 @@ This panel lets you configure some visualization parameters of the viewport.
 Only Render
    Displays only items that will be rendered.
    This option hides visualizations, overlays, the 3D cursor, and the grid floor.
-   The :doc:`3D manipulator widget </editors/3dview/object/editing/transform/control/manipulators>`
+   The :doc:`3D manipulator widget </scene_layout/object/editing/transform/control/manipulators>`
    has to be toggled separately.
 
-   This can be useful for a preview and for :doc:`OpenGL </render/opengl>` viewport rendering.
+   This can be useful for a preview and for :doc:`viewport rendering </editors/3dview/viewport_render>`.
 
    .. note::
 
@@ -67,7 +67,7 @@ You can show it with the :menuselection:`View --> View Properties...` menu entry
 
 Lens
    Control the focal length of the 3D View camera in millimeters,
-   unlike a :doc:`rendering camera </render/cycles/camera>`.
+   unlike a :doc:`rendering camera </render/camera>`.
 Lock to Object
    Lock to Object lets you define an object in the *Object* Data ID as the center of the view.
    In that case, the view can be rotated around or zoomed towards that central object,
@@ -85,11 +85,21 @@ Lock Camera to View
 
 .. _3dview-view-clip:
 
-Clip Start and Clip End
-   Adjust the minimum and maximum distances range to be visible for the viewport camera.
+Clip Start/End
+   Adjust the minimum and maximum distances range to limit the visible range to the area
+   between two planes that are orthogonal to the viewing direction of the viewport camera.
    Objects outside the range will not be shown.
 
    .. note::
+
+      The definition of the two planes depends on the kind of view:
+
+      - Perspective view: The planes with distance of start and end from viewport camera.
+
+      - Orthographic view: The planes with distance of negative end and positive end from the focus point,
+        in this case the *Start* is ignored.
+
+   .. warning::
 
       A large clipping range will allow you to see both near and far objects,
       but reduces the depth precision resulting in artifacts.

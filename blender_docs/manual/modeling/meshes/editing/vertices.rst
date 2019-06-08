@@ -84,18 +84,18 @@ If the exact spot where a vertex is moved contains more than one vertex,
 then the merge will be performed between the moved vertex and one of those.
 
 
-Remove Doubles
---------------
+Merge by Distance
+-----------------
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Remove: Remove Doubles`
-   :Menu:      :menuselection:`Mesh --> Vertices --> Remove Doubles`,
-               :menuselection:`Specials --> Remove Doubles`
+   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Remove: Merge by Distance`
+   :Menu:      :menuselection:`Mesh --> Vertices --> Merge by Distance`,
+               :menuselection:`Specials --> Merge by Distance`
 
-Remove Doubles is a useful tool to simplify a mesh by merging the selected vertices that
+Merge by Distance is a useful tool to simplify a mesh by merging the selected vertices that
 are closer than a specified distance to each other.
 An alternative way to simplify a mesh is to use the :doc:`Decimate Modifier </modeling/modifiers/generate/decimate>`.
 
@@ -360,7 +360,7 @@ Make Vertex Parent
    :Hotkey:    :kbd:`Ctrl-P`
 
 This will parent the other selected object(s) to the vertices/edges/faces selected,
-as described :doc:`here </editors/3dview/object/properties/relations/parents>`.
+as described :doc:`here </scene_layout/object/properties/relations/parents>`.
 
 
 Add Hook

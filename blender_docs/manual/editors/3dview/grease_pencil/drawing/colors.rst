@@ -7,7 +7,7 @@ Colors
    :class: refbox
 
    :Mode:      Stroke Edit Mode
-   :Panel:     :menuselection:`Properties region --> Grease Pencil Colors`
+   :Panel:     :menuselection:`Sidebar region --> Grease Pencil Colors`
 
 Palette
    A :ref:`ui-data-block` to select a palette, which is a set of colors.

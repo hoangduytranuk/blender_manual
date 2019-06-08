@@ -28,7 +28,7 @@ Backdrop
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties region --> Backdrop`
+   :Panel:     :menuselection:`Sidebar region --> Backdrop`
 
 .. figure:: /images/compositing_properties_backdrop.png
    :align: right
@@ -43,7 +43,7 @@ Offset
    Change the screen space position of the backdrop,
    or click the *Move* button, or shortcut :kbd:`Alt-MMB` to manually move it.
 Fit
-   Automatically scales the backdrop to fit the size of the Node editor.
+   Automatically scales the backdrop to fit the size of the editor.
 
 
 Performance
@@ -52,7 +52,7 @@ Performance
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties region --> Performance`
+   :Panel:     :menuselection:`Sidebar region --> Performance`
 
 .. figure:: /images/compositing_properties_performance.png
    :align: right

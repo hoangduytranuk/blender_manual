@@ -10,6 +10,6 @@ The installation is different for each operating system, instructions have been 
 .. toctree::
    :maxdepth: 1
 
-   MS-Windows <windows.rst>
-   macOS <macos.rst>
    Linux <linux.rst>
+   macOS <macos.rst>
+   MS-Windows <windows.rst>

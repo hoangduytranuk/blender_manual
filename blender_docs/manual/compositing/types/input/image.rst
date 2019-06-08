@@ -9,7 +9,7 @@ Image Node
 
    Image Node.
 
-The *Image* node injects any image :doc:`format that is supported by Blender </render/output/output>`.
+The *Image* node injects any image :doc:`format that is supported by Blender </render/output/settings>`.
 
 
 Inputs
@@ -23,11 +23,11 @@ Properties
 
 Image
    Selection of different types of media. For controls see :ref:`ui-data-block`.
-   For the options see :doc:`/editors/uv_image/image/image_settings`.
+   For the options see :doc:`/editors/image/image_settings`.
 
 .. note::
 
-   More options could be set in the properties region.
+   More options could be set in the Sidebar region.
 
 
 Outputs

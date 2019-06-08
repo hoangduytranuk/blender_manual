@@ -11,6 +11,5 @@ but here we will focus on file/asset management and data I/O.
 .. toctree::
    :maxdepth: 2
 
-   bam.rst
    alembic.rst
    collada.rst

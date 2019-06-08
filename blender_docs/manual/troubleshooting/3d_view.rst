@@ -74,11 +74,11 @@ This becomes especially problematic on dense geometry.
 
 Possible Solutions:
 
-OpenGL Occlusion Queries (User Preferences)
-   See :menuselection:`User Preferences --> System --> Selection`.
+OpenGL Depth Picking (Preferences)
+   See :menuselection:`Preferences --> Viewport --> Selection`.
 
-   This option defaults *Automatic*, try setting this to *OpenGL Occlusion Queries*,
-   since there is a significant performance difference under some configurations.
+   This option is enabled by default, disabling it may give better performance at
+   the cost of selection accuracy.
 Upgrade Graphics Driver
    In some cases, slow selection is resolved by using updated drivers.
    *It is generally good to use recent drivers when using 3D software.*

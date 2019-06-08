@@ -20,7 +20,7 @@ With walk/fly modes you move, pan, tilt, and dolly the camera around without any
 
    View Navigation.
 
-In the :doc:`User Preferences editor </preferences/index>`
+In the :doc:`Preferences editor </editors/preferences/index>`
 select the navigation mode you want to use as default when invoking the View Navigation operator.
 Alternatively you can call the individual modes from the View Navigation menu.
 
@@ -53,7 +53,7 @@ You can toggle between gravity and free mode during the navigation :kbd:`Tab`.
 
 To move to places more quickly you can teleport :kbd:`Spacebar` around your scene.
 If there is an object in front of the walk cross/aim you will move in that direction until you reach the point
-(offset by the *camera height* value set in the :doc:`User Preferences </preferences/index>`).
+(offset by the *camera height* value set in the :doc:`Preferences </editors/preferences/index>`).
 
 
 Shortcuts
@@ -75,7 +75,7 @@ When you are happy with the new view, click :kbd:`LMB` to confirm.
 In case you want to go back from where you started, press :kbd:`Esc` or :kbd:`RMB`, as usual.
 
 If the defaults values (speed, mouse sensitivity, ...) need adjustments for your project,
-in the :doc:`User Preferences </preferences/index>` you can select a few options for the navigation system:
+in the :doc:`Preferences </editors/preferences/index>` you can select a few options for the navigation system:
 
 
 Fly Mode

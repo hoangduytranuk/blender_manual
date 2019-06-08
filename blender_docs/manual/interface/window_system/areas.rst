@@ -5,19 +5,27 @@
 Areas
 *****
 
+.. figure:: /images/interface_window-system_areas_borders.png
+   :align: right
+   :width: 250px
+   :figwidth: 250px
+
+   Area boundaries are indicated by rounded corners (yellow highlights).
+
 The application window is divided up into a number of rectangular areas.
 Areas reserve screen space for :doc:`/editors/index`, such as 3D Viewport, or an Outliner.
 Area boundary is indicated by rounded (beveled) corners.
 
-.. figure:: /images/interface_window-system_areas_borders.png
+.. container:: lead
 
-   Area boundaries are indicated by rounded corners (yellow highlights).
+   .. clear
 
 
 Resizing
 ========
 
 .. figure:: /images/interface_window-system_areas_resize.png
+   :align: right
 
 You can resize areas by dragging their borders with :kbd:`LMB`.
 Move your mouse cursor over the border between two areas,
@@ -28,6 +36,7 @@ Splitting and Joining
 =====================
 
 .. figure:: /images/interface_window-system_areas_split.png
+   :align: right
 
 Splitting an area will create a new area, and joining of two areas
 will close one area. Placing mouse cursor in area corner will change

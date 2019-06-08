@@ -147,7 +147,7 @@ Edge Selection Mode:
       Selects all edges that have the same *Bevel Weight* as those already selected.
    Seam
       Selects all edges that have the same *Seam* state as those already selected.
-      *Seam* is a true/false setting used in :ref:`UV texturing <editors-uv-image-index>`.
+      *Seam* is a true/false setting used in :ref:`UV texturing <editors-uv-index>`.
    Sharpness
       Selects all edges that have the same *Sharp* state as those already selected.
       *Sharp* is a true/false setting (a flag) used by
@@ -158,7 +158,7 @@ Face Selection Mode:
       Selects all faces that use the same material as those already selected.
    Image
       Selects all faces that use the same UV texture as those already selected
-      (see :ref:`UV texturing <editors-uv-image-index>` pages).
+      (see :ref:`UV texturing <editors-uv-index>` pages).
    Area
       Selects all faces that have a similar area as those already selected.
    Polygon Sides
@@ -182,7 +182,7 @@ More :kbd:`Ctrl-NumpadPlus`
 Less :kbd:`Ctrl-NumpadMinus`
    Contracts the selection from the adjacent elements of the selection type.
 
-.. todo <2.8 how to handle face step
+.. TODO2.8 how to handle face step.
 
 Next Active :kbd:`Shift-Ctrl-NumpadPlus`
    This uses selection history to select the next vertex/edge/face based on surrounding topology.

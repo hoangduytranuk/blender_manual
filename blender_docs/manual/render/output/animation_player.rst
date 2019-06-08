@@ -5,14 +5,16 @@
 Animation Player
 ****************
 
-The :menuselection:`Info Editor --> Render --> Play Rendered Animation`
+The :menuselection:`Info Editor --> Render --> View Animation`
 menu will play back the rendered animation in a new window.
 
 You can also drop images or movie files in a running animation player.
 It will then restart the player with the new data.
 
-An external player can also be used instead of the one included in Blender.
-To do this, select it in the :doc:`User Preferences </preferences/file>`.
+.. tip::
+
+   An external player can also be used instead of the one included in Blender.
+   To do this, select it in the :doc:`Preferences </editors/preferences/file_paths>`.
 
 
 Shortcuts

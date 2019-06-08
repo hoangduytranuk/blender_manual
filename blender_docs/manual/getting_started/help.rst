@@ -28,7 +28,7 @@ Shortcut
 Value
    The value of the property.
 Library
-   Source file of the active object. See also :doc:`/data_system/linked_libraries`.
+   Source file of the active object. See also :doc:`/files/linked_libraries`.
 Disabled (red)
    The reason why the value is not editable.
 Python
@@ -140,7 +140,7 @@ Python
 Directories
    Paths used for scripts, data files, presets and temporary files.
 
-   Those directories are configured using the :doc:`User Preferences </preferences/file>` Editor.
+   Those directories are configured using the :doc:`Preferences </editors/preferences/file_paths>` Editor.
 OpenGL
    This section shows the OpenGL version, the name of the manufacturer,
    and lists the capabilities of your hardware and driver.

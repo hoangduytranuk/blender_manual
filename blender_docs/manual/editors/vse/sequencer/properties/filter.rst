@@ -7,7 +7,7 @@ Filter Panel
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties region --> Strip --> Filter`
+   :Panel:     :menuselection:`Sidebar region --> Strip --> Filter`
 
 .. figure:: /images/editors_vse_sequencer_properties_filter_panel.png
    :align: right

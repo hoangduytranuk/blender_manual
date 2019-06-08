@@ -1,3 +1,4 @@
+.. _bpy.types.SpotLight:
 
 ****
 Spot
@@ -6,14 +7,11 @@ Spot
 A *Spot* lamp emits a cone-shaped beam of light from the tip of the cone,
 in a given direction.
 
-The *Spot* light is the most complex of the light objects and indeed,
-for a long time,
-among the most used thanks to the fact that it was the only one able to cast shadows.
-Nowadays, with a ray tracer integrated into Blender's internal render engine,
-all lamps can cast shadows (except *Hemi*). Even so,
-*Spot* lamps' shadow buffers are much faster to render than ray-traced shadows,
-especially when blurred/softened,
-and spot lamps also provide other functionality such as "volumetric" halos.
+.. seealso::
+
+   - :doc:`Eevee Lighting </render/engines/eevee/lighting>`
+   - :doc:`Cycles Lighting </render/engines/cycles/lighting>`
+   - :doc:`Workbench Lighting </render/engines/workbench/lighting>`
 
 
 Lamp Options
@@ -24,14 +22,9 @@ Distance, Energy and Color
    :doc:`Light Properties </render/lighting/lamp_panel>`.
 
 
-Shadows
-=======
-
-.. todo 2.8 link to eevee/cycles settings 
-
 
 Spot Shape
-==========
+----------
 
 .. figure:: /images/render_blender-render_lighting_lamps_spot_introduction_terms.png
    :width: 610px

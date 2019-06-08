@@ -9,25 +9,24 @@
 .. _bpy.types.SpaceTimeline:
 .. _bpy.ops.time:
 
-***************
-Timeline Editor
-***************
+********
+Timeline
+********
 
-The *Timeline* editor, identified by a clock icon, is not much of an editor,
-but more used to view information and control animation playback.
+The *Timeline* editor, identified by a clock icon, is used for manipulating keyframes,
+scrubbing the playhead and it includes transport controls.
 
 .. figure:: /images/editors_timeline_interface.png
 
    The Timeline.
 
-The *Timeline* is one of an animator's most useful tools as it can give a broad overview of a scene's animation.
-The Timeline can communicate the current time frame, either in frames or in seconds,
-where the keyframes are of the active object, the start and end frames of your animation, markers, etc.
+The *Timeline* gives the user a broad overview of a scene's animation,
+by showing the current frame, the keyframes of the active object,
+the start and end frames of your animation and any markers set by the user.
 
-The *Timeline* has *Player Controls*, to play, pause the animation,
-and to skip through parts of the scene.
+The *Timeline* includes *Transport Controls*, to play, pause, and skip through an animation sequence.
 
-It also has some tools for *Keyframes*, *Keying Sets*, and *Markers*.
+It also has tools for manipulating *Keyframes*, *Keying Sets*, and *Markers*.
 
 
 Main View
@@ -49,43 +48,43 @@ then dragging the area left or right.
 You can zoom the *Timeline* by using :kbd:`Ctrl-MMB`, the mouse :kbd:`Wheel`,
 or pressing :kbd:`NumpadMinus` and :kbd:`NumpadPlus`.
 
+You can also use the scrollbars, located at the bottom or the right of the editor, to pan and zoom the view.
 
-Time Cursor
------------
 
-The *Time Cursor* is the green line, it is used to set and display the current time frame.
+Playhead
+--------
+
+The *Playhead* is the blue vertical line with the current frame number at the top.
 
 .. figure:: /images/editors_timeline_cursor.png
 
-   Time Cursor.
+   Playhead.
 
-The *Time Cursor* can be set or moved to a new position by pressing or
-holding :kbd:`LMB` in the Timeline editor.
+The *Playhead* can be set or moved to a new position by pressing or
+holding :kbd:`LMB` in scrubbing area at the top of the timeline.
 
-The current frame or second can be displayed on the *Time Cursor*,
-check the View menu for settings.
-
-The *Time Cursor* can be moved in steps by pressing :kbd:`Left` or :kbd:`Right`,
-or in steps of 10 frames by pressing :kbd:`Shift-Up` or :kbd:`Shift-Down`.
+The *Playhead* can be moved in increments by pressing :kbd:`Left` or :kbd:`Right`,
+or you can jump to the beginning or end frame by pressing :kbd:`Shift-Left` or :kbd:`Shift-Right`.
 
 
-Playback/Rendering Range
-------------------------
+Frame Range
+-----------
 
-By default, the *Playback/Rendering Range* (Frame Start 1 to Frame End 200)
-is a lighter shade of gray. The start and end frame can be set to the *Time Cursor*
-by pressing :kbd:`S` or :kbd:`E`.
-The *Playback Range* can also be set by pressing :kbd:`P` then drawing a box.
+By default, the *Frame Range* is set to start at frame 1 and end at frame 250.
+You can change the frame range in the top right of the Timeline header, or in the Output Properties.
 
 
 Keyframes
 ---------
 
-For the active and selected objects, keyframes are displayed as a yellow line.
-For *Armatures*, the object keyframes and the pose bones keyframes are drawn.
+For the active and selected objects, keyframes are displayed as yellow diamonds.
+
+You can click to select one at a time, or select several by holding :kbd:`Shift`,
+or by dragging a box around the keyframes.
+You can then move and scale them using :kbd:`G` and :kbd:`S`
 
 *Only Selected Channels* can be enabled. :menuselection:`Timeline --> View --> Only Selected Channels`.
-For *Armatures*, this will draw the object keyframes,
+For *Armatures*, this will display the object keyframes,
 and the keyframes for the active and selected pose bones.
 
 
@@ -97,15 +96,15 @@ See the :doc:`Markers page </animation/markers>` for more information.
 Header
 ======
 
-Pop-Overs
----------
+Popovers
+--------
 
 .. _timeline-playback:
 
-Playback Pop-Over
-^^^^^^^^^^^^^^^^^
+Playback Popover
+^^^^^^^^^^^^^^^^
 
-The *Playback* pop-over contains options controlling animation playback.
+The *Playback* popover contains options controlling the animation playback.
 
 Synchronize Playback
    .. figure:: /images/editors_timeline_red-fps.png
@@ -116,7 +115,7 @@ Synchronize Playback
 
       60:54.75
 
-   When you play an animation, the FPS is displayed at the top left of the 3D View.
+   When you play an animation, the frame rate is displayed at the top left of the 3D View.
    If the scene is detailed and playback is slower than the set
    *Frame Rate* (see :ref:`render-tab-dimensions`),
    these options are used to synchronize the playback.
@@ -129,7 +128,7 @@ Synchronize Playback
       (Audio/Video Synchronization). Sync to audio clock, dropping frames if playback is slow.
 Audio Scrubbing
    If your animation has sound, this option plays bits of the sound wave
-   while you move the time cursor with :kbd:`LMB` or keyboard arrows (like a moving playhead).
+   while you move the playhead with :kbd:`LMB` or keyboard arrows (like a moving playhead).
 Mute Audio
    Mute the sound from Sequence Editors.
 Subframes
@@ -149,21 +148,21 @@ Animation Editors
 Property Editors
    When the animation is playing, this will update the property values in the UI.
 Image Editors
-   The UV/Image editor in Mask mode.
+   The Image editor in Mask mode.
 Sequencer Editors
-   While playing, updates the Video Sequence Editor.
+   While playing, updates the Video Sequencer.
 Node Editors
-   While playing, updates the Node properties for the Node Editor.
+   While playing, updates the Node properties for the node editors.
 Clip Editors
    While playing, updates the Movie Clip Editor.
 
 
 .. _timeline-keying:
 
-Keying Pop-Over
-^^^^^^^^^^^^^^^
+Keying Popover
+^^^^^^^^^^^^^^
 
-The *Keying* pop-over contains options that affect keyframe insertion.
+The *Keying* popover contains options that affect keyframe insertion.
 
 Active Keying Set
    .. figure:: /images/editors_timeline_keying-sets.png
@@ -206,8 +205,10 @@ Cycle-Aware Keying
    When inserting keyframes into :ref:`trivially cyclic curves <bpy.types.FModifierCycles>`, special handling
    is applied to preserve the cycle integrity (most useful while tweaking an established cycle):
 
-   - If a key insertion is attempted outside of the main time range of the cycle, it is remapped back inside the range.
-   - When overwriting one of the end keys, the other one is updated appropriately.
+   - If a key insertion is attempted outside of the main time range of the cycle,
+     it is remapped back inside the range.
+   - When overwriting one of the end keys,
+     the other one is updated appropriately.
 
 
 Menus
@@ -221,14 +222,14 @@ View Menu
 The *View Menu* controls what you see, and what it looks like.
 
 Show Seconds :kbd:`Ctrl-T`
-   Whether to show the time in the X axis and the *Time Cursor* as
+   Whether to show the time in the X axis and the *Playhead* as
    frames (based on the FPS) or as seconds.
 Lock Time to Other Windows
    It synchronizes the horizontal panning and scale of the current editor
    with the other editors (Graph, Dope Sheet, NLA) when this option is set.
    That way you always have these editors showing an identical part of the time you work on.
 Show Frame Number Indicator
-   This will draw the current frame or seconds on the *Time Cursor*.
+   This will draw the current frame or seconds on the *Playhead*.
 Only Keyframes from Selected Channels
    For *Armatures*, this will draw the object keyframes,
    and the keyframes for the active and selected pose bones.
@@ -245,7 +246,7 @@ Cache
 View All :kbd:`Home`
    Maximize the area based on the Animation Range.
 View Frame :kbd:`Numpad0`
-   Centers the Timeline to the Time cursor.
+   Centers the Timeline to the Playhead.
 
 .. removed in 2.8
 
@@ -279,16 +280,16 @@ The Timeline header controls.
 
    Timeline header controls.
 
-   \1. Range Control, 2. Frame Control, 3. Player Control,
+   \1. Range Control, 2. Frame Control, 3. Transport Control,
    \4. Synchronize Playback, 5. Keyframe Control.
 
 
 Range Control
 ^^^^^^^^^^^^^
 
-Use Preview Range (clock icon)
-   This is an alternative range used to preview animations.
-   This works for the UI playback, this will not work for rendering an animation.
+Preview Range (clock icon)
+   This is a temporary frame range used for previewing a smaller part of the full range.
+   The preview range only affects the viewport, not the rendered output.
    See :ref:`graph-preview-range`.
 
 
@@ -301,18 +302,18 @@ End Frame
    The end frame of the animation/playback range.
 Current Frame :kbd:`Alt-Wheel`
    The current frame of the animation/playback range.
-   Also the position of the *Time Cursor*.
+   Also the position of the *Playhead*.
 
 
-Player Control
-^^^^^^^^^^^^^^
+Transport Controls
+^^^^^^^^^^^^^^^^^^
 
-These buttons are used to set, play, rewind, the *Time Cursor*.
+These buttons are used to set, play, rewind, the *Playhead*.
 
 .. figure:: /images/editors_timeline_player-controls.png
    :align: right
 
-   Player controls.
+   Transport controls.
 
 Jump to start (|first|) :kbd:`Shift-Ctrl-Down`, :kbd:`Shift-Left`
    This sets the cursor to the start of frame range.
@@ -344,10 +345,10 @@ Auto Keyframe
 
       Timeline Auto Keyframe.
 
-   The record button (red dot) enables something called *Auto Keyframe*:
+   The record button enables *Auto Keyframe*:
    It will add and/or replace existing keyframes for the active object when you transform it in the 3D View.
 
-   For example, when enabled, first set the *Time Cursor* to the desired frame,
+   For example, when enabled, first set the *Playhead* to the desired frame,
    then move an object in the 3D View, or set a new value for a property in the UI.
 
    When you set a new value for the properties,
@@ -359,4 +360,3 @@ Auto Keyframe
 
       Note that *Auto Keyframe* only works for transform properties (objects and bones),
       in the 3D Views (i.e. you can't use it e.g. to animate the colors of a material in the Properties editor...).
-

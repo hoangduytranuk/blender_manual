@@ -15,7 +15,7 @@ Selecting & Editing
 ===================
 
 An Empty can only be edited in *Object Mode*, which includes its transformation and parenting properties.
-For other tools see the :doc:`Object section </editors/3dview/object/index>`.
+For other tools see the :doc:`Object section </scene_layout/object/index>`.
 
 Apply Scale :kbd:`Ctrl-A`
    While Empties don't exactly have any object data attached to them which can be used for supporting

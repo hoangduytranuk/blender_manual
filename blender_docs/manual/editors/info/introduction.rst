@@ -28,19 +28,23 @@ File
 
 See :doc:`/editors/info/file` menu.
 
+Edit
+^^^^
+
+Preferences
+   Opens the :doc:`Blender Preferences </editors/preferences/introduction>` in a new window.
+
 
 Render
 ^^^^^^
 
 Render
    See :doc:`/render/output/render_panel`.
-OpenGL Render
-   See :doc:`/render/opengl`.
 Show/Hide Render View :kbd:`F11`
    Shows (or hides) the editor where the last render was performed.
 Play Rendered Animation :kbd:`Ctrl-F11`
    Plays the last rendered animation using the internal :doc:`/render/output/animation_player` or
-   an external video player, which has to be defined in the File tab of the User Preferences.
+   an external video player, which has to be defined in the File tab of the Preferences.
 
 
 Window
@@ -75,7 +79,7 @@ Controls
 Back to Previous
    A button shown when an area is maximized to return to tiled areas.
 Scene
-   :ref:`Data-block menu <ui-data-block>` to select different :doc:`Scenes </data_system/scenes/introduction>`.
+   :ref:`Data-block menu <ui-data-block>` to select different :doc:`Scenes </scene_layout/scene/introduction>`.
    Having multiple Scenes allows you to work with separate virtual environments,
    with completely separate data, or with object and/or mesh data linked between them.
 Engine
@@ -83,8 +87,6 @@ Engine
 Render/Baking progress
    A progress bar and a cancel button are shown while rendering or baking.
    Hovering over them shows a time estimate.
-Capture Stop
-   A button shown while :ref:`screen casting <info-screencast>` to stop the recording.
 Report Message
    Label for an operator to display results or warnings. It disappears after a short time.
    By clicking with :kbd:`LMB` on the icon on the left side, the full report is copied into a new text data-block,

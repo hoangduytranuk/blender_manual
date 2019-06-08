@@ -1,0 +1,320 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.79 Manual
+# package.
+# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.79 Manual 2.79\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-01 19:20+0000\n"
+"PO-Revision-Date: 2019-04-24 02:16+0100\n"
+"Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
+"Language: vi\n"
+"Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../manual/editors/python_console.rst:7
+msgid "Python Console"
+msgstr "Bàn Giao Tiếp Python -- Python Console"
+
+#: ../../manual/editors/python_console.rst:9
+msgid "The Python Console is a quick way to execute commands, with access to the entire Python API, command history and auto-complete."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:12
+msgid "Its a good way to explore possibilities, which can then be pasted into larger scripts."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:16
+msgid "Introduction"
+msgstr "Giới Thiệu -- Introduction"
+
+#: ../../manual/editors/python_console.rst:19
+msgid "Accessing Built-in Python Console"
+msgstr "Tiếp cận Bàn Giao Tiếp Python Gắn Sẵn -- Accessing Built-in Python Console"
+
+#: ../../manual/editors/python_console.rst:21
+msgid "By pressing :kbd:`Shift-F4` in any Blender Editor type (3D View, Timeline, etc.) you can change it to a Console Editor."
+msgstr "By pressing :kbd:`Shift-F4` in any Blender Editor type (3D View, Timeline, etc.) you can change it to a Console Editor."
+
+#: ../../manual/editors/python_console.rst:26
+msgid "The command prompt is typical for Python 3.x, the interpreter is loaded and is ready to accept commands at the prompt ``>>>``."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:31
+msgid "First Look at the Console Environment"
+msgstr "Làm Quen với Môi Trường Bàn Giao Tiếp -- First Look at the Console Environment"
+
+#: ../../manual/editors/python_console.rst:33
+msgid "To check what is loaded into the interpreter environment, type ``dir()`` at the prompt and execute it."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:40
+msgid "Auto Completion"
+msgstr "Tự Động Hoàn Chỉnh -- Auto Completion"
+
+#: ../../manual/editors/python_console.rst:42
+msgid "Now, type ``bpy.`` and then press :kbd:`Ctrl-Spacebar` and you will see the Console auto-complete feature in action."
+msgstr "Now, type ``bpy.`` and then press :kbd:`Ctrl-Spacebar` and you will see the Console auto-complete feature in action."
+
+#: ../../manual/editors/python_console.rst:47
+msgid "You will notice that a list of sub-modules inside of ``bpy`` appear. These modules encapsulate all that we can do with Blender Python API and are very powerful tools."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:50
+msgid "Lets list all the contents of ``bpy.app`` module."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:52
+msgid "Notice the green output above the prompt where you enabled auto-completion. What you see is the result of auto completion listing. In the above listing all are module attributed names, but if you see any name end with ``(``, then that is a function."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:57
+msgid "We will make use of this a lot to help our learning the API faster. Now that you got a hang of this, lets proceed to investigate some of modules in ``bpy``."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:62
+msgid "Before Tinkering with the Modules"
+msgstr "Trước khi thí nghiệm với các Mô-Đun -- Before Tinkering with the Modules"
+
+#: ../../manual/editors/python_console.rst:64
+msgid "If you look at the 3D View in the default Blender scene, you will notice three objects: Cube, Lamp and Camera."
+msgstr "If you look at the 3D View in the default Blender scene, you will notice three objects: Cube, Lamp and Camera."
+
+#: ../../manual/editors/python_console.rst:67
+msgid "All objects exist in a context and there can be various modes under which they are operated upon."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:68
+msgid "At any instance, only one object is active and there can be more than one selected object."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:69
+msgid "All objects are data in the blend-file."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:70
+msgid "There are operators/functions that create and modify these objects."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:72
+msgid "For all the scenarios listed above (not all were listed, mind you...) the ``bpy`` module provides functionality to access and modify data."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:77
+msgid "Examples"
+msgstr "Ví Dụ -- Examples"
+
+#: ../../manual/editors/python_console.rst:80
+msgid "bpy.context"
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:84
+msgid "For the commands below to show the proper output, make sure you have selected object(s) in the 3D View."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:90
+#: ../../manual/editors/python_console.rst:151
+#: ../../manual/editors/python_console.rst:189
+msgid "Try It Out!"
+msgstr "Thử Nghiệm! -- Try It Out!"
+
+#: ../../manual/editors/python_console.rst:93
+msgid "bpy.context.mode"
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:93
+msgid "Will print the current 3D View mode (Object, Edit, Sculpt, etc.)."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:96
+msgid "bpy.context.object or bpy.context.active_object"
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:96
+msgid "Will give access to the active object in the 3D View."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:98
+msgid "Change X location to a value of 1::"
+msgstr "Change X location to a value of 1::"
+
+#: ../../manual/editors/python_console.rst:102
+msgid "Move object from previous X location by 0.5 unit::"
+msgstr "Move object from previous X location by 0.5 unit::"
+
+#: ../../manual/editors/python_console.rst:106
+msgid "Change X, Y, Z location::"
+msgstr "Change X, Y, Z location::"
+
+#: ../../manual/editors/python_console.rst:110
+msgid "Change only the X, Y components::"
+msgstr "Change only the X, Y components::"
+
+#: ../../manual/editors/python_console.rst:114
+msgid "Data type of object's location::"
+msgstr "Data type of object's location::"
+
+#: ../../manual/editors/python_console.rst:118
+msgid "Now that is a lot of data that you have access to::"
+msgstr "Now that is a lot of data that you have access to::"
+
+#: ../../manual/editors/python_console.rst:124
+msgid "``bpy.context.selected_objects``"
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:124
+msgid "Will give access to a list of all selected objects."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:126
+msgid "Type this and then press :kbd:`Ctrl-Spacebar`::"
+msgstr "Type this and then press :kbd:`Ctrl-Spacebar`::"
+
+#: ../../manual/editors/python_console.rst:130
+msgid "To print out the name of first object in the list::"
+msgstr "To print out the name of first object in the list::"
+
+#: ../../manual/editors/python_console.rst:134
+msgid "The complex one... But this prints a list of objects not including the active object::"
+msgstr "The complex one... But this prints a list of objects not including the active object::"
+
+#: ../../manual/editors/python_console.rst:140
+msgid "bpy.data"
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:142
+msgid "``bpy.data`` has functions and attributes that give you access to all the data in the blend-file."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:144
+msgid "You can access following data in the current blend-file: objects, meshes, materials, textures, scenes, screens, sounds, scripts, etc."
+msgstr "You can access following data in the current blend-file: objects, meshes, materials, textures, scenes, screens, sounds, scripts, etc."
+
+#: ../../manual/editors/python_console.rst:147
+msgid "That is a lot of data."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:157
+msgid "Exercise"
+msgstr "Tập Luyện -- Exercise"
+
+#: ../../manual/editors/python_console.rst:159
+msgid "After :kbd:`Return` twice it prints the names of all objects belonging to the Blender scene with name \"Scene\"::"
+msgstr "After :kbd:`Return` twice it prints the names of all objects belonging to the Blender scene with name \"Scene\"::"
+
+#: ../../manual/editors/python_console.rst:164
+msgid "Unlink the active object from the Blender scene named 'Scene'::"
+msgstr "Unlink the active object from the Blender scene named 'Scene'::"
+
+#: ../../manual/editors/python_console.rst:176
+msgid "bpy.ops"
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:178
+msgid "The tool system is built around the concept of operators. Operators are typically executed from buttons or menus but can be called directly from Python too."
+msgstr ""
+
+#: ../../manual/editors/python_console.rst:181
+msgid "See the `bpy.ops <https://www.blender.org/api/blender_python_api_current/bpy.ops.html>`__ API documentation for a list of all operators."
+msgstr "See the `bpy.ops <https://www.blender.org/api/blender_python_api_current/bpy.ops.html>`__ API documentation for a list of all operators."
+
+#: ../../manual/editors/python_console.rst:184
+msgid "Lets create a set of five Cubes in the 3D View. First, delete the existing Cube object by selecting it and pressing :kbd:`X`."
+msgstr "Lets create a set of five Cubes in the 3D View. First, delete the existing Cube object by selecting it and pressing :kbd:`X`."
+
+#: ../../manual/editors/python_console.rst:191
+msgid "The following commands are used to specify that the objects are created in layer 1. So first we define an array variable for later reference::"
+msgstr "The following commands are used to specify that the objects are created in layer 1. So first we define an array variable for later reference::"
+
+#: ../../manual/editors/python_console.rst:197
+msgid "We create a reference to the operator that is used for creating a cube mesh primitive::"
+msgstr "We create a reference to the operator that is used for creating a cube mesh primitive::"
+
+#: ../../manual/editors/python_console.rst:201
+msgid "Now in a *for loop*, we create the five objects like this (in the screenshot above, another method is used): Press :kbd:`Return` twice after entering the command at the shell prompt::"
+msgstr "Now in a *for loop*, we create the five objects like this (in the screenshot above, another method is used): Press :kbd:`Return` twice after entering the command at the shell prompt::"
+
+#: ../../manual/editors/python_console.rst:212
+msgid "Usage"
+msgstr "Sử Dụng -- Usage"
+
+#: ../../manual/editors/python_console.rst:215
+msgid "Aliases"
+msgstr "Bí Danh -- Aliases"
+
+#: ../../manual/editors/python_console.rst:217
+msgid "Some variables and modules are available for convenience:"
+msgstr "Some variables and modules are available for convenience:"
+
+#: ../../manual/editors/python_console.rst:219
+msgid "``C``: Quick access to ``bpy.context``."
+msgstr "``C``: Quick access to ``bpy.context``."
+
+#: ../../manual/editors/python_console.rst:220
+msgid "``D``: Quick access to ``bpy.data``."
+msgstr "``D``: Quick access to ``bpy.data``."
+
+#: ../../manual/editors/python_console.rst:221
+msgid "``bpy``: Top level Blender Python API module."
+msgstr "``bpy``: Top level Blender Python API module."
+
+#: ../../manual/editors/python_console.rst:225
+msgid "Key Bindings"
+msgstr "Những Tổ Hợp Phím -- Key Bindings"
+
+#: ../../manual/editors/python_console.rst:227
+msgid ":kbd:`Up` / :kbd:`Down` -- Cycle command history."
+msgstr ":kbd:`Up` / :kbd:`Down` -- Cycle command history."
+
+#: ../../manual/editors/python_console.rst:228
+msgid ":kbd:`Left` / :kbd:`Right` -- Cursor motion."
+msgstr ":kbd:`Left` / :kbd:`Right` -- Cursor motion."
+
+#: ../../manual/editors/python_console.rst:229
+msgid ":kbd:`Ctrl-Left` / :kbd:`Ctrl-Right` -- Cursor motion, by word."
+msgstr ":kbd:`Ctrl-Left` / :kbd:`Ctrl-Right` -- Cursor motion, by word."
+
+#: ../../manual/editors/python_console.rst:230
+msgid ":kbd:`Backspace` / :kbd:`Delete` -- Erase characters."
+msgstr ":kbd:`Backspace` / :kbd:`Delete` -- Erase characters."
+
+#: ../../manual/editors/python_console.rst:231
+msgid ":kbd:`Tab` -- Indent."
+msgstr ":kbd:`Tab` -- Indent."
+
+#: ../../manual/editors/python_console.rst:232
+msgid ":kbd:`Shift-Tab` -- Unindent."
+msgstr ":kbd:`Shift-Tab` -- Unindent."
+
+#: ../../manual/editors/python_console.rst:233
+msgid ":kbd:`Ctrl-Backspace` / :kbd:`Ctrl-Delete` -- Erase words."
+msgstr ":kbd:`Ctrl-Backspace` / :kbd:`Ctrl-Delete` -- Erase words."
+
+#: ../../manual/editors/python_console.rst:234
+msgid ":kbd:`Ctrl-Spacebar` -- Auto complete."
+msgstr ":kbd:`Ctrl-Spacebar` -- Auto complete."
+
+#: ../../manual/editors/python_console.rst:235
+msgid ":kbd:`Return` -- Execute command."
+msgstr ":kbd:`Return` -- Execute command."
+
+#: ../../manual/editors/python_console.rst:236
+msgid ":kbd:`Shift-Return` -- Add to command history without executing."
+msgstr ":kbd:`Shift-Return` -- Add to command history without executing."
+
+#: ../../manual/editors/python_console.rst:237
+msgid ":kbd:`Ctrl-C` -- Copy the selection."
+msgstr ":kbd:`Ctrl-C` -- Copy the selection."
+
+#: ../../manual/editors/python_console.rst:238
+msgid ":kbd:`Ctrl-V` -- Paste into the command line."
+msgstr ":kbd:`Ctrl-V` -- Paste into the command line."
+

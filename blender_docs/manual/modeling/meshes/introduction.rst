@@ -36,7 +36,7 @@ You can work with geometric objects in two modes.
 Object Mode
 -----------
 
-:doc:`Object Mode </editors/3dview/object/editing/transform/introduction>`
+:doc:`Object Mode </scene_layout/object/editing/transform/introduction>`
 Operations in *Object Mode* affect the whole object.
 *Object Mode* has the following header in the 3D View:
 
@@ -71,7 +71,6 @@ Tools and modes in the 3D View header are (left to right):
 - Limit Selection to Visible
 - Proportional editing
 - Snap
-- OpenGL render
 
 You can switch between the Object and Edit Modes with :kbd:`Tab`.
 You can change to any mode by selecting the desired *Mode* in the menu in the 3D View header.
@@ -124,19 +123,19 @@ Most of these tools are also available as shortcuts
 :kbd:`W`, the *Edge* menu :kbd:`Ctrl-E`, and *Face* menu :kbd:`Ctrl-F`.
 The properties of each tool are displayed in the operator panel at the bottom of the *Tool Shelf*.
 
-Even more mesh editing tools can be enabled in the :menuselection:`User Preferences --> Add-ons`.
+Even more mesh editing tools can be enabled in the :menuselection:`Preferences --> Add-ons`.
 
 
-Properties Region
-=================
+Sidebar Region
+==============
 
 .. figure:: /images/modeling_meshes_introduction_properties-region.png
 
-   The Properties region in edit mode.
+   The Sidebar region in edit mode.
 
-Open/close the *Properties region* using :kbd:`N`.
+Open/close the *Sidebar region* using :kbd:`N`.
 
-In the *Properties region*,
+In the *Sidebar region*,
 panels directly related to mesh editing are the *Transform* panel,
 where numeric values can be entered, and the *Mesh Display* panel,
 where for example normals and numeric values for distances, angles,

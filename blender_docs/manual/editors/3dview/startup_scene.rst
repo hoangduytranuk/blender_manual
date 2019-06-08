@@ -5,7 +5,7 @@ Startup Scene
 
 After closing the splash, the startup scene is displayed in the 3D View
 if no other blend-file was loaded. A customized startup scene
-can be saved as a part of the :doc:`startup file </data_system/files/startup_file>`.
+can be saved as a part of the :doc:`startup file </files/files/startup_file>`.
 
 .. figure:: /images/editors_3dview_startup-scene_labels.png
 
@@ -20,20 +20,20 @@ Cube
    Because the cube is selected it is drawn with an orange outline.
 
    Object Origin
-      The :doc:`Origin of the object </editors/3dview/object/origin>` is displayed as
+      The :doc:`Origin of the object </scene_layout/object/origin>` is displayed as
       an orange dot and it marks the cube's (relative) position.
    Transformation Widget
-      This :doc:`widget </editors/3dview/object/editing/transform/control/manipulators>`
+      This :doc:`widget </scene_layout/object/editing/transform/control/manipulators>`
       is composed out of a white circle and three colored (red, green, and blue) arrows.
       It is used to move entities (e.g. the cube) in the scene.
 Lamp
    The circle with a thin line to the bottom is a light source illuminating the cube.
    Lights in: :doc:`General Settings </render/lighting/index>`,
-   :doc:`Cycles </render/cycles/lamps>`.
+   :doc:`Cycles </render/engines/cycles/lighting>`.
 
 Camera
    The pyramid with a big triangle pointing upward is the camera used as point of view for rendering.
-   See also: cameras in :doc:`Cycles </render/cycles/camera>`.
+   See also: cameras in :doc:`Cycles </render/camera>`.
 3D Cursor
    The :doc:`3D cursor </editors/3dview/3d_cursor>`, a cross with a red-and-white circle,
    is used for placing objects in the scene.
@@ -51,7 +51,7 @@ Grid Floor
 Overlays
 ========
 
-The visibility and settings of the overlays can be set in the :doc:`User Preferences </preferences/interface>`.
+The visibility and settings of the overlays can be set in the :doc:`Preferences </editors/preferences/interface>`.
 
 View Name
    If the viewport camera is not aligned, the view is named "User" plus

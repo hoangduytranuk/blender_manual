@@ -53,7 +53,8 @@ Grab :kbd:`G`
    The effect is similar to moving a group of vertices in Edit Mode with proportional editing enabled,
    except that *Grab* can make use of other Sculpt Mode options (like textures and symmetry).
 Inflate/Deflate :kbd:`I`
-   Similar to *SculptDraw*, except that vertices in *Inflate* mode are displaced in the direction of their own normals.
+   Similar to *SculptDraw*,
+   except that vertices in *Inflate* mode are displaced in the direction of their own normals.
 Layer :kbd:`L`
    This brush is similar to *SculptDraw*, except that the height of the displacement layer is capped.
    This creates the appearance of a solid layer being drawn.

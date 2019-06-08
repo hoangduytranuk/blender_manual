@@ -1,9 +1,9 @@
 .. _bpy.types.SpaceNLA:
 .. _bpy.ops.nla:
 
-##############
-  NLA Editor
-##############
+#######################
+  Nonlinear Animation
+#######################
 
 .. toctree::
    :maxdepth: 2

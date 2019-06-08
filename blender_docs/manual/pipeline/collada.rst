@@ -1,5 +1,5 @@
-.. todo: fix release notes use of words "now", "new"
-.. todo: fix "bone end" naming convention
+.. TODO fix release notes use of words "now", "new"
+.. TODO fix "bone end" naming convention
 
 *******
 Collada

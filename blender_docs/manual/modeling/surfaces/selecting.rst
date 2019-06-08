@@ -21,7 +21,7 @@ Select Menu
 The *Select* menu (3D View headers) is even simpler than for curves...
 
 All these options have the same meaning and behavior as in
-:doc:`Object Mode </editors/3dview/object/selecting/index>`
+:doc:`Object Mode </scene_layout/object/selecting/index>`
 (and the specificities of *Border Select* in *Edit Mode* have already been discussed
 :doc:`here </modeling/meshes/selecting/introduction>`).
 

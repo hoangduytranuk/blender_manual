@@ -228,7 +228,7 @@ Curve Controls
    Curve controls.
 
 Proportional Editing :kbd:`O`
-   See :doc:`Proportional editing </editors/3dview/object/editing/transform/control/proportional_edit>`.
+   See :doc:`Proportional editing </scene_layout/object/editing/transform/control/proportional_edit>`.
 Auto Snap
    Auto snap the keyframes for transformations.
 
@@ -257,10 +257,10 @@ Create Snapshot (ghost icon)
    Creates a picture with the current shape of the curves.
 
 
-Properties Region
-=================
+Sidebar Region
+==============
 
-The panels in the *Properties Region*.
+The panels in the *Sidebar region*.
 
 
 View Tab

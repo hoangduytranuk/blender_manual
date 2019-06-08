@@ -21,7 +21,7 @@ Radius
 The Radius allows you to directly control the width of the extrusion along the "spinal" curve.
 The *Radius* of the points is set using the *Shrink/Fatten Radius* transform tool :kbd:`Alt-S`,
 the :menuselection:`Curve --> Transform --> Shrink/Fatten Radius`,
-or the :menuselection:`Properties region --> Transform --> Radius`.
+or the :menuselection:`Sidebar region --> Transform --> Radius`.
 
 .. figure:: /images/modeling_curves_properties_introduction_extrude-radius.png
    :width: 320px
@@ -35,7 +35,7 @@ Tilt
 This setting controls how the normals (visualization: arrows)
 twist around each control point -- so it is only relevant with 3D curves!
 You set it using the *Tilt* transform tool in the Tool Shelf,
-the :menuselection:`Properties region --> Transform --> Tilt`,
+the :menuselection:`Sidebar region --> Transform --> Tilt`,
 :menuselection:`Curve --> Transform --> Tilt`.
 
 You can also reset it to its default value (i.e. perpendicular to the original curve plane)

@@ -20,7 +20,7 @@ First make sure you are in the Front Ortho view. :kbd:`Numpad5`, :kbd:`Numpad1`.
 #. Open the *Graph Editor*, set the Mode to *Drivers*.
 #. *Show Only Selected* is useful disabled for drivers, marked green in the picture.
 #. In the channels region, select the *Y Euler Rotation* property.
-#. Press :kbd:`N` to open the properties region, scroll down to Drivers panel.
+#. Press :kbd:`N` to open the Sidebar region, scroll down to Drivers panel.
 #. Change the *Type* to *Averaged Value*, this will return the averaged value of the driver variables.
 #. Modify the driver variable settings:
 

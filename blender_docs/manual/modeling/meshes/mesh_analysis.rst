@@ -8,7 +8,7 @@ Mesh Analysis
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Properties region --> Mesh Analysis`
+   :Panel:     :menuselection:`Sidebar region --> Mesh Analysis`
 
 Mesh analysis is useful for displaying attributes of the mesh,
 that may impact certain use cases.

@@ -39,5 +39,5 @@ to change the properties of objects as a function of time.
 .. seealso:: Modifiers & Constraints
 
    - :doc:`Curve Modifier </modeling/modifiers/deform/curve>`
-   - :doc:`Follow Path Constraint </rigging/constraints/relationship/follow_path>`
-   - :doc:`Clamp To Constraint </rigging/constraints/tracking/clamp_to>`
+   - :doc:`Follow Path Constraint </animation/constraints/relationship/follow_path>`
+   - :doc:`Clamp To Constraint </animation/constraints/tracking/clamp_to>`

@@ -10,6 +10,7 @@ List Views
 
 .. figure:: /images/interface_controls_templates_list-presets_view-filter.png
    :align: right
+   :figwidth: 268px
 
    List view with expanded Filtering Options panel.
 

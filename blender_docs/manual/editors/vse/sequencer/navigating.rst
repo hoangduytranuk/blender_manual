@@ -82,7 +82,7 @@ Blender has no real way of being notified from your operating system.
 Backdrop
 --------
 
-Displays the current frame in the background of the main view like in the Node editor.
+Displays the current frame in the background of the main view like in the Compositor.
 
 
 Main View
@@ -95,10 +95,10 @@ Use these shortcuts to adjust the sequence area of the VSE:
 
 - Pan: :kbd:`MMB`
 - Zoom: :kbd:`Wheel`
-- Vertical Scroll: use :kbd:`Shift-Wheel`, or drag on the left scroll bar.
-- Horizontal Scroll: use :kbd:`Ctrl-Wheel`, or drag on the lower scroll bar.
+- Vertical Scroll: use :kbd:`Shift-Wheel`, or drag on the left scrollbar.
+- Horizontal Scroll: use :kbd:`Ctrl-Wheel`, or drag on the lower scrollbar.
 - Scale View: :kbd:`Ctrl-MMB` and drag up/down (vertical scale) or left/right (horizontal scale).
-- Scale View Vertically: drag on the circles on the vertical scroll bar.
+- Scale View Vertically: drag on the circles on the vertical scrollbar.
 - Scale View Horizontally: drag on the circles on the horizontal scroll bar.
 
 
@@ -117,7 +117,7 @@ When holding :kbd:`Ctrl` while dragging it will snap to the start and endpoints 
 
 Real-time preview is possible on reasonable computers
 when viewing an image sequence or movie (``avi``/``mov``) file.
-Scene strips can use OpenGL previews or proxies for real-time playback,
+Scene strips can use viewport previews or proxies for real-time playback,
 otherwise displaying rendered frame is supported, but typically too slow for real-time playback.
 
 .. hint::

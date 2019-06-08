@@ -19,7 +19,7 @@ the *Save on Quit* functionality cannot be disabled.
    used to roll back from mistakes under normal operation, or return back to a specific action.
    See :doc:`/interface/undo_redo`.
 
-The *File* tab of the *User Preferences* allows you to configure the two ways
+The *File* tab of the *Preferences* allows you to configure the two ways
 that Blender provides for you to regress to a previous version of your work.
 See :ref:`Auto Save Preferences <prefs-auto-save>` for details.
 
@@ -32,8 +32,8 @@ Recovering Auto Saves
 .. admonition:: Reference
    :class: refbox
 
-   :Menu:      :menuselection:`File --> Recover Last Session`
-   :Menu:      :menuselection:`File --> Recover Auto Save...`
+   :Menu:      :menuselection:`File --> Recover --> Last Session`
+   :Menu:      :menuselection:`File --> Recover --> Auto Save...`
 
 
 Recover Last Session

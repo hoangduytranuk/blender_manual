@@ -327,7 +327,7 @@ This page lists definitions for terms used in Blender and this manual.
       A method of :term:`Anti-aliasing` on the graphics card, so the entire image is displayed smooth.
       Also known as *Multisampling*.
 
-      This can be enabled in the :ref:`User Preferences <prefs-system-multi-sampling>`.
+      This can be enabled in the :ref:`Preferences <prefs-system-multi-sampling>`.
       On many graphics cards, this can also be enabled in the driver options.
 
    Gamma
@@ -414,11 +414,11 @@ This page lists definitions for terms used in Blender and this manual.
       See also :doc:`Lattice Modifier </modeling/modifiers/deform/lattice>`.
 
    Layer
-      A device for organizing objects. See also :doc:`Layers </editors/3dview/object/properties/relations/layers>`.
+      A device for organizing objects. See also :doc:`Layers </scene_layout/object/properties/relations/layers>`.
 
    Light Bounces
       Refers to the reflection or transmission of a light ray upon interaction with a material.
-      See also :doc:`Light Paths </render/cycles/settings/scene/render/light_paths>`.
+      See also :doc:`Light Paths </render/engines/cycles/settings/scene/render/light_paths>`.
 
    Local Space
       A 3D coordinate system that originates (for Objects) at the :term:`Object Origin`.
@@ -465,7 +465,7 @@ This page lists definitions for terms used in Blender and this manual.
       The mip-mapping calculations are made by CPUs, but modern graphic processors
       can be selected for this task and are way faster.
 
-      See the mip-map option present in the :doc:`System Preferences </preferences/system>`.
+      See the mip-map option present in the :doc:`System Preferences </editors/preferences/system>`.
 
    MIS
    Multiple Importance Sampling
@@ -586,7 +586,7 @@ This page lists definitions for terms used in Blender and this manual.
       The pivot point is the point in space around which all rotations,
       scalings and mirror transformations are centered.
 
-      See also the :doc:`Pivot Point </editors/3dview/object/editing/transform/control/pivot_point/index>` docs.
+      See also the :doc:`Pivot Point </scene_layout/object/editing/transform/control/pivot_point/index>` docs.
 
    Pixel
       The smallest unit of information in a 2D raster image,

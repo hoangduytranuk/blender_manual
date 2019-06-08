@@ -342,11 +342,11 @@ def warn_locale():
     """
     Check for stale of PO files to see if the corresponding RST entry exists.
     If not, list non-exist entries into a file and instruct users to execute that script file
-    to remove unwanted entries.    
+    to remove unwanted entries.
 
     If no entries are found (ie. for every PO files there exists a corresponding RST entry) then
     NO message and no script file are produced.
-    
+
     Do the same for directories only as well.
     """
     find_by_dir=findParentDir(SVN)

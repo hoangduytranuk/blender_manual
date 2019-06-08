@@ -22,12 +22,9 @@ Paint Surface
    These surfaces are basically layers of paint, that work independently from each other.
    You can define individual settings for them and bake them separately.
 
-   Show Preview (eye icon)
-      If surface type/format allows previewing results in 3D View,
-      this toggle is visible.
    Is Active
       The checkbox toggles whether surface is active at all.
-      If not selected, no calculations or previews are done.
+      If not selected no calculations are done.
 
 Below you can set surface type and adjust quality and timing settings.
 
@@ -214,9 +211,6 @@ Output
    Canvas Output panel.
 
 From Output panel you can adjust how surface outputs its results.
-
-Preview
-   Allows you to define the type of Dynamic Paint output (Paint or Wetmap) displayed in the 3D View.
 
 
 Vertex

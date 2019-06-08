@@ -15,7 +15,7 @@ To prevent the problem from happening again, you can check that the graphics dri
 machine's hardware (the RAM or graphics card), and disable some options that are more memory intensive:
 
 - Reduce undo steps
-  :menuselection:`User Preferences --> Editing --> Undo Steps`.
+  :menuselection:`Preferences --> Editing --> Undo Steps`.
 - Using multisample, anti-aliasing also increases the memory usage and makes the display slower.
 - On Linux, the Window Manager (KDE, Gnome, Unity) may be using hardware accelerated effects
   (e.g. window shadows and transparency) that are using up the memory that Blender needs.

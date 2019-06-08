@@ -36,12 +36,11 @@ Key Features
 - Blender is a fully integrated 3D content creation suite, offering a broad range of essential tools, including
   :doc:`Modeling </modeling/introduction>`,
   :doc:`Rendering </render/introduction>`,
-  :doc:`Animation </animation/introduction>`,
+  :doc:`Animation & Rigging </animation/introduction>`,
   :doc:`Video Editing </editors/vse/index>`,
   :doc:`VFX </editors/movie_clip_editor/index>`,
   :doc:`Compositing </compositing/introduction>`,
-  :doc:`Texturing </editors/uv_image/uv/overview>`,
-  :doc:`Rigging </rigging/introduction>`,
+  :doc:`Texturing </editors/uv/introduction>`,
   and many types of :doc:`Simulations </physics/introduction>`.
 - It is cross platform, with an OpenGL GUI that is uniform on all major platforms
   (and customizable with Python scripts).

@@ -9,7 +9,7 @@ Background Images
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties region --> Background Image`
+   :Panel:     :menuselection:`Sidebar region --> Background Image`
 
 A background picture in your 3D View is very helpful in many situations:
 modeling is obviously one, but it is also useful when painting

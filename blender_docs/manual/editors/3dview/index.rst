@@ -2,9 +2,9 @@
 .. _bpy.types.SpaceView3D:
 .. _bpy.ops.view3d:
 
-###########
-  3D View
-###########
+###############
+  3D Viewport
+###############
 
 .. toctree::
    :maxdepth: 2
@@ -14,7 +14,7 @@
    modes.rst
    navigate/index.rst
    3d_cursor.rst
-   object/index.rst
    properties/index.rst
    ruler_protractor.rst
+   viewport_render.rst
    grease_pencil/index.rst

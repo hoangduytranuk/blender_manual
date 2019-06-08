@@ -62,6 +62,18 @@ Loop Slide
    If there are unbeveled edges along with beveled edges into a vertex,
    the bevel tries to slide along those edges when possible.
    Turning the option off can lead to more even bevel widths.
+Mark Seams
+   If a seam edge crosses a non-seam one and you bevel all of them,
+   this option will maintain the expected propagation of seams.
+Mark Sharp
+   Similar to Mark Seams, but for sharp edges.
+Harden Normals
+   When enabled, the per-vertex face normals of the bevel faces are adjusted to
+   match the surrounding faces, and the normals of the surrounding faces are not affected.
+   This will keep the surrounding faces flat (if they were before),
+   with the bevel faces shading smoothly into them. For this effect to work,
+   custom split normals need to be enabled, which requires Auto Smooth to be enabled
+   (see :doc:`Normals </modeling/meshes/editing/normals>`).
 
 Limit Method
    Used to control where a bevel is applied to the mesh.
@@ -98,3 +110,43 @@ Width Method
       Value is the perpendicular distance from the new bevel face to original edge.
    Percent
       Similar to *Offset* but the value is interpreted as a percentage of the adjacent edge length.
+
+Set Face Strength Mode
+   Set *Face Strength* on the faces involved in the bevel, according to the mode specified here.
+   This can be used in conjunction with a following
+   :doc:`Weight Normals Modifier </modeling/modifiers/modify/weighted_normal>`
+   (with the *Face Influence* option checked).
+
+   None
+      Do not set face strength.
+   New
+      Set the face strength of new faces along edges to *Medium*,
+      and the face strength of new faces at vertices to *Weak*.
+   Affected
+      In addition to those set for the *New* case,
+      also set the faces adjacent to new faces to have strength *Strong*.
+   All
+      In addition to those set for the *Affected* case,
+      also set all the rest of the faces of the model to have strength *Strong*.
+
+Miter Patterns
+   A *miter* is formed when two beveled edges meet at an angle.
+   On the side where the angle is greater than 180 degrees, if any, it is called an *outer miter*.
+   If it is less than 180 degrees, then it is called an *inner miter*.
+   The outer and inner miters can each be set to one of these patterns:
+
+   Sharp
+      Edges meet at a sharp point, with no extra vertices introduced on the edges.
+   Patch
+      Edges meet at a sharp point but in addition, two extra vertices are introduced near the point
+      so that the edges and faces at the vertex may be less pinched together than
+      what occurs in the Sharp case.
+      The *Spread* slider controls how far the new vertices are from the meeting point.
+      (This pattern does makes no sense for inner miters, so behaves like Arc for them.)
+   Arc
+      Two vertices are introduced near the meeting point, and a curved arc joins them together.
+      The *Spread* slider controls how far the new vertices are from the meeting point.
+      The *Profile* slider controls the shape of the arc.
+
+Spread
+   The value used to spread extra vertices apart for *Outer* and *Inner Miters*.

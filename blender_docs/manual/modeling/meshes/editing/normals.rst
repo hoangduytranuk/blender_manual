@@ -29,14 +29,14 @@ Shading
    :class: refbox
 
    :Mode:      Object Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Edit --> Shading`
+   :Menu:      :menuselection:`Object --> Shade Smooth / Shade Flat`
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Shading / UVs --> Shading`
-   :Menu:      :menuselection:`Mesh --> Faces --> Shade Smooth / Shade Flat`
+   :Menu:      :menuselection:`Mesh --> Shading`
+   :Menu:      :menuselection:`Face --> Shade Smooth / Shade Flat`
 
 
 .. _bpy.ops.object.shade_flat:
@@ -65,15 +65,9 @@ Sometimes this is a desirable effect, but usually we want our objects to look ni
 Smooth
 ------
 
-.. figure:: /images/modeling_meshes_editing_normals_shading-smooth-flat.png
-   :align: right
-
-   Shading buttons in the Tool Shelf.
-
 The easiest way is to set an entire object as smooth or faceted by selecting a mesh object,
-and in *Object Mode*, click *Smooth* in the *Tool Shelf*.
-This button does not stay pressed;
-it forces the assignment of the "smoothing" attribute to each face in the mesh,
+and in *Object Mode*, select *Shade Smooth* in the *Object* menu.
+This forces the assignment of the "smoothing" attribute to each face in the mesh,
 including when you add or delete geometry.
 
 Notice that the outline of the object is still strongly faceted.
@@ -81,7 +75,7 @@ Activating the smoothing features does not actually modify the object's geometry
 it changes the way the shading is calculated across the surfaces (normals will be interpolated),
 giving the illusion of a smooth surface.
 
-Click the *Flat* button in the *Tool Shelf*\ 's *Shading panel*
+Select the *Shade Flat* item in the *Object* menu
 to revert the shading back (normals will be constant)
 to that shown in the first image above.
 
@@ -89,18 +83,17 @@ to that shown in the first image above.
 Smoothing Parts of a Mesh
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Alternatively, you can choose which edges to smooth by entering *Edit Mode*,
-then selecting some faces and clicking the *Smooth* button.
-The selected edges are marked in yellow.
+Alternatively, you can choose which faces to smooth by entering *Edit Mode*,
+then selecting some faces and picking *Shade Smooth* from the *Face Menu*.
 
 When the mesh is in *Edit Mode*,
-only the selected edges will receive the "smoothing" attribute. You can set edges as flat
+only the selected faces will receive the "smoothing" attribute. You can set faces as flat
 (removing the "smoothing" attribute)
-in the same way by selecting edges and clicking the *Flat* button.
+in the same way by selecting edges and picking the *Shade Flat* from the *Face Menu*.
 
 .. seealso::
 
-   The :ref:`Auto Smooth <auto-smooth>` filter is a quick and easy way to combine smooth and
+   The :ref:`Auto Smooth <auto-smooth>` option is a quick and easy way to combine smooth and
    faceted faces in the same object.
 
 
@@ -126,9 +119,6 @@ Auto Smooth
 
    Angle
       Angle number button.
-
-Double Sided
-   Lighting with positive normals on back-faces of the mesh in the viewport (OpenGL).
 
 
 Example

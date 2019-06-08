@@ -53,7 +53,7 @@ Blender creates an *Action* to record the data.
 
 *Actions* can be managed with the *Action data-block menu*
 in the Dope Sheet :doc:`Action Editor </editors/dope_sheet/action>` header,
-or the Properties region of the :doc:`NLA Editor </editors/nla/properties_modifiers>`.
+or the Sidebar region of the :doc:`NLA Editor </editors/nla/properties_modifiers>`.
 
 If you are making multiple actions for the same object,
 press the *F* button for each action,

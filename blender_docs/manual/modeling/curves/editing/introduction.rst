@@ -1,4 +1,4 @@
-.. (todo <2.8 add) spin, split tool; control point: recalc normals, set curve radius = Shrink/Fatten
+.. (TODO2.8 add) spin, split tool; control point: recalc normals, set curve radius = Shrink/Fatten.
 
 ************
 Introduction
@@ -27,9 +27,9 @@ Translation, Rotation, Scale
 
 Like other elements in Blender, curve control points and handles can be
 grabbed/moved :kbd:`G`, rotated :kbd:`R` or scaled :kbd:`S` as described in
-the :doc:`Basic Transformations </editors/3dview/object/editing/transform/introduction>` section.
+the :doc:`Basic Transformations </scene_layout/object/editing/transform/introduction>` section.
 When in *Edit Mode*,
-:doc:`proportional editing </editors/3dview/object/editing/transform/control/proportional_edit>`
+:doc:`proportional editing </scene_layout/object/editing/transform/control/proportional_edit>`
 is also available for transformation actions.
 
 
@@ -42,7 +42,7 @@ Transform Panel
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Properties region --> Transform`
+   :Panel:     :menuselection:`Sidebar region --> Transform`
 
 When nothing is selected, the panel is empty.
 When more than one vertex is selected, the median values are edited
@@ -105,7 +105,7 @@ Snap
    :Menu:      :menuselection:`Curve --> Snap`
    :Hotkey:    :kbd:`Shift-S`
 
-:doc:`Mesh snapping </editors/3dview/object/editing/transform/control/snap>`
+:doc:`Mesh snapping </scene_layout/object/editing/transform/control/snap>`
 also works with curve components.
 Both control points and their handles will be affected by snapping,
 except for within itself (other components of the active curve).
@@ -349,7 +349,7 @@ Set Goal Weight
 This sets the :doc:`Soft Body Goal Weight </modeling/curves/properties/introduction>`
 of selected control points. The precise value can be adjusted in the Operator Panel.
 To adjust the *Mean Weight* (average) of selected control points use
-:menuselection:`Properties region --> Transform --> Mean Weight`.
+:menuselection:`Sidebar region --> Transform --> Mean Weight`.
 
 
 Smooth
@@ -493,5 +493,5 @@ Select either one or three control points,
 then :kbd:`Ctrl-RMB` the object and use :kbd:`Ctrl-P` to make a vertex parent.
 Selecting three control points will make the child follow
 the median point between the three vertices. An alternative would be to use
-a :doc:`Child of Constraint </rigging/constraints/relationship/child_of>`.
+a :doc:`Child of Constraint </animation/constraints/relationship/child_of>`.
 See also the :doc:`Curve Modifier </modeling/modifiers/deform/curve>`.
