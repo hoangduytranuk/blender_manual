@@ -3,14 +3,14 @@
 Structure
 *********
 
-.. figure:: /images/rigging_armatures_structure_armature-example.png
+.. figure:: /images/animation_armatures_structure_armature-example.png
    :align: right
 
    Example of a very basic armature.
 
 Armatures mimic real skeletons. They are made out of bones, which are (by default) rigid elements.
 But you have more possibilities than with real skeletons: In addition to the "natural" rotation of bones,
-you can also translate and even scale them! And your bones do not have to be connected to each other;
+you can also move and even scale them! And your bones do not have to be connected to each other;
 they can be completely free if you want. However,
 the most natural and useful setups imply that some bones are related to others, forming so-called "chains of bones",
 which create some sort of "limbs" in your armature, as detailed in `Chains of Bones`_.
@@ -33,7 +33,7 @@ This is exactly what happens in armatures by parenting a bone to the next one in
 you create a "chains of bones". These chains can be ramified. For example,
 five fingers attached to a single "hand" bone.
 
-.. figure:: /images/rigging_armatures_structure_chains-of-bones.png
+.. figure:: /images/animation_armatures_structure_chains-of-bones.png
 
    An armature with two chains of bones.
 

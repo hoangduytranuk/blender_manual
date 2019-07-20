@@ -29,9 +29,9 @@ the :doc:`Inverse Kinematics constraint </animation/constraints/tracking/ik_solv
 Options
 =======
 
-.. figure:: /images/rigging_constraints_tracking_track-to_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_tracking_track-to_panel.png
 
-   Track To panel.
+.. TODO2.8    Track To panel.
 
 Targets
    :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.

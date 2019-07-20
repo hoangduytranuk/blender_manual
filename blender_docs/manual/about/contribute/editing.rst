@@ -55,7 +55,7 @@ Getting Help/Answers
 
 If you are in doubt about functionality that you wish to document,
 you should pose your questions to the Blender developers responsible for that area or ask at the unofficial user
-support channel at ``#blender`` :ref:`IRC channel <irc-channels>`.
+support channel in the ``#docs`` or ``#blender-coders`` channel in :ref:`blender-chat`.
 
 Blender itself has a system of module owners with developer and artist members who are
 responsible for the design and maintenance of the assigned Blender areas.

@@ -4,7 +4,7 @@
 Map Value Node
 **************
 
-.. figure:: /images/compositing_types_vector_map-value_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeMapValue.png
    :align: right
 
    Map Value Node.
@@ -16,7 +16,7 @@ Inputs
 ======
 
 Value
-   Standard Value input. (value refers to each vector in the set).
+   Standard Value input. (Value refers to each vector in the set.)
 
 
 Properties

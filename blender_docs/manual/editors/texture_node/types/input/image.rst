@@ -4,7 +4,7 @@
 Image Node
 **********
 
-.. figure:: /images/render_blender-render_textures_nodes_types_input_image_node.png
+.. figure:: /images/editors_texture-node_types_input_image_node.png
    :align: right
 
    Image node.

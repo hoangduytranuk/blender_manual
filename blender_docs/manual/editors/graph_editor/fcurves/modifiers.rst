@@ -22,7 +22,7 @@ Adding a Modifier
 
    Modifiers panel.
 
-The F-Curve modifier panel is located in the Sidebar region.
+The F-curve modifier panel is located in the Sidebar region.
 Select a curve by selecting one of its curve points, or by selecting the channel list.
 Click on the *Add Modifier* menu to select a modifier.
 
@@ -43,7 +43,7 @@ Additive
    This option causes the modifier to be added to the curve, instead of replacing it by default.
 Polynomial Order
    Specify the order of the polynomial, or the highest power of ``X`` for this polynomial.
-   (number of coefficients: 1).
+   (Number of coefficients: 1.)
 
    Change the Coefficient values to change the shape of the curve.
 

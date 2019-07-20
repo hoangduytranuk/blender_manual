@@ -14,11 +14,14 @@ the bottom layer first, to the top, last.
 
 Solo (star icon)
    Toggling *Solo Track* causes only the selected tracks effects to be visible when animating.
+   This is very useful for debugging complex animations.
 Mute (speaker icon)
-   Keeps the track from having an effect on the animation. (Mute only applies when *Solo* is not used).
-   All strips in that track are drawn as being muted (dashed outline).
+   Keeps the track from having an effect on the animation. (Mute only applies when *Solo* is not used.)
+   All strips in that track are shown as being muted (dashed outline).
 Lock (padlock icon)
    Prevents changes from being made to this layer.
+   This is useful, for example, if you want to select several strips and move them;
+   but you want to keep a few tracks excluded from the change.
 
 
 Action Track
@@ -29,7 +32,7 @@ by storing them into an action based on the name as the object you are working o
 
 .. (alt) icon: downwards chevron
 
-Push Down (double down arrow peak icon)
+Push Down
    Turns the active action into a new NLA strip at the top of the NLA stack.
 
    .. figure:: /images/editors_nla_tracks_push-down-button.png
@@ -67,9 +70,8 @@ When creating a new action, if the existing action only has a single user (i.e. 
 it will get "stashed" in the NLA stack. Action Stashing should prevent most cases actions getting lost.
 
 The action "stashing" method works by storing otherwise unused/dormant actions in the NLA stack
-as strips in special muted NLA Tracks. This way, Blender can "know" that the action is related
-to a particular data-block (i.e. to a specific object, or to a specific material/lamp/etc.) and
-that you still want to keep it for later use.
+as strips in special muted NLA tracks. This way, the action is linked up to a particular data-block
+(i.e. to a specific object, or to a specific material/light/etc.) and will be preserved for later use.
 
 
 Deleting & Converting
@@ -90,7 +92,7 @@ Remove Empty Animation Data
 
    :Menu:      :menuselection:`Edit --> Remove Empty Animation Data`
 
-This operator removes AnimData blocks (restricted to only those
+This operator removes AnimData data-blocks (restricted to only those
 which are visible in the animation editor where it is run from) which are "empty"
 (i.e. that is, have no active action, drivers, and NLA tracks or strips).
 

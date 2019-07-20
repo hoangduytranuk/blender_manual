@@ -19,11 +19,11 @@ Visualization
 There are some important visualization features in the 3D Views that can help animation.
 
 When the current frame is a keyframe for the current active object, the name of this object
-(shown in the bottom left corner of the 3D Views) turns yellow.
+(shown in the upper left corner of the 3D Views) turns yellow.
 
 .. figure:: /images/animation_keyframes_introduction_visualization.png
 
-   Bottom: Current frame at 0. Top: Current frame is a keyframe for Cube.
+   Bottom: Current frame isn't a keyframe. Top: Current frame is a keyframe for Cube.
 
 
 .. _keyframe-type:
@@ -31,18 +31,64 @@ When the current frame is a keyframe for the current active object, the name of 
 Keyframe Types
 ==============
 
-For visually distinguish regular keyframes from different animation events or
+For visually distinguishing regular keyframes from different animation events or
 states (extremes, breakdowns, or other in-betweens)
 there is the possibility of applying different colors on them for visualization.
 
-Keyframe (yellow diamond)
+.. figure:: /images/animation_keyframes_introduction_types.png
+
+   Left: not selected; Right: selected.
+
+Keyframe (white / yellow diamond)
    Normal keyframe.
-Breakdown (cyan small diamond)
+Breakdown (small cyan diamond)
    Breakdown state. e.g. for transitions between key poses.
-Moving Hold (slight orange diamond)
+Moving Hold (dark gray / orange diamond)
    A keyframe that adds a small amount of motion around a holding pose.
-   In the Dope Sheet it will also draw a bar between them.
-Extreme (red big diamond)
+   In the Dope Sheet it will also display a bar between them.
+Extreme (big pink diamond)
    An 'extreme' state, or some other purpose as needed.
-Jitter (green tiny diamond)
+Jitter (tiny green diamond)
    A filler or baked keyframe for keying on ones, or some other purpose as needed.
+
+
+.. _keyframe-handle-display:
+
+Handles & Interpolation Display
+===============================
+
+Dope Sheet can display the Bézier handle type associated with the keyframe,
+and mark segments with non-Bézier interpolation.
+This facilitates basic editing of interpolation without the use of the Graph Editor.
+
+.. figure:: /images/animation_keyframes_introduction_interpolation.png
+
+   Top: summary; Middle: Bézier; Bottom: linear.
+
+The icon shape represents the type of the :ref:`Bézier Handles <editors-graph-fcurves-settings-handles>`
+belonging to the keyframe.
+
+.. list-table::
+
+   * - Circle
+     - Auto Clamped (default)
+   * - Circle With Dot
+     - Automatic
+   * - Square
+     - Vector
+   * - Clipped Diamond
+     - Aligned
+   * - Diamond
+     - Free
+
+If the handles of a keyframe have different types,
+or in case of summary rows representing multiple curves,
+out of the available choices the icon that is furthest down the list is used.
+This means that if a grouped row uses a circle icon,
+it is guaranteed that none of the grouped channels have a non-auto key.
+
+Horizontal green lines mark the use of non-Bézier :ref:`Interpolation <editors-graph-fcurves-settings-interpolation>`.
+The line is dimmed in summary rows if not all grouped channels have the same interpolation.
+
+Display of this information can be disabled via the *Show Handles and Interpolation*
+option of the Dope Sheet`s :ref:`View Menu <dope-sheet-view-menu>`.

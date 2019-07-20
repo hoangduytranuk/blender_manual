@@ -4,21 +4,17 @@
 Decimate Modifier
 *****************
 
-The Decimate Modifier allows you to reduce the vertex/face count of a mesh with minimal shape changes.
+The *Decimate* modifier allows you to reduce the vertex/face count of a mesh with minimal shape changes.
 
 This is not usually used on meshes which have been created by modeling carefully and economically
 (where all vertices and faces are necessary to correctly define the shape).
 But if the mesh is the result of complex modeling,
-sculpting and/or applied Subdivision Surface/Multiresolution Modifiers,
-the Decimate Modifier can be used to reduce the polygon count for a performance increase,
+sculpting and/or applied :doc:`Subdivision Surface </modeling/modifiers/generate/subdivision_surface>`/
+:doc:`Multiresolution </modeling/modifiers/generate/multiresolution>` modifiers,
+the *Decimate* one can be used to reduce the polygon count for a performance increase,
 or simply remove unnecessary vertices and edges.
 
-The Decimate Modifier is a quick and easy way of reducing the polygon count of
-a mesh non-destructively. This modifier demonstrates the advantages of a mesh modifier system
-because it shows how an operation which is normally permanent and destroys original mesh data,
-can be done interactively and safely using a modifier.
-
-Unlike the majority of existing modifiers, the Decimate Modifier does not allow
+Unlike the majority of existing modifiers, this one does not allow
 you to visualize your changes in Edit Mode.
 
 
@@ -32,10 +28,11 @@ Collapse
 ^^^^^^^^
 
 .. figure:: /images/modeling_modifiers_generate_decimate_panel-collapse.png
+   :align: right
 
-   Decimate Modifier.
+   The Decimate modifier in Collapse mode.
 
-Merge vertices together progressively, taking the shape of the mesh into account.
+Merges vertices together progressively, taking the shape of the mesh into account.
 
 Ratio
    The ratio of faces to keep after decimation.
@@ -49,13 +46,14 @@ Ratio
       Although the *Ratio* is directly proportional to the number of remaining faces,
       triangles are used when calculating the ratio.
 
-      This means that if your mesh contains quads, the number of remaining faces will be larger than expected,
-      because quads remain unchanged if their edges are not collapsed.
+      This means that if your mesh contains quads or other polygons,
+      the number of remaining faces will be larger than expected,
+      because those will remain unchanged if their edges are not collapsed.
 
       This is only true if the *Triangulate* option is disabled.
 
 Vertex Group
-   A vertex group that controls what parts of the mesh are reduced.
+   A vertex group that controls what parts of the mesh are decimated.
 
    Factor
       The amount of influence the *Vertex Group* has on the decimation.
@@ -69,12 +67,13 @@ Un-Subdivide
 ^^^^^^^^^^^^
 
 .. figure:: /images/modeling_modifiers_generate_decimate_panel-un-subdivide.png
+   :align: right
 
-   Decimate Modifier.
+   The Decimate modifier in Un-Subdivide mode.
 
-Can be thought of as the reverse of subdivide.
-Attempts to remove edges that were the result of a subdivide operation.
-For meshes with a mainly grid-based topology (without giving uneven geometry).
+It can be thought of as the reverse of subdivide.
+It attempts to remove edges that were the result of a subdivide operation.
+It is intended for meshes with a mainly grid-based topology (without giving uneven geometry).
 If additional editing has been done after the subdivide operation, the results may be unexpected.
 
 Iterations
@@ -86,13 +85,14 @@ Planar
 ^^^^^^
 
 .. figure:: /images/modeling_modifiers_generate_decimate_panel-planar.png
+   :align: right
 
-   Decimate Modifier.
+   The Decimate modifier in Planar mode.
 
-Reduces detail on forms comprised of mainly flat surfaces.
+It reduces details on forms comprised of mainly flat surfaces.
 
 Angle Limit
-   Dissolve geometry which form angles lower than this setting.
+   Dissolve geometry which form angles (between surfaces) higher than this setting.
 
 All Boundaries
    When enabled, all vertices along the boundaries of faces are dissolved.
@@ -113,4 +113,4 @@ Further Options
 ---------------
 
 Face Count
-   This label shows the number of remaining faces as a result of applying the Decimate Modifier.
+   This label shows the number of remaining faces as a result of applying the *Decimate* modifier.

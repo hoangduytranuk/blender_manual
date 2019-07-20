@@ -29,12 +29,12 @@ Some common operations could easier be executed with the :doc:`/compositing/type
 Separate/Combine RGBA Nodes
 ===========================
 
-.. figure:: /images/compositing_types_converter_combine-separate_combine-rgba-node.png
+.. figure:: /images/compositing_node-types_CompositorNodeCombRGBA.png
    :align: right
 
    Combine RGBA Node.
 
-.. figure:: /images/compositing_types_converter_combine-separate_separate-rgba-node.png
+.. figure:: /images/compositing_node-types_CompositorNodeSepRGBA.png
    :align: right
 
    Separate RGBA Node.
@@ -78,12 +78,12 @@ as an "out-of-phase" time-traveling sync effect.
 Separate/Combine HSVA Nodes
 ===========================
 
-.. figure:: /images/compositing_types_converter_combine-separate_combine-hsva-node.png
+.. figure:: /images/compositing_node-types_CompositorNodeCombHSVA.png
    :align: right
 
    Combine HSVA Node.
 
-.. figure:: /images/compositing_types_converter_combine-separate_separate-hsva-node.png
+.. figure:: /images/compositing_node-types_CompositorNodeSepHSVA.png
    :align: right
 
    Separate HSVA Node.
@@ -110,12 +110,12 @@ This node has no properties.
 Separate/Combine YUVA Nodes
 ===========================
 
-.. figure:: /images/compositing_types_converter_combine-separate_combine-yuva-node.png
+.. figure:: /images/compositing_node-types_CompositorNodeCombYUVA.png
    :align: right
 
    Combine YUVA Node.
 
-.. figure:: /images/compositing_types_converter_combine-separate_separate-yuva-node.png
+.. figure:: /images/compositing_node-types_CompositorNodeSepYUVA.png
    :align: right
 
    Separate YUVA Node.
@@ -142,12 +142,12 @@ This node has no properties.
 Separate/Combine YCbCrA Node
 ============================
 
-.. figure:: /images/compositing_types_converter_combine-separate_combine-ycbcra-node.png
+.. figure:: /images/compositing_node-types_CompositorNodeCombYCCA.png
    :align: right
 
    Combine YCbCrA Node.
 
-.. figure:: /images/compositing_types_converter_combine-separate_separate-ycbcra-node.png
+.. figure:: /images/compositing_node-types_CompositorNodeSepYCCA.png
    :align: right
 
    Separate YCbCrA Node.

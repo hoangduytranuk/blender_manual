@@ -1,8 +1,9 @@
 .. _painting-index:
 .. _bpy.ops.paint:
+.. _bpy.types.Paint:
 
 ########################
-  Painting & Sculpting
+  Sculpting & Painting
 ########################
 
 .. toctree::
@@ -10,6 +11,7 @@
 
    introduction.rst
    brush/index.rst
+   navigation.rst
 
 
 Modes

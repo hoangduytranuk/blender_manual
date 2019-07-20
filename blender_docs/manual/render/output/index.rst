@@ -6,9 +6,9 @@
 .. toctree::
    :maxdepth: 2
 
-   render_panel.rst
+   introduction.rst
    settings.rst
-   video.rst
+   file_formats.rst
    audio/index.rst
    metadata.rst
    multiview/index.rst

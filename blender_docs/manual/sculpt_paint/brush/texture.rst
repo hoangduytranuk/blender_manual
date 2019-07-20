@@ -6,7 +6,7 @@ Texture & Texture Mask
 Texture
 =======
 
-.. figure:: /images/sculpt-paint_texture-tex-mask_brush-texture.jpg
+.. figure:: /images/sculpt-paint_brush_texture_brush-texture.jpg
    :width: 580px
 
    Texture options and example.
@@ -19,14 +19,13 @@ and that particular texture defined using the Material and Texture buttons.
 It is not necessary to have that material or texture applied to any mesh anywhere;
 it must only be defined.
 
-The example to the right shows the effects of painting with a flat
-(banded) wood texture.
-Switching the texture to Rings makes a target/flower type of brush painting pattern.
+The example to the right shows the effects of painting with a voronoi texture.
 
 Texture
    In paint modes the texture is used as a color source,
    while for sculpting it is used to determine the strength of the brush.
-Brush Mapping
+
+Mapping
    Sets the way the texture is applied to the brush stroke.
 
    View Plane
@@ -52,17 +51,17 @@ Brush Mapping
       The stencil is displayed as a screen space overlay on the viewport.
       To the transform the stencil texture and the stencil mask with additional :kbd:`Alt` pressed:
 
-      - Translate :kbd:`RMB`, :kbd:`Alt-RMB`
-      - Scale :kbd:`Shift-RMB`, :kbd:`Shift-Alt-RMB`
-      - Rotate :kbd:`Ctrl-RMB`, :kbd:`Ctrl-Alt-RMB`
+      - Move :kbd:`RMB`
+      - Scale :kbd:`Shift-RMB`
+      - Rotate :kbd:`Ctrl-RMB`
 
       When using stencil scaling, :kbd:`X` and :kbd:`Y` are used to constrain the scaling to one axis.
       Pressing one of the buttons twice reverts to unconstrained scaling.
 
       Image Aspect
          Restore the aspect ratio of the original image to reset stretching introduce by scaling,
-         (image textures only). This operator can use the tiling and scale values of the brush texture
-         if the relevant are enabled in Operator panel.
+         (Image textures only.) This operator can use the tiling and scale values of the brush texture
+         if the relevant are enabled in :ref:`ui-undo-redo-adjust-last-operation` panel.
       Reset Transform
          Restores the position of the stencil.
 
@@ -73,7 +72,7 @@ Angle :kbd:`Ctrl-F`
 
    Rake :kbd:`R`
       Angle follows the direction of the brush stroke. Not available with *3D* textures.
-      (shortcut sculpting only).
+      (Shortcut sculpting only.)
    Random :kbd:`R`
       Angle is randomized per dab.
 
@@ -93,8 +92,6 @@ Texture Mask
 
 Brush strength is masked with a texture.
 
-ToDo <2.8 add.
-
 Pressure Masking
    A mask cut-off function. It allows to clip the mask result based on pressure,
    creating areas of no paint when low pressure is applied to the brush,
@@ -102,7 +99,7 @@ Pressure Masking
 
    Off
       Deactivated.
-   Cutoff
-      Simply selects between zero and one based on stylus pressure.
    Ramp
       Distributes the mask effect above the pressure value.
+   Cutoff
+      Simply selects between zero and one based on stylus pressure.

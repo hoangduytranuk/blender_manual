@@ -40,19 +40,19 @@ or by pressing the appropriate hotkey combination.
 
 .. _curve-handle-type-auto:
 
-Automatic :kbd:`V A`
+Automatic (yellow handles) :kbd:`V A`
    This handle has a completely automatic length and direction
    which is set by Blender to ensure the smoothest result.
-   These handles convert to *Aligned* handles when moved. (Yellow handles).
-Vector :kbd:`V V`
+   These handles convert to *Aligned* handles when moved.
+Vector (green handles) :kbd:`V V`
    Both parts of a handle always point to the previous handle or the next handle which allows
    you to create curves or sections thereof made of straight lines or with sharp corners.
-   Vector handles convert to *Free* handles when moved. (Green handles).
-Aligned :kbd:`V L`
+   Vector handles convert to *Free* handles when moved.
+Aligned (purple handles) :kbd:`V L`
    These handles always lie in a straight line,
-   and give a continuous curve without sharp angles. (Purple handles).
-Free :kbd:`V F`
-   The handles are independent of each other. (Black handles).
+   and give a continuous curve without sharp angles.
+Free (black handles) :kbd:`V F`
+   The handles are independent of each other.
 
 
 .. _curve-nurbs:

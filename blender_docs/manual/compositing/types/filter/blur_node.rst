@@ -4,7 +4,7 @@
 Blur Node
 *********
 
-.. figure:: /images/compositing_types_filter_blur-node_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeBlur.png
    :align: right
 
    Blur Node.
@@ -113,9 +113,3 @@ Example
      - .. figure:: /images/compositing_types_filter_blur-node_example-9-mitch.png
 
           Mitch.
-
-An example blend-file, in fact, the one used to create the image above,
-`is available here <https://wiki.blender.org/wiki/File:Manual-Node-Blur.blend>`__.
-The blend-file takes one image from the Render Layer node "Blurs" and blurs it while offsetting its *Translate*
-and then combining its *Alpha Over* to build up the progressive sequence of blurs.
-Play with the Value and Multiply nodes to change the amount of blurring that each algorithm does.

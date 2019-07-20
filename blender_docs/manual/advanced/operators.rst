@@ -17,9 +17,9 @@ Debug Menu
 
 This operator brings up a menu to set Blender into a certain debug mode.
 
-There are several possible values, for example the most useful, a value of ``256``
-enables a debug panel in Cycles render settings that can be used to enable/disable
-special kernels and other special debugging features.
+See the
+`source code <https://developer.blender.org/diffusion/B/browse/master/source/blender/blenkernel/BKE_global.h>`__
+for a description of what each value does.
 
 .. tip::
 
@@ -42,7 +42,7 @@ Redraw Timer
    :Menu:      None
    :Hotkey:    :kbd:`Ctrl-Alt-T`
 
-This operator brings up a menu with a list of tests to benchmark UI drawing along with undo/redo functions.
+This operator brings up a menu with a list of tests to benchmark UI render times along with undo/redo functions.
 
 
 .. _bpy.ops.wm.memory_statistics:
@@ -85,4 +85,3 @@ will print the relations for every scene and object in the blend-file.
 .. important::
 
    This operator will only work if Blender is started from the console with ``--debug-depsgraph``.
-

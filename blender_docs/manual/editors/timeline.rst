@@ -13,8 +13,8 @@
 Timeline
 ********
 
-The *Timeline* editor, identified by a clock icon, is used for manipulating keyframes,
-scrubbing the playhead and it includes transport controls.
+The *Timeline* editor, identified by a clock icon, is used for manipulating keyframes and
+scrubbing the playhead.
 
 .. figure:: /images/editors_timeline_interface.png
 
@@ -22,11 +22,11 @@ scrubbing the playhead and it includes transport controls.
 
 The *Timeline* gives the user a broad overview of a scene's animation,
 by showing the current frame, the keyframes of the active object,
-the start and end frames of your animation and any markers set by the user.
+the start and end frames of your animation sequence, as well as markers set by the user.
 
 The *Timeline* includes *Transport Controls*, to play, pause, and skip through an animation sequence.
 
-It also has tools for manipulating *Keyframes*, *Keying Sets*, and *Markers*.
+It also includes tools for manipulating *Keyframes*, *Keying Sets*, and *Markers*.
 
 
 Main View
@@ -36,7 +36,7 @@ The main *Timeline* region displays the animation frames over time.
 
 .. figure:: /images/editors_timeline_main.png
 
-   Timeline main view.
+Here you can see the *Keyframes* (diamond shapes), *Playhead* (blue handle), *Scrollbar* (along the bottom),
 
 
 Adjusting the View
@@ -63,7 +63,7 @@ The *Playhead* is the blue vertical line with the current frame number at the to
 The *Playhead* can be set or moved to a new position by pressing or
 holding :kbd:`LMB` in scrubbing area at the top of the timeline.
 
-The *Playhead* can be moved in increments by pressing :kbd:`Left` or :kbd:`Right`,
+The *Playhead* can be moved in single-frame increments by pressing :kbd:`Left` or :kbd:`Right`,
 or you can jump to the beginning or end frame by pressing :kbd:`Shift-Left` or :kbd:`Shift-Right`.
 
 
@@ -77,11 +77,12 @@ You can change the frame range in the top right of the Timeline header, or in th
 Keyframes
 ---------
 
-For the active and selected objects, keyframes are displayed as yellow diamonds.
+For the active and selected objects, keyframes are displayed as diamond shapes.
 
 You can click to select one at a time, or select several by holding :kbd:`Shift`,
 or by dragging a box around the keyframes.
-You can then move and scale them using :kbd:`G` and :kbd:`S`
+You can then move single keys by dragging them,
+and you can move multiple keys by pressing :kbd:`G` and scale them with :kbd:`S`.
 
 *Only Selected Channels* can be enabled. :menuselection:`Timeline --> View --> Only Selected Channels`.
 For *Armatures*, this will display the object keyframes,
@@ -104,9 +105,11 @@ Popovers
 Playback Popover
 ^^^^^^^^^^^^^^^^
 
+.. figure:: /images/editors_timeline_playback.png
+
 The *Playback* popover contains options controlling the animation playback.
 
-Synchronize Playback
+Sync Mode
    .. figure:: /images/editors_timeline_red-fps.png
       :figwidth: 109px
       :align: right
@@ -130,7 +133,7 @@ Audio Scrubbing
    If your animation has sound, this option plays bits of the sound wave
    while you move the playhead with :kbd:`LMB` or keyboard arrows (like a moving playhead).
 Mute Audio
-   Mute the sound from Sequence Editors.
+   Mute the sound from any audio source.
 Subframes
    Display and allow changing the current scene sub-frame.
 Limit Playhead to Frame Range
@@ -140,11 +143,11 @@ Follow Playhead
    Following will be done when animating and changing frame.
    When the cursor reaches the end of the screen, the next range of frames of the same width will be displayed.
 Active Editor Only
-   While playing, updates the Timeline, if Animation Editors and All 3D View Editors disabled.
-All 3D View Editors
+   While playing, updates the Timeline, if *Animation Editors* and *All 3D Viewports* disabled.
+All 3D Viewports
    While playing, updates the 3D View and the Timeline.
 Animation Editors
-   While playing, updates the Timeline, Dope Sheet, Graph Editor, Video Sequence Editor.
+   While playing, updates the Timeline, Dope Sheet, Graph Editor, Video Sequencer.
 Property Editors
    When the animation is playing, this will update the property values in the UI.
 Image Editors
@@ -161,6 +164,8 @@ Clip Editors
 
 Keying Popover
 ^^^^^^^^^^^^^^
+
+.. figure:: /images/editors_timeline_keying.png
 
 The *Keying* popover contains options that affect keyframe insertion.
 
@@ -229,9 +234,9 @@ Lock Time to Other Windows
    with the other editors (Graph, Dope Sheet, NLA) when this option is set.
    That way you always have these editors showing an identical part of the time you work on.
 Show Frame Number Indicator
-   This will draw the current frame or seconds on the *Playhead*.
+   This will display the current frame or seconds on the *Playhead*.
 Only Keyframes from Selected Channels
-   For *Armatures*, this will draw the object keyframes,
+   For *Armatures*, this will display the object keyframes,
    and the keyframes for the active and selected pose bones.
 Cache
    Show Cache
@@ -280,29 +285,7 @@ The Timeline header controls.
 
    Timeline header controls.
 
-   \1. Range Control, 2. Frame Control, 3. Transport Control,
-   \4. Synchronize Playback, 5. Keyframe Control.
-
-
-Range Control
-^^^^^^^^^^^^^
-
-Preview Range (clock icon)
-   This is a temporary frame range used for previewing a smaller part of the full range.
-   The preview range only affects the viewport, not the rendered output.
-   See :ref:`graph-preview-range`.
-
-
-Frame Control
-^^^^^^^^^^^^^
-
-Start Frame
-   The start frame of the animation/playback range.
-End Frame
-   The end frame of the animation/playback range.
-Current Frame :kbd:`Alt-Wheel`
-   The current frame of the animation/playback range.
-   Also the position of the *Playhead*.
+   \1. Popovers for Playback and Keying, 2. Transport Controls, 3.Frame Controls
 
 
 Transport Controls
@@ -333,6 +316,25 @@ Pause (|pause|) :kbd:`Alt-A`
    This stops the animation.
 
 
+Frame Controls
+^^^^^^^^^^^^^^
+
+Current Frame :kbd:`Alt-Wheel`
+   The current frame of the animation/playback range.
+   Also the position of the *Playhead*.
+Preview Range (clock icon)
+   This is a temporary frame range used for previewing a smaller part of the full range.
+   The preview range only affects the viewport, not the rendered output.
+   See :ref:`graph-preview-range`.
+Start Frame
+   The start frame of the animation/playback range.
+End Frame
+   The end frame of the animation/playback range.
+
+
+
+
+
 .. Move to animation?
 .. _animation-editors-timeline-autokeyframe:
 
@@ -353,7 +355,7 @@ Auto Keyframe
 
    When you set a new value for the properties,
    Blender will add keyframes on the current frame for the transform properties.
-   Other use cases are :ref:`Fly/Walk Mode <3dview-walk-fly>` to record the walk/flight path
+   Other use cases are :ref:`Fly/Walk Mode <3dview-fly-walk>` to record the walk/flight path
    and :ref:`Lock Camera to View <3dview-lock-camera-to-view>` to record the navigation in camera view.
 
    .. note::

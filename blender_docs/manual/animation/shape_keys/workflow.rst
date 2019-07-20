@@ -20,7 +20,7 @@ and mix ("Key 1" ``1.0`` and "Key 2" ``0.8``) shape keys in Object Mode.
 
 .. figure:: /images/animation_shape-keys_workflow_relative.png
 
-   Relative Shape Keys example.
+   Relative shape keys example.
 
 
 Absolute Shape Keys
@@ -34,7 +34,7 @@ Absolute Shape Keys
 
 .. figure:: /images/animation_shape-keys_workflow_absolute.png
 
-   Absolute Shape Keys workflow.
+   Absolute shape keys workflow.
 
 By adding a :doc:`driver </animation/drivers/index>` or
 setting :doc:`keyframes </animation/keyframes/introduction>`
@@ -42,5 +42,5 @@ to *Evaluation Time* you can create an animation.
 
 .. seealso:: Shape Key Operators
 
-   There are two modeling tools used to control Shape Keys and
+   There are two modeling tools used to control shape keys and
    are found in :ref:`Edit Mode <modeling-meshes-editing-vertices-shape-keys>`.

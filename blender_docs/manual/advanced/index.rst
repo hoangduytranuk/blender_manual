@@ -15,3 +15,4 @@ This chapter covers advanced use (topics which may not be required for typical u
    keymap_editing.rst
    limits.rst
    operators.rst
+   blender_directory_layout.rst

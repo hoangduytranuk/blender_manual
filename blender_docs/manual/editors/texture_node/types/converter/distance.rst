@@ -3,7 +3,7 @@
 Distance Node
 *************
 
-.. figure:: /images/render_blender-render_textures_nodes_types_converter_distance_node.png
+.. figure:: /images/editors_texture-node_types_converter_distance_node.png
    :align: right
 
    Distance node.

@@ -24,14 +24,14 @@ With bones, the "volumetric" variation scales them along their own local axes
 Options
 =======
 
-.. figure:: /images/rigging_constraints_tracking_stretch-to_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_tracking_stretch-to_panel.png
 
-   Stretch To panel.
+.. TODO2.8    Stretch To panel.
 
 Target
    :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
 Rest Length
-   This number button sets the rest distance between the owner and its target, i.e.
+   This number field sets the rest distance between the owner and its target, i.e.
    the distance at which there is no deformation (stretching) of the owner.
 
    Reset
@@ -42,7 +42,7 @@ Rest Length
 .. _constraints-stretch-to-volume-preservation:
 
 Volume Variation
-   This number button controls the amount of "volume" variation exponentially to the stretching amount.
+   This number field controls the amount of "volume" variation exponentially to the stretching amount.
    Note that the 0.0 value is not allowed, if you want to disable the volume feature,
    use the *None* button (see below).
 Volume Min/Max

@@ -7,7 +7,7 @@ Header
 Every constraint has a header.
 The interface elements of the header are explained below using a Copy Location constraint as an example.
 
-.. figure:: /images/rigging_constraints_interface_header_example.png
+.. figure:: /images/animation_constraints_interface_header_example.png
 
    A Header sits at the top of every constraint.
 
@@ -37,9 +37,9 @@ Move (up/down arrow icon)
    Since the stack is evaluated from top to bottom,
    moving a constraint in the stack can significantly affect the final outcome of the stack.
 
-   If there is only one constraint in the stack, the arrows will not be drawn.
-   If the constraint is at the top of the stack, only the down arrow will be drawn.
-   If the constraint is at the bottom of the stack, only the up arrow will be drawn.
+   - If there is only one constraint in the stack, the arrows will not be displayed.
+   - If the constraint is at the top of the stack, only the down arrow will be displayed.
+   - If the constraint is at the bottom of the stack, only the up arrow will be displayed.
 Delete ``X``
    Delete the constraint from the stack.
    The settings will be lost.

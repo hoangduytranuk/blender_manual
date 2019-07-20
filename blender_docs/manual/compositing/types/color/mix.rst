@@ -7,7 +7,7 @@
 Mix Node
 ********
 
-.. figure:: /images/compositing_types_color_mix_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeMixRGB.png
    :align: right
 
    Mix Node.

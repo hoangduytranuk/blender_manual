@@ -3,7 +3,6 @@
 Introduction
 ************
 
-
 Animation
 =========
 
@@ -26,7 +25,7 @@ Animation is typically achieved with the use of :doc:`keyframes </animation/keyf
 .. seealso:: Related Sections
 
    - :doc:`Physical Simulation </physics/introduction>`.
-   - :doc:`Motion Tracking </editors/movie_clip_editor/index>`.
+   - :doc:`Motion Tracking </movie_clip/index>`.
 
 
 .. _animation-state-colors:
@@ -45,13 +44,17 @@ Properties have different colors and menu items for different states.
 .. list-table::
 
    * - Gray
-     - Default
+     - Not animated
    * - Yellow
-     - Keyframes
+     - Keyframed on the current frame
    * - Green
-     - Animated
+     - Keyframed on a different frame
+   * - Orange
+     - Changed from the keyframed value
    * - Purple
-     - Driver
+     - Controlled by a driver
+
+The changed value highlight currently doesn't work with :doc:`NLA </editors/nla/introduction>`.
 
 
 Rigging

@@ -1,4 +1,4 @@
-.. |pivot-icon| image:: /images/editors_3dview_object_editing_transform_control_pivot-point_menu.png
+.. |pivot-icon| image:: /images/scene-layout_object_editing_transform_control_pivot-point_menu.png
 
 **************
 Active Element
@@ -16,11 +16,11 @@ The active element is the last one to be selected and
 will be shown in a lighter orange color when in *Object Mode* and white when in *Edit Mode*.
 With *Active Element* as *Pivot* set to active, all transformations will occur relative to the active element.
 
-.. figure:: /images/editors_3dview_object_editing_transform_control_pivot-point_active-element_object-mode-display.png
+.. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_object-mode-display.png
 
    Display of active elements in Object Mode where the active element (cube) is a lighter orange.
 
-.. figure:: /images/editors_3dview_object_editing_transform_control_pivot-point_active-element_edit-mode-display.png
+.. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-display.png
 
    Active elements for vertices, edges and faces in Edit Mode are displayed in white.
 
@@ -34,7 +34,7 @@ This is shown by the figure to the below where the active object (the cube)
 remains in the same location (note its position relative to the 3D cursor)
 while the other objects rotate and scale in relation to the active element.
 
-.. figure:: /images/editors_3dview_object_editing_transform_control_pivot-point_active-element_object-mode-rotation.png
+.. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_object-mode-rotation.png
 
    Rotation and scaling with the cube as the active element.
 
@@ -61,7 +61,7 @@ you can see that when it is transformed its vertices move, with the consequence 
 adjacent element which shares one or more vertices with the active element is also
 transformed.
 
-.. figure:: /images/editors_3dview_object_editing_transform_control_pivot-point_active-element_edit-mode-single.png
+.. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-single.png
 
    Edit Mode and only one element selected.
 
@@ -80,7 +80,7 @@ When multiple elements are selected they all transform.
 The pivot points stay in the same place as what we have described above.
 In the image below, the selected elements have been rotated.
 
-.. figure:: /images/editors_3dview_object_editing_transform_control_pivot-point_active-element_edit-mode-multiple.png
+.. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-multiple.png
 
    Edit Mode and multiple selections.
 

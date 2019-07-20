@@ -38,8 +38,7 @@ Typical Scenarios for using Soft Bodies
 
    The wind cone is a soft body, as the suspension.
 
-   `Animation <https://vimeo.com/1865817>`__ --
-   `blend-file <https://wiki.blender.org/wiki/File:WindConeExample.blend>`__.
+   `Animation <https://vimeo.com/1865817>`__
 
 Soft bodies are well suited for:
 

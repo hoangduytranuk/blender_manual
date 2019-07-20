@@ -24,6 +24,8 @@ dict_custom = {
     "prepend",
     "probabilistically",
     "recurse",
+    "screencast",
+    "selectability",
     "subclass", "subclasses", "subclassing",
     "subdirectory",
     "unregister",
@@ -79,6 +81,7 @@ dict_custom = {
 
     # general computer graphics terms
     "atomics",
+    "autofocus",
     "barycentric",
     "bezier",
     "bicubic",
@@ -92,6 +95,7 @@ dict_custom = {
     "fresnel",
     "kerning",
     "lacunarity",
+    "multisample", "multisampling", "multisampled",
     "musgrave",
     "ngon", "ngons",
     "normals",

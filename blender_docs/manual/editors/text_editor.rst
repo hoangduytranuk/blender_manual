@@ -12,8 +12,8 @@ accessible via the *Editor type* menu, or the shortcut :kbd:`Shift-F11`.
 Header
 ======
 
-The newly opened Text editor is gray and empty, with a very simple header
-(Fig. :ref:`fig-text-header-plain`).
+The newly opened Text editor is empty, with a very simple header.
+More options become available when a text file is created or opened.
 
 .. _fig-text-header-plain:
 
@@ -32,24 +32,20 @@ Editor type
 Menus
    Editors `Menus`_.
 Text
-   A Data-block menu to select a text or to create a new one.
-   After that the header will change (Fig. :ref:`fig-text-header-full`).
+   A :ref:`data-block menu <ui-data-block>` to select a text or to create a new one.
+   After that the header will change.
 Show
-   The following three buttons toggle display options.
-
-   Line numbers, word-wrap text, syntax highlighting
+   The following three buttons toggle display options:
+   line numbers, word-wrap text and syntax highlighting.
 
 .. _editors-text-run-script:
 
 Run Script / Script Node Update
    Executes the text as a Python script :kbd:`Alt-P`. See `Script and Templates`_.
 Register
-   Registers the current text data-block as a module on loading (the text name must end with '.py').
+   Registers the current text data-block as a module on loading (the text name must end with ``.py``).
    Read more about the registration of Python modules in
-   `API documentation <https://docs.blender.org/api/2.79/info_overview.html#registration>`__.
-Label
-   This Label shows, if the text is saved internal or external and
-   if there are unsaved changes to an external file.
+   `API documentation <https://docs.blender.org/api/2.80/info_overview.html#registration>`__.
 
 
 Menus
@@ -64,14 +60,14 @@ Text
    Create Text Block
       Creates a new internal text.
    Open Text Block
-      Loads a text, a :doc:`File Browser </editors/file_browser/index>` appears :kbd:`Alt-O`.
+      Loads a text, a :doc:`File Browser </editors/file_browser>` appears :kbd:`Alt-O`.
    Reload
       Reopens (reloads) the current buffer (all non-saved modifications are lost) :kbd:`Alt-R`.
    Save
       Saves an already open file :kbd:`Alt-S`.
    Save As
       Saves unsaved text as a text file,
-      a :doc:`File Browser </editors/file_browser/index>` appears :kbd:`Shift-Ctrl-Alt-S`.
+      a :doc:`File Browser </editors/file_browser>` appears :kbd:`Shift-Ctrl-Alt-S`.
    Make Internal
       Stores the text inside the blend-file.
    Run Script
@@ -86,10 +82,10 @@ Edit
       Pastes the text from the clipboard at the cursor location in the Text editor.
    Duplicate Line :kbd:`Ctrl-D`
       Duplicates the current line.
-   Move line(s) up
-      Swaps the current line with the above.
-   Move line(s) down
-      Swaps the current line with the below.
+   Move line(s) up :kbd:`Shift-Ctrl-Up`
+      Swaps the current/selected line(s) with the above.
+   Move line(s) down :kbd:`Shift-Ctrl-Down`
+      Swaps the current/selected line(s) with the below.
    Select
       Select Line, Select All.
    Jump
@@ -97,7 +93,7 @@ Edit
    Find...
       Shows the Find panel in the Sidebar region.
    Text Auto Complete :kbd:`Ctrl-Spacebar`
-      Shows a selectable list of Python commands and matching against words already used in the text.
+      Shows a selectable list of words already used in the text.
    Text To 3D Object
       One Object, One Object per line.
 Format
@@ -129,6 +125,15 @@ as described in the :doc:`/advanced/scripting/index` section.
 The *Text Editor* has now also some dedicated Python scripts,
 which add some useful writing tools, like a class/function/variable browser, completion...
 You can access them through the Template menu in the header.
+
+
+Footer
+======
+
+The Text editor is special in the fact that it contains a footer UI region.
+This footer displays if the text is saved internal or external and
+if there are unsaved changes to an external file.
+For external files, this region also displays the file path to the text file.
 
 
 Main View

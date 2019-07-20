@@ -4,7 +4,7 @@
 Alpha Over Node
 ***************
 
-.. figure:: /images/compositing_types_color_alpha-over_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeAlphaOver.png
    :align: right
 
    Alpha Over Node.
@@ -46,6 +46,8 @@ Premultiply
    When set to 0, color values does not change.
 
    If *Premultiply* is not zero, *Convert Premul* will be ignored.
+
+   .. note:: This is a legacy option.
 
 
 Outputs

@@ -11,5 +11,6 @@
    emission.rst
    dynamics.rst
    render.rst
+   shape.rst
    children
    display.rst

@@ -2,7 +2,7 @@
 .. This document is an exception to the rule of not having tutorials in the reference manual.
    Since this doesn't quite belong on the API docs either.
    It's important we have at least one place with good basic info on how to write an add-on.
-   - ideasman42
+   -- ideasman42
 
 ***************
 Add-on Tutorial
@@ -41,12 +41,12 @@ Documentation Links
 
 While going through the tutorial, you may want to look into our reference documentation.
 
-- `blender_api:Blender API Overview <https://docs.blender.org/api/blender_python_api_current/info_overview.html>` --
-  *This document is rather detailed but helpful if you want to know more on a topic.*
+- `Blender API Overview <https://docs.blender.org/api/blender_python_api_current/info_overview.html>`__:
+  This document is rather detailed but helpful if you want to know more on a topic.
 - :mod:`blender_api:bpy.context` API reference --
-  *Handy to have a list of available items your script may operate on.*
+  Handy to have a list of available items your script may operate on.
 - :class:`blender_api:bpy.types.Operator` --
-  *The following add-ons define operators, these docs give details and more examples of operators.*
+  The following add-ons define operators, these docs give details and more examples of operators.
 
 
 What is an Add-on?
@@ -117,7 +117,7 @@ Add the following script to the Text editor in Blender::
        obj.location.x += 1.0
 
 Click the :ref:`Run Script button <editors-text-run-script>`,
-all objects in the active scene are moved by 1.0 Blender unit.
+all objects in the active scene are moved by 1.0 unit.
 
 
 Write the Add-on (Simple)
@@ -180,7 +180,7 @@ However running the script won't move any objects. For this, you need to execute
 
    Operator Search menu.
 
-Do this by pressing :kbd:`Spacebar` to bring up the operator search menu and type in
+Do this by pressing :kbd:`F3` to bring up the operator search menu and type in
 "Move X by One" (the ``bl_label``), then :kbd:`Return`.
 
 The objects should move as before.
@@ -201,7 +201,7 @@ restrictions that apply to Python modules and end with a ``.py`` extension.
 
 Once the file is on disk, you can install it as you would for an add-on downloaded online.
 
-Open the :menuselection:`Preferences --> Add-ons --> Install Add-on...` and select the file.
+Open the :menuselection:`Preferences --> Add-ons --> Install...` and select the file.
 
 Now the add-on will be listed and you can enable it by pressing the checkbox,
 if you want it to be enabled on restart, press *Save as Default*.
@@ -218,7 +218,7 @@ if you want it to be enabled on restart, press *Save as Default*.
       print(addon_utils.paths())
 
    More is written on this topic here:
-   :ref:`Directory Layout <getting-started-installing-config-directories>`.
+   :ref:`Directory Layout <blender-directory-layout>`.
 
 
 Your Second Add-on
@@ -239,17 +239,17 @@ As before, first we will start with a script, develop it, then convert it into a
    # Get the current scene
    scene = context.scene
 
-   # Get the 3D cursor
-   cursor = scene.cursor_location
+   # Get the 3D cursor location
+   cursor = scene.cursor.location
 
    # Get the active object (assume we have one)
-   obj = scene.objects.active
+   obj = context.active_object
 
    # Now make a copy of the object
    obj_new = obj.copy()
 
-   # The object won't automatically get into a new scene
-   scene.objects.link(obj_new)
+   # The new object has to be added to a collection in the scene
+   scene.collection.objects.link(obj_new)
 
    # Now we can place the object
    obj_new.location = cursor
@@ -266,8 +266,8 @@ Next, we're going to do this in a loop, to make an array of objects between the 
    from bpy import context
 
    scene = context.scene
-   cursor = scene.cursor_location
-   obj = scene.objects.active
+   cursor = scene.cursor.location
+   obj = context.active_object
 
    # Use a fixed value for now, eventually make this user adjustable
    total = 10
@@ -275,7 +275,7 @@ Next, we're going to do this in a loop, to make an array of objects between the 
    # Add 'total' objects into the scene
    for i in range(total):
        obj_new = obj.copy()
-       scene.objects.link(obj_new)
+       scene.collection.objects.link(obj_new)
 
        # Now place the object in between the cursor
        # and the active object based on 'i'
@@ -285,7 +285,7 @@ Next, we're going to do this in a loop, to make an array of objects between the 
 Try running this script with the active object and the cursor spaced apart to see the result.
 
 With this script you'll notice we're doing some math with the object location and cursor,
-this works because both are 3D :class:`blender_api:mathutils. Vector` instances,
+this works because both are 3D :class:`blender_api:mathutils.Vector` instances,
 a convenient class provided by the :mod:`blender_api:mathutils` module which
 allows vectors to be multiplied by numbers and matrices.
 
@@ -319,14 +319,14 @@ The first step is to convert the script as-is into an add-on::
 
        def execute(self, context):
            scene = context.scene
-           cursor = scene.cursor_location
-           obj = scene.objects.active
+           cursor = scene.cursor.location
+           obj = context.active_object
 
            total = 10
 
            for i in range(total):
                obj_new = obj.copy()
-               scene.objects.link(obj_new)
+               scene.collection.objects.link(obj_new)
 
                factor = i / total
                obj_new.location = (obj.location * factor) + (cursor * (1.0 - factor))
@@ -370,7 +370,7 @@ To get rid of the literal 10 for ``total``, we'll use an operator property.
 Operator properties are defined via bpy.props module, this is added to the class body::
 
    # moved assignment from execute() to the body of the class...
-   total = bpy.props.IntProperty(name="Steps", default=2, min=1, max=100)
+   total: bpy.props.IntProperty(name="Steps", default=2, min=1, max=100)
 
    # and this is accessed on the class
    # instance within the execute() function as...
@@ -398,7 +398,9 @@ For this example we'll add to an existing menu.
 
    Menu Identifier.
 
-To find the identifier of a menu, you can hover your mouse over the menu item and the identifier is displayed.
+To find the identifier of a menu, first enable *Python Tooltips* in the preferences.
+Then you can hover your mouse over the menu item and the identifier is displayed.
+
 
 The method used for adding a menu item is to append a draw function into an existing class::
 
@@ -418,7 +420,7 @@ In Blender, add-ons have their own keymaps so as not to interfere with Blender's
 
 In the example below, a new object mode :class:`blender_api:bpy.types.KeyMap` is added,
 then a :class:`blender_api:bpy.types.KeyMapItem` is added to the key-map which references
-our newly added operator, using :kbd:`Shift-Ctrl-Spacebar` as the key shortcut to activate it. ::
+our newly added operator, using :kbd:`Shift-Ctrl-T` as the key shortcut to activate it. ::
 
    # store keymaps here to access after registration
    addon_keymaps = []
@@ -429,7 +431,7 @@ our newly added operator, using :kbd:`Shift-Ctrl-Spacebar` as the key shortcut t
        wm = bpy.context.window_manager
        km = wm.keyconfigs.addon.keymaps.new(name='Object Mode', space_type='EMPTY')
 
-       kmi = km.keymap_items.new(ObjectCursorArray.bl_idname, 'SPACE', 'PRESS', ctrl=True, shift=True)
+       kmi = km.keymap_items.new(ObjectCursorArray.bl_idname, 'T', 'PRESS', ctrl=True, shift=True)
        kmi.properties.total = 4
 
        addon_keymaps.append((km, kmi))
@@ -447,7 +449,7 @@ this allows you to have multiple keys accessing the same operator with different
 
 .. note::
 
-   While :kbd:`Shift-Ctrl-Spacebar` is not a default Blender key shortcut,
+   While :kbd:`Shift-Ctrl-T` is not a default Blender key shortcut,
    it is hard to make sure add-ons will not overwrite each other's keymaps,
    At least take care when assigning keys that they do not
    conflict with important functionality within Blender.
@@ -479,16 +481,16 @@ Bringing It All Together
        bl_label = "Cursor Array"
        bl_options = {'REGISTER', 'UNDO'}
 
-       total = bpy.props.IntProperty(name="Steps", default=2, min=1, max=100)
+       total: bpy.props.IntProperty(name="Steps", default=2, min=1, max=100)
 
        def execute(self, context):
            scene = context.scene
-           cursor = scene.cursor_location
-           obj = scene.objects.active
+           cursor = scene.cursor.location
+           obj = context.active_object
 
            for i in range(self.total):
                obj_new = obj.copy()
-               scene.objects.link(obj_new)
+               scene.collection.objects.link(obj_new)
 
                factor = i / self.total
                obj_new.location = (obj.location * factor) + (cursor * (1.0 - factor))
@@ -514,7 +516,7 @@ Bringing It All Together
        kc = wm.keyconfigs.addon
        if kc:
            km = wm.keyconfigs.addon.keymaps.new(name='Object Mode', space_type='EMPTY')
-           kmi = km.keymap_items.new(ObjectCursorArray.bl_idname, 'SPACE', 'PRESS', ctrl=True, shift=True)
+           kmi = km.keymap_items.new(ObjectCursorArray.bl_idname, 'T', 'PRESS', ctrl=True, shift=True)
            kmi.properties.total = 4
            addon_keymaps.append((km, kmi))
 
@@ -537,7 +539,7 @@ Bringing It All Together
 
    In the menu.
 
-Run the script (or save it and add it through the Preferences like before) and it will appear in the menu.
+Run the script (or save it and add it through the Preferences like before) and it will appear in the *Object* menu.
 
 .. figure:: /images/advanced_scripting_addon-tutorial_op-prop.png
 
@@ -579,5 +581,5 @@ Here are some sites you might like to check on after completing this tutorial.
   *Great info for those who are still learning Python.*
 - `Blender Development (Wiki) <https://wiki.blender.org>`__ --
   *Blender Development, general information and helpful links.*
-- `Blender Artists (Coding Section) <https://blenderartists.org/forum/forumdisplay.php?47-Coding>`__ --
-  *forum where people ask Python development questions.*
+- `DevTalk <https://devtalk.blender.org/c/python>`__ --
+  *Forum where people ask Python development questions.*

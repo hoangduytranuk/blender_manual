@@ -22,14 +22,14 @@ correspond to the distance between the owner and this target.
 Options
 =======
 
-.. figure:: /images/rigging_constraints_transform_limit-distance_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_transform_limit-distance_panel.png
 
-   Limit Distance panel.
+.. TODO2.8    Limit Distance panel.
 
 Target
    :ref:`ui-data-id` used to select the constraint's target, and is not functional (red state) when it has none.
 Distance
-   This number button sets the limit distance, i.e. the radius of the constraining sphere.
+   This number field sets the limit distance, i.e. the radius of the constraining sphere.
 Reset Distance
    When clicked, this small button will reset the *Distance* value,
    so that it corresponds to the actual distance between the owner and its target
@@ -37,7 +37,7 @@ Reset Distance
 
 Clamp Region
    The *Limit Mode* select menu allows you to choose how to use the sphere
-   defined by the *Distance* setting and target's center:
+   defined by the *Distance* setting and target's origin:
 
    Inside
       The owner is constrained *inside* the sphere.
@@ -47,6 +47,7 @@ Clamp Region
       The owner is constrained *on the surface* of the sphere.
 
 For Transform
-   ToDo ~2.65.
+   Transform operators will take the constraint into account to immediately restrict
+   the resulting transform property values.
 
 .. vimeo:: 171109014

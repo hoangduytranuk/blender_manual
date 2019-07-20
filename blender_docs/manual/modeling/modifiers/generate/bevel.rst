@@ -4,13 +4,14 @@
 Bevel Modifier
 **************
 
-The Bevel Modifier adds the ability to bevel the edges of the mesh it is applied
-to, allowing control of how and where the bevel is applied to the mesh.
+The *Bevel* modifier bevels the edges of the mesh it is applied to,
+with some control of how and where the bevel is applied to the mesh.
 
-The Bevel Modifier is a non-destructive alternative to
+It is a non-destructive alternative to
 the :doc:`Bevel Operation </modeling/meshes/editing/subdividing/bevel>` in Edit Mode.
 
-.. list-table::
+.. list-table:: Side views of a cube.
+   :align: center
 
    * - .. figure:: /images/modeling_modifiers_generate_bevel_square-not.png
           :width: 150px
@@ -22,23 +23,22 @@ the :doc:`Bevel Operation </modeling/meshes/editing/subdividing/bevel>` in Edit 
 
           Beveled.
 
-The images above show the side views of a plain (not beveled) cube and a beveled one.
-
 
 Options
 =======
 
-.. figure:: /images/modeling_modifiers_generate_bevel_none-if.png
+.. figure:: /images/modeling_modifiers_generate_bevel_panel.png
+   :align: right
 
-   Bevel Modifier panel.
+   The Bevel modifier.
 
 Width
-   The size of the bevel affect. See *Width Method* below.
+   The size of the bevel effect. See *Width Method* below.
 
    .. figure:: /images/modeling_modifiers_generate_bevel_cubes.png
-      :width: 610px
+      :width: 350px
 
-      Three Cubes with 0.1, 0.3 and 0.5 bevel Widths.
+      Three Cubes with 0.1, 0.3 and 0.5 bevel widths.
 
 Segments
    The number of edge loops added along the bevel's face.
@@ -48,16 +48,16 @@ Material
    The index of the material slot to use for the bevel.
    When set to -1, the material of the nearest original face will be used.
 Only Vertices
-   When enabled, only the areas near vertices are beveled; the edges are left not beveled.
+   When enabled, only the areas near vertices are beveled, the edges remain unchanged.
 
    .. figure:: /images/modeling_modifiers_generate_bevel_cubes-vertices-only.png
-      :width: 610px
+      :width: 350px
 
-      Three cubes with 0.1, 0.3 and 0.5 bevel Widths, with Only Vertices option enabled.
+      Three cubes with 0.1, 0.3 and 0.5 bevel widths, with *Only Vertices* option enabled.
 
 Clamp Overlap
-   When enabled, the width of each beveled edge will be limited such that they cannot intersect each other.
-   Edges that are far apart will still bevel with the full width, only edges too close to each other are affected.
+   Limits the width of each beveled edge so that edges cannot causes
+   overlapping intersections with other geometry.
 Loop Slide
    If there are unbeveled edges along with beveled edges into a vertex,
    the bevel tries to slide along those edges when possible.
@@ -72,7 +72,7 @@ Harden Normals
    match the surrounding faces, and the normals of the surrounding faces are not affected.
    This will keep the surrounding faces flat (if they were before),
    with the bevel faces shading smoothly into them. For this effect to work,
-   custom split normals need to be enabled, which requires Auto Smooth to be enabled
+   you need custom normals data, which requires *Auto Smooth* option to be enabled
    (see :doc:`Normals </modeling/meshes/editing/normals>`).
 
 Limit Method
@@ -114,7 +114,7 @@ Width Method
 Set Face Strength Mode
    Set *Face Strength* on the faces involved in the bevel, according to the mode specified here.
    This can be used in conjunction with a following
-   :doc:`Weight Normals Modifier </modeling/modifiers/modify/weighted_normal>`
+   :doc:`Weighted Normals </modeling/modifiers/modify/weighted_normal>` modifier
    (with the *Face Influence* option checked).
 
    None
@@ -140,13 +140,40 @@ Miter Patterns
    Patch
       Edges meet at a sharp point but in addition, two extra vertices are introduced near the point
       so that the edges and faces at the vertex may be less pinched together than
-      what occurs in the Sharp case.
+      what occurs in the *Sharp* case.
+      This pattern does makes no sense for inner miters, so it behaves like *Arc* for them.
+
       The *Spread* slider controls how far the new vertices are from the meeting point.
-      (This pattern does makes no sense for inner miters, so behaves like Arc for them.)
    Arc
       Two vertices are introduced near the meeting point, and a curved arc joins them together.
+
       The *Spread* slider controls how far the new vertices are from the meeting point.
+
       The *Profile* slider controls the shape of the arc.
 
+   .. list-table:: Diagrams of the miter patterns.
+
+      * - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-2.png
+
+             Sharp outer miter.
+
+        - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-3.png
+
+             Patch outer miter.
+
+        - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-4.png
+
+             Arc outer miter.
+
+      * - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-5.png
+
+             Sharp inner miter.
+
+        - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-6.png
+
+             Arc inner miter.
+
+        - ..
+
 Spread
-   The value used to spread extra vertices apart for *Outer* and *Inner Miters*.
+   The value used to spread extra vertices apart for non-sharp miters.

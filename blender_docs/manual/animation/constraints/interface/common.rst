@@ -14,7 +14,7 @@ This link provides data to the constraint so that it can begin to function.
 For example, the Copy Location Constraint needs location data to function.
 Fill in the Target field, and the Copy Location constraint will begin to use location data from the Target object.
 
-.. figure:: /images/rigging_constraints_interface_common_target.png
+.. figure:: /images/animation_constraints_interface_common_target.png
 
    The Target field must be filled in for the constraint to function.
 
@@ -22,16 +22,19 @@ By default, the Target will use the :term:`Object Origin` as the target point.
 
 If the Target field links to a :term:`Mesh` or :term:`Lattice` object, a :term:`Vertex Group` field will appear.
 Enter the name of a vertex group and the constraint will target the median point
-of this vertex group instead of the object center.
+of this vertex group instead of the object's origin.
 
-.. figure:: /images/rigging_constraints_interface_common_target-vertex-group.png
+.. figure:: /images/animation_constraints_interface_common_target-vertex-group.png
 
 If the Target field links to an :term:`Armature`, a :term:`Bone` field will appear
-along with a :term:`Head` or :term:`Tail` slider.
-Enter the name of a bone and the constraint will target the bone instead of the entire armature object center.
-Slide the slider and the constraint will target the head, the tail or somewhere in between.
+along with a *Head/Tail* slider.
+Enter the name of a bone and the constraint will target the bone instead of the entire armature object origin.
 
-.. figure:: /images/rigging_constraints_interface_common_target-bone.png
+.. figure:: /images/animation_constraints_interface_common_target-bone.png
+
+The slider moves the precise position of the target between the :term:`Head` and :term:`Tail` of the bone.
+Some constraints have a button next to the slider
+that enables using the curved shape of :ref:`Bendy Bones <bendy-bones>`.
 
 
 Space
@@ -50,7 +53,7 @@ even if directly on top of each other.
 Then add a constraint to one empty that targets the other and experiment thoroughly by
 moving, rotating and scaling the target in many different ways.
 
-.. figure:: /images/rigging_constraints_interface_common_space.png
+.. figure:: /images/animation_constraints_interface_common_space.png
 
    This constraint is set to use World Space as the frame of reference for both
    its Target Space and its Owner Space.
@@ -108,7 +111,7 @@ Influence
 
 The influence slider determines how much the constraint will affect the constrained object (target).
 
-.. figure:: /images/rigging_constraints_interface_common_influence.png
+.. figure:: /images/animation_constraints_interface_common_influence.png
 
 An influence of 0.0 will have no effect.
 An influence of 1.0 will have the full effect.
@@ -118,3 +121,8 @@ be difficult to control,
 especially as the :doc:`constraint stack </animation/constraints/interface/stack>` grows in complexity.
 
 The influence value is animatable, allowing constraints to be turned off, or partially on as needed.
+
+.. _bpy.ops.constraint.disable_keep_transform:
+
+The ``X`` button after the influence slider can be used to disable the constraint while trying to
+preserve the current object position. This may not work perfectly if other constraints remain active.

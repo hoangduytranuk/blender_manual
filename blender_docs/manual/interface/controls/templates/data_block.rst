@@ -11,7 +11,7 @@ all of the :term:`data users <Data User>` when edited.
 .. figure:: /images/interface_controls_templates_data-block_data-block.png
    :align: right
 
-   A Data-block menu with a search field.
+   A data-block menu with a search field.
 
 Type
    Shows an icon indicating the data-block type. It opens up the following pop-up menu.
@@ -29,13 +29,18 @@ User count
    Displays the number of :term:`data users <Data User>` of the data.
    Clicking on user count button will make it a single-user copy,
    with it linked only to the active object/object's data.
-Fake User ``F``
+Fake User (shield icon)
    Keeps the data-block saved in the blend-file, even if it has no :term:`Real User`.
-New/Add ``+``
+   When activated an "F" will be shown before the name in the list.
+Make Local (chain icon)
+   Todo <2.79.
+New/Add (files icon)
    Creates a new data-block or duplicates the current data-block and applies it.
-Open file
-   Opens the :doc:`File Browser </editors/file_browser/introduction>`.
+Open file (folder icon)
+   Opens the :doc:`File Browser </editors/file_browser>`.
 Unpack file
+   .. TODO2.8. confirm removal
+
    :ref:`Unpack <pack-unpack-data>` the file packed into the current blend-file to external ones.
 Unlink data-block ``X``
    Clears the link. :kbd:`Shift-LMB` to set the users to zero
@@ -52,11 +57,16 @@ Sometimes there is a :ref:`list <ui-list-view>` of applied data-blocks
 Preview
 =======
 
-In the Tool Shelf is a version of the data-block menu with a bigger preview.
-
 .. figure:: /images/interface_controls_templates_data-block_preview.png
+   :align: right
 
    The Data-Block menu with preview.
+
+In the Tool Settings is a version of the data-block menu with a bigger preview.
+
+.. container:: lead
+
+   .. clear
 
 
 .. rename to selector?
@@ -90,7 +100,7 @@ Name
 List
    Lets you select the data-block directly.
 Eyedropper
-   In some Data IDs there is an :doc:`/interface/controls/buttons/eye_dropper`
+   In some Data IDs there is an :ref:`ui-eyedropper`
    available through the pipette icon on the right side.
 Remove ``X``
    Click the ``X`` button on the right to remove the reference.
@@ -123,4 +133,4 @@ Bone
 
       Use B-Bone Shape
          When the bone is a :doc:`/animation/armatures/bones/properties/bendy_bones`,
-         click on this button to make the point follow the curvature of the B-Spline between head and tail.
+         click on this button to make the point follow the curvature of the B-spline between head and tail.

@@ -118,7 +118,7 @@ Fig. :ref:`fig-view3d-parent-scene-no` shows the three objects with no parenting
 
 .. _fig-view3d-parent-scene-no:
 
-.. figure:: /images/editors_3dview_object_properties_relations_parents_keep-transform-a.png
+.. figure:: /images/scene-layout_object_properties_relations_parents_keep-transform-a.png
 
    Scene with no parenting.
 
@@ -131,7 +131,7 @@ the Monkey object being altered respectively.
 
 Scale the "EmptyA" object, so that the Monkey becomes smaller and moves to the left a little.
 
-.. figure:: /images/editors_3dview_object_properties_relations_parents_keep-transform-b.png
+.. figure:: /images/scene-layout_object_properties_relations_parents_keep-transform-b.png
 
    The monkey is the child object of "EmptyA".
 
@@ -141,7 +141,7 @@ the *Set Parent To* pop-up menu.
 This will result in "EmptyB" object being the *Parent Object* of the Monkey object.
 Notice that when you change the parent of the Monkey the scale of the Monkey changed.
 
-.. figure:: /images/editors_3dview_object_properties_relations_parents_keep-transform-c.png
+.. figure:: /images/scene-layout_object_properties_relations_parents_keep-transform-c.png
 
    The monkey is the child object of "EmptyB".
 
@@ -157,7 +157,7 @@ from "EmptyA" to "EmptyB" we had chosen parenting type *Object (Keep Transform)*
 the Monkey would keep its scale information it obtained from the old parent "EmptyA"
 when it is assigned to the new parent "EmptyB";
 
-.. figure:: /images/editors_3dview_object_properties_relations_parents_keep-transform-d.png
+.. figure:: /images/scene-layout_object_properties_relations_parents_keep-transform-d.png
 
    The Object (Keep Transform) parent method.
 
@@ -174,11 +174,11 @@ Bone Parent
 
 Bone parenting allows you to make a certain bone in an armature the Parent Object of another object.
 This means that when transforming an armature the Child Object will only move
-if the specific bone it is the Child Object of moves.
+if the specific bone is the Child Object of moves.
 
 .. _fig-view3d-parent-bone-parent:
 
-.. figure:: /images/editors_3dview_object_properties_relations_parents_bone1.png
+.. figure:: /images/scene-layout_object_properties_relations_parents_bone1.png
 
    Three pictures of armatures with four bones.
 
@@ -201,13 +201,13 @@ Bone Relative parenting is an option you can toggle for each bone.
 This works in the same way as Bone parenting with one difference.
 
 With Bone parenting if you have parented a bone to some Child Objects and
-you select that bone and switch it into Edit Mode and then translate that bone;
+you select that bone and switch it into Edit Mode and then move that bone;
 When you switch back into Pose Mode on that bone,
 the Child Object which is parented to that bone will snap back to the location of the bone in Pose Mode.
 
 .. _fig-view3d-parent-bone-parent-child:
 
-.. figure:: /images/editors_3dview_object_properties_relations_parents_bone2.png
+.. figure:: /images/scene-layout_object_properties_relations_parents_bone2.png
 
    Single armature bone which has a child object cube parented to it using bone parenting.
 
@@ -222,7 +222,7 @@ the Child Objects will not move to the new location of the Pose Bone.
 
 .. _fig-view3d-parent-bone-parent-relative:
 
-.. figure:: /images/editors_3dview_object_properties_relations_parents_bone3.png
+.. figure:: /images/scene-layout_object_properties_relations_parents_bone3.png
 
    Single bone with bone relative parent to a cube.
 
@@ -271,18 +271,18 @@ The nearest vertices will be used from each object which is typically what you w
 
 .. list-table:: Vertex Parent example.
 
-   * - .. figure:: /images/editors_3dview_object_properties_relations_parents_object-mode-example-1.png
+   * - .. figure:: /images/scene-layout_object_properties_relations_parents_object-mode-example-1.png
           :width: 320px
 
           The small cubes can each be automatically parented to a triad of nearby vertices on the icosphere using
           the "Vertex (Triangle)" in the set parent context menu.
 
-     - .. figure:: /images/editors_3dview_object_properties_relations_parents_object-mode-example-2.png
+     - .. figure:: /images/scene-layout_object_properties_relations_parents_object-mode-example-2.png
           :width: 320px
 
           Reshaping the object in edit mode then means each of the cubes follows their vertex parent separately.
 
-     - .. figure:: /images/editors_3dview_object_properties_relations_parents_object-mode-example-3.png
+     - .. figure:: /images/scene-layout_object_properties_relations_parents_object-mode-example-3.png
           :width: 320px
 
           Re-scaling the parent icosphere in object mode means the child cubes are also rescaled as expected.
@@ -338,19 +338,10 @@ Clear Parent Inverse
    in the coordinate space of the parent.
 
 
-Hints
-=====
+.. hint:: **Use the Outliner**
 
-.. _fig-view3d-parent-outliner:
-
-.. figure:: /images/editors_3dview_object_properties_relations_parents_outliner-view.png
-
-   Outliner view.
-
-There is another way to see the parent-child relationship in groups and that is to use the *Outliner* view
-of the :doc:`Outliner editor </editors/outliner>`. Fig. :ref:`fig-view3d-parent-outliner`
-is an example of what the *Outliner* view looks like for the figures in the :ref:`object-parenting` example.
-Cube A's object name is "Cube_Parent" and cube B is "Cube_Child".
+   There is another way to see the parent-child relationship in groups and that is to use the *Outliner* view
+   of the :doc:`Outliner editor </editors/outliner>`.
 
 
 Known Limitations

@@ -1,8 +1,8 @@
 .. highlight:: sh
 
-**************************
-Installation on MS-Windows
-**************************
+***********************
+Installation on Windows
+***********************
 
 This guide covers the following topics:
 
@@ -14,7 +14,7 @@ This guide covers the following topics:
 Installing Python
 =================
 
-#. Download the `Python installation package <https://www.python.org/downloads/>`__ for MS-Windows.
+#. Download the `Python installation package <https://www.python.org/downloads/>`__ for Windows.
    In this guide version 3.6.x is used.
 #. Install Python with the installation wizard.
    Please make sure that you enable the "Add Python to PATH" option:
@@ -31,7 +31,7 @@ Installing SVN and Downloading the Repository
 
 In this guide, we will use TortoiseSVN though any Subversion client will do.
 
-#. Download `TortoiseSVN <https://tortoisesvn.net/downloads.html>`__ for MS-Windows.
+#. Download `TortoiseSVN <https://tortoisesvn.net/downloads.html>`__ for Windows.
 #. Install TortoiseSVN with the installation wizard. When choosing which features will be installed,
    it is recommended that you enable *command line client tools* to give you access to SVN from the command line
    (there is no harm in doing this, and it may be helpful if you ever run into any trouble).
@@ -48,7 +48,7 @@ In this guide, we will use TortoiseSVN though any Subversion client will do.
 Setting up the Build Environment
 ================================
 
-- Open a Command Prompt.
+- Open a Command Prompt. (Run as Administrator)
 - Enter the ``blender_docs`` folder which was just added by the SVN checkout::
 
      cd C:\blender_docs

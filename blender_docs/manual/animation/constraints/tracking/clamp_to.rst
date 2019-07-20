@@ -13,7 +13,7 @@ and judge where to put it by "mapping" this location along the target curve.
 
 One benefit is that when you are working with *Clamp To*,
 it is easier to see what your owner will be doing; since you are working in the 3D View,
-it will just be a lot more precise than sliding keys around on an F-Curve and
+it will just be a lot more precise than sliding keys around on an F-curve and
 playing the animation over and over.
 
 A downside is that unlike in the :doc:`Follow Path constraint </animation/constraints/relationship/follow_path>`,
@@ -44,9 +44,9 @@ However, the 0.5 curve time position can actually be anywhere within the boundin
 Options
 =======
 
-.. figure:: /images/rigging_constraints_tracking_clamp-to_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_tracking_clamp-to_panel.png
 
-   Clamp To panel.
+.. TODO2.8    Clamp To panel.
 
 Target
    The Target: field indicates which curve object the Clamp To constraint will track along.

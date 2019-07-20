@@ -11,7 +11,7 @@ you will likely want to put some flesh on your skeletons!
 Surprisingly, "linking" an armature to the object(s)
 it should transform and/or deform is called the "skinning" process...
 
-.. figure:: /images/rigging_armatures_skinning_introduction_example.png
+.. figure:: /images/animation_armatures_skinning_introduction_example.png
 
    The human mesh skinned on its armature.
 

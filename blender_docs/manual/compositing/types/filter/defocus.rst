@@ -5,7 +5,7 @@
 Defocus Node
 ************
 
-.. figure:: /images/compositing_types_filter_defocus_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeDefocus.png
    :align: right
 
    Defocus Node.
@@ -68,7 +68,7 @@ No Z-buffer
    whenever a node that is not image based is connected to the Z input.
 Z Scale
    Only active when *No Z-buffer* is enabled. When *No Z-buffer* is used,
-   the input is used directly to control the blur radius (similar to *f-Stop* when using the Z-buffer).
+   the input is used directly to control the blur radius (similar to *F-Stop* when using the Z-buffer).
    This parameter can be used to scale the range of the Z input.
 
 
@@ -87,7 +87,7 @@ Examples
 
 In this `blend-file example <https://wiki.blender.org/uploads/7/79/Doftest.blend>`__,
 the ball array image is blurred as if it was taken by a camera with an f-stop of 2.8 resulting
-in a fairly narrow depth of field centered on 7.5 Blender units from the camera.
+in a fairly narrow depth of field centered on 7.5 units from the camera.
 As the balls recede into the distance, they get blurrier.
 
 
@@ -105,7 +105,7 @@ where the time value controls the maximum blur for that frame.
 It may also be used to obtain a possibly slightly better DoF blur,
 by using a fake depth-shaded image instead of a Z-buffer.
 (A typical method to create the fake depth-shaded image is by using a linear blend texture
-for all objects in the scene or by using the "fog/mist" fake depth shading method).
+for all objects in the scene or by using the "fog/mist" fake depth shading method.)
 This also has the advantage that the fake depth image can have anti-aliasing,
 which is not possible with a real Z-buffer.
 
@@ -116,7 +116,7 @@ The input has to be scaled, because usually the value of a texture is only in th
 Camera Settings
 ---------------
 
-.. figure:: /images/render_blender-render_camera_object-data_depth-of-field-panel.png
+.. figure:: /images/compositing_types_filter_defocus_depth-of-field-panel.png
 
    Distance setting in the Camera Depth of Field panel.
 
@@ -159,7 +159,7 @@ Edge Artifacts
 
    - Split up your scene into "nearby" and "far" objects, and render them in two passes.
    - Now, combine the two results, each with their own "defocus" nodes driven by the same Time node,
-     but with one of them inverted. (e.g. using a "Map Value" node with a Size of -1).
+     but with one of them inverted (e.g. using a Map Value node with a Size of -1).
      As the defocus of one increases,
      the defocus on the other decreases at the same rate, creating a smooth transition.
 
@@ -173,7 +173,7 @@ Aliasing at Low f-Stop Values
      so that adjacent pixels are blurred together.
    - Use the blur node with a setting of 2 for X and Y.
    - Set DoF Distance off by a little, so that the object in focus is blurred by the tiniest bit.
-   - Use a higher f-Stop, which will start the blur,
+   - Use a higher f-stop, which will start the blur,
      and then use the Z socket to a Map Value to a Blur node to enhance the blur effect.
    - Rearrange the objects in your scene to use a lower-contrast background.
 

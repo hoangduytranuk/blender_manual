@@ -4,7 +4,7 @@
 Inpaint Node
 ************
 
-.. figure:: /images/compositing_types_filter_inpaint_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeInpaint.png
    :align: right
 
    Inpaint Node.

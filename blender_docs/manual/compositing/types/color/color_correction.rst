@@ -4,7 +4,7 @@
 Color Correction Node
 *********************
 
-.. figure:: /images/compositing_types_color_color-correction_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeColorCorrection.png
 
    Color Balance Node.
 
@@ -27,12 +27,12 @@ Saturation
 Contrast
    Adjust image contrast.
 Gamma
-   Exponential gamma correction, affecting the midtones of the image. (Works like Power in the Color Balance node).
+   Exponential gamma correction, affecting the midtones of the image. (Works like Power in the Color Balance node.)
 Gain
-   Multiplier, stronger influence on the highlights. (Works like Slope in the Color Balance node).
+   Multiplier, stronger influence on the highlights. (Works like Slope in the Color Balance node.)
 Lift
    This value (can be negative) will be added (+), linear lightens or darkens the image.
-   (Works like *Offset* in the Color Balance node).
+   (Works like *Offset* in the Color Balance node.)
 
 
 Tonal Ranges (Rows)

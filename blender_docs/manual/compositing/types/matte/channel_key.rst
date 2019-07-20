@@ -4,7 +4,7 @@
 Channel Key Node
 ****************
 
-.. figure:: /images/compositing_types_matte_channel-key_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeChannelMatte.png
    :align: right
 
    Channel Key Node.
@@ -41,10 +41,10 @@ Limit
 
    High
       Determines the lowest values that are considered foreground.
-      (which is supposed to be -- relatively -- height values: from this value to 1.0).
+      (Which is supposed to be -- relatively -- height values: from this value to 1.0.)
    Low
       Determines the highest values that are considered to be background objects.
-      (which is supposed to be -- relatively -- low values: from 0.0 to this value).
+      (Which is supposed to be -- relatively -- low values: from 0.0 to this value.)
 
 
 Outputs

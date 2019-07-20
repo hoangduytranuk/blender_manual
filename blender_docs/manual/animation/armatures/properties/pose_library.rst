@@ -10,10 +10,10 @@ Pose Library Panel
    :Mode:      All Modes
    :Panel:     :menuselection:`Properties editor --> Object --> Pose Library`
 
-.. figure:: /images/rigging_armatures_properties_pose-library_panel.png
-   :align: right
+.. TODO2.8 .. figure:: /images/animation_armatures_properties_pose-library_panel.png
+.. TODO2.8    :align: right
 
-   The Pose Library panel.
+.. TODO2.8    The Pose Library panel.
 
 The *Pose Library* panel is used to save, apply, and manage armature poses.
 *Pose Libraries* are saved to :doc:`Actions </animation/actions>`.
@@ -22,7 +22,7 @@ They are not generally used as actions, but can be converted to and from.
 Action
    A :ref:`ui-data-block` for Actions or Pose Libraries.
 Pose Libraries
-   A :ref:`ui-list-view` of poses for the active Pose Library.
+   A :ref:`List view <ui-list-view>` of poses for the active Pose Library.
 
    Add ``+``
       If a pose is added, a :ref:`pose marker <marker-pose-add>` is created.
@@ -37,7 +37,7 @@ Pose Libraries
          Replace an existing pose in the active Pose Library with the current pose of the armature.
    Apply Pose (magnifying glass icon)
       Applies the active pose to the selected pose bones.
-   Sanitize Action (livesaver icon)
+   Sanitize Action (book icon)
       Makes an action suitable for use as a Pose Library.
       This is used to convert an Action to a Pose Library.
       A pose is added to the Pose Library for each frame with keyframes.

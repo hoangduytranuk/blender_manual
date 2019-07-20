@@ -4,7 +4,7 @@
 Pixelate Node
 *************
 
-.. figure:: /images/compositing_types_filter_pixelate_node.png
+.. figure:: /images/compositing_node-types_CompositorNodePixelate.png
    :align: right
 
    Pixelate Node.

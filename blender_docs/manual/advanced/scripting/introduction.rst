@@ -3,14 +3,13 @@
 Introduction
 ************
 
-Python is an interpreted, interactive,
-object-oriented programming language. It incorporates modules, exceptions, dynamic typing,
-very high-level dynamic data types, and classes.
+Python is an interpreted, interactive, object-oriented programming language.
+It incorporates modules, exceptions, dynamic typing, very high-level dynamic data types, and classes.
 Python combines remarkable power with very clear syntax.
 
-Python scripts are a powerful and versatile way to extend Blender functionality.
+Python scripts are a versatile way to extend Blender functionality.
 Most areas of Blender can be scripted, including animation, rendering, import and export,
-object creation and the scripting of repetitive tasks.
+object creation and automating repetitive tasks.
 
 To interact with Blender, scripts can make use of
 the tightly integrated :abbr:`API (Application Programming Interface)`.
@@ -49,10 +48,12 @@ concepts of Python scripting for Blender.
 
 - :doc:`Text Editor </editors/text_editor>`
 - :doc:`Python Console </editors/python_console>`
-- Info Editor's :ref:`info-report-console`
+- :doc:`Info Editor </editors/info_editor>`
 
 
 .. rubric:: External links
+
+.. TODO2.8: Find new links to scripting introductions.
 
 Here are external links containing a lot of good information to start learning how to write scripts for Blender:
 
@@ -83,11 +84,10 @@ Outside of the Blender executable,
 there are literally hundreds of add-ons written by many people:
 
 - Officially supported add-ons are bundled with Blender.
-- Other **Testing** add-ons are included in development builds but not official releases.
+- Other *Testing* add-ons are included in development builds but not official releases.
   Many of them work reliably and are very useful but are not ensured to be stable for release.
 
-For an overview of all add-ons available, see
-the `Scripts Catalog <https://wiki.blender.org/index.php/Extensions:2.6/Py/Scripts>`__.
+See :doc:`/addons/index` for documentation on add-ons included with Blender.
 
 
 Scripts
@@ -110,7 +110,7 @@ File Location
 ^^^^^^^^^^^^^
 
 All scripts are loaded from the ``scripts`` folder of
-the :doc:`local, system and user paths </getting_started/installing/configuration/directories>`.
+the :ref:`local, system and user paths <blender-directory-layout>`.
 
 You can setup an additional search path for scripts in
 :ref:`prefs-file-paths` :menuselection:`Preferences --> File Paths`.
@@ -120,9 +120,9 @@ Installation
 ^^^^^^^^^^^^
 
 Add-ons are conveniently installed through Blender in the :doc:`Preferences </editors/preferences/addons>`.
-Click the :menuselection:`Install from File...` button and select the ``.py`` or ``.zip`` file.
+Click the :menuselection:`Install...` button and select the ``.py`` or ``.zip`` file.
 
-To manually install scripts or add-ons, place them in the ``add-ons``, ``modules``, ``presets``,
+To manually install scripts or add-ons, place them in the ``addons``, ``modules``, ``presets``,
 or ``startup`` directory according to their type. See the description above.
 
 You can also run scripts by loading them in the :doc:`Text Editor </editors/text_editor>`.

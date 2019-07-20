@@ -7,7 +7,7 @@
 Vector Curves Node
 ******************
 
-.. figure:: /images/compositing_types_vector_vector-curves_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeCurveVec.png
    :align: right
 
    Vector Curves Node.

@@ -5,63 +5,63 @@
 File Paths
 **********
 
-The *File* tab in *Preferences* allows you to configure auto-save preferences
+The *File* section in *Preferences* allows you to configure auto-save preferences
 and set default file paths for blend-files, rendered images, and more.
 
 Locations for various external files can be set for the following options:
 
-.. figure:: /images/preferences_file_tab.png
+.. figure:: /images/editors_preferences_section_file-paths.png
 
-   Preferences File Paths tab.
+   Preferences File Paths section.
+
+.. hint::
+
+   The default path ``//`` refers to the folder of the currently open ``.blend`` file
+   (see :ref:`files-blend-relative_paths` for details).
 
 
 Data
 ====
 
 Fonts
-   Default location when searching for font files.
+   Default location to browse for :ref:`text object <modeling-text-index>` font files.
 Textures
-   Default location when searching for image textures.
+   Default location to browse for image textures.
 Scripts
-   An additional location to search for Python scripts. See `Scripts Path`_ below.
+   An additional location to search for Python scripts
+   (see `Scripts Path`_ below).
 Sounds
-   Default location when searching for sound files.
+   Default location to browse for sound files.
 Temporary Files
-   The location where temporary files are stored.
+   The location where temporary files are stored,
+   leave blank to use the systems temporary directory
+   (see :ref:`temp-dir` for details).
 
 
 Scripts Path
 ------------
 
-By default Blender looks in several directories (OS dependent) for scripts.
-By setting a user script path in the preferences an additional directory is looked in.
-This can be used to store certain scripts/templates/presets independently of
-the currently used Blender Version.
+By default Blender looks in several directories (platform dependent) for scripts.
+By setting a user script path in the preferences an additional directory is used.
+This can be used to store your own scripts and add-ons independently of the current Blender version.
 
-Inside the specified folder, specific subfolders have to be created to tell Blender what to
-look for and where. This folder structure has to mirror the structure of the scripts folder found in
-the installation directory of Blender:
+You will need to create specific sub-folders in this path which match the structure of the ``scripts``
+folder found in Blender's installation directory.
 
-- scripts
-- add-ons
-- modules
-- presets
-- camera
-- cloth
-- interface_theme
-- operator
-- render
-- ...
-- startup
-- templates
-  Not all of the folders have to be present.
+The following subdirectories will be used when present:
 
-.. warning::
+``startup/``
+   Modules in this folder will be imported on startup.
+``addons/``
+   Add-ons located here will be listed in the add-ons preferences.
+``modules/``
+   Modules in this folder can be imported by other scripts.
+``presets/``
+   Presets in this folder will be added to existing presets.
 
-   Be sure that you have the right privileges for running the executable accessing the path defined.
-   On MS-Windows for instance, if the option "Run this program as an administrator" is enabled for the executable,
-   it will lead to a failure to open the editor due to a limitation within the OS User Account Control.
-   Running a program with elevated privileges is potentially dangerous!
+.. note::
+
+   Blender will need to be restarted for all changes to the users scripts to take effect.
 
 
 Render
@@ -78,10 +78,18 @@ Applications
 
 Image Editor
    The path to an external program to use for image editing.
-Animation Player
-   The path to an external program to use for playback of rendered animations.
 
-.. note:: If these folders do not exist, they will *not* be created automatically.
+.. _prefs-file_paths-animation_player:
+
+Animation Player
+   The program used for playing back rendered animations via
+   :ref:`View Animation <topbar-render-view_animation>`.
+
+   By default this is set to *Internal* which uses Blender's built-in
+   :ref:`animation player <render-output-animation_player>`.
+
+   This has the advantage that all image formats supported by Blender can be played back
+   and no 3rd party application needs to be installed.
 
 
 Development
@@ -91,3 +99,15 @@ Only Visible when *Developer Extras* is enabled.
 
 I18n Branches
    The path to the ``/branches`` directory of your local svn-translation copy, to allow translating from the UI.
+
+
+Known Limitations
+=================
+
+Permissions on Windows
+----------------------
+
+Be sure that you have the right privileges for running the executable accessing the path defined.
+On Windows for instance, if the option *"Run this program as an administrator"* is enabled for the executable,
+it will lead to a failure to open the editor due to a limitation within the OS User Account Control.
+Running a program with elevated privileges is potentially dangerous!

@@ -1,8 +1,12 @@
-.. _bpy.ops.object.join_shapes:
 
 ****************
 Shape Keys Panel
 ****************
+
+.. figure:: /images/animation_shape-keys_shape-keys-panel_basis.png
+   :align: right
+
+   Shape Keys panel.
 
 .. admonition:: Reference
    :class: refbox
@@ -11,92 +15,115 @@ Shape Keys Panel
    :Mode:      All modes
    :Panel:     :menuselection:`Object Data --> Shape Keys`
 
-.. figure:: /images/animation_shape-keys_shape-keys-panel_basis.png
-
-   Shape Keys panel.
+The Shape Keys panel is used for authoring shape keys.
 
 
 Settings
 ========
 
 Active Shape Key Index
-   A :ref:`ui-list-view`.
+   A :ref:`List View <ui-list-view>`.
 
-   Value
-      Current Value of the Shape Key (0.0 to 1.0).
-   Mute (eye icon)
-      This visually disables the shape key in the 3D View.
+   Value (number)
+      In Relative mode: Value is the current influence of the shape key used for blending between
+      the shape (value=1.0) and its reference key (value=0.0). The reference key is usually the Basis shape.
+      The weight of the blend can be extrapolated above 1.0 and below 0.0.
+
+      In Absolute mode: Value is the *Evaluation Time* at which the shape will have maximum influence.
+
+   Mute (check mark)
+      If unchecked, the shape key will not be taken into consideration when
+      mixing the shape key stack into the result visible in the 3D Viewport.
 
    Specials
-      Transfer Shape Key
-         Transfer the active *Shape Key* from a different object.
-         Select two objects, the active Shape Key is copied to the active object.
-      Join as Shapes
-         Transfer the *Current Shape* from a different object.
-         Select two objects, the Shape is copied to the active object.
+      New Shape From Mix
+         Add a new shape key with the current deformed shape of the object.
+         This differs from the ``+`` button of the list, as that one always copies
+         the Basis shape independently of the current mix.
       Mirror Shape Key
-         If your mesh is nice and symmetrical, in *Object Mode*, you can mirror the shape keys on the X axis.
+         If your mesh is symmetrical, in *Object Mode*, you can mirror the shape keys on the X axis.
          This will not work unless the mesh vertices are perfectly symmetrical.
          Use the :menuselection:`Mesh --> Symmetrize` tool in *Edit Mode*.
       Mirror Shape Key (Topology)
-         This is the same as *Mirror Shape Key* though it detects
-         the mirrored vertices based on the topology of the mesh.
-         The mesh vertices do not have to be perfectly symmetrical for this one to work.
-      New Shape From Mix
-         Add a new shape key with the current deformed shape of the object.
-      Delete All Shapes
-         Delete all shape keys.
+         Same as *Mirror Shape Key* though it detects the mirrored vertices based on the topology of the mesh.
+         The mesh vertices do not have to be perfectly symmetrical for this action to work.
+      Join as Shapes (Transfer Mix)
+         Transfer the current resulting shape from a different object.
+
+         Select the object to copy, then the object to copy into.
+         Use this action and a new shape key will be added to the active object
+         with the current mix of the first object.
+
+      Transfer Shape Key
+         Transfer the active shape key from a different object
+         regardless of its current influence.
+
+         Select the object to copy, then the object to copy into.
+         Use this action and a new shape key will be added to the active object
+         with the active shape of the first object.
 
 Relative
    Set the shape keys to *Relative* or *Absolute*.
+   See :ref:`animation-shapekeys-relative-vs-absolute`.
 
-Show Only (pin icon)
-   Show the shape of the active shape key without interpolation in the 3D View.
-   *Show Only* is enabled while the object is in *Edit Mode*, unless the setting below is enabled.
-Edit Mode
-   Modify the shape key while the object is in *Edit Mode*.
+Shape Key Lock (pin icon)
+   Show the active shape in the 3D Viewport without blending.
+   *Shape Key Lock* gets automatically enabled while the object is in *Edit Mode*.
+Shape Key Edit Mode (edit mode icon)
+   If enabled, when entering *Edit Mode* the active shape key will **not** take maximum influence as is default.
+   Instead, the current blend of shape keys will be visible and can be edited from that state.
 
 
 Relative Shape Keys
 -------------------
 
-Relative shape keys deform from a selected shape key.
-By default, all relative shape keys deform from the first shape key called the Basis shape key.
+See :ref:`animation-shapekeys-relative-vs-absolute`.
+
+With absolute shape keys, the value shown for each shape in the list represents
+the current weight or influence of that shape in the current *Mix*.
 
 .. figure:: /images/animation_shape-keys_shape-keys-panel_relative.png
 
    Relative Shape Keys options.
 
-Clear Weights ``X``
-   Set all values to zero.
+Clear Shape Keys ``X``
+   Set all influence values, or weights, to zero.
+   Useful to quickly guarantee that the result shown in the 3D Viewport is not affected by shapes.
 
 .. _animation-shapekey-relative-value:
 
 Value
-   The value of the active shape key.
+   The weight of the blend between the shape key and its reference key (usually the Basis shape).
+
+   A value of 0.0 denotes 100% influence of the reference key and 1.0 of the shape key.
 Range
-   Min and Max range of the active shape key value.
-Blend
-   Vertex Group
-      Limit the active shape key deformation to a vertex group.
-   Relative
-      Select the shape key to deform from.
+   Minimum and maximum range for the influence value of the active shape key.
+   Blender can extrapolate results when the *Value* goes lower than 0.0 or above 1.0.
+Vertex Group
+   Limit the active shape key deformation to a vertex group.
+   Useful to break down a complex shape into components by assigning temporary vertex groups
+   to the complex shape and copying the result into new simpler shapes.
+Relative To
+   Select the shape key to deform from. This is called the *Reference Key* for that shape.
 
 
 Absolute Shape Keys
 -------------------
 
-Absolute shape keys deform from the previous and to the next shape key.
-They are mainly used to deform the object into different shapes over time.
+See :ref:`animation-shapekeys-relative-vs-absolute`.
+
+With absolute shape keys, the value shown for each shape in the list represents
+the *Evaluation Time* at which that shape key will be active.
 
 .. figure:: /images/animation_shape-keys_shape-keys-panel_absolute.png
 
    Absolute Shape Keys options.
 
-Reset Timing (clock icon)
-   Reset the timing for absolute shape keys.
+Re-Time Shape Keys (clock icon)
+   Absolute shape keys are timed, by order in the list, at a constant interval.
+   This button resets the timing for the keys. Useful if keys were removed or re-ordered.
 Interpolation
-   This controls the interpolation between shape keys.
+   Controls the interpolation between shape keys.
 
    Linear, Cardinal, Catmull-Rom, B-Spline
 
@@ -109,35 +136,5 @@ Interpolation
       The red line represents interpolated values between keys (black dots).
 
 Evaluation Time
-   This is used to control the shape key influence.
-
-
-Examples
-========
-
-Reset Timing
-------------
-
-For example, if you have the shape keys, Basis, Key_1, Key_2, in that order.
-
-Reset Timing will loop the shape keys, and set the shape keyframes to +0.1:
-
-- Basis 0.1
-- Key_1 0.2
-- Key_2 0.3
-
-Evaluation Time will show this as frame 100:
-
-- Basis 10.0
-- Key_1 20.0
-- Key_2 30.0
-
-
-Evaluation Time
----------------
-
-For example, if you have the shape keys, Basis, Key_1, Key_2, in that order, and you reset timing:
-
-- Basis 10.0
-- Key_1 20.0
-- Key_2 30.0
+   Controls the shape key influence. Scrub to see the effect of the current configuration.
+   Typically, this property is keyed for animation or rigged with a driver.

@@ -20,8 +20,10 @@ Window System
 .. toctree::
    :maxdepth: 1
 
-   window_system/introduction.rst
+   Introduction <window_system/introduction.rst>
+   window_system/topbar.rst
    window_system/workspaces.rst
+   window_system/status_bar.rst
    window_system/areas.rst
    window_system/regions.rst
    window_system/tabs_panels.rst
@@ -33,9 +35,9 @@ Keymap
 .. toctree::
    :maxdepth: 1
 
+   keymap/introduction.rst
    keymap/blender_default.rst
    keymap/industry_compatible.rst
-   common_shortcuts.rst
 
 
 Interface Controls
@@ -50,10 +52,10 @@ Buttons and Controls
    :maxdepth: 1
 
    controls/buttons/buttons.rst
+   controls/buttons/fields.rst
    controls/buttons/menus.rst
-   controls/buttons/toggle_radio.rst
-   controls/buttons/number.rst
-   controls/buttons/eye_dropper.rst
+   controls/buttons/eyedropper.rst
+   controls/buttons/decorators.rst
 
 
 Extended Controls
@@ -77,5 +79,7 @@ Tools
 .. toctree::
    :maxdepth: 1
 
+   tool_system.rst
    undo_redo.rst
-   annotation_tool.rst
+   annotate_tool.rst
+   selecting.rst

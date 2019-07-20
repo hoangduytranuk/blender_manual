@@ -18,25 +18,21 @@ It cannot be used for uneven floors or walls.
 Options
 =======
 
-.. figure:: /images/rigging_constraints_relationship_floor_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_relationship_floor_panel.png
 
-   Floor panel.
+.. TODO2.8    Floor panel.
 
 Targets
    :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
-Sticky
-   This button makes the owner immovable when touching the "floor" plane
-   (it cannot slide around on the surface of the plane any more).
-   This is fantastic for making walk and run animations!
 Use Rotation
-   This button forces the constraint to take the target's rotation into account.
+   Forces the constraint to take the target's rotation into account.
    This allows you to have a "floor" plane of any orientation you like, not just the global XY, XZ and YZ ones...
 Offset
-   This number button allows you to offset the "floor" plane from the target's center,
-   by the given number of Blender Units. Use it e.g.
+   Allows you to offset the "floor" plane from the target's origin,
+   by the given number of units. Use it e.g.
    to account for the distance from a foot bone to the surface of the foot's mesh.
 Max/Min
-   This set of (mutually exclusive) buttons controls which plane will be the "floor".
+   Controls which plane will be the "floor".
    The names of the buttons correspond, indeed, to the *normal* to this plane
    (e.g. enabling Z means "XY plane", etc.).
    By default, these normals are aligned with the *global* axes.

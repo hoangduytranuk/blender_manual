@@ -18,7 +18,7 @@ When in Edit Mode, the Sidebar region contains options
 in the *Curve Display* panel for how curves are displayed in the 3D View.
 
 Handles
-   Toggles the option to draw the Bézier handles.
+   Toggles the option to display the Bézier handles.
 Normals
    Toggles the display of the curve normals.
 

@@ -16,7 +16,7 @@ textures representing the density, heat, and velocity of other fluids or suspend
 Smoke and fire are emitted into a :doc:`Domain </physics/smoke/types/domain>`
 from a mesh object or particle system. Smoke movement is controlled by airflow inside the domain,
 which can be influenced by :doc:`smoke collision objects </physics/smoke/types/collision>`.
-Smoke will also be affected by the scene's gravity and :doc:`force fields </physics/force_fields/index>`.
+Smoke will also be affected by the scene's gravity and :doc:`force fields </physics/forces/force_fields/index>`.
 Airflow inside the domain can affect other physics simulations via the *Smoke Flow* force field.
 
 
@@ -44,7 +44,7 @@ A basic workflow looks like this:
    There is a *Quick Smoke* operator which will automatically create
    a domain object with a basic smoke/fire material.
    It can be found in :menuselection:`3D View --> Object --> Quick Effects --> Quick Smoke`,
-   or with the operator search menu :kbd:`Spacebar`.
+   or with the operator search menu :kbd:`F3`.
 
 .. note::
 

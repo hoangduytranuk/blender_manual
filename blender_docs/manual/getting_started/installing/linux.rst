@@ -3,12 +3,12 @@
 Installing on Linux
 *******************
 
-Check the :doc:`minimum requirements and where to get Blender </getting_started/installing/introduction>`,
-if you have not done so yet.
+Check the :doc:`Downloading Blender </getting_started/installing/index>`
+page to find the minimum requirements and where to get Blender (if you have not done so yet).
 
 
-Specific Packages for Distributions
-===================================
+Install from Package Manager
+============================
 
 Some Linux distributions may have a specific package for Blender in their repositories.
 
@@ -23,8 +23,8 @@ If there is a specific package for your distribution, you may choose what is pre
 otherwise, there is nothing wrong with the official binary on `blender.org <https://www.blender.org/download/>`__.
 
 
-Download from blender.org
-=========================
+Install from blender.org
+========================
 
 Download the Linux version for your architecture and uncompress the file to the desired location
 (e.g. ``~/software`` or ``/usr/local``).
@@ -32,28 +32,15 @@ Download the Linux version for your architecture and uncompress the file to the 
 Blender can now be launched by double-clicking the executable.
 
 For ease of access, you can configure your system by adding a menu entry or shortcut for Blender.
-You may also associate blend-files with Blender so that when selected from the File browser,
+You may also associate blend-files with Blender so that when selected from the file browser,
 they will automatically open in Blender.
-These settings are typically found in conjunction with the Window Manager settings. (KDE, Gnome, Unity).
+These settings are typically found in conjunction with the Window Manager settings. (Gnome or KDE.)
 
 
 Running from the Terminal
 =========================
 
-To run Blender from the terminal without needing to be in the executable directory,
-add the name of the folder into which Blender was extracted, to the ``PATH`` environment variable.
-This is achieved by adding the following line to your ``~/.bashrc`` or ``~/.profile`` file
-to point the path to the directory in which the Blender's binary is located:
-
-.. code-block:: sh
-
-   export PATH=/path/to/blender/directory:$PATH
-
-.. tip::
-
-   If you use daily builds and update Blender frequently,
-   you can link or always rename your folder to 'blender' and use this name for the ``PATH``
-   environment variable and for keeping the window manager menu up to date.
+See :doc:`Launching from the terminal </advanced/command_line/launch/linux>`.
 
 
 Avoiding Alt+Mouse Conflict
@@ -64,10 +51,13 @@ which is a shortcut that Blender uses to simulate a three button mouse.
 You can either have this feature disabled :menuselection:`Preferences --> Input --> Emulate 3 Button Mouse`
 or you can change the Window Manager settings to use the *Meta* key instead (also called *Super* or *Windows key*):
 
-- **KDE**: :menuselection:`System Settings --> Window Management --> Window Behavior --> Window Actions`,
-  Switch from 'Alt' to 'Meta' key.
-- **Unity/Gnome**: Enter the following in a command line (effective at next login):
+Gnome
+   Enter the following in a command line (effective at next login):
 
-  .. code-block:: sh
+   .. code-block:: sh
 
-     gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
+      gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
+
+KDE
+   :menuselection:`System Settings --> Window Management --> Window Behavior --> Window Actions`,
+   Switch from 'Alt' to 'Meta' key.

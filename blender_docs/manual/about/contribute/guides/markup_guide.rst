@@ -108,7 +108,7 @@ Images
 
 Figures should be used to place images::
 
-   .. figure:: /images/render_cycles_nodes_types_shaders_principled_node.png
+   .. figure:: /images/render_cycles_nodes_types_shaders_node.png
 
       Image caption.
 
@@ -117,7 +117,7 @@ all a similar size when floated next to text,
 writers should take screenshots in the following manner:
 
 #. Prepare the area you would like to capture making sure to use the default theme and setting.
-   (In some cases you may not want to use the default settings e.g. if some options are hidden behind a checkbox).
+   (In some cases you may not want to use the default settings e.g. if some options are hidden behind a checkbox.)
 #. Zoom to the maximum zoom level (hold :kbd:`NumpadPlus` or :kbd:`Ctrl-MMB` or similar).
 #. Zoom out eight zoom levels (:kbd:`NumpadMinus` -- eight times).
 #. In some cases you will want to leave a small margin around the thing you are trying to capture.

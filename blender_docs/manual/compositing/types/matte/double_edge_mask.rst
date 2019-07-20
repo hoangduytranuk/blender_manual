@@ -4,7 +4,7 @@
 Double Edge Mask Node
 *********************
 
-.. figure:: /images/compositing_types_matte_double-edge-mask_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeDoubleEdgeMask.png
    :align: right
 
    Double Edge Mask Node.

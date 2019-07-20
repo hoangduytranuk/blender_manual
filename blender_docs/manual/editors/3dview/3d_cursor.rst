@@ -1,10 +1,10 @@
-.. _bpy.types.SpaceView3D.cursor_location:
+.. _bpy.types.View3DCursor:
 
 *********
 3D Cursor
 *********
 
-The 3D Cursor is simply a point in 3D space which can be used for a number of purposes.
+The 3D Cursor is a point in 3D space which can be used for a number of purposes.
 
 
 Placement
@@ -21,14 +21,19 @@ Direct Placement with the Mouse
 
    Positioning the 3D cursor with two orthogonal views.
 
-Using :kbd:`LMB` in the 3D View will place the 3D cursor directly under your mouse pointer.
+Enable the cursor tool. Using :kbd:`RMB` in the 3D View will place the 3D cursor
+directly under your mouse pointer.
 
-For accuracy you should use two perpendicular orthogonal 3D Views, i.e.
-any combination of top :kbd:`Numpad7`, front :kbd:`Numpad1` and side :kbd:`Numpad3`.
-That way you can control the positioning along two axes in one view and determine depth in the second view.
+The view space is used to control the rotation of the 3D Cursor.
+
+For accuracy you should use two perpendicular orthogonal 3D Views,
+i.e. any combination of top :kbd:`Numpad7`, front :kbd:`Numpad1` and side :kbd:`Numpad3`.
+That way you can control the positioning along two axes in one view and
+determine depth in the second view.
 
 By default the depth of the geometry under the cursor is used,
-this can be disabled using the *Cursor Depth* toggle in the :doc:`Preferences </editors/preferences/interface>`.
+this can be disabled using the *Cursor Surface Project* toggle
+in the :doc:`Preferences </editors/preferences/editing>`.
 
 .. seealso::
 
@@ -43,14 +48,22 @@ this can be disabled using the *Cursor Depth* toggle in the :doc:`Preferences </
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Sidebar region --> 3D Cursor`
+   :Panel:     :menuselection:`Sidebar region --> View --> 3D Cursor`
 
 .. figure:: /images/editors_3dview_3d-cursor_panel.png
 
    The 3D Cursor panel of the Sidebar region.
 
-The 3D cursor can also be positioned by editing the location coordinates values in
-the *3D cursor* panel of the Sidebar region.
+The 3D cursor can also be positioned and oriented by editing these values:
+
+Location
+   The location of the 3D Cursor.
+
+Rotation
+   The rotation of the 3D Cursor.
+
+Rotation Mode
+   The Rotation mode of the 3D Cursor.
 
 
 Usage

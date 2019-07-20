@@ -3,12 +3,12 @@
 Introduction
 ************
 
-.. figure:: /images/rigging_armatures_posing_bone-constraints_introduction_tab.png
-   :align: right
-   :figwidth: 280px
+.. TODO2.8 .. figure:: /images/animation_armatures_posing_bone-constraints_introduction_tab.png
+.. TODO2.8    :align: right
+.. TODO2.8    :figwidth: 280px
 
-   The Constraints panel in Pose Mode,
-   with one Limit Rotation constraint applied to the active bone.
+.. TODO2.8    The Constraints panel in Pose Mode,
+.. TODO2.8    with one Limit Rotation constraint applied to the active bone.
 
 As bones behave like objects in *Pose Mode*, they can also be constrained.
 This is why the *Constraints* tab is shown in both *Object Mode* and *Edit Mode*.
@@ -24,7 +24,7 @@ is also mainly available through the *IK Solver* constraint, which is specific t
 
 For example, a human elbow cannot rotate backward (unless the character has broken his arm),
 nor to the sides, and its forward and roll rotations are limited in a given range.
-(e.g. depending on the rest position of your elbow, it may be from (0 to 160) or from (-45 to 135)).
+(E.g. depending on the rest position of your elbow, it may be from (0 to 160) or from (-45 to 135).)
 
 So you should apply a *Limit Rotation* constraint to the forearm bone
 (as the elbow movement is the result of rotating the forearm bone around its root).

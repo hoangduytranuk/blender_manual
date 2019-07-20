@@ -144,8 +144,13 @@ Action
 Action Extents
    How much of the Action to use.
 
+   For instance, it is common to set the first and last keyframe of an Action to be the same keyframes.
+   The problem with this is if you loop the animation,
+   there is a slight hitch where the same keyframes are played twice.
+   To fix this, simply reduce the *End Frame* one.
+
    Note: If you select values that are above or below the actual keyframe count of the Action,
-   then the F-Curve Extrapolation will be consulted.
+   then the F-curve Extrapolation will be applied.
    Which can be changed in the Graph Editor, under :menuselection:`Channel --> Extrapolation Mode`.
 Sync Length
    Causes the "Start" and "End" Frames, above, to be reset to the first and last keyframed frames of the Action.

@@ -7,13 +7,9 @@
 ###############
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    introduction.rst
-
-
-Tabs
-====
 
 .. toctree::
    :maxdepth: 1

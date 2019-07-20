@@ -7,7 +7,7 @@
 RGB Node
 ********
 
-.. figure:: /images/compositing_types_input_rgb_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeRGB.png
    :align: right
 
    RGB Node.

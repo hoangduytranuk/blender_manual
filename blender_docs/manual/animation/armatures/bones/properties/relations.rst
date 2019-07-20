@@ -9,9 +9,9 @@ Relations
    :Mode:      All Modes
    :Panel:     :menuselection:`Bone --> Relations`
 
-.. figure:: /images/rigging_armatures_bones_properties_relations_panel.png
+.. TODO2.8 .. figure:: /images/animation_armatures_bones_properties_relations_panel.png
 
-   The Relations panel.
+.. TODO2.8    The Relations panel.
 
 In this panel you can arrange sets of bones in different layers for easier manipulation.
 
@@ -44,9 +44,9 @@ Bone Group
 
    :Mode:      Pose Mode
 
-.. figure:: /images/rigging_armatures_bones_properties_relations_group-list.png
+.. TODO2.8 .. figure:: /images/animation_armatures_bones_properties_relations_group-list.png
 
-   The Bone Group data ID.
+.. TODO2.8    The Bone Group data ID.
 
 To assign a selected bone to a given bone group use the *Bone Group* data ID.
 
@@ -60,7 +60,7 @@ Object Children
    :Mode:      Pose Mode
 
 Relative Parenting
-   ToDo 2.66.
+   Changes how transformation of the bone is applied to its child Objects.
 
 
 .. _bone-relations-parenting:
@@ -85,19 +85,21 @@ By default, children bones inherit:
 - Their parent rotation (i.e. they keep a constant rotation relatively to their parent).
 - Their parent scale, here again with their own offset.
 
+.. TODO2.8 Maybe update the images (color & style)
+
 .. list-table:: Examples of transforming parented/connected bones.
 
-   * - .. figure:: /images/rigging_armatures_bones_properties_relations_rest.png
+   * - .. figure:: /images/animation_armatures_bones_properties_relations_rest.png
           :width: 200px
 
           The armature in its rest position.
 
-     - .. figure:: /images/rigging_armatures_bones_properties_relations_root-rotation.png
+     - .. figure:: /images/animation_armatures_bones_properties_relations_root-rotation.png
           :width: 200px
 
           Rotation of a root bone.
 
-     - .. figure:: /images/rigging_armatures_bones_properties_relations_root-scale.png
+     - .. figure:: /images/animation_armatures_bones_properties_relations_root-scale.png
           :width: 200px
 
           Scaling of a root bone.
@@ -105,40 +107,45 @@ By default, children bones inherit:
 Exactly like standard children objects. You can modify this behavior on a per-bone basis,
 using the Relations panel in the *Bones* tab:
 
-.. figure:: /images/rigging_armatures_bones_properties_relations_panel.png
+.. TODO2.8 .. figure:: /images/animation_armatures_bones_properties_relations_panel.png
 
-   Relations panel in Pose Mode.
+.. TODO2.8    Relations panel in Pose Mode.
 
 Inherit Rotation
    When disabled, this will "break" the rotation relationship to the bone's parent.
    This means that the child will keep its rotation in the armature object space when its parent is rotated.
 Inherit Scale
    When disabled, this will "break" the scale relationship to the bone's parent.
+Local Location
+   When disabled, the location transform property is evaluated in the parent bone's local space,
+   rather than using the bone's own *rest pose* local space orientation.
 
 These inheriting behaviors propagate along the bones' hierarchy.
 So when you scale down a bone, all its descendants are by default scaled down accordingly.
-However, if you set one bone's *Inherit Scale* or *Inherit Rotation*
-property on in this "family", this will break the scaling propagation,
+However, if you disable one bone's *Inherit Scale* or *Inherit Rotation*
+property in this "family", this will break the scaling propagation,
 i.e. this bone *and all its descendants* will no longer be affected when you scale one of its ancestors.
+
+.. TODO2.8 Maybe update the images (color & style)
 
 .. list-table:: Examples of transforming parented/connected bones with Inherit Rotation disabled.
 
-   * - .. figure:: /images/rigging_armatures_bones_properties_relations_inherit-rot-disabled.png
+   * - .. figure:: /images/animation_armatures_bones_properties_relations_inherit-rot-disabled.png
           :width: 200px
 
           The yellow outlined Inherit Rotation disabled bone in the armature.
 
-     - .. figure:: /images/rigging_armatures_bones_properties_relations_inherit-rot-disabled-descendant.png
+     - .. figure:: /images/animation_armatures_bones_properties_relations_inherit-rot-disabled-descendant.png
           :width: 200px
 
           Rotation of a bone with an Inherit Rotation disabled bone among its descendants.
 
-     - .. figure:: /images/rigging_armatures_bones_properties_relations_inherit-rot-disabled-scale.png
+     - .. figure:: /images/animation_armatures_bones_properties_relations_inherit-rot-disabled-scale.png
           :width: 200px
 
           Scaling of a bone with an Inherit Rotation disabled bone among its descendants.
 
-Connected bones have another specificity: they cannot be translated. Indeed,
+Connected bones have another specificity: they cannot be moved. Indeed,
 as their root must be at their parent's tip, if you do not move the parent,
 you cannot move the child's root, but only its tip, which leads to a child rotation.
 This is exactly what happens, when you press :kbd:`G` with a connected bone selected,
@@ -150,9 +157,11 @@ however, this should give a good idea of the problem:
 
 - Non-related selected bones are transformed independently, as usual.
 
+.. TODO2.8 Maybe update the images (color & style)
+
 .. _fig-rig-pose-edit-scale:
 
-.. figure:: /images/rigging_armatures_bones_properties_relations_scale-related.png
+.. figure:: /images/animation_armatures_bones_properties_relations_scale-related.png
    :width: 320px
 
    Scaling bones, some of them related.
@@ -163,12 +172,12 @@ however, this should give a good idea of the problem:
   (see Fig. :ref:`fig-rig-pose-edit-scale` the third tip bone,
   outlined in yellow, was only scaled down through the parent relationship,
   exactly as the unselected ones, even though it is selected and active.
-  Otherwise, it should have been twice smaller!).
+  Otherwise, it should have been twice smaller!)
 - When connected and unconnected bones are selected,
-  and you start a grab operation, only the unconnected bones are affected.
+  and you start a move operation, only the unconnected bones are affected.
 - When a child connected hinge bone is in the selection,
   and the "most parent" selected one is connected, when you press :kbd:`G`,
-  nothing happens, because Blender remains in grab operation, which of course has no effect on a connected bone.
+  nothing happens, because Blender remains in move operation, which of course has no effect on a connected bone.
 
 So, when posing a chain of bones, you should always edit its elements from the root bone to the tip bone.
 This process is known as *forward kinematics* (FK).

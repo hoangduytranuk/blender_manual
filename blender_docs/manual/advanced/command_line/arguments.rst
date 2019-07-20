@@ -4,6 +4,8 @@
    CHANGES TO THIS FILE MUST BE MADE IN BLENDER'S SOURCE CODE, SEE:
    https://developer.blender.org/diffusion/B/browse/master/source/creator/creator_args.c
 
+.. _command_line-args:
+
 **********************
 Command Line Arguments
 **********************
@@ -26,7 +28,7 @@ Render Options
 
    * ``+<frame>`` start frame relative, ``-<frame>`` end frame relative.
    * A comma separated list of frames can also be used (no spaces).
-   * A range of frames can be expressed using ``..`` seperator between the first and last frames (inclusive).
+   * A range of frames can be expressed using ``..`` separator between the first and last frames (inclusive).
 
 ``-s``, ``--frame-start`` ``<frame>``
    Set start to frame ``<frame>``, supports +/- for relative frames too.
@@ -40,7 +42,7 @@ Render Options
 
    The ``#`` characters are replaced by the frame number, and used to define zero padding.
 
-   * ``ani_##_test.png`` becomes ``ani_01_test.png``
+   * ``animation_##_test.png`` becomes ``animation_01_test.png``
    * ``test-######.png`` becomes ``test-000001.png``
 
    When the filename does not contain ``#``, The suffix ``####`` is added to the filename.
@@ -49,12 +51,12 @@ Render Options
 
    .. code-block:: sh
 
-      blender -b foobar.blend -o //render_ -F PNG -x 1 -a
+      blender -b animation.blend -o //render_ -F PNG -x 1 -a
 
    ``//render_`` becomes ``//render_####``, writing frames as ``//render_0001.png``
 ``-E``, ``--engine`` ``<engine>``
    Specify the render engine.
-   Use -E help to list available engines.
+   Use ``-E`` help to list available engines.
 ``-t``, ``--threads`` ``<threads>``
    Use amount of ``<threads>`` for rendering and other operations
    [1-64], 0 for systems processor count.
@@ -65,10 +67,11 @@ Format Options
 
 ``-F``, ``--render-format`` ``<format>``
    Set the render format.
-   Valid options are ``TGA`` ``RAWTGA`` ``JPEG`` ``IRIS`` ``IRIZ`` ``AVIRAW`` ``AVIJPEG`` ``PNG`` ``BMP``
+   Valid options are:
+   ``TGA`` ``RAWTGA`` ``JPEG`` ``IRIS`` ``IRIZ`` ``AVIRAW`` ``AVIJPEG`` ``PNG`` ``BMP``
 
-   Formats that can be compiled into Blender, not available on all systems: ``HDR`` ``TIFF`` ``EXR`` ``MULTILAYER``
-   ``MPEG`` ``FRAMESERVER`` ``CINEON`` ``DPX`` ``DDS`` ``JP2``
+   Formats that can be compiled into Blender, not available on all systems:
+   ``HDR`` ``TIFF`` ``OPEN_EXR`` ``OPEN_EXR_MULTILAYER`` ``MPEG`` ``CINEON`` ``DPX`` ``DDS`` ``JP2``
 ``-x``, ``--use-extension`` ``<bool>``
    Set option to add the file extension to the end of the file.
 
@@ -77,7 +80,10 @@ Animation Playback Options
 ==========================
 
 ``-a`` ``<options>`` ``<file(s)>``
-   Playback ``<file(s)>``, only operates this way when not running in background.
+   Instead of showing Blender's user interface, this runs Blender as an animation player,
+   to view movies and image sequences rendered in Blender (ignored if ``-b`` is set).
+
+   Playback Arguments:
 
    ``-p`` ``<sx>`` ``<sy>``
       Open with lower left corner at ``<sx>``, ``<sy>``.
@@ -98,29 +104,18 @@ Window Options
 
 ``-w``, ``--window-border``
    Force opening with borders.
-``-W``, ``--window-borderless``
-   Force opening without borders.
+``-W``, ``--window-fullscreen``
+   Force opening in fullscreen mode.
 ``-p``, ``--window-geometry`` ``<sx>`` ``<sy>`` ``<w>`` ``<h>``
    Open with lower left corner at ``<sx>``, ``<sy>`` and width and height as ``<w>``, ``<h>``.
+``-M``, ``--window-maximized``
+   Force opening maximized.
 ``-con``, ``--start-console``
-   Start with the console window open (ignored if -b is set), (Windows only).
+   Start with the console window open (ignored if ``-b`` is set), (Windows only).
 ``--no-native-pixels``
    Do not use native pixel size, for high resolution displays (MacBook ``Retina``).
-
-
-Game Engine Specific Options
-============================
-
-``-g`` Game Engine specific options
-
-   ``fixedtime``
-      Run on 50 hertz without dropping frames.
-   ``vertexarrays``
-      Use Vertex Arrays for rendering (usually faster).
-   ``nomipmap``
-      No Texture Mipmapping.
-   ``linearmipmap``
-      Linear Texture Mipmapping instead of Nearest (default).
+``--no-window-focus``
+   Open behind other windows and without taking focus.
 
 
 Python Options
@@ -139,11 +134,33 @@ Python Options
    Run the given expression as a Python script.
 ``--python-console``
    Run Blender with an interactive console.
-``--python-exit-code``
+``--python-exit-code`` ``<code>``
    Set the exit-code in [0..255] to exit if a Python exception is raised
    (only for scripts executed from the command line), zero disables.
-``--addons``
+``--addons`` ``<addon(s)>``
    Comma separated list of add-ons (no spaces).
+
+
+Logging Options
+===============
+
+``--log`` ``<match>``
+   Enable logging categories, taking a single comma separated argument.
+   Multiple categories can be matched using a ``.*`` suffix,
+   so ``--log "wm.*"`` logs every kind of window-manager message.
+   Use "^" prefix to ignore, so ``--log "*,^wm.operator.*"`` logs all except for ``wm.operators.*``
+   Use "*" to log everything.
+``--log-level`` ``<level>``
+   Set the logging verbosity level (higher for more details) defaults to 1,
+   use -1 to log all levels.
+``--log-show-basename``
+   Only show file name in output (not the leading path).
+``--log-show-backtrace``
+   Show a back trace for each log message (debug builds only).
+``--log-show-timestamp``
+   Show a timestamp for each log message in seconds since start.
+``--log-file`` ``<filename>``
+   Set a file to output the log to.
 
 
 Debug Options
@@ -175,13 +192,29 @@ Debug Options
 ``--debug-python``
    Enable debug messages for Python.
 ``--debug-depsgraph``
-   Enable debug messages from dependency graph.
+   Enable all debug messages from dependency graph.
+``--debug-depsgraph-eval``
+   Enable debug messages from dependency graph related on evaluation.
+``--debug-depsgraph-build``
+   Enable debug messages from dependency graph related on graph construction.
+``--debug-depsgraph-tag``
+   Enable debug messages from dependency graph related on tagging.
 ``--debug-depsgraph-no-threads``
    Switch dependency graph to a single threaded evaluation.
+``--debug-depsgraph-time``
+   Enable debug messages from dependency graph related on timing.
+``--debug-depsgraph-pretty``
+   Enable colors for dependency graph debug messages.
+``--debug-gpu``
+   Enable gpu debug context and information for OpenGL 4.3+.
 ``--debug-gpumem``
    Enable GPU memory stats in status bar.
+``--debug-gpu-shaders``
+   Enable GPU memory stats in status bar.
+``--debug-gpu-force-workarounds``
+   Enable GPU memory stats in status bar.
 ``--debug-wm``
-   Enable debug messages for the window manager, also prints every operator call.
+   Enable debug messages for the window manager, shows all operators in search, shows keymap errors.
 ``--debug-all``
    Enable all debug messages.
 ``--debug-io``
@@ -191,13 +224,21 @@ Debug Options
    Enable floating point exceptions.
 ``--disable-crash-handler``
    Disable the crash handler.
+``--disable-abort-handler``
+   Disable the abort handler.
 
 
 Misc Options
 ============
 
+``--app-template`` ``<template>``
+   Set the application template (matching the directory name), use ``default`` for none.
 ``--factory-startup``
    Skip reading the startup.blend in the user's home directory.
+``--enable-library-override``
+   Enable Library Override features in the UI.
+``--enable-event-simulate``
+   Enable event simulation testing feature ``bpy.types.Window.event_simulate``.
 
 ``--env-system-datafiles``
    Set the ``BLENDER_SYSTEM_DATAFILES`` environment variable.
@@ -206,10 +247,6 @@ Misc Options
 ``--env-system-python``
    Set the ``BLENDER_SYSTEM_PYTHON`` environment variable.
 
-``-nojoystick``
-   Disable joystick support.
-``-noglsl``
-   Disable GLSL shading.
 ``-noaudio``
    Force sound system to None.
 ``-setaudio``
@@ -228,26 +265,13 @@ Misc Options
    End option processing, following arguments passed unchanged. Access via Python's ``sys.argv``.
 
 
-Experimental Features
-=====================
-
-``--enable-new-depsgraph``
-   Use new dependency graph.
-``--enable-new-basic-shader-glsl``
-   Use new GLSL basic shader.
-
-
 Other Options
 =============
 
 ``/?``
    Print this help text and exit (windows only).
 ``--debug-freestyle``
-   Enable debug messages for FreeStyle.
-``--debug-gpu``
-   Enable gpu debug context and information for OpenGL 4.3+.
-``--disable-abort-handler``
-   Disable the abort handler.
+   Enable debug messages for Freestyle.
 ``--verbose`` ``<verbose>``
    Set logging verbosity level.
 
@@ -261,13 +285,7 @@ Argument Parsing
 
       blender -ba test.blend
 
-   ...will ignore the ``a``.
-
-   .. code-block:: sh
-
-      blender -b test.blend -f8
-
-   ...will ignore ``8`` because there is no space between the ``-f`` and the frame value.
+   ...will exit since ``-ba`` is an unknown argument.
 
 
 Argument Order

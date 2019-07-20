@@ -6,7 +6,7 @@ Editing
 
 These preferences control how several tools will interact with your input.
 
-.. figure:: /images/preferences_editing_tab.png
+.. figure:: /images/editors_preferences_section_editing.png
 
 
 Objects
@@ -22,7 +22,7 @@ Link Materials To
    the Object data-block contains information about the Object's location while the Object Data
    "ObData" data-block contains information about the mesh.
 
-   .. figure:: /images/preferences_editing_data-blocks-hierarchy.png
+   .. figure:: /images/editors_preferences_editing_data-blocks-hierarchy.png
 
       Example for a mesh.
 
@@ -33,7 +33,7 @@ Link Materials To
    Object
       Any created material will be created as part of the Object data-block.
 
-   .. figure:: /images/preferences_editing_data-blocks-link.png
+   .. figure:: /images/editors_preferences_editing_data-blocks-link.png
 
       A material linked to Object Data (left) and Object (right).
 
@@ -46,6 +46,8 @@ Align To
       New objects align with world coordinates.
    View
       New object align with view coordinates.
+   3D Cursor
+      New objects align to the 3D cursor's orientation.
 Enter Edit Mode
    If selected, Edit Mode is automatically activated when you create a new object.
 
@@ -69,16 +71,31 @@ the change will be mirrored in the duplicate Object.
 The same rules apply to each of the checkboxes in the 'Duplicate Data' list.
 
 
+3D Cursor
+=========
+
+Cursor Surface Project
+   When placing the cursor by clicking,
+   the cursor is projected onto the surface under the cursor.
+Cursor Lock Adjust
+   When the viewport is locked to the cursor,
+   moving the cursor avoids the view *jumping* based on the new offset.
+
+
 Annotations
 ===========
 
 Default Color
-   The default color for new Grease Pencil layers.
+   The default color for new Annotate layers.
 Eraser Radius
-   The size of the eraser used with the Grease pencil.
+   The size of the eraser used with the Annotate Tool.
 Simplify Stroke
    This turns on the post-processing step of simplifying the stroke to remove
    about half of current points in it. It is only relevant when not drawing straight lines.
+
+.. seealso::
+
+   :doc:`Read more about Annotations </interface/annotate_tool>`.
 
 
 .. _prefs-system-weight:
@@ -105,7 +122,7 @@ Euclidean Distance
 
 .. seealso::
 
-   :doc:`Read more about Grease Pencil </editors/3dview/grease_pencil/index>`.
+   :doc:`Read more about Grease Pencil </grease_pencil/index>`.
 
 
 Miscellaneous
@@ -117,7 +134,6 @@ Sculpt Overlay Color
    representing the focal point of the brush influence.
    The overlay color is visible only when the overlay visibility is selected
    (clicking at the *eye* to set its visibility), and the transparency of the overlay is
-   controlled by the alpha slider located at the :menuselection:`Option tab --> Overlay panel`
-   in the Tool Shelf.
+   controlled by the alpha slider located at the :menuselection:`Tool tab --> Display panel` in the Sidebar.
 Node Auto-offset Margin
    Margin to use for :ref:`offsetting nodes <editors-nodes-usage-auto-offset>`.

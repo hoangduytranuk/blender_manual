@@ -11,4 +11,5 @@
 
    introduction.rst
    tools.rst
-   options.rst
+   tool_settings/index.rst
+   editing.rst

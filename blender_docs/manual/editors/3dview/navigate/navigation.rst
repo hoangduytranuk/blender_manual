@@ -8,14 +8,35 @@ Navigating in the 3D space is done with the use of both mouse movement and keybo
 To be able to work in the three-dimensional space that Blender uses,
 you must be able to change your viewpoint as well as the viewing direction of the scene.
 While we will describe the *3D View* editor, most of the other editors have similar functions.
-For example, it is possible to translate and zoom in the Image editor.
+For example, it is possible to pan and zoom in the Image editor.
 
 .. tip:: Mouse Buttons and Numpad
 
    If you have a mouse with less than three buttons or a keyboard without a numpad,
-   see the :doc:`Keyboard and Mouse </getting_started/installing/configuration/hardware>`
+   see the :doc:`Keyboard and Mouse </getting_started/configuration/hardware>`
    page of the manual to learn how to use them with Blender.
 
+
+Navigation Gizmo
+================
+
+The navigation gizmo can be found in the top right of the editor.
+The four buttons (listed from left to right) do the following:
+
+- :doc:`Toggles the Projection </editors/3dview/navigate/projections>`
+- :doc:`Toggles the Camera View </editors/3dview/navigate/camera_view>`
+- `Pans the 3D Viewport <Panning>`_
+- `Zooms the 3D Viewport <Zooming>`_
+
+The `Orbit`_ gizmo on the far right can be used to rotate around 3D Viewport.
+Hovering over the gizmo and dragging with :kbd:`LMB` will orbit the view.
+Clicking any of the axis labels will :doc:`Align </editors/3dview/navigate/align>` to that view.
+Clicking the same axis again switches to the opposite side of that same axis,
+
+.. figure:: /images/editors_3dview_navigation_gizmo.png
+   :align: center
+
+   Navigation Gizmo.
 
 Orbit
 =====
@@ -33,14 +54,13 @@ Click and drag :kbd:`MMB` on the viewport's area.
 If you start in the middle of the area and move up and down or left and right,
 the view is rotated around the middle of the area.
 
-To change the viewing angle in discrete steps, use :kbd:`Numpad8` and :kbd:`Numpad2` or :kbd:`Shift-Alt-Wheel`
-(which correspond to vertical :kbd:`MMB` dragging, from any viewpoint),
-or use :kbd:`Numpad4` and :kbd:`Numpad6` (or :kbd:`Ctrl-Alt-Wheel`)
+To change the viewing angle in discrete steps, use :kbd:`Numpad8` and :kbd:`Numpad2`
+or use :kbd:`Numpad4` and :kbd:`Numpad6`
 to rotate the scene around the global Z axis from your current point of view.
 Finally :kbd:`Numpad9` switches to the opposite side of the view.
 
 Alternatively, if the *Emulate 3 button mouse* option is select in the *Preferences*
-you can press and hold :kbd:`Alt` while dragging :kbd:`LMB` in the viewport's area.
+you can press and hold :kbd:`Alt` while dragging :kbd:`RMB` in the viewport's area.
 
 .. note:: Hotkeys
 
@@ -61,7 +81,7 @@ Roll
 
    :Mode:      All modes
    :Menu:      :menuselection:`View --> Navigation --> Roll`
-   :Hotkey:    :kbd:`Shift-Numpad4`, :kbd:`Shift-Numpad6`, :kbd:`Shift-Ctrl-Wheel`
+   :Hotkey:    :kbd:`Shift-Numpad4`, :kbd:`Shift-Numpad6`
 
 Rotate the viewport camera around its local Z axis in 15° discrete steps.
 
@@ -87,6 +107,8 @@ For those without a middle mouse button,
 you can hold :kbd:`Shift-Alt` while dragging with :kbd:`LMB`.
 
 
+.. _editors_3dview_navigation_zoom:
+
 Zooming
 =======
 
@@ -107,27 +129,27 @@ If you have a wheel mouse, you can zoom by rotating the :kbd:`Wheel`.
 .. hint:: If You Get Lost
 
    If you get lost in 3D space, which is not uncommon, two hotkeys will help you:
-   :kbd:`Home` changes the view so that you can see all objects :menuselection:`View --> View All`,
-   while :kbd:`NumpadPeriod` zooms the view to the currently selected objects when in perspective mode
-   :menuselection:`View --> View Selected`.
+   :kbd:`Home` changes the view so that you can see all objects :menuselection:`View --> Frame All`,
+   while :kbd:`NumpadPeriod` zooms the view to the currently selected objects
+   when in perspective mode :menuselection:`View --> Frame Selected`.
 
 
-.. _3dview-nav-zoom-border:
+.. _3dview-nav-zoom-region:
 
-Zoom Border
+Zoom Region
 -----------
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      All modes
-   :Menu:      :menuselection:`View --> Zoom Border`
+   :Menu:      :menuselection:`View --> Navigation --> Zoom Region...`
    :Hotkey:    :kbd:`Shift-B`
 
-The *Zoom Border* tool allows you to specify a rectangular region and zoom in so
-that the region fills the 3D View.
+The *Zoom Region* tool allows you to specify a rectangular region and zoom in
+so that the region fills the 3D View.
 
-You can access this through the *View* menu, or the shortcut :kbd:`Shift-B`,
+You can access this through via the shortcut :kbd:`Shift-B`,
 then :kbd:`LMB` click and drag a rectangle to zoom into.
 
 Alternatively you can zoom out using the :kbd:`MMB`.

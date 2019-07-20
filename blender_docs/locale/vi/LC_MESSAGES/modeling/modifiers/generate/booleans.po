@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-01 19:20+0000\n"
-"PO-Revision-Date: 2019-06-08 07:43+0100\n"
+"POT-Creation-Date: 2019-06-21 14:24+1000\n"
+"PO-Revision-Date: 2019-07-20 11:07+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
 "Language: vi\n"
 "Language-Team: London, UK <hoangduytran1960@googlemail.com>\n"
@@ -25,36 +25,69 @@ msgid "Boolean Modifier"
 msgstr "Bộ Điều Chỉnh Bool -- Boolean Modifier"
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:7
-msgid "The Boolean Modifier performs operations on meshes that are otherwise too complex to achieve with as few steps by editing meshes manually. The Boolean Modifier uses one of three Boolean operations that can be used to create a single mesh out of two mesh objects:"
-msgstr "The Boolean Modifier performs operations on meshes that are otherwise too complex to achieve with as few steps by editing meshes manually. The Boolean Modifier uses one of three Boolean operations that can be used to create a single mesh out of two mesh objects:"
+#, fuzzy
+msgid ""
+"The *Boolean* modifier performs operations on meshes that are otherwise "
+"too complex to achieve with as few steps by editing meshes manually. It "
+"uses one of the three available boolean operations to create a single "
+"mesh out of two mesh objects:"
+msgstr ""
+"The Boolean Modifier performs operations on meshes that are otherwise too"
+" complex to achieve with as few steps by editing meshes manually. The "
+"Boolean Modifier uses one of three Boolean operations that can be used to"
+" create a single mesh out of two mesh objects:"
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:13
-msgid "The Union, Intersection and Difference between a Cube and a UV Sphere, with the modifier applied to the sphere and using the cube as target."
+msgid ""
+"The Union, Intersection and Difference between a Cube and a UV Sphere, "
+"with the modifier applied to the sphere and using the cube as target."
 msgstr ""
 
-#: ../../manual/modeling/modifiers/generate/booleans.rst:18
-msgid "Usage"
-msgstr "Sử Dụng -- Usage"
+#: ../../manual/modeling/modifiers/generate/booleans.rst:16
+msgid ""
+"This modifier needs a second object to be the target (the second operand)"
+" of the operation."
+msgstr ""
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:20
-msgid "To use the *Boolean Modifier* select the desired mesh Object then add a *Boolean Modifier*. When you add the Boolean Modifier for an object, Blender will need a second object to be the target of the operation. You can use open or closed meshes, as long as they have available face normals for the calculations to take effect. You can add one or more modifiers of this type for an Object but you can only apply one operation for the Boolean Modifier at a time."
+msgid ""
+"Only :term:`manifold` meshes are guaranteed to give proper results, other"
+" cases (especially \"opened\" meshes, :term:`non-manifold` but without "
+"any self-intersections) will usually work well, but might give odd "
+"glitches and artifacts in some cases."
 msgstr ""
 
-#: ../../manual/modeling/modifiers/generate/booleans.rst:27
-msgid "This is a dynamic real-time modifier!"
+#: ../../manual/modeling/modifiers/generate/booleans.rst:24
+msgid ""
+"You should also avoid any co-planar faces (or co-linear edges) between "
+"both operands, those also tend to give issues currently."
 msgstr ""
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:29
-msgid "If you have marked your Objects to show the Edges (in :menuselection:`Properties Editor --> Object --> Display`, enable *Wire*), you will see the Edge creation process while you are moving your Objects. Depending on your mesh topology, you can also enable X-Ray and Transparency and see the topology being created in real-time."
-msgstr "If you have marked your Objects to show the Edges (in :menuselection:`Trình Biên Soạn Tính Chất (Properties Editor) --> Vật Thể (Object) --> Hiển Thị (Display)`, enable *Wire*), you will see the Edge creation process while you are moving your Objects. Depending on your mesh topology, you can also enable X-Ray and Transparency and see the topology being created in real-time."
+#, fuzzy
+msgid ""
+"If you have marked your objects to show the edges (in "
+":menuselection:`Properties Editor --> Object --> Viewport Display`, "
+"enable *Wireframe*), you will see the edge creation process while you are"
+" moving your objects around. Depending on your mesh topology, you can "
+"also enable X-Ray and Transparency and see the topology being created in "
+"real-time."
+msgstr ""
+"If you have marked your Objects to show the Edges (in "
+":menuselection:`Trình Biên Soạn Tính Chất (Properties Editor) --> Vật Thể"
+" (Object) --> Hiển Thị (Display)`, enable *Wire*), you will see the Edge "
+"creation process while you are moving your Objects. Depending on your "
+"mesh topology, you can also enable X-Ray and Transparency and see the "
+"topology being created in real-time."
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:36
 msgid "Options"
 msgstr "Tùy Chọn -- Options"
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:40
-msgid "Boolean Modifier options."
-msgstr ""
+#, fuzzy
+msgid "The Boolean modifier."
+msgstr "Bộ Điều Chỉnh Bool -- Boolean Modifier"
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:44
 msgid "Operations"
@@ -73,7 +106,9 @@ msgid "Difference"
 msgstr "Hiệu -- Difference"
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:50
-msgid "The modified mesh is subtracted from the target mesh."
+msgid ""
+"The target mesh is subtracted from the modified mesh (everything "
+"*outside* of the target mesh is kept)."
 msgstr ""
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:51
@@ -89,7 +124,7 @@ msgid "Intersect"
 msgstr "Giao Cắt Nhau -- Intersect"
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:54
-msgid "The target mesh is subtracted from the modified mesh."
+msgid "Opposite of *Difference* (everything *inside* of the target mesh is kept)."
 msgstr ""
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:57
@@ -100,43 +135,27 @@ msgstr "Vật Thể -- Object"
 msgid "The name of the target mesh object."
 msgstr ""
 
-#: ../../manual/modeling/modifiers/generate/booleans.rst:63
-msgid "Solver"
-msgstr "Trình Giải Nghiệm -- Solver"
+#: ../../<generated>:1
+msgid "Overlap Threshold"
+msgstr ""
 
 #: ../../manual/modeling/modifiers/generate/booleans.rst:60
-msgid "Determines what set of algorithms are used to calculate the boolean operation. Carve uses the external `Carve Library <https://github.com/VTREEM/Carve>`__ while BMesh uses Blender's built-in library and should give better results."
-msgstr "Determines what set of algorithms are used to calculate the boolean operation. Carve uses the external `Carve Library <https://github.com/VTREEM/Carve>`__ while BMesh uses Blender's built-in library and should give better results."
-
-#: ../../manual/modeling/modifiers/generate/booleans.rst:66
-msgid "Known Limitations"
-msgstr "Những Hạn Chế Từng Biết Đến -- Known Limitations"
-
-#: ../../manual/modeling/modifiers/generate/booleans.rst:68
-msgid "Boolean operates best on *water-tight* meshes, where inside/outside is clearly defined."
+msgid "Maximum distance between two faces to consider them as overlapping."
 msgstr ""
 
-#: ../../manual/modeling/modifiers/generate/booleans.rst:70
-msgid "The following characteristics are known to give bad output."
-msgstr ""
 
-#: ../../manual/modeling/modifiers/generate/booleans.rst:72
-msgid "Open volumes."
-msgstr ""
 
-#: ../../manual/modeling/modifiers/generate/booleans.rst:73
-msgid "Overlapping geometry."
-msgstr ""
 
-#: ../../manual/modeling/modifiers/generate/booleans.rst:74
-msgid "Self-intersections."
-msgstr ""
 
-#: ../../manual/modeling/modifiers/generate/booleans.rst:75
-msgid "Zero-area faces."
-msgstr ""
 
-#: ../../manual/modeling/modifiers/generate/booleans.rst:77
-msgid "While they may not fail in all situations, they aren't guaranteed to work properly."
-msgstr ""
+
+
+
+
+
+
+
+
+
+
 

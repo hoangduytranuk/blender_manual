@@ -1,3 +1,4 @@
+.. _tool-mesh-bevel:
 
 *****
 Bevel
@@ -12,7 +13,7 @@ Bevel
    :Menu:      :menuselection:`Vertex --> Bevel Vertices` (vertex-only)
    :Hotkey:    :kbd:`Shift-Ctrl-B` (vertex-only)
 
-The *Bevel* tool allows you to create chamfered or rounded corners to geometry.
+The *Bevel* tool allows you to create chamfered or rounded corners on geometry.
 A bevel is an effect that smooths out edges and corners.
 
 True world edges are very seldom exactly sharp.
@@ -118,8 +119,8 @@ Vertex Only :kbd:`V`
    When selected, the tool is in "vertex only" mode, and only vertices will be beveled.
 
 Clamp Overlap :kbd:`C`
-   When selected, the bevel amount is not allowed to go larger than an amount that causes
-   overlapping collisions with other geometry.
+   Limits the width of each beveled edge so that edges cannot cause
+   overlapping intersections with other geometry.
 
 Loop Slide
    If there are unbeveled edges along with beveled edges into a vertex,
@@ -182,10 +183,43 @@ Outer Miter :kbd:`O`
       The *Spread* slider controls how far the new vertices are from the meeting point.
       The *Profile* slider controls the shape of the arc.
 
+   The current choices are shown in this diagram, where the outer miter is along the horizontal surface.
+
+   .. list-table::
+
+      * - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-2.png
+             :width: 320px
+
+             Sharp outer miter.
+
+        - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-3.png
+             :width: 320px
+
+             Patch outer miter.
+
+        - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-4.png
+             :width: 320px
+
+             Arc outer miter.
+
 Inner Miter :kbd:`I`
    An *Inner Miter* is formed when the angle between two beveled edges is less than 180 degrees.
    This option specifies the pattern Blender uses at an inner miter.
    The options are the same as for Outer Miter, except that *Patch* makes no sense and is therefore omitted.
+   Inner miters are shown in the following diagram, where two inner miters are on the vertical surfaces.
+
+   .. list-table::
+
+      * - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-5.png
+             :width: 200px
+
+             Sharp inner miter.
+
+        - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_miter-6.png
+             :width: 200px
+
+             Arc inner miter.
+
 
 Spread
    The value used to spread extra vertices apart for *Outer* and *Inner Miters*.

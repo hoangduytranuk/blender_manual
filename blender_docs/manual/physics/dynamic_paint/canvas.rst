@@ -53,20 +53,22 @@ Frames
       Sub-steps are extra samples between frames. They are usually required when there is a very fast brush.
 
 
-Advanced
-========
+Surface
+=======
 
 .. admonition:: Reference
    :class: refbox
 
    :Type:      Canvas
-   :Panel:     :menuselection:`Physics --> Dynamic Paint Advanced`
+   :Panel:     :menuselection:`Physics --> Dynamic Paint --> Surface`
 
-.. figure:: /images/physics_dynamic-paint_canvas_advanced-panel.png
 
-   Canvas advanced panel.
+.. TODO2.8:
+   .. figure:: /images/physics_dynamic-paint_canvas_advanced-panel.png
 
-From *Advanced* panel you can adjust surface type and related settings.
+      Canvas advanced panel.
+
+From *Surface* panel you can adjust surface type and related settings.
 
 
 Surface Type
@@ -191,8 +193,8 @@ Most types have the settings *Dissolve* and *Brush*:
 
 Dissolve
    Used to make the surface smoothly return to its original state during a defined *Time* period.
-Brush Group
-   Used to define a specific object group to pick brush objects from.
+Brush Collection
+   Used to define a specific collection to pick brush objects from.
 Influence Scale, Radius Scale
    For tweaking brush settings individually for each surface.
 
@@ -204,11 +206,12 @@ Output
    :class: refbox
 
    :Type:      Canvas
-   :Panel:     :menuselection:`Physics --> Dynamic Paint Output`
+   :Panel:     :menuselection:`Physics --> Dynamic Paint --> Output`
 
-.. figure:: /images/physics_dynamic-paint_canvas_output-panel.png
+.. TODO2.8:
+   .. figure:: /images/physics_dynamic-paint_canvas_output-panel.png
 
-   Canvas Output panel.
+      Canvas Output panel.
 
 From Output panel you can adjust how surface outputs its results.
 
@@ -236,7 +239,7 @@ Initial Color
    :class: refbox
 
    :Type:      Canvas
-   :Panel:     :menuselection:`Physics --> Dynamic Paint Initial Color`
+   :Panel:     :menuselection:`Physics --> Dynamic Paint --> Initial Color`
 
 Allows you to define the initial color of the canvas. (Todo 2.62)
 
@@ -253,11 +256,13 @@ Effects
    :class: refbox
 
    :Type:      Canvas
-   :Panel:     :menuselection:`Physics --> Dynamic Paint Effects`
+   :Panel:     :menuselection:`Physics --> Dynamic Paint --> Effects`
 
-.. figure:: /images/physics_dynamic-paint_canvas_effects-panel.png
 
-   Effects panel.
+.. TODO2.8:
+   .. figure:: /images/physics_dynamic-paint_canvas_effects-panel.png
+
+      Effects panel.
 
 This is a special feature for "Paint" type surface.
 It generates animated movement on canvas surface.
@@ -284,11 +289,12 @@ Cache
    :class: refbox
 
    :Type:      Canvas
-   :Panel:     :menuselection:`Physics --> Dynamic Paint Cache`
+   :Panel:     :menuselection:`Physics --> Dynamic Paint --> Cache`
 
-.. figure:: /images/physics_dynamic-paint_canvas_cache-panel.png
+.. TODO2.8:
+   .. figure:: /images/physics_dynamic-paint_canvas_cache-panel.png
 
-   Canvas cache panel.
+      Canvas cache panel.
 
 This panel is currently only visible for *Vertex* format surfaces.
 You can use it to adjust and bake point cache.

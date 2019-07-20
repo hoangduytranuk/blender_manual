@@ -4,7 +4,7 @@
 Chroma Key Node
 ***************
 
-.. figure:: /images/compositing_types_matte_chroma-key_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeChromaMatte.png
    :align: right
 
    Chroma Key Node.

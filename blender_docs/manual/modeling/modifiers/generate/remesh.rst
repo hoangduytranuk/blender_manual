@@ -4,7 +4,7 @@
 Remesh Modifier
 ***************
 
-The Remesh modifier is a tool for generating new mesh topology.
+The *Remesh* modifier is a tool for generating new mesh topology.
 The output follows the surface curvature of the input, but its topology contains only quads.
 
 
@@ -12,14 +12,13 @@ Options
 =======
 
 .. figure:: /images/modeling_modifiers_generate_remesh_panel.png
+   :align: right
 
-   Remesh Modifier panel.
+   The Remesh modifier.
 
 Mode
-   There are three basic modes available in the Remesh Modifier: Blocks, Smooth and Sharp.
-
-   The output topology is almost identical between the three modes;
-   what changes is the smoothing.
+   There are three basic modes available in the *Remesh* modifier.
+   The output topology is almost identical between the three modes, what changes is the smoothing.
 
    Blocks
       There is no smoothing at all.
@@ -27,17 +26,14 @@ Mode
       Output a smooth surface.
    Sharp
       Similar to *Smooth*, but preserves sharp edges and corners.
-      In the above image, the circular bottom of the cone and the top
-      point of the cone are more accurately reproduced in Sharp mode.
 
 Octree Depth
-   The Octree Depth sets the resolution of the output. Low values will generate larger faces relative to the input,
+   Sets the resolution of the output. Low values will generate larger faces relative to the input,
    higher values will generate a denser output.
 Scale
-   The result can be tweaked further by setting the Scale;
-   lower values effectively decrease the output resolution.
+   The result can be tweaked further by this, lower values effectively decrease the output resolution.
 Sharpness
-   Shown when using the *Sharp Mode* -- Higher values produce edges more similar to the input,
+   Shown when using the *Sharp Mode*. Higher values produce edges more similar to the input,
    while lower values filter out noise.
 Smooth Shading
    Output faces with smooth shading rather than flat shading.
@@ -45,13 +41,16 @@ Smooth Shading
 Remove Disconnected Pieces
    Filter out small disconnected pieces of the output.
 
+   Thin parts of the input mesh can become lose, and generate small isolated bits of mesh.
+   This option will remove those.
+
    Threshold
-      Use this to control how small a disconnected component must be removed.
+      Use this to control how small a disconnected component must be to be removed.
 
 .. note::
 
-   The input mesh should have some thickness to it; if the input is completely flat,
-   add a :doc:`Solidify Modifier </modeling/modifiers/generate/solidify>` above the Remesh Modifier.
+   The input mesh should have some thickness to it. If the input is completely flat,
+   add a :doc:`Solidify Modifier </modeling/modifiers/generate/solidify>` above the *Remesh* one.
 
 
 Examples

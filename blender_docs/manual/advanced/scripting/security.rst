@@ -12,10 +12,10 @@ Therefore, you should only run scripts from sources you know and trust.
 Automatic execution is disabled by default,
 however, some blend-files need this to function properly.
 
-When a blend-file tries to execute a script and is not allowed, a message will appear in
-the header with the option to **Reload Trusted** or **Ignore** the message.
+When a blend-file tries to execute a script and is not allowed, a dialog will appear.
+In it, you can choose to *Allow Execution* or to *Ignore* the scripts.
 
-.. figure:: /images/animation_drivers_troubleshooting_autorun-info-header.png
+.. figure:: /images/advanced_scripting_security_autorun-scripts-dialog.png
 
    An Auto-run warning in the Info editor's header.
 
@@ -29,7 +29,7 @@ Auto Execution
 Here are the different ways blend-files may automatically run scripts.
 
 Registered Text-Blocks
-   A text block can have its *Register* option enabled which means it will load on start.
+   A text data-block can have its *Register* option enabled which means it will load on start.
 Animation Drivers
    Python expressions can be used to *Drive* values and are often used in more advanced rigs and animations.
 
@@ -42,7 +42,7 @@ interaction (therefore will run even when auto execution is off),
 but you should be aware that this is the case since it is not necessarily obvious.
 
 - Running a script in the Text editor.
-- Rendering with FreeStyle, because FreeStyle uses scripts to control line styles.
+- Rendering with Freestyle, because Freestyle uses scripts to control line styles.
 
 
 Controlling Script Execution

@@ -4,7 +4,7 @@
 Bokeh Image Node
 ****************
 
-.. figure:: /images/compositing_types_input_bokeh-image_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeBokehImage.png
    :align: right
 
    Bokeh Image Node.

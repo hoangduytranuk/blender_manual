@@ -10,9 +10,11 @@ Fluid
    :Panel:     :menuselection:`Particle System --> Physics`
    :Type:      Fluid
 
-.. figure:: /images/physics_particles_emitter_physics_fluid_panel.png
 
-   Fluid Physics settings.
+.. TODO2.8:
+   .. figure:: /images/physics_particles_emitter_physics_fluid_panel.png
+
+      Fluid Physics settings.
 
 Fluid particles are similar to Newtonian ones but this time particles are influenced by
 internal forces like pressure, surface tension, viscosity, springs, etc.
@@ -46,6 +48,11 @@ Buoyancy
 Advanced
 --------
 
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Physics --> Advanced`
+
 Repulsion Factor
    How strongly the fluid tries to keep from clustering (factor of stiffness).
    Checkbox sets repulsion as a factor of stiffness.
@@ -59,6 +66,11 @@ Rest Density
 
 Springs
 -------
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Physics --> Springs`
 
 Force
    Spring force.

@@ -6,7 +6,7 @@ Emission
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Particle System --> Emission`
+   :Panel:     :menuselection:`Particle System`
 
 The *Emitter* system works just like its name says: it emits/produces particles for a certain amount of time.
 In such a system, particles are emitted from the selected object from the *Start*
@@ -17,25 +17,34 @@ but you may also render these kind of particles as objects
 see :doc:`Visualization </physics/particles/emitter/render>`).
 
 
-Options
-=======
+Settings
+========
 
-.. figure:: /images/physics_particles_emitter_emission_settings.png
+.. admonition:: Reference
+   :class: refbox
 
-   Particle Emission settings.
+   :Panel:     :menuselection:`Particle System --> Emission`
+
+
+.. TODO2.8:
+   .. figure:: /images/physics_particles_emitter_emission_settings.png
+
+      Particle Emission settings.
 
 The buttons in the *Emission* panel control the way particles are emitted over time:
 
 Number
    The maximum amount of parent particles used in the simulation.
-Start
+Seed
+   Blender uses this as starting point to produce random numbers during the simulation.
+Frame Start
    The start frame of particle emission. You may set negative values,
    which enables you to start the simulation before the actual rendering.
 End
    The end frame of particle emission.
 Lifetime
    The lifespan (in frames) of the particles.
-Random
+Lifetime Randomness
    A random variation of the lifetime of a given particle.
    The shortest possible lifetime is *Lifetime* × (1 - *Random*).
    Values above 1.0 are not allowed.
@@ -45,8 +54,13 @@ Random
    from 50 frames to :math:`50 × (1.0 - 0.75) = 12.5` frames.
 
 
-Emission Location
------------------
+Source
+------
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Emission --> Source`
 
 *Emit From* parameters define how and where the particles are emitted,
 giving precise control over their distribution. You may use vertex groups to confine the emission,
@@ -61,7 +75,7 @@ Volume
 
 
 Distribution Settings
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 These settings control how the emissions of particles are distributed throughout the emission
 locations.

@@ -4,7 +4,7 @@
 Split Viewer Node
 *****************
 
-.. figure:: /images/compositing_types_output_split-viewer_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeSplitViewer.png
    :align: right
 
    Split Viewer Node.

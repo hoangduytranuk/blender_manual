@@ -4,7 +4,7 @@
 Color Ramp Node
 ***************
 
-.. figure:: /images/compositing_types_converter_color-ramp_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeValToRGB.png
    :align: right
 
    Color Ramp Node.
@@ -54,7 +54,7 @@ The example map below shows how to use the Color Ramp node to do this:
 In the map above, a black-and-white swirl image, which is lacking an alpha channel,
 is fed into the Color Ramp node as a *Factor*.
 (Technically, we should have converted the image to a value using the RGB to BW node,
-but hey, this works just as well since we are using a BW image as input).
+but hey, this works just as well since we are using a BW image as input.)
 
 We have set the Color Ramp node to a purely transparent color on the left end of the spectrum,
 and a fully Red color on the right. As seen in the viewer,

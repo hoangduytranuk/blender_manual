@@ -7,7 +7,8 @@
    :maxdepth: 2
 
    introduction.rst
+   blend/index.rst
    data_blocks.rst
-   custom_properties.rst
-   files/index.rst
    linked_libraries.rst
+   media/index.rst
+   import_export.rst

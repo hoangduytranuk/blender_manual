@@ -36,7 +36,7 @@ Use this panel to either edit or display the object's transform properties such 
 rotation and/or scaling. These fields change the object's origin and then affect the aspect
 of all of its *vertices* and faces.
 
-.. figure:: /images/editors_3dview_object_properties_transforms_panel.png
+.. figure:: /images/scene-layout_object_properties_transforms_panel.png
    :align: right
 
    Transform Properties.
@@ -53,7 +53,7 @@ Rotation
       `here <https://wiki.blender.org/index.php/User:Pepribal/Ref/Appendices/Rotation>`__.
 
       Euler
-         The manipulator handles are aligned to the :term:`Euler` axis,
+         The gizmo handles are aligned to the :term:`Euler` axis,
          allowing you to see the discreet XYZ axis underlying the euler rotation,
          as well as possible :term:`gimbal lock`.
       Axis Angle
@@ -65,7 +65,7 @@ Rotation
 Scale
    The object's relative scale along the local axis
    (e.g. the *Scale X* value represents the scale along the local X axis).
-   Each object (cube, sphere, etc.), when created, has a scale of one Blender unit in each local direction.
+   Each object (cube, sphere, etc.), when created, has a scale of one unit in each local direction.
    To make the object bigger or smaller, you scale it in the desired axis.
 Dimensions
    The size of the object's bounding box
@@ -79,11 +79,11 @@ Transform Properties Locking
 
 When the toggle is locked, the corresponding transformation value can not be changed in any interactive operation.
 However, the value can still be changed using non-interactive operations,
-like editing the corresponding number button or using Python.
+like editing the corresponding number field or using Python.
 
-For example, if you locked the *Location X* property then you cannot use the 3D manipulator to
-translate the object along the global X axis.
-However, you can still translate it using the *Location X* number button.
+For example, if you locked the *Location X* property then you cannot use the 3D gizmo to
+move the object along the global X axis.
+However, you can still move it using the *Location X* number field.
 Consider the locking feature as a rigid constraint only changeable from the panel.
 
 To lock a property, click the padlock icon next to the button.

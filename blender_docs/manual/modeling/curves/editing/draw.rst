@@ -39,7 +39,7 @@ Type
          Refit
             Incrementally re-fits the curve (gives best results).
          Split
-            Splits the curve until the tolerance is met (gives better drawing performance).
+            Splits the curve until the tolerance is met (gives a better drawing performance).
 
       Detect Corners
          Detects corners and uses non-aligned handles for them.
@@ -85,7 +85,7 @@ Draw Options
 
    Draw Curve panel.
 
-These options can be found in the :ref:`Redo Last Panel <ui-redo-last>`.
+These options can be found in the :ref:`Adjust Last Operation Panel <ui-undo-redo-adjust-last-operation>`.
 
 Error
    Error distance in object units. This can be seen similar to a subdivision rate for the curve.
@@ -94,7 +94,7 @@ Fit Method
    Refit
       Incrementally re-fits the curve (gives best results).
    Split
-      Splits the curve until the tolerance is met (gives better drawing performance).
+      Splits the curve until the tolerance is met (gives a better drawing performance).
 Corner Angle
    Any angles above this are considered corners.
 Cyclic

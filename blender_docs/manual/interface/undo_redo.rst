@@ -18,8 +18,7 @@ Undo
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> History --> Undo`
-   :Menu:      :menuselection:`Object/Object types --> Undo`
+   :Menu:      :menuselection:`Edit --> Undo`
    :Hotkey:    :kbd:`Ctrl-Z`
 
 If you want to undo your last action, just press :kbd:`Ctrl-Z`.
@@ -38,61 +37,67 @@ Redo
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> History --> Redo`
-   :Menu:      :menuselection:`Object/Object types --> Redo`
+   :Menu:      :menuselection:`Edit --> Redo`
    :Hotkey:    :kbd:`Shift-Ctrl-Z`
 
 To roll back the Undo action, press :kbd:`Shift-Ctrl-Z`.
 
 
-.. _ui-redo-last:
+.. _ui-undo-redo-adjust-last-operation:
 
-Redo Last
-=========
+Adjust Last Operation
+=====================
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Operator panel`
-   :Hotkey:    :kbd:`F6`
+   :Menu:      :menuselection:`Edit --> Adjust Last Operation...`
+   :Hotkey:    :kbd:`F9`
 
-*Redo Last* is short for *Redo(ing the) Last (Action)*.
-:kbd:`F6` after an action will present you a context-sensitive
-Pop-Up menu based on your last action taken and the Mode and Editor in which Blender is being used.
+After an operation is complete you can tweak the parameters of the operation afterwards.
+In editors that support it, there is a "head-up display" panel in the bottom left
+based on the last performed operation; dependent on mode and context.
+Alternatively, you can create a pop-up with :kbd:`F9` does the same thing.
 
-For example, if your last action was a rotation in *Object Mode*,
-Blender will show you the last value changed for the angle (see Fig. :ref:`fig-interface-redo-last` left),
+For example, if your last operation was a rotation in *Object Mode*,
+Blender will show you the last value changed for the angle (see Fig. :ref:`fig-interface-redo-last-object-mode` left),
 where you can change your action back completely by typing :kbd:`Numpad0`.
-There are other useful options, based on your action context,
+There are other useful options, based on the operator,
 and you cannot only Undo actions, but change them completely using the available options.
 
 If you are in *Edit Mode*,
 Blender will also change its contents based on your last action taken.
-In our second example (at the right), the last action taken was a Vertex Move;
-we did a *Scale* on a Face, and, as you can see,
-the contents of the Pop-Up menu are different, because of your mode (Edit Mode)
-(See Fig. :ref:`fig-interface-redo-last` right).
+In the second example (at the right), the last operation was a Move in object mode;
+but a *Scale* on a Face in Edit mode, and, as you can see,
+the contents of *Adjust Last Operation* are different, because of the mode (Edit mode)
+(See Fig. :ref:`fig-interface-redo-last-edit-mode` right).
 
-.. _fig-interface-redo-last:
+.. list-table:: Adjust Last Operation.
 
-.. list-table:: Redo Last.
+   * - .. _fig-interface-redo-last-object-mode:
 
-   * - .. figure:: /images/interface_undo-redo_redo-last-object-mode.png
+       .. figure:: /images/interface_undo-redo_redo-last-object-mode.png
           :width: 310px
 
-          Redo Last -- Rotation (Object Mode, 60 degrees).
+          Rotation (Object Mode, 60 degrees).
 
-     - .. figure:: /images/interface_undo-redo_redo-last-edit-mode.png
+     - .. _fig-interface-redo-last-edit-mode:
+
+       .. figure:: /images/interface_undo-redo_redo-last-edit-mode.png
           :width: 310px
 
-          Redo Last -- Scale (Edit Mode, Resize face).
+          Scale (Edit Mode, Resize face).
 
-.. tip:: Operations using Redo Last
+.. tip::
 
-   Some operations produce particularly useful results if you tweak their parameters with the :kbd:`F6` Menu.
-   Take, for example, adding a Circle. If you reduce the Vertex count to three,
+   Some operations produce particularly useful results by using *Adjust Last Operation*.
+   For example, adding a Circle in the 3D Viewport; if you reduce the *Vertices* to three,
    you get a perfect equilateral triangle.
+
+.. tip::
+
+   The *Adjust Last Operation* region can be hidden by :menuselection:`View --> Adjust Last Operation`
 
 
 .. _bpy.ops.ed.undo_history:
@@ -104,9 +109,7 @@ Undo History
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> History --> Undo History`
-   :Menu:      :menuselection:`Object/Object types --> Undo History`
-   :Hotkey:    :kbd:`Ctrl-Alt-Z`
+   :Menu:      :menuselection:`Edit --> Undo History`
 
 .. figure:: /images/interface_undo-redo_undo-history-menu.png
    :align: right
@@ -114,7 +117,6 @@ Undo History
    The Undo History menu.
 
 There is also an Undo History of the last actions taken, recorded by Blender.
-You can access the history pop-up with :kbd:`Ctrl-Alt-Z`.
 
 First positions correspond to most recent actions.
 A small icon of an eye next to one of the entries indicates the current status.
@@ -135,7 +137,7 @@ Repeat Last
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> History --> Repeat: Repeat Last`
+   :Panel:     :menuselection:`Edit --> Repeat Last`
    :Hotkey:    :kbd:`Shift-R`
 
 The Repeat Last feature will repeat your last action when you press :kbd:`Shift-R`.
@@ -168,8 +170,7 @@ Repeat History
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> History --> Repeat: History...`
-   :Hotkey:    :kbd:`F3`
+   :Menu:     :menuselection:`Edit --> Repeat History...`
 
 .. figure:: /images/interface_undo-redo_repeat-history-menu.png
    :align: right
@@ -179,16 +180,11 @@ Repeat History
 The *Repeat History* feature will present you a list of the last repeated actions,
 and you can choose the actions you want to repeat.
 It works in the same way as the Undo History, explained above,
-but the list contains only repeated actions. To access Repeat History, use :kbd:`F3`.
+but the list contains only repeated actions.
 
 .. container:: lead
 
    .. clear
-
-.. note::
-
-   Blender uses two separate Histories, one dedicated for the *Edit Mode*,
-   and one dedicated for the *Object Mode*.
 
 .. important::
 

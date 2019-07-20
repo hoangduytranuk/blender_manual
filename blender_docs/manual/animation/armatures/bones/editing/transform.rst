@@ -6,11 +6,11 @@ Transform
 Transform
 =========
 
-.. figure:: /images/rigging_armatures_bones_editing_transform_panel.png
-   :align: right
-   :figwidth: 165px
+.. TODO2.8 .. figure:: /images/animation_armatures_bones_editing_transform_panel.png
+.. TODO2.8   :align: right
+.. TODO2.8   :figwidth: 165px
 
-   The Transform panel for armatures in Edit Mode.
+.. TODO2.8   The Transform panel for armatures in Edit Mode.
 
 We will not detail here the various transformations of bones, nor things like axis locking, pivot points, and so on,
 as they are common to most object editing, and already described in
@@ -22,7 +22,7 @@ and bones themselves act like edges in a mesh.
 
 As you know, bones can have two types of relationships: They can be parented,
 and in addition connected. Parented bones behave in *Edit Mode* exactly as if they
-had no relations. They can be grabbed, rotated, scaled, etc. without affecting their descendants.
+had no relations. They can be moved, rotated, scaled, etc. without affecting their descendants.
 However, connected bones must always have parent's tips connected to child's roots,
 so by transforming a bone, you will affect all its connected parent/children/siblings.
 
@@ -54,26 +54,28 @@ of the parent's tip and of the children's roots.
 
 You can also alter the bone radius by selecting the tail or head of the bone you wish to alter,
 then navigate to :menuselection:`Properties Editor --> Bone --> Deform --> Radius Section`
-and entering new values for the *Tail* and *Head* number buttons.
+and entering new values for the *Tail* and *Head* number fields.
+
+.. TODO2.8 Maybe update the images (color & style)
 
 .. list-table:: Bone Scale and Scale Radius comparison.
 
-   * - .. figure:: /images/rigging_armatures_bones_selecting_single-bone.png
+   * - .. figure:: /images/animation_armatures_bones_selecting_single-bone.png
           :width: 320px
 
           A single selected bone in Octahedron visualization.
 
-     - .. figure:: /images/rigging_armatures_bones_editing_transform_scaling-bone-radius-2.png
+     - .. figure:: /images/animation_armatures_bones_editing_transform_scaling-bone-radius-2.png
           :width: 320px
 
           After normal scale.
 
-   * - .. figure:: /images/rigging_armatures_bones_editing_transform_scaling-bone-radius-3.png
+   * - .. figure:: /images/animation_armatures_bones_editing_transform_scaling-bone-radius-3.png
           :width: 320px
 
           A single selected bone in Envelope visualization.
 
-     - .. figure:: /images/rigging_armatures_bones_editing_transform_scaling-bone-radius-4.png
+     - .. figure:: /images/animation_armatures_bones_editing_transform_scaling-bone-radius-4.png
           :width: 320px
 
           After Scaled Radius. Its length remains the same, but its joints' radius are bigger.
@@ -103,31 +105,33 @@ then enter a new value into it.
 Altering the Bone Envelope volume does not alter the size of the bone just the range
 within which it can influence vertices of child objects.
 
+.. TODO2.8 Maybe update the images (color & style)
+
 .. list-table:: Envelope scaling example.
 
-   * - .. figure:: /images/rigging_armatures_bones_editing_transform_scaling-bone-radius-3.png
+   * - .. figure:: /images/animation_armatures_bones_editing_transform_scaling-bone-radius-3.png
           :width: 320px
 
           A single bone selected in Envelope visualization.
 
-     - .. figure:: /images/rigging_armatures_bones_editing_transform_scaling-bone-radius-5.png
+     - .. figure:: /images/animation_armatures_bones_editing_transform_scaling-bone-radius-5.png
           :width: 320px
 
           Its envelope distance scaled.
 
 .. list-table:: "Bone size" scaling example.
 
-   * - .. figure:: /images/rigging_armatures_bones_editing_transform_scaling-bone-size-1.png
+   * - .. figure:: /images/animation_armatures_bones_editing_transform_scaling-bone-size-1.png
           :width: 200px
 
           A single "default size" bone selected in B-Bone visualization.
 
-     - .. figure:: /images/rigging_armatures_bones_editing_transform_scaling-bone-size-2.png
+     - .. figure:: /images/animation_armatures_bones_editing_transform_scaling-bone-size-2.png
           :width: 200px
 
           Its envelope distance scaled.
 
-     - .. figure:: /images/rigging_armatures_bones_editing_transform_scaling-bone-size-3.png
+     - .. figure:: /images/animation_armatures_bones_editing_transform_scaling-bone-size-3.png
           :width: 200px
 
           The same armature in Object Mode and B-Bone visualization, with Bone.004's size scaled up.
@@ -143,7 +147,7 @@ Align Bones
    :Menu:      :menuselection:`Armature --> Transform --> Align Bones`
    :Hotkey:    :kbd:`Ctrl-Alt-A`
 
-ToDo <2.72.
+Rotates the selected bones to achieve the same orientation as the active one.
 
 
 .. _armature-bone-roll:
@@ -212,25 +216,25 @@ Switch Direction
    :Menu:      :menuselection:`Armature --> Switch Direction`, :menuselection:`Specials --> Switch Direction`
    :Hotkey:    :kbd:`Alt-F`
 
-This tool is not available from the *Armature* menu,
-but only from the *Specials* pop-up menu :kbd:`W`.
-It allows you to switch the direction of the selected bones
+This tool allows you to switch the direction of the selected bones
 (i.e. their root will become their tip, and vice versa).
 
 Switching the direction of a bone will generally break the chain(s) it belongs to.
 However, if you switch a whole (part of a) chain, the switched bones will still be parented/connected,
 but in "reversed order". See the Fig. :ref:`fig-rig-properties-switch`.
 
+.. TODO2.8 Maybe update the images (color & style)
+
 .. _fig-rig-properties-switch:
 
 .. list-table:: Switching example.
 
-   * - .. figure:: /images/rigging_armatures_bones_editing_transform_switch-direction-1.png
+   * - .. figure:: /images/animation_armatures_bones_editing_transform_switch-direction-1.png
           :width: 320px
 
           An armature with one selected bone, and one selected chain of three bones, just before switching.
 
-     - .. figure:: /images/rigging_armatures_bones_editing_transform_switch-direction-2.png
+     - .. figure:: /images/animation_armatures_bones_editing_transform_switch-direction-2.png
           :width: 320px
 
           The selected bones have been switched. Bone.005 is no more connected nor parented to anything.

@@ -34,9 +34,3 @@ Twist
    Vertex group to control the children's *Twist* effect.
    Gives control over the direction of the twist, as well as the amount.
    The weight of 0.5 is neutral, i.e. there is no twist effect.
-
-
-Examples
-========
-
-Todo add.

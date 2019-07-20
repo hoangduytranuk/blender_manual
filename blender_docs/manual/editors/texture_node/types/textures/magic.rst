@@ -3,9 +3,8 @@
 Magic Node
 **********
 
-.. figure:: /images/render_blender-render_textures_nodes_types_textures_magic_node.png
+.. figure:: /images/editors_texture-node_types_textures_magic_node.png
 
    Magic node.
 
-
-See :doc:`Here </editors/uv/textures/types/procedural/magic>`.
+See :doc:`Here </render/materials/legacy_textures/types/magic>`.

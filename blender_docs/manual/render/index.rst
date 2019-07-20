@@ -3,18 +3,22 @@
 .. _bpy.types.RenderSettings:
 .. _bpy.ops.render:
 
-##########
-  Render
-##########
+#############
+  Rendering
+#############
 
 .. toctree::
    :maxdepth: 2
 
    introduction.rst
-   engines/index.rst
-   shaders/index.rst
-   lighting/index.rst
-   camera.rst
+   eevee/index.rst
+   cycles/index.rst
+   workbench/index.rst
+   cameras.rst
+   lights/index.rst
+   materials/index.rst
+   shader_nodes/index.rst
    color_management.rst
+   freestyle/index.rst
    layers/index.rst
    output/index.rst

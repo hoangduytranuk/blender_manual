@@ -4,12 +4,12 @@
 Corrective Smooth Modifier
 **************************
 
-This modifier is used to reduce highly distorted areas of a mesh by smoothing the deformations.
+The *Corrective Smooth* modifier is used to reduce highly distorted areas of a mesh by smoothing the deformations.
 
-This is typically useful *after* an Armature Modifier,
+This is typically useful *after* an :doc:`Armature modifier </modeling/modifiers/deform/armature>`,
 where distortion around joints may be hard to avoid, even with careful weight painting.
 
-To use this modifier effectively, it is useful to understand the basics of how it works.
+To use this modifier effectively, it is important to understand the basics of how it works.
 
 Rest State
    Used as a reference to detect highly distorted areas.
@@ -23,21 +23,20 @@ Options
 =======
 
 .. figure:: /images/modeling_modifiers_deform_corrective-smooth_panel.png
+   :align: right
 
-   Corrective Smooth Modifier.
-
-The modifier also uses a *Rest* state, to use as a reference.
-Internally this modifier uses smoothing, so some of the options adjust the kind of smoothing.
-
-.. Shares description with ``smooth.rst``
+   The Corrective Smooth modifier.
 
 Factor
    The factor to control the smoothing amount.
    Higher values will increase the effect.
-   Values outside this range (above 1.0 or below 0.0) distort the mesh.
+
+   Values outside expected range (above 1.0 or below 0.0) will distort the mesh.
+
 Repeat
-   The number of smoothing iterations.
-   Higher values generally improve the quality of the smoothing, but the operation is slowed down.
+   The number of smoothing iterations,
+   equivalent to executing the *Smooth* tool multiple times.
+
 Smooth Type
    Select the smoothing method used.
 
@@ -47,8 +46,10 @@ Smooth Type
       Uses a method of relaxing that weights by the distance of surrounding vertices.
       This option can give higher quality smoothing in some cases,
       by better preserving the shape of the original form.
+
 Vertex Group
-   Use to manually select regions to smooth.
+   If set, restrict the effect to the only vertices in that vertex group.
+   This allows for selective, real-time smoothing, by painting vertex weights.
 Only Smooth
    This option is included to preview the smoothing used, before correction is applied.
 Pin Boundaries
@@ -58,11 +59,11 @@ Rest Source
 
    Original Coordinates
       Use the original input vertex positions.
-      This relies on the original mesh having the same number of vertices as the original mesh.
+      This relies on the original mesh having the same number of vertices as the input, modified mesh.
    Bind Coordinates
       Optionally you may bind the modifier to a specific state.
-      This requires that there are constructive modifiers such as Subdivision Surface or Mirror
-      being applied before this modifier in the stack.
+      This is required when there are constructive modifiers such as *Subdivision Surface* or *Mirror*
+      in the stack before this modifier.
 
 
 Example
@@ -78,4 +79,4 @@ Example
      - .. figure:: /images/modeling_modifiers_deform_corrective-smooth_example-pose-after.png
           :width: 350px
 
-          Armature and corrective smooth.
+          Armature and Corrective Smooth.

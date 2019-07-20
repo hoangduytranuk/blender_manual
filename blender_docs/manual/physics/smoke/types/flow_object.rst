@@ -18,14 +18,22 @@ in :menuselection:`Properties --> Physics`. Then select *Flow* as the *Smoke Typ
 Now you should have a default smoke flow source object. You can test this by playing the animation
 :kbd:`Alt-A` from the first frame. If your source object is inside your domain, you should see smoke.
 
+.. TODO2.8:
+   .. figure:: /images/physics_smoke_types_flow-object_settings.png
+      :align: right
 
-Options
-=======
+      Smoke Flow options.
 
-.. figure:: /images/physics_smoke_types_flow-object_settings.png
-   :align: right
 
-   Smoke Flow options.
+Settings
+========
+
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Physics --> Smoke --> Settings`
+   :Type:      Flow
 
 
 Flow Type
@@ -115,7 +123,7 @@ Flame Rate
       Example showing two fire sources.
       The object on the left has a *Flame Rate* of 5, while the one on the right has 0.3.
 
-Sampling: Subframes
+Sampling Subframes
    Number of subframes used to reduce gaps in emission of smoke from fast-moving sources.
 
    .. figure:: /images/physics_smoke_types_flow-object_subframes.jpg
@@ -123,28 +131,29 @@ Sampling: Subframes
       Example showing two fast-moving sources.
       The object on the left uses 0 subframes, while the one on the right uses 6.
 
+Vertex Group
+   When set, use the specified :doc:`Vertex Group </modeling/meshes/properties/vertex_groups/vertex_groups>`
+   to control where smoke is emitted.
 
-Smoke Flow Advanced
-===================
+
+Texture
+=======
 
 .. admonition:: Reference
    :class: refbox
 
    :Type:      Flow
-   :Panel:     :menuselection:`Physics --> Smoke Flow Advanced`
+   :Panel:     :menuselection:`Physics --> Smoke Flow --> Texture`
 
-.. figure:: /images/physics_smoke_types_flow-object_advanced.png
-   :align: right
+.. TODO2.8:
+   .. figure:: /images/physics_smoke_types_flow-object_advanced.png
+      :align: right
 
 When using a mesh as the *Flow Source*, you can use these settings to control where on
 the mesh smoke can be emitted from. These settings have no effect on outflow objects.
 
 Use Texture
    When enabled, use the specified texture to control where smoke is emitted.
-
-Vertex Group
-   When set, use the specified :doc:`Vertex Group </modeling/meshes/properties/vertex_groups/vertex_groups>`
-   to control where smoke is emitted.
 
 .. container:: lead
 

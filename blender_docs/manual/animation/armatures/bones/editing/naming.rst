@@ -14,8 +14,7 @@ Naming
 You can rename your bones, either using the *name* field of the *Item*
 panel in the 3D Views, for the active bone,
 or using the *name* field in each bone of the *Bones* tab in *Edit Mode*.
-
-.. TODO2.8: Add naming with the outliner.
+It is also possible to rename by double-clicking bones in the Outliner.
 
 Blender also provides you some tools that take advantage of bones named in a left/right
 symmetry fashion, and others that automatically name the bones of an armature.
@@ -35,7 +34,7 @@ it is worthwhile to stick to a left/right naming convention.
 This will enable you to use some tools that will probably save you time and effort
 (like the *X-Axis Mirror* editing tool).
 
-.. figure:: /images/rigging_armatures_bones_editing_naming_example.png
+.. figure:: /images/animation_armatures_bones_editing_naming_example.png
 
    An example of left/right bone naming in a simple rig.
 
@@ -100,7 +99,7 @@ AutoName
 
 The three *AutoName* entries of the *Armature* and *Specials* menu :kbd:`W`
 allow you to automatically add a suffix to all selected bones, based
-on the position of their root relative to the armature center and its local coordinates:
+on the position of their root relative to the armature's origin and its local coordinates:
 
 AutoName Left/Right
    will add the ".L" suffix to all bones with a *positive* X-coordinate root,

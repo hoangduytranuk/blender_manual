@@ -4,7 +4,7 @@
 Z Combine Node
 **************
 
-.. figure:: /images/compositing_types_color_z-combine_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeZcombine.png
    :align: right
 
    Z Combine Node.

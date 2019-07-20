@@ -35,7 +35,7 @@ Closed and Open Surfaces
 
 Like curves, surfaces can be closed (cyclical) or open, independently in both directions,
 allowing you to easily create a tube, donut or sphere shape,
-and they can be drawn as "solids" in *Edit Mode*.
+and they can be viewed as "solids" in *Edit Mode*.
 This makes working with surfaces quite easy.
 
 

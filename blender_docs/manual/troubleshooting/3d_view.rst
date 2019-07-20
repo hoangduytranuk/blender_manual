@@ -4,8 +4,8 @@
 3D View
 *******
 
-Drawing
-=======
+Rendering
+=========
 
 .. _troubleshooting-depth:
 
@@ -54,8 +54,8 @@ The camera will only show objects that fall within the clipping range.
 Performance
 ===========
 
-Slow Drawing
-------------
+Slow Rendering
+--------------
 
 There are a couple of reasons why you may be experiencing a slow viewport.
 
@@ -68,7 +68,7 @@ Upgrade Graphics Driver
 Slow Selection
 --------------
 
-Blender uses OpenGL drawing for selection, some graphics card drivers are slow at performing this operation.
+Blender uses OpenGL for selection, some graphics card drivers are slow at performing this operation.
 
 This becomes especially problematic on dense geometry.
 
@@ -77,16 +77,16 @@ Possible Solutions:
 OpenGL Depth Picking (Preferences)
    See :menuselection:`Preferences --> Viewport --> Selection`.
 
-   This option is enabled by default, disabling it may give better performance at
+   This option is enabled by default, disabling it may give a better performance at
    the cost of selection accuracy.
 Upgrade Graphics Driver
    In some cases, slow selection is resolved by using updated drivers.
    *It is generally good to use recent drivers when using 3D software.*
 Select Centers (Workaround)
    In *Object Mode*, holding :kbd:`Ctrl` while selecting uses the object center point.
-   While this can be useful on its own, its has the side effect of not relying on OpenGL selection.
-Change Draw Modes (Workaround)
-   Using *Wireframe* or even *Bounding Box* draw modes can be used to more quickly select different objects.
+   While this can be useful on its own, it has the side effect of not relying on OpenGL selection.
+Change Display Mode (Workaround)
+   Using *Wireframe* display mode can be used to more quickly select different objects.
 
 .. note::
 
@@ -106,7 +106,7 @@ When navigating your scene, you may accidentally navigate away from your scene
 and find yourself with a blank viewport. There are two ways to fix this:
 
 #. Select an object in the :doc:`Outliner </editors/outliner>`,
-   then zoom to that object with :menuselection:`View --> Show Active` or :kbd:`NumpadPeriod`.
+   then zoom to that object with :menuselection:`View --> Frame Selected` or :kbd:`NumpadPeriod`.
 #. Use :kbd:`Home` to fit all objects into the 3D View.
 
 
@@ -126,15 +126,14 @@ Solutions
 ^^^^^^^^^
 
 - Use :ref:`View Dolly <3dview-nav-zoom-dolly>`.
-- Use :ref:`Walk/Fly modes <3dview-walk-fly>`.
+- Use :ref:`Walk/Fly modes <3dview-fly-walk>`.
 - Use :ref:`Auto Depth <prefs-auto-depth>` and :ref:`Zoom to Mouse Position <prefs-zoom-mouse-pos>`.
-  These tool will make sure the distance is always the value under the mouse cursor,
-- Use :ref:`Border Zoom <3dview-nav-zoom-border>` as it also resets the center point when zooming.
-- Center the view around the mouse cursor :kbd:`Alt-F`.
+  These tools will make sure the distance is always the value under the mouse cursor,
+- Use :ref:`3dview-nav-zoom-region` as it also resets the center point when zooming.
+- Center the view around the mouse cursor :kbd:`Alt-MMB`.
   This will take the position under the cursor and make it your viewpoint center.
-- Center the view around the 3D cursor :kbd:`Alt-Home`.
 - Use an :abbr:`NDOF (N-Degrees of Freedom)`, also known as a 3D mouse,
-  see :ref:`configuring peripherals <hardware_3d-mice>` for more information.
+  see :ref:`configuring peripherals <hardware-ndof>` for more information.
 
 
 Tools
@@ -154,15 +153,15 @@ so the graphics card driver relies on giving correct results.
 
 Possible Solutions:
 
-Disable Anti-Aliasing :term:`FSAA, Multisampling <FSAA>`
+Disable Anti-Aliasing :term:`Multisampling`
    This is by far the most common cause of selection issues.
 
-   There are known problems with some graphics cards when using FSAA/multisampling.
+   There are known problems with some graphics cards when using multisampling.
 
    You can disable this option by:
 
-   - Turning FSAA/multisampling off in your graphics card driver options.
-   - Turning *Multi-Sampling* off in the :ref:`System Preferences <prefs-system-multi-sampling>`.
+   - Turning multisampling off in your graphics card driver options.
+   - Turning *Multisampling* off in the :ref:`System Preferences <prefs-system-multisampling>`.
 Change Anti-Aliasing Sample Settings
    Depending on your OpenGL configuration,
    some specific sample settings may work while others fail.

@@ -4,10 +4,9 @@
 Wave Modifier
 *************
 
-The Wave Modifier adds a ripple-like motion to an object's geometry.
+The *Wave* modifier adds a ripple-like motion to an object's geometry.
 
-This modifier is available for meshes, lattices, curves,
-surfaces and texts.
+This modifier is available for meshes, lattices, curves, surfaces and texts.
 
 .. list-table::
 
@@ -32,25 +31,27 @@ Options
 =======
 
 .. figure:: /images/modeling_modifiers_deform_wave_panel.png
+   :align: right
 
-   Wave Modifier.
+   The Wave modifier.
 
 
 Motion
 ------
 
-Axis
+Axis X/Y
    The wave effect deforms vertices/control points in the Z direction,
    originating from the given starting point and propagating along the object with circular wave fronts
    (if both X and Y are enabled),
    or with rectilinear wave fronts (if only one axis is enabled),
    then parallel to the axis corresponding to the X or Y button activated.
-
-   X, Y
 Cyclic
    Repeats the waves cyclically, rather than a single pulse.
 Normals
    For meshes only. Displaces the mesh along the surface normals (instead of the object's Z axis).
+
+   X/Y/Z
+      Restrict displacement along normals to the selected local axes.
 
 
 Time
@@ -73,10 +74,8 @@ Damping
 Position
 --------
 
-Position
-   Coordinates of the center of the waves, in the object's local coordinates.
-
-   X, Y
+Position X/Y
+   Coordinates of the center of the waves, in the object's local space.
 Falloff
    Controls how fast the waves fade out as they travel away from the coordinates above
    (or those of the *Start Position Object*).
@@ -89,25 +88,10 @@ Start Position Object
 Delimiter & Noise
 -----------------
 
-Vertex Group
-   For meshes only. A vertex group name, used to control the parts of the mesh affected by the wave effect,
-   and to what extent (using vertex weights). Note a newly created vertex group has empty weights.
-Texture
-   Use this texture to control the object's displacement level.
-   Animated textures can give very interesting results here.
+You can finely control which vertices are affected by the wave, and to what extent,
+using a vertex group and/or a texture.
 
-   Texture Coordinates
-      This menu lets you choose the texture's coordinates for displacement:
-
-      Local
-         Object's local coordinates.
-      Global
-         Global coordinates.
-      Object
-         Adds an additional field just below,
-         to type in the name of the object from which to get the texture coordinates.
-      UV
-         Adds an extra *UV map* property, to select the UV map to be used.
+See :ref:`common masking options <modifiers-common-options-masking>` for a complete reference.
 
 
 Arguments
@@ -116,24 +100,25 @@ Arguments
 The arguments of the wave function.
 
 Speed
-   The speed, in BU (for "Blender Units") per frame, of the ripple.
+   The speed per frame, of the ripple.
 Height
-   The height or amplitude, in BU, of the ripple.
+   The height or amplitude of the ripple.
 Width
-   Half of the width, in BU, between the tops of two subsequent ripples (if *Cyclic* is enabled).
+   Half of the width between the tops of two subsequent ripples (if *Cyclic* is enabled).
    This has an indirect effect on the ripple amplitude. If the pulses are too near to each other,
    the wave may not reach the zero Z position, so in this case Blender actually lowers the whole wave
    so that the minimum is zero and, consequently, the maximum is lower than the expected amplitude.
    See `Technical Details and Hints`_ below.
 Narrowness
    The actual width of each pulse: the higher the value the narrower the pulse.
-   The actual width of the area in which the single pulse is apparent is given by 4/ *Narrowness*.
+   The actual width of the area in which the single pulse is apparent is given by ``4 / Narrowness``.
    That is, if *Narrowness* is 1 the *pulse* is 4 units wide, and if *Narrowness*
    is 4 the *pulse* is 1 unit wide.
 
 .. important::
 
-   All the values described above must be multiplied with the corresponding *Scale* values of
+   All the values described above are in local object space,
+   i.e. they must be multiplied with the corresponding *Scale* values of
    the object to get the real dimensions.
 
 
@@ -143,10 +128,11 @@ Technical Details and Hints
 The relationship of the above values is described here:
 
 .. figure:: /images/modeling_modifiers_deform_wave_front-characteristics.png
+   :align: center
 
    Wave front characteristics.
 
 To obtain a nice wave effect similar to sea waves and close to a sinusoidal wave,
-make the distance between following ripples and the ripple width equal; that is,
-the *Narrowness* value must be equal to 2/ *Width*.
+make the distance between following ripples and the ripple width equal. That is,
+the *Narrowness* value must be equal to ``2 / Width``.
 E.g. for *Width* to be 1, set *Narrow* to 2.

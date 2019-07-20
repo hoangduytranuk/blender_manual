@@ -3,7 +3,7 @@
 Viewport Render
 ***************
 
-Viewport rendering uses the 3D View's drawing for quick *preview* renders.
+Viewport rendering uses the 3D Viewport rendering for quick *preview* renders.
 
 This allows you to inspect your animatic
 (for object movements, alternate angles, etc.).
@@ -18,27 +18,28 @@ the Cycles Renderer.
 
 .. list-table:: Model by © 2016 pokedstudio.com
 
-   * - .. figure:: /images/render_opengl_example-opengl-render.jpg
+   * - .. figure:: /images/editors_3dview_viewport-render_example-workbench-render.jpg
           :width: 320px
 
-          Viewport render.
+          Viewport render using Solid Mode.
 
-     - .. figure:: /images/render_opengl_example-cycles-render.jpg
+     - .. figure:: /images/editors_3dview_viewport-render_example-eevee-render.jpg
+          :width: 320px
+
+          Viewport render using Look Dev Mode.
+
+     - .. figure:: /images/editors_3dview_viewport-render_example-cycles-render.jpg
           :width: 320px
 
           Full render.
 
-.. TODO2.8 Replace this text with overlays.
+.. tip::
 
-.. tip:: Showing Only Rendered Objects
+   Disable overlays to render the viewport without any additional overlays.
 
-   To access this option, enable the *Only Render* in the :doc:`Display Panel </editors/3dview/properties/panels>`.
+   While this option is not specific to Viewport rendering, it's often useful to
+   enable, since it removes data such as rigs and empties that can be a distraction.
 
-   While this option is not specific to Viewport rendering, it's often useful to enable,
-   since it removes data such as rigs and empties that can be a distraction.
-
-
-.. TODO2.8
 
 Settings
 ========
@@ -46,12 +47,19 @@ Settings
 .. admonition:: Reference
    :class: refbox
 
-   :Editor:    Info Editor
+   :Editor:    Topbar
    :Menu:      :menuselection:`Render --> Viewport Render Options`
 
-For the most part, *Viewport Render* uses the viewport settings,
-Sampling and Alpha Transparency Mode options can be set by
-the :menuselection:`Render --> Viewport Render Options` from the Info Editor header.
+For the most part, *Viewport Render* uses the current viewport settings.
+Some settings are located in the render panel of the render engine
+that is used to render the view.
+
+Solid mode uses the render settings of Workbench;
+LookDev mode uses the render settings of Eevee.
+
+Sampling and Alpha Transparency Mode options can be set in :menuselection:`Properties --> Render --> Sampling`.
+Make sure the Workbench or Eevee render engine is selected to see the appropriate values.
+
 Additionally, some render settings are used too:
 
 - Render Dimensions
@@ -74,3 +82,8 @@ Render a Still Image
    To render a still image use :menuselection:`3D Viewport --> View --> Viewport Render Image`.
 Render an Animation
    to render an animation use :menuselection:`3D Viewport --> View --> Viewport Render Animation`.
+
+.. tip::
+
+   You can limit the viewport render to a particular region with
+   :ref:`Render Regions <editors-3dview-navigate-render-region>`.

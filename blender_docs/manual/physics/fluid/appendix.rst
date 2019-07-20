@@ -22,7 +22,7 @@ Some useful hints about fluid simulation in Blender:
   check the overall timing first by doing lower resolution runs.
 - Fluid objects must be completely inside the bounding box of the domain object.
   If not, baking may not work correctly or at all.
-  Fluid and obstacle objects can be meshes with complex geometries.
+  Fluid and obstacle objects can be meshes with a complex geometry.
   Very thin objects might not appear in the simulation,
   if the chosen resolution is too coarse to resolve them (increasing it might solve this problem).
 - Do not try to do a complicated scene all at once.

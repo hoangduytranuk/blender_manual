@@ -4,16 +4,17 @@
 UV Warp Modifier
 ****************
 
-The UV Warp Modifier uses two objects to define a transformation which is applied to the chosen UV coordinates.
+The *UV Warp* modifier uses two objects to define a transformation which is applied to the chosen UV map.
 
 Its purpose is to give you direct control over the object's UVs in the 3D View,
-allowing you to directly translate, rotate and scale existing UV coordinates using controller objects or bones.
+allowing you to directly move, rotate and scale existing UV coordinates using controller objects or bones.
 
 
 Options
 =======
 
 .. figure:: /images/modeling_modifiers_modify_uv-warp_panel.png
+   :align: right
 
 UV Center
    The center point of the UV map to use when applying scale or rotation.
@@ -21,7 +22,7 @@ UV Center
 UV Axis
    The axes to use when mapping the 3D coordinates into 2D.
 From, To
-   The two objects used to define the transformation. See *Usage* below.
+   The two objects used to define the transformation. See `Usage`_ below.
 Vertex Group
    The vertex group can be used to scale the influence of the transformation per vertex.
 UV Map

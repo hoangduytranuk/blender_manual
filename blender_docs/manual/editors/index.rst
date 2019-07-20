@@ -20,8 +20,7 @@ See :doc:`User Interface </interface/index>` for documentation on the general in
    The Editor Type selector.
 
 
-General
-=======
+.. rubric:: General
 
 .. toctree::
    :maxdepth: 1
@@ -32,12 +31,11 @@ General
    shader_editor/index.rst
    Compositor <../compositing/index.rst>
    texture_node/index.rst
-   vse/index.rst
-   movie_clip_editor/index.rst
+   Video Sequencer <../sequencer/index.rst>
+   clip/index.rst
 
 
-Animation
-=========
+.. rubric:: Animation
 
 .. toctree::
    :maxdepth: 1
@@ -45,28 +43,26 @@ Animation
    dope_sheet/index.rst
    timeline.rst
    graph_editor/index.rst
-   ../animation/drivers/index.rst
+   drivers_editor.rst
    nla/index.rst
 
 
-Scripting
-=========
+.. rubric:: Scripting
 
 .. toctree::
    :maxdepth: 1
 
    text_editor.rst
    python_console.rst
-   info/index.rst
+   info_editor.rst
 
 
-Data
-====
+.. rubric:: Data
 
 .. toctree::
    :maxdepth: 1
 
    outliner.rst
    properties_editor.rst
-   file_browser/index.rst
+   file_browser.rst
    preferences/index.rst

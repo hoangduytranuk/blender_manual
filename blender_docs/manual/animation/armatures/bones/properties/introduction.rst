@@ -14,9 +14,9 @@ properties are shown in the *Bone* tab of the Properties editor.
 This shows different panels used to control features of each selected bone;
 the panels change depending on which mode you are working in.
 
-.. figure:: /images/rigging_armatures_bones_properties_introduction_properties-editor.png
+.. TODO2.8 .. figure:: /images/animation_armatures_bones_properties_introduction_properties-editor.png
 
-   The Bone tab.
+.. TODO2.8    The Bone tab.
 
 
 .. TODO2.8 Move pose related to new pose > properties folder,
@@ -31,34 +31,20 @@ Transform
    :Mode:      Edit Mode and Pose Mode
    :Panel:     :menuselection:`Bone --> Transform`
 
-.. list-table::
+.. TODO2.8 .. list-table::
 
-   * - .. figure:: /images/rigging_armatures_bones_properties_introduction_transform-panel-edit.png
+.. TODO2.8    * - .. figure:: /images/animation_armatures_bones_properties_introduction_transform-panel-edit.png
 
-          The Transform panel (Edit Mode).
+.. TODO2.8           The Transform panel (Edit Mode).
 
-     - .. figure:: /images/rigging_armatures_bones_properties_introduction_transform-panel-pose.png
+.. TODO2.8      - .. figure:: /images/animation_armatures_bones_properties_introduction_transform-panel-pose.png
 
-          The Transform panel (Pose Mode).
+.. TODO2.8           The Transform panel (Pose Mode).
 
 When in *Edit Mode* you can use this panel to control position and roll of individual bones.
 Whereas in *Pose Mode* you can only set location for the main bone, and you can now set rotation and scale.
 
-
-Transform Locks
-===============
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Mode:      Pose Mode
-   :Panel:     :menuselection:`Bone --> Transform Locks`
-
-.. figure:: /images/rigging_armatures_bones_properties_introduction_transform-locks-panel.png
-
-   The Transform Locks panel.
-
-This panel appears only in pose mode and allows you to restrict position,
+In addition, in *Pose Mode* it is possible to restrict changes in position,
 rotation and scale by axis on each bone in the armature.
 
 
@@ -71,9 +57,9 @@ Inverse Kinematics
    :Mode:      Pose Mode
    :Panel:     :menuselection:`Bone --> Inverse Kinematics`
 
-.. figure:: /images/rigging_armatures_bones_properties_introduction_inverse-kinematics-panel.png
+.. TODO2.8 .. figure:: /images/animation_armatures_bones_properties_introduction_inverse-kinematics-panel.png
 
-   The Inverse Kinematics panel.
+.. TODO2.8    The Inverse Kinematics panel.
 
 This panel controls the way a bone or set of bones behave when linked in
 an :doc:`inverse kinematic </animation/armatures/posing/bone_constraints/inverse_kinematics/introduction>` chain.
@@ -88,4 +74,4 @@ Custom Properties
    :Mode:      Pose Mode
    :Panel:     :menuselection:`Bone --> Custom Properties`
 
-See the :doc:`Custom Properties </files/custom_properties>` page for more information.
+See the :ref:`Custom Properties <files-data_blocks-custom-properties>` page for more information.

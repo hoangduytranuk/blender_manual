@@ -17,8 +17,9 @@ def rst_files(path):
     for dirpath, dirnames, filenames in os.walk(path):
         if dirpath.startswith("."):
             continue
-
         for filename in filenames:
+            if filename.startswith("."):
+                continue
             ext = os.path.splitext(filename)[1]
             if ext.lower() == ".rst":
                 yield os.path.join(dirpath, filename)
@@ -96,11 +97,11 @@ def warn_role_kbd(fn, data_src):
             # chained (not pressed simultaneously): e.g. G X 5
             for k in content.split():
                 if not re.match(valid_kbd, k) or re.search(repeat_kbd, k):
-                    fn_rel = fn[len(RST_DIR) + 1:]
+                    # fn_rel = fn[len(RST_DIR) + 1:]
                     out = content
                     if content != k:
                         out += "| " + k
-                    print(fn_rel + ":" + str(lineno + 1) + " '" + out + "' " + "invalid keyboard shortcut")
+                    print(fn + ":" + str(lineno + 1) + ": '" + out + "' " + "invalid keyboard shortcut")
 
     return None
 
@@ -114,16 +115,16 @@ def compile_valid_kbd():
 
     pattern_str = ''.join((
         # Modifier
-        r"^(Shift(?:\-|\Z))?(Ctrl(?:\-|\Z))?(Alt(?:\-|\Z))?(Cmd(?:\-|\Z))?",
+        r"^(Shift(?:\-|\Z))?(Ctrl(?:\-|\Z))?(Alt(?:\-|\Z))?(OSKey(?:\-|\Z))?(Cmd(?:\-|\Z))?",
 
         # Alphanumeric
         r"((?:",
         r"[A-Z0-9]|",
-        r"(?:[\[\]<>/~!?'\"=]|\\\\)|",
+        r"(?:[\[\]<>/~!?'\"=:\|\^]|\\\\)|",
 
         # Named
         '|'.join((
-            "Comma", "Period", "Slash", "Backslash", "Plus", "Minus",
+            "Comma", "Period", "Slash", "Backslash", "Plus", "Minus", "AccentGrave",
             # Editing
             "Tab", "Backspace", "Delete", "Return", "Spacebar",
             # Navigation
@@ -154,12 +155,66 @@ def compile_valid_kbd():
     warn_role_kbd.repeat_kbd = re.compile(r"(?:\-|\A)([^ \-]+?)\-\1")
 
 
+def warn_title(fn, data_src):
+    """
+    Complain about title underline/overline length mis-match.
+    """
+    lines = data_src.split("\n")
+    limit = 118
+
+    title_chars = (
+        '%', '#', '*', '=', "-", '^', '"',
+        # Shouldn't use but does work.
+        '+', '~',
+    )
+
+    l_prev = ""
+    len_lines = len(lines)
+    for i, l in enumerate(lines):
+        # Quick & dirty way to check we're a title.
+        if l.startswith(title_chars) and len(set(l.rstrip())) == 1:
+            if i + 1 == len_lines:
+                l_next  = ""
+            else:
+                l_next = lines[i + 1]
+
+            expect_extra = 0
+            expect_indent = 0
+            if l[0] in {'%', '#'}:
+                # Support for:
+                # #########
+                #   Title
+                # #########
+                expect_extra = 2
+                expect_indent = 2
+
+            if l_next:
+                what = "overline"
+                l_test = l_next
+            elif l_prev:
+                what = "underline"
+                l_test = l_prev
+            else:
+                l_test = ""
+
+            if l_test:
+                if len(l_test) + expect_extra != len(l):
+                    print("%s:%d: title %s mismatch %d" % (fn, i + 1, what, len(l)))
+                indent = len(l_test) - len(l_test.lstrip())
+                if expect_indent != indent:
+                    print("%s:%d: title %s expected indent of %d, got %d" % (fn, i + 1, what, expect_indent, indent))
+
+        l_prev = l
+
+    return None
+
 
 # define the operations to call
 operations = []
 operations_checks = {
     "--long": (warn_long_lines, None),
     "--kbd": (warn_role_kbd, None),
+    "--title": (warn_title, None),
 }
 
 

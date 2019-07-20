@@ -14,7 +14,7 @@ Keyed
 
 The path of Keyed particles is determined between particles of any two (or more) particle systems.
 This allows the creation of a chains of systems to create long strands or groovy moving particles.
-Basically the particles have no dynamics but are interpolated from one system to the next at draw-time.
+Basically the particles have no dynamics but are interpolated from one system to the next each frame.
 
 To setup *Keyed* particles you need at least two particle systems in the *Keys* list.
 
@@ -22,10 +22,11 @@ To setup *Keyed* particles you need at least two particle systems in the *Keys* 
 Options
 =======
 
-.. figure:: /images/physics_particles_emitter_physics_keyed_panel.png
-   :align: right
+.. TODO2.8:
+   .. figure:: /images/physics_particles_emitter_physics_keyed_panel.png
+      :align: right
 
-   Keyed Physics settings.
+      Keyed Physics settings.
 
 Loops
    Sets the number of times the entire *Keys* list is repeated. Disabled if *Use Timing* is enabled.
@@ -38,8 +39,13 @@ Use Timing
    this may lead to varying particle speeds between the targets.
 
 
-Keys
-----
+Relations
+=========
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Physics --> Relations`
 
 Key Targets
    The :ref:`list view <ui-list-view>` of keys (target particle systems).

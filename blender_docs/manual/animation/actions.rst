@@ -22,7 +22,7 @@ if all objects have *X location* and *Y location* properties beneath them.
 
 .. figure:: /images/animation_actions_keyframes.png
 
-   Graph Editor. Each Channel has an F-Curve represented by the lines between the keyframes.
+   Graph Editor. Each channel has an F-curve represented by the lines between the keyframes.
 
 Actions
    Record and contain animation data.
@@ -56,8 +56,8 @@ in the Dope Sheet :doc:`Action Editor </editors/dope_sheet/action>` header,
 or the Sidebar region of the :doc:`NLA Editor </editors/nla/properties_modifiers>`.
 
 If you are making multiple actions for the same object,
-press the *F* button for each action,
-this will give the actions a *Fake User* and will make Blender save the unlinked actions.
+press the shield button for each action.
+This will give the actions a *Fake User* and will make Blender save the unlinked actions.
 
 Objects can only use one *Action* at a time for editing.
 The :doc:`NLA Editor </editors/nla/index>` is used to blend multiple actions together.
@@ -73,7 +73,6 @@ Bake Action
 
    :Editor:    3D View
    :Mode:      Object and Pose Modes
-   :Panel:     :menuselection:`Tool Shelf --> Animation --> Animation --> Action: Bake Action`
    :Menu:      :menuselection:`Object/Pose --> Animation --> Bake Action...`
 
 The *Bake Action* tool will apply interpolated frames into individual keyframes.

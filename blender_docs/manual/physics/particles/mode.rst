@@ -10,7 +10,7 @@ and paths of *Baked*
 :doc:`Particle </physics/particles/index>`,
 :doc:`Cloth </physics/cloth/index>`, and
 :doc:`Soft Body </physics/soft_body/index>` simulations.
-(You can also edit and style hair before baking).
+(You can also edit and style hair before baking.)
 
 Since working in Particle Edit Mode is pretty easy and very similar
 to working with vertices in the 3D View, we will show how to set up
@@ -75,11 +75,11 @@ or that you do not like the latest changes you have made.
 Selecting
 =========
 
-- Single: :kbd:`RMB`.
+- Single: :kbd:`LMB`.
 - All: :kbd:`A`.
 - Linked: Move the mouse over a keypoint and press :kbd:`L`.
-- Border select: :kbd:`B`.
-- First/last: :menuselection:`Specials --> Select First / Select Last`.
+- Box select: :kbd:`B`.
+- Root/Tips: :menuselection:`Select --> Roots / Tips`.
 
 You may also use the *Select* Menu.
 
@@ -134,14 +134,13 @@ Brush
    :class: refbox
 
    :Mode:      Particle Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Brush`
 
 With the buttons you can select the type of "Comb" utility you want to use.
 
 None
    No special tool, just edit the keypoints as "normal" vertices.
 Comb
-   Moves the keypoints (similar to "proportional editing").
+   Moves the keypoints (similar to the Proportional Editing tool).
 Smooth
    Parallels visually adjacent segments.
 Add
@@ -162,7 +161,7 @@ Puff
    So it makes the hair stand up with *Add* or lay down with *Sub*.
 
    Puff Volume
-      Apply puff to unselected end points, (helps maintain hair volume when puffing root).
+      Apply puff to unselected end points, (Helps to maintain the hair volume when puffing the root.)
 Cut
    Scales the segments until the last keypoint reaches the brush.
 
@@ -170,9 +169,9 @@ Weight
    This is especially useful for soft body animations, because the weight defines the soft body *Goal*.
    A keypoint with a weight of 1 will not move at all,
    a keypoint with a weight of 0 subjects fully to soft body animation.
-   This value is scaled by the *GMin* to *GMax* range of soft body goals...
+   This value is scaled by the Strength *Min* to *Max* range of soft body goals...
 
-   .. Not more true, I think: "Weight is only drawn for the complete hair (i.e. with the value of the tip),
+   .. Not more true, I think: "Weight is only displayed for the complete hair (i.e. with the value of the tip),
       not for each keypoint, so it's a bit difficult to paint".
 
 
@@ -196,7 +195,7 @@ Options
    :class: refbox
 
    :Mode:      Particle Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Options`
+   :Panel:     :menuselection:`Sidebar Region --> Tool`
 
 Deflect Emitter
    Hair particles only -- Do not move keypoints through the emitting mesh.
@@ -236,20 +235,20 @@ Shape Object
           After.
 
 
-Draw
-----
+Viewport Display
+----------------
 
 Path Steps
-   Drawing steps, sets the smoothness of the drawn path.
+   The number of steps used to draw the path; improves the smoothness of the particle path.
 Particles
-   Draws actual particles on top of the paths.
+   Displays the actual particles on top of the paths.
 Fade Time
    Fade out paths and keys further away from current time.
 
    Frames
       How many frames to fade.
 Show Children
-   Draws the children of the particles too.
+   Displays the children of the particles too.
    This allows to fine-tune the particles and see their effects on the result,
    but it may slow down your system if you have many children.
 
@@ -257,23 +256,18 @@ Show Children
 Editing
 =======
 
-.. warning:: Beware of Undo!
-
-   Using *Undo* in *Particle Edit Mode* can have strange results. Remember to save often!
-
-
 Moving Keypoints or Particles
 -----------------------------
 
-- To move selected keypoints press :kbd:`G`, or use one of the various other methods to grab vertices.
+- To move selected keypoints press :kbd:`G`, or use one of the various other methods to move vertices.
 - To move a particle root you have to turn off Keep *Root* in the Tool Shelf.
 - You can do many of the things like with vertices, including scaling,
   rotating and removing (complete particles or single keys).
 - You may not duplicate or extrude keys or particles,
   but you can subdivide particles which adds new keypoints
-  :menuselection:`Specials --> Subdivide` or :kbd:`Numpad2`.
+  :menuselection:`Particle --> Subdivide`.
 - Alternatively you can rekey a particle
-  :menuselection:`Specials --> Rekey` or :kbd:`Numpad1` and choose the number of keys.
+  :menuselection:`Particle --> Rekey`.
 
 How smoothly the hair and particle paths are displayed depends on the *Path Steps*
 setting in the Tool Shelf. Low settings produce blocky interpolation between points,
@@ -292,8 +286,8 @@ Mirror
 If you want to create an X axis symmetrical haircut you have to do following steps:
 
 #. Select all particles with :kbd:`A`.
-#. Mirror the particles with :kbd:`Ctrl-M`, or use the :menuselection:`Particle --> Mirror` menu.
-#. Turn on *X Mirror* in the Brush panel.
+#. Mirror the particles with :menuselection:`Particle --> Mirror`.
+#. Turn on *X Mirror* in :menuselection:`Sidebar Region --> Tool --> Options`.
 
 It may happen that after mirroring two particles occupy nearly the same place.
 Since this would be a waste of memory and render time,
@@ -308,7 +302,7 @@ Unify Length
    :class: refbox
 
    :Mode:      Particle Edit Mode
-   :Menu:      :menuselection:`Particle --> Unify Length`, :menuselection:`Specials --> Unify Length`
+   :Menu:      :menuselection:`Particle --> Unify Length`
 
 This tool is used to make all selected hair uniform length by finding the average length.
 

@@ -18,7 +18,7 @@ or by masking areas that can not be sculpted on.
 Hide
 ====
 
-Portions of the mesh can be hidden in Sculpt Mode to improve performance and
+Portions of the mesh can be hidden in Sculpt Mode to improve the viewport performance and
 to access parts of the mesh that would otherwise be difficult to access,
 because they are occluded by other parts.
 
@@ -28,7 +28,7 @@ Hiding is shared between Edit Mode and Sculpt Mode
 
 Hide Bounding Box :kbd:`H`
    To hide a part of a mesh inside the selection.
-   This works similar to :ref:`Border Select <bpy.ops.view3d.select_border>` tool.
+   This works similar to :ref:`Box Select <tool-select-box>` tool.
 Hide Bounding Box :kbd:`Shift-H`
    To reveal a hidden part of a mesh inside the selection.
 Show All :kbd:`Alt-H`
@@ -67,7 +67,7 @@ Fill Mask
 Clear Mask :kbd:`Alt-M`
    Fills the mask with a value of 0. To completely remove the mask data see `Clearing Mask Data`_.
 Box Mask :kbd:`B`
-   Works like the *Border Select* tool, it creates a rectangular mask region.
+   Works like the *Box Select* tool, it creates a rectangular mask region.
    Hold :kbd:`Shift` to clear the mask of the selected region.
 Lasso Mask :kbd:`Shift-Ctrl-LMB`
    Can be used to create a free-form mask, similar to the *Lasso Select* tool.
@@ -76,6 +76,20 @@ Lasso Mask :kbd:`Shift-Ctrl-LMB`
 
       To clear the mask of areas with the *Lasso Mask* tool, first invert the mask,
       apply the *Lasso Mask*, and then invert the mask back.
+
+
+Displaying
+----------
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Sculpt Mode
+   :Popover:   :menuselection:`Viewport Overlays -- Sculpt --> Mask`
+   :Menu:      :menuselection:`Tool Settings --> Sculpt --> Mask`
+
+The mask display can be toggled as a :doc:`viewport overlay </editors/3dview/controls/overlays>`.
+In the overlay popover, the opacity of the mask overlay can be adjusted to make it more or less visible on the mesh.
 
 
 .. _sculpt_mask_clear-data:

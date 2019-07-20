@@ -9,7 +9,7 @@
 
 h5 {margin-bottom: 5px}
 
-/* sidebar menu links */
+/* Sidebar menu links. */
 .wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a:hover {background: #c0c0c0}
 .wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a:hover {background: #b5b5b5}
 .wy-menu-vertical li.toctree-l4 {font-size: 1em}
@@ -17,7 +17,7 @@ h5 {margin-bottom: 5px}
 .wy-side-nav-search > a:hover {background: none; opacity: 0.9}
 .wy-side-nav-search > a.icon::before {content: none}
 
-/* kbd role */
+/* 'kbd' role. */
 .kbd.docutils.literal {
 	font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
 	font-size: 85%;
@@ -25,7 +25,7 @@ h5 {margin-bottom: 5px}
 	color: #404040;
 }
 
-/* Ensure background of input fields is light color even when a local theme wants it to be dark */
+/* Ensure background of input fields is light color even when a local theme wants it to be dark. */
 input[type="text"], input[type="search"], input[type="password"],
 input[type="email"], input[type="url"],
 input[type="date"], input[type="month"], input[type="week"], input[type="time"],
@@ -34,10 +34,10 @@ input[type="number"], input[type="tel"], input[type="color"] {
 	background-color:#FCFCFC;
 }
 
-/* fixes overlay of "align-right" images on block */
+/* Fixes overlay of "align-right" images on block. */
 .rst-content .admonition {overflow: auto}
 
-/*boxed paragraphs*/
+/* Boxed paragraphs. */
 .rst-content .refbox .admonition-title {background-color: #bbb}
 .rst-content .refbox {
 	-webkit-font-smoothing: antialiased;
@@ -58,20 +58,36 @@ input[type="number"], input[type="tel"], input[type="color"] {
 .hint .admonition-title::before{content:"\f055"}
 .warning .admonition-title::before{content:"\f071"}
 
-/* refbox field */
+/* 'refbox' field. */
 .refbox .field-list .field-name, .refbox .field-list .field-body {
 	padding: 0px;
 }
 .refbox .field-name {font-weight: normal}
 
-/* Ugly 'red' literals */
+/* Ugly 'red' literals. */
 .rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal {
 	color:#404040;
 }
 
+/* Literal blocks that use too much padding, make them look like regular literals. */
+.rst-content pre.literal-block {
+	font-size: 75%;
+	margin:0;
+	padding:2px 4px;
+	color:#404040;
+	background: #ffffff;
+	white-space: normal;
+	display: inline;
+}
+
+/* Without this, paragraphs in bullet points within definition lists have too much vertical padding. */
+.rst-content li > p {
+	margin-bottom: 0px !important;
+}
+
 /* TABLE & FIGURE */
 
-/* moves captions to bottom */
+/* Moves captions to bottom. */
 table {caption-side: bottom}
 
 /* captions text style */
@@ -82,34 +98,34 @@ table {caption-side: bottom}
 	color: #808080;
 }
 
-/* captions top padding */
+/* Captions top padding. */
 .rst-content .figure .caption { margin-top: 4px; }
 .rst-content table.docutils caption { padding: 0.5em; }
 
-/* text word wrap */
+/* Text word wrap. */
 .wy-table-responsive table td,
 .wy-table-responsive table th { white-space: normal; }
 
-/* cell's vertical align */
-/* use "valign" class for middle align */
+/* Cell's vertical align. */
+/* use "valign" class for middle align. */
 .rst-content table.docutils:not(.valign) td { vertical-align: baseline; }
 
-/* field list align */
+/* Field list align. */
 .rst-content table.field-list td { padding-top: 8px; }
 
-/* permalink to table, hide until hover */
+/* Perma-link to table, hide until hover. */
 .rst-content table.docutils caption .headerlink { visibility: hidden; }
 .rst-content table.docutils caption:hover .headerlink { visibility: visible; }
 
-/* table header cells border color */
+/* Table header cells border color. */
 .rst-content table.docutils th { border-color: #e1e4e5; }
 
-/* figure in table margin */
+/* Figure in table margin. */
 .rst-content td div.figure {
 	margin-top: 4px; margin-bottom: 0;
 }
 
-/* figure legend */
+/* Figure legend. */
 .legend {
 	font-size: 90%;
 	color: #484848;
@@ -125,29 +141,24 @@ table {caption-side: bottom}
 
 }
 
-/* end TABLE & FIGURE */
+/* End TABLE & FIGURE. */
 
-/* proper seal navigation buttons; jumping on resize */
-.rst-footer-buttons::before , .rst-footer-buttons::after{
-	width: 100%;
-}
-
-/*video center*/
+/* Video center. */
 iframe {
 	display: block;
 	margin: 0 auto 24px auto;
 }
 
-/*copyright font scale down*/
+/* Copyright font scale down. */
 footer p{ font-size: smaller}
 
-/*download link (zip)*/
+/* Download link (zip). */
 .download span {color: #2980B9; font-weight: normal; cursor: pointer !important}
 .download span:hover {color:#3091d1}
 .download span:visited {color:#9B59B6}
 .download span:first-child::before {color:#4e4a4a}
 
-/* breadcrumbs "Docs" and "View page source" to icons */
+/* Breadcrumbs "Docs" and "View page source" to icons. */
 .wy-breadcrumbs {
 	position: relative;
 	padding-right: 30px;
@@ -181,37 +192,37 @@ footer p{ font-size: smaller}
 	white-space: nowrap;
 }
 
-/* spacing bugfix */
+/* Spacing bugfix. */
 .wy-breadcrumbs li a:first-child{padding:5px}
 .wy-breadcrumbs li:first-child a{padding-left:0}
 .wy-breadcrumbs li:nth-last-child(2){padding-left:5px}
 
-/* blockquote > dl bugfix */
+/* Block-quote > dl bugfix. */
 .rst-content dl{line-height:normal}
 /* multi-paragraph dl bugfix */
 .rst-content dl p{line-height:inherit}
 
-/* quotes for Fig. "link" */
+/* Quotes for Fig. "link". */
 a[href^="#fig-"]::before {content: "\201c";}
 a[href^="#fig-"]::after {content: "\201d";}
 
-/*intermediate headline*/
+/* Intermediate headline. */
 .rubric {font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif}
 
-/*.. container:: lead , block text float around image*/
+/* ".. container::" lead, block text float around image. */
 .lead {
 	clear: both; width: 100%;
 }
 
-/*mark external links*/
+/* Mark external links. */
 a.external {color:#656AE0;}
-/*white list blender.org as internal*/
+/* White list blender.org as internal. */
 .external[href^="https://www.blender.org"], .external[href^="https://docs.blender.org"], .external[href^="https://wiki.blender.org"] {
 	color:#2980B9;
 }
 
-/* draws a box around menuselection role */
-/* temporary fix for theme(0.2.5b2) bug: no box around kbd role */
+/* Draws a box around menuselection role. */
+/* Temporary fix for "theme(0.2.5b2)" bug: no box around 'kbd' role. */
 .menuselection, .kbd.docutils.literal {
 	font-size: 90%;
 	font-weight: normal;
@@ -229,50 +240,58 @@ a.external {color:#656AE0;}
 }
 .caption .kbd {background-color: transparent}
 
-/*remove indent on line break*/
+/* Remove indent on line break. */
 .rst-content .line-block {margin-left:0px}
 
-/*applied on main index:sections*/
-/*start section description*/
+/* Applied on main index:sections. */
+/* Start section description. */
 @media screen and (min-width: 450px){
-.tocdescr {
-	display: flex; display: -webkit-flex;
-	flex-flow: row wrap; -webkit-flex-flow: row wrap;
-	justify-content: space-between; -webkit-justify-content: space-between;
-	align-items: flex-start; -webkit-align-items: flex-start;
-	align-content: flex-start; -webkit-align-content: flex-start;
-	list-style-type: none;
-	margin-bottom: 10px;
-}
-/*Dan Andreasson on Stack Overflow*/
-.tocdescr:after {
-	content: "";
-	flex: 1 0 33.3%; -webkit-flex: 1 0 33.3%;
-	margin-left: 45px;
-	align-self: stretch; -webkit-align-self: stretch;
-}
+	.tocdescr {
+		display: flex; display: -webkit-flex;
+		flex-flow: row wrap; -webkit-flex-flow: row wrap;
+		justify-content: space-between; -webkit-justify-content: space-between;
+		align-items: flex-start; -webkit-align-items: flex-start;
+		align-content: flex-start; -webkit-align-content: flex-start;
+		list-style-type: none;
+		margin-bottom: 10px;
+	}
+	/* Dan Andreasson on Stack Overflow. */
+	.tocdescr:after {
+		content: "";
+		flex: 1 0 33.3%; -webkit-flex: 1 0 33.3%;
+		margin-left: 45px;
+		align-self: stretch; -webkit-align-self: stretch;
+	}
 }
 @media screen and (max-width: 450px) {
-.tocdescr {
-	display: flex; display: -webkit-flex;
-	flex-flow: column wrap; -webkit-flex-flow: column wrap;
-	justify-content: space-between; -webkit-justify-content: space-between;
-	align-items: flex-start; -webkit-align-items: flex-start;
-	align-content: flex-start; -webkit-align-content: flex-start;
-	list-style-type: none;
-	margin-bottom: 10px;
-}
-.tocdescr:after {
-	content: "";
-	flex: none; -webkit-flex: none;
-}
+	.tocdescr {
+		display: flex; display: -webkit-flex;
+		flex-flow: column wrap; -webkit-flex-flow: column wrap;
+		justify-content: space-between; -webkit-justify-content: space-between;
+		align-items: flex-start; -webkit-align-items: flex-start;
+		align-content: flex-start; -webkit-align-content: flex-start;
+		list-style-type: none;
+		margin-bottom: 10px;
+	}
+	.tocdescr:after {
+		content: "";
+		flex: none; -webkit-flex: none;
+	}
 }
 .descr {
 	flex: 2 0 33.3%; -webkit-flex: 2 0 33.3%;
-	margin: 15px; padding: 0px;
-	transition: width 0.7s ease-out; -webkit-transition: width 0.7s ease-out;
+	margin: 10px 15px;
+	border-radius: .3em;
+	user-select: none;
 }
-.descr div.figure{margin-bottom: 18px}
+.descr div.figure {
+	margin-bottom: 0px;
+	display: block;
+}
+.descr img {
+	border-top-left-radius: .3em;
+	border-top-right-radius: .3em;
+}
 .descr dl {margin-bottom: 10px}
 .descr dl dt > a {
 	display: block;
@@ -280,24 +299,30 @@ a.external {color:#656AE0;}
 	margin-bottom: 10px;
 }
 .descr dl dt a em, .descr dl dt a span{
-	font-weight: normal;
+	font-weight: bold;
 	font-style: normal;
+	font-size: 1.3em;
 }
+.descr dl dt{padding: 18px 15px 0px!important}
 .descr dl dd{
+	padding: 0px 15px;
 	font-style: normal;
-	margin: 0px; padding: 0px;
+	margin: 0px;
+  color: #808080;
+  font-size: 90%;
 }
-.descr .figure img{
-	box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
-	transition: box-shadow 0.33s;
+.descr {
+	box-shadow: rgba(0,0,0,0.05) 0px 1px 4px 0px,
+					rgba(211,216,223,0.33) 0px 15px 20px -1px;
 }
-.descr .figure img:hover{box-shadow: none}
+#getting-started .descr {
+  box-shadow: none;
+}
+/* End section description. */
 
-/*end section description*/
-
-/*start custom toctree*/
+/* Start custom toctree. */
 .toctree-wrapper .toctree-l1 > a {margin-bottom: 0.15em}
-/*indent all lines following the first*/
+/* Indent all lines following the first. */
 .toctree-wrapper * a {
 	display: block;
 	width: 90%;
@@ -306,7 +331,8 @@ a.external {color:#656AE0;}
 	padding-top: 0.25em;
 	line-height: 1.25em;
 }
-/*underline provided by nested ul (not li)*/
+
+/* Underline provided by nested ul (not li). */
 .toctree-wrapper * ul {
 	padding-left: 2em;
 	border-top: solid #ececec 1px;
@@ -318,31 +344,36 @@ a.external {color:#656AE0;}
 }
 .rst-content .toctree-wrapper ul li a:hover {color: #25afef}
 .rst-content .toctree-wrapper ul li a:visited:hover {color: #C961DA}
-.toctree-wrapper .toctree-l1 > a{font-size: 104%} .toctree-wrapper .toctree-l2 > a{font-size: 102%} .toctree-wrapper	.toctree-l3 > a{font-size: 100%}
-.toctree-wrapper .toctree-l1 > ul{border-color: #bfbfbf} .toctree-wrapper .toctree-l2 > ul{border-color: #e1e0e0} .toctree-wrapper  .toctree-l3 > ul{border-color: #ececec}
-/*remove list styling, css rule hierarchy*/
+.toctree-wrapper .toctree-l1 > a{font-size: 104%}
+.toctree-wrapper .toctree-l2 > a{font-size: 102%}
+.toctree-wrapper .toctree-l3 > a{font-size: 100%}
+.toctree-wrapper .toctree-l1 > ul{border-color: #bfbfbf}
+.toctree-wrapper .toctree-l2 > ul{border-color: #e1e0e0}
+.toctree-wrapper .toctree-l3 > ul{border-color: #ececec}
+/* Remove list styling, css rule hierarchy. */
 .rst-content .toctree-wrapper ul li, .rst-content .toctree-wrapper ul li li , .rst-content .toctree-wrapper ul li li li {
 	list-style-type: none;
 	margin-left: 0px;
 }
-/*end custom toctree*/
+/* End custom toctree. */
 
-/*start genindex consistency*/
+/* Start genindex consistency. */
 .genindextable * strong {font-weight: normal}
 .genindex-jumpbox {margin-bottom: 1.245em}
 .indextable {margin-bottom: 1.245em}
-/*end genindex consistency*/
+/* End genindex consistency. */
 
-/*start version*/
-/*Override RTD theme*/
+/* start version */
+/* Override RTD theme */
 .rst-versions {
-	border-top: 0px;
-	overflow: visible;
+  border-top: 0px;
+  overflow: visible;
 }
 .version-btn.vdeact {
-	cursor: default;
-	color: dimgray;
+  cursor: default;
+  color: dimgray;
 }
+
 .version-btn.vdeact::after {
 	content: "";
 }
@@ -438,9 +469,9 @@ a.external {color:#656AE0;}
 	cursor: default;
 	outline-color: red;
 }
-/*end version*/
+/* End version. */
 
-/* start Sphinx 2.0 fixes */
+/* Start Sphinx 2.0 fixes. */
 .rst-content .admonition > :last-child {margin-bottom: 0}
 .rst-content .document dl dt {
 	display: block;
@@ -461,7 +492,6 @@ a.external {color:#656AE0;}
 .rst-content dl.field-list dt {
 	grid-column-start: 1;
 	grid-column-end: 2;
-	line-height: 24px;
 	font-size: 90%;
 }
 .rst-content dl.field-list dt:after {
@@ -478,4 +508,8 @@ a.external {color:#656AE0;}
 	margin: 0 !important;
 }
 .refbox dl dt {font-weight: normal}
-/* end Sphinx 2.0 fixes */
+/* End Sphinx 2.0 fixes */
+
+.hlist {
+	width: 100%
+}

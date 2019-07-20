@@ -94,8 +94,9 @@ def rst_files(path):
     for dirpath, dirnames, filenames in os.walk(path):
         if dirpath.startswith("."):
             continue
-
         for filename in filenames:
+            if filename.startswith("."):
+                continue
             ext = os.path.splitext(filename)[1]
             if ext.lower() == ".rst":
                 yield os.path.join(dirpath, filename)
@@ -205,6 +206,7 @@ def role_ignore_recursive(
 
 roles.register_canonical_role('abbr', role_ignore)
 roles.register_canonical_role('menuselection', role_ignore)
+roles.register_canonical_role('guilabel', role_ignore)
 
 roles.register_canonical_role('class', role_ignore_recursive)
 roles.register_canonical_role('doc', role_ignore_recursive)

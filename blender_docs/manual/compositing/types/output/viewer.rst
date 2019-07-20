@@ -4,7 +4,7 @@
 Viewer Node
 ***********
 
-.. figure:: /images/compositing_types_output_viewer_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeViewer.png
    :align: right
 
    Viewer Node.
@@ -61,8 +61,8 @@ The image is facilitated in the header by selecting *Viewer Node* in the linked 
 The Image Editor will display the image from the currently selected viewer node.
 
 To save the image being viewed,
-use :menuselection:`Image --> Save As Image`, :kbd:`F3` to save the image in a file.
+use :menuselection:`Image --> Save As...`, :kbd:`Shift-S` to save the image in a file.
 
 The Image Editor also has three additional options in its header to view Images with or
 without Alpha, or to view the Alpha or Z itself.
-Holding :kbd:`LMB` in the Image display allows you to sample the values.
+Click and holding the mouse in the Image display allows you to sample the values.

@@ -29,7 +29,7 @@ Which axis does what is up to you!
 
 If you have trouble understanding the buttons of this constraint, read the tooltips,
 they are pretty good. If you do not know where your object's axes are,
-turn on the *Axis* button in the *Object* menu's *Draw* panel.
+enable *Axis* in :menuselection:`Properties --> Armature --> Viewport Display`.
 Or, if you are working with bones, turn on the *Axes* button
 in the *Armature* menu's *Display* panel.
 
@@ -44,9 +44,9 @@ This constraint also works very well for 2D billboarding.
 Options
 =======
 
-.. figure:: /images/rigging_constraints_tracking_locked-track_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_tracking_locked-track_panel.png
 
-   Locked track panel.
+.. TODO2.8    Locked track panel.
 
 Target
    :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.

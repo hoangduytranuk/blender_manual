@@ -10,11 +10,11 @@ Transform
    :class: refbox
 
    :Mode:      All Modes
-   :Menu:      :menuselection:`Node --> Translate, Rotate, Resize`
+   :Menu:      :menuselection:`Node --> Move, Rotate, Resize`
    :Hotkey:    :kbd:`G`, :kbd:`R`, :kbd:`S`
 
 Move a single node by clicking and dragging it around. A node can be clicked almost anywhere to start dragging.
-Multiple nodes can be translated after pressing :kbd:`G`.
+Multiple nodes can be moved after pressing :kbd:`G`.
 
 In general it is recommended to arrange your nodes within the view such that the data flows from
 left to right, top to bottom.
@@ -66,13 +66,13 @@ Cut Links
 
    :Mode:      All Modes
    :Menu:      :menuselection:`Node --> Cut Links`
-   :Hotkey:    :kbd:`Ctrl-LMB`
+   :Hotkey:    :kbd:`Ctrl-RMB`
 
-To break a link between sockets :kbd:`Ctrl-LMB`-click in an empty area, near the link you want to disconnect, and
-drag: You will see a little cutter icon appearing at your mouse pointer. Move it over the link itself, and
-release the :kbd:`LMB`.
+To break a link between sockets click in an empty area, near the link you want to disconnect, and
+drag: You will see a little cutter icon appearing at your mouse pointer.
+Move it over the link itself, and release.
 
-Detach Links :kbd:`Alt-D`, :kbd:`Alt-LMB`-drag
+Detach Links :kbd:`Alt-D`, :kbd:`Alt-LMB` drag
    Use Detach Links in order to cut all links attached to selected nodes at once.
 
 
@@ -94,7 +94,7 @@ move the mouse away to see the duplicate of the selected node appearing under th
    When you duplicate a node, the new node will be positioned *exactly* on top of the node that was duplicated.
    If you leave it there (and it is quite easy to do so),
    you can **not** easily tell that there are *two* nodes there!
-   When in doubt, grab a node and move it slightly to see if something is hidden underneath.
+   When in doubt, select a node and move it slightly to see if something is hidden underneath.
 
 
 Delete

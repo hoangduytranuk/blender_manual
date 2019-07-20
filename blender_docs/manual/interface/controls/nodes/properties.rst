@@ -10,7 +10,7 @@ Node Panel
 ==========
 
 Name
-   A unique node identifier.
+   A unique node identifier inside this node tree.
 Label
    Nodes can be given a title by modifying the text field.
 

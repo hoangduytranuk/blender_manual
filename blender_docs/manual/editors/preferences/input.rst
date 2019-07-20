@@ -4,10 +4,10 @@
 Input
 *****
 
-In the Input preferences, you can customize how Blender reacts to the mouse and keyboard as
-well as define your own keymap.
+In the Input preferences, you can customize how Blender reacts to the mouse and keyboard
+as well as define your own keymap.
 
-.. figure:: /images/preferences_input_tab.png
+.. figure:: /images/editors_preferences_section_input.png
 
 
 Keyboard
@@ -18,44 +18,23 @@ Emulate Numpad
    the regular number keys. If you have a keyboard without a Numpad (e.g. on a laptop),
    you can tell Blender to treat the standard number keys as Numpad keys by checking *Emulate Numpad*.
 Default to Advanced Numeric Input
-   TODO 2.8.
+   For transform mode, default to :ref:`transform-numeric-input-advanced`,
+   otherwise :ref:`transform-numeric-input-simple` is used.
 
 
 Mouse
 =====
 
 Emulate 3 Button Mouse
-   Blender can be configured to work with pointing devices which do not have an :kbd:`MMB`
-   (such as a two-button mouse, Apple's single-button mouse, or laptop touch-pad).
-   The functionality of the three mouse buttons will then be emulated with
-   key/mouse button combinations as shown in the table below.
-
-   .. list-table:: Shortcuts for supported mouse hardware
-      :header-rows: 1
-      :class: valign
-      :widths: 25 25 50
-
-      * - 3-button Mouse
-        - 2-button Mouse
-        - Apple Mouse
-      * - :kbd:`LMB`
-        - :kbd:`LMB`
-        - :kbd:`LMB` (mouse button)
-      * - :kbd:`MMB`
-        - :kbd:`Alt-LMB`
-        - :kbd:`Alt-LMB` (Option/Alt key + mouse button)
-      * - :kbd:`RMB`
-        - :kbd:`RMB`
-        - :kbd:`Cmd-LMB` (Command/Apple key + mouse button)
+   Blender can be configured to work with pointing devices which do not have a :kbd:`MMB`.
+   The functionality of the three mouse buttons by holding :kbd:`Alt-LMB`.
 
    Mouse/Keyboard combinations referenced in this manual
    can be expressed with the combinations shown in the table. For example:
 
-   - :kbd:`MMB` drag becomes :kbd:`Alt-LMB` drag.
-   - :kbd:`Shift-Alt-RMB` becomes :kbd:`Shift-Alt-Cmd-LMB` on a single-button mouse.
-
+   :kbd:`MMB` drag becomes :kbd:`Alt-LMB` drag for example.
 Continuous Grab
-   This feature is used to prevent the problem where an action such as grabbing or panning a view,
+   This feature is used to prevent the problem where an action such as moving objects or panning a view,
    is limited by your screen bounds.
 
    This is done by warping the mouse within the view.
@@ -73,25 +52,37 @@ Release Confirms
    Dragging :kbd:`LMB` on an object will move it.
    To confirm this (and other) transform, an :kbd:`LMB` is necessary by default.
    When this option is activated, the release of :kbd:`LMB` acts as confirmation of the transform.
+Mouse Drag Threshold
+   The number of pixels that a User Interface element has to be moved before it is recognized by Blender,
+   values below this will be detected as click events.
+Tablet Drag Threshold
+   The drag threshold for tablet events.
 Drag Threshold
-   The number of pixels that a User Interface element has to be moved before it is recognized by Blender.
+   The drag threshold for non mouse/tablet events (keyboard or :term:`NDOF` for example).
+
+   This affects :ref:`Pie Menu on Drag <keymap-pref-py_menu_on_drag>` keymap preference.
 Motion Threshold
    The number of pixels the cursor must be moved before the movement is registered.
    This is helpful for tablet pens that are a lot more difficult to keep still
    then this could help to reduce stuttering of the cursor position.
+
+   .. note::
+
+      Unlike the click/drag distinction, this is used to detect small movements
+      for example, picking selection cycles through elements near the cursor.
+      Once the cursor moves past this threshold, selection stops cycling and picks the closest item.
 Double Click Speed
    The time in ms for a double-click to be recognized.
-
-.. note::
-
-   The Mouse emulate option is only available if *Select With* is set to *Right*.
 
 
 Tablet
 ======
 
-Tablet API
-   TODO 2.8.
+
+Tablet API (Windows Only)
+   Select the native Windows Ink or older Wintab system for pressure sensitivity.
+   Blender automatically selects the API for your operating system and tablet,
+   however in case of problems this can be set manually.
 Max Threshold
    Amount of pressure required to achieve full intensity.
 Softness
@@ -109,7 +100,7 @@ Deadzone
    The threshold for the amount of movement needed from
    the device's rest position for Blender to interrupt that movement.
 
-Navigate Method
+NDOF View Navigate
    Navigation style for the viewport.
 
    Free
@@ -117,7 +108,7 @@ Navigate Method
    Orbit
       Orbit about the view center.
 
-Rotate Method
+NDOF View Rotation
    Rotation style for the viewport.
 
    Turntable

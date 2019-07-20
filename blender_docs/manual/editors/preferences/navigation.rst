@@ -3,13 +3,18 @@
 Navigation
 **********
 
+.. figure:: /images/editors_preferences_section_navigation.png
+
+   Blender Preferences navigation section.
+
+
 .. _prefs-input-orbit-style:
 
 Orbit & Pan
 ===========
 
 Orbit Method
-   Select how Blender works when you rotate the 3D View by default when holding :kbd:`MMB`.
+   Choose you're preferred method of interactively rotating the 3D View.
 
    Turntable
       Rotates the view keeping the horizon horizontal.
@@ -23,21 +28,25 @@ Orbit Method
       Is less restrictive, allowing any orientation.
 
 Orbit Around Selection
-   The selected object (bounding box center) becomes the rotation center of the viewport.
+   The selection center becomes the rotation center of the viewport.
    When there is no selection the last selection will be used.
 
-   .. hint::
+   This uses the selected object (bounding box center), in object mode and
+   select elements in edit/pose modes.
 
-      This may seem ideal behavior.
-      However, it can become problematic with larger objects such as a terrain-mesh,
-      where the center is not necessarily your point of interest.
+   .. note::
+
+      While this may seem like ideal behavior,
+      it can be inconvenient for larger objects such as a terrain mesh,
+      where the center is not necessarily a point of interest.
 
 .. _prefs-interface-auto-perspective:
 
 Auto Perspective
-   Automatically to perspective Top/Side/Front view after using User Orthographic.
-   When disabled, Top/Side/Front views will retain Orthographic or Perspective view
-   (whichever was active at the time of switching to that view).
+   When enabled, the view switches to perspective when orbiting the view,
+   setting axis views (Top/Side/Front/Back ... etc), sets the view to orthographic.
+
+   When disabled, orthographic/perspective mode needs to be changed manually.
 
 .. _prefs-auto-depth:
 
@@ -46,7 +55,7 @@ Auto Depth
    Useful in combination with *Zoom To Mouse Position*.
 
 Smooth View
-   Length of time the animation takes when changing the view with the numpad
+   Time (in milliseconds) the animation takes when changing views
    (Top/Side/Front/Camera...). Reduce to zero to remove the animation.
 Rotation Angle
    Rotation step size in degrees, when :kbd:`Numpad4`, :kbd:`Numpad6`, :kbd:`Numpad8`,
@@ -57,15 +66,17 @@ Zoom
 ====
 
 Zoom Method
-   Choose your preferred style of zooming in and out with :kbd:`Ctrl-MMB`.
+   Choose your preferred style of zooming in and out,
+   when using interactive view zoom.
 
    Scale
       *Scale* zooming depends on where you first click in the view.
-      To zoom out, hold :kbd:`Ctrl-MMB` while dragging from the edge of the screen towards the center.
-      To zoom in, hold :kbd:`Ctrl-MMB` while dragging from the center of the screen towards the edge.
+      To zoom out, move the cursor to the area center.
+      To zoom in, move the cursor away from the areas center.
    Continue
       The *Continue* zooming option allows you to control the speed
-      (and not the value) of zooming by moving away from the initial click point with :kbd:`Ctrl-MMB`.
+      (and not the value) of zooming by moving away from the initial cursor position.
+
       Moving up from the initial click point or to the right will zoom out,
       moving down or to the left will zoom in. The further away you move,
       the faster the zoom movement will be.
@@ -74,7 +85,7 @@ Zoom Method
    Dolly
       *Dolly* zooming works similarly to *Continue* zooming except that zoom speed is constant.
 Zoom Axis
-   The axis of the :kbd:`MMB` to use for zooming.
+   The axis of the mouse to use for zooming.
 
    Vertical
       Moving up zooms out and moving down zooms in.
@@ -91,20 +102,26 @@ Zoom to Mouse Position
    When enabled, the mouse pointer position becomes the focus point of zooming instead of the 2D window center.
    Helpful to avoid panning if you are frequently zooming in and out.
 
+   .. tip::
 
-Walk & Fly
+      This is useful in combination with :ref:`Auto Depth <prefs-auto-depth>`
+      to quickly zoom into the point under the cursor.
+
+
+Fly & Walk
 ==========
 
 View Navigation
-   The default navigation mode for :kbd:`Shift-F` in the 3D View.
+   The default mode for interactive first person navigation.
 
-   Walk
-      TODO 2.8.
-   Fly
-      TODO 2.8.
+   See :ref:`3dview-fly-walk`.
 
 Camera Parent Lock
-   When the camera is locked to the view and in fly mode, transform the parent rather than the camera.
+   When the camera is locked to the view, the root parent is transformed rather than the camera.
+
+   .. tip::
+
+      This is useful for camera rigs where you don't want to animate the camera directly.
 
 
 Walk

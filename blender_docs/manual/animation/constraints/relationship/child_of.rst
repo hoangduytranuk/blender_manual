@@ -30,9 +30,9 @@ compared to the traditional method:
 Options
 =======
 
-.. figure:: /images/rigging_constraints_relationship_child-of_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_relationship_child-of_panel.png
 
-   Child Of panel.
+.. TODO2.8    Child Of panel.
 
 Target
    The target object that this object will act as a child of.
@@ -87,39 +87,39 @@ Examples
 
 .. list-table::
 
-   * - .. figure:: /images/rigging_constraints_relationship_child-of_example1.png
+   * - .. figure:: /images/animation_constraints_relationship_child-of_example1.png
 
           No constraint.
 
-          Note the position of Owner empty 1.0 BU along the X and Y axes.
+          Note the position of Owner empty 1.0 unit along the X and Y axes.
 
-     - .. figure:: /images/rigging_constraints_relationship_child-of_example2.png
+     - .. figure:: /images/animation_constraints_relationship_child-of_example2.png
 
           Child Of just added.
 
-          Here you can see that Owner empty is now 1.0 BU away
+          Here you can see that Owner empty is now 1.0 unit away
           from Target_1 empty along X and Y axes.
 
-   * - .. figure:: /images/rigging_constraints_relationship_child-of_example3.png
+   * - .. figure:: /images/animation_constraints_relationship_child-of_example3.png
 
           Offset set.
 
           Set Inverse has been clicked, and Owner is back to its original position.
 
-     - .. figure:: /images/rigging_constraints_relationship_child-of_example4.png
+     - .. figure:: /images/animation_constraints_relationship_child-of_example4.png
 
           Target/parent transformed.
 
-          Target_1 has been translated in the XY plane, rotated around the Z axis,
+          Target_1 has been moved along the XY plane, rotated around the Z axis,
           and scaled along its local X axis.
 
-   * - .. figure:: /images/rigging_constraints_relationship_child-of_example5.png
+   * - .. figure:: /images/animation_constraints_relationship_child-of_example5.png
 
           Offset cleared.
 
           Clear Inverse has been clicked. Owner is fully again controlled by Target_1.
 
-     - .. figure:: /images/rigging_constraints_relationship_child-of_example6.png
+     - .. figure:: /images/animation_constraints_relationship_child-of_example6.png
 
           Offset set again.
 

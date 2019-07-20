@@ -4,7 +4,7 @@
 Despeckle Node
 **************
 
-.. figure:: /images/compositing_types_filter_despeckle_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeDespeckle.png
    :align: right
 
    Despeckle Node.

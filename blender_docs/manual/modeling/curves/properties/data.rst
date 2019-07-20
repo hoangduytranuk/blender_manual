@@ -165,6 +165,9 @@ Cyclic
    Closes the curve.
 Resolution
    Alters the smoothness of each segment by changing the number of subdivisions.
+
+.. _bpy.types.Spline.tilt_interpolation:
+
 Interpolation
    Tilt
       Alters how the tilt of a segment is calculated.

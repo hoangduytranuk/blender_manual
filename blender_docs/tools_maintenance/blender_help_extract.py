@@ -9,7 +9,7 @@ import re
 # using primitive regex parsing.
 #
 # e.g:
-# python tools/blender_help_extract.py /src/blender/source/creator/creator_args.c manual/advanced/command_line/arguments.rst
+# python tools_maintanance/blender_help_extract.py /src/blender/source/creator/creator_args.c manual/advanced/command_line/arguments.rst
 
 
 def text_remove_comments(text):
@@ -27,12 +27,19 @@ def text_remove_comments(text):
 
 
 def text_join_lines(text):
-    # return text.replace(",\n", ",")
-    pattern = re.compile(
-        '\s*,\n\s*',
-        re.DOTALL | re.MULTILINE
-        )
-    return re.sub(pattern, ", ", text)
+    lines = text.split("\n")
+    lines_out = [[]]
+    for l in lines:
+        lines_out[-1].append(l)
+        if l.endswith((";", "{", ")", "}")) or l.lstrip().startswith("#"):
+            lines_out.append([])
+    text = "\n".join(
+        [
+            " ".join(l.lstrip() if i != 0 else l for i, l in enumerate(l_group))
+            for l_group in lines_out
+        ]
+    )
+    return text
 
 
 def text_expand_macros(text):
@@ -120,16 +127,17 @@ def text_extract_strings(text):
     strings = {}
     # use replace to scan (misuse!)
 
-    text = (text
-            ).replace(
-            "PY_ENABLE_AUTO", " \" (default)\""
-            ).replace(
-            "PY_DISABLE_AUTO", " \"\""
-            ).replace(
-            "STRINGIFY(BLENDER_STARTUP_FILE)", "\"startup.blend\""
-            ).replace(
-            "STRINGIFY(BLENDER_MAX_THREADS)", "\"64\""
-            )
+    text = (
+        text
+    ).replace(
+        "PY_ENABLE_AUTO", " \" (default)\""
+    ).replace(
+        "PY_DISABLE_AUTO", " \"\""
+    ).replace(
+        "STRINGIFY(BLENDER_STARTUP_FILE)", "\"startup.blend\""
+    ).replace(
+        "STRINGIFY(BLENDER_MAX_THREADS)", "\"64\""
+    )
 
     def replacer(match):
         var = match.group(1).strip()
@@ -150,7 +158,8 @@ def text_extract_strings(text):
 def text_extract_help(text, args, static_strings):
     func_id = 'static int arg_handle_print_help(int UNUSED(argc), const char **UNUSED(argv), void *data)\n'
     index_start = text.find(func_id)
-    index_end = text.find("\texit(0);", index_start)
+    assert(index_start != -1)
+    index_end = text.find("exit(0);", index_start)
     # print(index_start, index_end)
     body = text[index_start + len(func_id):index_end]
     body = [l for l in body.split("\n") if not l.strip().startswith("#")]
@@ -187,7 +196,7 @@ def text_extract_help(text, args, static_strings):
     # execute the code!
     other_vars = {
         "BLEND_VERSION_STRING_FMT": "Blender |BLENDER_VERSION| ",
-        }
+    }
 
 
     def write_arg(arg):
@@ -275,6 +284,8 @@ def text_extract_help(text, args, static_strings):
         "\n"
         "   CHANGES TO THIS FILE MUST BE MADE IN BLENDER'S SOURCE CODE, SEE:\n"
         "   https://developer.blender.org/diffusion/B/browse/master/source/creator/creator_args.c\n"
+        "\n"
+        ".. _command_line-args:\n"
         "\n"
         "**********************\n"
         "Command Line Arguments\n"

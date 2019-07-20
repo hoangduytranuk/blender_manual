@@ -4,7 +4,7 @@
 Bokeh Blur Node
 ***************
 
-.. figure:: /images/compositing_types_filter_bokeh-blur_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeBokehBlur.png
    :align: right
 
    Bokeh Blur Node.

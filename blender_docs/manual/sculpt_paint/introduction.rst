@@ -3,11 +3,14 @@
 Introduction
 ************
 
-Navigate
-========
+Sculpting and painting uses :doc:`brushes </sculpt_paint/brush/index>` to paint directly on meshes.
+There are several :doc:`modes </editors/3dview/modes>` that uses this.
 
-Center on Last Stroke :kbd:`NumpadPeriod`
-   Center the View on the average position of the last stroke.
-Orbit Around the Last Stroke
-   You can orbit the view around the average position of the last stroke,
-   if you enable the *Rotate Around Selection* in the :doc:`Preferences </editors/preferences/interface>`.
+- :doc:`Sculpting </sculpt_paint/sculpting/introduction>`:
+  Change the topology of the mesh.
+- :doc:`Vertex Paint </sculpt_paint/vertex_paint/introduction>`:
+  Change the color of vertices in the active vertex color layer.
+- :doc:`Weight Paint </sculpt_paint/weight_paint/introduction>`:
+  Change the weight of vertices in the active vertex group.
+- :doc:`Texture Paint </sculpt_paint/texture_paint/introduction>`:
+  Change the pixels of the active image texture.

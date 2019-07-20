@@ -4,126 +4,102 @@
 # This script is to reduce tedious steps involved when updating PO files.
 # It looks more complex then it really is, since we do multi-processing
 # to update the PO files, to save some time.
-# Last-Updater: Hoang Duy Tran <hoangduytran1960@googlemail.com>
-# Last-Update-Date: 2018-11-18 17:51+0000
+
+# Subversion Checkout Location
+# ============================
 #
-
-# Ensure we're in the repo's base:
-function setBaseDirectory()
-{
-	BASEDIR=$(cd "$(dirname 0)"; pwd -P)
-	if [ ! -e Makefile ]; then
-		echo "The base [$BASEDIR] doesn't contain Makefile required. Terminate the process."
-		exit 1
-	else
-		#echo "The base directory is: [$BASEDIR]"
-		cd $BASEDIR
-	fi
-}
-
-# Update the locale dir:
-function updateLocaleDir()
-{
-	#Locate the SVN directory under locale.
-	#It could be deeper than expected, depending on how the source has been checked out
-	LOCALE_SVN_DIR=$(find ./locale -type d -name ".svn" -print)
-	if [ -z $LOCALE_SVN_DIR ]; then
-		echo "Unable to find SVN directory for ./locale"
-		exit 1
-	fi
-	locale_dir=$(dirname $LOCALE_SVN_DIR)
-	cd "$locale_dir"
-	svn cleanup .
-	svn up .
-	cd -
-}
-
-# Create POT files:
-function createPOTFiles()
-{
-	rm -rf build/locale
-	make gettext
-}
-
-# Update PO files
+# Note: this script supports subversion repositories at these locations:
 #
-# note, this can be slow so (multi-process)
-function updatePOFiles()
-{
-	for lang in `find locale/ -maxdepth 1 -mindepth 1 -type d -not -iwholename '*.svn*' -printf '%f\n' | sort`; do
-		sphinx-intl update -p build/locale -l $lang &
-	done
+# ./local/(.svn)          All languages in one checkout.
+# ./local/{LANG}/(.svn)   Each language in it's own checkout.
+#
+# All commands run from the project root, passing in paths
+# without changing directories.
+#
+# This works since subversion will detect the parent directories ".svn"
+# path without us having to change directories.
 
-	FAIL=0
-	for job in `jobs -p`; do
-		echo $job
-		wait $job || let "FAIL+=1"
-	done
-	if [ "$FAIL" != "0" ]; then
-		echo "Error updating"
-		exit 1
-	fi
-	unset FAIL
-}
-
-# Add newly created PO files:
-function svnAddPOFiles()
-{
-	cd $LOCALE_SVN_DIR
-	NEW_FILES=`svn status . | grep -e "\.po$" | awk '/^[?]/{print $2}'`
-	if [ "$NEW_FILES" != "" ]; then
-		svn add $NEW_FILES
-	fi
-	unset NEW_FILES
-}
-
-# note, the Python part filters only for directories
-# there may be a cleaner way to do this in shell.
-function svnAddNewDirs()
-{
-	NEW_DIRS=`svn status . | grep -v -e "\.po$" | awk '/^[?]/{print $2}' | python -c "import sys, os; sys.stdout.write('\n'.join([f for f in sys.stdin.read().split('\n') if os.path.isdir(f)]))"`
-	if [ "$NEW_DIRS" != "" ]; then
-		svn add $NEW_DIRS
-	fi
-	unset NEW_DIRS
-	cd -
-}
-
-# Notify on redundant PO files
-function notifyRedundantPOFiles()
-{
-	python3 tools_rst/rst_check_locale.py
-}
-
-# Print Commit message:
-function printCommitMessages()
-{
-	REVISION=`svn info . | grep '^Revision:' | sed -e 's/^Revision: //'`
-	echo " cd locale; svn ci . -m \"Update r"$REVISION\""; cd .."
-}
-
-function performUpdatePO()
-{
-	setBaseDirectory
-	updateLocaleDir
-	createPOTFiles
-	updatePOFiles
-	svnAddPOFiles
-	svnAddNewDirs
-	notifyRedundantPOFiles
-	printCommitMessages
-}
-
-# Python needs utf
-export LANG="en_US.UTF8"
 
 # Trap on the ERR pseudo signal
 # http://stackoverflow.com/a/4384381/432509
 err_trap () {
-    errcode=$? # save the exit code as the first thing done in the trap function
+  errcode=$? # save the exit code as the first thing done in the trap function
 	echo "  Error($errcode) on line ${BASH_LINENO[0]}, in command:"
-    echo "  $BASH_COMMAND"
-    exit $errcode
+  echo "  $BASH_COMMAND"
+  exit $errcode
 }
 trap err_trap ERR
-performUpdatePO
+
+# Python needs utf
+export LANG="en_US.UTF8"
+
+# Ensure we're in the repo's base:
+BASEDIR="$(dirname $0)"
+cd $BASEDIR
+cd ../
+ROOTDIR="$(pwd)"
+
+
+# All directories containing '.svn' (the parent directory).
+SVN_DIRS_ALL="$(find locale/ -name '.svn' -printf '%h\n')"
+
+# Update the locale dir:
+for SVNDIR in "$SVN_DIRS_ALL"; do
+  svn cleanup "$SVNDIR"
+  svn up "$SVNDIR"
+done
+unset SVNDIR
+
+# Create PO files:
+rm -rf build/locale
+make gettext
+
+
+# Update PO files
+#
+# note, this can be slow so (multi-process)
+for PO_LANG in $(find locale/ -maxdepth 1 -mindepth 1 -type d -not -iwholename '*.svn*' -printf '%f\n' | sort); do
+	sphinx-intl --config=manual/conf.py update --pot-dir=build/locale --language="$PO_LANG" &
+done
+unset PO_LANG
+
+FAIL=0
+for JOB in $(jobs -p); do
+  echo "$JOB"
+  wait $JOB || let "FAIL+=1"
+done
+unset JOB
+if [ "$FAIL" != "0" ]; then
+	echo "Error updating"
+	exit 1
+fi
+unset FAIL
+
+# Add newly created PO files:
+for SVNDIR in "$SVN_DIRS_ALL"; do
+
+  NEW_FILES=$(svn status "$SVNDIR" | grep -e "\.po$" | awk '/^[?]/{print $2}')
+  if [ "$NEW_FILES" != "" ]; then
+    # Multiple args, don't quote.
+    svn add $NEW_FILES
+  fi
+  unset NEW_FILES
+
+  # Note, the Python part filters only for directories.
+  # There may be a cleaner way to do this in shell.
+  NEW_DIRS=$(svn status "$SVNDIR" | grep -v -e "\.po$" | awk '/^[?]/{print $2}' | python -c "import sys, os; sys.stdout.write('\n'.join([f for f in sys.stdin.read().split('\n') if os.path.isdir(f)]))")
+  if [ "$NEW_DIRS" != "" ]; then
+    # Multiple args, don't quote.
+    svn add $NEW_DIRS
+  fi
+  unset NEW_DIRS
+done
+
+# Notify on redundant PO files
+python3 tools_rst/rst_check_locale.py
+
+# Print Commit message:
+REVISION=$(svn info "$ROOTDIR" | grep '^Revision:' | sed -e 's/^Revision: //')
+for SVNDIR in "$SVN_DIRS_ALL"; do
+  echo " svn ci \"$SVNDIR\" -m \"Update r"$REVISION\"""
+done

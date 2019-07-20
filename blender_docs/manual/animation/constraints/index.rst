@@ -81,5 +81,4 @@ Relationship
    relationship/floor.rst
    relationship/follow_path.rst
    relationship/pivot.rst
-   relationship/rigid_body_joint.rst
    relationship/shrinkwrap.rst

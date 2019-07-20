@@ -3,54 +3,26 @@
 Introduction
 ************
 
-Rendering is the process of creating a 2D image (or video) from your 3D scene.
-What that image looks like is based on four factors which the user can control:
+Rendering is the process of turning a 3D scene into a 2D image.
+Blender includes three render engines with different strengths:
 
-- A :doc:`Camera </render/camera>`
-- The :doc:`Lighting </render/lighting/introduction>` in your scene
-- The :doc:`Material </render/engines/cycles/materials/introduction>` of each object
-- Various render settings (quality, image size, layers, etc.)
+- :doc:`Eevee </render/eevee/index>` is a physically based realtime renderer.
+- :doc:`Cycles </render/cycles/index>` is a physically based path tracer.
+- :doc:`Workbench </render/workbench/index>` is designed for layout, modeling and previews.
 
-Your computer will perform various complex calculations
-based on those factors in order to give you your rendered image.
-This process may take some time depending on the complexity of the scene and your hardware.
+More renderers from third-party developers are available as
+:doc:`add-ons </editors/preferences/addons>`.
+Each renderer has its own render settings to control render quality and performance.
 
-Once the render is complete, it is possible to do additional manipulation of the image,
-called :ref:`Post Processing <render-output-postprocess>`.
+What the render looks like is defined by :doc:`cameras </render/cameras>`,
+:doc:`lights </render/lights/index>` and :doc:`materials </render/materials/index>`.
+These are shared between Eevee and Cycles, however some features are only supported in one or the other.
 
-Finally, the output can be saved to an image or video file
-using one of the :doc:`Output Formats </render/output/settings>`.
+Renders can be split up into :doc:`layers and passes </render/layers/index>`, which can then
+be :doc:`composited </compositing/index>` together for creative control, or to combine
+with real footage. :doc:`Freestyle </render/freestyle/index>` can be used to
+add non-photorealistic line rendering.
 
-
-Workflow
-========
-
-In general, the process for rendering is:
-
-#. Position the camera.
-#. Light the scene.
-#. Setup materials.
-#. Render a test image using lower quality settings.
-#. Change or fix anything you noticed in the render.
-#. Repeat the above two steps until you are satisfied.
-#. Render a high-quality image, change or fix any issues and repeat until satisfied.
-#. Save your image to a file, or render the animation to a video or image sequence.
-
-
-.. _bpy.types.RenderSettings.engine:
-
-Render Engines
-==============
-
-Renderers are programs that turn meshes, materials and lights into images.
-
-Some renderers may be better at certain things than others due
-to the math they use or core principles around which they were written.
-
-Blender includes two renderers by default:
-
-- :doc:`Eevee </render/engines/eevee/index>`
-- :doc:`Cycles </render/engines/cycles/index>`
-
-More renderers from third-party developers can also be added using
-:doc:`Add-ons </editors/preferences/addons>`.
+Blender supports interactive 3D viewport rendering for all render engines, for quick iteration
+on lighting and shading. Once this is done, the final quality image or animation can
+be rendered and :doc:`output </render/output/index>` to disk.

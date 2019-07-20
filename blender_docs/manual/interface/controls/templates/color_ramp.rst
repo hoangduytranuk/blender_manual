@@ -24,8 +24,20 @@ Add ``+``
    they will be placed in the middle of both stops.
 Delete ``-``
    Deletes the selected color stop from the list.
-Flip ``<->``
-   Flips the gradient, inverting the values of the custom weight paint range.
+Specials ``v``
+   Contains more operators for the color ramp.
+
+   Flip Color Ramp
+      Flips the gradient, inverting the values of the custom weight paint range.
+   Distribute Stops from Left
+      Distribute the stops so that every step has the same space to the right.
+      This is mostly useful when used with Constant interpolation mode.
+   Distribute Stops Evenly
+      Space between all neighboring stops becomes equal.
+   Eyedropper (pipette icon) :kbd:`E`
+      A :ref:`ui-eyedropper` to sample a color or gradient from the interface to be used in the color ramp.
+   Reset Color Ramp
+      Resets the color ramp to its default state.
 Color Mode
    Selection of the :term:`color space` used for interpolation.
 
@@ -59,7 +71,7 @@ Interpolation Options
       Far
          Furthest route around the wheel.
 
-   .. figure:: /images/interface_controls_templates_color-ramp_color-ramp_interpolation.png
+   .. figure:: /images/interface_controls_templates_color-ramp_interpolation.png
       :width: 600px
 
       HSV and HSL interpolation options.
@@ -71,7 +83,7 @@ Position
    This slider controls the positioning of the selected color stop in the range.
 Color
    Opens a color picker for the user to specify color and Alpha for the selected color stop.
-   When a color is using Alpha, the Color button is then divided in two, with the left side
+   When a color is using Alpha, the color field is then divided in two, with the left side
    showing the base color and the right side showing the color with the alpha value.
 
 

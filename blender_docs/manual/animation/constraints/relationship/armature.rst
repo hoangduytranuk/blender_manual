@@ -15,6 +15,10 @@ that can handle multiple parents at once, but requires all of them to be bones.
 Target List
 ===========
 
+.. figure:: /images/animation_constraints_relationship_armature_panel.png
+
+   Armature panel.
+
 This specifies the list of bones used by the constraint to deform its owner.
 
 Add Target Bone

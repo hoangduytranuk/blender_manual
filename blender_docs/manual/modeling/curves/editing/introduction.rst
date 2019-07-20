@@ -1,4 +1,4 @@
-.. (TODO2.8 add) spin, split tool; control point: recalc normals, set curve radius = Shrink/Fatten.
+.. (TODO2.8 add) spin, split tool; control point: recalc normals.
 
 ************
 Introduction
@@ -22,14 +22,14 @@ Translation, Rotation, Scale
 
    :Mode:      Edit Mode
    :Panel:     :menuselection:`Tool Shelf --> Tools --> Transform`
-   :Menu:      :menuselection:`Curve --> Transform --> Grab/Move, Rotate, Scale, ...`
+   :Menu:      :menuselection:`Curve --> Transform --> Move, Rotate, Scale, ...`
    :Hotkey:    :kbd:`G`, :kbd:`R`, :kbd:`S`
 
 Like other elements in Blender, curve control points and handles can be
-grabbed/moved :kbd:`G`, rotated :kbd:`R` or scaled :kbd:`S` as described in
+moved :kbd:`G`, rotated :kbd:`R` or scaled :kbd:`S` as described in
 the :doc:`Basic Transformations </scene_layout/object/editing/transform/introduction>` section.
 When in *Edit Mode*,
-:doc:`proportional editing </scene_layout/object/editing/transform/control/proportional_edit>`
+:doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`
 is also available for transformation actions.
 
 
@@ -77,7 +77,7 @@ Tools
 
 The *To Sphere*, *Shear*, *Warp* and *Push/Pull* transform tools are described
 in the :doc:`Transformations </modeling/meshes/editing/transform/index>` sections.
-The two other tools, *Tilt* and *Shrink/Fatten Radius* are related to
+The two other tools, *Tilt* and *Radius* are related to
 :doc:`Curve Extrusion </modeling/curves/properties/geometry>`.
 
 
@@ -125,7 +125,7 @@ Extrude Curve and Move
    :Menu:      :menuselection:`Curve --> Extrude Curve and Move`
    :Hotkey:    :kbd:`E`
 
-Extrudes points by duplicating the selected points, which then can be translated.
+Extrudes points by duplicating the selected points, which then can be moved.
 If the selection is an end point, a new point will be connected to the selected point,
 else a new unconnected point is created.
 
@@ -160,7 +160,7 @@ Add Duplicate
 This tool duplicates the selected control points,
 along with the curve segments implicitly selected (if any).
 If only a handle is selected, the full point will be duplicated too.
-The copy is selected and placed in *Grab* mode, so you can move it to another place.
+The copy is selected and placed in select mode, so you can move it to another place.
 
 
 Separate
@@ -310,7 +310,6 @@ Tilt
 Tilt :kbd:`Ctrl-T`
    Lets you define the tilt of the selected control points.
    The tilt will be interpolated from point to point (you can check it with the normals).
-   The tilt angle is defined interactively first, and then it can be adjusted in the Operator panel *Angle*.
 Clear Tilt :kbd:`Alt-T`
    Brings the tilt of those selected control points back to 0.
 
@@ -347,7 +346,7 @@ Set Goal Weight
    :Menu:      :menuselection:`Specials --> Set Goal Weight`
 
 This sets the :doc:`Soft Body Goal Weight </modeling/curves/properties/introduction>`
-of selected control points. The precise value can be adjusted in the Operator Panel.
+of selected control points. The precise value can be adjusted in the :ref:`ui-undo-redo-adjust-last-operation` Panel.
 To adjust the *Mean Weight* (average) of selected control points use
 :menuselection:`Sidebar region --> Transform --> Mean Weight`.
 
@@ -412,7 +411,7 @@ Curve subdivision simply subdivides all selected segments by adding one or
 more control points between the selected segments.
 
 Number of Cuts
-   The number of cuts can be adjusted from the Operator panel.
+   The number of subdivisions to perform.
 
 
 .. _curve-switch-direction:

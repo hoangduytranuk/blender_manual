@@ -1,4 +1,5 @@
 .. _bpy.ops.mesh.knife:
+.. _tool-mesh-knife:
 
 **********
 Knife Tool

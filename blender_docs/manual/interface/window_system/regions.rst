@@ -1,20 +1,26 @@
 .. _bpy.types.Region:
+.. _ui-region:
 
 *******
 Regions
 *******
 
-An area is subdivided into regions.
+Every Editor in Blender is divided into Regions.
+Regions can have smaller structuring elements like
+:doc:`tabs and panels </interface/window_system/tabs_panels>`
+with buttons, controls and widgets placed within them.
 
 .. figure:: /images/interface_window-system_regions_3d-view.png
    :align: center
 
-   The regions of the 3D View editor showing the Sidebar and
-   the Operator panel after adding a Cube.
+   The regions of the 3D Viewport showing the Sidebar and
+   the Adjust Last Operation panel after adding a Cube.
 
    Header (green), Main region (yellow), Toolbar (blue),
-   Sidebar (red) and Operator panel (pink).
+   Sidebar (red) and Adjust Last Operation panel (pink).
 
+
+.. _ui-region-window:
 
 Main Region
 ===========
@@ -33,46 +39,68 @@ See specific documentation about each editor in the :doc:`Editors </editors/inde
 Header
 ======
 
-A header is a small horizontal strip with a lighter gray background,
-which sits either at the top or bottom of the area.
+A header is a small horizontal strip, which sits either at the top or bottom of an area.
 All editors have a header acting as a container for menus and commonly used tools.
 :ref:`Menus <ui-header-menu>` and buttons will change with the editor type and
 the selected object and mode.
 
-.. figure:: /images/modeling_meshes_introduction_3d-view-header-object-mode.png
+.. figure:: /images/editors_3dview_introduction_3d-view-header-object-mode.png
 
-   The Header of the 3D View editor.
+   The Header of the 3D Viewport.
 
-All hotkeys you press will affect the contents of the editor where mouse pointer is located.
+
+.. _bpy.ops.screen.header:
+
+Context Menu
+------------
+
+:kbd:`RMB` on a header reveals a context menu with a couple options:
+
+Show Header
+   Toggles the visibility of the header.
+   If a header is hidden it can be made visible again by dragging
+   the small arrow that appears towards the top/bottom right of the editor.
+Show Menus
+   Toggles where the :ref:`Menus <ui-header-menu>` are collapsed or not.
+Flip to Bottom/Top
+   Toggles whether headers appear on the top or the bottom of the editor.
+Maximize Area
+   See :ref:`bpy.ops.screen.screen_full_area`.
 
 
 Toolbar
 =======
 
-The *Toolbar* (on the left side of editor area) contains the tool settings.
+The *Toolbar* (on the left side of the editor area) contains a set of interactive tools.
 :kbd:`T` toggles the visibility of Toolbar.
 
-.. tip::
-
-   Expand the Toolbar to show icons on two columns instead of one.
-   Expand the Toolbar even more to show icons with titles.
+This is further documented here: :ref:`Toolbar <ui-region-toolbar>`.
 
 
-Operator Panel
---------------
+Adjust Last Operation
+=====================
 
-The *Operator panel* is a region on 3D View that shows tool options
-when tools (operators) are run. Operator panel shows properties of
-the :ref:`last operator <ui-redo-last>` executed.
+The *Adjust Last Operation* is a region that shows tool options when tools (operators) are run.
+
+This is further documented here: :ref:`Adjust Last Operation <ui-undo-redo-adjust-last-operation>`.
 
 
-Side Bar
-========
+.. _ui-region-sidebar:
 
-The *Side bar* (on the right side of editor area)
+Sidebar
+=======
+
+The *Sidebar* (on the right side of the editor area)
 contains :ref:`Panels <ui-panels>`
 with settings of objects within the editor and the editor itself.
-:kbd:`N` toggles the visibility of Side bar.
+:kbd:`N` toggles the visibility of Sidebar.
+
+
+Footer
+======
+
+Some editors show a bar (on top/bottom of the editor area)
+that displays information about for example the active tool.
 
 
 Arranging
@@ -93,11 +121,12 @@ Resizing regions works by dragging their border, the same way as
 :doc:`/interface/window_system/areas`.
 
 To hide a region resize it down to nothing.
-A hidden region leaves a little plus sign (see picture below).
-By :kbd:`LMB` on the plus sign, the region will reappear.
+A hidden region leaves a little arrow sign.
+By :kbd:`LMB` on this icon to make the region reappear.
 
-.. list-table:: Hiding and showing the Header.
+.. TODO2.8:
+     .. list-table:: Hiding and showing the Header.
 
-   * - .. figure:: /images/interface_window-system_regions_headers-hide.png
+     * - .. figure:: /images/interface_window-system_regions_headers-hide.png
 
-     - .. figure:: /images/interface_window-system_regions_headers-show.png
+          - .. figure:: /images/interface_window-system_regions_headers-show.png

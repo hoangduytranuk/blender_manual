@@ -1,20 +1,28 @@
-.. _render-cycles-passes:
 
 ******
 Passes
 ******
 
+Passes can be used to split rendered images into colors, direct and indirect light to edit them individually,
+and also to extract data such as depth or normals.
+
+
+.. _render-cycles-passes:
+
+Cycles
+======
+
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Render Layers --> Passes`
+   :Panel:     :menuselection:`Scene --> View Layers --> Passes`
 
 Passes can be used to split rendered images into colors, direct and indirect light to edit them individually,
 and also to extract data such as depth or normals.
 
 
 Lighting Passes
-===============
+---------------
 
 Combined
    The final combination of render passes with everything included.
@@ -22,11 +30,11 @@ Noisy Image
    If denoising is enabled, the original combined pass before denoising.
 
 Diffuse Direct
-   Direct lighting from diffuse BSDFs. We define direct lighting as coming from lamps, emitting surfaces,
+   Direct lighting from diffuse BSDFs. We define direct lighting as coming from lights, emitting surfaces,
    the background, or ambient occlusion after a single reflection or transmission off a surface.
    BSDF color is not included in this pass.
 Diffuse Indirect
-   Indirect lighting from diffuse BSDFs. We define indirect lighting as coming from lamps,
+   Indirect lighting from diffuse BSDFs. We define indirect lighting as coming from lights,
    emitting surfaces or the background after more than one reflection or transmission off a surface.
    BSDF color is not included in this pass.
 Diffuse Color
@@ -44,14 +52,14 @@ Environment
    Emission from the directly visible background. When the film is set to transparent,
    this can be used to get the environment color and composite it back in.
 Shadow
-   Shadows from lamp objects. Mostly useful for compositing objects with shadow into existing footage.
+   Shadows from light objects. Mostly useful for compositing objects with shadow into existing footage.
 Ambient Occlusion
    Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e.
    it gives a 'normalized' value between 0 and 1.
 
 .. note::
 
-   :doc:`Transparent BSDFs are given special treatment </render/engines/cycles/settings/scene/render/light_paths>`.
+   :doc:`Transparent BSDFs are given special treatment </render/cycles/render_settings/light_paths>`.
    A fully transparent surface is treated as if there is no surface there at all;
    a partially transparent surface is treated as if only part of the light rays can pass through.
    This means it is not included in the Transmission passes;
@@ -59,18 +67,18 @@ Ambient Occlusion
 
 
 Combining
----------
+^^^^^^^^^
 
 All these lighting passes can be combined to produce the final image as follows:
 
-.. figure:: /images/render_cycles_settings_scene_render-layers_passes_combine.svg
+.. figure:: /images/render_layers_passes_combine.svg
 
 
 Data Passes
-===========
+-----------
 
 Z
-   Distance in :term:`Blender Units` to any visible surfaces.
+   Distance to any visible surfaces.
 
    .. note::
 
@@ -110,7 +118,7 @@ Alpha Threshold
 
 
 Cryptomatte
-===========
+-----------
 
 Cryptomatte is a standard to efficiently create mattes for compositing.
 Cycles outputs the required render passes, which can then be used in the Blender compositor
@@ -133,7 +141,7 @@ Accurate Mode
 
 
 Typical Workflow
-----------------
+^^^^^^^^^^^^^^^^
 
 #. Enable Cryptomatte Object render pass in the Passes panel, and render.
 #. In the compositing nodes, create a Cryptomatte node and
@@ -141,3 +149,48 @@ Typical Workflow
 #. Attach a Viewer node to the Pick output of the Cryptomatte node.
 #. Use the Cryptomatte Add/Remove button to sample objects in the Pick Viewer node.
 #. Use the Matte output of the Cryptomatte node to get the alpha mask.
+
+.. seealso::
+
+   :doc:`Cryptomatte Node </compositing/types/matte/cryptomatte>`.
+
+
+.. _render-eevee-passes:
+
+Eevee
+=====
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Scene --> View Layers --> Passes`
+
+
+Lighting Passes
+---------------
+
+Combined
+   The final combination of render passes with everything included.
+Subsurface Direct
+   Direct lighting from subsurface BSDFs. We define direct lighting as coming from lights, emitting surfaces,
+   the background, or ambient occlusion after a single reflection or transmission off a surface.
+   BSDF color is not included in this pass.
+Subsurface Color
+   Color weights of subsurface BSDFs. These weights are the color input socket for BSDF nodes,
+   modified by any Mix and Add Shader nodes.
+Ambient Occlusion
+   Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e.
+   it gives a 'normalized' value between 0 and 1.
+
+
+Data Passes
+-----------
+
+Z
+   Distance to any visible surfaces.
+
+Mist
+   Distance to visible surfaces, mapped to the 0.0 - 1.0 range.
+
+Normal
+   Surface normal used for shading.

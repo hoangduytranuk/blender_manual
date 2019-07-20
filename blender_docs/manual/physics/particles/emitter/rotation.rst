@@ -9,13 +9,14 @@ Rotation
 
    :Panel:     :menuselection:`Particle System --> Rotation`
 
-.. figure:: /images/physics_particles_emitter_rotation_panel.png
+.. TODO2.8:
+   .. figure:: /images/physics_particles_emitter_rotation_panel.png
 
-   Particles rotation settings.
+      Particles rotation settings.
 
 These parameters specify how the individual particles are rotated during their travel.
 To visualize the rotation of a particle you should choose visualization type *Axis*
-in the Visualization panel and increase the *Draw Size*.
+in the Visualization panel and increase the *Display Size*.
 
 
 Options
@@ -48,12 +49,23 @@ Orientation Axis
 
 Phase
    Initial rotation phase.
-Random
+Randomize Phase
    Adds a random variation to the *Phase*.
+Dynamic
+   If Dynamic is enabled, only initializes particles to the choosen rotation and angular velocity and
+   let the physics simulation handle the rest.
+   Particles then change their angular velocity if they collide with other objects
+   (like in the real world due to friction between the colliding surfaces).
+   Otherwise the angular velocity is predetermined at all times (i.e. set rotation to dynamic/constant).
 
 
 Angular Velocity
 ----------------
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Rotation --> Angular Velocity`
 
 Axis
    The selector specifies the axis of angular velocity to be.
@@ -71,15 +83,5 @@ Axis
       you have to set Angular Velocity to Spin and leave the rotation on Constant
       (i.e. do not turn on Dynamic). Curve Follow does not work for particles.
 
-Factor
+Amount
    The magnitude of angular velocity.
-
-
-Dynamic
--------
-
-If Dynamic is enabled, only initializes particles to the wanted rotation and angular velocity and
-let the physics simulation handle the rest.
-Particles then change their angular velocity if they collide with other objects
-(like in the real world due to friction between the colliding surfaces).
-Otherwise the angular velocity is predetermined at all times (i.e. set rotation to dynamic/constant).

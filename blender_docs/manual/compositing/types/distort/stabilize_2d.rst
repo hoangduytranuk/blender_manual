@@ -4,15 +4,15 @@
 Stabilize 2D Node
 *****************
 
-.. figure:: /images/compositing_types_distort_stabilize-2d_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeStabilize.png
    :align: right
 
    Stabilize 2D Node.
 
 Stabilizes the footage according to the settings set in
-:menuselection:`Movie Clip Editor --> Properties --> 2D Stabilization`.
+:menuselection:`Movie Clip Editor --> Properties --> Stabilization --> 2D Stabilization`.
 For more information,
-see :doc:`2D Stabilization </editors/movie_clip_editor/tracking/clip/properties/stabilization/index>`.
+see :doc:`2D Stabilization </movie_clip/tracking/clip/properties/stabilization/index>`.
 
 
 Inputs
@@ -31,7 +31,7 @@ Movie Clip
 Filter
    Various methods for the stabilization.
    Usually, the same as used in
-   :menuselection:`Movie Clip Editor --> Properties --> 2D Stabilization --> Filter`.
+   :menuselection:`Movie Clip Editor --> Properties --> Stabilization --> 2D Stabilization --> Filter`.
    For technical details on their difference,
    `see this <http://www.mathworks.com/help/vision/ug/interpolation-methods.html>`__.
    But for most purposes, default of Bilinear should suffice.

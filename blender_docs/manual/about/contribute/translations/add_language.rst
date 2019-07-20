@@ -17,11 +17,11 @@ in particular :doc:`/about/contribute/install/index` and :doc:`/about/contribute
 This will give you a foundation environment for:
 
 - Creating a new set of translation language from English source.
-- Perform 'make' command to turn translated texts in 'po' files into html files for testing locally.
+- Perform ``make`` command to turn translated texts in po files into html files for testing locally.
 - Update changes in English texts which have been added by other contributors.
 
-Below examples shows the process to create a new set of files for French, language code ``fr``, on Linux platform.
-Other platforms might vary slightly but should mainly the same.
+Below examples show the process to create a new set of files for French, language code ``fr``, on Linux platform.
+Other platforms might vary slightly but should be mainly the same.
 
 #. Goto ``https://developer.blender.org`` to create an account for yourself and
    become a developer/translator for the Blender organization.
@@ -47,7 +47,7 @@ Trying the Make Process to Create HTML Files In English
 
       make html
 
-#. After this, you can actually view the create html files locally following the prompted instruction, such as::
+#. After this, you can actually view the created html files locally following the prompted instruction, such as::
 
       xdg-open <path to your English manual>/blender_docs/build/html/index.html
 
@@ -58,8 +58,8 @@ Creating the Language Entry in the HTML Menu
 #. Create an entry for the language in the html menu by opening file ``./resources/theme/js/version_switch.js``
    (assuming you are at the ``blender_docs`` subdirectory).
 #. Find the table for the languages in ``var all_langs = {..};``.
-#. Enter the entry: ``"fr": "Fran&ccedil;ais",``, (``"fr": "François"``).
-   (Notice the Unicode characters).
+#. Enter the entry: ``"fr": "Fran&ccedil;ais",``, (``"fr": "Français"``).
+   (Notice the Unicode characters.)
 #. To find out about changes in the local repository::
 
       svn status

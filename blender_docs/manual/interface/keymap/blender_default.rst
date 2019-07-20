@@ -104,9 +104,86 @@ These keys are shared across editors such as the 3D Viewport, UV and Graph edito
    * - :kbd:`AccentGrave`
      - 3D View navigation pie menu.
    * - :kbd:`Ctrl-AccentGrave`
-     - Toggle manipulator.
+     - Toggle gizmos.
    * - :kbd:`Shift-AccentGrave`
      - Walk/Fly Mode.
+
+
+.. _keymap-blender_default-prefs:
+
+Preferences
+===========
+
+
+.. _keymap-blender_default-prefs-select_with:
+
+Select With
+-----------
+
+Controls which mouse button, either right or left, is used to select items in Blender.
+If *Left* is selected the :kbd:`RMB` will be a context sensitive menu,
+if *Right* is selected the :kbd:`LMB` will place the 3D Cursor.
+
+
+Select All Toggles
+------------------
+
+Causes selection to de-select all when any selection exists.
+
+
+.. _keymap-blender_default-spacebar_action:
+
+Spacebar Action
+---------------
+
+Controls the action of :kbd:`Spacebar`.
+These and other shortcuts can be modified in the :doc:`keymap preferences </editors/preferences/keymap>`.
+
+Play
+   Starts playing through the :doc:`Timeline </editors/timeline>`,
+   this option is good for animation or video editing work.
+Tools
+   Opens the Toolbar underneath the cursor to quickly change the active tool.
+   This option is good for if doing a lot of modeling or rigging work.
+Search
+   Opens up the :doc:`operator search </interface/controls/templates/operator_search>`.
+   This option is good for someone who is new to Blender and is unfamiliar with the menus and shortcuts.
+
+
+
+3D View
+-------
+
+.. _keymap-pref-py_menu_on_drag:
+
+Tab for Pie Menu
+   Causes :kbd:`Tab` to open a pie menu (swaps :kbd:`Tab` and :kbd:`Ctrl-Tab`).
+Pie Menu on Drag
+   This allows keys to have a secondary drag action.
+
+   :kbd:`Tab`
+      :tap: Toggles Edit Mode.
+      :drag: Object mode pie menu.
+   :kbd:`Z`
+      :tap: Toggles wireframe view.
+      :drag: Display mode pie menu.
+   :kbd:`AccentGrave`
+      :tap: First person :ref:`Fly/walk mode <3dview-fly-walk>`.
+      :drag: View axis pie menu.
+
+Tilde Action
+
+   Navigate
+      Navigation pie menu.
+
+      *Use this on systems without a numeric keypad.*
+   Gizmos
+      Transform gizmos pie menu.
+
+      *Use this for quickly switching between transform gizmos.*
+
+Extra Shading Pie Menu Items
+   Show additional items in the shading menu (:kbd:`Z` key).
 
 
 Platform Specific Keys

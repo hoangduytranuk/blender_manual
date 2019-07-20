@@ -30,7 +30,7 @@ Pin (pin icon)
 Hide (eye icon)
    Hides the channel(s)/curve (Graph editor only).
 Modifiers (wrench icon)
-   Deactivates the F-Modifiers of the curve or all curves in the channel.
+   Deactivates the F-curve modifiers of the selected curve or all curves in the channel.
 Mute (speaker icon)
    Deactivates the channel/curve.
 Lock (padlock icon) :kbd:`Tab`
@@ -40,7 +40,7 @@ Lock (padlock icon) :kbd:`Tab`
    .. note::
 
       In the Dope Sheet this is also working inside the NLA,
-      but that it does not prevent edition of the underlying F-Curve.
+      but that it does not prevent edition of the underlying F-curve.
 
 
 Selecting
@@ -49,8 +49,8 @@ Selecting
 - Select channel (text in white/black): :kbd:`LMB`
 - Multi Select/Deselect: :kbd:`Shift-LMB`
 - Toggle Select All: :kbd:`A`
-- Border Select: (:kbd:`LMB` drag) or :kbd:`B` (:kbd:`LMB` drag)
-- Border Deselect: (:kbd:`Shift-LMB` drag) or :kbd:`B` (:kbd:`Shift-LMB` drag)
+- Box Select: (:kbd:`LMB` drag) or :kbd:`B` (:kbd:`LMB` drag)
+- Box Deselect: (:kbd:`Shift-LMB` drag) or :kbd:`B` (:kbd:`Shift-LMB` drag)
 - Select all keyframes in the channel: double :kbd:`LMB` on a channel header.
 
 
@@ -73,7 +73,7 @@ Sliders
 
    The Action editor showing sliders.
 
-On channels headers you can have another column with number buttons or sliders,
+On channels headers you can have another column with number fields or sliders,
 allowing you to change the value on the current keyframes, or to add new keyframes.
 See :ref:`graph-view-menu` for how to show these sliders.
 
@@ -83,7 +83,7 @@ Menu
 
 Delete Channels :kbd:`X`
    Deletes the whole channel from the current action
-   (i.e. unlink the underlying F-Curve data-block from this action data-block).
+   (i.e. unlink the underlying F-curve data-block from this action data-block).
 
    .. warning::
 
@@ -108,4 +108,4 @@ Move...
    This allows you to move top-level channels up/down :kbd:`Shift-PageUp`, :kbd:`Shift-PageDown`,
    or directly to the top/bottom :kbd:`Shift-Ctrl-PageUp`, :kbd:`Shift-Ctrl-PageDown`.
 Revive Disabled F-Curves
-   Clears "disabled" tag from all F-Curves to get broken F-Curves working again.
+   Clears "disabled" tag from all F-curves to get broken F-curves working again.

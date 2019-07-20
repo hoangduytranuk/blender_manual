@@ -7,7 +7,7 @@
 Normal Node
 ***********
 
-.. figure:: /images/compositing_types_vector_normal_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeNormal.png
    :align: right
 
    Normal Node.

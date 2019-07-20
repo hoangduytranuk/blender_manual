@@ -7,24 +7,6 @@ Meshes
    The mesh :ref:`Data-Block Menu <ui-data-block>` can be used to link the data between objects.
 
 
-Normals
-=======
-
-In geometry, a normal is a direction or line that is perpendicular to something,
-typically a triangle or surface but can also be relative to a line, a tangent line for a point on a curve,
-or a tangent plane for a point on a surface. Normals help to determine the shading of the mesh among other things.
-
-See :ref:`Normal Properties <modeling_meshes_editing_normals_properties>` for more information.
-
-
-Texture Space
-=============
-
-Each Object can have an automatically generated UV map, these maps can be adjusted here.
-
-See :ref:`Generated UV Properties <properties-texture-space>` for more information.
-
-
 Vertex Groups
 =============
 
@@ -57,9 +39,42 @@ Color data can be applied directly to an object's vertices rather than using a t
 Colors can are painted onto vertices in :doc:`Vertex Paint </sculpt_paint/vertex_paint/index>` mode.
 
 
+.. _bpy.types.FaceMaps:
+.. _bpy.ops.object.face_map:
+
+Face Maps
+=========
+
+Face Maps create custom gizmos to deform meshes by assigning faces to *Face Maps*.
+Face Maps can be used to rig quickly within object mode and without making complicated rigging setups.
+Face Maps are currently not fully implemented in Blender and require add-ons to take full advantage of this feature.
+
+.. seealso::
+
+   `Auto Face Map Widgets add-on <https://developer.blender.org/diffusion/BAC/browse/master/object_facemap_auto/>`__
+
+
+Normals
+=======
+
+In geometry, a normal is a direction or line that is perpendicular to something,
+typically a triangle or surface but can also be relative to a line, a tangent line for a point on a curve,
+or a tangent plane for a point on a surface. Normals help to determine the shading of the mesh among other things.
+
+See :ref:`Normal Properties <modeling_meshes_editing_normals_properties>` for more information.
+
+
+Texture Space
+=============
+
+Each Object can have an automatically generated UV map, these maps can be adjusted here.
+
+See :ref:`Generated UV Properties <properties-texture-space>` for more information.
+
+
 Geometry Data
 =============
 
 Mesh objects can have different types of custom data attached to them.
-This data is mostly used internally and can be exported by some :doc:`exporters </files/files/import_export>`.
+This data is mostly used internally and can be exported by some :doc:`exporters </files/import_export>`.
 See :doc:`/modeling/meshes/properties/custom_data` for more information.

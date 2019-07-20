@@ -25,10 +25,10 @@ Automatic IK
    :class: refbox
 
    :Mode:      Pose Mode
-   :Panel:     :menuselection:`Tool Shelf --> Options --> Pose Options`
+   :Panel:     :menuselection:`Sidebar region --> Tool --> Pose Options`
 
 Automatic IK is a tool for quick posing, it can be enabled in the Tool Shelf in the 3D View,
-when in pose mode. When the Auto IK option is enabled, translating a bone will activate
+when in Pose Mode. When the Auto IK option is enabled, translating a bone will activate
 inverse kinematics and rotate the parent bone, and the parent's parent, and so on, to
 follow the selected bone. The IK chain can only extend from a child to a parent bone
 if the child is *connected* to it.
@@ -71,9 +71,9 @@ Armature IK Panel
 This panel is used to select the IK Solver type for the armature: *Standard* or *iTaSC*.
 Most the time people will use the *Standard* IK solver.
 
-.. figure:: /images/rigging_armatures_posing_bone-constraints_inverse-kinematics_introduction_panel.png
+.. TODO2.8 .. figure:: /images/animation_armatures_posing_bone-constraints_inverse-kinematics_introduction_panel.png
 
-   The armature IK panel.
+.. TODO2.8    The armature IK panel.
 
 
 Standard
@@ -107,7 +107,7 @@ This is a major improvement from the current constraint system where constraints
 one by one in order of definition so that conflicting constraints overwrite each other.
 
 Precision
-   The maximum variation in Blender unit of the end effector between two successive iterations
+   The maximum variation of the end effector between two successive iterations
    at which a pose is obtained that is stable enough and the solver should stop the iterations.
    Lower values means higher precision on the end effector position.
 Iterations
@@ -177,7 +177,7 @@ Reiteration
       This option omits most of the iTaSC dynamic behavior: the maximum joint velocity
       and the continuity between frames is not guaranteed anymore in compensation of better
       precision on the end effector positions. It is an intermediate mode
-      between *Animation* and real time *Simulation*.
+      between *Animation* and real-time *Simulation*.
 Auto Step
    Use this option if you want to let the solver set how many substeps should be executed for each frame.
    A substep is a subdivision on the time between two frames for which the solver evaluates
@@ -230,9 +230,9 @@ Bone IK Panel
 
 This panel is used to control how the *Pose Bones* work in the IK chain.
 
-.. figure:: /images/rigging_armatures_bones_properties_introduction_inverse-kinematics-panel.png
+.. TODO2.8 .. figure:: /images/animation_armatures_bones_properties_introduction_inverse-kinematics-panel.png
 
-   The bone IK panel.
+.. TODO2.8    The bone IK panel.
 
 IK Stretch
    Stretch influence to IK target.
@@ -276,7 +276,9 @@ IK locking is used to stop the forearm from bending,
 but the forearm can still be twisted manually by pressing :kbd:`R Y Y` in *Pose Mode*,
 or by using other constraints.
 
-.. figure:: /images/rigging_armatures_posing_bone-constraints_inverse-kinematics_introduction_example.png
+.. TODO2.8 Maybe update the images (color & style)
+
+.. figure:: /images/animation_armatures_posing_bone-constraints_inverse-kinematics_introduction_example.png
    :align: center
 
    `IK Arm Example <https://wiki.blender.org/wiki/File:IK_Arm_Example.blend>`__.

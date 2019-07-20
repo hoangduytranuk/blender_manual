@@ -7,7 +7,7 @@
 Gamma Node
 **********
 
-.. figure:: /images/compositing_types_color_gamma_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeGamma.png
    :align: right
 
    Gamma Node.

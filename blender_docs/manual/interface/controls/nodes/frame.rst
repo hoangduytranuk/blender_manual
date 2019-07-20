@@ -7,20 +7,20 @@ Frame Node
 The Frame node is a useful tool for organizing nodes by collecting related nodes together in a common area.
 Frames are useful when a node setup becomes large and confusing yet the re-usability of a Node Group is not required.
 
-.. figure:: /images/editors_node-editor_nodes_frame_example.png
+.. figure:: /images/interface_controls_nodes_frame_example.png
 
 
 Properties
 ==========
 
-.. figure:: /images/editors_node-editor_nodes_frame_properties.png
+.. figure:: /images/interface_controls_nodes_frame_properties.png
    :align: right
 
 Label size
    Font size of the label. For example, for subordinate frames to have smaller titles.
 Shrink
    Once a node is placed in the Frame, the Frame shrinks around it so as to remove wasted space.
-   At this point it is no longer possible to grab the edge of the Frame to resize it, instead resizing occurs
+   At this point it is no longer possible to select the edge of the Frame to resize it, instead resizing occurs
    automatically when nodes within the Frame are rearranged.
    This behavior can be changed by disabling this option.
 Text

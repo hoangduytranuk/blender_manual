@@ -4,7 +4,7 @@
 Normalize Node
 **************
 
-.. figure:: /images/compositing_types_vector_normalize_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeNormalize.png
    :align: right
 
    Normalize Node.

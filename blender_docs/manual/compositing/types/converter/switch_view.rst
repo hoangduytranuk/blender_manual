@@ -4,7 +4,7 @@
 Switch View Node
 ****************
 
-.. figure:: /images/compositing_types_converter_switch-view_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeSwitchView.png
    :align: right
 
    Switch View Node.
@@ -46,7 +46,7 @@ Image
 Example
 =======
 
-.. figure:: /images/render_workflows_multiview_usage_compositor.png
+.. figure:: /images/render_output_multiview_usage_compositor.png
 
    Compositor, Backdrop and Split Viewer Node.
 

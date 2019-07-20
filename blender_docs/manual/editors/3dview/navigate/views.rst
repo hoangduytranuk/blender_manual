@@ -17,12 +17,12 @@ View Global/Local
    :class: refbox
 
    :Mode:      All modes
-   :Menu:      :menuselection:`View --> View Global/Local`
+   :Menu:      :menuselection:`View --> Local View --> Toggle Local View`
    :Hotkey:    :kbd:`NumpadSlash`
 
 Global view shows all of the 3D objects in the scene. Local view isolates the selected object or
 objects, so that they are the only ones visible in the viewport. This is useful for working on
-objects that are obscured by other ones, or to speed up viewport performance in heavy scenes.
+objects that are obscured by other ones, or to speed up the viewport performance in heavy scenes.
 
 You can toggle between *Global* and *Local View* by selecting the option
 from the *View Menu* or using the shortcut :kbd:`NumpadSlash`.
@@ -53,15 +53,33 @@ from the *View Menu* or using the shortcut :kbd:`NumpadSlash`.
       It's also possible to send objects out of local view,
       using :menuselection:`Object --> Move Objects out of Local View`,
       which can be useful to further isolate a selection.
-   Preview Renders
-      Preview renders will still use lamps outside the local view,
+   Rendered Shading
+      While using rendered shading mode lights outside the local view are still used,
       this allows you to quickly render previews
-      without having to remember to select all lamps when entering local view.
+      without having to remember to select all lights when entering local view.
 
 .. tip::
 
    Accidentally pressing :kbd:`NumpadSlash` can happen rather often if you are new to Blender,
    so if a bunch of the objects in your scene seem to have mysteriously vanished, try turning off local view.
+
+
+.. _bpy.ops.view3d.localview_remove_from:
+
+Remove from Local View
+----------------------
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      All modes
+   :Menu:      :menuselection:`View --> Local View --> Remove from Local View`
+   :Hotkey:    :kbd:`M`
+
+Objects can be removed from Local View by selecting them and using the *Remove from Local View* operator.
+This will move the selected object back to global view and all other objects will remain in local view.
+If the last remaining object is removed,
+the local view will be left empty and you will have to exit local view to see any objects.
 
 
 .. _bpy.ops.screen.region_quadview:
@@ -92,7 +110,7 @@ In this arrangement, you can zoom and pan each view independently but you cannot
 
    Quad View is different from :doc:`splitting the area </interface/window_system/areas>`
    and aligning the view manually. In Quad View, the four views are still part of a single 3D View.
-   So they share the same draw options and layers.
+   So they share the same display options and layers.
 
 .. figure:: /images/editors_3dview_navigate_views_quad.png
 

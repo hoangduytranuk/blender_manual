@@ -4,19 +4,18 @@
 Mesh Cache Modifier
 *******************
 
-The Mesh Cache Modifier is used so animated mesh data can be applied to a mesh and
+The Mesh Cache modifier main use is for animated mesh data to be applied to a mesh and
 played back, deforming the mesh.
 
-This works in a similar way to shape keys but is aimed at playing back external files and
-is often used for interchange between applications.
-
-.. note:: When using this modifier, the vertex locations are overwritten.
+This works in a similar way to :doc:`shape keys </animation/shape_keys/introduction>`,
+but is aimed at playing back external files and is often used for interchange between applications.
 
 
 Options
 =======
 
 .. figure:: /images/modeling_modifiers_modify_mesh-cache_panel.png
+   :align: right
 
    Mesh Cache Modifier.
 
@@ -30,12 +29,12 @@ Evaluation
 ----------
 
 Influence
-   Factor to adjust the influence of the modifiers deformation, useful for blending in/out from the cache data.
+   Factor to adjust the influence of the modifier's deformation, useful for blending in/out from the cache data.
 
 Deform Mode
-   This setting defaults to 'Overwrite' which will replace the vertex locations with those in the cache file.
-   However, you may want to use shape keys, for example, and mix them with the mesh-cache.
-   In this case you can select the 'Deform' option which integrates deformations with the mesh-cache result.
+   This setting defaults to *Overwrite* which will replace the vertex locations with those in the cache file.
+   However, you may want to use shape keys, for example, and mix them with the mesh cache.
+   In this case you can select the *Deform* option which integrates deformations with the mesh cache result.
 
    .. note::
 
@@ -43,8 +42,8 @@ Deform Mode
       will not work for larger changes such as re-posing limbs.
 
 Interpolation
-   None or Linear which will blend between frames;
-   use linear when the frames in the cache file do not match up exactly with the frames in the blend-file.
+   *None*, or *Linear*, which will blend between frames.
+   Use linear when the frames in the cache file do not match up exactly with the frames in the blend-file.
 
 
 Time Mapping
@@ -60,7 +59,7 @@ Time Mode
       Evaluates time in seconds,
       taking into account timing information from the file (offset and frame-times).
    Factor
-      Evaluates the entire animation as a value from (0 - 1).
+      Evaluates the entire animation as a value in the [0, 1] range.
 
 Play Mode
    Select how playback operates.
@@ -78,7 +77,7 @@ Play Mode
 
       Evaluation Value
          Property used for animation time,
-         this gives more control of timing -- typically this value will be animated.
+         this gives more control of timing (typically this value will be animated).
 
 
 Axis Mapping
@@ -91,5 +90,5 @@ Flip Axis
 
 .. tip::
 
-   Both MDD and PC2 depend on the vertex order on the mesh remaining unchanged;
-   this is a limitation with the method used so take care not to add/remove vertices once this modifier is used.
+   Both MDD and PC2 depend on the vertex order on the mesh remaining unchanged.
+   This is a limitation of this method, so take care not to add/remove/reorder vertices once this modifier is used.

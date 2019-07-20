@@ -6,9 +6,6 @@
 Fluid Domain
 ************
 
-The Domain Object
-=================
-
 .. admonition:: Reference
    :class: refbox
 
@@ -37,15 +34,22 @@ This object will be *replaced* by the fluid during the simulation.
    For baking options, see :doc:`Baking </physics/fluid/baking>`.
 
 
-Options
--------
+Settings
+========
 
-.. figure:: /images/physics_fluid_types_domain_panels.png
+.. admonition:: Reference
+   :class: refbox
 
-   Fluid Domain settings.
+   :Panel:     :menuselection:`Physics --> Fluid --> Settings`
+   :Type:      Domain
 
-Bake button
-   For baking options, see :doc:`Baking </physics/fluid/baking>`.
+.. TODO2.8:
+   .. figure:: /images/physics_fluid_types_domain_panels.png
+
+      Fluid Domain settings.
+
+Simulation Threads:
+   Override number of threads for the simulation, 0 is automatic.
 Resolution
    Render resolution
       The granularity at which the actual fluid simulation is performed.
@@ -84,7 +88,7 @@ Resolution
       Even if "there is nothing to see" in the preview,
       there might be a thin fluid surface that cannot be resolved in the preview.
 
-Display quality
+Display
    How to display a baked simulation in the 3D View (menu *Viewport Display*)
    and for rendering (menu *Render Display*):
 
@@ -127,18 +131,31 @@ Time
       since you set 10 seconds of fluid motion to simulate over 10 seconds of animation.
       Having these controls in effect gives you a "speed control" over the simulation.
 
+Speed
+   Fluid motion rate. The speed option can be animated to slow down or speed up time.
 Generate Speed Vectors
    If this button is clicked, no speed vectors will be exported.
    So by default, speed vectors are generated and stored on disk.
    They can be used to compute image-based motion blur with the compositing nodes.
 Reverse Frames
    The simulation is calculated backward.
-Speed
-   Fluid motion rate. The speed option can be animated to slow down or speed up time.
 Offset
    Time offset when reading backed cache.
+
+
+Bake
+====
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Physics --> Fluid --> Bake`
+   :Type:      Domain
+
 Bake Directory
    For baking options see :doc:`Baking </physics/fluid/baking>`.
+Bake button
+   For baking options, see :doc:`Baking </physics/fluid/baking>`.
 
 
 Fluid World
@@ -148,11 +165,33 @@ Fluid World
    :class: refbox
 
    :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Fluid World`
+   :Panel:     :menuselection:`Physics --> Fluid --> World`
 
-.. figure:: /images/physics_fluid_types_domain_world.png
+.. TODO2.8:
+   .. figure:: /images/physics_fluid_types_domain_world.png
 
-   The Fluid World panel.
+      The Fluid World panel.
+
+Scene Size Meters
+   Size of the domain object in the real world in meters.
+   If you want to create a mug of coffee, this might be 10 cm (0.1 meters), while a swimming pool might be 10m.
+   The size set here is for the longest side of the domain bounding box.
+Optimization
+   How many adaptive grid levels to be used during simulation.
+   Setting this to -1 will perform automatic selection.
+Compressibility
+   If you have problems with large standing fluid regions at a high resolution,
+   it might help to reduce this number (note that this will increase computation times).
+
+
+Fluid Viscosity
+===============
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Type:      Domain
+   :Panel:     :menuselection:`Physics --> Fluid --> Viscosity`
 
 Viscosity Presets
    The "thickness" of the fluid and actually the force needed to move an object of a certain surface area through it
@@ -247,19 +286,6 @@ Viscosity Presets
    so if someone who knows better about this matter could check and correct it, it would be nice!
    --Mont29, 2009/08
 
-Real World Size
-   Size of the domain object in the real world in meters.
-   If you want to create a mug of coffee, this might be 10 cm (0.1 meters), while a swimming pool might be 10m.
-   The size set here is for the longest side of the domain bounding box.
-
-Optimization
-   Grid Levels
-      How many adaptive grid levels to be used during simulation.
-      Setting this to -1 will perform automatic selection.
-   Compressibility
-      If you have problems with large standing fluid regions at a high resolution,
-      it might help to reduce this number (note that this will increase computation times).
-
 
 Fluid Boundary
 ==============
@@ -268,15 +294,16 @@ Fluid Boundary
    :class: refbox
 
    :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Fluid Boundary`
+   :Panel:     :menuselection:`Physics --> Fluid --> Boundary`
 
-.. figure:: /images/physics_fluid_types_domain_boundary-panel.png
+.. TODO2.8:
+   .. figure:: /images/physics_fluid_types_domain_boundary-panel.png
 
-   The Fluid Boundary panel.
+      The Fluid Boundary panel.
 
 This box has all the slip and surface options.
 
-Slip Type
+Type
    The stickiness of the surface of the obstacle,
    to determine the "tacky surface (Surface Adhesion)."
    In the real world, and the tackiness and fluid,
@@ -286,24 +313,22 @@ Slip Type
       Fluid will stick to snugly (speed 0).
    Free Slip
       Fluid will move on the object (0 normal direction of speed).
-   Part Slip
+   Partial Slip
       It is a two intermediate. It is almost *No slip*, 1 in the *Free* exactly the same in 0.
 Amount
-   ToDo.
+   Amount of mixing between no and free slip. 0 is no slip, 1 is free slip.
+Surface Smoothing
+   Amount of smoothing to be applied to the fluid surface.
+   1.0 is standard, 0 is off, while larger values increase the amount of smoothing.
+Subdivisions
+   Allows the creation of high-res surface meshes directly during the simulation
+   (as opposed to doing it afterwards like a Subdivision Surface Modifier).
+   A value of 1 means no subdivision, and each increase results in one further subdivision of each fluid voxel.
+   The resulting meshes thus quickly become large, and can require large amounts of disk space.
+   Be careful in combination with large smoothing values --
+   this can lead to long computation times due to the surface mesh generation.
 Remove Air Bubbles
    Enable the possibility to remove the "air bubble" around submerged collision object.
-Surface
-   Surface Smoothing
-      Amount of smoothing to be applied to the fluid surface.
-      1.0 is standard, 0 is off, while larger values increase the amount of smoothing.
-
-   Subdivisions
-      Allows the creation of high-res surface meshes directly during the simulation
-      (as opposed to doing it afterwards like a Subdivision Surface Modifier).
-      A value of 1 means no subdivision, and each increase results in one further subdivision of each fluid voxel.
-      The resulting meshes thus quickly become large, and can require large amounts of disk space.
-      Be careful in combination with large smoothing values --
-      this can lead to long computation times due to the surface mesh generation.
 
 
 Fluid Particles
@@ -313,11 +338,12 @@ Fluid Particles
    :class: refbox
 
    :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Fluid Particles`
+   :Panel:     :menuselection:`Physics --> Fluid --> Particles`
 
-.. figure:: /images/physics_fluid_types_domain_particles.png
+.. TODO2.8:
+   .. figure:: /images/physics_fluid_types_domain_particles.png
 
-   The Fluid Particles panel.
+      The Fluid Particles panel.
 
 Here you can add particles to the fluid simulated, to enhance the visual effect.
 

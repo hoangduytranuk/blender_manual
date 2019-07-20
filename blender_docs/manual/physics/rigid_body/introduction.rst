@@ -26,9 +26,9 @@ the rigid body system will override the position and orientation of dynamic rigi
 Note however, that the location and rotation of the objects are not changed,
 so the rigid body simulation acts similar to a constraint.
 To apply the rigid body transformations you can use
-the *Apply Transformation* button in the *Physics* tab of the *Tool Shelf*.
+the *Apply Object Transform* operator.
 
 The scale of the rigid body object also influences the simulation, but is always controlled by the animation system.
 
-Rigid body physics on the object can be *removed* with the *Rigid Body* button in the *Physics* tab or *Remove*
-button in the *Physics* tab of the *Tool Shelf*.
+Rigid body physics on the object can be *removed* with the *Rigid Body* button
+in the *Physics* tab in the Properties editor or in the :menuselection:`Object --> Rigid Body` menu.

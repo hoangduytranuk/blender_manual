@@ -11,6 +11,10 @@ Denoising
 Denoising filters the resulting image using information (known as feature passes)
 gathered during rendering to get rid of noise, while preserving visual detail as well as possible.
 
+.. note::
+
+   The denoising panel is only available for the Cycles render engine.
+
 To use the option, enable it in the render layers tab of the Properties editor.
 On rendering, it will denoise tile by tile once all the surrounding tiles are finished rendering.
 The default settings fit a wide range of scenes, but the user can tweak individual settings
@@ -18,14 +22,14 @@ to control the trade-off between a noise-free image, image details, and calculat
 
 .. seealso::
 
-   See the other ways to reduce noise on the general
-   :doc:`Noise Optimization </render/engines/cycles/optimizations/reducing_noise>` page.
+   See the other ways to reduce noise on
+   the general :doc:`Noise Optimization </render/cycles/optimizations/reducing_noise>` page.
 
 
 Options
 =======
 
-.. figure:: /images/render_cycles_settings_scene_render-layers_denoising_panel.png
+.. figure:: /images/render_layers_denoising_panel.png
 
    Denoising panel.
 
@@ -76,10 +80,10 @@ Below is an example render by
 
 .. list-table::
 
-   * - .. figure:: /images/render_cycles_settings_scene_render-layers_denoising_example1.jpg
+   * - .. figure:: /images/render_layers_denoising_example1.jpg
 
           Example render before denoising.
 
-     - .. figure:: /images/render_cycles_settings_scene_render-layers_denoising_example2.jpg
+     - .. figure:: /images/render_layers_denoising_example2.jpg
 
           Example render after denoising.

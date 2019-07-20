@@ -1,4 +1,5 @@
 .. _bpy.ops.transform.shrink_fatten:
+.. _tool-mesh-shrink-fatten:
 
 *************
 Shrink Fatten
@@ -12,7 +13,7 @@ Shrink Fatten
    :Menu:      :menuselection:`Mesh --> Transform --> Shrink/Fatten`
    :Hotkey:    :kbd:`Alt-S`
 
-This tool translates selected vertices/edges/faces along their own normal
+This tool moved selected vertices/edges/faces along their own normal
 (perpendicular to the face), which, on "standard normal meshes", will shrink/fatten them.
 
 This transform tool does not take into account the pivot point or transform orientation.

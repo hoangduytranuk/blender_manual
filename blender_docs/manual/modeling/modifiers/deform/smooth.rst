@@ -4,13 +4,9 @@
 Smooth Modifier
 ***************
 
-The Smooth Modifier smooths a mesh by flattening the angles between adjacent faces in it,
-just like :menuselection:`Specials --> Smooth` in Edit Mode.
-It smooths without subdividing the mesh -- the number of vertices remains the same.
-
-.. figure:: /images/modeling_modifiers_deform_smooth_panel.png
-
-   Smooth Modifier panel.
+The *Smooth* modifier smooths a mesh by flattening the angles between adjacent faces in it,
+just like the :ref:`Smooth tool <bpy.ops.mesh.vertices_smooth>` in Edit Mode.
+It smooths without subdividing the mesh, the number of vertices remains the same.
 
 This modifier is not limited to smoothing, though.
 Its control factor can be configured outside the (0.0 to 1.0) range
@@ -20,30 +16,37 @@ Its control factor can be configured outside the (0.0 to 1.0) range
 Options
 =======
 
-Axis
-   Toggle buttons to enable/disable the modifier in the X, Y and/or Z axes directions.
+.. figure:: /images/modeling_modifiers_deform_smooth_panel.png
+   :align: right
 
-   X, Y, Z
+   The Smooth modifier.
+
+Axis X/Y/Z
+   Enable/disable the modifier in the X, Y and/or Z axes directions.
+
 Factor
-   The factor to control the smoothing amount.
+   Controls the smoothing amount.
    Higher values will increase the effect.
-   Values outside this range (above 1.0 or below 0.0) distort the mesh.
+
+   Values outside expected range (above 1.0 or below 0.0) will distort the mesh.
+
 Repeat
    The number of smoothing iterations,
-   equivalent to executing the Smooth tool multiple times.
+   equivalent to executing the *Smooth* tool multiple times.
+
 Vertex Group
-   A vertex group name, to restrict the effect to the vertices in it only.
+   If set, restrict the effect to the only vertices in that vertex group.
    This allows for selective, real-time smoothing, by painting vertex weights.
 
 
 Algorithm
 =========
 
-The calculation done by the Smooth Modifier is a simple and logical one,
+The calculation done by the *Smooth* modifier is a simple and logical one,
 and can be thought of as the geometric equivalent of blurring images.
 
-Each new vertex position is simply the average position of surrounding vertices
-(the vertices connected to the same edge as it).
+Each new vertex position is simply moved towards the average position of all its neighbor vertices
+(topologically speaking, i.e. the vertices directly connected to it by an edge).
 
 .. (TODO) Add diagrams.
 

@@ -20,16 +20,16 @@ Flip (Distortion Free)
 
    U, V, W
 Make Regular
-   Resets the whole lattice to a regular grid, where the cells are scaled to one cubic Blender Unit.
+   Resets the whole lattice to a regular grid, where the cells are scaled to one cubic unit.
 
 
 Properties
 ==========
 
-.. figure:: /images/rigging_lattice_panel.png
-   :align: right
+.. TODO2.8 .. figure:: /images/animation_lattice_panel.png
+.. TODO2.8    :align: right
 
-   Lattice properties.
+.. TODO2.8    Lattice properties.
 
 Lattice
    A :ref:`ui-data-block`.
@@ -55,11 +55,13 @@ Vertex Group
 Usage
 =====
 
-.. figure:: /images/rigging_lattice_view.png
+.. TODO2.8 Maybe update the images (color & style)
+
+.. figure:: /images/animation_lattice_view.png
 
    Lattice around the cube object in Object Mode.
 
 The lattice should be scaled and moved to fit around your object in Object Mode.
 Any scaling applied to the object in Edit Mode will result in the object deforming.
-This includes applying scale with :kbd:`Ctrl-A` as this will achieve the same result as
+This includes applying its scale with :kbd:`Ctrl-A` as this will achieve the same result as
 scaling the lattice in Edit Mode, and therefore the object.

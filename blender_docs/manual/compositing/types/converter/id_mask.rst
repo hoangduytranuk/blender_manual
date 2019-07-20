@@ -4,7 +4,7 @@
 ID Mask Node
 ************
 
-.. figure:: /images/compositing_types_converter_id-mask_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeIDMask.png
    :align: right
 
    ID Mask Node.
@@ -48,10 +48,10 @@ Setup
 
 An index can be specify for any object or material in the scene.
 The Object Index can be set in Properties Editor :menuselection:`Object --> Relations --> Pass Index`
-and :menuselection:`Material --> Options --> Pass Index` for the Material Index.
+and :menuselection:`Material --> Settings --> Pass Index` for the Material Index.
 To be accessible after rendering, *Object Index* or *Material Index* render pass has to be enabled.
 
-.. figure:: /images/editors_3dview_object_properties_relations_layers_relations-panel.png
+.. figure:: /images/compositing_types_converter_id-mask_relations-panel.png
 
    Object Pass Index.
 

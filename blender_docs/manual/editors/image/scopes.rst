@@ -4,6 +4,11 @@
 Scopes
 ******
 
+.. figure:: /images/editors_image_scopes_main.png
+   :align: right
+
+   Scopes in the image editor.
+
 Histogram
 =========
 

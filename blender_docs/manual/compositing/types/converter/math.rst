@@ -8,7 +8,7 @@
 Math Node
 *********
 
-.. figure:: /images/compositing_types_converter_math_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeMath.png
    :align: right
 
    Math node.
@@ -56,9 +56,9 @@ Manual Z-Mask
    Minimum and maximum function example.
 
 This example has one scene input by the top *Render Layers* node,
-which has a cube that is about 10 BU from the camera.
+which has a cube that is about 10 units from the camera.
 The bottom *Render Layers* node inputs a scene
-with a plane that covers the left half of the view and is 7 BU from the camera.
+with a plane that covers the left half of the view and is 7 units from the camera.
 Both are fed through their respective *Map Value* nodes to divide the Z-buffer by 20
 (multiply by 0.05, as shown in the Size field)
 and clamped to be a min/max of 0.0/1.0 respectively.

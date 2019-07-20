@@ -18,9 +18,9 @@ The *Copy Scale* constraint forces its owner to have the same scale as its targe
 Options
 =======
 
-.. figure:: /images/rigging_constraints_transform_copy-scale_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_transform_copy-scale_panel.png
 
-   Copy Scale panel.
+.. TODO2.8    Copy Scale panel.
 
 Target
    :ref:`ui-data-id` used to select the constraints target,
@@ -33,8 +33,8 @@ Power
    Allows raising the copied scale to the specified arbitrary power.
 
 Offset
-   When enabled, this control allows the owner to be scaled (using its current transform properties),
-   relatively to its target's scale.
+   When enabled, the constraint combines the copied scale with the owner's scale,
+   instead of overwriting it.
 
 Additive
    Uses addition instead of multiplication in the implementation of the *Offset* option.

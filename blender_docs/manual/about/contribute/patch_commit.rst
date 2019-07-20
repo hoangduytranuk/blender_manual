@@ -31,7 +31,7 @@ In order to submit a patch, follow this process:
    before you can add a title and description of your changes.
 #. Please check if the Documentation project is assigned in the tag's field in order to notify
    the team of your patch.
-   You can also :ref:`contact <contribute-contact>` the team over the mailing list or the IRC channel.
+   You can also :ref:`contact <contribute-contact>` the team over the mailing list or :ref:`blender-chat`.
 #. They will review your patch and let you know about any changes you could make,
    or commit the patch if it is accepted.
 

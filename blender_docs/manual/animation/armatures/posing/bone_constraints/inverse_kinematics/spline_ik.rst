@@ -18,10 +18,10 @@ the :doc:`Spline IK </animation/constraints/tracking/spline_ik>` page.
 Basic Setup
 ===========
 
-The Spline IK Constraint is not strictly an 'Inverse Kinematics' method (i.e. IK Constraint),
-but rather a 'Forward Kinematics' method (i.e. normal bone posing). However,
+The Spline IK Constraint is not strictly an *Inverse Kinematics* method (i.e. IK Constraint),
+but rather a *Forward Kinematics* method (i.e. normal bone posing). However,
 it still shares some characteristics of the IK Constraint,
-such as operating on multiple bones not being usable for Objects,
+such as operating on multiple bones, not being usable for Objects,
 and being evaluated after all other constraints have been evaluated. It should be noted that
 if a Standard IK chain and a Spline IK chain both affect a bone at the same time the Standard
 IK chain takes priority. Such setups are best avoided though,
@@ -33,9 +33,9 @@ it is necessary to have a chain of connected bones and a curve to constrain thes
 - With the last bone in the chain selected,
   add a :doc:`Spline IK </animation/constraints/tracking/spline_ik>`
   Constraint from the Bone Constraints tab in the Properties Editor.
-- Set the 'Chain Length' setting to the number of bones in the chain
+- Set the *Chain Length* setting to the number of bones in the chain
   (starting from and including the selected bone) that should be influenced by the curve.
-- Finally, set the 'Target' field to the curve that should control the curve.
+- Finally, set the *Target* field to the curve that should control the curve.
 
 Congratulations, the bone chain is now controlled by the curve.
 
@@ -43,13 +43,17 @@ Congratulations, the bone chain is now controlled by the curve.
 Settings and Controls
 =====================
 
+For the precise list of options, see :doc:`Spline IK </animation/constraints/tracking/spline_ik>` constraint.
+This section is intended to introduce the workflow.
+
+
 Roll Control
 ------------
 
-To control the 'twist' or 'roll' of the Spline IK chain,
+To control the *twist* or *roll* of the Spline IK chain,
 the standard methods of rotating the bones in the chain along their Y axes still apply.
 For example, simply rotate the bones in the chain around their Y axes to adjust the roll of
-the chain from that point onwards.
+the chain from that point onward.
 Applying copy rotation constraints on the bones should also work.
 
 
@@ -57,27 +61,35 @@ Offset Controls
 ---------------
 
 The entire bone chain can be made to follow the shape of the curve while still being able to
-be placed at an arbitrary point in 3D space when the 'Chain Offset' option is enabled.
+be placed at an arbitrary point in 3D space when the *Chain Offset* option is enabled.
 By default, this option is not enabled,
 and the bones will be made to follow the curve in its untransformed position.
+
+
+Length Control
+--------------
+
+The *Y Scale Mode* setting can be used to choose the way bones are scaled length-wise.
+The available options allow stretching the bone chain to fit the curve, using the pre-IK
+scaling, or doing neither. In addition, the scale of the curve Object affects the result.
 
 
 Thickness Controls
 ------------------
 
-The thickness of the bones in the chain is controlled using the constraint's 'XZ Scale Mode' setting.
+The thickness of the bones in the chain is controlled using the constraint's *XZ Scale Mode* setting.
 This setting determines the method used for determining the scaling on
 the X and Z axes of each bone in the chain.
 
 The available modes are:
 
 None
-   this option keeps the X and Z scaling factors as 1.0.
+   This option keeps the X and Z scaling factors as 1.0.
 Volume Preserve
-   the X and Z scaling factors are taken as the inverse of the Y scaling factor (length of the bone),
+   The X and Z scaling factors are taken as the inverse of the Y scaling factor (length of the bone),
    maintaining the 'volume' of the bone.
 Bone Original
-   this options just uses the X and Z scaling factors the bone would have after being evaluated in the standard way.
+   This options just uses the X and Z scaling factors the bone would have after being evaluated in the standard way.
 
 In addition to these modes, there is an option, *Use Curve Radius*.
 When this option is enabled, the average radius of the radii of the points on the curve where
@@ -101,9 +113,3 @@ Tips for Nice Setups
 - The type of curve used does not really matter,
   as long as a path can be extracted from it that could also be used by the Follow Path Constraint.
   This really depends on the level of control required from the hooks.
-- When setting up the rigs, it is currently necessary to have the control bones
-  (for controlling the curve) in a separate armature to those used for deforming the meshes
-  (i.e. the deform rig containing the Spline IK chains).
-  This is to avoid creating pseudo "Dependency Cycles",
-  since Blender's Dependency Graph can only resolve the dependencies the control bones,
-  curves, and Spline IK'ed bones on an object by object basis.

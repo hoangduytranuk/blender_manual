@@ -65,7 +65,7 @@ The Manual Teams `project page <https://developer.blender.org/project/profile/53
 
 - `Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__
   is our main way of distributing documents,
-  discussing ideas, and keeping track of progress. (Registration required).
-- ``#blenderwiki`` channel in the :ref:`irc-chat <irc-channels>` for informal discussions in real-time.
+  discussing ideas, and keeping track of progress. (Registration required.)
+- ``#docs`` channel in :ref:`blender-chat` for informal discussions in real-time.
 - `Workboard <https://developer.blender.org/project/board/53/>`__ for tasks.
 - `Patch tracker <https://developer.blender.org/differential/>`__ shared with the other Blender projects.

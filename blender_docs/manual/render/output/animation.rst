@@ -104,11 +104,11 @@ Frame Sequence Workflow
    use your OS file explorer to navigate into the output folder (``render`` in this example).
    You will see lots of images (``.png`` or ``.exr``, etc. depending on the format you chose to render)
    that have a sequence number attached to them ranging from 0000 to a max of 9999. These are your single frames.
-#. In Blender, now go into the :doc:`Video Sequence editor </editors/vse/index>`.
+#. In Blender, now go into the :doc:`Video Sequence editor </sequencer/index>`.
 
    .. warning::
 
-      The :doc:`VSE </editors/vse/index>` does not support multi-layer EXR files.
+      The :doc:`VSE </sequencer/index>` does not support multi-layer EXR files.
       To render to a video format you will have to skip the next three steps and
       instead use an :doc:`Image Input node </compositing/types/input/image>`
       in the :doc:`compositor </compositing/types/input/image>`.

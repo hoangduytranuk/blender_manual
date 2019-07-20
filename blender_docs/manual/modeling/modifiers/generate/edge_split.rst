@@ -4,8 +4,10 @@
 Edge Split Modifier
 *******************
 
-The Edge Split Modifier splits edges within a mesh.
-The edges to split can be determined from the edge angle (i.e. angle between faces forming this edge),
+The *Edge Split* modifier splits, duplicates edges within a mesh,
+breaking 'links' between faces around those split edges.
+
+The edges to split can be determined from the edge angle (i.e. angle between faces forming that edge),
 and/or edges marked as sharp.
 
 Splitting an edge affects vertex normal generation at that edge, making the edge appear sharp.
@@ -16,16 +18,26 @@ where the user defines which edges should appear smooth or sharp
 (see :ref:`Mesh Smoothing <modeling-meshes-editing-normals-shading>` for other ways to do this).
 If desired, both modes can be active at once.
 
-The output of the Edge Split Modifier is available to export scripts,
-making it quite useful for creators of game content.
+.. note::
+
+   This modifier is kept mostly for historical/compatibility reasons.
+   Everything it can do in shading, and much more,
+   can now be achieved using :ref:`custom normals <modeling_meshes_normals_custom>`.
+
+   Unless you really need the topology changes it generates, it is not advised to use it in new projects.
+
+.. note::
+
+   Splitting edges can also be :ref:`performed manually <bpy.ops.mesh.edge_split>` in Edit Mode.
 
 
 Options
 =======
 
 .. figure:: /images/modeling_modifiers_generate_edge-split_panel.png
+   :align: right
 
-   Edge Split Modifier.
+   The Edge Split modifier.
 
 Edge Angle
    When enabled, edges will be split if the angle between its
@@ -35,12 +47,11 @@ Edge Angle
       On 0: all edges are split. On 180: no edges are split.
 
 Sharp Edges
-   When enabled, edges will be split if they were marked as sharp using :menuselection:`Edge Specials --> Mark Sharp`
-   (Menu shortcut: :kbd:`Ctrl-E` in Edit Mode).
+   When enabled, edges will be split if they were :ref:`marked as sharp <bpy.ops.mesh.mark_sharp>`.
 
 .. note::
 
-   :term:`Non-manifold` edges (edges shared by more than two faces) will always be split.
+   :term:`Non-manifold` edges will always be split.
 
 
 Examples
@@ -63,8 +74,3 @@ Examples
      - .. figure:: /images/modeling_modifiers_generate_edge-split_example-4.png
 
           Smooth shading with Edge Split and Subdivision Surface.
-
-.. note::
-
-   Splitting edges can also be performed manually in Edit Mode using:
-   :menuselection:`Edge Specials --> Edge Split` (Menu shortcut: :kbd:`Ctrl-E`).

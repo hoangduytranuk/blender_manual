@@ -88,7 +88,8 @@ If there is any problem with the selection or profiles,
 the tool will warn you with the error message:
 ``"You have to select a string of connected vertices too"`` as seen
 in Fig. :ref:`fig-mesh-screw-error-info` and Fig. :ref:`fig-mesh-screw-error-popup`,
-both in the Info Editor and at the place where you clicked to start performing the operation
+both in the :doc:`Status Bar </interface/window_system/status_bar>`
+and at the place where you clicked to start performing the operation
 (when you click the Screw Button).
 
 .. _fig-mesh-screw-error-info:
@@ -126,10 +127,10 @@ Options
 This tool is an interactive and modal tool, and only works in *Edit Mode*.
 
 Once you click in the *Screw* tool in the Mesh Tools Panel,
-Blender will enter in the *Screw* interactive mode, and the Operator Panel
+Blender will enter in the *Screw* interactive mode, and the :ref:`ui-undo-redo-adjust-last-operation` Panel
 at the end of the Mesh Tools Panel will be replaced so you can adjust the values explained below.
 To show the Mesh Tools Panel,
-use the shortcut :kbd:`T` in the Edit Mode of the 3D View editor.
+use the shortcut :kbd:`T` in the Edit Mode of the 3D Viewport.
 
 Once you perform any other operation,
 Blender leaves the interactive mode and accepts all of the values. Because it is modal,
@@ -145,7 +146,7 @@ Blender will copy the cursor location coordinates to
 the values present in the *Center* values of the *Screw* interactive Panel.
 Depending on the Global View position, Blender will automatically add a value of 1 to one of the Axis Vectors,
 giving the profiles a starting direction for the Screw Operation and also giving a direction for the extrusions.
-(See examples below).
+(See examples below.)
 
 The position of the 3D cursor will be the starting center of the rotation.
 Subsequent operations (e.g. pressing the Screw button again), will start from the last selected element.
@@ -161,27 +162,27 @@ Continuous operations without changing the selection will repeat the operation c
 
 .. figure:: /images/modeling_meshes_editing_duplicating_screw_interactive-panel.png
 
-   Screw Tools Operator Panel (Edit Mode).
+   Screw Tools :ref:`ui-undo-redo-adjust-last-operation` Panel (Edit Mode).
 
 Center
-   These number buttons specify the center of the spin. When the tool is called for the first time,
+   These number fields specify the center of the spin. When the tool is called for the first time,
    it will copy the XYZ location (Global Coordinates)
    of the cursor presently in the 3D View to start the operation.
    You can specify the cursor coordinates using the Transform Panel in 3D View,
    using shortcut :kbd:`T` to toggle the Panel, and typing in the 3D Cursor Location coordinates.
    You can adjust these coordinates interactively and
    specify another place for the spin center during the interactive session.
-   (See Fig. :ref:`fig-mesh-screw-interactive-panel`).
+   (See Fig. :ref:`fig-mesh-screw-interactive-panel`.)
 Steps
-   This number button specifies how many extrusion(s) will be done for each 360 degree turn.
+   This number field specifies how many extrusion(s) will be done for each 360 degree turn.
    The steps are evenly distributed by dividing 360 degree by the number of steps given. The minimum value is 3;
    the maximum is 256 (See Fig. :ref:`fig-mesh-screw-interactive-panel`).
 Turns
-   This number button specifies how many turns will be executed.
+   This number field specifies how many turns will be executed.
    Blender will add a new full 360 degree turn for each incremental number specified here.
-   The minimum value is 1; the maximum is 256. (See Fig. :ref:`fig-mesh-screw-interactive-panel`).
+   The minimum value is 1; the maximum is 256. (See Fig. :ref:`fig-mesh-screw-interactive-panel`.)
 Axis
-   These three numeric fields vary from (-1.0 to 1.0) and are clamped above those limits.
+   These three number fields vary from (-1.0 to 1.0) and are clamped above those limits.
    These values correspond to angular vectors from (-90 to 90) degrees. Depending on the position where you
    started your cursor location and Object operation in the viewport and its axis positions in Global View space and
    coordinates, Blender will give the proper Axis vector a value of 1, giving the angular vector of the profile
@@ -190,7 +191,7 @@ Axis
    operation (by reverting the angular vector of the height),
    meaning you can revert the clockwise and counterclockwise direction of some operations,
    and also adjust the angular vectors of the profile, bending it accordingly.
-   (See Fig. :ref:`fig-mesh-screw-interactive-panel`).
+   (See Fig. :ref:`fig-mesh-screw-interactive-panel`.)
 
 
 Examples
@@ -215,13 +216,13 @@ The Spring Example
 #. Add a circle using shortcut :kbd:`Shift-A` :menuselection:`--> Mesh --> Circle`.
 #. Rotate this circle using the shortcut :kbd:`R X 9 0` and :kbd:`Return`.
 #. Apply the Rotation using :kbd:`Ctrl-A` and choosing *Rotation*.
-#. Grab and move this circle three Blender Units on the X axis to the left;
-   you can use the shortcut :kbd:`Ctrl` while grabbing with the mouse using the standard transform widgets
-   (clicking on the red arrow shown with the object and grabbing while using shortcut :kbd:`Ctrl`
-   until the info in the bottom left corner of the 3D View editor displays ``D. -3.0000 (3.0000) Global`` ),
+#. Move this circle three units on the X axis to the left;
+   you can use the shortcut :kbd:`Ctrl` while selecting with the mouse using the standard transform widgets
+   (clicking on the red arrow shown with the object and moving while using shortcut :kbd:`Ctrl`
+   until the info in the bottom left corner of the 3D Viewport displays ``D. -3.0000 (3.0000) Global``),
    or press the shortcut :kbd:`G X Minus 3` and :kbd:`Return`.
    You can use the Transform Panel, and type :kbd:`Minus 3` and :kbd:`Return` in the Location too.
-   (See the Fig. :ref:`fig-mesh-screw-circle`).
+   (See the Fig. :ref:`fig-mesh-screw-circle`.)
 #. You will have to scale the circle using the shortcut :kbd:`S Period 5`, then :kbd:`Return`.
 #. Now enter *Edit Mode* using shortcut :kbd:`Tab`.
 #. De-select all vertices using the shortcut :kbd:`A`.
@@ -242,10 +243,10 @@ The following steps explain how to create a height vector:
    for the XYZ coordinates, put (-2, 0, -1).
 #. :kbd:`RMB` click on the other vertex,
    and again, set its XYZ coordinates to (-2, 0, 1).
-   This will create a straight vertical line with 2 Blender units of Height.
+   This will create a straight vertical line with 2 units of Height.
 #. De-select and select everything again with the shortcut :kbd:`A`.
-   (See Fig. :ref:`fig-mesh-screw-profile`).
-#. Again, place again the cursor at the center. (Repeat step 2).
+   (See Fig. :ref:`fig-mesh-screw-profile`.)
+#. Again, place the cursor at the center. (Repeat step 2.)
 #. At this point, you can save this blend-file to recycle
    the Spring for another exercise; :kbd:`LMB` click on *File*,
    located in the header of the Info editor, (at the top left side), and choose *Save as*.
@@ -347,14 +348,14 @@ will assembly perfectly with each other.
    Choose the last saved blend-file; in the last exercise,
    you gave it the name "screw spring example.blend".
 #. Press the shortcut :kbd:`A` to de-select all vertices.
-#. Press the shortcut :kbd:`B`, and Blender will change the cursor; you are now in border selection mode.
+#. Press the shortcut :kbd:`B`, and Blender will change the cursor; you are now in box selection mode.
 #. Open a box that selects all of the circle vertices except
    the two vertices you used to create the height of the extrusions in the last example.
 #. Use the shortcut :kbd:`X` to delete them.
 #. Press the shortcut :kbd:`A` to select the remaining vertices.
 #. Press the shortcut :kbd:`W`, and select :menuselection:`Specials --> Subdivide`.
 #. Now, click with the :kbd:`RMB` on the middle vertex.
-#. Grab this vertex using the shortcut :kbd:`G X Minus 1` and :kbd:`Return`.
+#. Move this vertex using the shortcut :kbd:`G X Minus 1` and :kbd:`Return`.
    See Fig. :ref:`fig-mesh-screw-spindle`.
 #. At this point, you can save this blend-file to recycle the generated Screw for another exercise;
    click with :kbd:`LMB` on *File* --
@@ -425,8 +426,8 @@ To make this new example as short as possible, it will recycle the last example 
    choose *Open Recent* and the file saved for this exercise.
    All of the things will be placed exactly the way you saved before.
    Choose the last saved blend-file; from the last exercise, which is named "screw hardware example.blend".
-#. Grab the upper vertex and move a bit to the left, but no more than you have moved the last vertex.
-   (See Fig. :ref:`fig-mesh-screw-start`).
+#. Move the upper vertex and move a bit to the left, but no more than you have moved the last vertex.
+   (See Fig. :ref:`fig-mesh-screw-start`.)
 #. Press the shortcut :kbd:`A` twice to de-select and select all.
 #. Press the shortcut :kbd:`Shift-S` and select *Cursor to Center*
 #. Press Screw.

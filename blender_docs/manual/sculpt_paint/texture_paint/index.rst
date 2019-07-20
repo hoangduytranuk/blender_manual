@@ -1,4 +1,6 @@
 .. _painting-texture-index:
+.. _bpy.types.ImagePaint:
+.. _bpy.types.Material.paint:
 
 #################
   Texture Paint
@@ -9,5 +11,4 @@
 
    introduction.rst
    tools.rst
-   slots_mask.rst
-   options.rst
+   tool_settings/index.rst

@@ -11,9 +11,9 @@ In other 3D software you can find it with the name "Look at" constraint.
 Options
 =======
 
-.. figure:: /images/rigging_constraints_tracking_damped-track_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_tracking_damped-track_panel.png
 
-   Damped Track panel.
+.. TODO2.8    Damped Track panel.
 
 Target
    :ref:`ui-data-id` used to select the constraint's target, and is not functional (red state) when it has none.

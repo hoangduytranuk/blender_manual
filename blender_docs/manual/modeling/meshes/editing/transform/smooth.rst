@@ -1,4 +1,5 @@
 .. _bpy.ops.mesh.vertices_smooth:
+.. _tool-mesh-smooth:
 
 ******
 Smooth

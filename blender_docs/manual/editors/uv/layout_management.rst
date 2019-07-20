@@ -19,7 +19,7 @@ an earlier version of your model with intact UVs.
 Workflow
 --------
 
-#. :kbd:`RMB` select the target mesh (to which you want to copy the UV map).
+#. Select the target mesh (to which you want to copy the UV map).
 #. :kbd:`Shift` select the source mesh (that contains the intact UV map).
 #. :menuselection:`Object menu --> Make Links... --> Transfer UV Layouts` (Shortcut: :kbd:`Ctrl-L` ...).
 
@@ -42,11 +42,12 @@ UV maps always include the whole mesh.
 UV Maps Panel
 =============
 
-.. figure:: /images/editors_uv-image_uv_layout-management_uv-maps.png
+.. figure:: /images/editors_uv_layout-management_uv-maps.png
 
    The UV Maps panel in the Mesh tab.
 
-In the Mesh tab the UV maps panel contains a :ref:`ui-list-view` that lists the UV maps created for this mesh.
+In the Mesh tab the UV maps panel contains a :ref:`List view <ui-list-view>`
+that lists the UV maps created for this mesh.
 The selected map is displayed in the UV Editor.
 
 Active Render
@@ -58,5 +59,6 @@ Add ``+``
 
 .. seealso::
 
-   Note that each texture can be mapped to a specific UV texture.
-   See the :doc:`Mapping </editors/uv/textures/properties/mapping>` panel of the texture tab.
+   Note that each texture can be mapped to a specific UV layout.
+
+   .. TODO2.8 link to docs on UV mapping textures.

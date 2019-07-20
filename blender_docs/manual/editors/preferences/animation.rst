@@ -3,12 +3,12 @@
 Animation
 *********
 
-The *Animations* tab lets you manage settings related to :doc:`Animation </animation/index>`.
+The *Animations* section lets you manage settings related to :doc:`Animation </animation/index>`.
 This includes how editors look and also some different tools properties.
 
-.. figure:: /images/preferences_addons_tab.png
+.. figure:: /images/editors_preferences_section_animation.png
 
-   Blender Preferences Animation tab.
+   Blender Preferences Animation section.
 
 
 Timeline
@@ -17,11 +17,11 @@ Timeline
 These settings control things in the :doc:`Timeline </editors/timeline>`.
 
 Allow Negative Frame
-   Time Cursor can be set to negative frames with mouse or keyboard.
+   Playhead can be set to negative frames with mouse or keyboard.
    When using *Use Preview Range*, this also allows playback.
 Minimum Grid Spacing
    The minimum number of pixels between grid lines.
-Time Code Style
+TimeCode Style
    Format of Time Codes displayed when not displaying timing in terms of frames.
    The format uses '+' as a separator for sub-second frame numbers,
    with left and right truncation of the timecode as necessary.
@@ -59,7 +59,7 @@ Auto Keyframing
 Show Auto Keying Warning
    Displays a warning at the top right of the *3D View*, when moving objects, if *Auto Keyframe* is on.
 Only Insert Available
-   This will only add keyframes to channel F-Curves that already exist.
+   This will only add keyframes to channels of F-curves that already exist.
 
 .. seealso::
 
@@ -79,7 +79,7 @@ Interpolation
    Controls the default :ref:`Interpolation <editors-graph-fcurves-settings-interpolation>`
    for newly created keyframes.
 Default Handles
-   Controls the default :ref:`Handle <editors-graph-fcurves-settings-handles>` for newly created F-Curves.
+   Controls the default :ref:`Handle <editors-graph-fcurves-settings-handles>` for newly created F-curves.
 XYZ to RGB
    Color for X, Y or Z animation curves (location, scale or rotation)
    is the same as the color for the X, Y and Z axis.

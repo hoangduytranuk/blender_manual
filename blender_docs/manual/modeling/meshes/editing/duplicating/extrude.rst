@@ -1,4 +1,5 @@
 .. _bpy.ops.view3d.edit_mesh_extrude:
+.. _bpy.ops.mesh.extrude_region:
 .. (todo rewrite) Extrude Edges and Vertices Only needs a rewrite.
 
 *******
@@ -27,10 +28,15 @@ as well as easily creating such things as tree limbs.
 The axis on which vertices and edges are extruded along can be set interactively.
 Faces are extruded by default along their averaged normal.
 The extrusion can be limited to a single axis by specifying an axis;
-see :doc:`/scene_layout/object/editing/transform/control/precision/axis_locking`.
+see :doc:`/scene_layout/object/editing/transform/control/axis_locking`.
 
 The extrude tools differentiate in how the new geometry is connected in itself.
 
+Flip Normals
+   Reverses the :term:`normal's <normal>` direction for any resulting geometry.
+
+
+.. _tool-mesh-extrude_region:
 
 Extrude Region
 ==============
@@ -88,6 +94,8 @@ the principles behind *Extrude* are fairly elaborate as discussed below:
 - Single selected vertices which do not belong to selected edges
   are duplicated and a new edge is created between the two.
 
+
+.. _tool-mesh-extrude_individual:
 
 Extrude Individual
 ==================

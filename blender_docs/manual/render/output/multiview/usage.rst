@@ -6,15 +6,9 @@ Usage
 For example, we will take an existing blend-file
 that was made for monoscopic rendering and transform it to be stereo 3D ready.
 
-.. figure:: /images/render_workflows_multiview_usage_anaglyph.png
+.. figure:: /images/render_output_multiview_usage_anaglyph.png
 
    Creature Factory 2 by Andy Goralczyk rendered in stereo 3D (anaglyph).
-
-.. note::
-
-   Multi-view drawing requires capable graphics card and drivers with *Triple Buffer* support.
-   If the *Automatic* mode does not work,
-   set the *Window Draw Method* in the :doc:`System Preferences </editors/preferences/system>`.
 
 
 Introduction
@@ -23,26 +17,26 @@ Introduction
 Start opening up your project file, in this case ``turntable.blend`` from the *Creature Factory 2*
 Open Movie Workshop series from the Blender Institute by Andy Goralczyk.
 
-.. figure:: /images/render_workflows_multiview_usage_turntable-creature.png
+.. figure:: /images/render_output_multiview_usage_turntable-creature.png
 
    Turntable Creature Factory 2.
 
 
-Views Setup
-===========
+Stereoscopy Setup
+=================
 
-Go to the :doc:`Render Layers </render/layers/index>` panel and enable *Views* for this scene.
+Go to the :doc:`Render Output </render/output/settings>` settings and enable *Stereoscopy* for this scene.
 
-.. figure:: /images/render_workflows_multiview_usage_views-panel.png
+.. figure:: /images/render_output_multiview_usage_views-panel.png
 
    Scene render views.
 
 .. note::
 
-   When you turn on *Views* in the scene, you get 3D preview in the viewport,
+   When you turn on *Stereoscopy* in the scene, you get 3D preview in the viewport,
    as well as multiple panels that are now accessible all over the user interface.
 
-.. figure:: /images/render_workflows_multiview_usage_viewport.png
+.. figure:: /images/render_output_multiview_usage_viewport.png
 
    Viewport with 3D visualization.
 
@@ -55,7 +49,7 @@ In the Camera panel go to the Stereoscopy tab and change the *Convergence Distan
 
 The viewport will respond in real-time to those changes allowing you to preview the current depth value of the scene.
 
-.. figure:: /images/render_workflows_multiview_usage_camera-stereoscopy-panel.png
+.. figure:: /images/render_output_multiview_usage_camera-stereoscopy-panel.png
 
    Stereo convergence distance.
 
@@ -67,10 +61,10 @@ Before fine-tuning the camera parameters,
 you can set the convergence plane in the viewport based in your scene depth layout.
 Go outside the camera view and you will instantly see the convergence plane in front of the camera.
 
-You can toggle this and other display settings in the Stereoscopy panel of the 3D Views Sidebar region.
+You can toggle this and other display settings in the Stereoscopy panel of the 3D Views Sidebar.
 In the following image, the camera's frustum volumes are also visible.
 
-.. figure:: /images/render_workflows_multiview_usage_stereo-preview.png
+.. figure:: /images/render_output_multiview_usage_stereo-preview.png
    :width: 700px
 
    Viewport plane and volume stereo preview.
@@ -83,7 +77,7 @@ If you have a real 3D display at some point, you can change the 3D display mode 
 by calling the Stereo 3D operator.
 Be aware that some modes require a fullscreen editor to work.
 
-.. figure:: /images/render_workflows_multiview_usage_window-stereo-3d.png
+.. figure:: /images/render_output_multiview_usage_window-stereo-3d.png
 
    Window menu, stereo 3D operator.
 
@@ -113,7 +107,7 @@ Image Formats
 Your final animation can be saved in more robust formats.
 In this example we saved as cross-eyed side-by-side stereo 3D.
 
-.. figure:: /images/render_workflows_multiview_usage_render-sidebyside.png
+.. figure:: /images/render_output_multiview_usage_render-sidebyside.png
 
    Side-by-side cross-eye format.
 
@@ -136,7 +130,7 @@ On top of that, you can set a different display mode for each window.
 The display mode can be changed via the Window menu
 or if you create your own shortcuts for the ``wm.set_stereo_3d`` operator.
 
-.. figure:: /images/render_workflows_multiview_usage_window-stereo-3d.png
+.. figure:: /images/render_output_multiview_usage_window-stereo-3d.png
 
    Window menu, stereo 3D operator.
 
@@ -182,7 +176,7 @@ on-the-fly and used for rendering and previsualization.
 For all the purposes this works as two cameras that share most parameters (focal length, clipping, ...).
 The stereo pair, however, is offsetted, and can have unique rotation and shift between itself.
 
-.. figure:: /images/render_workflows_multiview_usage_camera-stereoscopy-panel.png
+.. figure:: /images/render_output_multiview_usage_camera-stereoscopy-panel.png
 
    Stereo 3D camera settings.
 
@@ -239,7 +233,7 @@ When you enable 'Views' in the Render Layer panel, a new area is available in th
 In this panel you can pick whether to see the stereo 3D in the viewport, or which camera to see.
 It also allow you to see the Cameras, the Plane and the Volume of the stereo cameras.
 
-.. figure:: /images/render_workflows_multiview_usage_3d-view-stereoscopy-panel.png
+.. figure:: /images/render_output_multiview_usage_3d-view-stereoscopy-panel.png
 
    Viewport stereo 3D settings.
 
@@ -260,7 +254,7 @@ Volume
    They are tolerated in the negative space (the region from the convergence plane into the image)
    but are to be avoided at all costs in the positive space (the area from the convergence plane to the camera).
 
-   .. figure:: /images/render_workflows_multiview_usage_volume.png
+   .. figure:: /images/render_output_multiview_usage_volume.png
       :width: 402px
 
       Viewport 3D: convergence plane and volume display.
@@ -308,7 +302,7 @@ View Menu
    the rendered result in the combined stereo 3D or to inspect the individual views.
    This works for Viewer nodes, render results or opened images.
 
-   .. figure:: /images/render_workflows_multiview_usage_image-editor-header.png
+   .. figure:: /images/render_output_multiview_usage_image-editor-header.png
 
       Stereo 3D and view menu.
 
@@ -318,7 +312,7 @@ Views Format
    Blender should interpret the image by switching the mode to Stereo 3D,
    turning on *Use Multi-View* and picking the corresponding stereo method.
 
-   .. figure:: /images/render_workflows_multiview_usage_image-editor-multi-view.png
+   .. figure:: /images/render_output_multiview_usage_image-editor-multi-view.png
 
       Views formats and stereo 3D.
 
@@ -331,7 +325,8 @@ The compositing of a view is completed before the remaining views start to be co
 The pipeline is the same as the single-view workflow, with the difference that you can use Images,
 Movies or Image Sequences in any of the supported multi-view formats.
 
-.. figure:: /images/render_workflows_multiview_usage_compositor.png
+
+.. figure:: /images/render_output_multiview_usage_compositor.png
 
    Compositor, backdrop and Split Viewer node.
 

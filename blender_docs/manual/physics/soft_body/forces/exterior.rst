@@ -22,7 +22,7 @@ We will begin with a very simple example: the default cube.
 
 - To judge the effect of the external forces you should at first turn off the *Goal*,
   so that the vertices are not retracted to their original position.
-- Press :kbd:`Alt-A` to run the simulation.
+- Start playback to run the simulation.
 
 What happens? The cube moves in negative Z direction.
 Each of its eight vertices is affected by a global, constant force -- the gravitation.
@@ -34,7 +34,7 @@ The object does not deform, because every vertex moves with the same speed in th
 Force Fields
 ============
 
-Soft body vertices interact with all the :doc:`Force Fields </physics/force_fields/index>`
+Soft body vertices interact with all the :doc:`Force Fields </physics/forces/force_fields/index>`
 applied (usually to particles) in the layer, such as wind, force fields,
 and what ever physics field effect is on a common layer.
 
@@ -45,12 +45,12 @@ Soft Body Field Weights
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Physics --> Soft Body Field Weights`
+   :Panel:     :menuselection:`Physics --> Soft Body --> Field Weights`
 
 The *Soft Body Field Weights* panel allows you to control how much influence
 each type of external force field has on the soft body system.
 
-Effector Group
+Effector Collection
    Limit effectors to a specified group. Only effectors in this group will have an effect on the current system.
 Gravity
    Control how much the Global Gravity has an effect on the system.
@@ -103,7 +103,7 @@ Goal Strength
 The *Goal Strength* defines how much motion from an animation system gets applied.
 
 A *Goal* value of 1.0 means no soft body simulation,
-the object act like any regular animated object, (the vertex keeps at its original position).
+the object act like any regular animated object (i.e. the vertex is kept at its original position).
 When setting *Goal* to 0.0 (or no goal), the vertex is only influenced by physical laws
 according to soft body simulation.
 

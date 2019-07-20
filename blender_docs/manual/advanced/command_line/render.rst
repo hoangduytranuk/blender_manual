@@ -1,7 +1,8 @@
+.. _command_line-render:
 
-************
-Command Line
-************
+**********************
+Command Line Rendering
+**********************
 
 In some situations we want to increase the render speed,
 access Blender remotely to render something or build scripts that use the command line.
@@ -10,9 +11,11 @@ One advantage of using the command line is that we do not need a graphical displ
 (no need for X server on Linux for example)
 and consequently we can render via a remote shell (typically SSH).
 
-See :doc:`Command Line Arguments </advanced/command_line/arguments>`
-for a full list of arguments
-(for example to specify which scene to render, the end frame number, etc.), or simply run:
+- See :doc:`Command Line Arguments </advanced/command_line/arguments>`
+  for a full list of arguments
+  (for example to specify which scene to render, the end frame number, etc.), or simply run:
+- See :ref:`Command Line Launching <command_line-launch-index>`
+  for specific instructions on launching Blender from the command line.
 
 .. code-block:: sh
 
@@ -37,75 +40,6 @@ for a full list of arguments
    **Always** position ``-f`` or ``-a`` as the last arguments.
 
 
-Platforms
-=========
-
-How to actually execute Blender from the command line depends on the platform and where you
-have installed Blender. Here are basic instructions for the different platforms.
-
-
-Linux
------
-
-Open a terminal, then go to the directory where Blender is installed,
-and run Blender like this:
-
-.. code-block:: sh
-
-   cd <blender installation directory>
-   ./blender
-
-If you have Blender installed in your ``PATH``
-(usually when Blender is installed through a distribution package), you can simply run:
-
-.. code-block:: sh
-
-   blender
-
-
-macOS
------
-
-Open the terminal application, go to the directory where Blender is installed,
-and run the executable within the app bundle, with commands like this:
-
-.. code-block:: sh
-
-   cd /Applications/Blender
-   ./blender.app/Contents/MacOS/blender
-
-If you need to do this often,
-you can make an alias so that typing just ``blender`` in the terminal works.
-For that you can run a command like this in the terminal (with the appropriate path).
-
-.. code-block:: sh
-
-   echo "alias blender=/Applications/Blender/blender.app/Contents/MacOS/blender" >> ~/.bash_profile
-
-If you then open a new terminal, the following command will work:
-
-.. code-block:: sh
-
-   blender
-
-
-MS-Windows
-----------
-
-Open the Command Prompt, go to the directory where Blender is installed,
-and then run Blender:
-
-.. code-block:: bat
-
-   cd c:\<blender installation directory>
-   blender
-
-You can also add the Blender folder to your system ``PATH`` so that do you do not have to ``cd`` to it each time.
-
-
-Examples
-========
-
 Single Image
 ------------
 
@@ -122,11 +56,11 @@ Single Image
 
 .. code-block:: sh
 
-   blender -b file.blend -o /project/renders/frame_##### -F EXR -f -2
+   blender -b file.blend -o /project/renders/frame_##### -F OPEN_EXR -f -2
 
 ``-o /project/renders/frame_#####``
    Path of where to save the rendered image, using five padded zeros for the frame number.
-``-F EXR``
+``-F OPEN_EXR``
    Override the image format specified in the blend-file and save to an OpenEXR image.
 ``-f -2``
    Render only the second last frame.
@@ -148,10 +82,10 @@ Animation
 
 .. code-block:: sh
 
-   blender -b file.blend -E BLENDER_RENDER -s 10 -e 500 -t 2 -a
+   blender -b file.blend -E CYCLES -s 10 -e 500 -t 2 -a
 
-``-E BLENDER_RENDER``
-   Use the "Blender Render" engine.
+``-E CYCLES``
+   Use the "Cycles Render" engine.
    For a list of available render engines, run ``blender -E help``.
 ``-s 10 -e 500``
    Set the start frame to ``10`` and the end frame to ``500``.

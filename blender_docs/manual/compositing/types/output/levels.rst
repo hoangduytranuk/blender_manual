@@ -4,7 +4,7 @@
 Levels Node
 ***********
 
-.. figure:: /images/compositing_types_output_levels_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeLevels.png
    :align: right
 
    Levels Node.

@@ -9,7 +9,7 @@ Release Checklist
 
 - Increase the ``conf.py: blender_version`` variable.
 - Increase the ``dev`` version in ``resources/versions.json`` and
-   add the former version as a past release.
+  add the former version as a past release.
 - Update the splash image: ``interface_splash_current.png``.
 - Note down the revision numbers below.
 
@@ -53,5 +53,3 @@ Past Releases
 
 :Main: rBM4466
 :Languages: rBMT3170
-
-

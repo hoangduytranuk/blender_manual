@@ -4,9 +4,9 @@
 Follow Track Constraint
 ***********************
 
-.. figure:: /images/rigging_constraints_motion-tracking_follow-track_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_motion-tracking_follow-track_panel.png
 
-   Follow Track Constraint panel.
+.. TODO2.8    Follow Track Constraint panel.
 
 By default the Follow Track constraint is making objects have the same position at a frame as the track has and
 the motion of this object happens on a single plane defined by the camera and the original position of the object.
@@ -26,7 +26,7 @@ Depth Object
    If this object is set, constrained objects will be projected onto the surface
    of this depth object which can be used to create facial makeup visual effects.
 Constraint to F-Curve
-   Creates F-Curves for the object that copies the movement caused by the constraint.
+   Creates F-curves for the object that copies the movement caused by the constraint.
 
 
 Example

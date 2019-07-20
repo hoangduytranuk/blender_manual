@@ -11,9 +11,10 @@ Boids
    :Panel:     :menuselection:`Particle System --> Physics`
    :Type:      Boids
 
-.. figure:: /images/physics_particles_emitter_physics_boids_panel.png
+.. TODO2.8:
+   .. figure:: /images/physics_particles_emitter_physics_boids_panel.png
 
-   Boid Physics settings.
+      Boid Physics settings.
 
 Boids particle systems are controlled by a limited artificial intelligence,
 which can be programmed to follow basic rules and behaviors.
@@ -28,11 +29,13 @@ To view the panel to the right, add a *Particle System* of type
 *Emitter* and look in the middle area of the *Particle System* tab.
 
 
-Options
-=======
+Movement
+========
 
-Main
-----
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Physics --> Movement`
 
 Boids try to avoid objects with activated Deflection.
 They try to reach objects with positive Force fields,
@@ -79,9 +82,17 @@ Land Personal Space
 Land Stick Force
    How strong a force must be to start effecting a boid on land.
 
+Collision Collection
+   Only collide with objects in this collection.
+
 
 Misc
-^^^^
+====
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Physics --> Misc`
 
 Banking
    Amount of rotation around velocity vector on turns. Banking of 1.0 gives a natural banking effect.
@@ -92,7 +103,12 @@ Height
 
 
 Battle
-^^^^^^
+======
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Physics --> Battle`
 
 Health
    Initial boid health when born.
@@ -107,7 +123,12 @@ Range
 
 
 Relations
-^^^^^^^^^
+=========
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Physics --> Relations`
 
 Target
    This :ref:`list view <ui-list-view>` allows you to set up other particle systems to react with the boids.
@@ -125,23 +146,15 @@ Alliance
       Will not cause them to align or fight with each other.
 
 
-Details
--------
-
-As mentioned before, very much like Newtonian particles,
-Boids will react to the surrounding deflectors and fields,
-according to the needs of the animator.
-
-
 Deflection
-^^^^^^^^^^
+----------
 
 Boids will try to avoid deflector objects according to the Collision rule's weight.
 It works best for convex surfaces (some work needed for concave surfaces).
 
 
 Force Fields
-^^^^^^^^^^^^
+------------
 
 For boid physics, spherical force fields define the way the objects having the field are seen by others.
 So a negative force field (on an object or a particle system)
@@ -156,13 +169,18 @@ Force's effective Strength is multiplied by the actual relevant weight
 
 
 Boid Brain
-----------
+==========
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Physics --> Boid Brain`
 
 The Boid Brain panel controls how the boids particles will react with each other.
 
 
 Rules
-^^^^^
+-----
 
 The boids' behavior is controlled by a list of rules.
 Only a certain amount of information in the list can be evaluated.
@@ -226,7 +244,7 @@ Fight
 Rule Evaluation
 ^^^^^^^^^^^^^^^
 
-There are three ways control how rules are evaluated.
+There are three ways to control how rules are evaluated.
 
 Average
    All rules are averaged.
@@ -246,5 +264,5 @@ For example, in order to avoid a predator, a boid could probably "forget" about 
 Crowd and Center rules, meaning that "while panicked" it could well run into obstacles,
 e.g. even if instructed not to, most of the time.
 
-As a final note, the Collision algorithm is still not perfect and in research progress,
+As a final note, the collision algorithm is still not perfect and in research progress,
 so you can expect wrong behaviors at some occasion. It is worked on.

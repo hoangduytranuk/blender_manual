@@ -12,7 +12,7 @@ an :doc:`Action </editors/dope_sheet/action>` using the transformations of anoth
 
 The underlying idea of the *Action* constraint is very similar to the one behind
 the :doc:`Drivers </animation/drivers/index>`, except that the former uses a whole action
-(i.e. a bunch of F-Curves of the same type), while the latter controls a single F-curve of their "owner"...
+(i.e. multiple F-curves of the same type), while the latter controls a single F-curve of their "owner"...
 
 Note that even if the constraint accepts the *Mesh* action type,
 only the *Object*,
@@ -36,9 +36,9 @@ the owner will be as if in frame 50 of the linked action, etc.
 Options
 =======
 
-.. figure:: /images/rigging_constraints_relationship_action_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_relationship_action_panel.png
 
-   Action panel.
+.. TODO2.8    Action panel.
 
 Target
    :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.

@@ -16,8 +16,7 @@ Collisions with Other Objects
 
 For a soft body to collide with another object there are a few prerequisites:
 
-- If *Collision Group* is set, the object must belong to the group.
-  Otherwise, both objects have to share a layer, but the layer does not necessarily have to be visible.
+- If *Collision Collection* is set, the object must belong to the collection.
 - The collision object has to be a mesh object.
 - You have to activate the *Collision* in the *Physics* tab for the collision object.
   The collision object may also be a soft body.

@@ -160,7 +160,7 @@ Solidify
 This takes a selection of faces and solidifies them by extruding them
 uniformly to give volume to a :term:`non-manifold` surface.
 This is also available as a :doc:`Modifier </modeling/modifiers/generate/solidify>`.
-After using the tool, you can set the offset distance in the Operator Panel.
+After using the tool, you can set the offset distance in the :ref:`ui-undo-redo-adjust-last-operation` panel.
 
 Thickness
    Amount to offset the newly created surface.
@@ -287,6 +287,8 @@ Poke Center
       Uses center of bounding box.
 
 
+..  _bpy.ops.mesh.quads_convert_to_tris:
+
 Triangulate Faces
 =================
 
@@ -325,7 +327,7 @@ Alternatively you can force this operation selecting a pairs of faces (see hint 
 To create a quad, this tool needs at least two adjacent triangles.
 If you have an even number of selected triangles,
 it is also possible not to obtain only quads. In fact,
-this tool tries to create "squarishest" quads as possible from the given triangles,
+this tool tries to create most even rectangular quads from the given triangles,
 which means some triangles could remain.
 
 .. list-table::

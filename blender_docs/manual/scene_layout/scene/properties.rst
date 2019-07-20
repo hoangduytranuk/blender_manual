@@ -21,7 +21,7 @@ Camera
 
 .. _scene-background-set:
 
-Background
+Background Scene
    Allows you to use a scene as a background,
    this is typically useful when you want to focus on animating the foreground for example,
    without background elements getting in the way.
@@ -38,8 +38,8 @@ Background
       This can also be used in combination with :ref:`Linking to a Scene <data-system-linked-libraries-make-link>`,
       where one blend-file contains the environment, which can be reused in many places.
 
-Active Clip
-   Active movie clip for constraints and viewport drawing.
+Active Movie Clip
+   Active movie clip for constraints and viewport display.
 
 
 .. _data-scenes-props-units:
@@ -53,38 +53,48 @@ Units
 
    :Panel:     :menuselection:`Properties editor --> Scene --> Units`
 
-Length Presets
-   Common unit scales to use.
-Length
+Unit System
    None
-      Uses :term:`Blender Units`.
-   Metric, Imperial
-      Standard unit of measurement for lengths.
-Angle
-   Standard unit for angular measurement.
-
-   Degrees, Radians
-
-   .. tip::
-
-      When you are using *Degrees*, the radian value is also displayed in the tooltip.
-
+      Use units that have with no relation to the real world,
+      practically this is the same as *Metric* just without unit names.
+   Metric
+      Use the metric unit system in this scene.
+   Imperial
+      Use the imperial unit system in this scene.
 Unit Scale
-   Scale factor to use when converting between :term:`Blender Units` and *Metric*/*Imperial*.
+   Scale factor to use when converting between internal units and values displayed in the user interface.
+   This can be changed when modeling at microscopic or astronomical scales.
 
-   .. tip::
+   .. note::
 
-      Usually you will want to use the *Length* presets to change to scale factor,
-      as this does not require looking up values to use for conversion.
+      This only influences the values displayed in the user interface
+      and not how things behave internally. For example, physics simulations
+      don't take the unit scale into account.
 
 Separate Units
-   When *Metric* or *Imperial* display units as multiple values,
-   for example, "2.285m" will become "2m 28.5cm".
+   When using *Metric* or *Imperial*, display properties as multiple values.
+   For example, ``2.285m`` will become ``2m 28.5cm``.
+Rotation
+   Degrees
+      Use degrees for angles in the user interface.
+   Radians
+      Use radians for angles in the user interface.
+Length
+   Adaptive
+      The unit used for a specific value depends on the magnitude of the value.
+      For example, some values might be displayed as ``23cm`` while others are
+      displayed as ``10km``.
+   Meters/Centimeters/Feet/...
+      A fixed unit that will be used for all lengths in the user interface.
+Mass
+   See *Length*.
+Time
+   See *Length*.
 
 .. Normally we would avoid documenting long lists of values
    however, this is not displayed anywhere else.
 
-.. list-table:: Imperial Units
+.. list-table:: Imperial Length Units
    :header-rows: 1
    :stub-columns: 1
 
@@ -113,7 +123,7 @@ Separate Units
      - ``mi``, ``m``
      - 1609.344
 
-.. list-table:: Metric Units
+.. list-table:: Metric Length Units
    :header-rows: 1
    :stub-columns: 1
 
@@ -146,6 +156,19 @@ Separate Units
      - 1000.0
 
 
+Gravity
+=======
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Properties editor --> Scene --> Gravity`
+
+Options to control global gravity used for physics effects.
+
+See the :doc:`Physics chapter </physics/forces/gravity>` for more information.
+
+
 Keying Sets
 ===========
 
@@ -155,20 +178,6 @@ Keying Sets
    :Panel:     :menuselection:`Properties editor --> Scene --> Keying Sets`
 
 See :doc:`/animation/keyframes/keying_sets`.
-
-
-Color Management
-================
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Panel:     :menuselection:`Properties editor --> Scene --> Color Management`
-
-Options to control how images appear on the screen.
-
-For :ref:`Color Management settings <render-post-color-management>` for more information.
-
 
 .. move to audio rendering?
 
@@ -188,13 +197,6 @@ Options to control global audio settings.
 
 Volume
    Volume for the scene.
-Update Animation Cache
-   Updates the audio animation cache. This is useful if you start noticing artifact in the audio.
-
-
-Distance Model
---------------
-
 Distance Model
    Changes how the sound attenuation is calculated based on the distance.
    Most physically correct is the *Inverse* model,
@@ -203,45 +205,33 @@ Distance Model
    that means if the distance is smaller than the reference distance, the volume is always 100%.
    For an exact description of each option
    see the `OpenAL documentation <https://www.openal.org/documentation/>`__.
-Speed
-   Speed of the sound for the Doppler effect calculations.
-   The typical value is 343.3 m/s in air, in water for example this value is around 1560 m/s.
-Doppler
-   Controls how strong the Doppler effect is.
-   You can exaggerate or attenuate the change of pitch, but physically correct is a factor of 1.0.
-
 
 .. _bpy.types.FFmpegSettings.audio_mixrate:
 .. _bpy.types.FFmpegSettings.audio_channels:
 
-Format
-------
+Format Settings
+   These settings, along with the settings found
+   in the :ref:`Encoding Panel <render-output-video-encoding-panel>`
+   change how sound is exported while rendering.
 
-These settings, along with the settings found in the
-:ref:`Encoding Panel <render-output-video-encoding-panel>`
-change how sound is exported while rendering.
+   To control how sounds plays back from within Blender, see the audio settings
+   in the :ref:`Preferences <prefs-system-sound>`.
 
-To control how sounds plays back from within Blender, see the audio settings
-in the :ref:`Preferences <prefs-system-sound>`.
+   Audio Channels
+      Sets the audio channel count. Available options are:
+      *Mono*, *Stereo*, *4 Channels*, *5.1 Surround*, *7.1 Surround*.
+   Sample Rate
+      Sets the audio `sampling rate <https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate>`__.
 
-Channels
-   Sets the audio channel count. Available options are:
-   *Mono*, *Stereo*, *4 Channels*, *5.1 Surround*, *7.1 Surround*.
-Mix Rate
-   Sets the audio `sampling rate <https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate>`__.
+Doppler Speed
+   Speed of the sound for the Doppler effect calculations.
+   The typical value is 343.3 m/s in air, in water for example this value is around 1560 m/s.
+Doppler Factor
+   Controls how strong the Doppler effect is.
+   You can exaggerate or attenuate the change of pitch, but physically correct is a factor of 1.0.
 
-
-Gravity
-=======
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Panel:     :menuselection:`Properties editor --> Scene --> Gravity`
-
-Options to control global gravity used for physics effects.
-
-See the :doc:`Physics chapter </physics/gravity>` for more information.
+Update Animation Cache
+   Updates the audio animation cache. This is useful if you start noticing artifact in the audio.
 
 
 Rigid Body World
@@ -256,28 +246,3 @@ The *Rigid Body World* is a group of rigid body objects,
 which holds settings that apply to all rigid bodies in this simulation.
 
 See :doc:`Rigid Body World </physics/rigid_body/world>` for more information.
-
-
-.. _bpy.types.RenderSettings.simplify_subdivision:
-.. _data-system-scenes-properties-simplify:
-
-Simplify
-========
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Panel:     :menuselection:`Properties editor --> Scene --> Simplify`
-
-Subdivision
-   Maximum number of *Viewport*/*Render* subdivisions to use for
-   the :doc:`Subdivision Modifier </modeling/modifiers/generate/subsurf>`.
-
-Child Particles
-   Percentage of :doc:`Child Particles </physics/particles/emitter/children>`
-   to see in the *Viewport*/*Render*.
-
-.. seealso::
-
-   There are also renderer specific *Simplify* settings for
-   :ref:`Cycles <render-cycles-settings-scene-simplify>`.

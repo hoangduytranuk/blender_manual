@@ -23,19 +23,19 @@ this page shows common keys used in the industry compatible keymap.
      - Operator Search.
    * - :kbd:`Shift-Tab`
      - Quick access (favorites)
-   * - :kbd:`Ctrl-D` / :kbd:`Cmd-D`
+   * - :kbd:`Ctrl-D`
      - Duplicate
    * - :kbd:`P`
      - Set Parent
    * - :kbd:`Return`
      - Rename
-   * - :kbd:`Ctrl-Return` / :kbd:`Cmd-Return`
+   * - :kbd:`Ctrl-Return`
      - Render
    * - :kbd:`B`
      - Proportional Editing / Soft Selection
-   * - :kbd:`Ctrl-[` / :kbd:`Cmd-[`
+   * - :kbd:`Ctrl-[`
      - Toggle Toolbar
-   * - :kbd:`Ctrl-]` / :kbd:`Cmd-]`
+   * - :kbd:`Ctrl-]`
      - Toggle Sidebar
 
 
@@ -65,11 +65,11 @@ this page shows common keys used in the industry compatible keymap.
 
    * - :kbd:`LMB`
      - Select
-   * - :kbd:`Ctrl-A` / :kbd:`Cmd-A`
+   * - :kbd:`Ctrl-A`
      - Select All
-   * - :kbd:`Shift-Ctrl-A` / :kbd:`Shift-Cmd-A`
+   * - :kbd:`Shift-Ctrl-A`
      - Deselect All
-   * - :kbd:`Ctrl-I` / :kbd:`Cmd-I`
+   * - :kbd:`Ctrl-I`
      - Select Inverse
    * - :kbd:`Up`
      - Select More
@@ -103,9 +103,9 @@ this page shows common keys used in the industry compatible keymap.
 .. list-table::
    :widths: 20 80
 
-   * - :kbd:`Ctrl-E` / :kbd:`Cmd-E`
+   * - :kbd:`Ctrl-E`
      - Extrude
-   * - :kbd:`Ctrl-B` / :kbd:`Cmd-B`
+   * - :kbd:`Ctrl-B`
      - Bevel
    * - :kbd:`I`
      - Inset
@@ -132,3 +132,13 @@ this page shows common keys used in the industry compatible keymap.
      - Set Rotation Key
    * - :kbd:`Shift-R`
      - Set Scale Key
+
+
+Platform Specific Keys
+======================
+
+macOS
+-----
+
+The :kbd:`Cmd` key is assigned instead of :kbd:`Ctrl` on macOS
+for all but a few exceptions which conflict with the operating system.

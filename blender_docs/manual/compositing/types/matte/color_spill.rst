@@ -4,7 +4,7 @@
 Color Spill Node
 ****************
 
-.. figure:: /images/compositing_types_matte_color-spill_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeColorSpill.png
    :align: right
 
    Color Spill Node.

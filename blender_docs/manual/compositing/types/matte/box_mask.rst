@@ -4,7 +4,7 @@
 Box Mask Node
 *************
 
-.. figure:: /images/compositing_types_matte_box-mask_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeBoxMask.png
    :align: right
 
    Box Mask Node.
@@ -26,7 +26,7 @@ Properties
 
 X, Y
    Position of the center of the box as a fraction of the total width or height.
-   (0.5, 0.5 creates a centered box; 0.0, 0.0 creates a box in the lower left).
+   (0.5, 0.5 creates a centered box; 0.0, 0.0 creates a box in the lower left.)
 Width
    Width of the box as a fraction of the total image width.
 Height

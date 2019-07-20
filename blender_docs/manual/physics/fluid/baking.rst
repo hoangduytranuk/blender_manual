@@ -4,17 +4,18 @@
 Baking
 ******
 
-.. figure:: /images/physics_fluid_types_domain_panels.png
+.. TODO2.8:
+   .. figure:: /images/physics_fluid_types_domain_panels.png
 
-   The fluid simulation options with Domain selected.
+      The fluid simulation options with Domain selected.
 
 
 Bake Button
 ===========
 
 Perform the actual fluid simulation. Blender will continue to work normally,
-except there will be a progress bar in the header of the Info Editor, next to the render selector.
-Pressing :kbd:`Esc` or the "x" next to the status bar will abort the simulation.
+except the progress will be displayed in the statusbar.
+Pressing :kbd:`Esc` or the "X" button next to the statusbar will abort the simulation.
 Afterwards two ``.bobj.gz`` (one for the *Final* quality, one for the *Preview* quality),
 plus one ``.bvel.gz`` (for the *Final* quality)
 will be in the selected output directory for each frame.

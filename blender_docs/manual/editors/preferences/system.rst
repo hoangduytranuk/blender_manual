@@ -4,32 +4,28 @@
 System
 ******
 
-The *System* tab allows you to set resolution, scripting console preferences,
-sound, graphics cards, and internationalization.
+The *System* section allows you to set graphics card options, memory limits & sound settings.
 
 If your hardware does not support some of the options described on this page,
-then they will either not show up or get corrected on startup.
-If this happens do not worry, you can either consult your computer manual
-to find a supported value or just let Blender correct it.
+then they will either not show up or be corrected on startup.
 
-.. figure:: /images/preferences_system_tab.png
+.. figure:: /images/editors_preferences_section_system.png
 
-   Preferences System tab.
+   Preferences System section.
 
 
 Cycles Render Device
 ====================
 
-Changes the computing device the :doc:`Cycles </render/engines/cycles/index>` render engine uses to render images.
+Changes the computing device the :doc:`Cycles </render/cycles/index>` render engine uses to render images.
 Cycles can use either the CPU or certain GPU's to render images,
-for more information see the :doc:`GPU Rendering </render/engines/cycles/gpu_rendering>` page.
+for more information see the :doc:`GPU Rendering </render/cycles/gpu_rendering>` page.
 
 None
    When set to *None* or when the only option is *None*:
    the CPU will be used as the computing device for the Cycles Renderer.
 CUDA
-   If the system has a compatible Nvidia CUDA enabled graphics card you will be able
-   to use it to render with the :doc:`Cycles </render/engines/cycles/features>` render engine.
+   If the system has a compatible NVIDIA CUDA device, it will show up an option for rendering with Cycles.
 OpenCL
    If the system has a compatible AMD OpenCL device, it will show up an option for rendering with Cycles.
 
@@ -47,7 +43,8 @@ Global Undo
 
    .. warning::
 
-      While disabling this option does save memory, it stops the :ref:`Redo Panel <ui-redo-last>`
+      While disabling this option does save memory,
+      it stops the :ref:`Redo Panel <ui-undo-redo-adjust-last-operation>`
       from functioning, also preventing tool options from being changed in some cases.
 
       For typical usage, its best to keep this enabled.
@@ -62,17 +59,18 @@ Sequencer Cache Limit
 Console Scrollback Lines
    The number of lines, buffered in memory of the console window.
    Useful for debugging purposes and command-line rendering.
-
 Texture Time Out
    Time since last access of a GL texture in seconds, after which it is freed.
    Set this to 0 to keep textures allocated.
-Garbage Collection Rate
-   Number of seconds between each run of the GL texture garbage collector.
 
+   Garbage Collection Rate
+      Number of seconds between each run of the GL texture garbage collector.
 VBO Time Out
-   TODO 2.8.
-Garbage Collection Rate
-   TODO 2.8.
+   Time since last access of a GL Vertex buffer object in seconds after which it is freed
+   (set to 0 to keep VBO allocated).
+
+   Garbage Collection Rate
+      Number of seconds between each run of the GL Vertex buffer object garbage collector.
 
 
 .. _prefs-system-sound:

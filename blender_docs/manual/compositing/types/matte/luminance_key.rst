@@ -4,7 +4,7 @@
 Luminance Key Node
 ******************
 
-.. figure:: /images/compositing_types_matte_luminance-key_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeComposite.png
    :align: right
 
    Luminance Key Node.
@@ -38,10 +38,10 @@ Properties
 Limit
    High
       Determines the lowest values that are considered foreground.
-      (which is supposed to be -- relatively -- light: from this value to 1.0).
+      (Which is supposed to be -- relatively -- light: from this value to 1.0.)
    Low
       Determines the highest values that are considered to be background objects.
-      (which is supposed to be -- relatively -- dark: from 0.0 to this value).
+      (Which is supposed to be -- relatively -- dark: from 0.0 to this value.)
 
 .. note::
 

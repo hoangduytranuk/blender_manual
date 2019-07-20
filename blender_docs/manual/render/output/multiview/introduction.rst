@@ -3,12 +3,12 @@
 Introduction
 ************
 
-.. figure:: /images/render_workflows_multiview_usage_viewport.png
+.. figure:: /images/render_output_multiview_usage_viewport.png
 
-Since version 2.75, Blender has come with a new feature called Multi-View.
-Multi-View is a complete tool set for working with stereoscopic rendering in Blender.
-It works with both the Blender Internal and Cycles rendering engines
-and it also supports many different stereo 3D visualization types.
+Multi-view is a complete toolset for working with stereoscopic rendering in Blender.
+It works with both the Eevee and Cycles rendering engines.
+Cycles additionally supports stereoscopic panoramic cameras.
+There is support for many different stereo 3D visualization types.
 
 .. note::
 

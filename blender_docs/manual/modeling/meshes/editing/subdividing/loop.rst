@@ -4,6 +4,8 @@
 Loop Subdivide
 **************
 
+.. _tool-mesh-loop_cut:
+
 Loop Cut and Slide
 ==================
 
@@ -62,7 +64,7 @@ This step is skipped when using multiple edge loops (see below).
 Options
 -------
 
-The options are available while the tool is in use, and later in the Operator panel.
+The options are available while the tool is in use, and later in the :ref:`ui-undo-redo-adjust-last-operation` panel.
 
 
 Loop Cut
@@ -96,7 +98,7 @@ Smoothness :kbd:`Alt-Wheel`
    similar to the *Subdivide Smooth* tool. When not using smoothing,
    new vertices for the new edge loop are placed exactly on the pre-existing edges.
    This keeps subdivided faces flat, but can distort geometry,
-   particularly when using :doc:`Subdivision Surfaces </modeling/modifiers/generate/subsurf>`.
+   particularly when using :doc:`Subdivision Surfaces </modeling/modifiers/generate/subdivision_surface>`.
    Smoothing can help maintain the curvature of a surface once it is subdivided.
 
    .. list-table::
@@ -121,10 +123,10 @@ Edge Slide
 Even :kbd:`E`
    Only available for single edge loops.
    This matches the shape of the edge loop to one of the adjacent edge loops.
-   (See :ref:`Edge Slide tool <modeling-meshes-editing-edge-slide>` for details).
+   (See :ref:`Edge Slide tool <modeling-meshes-editing-edge-slide>` for details.)
 Flip :kbd:`F`
    When Even is enabled, this flips the target edge loop to match.
-   (See :ref:`Edge Slide tool <modeling-meshes-editing-edge-slide>` for details).
+   (See :ref:`Edge Slide tool <modeling-meshes-editing-edge-slide>` for details.)
 
 
 Offset Edge Slide

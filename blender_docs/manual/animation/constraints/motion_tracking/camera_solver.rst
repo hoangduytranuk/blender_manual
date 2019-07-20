@@ -13,19 +13,19 @@ when it filmed the video footage, relative to the thing being tracked.
 .. note::
 
    This constraint only works after you have set up a minimum of eight markers and pressed
-   :ref:`Solve Camera Motion <editors-movie-clip-tracking-clip-solve-motion>`.
+   :ref:`Solve Camera Motion <editors-movie-clip-tracking-clip-solve-motion>`
    (:menuselection:`Movie Clip Editor --> Tool Shelf --> Solve --> Solve Camera Motion`).
 
 
 Options
 =======
 
-.. figure:: /images/rigging_constraints_motion-tracking_camera-solver_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_motion-tracking_camera-solver_panel.png
 
-   Camera Solver Constraint panel.
+.. TODO2.8    Camera Solver Constraint panel.
 
 Active Clip
    Receive tracking data from the movie clip active in the Movie Clip editor.
-   If unchecked, an option appears to choose from the other clips.
+   If un-checked, an option appears to choose from the other clips.
 Constraint to F-Curve
    Applies the constraint, creating Keyframes for the transforms.

@@ -26,7 +26,7 @@ Options
 Primitive
    Meta Ball
       Adds a meta with a point underlying structure.
-   Meta Tube
+   Meta Capsule
       Adds a meta with a line segment underlying structure.
    Meta Plane
       Adds a meta with a planar underlying structure.
@@ -34,6 +34,10 @@ Primitive
       Adds a meta with an ellipsoidal underlying structure.
    Meta Cube
       Adds a meta with a volumetric cubic underlying structure.
+
+   .. seealso::
+
+      A more detailed explanation of each primitive in the :doc:`Structure </modeling/metas/structure>` page.
 
 Radius, Align to View, Location, Rotation
    See :ref:`Common Object Options <object-common-options>`.

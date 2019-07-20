@@ -4,7 +4,7 @@
 Filter Node
 ***********
 
-.. figure:: /images/compositing_types_filter_filter-node_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeFilter.png
    :align: right
 
    Filter Node.

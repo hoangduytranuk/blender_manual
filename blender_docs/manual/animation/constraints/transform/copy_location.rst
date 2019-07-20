@@ -16,9 +16,9 @@ The *Copy Location* constraint forces its owner to have the same location as its
 Options
 =======
 
-.. figure:: /images/rigging_constraints_transform_copy-location_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_transform_copy-location_panel.png
 
-   Copy Location panel.
+.. TODO2.8    Copy Location panel.
 
 Target
    :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
@@ -30,7 +30,7 @@ X, Y, Z
       The *Invert* buttons invert their respective preceding coordinates.
 
 Offset
-   When enabled, this control allows the owner to be translated (using its current transform properties),
+   When enabled, this control allows the owner to be moved (using its current transform properties),
    relative to its target's position.
 
 Space

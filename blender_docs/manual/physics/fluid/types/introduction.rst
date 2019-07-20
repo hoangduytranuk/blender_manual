@@ -6,14 +6,7 @@ Introduction
 Common Options
 ==============
 
-.. _fluid-animated-mesh:
-
-Animated Mesh/Export
---------------------
-
-Click this button if the network is animated (e.g. deformed by an armature, shape keys, or lattice).
-It can become very slow and is not necessary if the network's position and rotation are animated
-(i.e. only object transformations).
+Some options shared by many fluid types.
 
 
 .. _fluid-initialization:
@@ -33,3 +26,13 @@ Both
 .. figure:: /images/physics_fluid_types_introduction_initialization.jpg
 
    Example of different types of initialization of volume.
+
+
+.. _fluid-animated-mesh:
+
+Animated Mesh/Export
+--------------------
+
+Click this button if the network is animated (e.g. deformed by an armature, shape keys, or lattice).
+It can become very slow and is not necessary if the network's position and rotation are animated
+(i.e. only object transformations).

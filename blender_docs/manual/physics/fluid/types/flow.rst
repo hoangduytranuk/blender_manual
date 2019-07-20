@@ -18,25 +18,23 @@ Inflow
    :Panel:     :menuselection:`Physics --> Fluid`
    :Type:      Inflow
 
-.. figure:: /images/physics_fluid_types_flow_inflow.png
+.. TODO2.8:
+   .. figure:: /images/physics_fluid_types_flow_inflow.png
 
-   Fluid Inflow settings.
-
-Volume Initialization Type
-   See :ref:`Volume Initialization Type <fluid-initialization>`.
+      Fluid Inflow settings.
 
 This object will put fluid into the simulation, like a water tap.
 
-Inflow Velocity
-   Speed of the fluid that is created inside of the object.
-
+Volume Initialization Type
+   See :ref:`Volume Initialization Type <fluid-initialization>`.
+Animated Mesh/Export
+   See :ref:`Animated Mesh/Export <fluid-animated-mesh>`.
 Local Coordinates/Enable
    Use local coordinates for the inflow.
    This is useful if the inflow object is moving or rotating, as the inflow stream will
    follow/copy that motion. If disabled, the inflow location and direction do not change.
-
-Animated Mesh/Export
-   See :ref:`Animated Mesh/Export <fluid-animated-mesh>`.
+Inflow Velocity
+   Speed of the fluid that is created inside of the object.
 
 
 .. _bpy.types.OutflowFluidSettings:
@@ -50,9 +48,10 @@ Outflow
    :Panel:     :menuselection:`Physics --> Fluid`
    :Type:      Outflow
 
-.. figure:: /images/physics_fluid_types_flow_outflow.png
+.. TODO2.8:
+   .. figure:: /images/physics_fluid_types_flow_outflow.png
 
-   Fluid Outflow settings.
+      Fluid Outflow settings.
 
 Any fluid that enters the region of this object will be deleted (think of a drain or a black hole).
 This can be useful in combination with an inflow to prevent the whole domain from filling up.

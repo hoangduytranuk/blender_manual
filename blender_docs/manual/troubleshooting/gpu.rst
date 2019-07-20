@@ -6,7 +6,7 @@ Graphics Hardware
 Blender uses of OpenGL for the 3D viewport and user interface.
 The graphics card (GPU) and driver have a big impact on Blender's behavior and performance.
 
-This pages lists possible solutions for graphics glitches, problems with Eevee and Cycles,
+This page lists possible solutions for graphics glitches, problems with Eevee and Cycles,
 and crashes related to your GPU.
 
 
@@ -61,9 +61,9 @@ Laptops
 =======
 
 Laptops often have two GPUs for power saving purposes.
-One slower onboard GPU (typically Intel) and one faster dedicated GPU for better performance (AMD or NVIDIA).
+One slower onboard GPU (typically Intel) and one faster dedicated GPU for a better performance (AMD or NVIDIA).
 
-For best performance the dedicated GPU should be used for Blender.
+For the best performance the dedicated GPU should be used for Blender.
 Which GPU to use for which application can be configured in your graphics driver settings.
 
 If there is a graphics glitch specific to the onboard GPU, then using the dedicated GPU can also help avoid that.
@@ -105,8 +105,8 @@ Poor Performance
 Render Errors
 -------------
 
-See :doc:`Eevee </render/engines/eevee/limitations>` and
-:doc:`Cycles </render/engines/cycles/gpu_rendering>` documentation respectively.
+See :doc:`Eevee </render/eevee/limitations>` and
+:doc:`Cycles </render/cycles/gpu_rendering>` documentation respectively.
 
 
 Wrong Selection in 3D Viewport

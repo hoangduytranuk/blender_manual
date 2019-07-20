@@ -12,9 +12,9 @@ e.g. fingers, feet, elbows, etc.
 Options
 =======
 
-.. figure:: /images/rigging_constraints_relationship_pivot_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_relationship_pivot_panel.png
 
-   Pivot panel.
+.. TODO2.8    Pivot panel.
 
 Target
    :ref:`ui-data-id` for the selection of the object to be used as a pivot point.

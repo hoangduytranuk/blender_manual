@@ -16,9 +16,9 @@ This object will be used as an obstacle in the simulation. As with a fluid objec
 obstacle objects currently should not intersect. As for fluid objects,
 the actual mesh geometry is used for obstacles. For objects with a volume,
 make sure that the normals of the obstacle are calculated correctly, and radiating properly
-(use the *Flip Normal* button, in *Edit Mode*, *Mesh Tools* panel, in the Tool Shelf),
+(use the :menuselection:`Mesh --> Normals --> Recalculate Outside` in mesh edit mode),
 particularly when using a spinned container.
-Applying a :doc:`Subdivision Surface Modifier </modeling/modifiers/generate/subsurf>`
+Applying a :doc:`Subdivision Surface Modifier </modeling/modifiers/generate/subdivision_surface>`
 before baking the simulation could also be a good idea if the mesh is not animated.
 
 
@@ -28,7 +28,7 @@ Options
 Volume Initialization Type
    See :ref:`Volume Initialization Type <fluid-initialization>`.
 
-Boundary type
+Slip type
    Determines the stickiness of the obstacle surface, called "Surface Adhesion".
    Surface Adhesion depends in the real world on the fluid and the graininess or
    friction/adhesion/absorption qualities of the surface.
@@ -37,7 +37,7 @@ Boundary type
       Causes the fluid to stick to the obstacle (zero velocity).
    Free Slip
       Allows movement along the obstacle (only zero normal velocity).
-   Part Slip
+   Partial Slip
       Mixes both types, with 0 being mostly no slip, and 1 being identical to free slip.
 
    Note that if the mesh is moving, it will be treated as no slip automatically.
@@ -45,12 +45,12 @@ Boundary type
 .. figure:: /images/physics_fluid_types_obstacle_bndtcomp.jpg
 
    Example of the different boundary types for a drop falling onto the slanted wall.
-   From left to right: no-slip, part-slip 0.3, part-slip 0.7 and free-slip.
+   From left to right: no slip, partial slip 0.3, partial slip 0.7 and free slip.
 
 Animated Mesh/Export
    See :ref:`Animated Mesh/Export <fluid-animated-mesh>`.
 
-Part Slip Amount
+Amount
    Amount of mixing between no- and free-slip, described above.
 
 Impact Factor

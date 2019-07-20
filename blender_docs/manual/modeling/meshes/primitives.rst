@@ -24,19 +24,13 @@ You can also add primitives in Edit Mode at the 3D cursor.
 
    You can make a planar mesh three-dimensional by moving one or more of the vertices out of its plane
    (applies to *Plane*, *Circle* and *Grid*).
-   A simple circle is actually often used as a starting point to create even the most complex of meshes.
-
-.. hint::
-
-   In order to facilitate the modeling,
-   the best solution is to imagine what primitive type suits better for your model.
-   If you will model a cuboid, the best solution is to start with a primitive cube, and so on.
+   A simple circle is often used as a starting point to create even the most complex of meshes.
 
 
 Common Options
 ==============
 
-These options can be specified in the Operator panel in the *Tool Shelf*,
+These options can be specified in the :ref:`ui-undo-redo-adjust-last-operation` panel,
 which appears when the object is created.
 Options included in more than one primitive are:
 
@@ -105,7 +99,7 @@ vertices than a UV sphere, in other words, they are uniform in every direction.
 
 Subdivisions
    How many recursions are used to define the sphere.
-   At level 1 the Icosphere is an icosahedron, a solid with 20 equilateral triangular faces.
+   At level 1 the icosphere is an icosahedron, a solid with 20 equilateral triangular faces.
    Each increase in the number of subdivisions splits each triangular face into four triangles.
 
 .. note::
@@ -203,12 +197,19 @@ Y Subdivisions
 Monkey
 ======
 
-This is a gift from old NaN to the community and is seen as a programmer's joke or
-"Easter Egg". It creates a monkey's head once you press the *Monkey* button.
-The Monkey's name is "Suzanne" and is Blender's mascot.
-Suzanne is very useful as a standard test mesh,
-much like the `Utah Teapot <https://en.wikipedia.org/wiki/Utah_teapot>`__
-or the `Stanford Bunny <https://en.wikipedia.org/wiki/Stanford_Bunny>`__.
+This adds a stylized monkey head to use as a test mesh,
+use :term:`Subdivision Surface` for a refined shape.
+
+This is intended as a test mesh, similar to:
+
+- `Utah Teapot <https://en.wikipedia.org/wiki/Utah_teapot>`__
+- `Stanford Bunny <https://en.wikipedia.org/wiki/Stanford_Bunny>`__.
+
+.. hint:: History
+
+   This is a gift from old NaN to the community and is seen as a programmer's joke or
+   "Easter Egg". It creates a monkey's head once you press the *Monkey* button.
+   The Monkey's name is "Suzanne" and is Blender's mascot.
 
 .. note:: Add-ons
 

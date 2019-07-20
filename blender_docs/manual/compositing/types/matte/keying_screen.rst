@@ -4,7 +4,7 @@
 Keying Screen Node
 ******************
 
-.. figure:: /images/compositing_types_matte_keying-screen_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeKeyingScreen.png
    :align: right
 
    Keying Screen Node.
@@ -75,11 +75,11 @@ Instead of increasing the range of accepted shades to be masked out, the *Keying
 node lets you change what shade of green (or other color) to use for different parts of
 the image.
 
-Start in the :doc:`Movie Clip Editor </editors/movie_clip_editor/introduction>`.
+Start in the :doc:`Movie Clip Editor </editors/clip/index>`.
 Open the Sidebar region and Tool Shelf to show tracking configuration.
-Tracks used for gradients are not useful for camera solving, because they do not
-track well. So create a new object track in the *Objects* selector. Place tracking
-markers on the clip to sample different parts of the backdrop.
+Tracks used for gradients are not useful for camera solving, because they do not track well.
+So create a new object track in the *Objects* selector.
+Place tracking markers on the clip to sample different parts of the backdrop.
 
 .. figure:: /images/compositing_types_matte_keying-screen_trackers.jpg
    :width: 480px

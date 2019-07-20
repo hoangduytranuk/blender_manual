@@ -5,7 +5,7 @@
 File Output Node
 ****************
 
-.. figure:: /images/compositing_types_output_file_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeOutputFile.png
    :align: right
 
    File Output Node.

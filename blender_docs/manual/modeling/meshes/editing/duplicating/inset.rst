@@ -1,3 +1,4 @@
+.. _tool-mesh-inset_faces:
 
 ***********
 Inset Faces

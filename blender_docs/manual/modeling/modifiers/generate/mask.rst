@@ -4,7 +4,7 @@
 Mask Modifier
 *************
 
-The Mask Modifier allows vertices of an object to be hidden dynamically based on vertex groups.
+The *Mask* modifier allows vertices of an object to be hidden dynamically based on vertex groups.
 
 
 Options
@@ -18,22 +18,29 @@ Mode
       all vertices belonging to the chosen Vertex Group (with a weight above zero) will be visible,
       and all other vertices will be hidden.
 
-      .. figure:: /images/modeling_modifiers_generate_mask_vertex-group.png
-         :width: 350px
+      .. list-table::
+         The Mask modifier, Vertex Group mode.
 
-         Vertex Group.
+         *  -  .. figure:: /images/modeling_modifiers_generate_mask_vertex-group.png
+
+            -   .. figure:: /images/modeling_modifiers_generate_mask_panel-vertex-group.png
 
    Armature
       When in Pose Mode,
       vertices belonging to the Vertex Group associated with the active bone (same names) will be visible.
       Vertices not in that group will be hidden.
 
-      .. figure:: /images/modeling_modifiers_generate_mask_armature.png
-         :width: 350px
+      .. list-table::
+         The Mask modifier, Armature mode.
 
-         Armature.
+         *  -  .. figure:: /images/modeling_modifiers_generate_mask_armature.png
+
+            -   .. figure:: /images/modeling_modifiers_generate_mask_panel-armature.png
 
 Inverse
    Normally, vertices belonging to the selected Vertex Group (or group associated with the active pose bone)
-   will be shown. The *Invert* toggle allows you to reverse this behavior, instead showing all vertices
-   which do not belong to the Vertex Group, and hiding those that do.
+   will be shown. The *Invert* toggle allows you to reverse this behavior, instead only showing vertices
+   which do not belong to the Vertex Group.
+
+Threshold
+   Vertices with weights less or equal to this value will be hidden.

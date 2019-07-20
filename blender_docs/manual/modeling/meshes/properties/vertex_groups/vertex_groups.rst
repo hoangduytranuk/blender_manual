@@ -18,7 +18,7 @@ Vertex Groups are maintained within the *Object Data* Properties Editor,
 and there in the *Vertex Groups* panel.
 
 Active Vertex Group
-   A :ref:`ui-list-view`.
+   A :ref:`List view <ui-list-view>`.
 
    Lock
       Locks the group from being editable. You can only rename or delete the group.
@@ -52,7 +52,7 @@ Active Vertex Group
       Clear Active Group
          Remove all assigned vertices from the active Group. The group is made empty.
          Note that the vertices may still be assigned to other Vertex Groups of the Object.
-         (not available for locked groups).
+         (Not available for locked groups.)
       Delete All Unlocked Groups
          Remove all Vertex Groups from the Object that are *not* locked.
       Delete All Groups

@@ -4,46 +4,44 @@
 Save & Load
 ***********
 
+.. figure:: /images/editors_preferences_section_save-load.png
+
+   Preferences Save/Load section.
+
+
 Blend Files
 ===========
 
 Relative Paths
-   By default, external files use a :doc:`relative path </files/files/relative_paths>`.
+   Default value for :ref:`Relative Paths <files-blend-relative_paths>` when loading external files
+   such as images, sounds & linked libraries.
 Compress File
-   Compress blend-file when saving.
-
-   This option will compact your files whenever Blender is saving them.
-   Dense meshes, large packed textures or lots of elements in your scene
-   will result in a large blend being created.
-
-   This option may slow down Blender when you quit,
-   or under normal operation when Blender is saving your backup files.
-   Using this option trades processor time for file size.
+   Default value for :ref:`Compress file <files-blend-compress>` when saving blend files.
 Load UI
-   Default setting is to load the Window layout
-   (the :doc:`Workspaces </interface/window_system/workspaces>`) of the saved file.
-   This can be changed individually when loading a file from
-   the *Open blend-file* panel of the :doc:`File Browser </editors/file_browser/index>`.
-
+   Default value for :ref:`Load UI <file-load-ui>` when loading blend files.
 Save Preview Images
-   Previews of images and materials in the :doc:`File Browser </editors/file_browser/index>`
+   Previews of images and materials in the :doc:`File Browser </editors/file_browser>`
    are created on demand. To save these previews into your blend-file,
    enable this option (at the cost of increasing the size of your blend-file).
 Tabs as Spaces
-   When hitting :kbd:`Tab` the tabs get written as keyboard spaces.
+   Entering :kbd:`Tab` in the Text Editor adds the appropriate number of spaces
+   instead of using characters.
 Save Prompt
    Asks for confirmation before closing or opening a new
    blend-file if the current file has unsaved changes
-
 Save Versions
-   Number of versions created for the same file (for backup).
+   Number of versions created (for backup) when saving newer versions of a file.
 
-   This option tells Blender to keep the indicated number of saved versions of
-   your file in your current working directory when you manually save a file.
-   These files will have the extension: ``.blend1``, ``.blend2``, etc.,
-   with the number increasing to the number of versions you specify. Older files will be named with a higher number.
-   e.g. With the default setting of 2, you will have three versions of your file: ``*.blend`` (your last save),
-   ``*.blend1`` (your second last save) and ``*.blend2`` (your third last save).
+   This option keeps saved versions of your file in the same directory,
+   using extensions: ``.blend1``, ``.blend2``, etc.,
+   with the number increasing to the number of versions you specify.
+
+   Older files will be named with a higher number.
+   E.g. with the default setting of 2, you will have three versions of your file:
+
+   :``*.blend``: last saved.
+   :``*.blend1``: second last saved.
+   :``*.blend2``: third last saved.
 Recent Files
    Number of files displayed in :menuselection:`File --> Open Recent`.
 
@@ -70,7 +68,8 @@ Auto Execution
 Python scripts (including driver expressions) are not executed by default for security reasons.
 
 Auto Run Python Scripts
-   You may choose to ignore these security issues and allow scripts to be executed automatically.
+   You may be working on projects where you only load files from trusted sources,
+   making it more convenient to allow scripts to be executed automatically.
 Excluded Paths
    Blend-files in these folders will *not* automatically run Python scripts.
    This can be used to define where blend-files from untrusted sources are kept.
@@ -88,16 +87,22 @@ Filter File Extensions
    (i.e. blend-files when loading a complete Blender setting).
    The selection of file types may be changed in the file region.
 
-   .. figure:: /images/preferences_file_filter.png
+   .. figure:: /images/editors_preferences_save-load_filter.png
 
       File extension filter.
 
 Hide Dot File/Data-blocks
-   Hide file which start with ``.`` on file browsers (in Linux and Apple systems, ``.`` files are hidden).
+   Hide file which start with ``.`` on File Browsers and ID selector.
+
+   .. hint::
+
+      Data-blocks beginning with a ``.`` can be selected by typing in the ``.`` characters.
+      When explicitly written, the setting to hide these data-blocks is ignored.
+
 Hide Recent Locations
-   Hide the *Recent* panel of the :doc:`File Browser </editors/file_browser/index>`
+   Hide the *Recent* panel of the :doc:`File Browser </editors/file_browser>`
    which displays recently accessed folders.
 Hide System Bookmarks
    Hide System Bookmarks in the *File Browser*.
 Show Thumbnails
-   Display a thumbnail of images and movies when using the :doc:`File Browser </editors/file_browser/index>`.
+   Default to the thumbnail view of files when using the :doc:`File Browser </editors/file_browser>`.

@@ -3,7 +3,7 @@
 Structure
 *********
 
-.. figure:: /images/rigging_armatures_bones_structure_bones-elements.png
+.. figure:: /images/animation_armatures_bones_structure_bones-elements.png
    :align: right
 
    The elements of a bone.
@@ -37,7 +37,7 @@ oriented from root to tip. So, this is the "roll" axis of the bones.
 Bones Influence
 ===============
 
-.. figure:: /images/rigging_armatures_bones_structure_envelope-edit-mode.png
+.. figure:: /images/animation_armatures_bones_structure_envelope-edit-mode.png
    :figwidth: 180px
    :align: right
 
@@ -52,17 +52,17 @@ The simplest way is to have each bone affecting those parts of the geometry that
 a given range from it. This is called the *envelope technique*,
 because each bone can control only the geometry "enveloped" by its own influence area.
 
-If a bone is visualized as *Envelope*,
-in *Edit Mode* and in *Pose Mode* you can see the area of influence,
-which depends on:
+If a bone is visualized as *Envelope*, in *Edit Mode* and in *Pose Mode*
+you can see the area of influence, which depends on:
 
 - The *distance* property and
 - the root's radius and the tip's radius.
 
-.. figure:: /images/rigging_armatures_bones_structure_envelope-pose-mode.png
+.. figure:: /images/animation_armatures_bones_structure_envelope-pose-mode.png
    :width: 300px
 
    Our armature in Envelope visualization, in Pose Mode.
 
 
-All these influence parameters are further detailed in the :doc:`skinning pages </animation/armatures/skinning/index>`.
+All these influence parameters are further detailed
+in the :doc:`skinning pages </animation/armatures/skinning/index>`.

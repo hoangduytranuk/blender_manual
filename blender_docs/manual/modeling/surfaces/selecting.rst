@@ -10,9 +10,25 @@ Selecting
 
 Surface selection in *Edit Mode* is very similar to
 :doc:`NURBS curve selection </modeling/curves/editing/introduction>`.
-The basic tools are the same as with :doc:`meshes </modeling/meshes/selecting/introduction>`,
+The basic tools are the same as with :doc:`meshes </modeling/meshes/selecting>`,
 so you can select a simple control point with an :kbd:`LMB`\ -click,
 add to current selection with :kbd:`Shift-LMB` clicks, :kbd:`B` order-select, and so on.
+
+
+Cursor Selection
+================
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Hotkey:    :kbd:`LMB`
+
+Clicking on a control point selects it,
+using modifier keys you can perform other operations.
+
+Extend/Toggle :kbd:`Shift`
+   To add to the selection or de-select when the item is already active.
 
 
 Select Menu
@@ -21,9 +37,9 @@ Select Menu
 The *Select* menu (3D View headers) is even simpler than for curves...
 
 All these options have the same meaning and behavior as in
-:doc:`Object Mode </scene_layout/object/selecting/index>`
-(and the specificities of *Border Select* in *Edit Mode* have already been discussed
-:doc:`here </modeling/meshes/selecting/introduction>`).
+:doc:`Object Mode </scene_layout/object/selecting>`
+(and the specificities of *Box Select* in *Edit Mode* have already been discussed
+:doc:`here </modeling/meshes/selecting>`).
 
 .. container:: lead
 
@@ -66,11 +82,7 @@ More and Less
    :Menu:      :menuselection:`Select --> More/Less`
    :Hotkey:    :kbd:`Ctrl-NumpadPlus` / :kbd:`Ctrl-NumpadMinus`
 
-These two options are complementary and very similar to
-:doc:`those for meshes </modeling/meshes/selecting/introduction>`.
-Their purpose, based on current selected control points, is to reduce or enlarge this selection.
-
-The algorithm is the same as with meshes:
+Expand or contract the selection based on current selected control points.
 
 More
    For each selected control point, select **all** its linked points (i.e. two, three or four).

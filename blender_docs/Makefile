@@ -96,14 +96,6 @@ html: .FORCE .SPHINXBUILD_EXISTS
 	@echo "To view, run:"
 	@echo "  "$(OPEN_CMD) $(shell pwd)"/$(BUILDDIR)/html/$(CONTENTS_HTML)"
 
-text: .FORCE .SPHINXBUILD_EXISTS
-	# './' (input), './html/' (output)
-	QUICKY_CHAPTERS=$(QUICKY_CHAPTERS) \
-	$(SPHINXBUILD) -b text $(SPHINXOPTS) ./manual "$(BUILDDIR)/text"
-
-	@echo "To view, run:"
-	@echo "  "$(OPEN_CMD) $(shell pwd)"/$(BUILDDIR)/text/$(CONTENTS_HTML)"
-
 html_server: .FORCE .SPHINXBUILD_EXISTS
 	# './' (input), './html/' (output)
 	# - Single thread because we run many builds at once.
@@ -143,9 +135,9 @@ readme: .FORCE
 	@echo "  "$(OPEN_CMD)" $(shell pwd)"/$(BUILDDIR)/readme.html"
 
 check_syntax: .FORCE
-	- python3 tools_rst/rst_check_syntax.py --long > rst_check_syntax.log
+	- python3 tools_rst/rst_check_syntax.py --long --title --kbd > rst_check_syntax.log
 	- @echo "Lines:" `cat rst_check_syntax.log | wc -l`
-	- gvim --nofork -c "cfile rst_check_syntax.log" -c "cope" -c "clast"
+	- python3 tools/open_quickfix_in_editor.py rst_check_syntax.log
 	- rm rst_check_syntax.log
 
 check_structure: .FORCE

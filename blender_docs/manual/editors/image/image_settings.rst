@@ -7,58 +7,59 @@ Image Settings
 Image Menu
 ==========
 
-New Image
+New
    Creates a new :ref:`image-generated` Image.
-Open Image
+Open
    Load image from a file.
-Read Render Layers
-   Read all the current scene's render layers from cache, as needed.
+Open Cache Render
+   Load the current scene's render layers from disk cache, if available.
    This can be used to save RAM while rendering because the render layers do not have to be saved in RAM.
    This can also be used to recover some information from a fail render.
    For this to work, :ref:`Save Buffers <render_properties_save-buffers>` must be enabled.
-Save All Images
-   Repack (or save if external file) all edited images.
-Replace Image
-   Replaces the current image, while preserving the link to UV maps,
-   with a selected file.
-Reload Image
-   Reloading the image from an external file.
-Save Image
+
+Replace
+   Replaces the current image throughout the blend-file with another image.
+Reload
+   Reload the image from the file on disk.
+Edit Externally
+   Using the *Edit Externally* tool Blender will open an external image editor,
+   as specified in the *Preferences* and load in the image to be edited.
+
+Save
    Save the image, if the image is already a file :kbd:`Alt-S`.
-Save As Image
-   Save the (rendered) image in a separate file :kbd:`F3` or
+Save As
+   Save the (rendered) image in a separate file :kbd:`Shift-S` or
    you want to save it under a different name.
 Save a Copy
    Using *Save as Copy* will save the file to a specified name,
    but will keep the old one open in the Image editor.
-Edit Externally
-   Using the *Edit Externally* tool Blender will open an external image editor,
-   as specified in the *Preferences* and load in the image to be edited.
+Save All Images
+   Save all modified images. Packed images will be repacked.
+
 Invert
    Invert Image Colors
       Invert the colors of an image.
    Invert Channel
       Red, Green, Blue, Alpha
+
 Pack
-   Pack Image
-      Packs the external image file into the blend-file.
-      See :ref:`pack-unpack-data`.
-   Pack As PNG
-      Packs the image into the blend-file as lossless PNG.
-      It is available as an option in the Operator panel
-      or if the image was modified inside Blender and changes are not saved to the drive.
+   Packs the image into the blend-file.
+   See :ref:`pack-unpack-data`.
+Unpack
+   Unpack the image to disk.
 
 .. important::
 
-   Rendered images had to be saved externally or packed.
+   Rendered images are not automatically saved, they have to be saved to disk manually.
+
 
 Image Panel
 ===========
 
-.. figure:: /images/editors_uv-image_image_image-settings_movie-image-panel.png
+.. TODO2.8 figure:: /images/editors_uv-image_image_image-settings_movie-image-panel.png
    :align: right
 
-   Image panel.
+.. TODO2.8   Image panel.
 
 Image
    Data-block menu.
@@ -70,7 +71,7 @@ Image
 Source
 ------
 
-See about supported :doc:`/files/files/media/image_formats`.
+See about supported :doc:`/files/media/image_formats`.
 
 
 Single Image
@@ -125,15 +126,15 @@ Generated
 
 Image generated in Blender.
 
-.. list-table::
+.. TODO2.8 .. list-table::
 
-   * - .. figure:: /images/editors_uv-image_image_image-settings_generated-image-panel.png
+.. TODO2.8   * - .. figure:: /images/editors_image_image-settings_generated-image-panel.png
 
-          Image panel for Generated source.
+.. TODO2.8          Image panel for Generated source.
 
-     - .. figure:: /images/editors_uv-image_image_image-settings_generated-new-image.png
+.. TODO2.8     - .. figure:: /images/editors_image_image-settings_generated-new-image.png
 
-          The New Image pop-up menu.
+.. TODO2.8          The New Image pop-up menu.
 
 Width, Height
    The size of image in pixels.
@@ -164,31 +165,44 @@ File
    Path
       Path to the linked file.
    Open
-      Opens the :doc:`/editors/file_browser/index` to select a file from a drive.
+      Opens the :doc:`/editors/file_browser` to select a file from a drive.
    Reload
       Reloads the file. Useful when a file has been reworked in an external application.
 Color Space
    :term:`Color Space`.
 
-   XYZ
-      XYZ space.
    sRGB
       Standard RGB display space.
-   Raw
-      Raw space.
-   Non-Color
-      Color space used for images which contains non-color data (e.g. normal maps).
-   Linear ACES
-      ACES linear space.
    Linear
       Linear 709 (full range). Blender native linear space.
+   Linear ACES
+      ACES linear space.
+   XYZ
+      Standard linear XYZ space.
+   Non-Color
+      Color space used for images which contains non-color data (e.g. normal maps).
+   Raw
+      Same as Non-Color.
    Filmic Log
-      Todo.
+      Intermediate log color space of Filmic view transform.
 View as Render
    Applies :doc:`color transform </render/color_management>` when displaying this image on the screen.
 Use Multi-View
    See :doc:`Multi-View </render/output/multiview/index>`.
 Alpha
-   :term:`Alpha Channel`.
+   Representation of alpha in the image file, to convert to and from when saving and loading the image.
+   See :term:`Alpha Channel`.
 
-   Straight, Premultiplied
+   Straight
+      Store RGB and alpha channels separately with alpha acting as a mask, also known as unassociated alpha.
+      Commonly used by image editing applications and file formats like PNG.
+      This preserves colors in parts of the image with zero alpha.
+   Premultiplied
+      Store RGB channels with alpha multiplied in, also known as associated alpha.
+      The natural format for renders and used by file formats like OpenEXR.
+      This can represent purely emissive effects like fire correctly, unlike straight alpha.
+   Channel Packed
+      Different images are packed in the RGB and alpha channels, and they should not affect each other.
+      Channel packing is commonly used by game engines to save memory.
+   None
+      Ignore alpha channel from the file and make image fully opaque.

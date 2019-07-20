@@ -4,7 +4,7 @@
 Composite Node
 **************
 
-.. figure:: /images/compositing_types_output_composite_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeComposite.png
    :align: right
 
    Composite Node.

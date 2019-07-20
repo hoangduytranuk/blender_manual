@@ -19,9 +19,10 @@ control the anchor and axis of the hinge.
 The Hinge is the only 1-axis rotational constraint that uses the Z axis instead of the X axis.
 If something is wrong with your hinge, check your other constraints to see if this might be the problem.
 
-.. figure:: /images/physics_rigid-body_constraints_types_hinge_panel-example.png
+.. TODO2.8:
+   .. figure:: /images/physics_rigid-body_constraints_types_hinge_panel-example.png
 
-   *Hinge* constraint options.
+      *Hinge* constraint options.
 
 
 Options

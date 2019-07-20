@@ -4,15 +4,16 @@
 Solidify Modifier
 *****************
 
-The Solidify Modifier takes the surface of any mesh and adds depth to it.
+The *Solidify* modifier takes the surface of any mesh and adds depth, thickness to it.
 
 
 Options
 =======
 
 .. figure:: /images/modeling_modifiers_generate_solidify_panel.png
+   :align: right
 
-   Solidify Modifier.
+   The Solidify modifier.
 
 Thickness
    The depth to be solidified.
@@ -37,10 +38,11 @@ Vertex Group
 
       - On 0.0 , vertices with zero weight will have no thickness at all.
       - On 0.5 , vertices with zero weight will be half as thick as those with full weight.
-      - On 1.0 , the weights are ignored and the *thickness* value is used for every vertex.
+      - On 1.0 , the weights are ignored and the *Thickness* value is used for every vertex.
 
 Crease
-   These options are intended for usage with the :doc:`Subdivision Modifier </modeling/modifiers/generate/subsurf>`.
+   These options are intended for usage with
+   the :doc:`Subdivision Surface </modeling/modifiers/generate/subdivision_surface>` modifier.
 
    .. figure:: /images/modeling_modifiers_generate_solidify_rims.png
       :width: 350px
@@ -65,16 +67,16 @@ High Quality Normals
 Fill Rim
    Fills the gap between the inner and outer edges.
 Only Rim
-   Will not have an extruded surface parallel to the original but instead will only have the perpendicular rim.
+   Will not extrude surfaces parallel to the original one, but instead will only generate the perpendicular rim.
 
 .. note::
 
    *Fill Rim* and *Only Rim* only make a difference on :term:`non-manifold` objects,
-   since the "rims" are generated from the borders of the original geometry.
+   since the rims are generated from the borders of the original geometry.
 
 Material Index Offset
-   Choose a different material to use for the new geometry;
-   this is applied as an offset from the original material of the face from which it was solidified.
+   Choose a different material to use for the new geometry.
+   This is applied as an offset from the original material of the face from which it was solidified.
 
    - A value of 0 means it will use the same material.
    - A value of 1 means it will use the material immediately below the original material.
@@ -90,7 +92,8 @@ Material Index Offset
    The modifier thickness is calculated using local vertex coordinates. If the object has non-uniform scale,
    the thickness will vary on different sides of the object.
 
-   To fix this, either apply :kbd:`Ctrl-A` or clear :kbd:`Alt-S` scale.
+   To fix this, either :ref:`apply <bpy.ops.object.transform_apply>`
+   or :ref:`clear <bpy.ops.object.*clear>` the scale.
 
 
 Known Limitations
@@ -104,4 +107,4 @@ While *Even Thickness* and *High Quality Normals* should yield good results,
 the final wall thickness is not guaranteed and may vary depending on the mesh topology.
 
 In order to maintain precise wall thickness in every case, we would need to add/remove faces on the offset shell,
-something this modifier does not do since this would add a lot of complexity and slow down the modifier.
+something this modifier does not do since this would add a lot of complexity and slow it down.

@@ -8,23 +8,14 @@ Tabs
 
 .. figure:: /images/interface_window-system_tabs-panels_tabs.png
    :align: right
-   :width: 200px
-   :figwidth: 200px
+   :figwidth: 300px
 
-   Vertical Tab header shows tab icons in the Properties Editor.
+   Top: Horizontal Tab header in the Topbar.
+   Bottom: Vertical Tab header shows tab icons in the Properties Editor.
 
 Tabs are used to control overlapping sections in the user interface.
 Contents of only one Tab is visible at a time.
 Tabs are listed in *Tab header*, which can be vertical or horizontal.
-
-.. figure:: /images/interface_window-system_tabs-panels_tabs_horizontal.png
-   :align: center
-
-   Horizontal Tab header in the Top Bar.
-
-.. container:: lead
-
-   .. clear
 
 
 Switching/Cycling
@@ -37,6 +28,10 @@ You can also cycle through tabs with :kbd:`Ctrl-Tab` and
 :kbd:`Shift-Ctrl-Tab`, or press down :kbd:`LMB` and move mouse over
 tab header icons.
 
+.. container:: lead
+
+   .. clear
+
 
 .. _ui-panels:
 .. _bpy.types.Panel:
@@ -46,11 +41,11 @@ Panels
 
 .. figure:: /images/interface_window-system_tabs-panels_panels.png
    :align: right
-   :width: 200px
+   :figwidth: 200px
 
-   Panels in Properties Editor.
-   
-   Panel headers are highlighted in red and sub-panel header in yellow.
+   Panels in Properties editor.
+
+   A panel is highlighted in yellow and a sub-panel in red.
 
 The smallest organizational unit in the user interface is a panel.
 *Panel header* is always visible, and it shows the title for the panel.
@@ -61,7 +56,7 @@ Collapsing and Expanding
 ------------------------
 
 Panels can be expanded to show, and collapsed to hide its contents,
-shown by a triangle on the Panel Header. Collapsed panel is indicated
+shown by a triangle on the panel header. Collapsed panel is indicated
 by down-arrow (▼) and expanded panel by right-arrow (►).
 
 - A click with the :kbd:`LMB` on the panel header expands or collapses it.

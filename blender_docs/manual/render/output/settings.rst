@@ -6,13 +6,14 @@ Output Options
 The first step in the rendering process is to determine and set the output options.
 This includes render size, frame rate, pixel aspect ratio, output location, and file type.
 
+
 .. _bpy.types.RenderSettings.use_border:
 .. _render-tab-dimensions:
 
 Dimensions Panel
 ================
 
-.. figure:: /images/render_output_output_dimensions-panel.png
+.. figure:: /images/render_output_settings_dimensions-panel.png
 
    Dimensions panel.
 
@@ -32,22 +33,22 @@ Aspect Ratio
    It is important that you use the correct pixel aspect ratio when rendering to prevent re-scaling,
    resulting in lowered image quality.
 
-   See :doc:`Video Output </render/output/video>` for details on pixel aspect ratio.
+   See :doc:`Video Output </render/output/file_formats>` for details on pixel aspect ratio.
 
-.. _render-output-dimensions-border:
+.. _render-output-dimensions-region:
 
-Border
+Render Region
    Renders just a portion of the view instead of the entire frame.
-   See the :ref:`Render Border <editors-3dview-navigate-borders-render>`
-   documentation to see how to define the size of the render border.
+   See the :ref:`Render Region <editors-3dview-navigate-render-region>`
+   documentation to see how to define the size of the render region.
 
    .. note::
 
       This disables the *Save Buffers* option in *Performance*
       and *Full Sample* option in *Anti-Aliasing*.
 
-   Crop
-      Crops the rendered image to the size of the render border,
+   Crop Render Region
+      Crops the rendered image to the size of the render region,
       instead of rendering a transparent background around it.
 Frame Range
    Set the *Start* and *End* frames for :doc:`Rendering Animations </render/output/animation>`.
@@ -69,7 +70,7 @@ Time Remapping
 Output Panel
 ============
 
-.. figure:: /images/render_output_output_panel.png
+.. figure:: /images/render_output_settings_panel.png
 
    Output panel.
 
@@ -84,7 +85,7 @@ File Path
    You can set a custom padding size by adding the appropriate number of ``#`` anywhere in the file name
    (e.g. ``image_##_test.png`` translates to ``image_01_test.png``).
 
-   This setting expands :doc:`relative paths </files/files/relative_paths>`
+   This setting expands :ref:`files-blend-relative_paths`
    where a ``//`` prefix represents the directory of the current blend-file.
 Overwrite
    Overwrite existing files when rendering.
@@ -94,13 +95,13 @@ File Extensions
    Adds the correct file extensions per file type to the output files.
 Cache Result
    Saves the rendered image and passes to a multi-layer EXR file in temporary location on your hard drive.
-   This allows the compositor to read these to improve performance, especially for heavy compositing.
-Output Format
+   This allows the compositor to read these to improve the performance, especially for heavy compositing.
+File Format
    Choose the file format to save to. Based on which format is used,
    other options such as channels, bit depth and compression level are available.
 
    For rendering out to images see: :ref:`saving images <bpy.types.ImageFormatSettings>`,
-   for rendering to videos see :doc:`rendering to videos </render/output/video>`.
+   for rendering to videos see :doc:`rendering to videos </render/output/file_formats>`.
 Color Mode
    Choose the color format to save the image to.
    Note that *RGBA* will not be available for all image formats.
@@ -128,7 +129,7 @@ Post Processing Panel
 
 The Post Processing panel is used to control different options used to process your image after rendering.
 
-.. figure:: /images/render_post-process_panel_panel.png
+.. figure:: /images/render_output_settings_post-processing-panel.png
    :align: right
 
    Post Processing panel.

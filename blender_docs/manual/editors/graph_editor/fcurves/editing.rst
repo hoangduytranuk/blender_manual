@@ -8,10 +8,10 @@ By default, when new channels are added, the *Graph Editor* sets them to *Edit M
 Many of the hotkeys are the same as the :doc:`3D View ones </scene_layout/object/index>`,
 for example:
 
-- :kbd:`G` to grab
+- :kbd:`G` to move
 - :kbd:`R` to rotate
 - :kbd:`S` to scale
-- :kbd:`B` for border select/deselect
+- :kbd:`B` for box select/deselect
 
 And of course you can lock the transformation along the X axis (time frame) or
 Y axis (value) by pressing :kbd:`X` or :kbd:`Y` during transformation.
@@ -28,7 +28,7 @@ Insert Keyframe
 
    :Hotkey:    :kbd:`Ctrl-LMB`, :kbd:`Shift-Ctrl-LMB`
 
-:kbd:`Ctrl-LMB` inserts a keyframe to the active F-Curve at the mouse position.
+:kbd:`Ctrl-LMB` inserts a keyframe to the active F-curve at the mouse position.
 The newly added keyframes will be selected, making it easier to quickly tweak the newly added keyframes.
 All previously selected keyframes are kept selected by using :kbd:`Shift-Ctrl-LMB`.
 
@@ -56,9 +56,9 @@ Snap
 Keyframes can be snapped to different properties by using the *Snap Keys* tool.
 
 Current Frame
-   Snap the selected keyframes to the *Time Cursor*.
+   Snap the selected keyframes to the *Playhead*.
 Cursor Value
-   Snap the selected keyframes to the *Cursor*.
+   Snap the selected keyframes to the *2D Cursor*.
 Nearest Frame
    Snap the selected keyframes to their nearest frame individually.
 Nearest Second
@@ -90,13 +90,12 @@ Mirror
    :Menu:      :menuselection:`Key --> Mirror`
    :Hotkey:    :kbd:`Shift-M`
 
-Selected keyframes can be mirrored over different properties using the *Mirror Keys*
-tool.
+Selected keyframes can be mirrored over different properties using the *Mirror Keys* tool.
 
 By Times Over Current Frame
-   Mirror horizontally over the *Time Cursor*.
+   Mirror horizontally over the *Playhead*.
 By Values over Cursor Value
-   Mirror vertically over the *Cursor*.
+   Mirror vertically over the *2D Cursor*.
 By Times over Time 0
    Mirror horizontally over frame 0.
 By Values over Value 0
@@ -145,7 +144,7 @@ it's not being used by any generative f-curve modifiers or drivers.
 
 .. note::
 
-   The modified curve left after the Clean tool is run is not the same as the original,
+   The modified curve left after the *Clean* tool is run is not the same as the original,
    so this tool is better used before doing custom editing of f-curves and after initial keyframe insertion,
    to get rid of any unwanted keyframes inserted while doing mass keyframe insertion
    (by selecting all bones and pressing :kbd:`I` for instance).

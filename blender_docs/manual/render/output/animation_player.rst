@@ -1,11 +1,13 @@
 .. _bpy.ops.render.play-rendered-anim:
+.. _render-output-animation_player:
+
 .. |numsp| unicode:: U+2007
 
 ****************
 Animation Player
 ****************
 
-The :menuselection:`Info Editor --> Render --> View Animation`
+The :menuselection:`Topbar --> Render --> View Animation`
 menu will play back the rendered animation in a new window.
 
 You can also drop images or movie files in a running animation player.
@@ -89,11 +91,11 @@ The following table shows the available hotkeys for the animation player.
 
    * - Action
      - Hotkey
-   * - Toggle Time Cursor (Indicator):
+   * - Toggle Playhead (Indicator):
      - :kbd:`I`
-   * - Flip drawing on the X axis:
+   * - Flip image on the X axis:
      - :kbd:`F`
-   * - Flip drawing on the Y axis:
+   * - Flip image on the Y axis:
      - :kbd:`Shift-F`
    * - Hold to show frame numbers:
      - :kbd:`Shift`

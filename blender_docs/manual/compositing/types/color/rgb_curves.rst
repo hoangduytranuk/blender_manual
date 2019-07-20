@@ -8,7 +8,7 @@
 RGB Curves Node
 ***************
 
-.. figure:: /images/compositing_types_color_rgb-curves_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeCurveRGB.png
    :align: right
 
    RGB Curves Node.
@@ -35,12 +35,18 @@ White Level
 
 .. tip::
 
-   To define the levels, use the :ref:`eyedropper <ui-eye-dropper>` to select a color sample of a displayed image.
+   To define the levels, use the :ref:`eyedropper <ui-eyedropper>` to select a color sample of a displayed image.
 
 
 Properties
 ==========
 
+Tone
+   .. TODO2.8
+
+   Standard
+
+   Film like
 Channel
    Clicking on one of the channels displays the curve for each.
 

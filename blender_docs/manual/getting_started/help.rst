@@ -32,9 +32,8 @@ Library
 Disabled (red)
    The reason why the value is not editable.
 Python
-   For :ref:`scripting <scripting-index>` -- A Python command associated to
-   the control (usually an operator or property).
-
+   When :ref:`Developer Extras <prefs-interface-dev-extras>` are enabled,
+   a Python expression is displayed for :ref:`scripting <scripting-index>` (usually an operator or property).
 
 .. _help-manual-access:
 
@@ -66,64 +65,41 @@ This opens a webpage relating to the button under the cursor, supporting both to
 Help Menu
 =========
 
-The *Help* menu in the Info Editor header.
-
-.. figure:: /images/getting-started_help_menu.png
-   :align: right
-
-   Help menu.
-
-
 Web Links
 ---------
 
 The first options of this menu provide direct links to Blender-related websites:
 The same links can also be found in the :ref:`splash`.
 
-Manual
-   This is a link to the :doc:`Official Blender Manual </index>`
-   which you are now reading.
-Release Log
-   The `release notes <https://www.blender.org/features/releases/>`__ on the Web
-   for the changes made for the current Blender version.
-Blender Website
-   The `blender.org <https://www.blender.org/>`__ home page.
-Blender Store
-   The `Blender Store <https://store.blender.org/>`__, where you can buy
-   Training DVD's, books, t-shirts and other products.
-Developer Community
-   The *blender.org* `Get Involved <https://www.blender.org/get-involved/>`__ page.
-   This is the launch page for Blender software development, bug tracking, patches and scripts,
-   education and training, documentation development and functionality research.
-User Community
-   Lists of many different `support venues <https://www.blender.org/support/user-community/>`__.
-Report a Bug
-   The `Blender Bug Tracker <https://developer.blender.org/maniphest/task/edit/form/1/>`__ (registration needed).
+:doc:`Manual </index>`
+   This is a link to the Official Blender Manual (which you are now reading).
+`Tutorials <https://www.blender.org/support/tutorials>`__
+   Multiple tutorial to help you learn to use Blender.
+`Support <https://www.blender.org/support>`__
+   Links to various sites, providing both community and professional support.
 
-.. tip:: Browser and Internet Connection
+------------------------
 
-   Some forms of Help start up your web browser and access the Blender Foundation's web servers.
-   In order to do this, you must have configured a default web browser for your Operating System,
-   and have a connection to the Internet.
+`User Communities <https://www.blender.org/support/user-community>`__
+   Lists of many different community sites and support venues.
+`Developer Community <https://devtalk.blender.org>`__
+   Blender's developer forum.
 
+------------------------
 
-Scripting Reference
--------------------
-
-Python API Reference
+`Python API Reference <https://www.blender.org/api/blender_python_api_current>`__
    Python application programming interface (API)
-   `Reference <https://www.blender.org/api/blender_python_api_current/>`__.
-Operator Cheat Sheet
-   Creates the ``OperatorList.txt`` text data-block, which you can access in the *Text Editor*.
-   You can also use Blender Search to generate the file. It lists the available Python operators.
+
+------------------------
+
+`Report a Bug <https://developer.blender.org/maniphest/task/edit/form/1/>`__
+   The Blender Bug Tracker (registration needed).
 
 
 .. _help-system-info:
 
 Save System Info
 ----------------
-
-Access :menuselection:`Help --> Save System Info`.
 
 This extracts system information which can be useful to include in bug reports,
 inspecting the configuration or diagnosing problems.
@@ -144,9 +120,5 @@ Directories
 OpenGL
    This section shows the OpenGL version, the name of the manufacturer,
    and lists the capabilities of your hardware and driver.
-
-
-Splash Screen
--------------
-
-Shows the :ref:`splash`.
+Enabled Add-Ons:
+   Lists add-ons currently in use.

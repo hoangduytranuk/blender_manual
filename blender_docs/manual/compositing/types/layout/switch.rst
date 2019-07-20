@@ -3,7 +3,7 @@
 Switch Node
 ***********
 
-.. figure:: /images/compositing_types_layout_switch_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeSwitch.png
    :align: right
 
    Switch Node.

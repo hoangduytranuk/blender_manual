@@ -1,11 +1,12 @@
 .. _bpy.types.Library:
+.. _files-linked_libraries:
 
 ****************
 Linked Libraries
 ****************
 
 These functions help you reuse materials, objects and other :doc:`data-blocks </files/data_blocks>`
-loaded from an external source blend-file.
+loaded from another blend-file.
 You can build libraries of common content and share them across multiple referencing files.
 
 
@@ -15,48 +16,86 @@ Append and Link
 .. admonition:: Reference
    :class: refbox
 
-   :Editor:    Info Editor
+   :Editor:    Topbar
    :Mode:      All Modes
    :Menu:      :menuselection:`File --> Append or Link`
-   :Hotkey:    :kbd:`Shift-F1` or :kbd:`Ctrl-Alt-O`
+   :Hotkey:    :kbd:`F4`, :kbd:`A` or :kbd:`L`
 
 *Link* creates a reference to the data in the source file such that
 changes made there will be reflected in the referencing file the next time it is reloaded.
+But linked data is not editable (to some extend, see :ref:`object-proxy`).
 
-Whereas *Append* makes a full copy of the data into your blend.
+Whereas *Append* makes a full copy of the data into your blend, without keeping any reference to original one.
 You can make further edits to your local copy of the data,
 but changes in the external source file will not be reflected in the referencing file.
 
-In the :doc:`File Browser </editors/file_browser/introduction>`
+In the :doc:`File Browser </editors/file_browser>`
 navigate to the external source blend-file and select the data-block you want to reuse.
+
+.. tip::
+
+   Blend-files can also be linked/appended by dragging and dropping blend-files into the Blender window.
 
 
 Options
 -------
 
 Relative Path
-   Available only when linking, see :doc:`relative paths </files/files/relative_paths>`.
+   Available only when linking, see :ref:`files-blend-relative_paths`.
 Select
    Makes the object *Active* after it is loaded.
-Active Layer
-   The object will be assigned to the visible layers in your scene.
-   Otherwise, it is assigned to the same layers it resides on in the source file.
-Instance Groups
-   This option links the Group to an object, adding it to the active scene.
-
+Active Collection
+   The object will be added to the active collection of the active view layer.
+   Otherwise, it will be added to a new collection in the active view layer.
+Instance Collections
+   This option instantiates the linked collection as an object, adding it to the active scene.
+   Otherwise, the linked collection is directly added to the active view layer.
 Fake User
-   Sets a :ref:`Fake User <data-system-datablock-fake-user>` for the appended items.
+   Defines the appended data-block as :ref:`Protected <data-system-datablock-fake-user>`.
 Localize All
-   Appends/links all appended data, including those indirectly linked from other libraries.
+   Appends also all indirectly linked data, instead of linking them.
 
-When you select an Object type, it will be placed in your scene at the cursor.
+When you link an object, it will be placed in your scene at the 3D cursor position.
 Many other data types, cameras, curves, and materials for example,
 must be linked to an object before they become visible.
 
-Newly added Group types are available in :menuselection:`Add --> Collection Instance` in 3D View.
+Newly added collections types are available in :menuselection:`Add --> Collection Instance` in the 3D View.
 
-Look in the Outliner, with display mode set to *blend-file*, to see all your linked and appended data-blocks.
-:kbd:`Ctrl-LMB` on a file name allows you to redirect a link to another file.
+Look in the *Outliner*, with display mode set to *Blender File*, to see all your linked and appended data-blocks.
+
+.. note::
+
+   Appending data you already have linked will add objects/collections to the scene,
+   but will keep them linked (and un-editable).
+
+   This is done so existing relationships with linked data remain intact.
+
+
+.. _bpy.ops.outliner.lib_operation:
+
+Library Reload & Relocate
+=========================
+
+From the context menu of the library items in the *Outliner*'s *Blender File* view,
+you can reload and relocate a whole library.
+
+Reloading is useful if you changed something in the library blend-file and want to see those changes
+in your current blend-file without having to re-open it.
+
+Relocating allows you to reload the library from a new file path.
+This can be used to either fix a broken linked library
+(e.g. because library file was moved or rename after linking from it),
+or to switch between different variations of a same set of data, in different library files.
+
+
+Broken Library
+--------------
+
+While loading a blend-file, if Blender cannot find any more a library,
+it will create placeholder data-blocks to replace missing linked ones.
+
+That way, references to those missing data are not lost, and by relocating the missing library,
+the lost data can be automatically restored.
 
 
 .. _object-proxy:
@@ -70,61 +109,36 @@ Proxy Objects
 
    :Editor:    3D View
    :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Make Proxy...`
-   :Hotkey:    :kbd:`Ctrl-Alt-P`
+   :Menu:      :menuselection:`Object --> Relations --> Make Proxy...`
 
-Lets you make changes locally over an object (or group) linked from an external library.
-Some types of changes remain restricted, but others can be made locally, depending on the type of object.
-Those changes are not sent to the external library.
-:kbd:`Ctrl-Alt-P` makes the active linked object into a local proxy, appending "_proxy" to its name.
+This makes the active linked object into a local proxy, appending "_proxy" to its name.
+It allows you to make changes locally over an object (or collection) linked from an external library.
 
-Used with rigged models, proxy objects, allow specified bone layers to be linked back to the source file
-while the remainder of the object and its skeleton are edited locally.
-Set the *Protected Layers* in the source file using the Skeleton panel of the Armatures tab.
+Possible changes are restricted, you can mainly edit and animate transformations of the proxy object,
+and its constraints.
+Those changes remain local, they are not sent back to the external library.
+
+.. hint::
+
+   Another way to transform a linked object locally is with
+   the use of :doc:`Collection Instancing </scene_layout/object/properties/instancing/collection>`.
+   Instead of linking objects directly, it is often more useful to link in *collections*,
+   which can be assigned to empties and moved, while maintaining the link to the original file.
+
+   It is also useful to be able to add/remove objects from the collection (from within the library blend-file)
+   without having to manage re-linking of multiple objects.
+
+
+Proxy Armatures
+---------------
+
+On rigged models, proxy objects allow to also edit and animate their poses.
+
+It is also possible, in the source (library) blend-file, to protect some bone layers from being editable in proxies.
+This helps keeping complex rigs usage sensible, by only exposing some 'public' bone layers as editable by users.
+
+Set the *Protected Layers* in the source file using the *Skeleton* panel of the *Armatures* properties.
 See :ref:`Armature Layers <armature-layers>`.
-The bones in protected layers will have their position restored from the source file
-when the referencing file is reloaded.
-
-
-.. _data-system-linked-libraries-make-link:
-.. _bpy.ops.object.make_links:
-
-Make Link
-=========
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Editor:    3D View
-   :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Make Link...`
-   :Hotkey:    :kbd:`Ctrl-L`
-
-Links objects between scenes or data-blocks of the active object to all selected objects.
-In some case (i.e. Object Data, Modifier) the target objects must be of the same type
-than the active one or capable of receiving the data.
-The existing data-block of which will be unlinked from them.
-
-Objects to Scene
-   Lets you create links to the selected objects into a different scene than the current one.
-   A scene name must be chosen other than that of the current one.
-   The *Link Objects to Scene* Operator panel lets you choose between scenes.
-
-   This makes the same object exist in two different scenes at once,
-   including its position and animation data. The object's origin will change its color.
-Type
-   Data-block type to link.
-
-   Object Data, Materials, Animation Data, Group, DupliGroup, Modifiers, Fonts
-
-   Transfer UV Maps
-      The active UV map of the selected objects will be replaced by a copy of the active UV map of the active object.
-      If the selected object doesn't have any UV maps, it is created.
-      Objects must be of type mesh and must have the same number of faces (matching geometry).
-
-.. seealso::
-
-   :ref:`data-system-datablock-make-single-user` for unlinking data-blocks.
 
 
 .. _bpy.ops.object.make_local:
@@ -137,33 +151,31 @@ Make Local
 
    :Editor:    3D View
    :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Make Local...`
-   :Hotkey:    :kbd:`L`
+   :Menu:      :menuselection:`Object --> Relations --> Make Local...`
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Editor:    Outliner
+   :Menu:      :menuselection:`Context menu --> ID Data --> Make Local`
 
 Makes the selected or all external objects local in the current blend-file.
-This makes e.g. the position editable, because its position is defined in its source file.
+Link to original library file will be full lost.
+But it will make those data-blocks fully editable, just like ones directly created in that blend-file.
+
+
+Options
+-------
+
+The operation available from the *Outliner*'s context menu has no option, and only affects select data-block.
+
+The operation available from the *3D View* only directly affects selected objects,
+but it can also make local the objects' dependencies:
 
 Type
    Optionally unlinks the object's Object Data and Material Data.
 
    Selected Objects, + Object Data, + Materials, All (i.e. including all scenes)
-
-.. note::
-
-   Appending data you already have linked will add objects/groups to the scene,
-   but will keep them linked (and un-editable).
-
-   This is done so existing relationships with linked data remain intact.
-
-.. hint::
-
-   Another way to transform an object locally is with
-   the use of :doc:`Dupli-Groups </scene_layout/object/properties/duplication/dupligroup>`.
-   Instead of linking to *Objects* directly, it is often more useful to link in *Groups*,
-   which can be assigned to empties and moved, while maintaining the link to the original file.
-
-   It is also useful to be able to add/remove objects from the group
-   without having to manage linking in multiple objects.
 
 
 Known Limitations
@@ -188,3 +200,14 @@ When linking objects *directly* into a blend-file, the *Rigid Body* settings
 **will not** be linked in since they are associated with their scene's world.
 
 As an alternative, you could link in the entire scene and set it as a :ref:`Background Set <scene-background-set>`.
+
+
+.. _files-linked_libraries-known_limitations-compression:
+
+Compression & Memory Use
+------------------------
+
+Linking to blend files with compression enabled may significantly increase memory usage while loading files.
+
+Reading data on demand isn't supported with compression
+*(this only impacts load time, once loaded there is no difference in memory use)*.

@@ -4,7 +4,7 @@
 Scale Node
 **********
 
-.. figure:: /images/compositing_types_distort_scale_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeScale.png
    :align: right
 
    Scale Node.

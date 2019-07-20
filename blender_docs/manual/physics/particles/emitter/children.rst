@@ -88,6 +88,27 @@ Effects
 
    From left to right: Round: 0.0, Round: 1.0, Clump: 1.0, Clump: -1.0, Shape: -0.99.
 
+Length
+   Length of child paths.
+Threshold
+   Amount of particles left untouched by child path length.
+Size
+   The radius in which the children are distributed around their parents.
+   This is 3D, so children may be emitted higher or lower than their parents.
+Roundness
+   The roundness of the children around their parents. Either in a sphere (1.0) or in-plane (0.0).
+Seed
+   Offset in the random number table for child particles, to get a different randomized result.
+
+
+Clumping
+^^^^^^^^
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Children --> Clumping`
+
 Use Clump Curve
    Use :ref:`ui-curve-widget` instead of parameters.
 Clump
@@ -101,21 +122,14 @@ Use Clump Noise
    Clump Noise Size
       The size of the clumps.
 
-Length
-   Length of child paths.
-Threshold
-   Amount of particles left untouched by child path length.
-Radius
-   The radius in which the children are distributed around their parents.
-   This is 3D, so children may be emitted higher or lower than their parents.
-Roundness
-   The roundness of the children around their parents. Either in a sphere (1.0) or in-plane (0.0).
-Seed
-   Offset in the random number table for child particles, to get a different randomized result.
-
 
 Roughness
----------
+^^^^^^^^^
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Children --> Roughness`
 
 Use Roughness Curve
    Use :ref:`ui-curve-widget` instead of parameters.
@@ -131,7 +145,12 @@ Random, Size, Threshold
 
 
 Kink
-----
+^^^^
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Children --> Kink`
 
 .. _fig-particle-child-kink:
 
@@ -144,7 +163,7 @@ Kink
 With *Kink* you can rotate the children around the parent.
 See Fig. :ref:`fig-particle-child-kink` above picture for the different types of *Kink*.
 
-Kink
+Kink Type
    Nothing
       Deactivated.
    Curl
@@ -168,10 +187,6 @@ Kink
       When hair is pointing straight up (along the chosen spiral axis, default Z), spirals may not show up!
       This is a limitation of the projection method used.
       Giving a slight tilt or random orientation to hairs fixes this.
-
-
-Common Options
-^^^^^^^^^^^^^^
 
 Amplitude
    The amplitude of the offset.

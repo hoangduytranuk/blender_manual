@@ -22,6 +22,8 @@ def rst_files(path):
         if dirpath.startswith("."):
             continue
         for filename in filenames:
+            if filename.startswith("."):
+                continue
             ext = os.path.splitext(filename)[1]
             if ext.lower() == ".rst":
                 yield os.path.join(dirpath, filename)

@@ -12,11 +12,10 @@ Randomize Transform
    :class: refbox
 
    :Mode:      Object Mode and Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Deform: Randomize`
    :Menu:      :menuselection:`Object --> Transform --> Randomize Transform`,
                :menuselection:`Mesh --> Transform --> Randomize`
 
-.. figure:: /images/editors_3dview_object_editing_transform_tools_randomize.png
+.. figure:: /images/scene-layout_object_editing_transform_tools_randomize.png
    :figwidth: 180px
    :align: right
 
@@ -28,7 +27,7 @@ This tool allows you to apply a randomized transformation.
 Object Mode
 -----------
 
-In Object Mode it randomizes the translate, rotate,
+In Object Mode it randomizes the move, rotate,
 and scale values to an object or multiple objects. When applied on multiple objects,
 each object gets its own seed value, and will get different transform results from the rest.
 

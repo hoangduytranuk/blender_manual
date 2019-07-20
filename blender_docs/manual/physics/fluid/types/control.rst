@@ -20,9 +20,10 @@ of target shapes. At the same time, as much as possible of the natural fluid mot
 Options
 =======
 
-.. figure:: /images/physics_fluid_types_control_panel.png
+.. TODO2.8:
+   .. figure:: /images/physics_fluid_types_control_panel.png
 
-   Fluid control options.
+      Fluid control options.
 
 Enabled
    Controls whether the control object contributes to the fluid system.

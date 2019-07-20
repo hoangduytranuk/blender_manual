@@ -9,6 +9,7 @@
    :maxdepth: 2
 
    introduction.rst
+   common_options.rst
 
 
 Modify
@@ -48,7 +49,7 @@ Generate
    generate/screw.rst
    generate/skin.rst
    generate/solidify.rst
-   generate/subsurf.rst
+   generate/subdivision_surface.rst
    generate/triangulate.rst
    generate/wireframe.rst
 

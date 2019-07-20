@@ -4,7 +4,7 @@
 Rotate Node
 ***********
 
-.. figure:: /images/compositing_types_distort_rotate_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeRotate.png
    :align: right
 
    Rotate Node.

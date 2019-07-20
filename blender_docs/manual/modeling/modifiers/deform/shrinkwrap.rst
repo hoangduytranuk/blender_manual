@@ -4,7 +4,7 @@
 Shrinkwrap Modifier
 *******************
 
-The *Shrinkwrap* Modifier allows an object to "shrink" to the surface of another object.
+The *Shrinkwrap* modifier allows an object to "shrink" to the surface of another object.
 It moves each vertex of the object being modified to the closest position on
 the surface of the given mesh (using one of the four methods available).
 
@@ -15,13 +15,14 @@ Options
 =======
 
 .. figure:: /images/modeling_modifiers_deform_shrinkwrap_nearest-surface-point.png
+   :align: right
 
-   Nearest Surface Point.
+   The Shrinkwrap modifier in Nearest Surface Point mode.
 
 Target
    Shrink target, the mesh to shrink to/wrap around.
 Offset
-   The distance that must be kept from the calculated target position, in Blender Units.
+   The distance that must be kept from the calculated target position.
 
 Vertex Group
    The vertex group to control whether and how much each vertex is displaced to its target position.
@@ -41,46 +42,38 @@ Nearest Surface Point
 This will select the nearest point over the surface of the shrunk target.
 
 
-Projection
-^^^^^^^^^^
+Project
+^^^^^^^
+
+.. figure:: /images/modeling_modifiers_deform_shrinkwrap_project.png
+   :align: right
+
+   Project mode.
 
 This will project vertices along a chosen axis until they touch the shrink target.
 Vertices that never touch the shrink target are left in their original position.
 
-.. figure:: /images/modeling_modifiers_deform_shrinkwrap_project.png
-
-   Projection options.
-
 Subdivision Surface Levels
-   This applies a (temporary) *Catmull-Clark* subdivision to the modified object,
-   before computing the wrap when using Projection mode.
+   This applies a (temporary) *Catmull-Clark* subdivision to the modified object's geometry,
+   before computing the wrap.
 Limit
    This is a distance limit between original vertex and surface.
    If the distance is larger than this limit vertex would not be projected onto the surface.
-Axis
+Axis X/Y/Z
    Along which local axis of the modified object the projection is done.
    These options can be combined with each other, yielding a "median axis" of projection.
    If none are selected, the normal direction is used.
-
-   X, Y, Z
-
-Direction
+Direction Negative/Positive
    This allows you to select the allowed direction(s) of the shrink along the selected axis.
    If both options are enabled, the modifier tries both ways and selects the closest hit.
-
-   Negative, Positive
-
-Cull Faces
-   This radio button allows you to prevent any projection over the "front side"
+Cull Faces Off/Front/Back
+   Allows you to prevent any projection over the "front side"
    (respectively the "back side") of the target's faces. The "side" of a face is determined
    by its normal (front being the side "from where" the normal "originates").
-
-   Off, Front, Back
-
 Invert Cull
-   If Cull Faces is enabled, this option can be used to invert the *Front* or *Back* cull choice
-   for the Negative direction. This is useful when projecting in both directions.
-
+   If *Cull Faces* is enabled, and *Negative* direction along axis is allowed,
+   this option can be used to invert the *Front* or *Back* cull choice
+   for the *Negative* direction. This is useful when projecting in both directions.
 Auxiliary Target
    An additional object to project over.
 
@@ -88,17 +81,25 @@ Auxiliary Target
 Nearest Vertex
 ^^^^^^^^^^^^^^
 
-This will snap vertices to the nearest vertex of the shrunk target. It adds no extra options.
-
 .. figure:: /images/modeling_modifiers_deform_shrinkwrap_nearest-vertex.png
+   :align: right
 
-   Nearest Vertex options.
+   Nearest Vertex mode.
+
+This will snap vertices to the nearest vertex of the shrunk target. It adds no extra options.
 
 This method doesn't support the *Snap Mode* setting described below.
 
+|
 
-Target Normal Projection
-^^^^^^^^^^^^^^^^^^^^^^^^
+
+Target Normal Project
+^^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: /images/modeling_modifiers_deform_shrinkwrap_normal-project.png
+   :align: right
+
+   Target Normal Project mode.
 
 This mode is similar to *Nearest Surface Point*, but produces a much smoother
 projection in return for being significantly slower.
@@ -119,17 +120,13 @@ only differ if *Offset* is not zero.
 On Surface
    The vertex is always moved. The offset is applied along the projection line
    connecting the original vertex and selected target point towards the original position.
-
 Outside Surface
    Like *On Surface*, but the offset is always applied towards the outside of the target.
-
 Above Surface
    Like *On Surface*, but the offset is applied along the smooth normal of the target.
-
 Inside
    The vertex is not moved if it is already inside the target.
    Offset shrinks the allowed volume towards the inside along the projection line.
-
 Outside
    The vertex is not moved if it is already outside the target.
    Offset expands the exclusion volume towards the outside along the projection line.

@@ -1,4 +1,6 @@
 .. _bpy.ops.mesh.spin:
+.. _tool-mesh-spin:
+
 .. TODO/Review: {{review|text=reorganize, elaborate}}.
 
 ****
@@ -29,11 +31,16 @@ Options
 
 Steps
    Specifies how many copies will be extruded along the "sweep".
-Dupli
+Duplicate
    When enabled, will keep the original selected elements as separated islands in the mesh
    (i.e. unlinked to the result of the spin extrusion).
 Angle
    Specifies the angle "swept" by this tool, in degrees (e.g. set it to 180 for half a turn).
+Auto Merge
+   Automatically merges the first a last duplicates,
+   if they make a full revolution which results in overlapping geometry.
+Flip Normals
+   Reverses the :term:`normal's <normal>` direction for any resulting geometry.
 Center
    Specifies the center of the spin. By default it uses the cursor position.
 Axis
@@ -95,8 +102,8 @@ Angle
           Spun profile using an angle of 120.
 
 
-Dupli
-=====
+Duplicate
+=========
 
 .. list-table::
 
@@ -122,7 +129,7 @@ Merge Duplicates
    Duplicate vertices.
 
 The spin operation leaves duplicate vertices along the profile.
-You can select all vertices at the seam with Border select :kbd:`B`
+You can select all vertices at the seam with Box select :kbd:`B`
 (shown in Fig. :ref:`fig-mesh-screw-duplicate`) and perform a *Merge by Distance* operation.
 
 Notice the selected vertex count before and after the *Merge by Distance* operation

@@ -7,7 +7,7 @@
 Hue Saturation Value Node
 *************************
 
-.. figure:: /images/compositing_types_color_hue-saturation_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeHueSat.png
    :align: right
 
    Hue Saturation Node.

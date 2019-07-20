@@ -35,7 +35,7 @@ When you drop a node with at least one input and one output socket onto an exist
 for the new node.
 *Auto-offset* is a feature that helps organizing node layouts interactively without interrupting the user workflow.
 
-.. figure:: /images/editors_node-editor_introduction_auto-offset.png
+.. figure:: /images/interface_controls_nodes_arranging_auto-offset.png
 
 Auto-offset is enabled by default, but it can be disabled from the editor's header.
 

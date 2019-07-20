@@ -76,7 +76,7 @@ Version/Revision Milestones
 - **1.3x -- June 1998:** NaN founded.
 - **1.4x -- September 1998:** Sun and Linux Alpha version released.
 - **1.50 -- November 1998:** First Manual published.
-- **1.60 -- April 1999:** C-key (new features behind a lock, $95), MS-Windows version released.
+- **1.60 -- April 1999:** C-key (new features behind a lock, $95), Windows version released.
 - **1.6x -- June 1999:** BeOS and PPC version released.
 - **1.80 -- June 2000:** End of C-key, Blender full freeware again.
 - **2.00 -- August 2000:** Interactive 3D and real-time engine.
@@ -226,11 +226,11 @@ Version/Revision Milestones
    the Intersection modeling tool is added, new sun beam node for the compositor, Freestyle now works with
    Cycles, texture painting workflow is improved, and more than 220 bug fixes.
 `2.73 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.73>`__ -- January 2015:
-   Cycles gets improved volumetric support, major upgrade to Grease pencil,
-   MS-Windows gets Input Method Editors (IMEs)
+   Cycles gets improved volumetric support, major upgrade to Grease Pencil,
+   Windows gets Input Method Editors (IMEs)
    and general improvements to painting, Freestyle, Sequencer and add-ons.
 `2.74 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.74>`__ -- March 2015:
-   Support for custom-normals, viewport compositing and improvements to hair dynamics.
+   Support for custom normals, viewport compositing and improvements to hair dynamics.
 `2.75 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.75>`__ -- July 2015:
    Integrated stereo/multi-view pipeline, corrective smooth modifier and new developmental dependency graph.
 `2.76 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.76>`__ -- November 2015:
@@ -238,7 +238,7 @@ Version/Revision Milestones
    node auto-offset, and a text effect strip for the Sequencer.
 `2.77 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.77>`__ -- March 2016:
    OpenVDB support for caching of smoke/volumetric simulations, improved Cycles Subsurface Scattering,
-   Grease pencil stroke sculpting and improved workflow,
+   Grease Pencil stroke sculpting and improved workflow,
    and reworked library handling to manage missing and deleted data-blocks.
 `2.78 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.78>`__ -- September 2016:
    Cycles support for spherical stereo images for VR,

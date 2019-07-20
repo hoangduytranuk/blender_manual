@@ -28,21 +28,28 @@ in :menuselection:`Properties --> Physics`, then select *Domain* as the *Smoke T
    but the smoke simulator will use the shape's :term:`bounding box`
    as the domain bounds. In other words, the actual shape of the domain will still be rectangular.
 
-.. figure:: /images/physics_smoke_types_domain_settings.png
-   :align: right
+.. TODO2.8:
+   .. figure:: /images/physics_smoke_types_domain_settings.png
+      :align: right
 
-   *Smoke Domain* options.
+      *Smoke Domain* options.
 
 
-Options
-=======
+Settings
+========
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Physics --> Smoke --> Settings`
+   :Type:      Domain
 
 .. _smoke-resolution:
 
 Resolution
    The smoke domain is subdivided into many "cells" called voxels (see :term:`voxel`)
    which make up "pixels" of smoke. This setting controls the number of subdivisions in the domain.
-   Higher numbers of subdivisions are one way of creating higher resolution smoke (see `Smoke High Resolution`_).
+   Higher numbers of subdivisions are one way of creating higher resolution smoke (see `High Resolution`_).
 
    Since the resolution is defined in terms of *subdivisions*,
    larger domains will need more divisions to get an equivalent resolution to a small domain.
@@ -66,6 +73,20 @@ Border Collisions
       Smoke disappears when it hits any side of the domain.
    Collide All
       Smoke collides with all sides of the domain.
+
+Empty space
+   Value under which voxels are considered to be empty.
+
+
+Behavior
+========
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Physics --> Smoke --> Behavior`
+   :Type:      Domain
+
 Density
    Controls how much smoke is affected by density.
 
@@ -115,16 +136,16 @@ Smoke Flames
    :class: refbox
 
    :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Smoke Flames`
+   :Panel:     :menuselection:`Physics --> Smoke --> Flames`
 
-Speed
+Reaction Speed
    How fast fuel burns. Larger values result in smaller flames (fuel burns before it can go very far),
    smaller values result in larger flames (fuel has time to flow farther before being fully consumed).
 Smoke
    Amount of extra smoke created automatically to simulate burnt fuel.
 Vorticity
    Additional vorticity for flames.
-Ignition
+Temperature Ignition
    Minimum temperature of flames.
 Maximum
    Maximum temperature of flames.
@@ -132,14 +153,14 @@ Smoke Color
    Color of smoke created by burnt fuel.
 
 
-Smoke Adaptive Domain
-=====================
+Adaptive Domain
+===============
 
 .. admonition:: Reference
    :class: refbox
 
    :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Smoke Adaptive Domain`
+   :Panel:     :menuselection:`Physics --> Smoke --> Adaptive Domain`
 
 When enabled, the domain will adaptively shrink to best fit the smoke,
 saving computation time by leaving voxels without smoke out of the simulation.
@@ -158,25 +179,24 @@ Threshold
 
 .. _smoke-high-resolution:
 
-Smoke High Resolution
-=====================
+High Resolution
+===============
 
 .. admonition:: Reference
    :class: refbox
 
    :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Smoke High Resolution`
+   :Panel:     :menuselection:`Physics --> Smoke --> High Resolution`
 
 The High Resolution option lets you simulate at a low resolution and then it uses noise techniques
 to enhance the resolution without actually computing it. This allows animators to set up a low
 resolution simulation quickly and later add details without changing the overall fluid motion.
 Also see `Note on Divisions and High Resolution`_.
 
-Resolution: Divisions
+Resolution Divisions
    Factor by which to enhance the resolution of smoke using the specified noise method.
-Show High Resolution
-   Show the high resolution version in the viewport (may cause viewport responsiveness to suffer).
-
+Flow Sampling
+   Method for sampling the high resolution flow.
 Noise Method
    The two options, *Wavelet* and *FFT*, are very similar.
 
@@ -190,13 +210,18 @@ Noise Method
       *Wavelet* is an implementation of `Turbulence for Fluid Simulation
       <https://web.archive.org/web/20140911163550/https://graphics.ethz.ch/research/physics_animation_fabrication/simulation/turb.php>`__.
 
-   Strength
-      Strength of noise.
+Strength
+   Strength of noise.
 
-      .. figure:: /images/physics_smoke_types_domain_high-resolution-strength.jpg
-         :width: 400px
+   .. figure:: /images/physics_smoke_types_domain_high-resolution-strength.jpg
+      :width: 400px
 
-         From left to right, the domains' high resolution strengths are set to 0, 2, and 6.
+      From left to right, the domains' high resolution strengths are set to 0, 2, and 6.
+
+.. tip::
+
+   The visibility of high resolution smoke in the viewport can be toggled in the render
+   :ref:`Simplify options <render-cycles-simplify-viewport>`.
 
 
 Note on Divisions and High Resolution
@@ -233,10 +258,10 @@ Collections
    :Panel:     :menuselection:`Properties --> Physics --> Collections`
 
 Flow
-   If set, only objects in the specified :doc:`Collection </scene_layout/object/properties/relations/groups>`
+   If set, only objects in the specified :doc:`Collection </scene_layout/collections/collections>`
    will be allowed to act as flow objects in this domain.
 Collision
-   If set, only objects in the specified :doc:`Collection </scene_layout/object/properties/relations/groups>`
+   If set, only objects in the specified :doc:`Collection </scene_layout/collections/collections>`
    will be allowed to act as collision objects in this domain.
 
 
@@ -247,7 +272,7 @@ Smoke Cache
    :class: refbox
 
    :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Smoke Cache`
+   :Panel:     :menuselection:`Physics --> Smoke --> Cache`
 
 See :doc:`Baking </physics/smoke/baking>`.
 
@@ -263,7 +288,8 @@ Field Weights
    :Type:      Domain
    :Panel:     :menuselection:`Properties --> Physics --> Field Weights`
 
-These settings determine how much gravity and :doc:`Force Fields </physics/force_fields/index>` affect the smoke.
+These settings determine how much gravity and
+:doc:`Force Fields </physics/forces/force_fields/index>` affect the smoke.
 
 Effector Collection
    When set, smoke can only be influenced by force fields in the specified collection.

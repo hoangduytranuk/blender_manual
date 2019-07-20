@@ -29,19 +29,23 @@ Constraints, in Blender, work with :term:`Objects <Object>` and :term:`Bones <Bo
 Read about using constraints in rigging
 in the :doc:`Armature chapter </animation/armatures/posing/bone_constraints/index>`.
 
-.. figure:: /images/rigging_constraints_introduction_tab-object.png
+.. list-table::
+   :widths: 1 1 5
 
-   Object Constraints.
+   * - .. figure:: /images/animation_constraints_introduction_tab-object.png
 
-.. figure:: /images/rigging_constraints_introduction_tab-bone.png
+          Object
 
-   Bone Constraints.
+     - .. figure:: /images/animation_constraints_introduction_tab-bone.png
+
+          Bone
+
+     - .. figure:: /images/animation_constraints_interface_stack_example.png
+          :align: center
+
+          The Constraint Stack is evaluated from top to bottom.
 
 Constraints work in combination with each other to form a Constraint Stack.
-
-.. figure:: /images/rigging_constraints_interface_stack_example.png
-
-   The Constraint Stack is evaluated from top to bottom.
 
 
 Tips

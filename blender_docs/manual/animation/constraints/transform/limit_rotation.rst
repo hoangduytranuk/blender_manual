@@ -33,14 +33,14 @@ see the "Inverse Kinematics" section of Bone properties.
 Options
 =======
 
-.. figure:: /images/rigging_constraints_transform_limit-rotation_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_transform_limit-rotation_panel.png
 
-   Limit Rotation panel.
+.. TODO2.8    Limit Rotation panel.
 
 Limit X, Y, Z
    These buttons enable the rotation limit around respectively the X, Y and Z axes of the owner,
    in the chosen *Space*.
-   The *Min* and *Max* numeric fields to their right control the value of
+   The *Min* and *Max* number fields to their right control the value of
    their lower and upper boundaries, respectively.
 
    Note that:

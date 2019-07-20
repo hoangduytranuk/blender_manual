@@ -18,22 +18,22 @@ when the selected inactive object is a mesh.
 Options
 =======
 
-.. figure:: /images/rigging_constraints_relationship_shrinkwrap_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_relationship_shrinkwrap_panel.png
 
-   Shrinkwrap panel.
+.. TODO2.8    Shrinkwrap panel.
 
 Target
    :ref:`ui-data-id` used to select the constraint's target, which *must* be a mesh object,
    and is not functional (red state) when it has none.
 Distance
-   This number button controls the offset of the owner from the shrunk computed position on the target's surface.
+   This number field controls the offset of the owner from the shrunk computed position on the target's surface.
 
 
 Shrinkwrap Type
 ---------------
 
 This selector allows you to select which method to use to compute the point on
-the target's surface to which to translate the owner's origin. You have these options:
+the target's surface to which to move the owner's origin. You have these options:
 
 
 Nearest Surface Point

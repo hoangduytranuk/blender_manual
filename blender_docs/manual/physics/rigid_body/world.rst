@@ -20,8 +20,8 @@ Rigid body objects automatically are added to this group when you add rigid body
 You can create several Rigid Body World groups and allocate the rigid body objects
 with the *Groups* panel in the *Object* tab.
 
-Rigid body objects and constraints are only taken into account by the simulation if they are in the groups specified
-in *Group* field of the *Rigid Body World* panel in the *Scene* tab.
+Rigid body objects and constraints are only taken into account by the simulation
+if they are in the collection specified in the *Collection* field of the *Rigid Body World* panel in the *Scene* tab.
 
 
 Settings
@@ -32,7 +32,7 @@ Rigid Body World
    participating in the specified group of Rigid Body World.
 Remove Rigid Body World
    Remove rigid body simulation from the current scene.
-Group
+Collection
    Containing rigid body objects participating in this simulation.
 Constraints
    Containing rigid body object constraints participating in the simulation.
@@ -57,7 +57,12 @@ Solver Iterations
 Rigid Body Cache
 ================
 
-The *Rigid Body Cache* panel specifies the frame range in which the simulation is active.
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Scene --> Rigid Body World --> Cache`
+
+The *Cache* sub-panel specifies the frame range in which the simulation is active.
 Can be used to bake the simulation.
 
 Start/End
@@ -85,5 +90,10 @@ so save your file first or the cache may be lost.
 
 Rigid Body Field Weights
 ========================
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Scene --> Rigid Body World --> Field Weights`
 
 As other physics dynamics systems, rigid body simulation are also influenced by external force effectors.

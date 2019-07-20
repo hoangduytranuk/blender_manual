@@ -93,7 +93,7 @@ Saving your Composite Image
 ===========================
 
 The *Render* button renders a single frame or image.
-Save your image using :menuselection:`Image --> Save Image` or :kbd:`F3`.
+Save your image using :menuselection:`Image --> Save Image` or :kbd:`Shift-S`.
 The image will be saved using the image format settings on the Render panel.
 
 To save a sequence of images, for example,

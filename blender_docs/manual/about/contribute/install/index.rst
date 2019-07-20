@@ -12,4 +12,4 @@ The installation is different for each operating system, instructions have been 
 
    Linux <linux.rst>
    macOS <macos.rst>
-   MS-Windows <windows.rst>
+   Windows <windows.rst>

@@ -1,16 +1,16 @@
-.. |copy-paste| image:: /images/rigging_armatures_posing_editing_copy-paste.png
+.. |copy-paste| image:: /images/animation_armatures_posing_editing_copy-paste.png
 
 *******
 Editing
 *******
 
-.. figure:: /images/rigging_armatures_posing_editing_tools.png
-   :align: right
+.. TODO2.8 .. figure:: /images/animation_armatures_posing_editing_tools.png
+.. TODO2.8    :align: right
 
-   Pose Tools.
+.. TODO2.8    Pose Tools.
 
 In *Pose Mode*, bones behave like objects. So the transform actions
-(grab/rotate/scale, etc.) are very similar to the same ones in *Object* mode
+(move/rotate/scale, etc.) are very similar to the same ones in Object Mode
 (all available ones are regrouped in the :menuselection:`Pose --> Transform` submenu). However,
 there are some important specificities:
 
@@ -31,7 +31,9 @@ which is its state as defined in *Edit Mode*. This means that in rest position,
 in *Pose Mode*, each bone has a scale of 1.0, and null rotation and position
 (as you can see it in the *Transform* panel, in the 3D Views).
 
-.. figure:: /images/rigging_armatures_posing_editing_local-rotation.png
+.. TODO2.8 Maybe update the images (color & style)
+
+.. figure:: /images/animation_armatures_posing_editing_local-rotation.png
 
    An example of locally-Y-axis locked rotation, with two bones selected.
 
@@ -64,10 +66,10 @@ Auto IK
    :class: refbox
 
    :Mode:      Pose Mode
-   :Panel:     :menuselection:`Tool Shelf --> Options --> Pose Options`
+   :Panel:     :menuselection:`Sidebar region --> Tool --> Pose Options`
 
 The auto IK option in the Tool Shelf enables a temporary IK constraint when posing bones.
-The chain acts from the tip of the selected bone to root of the uppermost parent bone.
+The chain acts from the tip of the selected bone to root of the upper-most parent bone.
 Note that this mode lacks options,
 and only works by applying the resulting transform to the bones in the chain.
 
@@ -112,16 +114,26 @@ Apply
    :Menu:      :menuselection:`Pose --> Apply`
    :Hotkey:    :kbd:`Ctrl-A`
 
-Conversely, you may define the current pose as the new rest position
-(i.e. "apply" current transformations to the *Edit Mode*),
-using the :menuselection:`Pose --> Apply Pose as Restpose` menu entry
-(or :kbd:`Ctrl-A` and confirm the pop-up menu). When you do so,
-the skinned objects/geometry is **also** reset to its default, undeformed state,
-which generally means you will have to skin it again.
+Pose as Rest Pose
+   Conversely, you may define the current pose as the new rest pose
+   (i.e. "apply" current transformations to the *Edit Mode*),
+   When you do so, the skinned objects/geometry is **also** reset to its default,
+   undeformed state, which generally means you will have to skin it again.
+Pose Selected as Rest Pose
+   Same as *Pose as Rest Pose* but only applies to selected bones.
+Visual Transform to Pose
+   TODO.
+Assign Custom Property Values as Default
+   TODO.
 
 
 In-Betweens
 ===========
+
+.. figure:: /images/animation_armatures_posing_editing_inbetweens-tools.png
+   :align: right
+
+   In-Betweens Tools.
 
 There are several tools for editing poses in an animation.
 
@@ -131,35 +143,61 @@ like :ref:`auto-bones naming <armature-editing-naming-bones>`,
 that we already described in the armature editing pages. See the links above...
 
 
-Push Pose
----------
+Push Pose from Breakdown
+------------------------
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Pose Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tool --> Tool --> Pose Tools --> In-Betweens: Push`
-   :Menu:      :menuselection:`Pose --> In-Betweens --> Push Pose`
+   :Tool:      :menuselection:`Toolbar --> In-Betweens Tools --> Push`
+   :Menu:      :menuselection:`Pose --> In-Betweens --> Push Pose from Breakdown`
    :Hotkey:    :kbd:`Ctrl-E`
 
-Push pose exaggerates the current pose.
+*Push Pose* interpolates the current pose by making it closer to the next keyframed position.
 
 
-Relax Pose
-----------
+Push Pose from Rest
+-------------------
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Pose Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tool --> Pose Tools --> In-Betweens: Relax`
-   :Menu:      :menuselection:`Pose --> In-Betweens --> Relax Pose`
+   :Menu:      :menuselection:`Pose --> In-Betweens --> Push Pose from Rest`
+
+Similar to *Push Pose from Breakdown* but interpolates the pose to the rest position instead.
+Only one keyframe is needed for this tool unlike two for the other.
+
+
+Relax Pose to Breakdown
+-----------------------
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Pose Mode
+   :Tool:      :menuselection:`Toolbar --> In-Betweens Tools --> Relax`
+   :Menu:      :menuselection:`Pose --> In-Betweens --> Relax Pose to Breakdown`
    :Hotkey:    :kbd:`Alt-E`
 
 Relax pose is somewhat related to the above topic, but it is only useful with keyframed bones.
 When you edit such a bone (and hence take it "away" from its "keyed position"),
 using this tool will progressively "bring it back" to its "keyed position",
 with smaller and smaller steps as it comes near it.
+
+
+Relax Pose to Rest
+------------------
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Pose Mode
+   :Menu:      :menuselection:`Pose --> In-Betweens --> Relax Pose to Rest`
+
+Similar to *Relax Pose to Breakdown* but works to bring the pose back to the rest position instead.
+Only one keyframe is needed for this tool unlike two for the other.
 
 
 Breakdowner
@@ -169,16 +207,16 @@ Breakdowner
    :class: refbox
 
    :Mode:      Pose Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tool --> Pose Tools --> In-Betweens: Breakdowner`
+   :Panel:     :menuselection:`Toolbar region --> In-Betweens Tools --> Breakdowner`
    :Menu:      :menuselection:`Pose --> In-Betweens --> Pose Breakdowner`
-   :Hotkey:    :kbd:`Shift-E`
+   :Hotkey:    :kbd:`LMB`\ -drag
 
 Creates a suitable breakdown pose on the current frame.
 
 The Breakdowner tool can be constrained to work on specific transforms and axes,
 by pressing the following keys while the tool is active:
 
-- :kbd:`G`, :kbd:`R`, :kbd:`S`: translate, rotate, scale
+- :kbd:`G`, :kbd:`R`, :kbd:`S`: move, rotate, scale
 - :kbd:`B`: Bendy bones
 - :kbd:`C`: custom properties
 - :kbd:`X`, :kbd:`Y`, :kbd:`Z`: to the corresponding axes
@@ -191,14 +229,15 @@ Copy/Paste Pose
    :class: refbox
 
    :Mode:      Pose Mode
-   :Header:    Copy/Paste (|copy-paste|)
-   :Panel:     :menuselection:`Tool Shelf --> Tool --> Pose Tools --> Pose: Copy, Paste`
    :Menu:      :menuselection:`Pose --> Copy Current Pose`,
                :menuselection:`Pose --> Paste Pose`,
                :menuselection:`Pose --> Paste X-Flipped Pose`
+   :Hotkey:    :kbd:`Ctrl-C`
+               :kbd:`Ctrl-V`
+               :kbd:`Shift-Ctrl-V`
 
 Blender allows you to copy and paste a pose, either through the *Pose* menu, or
-directly using the three copy/paste buttons found at the right part of the 3D View's header:
+by using hotkeys.
 
 Copy Current Pose
    Copy the current pose of selected bones into the pose buffer.
@@ -220,42 +259,43 @@ Here are important points:
   and if there is no such named bone, nothing will happen...).
 - What is copied and pasted is in fact the position/rotation/scale of each bone, in its own space.
   This means that the resulting pasted pose might be very different from the originally copied one, depending on:
+
   - The rest position of the bones,
   - and the current pose of their parents.
 
 .. list-table::
 
-   * - .. figure:: /images/rigging_armatures_posing_editing_copy-paste-pose-examples-1.png
+   * - .. figure:: /images/animation_armatures_posing_editing_copy-paste-pose-examples-1.png
 
           The rest position of our original armature.
 
-     - .. figure:: /images/rigging_armatures_posing_editing_copy-paste-pose-examples-2.png
+     - .. figure:: /images/animation_armatures_posing_editing_copy-paste-pose-examples-2.png
 
           The rest position of our destination armature.
 
 .. list-table:: Examples of pose copy/paste.
 
-   * - .. figure:: /images/rigging_armatures_posing_editing_copy-paste-pose-examples-3.png
+   * - .. figure:: /images/animation_armatures_posing_editing_copy-paste-pose-examples-3.png
 
           The first copied pose (note that only two bones are selected and hence copied).
 
-     - .. figure:: /images/rigging_armatures_posing_editing_copy-paste-pose-examples-4.png
+     - .. figure:: /images/animation_armatures_posing_editing_copy-paste-pose-examples-4.png
 
           ...pasted on the destination armature...
 
-     - .. figure:: /images/rigging_armatures_posing_editing_copy-paste-pose-examples-5.png
+     - .. figure:: /images/animation_armatures_posing_editing_copy-paste-pose-examples-5.png
 
           ...and mirror-pasted on the destination armature.
 
-   * - .. figure:: /images/rigging_armatures_posing_editing_copy-paste-pose-examples-6.png
+   * - .. figure:: /images/animation_armatures_posing_editing_copy-paste-pose-examples-6.png
 
           The same pose as above is copied, but this time with all bones selected, ...
 
-     - .. figure:: /images/rigging_armatures_posing_editing_copy-paste-pose-examples-7.png
+     - .. figure:: /images/animation_armatures_posing_editing_copy-paste-pose-examples-7.png
 
           ... pasted on the destination armature...
 
-     - .. figure:: /images/rigging_armatures_posing_editing_copy-paste-pose-examples-8.png
+     - .. figure:: /images/animation_armatures_posing_editing_copy-paste-pose-examples-8.png
 
           ...and mirror-pasted on the destination armature.
 
@@ -267,7 +307,6 @@ Propagate
    :class: refbox
 
    :Mode:      Pose Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tool --> Pose Tools --> Pose: Propagate`
    :Menu:      :menuselection:`Pose --> Propagate`
    :Hotkey:    :kbd:`Alt-P`
 
@@ -285,15 +324,15 @@ Termination Mode
    While Held
       The most complicated of the modes available, as it tries to guess when to stop propagating by
       examining the pauses in the animation curves per control
-      (i.e. all F-Curves for a bone, instead of per F-Curve).
+      (i.e. all F-curves for a bone, instead of per F-curve).
    To Next Keyframe
       Simply copies the pose to the first keyframe after (but not including any keyframe on) the current frame.
    To Last Keyframe
-      Will simply replace the last keyframe. (i.e. making action cyclic).
+      Will simply replace the last keyframe (i.e. making action cyclic).
    Before Frame
       To all keyframes between current frame and the *End frame* option.
       This option is best suited for use from scripts due to the difficulties in setting this frame value,
-      though it is possible to set this manually via the Operator panel if necessary.
+      though it is possible to set this manually via the :ref:`ui-undo-redo-adjust-last-operation` panel if necessary.
    Before Last Keyframe
       To all keyframes from current frame until no more are found.
    On Selected Keyframes
@@ -312,7 +351,7 @@ Show/Hide
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Properties editor --> Bone --> Display`
+   :Panel:     :menuselection:`Properties editor --> Bone --> Viewport Display`
    :Menu:      :menuselection:`... --> Show/Hide`
 
 You do not have to use bone layers to show/hide some bones. As with objects,
@@ -322,7 +361,7 @@ vertices or control points, you can use :kbd:`H`:
 - :kbd:`Shift-H` will hide all bones *but the selected one(s)*.
 - :kbd:`Alt-H` will show all hidden bones.
 
-You can also use the *Hide* checkbox of the :menuselection:`Bone tab --> Display panel`.
+You can also use the *Hide* checkbox of the :menuselection:`Bone tab --> Viewport Display panel`.
 
 Note that hidden bones are specific to a mode,
 i.e. you can hide some bones in *Edit Mode*,

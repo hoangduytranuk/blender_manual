@@ -24,8 +24,8 @@ Active Particle System
          Copies all particle systems from the active object to all selected objects.
       Duplicate Particle Systems
          Duplicates the particle system within the active object.
-         The *Duplicate Settings* option (in the Operator panel) will duplicate settings as well,
-         so the new particle system uses its own settings.
+         The *Duplicate Settings* option (in the :ref:`ui-undo-redo-adjust-last-operation` panel) will duplicate
+         settings as well, so the new particle system uses its own settings.
 
 Particle Settings
    The :ref:`Data-Block menu <ui-data-block>` for settings.
@@ -51,10 +51,6 @@ Type
          Controls the number of parts a hair is made of.
          Increasing this value will improve the quality of animations.
 
-Seed
-   This initial value for random properties can be used to create a look,
-   which is slightly different, even when using the same settings.
-
 
 Workflow
 ========
@@ -75,9 +71,10 @@ The process for working with standard particles is:
 Creating a Particle System
 --------------------------
 
-.. figure:: /images/physics_particles_particle-system-panel_create-new.png
+.. TODO2.8:
+   .. figure:: /images/physics_particles_particle-system-panel_create-new.png
 
-   Adding a particle system.
+      Adding a particle system.
 
 To add a new particle system to an object, go to the *Particles* tab of the Properties
 editor and click the small ``+`` button. An object can have many Particle Systems.
@@ -92,9 +89,10 @@ Types of Particle Systems
 
 .. _fig-particle-intro-system-type:
 
-.. figure:: /images/physics_particles_particle-system-panel_select-type.png
+.. TODO2.8:
+   .. figure:: /images/physics_particles_particle-system-panel_select-type.png
 
-   Particle System Types.
+      Particle System Types.
 
 After you have created a particle system,
 the Properties editor fills with many panels and buttons.
@@ -103,4 +101,3 @@ and you can change between these two with the *Type* selector:
 Emitter and Hair.
 
 The settings in the *Particle System* tab are partially different for each system type.
-For example, in :ref:`fig-particle-intro-system-type` they are shown for only system type *Emitter*.

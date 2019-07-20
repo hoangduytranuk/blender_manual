@@ -4,23 +4,24 @@
 Laplacian Smooth Modifier
 *************************
 
-The Laplacian Smooth Modifier allows you to reduce noise on a mesh's surface with minimal changes to its shape.
+The *Laplacian Smooth* modifier allows you to reduce noise on a mesh's surface with minimal changes to its shape.
 
 It can also exaggerate the shape using a negative *Factor*.
 
-The Laplacian Smooth is useful for objects that have been reconstructed from
+The *Laplacian Smooth* is useful for objects that have been reconstructed from
 the real world and contain undesirable noise. It removes noise while still
 preserving desirable geometry as well as the shape of the original model.
 
-The Laplacian Smooth Modifier is based on a curvature flow Laplace Beltrami operator in a diffusion equation.
+This modifier is based on a curvature flow *Laplace Beltrami* operator in a diffusion equation.
 
 
 Options
 =======
 
 .. figure:: /images/modeling_modifiers_deform_laplacian-smooth_panel.png
+   :align: right
 
-   Laplacian Smooth Modifier.
+   The Laplacian Smooth modifier.
 
 Repeat
    Repetitions allow you to run the Laplacian smoothing multiple times.
@@ -243,10 +244,8 @@ Border
 
              Border: -200.0.
 
-Axis
-   Toggle buttons to enable/disable deforming vertices in the X, Y and/or Z axis directions.
-
-   X, Y, Z
+Axis X/Y/Z
+   Toggle buttons to enable/disable deforming vertices in the X, Y and/or Z axes directions.
 
    .. list-table::
 
@@ -292,8 +291,8 @@ Axis
 
 Preserve Volume
    The smoothing process can produce shrinkage.
-   That is significant for large *Factor* or large *Repeat* values;
-   to reduce that effect you can use this option.
+   That is significant for large *Factor* or large *Repeat* values.
+   You can use that option to reduce that effect.
 
    .. list-table::
 
@@ -392,7 +391,7 @@ Normalized
 .. hint::
 
    Meshes with a great number of vertices, more than ten thousand (10,000),
-   may take several minutes for processing; you can use small portions of the mesh for testing
+   may take several minutes for processing. You can use small portions of the mesh for testing
    before executing the modifier on the entire model.
 
 

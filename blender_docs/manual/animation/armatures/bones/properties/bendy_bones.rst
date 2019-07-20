@@ -1,6 +1,8 @@
 .. (todo 2.78 add) images: https://code.blender.org/2016/05/
 .. an-in-depth-look-at-how-b-bones-work-including-details-of-the-new-bendy-bones/
 
+.. _bendy-bones:
+
 ***********
 Bendy Bones
 ***********
@@ -62,23 +64,25 @@ another for Pose Mode -- adding together their values to get the final transform
 Example
 =======
 
+.. TODO2.8 Maybe update the images (color & style)
+
 .. list-table::
 
    * - .. _fig-rig-bone-intro-bbone:
 
-       .. figure:: /images/rigging_armatures_bones_properties_bendy-bones_b-bones-1.png
+       .. figure:: /images/animation_armatures_bones_properties_bendy-bones_b-bones-1.png
           :width: 320px
 
-          The OLD B-Bones, in Edit Mode. ToDo.
+          Bones with just one segment in Edit Mode.
 
-     - .. figure:: /images/rigging_armatures_bones_properties_bendy-bones_b-bones-2.png
+     - .. figure:: /images/animation_armatures_bones_properties_bendy-bones_b-bones-2.png
           :width: 320px
 
           The Bézier curve superposed to the chain, with its handles placed at bones' joints.
 
    * - .. _fig-rig-bone-intro-same:
 
-       .. figure:: /images/rigging_armatures_bones_properties_bendy-bones_b-bones-3.png
+       .. figure:: /images/animation_armatures_bones_properties_bendy-bones_b-bones-3.png
           :width: 320px
 
           The same armature in Object Mode.
@@ -91,7 +95,7 @@ each one made of five segments.
 Look at Fig. :ref:`fig-rig-bone-intro-same`,
 we can see how the bones' segments smoothly "blend" into each other, even for roll.
 
-.. figure:: /images/rigging_armatures_bones_properties_bendy-bones_pose-mode.png
+.. figure:: /images/animation_armatures_bones_properties_bendy-bones_pose-mode.png
 
    An armature in Pose Mode, B-Bone visualization: Bone.003 has one segment,
    Bone.004 has four, and Bone.005 has sixteen.
@@ -103,7 +107,7 @@ Options
 Segments
 --------
 
-The *Segments* number button allows you to set the number of segments, which the given bone is subdivided into.
+The *Segments* number field allows you to set the number of segments, which the given bone is subdivided into.
 Segments are small, rigid linked child bones that interpolate between the root and the tip.
 The higher this setting, the smoother "bends" the bone, but the heavier the pose calculations.
 
@@ -139,21 +143,23 @@ Easing
 ------
 
 Ease In, Out
-   The *Ease In/Out* number buttons, change the "length" of the :ref:`"auto" <curve-handle-type-auto>` Bézier handle
+   The *Ease In/Out* number fields, change the "length" of the :ref:`"auto" <curve-handle-type-auto>` Bézier handle
    to control the "root handle" and "tip handle" of the bone, respectively.
 
    These values are proportional to the default length,
    which of course automatically varies depending on bone length,
    angle with the reference handle, and so on.
 
+.. TODO2.8 Maybe update the images (color & style)
+
 .. list-table:: Ease In/Out settings example, with a materialized Bézier curve.
 
-   * - .. figure:: /images/rigging_armatures_bones_properties_bendy-bones_curve-in-out-1.png
+   * - .. figure:: /images/animation_armatures_bones_properties_bendy-bones_curve-in-out-1.png
           :width: 320px
 
-          Look at Bone.004: it has the default In and Out values (1.0).
+          Bone.004 with default In and Out (1.0).
 
-     - .. figure:: /images/rigging_armatures_bones_properties_bendy-bones_curve-in-out-2.png
+     - .. figure:: /images/animation_armatures_bones_properties_bendy-bones_curve-in-out-2.png
           :width: 320px
 
           Bone.004 with In at 2.0, and Out at 0.0.
@@ -196,7 +202,7 @@ Custom Handle
 Example
 -------
 
-.. figure:: /images/rigging_armatures_bones_properties_bendy-bones_settings-demo.png
+.. figure:: /images/animation_armatures_bones_properties_bendy-bones_settings-demo.png
 
    Visualization of the Bendy Bones properties.
 

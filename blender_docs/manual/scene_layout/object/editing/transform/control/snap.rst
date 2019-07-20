@@ -5,7 +5,7 @@ Snapping
 
 There are two types of snap operations that you can use in Blender. The first type snaps your
 selection or cursor to a given point while the second type is used during transformations
-(translate, rotate, scale) and snaps your selection to elements within the scene.
+(move, rotate, scale) and snaps your selection to elements within the scene.
 
 
 .. _bpy.ops.view3d.snap:
@@ -68,12 +68,11 @@ Transform Snapping
    :Hotkey:    :kbd:`Shift-Tab`
 
 The ability to snap Objects and Mesh element to various types of scene elements during
-a transformation is available by toggling the magnet icon (which will turn red)
-in the 3D View's header buttons.
+a transformation is available by toggling the magnet icon in the 3D View's header buttons.
 
-.. figure:: /images/editors_3dview_object_editing_transform_control_snap_header-magnet-icon.png
+.. figure:: /images/scene-layout_object_editing_transform_control_snap_header-magnet-icon.png
 
-   Magnet icon in the 3D View header (red when enabled).
+   Magnet icon in the 3D View header (blue when enabled).
 
 
 .. _transform-snap-element:
@@ -88,31 +87,35 @@ Snap Element
    :Header:    :menuselection:`Snap Element`
    :Hotkey:    :kbd:`Shift-Ctrl-Tab`
 
-.. figure:: /images/editors_3dview_object_editing_transform_control_snap_element-menu.png
+.. figure:: /images/scene-layout_object_editing_transform_control_snap_element-menu.png
    :align: right
 
    Snap Element menu.
 
+Increment
+   Snap to grid points. When in Orthographic view, the snapping increment changes depending on zoom level.
+Vertex
+   Snap to vertices of mesh objects.
+Edge
+   Snap to edges of mesh objects.
+Face
+   Snap to the surfaces of faces in mesh objects. Useful for retopologizing.
 Volume
    Snaps to regions within the volume of the first Object found below the mouse cursor.
    Unlike the other options, this one controls the depth
    (i.e. Z coordinates in current view space) of the transformed element.
    By toggling the button that appears to the right of the snap target menu (see below),
    target objects will be considered as a whole when determining the volume center.
-Face
-   Snap to the surfaces of faces in mesh objects. Useful for retopologizing.
-Edge
-   Snap to edges of mesh objects.
-Vertex
-   Snap to vertices of mesh objects.
-Increment
-   Snap to grid points. When in Orthographic view, the snapping increment changes depending on zoom level.
 
    .. note::
 
       In this context the grid does not mean the visual grid cue displayed.
       Snapping will use the resolution of the displayed grid,
       but all transformations are relative to the initial position (before the snap operation).
+
+.. tip::
+
+   Multiple snapping modes can be enabled at once by :kbd:`Shift-LMB` the different snapping elements.
 
 
 Snap Target
@@ -133,15 +136,15 @@ Closest
 
 .. list-table::
 
-   * - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_target-closest.png
+   * - .. figure:: /images/scene-layout_object_editing_transform_control_snap_target-closest.png
 
           Closest.
 
-     - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_target-active.png
+     - .. figure:: /images/scene-layout_object_editing_transform_control_snap_target-active.png
 
           Active.
 
-     - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_target-median.png
+     - .. figure:: /images/scene-layout_object_editing_transform_control_snap_target-median.png
 
           Median.
 
@@ -149,52 +152,35 @@ Closest
 Additional Snap Options
 -----------------------
 
-.. list-table::
+.. figure:: /images/scene-layout_object_editing_transform_control_snap_options.png
 
-   * - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_options-object-mode.png
-
-          In Object Mode.
-
-     - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_options-edit-mode.png
-
-          In Edit Mode.
-
-As seen by the yellow highlighted areas in the image above,
+As seen by the yellow highlighted areas in the image above, besides the snap target,
 additional controls are available to alter snap behavior. These options vary between mode
 (Object and Edit) as well as Snap Element. The four options available are:
 
-.. list-table::
-   :header-rows: 1
-   :widths: 13 87
-
-   * - Icon
-     - Details
-   * - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_option-icon-rotation.png
-          :width: 42px
-
-     - Align rotation with the snapping target.
-   * - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_option-icon-project.png
-          :width: 42px
-
-     - Project individual elements on the surface of other objects.
-   * - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_option-icon-self.png
-          :width: 42px
-
-     - Snaps elements to its own mesh.
-   * - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_option-icon-whole.png
-          :width: 42px
-
-     - Consider Objects as whole when finding volume center.
-   * - .. figure:: /images/editors_3dview_object_editing_transform_control_snap_option-icon-absolute.png
-          :width: 42px
-
-     - Snap to grid, instead of snapping in increments relative to the current location.
+Absolute Grid Snap
+   Available only for the increase option.
+   Snap to grid, instead of snapping in increments relative to the current location.
+Project Onto Self
+   Available only in editing mode for Vertices, Edges, Faces and Volume.
+   Snaps elements to its own mesh.
+Align Rotation to Target
+   Available for Vertices, Edges, Faces and Volume.
+   When the Snap Affects Rotation, this align rotation with the snapping target.
+Project Individual Elements
+   Available for snap to Faces.
+   Project individual elements on the surface of other objects.
+Snap Peel Object
+   Available for snap to Volume.
+   Consider Objects as whole when finding volume center.
+Affect
+   Limits the effect of the snap to the transformation type.
 
 
 Multiple Snap Targets
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: /images/editors_3dview_object_editing_transform_control_snap_target-multiple.png
+.. figure:: /images/scene-layout_object_editing_transform_control_snap_target-multiple.png
 
    Multiple snapping targets.
 

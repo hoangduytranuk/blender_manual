@@ -4,7 +4,7 @@
 Image Node
 **********
 
-.. figure:: /images/compositing_types_input_image_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeImage.png
    :align: right
 
    Image Node.

@@ -12,17 +12,17 @@ You can also switch between axes, and use the range values not as limits,
 but rather as "markers" to define a mapping between input (target) and output (owner) values.
 
 So, e.g. you can use the position of the target along the X axis to control the rotation of
-the owner around the Z axis, stating that 1 BU along the target X axis corresponds
-to 10 BU around the owner Z axis. Typical uses for this include gears (see note below),
+the owner around the Z axis, stating that 1 unit along the target X axis corresponds
+to 10 units around the owner Z axis. Typical uses for this include gears (see note below),
 and rotation based on location setups.
 
 
 Options
 =======
 
-.. figure:: /images/rigging_constraints_transform_transformation_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_transform_transformation_panel.png
 
-   Transformation panel.
+.. TODO2.8    Transformation panel.
 
 Target
    :ref:`ui-data-id` used to select the constraints target, and is not functional (red state) when it has none.
@@ -40,12 +40,12 @@ Extrapolate
 
    .. list-table:: The Extrapolate principles.
 
-      * - .. figure:: /images/rigging_constraints_transform_transformation_extrapolate-1.png
+      * - .. figure:: /images/animation_constraints_transform_transformation_extrapolate-1.png
              :width: 300px
 
              Extrapolate disabled: the output values are bounded inside the (1.0 to 2.0) range.
 
-        - .. figure:: /images/rigging_constraints_transform_transformation_extrapolate-2.png
+        - .. figure:: /images/animation_constraints_transform_transformation_extrapolate-2.png
              :width: 300px
 
              Extrapolate enabled: the output values are "free" to proportionally follow the input ones.
@@ -61,7 +61,7 @@ Map From
 
    Location, Rotation, and Scale
 From
-   Independently for each axis (X, Y, and Z) the min and max number buttons control
+   Independently for each axis (X, Y, and Z) the min and max number fields control
    the lower and upper bounds of the input value range.
    Note that if a min value is higher than its corresponding max value,
    the constraint behaves as if it had the same value as the max one.
@@ -81,7 +81,7 @@ Map To
 
    Location, Rotation, and Scale
 To
-   The *min* and *max* number buttons control the lower and upper bounds of the output value range,
+   The *min* and *max* number fields control the lower and upper bounds of the output value range,
    independently for each mapped axis.
    Note that if a min value is higher than its corresponding max value,
    the constraint behaves as if it had the same value as the max one.

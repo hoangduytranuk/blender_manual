@@ -19,7 +19,7 @@ Your First Armature
 In order to see what we are talking about, let us try to add the default armature in Blender.
 
 (Note that armature editing details are explained in
-the :doc:`armatures editing section </animation/armatures/bones/editing/index>`).
+the :doc:`armatures editing section </animation/armatures/bones/editing/index>`.)
 
 Open a default scene, then:
 
@@ -29,7 +29,7 @@ Open a default scene, then:
 #. Add a *Single Bone* (:menuselection:`Add --> Armature --> Single Bone`).
 #. Press :kbd:`NumpadDelete` to see the armature at maximum zoom.
 
-.. figure:: /images/rigging_armatures_introduction_default.png
+.. figure:: /images/animation_armatures_introduction_default.png
 
    The default armature.
 

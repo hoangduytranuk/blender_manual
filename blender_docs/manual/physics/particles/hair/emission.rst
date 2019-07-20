@@ -8,9 +8,10 @@ Emission
 
    :Panel:     :menuselection:`Particle System --> Emission`
 
-.. figure:: /images/physics_particles_hair_emission_settings.png
+.. TODO2.8:
+   .. figure:: /images/physics_particles_hair_emission_settings.png
 
-   Hair particle system settings.
+      Hair particle system settings.
 
 Number
    Set the amount of hair strands. Use as little particles as possible,
@@ -22,6 +23,15 @@ Number
 Hair Length
    Controls how long the hair are.
 
+
+Source
+======
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Emission --> Source`
+
 Emit From
    Vertices
       Emits hair particles from the vertices of a mesh.
@@ -31,11 +41,14 @@ Emit From
    Volume
       Emits hair particles from the volume of an enclosed mesh.
 
-Random
-   Hair particles are emitted in a random order.
-Even Distribution
-   Hair particle distribution is made even based on surface area of the elements,
-   i.e. small elements emit less particles than large elements, so that the particle density is even.
+Use Modifier Stack
+   Take any :doc:`Modifiers </modeling/modifiers/introduction>` above the Particle Modifier
+   in the :ref:`modifier stack <modifier-stack>` into account when emitting particles.
+
+   .. note::
+
+      Note that particles may differ in the final render if these modifiers
+      generate different geometry between the viewport and render.
 
 Distribution
    Jittered
@@ -49,11 +62,8 @@ Distribution
    Random
       Particles are emitted from random locations in the emitter's elements.
 
-Use Modifier Stack
-   Take any :doc:`Modifiers </modeling/modifiers/introduction>` above the Particle Modifier
-   in the :ref:`modifier stack <modifier-stack>` into account when emitting particles.
-
-   .. note::
-
-      Note that particles may differ in the final render if these modifiers
-      generate different geometry between the viewport and render.
+Random
+   Hair particles are emitted in a random order.
+Even Distribution
+   Hair particle distribution is made even based on surface area of the elements,
+   i.e. small elements emit less particles than large elements, so that the particle density is even.

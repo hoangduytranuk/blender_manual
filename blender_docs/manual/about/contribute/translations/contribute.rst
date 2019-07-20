@@ -58,7 +58,7 @@ however, any PO editor will do.
    For Linux users, you will have to check with
    your distribution's software center for a version of Poedit.
    This editor is only a recommendation. There are others, such as Kate and Kwrite, that
-   could offer syntax highlighting and basic tools for text editing, i.e. letter case transposes.
+   could offer syntax highlighting and basic tools for text editing, e.g. letter case transposes.
    Other platforms can use some text editors supporting the syntax highlighting for PO files,
    or allowing you to create a custom one (such as Notepad++ on Windows).
 
@@ -75,7 +75,7 @@ Now you can build the manual with the translation applied::
 
    make -e SPHINXOPTS="-D language='fr'"
 
-If you are on MS-Windows and do not have ``make``, run::
+If you are on Windows and do not have ``make``, run::
 
    sphinx-build -b html -D language=fr ./manual ./build/html
 
@@ -94,6 +94,17 @@ Generated PO File
 
 The modified ``.po`` files can be edited and committed back to svn.
 
+
+Committ Translation Files
+=========================
+
+**For Windows users**
+
+Create .patch file:
+
+#. Enter to : ``C:\blender_docs\locale\fr``
+#. Right click => TortoiseSVN => Create patch...
+#.  :ref:`Submit Patches <submit-patches>`
 
 Maintenance
 ===========

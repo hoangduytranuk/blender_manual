@@ -4,11 +4,10 @@
 Cast Modifier
 *************
 
-This modifier shifts the shape of a mesh, curve,
-surface or lattice to any of a few predefined shapes (sphere, cylinder, cuboid).
+The *Cast* modifier shifts the shape of a mesh, curve,
+surface or lattice, towards any of a few predefined shapes (sphere, cylinder, cuboid).
 
-It is equivalent to the *To Sphere* tool in *Edit Mode*
-:menuselection:`Mesh --> Transform --> To Sphere`, :kbd:`Shift-Alt-S`
+It is equivalent to the :ref:`To Sphere <tool-transform-to_sphere>` tool in Edit Mode,
 and what other programs call "Spherify" or "Spherize", but, as written above,
 it is not limited to casting to a sphere.
 
@@ -20,31 +19,31 @@ it is not limited to casting to a sphere.
 .. note::
 
    For performance reasons, this modifier only works with local coordinates.
-   If the modified object looks wrong, you may need to apply its rotation :kbd:`Ctrl-A`,
-   especially when casting to a cylinder.
+   If the modified object looks wrong, you may need to apply its
+   :ref:`transformations <bpy.ops.object.transform_apply>`, especially when casting to a cylinder.
 
 
 Options
 =======
 
 .. figure:: /images/modeling_modifiers_deform_cast_panel.png
+   :align: right
 
-   Cast Modifier.
+   The Cast modifier.
 
 Cast Type
-   Menu to choose target shape of the projection.
-
-   Sphere, Cylinder, Cuboid
-Axis
+   Menu to choose target shape of the projection: *Sphere*, *Cylinder* or *Cuboid*.
+Axis X/Y/Z
    Toggle buttons to enable/disable the modifier in the X, Y, Z axes directions
-   (X and Y only for *Cylinder* cast type).
-
-   X, Y, Z
+   (X and Y only for *Cylinder* cast type, since the Z axis remains unaffected).
 Factor
    The factor to control blending between original and cast vertex positions.
+
    It is a linear interpolation: 0.0 gives original coordinates (i.e. modifier has no effect),
    1.0 casts to the target shape.
+
    Values below 0.0 or above 1.0 exaggerate the deformation, sometimes in interesting ways.
+
 Radius
    If non-zero, this radius defines a sphere of influence.
    Vertices outside it are not affected by the modifier.
@@ -53,10 +52,9 @@ Size
    it is defined by the initial shape and the control object, if any.
 From radius
    If activated, calculate *Size* from *Radius*, for smoother results.
-
 Vertex Group
-   A vertex group name, to restrict the effect to the vertices in it only.
-   This allows for selective, real-time casting, by painting vertex weights.
+   If set, restrict the effect to the only vertices in that vertex group.
+   This allows selective, real-time casting, by painting vertex weights.
 Control Object
    The name of an object to control the effect.
    The location of this object's origin defines the center of the projection.
@@ -64,7 +62,7 @@ Control Object
 
    .. hint::
 
-      Animating (keyframing) this control object also animates the modified object.
+      Animating (keyframing) this control object also animates the modified object's casting deformation.
 
 
 Example

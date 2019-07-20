@@ -9,10 +9,10 @@
    :maxdepth: 2
 
    introduction.rst
+   toolbar/index.rst
    structure.rst
    primitives.rst
-   selecting/index.rst
+   selecting.rst
    editing/index.rst
    properties/index.rst
-   mesh_display.rst
    mesh_analysis.rst

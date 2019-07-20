@@ -3,16 +3,16 @@
 Introduction
 ************
 
-Vertex Groups can potentially have a very large number of associated vertices and thus a large
-number of weights (one weight per assigned vertex). *Weight Painting* is a method to
-maintain large amounts of weight information in a very intuitive way.
+Vertex Groups can potentially have a very large number of associated vertices
+and thus a large number of weights (one weight per assigned vertex).
+*Weight Painting* is a method to maintain large amounts of weight information
+in a very intuitive way.
 
-It is primarily used for rigging meshes,
-where the vertex groups are used to define the relative bone influences on the mesh.
-But we use it also for controlling particle emission, hair density, many modifiers,
-shape keys, etc.
+It is primarily used for rigging meshes, where the vertex groups are used to
+define the relative bone influences on the mesh. But we use it also for
+controlling particle emission, hair density, many modifiers, shape keys, etc.
 
-.. figure:: /images/sculpt-paint_painting_weight-paint_introduction_example.jpg
+.. figure:: /images/sculpt-paint_weight-paint_introduction_example.jpg
 
    Vertex Group in Weight Paint Mode.
 
@@ -29,22 +29,23 @@ Starting to paint on a mesh automatically adds weights to the active Vertex Grou
 The Weighting Color Code
 ========================
 
-Weights are visualized by a gradient using a cold/hot color system, such that areas of low value
-(with weights close to 0.0) are drawn in blue (cold) and areas of high value
-(with weights close to 1.0) are drawn in red (hot).
-And all in-between values are drawn in rainbow colors (blue, green, yellow, orange, red).
+Weights are visualized by a gradient using a cold/hot color system,
+such that areas of low value (with weights close to 0.0) are displayed as blue (cold)
+and areas of high value (with weights close to 1.0) are displayed as red (hot).
+And all in-between values are displayed as rainbow colors (blue, green, yellow, orange, red).
 
-.. figure:: /images/sculpt-paint_painting_weight-paint_introduction_color-code.png
+.. figure:: /images/sculpt-paint_weight-paint_introduction_color-code.png
 
    The color spectrum and their respective weights.
 
-In addition to the above described color code, Blender has a special visual notation (as an option)
-for unreferenced vertices: They are drawn in black.
-Thus you can see the referenced areas (drawn in cold/hot colors) and the unreferenced areas
-(in black) at the same time. This is most practicable when you look for weighting errors.
-See :doc:`/sculpt_paint/weight_paint/options`.
+In addition to the above described color code, Blender has a special visual notation
+(as an option) for unreferenced vertices: They are displayed as black.
+Thus you can see the referenced areas (displayed as cold/hot colors) and
+the unreferenced areas (in black) at the same time.
+This is most practicable when you look for weighting errors.
+See :doc:`/sculpt_paint/weight_paint/tool_settings/options`.
 
-.. figure:: /images/sculpt-paint_painting_weight-paint_introduction_color-code-black.png
+.. figure:: /images/sculpt-paint_weight-paint_introduction_color-code-black.png
 
    Unreferenced vertices example.
 

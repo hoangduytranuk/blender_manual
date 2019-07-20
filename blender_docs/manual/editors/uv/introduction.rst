@@ -4,9 +4,9 @@ Introduction
 ************
 
 The UV Editor is used to map 2D assets like images/textures
-onto 3D objects and edit what are called `UVs <UVs Explained>`_.
+onto 3D objects and edit what are called UVs.
 
-.. figure:: /images/editors_uv-image_introduction_main.png
+.. figure:: /images/editors_uv_introduction_main.png
 
    UV Editor with a UV map and a test grid texture.
 
@@ -37,13 +37,13 @@ During the UV unwrapping process, you tell Blender exactly how to map the faces 
 to a flat image in the UV Editor. You have complete freedom in how to do this.
 (Continuing our previous example, imagine that, having initially laid the box flat on the tabletop,
 you now cut it into smaller pieces, somehow stretch and/or shrink those pieces,
-and then arrange them in some way upon a photograph that is also lying on that tabletop).
+and then arrange them in some way upon a photograph that is also lying on that tabletop.)
 
 
 Example
 -------
 
-.. figure:: /images/editors_uv-image_uv_overview_3d-uv-space.png
+.. figure:: /images/editors_uv_introduction_3d-uv-space.png
    :width: 620px
 
    3D space (XYZ) versus UV space.
@@ -96,7 +96,7 @@ Interface
 Header
 ------
 
-.. figure:: /images/editors_uv-image_uv_introduction_texturing-header.png
+.. figure:: /images/editors_uv_introduction_texturing-header.png
 
    UV Editor header.
 
@@ -110,8 +110,8 @@ Select
 Image
    This contains options for :doc:`/editors/image/index`.
 UVs
-   Contains tools for :doc:`Unwrapping Meshes </editors/uv/editing/unwrapping/index>`
-   and :doc:`Editing UVs </editors/uv/editing/layout>`.
+   Contains tools for :doc:`Unwrapping Meshes </modeling/meshes/editing/uv/unwrapping/index>`
+   and :doc:`Editing UVs </modeling/meshes/editing/uv/layout>`.
 
 Pivot Point Selector
    Similar to working with Pivot Points in the 3D View.
@@ -130,8 +130,6 @@ UV Snapping
    Similar to Snapping in the 3D View.
 Active UV Texture Map Selector
    Select which UV texture to use.
-Auto Update Other Affected Windows
-   Update other affected windows automatically to reflect changes during interactive operations e.g. transforms.
 
 
 Sidebar Region
@@ -140,19 +138,27 @@ Sidebar Region
 Image Tab
 ^^^^^^^^^
 
-.. figure:: /images/editors_uv-image_uv_introduction_uv-vertex.png
-   :align: right
+.. TODO2.8:
+   .. figure:: /images/editors_uv_introduction_uv-vertex.png
+      :align: right
 
-   Image tab.
+      Image tab.
 
 UV Vertex
-   Transform Properties :doc:`Selecting UVs </editors/uv/editing/layout>`.
+   Transform Properties :doc:`Selecting UVs </modeling/meshes/editing/uv/layout>`.
+
 
 Tool Tab
 ^^^^^^^^
+
+Shows the settings for the active tool.
+
 
 View Tab
 ^^^^^^^^
 
 Display
-   Controls display options.
+   See :doc:`/editors/uv/display_panel`.
+
+2D Cursor
+   Control 2D cursor location.

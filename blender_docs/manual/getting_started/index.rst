@@ -11,4 +11,5 @@
 
    about/index.rst
    installing/index.rst
+   configuration/index.rst
    help.rst

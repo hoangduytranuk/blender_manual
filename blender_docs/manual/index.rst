@@ -1,20 +1,13 @@
-.. _bpy.types:
-.. _bpy.ops:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   Blender |BLENDER_VERSION| Reference Manual
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Welcome to the Blender Manual!
-
-This is the manual for the 3D animation software from `Blender.org <https://www.blender.org>`__.
-
-.. warning::
-
-   Blender Manual is being updated in preparation for 2.80 release. This is work in progress.
-   Various sections of this manual have not been updated, or they are updated only partially.
+Welcome to the manual for `Blender <https://www.blender.org>`__,
+the free and open source 3D creation suite.
 
 .. see T64071 for why we don't use ':download:'
+
 .. only:: builder_html
 
    This site can be used offline:
@@ -24,15 +17,27 @@ This is the manual for the 3D animation software from `Blender.org <https://www.
 Getting Started
 ===============
 
-- :doc:`/getting_started/about/index`
-- :doc:`/getting_started/installing/index`
-- :doc:`/getting_started/help`
+.. container:: tocdescr
+
+   .. container:: descr
+
+      :doc:`/getting_started/about/index`
+
+   .. container:: descr
+
+      :doc:`/getting_started/installing/index`
+
+   .. container:: descr
+
+      :doc:`/getting_started/configuration/index`
+
+   .. container:: descr
+
+      :doc:`/getting_started/help`
 
 
 Sections
 ========
-
-.. The image ratio is: width: 350px; height: 350/4 + (2x5) ~= 98px
 
 .. only:: builder_html and (not singlehtml)
 
@@ -52,7 +57,7 @@ Sections
             :target: editors/index.html
 
          :doc:`/editors/index`
-            Overview of the editors describing the interface and functionality of each one.
+            Overview of the interface and functionality of all editors.
 
       .. container:: descr
 
@@ -60,7 +65,7 @@ Sections
             :target: scene_layout/index.html
 
          :doc:`/scene_layout/index`
-            Scene and object management.
+            Objects and their organization into scenes, view layers and collections.
 
       .. container:: descr
 
@@ -68,7 +73,7 @@ Sections
             :target: modeling/index.html
 
          :doc:`/modeling/index`
-            The various supported geometry types, modeling tools, and modifiers.
+            Meshes, curves, metaballs, text, modeling tools, and modifiers.
 
       .. container:: descr
 
@@ -76,7 +81,15 @@ Sections
             :target: sculpt_paint/index.html
 
          :doc:`/sculpt_paint/index`
-            The 3D texture painting and sculpting modes.
+            Sculpting, texture painting and vertex painting.
+
+      .. container:: descr
+
+         .. figure:: /images/index_grease-pencil.jpg
+            :target: grease_pencil/index.html
+
+         :doc:`/grease_pencil/index`
+            2D drawing and animation with Grease Pencil.
 
       .. container:: descr
 
@@ -84,7 +97,7 @@ Sections
             :target: animation/index.html
 
          :doc:`/animation/index`
-            Keyframe animation, graph interpolation, drivers, and shape keys.
+            Keyframes, drivers, constraints, armatures and shape keys.
 
       .. container:: descr
 
@@ -100,7 +113,7 @@ Sections
             :target: render/index.html
 
          :doc:`/render/index`
-            Render engines (Internal, Cycles), shading, post-processing, and Freestyle (NPR).
+            Rendering and shading with Eevee, Cycles and Freestyle.
 
       .. container:: descr
 
@@ -108,32 +121,43 @@ Sections
             :target: compositing/index.html
 
          :doc:`/compositing/index`
-            Post-processing with the Compositor.
+            Post-processing with the compositing nodes.
 
       .. container:: descr
 
-         .. figure:: /images/index_data.jpg
-            :target: files/index.html
+         .. figure:: /images/index_movie-clip.jpg
+            :target: movie_clip/index.html
+
+         :doc:`/movie_clip/index`
+            Video motion tracking & masking.
+
+      .. container:: descr
+
+         .. figure:: /images/index_sequencer.jpg
+            :target: sequencer/index.html
+
+         :doc:`/sequencer/index`
+            Video editing with the sequencer.
+
+      .. container:: descr
 
          :doc:`/files/index`
-            Blender's data management of scene data and the structure of blend-files.
+            Data-block management and the structure of blend-files.
 
       .. container:: descr
 
-         .. figure:: /images/index_advanced.jpg
-            :target: advanced/index.html
+         :doc:`/addons/index`
+            Additional functionality available as add-ons.
+
+      .. container:: descr
 
          :doc:`/advanced/index`
             Python scripting, how to write add-ons and a reference for command-line arguments.
 
       .. container:: descr
 
-         .. figure:: /images/index_troubleshooting.jpg
-            :target: troubleshooting/index.html
-
          :doc:`/troubleshooting/index`
-            Compatibility errors related to other software (graphics drivers, Python),
-            how to write a bug report and recover data.
+            Solving crashes, graphics issues and Python errors, recovering data and reporting bugs.
 
       .. container:: descr
 
@@ -157,14 +181,16 @@ Sections
       scene_layout/index.rst
       modeling/index.rst
       sculpt_paint/index.rst
+      grease_pencil/index.rst
       animation/index.rst
       physics/index.rst
       render/index.rst
       compositing/index.rst
+      movie_clip/index.rst
+      sequencer/index.rst
       files/index.rst
-      advanced/index.rst
       addons/index.rst
-      pipeline/index.rst
+      advanced/index.rst
       troubleshooting/index.rst
       glossary/index.rst
 

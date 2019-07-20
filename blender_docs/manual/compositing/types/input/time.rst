@@ -6,13 +6,13 @@
 Time Node
 *********
 
-.. figure:: /images/compositing_types_input_time_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeTime.png
    :align: right
 
    Time Node.
 
-The *Time node* generates a factor value (from 0.00 to 1.00)
-that changes according to the curve was drawn as time progresses through the *Timeline*.
+The *Time node* generates a factor value (from 0.0 to 1.0)
+that changes according to the curve as time progresses through the *Timeline*.
 
 
 Inputs

@@ -4,7 +4,7 @@
 Laplacian Deform Modifier
 *************************
 
-The Laplacian Deform Modifier allows you to pose a mesh while preserving
+The *Laplacian Deform* modifier allows you to pose a mesh while preserving
 geometric details of the surface.
 
 The user defines a set of "anchor" vertices, and then moves some of them around.
@@ -12,26 +12,27 @@ The modifier keeps the rest of the anchor vertices in fixed positions and
 calculates the optimal locations of all the remaining vertices to preserve the original geometric details.
 
 This modifier captures the geometric details with the use of differential coordinates.
-The differential coordinates capture the local geometric information how curvature and
+The differential coordinates capture the local geometric information, the curvature and
 direction of a vertex based on its neighbors.
 
 .. note::
 
-   You must define an *Anchors Vertex Group*. Without a Vertex Group Modifier does nothing.
+   You must define an *Anchors Vertex Group*. Without it the modifier does nothing.
 
 
 Options
 =======
 
 .. figure:: /images/modeling_modifiers_deform_laplacian-deform_panel.png
+   :align: right
 
-   Laplacian Deform Modifier.
+   The Laplacian Deform modifier.
 
 Repeat
-   Repetitions iteratively improve the solution found.
-   The objective is to find the rotation of the differential
-   coordinates preserving the best possible geometric detail.
-   Details are retained better if more repetitions are used,
+   How many iterations to do to improve the found solution.
+   The objective is to find the rotation of the differential coordinates
+   preserving the best possible geometric details.
+   Details are retained better if more iterations are used,
    however, it will take longer to calculate.
 
    .. list-table:: Deform horse example
@@ -78,25 +79,24 @@ Repeat
              Repeat: 10.
 
 Anchors Vertex Group
-   A vertex group name, to define the group of vertices that the user will use to transform the model.
-   The weight of each vertex does not affect the behavior of the modifier;
+   The group of vertices that the user will use to transform the model.
+   The weight of each vertex does not affect the behavior of the modifier,
    the method only takes into account vertices with weight greater than 0.
 
 Bind
-   The *Bind* button is what tells the Laplacian Deform Modifier to actually capture the geometry details
+   The *Bind* button is what tells the *Laplacian Deform* modifier to actually capture the geometry details
    of the object, so that altering the anchor vertices actually alters the shape of the deformed object.
 
 Unbind
-   After binding the modifier, you may later decide to make changes to the Anchor Vertex Group.
-   To do so you will first need to *Unbind* the modifier before binding again.
+   After binding the modifier, you may later decide to make changes to the *Anchors Vertex Group*.
+   To do so you will first need to *Unbind* the modifier before binding it again.
 
 
 Error Messages
 ==============
 
 Vertex group *group_name* is not valid
-   This message is displayed when a user deletes a Vertex Group or
-   when the user changes the name of the Vertex Group.
+   This message is displayed when a user deletes the vertex group or changes its the name.
 Vertices changed from X to Y
    This message is displayed when a user adds or deletes vertices to/from the mesh.
 Edges changed from X to Y

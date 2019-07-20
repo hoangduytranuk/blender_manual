@@ -52,25 +52,21 @@ Editing
    :class: refbox
 
    :Mode:      Object Mode and Edit Mode
-   :Menu:      :menuselection:`Object --> Transform`
-   :Hotkey:    :kbd:`Shift-T`, :kbd:`Shift-Alt-T`
+   :Menu:      :menuselection:`Object --> Transform --> Scale/Move Texture Space`
 
 To modify the texture space from the 3D View, enable
 :ref:`Edit Texture Space <modeling_transform_edit-texture-space>`
 while :doc:`transforming </scene_layout/object/editing/transform/basics>` an object.
-The texture space can also be transformed with the two shortcuts: :kbd:`Shift-T`
-(move) and :kbd:`Shift-Alt-T` (scale). In essence, these shortcuts just enable
-the *Edit Texture Space* option while transforming.
 
 
 Accessing
 =========
 
 The automatically calculated UV map can be accessed by an object's material through
-the *Generated* output of the :doc:`/render/shaders/nodes/types/input/texture_coordinate`.
+the *Generated* output of the :doc:`/render/shader_nodes/input/texture_coordinate`.
 This output can then be used to map any texture onto an object.
 
 .. tip::
 
    Generated texture spaces do not have rotation support, to overcome this,
-   a :doc:`/render/shaders/nodes/types/vector/mapping` can be used to rotate the UV map.
+   a :doc:`/render/shader_nodes/vector/mapping` can be used to rotate the UV map.

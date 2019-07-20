@@ -5,7 +5,7 @@
 Speaker
 *******
 
-.. figure:: /images/render_audio_speaker_objects.png
+.. figure:: /images/render_output_audio_speaker_objects.png
 
    Speaker objects.
 
@@ -49,13 +49,12 @@ Therefore you have to open the *NLA Editor* where you can add sound strips
 that define when the sound should start (nothing else,
 so any other properties of the strips, like length don't matter).
 When you add a speaker object such a strip will be added at the current frame.
-The Shortcut to add a strip in the *NLA Editor* is :kbd:`Shift-K`.
 
 
 Distance
 --------
 
-.. figure:: /images/render_audio_speaker_properties.png
+.. figure:: /images/render_output_audio_speaker_properties.png
    :align: right
 
    Speaker properties.

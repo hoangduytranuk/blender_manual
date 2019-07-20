@@ -26,7 +26,7 @@ Getting Support
 ===============
 
 Blender's community is one of its greatest features, so apart from this user manual,
-there are many different ways to get support from other users, such as :ref:`IRC <irc-channels>`
+there are many different ways to get support from other users, such as :ref:`blender-chat`
 and `Stack Exchange <https://blender.stackexchange.com/>`__.
 
 There are also more official sources of support,
@@ -41,43 +41,36 @@ More details about support can be found on the `support page <https://www.blende
 Development
 ===========
 
-Being open source, most of Blender's development is done solely by volunteers.
+Being open source, Blender welcomes development from volunteers.
 Communication between developers is done mostly through three platforms:
 
 - The `developer.blender.org <https://developer.blender.org/>`__ system
 - Various `mailing lists <https://lists.blender.org/mailman/listinfo>`__
-- The #blendercoders IRC channel (see below)
+- Online Chat (see below)
 
 If you are interested in helping develop Blender,
 see the `Get Involved <https://www.blender.org/get-involved/>`__ page.
 
 
-.. _irc-channels:
+.. _blender-chat:
 
-IRC Channels
+Blender Chat
 ============
 
-For real-time discussion, there are some Blender IRC channels on the Freenode network.
-You can join these with your favorite IRC client:
+For real-time discussion, we have
+`blender.chat <https://blender.chat>`__ which uses
+`Blender ID <https://id.blender.org>`__ for authentication.
 
-- `#blender <irc://irc.freenode.net/blender>`__
+You can join these channels:
+
+- `#today <https://blender.chat/channel/today>`__
   For getting answers from the community.
-- `#blenderchat <irc://irc.freenode.net/blenderchat>`__
-  For general discussion or off topic chat.
-- `#blendercoders <irc://irc.freenode.net/blendercoders>`__
+- `#blender-coders <https://blender.chat/channel/blender-coders>`__
   For developers to discuss Blender development.
-- `#blenderpython <irc://irc.freenode.net/blenderpython>`__
+- `#python <https://blender.chat/channel/today>`__
   For support for developers using the Python API.
-- `#blenderwiki <irc://irc.freenode.net/blenderwiki>`__
+- `#docs <https://blender.chat/channel/docs>`__
   For discussion related to Blender's documentation.
-
-.. note::
-
-   If you do not have an IRC client, you can access IRC using `webchat <https://webchat.freenode.net/>`__.
-
-There also several more Blender-related channels not listed here
-(e.g. channels for speakers of a particular language).
-We recommend you search Freenode to see them all.
 
 
 Other Useful Links

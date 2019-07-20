@@ -4,7 +4,7 @@
 Alpha Convert Node
 ******************
 
-.. figure:: /images/compositing_types_converter_alpha-convert_node.png
+.. figure:: /images/compositing_node-types_CompositorNodePremulKey.png
    :align: right
 
    Alpha Convert Node.

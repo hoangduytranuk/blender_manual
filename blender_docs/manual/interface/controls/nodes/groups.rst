@@ -7,7 +7,7 @@
 Node Groups
 ***********
 
-.. figure:: /images/editors_node-editor_nodes_groups_node-group-example.png
+.. figure:: /images/interface_controls_nodes_groups_node-group-example.png
    :align: right
 
    Example of a node group.
@@ -28,7 +28,7 @@ A better method of reuse is to create node groups, exposing only the variable in
 
 Also nested node groups are supported. I.e. a node group can be inserted or created inside another node group.
 
-.. note:: Recursion
+.. note::
 
    Recursive node groups are prohibited for all the current node systems to prevent infinite recursion.
    A node group can never contain itself (or another group that contains it).
@@ -41,7 +41,7 @@ Make Group
    :class: refbox
 
    :Mode:      All Modes
-   :Menu:      :menuselection:`Group --> Make Group`
+   :Menu:      :menuselection:`Node --> Make Group`
    :Hotkey:    :kbd:`Ctrl-G`
 
 To create a node group, select the nodes you want to include, then
@@ -74,7 +74,7 @@ Edit Group
    :class: refbox
 
    :Mode:      All Modes
-   :Menu:      :menuselection:`Group --> Edit Group`
+   :Menu:      :menuselection:`Node --> Edit Group`
    :Header:    :menuselection:`Go to Parent Node Tree`
    :Hotkey:    :kbd:`Tab`, :kbd:`Ctrl-Tab`
 
@@ -118,9 +118,9 @@ Panel
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Sidebar region --> Interface`
+   :Panel:     :menuselection:`Sidebar region --> Node --> Interface`
 
-.. figure:: /images/editors_node-editor_nodes_groups_interface-panel.png
+.. figure:: /images/interface_controls_nodes_groups_interface-panel.png
    :align: right
 
    The interface panel for editing groups.
@@ -183,7 +183,7 @@ Appending Node Groups
 .. admonition:: Reference
    :class: refbox
 
-   :Editor:    Info Editor
+   :Editor:    Topbar
    :Mode:      All Modes
    :Menu:      :menuselection:`File --> Link/Append`
 

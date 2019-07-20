@@ -45,7 +45,7 @@ This page lists definitions for terms used in Blender and this manual.
 
       Conversion (Straight/Premultiplied) Alpha
          Conversion between the two alpha types is not a simple operation and can involve data loss,
-         as both alpha types can represent data that the other cannot though it is often subtle.
+         as both alpha types can represent data that the other cannot, though it is often subtle.
 
          Straight alpha can be considered to be an RGB color image with a separate alpha mask.
          In areas where this mask is fully transparent, there can still be colors in the RGB channels.
@@ -69,13 +69,13 @@ This page lists definitions for terms used in Blender and this manual.
       Simulation of motion.
 
    Anti-aliasing
-      See :term:`oversampling`.
+      Is the technique of minimizing :term:`aliasing`, by e.g. rendering multiple samples per pixel.
 
    Armature
       An :term:`Object` consisting of :term:`bones <bone>`. Used to :term:`rig` characters, props, etc.
 
    Axis
-      A reference line which defines coordinates along one cardinal direction in n-D space.
+      A reference line which defines coordinates along one cardinal direction in n-dimensional space.
 
    Axis Angle
       Rotation method where X, Y, and Z correspond to the axis definition,
@@ -88,13 +88,9 @@ This page lists definitions for terms used in Blender and this manual.
    Bevel
       The operation to chamfer or bevel edges of an object.
 
-   BU
-   Blender Units
-      Internal units used by Blender, equivalent to meters. Often abbreviated to "BU".
-
    Bone
       The building block of an :term:`Armature`. Made up of a :term:`Head`, :term:`Tail`
-      and :term:`Roll Angle` which define a set of local axes and a point of rotation at the :term:`Head`.
+      and :term:`Roll Angle` which define a set of local axes and a point of rotation at the Head.
 
    Boolean
       A type of logic dealing with binary true/false states.
@@ -150,6 +146,9 @@ This page lists definitions for terms used in Blender and this manual.
       Limits a variable to a range. The values over or under the range are set
       to the constant values of the range's minimum or maximum.
 
+   Collection
+      A device for organizing objects. See also :doc:`Collections </scene_layout/collections/collections>`.
+
    Blend Modes
    Color Blend Modes
       Methods for blending two colors together.
@@ -191,8 +190,6 @@ This page lists definitions for terms used in Blender and this manual.
       YCbCr
          Luminance-ChannelBlue-ChannelRed Component video for digital broadcast use,
          whose standards have been updated for HDTV and commonly referred to as the HDMI format for component video.
-      \+A
-         The color space holds an additional :term:`Alpha Channel`.
 
    Concave Face
       Face in which one vertex is inside a triangle formed by other vertices of the face.
@@ -257,10 +254,10 @@ This page lists definitions for terms used in Blender and this manual.
       from one to the other.
 
    Double Buffer
-      Technique for drawing and displaying content on the screen.
-      Blender uses two buffers (images) to draw the interface in.
-      The content of one buffer is displayed while drawing occurs on the other buffer.
-      When drawing is complete, the buffers are switched.
+      Technique for rendering and displaying content on the screen.
+      Blender uses two buffers (images) to render the interface,
+      the content of one buffer is displayed while rendering occurs on the other buffer.
+      When rendering is complete, the buffers are switched.
 
    Edge
       Straight segment (line) that connects two :term:`vertices <vertex>`, and can be part of a :term:`face`.
@@ -274,11 +271,6 @@ This page lists definitions for terms used in Blender and this manual.
 
    Empty
       An :term:`Object` without any :term:`Vertices`, :term:`Edges <Edge>` or :term:`Faces <Face>`.
-
-   Environment Map
-      A method of calculating reflections.
-      It involves rendering images at strategic positions and applying them as textures to the mirror.
-      Now in most cases obsoleted by ray tracing, which though slower is easier to use and more accurate.
 
    Euler
    Euler Rotation
@@ -298,7 +290,7 @@ This page lists definitions for terms used in Blender and this manual.
       A special :term:`Data User`, a program construct that is
       used to mark an object (e.g. material) to be saved in a blend-file,
       even when no :term:`Real User` is using the object.
-      Objects that are not used by any :term:`Data User` are not included in saved blend-files.
+      Objects that are not used by any Data User are not included in saved blend-files.
 
    F-Curve
       A curve that holds the animation values of a specific property.
@@ -321,14 +313,6 @@ This page lists definitions for terms used in Blender and this manual.
          Use data from previous frames to decompress and are more compressible than I‑frames.
       B‑frames
          Use both previous and forward frames for data reference to get the highest amount of compression.
-
-   FSAA
-   Full-Screen Anti-Aliasing
-      A method of :term:`Anti-aliasing` on the graphics card, so the entire image is displayed smooth.
-      Also known as *Multisampling*.
-
-      This can be enabled in the :ref:`Preferences <prefs-system-multi-sampling>`.
-      On many graphics cards, this can also be enabled in the driver options.
 
    Gamma
       An operation used to adjust the brightness of an image.
@@ -359,19 +343,14 @@ This page lists definitions for terms used in Blender and this manual.
    Global Space
       See :term:`World Space`.
 
-   Gouraud Shading
-      Used to achieve smooth lighting on low-polygon surfaces without
-      the heavy computational requirements of calculating lighting for each pixel.
-      The technique was first presented by Henri Gouraud in 1971.
-
    Glossy Map
       See :term:`Roughness Map`.
 
    Head
-      A subcomponent of a :term:`Bone`. The point of rotation for that :term:`Bone`.
-      Has X, Y and Z coordinates measured in the :term:`Local Space` of the :term:`Armature` :term:`Object`.
-      Used in conjunction with the :term:`Tail` to define the :term:`local <Local Space>` Y axis of the :term:`Bone`
-      in :term:`Pose Mode`. The larger of the two ends when drawn as an :term:`Octahedron`.
+      A subcomponent of a :term:`Bone`. The point of rotation for the bone
+      has X, Y, and Z coordinates measured in the :term:`Local Space` of the :term:`Armature` :term:`Object`.
+      Used in conjunction with the :term:`Tail` to define the local Y axis of the bone
+      in :term:`Pose Mode`. The larger of the two ends when displayed as an :term:`Octahedron`.
 
    HDRI
    High Dynamic Range Image
@@ -413,12 +392,9 @@ This page lists definitions for terms used in Blender and this manual.
 
       See also :doc:`Lattice Modifier </modeling/modifiers/deform/lattice>`.
 
-   Layer
-      A device for organizing objects. See also :doc:`Layers </scene_layout/object/properties/relations/layers>`.
-
    Light Bounces
       Refers to the reflection or transmission of a light ray upon interaction with a material.
-      See also :doc:`Light Paths </render/engines/cycles/settings/scene/render/light_paths>`.
+      See also :doc:`Light Paths </render/cycles/render_settings/light_paths>`.
 
    Local Space
       A 3D coordinate system that originates (for Objects) at the :term:`Object Origin`.
@@ -439,6 +415,10 @@ This page lists definitions for terms used in Blender and this manual.
       When working with non-closed volumes, a manifold mesh is a mesh in which
       the normals will always define two different and non-consecutive surfaces.
       A manifold mesh will always define an even number of non-overlapped surfaces.
+
+   MatCap
+      Stands for "material capture", using an image to represent a complete material
+      including lighting and reflections.
 
    Matte
    Mask
@@ -481,10 +461,15 @@ This page lists definitions for terms used in Blender and this manual.
       Simulating motion blur makes computer animation appear more realistic.
 
    Multisampling
-      See :term:`FSAA`.
+      Rendering multiple samples per pixel, for :term:`anti-aliasing`.
 
    N-gon
       A :term:`face` that contains more than four :term:`vertices <vertex>`.
+
+   NDOF
+   3D Mouse
+      A general term used to describe a 3D mouse, or any input devices which supports
+      more degrees of freedom than a conventional 2D input device, see: :ref:`hardware-ndof`.
 
    Non-linear Animation
       Animation technique that allows the animator to edit motions as a whole,
@@ -514,6 +499,8 @@ This page lists definitions for terms used in Blender and this manual.
 
       See also: :ref:`Select Non-Manifold <mesh-select-non-manifold>` tool.
 
+      .. TODO: Images would be useful here.
+
    Normal
       The normalized vector perpendicular to a surface.
 
@@ -534,7 +521,7 @@ This page lists definitions for terms used in Blender and this manual.
 
    Object
       Container for a type (Mesh, Curve, Surface, Metaball, Text, Armature,
-      Lattice, Empty, Camera, Lamp) and basic 3D transform data (:term:`Object Origin`).
+      Lattice, Empty, Camera, Light) and basic 3D transform data (:term:`Object Origin`).
 
    Object Center
    Object Origin
@@ -546,15 +533,9 @@ This page lists definitions for terms used in Blender and this manual.
 
    OpenGL
       The graphics system used by Blender (and many other graphics applications)
-      for drawing 3D graphics, often taking advantage of hardware acceleration.
+      for rendering 3D graphics, often taking advantage of hardware acceleration.
 
       See also `OpenGL <https://en.wikipedia.org/wiki/OpenGL>`__ on Wikipedia.
-
-   Oversampling
-      Is the technique of minimizing :term:`aliasing`
-      when representing a high resolution signal at a lower resolution.
-
-      Also called Anti-Aliasing.
 
    Overscan
       The term used to describe the situation.
@@ -624,7 +605,7 @@ This page lists definitions for terms used in Blender and this manual.
       Perspective
          A *perspective* view is geometrically constructed by taking a scene in 3D and placing an observer
          at point *O*. The 2D perspective scene is built by placing a plane (e.g. a sheet of paper)
-         where the 2D scene is to be drawn in front of point *O*, perpendicular to the viewing direction.
+         where the 2D scene is to be rendered in front of point *O*, perpendicular to the viewing direction.
          For each point *P* in the 3D scene a *PO* line is drawn, passing by *O* and *P*.
          The intersection point *S* between this *PO* line and the plane is the perspective projection
          of that point. By projecting all points *P* of the scene you get a perspective view.
@@ -634,6 +615,14 @@ This page lists definitions for terms used in Blender and this manual.
          through point *P* so that it is parallel to the viewing direction. The intersection
          *S* between the line and the plane is the orthographic projection of the point *P*.
          By projecting all points *P* of the scene you get the orthographic view.
+
+   Proxy
+      For video editing, a proxy is a smaller version of the original file,
+      typically using an optimized video codec and lower resolution version (faster to load)
+      that stands in for the main image or video.
+
+      When proxies are built, editing functions like scrubbing and scrolling and compositing is much
+      faster but gives lower resolution and slightly imprecise result.
 
    Quad
    Quadrilateral
@@ -654,6 +643,20 @@ This page lists definitions for terms used in Blender and this manual.
       See also
       `Radiosity (computer graphics) <https://en.wikipedia.org/wiki/Radiosity_%28computer_graphics%29>`__
       on Wikipedia.
+
+   Random Seed
+   Seed
+      Blender uses pseudo random number generators, which produce numbers that appear to be random,
+      but given the same initial condition, they will always produce the exact same sequence of numbers.
+
+      This is a critical feature to get reproducible and/or stable effects
+      (otherwise e.g. your hair simulation would change every time you re-run it,
+      without any way to control the outcome).
+
+      The **seed** is a number that represents the initial condition of a random generator,
+      if you change its seed, it will produce a new sequence of pseudo-random numbers.
+
+      See also `Random seed <https://en.wikipedia.org/wiki/Random_seed>`__ on Wikipedia.
 
    Ray Tracing
       Rendering technique that works by tracing the path taken by a ray of light through the scene,
@@ -685,6 +688,12 @@ This page lists definitions for terms used in Blender and this manual.
       The orientation of the local X and Z axes of a :term:`Bone`.
       Has no effect on the local Y axis as local Y is determined by the location of
       the :term:`Head` and :term:`Tail`.
+
+   Rolling Shutter
+      In real CMOS cameras the sensor is read out with scanlines
+      and hence different scanlines are sampled at a different moment in time.
+      This, for example, make vertical straight lines being curved when doing a horizontal camera pan.
+      See also `Rolling Shutter <https://en.wikipedia.org/wiki/Rolling_shutter>`__ on Wikipedia.
 
    Roughness Map
       A grayscale texture that defines how rough or smooth the surface of a material is.
@@ -726,7 +735,7 @@ This page lists definitions for terms used in Blender and this manual.
       It creates new vertices on subdivided edges, new edges between subdivisions and new faces based on new edges.
       If new edges cross a new vertex is created at their crossing point.
 
-   Subsurf
+   Subdiv
    Subdivision Surface
       A method of creating smooth higher poly surfaces which can take a low polygon mesh as input.
 
@@ -737,8 +746,8 @@ This page lists definitions for terms used in Blender and this manual.
    Tail
       A subcomponent of a :term:`Bone`. Has X, Y and Z coordinates measured in the :term:`Local Space`
       of the Armature Object. Used in conjunction with the :term:`Head`
-      to define the :term:`local <Local Space>` Y axis of a :term:`Bone` in :term:`Pose Mode`.
-      The smaller of the two ends when drawn as an :term:`Octahedron`.
+      to define the local Y axis of a bone in :term:`Pose Mode`.
+      The smaller of the two ends when displayed as an :term:`Octahedron`.
 
    Tessellation
       The tiling of a plane using one or more geometric shapes usually resulting in :term:`Micropolygons`.
@@ -796,7 +805,7 @@ This page lists definitions for terms used in Blender and this manual.
       and the rest of the functions are animated.
 
    Weight Painting
-      Assigning :term:`vertices` to :term:`Vertex Groups <Vertex Group>` with a weight of 0.0 - 1.0.
+      Assigning :term:`vertices` to a :term:`Vertex Group` with a weight of 0.0 - 1.0.
 
    White Point
       A reference value for white light defined by what happens when all the primaries,

@@ -11,4 +11,3 @@
    display.rst
    bone_groups.rst
    pose_library.rst
-   ghost.rst

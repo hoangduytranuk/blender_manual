@@ -5,9 +5,23 @@ Introduction
 
 The Image Editor is where you can view/edit 2D assets like images or textures.
 
-.. figure:: /images/editors_uv-image_introduction_main.png
+.. figure:: /images/editors_image_introduction_main.png
 
    Image Editor with a test grid texture.
+
+
+Toolbar
+=======
+
+Sample Tool
+   Used to sample a pixels color from anywhere within Blender.
+
+   Sample Size
+      The dimensions of the square used to sample underlying pixels.
+      If larger than 1 the resulting sample is an average of all underlying pixels.
+
+Annotate
+   See :doc:`Annotations </interface/annotate_tool>` for more information.
 
 
 Header
@@ -30,7 +44,7 @@ Modes
    Paint
       :doc:`/sculpt_paint/texture_paint/index`.
    Mask
-      :doc:`/editors/movie_clip_editor/masking/index`.
+      :doc:`/movie_clip/masking/index`.
 
 
 Multi-Layer
@@ -45,8 +59,8 @@ Slot
    Empty slots appear as blank grids in the Image editor.
    Use the :kbd:`J` and :kbd:`Alt-J` to cycle forwards and backwards through saved renders.
    The *Slot Name* field in the *Display Panel* allows you to rename a slot.
-Render Layer
-   If you are using :doc:`Render Layers </render/layers/index>`,
+View Layer
+   If you are using :doc:`View Layers </render/layers/index>`,
    use this menu to select which layer is displayed.
 Render Pass
    If you are using :doc:`Render Passes </render/layers/passes>`,
@@ -56,17 +70,17 @@ Render Pass
 Display Channels
 ----------------
 
-The radio buttons set which channels of the image are displayed.
+In the dropdown menu on the right, the displayed channels can be selected.
 
-RGBA
+Color and Alpha
    Replaces transparent pixels with background checkerboard, denoting the alpha channel.
-RGB
-   Draw the colored image, without alpha channel.
+Color
+   Display the colored image, without alpha channel.
 Alpha
    Displays the Alpha channel a grayscale image. White areas are opaque, black areas have an alpha of 0.
 Z-Buffer
    Display the depth from the camera, from Clip Start to Clip End,
-   as specified in the :doc:`Camera settings </render/camera>`.
+   as specified in the :doc:`Camera settings </render/cameras>`.
 Red, Green, Blue
    Single Color Channel visualized as a grayscale image.
 
@@ -74,15 +88,15 @@ Red, Green, Blue
 Main View
 =========
 
-When :kbd:`LMB` dragging mouse the color under the cursor is shown in the footer as well the cursor position and
-the color values in the RGBA, HSV and Luminance :term:`color space`.
+When :kbd:`LMB` / :kbd:`RMB` dragging mouse the color under the cursor is shown in the footer as well the cursor
+position and the color values in the RGBA, HSV and Luminance :term:`color space`.
 
 
 Sidebar Region
 ==============
 
 Tool
-   Todo.
+   Displays the settings of the active tool.
 Image
    Tools for working with images see :doc:`/editors/image/image_settings`.
 View Tab

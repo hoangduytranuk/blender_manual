@@ -6,19 +6,35 @@ Selecting
 Curve selection in *Edit Mode* has fewer options than with meshes.
 Mainly this is, because there is only one selectable element type, the control points
 (no select mode needed here...). These points are a bit more complex than simple vertices,
-however, especially for Béziers, as there is the central vertex, and its two handles...
+however, especially for Bézier curves, as there is the central vertex, and its two handles...
 
-The basic tools are the same as with :doc:`meshes </modeling/meshes/selecting/introduction>`,
-so you can select a simple control point with the :kbd:`RMB`,
-add to current selection with :kbd:`Shift-RMB`, Border Select :kbd:`B`, and so on.
+The basic tools are the same as with :doc:`meshes </modeling/meshes/selecting>`,
+so you can select a simple control point with the :kbd:`LMB`,
+add to current selection with :kbd:`Shift-LMB`, Box Select :kbd:`B`, and so on.
 
 One word about the Bézier control points: when you select the main central vertex,
-the two handles are automatically selected too, so you can grab it as a whole,
+the two handles are automatically selected too, so you can move it as a whole,
 without creating an angle in the curve. However, when you select a handle,
 only this vertex is selected, allowing you to modify this control vector...
 
 Note that, unlike mesh edges, you cannot directly select a segment. Instead,
 select all of the control points that make up the segment you want to edit.
+
+
+Cursor Selection
+================
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Hotkey:    :kbd:`LMB`
+
+Clicking on a control point selects it,
+using modifier keys you can perform other operations.
+
+Extend/Toggle :kbd:`Shift`
+   To add to the selection or de-select when the item is already active.
 
 
 Select Menu
@@ -27,19 +43,30 @@ Select Menu
 With curves, all "advanced" selection options are regrouped in the *Select* menu of
 the 3D Views header. Let us detail them:
 
-- Random...
-- Inverse
-- Select/Deselect All
+All :kbd:`A`
+   Select all.
+None :kbd:`Alt-A`
+   Select none.
+Inverse :kbd:`Ctrl-I`
+   Selects all the geometry that are not selected, and deselect currently selected components.
 
-Border/Circle Select
-   All these options have the same meaning and behavior as in
-   :doc:`Object Mode </scene_layout/object/selecting/tools>`
-   (and the specifics of *Border Select* in *Edit Mode* have already been discussed
-   :doc:`here </modeling/meshes/selecting/introduction>`).
+----
+
+:ref:`Box Select <tool-select-box>` :kbd:`B`
+   Interactive box selection.
+:ref:`Circle Select <tool-select-circle>` :kbd:`C`
+   Interactive circle selection.
+
+----
+
+`Select More/Less`_
+   Select objects based on their parent child relationships.
+
+TODO2.8: Add other menu items.
 
 
 Select Linked
-=============
+-------------
 
 .. admonition:: Reference
    :class: refbox
@@ -54,7 +81,7 @@ using :kbd:`L` with a handle selected will select the whole control point and al
 
 
 Select Similar
-==============
+--------------
 
 .. admonition:: Reference
    :class: refbox
@@ -64,7 +91,7 @@ Select Similar
    :Hotkey:    :kbd:`Shift-G`
 
 Selects control points that have certain similar properties to the active one.
-The Operator panel provides several selection options:
+The :ref:`ui-undo-redo-adjust-last-operation` panel provides several selection options:
 
 Type
    Type
@@ -83,21 +110,21 @@ Threshold
 
 
 Shortest Path
-=============
+-------------
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Operator Search --> Pick Shortest Path`
-   :Hotkey:    :kbd:`Ctrl-RMB`
+   :Hotkey:    :kbd:`Ctrl-LMB`
 
 Selects the curve segments between two control points: the active and the one under the cursor.
 In the case of a closed curve, the shortest path will be selected.
 
 
 Select/Deselect First/Last
-==========================
+--------------------------
 
 .. admonition:: Reference
    :class: refbox
@@ -112,7 +139,7 @@ in the object. This is useful to quickly find the start of a curve
 
 
 Select Next/Previous
-====================
+--------------------
 
 .. admonition:: Reference
    :class: refbox
@@ -127,7 +154,7 @@ In case of a cyclic curve, the first and last points are not considered as neigh
 
 
 Select More/Less
-================
+----------------
 
 .. admonition:: Reference
    :class: refbox

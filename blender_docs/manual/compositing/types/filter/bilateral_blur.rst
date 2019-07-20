@@ -4,7 +4,7 @@
 Bilateral Blur Node
 *******************
 
-.. figure:: /images/compositing_types_filter_bilateral-blur_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeBilateralblur.png
    :align: right
 
    Bilateral Blur Node.

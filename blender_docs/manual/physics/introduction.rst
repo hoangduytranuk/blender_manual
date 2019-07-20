@@ -30,12 +30,3 @@ Quick Effects
 Sets up a basic simulation scene or effect including the selected objects.
 The tool will add essential objects like domains or particle systems both with predefined settings,
 so that there will be instant viewable result.
-
-.. (TODO) Add physics tab/panel
-
-   Physics Button
-      This creates the physics on the selected object.
-   Render (camera icon)
-      Enable physics during render.
-   Display (eye icon)
-      Display physics in real-time.

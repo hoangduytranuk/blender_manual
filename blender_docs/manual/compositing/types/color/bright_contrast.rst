@@ -7,7 +7,7 @@
 Bright/Contrast Node
 ********************
 
-.. figure:: /images/compositing_types_color_bright-contrast_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeBrightContrast.png
    :align: right
 
    Brightness/Contrast Node.

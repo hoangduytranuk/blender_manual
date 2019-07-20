@@ -6,60 +6,54 @@ Data-Blocks
 ***********
 
 The base unit for any Blender project is the data-block. Examples of data-blocks include:
-meshes, objects, materials, textures, node trees, scenes, texts, brushes, and even screens.
+meshes, objects, materials, textures, node trees, scenes, texts, brushes, and even Workspaces.
 
-Data-blocks are low level program representations for items inside
-Blender. When you consider Blender items at a low level, they are all
-Data-blocks, which have common Data-block properties. Data-block level
-is needed to handle items in Blender program. However, when
-considering a higher level, which is typically visible to users,
-Blender items are represented as meshes, objects, materials, textures
-etc. which are different things. Data-block level handles the same
-high level items (meshes, objects, materials, textures etc.), but only
-considers their low level common properties and functions.
+.. figure:: /images/files_data-blocks_outliner-blender-file-view.png
+   :align: right
 
-For clarity, bones, sequence strips and vertex groups are **not** data-blocks,
-they belong to armature, scene and mesh types respectively.
+   Blender File view of the Outliner.
+
+A data-block is a generic abstraction of very different kinds of data,
+which features a common set of basic features, properties and behaviors.
 
 Some common characteristics:
 
 - They are the primary contents of the blend-file.
-- They can link to each other, for reuse and instancing.
-  (child/parent, object/object-data, with modifiers and constraints too).
-- Their names are unique.
+- They can reference to each other, for reuse and instancing.
+  (Child/parent, object/object-data, materials/images, in modifiers or constraints too...)
+- Their names are unique within a blend-file, for a given type.
 - They can be added/removed/edited/duplicated.
 - They can be linked between files (only enabled for a limited set of data-blocks).
 - They can have their own animation data.
-- They can have :doc:`Custom Properties </files/custom_properties>`.
+- They can have :ref:`Custom Properties <files-data_blocks-custom-properties>`.
 
+User will typically interact with the higher level data types (objects, meshes, etc.).
 When doing more complex projects, managing data-blocks becomes more important,
 especially when inter-linking blend-files.
+The main editor for that is the :doc:`Outliner </editors/outliner>`.
 
-.. figure:: /images/data-system_data-blocks_view.png
+Not every data in Blender is a data-block,
+bones, sequence strips or vertex groups e.g. are not,
+they belong to armature, scene and mesh types respectively.
 
-   Data-blocks view.
 
+Life Time
+=========
 
-Users (Garbage Collection)
-==========================
+Every data-block has its usage counted (reference count), when there is more than one,
+you can see the number of current users of a data-block to the right of its name in the UI.
 
-It is good to be aware of how Blender
-handles data-blocks lifetime, when they are freed and why.
-
-Blender follows the general rule where unused data is eventually removed.
+Blender follows the general rule that unused data is eventually removed.
 
 Since it is common to add and remove a lot of data while working,
 this has the advantage of not having to manually manage every single data-block.
 
 This works by skipping zero user data-blocks when writing blend-files.
 
-In some cases, you want to save a data-block even when it is unused
-(typically for re-usable asset libraries). See `Fake User`_.
-
 
 .. _data-system-datablock-fake-user:
 
-Fake User
+Protected
 ---------
 
 Since zero user data-blocks are not saved,
@@ -68,15 +62,15 @@ there are times when you want to force the data to be kept irrespective of its u
 If you are building a blend-file to serve as a library of things that you intend to link to and from other files,
 you will need to make sure that they do not accidentally get deleted from the library file.
 
-Do this by giving the data-blocks a *Fake User*, by pressing the *F* button next to the name of the data-block.
-This prevents the user count from ever becoming zero: therefore, the data-block will not be deleted
-(since Blender does not keep track of how many other files link to this one).
+To protect a data-block, use the button with the shield icon next to its name.
+The data-block will then never be silently deleted by Blender,
+but you can still do it manually if needed.
 
 
-Users (Sharing)
-===============
+Sharing
+=======
 
-Many data-blocks can be shared among other data-blocks.
+Data-blocks can be shared among other data-blocks.
 
 Examples where sharing data is common:
 
@@ -91,50 +85,43 @@ You can also share data-blocks between files, see:
 
 
 .. _data-system-datablock-make-single-user:
-.. _bpy.ops.object.make_single_user:
 
-Make Single User
-================
+Making Single User
+==================
 
-.. admonition:: Reference
-   :class: refbox
+When a data-block is shared between several users, you can make a copy of it for a given user.
+To do so, click on the user-count button to the right of its name.
+This will duplicate that data-block and assign the newly created copy to that usage only.
 
-   :Editor:    3D View
-   :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Make Single User`
-   :Hotkey:    :kbd:`U`
+.. note::
 
-Makes the selected or all objects data-blocks a single user, that is,
-not shared (linked) between other objects than the current one.
-
-Type
-   These actions work on the selected objects, or on all the objects of the scene.
-
-   All, Selected Objects
-Data-blocks
-   Lets you, in addition to the menu predefined selection, choose the type of data-blocks individually.
-
-   Object, Object Data, Materials, Textures, Object Animation
+   Objects have a set of more advanced actions to become single-user,
+   see :doc:`their documentation </scene_layout/object/editing/duplication>`.
 
 
 Removing Data-Blocks
 ====================
 
-As covered in `Users (Garbage Collection)`_, data-blocks are typically removed when they are no longer used.
+As covered in `Life Time`_, data-blocks are typically removed when they are no longer used.
 
-There are some exceptions to this, however.
+They can also be manually *unlinked* or *deleted*.
 
-The following data-blocks can be removed directly: Scene, Text, Group, and Screen.
+Unlinking a data-block means that its user won't use it anymore.
+This can be achieved by clicking on the "X" icon next to a data-block's name.
 
-Other data-blocks such as Groups and Actions can be *Unlinked* from the *Outliner* context menu.
+If you unlink a data-block from all of its users,
+it will eventually be deleted by Blender as described above (unless it is a protected one).
 
-.. tip::
+Deleting a data-block directly erases it from the blend-file, automatically unlinking it from all of its users.
+This can be achieved by :kbd:`Shift-LMB` on the "X" icon next to its name.
 
-   Some data (images especially) is hard to keep track of,
-   especially since image views are counted as users.
+.. warning::
 
-   For data-blocks that can be unlinked hold :kbd:`Shift`, while pressing on the *X* button.
-   This force clears the user count, so the data-block will be removed on reloading.
+   Deleting some data-blocks can lead to deletion of some of its users, which would become invalid without it.
+   The main example is that object-data deletion (like mesh, curve, camera...) will also delete all objects using it.
+
+Those two operations are also available in the context menu
+when :kbd:`RMB`-clicking on a data-block in the *Outliner*.
 
 
 .. _data-system-datablock-types:
@@ -151,7 +138,7 @@ Data-Block Types
 
 .. Image source Scene tab --> Active keying set panel --> ID-block (sound replaced).
 
-.. figure:: /images/data-system_data-blocks_id-types.png
+.. figure:: /images/files_data-blocks_id-types.png
    :align: right
 
    Data-blocks types with their icon.
@@ -188,155 +175,264 @@ For reference, here is a table of data-blocks types stored in blend-files.
      - Link
      - Pack
      - Description
-   * - Action
+   * - :doc:`Action </animation/actions>`
      - |tick|
      - |none|
-     - | Stores animation F-Curves.
+     - | Stores animation F-curves.
        | Used as data-block animation data,
-       | and the Non-Linear-Editor.
-   * - Armature
+       | and the Non-Linear Animation editor.
+   * - :doc:`Armature </animation/armatures/introduction>`
      - |tick|
      - |none|
      - | Skeleton used to deform meshes.
-       | Used as object data & by the Armature Modifier.
-   * - Brush
+       | Used as data of armature objects, and by the Armature Modifier.
+   * - :doc:`Brush </sculpt_paint/brush/brush>`
      - |tick|
      - |none|
      - | Used by paint tools.
-   * - Camera
+   * - :doc:`Camera </render/cameras>`
      - |tick|
      - |none|
-     - | Used as object data.
-   * - Curve
+     - | Used as data by camera objects.
+   * - :doc:`Cache File </modeling/modifiers/modify/mesh_sequence_cache>`
      - |tick|
      - |none|
-     - | Used by camera, font & surface objects.
-   * - Font
+     - | Used by Mesh Cache modifiers.
+   * - :doc:`Curve </modeling/curves/introduction>`
+     - |tick|
+     - |none|
+     - | Used as data by curve, font & surface objects.
+   * - :doc:`Font </modeling/texts/introduction>`
      - |tick|
      - |tick|
      - | References font files.
-       | Used by Font object-data.
-   * - GreasePencil
+       | Used by curve object-data of text objects.
+   * - :doc:`Grease Pencil </grease_pencil/introduction>`
      - |tick|
      - |none|
-     - | 2D/3D sketch data.
+     - | 2D/3D sketch data used by Grease Pencil objects.
        | Used as overlay *helper* info, by the
        | 3D View, Image, Sequencer & Movie Clip editors.
-   * - Group
+   * - :doc:`Collection </scene_layout/collections/introduction>`
      - |tick|
      - |none|
-     - | Reference object's.
-       | Used by dupli-groups & often library linking.
-   * - Image
+     - | Group and organize objects in scenes.
+       | Used to instance objects, and in library linking.
+   * - :doc:`Image </editors/image/introduction>`
      - |tick|
      - |tick|
      - | Image files.
-       | Used by textures & shader nodes.
-   * - Lamp
-     - |tick|
-     - |none|
-     - | Used as object-data.
-   * - Lattice
-     - |cross|
-     - |none|
-     - | Grid based lattice deformation.
-       | Used as object data and by the Lattice Modifier.
-   * - Library
-     - |cross|
-     - |tick|
-     - | References to external blend-files.
-       | Access from the Outliner's blend-file view.
-   * - LineStyle
-     - |tick|
-     - |none|
-     - | Used by the FreeStyle renderer.
-   * - Mask
-     - |tick|
-     - |none|
-     - | 2D animated mask curves.
-       | Used by compositing nodes & sequencer strip.
-   * - Material
-     - |tick|
-     - |none|
-     - | Set shading and texturing render properties.
-       | Used by objects, meshes & curves.
-   * - Mesh
-     - |tick|
-     - |none|
-     - | Geometry vertices/edges/faces.
-       | Used as object-data.
-   * - MetaBall
-     - |tick|
-     - |none|
-     - | An isosurface in 3D space.
-       | Used as object-data.
-   * - MovieClip
-     - |tick|
-     - |cross|
-     - | Reference to an image sequence or video file.
-       | Used in the Movie Clip editor.
-   * - NodeGroup
-     - |tick|
-     - |none|
-     - | Collections of re-usable nodes.
-       | Used in the node editors.
-   * - Object
-     - |tick|
-     - |none|
-     - | An entity in the scene with location,
-       | scale, rotation.
-       | Used by scenes & groups.
-   * - Particle
-     - |tick|
-     - |none|
-     - | Particle settings.
-       | Used by particle systems.
-   * - Palette
-     - |tick|
-     - |none|
-     - | Store color presets.
-       | Access from the paint tools.
-   * - Scene
-     - |tick|
-     - |none|
-     - | Primary store of all data displayed and animated.
-       | Used as top-level storage for objects & animation.
-   * - Screen
-     - |cross|
-     - |none|
-     - | Screen layout.
-       | Used by each window, which has its own screen.
-   * - ShapeKeys
+       | Used by shader nodes and textures.
+   * - :doc:`Keys (Shape Keys) </animation/shape_keys/introduction>`
      - |cross|
      - |none|
      - | Geometry shape storage, which can be animated.
        | Used by mesh, curve, and lattice objects.
-   * - Sounds
+   * - :doc:`Light </render/lights/light_object>`
+     - |tick|
+     - |none|
+     - | Used as object data by light objects.
+   * - :doc:`Library </files/linked_libraries>`
+     - |cross|
+     - |tick|
+     - | References to an external blend-file.
+       | Access from the Outliner's *Blender File* view.
+   * - :doc:`Line Style </render/freestyle/introduction>`
+     - |tick|
+     - |none|
+     - | Used by the Freestyle renderer.
+   * - :doc:`Lattice </animation/lattice>`
+     - |tick|
+     - |none|
+     - | Grid based lattice deformation.
+       | Used as data of lattice objects, and by the Lattice Modifier.
+   * - :doc:`Mask </movie_clip/masking/introduction>`
+     - |tick|
+     - |none|
+     - | 2D animated mask curves.
+       | Used by compositing nodes & sequencer strip.
+   * - :doc:`Material </render/materials/introduction>`
+     - |tick|
+     - |none|
+     - | Set shading and texturing render properties.
+       | Used by objects, meshes & curves.
+   * - :doc:`Metaball </modeling/metas/introduction>`
+     - |tick|
+     - |none|
+     - | An isosurface in 3D space.
+       | Used as data of metaball objects.
+   * - :doc:`Mesh </modeling/meshes/introduction>`
+     - |tick|
+     - |none|
+     - | Geometry made of vertices/edges/faces.
+       | Used as data of mesh objects.
+   * - :doc:`Movie Clip </editors/clip/introduction>`
+     - |tick|
+     - |cross|
+     - | Reference to an image sequence or video file.
+       | Used in the *Movie Clip* editor.
+   * - :doc:`Node Tree </render/shader_nodes/groups>`
+     - |tick|
+     - |none|
+     - | Groups of re-usable nodes.
+       | Used in the node editors.
+   * - :doc:`Object </scene_layout/object/introduction>`
+     - |tick|
+     - |none|
+     - | An entity in the scene with location,
+       | scale, rotation.
+       | Used by scenes & collections.
+   * - :doc:`Paint Curve </sculpt_paint/brush/stroke>`
+     - |tick|
+     - |none|
+     - | Stores a paint or sculpt stroke.
+       | Access from the paint tools.
+   * - :doc:`Palette </sculpt_paint/index>`
+     - |tick|
+     - |none|
+     - | Store color presets.
+       | Access from the paint tools.
+   * - :doc:`Particle </physics/particles/introduction>`
+     - |tick|
+     - |none|
+     - | Particle settings.
+       | Used by particle systems.
+   * - :doc:`Light Probe </render/eevee/lightprobes/introduction>`
+     - |tick|
+     - |none|
+     - | Help achieve complex real-time lighting in Eevee.
+   * - :doc:`Scene </scene_layout/scene/introduction>`
+     - |tick|
+     - |none|
+     - | Primary store of all data displayed and animated.
+       | Used as top-level storage for objects & animation.
+   * - :doc:`Sounds </render/output/audio/speaker>`
      - |tick|
      - |tick|
-     - | References to sound files.
-       | Used by speaker objects.
-   * - Speaker
+     - | Reference to sound files.
+       | Used as data of speaker objects.
+   * - :doc:`Speaker </render/output/audio/speaker>`
      - |tick|
      - |none|
      - | Sound sources for a 3D scene.
-       | Used as object-data.
-   * - Text
+       | Used as data of speaker object.
+   * - :doc:`Text </editors/text_editor>`
      - |tick|
      - |cross|
      - | Text data.
        | Used by Python scripts and OSL shaders.
-   * - Texture
+   * - :doc:`Texture </render/materials/legacy_textures/introduction>`
      - |tick|
      - |none|
      - | 2D/3D textures.
-       | Used by materials, world and brushes.
-   * - World
-     - |tick|
-     - |none|
-     - | Used by scenes for render environment settings.
-   * - WindowManager
+       | Used by brushes and modifiers.
+   * - :doc:`Window Manager </interface/window_system/introduction>`
      - |cross|
      - |none|
-     - | The overarching manager for all of Blender's UI;
-         this includes screens, notification system, operators, and keymaps.
+     - | The overarching manager for all of Blender's UI.
+       | Includes Workspaces, notification system, operators, and key-maps.
+   * - :doc:`World </render/lights/world>`
+     - |tick|
+     - |none|
+     - | Define global render environment settings.
+   * - :doc:`Workspace </interface/window_system/workspaces>`
+     - |cross|
+     - |none|
+     - | UI layout.
+       | Used by each window, which has its own workspace.
+
+
+.. _files-data_blocks-custom-properties:
+.. _bpy.types.bpy_struct:
+.. _bpy.ops.wm.properties:
+
+Custom Properties
+=================
+
+.. figure:: /images/files_data-blocks_add.png
+   :align: right
+
+   Custom Properties panel.
+
+Custom properties are a way to store your own data in Blender's data-blocks.
+It can be used for rigging (where bones and objects can have custom properties driving other properties),
+and Python scripts, where it's common to define new settings not available in Blender.
+
+Only certain data supports custom properties:
+
+- All :ref:`data-blocks types <data-system-datablock-types>`.
+- Bones and pose bones.
+- Sequence strips.
+
+To add a custom property, search for the *Custom Properties* panel,
+found at the bottom of most :doc:`Properties Editor </editors/properties_editor>` or Sidebar region, and hit *Add*.
+
+
+Editing Properties
+------------------
+
+User Interface
+^^^^^^^^^^^^^^
+
+Custom properties can be edited using the panel available for data types that support it.
+
+.. figure:: /images/files_data-blocks_edit.png
+   :align: right
+
+   Custom Properties edit pop-up.
+
+Property Name
+   The name of the custom property.
+Property Value
+   This does two things: first it sets the current value of the custom property, and
+   second, it defines the data type of the property.
+   Custom properties can be of the following types: Integers, Floats, Strings or Booleans.
+   See the table below for a list of examples for each:
+
+   :Integers: 1, 2, 3, 4,
+   :Floats: 3.141, 5.0, 6.125,
+   :Strings: any text,
+   :Booleans: ``True``, ``False``
+
+   .. note::
+
+      Booleans are handled very similar to integers and only work
+      when using Min/Max values that are integers and that are no more than 1 apart.
+
+      At this point, the booleans will still look like integers but behave like
+      booleans having one lower, off, value and a higher, on, value.
+Default Value
+   This sets the default value of the property used by the Reset to Default Value operator.
+
+   .. warning::
+
+      Default values are used as the basis of :ref:`NLA blending <nla-blend-modes>`,
+      and a nonsensical default (e.g. 0 for a property used for scaling) on a property intended for
+      being keyframed is likely to cause issues.
+Min
+   The minimum value the custom property can take.
+Max
+   The maximum value the custom property can take.
+Use Soft Limits
+   Enables limits that the *Property Value* slider can be adjusted to
+   without having to input the value numerically.
+
+   Soft Min
+      The minimum value for the soft limit.
+   Soft Max
+      The maximum value for the soft limit.
+Tooltip
+   Allows you to write a custom :doc:`Tooltip </getting_started/help>` for your property.
+
+
+Python Access
+^^^^^^^^^^^^^
+
+Custom properties can be accessed in a similar way to
+`dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>`__,
+with the constraints that keys can only be strings,
+and values can only be strings, numbers, arrays of such, or nested properties.
+
+See the `API documentation
+<https://www.blender.org/api/blender_python_api_current/info_quickstart.html#custom-properties>`__
+for details.

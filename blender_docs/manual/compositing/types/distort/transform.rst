@@ -4,7 +4,7 @@
 Transform Node
 **************
 
-.. figure:: /images/compositing_types_distort_transform_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeTransform.png
    :align: right
 
    Transform Node.

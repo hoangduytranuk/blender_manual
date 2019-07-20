@@ -4,7 +4,7 @@
 Sun Beams Node
 **************
 
-.. figure:: /images/compositing_types_filter_sun-beams_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeSunBeams.png
    :align: right
 
    Sun Beams Node.

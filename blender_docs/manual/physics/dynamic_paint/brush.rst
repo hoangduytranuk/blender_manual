@@ -18,6 +18,13 @@ The Brush type makes object apply paint on the canvas.
 
 From the first brush panel you can define how brush affects canvas color surfaces.
 
+Paint Color
+   Color of the paint.
+Alpha
+   Defines brush alpha or visibility. Final wetness is also affected by alpha.
+Wetness
+   Defines how "wet" new paint is. Wetness is visible on "Paint" surface "wetmap".
+   Speed of "Drip" and "Spread" effects also depends on how wet the paint is.
 Absolute Alpha
    This setting limits brush alpha influence.
    Without it, brush is "added" on surface over and over again each frame,
@@ -25,17 +32,6 @@ Absolute Alpha
    it is preferred to not increase brush alpha if it already is on brushes level.
 Erase Paint
    Makes brush dissolve existing paint instead of adding it.
-Wetness
-   Defines how "wet" new paint is. Wetness is visible on "Paint" surface "wetmap".
-   Speed of "Drip" and "Spread" effects also depends on how wet the paint is.
-Use Object Material
-   When enabled, you can define a material to be used as brush color.
-   This includes material's base color and all textures linked to it, eventually matching the rendered diffuse color.
-   This setting is only available when using "Blender Internal" renderer at the moment.
-
-   Otherwise you can define a color for the brush from the color box below.
-Alpha
-   Defines brush alpha or visibility. Final wetness is also affected by alpha.
 
 
 Source
@@ -45,11 +41,12 @@ Source
    :class: refbox
 
    :Type:      Brush
-   :Panel:     :menuselection:`Physics --> Dynamic Paint Source`
+   :Panel:     :menuselection:`Physics --> Dynamic Paint --> Source`
 
-.. figure:: /images/physics_dynamic-paint_brush_source-panel.png
+.. TODO2.8:
+   .. figure:: /images/physics_dynamic-paint_brush_source-panel.png
 
-   Paint source panel.
+      Paint source panel.
 
 
 Paint Source
@@ -143,18 +140,19 @@ Velocity
    :class: refbox
 
    :Type:      Brush
-   :Panel:     :menuselection:`Physics --> Dynamic Paint Velocity`
+   :Panel:     :menuselection:`Physics --> Dynamic Paint --> Velocity`
 
-.. figure:: /images/physics_dynamic-paint_brush_velocity-panel.png
+.. TODO2.8:
+   .. figure:: /images/physics_dynamic-paint_brush_velocity-panel.png
 
-   Velocity panel.
+      Velocity panel.
 
 This panel shows brush options that are based on object velocity.
 
 On top you have a color ramp and several related settings.
 Basically the color ramp represents brush velocity values:
 left side being zero velocity and right side being the "Max velocity".
-Speed is measured in "Blender units per frame".
+Speed is measured in "units per frame".
 
 Checkboxes above can be used to define color ramp influence.
 
@@ -181,11 +179,12 @@ Waves
    :class: refbox
 
    :Type:      Brush
-   :Panel:     :menuselection:`Physics --> Dynamic Paint Waves`
+   :Panel:     :menuselection:`Physics --> Dynamic Paint --> Waves`
 
-.. figure:: /images/physics_dynamic-paint_brush_waves-panel.png
+.. TODO2.8:
+   .. figure:: /images/physics_dynamic-paint_brush_waves-panel.png
 
-   Brush Waves panel.
+      Brush Waves panel.
 
 This panel is used to adjust brush influence to "Wave" surfaces.
 

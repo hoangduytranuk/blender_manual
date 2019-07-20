@@ -62,7 +62,7 @@ it can to preserve edges and faces only partly involved in the reunion.
    the order is lost, for instance, after changing selection mode.
 
 UVs
-   If *UVs* is ticked in the Operator panel, the UV mapping coordinates,
+   If *UVs* is ticked in the :ref:`ui-undo-redo-adjust-last-operation` panel, the UV mapping coordinates,
    if existing, will be corrected to avoid image distortion.
 
 
@@ -79,7 +79,8 @@ The *Mesh* menu as a related toggle option: *AutoMerge Editing*.
 When enabled,
 as soon as a vertex moves closer to another one than the *Limit* setting
 (:menuselection:`Mesh Tools panel --> Double Threshold`), they are automatically merged.
-This option affects interactive operations only (tweaks made in the Operator panel are considered interactive too).
+This option affects interactive operations only
+(tweaks made in the :ref:`ui-undo-redo-adjust-last-operation` panel are considered interactive too).
 If the exact spot where a vertex is moved contains more than one vertex,
 then the merge will be performed between the moved vertex and one of those.
 
@@ -100,7 +101,7 @@ are closer than a specified distance to each other.
 An alternative way to simplify a mesh is to use the :doc:`Decimate Modifier </modeling/modifiers/generate/decimate>`.
 
 Merge Distance
-   Sets the distance threshold for merging vertices, in Blender units.
+   Sets the distance threshold for merging vertices.
 Unselected
    Allows vertices in selection to be merged with unselected vertices.
    When disabled, selected vertices will only be merged with other selected ones.
@@ -109,8 +110,10 @@ Unselected
 Separating
 ==========
 
-Rip
----
+.. _tool-mesh-rip_region:
+
+Rip Region
+----------
 
 .. admonition:: Reference
    :class: refbox
@@ -171,8 +174,8 @@ If your selection includes some edges or vertices that are not "between" two fac
 it will also fail with message *"No proper selection or faces include"*.
 
 
-Rip Fill
---------
+Rip Region Fill
+---------------
 
 .. admonition:: Reference
    :class: refbox
@@ -214,8 +217,10 @@ Note that the "copy" is left exactly at the same position as the original, so yo
 :kbd:`G` to see it clearly...
 
 
-Extend Vertices
----------------
+.. _tool-mesh-rip_edge:
+
+Rip Edge
+--------
 
 .. admonition:: Reference
    :class: refbox
@@ -252,6 +257,8 @@ By loose parts
 
 
 .. _bpy.ops.transform.vert_slide:
+.. _tool-mesh-vertex-slide:
+.. _tool-mesh-vertex_slide:
 
 Vertex Slide
 ============

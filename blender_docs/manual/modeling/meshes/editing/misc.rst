@@ -3,6 +3,8 @@
 Miscellaneous Editing Tools
 ***************************
 
+.. _mesh-edit-sort-elements:
+
 Sort Elements
 =============
 

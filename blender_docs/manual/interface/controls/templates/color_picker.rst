@@ -19,7 +19,7 @@ Color slider
    It can also be controlled with the :kbd:`Wheel`.
 
 Color space
-   Selects the :term:`Color Space` for the number buttons below.
+   Selects the :term:`Color Space` for the number fields below.
 
    RGB, HSV/HSL, Hex
 Color values
@@ -31,7 +31,7 @@ Color values
 
    For operations that are capable of using Alpha, another slider "A" is added.
 Eyedropper
-   The :doc:`/interface/controls/buttons/eye_dropper` (pipette icon) can be used
+   The :ref:`ui-eyedropper` (pipette icon) can be used
    to sample a color value from inside the Blender window.
 
 .. note::

@@ -1,20 +1,16 @@
-.. _3dview-walk-fly:
+.. _3dview-fly-walk:
 
 *************
-Walk/Fly Mode
+Fly/Walk Mode
 *************
 
-When you have to place the view, normally you do as described above.
+There are cases where it's preferable to navigate with first person controls,
+especially for large environments such as architectural models.
+In these cases orbiting around the view center is limiting.
+While zoom, pan & dolly can be used, it's inconvenient.
 
-However, there are cases in which you really prefer to just navigate your model,
-especially if it is very large, like environments or some architectural model.
-In these cases viewing the model in perspective mode has limitations,
-for example after zooming a lot of panning is extremely uncomfortable and difficult,
-or you apparently cannot move the camera any nearer. As an example,
-try to navigate to a very distant object in the view with traditional methods
-(explained above) and see what you can get.
-
-With walk/fly modes you move, pan, tilt, and dolly the camera around without any of those limitations.
+With walk/fly modes you can navigate around the scene where view rotation is
+performed from the cameras location.
 
 .. figure:: /images/editors_3dview_navigate_walk-fly_view-navigation-panel.png
 
@@ -24,11 +20,15 @@ In the :doc:`Preferences editor </editors/preferences/index>`
 select the navigation mode you want to use as default when invoking the View Navigation operator.
 Alternatively you can call the individual modes from the View Navigation menu.
 
-.. note::
+Common use cases for walk/fly include:
 
-   This mode actually *moves* the camera used by the view.
-   This means that when you are in camera view,
-   it moves the active camera, which is another way to place and aim it.
+Navigation
+   This can be a quick way to navigate a large scene.
+Camera Placement
+   When activated from a camera view, this will move the camera too.
+Recording Animation
+   Running from a camera with auto-keyframe and playing animation
+   will record the motion as you make it allowing you to record the walk-through.
 
 
 .. _bpy.types.WalkNavigation:
@@ -40,32 +40,30 @@ Walk Mode
    :class: refbox
 
    :Mode:      All modes
-   :Menu:      :menuselection:`View --> View Navigation --> Walk Navigation`
-   :Hotkey:    :kbd:`Shift-F`
+   :Hotkey:    :kbd:`Shift-AccentGrave`
+   :Menu:      :menuselection:`View --> Navigation --> Walk Navigation`
 
 On activation the mouse pointer will move at the center of the view,
 and a cross marker will appear...
 
-This navigation mode behaves similar to the first person navigation system available in most 3D world games nowadays.
-It works with a combination of keyboard keys :kbd:`W`, :kbd:`A`, :kbd:`S`, :kbd:`D` and mouse movement.
-By default the navigation is in the "free" mode, with no gravity influence.
-You can toggle between gravity and free mode during the navigation :kbd:`Tab`.
-
-To move to places more quickly you can teleport :kbd:`Spacebar` around your scene.
-If there is an object in front of the walk cross/aim you will move in that direction until you reach the point
-(offset by the *camera height* value set in the :doc:`Preferences </editors/preferences/index>`).
+This navigation mode behaves similar to the first person navigation system available in most 3D world games.
+It works with a combination of keyboard arrow keys and mouse movement.
 
 
 Shortcuts
 ---------
 
-- Move the mouse left/right to pan the view left/right or move it up/down to tilt the view up/down.
-- Move the camera forward/backward :kbd:`W`, :kbd:`S`.
-- Strafe left/right :kbd:`A`, :kbd:`D`.
+- Move the mouse in the direction you want to look.
+- Arrow keys or :kbd:`W`, :kbd:`A`, :kbd:`S`, :kbd:`D` move forwards/backwards and strafe left/right.
+- Teleport :kbd:`Spacebar`.
+
+  This moves you to the location at the cross-hair
+  (offset by the *camera height* value set in the :doc:`Preferences </editors/preferences/index>`).
 - Jump :kbd:`V` -- only in *gravity* mode.
 - Move up and down :kbd:`Q`, :kbd:`E` -- only in *free* mode.
 - Alternate between *free* and *gravity* modes :kbd:`Tab`.
 - Change the movement speed:
+
   - :kbd:`WheelUp` or :kbd:`NumpadPlus` to increase the movement speed for this open session.
   - :kbd:`WheelDown` or :kbd:`NumpadMinus` to decrease the movement speed for this open session.
   - :kbd:`Shift` (hold) -- to speed up the movement temporarily.
@@ -85,32 +83,33 @@ Fly Mode
    :class: refbox
 
    :Mode:      All modes
-   :Menu:      :menuselection:`View --> View Navigation --> Fly Navigation`
-   :Hotkey:    :kbd:`Shift-F`
+   :Hotkey:    :kbd:`Shift-AccentGrave`
+   :Menu:      :menuselection:`View --> Navigation --> Fly Navigation`
 
-On activation the mouse pointer will move at the center of the view,
-and a squared marker will appear -- a sort of HUD...
-
-Some of the options of Fly mode are influenced by the position of
-the mouse pointer relative to the center of the view itself,
-and the squared marker around this center provides a sort of
-"safe region" where you can place the mouse for it to have no effect on the view.
-The more you take the mouse pointer away from the marker, the more you pan, or track, etc.
+On activation the cursor is centered inside a rectangle that defines a safe-region.
+When the cursor is outside this region the view will rotate/pan.
 
 
 Shortcuts
 ---------
 
-- Move the mouse left/right to pan the view left/right or move it up/down to tilt the view up/down.
+- Move the mouse outside the safe-region in the direction you want to look.
 - Move the view forward/backward:
+
   - :kbd:`WheelUp` or :kbd:`NumpadPlus` to accelerate the movement forward.
   - :kbd:`WheelDown` or :kbd:`NumpadMinus` to accelerate the movement backward.
 
     So if the view is already moving forward,
     :kbd:`WheelDown`, :kbd:`NumpadMinus` will eventually stop it and then move it backward, etc.
-- Drag the :kbd:`MMB` to dolly.
-  In this case the view can move laterally on its local axis at the moment you drag the mouse -- quite obviously,
-  dragging left/right/up/down makes the view dolly on the left/right/up/down respectively.
+- :kbd:`MMB` Drag to pan the view.
+
+  In this case the view can move laterally on its local axis at the moment you drag the mouse.
+- :kbd:`Shift` precision (slow the momentum).
+- :kbd:`Ctrl` disable rotation.
+
+  While held, the view rotation doesn't influence the flight direction,
+  this allows you to fly past an object, keeping it centered in the view,
+  even as you fly away from it.
 
 When you are happy with the new view, click :kbd:`LMB` to confirm.
 In case you want to go back from where you started, press :kbd:`Esc` or :kbd:`RMB`, as usual.

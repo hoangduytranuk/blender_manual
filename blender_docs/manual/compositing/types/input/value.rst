@@ -7,7 +7,7 @@
 Value Node
 **********
 
-.. figure:: /images/compositing_types_input_value_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeValue.png
    :align: right
 
    Value Node.

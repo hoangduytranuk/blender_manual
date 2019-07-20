@@ -37,14 +37,16 @@ Controls
 
 Above the curve graph is a row of controls. These are:
 
-Zoom In
+Zoom In (plus magnifying glass icon)
    Zoom into the center of the graph to show more details and provide more accurate control.
    To navigate around the curve while zoomed in, click and drag in an empty part of the graph.
-Zoom Out
+Zoom Out (minus magnifying glass icon)
    Zoom out of the graph to show fewer details and view the graph as a whole.
-   You cannot zoom out further than the clipping borders (see *Clipping* below).
+   You cannot zoom out further than the clipping region (see *Clipping* below).
 
-Tools
+Specials ``v``
+   A :ref:`Specials <ui-specials-menu>` menu with tools to operate on control points or to set properties.
+
    Reset View
       Resets the view of the curve.
    Vector Handle
@@ -52,6 +54,8 @@ Tools
       Breaks the tangent at the curve handle, making it an angle.
    Auto Handle
       Automatic type of curve point's handle.
+   Auto Clamped Handle
+      Todo <2.79.
    Extend Horizontal
       Causes the curve to stay horizontal before the first point and after the last point.
 
@@ -69,15 +73,16 @@ Tools
 
    Reset Curve
       Resets the curve in default (removes all points added to the curve).
-Clipping
+Clipping (dot icon)
    Use Clipping
       Forces curve points to stay between specified values.
    Min X/Y and Max X/Y
       Set the minimum and maximum bounds of the curve points.
-Delete
+Delete ``X``
    Remove the selected control point. The first and last points cannot be deleted.
+
 X, Y
    The coordinates of the selected control point.
 Copy/Paste :kbd:`Ctrl-C`, :kbd:`Ctrl-V`
-   The whole curve can be copied from one Curve widget to another by hovering over
+   The whole curve can be copied from one Curve Widget to another by hovering over
    the curve graph and pressing :kbd:`Ctrl-C`, :kbd:`Ctrl-V`.

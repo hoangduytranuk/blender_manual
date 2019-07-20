@@ -4,7 +4,7 @@
 Wireframe Modifier
 ******************
 
-The Wireframe Modifier transforms a mesh into a wireframe by iterating over its
+The *Wireframe* modifier transforms a mesh into a wireframe by iterating over its
 faces, collecting all edges and turning those edges into four sided polygons.
 Be aware of the fact that your mesh needs to have faces to be wireframed.
 You can define the thickness, the material and several other parameters of the generated
@@ -15,14 +15,15 @@ Options
 =======
 
 .. figure:: /images/modeling_modifiers_generate_wireframe_panel.png
+   :align: right
 
-   Wireframe Modifier.
+   The Wireframe modifier.
 
 Thickness
    The depth or size of the wireframes.
 Offset
    A value between (-1 to 1) to change whether the wireframes are
-   generated inside or outside the original mesh.
+   generated inside or outside of the original mesh.
    Set to zero, *Offset* will center the wireframes around the original edges.
 Vertex Group
    Restrict the modifier to only this vertex group.
@@ -33,11 +34,13 @@ Vertex Group
       Percentage that the vertex has influence over the final wireframe result.
 
 Crease Edges
-   This option is intended for usage with the :doc:`Subdivision Modifier </modeling/modifiers/generate/subsurf>`.
+   This option is intended for usage with
+   the :doc:`Subdivision </modeling/modifiers/generate/subdivision_surface>` modifier.
    Enable this option to crease edges on their junctions and prevent large curved intersections.
 
    Crease Weight
-      Define how much crease (0 to 1) (no to full) the junctions should receive.
+      Define how much crease (0 to 1, nothing to full) the junctions should receive.
+
 Even Thickness
    Maintain thickness by adjusting for sharp corners. Sometimes improves quality but also increases computation time.
 Relative Thickness

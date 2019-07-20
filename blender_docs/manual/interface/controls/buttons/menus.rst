@@ -7,22 +7,46 @@ Menus
 *****
 
 Blender uses a variety of different menus for accessing options and tools.
+Selecting menus can be interacted with in the following ways:
+
+Mouse selection
+   :kbd:`LMB` on the desired item.
+Numerical selection
+   You can use the number keys or numpad to input an item in the list to select.
+   For example, :kbd:`Numpad1` will select the first item and so on.
+
+If the menu content is too large to fit on the screen, small menu
+scrolling indicator triangle appears on bottom or top of menu.
+Scrolling is done by moving the mouse below or above the scrolling indicator.
+
+
+.. rubric:: Shortcuts
+
+- Use :kbd:`Wheel` while hovering with the mouse.
+- Arrow keys can be used to navigate.
+- Each menu item has an underlined character which can be pressed to activate it.
+- Number keys or numpad can be used to access menu items.
+  (Where :kbd:`1` is the first menu item, :kbd:`2` the second, etc.
+  For larger menus :kbd:`Alt-1` the 11th... up to :kbd:`Alt-0` the 20th.)
+- Press :kbd:`Return` to activate the selected menu item.
+- Press :kbd:`Esc` to cancel the menu, or move the mouse cursor far from the pop-up,
+  or by :kbd:`LMB` clicking anywhere out of it.
 
 
 .. _ui-header-menu:
+.. _bpy.types.UIPopupMenu:
 
 Header Menus
 ============
 
-Most :ref:`headers <ui-region-header>` exhibit a set of menus, located immediately next
-to the first *Editor Type* selector.
-Header menus are used to configure the editor and access tools.
-All Menu entries show the relevant shortcut keys, if any.
-
 .. figure:: /images/interface_controls_buttons_menus_menu-button.png
-   :align: center
+   :align: right
 
-   View menu in the Header of 3D Viewport.
+   Image menu in the Header of the Image editor.
+
+Most :ref:`headers <ui-region-header>` exhibit a set of menus, located at the start of the header.
+Header menus are used to configure the editor and access tools.
+All menu entries show the relevant shortcut keys, if any.
 
 
 Collapsing Menus
@@ -48,8 +72,7 @@ Select Menus
 
 .. figure:: /images/interface_controls_buttons_menus_select-menu.png
    :align: right
-   :width: 200px
-   :figwidth: 200px
+   :figwidth: 150px
 
    The 3D Viewport Mode Select menu.
 
@@ -63,52 +86,22 @@ The selected option is then shown as active on the menu button.
    .. clear
 
 
-.. _bpy.types.UIPopupMenu:
+.. _bpy.types.UIPopover:
 
-Pop-Up Menus
-============
+Popover Menus
+=============
 
 .. figure:: /images/interface_controls_buttons_menus_popup-menu.png
    :align: right
-   :width: 200px
-   :figwidth: 200px
 
    The Transform Orientations pop-up menu.
 
-Pop-up menus are overlays.
+Popover menus are overlays.
 Like Select Menus, pop-up menus also include down arrow on the right
 side of menu button. However, pop-up menus allow more content to be shown,
 such as title, list options, buttons, sliders, etc.
-Pop-up menus group controls into a menu, which is automatically hidden
+Popover menus group controls into a menu, which is automatically hidden
 when mouse pointer leaves menu boundaries (including a margin).
-
-If pop-up menu content is too large to fit on the screen, small menu
-scrolling indicator triangle appears on bottom or top of menu.
-Scrolling is done by moving the mouse below or above the scrolling indicator.
-
-Mouse selection
-   :kbd:`LMB` on the desired item.
-Numerical selection
-   You can use the number keys or numpad to input an item in the list to select.
-   For example, :kbd:`Numpad1` will select the first item and so on.
-
-Pop-ups can be moved by dragging their title.
-
-.. TODO2.8 duplicate: selection
-
-
-Shortcuts
----------
-
-- Use :kbd:`Wheel` while hovering with the mouse.
-- Arrow keys can be used to navigate.
-- Each menu item has an underlined character which can be pressed to activate it.
-- Number keys or numpad can be used to access menu items.
-  (Where :kbd:`1` is the first menu item, :kbd:`2` the second, etc.
-  For larger menus :kbd:`Alt-1` the 11th... up to :kbd:`Alt-0` the 20th).
-- Press :kbd:`Return` to activate the selected menu item.
-- Press :kbd:`Esc` to cancel the menu, or move the mouse cursor far from the pop-up,
-  or by :kbd:`LMB` clicking anywhere out of it.
 
 
 Context Menu
@@ -157,7 +150,7 @@ Edit Translation
 
 .. seealso::
 
-   :doc:`/interface/common_shortcuts`.
+   :doc:`/interface/keymap/introduction`.
 
    .. move paragraph there?
 
@@ -178,10 +171,9 @@ Pie Menus
 =========
 
 A pie menu is a menu whose items are spread radially around the mouse.
-Pie menus have to be activated in the Preferences through
-:menuselection:`Add-ons --> UI --> Pie Menus Official/ 3D Viewport Pie Menus`.
 
 .. figure:: /images/interface_controls_buttons_menus_pie-menu.png
+   :align: center
 
    The 3D Viewport Mode Pie menu.
 

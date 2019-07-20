@@ -4,7 +4,7 @@
 Glare Node
 **********
 
-.. figure:: /images/compositing_types_filter_glare_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeGlare.png
    :align: right
 
    Glare Node.
@@ -63,7 +63,7 @@ Quality
 Iterations
    The number of times to run through the filter algorithm.
    Higher values will give more accurate results but will take longer to compute.
-   Note, that this is not available for *Fog Glow* as it does not use an iterative-based algorithm.
+   Note that, this is not available for *Fog Glow* as it does not use an iterative-based algorithm.
 Color Modulation
    Used for *Streaks* and *Ghosts* to create a special dispersion effect.
 
@@ -80,11 +80,3 @@ Outputs
 
 Image
    Standard image output.
-
-
-Example
-=======
-
-.. A nice lens flare render of an outdoor scene
-
-TODO <2.8 add.

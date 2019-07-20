@@ -7,10 +7,10 @@ A node used primarily for organization.
 Reroute looks and behaves much like a socket on other nodes in that it supports one input
 connection while allowing multiple output connections.
 
-To quickly add a Reroute node into an existing connection, hold :kbd:`Shift` and :kbd:`LMB`
+To quickly add a Reroute node into an existing connection, hold :kbd:`Shift` and :kbd:`LMB`/:kbd:`RMB`
 while sweeping across the link to add a *Reroute node*.
 
-.. figure:: /images/editors_node-editor_nodes_reroute_node.png
+.. figure:: /images/interface_controls_nodes_reroute_node.png
 
 
 Properties

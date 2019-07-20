@@ -40,14 +40,14 @@ using the *Transformation Properties* axis locking feature is probably easier.
 Options
 =======
 
-.. figure:: /images/rigging_constraints_transform_limit-scale_panel.png
+.. TODO2.8 .. figure:: /images/animation_constraints_transform_limit-scale_panel.png
 
-   Limit Scale panel.
+.. TODO2.8    Limit Scale panel.
 
 Minimum/Maximum X, Y, Z
    These buttons enable the lower boundary for the scale of the owner along respectively the X,
    Y and Z axes of the chosen *Space*.
-   The *Min* and *Max* numeric fields to their right control the value of
+   The *Min* and *Max* number fields to their right control the value of
    their lower and upper boundaries, respectively.
 
    .. note::

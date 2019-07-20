@@ -4,7 +4,7 @@
 Bricks Node
 ***********
 
-.. figure:: /images/render_blender-render_textures_nodes_types_patterns_bricks_node.png
+.. figure:: /images/editors_texture-node_types_patterns_bricks_node.png
    :align: right
 
    Bricks node.

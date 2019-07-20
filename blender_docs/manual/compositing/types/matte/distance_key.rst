@@ -4,7 +4,7 @@
 Distance Key Node
 *****************
 
-.. figure:: /images/compositing_types_matte_distance-key_node.png
+.. figure:: /images/compositing_node-types_CompositorNodeDistanceMatte.png
    :align: right
 
    Distance Key Node.

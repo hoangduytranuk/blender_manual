@@ -60,8 +60,9 @@ Mark Sharp and Clear Sharp
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Edges --> Mark Sharp/Clear Sharp`
 
-The *Sharp* flag is used by the :doc:`Edge Split Modifier </modeling/modifiers/generate/edge_split>`,
-which is part of the smoothing techniques.
+The *Sharp* flag is used by the :ref:`split normals <auto-smooth>`
+and the :doc:`Edge Split </modeling/modifiers/generate/edge_split>` modifier,
+which are part of the smoothing/customized shading techniques.
 As seams, it is a property of edges, and these operators set or unset it for selected ones.
 
 
@@ -108,7 +109,7 @@ Edge Crease
    :Hotkey:    :kbd:`Shift-E`
 
 This edge property, a value between (0.0 to 1.0), is used by
-the :doc:`Subdivision Surface Modifier </modeling/modifiers/generate/subsurf>`
+the :doc:`Subdivision Surface Modifier </modeling/modifiers/generate/subdivision_surface>`
 to control the sharpness of the edges in the subdivided mesh.
 This operator enters an interactive mode (a bit like transform tools),
 where by moving the mouse (or typing a value with the keyboard) you can set the (average)
@@ -119,6 +120,7 @@ To clear the crease edge property, enter a value of -1.
 
 .. _bpy.ops.transform.edge_slide:
 .. _modeling-meshes-editing-edge-slide:
+.. _tool-mesh-edge_slide:
 
 Edge Slide
 ==========
@@ -176,7 +178,7 @@ Even Mode
 rather than sliding a percentage along each perpendicular edge.
 
 In *Even* mode, the tool shows the position along the length of the currently selected edge
-which is marked in yellow, from the vertex that as an enlarged red marker.
+which is marked in yellow, from the vertex that has an enlarged red marker.
 Movement of the sliding edge loop is restricted to this length. As you move the mouse
 the length indicator in the header changes showing where along the length of the edge you are.
 
@@ -215,7 +217,7 @@ Multiple edge loops
    You can minimize this error by always selecting edges end-to-end or in a "chain".
    If you select multiple edges just make sure they are connected.
    This will decrease the possibility of getting looping errors.
-Border Edge
+Border Edges
    When a single edge was selected in a single sided object.
    An edge loop cannot be found because there is only one face.
    Remember, edge loops are loops that span two or more faces.
@@ -329,7 +331,7 @@ Profile Factor
    How much intermediary new edges are shrunk/expanded.
 Profile Shape
    The shape of the new edges. See the
-   :ref:`proportional editing <3dview-transform-control-proportional-edit-falloff>`
+   :ref:`Proportional Editing <3dview-transform-control-proportional-edit-falloff>`
    page for a description of each option.
 
 

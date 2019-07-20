@@ -6,9 +6,8 @@ Noise Node
 Noise
 =====
 
-.. figure:: /images/render_blender-render_textures_nodes_types_textures_noise_node.png
+.. figure:: /images/editors_texture-node_types_textures_noise_node.png
 
    Noise Node.
 
-
-See :doc:`Here </editors/uv/textures/types/procedural/noise>`.
+See :doc:`Here </render/materials/legacy_textures/types/noise>`.

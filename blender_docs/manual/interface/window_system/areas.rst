@@ -12,13 +12,15 @@ Areas
 
    Area boundaries are indicated by rounded corners (yellow highlights).
 
-The application window is divided up into a number of rectangular areas.
-Areas reserve screen space for :doc:`/editors/index`, such as 3D Viewport, or an Outliner.
-Area boundary is indicated by rounded (beveled) corners.
+The Blender window is divided up into a number of rectangles called Areas.
+Areas reserve screen space for :doc:`/editors/index`, such as the 3D Viewport, or the Outliner.
+In general an Editor provides a way to view and modify your work through a specific part of Blender.
+All hotkeys you press will affect the contents of the Editor in the Area the mouse pointer is located.
+Area boundaries are indicated by rounded (beveled) corners.
 
-.. container:: lead
-
-   .. clear
+Areas can be customized to match specific tasks called
+:doc:`Workspaces </interface/window_system/workspaces>`,
+which can then be named and saved for later use.
 
 
 Resizing
@@ -26,34 +28,45 @@ Resizing
 
 .. figure:: /images/interface_window-system_areas_resize.png
    :align: right
+   :width: 250px
+   :figwidth: 250px
 
 You can resize areas by dragging their borders with :kbd:`LMB`.
 Move your mouse cursor over the border between two areas,
 so that the cursor changes to a double-headed arrow, and then click and drag.
 
 
-Splitting and Joining
-=====================
+Splitting
+=========
 
 .. figure:: /images/interface_window-system_areas_split.png
    :align: right
+   :width: 250px
+   :figwidth: 250px
 
-Splitting an area will create a new area, and joining of two areas
-will close one area. Placing mouse cursor in area corner will change
-cursor to a cross (+) to indicate that pressing down :kbd:`LMB` will
-activate splitting or joining command. Dragging from area corner
-inward will *split* the area. You define the split direction by
-dragging either horizontally or vertically.
+Splitting an area will create a new area. Placing the mouse cursor
+in an area corner will change the cursor to a cross (+) to indicate that
+pressing down :kbd:`LMB` will activate splitting or joining operator.
+Dragging from area corner **inward** will *split* the area.
+You define the split direction by dragging either horizontally or vertically.
+
+
+Joining
+=======
 
 .. figure:: /images/interface_window-system_areas_join.png
+   :align: right
+   :width: 250px
+   :figwidth: 250px
 
    The Properties Editor is being joined to the Outliner.
 
-Dragging from area corner outward will *join* two areas. The area that
-will be closed gets a dark overlaid arrow. You can select which area
-will be closed by moving the mouse over areas. Release the :kbd:`LMB`
-to complete the join. If you press :kbd:`Esc` or :kbd:`RMB` before
-releasing the mouse, the operation will be aborted.
+Dragging from an area corner **outward** will *join* two areas.
+The area that will be closed gets a dark overlaid arrow.
+You can select which area will be closed by moving the mouse over areas.
+Release the :kbd:`LMB` to complete the join.
+If you press :kbd:`Esc` or :kbd:`RMB` before releasing the mouse,
+the operation will be aborted.
 
 .. note::
 
@@ -91,10 +104,10 @@ Duplicate Area into new Window
 .. admonition:: Reference
    :class: refbox
 
-   :Menu:      :menuselection:`View --> Duplicate Area into new Window`
+   :Menu:      :menuselection:`View --> Area --> Duplicate Area into new Window`
 
 A new floating window containing an area can be created from
-:menuselection:`View --> Duplicate Area into new Window`.
+:menuselection:`View --> Area --> Duplicate Area into new Window`.
 
 The new window is a fully functional window, which is part of the same instance of Blender.
 This can be useful, e.g. if you have multiple monitors.
@@ -105,20 +118,21 @@ on the area corner, then drag outward slightly.
 The window can be closed with the OS *Close Window* button.
 
 
+.. _bpy.ops.screen.screen_full_area:
+
 Toggle Maximize Area
 ====================
 
 .. admonition:: Reference
    :class: refbox
 
-   :Menu:      :menuselection:`View --> Toggle Maximize Area`
+   :Menu:      :menuselection:`View --> Area --> Toggle Maximize Area`
    :Hotkey:    :kbd:`Ctrl-Spacebar`
 
-The maximized area fill the whole application window. You can
-maximize an area with :menuselection:`View --> Toggle Maximize Area`
-menu entry or keyboard shortcut :kbd:`Ctrl-Spacebar`. To return to
-normal size use keyboard shortcut or the *Back to Previous* button on
-the Top bar.
+The maximized area fill the whole application window. You can maximize an area
+with :menuselection:`View --> Area --> Toggle Maximize Area` menu entry or
+keyboard shortcut :kbd:`Ctrl-Spacebar`. To return to normal size
+use keyboard shortcut or the *Back to Previous* button on the Topbar.
 
 .. note::
 
@@ -126,15 +140,14 @@ the Top bar.
    that will be maximized using the keyboard shortcuts.
 
 
-.. _bpy.ops.screen.screen_full_area:
-
 Toggle Fullscreen Area
 ======================
 
 .. admonition:: Reference
    :class: refbox
 
-   :Menu:      :menuselection:`View --> Toggle Fullscreen Area`
+   :Menu:      :menuselection:`View --> Area --> Toggle Fullscreen Area`
+   :Hotkey:    :kbd:`Ctrl-Alt-Spacebar`
 
 The fullscreen area contains only the main region.
 To exit the fullscreen move the mouse to the top right corner

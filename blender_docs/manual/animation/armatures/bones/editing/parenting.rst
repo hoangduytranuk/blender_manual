@@ -30,7 +30,7 @@ If you select only one non-parented bone, you will get the *Need selected bone(s
 .. note::
 
    With this method, the newly-children bones will not be scaled nor rotated --
-   they will just be translated if you choose to connect them to their parent's tip.
+   they will just be moved if you choose to connect them to their parent's tip.
 
 In the *Properties editor*, Bones tab, for each selected bone,
 you can select its parent in the *Parent* data ID to the upper right corner of its Relations panel.
@@ -38,28 +38,30 @@ If you want them to be connected, just enable the checkbox to the right of the l
 
 .. note::
 
-   With this method, the tip of the child bone will never be translated --
+   With this method, the tip of the child bone will never be moved --
    so if *Connected* is enabled, the child bone will be completely transformed by the operation.
+
+.. TODO2.8 Maybe update the images (color & style)
 
 .. list-table:: Parenting example.
 
-   * - .. figure:: /images/rigging_armatures_bones_editing_parenting_start.png
+   * - .. figure:: /images/animation_armatures_bones_editing_parenting_start.png
           :width: 320px
 
           The starting armature, with Bone.005 parented and connected to Bone.004.
 
-     - .. figure:: /images/rigging_armatures_bones_editing_parenting_unconnected.png
+     - .. figure:: /images/animation_armatures_bones_editing_parenting_unconnected.png
           :width: 320px
 
           Bone.005 re-parented to Bone.002, but not connected to it
           (same result, using either :kbd:`Ctrl-P 2` in 3D View, or the Bones tab settings).
 
-   * - .. figure:: /images/rigging_armatures_bones_editing_parenting_connected.png
+   * - .. figure:: /images/animation_armatures_bones_editing_parenting_connected.png
           :width: 320px
 
           Bone.005 parented and connected to Bone.002, using :kbd:`Ctrl-P 1` in 3D View.
 
-     - .. figure:: /images/rigging_armatures_bones_editing_parenting_data-id.png
+     - .. figure:: /images/animation_armatures_bones_editing_parenting_data-id.png
           :width: 320px
 
           Bone.005 parented and connected to Bone.002.

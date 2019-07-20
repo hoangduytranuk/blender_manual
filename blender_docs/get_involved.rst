@@ -46,9 +46,8 @@ How to Get Started
 Communication
 =============
 
-- `IRC <irc://irc.freenode.net:6667/#blenderwiki>`__ -- Chat with other documentors and
-  users on `#blenderwiki <irc://irc.freenode.net:6667/#blenderwiki>`__
-- `Mailing list <http://wiki.blender.org/index.php/Dev:Doc/Contact#Mailing_Lists>`__ -- Subsribe to
+- :ref:`blender-chat` -- Chat with documentors & developers.
+- `Mailing list <http://wiki.blender.org/index.php/Dev:Doc/Contact#Mailing_Lists>`__ -- Subscribe to
   the `bf-docboard <http://projects.blender.org/mailman/listinfo/bf-docboard>`__
   to communicate with others about the documentation project
 - `Bug tracker <https://developer.blender.org/tag/documentation>`__ -- Report bugs or
