@@ -7,7 +7,7 @@ Primitives
    :class: refbox
 
    :Mode:      Object Mode and Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Create --> Add Primitive/Surface`
+   :Panel:     :menuselection:`Toolbar --> Create --> Add Primitive/Surface`
    :Menu:      :menuselection:`Add --> Surface`
    :Hotkey:    :kbd:`Shift-A`
 

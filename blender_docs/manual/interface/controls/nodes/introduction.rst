@@ -102,7 +102,7 @@ Adding Nodes
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`Tool Shelf`
+   :Panel:     :menuselection:`Toolbar`
    :Menu:      :menuselection:`Add`
    :Hotkey:    :kbd:`Shift-A`
 

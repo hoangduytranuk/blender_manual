@@ -5,14 +5,11 @@
 Duplicate
 *********
 
-Duplicate
-=========
-
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Add: Duplicate`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Duplicate`
    :Menu:      :menuselection:`Mesh --> Add Duplicate`
    :Hotkey:    :kbd:`Shift-D`
 
@@ -22,7 +19,7 @@ and places the duplicate at the location of the original. Once the duplication i
 only the *new* duplicated elements are selected,
 and you are automatically placed in move mode, so you can move your copy elsewhere...
 
-In the *Tool Shelf* are settings for *Vector* offset, *Proportional Editing*,
+In the *Toolbar* are settings for *Vector* offset, *Proportional Editing*,
 *Duplication Mode*, and *Axis Constraints*.
 
 .. TODO: Duplication Mode non-functional?

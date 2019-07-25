@@ -3,14 +3,12 @@
 Industry Compatible Keymap
 **************************
 
-Summary
-=======
-
 While this is not a comprehensive list,
 this page shows common keys used in the industry compatible keymap.
 
 
-.. rubric:: General
+General
+=======
 
 .. list-table::
    :widths: 20 80
@@ -39,7 +37,8 @@ this page shows common keys used in the industry compatible keymap.
      - Toggle Sidebar
 
 
-.. rubric:: Viewport
+Viewport
+========
 
 .. list-table::
    :widths: 20 80
@@ -58,7 +57,8 @@ this page shows common keys used in the industry compatible keymap.
      - Frame All
 
 
-.. rubric:: Selection
+Selection
+=========
 
 .. list-table::
    :widths: 20 80
@@ -83,7 +83,8 @@ this page shows common keys used in the industry compatible keymap.
      - Select Linked
 
 
-.. rubric:: Tools
+Tools
+=====
 
 .. list-table::
    :widths: 20 80
@@ -98,7 +99,8 @@ this page shows common keys used in the industry compatible keymap.
      - Cursor Tool
 
 
-.. rubric:: Edit Mode Tools
+Edit Mode Tools
+===============
 
 .. list-table::
    :widths: 20 80
@@ -115,7 +117,8 @@ this page shows common keys used in the industry compatible keymap.
      - Loop Cut
 
 
-.. rubric:: Animation
+Animation
+=========
 
 .. list-table::
    :widths: 20 80

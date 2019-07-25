@@ -19,7 +19,7 @@ Markers can be created and edited in the following editors:
 - :doc:`Graph Editor </editors/graph_editor/introduction>`
 - :doc:`Dope Sheet </editors/dope_sheet/introduction>`
 - :doc:`NLA Editor </editors/nla/index>`
-- :doc:`Video Sequence Editor </sequencer/index>`
+- :doc:`Video Sequence Editor </video_editing/index>`
 - :doc:`Timeline </editors/timeline>`
 
 .. note::
@@ -30,7 +30,7 @@ Markers can be created and edited in the following editors:
 Types
 =====
 
-Next to the standard markers *pose markers* are another type of markers,
+Besides standard markers, *pose markers* are another type of markers,
 which are specific to armatures and shape keys.
 They are used to denote poses in the Action Editor mode and Shape Keys Editor of Dope Sheet.
 
@@ -44,35 +44,23 @@ Standard
 .. figure:: /images/animation_markers_standard.png
    :align: right
 
-   Markers: small but useful.
-
-Most of the editors visualize markers the same way: as small white triangles in a separate
+Most of the editors visualize markers as small white triangles in a separate
 row at their bottom, empty if unselected or filled if selected.
 
 If they have a name, this is shown to their right in white.
 
 Vertical dashed lines can be enabled via the :menuselection:`View --> Show Marker Lines` menu option.
 
-.. container:: lead
 
-   .. clear
-
-
-3D View
--------
+3D Viewport
+-----------
 
 .. figure:: /images/animation_markers_3d-view.png
    :align: right
 
-   Marker in a 3D View.
-
-The 3D View does not allow you to create, edit, and remove markers,
-it just show their name in the Object Info in the upper left corner,
-when on their frame (see Marker in a 3D View).
-
-.. container:: lead
-
-   .. clear
+The 3D Viewport does not allow you to create, edit or remove markers,
+but it shows their name in the Object Info in the upper left corner,
+when on their frame.
 
 
 Pose Markers
@@ -80,8 +68,6 @@ Pose Markers
 
 .. figure:: /images/animation_markers_pose.png
    :align: right
-
-   Pose markers.
 
 Pose markers show a diamond-shaped icon in the Dope Sheet.
 In the NLA editor the pose markers are shown as a red dashed line.
@@ -114,7 +100,7 @@ and press :kbd:`M`.
 Pose Markers
 ------------
 
-If *Show Pose Markers* is checked a pose marker and
+If *Show Pose Markers* is checked, a pose marker and
 a new pose in the :doc:`Pose Library </animation/armatures/properties/pose_library>` are added.
 
 

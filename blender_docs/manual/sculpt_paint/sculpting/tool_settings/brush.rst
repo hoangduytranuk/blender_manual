@@ -7,7 +7,7 @@ Brush
    :class: refbox
 
    :Mode:      Sculpt Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Brush`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Brush`
    :Menu:      :menuselection:`Brush --> Sculpt Tool`
 
 Brush Type

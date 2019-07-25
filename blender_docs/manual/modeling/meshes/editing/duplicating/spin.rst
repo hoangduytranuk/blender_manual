@@ -11,7 +11,7 @@ Spin
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Add: Spin`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Spin`
    :Hotkey:    :kbd:`Alt-R`
 
 The *Spin* tool extrudes (or duplicates it if the selection is manifold) the selected elements,
@@ -145,7 +145,7 @@ Or, worse, too many vertices will have been merged.
    clicking on them. Press :kbd:`S` to start scaling and hold down :kbd:`Ctrl`
    while scaling to scale the points down to 0 units in the X, Y and Z axis. :kbd:`LMB`
    to complete the scaling operation and click the *Merge by Distance* button in
-   the Tool Shelf in *Edit Mode* (also available with :menuselection:`Specials --> Merge by Distance`).
+   the Toolbar in *Edit Mode* (also available with :menuselection:`Specials --> Merge by Distance`).
 
    Alternatively, you can use :menuselection:`Specials --> Merge` from the same *Specials* menu
    (or :kbd:`Alt-M`). Then, in the new pop-up menu, choose whether the merged vertex will

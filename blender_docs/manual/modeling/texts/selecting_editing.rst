@@ -151,7 +151,7 @@ Setting Case
 ------------
 
 You can change the text case by selecting it then clicking the *To Upper* or
-*To Lower* in the Tool Shelf.
+*To Lower* in the Toolbar.
 
 
 Font Style

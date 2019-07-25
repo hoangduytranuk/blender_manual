@@ -3,58 +3,153 @@
 Selecting
 *********
 
-.. figure:: /images/modeling_surfaces_selecting_menu.png
-   :align: right
-
-   Select menu.
+This page discusses specific selecting tools for surface objects in Edit Mode.
+The Surface Edit more also uses the general select tools used which are described
+in the :doc:`interface section </interface/selecting>`.
 
 Surface selection in *Edit Mode* is very similar to
-:doc:`NURBS curve selection </modeling/curves/editing/introduction>`.
+:doc:`NURBS curve selection </modeling/curves/selecting>`.
 The basic tools are the same as with :doc:`meshes </modeling/meshes/selecting>`,
 so you can select a simple control point with an :kbd:`LMB`\ -click,
 add to current selection with :kbd:`Shift-LMB` clicks, :kbd:`B` order-select, and so on.
 
 
-Cursor Selection
-================
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Mode:      Edit Mode
-   :Hotkey:    :kbd:`LMB`
-
-Clicking on a control point selects it,
-using modifier keys you can perform other operations.
-
-Extend/Toggle :kbd:`Shift`
-   To add to the selection or de-select when the item is already active.
-
-
 Select Menu
 ===========
 
-The *Select* menu (3D View headers) is even simpler than for curves...
+The *Select* menu (in the 3D Viewport header) is even simpler than for curves...
 
 All these options have the same meaning and behavior as in
 :doc:`Object Mode </scene_layout/object/selecting>`
 (and the specificities of *Box Select* in *Edit Mode* have already been discussed
 :doc:`here </modeling/meshes/selecting>`).
 
-.. container:: lead
+All :kbd:`A`
+   Select all.
+None :kbd:`Alt-A`
+   Select none.
+Inverse :kbd:`Ctrl-I`
+   Selects all the geometry that are not selected, and deselect currently selected components.
 
-   .. clear
+----
+
+:ref:`Box Select <tool-select-box>` :kbd:`B`
+   Interactive box selection.
+:ref:`Circle Select <tool-select-circle>` :kbd:`C`
+   Interactive circle selection.
+
+----
+
+`Select Random`_
+   Select random control points.
+
+`Checker Deselect`_
+   Select every Nth control point.
+
+`Select Linked`_ :kbd:`Ctrl-L`
+   Select control points that are connected to the current selection.
+
+`Select Similar`_ :kbd:`Shift-G`
+   Select control points that have similar properties to the current selection.
+
+----
+
+`Select Control Point Row`_
+   Select a whole :ref:`row <modeling-surfaces-rows-grids>` of control points.
+
+----
+
+`Select More/Less`_
+   Select objects based on their parent child relationships.
+
+
+Select Random
+=============
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select Random`
+
+Select random control points.
+
+Percent
+   Selects the defined percentage of control points.
+Random Seed
+   :term:`Seed` used by the pseudo-random number generator.
+Action
+   Controls whether the operator *Selects* or *Deselects* control points.
+
+
+Checker Deselect
+================
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Checker Deselect`
+
+This tool applies an alternating selected/deselected checker pattern.
+This only works if you already have more than one control point selected.
+
+It works by changing the current selection so that only every Nth
+control points will remain selected, starting from the active one.
+
+Nth Selection
+   Skip every Nth element leaving it selected.
+Skip
+   Number of consecutive elements to skip (keep selected) at once.
+Offset
+   Offset from the starting point.
 
 
 Select Linked
--------------
+=============
 
-:kbd:`L`, :kbd:`Ctrl-L` will add to the selection the mouse cursor's nearest control point,
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select Linked`
+   :Hotkey:    :kbd:`L`, :kbd:`Ctrl-L`
+
+*Select Linked* will add to the selection the mouse cursor's nearest control point,
 and all the linked ones, i.e. all points belonging to the same surface.
 
 
-Control Point Row
------------------
+Select Similar
+==============
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select Similar`
+   :Hotkey:    :kbd:`Shift-G`
+
+Selects control points that have certain similar properties to the active one.
+The :ref:`ui-undo-redo-adjust-last-operation` panel provides several selection options:
+
+Type
+   Type
+      Selects splines that have the same spline Type i.e. Bézier, NURBS or Poly.
+   Radius
+      Selects control points that have a similar Radius value.
+   Weight
+      Selects all points that have a similar Weight value.
+   Direction
+      Selects control points that have a similar handles direction.
+
+Compare
+   Equal, Greater, Less. (only for Radius, Weight) (ToDo 2.76)
+Threshold
+   Precision (ToDo 2.76)
+
+
+Select Control Point Row
+========================
 
 .. admonition:: Reference
    :class: refbox
@@ -72,8 +167,8 @@ If you use again this shortcut, you will toggle between the U and V row of this 
 removing *everything else* from the selection.
 
 
-More and Less
--------------
+Select More/Less
+================
 
 .. admonition:: Reference
    :class: refbox

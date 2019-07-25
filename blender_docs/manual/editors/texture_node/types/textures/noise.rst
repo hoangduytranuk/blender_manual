@@ -3,9 +3,6 @@
 Noise Node
 **********
 
-Noise
-=====
-
 .. figure:: /images/editors_texture-node_types_textures_noise_node.png
 
    Noise Node.

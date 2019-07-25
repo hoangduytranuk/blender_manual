@@ -9,7 +9,7 @@ Mapping Types
 
    :Editor:    3D View
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Shading/UVs --> UVs --> UV Mapping: Unwrap`
+   :Panel:     :menuselection:`Toolbar --> Shading/UVs --> UVs --> UV Mapping: Unwrap`
    :Menu:      :menuselection:`Mesh --> UV Unwrap`
    :Hotkey:    :kbd:`U`
 
@@ -18,7 +18,7 @@ Mapping Types
 
    :Editor:    UV Editor
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> UV Unwrap: Unwrap`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> UV Unwrap: Unwrap`
    :Menu:      :menuselection:`UVs --> Unwrap`
    :Hotkey:    :kbd:`E`
 
@@ -146,7 +146,7 @@ and packs them into the UV bounds. Lightmaps are used primarily in gaming contex
 where lighting information is baked onto texture maps,
 when it is essential to utilize as much UV space as possible.
 It can also work on several meshes at once.
-It has several options that appear in the Tool Shelf:
+It has several options that appear in the Toolbar:
 
 You can set the tool to map just *Selected Faces* or *All Faces* if
 working with a single mesh.

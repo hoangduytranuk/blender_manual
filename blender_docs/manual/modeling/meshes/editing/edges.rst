@@ -18,7 +18,7 @@ Make Edge/Face
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Add: Make Edge/Face`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Make Edge/Face`
    :Menu:      :menuselection:`Mesh --> Edges --> Make Edge/Face`
    :Hotkey:    :kbd:`F`
 
@@ -129,7 +129,7 @@ Edge Slide
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Deform: Slide Edge`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Deform: Slide Edge`
    :Menu:      :menuselection:`Mesh --> Edges --> Slide Edge`
 
 Slides one or more edges across adjacent faces with a few restrictions involving the selection

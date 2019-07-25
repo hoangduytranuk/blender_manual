@@ -29,10 +29,9 @@ Collision Settings
 
    :Panel:     :menuselection:`Physics --> Cloth --> Collision`
 
-.. TODO2.8:
-   .. figure:: /images/physics_cloth_settings_collisions_panel.png
+.. figure:: /images/physics_cloth_settings_collisions_panel.png
 
-      Cloth Collisions panel.
+   Cloth Collisions panel.
 
 Now you must tell the *Cloth* object that you want it to participate in collisions.
 For the cloth object, locate the *Cloth Collision* panel.
@@ -57,17 +56,23 @@ for the collider object (not on the cloth object).
    you must convert it to a mesh object using :ref:`object-convert-to`.
 
 Distance
-   As another object gets this close to it,
-   the simulation will start to push the cloth out of the way.
-Friction
-   A coefficient for how slippery the cloth is when it collides with itself.
-   For example, silk has a lower coefficient of friction than cotton.
+   The distance another object must get to the cloth for
+   the simulation to repel the cloth out of the way.
+   Smaller values might give errors but gives some speed-up while
+   larger will give unrealistic results if too large and can be slow.
+   It is best to find a good in between value.
+Impulse Clamping
+   Prevents explosions in tight and complicated collision situations
+   by restricting the amount of movement after a collision.
+Collision Collection
+   Only objects that are a part of this :doc:`Collection </scene_layout/collections/index>`
+   can collide with the cloth. Note that these objects must also have Collision physics enabled.
 
 
 Self-Collisions
 ---------------
 
-Real cloth cannot permeate itself, so you normally want the cloth to self-collide.
+Real cloth cannot penetrate itself, so you normally want the cloth to self-collide.
 Enable this to tell the cloth object that it should not penetrate itself.
 This adds to the simulation's compute time, but provides more realistic results.
 
@@ -80,13 +85,16 @@ Friction
    A coefficient for how slippery the cloth is when it collides with itself.
    For example, silk has a lower coefficient of friction than cotton.
 Distance
-   If you encounter problems, you could also change the *Min Distance* value for the self-collisions.
-   The best value is 0.75; for fast things you better take 1.0. The value 0.5 is quite risky
-   (most likely many penetrations) but also gives some speed-up.
+   As cloth at this distance begins to repel away from itself.
+   Smaller values might give errors but gives some speed-up while
+   larger will give unrealistic results if too large and can be slow.
+   It is best to find a good in between value.
 Impulse Clamping
-   TODO2.8.
+   Prevents explosions in tight and complicated collision situations
+   by restricting the amount of movement after a collision.
 Vertex Group
-   TODO2.8.
+   Only vertices that are a part of this
+   :doc:`Vertex Group </modeling/meshes/properties/vertex_groups/index>` can collide with each other.
 
 .. seealso::
 
@@ -99,12 +107,12 @@ Troubleshooting
 
 If you encounter some problems with collision detection, there are a few ways to fix them:
 
-- The fastest solution is to increase the *Min Distance* setting under the *Cloth Collision* panel.
+- The fastest solution is to increase the *Distance* for Object/Self Collisions.
   This will be the fastest way to fix the clipping; however, it will be less accurate and will not look as good.
   Using this method tends to make it look like the cloth is resting on air, and gives it a very rounded look.
-- A second method is to increase the *Quality* (in the first *Cloth* panel).
+- A second method is to increase the *Quality* (in the *Cloth* panel).
   This results in smaller steps for the simulator and
   therefore to a higher probability that fast-moving collisions get caught.
-  You can also increase the *Collision Quality* to perform more iterations to get collisions solved.
+  You can also increase the Collisions *Quality* to perform more iterations to get collisions solved.
 - If none of the methods help, you can easily edit the cached/baked result in *Edit Mode* afterwards.
-- If the Cloth is torn by the deforming mesh; increase its *Stiffness* settings.
+- If the Cloth is torn by the deforming mesh; increase the stiffness settings.

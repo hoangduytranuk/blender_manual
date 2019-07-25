@@ -8,7 +8,7 @@ Box Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Draw Tools --> Box`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Draw Tools --> Box`
 
 The Box tool create rectangular shapes.
 

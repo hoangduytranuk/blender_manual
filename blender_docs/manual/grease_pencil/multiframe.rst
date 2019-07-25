@@ -3,11 +3,8 @@
 Multiframe
 **********
 
-Overview
-========
-
 Multiframe allows you to edit, sculpt or weight painting on several frames at the same time.
-Extremely useful to avoid making repetitive task one frame at a time when animating.
+Extremely useful to avoid making a repetitive task one frame at a time when animating.
 
 .. figure:: /images/grease-pencil_multiframe-panel.png
 
@@ -18,7 +15,7 @@ Usage
 =====
 
 #. Select the desired keyframes to edit or sculpt at the same time.
-#. Activate Multiframe tool in the 3D View’s header with the toggle button (fade lines icon).
+#. Activate the Multiframe tool in the 3D View’s header with the toggle button (fade lines icon).
 #. Once activated you can:
 
    - Select the points in all the selected keyframes and make your editions.
@@ -27,4 +24,4 @@ Usage
 
 Use Falloff
    When enabled, the effects on the strokes start to falloff from the current frame
-   using a :doc:`curve widget </interface/controls/templates/curve>`.
+   as defined by a :doc:`curve widget </interface/controls/templates/curve>`.

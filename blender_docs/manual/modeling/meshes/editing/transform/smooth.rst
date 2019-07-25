@@ -12,11 +12,11 @@ Smooth Vertex
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Deform: Smooth Vertex`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Deform: Smooth Vertex`
    :Menu:      :menuselection:`Mesh --> Vertices --> Smooth Vertex`
 
 This tool smooths the selected vertices by averaging the angles between the faces.
-After using the tool, options appear in the *Tool Shelf*:
+After using the tool, options appear in the *Toolbar*:
 
 Smoothing
    Smoothing factor.

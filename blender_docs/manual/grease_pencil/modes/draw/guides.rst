@@ -9,7 +9,7 @@ Guides
    :Mode:      Draw Mode
    :Header:    :menuselection:`Guides`
 
-Guides are drawing aids that make it easier the creation of different types of strokes.
+Guides are drawing aids that make it easier to create different types of strokes.
 The Guides can be activated with the button next to the selector (grid icon).
 
 
@@ -22,26 +22,26 @@ Guide Types
    Guide selector activated in the 3D View header.
 
 Circular
-   Constrains the drawing of new strokes to make rings from the selected reference point.
+   Constrains the drawing of new strokes to form rings from the selected reference point.
 
 Radial
-   Constrains the drawing of new strokes to make rays from the selected reference point.
+   Constrains the drawing of new strokes to form rays from the selected reference point.
 
 Parallel
-   Constrains the drawing of new strokes to make parallel lines.
+   Constrains the drawing of new strokes to form parallel lines.
 
    Angle
       Angle direction of the parallel lines.
 
 Grid
-   Constrains the drawing of new strokes to make parallel horizontal or vertical lines.
+   Constrains the drawing of new strokes to form parallel horizontal or vertical lines.
 
 
 Common Options
 --------------
 
 Use Snapping
-   When enabled, snap the drawn strokes to angle or spacing options.
+   When enabled, snap the drawn strokes to an angle or spacing.
 
    Spacing
       Guide spacing.
@@ -51,20 +51,20 @@ Reference Point
    Applies only for *Circular* and *Radial* guides.
 
    Cursor
-      Use cursor as reference point.
+      Use the cursor as a reference point.
 
    Custom
-      Use custom location as reference point.
+      Use a custom location as a reference point.
 
       Custom Location
-      X, Y Z.
+         X, Y Z
 
    Object
-      Use an object as reference point.
+      Use an object as a reference point.
 
       Object
-         An :ref:`Object Selector <ui-eyedropper>` to select the object (usually an empty),
-         which location will be used as reference point.
+         An :ref:`Data ID menu <ui-data-id>` to select the object (usually an empty),
+         which location will be used as a reference point.
 
 
 Examples

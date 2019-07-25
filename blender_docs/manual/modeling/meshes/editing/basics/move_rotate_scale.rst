@@ -7,7 +7,7 @@ Move, Rotate, Scale
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Transform`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Transform`
    :Menu:      :menuselection:`Mesh --> Transform --> Move, Rotate, Scale, ...`
    :Hotkey:    :kbd:`G`, :kbd:`R`, :kbd:`S`
 

@@ -16,7 +16,7 @@ Translation, Rotation, Scale
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool shelf --> Tools --> Transform`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Transform`
    :Menu:      :menuselection:`Surface --> Transform --> Move, Rotate, Scale`
    :Hotkey:    :kbd:`G`, :kbd:`R`, :kbd:`S`
 
@@ -41,7 +41,7 @@ Advanced Transform Tools
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool shelf --> Tools --> Surface Tools --> Deform: Randomize`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Surface Tools --> Deform: Randomize`
    :Menu:      :menuselection:`Surface --> Transform`
 
 The *To Sphere*, *Shear*, *Warp* and *Push/Pull* transform tools are described
@@ -66,7 +66,7 @@ Adding or Extruding
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool shelf --> Tools --> Surface tools --> Modeling: Extrude`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Surface tools --> Modeling: Extrude`
    :Menu:      :menuselection:`Surface --> Extrude`
    :Hotkey:    :kbd:`E`, :kbd:`Ctrl-LMB`
 
@@ -145,7 +145,7 @@ Opening or Closing a Surface
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool shelf --> Tools --> Surface tools --> Curve: Toggle Cyclic`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Surface tools --> Curve: Toggle Cyclic`
    :Menu:      :menuselection:`Surface --> Toggle Cyclic`
    :Hotkey:    :kbd:`Alt-C`
 
@@ -171,7 +171,7 @@ Duplication
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool shelf --> Tools --> Surface tools --> Curve: Duplicate`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Surface tools --> Curve: Duplicate`
    :Menu:      :menuselection:`Surface --> Duplicate`
    :Hotkey:    :kbd:`Shift-D`
 
@@ -202,7 +202,7 @@ Deleting Elements
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool shelf --> Tools --> Surface tools --> Curve: Delete`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Surface tools --> Curve: Delete`
    :Menu:      :menuselection:`Surface --> Delete...`
    :Hotkey:    :kbd:`X`, :kbd:`Delete`
 
@@ -306,7 +306,7 @@ Subdivision
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool shelf --> Tools --> Surface tools --> Modeling: Subdivide`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Surface tools --> Modeling: Subdivide`
    :Menu:      :menuselection:`Surface --> Segments --> Subdivide`, :menuselection:`Specials --> Subdivide`
 
 Surface subdivision is most simple:
@@ -319,6 +319,8 @@ If you apply it to a 1D surface (a "surface curve"),
 this tool works exactly as with :ref:`curves <modeling-curves-subdivision>`.
 
 
+.. _bpy.ops.curve.spin:
+
 Spin
 ====
 
@@ -326,7 +328,7 @@ Spin
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool shelf --> Tools --> Surface tools --> Modeling: Spin`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Surface tools --> Modeling: Spin`
    :Menu:      :menuselection:`Surface --> Spin`
 
 This tool is a bit similar to its :doc:`mesh counterpart </modeling/meshes/editing/duplicating/spin>`
@@ -346,7 +348,7 @@ Switch Direction
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool shelf --> Tools --> Surface tools --> Curve: Switch Direction`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Surface tools --> Curve: Switch Direction`
    :Menu:      :menuselection:`Surface --> Segments --> Switch Direction`,
                :menuselection:`Specials --> Switch Direction`
 

@@ -53,23 +53,15 @@ concepts of Python scripting for Blender.
 
 .. rubric:: External links
 
-.. TODO2.8: Find new links to scripting introductions.
+Here are external links containing a lot of good information
+to start learning how to write scripts for Blender:
 
-Here are external links containing a lot of good information to start learning how to write scripts for Blender:
-
-- `Introductory tutorial by Satish Goda
-  <https://sites.google.com/site/satishgoda/blender/learningblender25/introduction-to-blender-python-api>`__
-  Takes you from the beginning and teaches how to do basic API manipulations.
-- `Ira Krakow's video tutorials <https://www.youtube.com/watch?v=vmhU_whC6zw>`__
-  First video in a series of video tutorials.
-- `Quickstart guide <https://en.wikibooks.org/wiki/Blender_3D:_Blending_Into_Python/2.5_quickstart>`__
-  A quickstart guide for people who already have some familiarity with Python and Blender.
-- `Examples thread <https://blenderartists.org/t/scripting-examples-for-2-5-update-mar-26th-2010/456132>`__
-  A forum thread containing many short working script examples.
-- `Introduction to Python
-  <https://cgcookie.com/archive/introduction-to-scripting-with-python-in-blender/>`__
-  A one-hour video tutorial introducing Python and the Blender API.
-
+- `Python API: Quickstart <https://docs.blender.org/api/current/info_quickstart.html>`__
+- `CG Cookie: Blender 2.8 Python Scripting Superpowers for Non-Programmers
+  <https://cgcookie.com/articles/blender-2-8-python-scripting-superpowers-for-non-programmers>`__
+- `Olav3D Tutorials: 3D Programming for Beginners Using Python
+   <https://www.youtube.com/watch?v=rHzf3Dku_cE`__
+- `Blender Artists: Python Support Forum <https://blenderartists.org/c/coding/python-support>`__
 
 Extending Blender
 =================

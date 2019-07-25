@@ -55,7 +55,7 @@ Empty
    that are simple visual transform nodes that do not render.
    They are useful for controlling the position or movement of other objects.
 Image
-   :doc:`Images </modeling/empties>` are Empty objects that display images
+   Images are :doc:`empty </modeling/empties>` objects that display images
    in the 3D Viewport. These images can be used to support modeling and animating.
 
 Light
@@ -78,8 +78,6 @@ Force Field
    are represented in the 3D Viewport as small control objects.
 
 Collection Instance
-   .. TODO2.8: update link
-
    Lets you select from a list of existing collections. Once selected, an Empty object will be created,
    with an instance of the selected collection (collection instancing active).
    See :doc:`/scene_layout/object/properties/instancing/collection`.

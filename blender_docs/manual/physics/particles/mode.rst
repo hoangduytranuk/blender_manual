@@ -67,7 +67,7 @@ or that you do not like the latest changes you have made.
 
 .. tip:: To be able to clearly see what you are working on:
 
-   #. Open the Options panel in the Tool Shelf.
+   #. Open the Options panel in the Toolbar.
    #. Select *Point select mode* (see below) in the header of the 3D View.
       This will display key points along the particle path.
 
@@ -260,7 +260,7 @@ Moving Keypoints or Particles
 -----------------------------
 
 - To move selected keypoints press :kbd:`G`, or use one of the various other methods to move vertices.
-- To move a particle root you have to turn off Keep *Root* in the Tool Shelf.
+- To move a particle root you have to turn off Keep *Root* in the Toolbar.
 - You can do many of the things like with vertices, including scaling,
   rotating and removing (complete particles or single keys).
 - You may not duplicate or extrude keys or particles,
@@ -270,7 +270,7 @@ Moving Keypoints or Particles
   :menuselection:`Particle --> Rekey`.
 
 How smoothly the hair and particle paths are displayed depends on the *Path Steps*
-setting in the Tool Shelf. Low settings produce blocky interpolation between points,
+setting in the Toolbar. Low settings produce blocky interpolation between points,
 while high settings produce a smooth curve.
 
 

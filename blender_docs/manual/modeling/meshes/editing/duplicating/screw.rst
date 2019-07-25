@@ -8,7 +8,7 @@ Screw Tool
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Add: Screw`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Screw`
 
 The *Screw* tool combines a repetitive *Spin* with a translation,
 to generate a screw-like, or spiral-shaped, object. Use this tool to create screws, springs,
@@ -47,7 +47,7 @@ Usage
 
 This tool works only with Meshes.
 In *Edit Mode*, the button for the *Screw* tool operation is located in the *Mesh Tools* Panel,
-:menuselection:`Tool Shelf --> Mesh Tools --> Add: Screw`.
+:menuselection:`Toolbar --> Mesh Tools --> Add: Screw`.
 To use this tool, you need to create at least one open profile or line to be used as a vector for the height,
 angular vector and to give Blender a direction.
 

@@ -55,7 +55,7 @@ Editors
 
 Region Overlap
    This makes regions overlap the viewport.
-   It means that the *Tool Shelf* and *Sidebar* regions,
+   It means that the *Toolbar* and *Sidebar* regions,
    will be displayed overlapping the 3D Viewport.
 Corner Splitting
    Split & join by dragging from the corners.

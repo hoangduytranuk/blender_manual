@@ -9,11 +9,11 @@ Measure
    :class: refbox
 
    :Mode:      All Modes
-   :Menu:      :menuselection:`Tool Shelf --> Measure`
+   :Menu:      :menuselection:`Toolbar --> Measure`
 
 The ruler is an interactive tool where you can drag lines in the scene to measure distances or angles.
 Optionally snapping to geometry could be activated for better accuracy or to measure wall thickness.
-The ruler can be accessed from the Tool Shelf.
+The ruler can be accessed from the Toolbar.
 
 .. figure:: /images/editors_3dview_toolbar_measure_ruler-example.png
 
@@ -25,7 +25,7 @@ Usage
 
 Here are common steps for using the ruler:
 
-#. Activate the Ruler from the Tool Shelf.
+#. Activate the Ruler from the Toolbar.
 #. Click and drag in the viewport to define the initial start/end point for the ruler.
 #. Orbit the view and click on either end of the ruler to re-position it.
    Holding :kbd:`Ctrl` enables snap to elements.

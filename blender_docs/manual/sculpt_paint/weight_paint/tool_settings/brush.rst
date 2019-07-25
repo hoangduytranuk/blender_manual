@@ -9,7 +9,7 @@ Brush
 
    Brush panel.
 
-Painting needs paint brushes and Blender provides a Brush Panel within the Tool Shelf
+Painting needs paint brushes and Blender provides a Brush Panel within the Toolbar
 when it operates in *Weight Paint Mode*.
 
 Brush

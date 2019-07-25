@@ -13,7 +13,7 @@ Clear
 
    :Mode:      Object Mode
    :Menu:      :menuselection:`Object --> Clear --> Clear Location / Clear Scale / Clear Rotation / Clear Origin`
-   :Hotkey:    :kbd:`Alt-G`, :kbd:`Alt-S`, :kbd:`Alt-R`, :kbd:`Alt-O`
+   :Hotkey:    :kbd:`Alt-G`, :kbd:`Alt-S`, :kbd:`Alt-R`
 
 Clearing transforms simply resets the transform values.
 The objects location and rotation values return to 0, and the scale returns to 1.
@@ -27,7 +27,7 @@ Clear Scale :kbd:`Alt-S`
 Clear Rotation :kbd:`Alt-R`
    Clear (reset) the rotation of the selection.
    This will set the rotation of the selection to 0 degrees in each plane.
-Clear Origin :kbd:`Alt-O`
+Clear Origin
    Clears (resets) the offset of the child objects origin.
    This will cause child objects to move to the origin of the parent.
 

@@ -3,25 +3,22 @@
 Introduction
 ************
 
-Overview
-========
-
-Assigning weight to the points is primarily used for rigging strokes in cut-out animation, where the vertex groups
-are used to define the relative bone influences on the strokes.
+Assigning weight to the points is primarily used for rigging strokes in cut-out animation,
+where the vertex groups are used to define the relative bone influences on the strokes.
 See :doc:`Using Vertex Group </sculpt_paint/weight_paint/usage>` for more information.
 
 .. note::
 
-   Vertex in *Grease Pencil* are called Points.
+   A vertex in *Grease Pencil* is called point.
 
 Weight Painting is a method to maintain large amounts of weight information in a very intuitive way.
-The selected *Grease Pencil* Object is displayed slightly shaded with a rainbow color spectrum.
-The color visualizes the weights associated to each point in the active Vertex Group.
+The selected *Grease Pencil* object is displayed slightly shaded with a rainbow color spectrum.
+The color visualizes the weights associated to each point in the active vertex group.
 By default blue means unweighted and red means fully weighted.
 
-You assign weights to the points of the Object by painting on it with weight brushes.
-Starting to paint on a strokes automatically adds weights to the active Vertex Group
-(a new Vertex Group is created if needed).
+You assign weights to the points of the object by painting on it with weight brushes.
+Starting to paint on a strokes automatically adds weights to the active vertex group
+(a new vertex group is created if needed).
 
 
 Weight Paint
@@ -31,8 +28,8 @@ Weight Paint
 
    3D View Mode selector: Weight Paint Mode.
 
-Weight Paint Mode is selected from the mode menu of the 3D View header.
-Once Weight Paint Mode is activated, the Tool Shelf of the 3D View will change to Weight Paint Mode specific panels.
+Weight Paint Mode is selected from the *Mode* menu in the 3D View header.
+Once Weight Paint Mode is activated, the Toolbar of the 3D View will change to Weight Paint Mode specific panels.
 A red circle will appear and follow the location of the cursor in the 3D View.
 
 

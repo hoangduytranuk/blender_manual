@@ -30,7 +30,7 @@ Stroke
 ------
 
 When enabled, the shader use the stroke component.
-The *Stroke* component control how to render the edit lines.
+The *Stroke* component controls how to render the edit lines.
 
 Mode Type
    Defines how to display or distribute the output material over the stroke.
@@ -39,7 +39,7 @@ Mode Type
       Connects every points in the strokes showing a continuous line.
 
    Dots
-      Use a circle shape at each point in the stroke.
+      Use a disk shape at each point in the stroke.
       The dots are not connected.
 
    Boxes
@@ -47,22 +47,22 @@ Mode Type
       The boxes are not connected.
 
 Style
-   Type of material.
+   The type of the material.
 
    Solid
-      Use solid color.
+      Use a solid color.
 
       Color
-         Color of the stroke.
+         The color of the stroke.
 
    Texture
-      Use image texture.
+      Use an image texture.
 
       Image
-         Image data-block used as the image source.
+         The image data-block used as an image source.
 
       UV Factor
-         Image size along the stroke.
+         The image size along the stroke.
 
       Use As Stencil Mask
          When enabled, use the image alpha as a stencil mask.
@@ -77,17 +77,17 @@ Style
             Mixing amount.
 
          Color
-            Color to mix.
+            The color to mix.
 
 Alignment
-   Defines how to align *Dots* and *Boxes* with drawing path and object rotation.
+   Defines how to align the *Dots* and *Boxes* along the drawing path and with the object's rotation.
 
    Path
-      Aligns to drawing path and object rotation.
+      Aligns to the drawing path and the object's rotation.
    Object
-      Aligns to objects rotation; ignoring drawing path.
+      Aligns to the object's rotation; ignoring the drawing path.
    Fixed
-      Aligns to the 3D Viewport; ignoring drawing path and object rotation.
+      Aligns to the screen space; ignoring the drawing path and the object's rotation.
 
 .. list-table:: Samples of different material strokes mode types and styles.
 
@@ -119,16 +119,16 @@ When enabled, the shader use the fill component.
 The *Fill* component control how to render the filled areas determined by closed edit lines.
 
 Style
-   Type of material.
+   The type of material.
 
    Solid
       Use solid color.
 
       Color
-         Color of the fill.
+         The color of the fill.
 
    Gradient
-      Use gradient colors.
+      Use a color gradient.
 
       Gradient Type
 
@@ -139,41 +139,41 @@ Style
             Mix the colors radiating from a center point.
 
       Color.
-         Primary color.
+         The primary color.
 
       Secondary color.
-         Secondary color.
+         The secondary color.
 
       Mix Factor
          Primary and secondary colors mixing amount.
 
       Flip colors
-         Flips the gradient, Inverting the primary and secondary colors.
+         Flips the gradient, inverting the primary and secondary colors.
 
       Location
-         Shift gradient position.
+         Shifts the gradient position.
 
          X, Y
 
       Scale
-         Scale gradient.
+         Scales the gradient.
 
          X, Y
 
       Angle
-         Rotate gradient.
+         Rotates the gradient.
 
    Checkerboard
       Use a checkered pattern.
 
       Color.
-         Primary color.
+         The primary color.
 
       Secondary color.
-         Secondary color.
+         The secondary color.
 
       Flip colors
-         Invert primary and secondary colors.
+         Invert the primary and secondary colors.
 
       Location
          Shift the checkered pattern position.
@@ -190,32 +190,32 @@ Style
          Sets the box size of the checkered pattern.
 
    Texture
-      Use image texture.
+      Use an image texture.
 
       Image
-         Image data-block used as the image source.
+         The image data-block used as an image source.
 
       Use As Stencil Mask
-         When enabled, use the image alpha as a stencil mask.
+         When enabled, use the image's alpha as a stencil mask.
 
          Color
             Color to use on not transparent areas of the image.
 
       Offset
-         Shift image position.
+         Shifts the image position.
 
          X, Y
 
       Scale
-         Scale image.
+         Scales the image.
 
          X, Y
 
       Angle
-         Rotate image.
+         Rotates the image.
 
       Opacity
-         Image transparency.
+         The texture's transparency.
 
       Clip Image
          When enabled, show one image instance only (do not repeat).

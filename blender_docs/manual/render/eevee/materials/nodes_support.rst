@@ -1,7 +1,7 @@
 
-*************
-Nodes Support
-*************
+***************
+Supported Nodes
+***************
 
 Most nodes are taken from Cycles. However some features are missing and
 may (or may not) be implemented in Eevee in the future.

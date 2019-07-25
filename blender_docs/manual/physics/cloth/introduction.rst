@@ -1,4 +1,3 @@
-..    TODO/Review: {{review|copy=X|text=Partially}}.
 
 ************
 Introduction

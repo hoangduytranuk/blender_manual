@@ -23,17 +23,17 @@ Type
    Active
       Object is directly controlled by simulation results.
       The possibility to select this type also available with *Add Active*
-      button in the Physics tab of the Tool Shelf.
+      button in the Physics tab of the Toolbar.
    Passive
       Object is directly controlled by animation system.
       Thus, this type is not available for `Dynamics`_.
       The possibility to select this type also available with *Add Passive* button
-      in the Physics tab of the Tool Shelf.
+      in the Physics tab of the Toolbar.
 
 Mass
    Specifies how heavy the object is and "weights" irrespective of gravity.
    There are predefined mass preset available with the *Calculate Mass* button
-   in the Physics tab of the Tool Shelf.
+   in the Physics tab of the Toolbar.
 
    Calculate Mass
       Automatically calculate mass values for rigid body objects based on its volume.

@@ -7,15 +7,10 @@ Curve Display
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Sidebar region --> Curve Display`
+   :Panel:     :menuselection:`3D Viewport --> Viewport Overlays --> Curve Edit Mode`
 
-.. figure:: /images/modeling_curves_curve-display_panel.png
-   :align: right
-
-   Curve Display panel.
-
-When in Edit Mode, the Sidebar region contains options
-in the *Curve Display* panel for how curves are displayed in the 3D View.
+When in Edit Mode, curves have special :doc:`overlays </editors/3dview/controls/overlays>`
+to control how curves are displayed in the 3D Viewport.
 
 Handles
    Toggles the option to display the Bézier handles.

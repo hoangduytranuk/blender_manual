@@ -8,10 +8,9 @@ Shape
 
    :Panel:     :menuselection:`Physics --> Cloth --> Shape`
 
-.. TODO2.8:
-   .. figure:: /images/physics_cloth_settings_cloth-settings_pinning.png
+.. figure:: /images/physics_cloth_settings_cloth-settings_pinning.png
 
-      Cloth Shape.
+   Cloth Shape.
 
 Pin Group
    Vertex Group to use for pinning.

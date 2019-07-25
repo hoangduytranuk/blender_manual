@@ -8,9 +8,6 @@ Geometry
    Curves Geometry panel.
 
 
-Modification
-============
-
 Offset
    Moves the extrusion parallel to the curve normals.
 
@@ -36,42 +33,34 @@ Extrude
 
              Extruded by 0.5 (Object Mode).
 
+Taper Object
+   The taper curve is evaluated along the local X axis,
+   using the local Y axis for width control. Note also that:
+   Tapering a curve causes it to get thinner towards one end.
+   You can also alter the proportions of the Taper throughout the tapered object
+   by moving/scaling/rotating the control points of the Taper Object.
+   The Taper Object can only be another curve.
+   Editing the handles and control points of the Taper Object will cause the original Object to change shape.
 
-Examples
---------
+   In order for this to work:
 
-We have three sub-classes of results, depending on whether the curve is open or closed or 3D:
+   - It must be an *open curve*.
+   - The taper is applied independently to all curves of the extruded object.
+   - Only the first curve in a *Taper Object* is evaluated, even if you have several separated segments.
+   - The scaling starts at the first control point on the left
+     and moves along the curve to the last control point on the right.
+   - Negative scaling, (e.g. negative local Y on the taper curve) is possible as well.
+     However, rendering artifacts may appear.
+   - Might need to increase the curve resolution to see more detail of the taper.
+   - With closed curves, the taper curve in *Taper Object* acts along the whole curve (perimeter of the object),
+     not just the length of the object, and varies the extrusion depth. In these cases,
+     you want the relative height of the *Taper Object*
+     Taper curve at both ends to be the same, so that the cyclic point
+     (the place where the endpoint of the curve connects to the beginning) is a smooth transition.
 
-Open 2D Curve
-   The extrusion will create a "wall" or "ribbon" following the curve shape. If using a *Bevel Depth*,
-   the wall becomes a sort of slide or gutter.
-   If your normals are facing the wrong way you can switch their direction as shown
-   :ref:`here <curve-switch-direction>`.
-
-   .. figure:: /images/modeling_curves_properties_geometry_extrude-open-curve.png
-      :width: 320px
-
-      Open 2D Curve with :kbd:`Alt-C`, fill set to none,
-      zero offset, 0.5 extrusion, 0.25 Bevel Depth, 10 Bevel resolution.
-
-Closed 2D Curve
-   This is probably the most useful situation, as it will quickly create a volume, with (by default)
-   two flat and parallel surfaces filling the two sides of the extruded "wall". You can remove one or both of these
-   faces by choosing the fill mode: both, front, back, or none.
-
-   The optional bevel depth will always create a 90 degree bevels here.
-
-   .. figure:: /images/modeling_curves_properties_geometry_extrude-closed-curve.png
-      :width: 320px
-
-      Closed 2D Curve, 0.5 extrude, 0.25 Bevel Depth, 10 Bevel resolution, Fill: Both.
-
-3D Curve
-   Here the fact that the curve is closed or not has no importance --
-   you will never get a volume with an extruded 3D curve, only a wall or ribbon, like with open 2D curves.
-
-   However, there is one more feature with 3D curves: the *Tilt* of the control points (see above).
-   It will make the ribbon twist around the curve to create a Möbius strip, for example.
+Map Taper
+   For curves using a Taper Object and with modifications to the *Start/End Bevel Factor*
+   the *Map Taper* option will apply the taper to the beveled part of the curve (not the whole curve).
 
 
 .. _modeling-curve-bevel:
@@ -109,8 +98,8 @@ Resolution
 
              A Curve with different resolutions applied (Resolution = 12).
 
-Bevel Object
-   The Bevel Object controls the cross section of the extruded curve.
+Object
+   Controls the cross section of the extruded curve.
    The Bevel Object can only be another curve both 2D or 3D, and opened or closed.
    Editing the handles and control points of the Bevel Object will cause the original Object to change shape.
 
@@ -126,22 +115,10 @@ Bevel Object
 
              A curve with the Bevel Object as a Bézier circle.
 
+Fill Caps
+   Seals the ends of a beveled curve.
 
-Bevel Factor
-------------
-
-Mapping
-   Allows to control the relation between bevel factors (number between 0 and 1) and
-   the rendered start and end point of a beveled spline. Map the bevel factor:
-
-   Resolution
-      To the number of subdivisions of a spline (U resolution).
-   Segments
-      To the length of its segments. Mapping to segments treats the subdivisions in each segment of a curve as
-      if they would have all the same length.
-   Spline
-      The length of a spline.
-Start, End
+Bevel Start/End
    These options determine where to start/end the Bevel operation on the curve.
    This allows to make a bevelled curve which is not fully covered with a bevel.
 
@@ -162,49 +139,17 @@ Start, End
 
              A curve with a 0.6 End Bevel Factor.
 
+Bevel Mapping Start/End
+   Allows to control the relation between bevel factors (number between 0 and 1) and
+   the rendered start and end point of a beveled spline. Map the bevel factor:
 
-Caps
-----
-
-Fill Caps
-   Seals the ends of a beveled curve.
-
-
-Taper
-=====
-
-Taper Object
-   The taper curve is evaluated along the local X axis,
-   using the local Y axis for width control. Note also that:
-   Tapering a curve causes it to get thinner towards one end.
-   You can also alter the proportions of the Taper throughout the tapered object
-   by moving/scaling/rotating the control points of the Taper Object.
-   The Taper Object can only be another curve.
-   Editing the handles and control points of the Taper Object will cause the original Object to change shape.
-
-   See examples below.
-
-Map Taper
-   For curves using a Taper Object and with modifications to the *Start/End Bevel Factor*
-   the *Map Taper* option will apply the taper to the beveled part of the curve (not the whole curve).
-
-
-Details
--------
-
-- It must be an *open curve*.
-- The taper is applied independently to all curves of the extruded object.
-- Only the first curve in a *Taper Object* is evaluated, even if you have several separated segments.
-- The scaling starts at the first control point on the left
-  and moves along the curve to the last control point on the right.
-- Negative scaling, (e.g. negative local Y on the taper curve) is possible as well.
-  However, rendering artifacts may appear.
-- Might need to increase the curve resolution to see more detail of the taper.
-- With closed curves, the taper curve in *Taper Object* acts along the whole curve (perimeter of the object),
-  not just the length of the object, and varies the extrusion depth. In these cases,
-  you want the relative height of the *Taper Object*
-  Taper curve at both ends to be the same, so that the cyclic point
-  (the place where the endpoint of the curve connects to the beginning) is a smooth transition.
+   Resolution
+      To the number of subdivisions of a spline (U resolution).
+   Segments
+      To the length of its segments. Mapping to segments treats the subdivisions in each segment of a curve as
+      if they would have all the same length.
+   Spline
+      The length of a spline.
 
 
 Examples
@@ -212,6 +157,50 @@ Examples
 
 .. TODO2.8 Add some "simple" extrusion examples.
    TODO2.8 Add some "bevel" extrusion with *Radius* examples.
+
+
+Open 2D Curve
+-------------
+
+The extrusion will create a "wall" or "ribbon" following the curve shape. If using a *Bevel Depth*,
+the wall becomes a sort of slide or gutter.
+If your normals are facing the wrong way you can switch their direction as shown
+:ref:`here <curve-switch-direction>`.
+
+.. figure:: /images/modeling_curves_properties_geometry_extrude-open-curve.png
+   :width: 320px
+
+   Open 2D Curve with :kbd:`Alt-C`, fill set to none,
+   zero offset, 0.5 extrusion, 0.25 Bevel Depth, 10 Bevel resolution.
+
+
+Closed 2D Curve
+---------------
+
+This is probably the most useful situation, as it will quickly create a volume, with (by default)
+two flat and parallel surfaces filling the two sides of the extruded "wall". You can remove one or both of these
+faces by choosing the fill mode: both, front, back, or none.
+
+The optional bevel depth will always create a 90 degree bevels here.
+
+.. figure:: /images/modeling_curves_properties_geometry_extrude-closed-curve.png
+   :width: 320px
+
+   Closed 2D Curve, 0.5 extrude, 0.25 Bevel Depth, 10 Bevel resolution, Fill: Both.
+
+
+3D Curve
+--------
+
+Here the fact that the curve is closed or not has no importance --
+you will never get a volume with an extruded 3D curve, only a wall or ribbon, like with open 2D curves.
+
+However, there is one more feature with 3D curves: the *Tilt* of the control points (see above).
+It will make the ribbon twist around the curve to create a Möbius strip, for example.
+
+
+Taper
+-----
 
 Let us taper a simple curve circle extruded object using a taper curve. Add a curve,
 then exit *Edit Mode*. Add another one (a closed one, like a circle); call it "BevelCurve",

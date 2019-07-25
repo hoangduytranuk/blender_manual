@@ -7,5 +7,8 @@
 .. toctree::
    :maxdepth: 2
 
-   introduction.rst
-   draw.rst
+   transform_panel.rst
+   curve.rst
+   control_points.rst
+   segments.rst
+   other.rst

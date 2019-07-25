@@ -114,7 +114,8 @@ Thickness
    A soft body vertex colliding with a plane.
 
 Friction
-   Friction for cloth collisions.
+   A coefficient for how slippery the cloth is when it collides with itself.
+   For example, silk has a lower coefficient of friction than cotton.
 
 Single Sided
    When enabled, cloth collisions are only performed on the normal side of the collider plane.
@@ -122,8 +123,11 @@ Single Sided
 Override Normals
    When enabled, cloth collision impulses act in the direction of the collider normals.
 
-*Soft body* collisions are difficult to get perfect. If one of the objects move too fast,
-the soft body will penetrate the mesh. See also the section about :doc:`Soft Bodies </physics/soft_body/index>`.
+.. note::
+
+   *Soft body* collisions are difficult to get perfect.
+   If one of the objects move too fast, the soft body will penetrate the mesh.
+   See also the section about :doc:`Soft Bodies </physics/soft_body/index>`.
 
 
 Examples

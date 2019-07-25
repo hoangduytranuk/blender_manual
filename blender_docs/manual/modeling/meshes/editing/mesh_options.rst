@@ -7,7 +7,7 @@ Mesh Options
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Options tab --> Mesh Options panel`
+   :Panel:     :menuselection:`Toolbar --> Options tab --> Mesh Options panel`
 
 
 .. _bpy.types.Mesh.use_mirror_x:

@@ -7,7 +7,7 @@ Symmetry
    :class: refbox
 
    :Mode:      Vertex Paint Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tool --> Symmetry`
+   :Panel:     :menuselection:`Toolbar --> Tool --> Symmetry`
    :Panel:     :menuselection:`Properties --> Tool --> Symmetry`
 
 Mirror

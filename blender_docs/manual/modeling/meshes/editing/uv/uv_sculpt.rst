@@ -20,7 +20,7 @@ It can be activated with :kbd:`Q` or by checking UV Sculpt in the *UVs* menu.
 UV Sculpt
 =========
 
-When UV sculpting is activated, the Tool Shelf shows the brush tool selection and options.
+When UV sculpting is activated, the Toolbar shows the brush tool selection and options.
 
 Lock Borders
    Locks the boundary of UV islands from being affected by the brush.

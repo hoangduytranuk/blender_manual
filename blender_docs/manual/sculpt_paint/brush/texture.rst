@@ -19,7 +19,7 @@ and that particular texture defined using the Material and Texture buttons.
 It is not necessary to have that material or texture applied to any mesh anywhere;
 it must only be defined.
 
-The example to the right shows the effects of painting with a voronoi texture.
+The example to the right shows the effects of painting with a Voronoi texture.
 
 Texture
    In paint modes the texture is used as a color source,

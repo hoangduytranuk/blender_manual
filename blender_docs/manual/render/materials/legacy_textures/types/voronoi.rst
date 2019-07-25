@@ -4,7 +4,7 @@
 Voronoi
 *******
 
-The voronoi texture is used to generate very convincing Metal,
+The Voronoi texture is used to generate very convincing Metal,
 especially the "Hammered" effect. Organic shaders (e.g. scales, veins in skin).
 
 .. figure:: /images/render_materials_legacy-textures_types_voronoi_panel.png
@@ -19,53 +19,53 @@ Distance Metric
    This procedural texture has seven Distance Metric options.
    These determine the algorithm to find the distance between cells of the texture. These options are:
 
-   - Minkowsky
-   - Minkowsky 4
-   - Minkowsky 1/2
+   - Minkowski
+   - Minkowski 4
+   - Minkowski 1/2
    - Chebychev
    - Manhattan
    - Distance Squared
    - Actual Distance
 
-   The *Minkowsky* setting has a user definable value (the *Exponent* button)
-   which determines the Minkowsky exponent *e* of the distance function:
+   The *Minkowski* setting has a user definable value (the *Exponent* button)
+   which determines the Minkowski exponent *e* of the distance function:
 
       (*x*\ :sup:`e` + *y*\ :sup:`e` + *z*\ :sup:`e`)\ :sup:`1/e`
 
    A value of one produces the *Manhattan* distance metric, a value less than one produces stars
-   (at 0.5, it gives a *Minkowsky 1/2*), and higher values produce square cells
-   (at 4.0, it gives a *Minkowsky 4*, at 10.0, a *Chebychev*).
-   So nearly all Distance Settings are basically the same -- a variation of *Minkowsky*.
+   (at 0.5, it gives a *Minkowski 1/2*), and higher values produce square cells
+   (at 4.0, it gives a *Minkowski 4*, at 10.0, a *Chebychev*).
+   So nearly all Distance Settings are basically the same -- a variation of *Minkowski*.
 
    You can get irregularly-shaped rounded cells with
    the *Actual Distance* / *Distance Squared* options.
 
 .. list-table::
 
-   * - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowsky0-5.jpg
+   * - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowski0-5.jpg
           :width: 200px
 
-          Minkowsky Exponent: 0.5 (Minkowsky 1/2).
+          Minkowski Exponent: 0.5 (Minkowski 1/2).
 
-     - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowsky1.jpg
+     - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowski1.jpg
           :width: 200px
 
-          Minkowsky Exponent: 1 (Manhattan).
+          Minkowski Exponent: 1 (Manhattan).
 
-     - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowsky2.jpg
+     - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowski2.jpg
           :width: 200px
 
-          Minkowsky Exponent: 2 (Actual Distance).
+          Minkowski Exponent: 2 (Actual Distance).
 
-   * - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowsky4.jpg
+   * - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowski4.jpg
           :width: 200px
 
-          Minkowsky Exponent: 4 (Minkowsky 4).
+          Minkowski Exponent: 4 (Minkowski 4).
 
-     - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowsky10.jpg
+     - .. figure:: /images/render_materials_legacy-textures_types_voronoi_minkowski10.jpg
           :width: 200px
 
-          Minkowsky Exponent: 10 (Chebychev).
+          Minkowski Exponent: 10 (Chebychev).
 
      - .. figure:: /images/render_materials_legacy-textures_types_voronoi_distancesquared.jpg
           :width: 200px

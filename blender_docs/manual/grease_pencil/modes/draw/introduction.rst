@@ -18,9 +18,9 @@ Draw Mode
 
    3D View Mode selector: Draw Mode.
 
-Draw Mode is selected from the mode menu of the 3D Viewport header.
-Once Draw Mode is activated, the Tool Shelf of the 3D Viewport will change to Draw Mode specific panels
-and a circle with the same color as the active material will appear and
+Draw Mode is selected with the *Mode* menu in the 3D Viewport header.
+Once Draw Mode is activated, the Toolbar of the 3D Viewport will change to Draw Mode specific panels.
+Also a circle with the same color as the active material will appear and
 follow the location of the cursor in the 3D View.
 
 To create new strokes you have to select one of the drawing tools in the Toolbar.
@@ -43,9 +43,9 @@ for more information about setting up drawing brushes and materials.
 Strokes Location and Orientation Controls
 =========================================
 
-Drawing in the 3D space is not the same as drawing on a flat canvas.
+Drawing in a 3D space is not the same as drawing on a flat canvas.
 When drawing with *Grease Pencil* you have to define
-the location and orientation in the 3D space for the new strokes.
+the location and orientation of the new strokes in the 3D space.
 
 .. figure:: /images/grease-pencil_modes_draw_introduction_header-stroke-controls.png
 
@@ -55,7 +55,7 @@ the location and orientation in the 3D space for the new strokes.
 Stroke Placement
 ----------------
 
-Stroke Placement selector define the new strokes location in the 3D space.
+The Stroke Placement selector defines the new strokes location in 3D space.
 
 See :doc:`Stroke Placement </grease_pencil/modes/draw/stroke_placement>` for more information.
 
@@ -63,7 +63,7 @@ See :doc:`Stroke Placement </grease_pencil/modes/draw/stroke_placement>` for mor
 Drawing Planes
 --------------
 
-Drawing Planes selector define the plane (orientation) in which the new strokes will be restricted.
+The Drawing Planes selector defines the plane (orientation) to which the new strokes will be restricted.
 
 See :doc:`Drawing Planes </grease_pencil/modes/draw/drawing_planes>` for more information.
 
@@ -84,18 +84,18 @@ Drawing Options
    General drawing options.
 
 Draw on Back
-   When enabled, new strokes is drawn below of all strokes in the layer.
+   When enabled, new strokes are drawn below of all strokes in the layer.
    For example when you want to paint with a fill material below line strokes on a character and
-   they are in the same layer.
+   they are on the same layer.
 
 Add Weight Data
-   When enabled, new strokes weight data is added according to the current vertex group and weight.
-   If there is no vertex group selected, weight data is not added.
+   When enabled, weight data is added to new strokes according to the current vertex group and weight.
+   If there is no vertex group selected, no weight data is added.
 
    Useful for example in cut-out animation for adding new drawing
-   on the same vertex group without the need to make it afterwards.
+   on the same vertex group without the need to creating it afterwards.
 
    See :doc:`Weight Paint Mode </grease_pencil/modes/weight_paint/introduction>` for more information.
 
 Additive Drawing
-   When creating new frames, the strokes from the previous/active frame are include as basis for the new one.
+   When creating new frames, the strokes from the previous/active frame are include as a basis for the new one.

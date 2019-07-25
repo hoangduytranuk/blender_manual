@@ -16,7 +16,7 @@ Can be used to add a mesh to video for example.
 
    This constraint only works after you have set up a minimum of eight markers and pressed
    :ref:`Solve object Motion <editors-movie-clip-tracking-clip-solve-motion>`.
-   Located at :menuselection:`Movie Clip Editor --> Tool Shelf --> Solve --> Solve Camera Motion`
+   Located at :menuselection:`Movie Clip Editor --> Toolbar --> Solve --> Solve Camera Motion`
 
    If it says *Solve Camera Motion* instead of *Solve Object Motion* then go into
    the :menuselection:`Movie Clip Editor --> Sidebar region --> Objects`
@@ -41,6 +41,6 @@ Set Inverse
    Moves the origin of the object to the origin of the camera.
 Clear Inverse
    Moves the origin of the object back to the spot set
-   in the Movie Clip Editor :menuselection:`Tool Shelf --> Solve --> Orientation --> Set Origin`.
+   in the Movie Clip Editor :menuselection:`Toolbar --> Solve --> Orientation --> Set Origin`.
 Constraint to F-Curve
    Applies the constraint, creating keyframes for the transforms.

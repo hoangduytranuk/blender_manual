@@ -37,21 +37,20 @@ or by pressing the appropriate hotkey combination.
 
    Bézier Curve Handle Types.
 
-
 .. _curve-handle-type-auto:
 
-Automatic (yellow handles) :kbd:`V A`
+Automatic (yellow handles)
    This handle has a completely automatic length and direction
    which is set by Blender to ensure the smoothest result.
    These handles convert to *Aligned* handles when moved.
-Vector (green handles) :kbd:`V V`
+Vector (green handles)
    Both parts of a handle always point to the previous handle or the next handle which allows
    you to create curves or sections thereof made of straight lines or with sharp corners.
    Vector handles convert to *Free* handles when moved.
-Aligned (purple handles) :kbd:`V L`
+Aligned (purple handles)
    These handles always lie in a straight line,
    and give a continuous curve without sharp angles.
-Free (black handles) :kbd:`V F`
+Free (black handles)
    The handles are independent of each other.
 
 

@@ -3,9 +3,6 @@
 Default Keymap
 **************
 
-Summary
-=======
-
 While this isn't a comprehensive list,
 this page shows common keys used in Blender's default keymap.
 
@@ -14,7 +11,7 @@ this page shows common keys used in Blender's default keymap.
 
 
 Global Keys
------------
+===========
 
 .. list-table::
    :widths: 10 90
@@ -66,7 +63,7 @@ Global Keys
 
 
 Common Editor Keys
-------------------
+==================
 
 These keys are shared across editors such as the 3D Viewport, UV and Graph editor.
 
@@ -90,7 +87,7 @@ These keys are shared across editors such as the 3D Viewport, UV and Graph edito
 
 
 3D Viewport Keys
-----------------
+================
 
 .. list-table::
    :widths: 10 90

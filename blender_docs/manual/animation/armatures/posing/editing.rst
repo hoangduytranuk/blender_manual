@@ -68,7 +68,7 @@ Auto IK
    :Mode:      Pose Mode
    :Panel:     :menuselection:`Sidebar region --> Tool --> Pose Options`
 
-The auto IK option in the Tool Shelf enables a temporary IK constraint when posing bones.
+The auto IK option in the Sidebar enables a temporary IK constraint when posing bones.
 The chain acts from the tip of the selected bone to root of the upper-most parent bone.
 Note that this mode lacks options,
 and only works by applying the resulting transform to the bones in the chain.

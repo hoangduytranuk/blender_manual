@@ -31,7 +31,7 @@ It is very common for the affected objects to build up enough kinetic energy to 
 simulating a planet's gravity well, so scratch that).
 
 Rigid body dynamics can be baking to normal keyframes with *Bake To Keyframes* button
-in the *Physics* tab of the *Tool Shelf*.
+in the *Physics* tab of the *Toolbar*.
 
 
 Simulation Stability

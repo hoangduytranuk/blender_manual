@@ -8,7 +8,7 @@ Fill Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Draw Tools --> Fill`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Draw Tools --> Fill`
 
 The Fill tool is used to automatically fill closed strokes areas.
 
@@ -19,7 +19,7 @@ Usage
 Selecting a Brush and Material
 ------------------------------
 
-On the Topbar select the brush and material to use with the tool.
+In the Topbar select the brush and material to use with the tool.
 
 Brush
    The :ref:`ui-data-block` to select a preset brush type or a custom brush.

@@ -26,11 +26,6 @@ See :doc:`Particle Cache </physics/particles/emitter/cache>` for details.
 Bake Collision
 ==============
 
-.. TODO2.8:
-   .. figure:: /images/physics_cloth_settings_collisions_bake.png
-
-      After baking.
-
 After you have set up the deflection mesh for the frame range you intend to run the simulation
 (including animating that mesh *via* armatures),
 you can now tell the cloth simulation to compute (and avoid) collisions.

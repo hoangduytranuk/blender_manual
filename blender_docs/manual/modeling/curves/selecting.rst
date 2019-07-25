@@ -3,6 +3,10 @@
 Selecting
 *********
 
+This page discusses specific selecting tools for curve objects in Edit mode.
+The Curve Edit more also uses the general select tools used which are described
+in the :doc:`interface section </interface/selecting>`.
+
 Curve selection in *Edit Mode* has fewer options than with meshes.
 Mainly this is, because there is only one selectable element type, the control points
 (no select mode needed here...). These points are a bit more complex than simple vertices,
@@ -21,27 +25,11 @@ Note that, unlike mesh edges, you cannot directly select a segment. Instead,
 select all of the control points that make up the segment you want to edit.
 
 
-Cursor Selection
-================
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Mode:      Edit Mode
-   :Hotkey:    :kbd:`LMB`
-
-Clicking on a control point selects it,
-using modifier keys you can perform other operations.
-
-Extend/Toggle :kbd:`Shift`
-   To add to the selection or de-select when the item is already active.
-
-
 Select Menu
 ===========
 
-With curves, all "advanced" selection options are regrouped in the *Select* menu of
-the 3D Views header. Let us detail them:
+With curves, all "advanced" selection options are grouped
+in the *Select* menu of the 3D Viewport header.
 
 All :kbd:`A`
    Select all.
@@ -59,14 +47,76 @@ Inverse :kbd:`Ctrl-I`
 
 ----
 
+`Select Random`_
+   Select random control points.
+
+`Checker Deselect`_
+   Select every Nth control point.
+
+`Select Linked`_ :kbd:`Ctrl-L`
+   Select control points that are connected to the current selection.
+
+`Select Similar`_ :kbd:`Shift-G`
+   Select control points that have similar properties to the current selection.
+
+----
+
+`(De)select First/Last`_
+   Toggle the selection of the first or last control point(s).
+
+`Select Next/Previous`_
+   Selects the next or previous control points.
+
+----
+
 `Select More/Less`_
    Select objects based on their parent child relationships.
 
-TODO2.8: Add other menu items.
+
+Select Random
+=============
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select Random`
+
+Select Random control points.
+
+Percent
+   Selects the defined percentage of control points.
+Random Seed
+   :term:`Seed` used by the pseudo-random number generator.
+Action
+   Controls whether the operator *Selects* or *Deselects* control points.
+
+
+Checker Deselect
+================
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Checker Deselect`
+
+This tool applies an alternating selected/deselected checker pattern.
+This only works if you already have more than one control point selected.
+
+It works by changing the current selection so that only every Nth
+control points will remain selected, starting from the active one.
+
+Nth Selection
+   Skip every Nth element leaving it selected.
+Skip
+   Number of consecutive elements to skip (keep selected) at once.
+Offset
+   Offset from the starting point.
 
 
 Select Linked
--------------
+=============
 
 .. admonition:: Reference
    :class: refbox
@@ -81,7 +131,7 @@ using :kbd:`L` with a handle selected will select the whole control point and al
 
 
 Select Similar
---------------
+==============
 
 .. admonition:: Reference
    :class: refbox
@@ -109,29 +159,15 @@ Threshold
    Precision (ToDo 2.76)
 
 
-Shortest Path
--------------
+(De)select First/Last
+=====================
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Operator Search --> Pick Shortest Path`
-   :Hotkey:    :kbd:`Ctrl-LMB`
-
-Selects the curve segments between two control points: the active and the one under the cursor.
-In the case of a closed curve, the shortest path will be selected.
-
-
-Select/Deselect First/Last
---------------------------
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Mode:      Edit Mode
-   :Menu:      :menuselection:`Select --> Select/Deselect First`,
-               :menuselection:`Select --> Select/Deselect Last`
+   :Menu:      :menuselection:`Select --> (De)select First`,
+               :menuselection:`Select --> (De)select Last`
 
 These operators will toggle the selection of the first or last control point(s) of the curve(s)
 in the object. This is useful to quickly find the start of a curve
@@ -139,7 +175,7 @@ in the object. This is useful to quickly find the start of a curve
 
 
 Select Next/Previous
---------------------
+====================
 
 .. admonition:: Reference
    :class: refbox
@@ -154,7 +190,7 @@ In case of a cyclic curve, the first and last points are not considered as neigh
 
 
 Select More/Less
-----------------
+================
 
 .. admonition:: Reference
    :class: refbox
@@ -178,3 +214,17 @@ This implies two points:
    Conversely, the same goes when no control points are selected.
 #. Second, these tools will never "go outside" of a curve
    (they will never "jump" to another curve in the same object).
+
+
+Pick Shortest Path
+==================
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Operator Search --> Pick Shortest Path`
+   :Hotkey:    :kbd:`Ctrl-LMB`
+
+Selects the curve segments between two control points: the active and the one under the cursor.
+In the case of a closed curve, the shortest path will be selected.

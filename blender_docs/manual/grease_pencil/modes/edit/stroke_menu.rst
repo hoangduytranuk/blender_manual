@@ -9,7 +9,7 @@ Stroke Menu
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Strokes`
 
-This page covers many of the tools in the :menuselection:`Strokes` menu.
+This page covers many of the tools in the *Strokes* menu.
 These are tools that work primarily on strokes, however,
 some also work with point selections.
 
@@ -19,6 +19,7 @@ Transform
 
 Strokes can be edited by transforming the locations of points.
 
+
 Translation, Rotation, Scale
 ----------------------------
 
@@ -26,7 +27,7 @@ Translation, Rotation, Scale
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Transform`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Transform`
    :Menu:      :menuselection:`Stroke --> Transform --> Move, Rotate, Scale, ...`
    :Hotkey:    :kbd:`G`, :kbd:`R`, :kbd:`S`
 
@@ -35,7 +36,7 @@ moved :kbd:`G`, rotated :kbd:`R` or scaled :kbd:`S` as described in
 the :doc:`Basic Transformations </scene_layout/object/editing/transform/introduction>` section.
 When in *Edit Mode*,
 :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`
-is also available for transformation actions.
+is also available for the transformation actions.
 
 
 Transform Snapping
@@ -53,7 +54,7 @@ Tools
 
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Strokes --> Transform`
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Stroke Tools`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Stroke Tools`
 
 The *Bend*, *Shear*, *To Sphere*, *Extrude* and *Shrink fatten* transform tools are described
 in the :doc:`Editing tool </grease_pencil/modes/edit/tools>` section.
@@ -68,7 +69,7 @@ Mirror
    :Mode:      Edit Mode
    :Hotkey:    :kbd:`Ctrl-M`
 
-The *Mirror* tool is also available, behaving exactly as with
+The *Mirror* tool is also available, behaving exactly the same as with
 :doc:`mesh vertices </modeling/meshes/editing/transform/mirror>`.
 
 
@@ -106,11 +107,11 @@ Extrude Points
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Stroke Tools --> Extrude`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Stroke Tools --> Extrude`
    :Hotkey:    :kbd:`E`
 
 Extrudes points by duplicating the selected points, which then can be moved.
-The new points stay connecting by an edit line to the original points.
+The new points stay connected with the original points of the edit line.
 
 .. note::
 
@@ -132,8 +133,8 @@ Duplicate
    :Hotkey:    :kbd:`Shift-D`
 
 Duplicates the selected elements, without creating any connections
-with the rest of the strokes (unlike extrude, for example),
-and places the duplicate at the location of the original.
+with the rest of the strokes (unlike *Extrude*, for example),
+and places the duplicate at the location of the original elements.
 
 
 Copy
@@ -179,17 +180,17 @@ Smooth
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Stroke --> Smooth`
 
-Softens strokes by reducing the differences in the locations of the points along the line
-trying to maintain similar values that make the line fluid and smoother.
+Softens strokes by reducing the differences in the locations of the points along the line,
+while trying to maintain similar values that make the line fluid and smoother.
 
 Repeat
-   Number of times to repeat the procedure.
+   The number of times to repeat the procedure.
 
 Factor
-   Amount of the smoothness to apply.
+   The amount of the smoothness to apply.
 
 Selected points
-   When enabled, Limits the effect to only the selected points in the stroke.
+   When enabled, limits the effect to only the selected points within the stroke.
 
 Position
    When enabled, the operator affect the points location.
@@ -219,13 +220,13 @@ Number of Cuts
    The number of subdivisions to perform.
 
 Smooth
-   Amount of the smoothness on subdivided points.
+   The amount of the smoothness on subdivided points.
 
 Repeat
    Number of times to repeat the procedure.
 
 Selected points
-   When enabled, Limits the effect to only the selected points in the stroke.
+   When enabled, limits the effect to only the selected points within the stroke.
 
 Position
    When enabled, the operator affect the points location.
@@ -255,7 +256,7 @@ Fixed
    Deletes alternated points in the strokes, except the start and end points.
 
    Steps
-      Number of times to repeat the procedure.
+      The number of times to repeat the procedure.
 
 Adaptive
    Uses the RDP algorithm (Ramer-Douglas-Peucker algorithm) for points deletion.
@@ -327,7 +328,7 @@ Split
    :Hotkey:    :kbd:`V`
 
 Splits (disconnects) the selected points from the rest of the stroke.
-The separated points are left exactly at the same position as the original but belong to a new stroke.
+The separated points are left exactly at the same position as the original points but they belong to a new stroke.
 
 
 Merging
@@ -424,9 +425,9 @@ Move to Layer
 
 
 A pop-up menu to move the stroke to a different layer.
-You can choose the layer to move the selected strokes
+You can choose the layer to move the selected strokes to
 from a list of layers of the current *Grease Pencil* Object.
-You can also add a new layer to move the selected stroke.
+You can also add a new layer to move the selected stroke to.
 
 
 Assign Material
@@ -489,8 +490,8 @@ Type
       Close or Open selected strokes as required.
 
    Create geometry
-      When enabled, points are added for closing the strokes like when using Close operator.
-      If disabled, the stroke is close without actual geometry.
+      When enabled, points are added for closing the strokes like when using the *Close* tool.
+      If disabled, the stroke is close without any actual geometry.
 
 
 Toggle Caps
@@ -537,7 +538,7 @@ End
 Cleaning Up
 ===========
 
-These tools are to help cleanup degenerate geometry on the strokes.
+These tools help to cleanup degenerate geometry on the strokes.
 
 
 Loose Points
@@ -561,8 +562,8 @@ Boundary Strokes
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Stroke --> Clean Up --> Boundary Strokes, Boundary Strokes All Frames`
 
-Removes boundary strokes used by the Fill Tool.
-See :doc:`Fill Tool </grease_pencil/modes/draw/tool_settings/fill>` for more information.
+Removes boundary strokes used by the *Fill* tool.
+See :doc:`Fill tool </grease_pencil/modes/draw/tool_settings/fill>` for more information.
 
 Mode
    Active Frame Only
@@ -585,17 +586,17 @@ but they look right from a certain plane or from the camera view.
 You can use Reproject Strokes to flatten all the selected strokes from a certain viewpoint.
 
 Front
-   Reproject selected strokes into the front plane (XZ).
+   Reproject selected strokes onto the front plane (XZ).
 Side
-   Reproject selected strokes into the side plane (YZ).
+   Reproject selected strokes onto the side plane (YZ).
 Top
-   Reproject selected strokes into the top plane (XY).
+   Reproject selected strokes onto the top plane (XY).
 View
-   Reproject selected strokes into the current view.
+   Reproject selected strokes onto the current view.
 Surface
-   Reproject selected strokes into mesh surfaces.
+   Reproject selected strokes onto the mesh surfaces.
 Cursor
-   Reproject selected strokes into 3D cursor rotation.
+   Reproject selected strokes onto 3D cursor rotation.
 
 .. list-table::
 
@@ -612,7 +613,7 @@ Cursor
      - .. figure:: /images/grease-pencil_modes_edit_stroke_menu_reproject-strokes-3.png
           :width: 200px
 
-          Strokes reprojected into the front plane to fix strokes misalignment.
+          Strokes reprojected onto the front plane to fix strokes misalignment.
 
      - .. figure:: /images/grease-pencil_modes_edit_stroke_menu_reproject-strokes-1.png
           :width: 200px

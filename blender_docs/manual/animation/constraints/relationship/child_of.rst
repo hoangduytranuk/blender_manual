@@ -1,5 +1,3 @@
-..    TODO/Review: {{review|im=update}}.
-
 .. _bpy.types.ChildOfConstraint:
 
 *******************

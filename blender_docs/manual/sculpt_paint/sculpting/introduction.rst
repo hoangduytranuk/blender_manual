@@ -3,9 +3,6 @@
 Introduction
 ************
 
-Overview
-========
-
 *Sculpt Mode* is similar to *Edit Mode* in that it is used to alter the shape of a model,
 but Sculpt Mode uses a very different workflow:
 instead of dealing with individual elements (vertices, edges, and faces),
@@ -18,7 +15,7 @@ Sculpt Mode
 ===========
 
 Sculpt Mode is selected from the mode menu of the 3D View header.
-Once Sculpt Mode is activated, the Tool Shelf of the 3D View will change to
+Once Sculpt Mode is activated, the Toolbar of the 3D View will change to
 Sculpt Mode specific panels. The panels will be *Brush*, *Texture*, *Stroke*,
 *Falloff*, *Display*, *Dyntopo*, *Symmetry*, and *Options*.
 A red circle will appear and follow the location of the cursor in the 3D View.

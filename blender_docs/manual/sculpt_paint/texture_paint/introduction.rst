@@ -68,7 +68,7 @@ Once you enable Texture Painting, your mouse becomes a brush.
 To work with the UV layout (for example, to move coordinates) you must go back to "View" mode.
 
 As soon as you enable Texture Painting or switch to Texture Paint Mode,
-brush settings become available in the Tool Shelf.
+brush settings become available in the Toolbar.
 
 In the Image Editor, you paint on a flat canvas that is wrapped around the mesh using UV coordinates.
 Any changes made in the Image Editor show up immediately in the 3D View, and vice versa.
@@ -83,7 +83,7 @@ Missing Data
 ------------
 
 When no UV layers or texture slots can be detected,
-the system will display a warning and a few controls to add the relevant data in the Tool Shelf.
+the system will display a warning and a few controls to add the relevant data in the Toolbar.
 You will not be able to paint until all missing data have been added.
 
 Add Simple UVs

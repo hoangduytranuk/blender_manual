@@ -23,6 +23,11 @@ and mix ("Key 1" ``1.0`` and "Key 2" ``0.8``) shape keys in Object Mode.
    Relative shape keys example.
 
 
+For more practical examples, see
+:ref:`how to combine shape keys and drivers<shapekey-driver-example>`.
+
+
+
 Absolute Shape Keys
 ===================
 

@@ -27,7 +27,7 @@ Merging Vertices
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Remove: Merge`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Remove: Merge`
    :Menu:      :menuselection:`Mesh --> Vertices --> Merge...`,
                :menuselection:`Specials --> Merge`
    :Hotkey:    :kbd:`Alt-M`
@@ -92,7 +92,7 @@ Merge by Distance
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Remove: Merge by Distance`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Remove: Merge by Distance`
    :Menu:      :menuselection:`Mesh --> Vertices --> Merge by Distance`,
                :menuselection:`Specials --> Merge by Distance`
 
@@ -267,7 +267,7 @@ Vertex Slide
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Deform: Vertex`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Deform: Vertex`
    :Menu:      :menuselection:`Mesh --> Vertices --> Vertex Slide`
    :Hotkey:    :kbd:`Shift-V`
 
@@ -311,7 +311,7 @@ Smooth Vertex
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Deform: Smooth Vertex`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Deform: Smooth Vertex`
    :Menu:      :menuselection:`Mesh --> Vertices --> Smooth Vertex`,
                :menuselection:`Specials --> Smooth`
 

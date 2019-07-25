@@ -8,7 +8,7 @@ Noise
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Mesh Tools --> Deform: Noise`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Deform: Noise`
 
 .. note::
 

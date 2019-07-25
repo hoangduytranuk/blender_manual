@@ -27,7 +27,7 @@ Transforms
    :class: refbox
 
    :Mode:      View Mode and Mask Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Transform`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Transform`
    :Menu:      :menuselection:`UVs --> Transform`
 
 - Move :kbd:`G`
@@ -78,7 +78,7 @@ Pin and Unpin
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> UV Unwrap: Pin/Unpin`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> UV Unwrap: Pin/Unpin`
    :Menu:      :menuselection:`UVs --> Pin/Unpin`
    :Hotkey:    :kbd:`P`, :kbd:`Alt-P`
 
@@ -107,7 +107,7 @@ Seams
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> UV Unwrap: Mark/Clear Seam`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> UV Unwrap: Mark/Clear Seam`
    :Menu:      :menuselection:`UVs --> Mark/Clear Seam`
 
 See :doc:`/modeling/meshes/editing/uv/unwrapping/seams`.
@@ -123,7 +123,7 @@ Pack Islands
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> Pack Islands`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> Pack Islands`
    :Menu:      :menuselection:`UVs --> Pack Islands`
    :Hotkey:    :kbd:`Ctrl-P`
 
@@ -143,7 +143,7 @@ Average Island Scale
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> Average Island Scale`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> Average Island Scale`
    :Menu:      :menuselection:`UVs --> Average Island Scale`
    :Hotkey:    :kbd:`Ctrl-A`
 
@@ -160,7 +160,7 @@ Minimize Stretch
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> Minimize Stretch`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> Minimize Stretch`
    :Menu:      :menuselection:`UVs --> Minimize Stretch`
    :Hotkey:    :kbd:`Ctrl-V`
 
@@ -176,7 +176,7 @@ Stitch
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> Stitch`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> Stitch`
    :Menu:      :menuselection:`UVs --> Stitch`
    :Hotkey:    :kbd:`V`
 
@@ -192,7 +192,7 @@ Copy Mirrored UV Coordinates
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> Copy Mirrored UV Coordinates`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> Copy Mirrored UV Coordinates`
    :Menu:      :menuselection:`UVs --> Copy Mirrored UV Coordinates`
 
 Copies UVs from one side of the mirrored mesh to the other.
@@ -211,7 +211,7 @@ Mirror
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Align --> Mirror X/Y`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Align --> Mirror X/Y`
    :Menu:      :menuselection:`UVs --> Mirror`
    :Hotkey:    :kbd:`Ctrl-M`
 
@@ -262,7 +262,7 @@ Weld
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> Weld`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> Weld`
    :Menu:      :menuselection:`UVs --> Weld/Align --> Weld`,
                :menuselection:`Specials --> Weld`
    :Hotkey:    :kbd:`W`
@@ -279,7 +279,7 @@ Merge UVs by Distance
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> Merge UVs by Distance`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> Merge UVs by Distance`
    :Menu:      :menuselection:`UVs --> Weld/Align --> Merge UVs by Distance`,
                :menuselection:`Specials --> Merge UVs by Distance`
 
@@ -295,7 +295,7 @@ Straighten/Align
    :class: refbox
 
    :Mode:      View mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> UV Tools --> UV Align --> Straighten/Align`
+   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> UV Align --> Straighten/Align`
    :Menu:      :menuselection:`UVs --> Weld/Align --> Straighten/Align`,
                :menuselection:`Specials --> Straighten/Align`
    :Hotkey:    :kbd:`W`

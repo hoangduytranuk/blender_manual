@@ -138,8 +138,8 @@ Cancel :kbd:`Esc`
    will have the same effect.
 
 
-Tool Shelf
-==========
+Toolbar
+=======
 
 The left region is divided in two areas, Bookmarks on top, and the Operator panel at the bottom.
 

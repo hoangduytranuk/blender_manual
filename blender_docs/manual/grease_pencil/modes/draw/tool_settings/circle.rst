@@ -8,7 +8,7 @@ Circle Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Draw Tools --> Circle`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Draw Tools --> Circle`
 
 The Circle tool create oval shapes.
 

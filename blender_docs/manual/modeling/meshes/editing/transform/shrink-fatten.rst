@@ -9,7 +9,7 @@ Shrink Fatten
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Transform --> Shrink/Fatten`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Transform --> Shrink/Fatten`
    :Menu:      :menuselection:`Mesh --> Transform --> Shrink/Fatten`
    :Hotkey:    :kbd:`Alt-S`
 

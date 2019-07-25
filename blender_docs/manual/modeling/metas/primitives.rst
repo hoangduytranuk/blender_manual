@@ -7,7 +7,7 @@ Primitives
    :class: refbox
 
    :Mode:      Object Mode and Edit Mode
-   :Panel:     :menuselection:`Tool Shelf --> Create --> Add Primitive/Metaball`
+   :Panel:     :menuselection:`Toolbar --> Create --> Add Primitive/Metaball`
    :Menu:      :menuselection:`Add --> Meta`
    :Hotkey:    :kbd:`Shift-A`
 

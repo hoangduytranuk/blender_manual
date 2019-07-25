@@ -8,7 +8,7 @@ Erase Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Draw Tools --> Erase`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Draw Tools --> Erase`
 
 The Erase tool erase already drawn strokes.
 

@@ -37,13 +37,13 @@ Type
 
 There are two categories of drivers:
 
-#. **Built-in functions** (``average``, ``sum``, ``min`` and ``max``)
+- **Built-in functions** (*Average*, *Sum*, *Min* and *Max*)
 
    The driven property will have the value of the average, sum, lowest or highest (respectively)
    of the values of the referenced *Driver Variables*.
    If there is only one driver variable, these functions will yield the same result.
 
-#. **Custom** (scripted expression).
+- **Custom** (*Scripted Expression*).
 
    A mathematical or Python expression that can make use of the *Driver Variables*. See `Expressions`_.
 
@@ -76,6 +76,17 @@ This button only shows in the popover version of the Drivers panel.
 Driver Variables
 ================
 
+Variables are references to properties, transformation channels, or the result of a comparison
+between transformations of two objects.
+
+Drivers should access object data via *Driver Variables*, rather than direct references in a Python
+expression, in order for dependencies to be correctly tracked.
+
+Add Input Variable
+   Adds a new Driver Variable.
+Copy/Paste
+   Copies of the current variable stack so it can be pasted onto another driver's variable stack.
+
 .. list-table::
 
    * - .. figure:: /images/animation_drivers_drivers-panel_single-property.png
@@ -90,18 +101,8 @@ Driver Variables
 
           Distance.
 
-Variables are references to properties, transformation channels, or the result of a comparison
-between transformations of two objects.
-
-Drivers should access object data via *Driver Variables*, rather than direct references in a Python
-expression, in order for dependencies to be correctly tracked.
-
-Add Input Variable
-   Adds a new Driver Variable.
-Copy/Paste
-   Copies of the current variable stack so it can be pasted onto another driver's variable stack.
 Name
-   Name to use in scripted expressions/functions.
+   Name to use in scripted expressions.
    The name must start with a letter and no spaces or dots are allowed.
 
 Variable Type
@@ -158,6 +159,9 @@ Expressions
 Expression
    A text field where to type *Driver Variables* by their name, real numbers, math operators, math functions,
    Python properties and driver functions.
+
+   For a full list of available expressions and how to add custom functions to the set, see
+   :ref:`the driver namespace example<driver-namespace>`.
 
    For performance optimization it is best to use the `Simple Expressions`_ subset as much as possible.
 Use Self

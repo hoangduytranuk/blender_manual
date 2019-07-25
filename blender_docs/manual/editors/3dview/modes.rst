@@ -3,9 +3,6 @@
 Object Modes
 ************
 
-Summary
-=======
-
 .. _fig-view3d-mode-select:
 
 .. figure:: /images/editors_3dview_modes_menu.png

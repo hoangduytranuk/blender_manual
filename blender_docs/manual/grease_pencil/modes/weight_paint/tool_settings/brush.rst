@@ -4,11 +4,11 @@
 Brush
 *****
 
-Painting needs paint brushes and Blender provides a Brush Panel within the Tool Shelf
-when it operates in *Weight Paint Mode*.
+Painting needs paint brushes and Blender provides a Brush panel within the Toolbar
+when in *Weight Paint Mode*.
 
 Brush
-   In the :ref:`Data-Block menu <ui-data-block>` you find predefined Brush Presets.
+   In the :ref:`Data-Block menu <ui-data-block>` you find predefined Brush presets.
    And you can create your own custom presets as needed.
 
 Radius
@@ -19,4 +19,4 @@ Use Falloff
    When enabled, use Strength falloff for the brush.
    Brush Strength decays with the distance from the center of the brush.
 Weight
-   The weight (color) to be used by the brush.
+   The weight (visualized as a color) to be used by the brush.

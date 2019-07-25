@@ -7,7 +7,7 @@ Brush
    :class: refbox
 
    :Mode:      Sculpt Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Brush`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Brush`
 
 Radius
    This option controls the radius of the brush, measured in pixels.
@@ -41,19 +41,19 @@ Sculpt strokes
       If there is no filter selected *Affect Position* is the default behavior.
 
    Affect Position
-      Toggles the brush effect over the position of the stroke points.
+      Toggles the brush effect on the position of the stroke points.
 
    Affect Strength
-      Toggles the brush effect over the strength (alpha) of the stroke points.
+      Toggles the brush effect on the strength (alpha) of the stroke points.
 
    Affect Thickness
-      Toggles the brush effect over the thickness of the stroke points.
+      Toggles the brush effect on the thickness of the stroke points.
 
    Affect Pressure
-      Toggles the brush effect over the pressure values of the stroke points.
+      Toggles the brush effect on the pressure values of the stroke points.
 
    Affect UV
-      Toggles the brush effect over the UV rotation of the stroke points.
+      Toggles the brush effect on the UV rotation of the stroke points.
 
 Direction
    The influence direction of the brush. This can be Add or Subtract.

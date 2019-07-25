@@ -8,7 +8,7 @@ Draw Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Panel:     :menuselection:`Tool Shelf --> Tools --> Draw Tools --> Draw`
+   :Panel:     :menuselection:`Toolbar --> Tools --> Draw Tools --> Draw`
 
 The Draw tool allows you to draw free-hand strokes.
 
@@ -19,7 +19,7 @@ Usage
 Selecting a Brush and Material
 ------------------------------
 
-On the topbar select the brush and material to use with the tool.
+In the Topbar select the brush and material to use with the tool.
 
 Brush
    The :ref:`ui-data-block` to select a preset brush type or a custom brush.

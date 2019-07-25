@@ -62,6 +62,7 @@ View Controls
 -------------
 
 .. figure:: /images/editors_graph-editor_introduction_header-view.png
+   :width: 350px
 
    View controls.
 
@@ -100,6 +101,7 @@ Curve Controls
 --------------
 
 .. figure:: /images/editors_graph-editor_introduction_header-edit.png
+   :width: 250px
 
    Curve controls.
 

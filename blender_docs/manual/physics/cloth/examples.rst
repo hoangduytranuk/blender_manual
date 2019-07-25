@@ -38,7 +38,7 @@ Smoothing of Cloth
 Now, if you followed this from the previous section, your cloth is probably looking a little blocky.
 In order to make it look nice and smooth like the picture you need to apply
 a Smooth and/or Subdivision Surface Modifier in the *Modifiers* tab.
-Then, in the Tool Shelf, find the *Edit* panel and Press *Smooth*.
+Then, in the Toolbar, find the *Edit* panel and Press *Smooth*.
 
 
 Cloth on Armature

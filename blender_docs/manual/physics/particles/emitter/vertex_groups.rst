@@ -1,5 +1,3 @@
-..    TODO/Review: {{review|partial=X}}.
-
 .. _bpy.types.ParticleDupliWeight:
 
 *************
