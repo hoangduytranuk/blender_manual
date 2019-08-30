@@ -1,12 +1,5 @@
 # Đề án phiên dịch bản hướng dẫn sử dụng Blender (_Blender Reference Manual_)
 
-## Lấy bản ZIP mới nhất của bản hướng dẫn sử dụng hiện đang làm:
-
-Có hai bản hiện được biên tập:
-
-- Tất cả nội dung nằm trong [một tập tin index.html](blender_docs/build/blender_vietnamese_single.zip)
-- Nội dung được phân ra [nhiều bản html, mỗi tập tin một đề mục riêng](blender_docs/build/blender_vietnamese_html.zip)
-
 ## Lấy bản phiên dịch giao diện *blender.mo* cho:
 - Phiên bản [2.79](gui/2.79/locale/vi/LC_MESSAGES/blender.mo)
 - Phiên bản [2.8x](gui/2.80/locale/vi/LC_MESSAGES/blender.mo) - Phiên bản đang hoàn thiện, thường xuyên thay đổi.
