@@ -9,7 +9,7 @@ Có hai bản hiện được biên tập:
 
 ## Lấy bản phiên dịch giao diện *blender.mo* cho:
 - Phiên bản [2.79](gui/2.79/locale/vi/LC_MESSAGES/blender.mo)
-- Phiên bản [2.80](gui/2.80/locale/vi/LC_MESSAGES/blender.mo)
+- Phiên bản [2.8x](gui/2.80/locale/vi/LC_MESSAGES/blender.mo) - Phiên bản đang hoàn thiện, thường xuyên thay đổi.
 Lưu ý: Xin xem hướng dẫn ở địa chỉ cũ [này](https://github.com/hoangduytran/blender-internationalisation/blob/master/README.md) để xem cách cài đặt bản *blender.mo* vào thư mục của phần mềm Blender.
 
 ## Chuẩn bị (Preparations)
