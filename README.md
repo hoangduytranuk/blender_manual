@@ -982,6 +982,18 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
         kwrite ukengine/keycons.h
     ```
 
++ Trên Fedora,
+
+    ```bash
+        udo dnf install -y cmake g++ make pkg-config ibus-devel gtk3-devel
+        cd $HOME
+        mkdir sources/
+        cd sources
+        git clone https://github.com/vn-input/ibus-unikey.git
+        cd ibus-unikey
+        kwrite ukengine/keycons.h
+    ```
+
 + Đổi dòng:
 
     ```c++
