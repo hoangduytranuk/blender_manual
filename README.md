@@ -985,7 +985,7 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
 + Trên Fedora,
 
     ```bash
-        udo dnf install -y cmake g++ make pkg-config ibus-devel gtk3-devel
+        sudo dnf install -y cmake g++ make pkg-config ibus-devel gtk3-devel
         cd $HOME
         mkdir sources/
         cd sources
