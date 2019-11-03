@@ -1,0 +1,545 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/groups.rst">
+ <target ids="['bpy-types-compositornodegroup']" names="['bpy.types.compositornodegroup']">
+ </target>
+ <comment xml:space="preserve">
+  DO NOT EDIT FILE. This is simply a stub which copies everything from the link below.
+ </comment>
+ <section ids="node-groups" names="node\ groups nhóm\ nút\ --\ node\ groups">
+  <title>
+   Nhóm Nút -- Node Groups
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/interface_controls_nodes_groups_node-group-example.png'}" uri="images/interface_controls_nodes_groups_node-group-example.png"/>
+   <caption>
+    Ví dụ về nhóm nút.
+   </caption>
+  </figure>
+  <paragraph>
+   Việc nhóm các nút có thể đơn giản hóa một cây nút bằng cách cho phép việc tạo một thực thể và ẩn dấu các phần của cây. Cả hai loại nút, nút chất liệu và nút tổng hợp, đều có thể nhóm lại được.
+  </paragraph>
+  <paragraph>
+   Nói một cách khái niệm, việc nhóm các nút lại cho phép bạn chỉ định một
+   <emphasis>
+    tập hợp
+   </emphasis>
+   các nút mà bạn có thể coi như là một đơn nút. Các nhóm nút tương tự như các hàm trong lập trình vậy. Sau đó, bạn có thể tái sử dụng chúng bên trong, cái mà sau đó được gọi là Nhóm Nút (NodeGroups)hoặc trong các tập tin blend khác, khi chèn thêm vào, được gọi là Cây Nút (NodeTrees).
+  </paragraph>
+  <paragraph>
+   Một ví dụ: Nếu bạn đã tạo một nguyên liệu mà bạn muốn sử dụng với các yếu tố đầu vào khác nhau, ví dụ: màu khuếch tán: nhựa màu đỏ, nhựa màu xanh lá cây, thì bạn có thể tạo các nguyên liệu riêng biệt bằng nút
+   <emphasis>
+    Biến thành Đơn Người Dùng
+   </emphasis>
+   (
+   <emphasis>
+    Make Single User
+   </emphasis>
+   ) cho mỗi màu khác nhau, với bản sao của phần cây mô tả vật liệu nhựa. Nếu bạn muốn chỉnh sửa nguyên liệu, thì bạn cần phải chỉnh sửa lại tất cả các nguyên liệu. Một phương pháp tốt hơn để tái sử dụng là tạo các nhóm nút, chỉ cho lộ ra các tham số đầu vào (ví dụ: màu khuếch tán) (
+   <emphasis>
+    diffuse color
+   </emphasis>
+   ).
+  </paragraph>
+  <paragraph>
+   Các nhóm nút lồng nhau cũng được hỗ trợ nữa, chẳng hạn, một nhóm nút có thể được chèn vào hoặc được tạo bên trong một nhóm nút khác.
+  </paragraph>
+  <note>
+   <paragraph>
+    Các nhóm nút đệ quy sẽ bị cấm hoạt động đối với toàn bộ hệ thống nút hiện tại, nhằm ngăn chặn sự đệ quy vô hạn. Một nhóm nút không bao giờ có thể chứa chính bản thân nó (hoặc nhóm khác có chứa chính bản thân nó).
+   </paragraph>
+  </note>
+  <section ids="make-group" names="make\ group tạo\ nhóm\ --\ make\ group">
+   <title>
+    Tạo Nhóm -- Make Group
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Node --&gt; Make Group`">
+         Node ‣ Make Group
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-G
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    To create a node group, select the nodes you want to include, then
+press
+    <literal classes="kbd">
+     Ctrl-G
+    </literal>
+    ,
+    <inline classes="menuselection" rawtext=":menuselection:`Group --&gt; Make Group`">
+     Group ‣ Make Group
+    </inline>
+    .
+A node group will have a green title bar. All of the selected nodes will now be contained within the node group.
+Default naming for the node group is "NodeGroup", "NodeGroup.001" etc.
+There is a name field in the node group you can click into to change the name of the group.
+Change the name of the node group to something meaningful.
+When appending node groups from one blend-file to another,
+Blender does not make a distinction between material node groups or composite node groups,
+so it is recommended to use some naming convention that will allow you to easily distinguish between the two types.
+   </paragraph>
+   <tip>
+    <paragraph>
+     What
+     <strong>
+      not
+     </strong>
+     to include in node groups:
+    </paragraph>
+    <paragraph>
+     Hãy nhớ rằng điều thiết yếu là một nhóm phải là một thành phần phần mềm dễ tái sử dụng, khép kín. Nhóm nút nguyên liệu
+     <strong>
+      không nên
+     </strong>
+     bao gồm:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Nút Đầu Vào -- Input nodes
+      </term>
+      <definition>
+       <paragraph>
+        Nếu bạn bao gồm một nút nguồn trong nhóm của bạn thì kết quả sẽ là bạn có nút nguồn xuất hiện
+        <emphasis>
+         hai lần
+        </emphasis>
+        : một nằm bên trong nhóm và một nằm bên ngoài nhóm trong mạng lưới nút nguyên liệu mới.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Nút Đầu Ra -- Output node
+      </term>
+      <definition>
+       <paragraph>
+        Nếu bạn bao gồm một nút đầu ra trong nhóm thì bạn sẽ không có một ổ cắm đầu ra có
+        <emphasis>
+         từ
+        </emphasis>
+        (ra khỏi) nhóm!
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </tip>
+  </section>
+  <section ids="edit-group" names="edit\ group biên\ soạn\ nhóm\ --\ edit\ group">
+   <title>
+    Biên Soạn Nhóm -- Edit Group
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Node --&gt; Edit Group`">
+         Node ‣ Edit Group
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Tiêu Đề -- Header
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Chuyển về Cây Nút Phụ Huynh (Go to Parent Node Tree)`">
+         Chuyển về Cây Nút Phụ Huynh (Go to Parent Node Tree)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Tab
+        </literal>
+        ,
+        <literal classes="kbd">
+         Ctrl-Tab
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    With a node group selected,
+    <literal classes="kbd">
+     Tab
+    </literal>
+    expands the node to a frame, and the individual nodes within
+it are shown. You can move them around, play with their individual controls, re-thread them internally, etc.
+just like you can if they were a normal part of the editor view. You will not be able, though,
+to thread them to a node outside the group; you have to use the external sockets on the side of the node group.
+While
+    <literal classes="kbd">
+     Tab
+    </literal>
+    can be used to both enter and exit a group,
+    <literal classes="kbd">
+     Ctrl-Tab
+    </literal>
+    only exits.
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_cycles_optimizations_reducing-noise_glass-group.png'}" uri="images/render_cycles_optimizations_reducing-noise_glass-group.png" width="620px"/>
+    <caption>
+     Ví dụ về nhóm nút mở rộng.
+    </caption>
+   </figure>
+   <section ids="interface" names="interface giao\ diện\ --\ interface">
+    <title>
+     Giao Diện -- Interface
+    </title>
+    <section ids="interactively" names="interactively tương\ tác\ --\ interactively">
+     <title>
+      Tương Tác -- Interactively
+     </title>
+     <paragraph>
+      Khi một nhóm nút được kiến tạo, các nút
+      <emphasis>
+       Đầu Vào của Nhóm
+      </emphasis>
+      (Group Input) và
+      <emphasis>
+       Đầu Ra của Nhóm
+      </emphasis>
+      (Group Output) mới sẽ được sinh tạo ra để biểu thị luồng chảy của dữ liệu vào và ra khỏi nhóm. Khi được kiến tạo, các kết nối đến ổ cắm đầu vào đến từ các nút không được chọn sẽ được gắn vào các ổ cắm mới trên nút
+      <emphasis>
+       Đầu Vào của Nhóm
+      </emphasis>
+      . Tương tự, các kết nối ra ngoài đến các ổ cắm đầu vào của các nút không được chọn sẽ được gắn vào nút
+      <emphasis>
+       Đầu Ra của Nhóm
+      </emphasis>
+      mới.
+     </paragraph>
+     <paragraph>
+      Nếu trong quá trình phát triển nhóm nút, một tham số bổ sung cần phải được đưa vào nhóm thì một ổ cắm cần phải được bổ sung vào phần
+      <emphasis>
+       Đầu Vào của Nhóm
+      </emphasis>
+      (Group Input). Điều này có thể dễ dàng thực hiện bằng cách cho thêm một kết nối từ ổ cắm rỗng ở phía bên phải của
+      <emphasis>
+       Đầu Vào của Nhóm
+      </emphasis>
+      (Group Input) vào ổ cắm đầu vào mong muốn trên nút yêu cầu đầu vào. Đối với dữ liệu mà bạn muốn cung cấp ra khỏi nhóm, làm tương tự như quá trình này trên
+      <emphasis>
+       Đầu Ra của Nhóm
+      </emphasis>
+      (Group Output).
+     </paragraph>
+    </section>
+    <section ids="panel" names="panel bảng\ --\ panel">
+     <title>
+      Bảng -- Panel
+     </title>
+     <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+      <title>
+       Tham Chiếu -- Reference
+      </title>
+      <field_list>
+       <field>
+        <field_name>
+         Chế Độ -- Mode
+        </field_name>
+        <field_body>
+         <paragraph>
+          Toàn Bộ các Chế Độ -- All Modes
+         </paragraph>
+        </field_body>
+       </field>
+       <field>
+        <field_name>
+         Bảng -- Panel
+        </field_name>
+        <field_body>
+         <paragraph>
+          <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; Node --&gt; Interface`">
+           Sidebar region ‣ Node ‣ Interface
+          </inline>
+         </paragraph>
+        </field_body>
+       </field>
+      </field_list>
+     </admonition>
+     <figure align="right" ids="id3">
+      <image candidates="{'*': 'images/interface_controls_nodes_groups_interface-panel.png'}" uri="images/interface_controls_nodes_groups_interface-panel.png"/>
+      <caption>
+       The interface panel for editing groups.
+      </caption>
+     </figure>
+     <paragraph>
+      Có thể cho thêm các ổ cắm, thay đổi trật tự, hoặc xóa bỏ, đồng thời, mình còn có thể định nghĩa các tên miêu tả cùng những chi tiết về giá trị dữ liệu đầu vào nữa.
+     </paragraph>
+     <paragraph>
+      If you have multiple inputs or outputs, they can be re-ordered by selecting the socket in the list
+and then moving it up or down with the arrow buttons on the right side of the panel.
+The larger plus sign buttons below the list will add an unconnected socket of the same type
+as the selected socket or a value socket if there is no selection.
+The triangle at the bottom of the list has filtering functions to facilitate finding nodes
+if the group has a large number of sockets.
+     </paragraph>
+    </section>
+   </section>
+  </section>
+  <section ids="ungroup" names="ungroup rã\ nhóm\ --\ ungroup">
+   <title>
+    Rã Nhóm -- Ungroup
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Nhóm (Group) --&gt; Rã Nhóm (Ungroup)`">
+         Nhóm (Group) ‣ Rã Nhóm (Ungroup)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Alt-G
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <literal classes="kbd">
+     Alt-G
+    </literal>
+    tool removes the group and places the individual nodes into your editor workspace.
+No internal connections are lost, and now you can thread internal nodes to other nodes in your workspace.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Separate
+      <literal classes="kbd">
+       P
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Separate selected nodes from the node group.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sao Chép -- Copy
+        </term>
+        <definition>
+         <paragraph>
+          Copy to parent node tree, keep group intact.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Di Chuyển -- Move
+        </term>
+        <definition>
+         <paragraph>
+          Move to parent node tree, remove from group.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="group-insert" names="group\ insert chèn\ thêm\ vào\ nhóm\ --\ group\ insert">
+   <title>
+    Chèn Thêm vào Nhóm -- Group Insert
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Nhóm (Group) --&gt; Chèn Thêm vào Nhóm (Group Insert)`">
+         Nhóm (Group) ‣ Chèn Thêm vào Nhóm (Group Insert)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <comment xml:space="preserve">
+    move node into selected group
+   </comment>
+   <paragraph>
+    Selecting a set of nodes, ending with the destination group node, and pressing
+    <inline classes="menuselection" rawtext=":menuselection:`Nhóm (Group) --&gt; Chèn Thêm vào Nhóm (Group Insert)`">
+     Nhóm (Group) ‣ Chèn Thêm vào Nhóm (Group Insert)
+    </inline>
+    will move those nodes into that group. The moved nodes are collected into a group of their own to preserve their connection context, having their own group input and output nodes. The group's existing input and output nodes are updated with new sockets, if any, from the new nodes. The node group must be edited to contain a single
+    <emphasis>
+     Group Input
+    </emphasis>
+    and a single
+    <emphasis>
+     Group Output
+    </emphasis>
+    node.
+   </paragraph>
+  </section>
+  <section ids="appending-node-groups" names="appending\ node\ groups bổ\ sung\ nhóm\ nút\ --\ appending\ node\ groups">
+   <title>
+    Bổ Sung Nhóm Nút -- Appending Node Groups
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Biên Soạn -- Editor
+      </field_name>
+      <field_body>
+       <paragraph>
+        Topbar
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Tập Tin (File) --&gt; Kết Nối/Bổ Sung (Link/Append)`">
+         Tập Tin (File) ‣ Kết Nối/Bổ Sung (Link/Append)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Once you have appended a Node Tree to your blend-file, you can make use of it in a node editor by
+pressing
+    <literal classes="kbd">
+     Shift-A
+    </literal>
+    ,
+    <inline classes="menuselection" rawtext=":menuselection:`Add --&gt; Group`">
+     Add ‣ Group
+    </inline>
+    , then selecting the appended group.
+The "control panel" of the Group include the individual controls for the grouped nodes.
+You can change them by working with the Group node like any other node.
+   </paragraph>
+  </section>
+ </section>
+</document>

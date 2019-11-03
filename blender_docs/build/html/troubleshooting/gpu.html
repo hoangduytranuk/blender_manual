@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>-- Graphics Hardware &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/troubleshooting/gpu.html"/>
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="next" title="-- Crashes" href="crash.html" />
+    <link rel="prev" title="Khung Nhìn 3D -- 3D View" href="3d_view.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Xử Lý Sự Cố -- Troubleshooting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="startup.html">-- Startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_view.html">Khung Nhìn 3D -- 3D View</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">-- Graphics Hardware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#drivers">Bộ Điều Vận -- Drivers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#windows">Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linux">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#macos">Hệ Điều Hành Macintosh của Apple -- macOS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#laptops">Laptops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-problems">-- Common Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#unsupported-graphics-driver-error">-- Unsupported Graphics Driver Error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crash-on-startup">-- Crash on Startup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#poor-performance">Hiệu Suất Tồi -- Poor Performance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#render-errors">-- Render Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wrong-selection-in-3d-viewport">-- Wrong Selection in 3D Viewport</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#information">-- Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crash.html">-- Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">-- Python Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recover.html">-- Recovering Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#compatibility">Tính Tương Thích -- Compatibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Xử Lý Sự Cố -- Troubleshooting</a> &raquo;</li>
+        
+      <li>-- Graphics Hardware</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/troubleshooting/gpu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="graphics-hardware">
+<h1>-- Graphics Hardware<a class="headerlink" href="#graphics-hardware" title="Permalink to this headline">¶</a></h1>
+<p>Blender uses of OpenGL for the 3D viewport and user interface.
+The graphics card (GPU) and driver have a big impact on Blender's behavior and performance.</p>
+<p>This page lists possible solutions for graphics glitches, problems with Eevee and Cycles,
+and crashes related to your GPU.</p>
+<div class="section" id="drivers">
+<h2>Bộ Điều Vận -- Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h2>
+<p>Upgrading to the latest graphics drivers often solves problems.
+Newer drivers have bug fixes that help Blender function correctly.</p>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p>On Windows drivers are provided by the graphics card manufacturer (Intel, AMD and NVIDIA).
+Windows update automatically installs graphics drivers,
+or your computer manufacturer may provide its own version of the graphics drivers.
+However these are not always the latest version or may have been corrupted in some way.</p>
+<p>To ensure you have the latest version, go to the graphics card manufacturer's website and
+download the latest drivers from there. It can help to uninstall the previous drivers first and
+perform a clean installation.</p>
+</div>
+<div class="section" id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p>On Linux, graphics drivers are usually installed as a package by your Linux distribution.
+Installing the latest drivers is typically done by upgrading packages or the distribution as a whole.
+Some distributions provide multiple packages for multiple drivers versions,
+giving you the choice to install newer versions.</p>
+<p>For NVIDIA there are open source (Nouveau) and closed source (by NVIDIA) graphics drivers.
+Blender functions best with the closed source drivers as they are more optimized and complete.
+Linux graphics drivers can be downloaded from NVIDIA's website, however in most cases
+the ones from your Linux distribution are fine and make things easier.
+Manually downloading drivers is mostly useful to get the very latest version,
+for example for a GPU that was only recently released.</p>
+<p>For AMD the drivers are open source, except for the OpenCL support which is available as part of Pro drivers.
+Installing packages through your Linux distribution is usually best.
+AMD also provides graphics drivers for download on their website if you need the latest version.</p>
+</div>
+<div class="section" id="macos">
+<h3>Hệ Điều Hành Macintosh của Apple -- macOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
+<p>On macOS graphics drivers are built into the operating system and
+the only way to get newer drivers is to upgrade macOS as a whole to the latest version.</p>
+</div>
+</div>
+<div class="section" id="laptops">
+<h2>Laptops<a class="headerlink" href="#laptops" title="Permalink to this headline">¶</a></h2>
+<p>Laptops often have two GPUs for power saving purposes.
+One slower onboard GPU (typically Intel) and one faster dedicated GPU for a better performance (AMD or NVIDIA).</p>
+<p>For the best performance the dedicated GPU should be used for Blender.
+Which GPU to use for which application can be configured in your graphics driver settings.</p>
+<p>If there is a graphics glitch specific to the onboard GPU, then using the dedicated GPU can also help avoid that.</p>
+</div>
+<div class="section" id="common-problems">
+<h2>-- Common Problems<a class="headerlink" href="#common-problems" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unsupported-graphics-driver-error">
+<h3>-- Unsupported Graphics Driver Error<a class="headerlink" href="#unsupported-graphics-driver-error" title="Permalink to this headline">¶</a></h3>
+<p>This means your graphics card and driver do not have the minimum required OpenGL 3.3 version needed by Blender.</p>
+<p>Installing the latest driver can help upgrade the OpenGL version,
+though some graphics cards are simply too old to run the latest Blender.
+Using Blender 2.79 or earlier is the only option then.</p>
+</div>
+<div class="section" id="crash-on-startup">
+<h3>-- Crash on Startup<a class="headerlink" href="#crash-on-startup" title="Permalink to this headline">¶</a></h3>
+<p>Try running Blender from the <a class="reference internal" href="../advanced/command_line/index.html"><span class="doc">command line</span></a>,
+to see if any helpful error messages are printed.</p>
+<p>On Windows, graphics drivers can sometimes get corrupted.
+In this case it can help to uninstall all graphics drivers (there may be multiple from Intel, AMD and NVIDIA) and
+perform a clean installation with drivers from the manufacturer's website.</p>
+</div>
+<div class="section" id="poor-performance">
+<h3>Hiệu Suất Tồi -- Poor Performance<a class="headerlink" href="#poor-performance" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Update your graphics drivers (see above).</li>
+<li>On laptops, make sure you are using a dedicated GPU (see above).</li>
+<li>Try lowering quality settings in <span class="menuselection">Preferences ‣ System ‣ Memory &amp; Limits</span>.</li>
+<li>Try undoing settings in your graphics drivers, if you made any changes there.</li>
+</ul>
+</div>
+<div class="section" id="render-errors">
+<h3>-- Render Errors<a class="headerlink" href="#render-errors" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference internal" href="../render/eevee/limitations.html"><span class="doc">Eevee</span></a> and
+<a class="reference internal" href="../render/cycles/gpu_rendering.html"><span class="doc">Cycles</span></a> documentation respectively.</p>
+</div>
+<div class="section" id="wrong-selection-in-3d-viewport">
+<h3>-- Wrong Selection in 3D Viewport<a class="headerlink" href="#wrong-selection-in-3d-viewport" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference internal" href="3d_view.html#troubleshooting-3dview-invalid-selection"><span class="std std-ref">Invalid Selection, Disable Anti-Aliasing</span></a>.</p>
+</div>
+</div>
+<div class="section" id="information">
+<h2>-- Information<a class="headerlink" href="#information" title="Permalink to this headline">¶</a></h2>
+<p>To find out which graphics card and driver Blender is using, use <span class="menuselection">Giúp Đỡ (Help) ‣ Lưu Thông Tin Hệ Thống (Save System Info)</span> inside Blender. The OpenGL section will have information about your graphics card, vendor and driver version.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="crash.html" class="btn btn-neutral float-right" title="-- Crashes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="3d_view.html" class="btn btn-neutral float-left" title="Khung Nhìn 3D -- 3D View" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/cycles/object_settings/object_data.rst">
+ <section ids="object" names="object">
+  <title>
+   Object
+  </title>
+  <target refid="render-cycles-object-settings-visibility">
+  </target>
+  <section ids="visibility render-cycles-object-settings-visibility" names="visibility render-cycles-object-settings-visibility">
+   <title>
+    Visibility
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Visibility`">
+         Object ‣ Visibility
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <seealso>
+    <paragraph>
+     There are several other
+     <reference internal="True" refuri="../../../scene_layout/object/properties/visibility.html">
+      <inline classes="doc">
+       general visibility
+      </inline>
+     </reference>
+     properties.
+    </paragraph>
+   </seealso>
+   <section ids="shadow-catcher" names="shadow\ catcher tóm\ bắt\ bóng\ tối\ --\ shadow\ catcher">
+    <title>
+     Tóm Bắt Bóng Tối -- Shadow Catcher
+    </title>
+    <paragraph>
+     Enables the object to only receive shadow rays.
+It is to be noted that shadow catcher objects will interact with other CG objects via indirect light interaction.
+This feature makes it really easy to combine
+     <abbreviation explanation="Computer-generated imagery">
+      CGI
+     </abbreviation>
+     elements
+into a real-world footage.
+    </paragraph>
+    <figure ids="id1">
+     <image candidates="{'*': 'images/render_cycles_object-settings_object-data_shadow-catcher.jpg'}" uri="images/render_cycles_object-settings_object-data_shadow-catcher.jpg"/>
+     <caption>
+      Example of the shadow catcher. Note how the material of the plane can still be viewed in the spheres.
+     </caption>
+    </figure>
+    <target refid="cycles-ray-visibility">
+    </target>
+    <target refid="bpy-types-cyclesvisibilitysettings">
+    </target>
+   </section>
+   <section ids="ray-visibility bpy-types-cyclesvisibilitysettings cycles-ray-visibility" names="ray\ visibility tầm\ nhìn\ của\ tia\ xạ\ --\ ray\ visibility bpy.types.cyclesvisibilitysettings cycles-ray-visibility">
+    <title>
+     Tầm Nhìn của Tia Xạ -- Ray Visibility
+    </title>
+    <paragraph>
+     Objects can be set to be invisible to particular ray types:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Máy Quay Phim -- Camera
+      </term>
+      <definition>
+       <paragraph>
+        Makes the object visible in camera rays.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khuếch Tán -- Diffuse
+      </term>
+      <definition>
+       <paragraph>
+        Makes the object visible in diffuse rays.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bóng Bẩy -- Glossy
+      </term>
+      <definition>
+       <paragraph>
+        Makes the object visible in glossy rays.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Truyền Xạ -- Transmission
+      </term>
+      <definition>
+       <paragraph>
+        Makes the object visible in transmission rays.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tán Xạ Thể Tích -- Volume Scatter
+      </term>
+      <definition>
+       <paragraph>
+        Makes the object visible in transmission rays.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Ngả Bóng Tối -- Shadow
+      </term>
+      <definition>
+       <paragraph>
+        Enables the object to cast shadows.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <paragraph>
+     This can be used, for example, to make an emitting mesh invisible to camera rays.
+For instancers, visibility is inherited; if the parent object is hidden for some ray types,
+the children will be hidden for these too.
+    </paragraph>
+    <paragraph>
+     In terms of performance, using these options is more efficient that using a shader node setup
+that achieves the same effect.
+Objects invisible to a certain ray will be skipped in ray traversal already,
+leading to fewer rays cast and shaders executed.
+    </paragraph>
+   </section>
+   <section ids="culling" names="culling">
+    <title>
+     Culling
+    </title>
+    <paragraph>
+     In order to activate these options the respectively camera cull options have to be enabled
+in the scene
+     <reference internal="True" refuri="../render_settings/simplify.html#render-cycles-settings-scene-simplify">
+      <inline classes="std std-ref">
+       simplify panel
+      </inline>
+     </reference>
+     .
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Loại Bỏ trong Máy Quay Phim -- Use Camera Cull
+      </term>
+      <definition>
+       <paragraph>
+        Ignore and this way make objects invisible to rays outside of the camera frustum.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khoảng Cách Loại Bỏ -- Use Distance Cull
+      </term>
+      <definition>
+       <paragraph>
+        Will cull any objects further from the camera than a given distance. When used in combination with
+camera frustum culling, this can be used to avoid culling nearby objects that are outside the camera frustum,
+but still visible in reflections. It is also useful to cull small objects far from the camera.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="render-cycles-settings-object-motion-blur">
+    </target>
+   </section>
+  </section>
+  <section ids="motion-blur render-cycles-settings-object-motion-blur" names="motion\ blur làm\ nhòe\ chuyển\ động\ --\ motion\ blur render-cycles-settings-object-motion-blur">
+   <title>
+    Làm Nhòe Chuyển Động -- Motion Blur
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Làm Nhòe Chuyển Động (Motion Blur)`">
+         Vật Thể (Object) ‣ Làm Nhòe Chuyển Động (Motion Blur)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Each object has its own motion blur settings along with
+the
+    <reference internal="True" refuri="../render_settings/motion_blur.html">
+     <inline classes="doc">
+      Scene Level Motion Blur
+     </inline>
+    </reference>
+    These settings can be found
+in the
+    <reference internal="True" refuri="../../../scene_layout/object/properties/introduction.html">
+     <inline classes="doc">
+      Object Properties
+     </inline>
+    </reference>
+    tab
+of the Properties editor.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Biến Dạng -- Deformation
+     </term>
+     <definition>
+      <paragraph>
+       Enables motion blur for deformed meshes such as animated characters, including hair.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Số Bước -- Steps
+     </term>
+     <definition>
+      <paragraph>
+       Controls accuracy of deformation motion blur, more steps gives more memory usage.
+The actual number of time steps is
+       <math>
+        2^{steps -1}
+       </math>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <warning>
+    <paragraph>
+     An object modifier setup that changes mesh topology over time can not render
+deformation motion blur correctly. Deformation blur should be disabled for such objects.
+    </paragraph>
+    <paragraph>
+     Common examples of this are animated Booleans, Deformation before Edge Split, Remesh, Skin or Decimate modifiers.
+    </paragraph>
+   </warning>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,281 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/texture_node/types/converter/math.rst">
+ <target ids="['bpy-types-texturenodemath']" names="['bpy.types.texturenodemath']">
+ </target>
+ <comment xml:space="preserve">
+  DO NOT EDIT FILE. This is simply a stub which copies everything from the link below.
+ </comment>
+ <section ids="math-node" names="math\ node nút\ toán\ --\ math\ node">
+  <title>
+   Nút Toán -- Math Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeMath.png'}" uri="images/compositing_node-types_CompositorNodeMath.png"/>
+   <caption>
+    Nút Toán.
+   </caption>
+  </figure>
+  <paragraph>
+   <emphasis>
+    Nút Toán
+   </emphasis>
+   (Math Node) thực hiện các phép toán.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Giá trị số đầu tiên. Các hàm lượng giác chấp nhận các giá trị theo đơn vị rad.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Giá trị số thứ hai. Giá trị này
+       <strong>
+        không
+       </strong>
+       được sử dụng trong các hàm chỉ chấp nhận một tham số, như các hàm lượng giác, hàm Làm Tròn Số (Round) và hàm tính số Tuyệt Đối (Absolute).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thao Tác -- Operation
+     </term>
+     <definition>
+      <paragraph>
+       Cộng, Trừ, Nhân, Chia, Sin, Cos, Tang, Arcsin, Arccos, Arctan, Arctan2, Lũy Thừa, Logarit, Tối thiểu, Tối đa, Tròn, Nhỏ hơn, Lớn hơn, Modulo, Tuyệt đối
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hạn Định -- Clamp
+     </term>
+     <definition>
+      <paragraph>
+       Giới hạn đầu ra nằm trong phạm vi (0 đến 1). Xin xem
+       <reference internal="True" refuri="../../../../glossary/index.html#term-clamp">
+        <inline classes="xref std std-term">
+         clamp
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Giá trị số cung cấp ở đầu ra.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <section ids="manual-z-mask" names="manual\ z-mask chắn\ lọc\ z\ thủ\ công\ --\ manual\ z-mask">
+    <title>
+     Chắn Lọc Z Thủ Công -- Manual Z-Mask
+    </title>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/compositing_types_converter_math_manual-z-mask.png'}" uri="images/compositing_types_converter_math_manual-z-mask.png"/>
+     <caption>
+      Minimum and maximum function example.
+     </caption>
+    </figure>
+    <paragraph>
+     This example has one scene input by the top
+     <emphasis>
+      Render Layers
+     </emphasis>
+     node,
+which has a cube that is about 10 units from the camera.
+The bottom
+     <emphasis>
+      Render Layers
+     </emphasis>
+     node inputs a scene
+with a plane that covers the left half of the view and is 7 units from the camera.
+Both are fed through their respective
+     <emphasis>
+      Map Value
+     </emphasis>
+     nodes to divide the Z-buffer by 20
+(multiply by 0.05, as shown in the Size field)
+and clamped to be a min/max of 0.0/1.0 respectively.
+    </paragraph>
+    <paragraph>
+     For the minimum function,
+the node selects those Z values where the corresponding pixel is closer to the camera;
+so it chooses the Z values for the plane and part of the cube.
+The background has an infinite Z value, so it is clamped to 1.0 (shown as white).
+In the maximum example, the Z values of the cube are greater than the plane,
+so they are chosen for the left side, but the plane
+     <emphasis>
+      Render Layers
+     </emphasis>
+     Z are infinite
+(mapped to 1.0) for the right side, so they are chosen.
+    </paragraph>
+   </section>
+   <section ids="using-sine-function-to-pulsate" names="using\ sine\ function\ to\ pulsate dùng\ hàm\ sin\ để\ tạo\ xung\ --\ using\ sine\ function\ to\ pulsate">
+    <title>
+     Dùng Hàm Sin để Tạo Xung -- Using Sine Function to Pulsate
+    </title>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/compositing_types_converter_math_sine.png'}" uri="images/compositing_types_converter_math_sine.png"/>
+     <caption>
+      Using sine function example.
+     </caption>
+    </figure>
+    <paragraph>
+     This example has a
+     <emphasis>
+      Time
+     </emphasis>
+     node putting out a linear sequence from 0 to 1 over the course of 101 frames.
+At frame 25, the output value is 0.25.
+That value is multiplied by 2 × pi (6.28) and converted to 1.0 by the Sine function,
+since we all know that
+     <math>
+      sin(2 × pi/ 4) = sin(pi/ 2) = +1.0
+     </math>
+     .
+    </paragraph>
+    <paragraph>
+     Since the sine function can put out values between (-1.0 to 1.0),
+the
+     <emphasis>
+      Map Value
+     </emphasis>
+     node scales that to 0.0 to 1.0 by taking the input (-1 to 1), adding 1
+(making 0 to 2), and multiplying the result by one-half (thus scaling the output between 0 to 1).
+The default
+     <emphasis>
+      Color Ramp
+     </emphasis>
+     converts those values to a gray-scale.
+Thus, medium gray corresponds to a 0.0 output by the sine, black to -1.0,
+and white to 1.0. As you can see,
+     <math>
+      sin(pi/ 2) = 1.0
+     </math>
+     . Like having your own visual color calculator!
+Animating this node setup provides a smooth cyclic sequence through the range of grays.
+    </paragraph>
+    <paragraph>
+     Use this function to vary, for example,
+the alpha channel of an image to produce a fading in/out effect.
+Alter the Z channel to move a scene in/out of focus.
+Alter a color channel value to make a color "pulse".
+    </paragraph>
+   </section>
+   <section ids="brightening-scaling-a-channel" names="brightening\ (scaling)\ a\ channel làm\ sáng\ (đổi\ tỷ\ lệ)\ một\ kênh\ --\ brightening\ (scaling)\ a\ channel">
+    <title>
+     Làm Sáng (Đổi Tỷ Lệ) một Kênh -- Brightening (Scaling) a Channel
+    </title>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/compositing_types_converter_math_multiply.png'}" uri="images/compositing_types_converter_math_multiply.png"/>
+     <caption>
+      Scaling a channel example.
+     </caption>
+    </figure>
+    <paragraph>
+     This example has a
+     <emphasis>
+      Math (Multiply)
+     </emphasis>
+     node increasing the luminance channel (Y)
+of the image to make it brighter. Note that you should use a
+     <emphasis>
+      Map Value node
+     </emphasis>
+     with min() and max() enabled to clamp the output to valid values.
+With this approach, you could use a logarithmic function to make a high dynamic range image.
+For this particular example,
+there is also a
+     <emphasis>
+      Bright/Contrast node
+     </emphasis>
+     that might give simpler control over brightness.
+    </paragraph>
+   </section>
+   <section ids="restrict-color-selection-posterization" names="restrict\ color\ selection\ (posterization) hạn\ chế\ sự\ lựa\ chọn\ màu\ sắc\ (áp\ phích\ hóa)\ --\ restrict\ color\ selection\ (posterization)">
+    <title>
+     Hạn Chế sự Lựa Chọn Màu Sắc (Áp Phích Hóa) -- Restrict Color Selection (Posterization)
+    </title>
+    <figure ids="id5">
+     <image candidates="{'*': 'images/compositing_types_converter_math_posterization.png'}" uri="images/compositing_types_converter_math_posterization.png"/>
+     <caption>
+      Posterization example.
+     </caption>
+    </figure>
+    <paragraph>
+     In this example, we restrict the color values to be one of the six values: 0, 0.2, 0.4, 0.6, 0.8, 1.
+    </paragraph>
+    <paragraph>
+     To split up a continuous range of values between 0 and 1 to certain set of values,
+the following function is used:
+     <math>
+      round(x × n - 0.5) / (n - 1)
+     </math>
+     ,
+where "n" is the number of possible output values, and "x" is the input pixel color.
+     <reference name="Read more about this function" refuri="https://en.blender.org/index.php/Doc:2.4/Manual/Composite_Nodes/Types/Convertor#Quantize.2FRestrict_Color_Selection">
+      Read more about this function
+     </reference>
+     .
+    </paragraph>
+    <paragraph>
+     To implement this function in Blender, consider the node setup above.
+We string the math nodes into a function that takes each color (values from 0 to 1),
+multiplies it up by six, the desired number of divisions (values become from 0 to 6),
+offsets it by 0.5 (-0.5 to 5.5),
+rounds the value to the nearest whole number (produces 0, 1, 2, 3, 4, 5),
+and then divides the image pixel color by five (0.0, 0.2, 0.4, 0.6, 0.8, 1.0).
+    </paragraph>
+    <paragraph>
+     In the case of a color image,
+you need split it into separate RGB channels using
+     <emphasis>
+      Separate/Combine RGBA
+     </emphasis>
+     nodes
+and perform this operation on each channel independently.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

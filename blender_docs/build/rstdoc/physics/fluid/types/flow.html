@@ -1,0 +1,200 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/fluid/types/flow.rst">
+ <section ids="fluid-inflow-outflow" names="fluid\ inflow\ /\ outflow --\ fluid\ inflow\ /\ outflow">
+  <title>
+   -- Fluid Inflow / Outflow
+  </title>
+  <paragraph>
+   To control the volume of the fluid simulation,
+you can set objects in the scene to add or absorb fluid within the
+   <reference internal="True" refuri="domain.html">
+    <inline classes="doc">
+     Fluid Domain
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <target refid="bpy-types-inflowfluidsettings">
+  </target>
+  <section ids="inflow bpy-types-inflowfluidsettings" names="inflow luồng\ vào\ --\ inflow bpy.types.inflowfluidsettings">
+   <title>
+    Luồng Vào -- Inflow
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Lý (Physics) --&gt; Chất Lỏng (Fluid)`">
+         Vật Lý (Physics) ‣ Chất Lỏng (Fluid)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Thể Loại -- Type
+      </field_name>
+      <field_body>
+       <paragraph>
+        Luồng Vào -- Inflow
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <comment xml:space="preserve">
+    TODO2.8:
+.. figure:: /images/physics_fluid_types_flow_inflow.png
+
+   Fluid Inflow settings.
+   </comment>
+   <paragraph>
+    This object will put fluid into the simulation, like a water tap.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại Thiết Lập Thể Tích -- Volume Initialization Type
+     </term>
+     <definition>
+      <paragraph>
+       Xin xem thêm về
+       <reference internal="True" refuri="introduction.html#fluid-initialization">
+        <inline classes="std std-ref">
+         Thiết Lập Thể Tích -- Volume Initialization Type
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khung Lưới Hoạt Họa/Xuất -- Animated Mesh/Export
+     </term>
+     <definition>
+      <paragraph>
+       Xin xem thêm về
+       <reference internal="True" refuri="introduction.html#fluid-animated-mesh">
+        <inline classes="std std-ref">
+         Khung Lưới Hoạt Họa/Xuất -- Animated Mesh/Export
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Local Coordinates/Enable
+     </term>
+     <definition>
+      <paragraph>
+       Use local coordinates for the inflow.
+This is useful if the inflow object is moving or rotating, as the inflow stream will
+follow/copy that motion. If disabled, the inflow location and direction do not change.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vận Tốc Luồng Vào -- Inflow Velocity
+     </term>
+     <definition>
+      <paragraph>
+       Speed of the fluid that is created inside of the object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-types-outflowfluidsettings">
+   </target>
+  </section>
+  <section ids="outflow bpy-types-outflowfluidsettings" names="outflow lối\ thoát\ ra\ --\ outflow bpy.types.outflowfluidsettings">
+   <title>
+    Lối Thoát Ra -- Outflow
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Lý (Physics) --&gt; Chất Lỏng (Fluid)`">
+         Vật Lý (Physics) ‣ Chất Lỏng (Fluid)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Thể Loại -- Type
+      </field_name>
+      <field_body>
+       <paragraph>
+        Lối Thoát Ra -- Outflow
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <comment xml:space="preserve">
+    TODO2.8:
+.. figure:: /images/physics_fluid_types_flow_outflow.png
+
+   Fluid Outflow settings.
+   </comment>
+   <paragraph>
+    Any fluid that enters the region of this object will be deleted (think of a drain or a black hole).
+This can be useful in combination with an inflow to prevent the whole domain from filling up.
+When enabled, this is like a tornado (waterspout) or "wet vac" vacuum cleaner,
+and the part where the fluid disappears will follow the object as it moves around.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại Thiết Lập Thể Tích -- Volume Initialization Type
+     </term>
+     <definition>
+      <paragraph>
+       Xin xem thêm về
+       <reference internal="True" refuri="introduction.html#fluid-initialization">
+        <inline classes="std std-ref">
+         Thiết Lập Thể Tích -- Volume Initialization Type
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khung Lưới Hoạt Họa/Xuất -- Animated Mesh/Export
+     </term>
+     <definition>
+      <paragraph>
+       Xin xem thêm về
+       <reference internal="True" refuri="introduction.html#fluid-animated-mesh">
+        <inline classes="std std-ref">
+         Khung Lưới Hoạt Họa/Xuất -- Animated Mesh/Export
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

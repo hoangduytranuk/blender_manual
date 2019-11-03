@@ -1,0 +1,802 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>glTF 2.0 &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/import_export/io_scene_gltf2.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Wavefront OBJ" href="io_scene_obj.html" />
+    <link rel="prev" title="FBX" href="io_scene_fbx.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Import-Export</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="io_anim_bvh.html">BioVision Motion Capture (BVH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_curve_svg.html">Scalable Vector Graphics (SVG)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_mesh_ply.html">Stanford PLY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_mesh_stl.html">STL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_mesh_uv_layout.html">UV Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_node_shaders_info.html">Import &amp; Export of Node Shaders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_fbx.html">FBX</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">glTF 2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_obj.html">Wavefront OBJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_x3d.html">Web3D X3D/VRML2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Rigging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Trình Bổ Sung -- Add-ons</a> &raquo;</li>
+        
+          <li><a href="index.html">Import-Export</a> &raquo;</li>
+        
+      <li>glTF 2.0</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/addons/import_export/io_scene_gltf2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gltf-2-0">
+<h1>glTF 2.0<a class="headerlink" href="#gltf-2-0" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Category:</th><td class="field-body">Import-Export</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">File ‣ Import/Export ‣ glTF 2.0 (.glb, .gltf)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>glTF™ (GL Transmission Format) is used for transmission and loading of 3D models
+in web and native applications. glTF reduces the size of 3D models and
+the runtime processing needed to unpack and render those models.
+This format is commonly used on the web, and has support in various 3D engines
+such as Unity3D, Unreal Engine 4, and Godot.</p>
+<p>This importer/exporter supports the following glTF 2.0 features:</p>
+<ul class="simple">
+<li>Meshes</li>
+<li>Materials (Principled BSDF) and Shadeless (Unlit)</li>
+<li>Textures</li>
+<li>Cameras</li>
+<li>Punctual lights (point, spot, and directional)</li>
+<li>Animation (keyframe, shape key, and skinning)</li>
+</ul>
+<div class="section" id="meshes">
+<h3>Meshes<a class="headerlink" href="#meshes" title="Permalink to this headline">¶</a></h3>
+<p>glTF's internal structure mimics the memory buffers commonly used by graphics chips
+when rendering in real-time, such that assets can be delivered to desktop, web, or mobile clients
+and be promptly displayed with minimal processing. As a result, quads and n-gons
+are automatically converted to triangles when exporting to glTF.
+Discontinuous UVs and flat-shaded edges may result in moderately higher vertex counts in glTF
+compared to Blender, as such vertices are separated for export.
+Likewise, curves and other non-mesh data are not preserved,
+and must be converted to meshes prior to export.</p>
+</div>
+<div class="section" id="materials">
+<h3>Materials<a class="headerlink" href="#materials" title="Permalink to this headline">¶</a></h3>
+<p>The core material system in glTF supports a metal/rough <abbr title="Physically Based Rendering">PBR</abbr> workflow
+with the following channels of information:</p>
+<ul class="simple">
+<li>Base Color</li>
+<li>Metallic</li>
+<li>Roughness</li>
+<li>Baked Ambient Occlusion</li>
+<li>Normal Map</li>
+<li>Emissive</li>
+</ul>
+<div class="figure" id="id1">
+<img alt="../../_images/addons_io-gltf2_material-channels.jpg" src="../../_images/addons_io-gltf2_material-channels.jpg" />
+<p class="caption"><span class="caption-text">An example of the various image maps available in the glTF 2.0 core format. This is
+the <a class="reference external" href="https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/WaterBottle">water bottle sample model</a>
+shown alongside slices of its various image maps.</span></p>
+</div>
+</div>
+<div class="section" id="imported-materials">
+<h3>Imported Materials<a class="headerlink" href="#imported-materials" title="Permalink to this headline">¶</a></h3>
+<p>The glTF material system is different from Blender's own materials. When a glTF file is imported,
+the add-on will construct a set of Blender nodes to replicate each glTF material as closely as possible.</p>
+<p>The importer supports Metal/Rough PBR (core glTF), Spec/Gloss PBR (<code class="docutils literal notranslate"><span class="pre">KHR_materials_pbrSpecularGlossiness</span></code>)
+and Shadeless (<code class="docutils literal notranslate"><span class="pre">KHR_materials_unlit</span></code>) materials.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">Examining the result of the material import process is a good way to see examples of
+the types of material nodes and settings that can be exported to glTF.</p>
+</div>
+</div>
+<div class="section" id="exported-materials">
+<h3>Exported Materials<a class="headerlink" href="#exported-materials" title="Permalink to this headline">¶</a></h3>
+<p>The exporter supports Metal/Rough PBR (core glTF) and Shadeless (<code class="docutils literal notranslate"><span class="pre">KHR_materials_unlit</span></code>) materials.
+It will construct a glTF material based on the nodes it recognizes in the Blender material.
+The material export process handles the settings described below.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">When image textures are used by materials, glTF requires that images be in PNG or JPEG format.
+The add-on will automatically convert images from other formats, increasing export time.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">To create Shadeless (Unlit) materials, use the Background material type.</p>
+</div>
+<div class="section" id="base-color">
+<h4>Base Color<a class="headerlink" href="#base-color" title="Permalink to this headline">¶</a></h4>
+<p>The glTF base color is determined by looking for a Base Color input on a Principled BSDF node.
+If the input is unconnected, the input's default color (the color field next to the unconnected socket)
+is used as the Base Color for the glTF material.</p>
+<div class="figure" id="id2">
+<img alt="../../_images/addons_io-gltf2_material-baseColor-solidGreen.png" src="../../_images/addons_io-gltf2_material-baseColor-solidGreen.png" />
+<p class="caption"><span class="caption-text">A solid base color can be specified directly on the node.</span></p>
+</div>
+<p>If an Image Texture node is found to be connected to the Base Color input,
+that image will be used as the glTF base color.</p>
+<div class="figure" id="id3">
+<img alt="../../_images/addons_io-gltf2_material-baseColor-imageHookup.png" src="../../_images/addons_io-gltf2_material-baseColor-imageHookup.png" />
+<p class="caption"><span class="caption-text">An image is used as the glTF base color.</span></p>
+</div>
+</div>
+<div class="section" id="metallic-and-roughness">
+<h4>Metallic and Roughness<a class="headerlink" href="#metallic-and-roughness" title="Permalink to this headline">¶</a></h4>
+<p>These values are read from the Principled BSDF node. If both of these inputs are unconnected,
+the node will display sliders to control their respective values between 0.0 and 1.0,
+and these values will be copied into the glTF.</p>
+<p>When using an image, glTF expects the metallic values to be encoded in the blue (<code class="docutils literal notranslate"><span class="pre">B</span></code>) channel,
+and roughness to be encoded in the green (<code class="docutils literal notranslate"><span class="pre">G</span></code>) channel of the same image.
+If images are connected to the Blender node in a manner that does not follow this convention,
+the add-on may attempt to adapt the image to the correct form during exporting (with an increased export time).</p>
+<p>In the Blender node tree, it is recommended to use a Separate RGB node
+to separate the channels from an Image Texture node, and
+connect the green (<code class="docutils literal notranslate"><span class="pre">G</span></code>) channel to Roughness, and blue (<code class="docutils literal notranslate"><span class="pre">B</span></code>) to Metallic.
+The glTF exporter will recognize this arrangement as matching the glTF standard, and
+that will allow it to simply copy the image texture into the glTF file during export.</p>
+<p>The Image Texture node for this should have its <em>Color Space</em> set to Non-Color.</p>
+<div class="figure" id="id4">
+<img alt="../../_images/addons_io-gltf2_material-metalRough.png" src="../../_images/addons_io-gltf2_material-metalRough.png" />
+<p class="caption"><span class="caption-text">A metallic/roughness image connected in a manner consistent with the glTF standard,
+allowing it to be used verbatim inside an exported glTF file.</span></p>
+</div>
+</div>
+<div class="section" id="baked-ambient-occlusion">
+<h4>Baked Ambient Occlusion<a class="headerlink" href="#baked-ambient-occlusion" title="Permalink to this headline">¶</a></h4>
+<p>glTF is capable of storing a baked ambient occlusion map.
+Currently there is no arrangement of nodes that causes Blender
+to use such a map in exactly the same way as intended in glTF.
+However, if the exporter finds a custom node group by the name of <code class="docutils literal notranslate"><span class="pre">glTF</span> <span class="pre">Settings</span></code>, and
+finds an input named <code class="docutils literal notranslate"><span class="pre">Occlusion</span></code> on that node group,
+it will look for an Image Texture attached there to use as the occlusion map in glTF.
+The effect need not be shown in Blender, as Blender has other ways of showing ambient occlusion,
+but this method will allow the exporter to write an occlusion image to the glTF.
+This can be useful to real-time glTF viewers, particularly on platforms where there
+may not be spare power for computing such things at render time.</p>
+<div class="figure" id="id5">
+<img alt="../../_images/addons_io-gltf2_material-occlusionOnly.png" src="../../_images/addons_io-gltf2_material-occlusionOnly.png" />
+<p class="caption"><span class="caption-text">A pre-baked ambient occlusion map, connected to a node that doesn't render but will export to glTF.</span></p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">The easiest way to create the custom node group is to import an existing glTF model
+that contains an occlusion map, such as
+the <a class="reference external" href="https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/WaterBottle">water bottle</a>
+or another existing model. A manually created custom node group can also be used.</p>
+</div>
+<p>glTF stores occlusion in the red (<code class="docutils literal notranslate"><span class="pre">R</span></code>) channel, allowing it to optionally share
+the same image with the roughness and metallic channels.</p>
+<div class="figure" id="id6">
+<img alt="../../_images/addons_io-gltf2_material-orm-hookup.png" src="../../_images/addons_io-gltf2_material-orm-hookup.png" />
+<p class="caption"><span class="caption-text">This combination of nodes mimics the way glTF packs occlusion, roughness, and
+metallic values into a single image.</span></p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">The Cycles render engine has a Bake panel that can be used to bake
+ambient occlusion maps. The resulting image can be saved and connected
+directly to the <code class="docutils literal notranslate"><span class="pre">glTF</span> <span class="pre">Settings</span></code> node.</p>
+</div>
+</div>
+<div class="section" id="normal-map">
+<h4>Normal Map<a class="headerlink" href="#normal-map" title="Permalink to this headline">¶</a></h4>
+<p>To use a normal map in glTF, connect an Image Texture node's color output
+to a Normal Map node's color input, and then connect the Normal Map normal output to
+the Principled BSDF node's normal input. The Image Texture node
+for this should have its <em>Color Space</em> property set to Non-Color.</p>
+<p>The Normal Map node must remain on its default property of Tangent Space as
+this is the only type of normal map currently supported by glTF.
+The strength of the normal map can be adjusted on this node.
+The exporter is not exporting these nodes directly, but will use them to locate
+the correct image and will copy the strength setting into the glTF.</p>
+<div class="figure" id="id7">
+<img alt="../../_images/addons_io-gltf2_material-normal.png" src="../../_images/addons_io-gltf2_material-normal.png" />
+<p class="caption"><span class="caption-text">A normal map image connected such that the exporter will find it and copy it
+to the glTF file.</span></p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>The Cycles render engine has a Bake panel that can be used to bake
+tangent-space normal maps from almost any other arrangement of normal vector nodes.
+Switch the Bake type to Normal. Keep the default space settings
+(space: Tangent, R: +X, G: +Y, B: +Z) when using this bake panel for glTF.
+The resulting baked image can be saved and plugged into to a new material using
+the Normal Map node as described above, allowing it to export correctly.</p>
+<p class="last">See: <a class="reference internal" href="../../render/cycles/baking.html"><span class="doc">Cycles Render Baking</span></a></p>
+</div>
+</div>
+<div class="section" id="emissive">
+<h4>Emissive<a class="headerlink" href="#emissive" title="Permalink to this headline">¶</a></h4>
+<p>An Image Texture node can be connected to an Emission shader node, and
+optionally combined with properties from a Principled BSDF node by way of an Add shader node.</p>
+<p>If the glTF exporter finds an image connected to the Emission shader node,
+it will export that image as the glTF material's emissive texture.</p>
+<div class="figure" id="id8">
+<img alt="../../_images/addons_io-gltf2_material-emissive.png" src="../../_images/addons_io-gltf2_material-emissive.png" />
+<p class="caption"><span class="caption-text">An Emission node can be added to existing nodes.</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">The <em>Emission</em> input of the Principled BSDF node is not yet supported by this exporter.
+This may change in a future version.</p>
+</div>
+</div>
+<div class="section" id="double-sided-backface-culling">
+<h4>Double Sided / Backface Culling<a class="headerlink" href="#double-sided-backface-culling" title="Permalink to this headline">¶</a></h4>
+<p>For materials where only the front faces will be visible, turn on <em>Backface Culling</em> in
+the <em>Settings</em> panel of an Eevee material. When using other engines (Cycles, Workbench)
+you can temporarily switch to Eevee to configure this setting, then switch back.</p>
+<p>Leave this box un-checked for double-sided materials.</p>
+<div class="figure" id="id9">
+<img alt="../../_images/addons_io-gltf2_material-backfaceCulling.png" src="../../_images/addons_io-gltf2_material-backfaceCulling.png" />
+<p class="caption"><span class="caption-text">The inverse of this setting controls glTF's <code class="docutils literal notranslate"><span class="pre">DoubleSided</span></code> flag.</span></p>
+</div>
+</div>
+<div class="section" id="blend-modes">
+<h4>Blend Modes<a class="headerlink" href="#blend-modes" title="Permalink to this headline">¶</a></h4>
+<p>The Base Color input can optionally supply alpha values.
+How these values are treated by glTF depends on the selected blend mode.</p>
+<p>With the Eevee render engine selected, each material has a Blend Mode on
+the material settings panel. Use this setting to define how alpha values from
+the Base Color channel are treated in glTF. Three settings are supported by glTF:</p>
+<dl class="docutils">
+<dt>Opaque</dt>
+<dd>Alpha values are ignored (the default).</dd>
+<dt>Alpha Blend</dt>
+<dd>Lower alpha values cause blending with background objects.</dd>
+<dt>Alpha Clip</dt>
+<dd>Alpha values below the <em>Clip Threshold</em> setting will cause portions
+of the material to not be rendered at all. Everything else is rendered as opaque.</dd>
+</dl>
+<div class="figure" id="id10">
+<img alt="../../_images/addons_io-gltf2_material-alphaBlend.png" src="../../_images/addons_io-gltf2_material-alphaBlend.png" />
+<p class="caption"><span class="caption-text">With the Eevee engine selected, a material's blend modes are configurable.</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Be aware that transparency (or <em>Alpha Blend</em> mode) is complex for real-time engines
+to render, and may behave in unexpected ways after export. Where possible,
+use <em>Alpha Clip</em> mode instead, or place <em>Opaque</em> polygons behind only
+a single layer of <em>Alpha Blend</em> polygons.</p>
+</div>
+</div>
+<div class="section" id="uv-mapping">
+<h4>UV Mapping<a class="headerlink" href="#uv-mapping" title="Permalink to this headline">¶</a></h4>
+<p>Control over UV map selection and transformations is available by connecting a UV Map node
+and a Mapping node to any Image Texture node.</p>
+<p>Settings from the Mapping node are exported using a glTF extension named <code class="docutils literal notranslate"><span class="pre">KHR_texture_transform</span></code>.
+There is a mapping type selector across the top. <em>Point</em> is the recommended type for export.
+<em>Texture</em> and <em>Vector</em> are also supported. The supported offsets are:</p>
+<ul class="simple">
+<li><em>Location</em> - X and Y</li>
+<li><em>Rotation</em> - Z only</li>
+<li><em>Scale</em> - X and Y</li>
+</ul>
+<p>For the <em>Texture</em> type, <em>Scale</em> X and Y must be equal (uniform scaling).</p>
+<div class="figure" id="id11">
+<img alt="../../_images/addons_io-gltf2_material-mapping.png" src="../../_images/addons_io-gltf2_material-mapping.png" />
+<p class="caption"><span class="caption-text">A deliberate choice of UV mapping.</span></p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">These nodes are optional. Not all glTF readers support multiple UV maps or texture transforms.</p>
+</div>
+</div>
+<div class="section" id="factors">
+<h4>Factors<a class="headerlink" href="#factors" title="Permalink to this headline">¶</a></h4>
+<p>Any Image Texture nodes may optionally be multiplied with a constant color or scalar.
+These will be written as factors in the glTF file, which are numbers that are multiplied
+with the specified image textures. These are not common.</p>
+</div>
+<div class="section" id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<p>A single material may use all of the above at the same time, if desired. This figure shows
+a typical node structure when several of the above options are applied at once:</p>
+<div class="figure" id="id12">
+<img alt="../../_images/addons_io-gltf2_material-principled.png" src="../../_images/addons_io-gltf2_material-principled.png" />
+<p class="caption"><span class="caption-text">A Principled BSDF material with an emissive texture.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="extensions">
+<h3>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h3>
+<p>The core glTF 2.0 format can be extended with extra information, using glTF extensions.
+This allows the file format to hold details that were not considered universal at the time of first publication.
+Not all glTF readers support all extensions, but some are fairly common.</p>
+<p>Certain Blender features can only be exported to glTF via these extensions.
+The following <a class="reference external" href="https://github.com/KhronosGroup/glTF/tree/master/extensions">glTF 2.0 extensions</a>
+are supported directly by this add-on:</p>
+<p class="rubric">Import</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">KHR_materials_pbrSpecularGlossiness</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">KHR_lights_punctual</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">KHR_materials_unlit</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">KHR_texture_transform</span></code></li>
+</ul>
+<p class="rubric">Export</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">KHR_draco_mesh_compression</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">KHR_lights_punctual</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">KHR_materials_unlit</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">KHR_texture_transform</span></code></li>
+</ul>
+</div>
+<div class="section" id="animation">
+<h3>Animation<a class="headerlink" href="#animation" title="Permalink to this headline">¶</a></h3>
+<p>glTF allows multiple animations per file, with animations targeted to
+particular objects at time of export. To ensure that an animation is included,
+either (a) make it the active Action on the object, (b) create a single-strip NLA track,
+or (c) stash the action.</p>
+<p class="rubric">Supported</p>
+<p>Only certain types of animation are supported:</p>
+<ul class="simple">
+<li>Keyframe (translation, rotation, scale)</li>
+<li>Shape keys</li>
+<li>Armatures / skinning</li>
+</ul>
+<p>Animation of other properties, like lights or materials, will be ignored.</p>
+<p>An <em>NLA Strip animation</em> consists of multiple actions on multiple objects that
+should play together. To create an NLA strip animation with the name &quot;My
+Animation&quot;, push the action that should play each object onto an NLA track for
+that object with the name &quot;My Animation&quot;.</p>
+<div class="figure" id="id13">
+<img alt="../../_images/addons_io-gltf2_animation-nla-strip-animation-example.png" src="../../_images/addons_io-gltf2_animation-nla-strip-animation-example.png" />
+<p class="caption"><span class="caption-text">Will be exported as an animation called &quot;My Animation&quot; with ConeAction
+playing on the Cone and CubeAction playing on the Cube.</span></p>
+</div>
+<p>NLA Strip animations will be exported if the <span class="menuselection">Animation ‣ NLA Strips</span> option is
+selected (on by default). All glTF animations are imported as NLA Strip animations.</p>
+<p>If option is disabled, Blender NLA strip actions will be ignored.
+Only active action of each objects will be taken into account, and merged into a single glTF animation.</p>
+</div>
+<div class="section" id="custom-properties">
+<h3>Custom Properties<a class="headerlink" href="#custom-properties" title="Permalink to this headline">¶</a></h3>
+<p>Custom properties on most objects are preserved in glTF export/import, and
+may be used for user-specific purposes.</p>
+</div>
+</div>
+<div class="section" id="file-format-variations">
+<h2>File Format Variations<a class="headerlink" href="#file-format-variations" title="Permalink to this headline">¶</a></h2>
+<p>The glTF specification identifies different ways the data can be stored.
+The importer handles all of these ways. The exporter will ask the user to
+select one of the following forms:</p>
+<div class="section" id="gltf-binary-glb">
+<h3>glTF Binary (<code class="docutils literal notranslate"><span class="pre">.glb</span></code>)<a class="headerlink" href="#gltf-binary-glb" title="Permalink to this headline">¶</a></h3>
+<p>This produces a single <code class="docutils literal notranslate"><span class="pre">.glb</span></code> file with all mesh data, image textures, and
+related information packed into a single binary file.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">Using a single file makes it easy to share or copy the model to other systems and services.</p>
+</div>
+</div>
+<div class="section" id="gltf-separate-gltf-bin-textures">
+<h3>glTF Separate (<code class="docutils literal notranslate"><span class="pre">.gltf</span></code> + <code class="docutils literal notranslate"><span class="pre">.bin</span></code> + textures)<a class="headerlink" href="#gltf-separate-gltf-bin-textures" title="Permalink to this headline">¶</a></h3>
+<p>This produces a JSON text-based <code class="docutils literal notranslate"><span class="pre">.gltf</span></code> file describing the overall structure,
+along with a <code class="docutils literal notranslate"><span class="pre">.bin</span></code> file containing mesh and vector data, and
+optionally a number of <code class="docutils literal notranslate"><span class="pre">.png</span></code> or <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> files containing image textures
+referenced by the <code class="docutils literal notranslate"><span class="pre">.gltf</span></code> file.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">Having an assortment of separate files makes it much easier for a user to
+go back and edit any JSON or images after the export has completed.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Be aware that sharing this format requires sharing all of these separate files
+together as a group.</p>
+</div>
+</div>
+<div class="section" id="gltf-embedded-gltf">
+<h3>glTF Embedded (<code class="docutils literal notranslate"><span class="pre">.gltf</span></code>)<a class="headerlink" href="#gltf-embedded-gltf" title="Permalink to this headline">¶</a></h3>
+<p>This produces a JSON text-based <code class="docutils literal notranslate"><span class="pre">.gltf</span></code> file, with all mesh data and
+image data encoded (using Base64) within the file. This form is useful if
+the asset must be shared over a plain-text-only connection.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Cảnh báo</p>
+<p class="last">This is the least efficient of the available forms, and should only be used when required.</p>
+</div>
+</div>
+</div>
+<div class="section" id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="import">
+<h3>Import<a class="headerlink" href="#import" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Pack Images</dt>
+<dd>Pack all images into the blend-file.</dd>
+<dt>Shading</dt>
+<dd>How normals are computed during import.</dd>
+</dl>
+</div>
+<div class="section" id="export">
+<h3>Export<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="general-tab">
+<h4>General Tab<a class="headerlink" href="#general-tab" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Format</dt>
+<dd>See: <a class="reference internal" href="#file-format-variations">File Format Variations</a></dd>
+<dt>Selected Objects</dt>
+<dd>Export selected objects only.</dd>
+<dt>Apply Modifiers</dt>
+<dd>Apply modifiers (excluding armatures) to mesh objects.</dd>
+<dt>Y Up</dt>
+<dd>Export using glTF convention, +Y up.</dd>
+<dt>Custom Properties</dt>
+<dd>Export custom properties as glTF extras.</dd>
+<dt>Remember Export Settings</dt>
+<dd>Store export settings in the Blender file, so they will be recalled next time
+the file is opened.</dd>
+<dt>Copyright</dt>
+<dd>Legal rights and conditions for the model.</dd>
+</dl>
+</div>
+<div class="section" id="meshes-tab">
+<h4>Meshes Tab<a class="headerlink" href="#meshes-tab" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>UVs</dt>
+<dd>Export UVs (texture coordinates) with meshes.</dd>
+<dt>Normals</dt>
+<dd>Export vertex normals with meshes.</dd>
+<dt>Tangents</dt>
+<dd>Export vertex tangents with meshes.</dd>
+<dt>Vertex Colors</dt>
+<dd>Export vertex colors with meshes.</dd>
+<dt>Materials</dt>
+<dd>Export materials.</dd>
+<dt>Draco mesh compression</dt>
+<dd>Compress meshes using Google Draco.</dd>
+<dt>Compression level</dt>
+<dd>Higher compression results in slower encoding and decoding.</dd>
+<dt>Position quantization bits</dt>
+<dd>Higher values result in better compression rates.</dd>
+<dt>Normal quantization bits</dt>
+<dd>Higher values result in better compression rates.</dd>
+<dt>Texcoord quantization bits</dt>
+<dd>Higher values result in better compression rates.</dd>
+</dl>
+</div>
+<div class="section" id="objects-tab">
+<h4>Objects Tab<a class="headerlink" href="#objects-tab" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Cameras</dt>
+<dd>Export cameras.</dd>
+<dt>Punctual Lights</dt>
+<dd>Export directional, point, and spot lights. Uses the <code class="docutils literal notranslate"><span class="pre">KHR_lights_punctual</span></code> glTF extension.</dd>
+</dl>
+</div>
+<div class="section" id="animation-tab">
+<h4>Animation Tab<a class="headerlink" href="#animation-tab" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Use Current Frame</dt>
+<dd>Export the scene in the current animation frame.</dd>
+<dt>Animations</dt>
+<dd>Exports active actions and NLA tracks as glTF animations.</dd>
+<dt>Limit to Playback Range</dt>
+<dd>Clips animations to selected playback range.</dd>
+<dt>Sampling Rate</dt>
+<dd>How often to evaluate animated values (in frames).</dd>
+<dt>Always Sample Animations</dt>
+<dd>Apply sampling to all animations.</dd>
+<dt>NLA Strips</dt>
+<dd>Whether to export NLA strip animations.</dd>
+<dt>Skinning</dt>
+<dd>Export skinning (armature) data.</dd>
+<dt>Bake Skinning Constraints</dt>
+<dd>Apply skinning constraints to armatures.</dd>
+<dt>Include All Bone Influences</dt>
+<dd>Allow &gt;4 joint vertex influences. Models may appear incorrectly in many viewers.</dd>
+<dt>Shape Keys</dt>
+<dd>Export shape keys (morph targets).</dd>
+<dt>Shape Key Normals</dt>
+<dd>Export vertex normals with shape keys (morph targets).</dd>
+<dt>Shape Key Tangents</dt>
+<dd>Export vertex tangents with shape keys (morph targets).</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<p>This importer/exporter is developed through
+the <a class="reference external" href="https://github.com/KhronosGroup/glTF-Blender-IO">glTF-Blender-IO repository</a>,
+where you can file bug reports, submit feature requests, or contribute code.</p>
+<p>Discussion and development of the glTF 2.0 format itself takes place on
+the Khronos Group <a class="reference external" href="https://github.com/KhronosGroup/glTF">glTF GitHub repository</a>,
+and feedback there is welcome.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="io_scene_obj.html" class="btn btn-neutral float-right" title="Wavefront OBJ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="io_scene_fbx.html" class="btn btn-neutral float-left" title="FBX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Đường Đi của Ánh Sáng -- Light Paths &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/cycles/render_settings/light_paths.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Volumes" href="volumes.html" />
+    <link rel="prev" title="Lấy Mẫu Vật -- Sampling" href="sampling.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Cycles</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Render Settings</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="sampling.html">Lấy Mẫu Vật -- Sampling</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Đường Đi của Ánh Sáng -- Light Paths</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volumes.html">Volumes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision.html">Subdivision</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hair.html">Tóc -- Hair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simplify.html">Đơn Giản Hóa -- Simplify</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motion_blur.html">Làm Nhòe Chuyển Động -- Motion Blur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="film.html">Phim -- Film</a></li>
+<li class="toctree-l4"><a class="reference internal" href="performance.html">Hiệu Suất Thi Hành -- Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../world_settings.html">World Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object_settings/index.html">-- Object Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../material_settings.html">-- Material Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../light_settings.html">Light Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gpu_rendering.html">-- GPU Rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features.html">Tùy Chọn Thử Nghiệm -- Experimental Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../baking.html">-- Render Baking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../optimizations/index.html">-- Optimizing Renders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Phong Cách Tự Do -- Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">-- Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+        
+          <li><a href="../index.html">Cycles</a> &raquo;</li>
+        
+          <li><a href="index.html">Render Settings</a> &raquo;</li>
+        
+      <li>Đường Đi của Ánh Sáng -- Light Paths</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/render/cycles/render_settings/light_paths.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="light-paths">
+<span id="render-cycles-integrator-light-paths"></span><h1>Đường Đi của Ánh Sáng -- Light Paths<a class="headerlink" href="#light-paths" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Kết Xuất (Render) ‣ Đường Đi của Ánh Sáng (Light Path)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="max-bounces">
+<span id="cycles-bounces"></span><h2>Max Bounces<a class="headerlink" href="#max-bounces" title="Permalink to this headline">¶</a></h2>
+<p>The maximum number of light bounces can be controlled manually.
+While ideally this should be infinite,
+in practice a smaller number of bounces may be sufficient,
+or some light interactions may be intentionally left out for faster convergence.
+The number of diffuse reflection,
+glossy reflection and transmission bounces can also be controlled individually.</p>
+<p>Light paths are terminated probabilistically when specifying a minimum number of light bounces
+lower than the maximum. In that case, paths longer than minimum will be randomly stopped when
+they are expected to contribute less light to the image.
+This will still converge to the same image, but renders faster while possibly being noisier.</p>
+<dl class="docutils">
+<dt>Total</dt>
+<dd>Maximum number of light bounces. For best quality, this should be set to the maximum.
+However, in practice, it may be good to set it to lower values for faster rendering.
+A value of 0 bounces results in direct lighting only.</dd>
+<dt>Diffuse</dt>
+<dd>Maximum number of diffuse bounces.</dd>
+<dt>Glossy</dt>
+<dd>Maximum number of glossy bounces.</dd>
+<dt>Độ Trong -- Transparency</dt>
+<dd><p class="first">Maximum number of transparency bounces.</p>
+<p class="last">The maximum number of transparent bounces is controlled separately from other bounces.
+It is also possible to use probabilistic termination of transparent bounces,
+which might help rendering many layers of transparency.</p>
+</dd>
+<dt>Transmission</dt>
+<dd>Maximum number of transmission bounces.</dd>
+<dt>Volume</dt>
+<dd>Maximum number of volume scattering bounces.</dd>
+</dl>
+</div>
+<div class="section" id="clamp">
+<span id="render-cycles-integrator-clamp-samples"></span><h2>Clamp<a class="headerlink" href="#clamp" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Clamp Direct</dt>
+<dd><p class="first">This option limits the maximum intensity a sample from rays which have not yet bounced can contribute to a pixel.
+It reduces noise at the cost of accuracy. Setting this option to 0.0 disables clamping altogether.
+Lower have a greater affect (dimmer samples) on the resulting image than higher values.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>A common issue encountered with <em>Path Tracing</em> is the occurrence of &quot;fireflies&quot;:
+improbable samples that contribute very high values to pixels.
+This option provides a way to limit that. However, note that as you clamp out such values,
+other bright lights/reflections will be dimmed as well.</p>
+<p class="last">Care must be taken when using this setting to find a balance between mitigating fireflies and
+losing intentionally bright parts. It is often useful to clamp indirect bounces separately,
+as they tend to cause more fireflies than direct bounces. See the <em>Clamp Indirect</em> setting.</p>
+</div>
+</dd>
+<dt>Clamp Indirect</dt>
+<dd>The same as <em>Clamp Direct</em>, but for rays which have bounced multiple times.</dd>
+</dl>
+</div>
+<div class="section" id="caustics">
+<h2>Caustics<a class="headerlink" href="#caustics" title="Permalink to this headline">¶</a></h2>
+<p>A common source of noise is <a class="reference internal" href="../../../glossary/index.html#term-caustics"><span class="xref std std-term">caustics</span></a>.</p>
+<dl class="docutils" id="render-cycles-integrator-no-caustics">
+<dt>Reflective Caustics</dt>
+<dd>While in principle path tracing supports rendering of caustics with a sufficient number of samples,
+in practice it may be inefficient to the point that there is just too much noise.
+This option can be unchecked, to disable reflective caustics.</dd>
+<dt>Refractive Caustics</dt>
+<dd>The same as above, but for refractive caustics.</dd>
+</dl>
+<dl class="docutils" id="render-cycles-integrator-filter-glossy">
+<dt>Filter Glossy</dt>
+<dd><p class="first">When using a value higher than 0.0, this will blur glossy reflections after blurry bounces,
+to reduce noise at the cost of accuracy. 1.0 is a good starting value to tweak.</p>
+<p>Some light paths have a low probability of being found while contributing much light to the pixel.
+As a result these light paths will be found in some pixels and not in others, causing fireflies.
+An example of such a difficult path might be a small light that is causing a small specular highlight
+on a sharp glossy material, which is observed through a rough glossy material.
+In fact in such a case there practically occurs a caustic.</p>
+<p class="last">With path tracing it is difficult to find the specular highlight,
+but if you increase the roughness on the material, the highlight gets bigger and softer, and so easier to find.
+Often this blurring will hardly be noticeable, because it is blurred by the material anyway,
+but there are also cases where this will lead to a loss of detail in lighting.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last">See <a class="reference internal" href="../optimizations/reducing_noise.html#render-cycles-reducing-noise-clamp-samples"><span class="std std-ref">Reducing Noise</span></a>
+for examples of the clamp settings in use.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="volumes.html" class="btn btn-neutral float-right" title="Volumes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sampling.html" class="btn btn-neutral float-left" title="Lấy Mẫu Vật -- Sampling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

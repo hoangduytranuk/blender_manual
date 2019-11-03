@@ -1,0 +1,143 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/install/macos.rst">
+ <section ids="installation-on-macos" names="installation\ on\ macos cài\ đặt\ trên\ macos\ --\ installation\ on\ macos">
+  <title>
+   Cài đặt trên macOS -- Installation on macOS
+  </title>
+  <paragraph>
+   Hướng dẫn này bao gồm các chủ đề sau:
+  </paragraph>
+  <enumerated_list enumtype="arabic" prefix="" suffix=".">
+   <list_item>
+    <paragraph>
+     <reference name="Cài Đặt các Thành Phần Phụ Thuộc -- Installing Dependencies" refid="installing-dependencies">
+      Cài Đặt các Thành Phần Phụ Thuộc -- Installing Dependencies
+     </reference>
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <reference name="Tải Dữ Liệu từ Kho Lưu Trữ về Máy -- Downloading the Repository" refid="downloading-the-repository">
+      Tải Dữ Liệu từ Kho Lưu Trữ về Máy -- Downloading the Repository
+     </reference>
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <reference name="Thiết Lập Môi Trường Biên Tập -- Setting up the Build Environment" refid="setting-up-the-build-environment">
+      Thiết Lập Môi Trường Biên Tập -- Setting up the Build Environment
+     </reference>
+    </paragraph>
+   </list_item>
+  </enumerated_list>
+  <note>
+   <paragraph>
+    Hướng dẫn này chú trọng rất nhiều đến các công cụ dòng lệnh. Chúng tôi giả định là bạn ít nhất đã quen thuộc với trình ứng dụng bàn giao tiếp của hệ điều hành macOS.
+   </paragraph>
+  </note>
+  <section ids="installing-dependencies" names="installing\ dependencies cài\ đặt\ các\ phụ\ thuộc\ --\ installing\ dependencies">
+   <title>
+    Cài Đặt các Phụ Thuộc -- Installing Dependencies
+   </title>
+   <paragraph>
+    Cài đặt các gói đó, hoặc đảm bảo rằng, trong hệ thống của mình, bạn đã có chúng rồi.
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <reference name="Python" refuri="https://www.python.org/">
+       Python
+      </reference>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <reference name="PIP" refuri="https://pip.pypa.io/en/latest/installing/">
+       PIP
+      </reference>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <reference name="Subversion" refuri="https://subversion.apache.org/">
+       Subversion
+      </reference>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="downloading-the-repository" names="downloading\ the\ repository tải\ từ\ kho\ lưu\ trữ\ xuống\ máy\ --\ downloading\ the\ repository">
+   <title>
+    Tải từ kho lưu trữ xuống máy -- Downloading the Repository
+   </title>
+   <paragraph>
+    Chỉ cần kiểm xuất (checkout) kho lưu trữ của bản hướng dẫn sử dụng Blender bằng cách sử dụng
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    cd ~
+svn checkout https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs
+   </literal_block>
+   <paragraph>
+    The repository will now be downloaded which may take a few minutes depending on your internet connection.
+   </paragraph>
+  </section>
+  <section ids="setting-up-the-build-environment" names="setting\ up\ the\ build\ environment thiết\ lập\ môi\ trường\ biên\ dịch\ --\ setting\ up\ the\ build\ environment">
+   <title>
+    Thiết Lập Môi Trường Biên Dịch -- Setting up the Build Environment
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Mở một cửa sổ Thiết Bị Đầu Cuối (Bàn Giao Tiếp để đánh dòng lệnh).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Bước vào thư mục
+      <literal>
+       blender_docs
+      </literal>
+      vừa được kiến tạo và bổ sung bởi việc kiểm xuất (checkout) SVN:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      cd ~/blender_docs
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Bên trong thư mục đó có một tập tin với cái tên
+      <literal>
+       requirements.txt
+      </literal>
+      , và trong đó có chứa một danh sách tất cả các phần mềm phụ thuộc mà chúng ta cần phải có. Để cài đặt các phụ thuộc này, chúng ta có thể sử dụng lệnh
+      <literal>
+       pip
+      </literal>
+      như sau:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      sudo pip install -r requirements.txt
+     </literal_block>
+    </list_item>
+   </bullet_list>
+   <note>
+    <paragraph>
+     Thỉnh thoảng, bạn có thể muốn đảm bảo là các thư viện phụ thuộc của bạn được cập nhật với những thay đổi gần đây nhất, bằng cách sử dụng:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     sudo pip install -r requirements.txt --upgrade
+    </literal_block>
+   </note>
+   <transition>
+   </transition>
+   <paragraph>
+    Tiếp tục với bước tiếp theo:
+    <reference internal="True" refuri="../build/macos.html">
+     <inline classes="doc">
+      Biên Tập
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </section>
+ </section>
+</document>

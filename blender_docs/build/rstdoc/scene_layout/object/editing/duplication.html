@@ -1,0 +1,589 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/duplication.rst">
+ <section ids="duplication" names="duplication tạo\ bản\ sao\ --\ duplication">
+  <title>
+   Tạo Bản Sao -- Duplication
+  </title>
+  <paragraph>
+   There are two types of object duplication, being
+   <reference name="Duplicate" refid="duplicate">
+    Duplicate
+   </reference>
+   and
+   <reference name="Linked Duplicates" refid="linked-duplicates">
+    Linked Duplicates
+   </reference>
+   which instance their Object Data.
+  </paragraph>
+  <target refid="bpy-ops-object-duplicate-move">
+  </target>
+  <section ids="duplicate bpy-ops-object-duplicate-move" names="duplicate sao\ chép\ --\ duplicate bpy.ops.object.duplicate_move">
+   <title>
+    Sao Chép -- Duplicate
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Edit and Object Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Tạo Bản Sao các Vật Thể (Duplicate Objects)`">
+         Vật Thể (Object) ‣ Tạo Bản Sao các Vật Thể (Duplicate Objects)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Shift-D
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This will create a visually-identical copy of the selected object(s).
+The copy is created at the same position as the original object and
+you are automatically placed in move mode. See the examples below.
+   </paragraph>
+   <paragraph>
+    This copy is a new object, which shares some data-blocks with the original object
+(by default, all the materials, textures, and F-curves), but which has copied others,
+like the mesh, for example. This is why this form of duplication is sometimes called "shallow link",
+because not all data-blocks are shared; some of them are "hard copied"!
+   </paragraph>
+   <tip>
+    <paragraph>
+     You can choose which types of data-block will be linked or copied
+when duplicating: in the
+     <reference internal="True" refuri="../../../editors/preferences/editing.html#prefs-editing-duplicate-data">
+      <inline classes="std std-ref">
+       Preferences
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </tip>
+   <section dupnames="examples" ids="examples" names="ví\ dụ\ --\ examples">
+    <title>
+     Ví Dụ -- Examples
+    </title>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/scene-layout_object_editing_duplication_example.png'}" uri="images/scene-layout_object_editing_duplication_example.png"/>
+     <caption>
+      The Cube object was duplicated.
+     </caption>
+    </figure>
+    <paragraph>
+     The object
+     <literal>
+      Cube
+     </literal>
+     was duplicated, using
+     <literal classes="kbd">
+      Shift-D
+     </literal>
+     . Both these cubes have
+separate meshes with unique names:
+     <literal>
+      Cube
+     </literal>
+     and
+     <literal>
+      Cube.001
+     </literal>
+     .
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       The original left cube is being edited, the duplicated right cube remains unchanged.
+The mesh data has been copied, not linked.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Likewise, if one cube is edited in Object Mode, the other cube remains
+unchanged. The new object's transform properties or data-block is a copy, not linked.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       When the cube was duplicated, it inherited the material of the original cube.
+The material properties were linked, not copied.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     See above if you want separate copies of the data-blocks normally linked.
+    </paragraph>
+    <target refid="bpy-ops-object-duplicate-move-linked">
+    </target>
+   </section>
+  </section>
+  <section ids="linked-duplicates bpy-ops-object-duplicate-move-linked" names="linked\ duplicates bản\ sao\ chép\ kết\ nối\ --\ linked\ duplicates bpy.ops.object.duplicate_move_linked">
+   <title>
+    Bản Sao Chép Kết Nối -- Linked Duplicates
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể -- Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Tools --&gt; Edit --&gt; Duplicate Linked`">
+         Toolbar ‣ Tools ‣ Edit ‣ Duplicate Linked
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Sao Chép Kết Nối (Duplicate Linked)`">
+         Vật Thể (Object) ‣ Sao Chép Kết Nối (Duplicate Linked)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Alt-D
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    You also have the choice of creating a
+    <emphasis>
+     Linked Duplicate
+    </emphasis>
+    rather than a
+    <emphasis>
+     Duplicate
+    </emphasis>
+    ;
+this is called a deep link. This will create a new object with
+    <strong>
+     all
+    </strong>
+    of its data linked to
+the original object. If you modify one of the linked objects in
+    <emphasis>
+     Edit Mode
+    </emphasis>
+    ,
+all linked copies are modified. Transform properties (object data-blocks) still remain copies,
+not links, so you still can rotate, scale, and move freely without affecting the other copies.
+Reference the
+    <reference internal="True" refid="expl-object-link-duplicate">
+     <inline classes="std std-ref">
+      Duplicate Example
+     </inline>
+    </reference>
+    for the discussions below.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Kết Nối -- Linked
+     </term>
+     <definition>
+      <paragraph>
+       In the
+       <emphasis>
+        Duplicate Objects
+       </emphasis>
+       <reference internal="True" refuri="../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+        <inline classes="std std-ref">
+         Adjust Last Operation
+        </inline>
+       </reference>
+       panel the
+       <emphasis>
+        Linked
+       </emphasis>
+       checkbox is checked
+unlike with
+       <emphasis>
+        Duplicate
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <hint>
+    <paragraph>
+     If you want to make changes to an object in the new linked duplicate independently of
+the original object, you will have to manually make the object a "single-user" copy
+by
+     <literal classes="kbd">
+      LMB
+     </literal>
+     the number in the
+     <emphasis>
+      Object Data
+     </emphasis>
+     panel of the Properties editor. (See
+     <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-block">
+      <inline classes="std std-ref">
+       Trình Đơn Khối Dữ Liệu -- Data-Block Menu
+      </inline>
+     </reference>
+     .)
+    </paragraph>
+   </hint>
+   <seealso>
+    <paragraph>
+     <reference name="Make Single User" refid="make-single-user">
+      Make Single User
+     </reference>
+     for unlinking data-blocks.
+    </paragraph>
+   </seealso>
+   <target refid="expl-object-link-duplicate">
+   </target>
+   <section dupnames="examples" ids="expl-object-link-duplicate id1" names="ví\ dụ\ --\ examples expl-object-link-duplicate">
+    <title>
+     Ví Dụ -- Examples
+    </title>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/scene-layout_object_editing_duplication_linked-example.png'}" uri="images/scene-layout_object_editing_duplication_linked-example.png"/>
+     <caption>
+      The Cube object was linked duplicated.
+     </caption>
+    </figure>
+    <paragraph>
+     The object
+     <literal>
+      Cube
+     </literal>
+     was linked duplicated, using
+     <literal classes="kbd">
+      Alt-D
+     </literal>
+     .
+Though both these cubes are separate objects with unique names:
+     <literal>
+      Cube
+     </literal>
+     and
+     <literal>
+      Cube.001
+     </literal>
+     , the single mesh named
+     <literal>
+      Cube
+     </literal>
+     , is shared by both.
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       As a mesh is edited in
+       <emphasis>
+        Edit Mode
+       </emphasis>
+       in one object, the same occurs in
+the other cube as well. The mesh data are links, not copies.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       In contrast, if one of these two cubes is rotated or rescaled in Object Mode,
+the other remains unchanged. The transform properties are copied, not linked.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       As in the previous example, the newly created cube has inherited
+the material of the original cube. The material properties are linked, not copied.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     A common table has a top and four legs. Model one leg, and then make linked duplicates
+three times for each of the remaining legs. If you later make a change to the mesh,
+all the legs will still match. Linked duplicates also apply to a set of drinking glasses,
+wheels on a car... anywhere there is repetition or symmetry.
+    </paragraph>
+    <seealso>
+     <paragraph>
+      Linked Library Duplication
+     </paragraph>
+     <paragraph>
+      <reference internal="True" refuri="../../../files/linked_libraries.html">
+       <inline classes="doc">
+        Linked Libraries
+       </inline>
+      </reference>
+      are also a form of duplication.
+Any object or data-block in other blend-files can be reused in the current file.
+     </paragraph>
+    </seealso>
+    <hint>
+     <paragraph>
+      If you want transform properties (i.e. object data-blocks) to be "linked",
+see the page on
+      <reference internal="True" refuri="../properties/relations/parents.html">
+       <inline classes="doc">
+        parenting
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </hint>
+    <target refid="bpy-ops-object-make-single-user">
+    </target>
+   </section>
+  </section>
+  <section ids="make-single-user bpy-ops-object-make-single-user" names="make\ single\ user bpy.ops.object.make_single_user">
+   <title>
+    Make Single User
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể -- Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Make Single User`">
+         Object ‣ Make Single User
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Makes the selected or all object data-blocks single users, that is, not shared
+(linked) between other objects in the blend-file.
+   </paragraph>
+   <paragraph>
+    Additionally, it can also make single-user copies of its dependencies,
+like meshes, curves, materials, animations...
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Type
+     </term>
+     <definition>
+      <paragraph>
+       These actions work on the selected objects, or on all the objects of the scene.
+      </paragraph>
+      <paragraph>
+       All, Selected Objects
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Data-blocks
+     </term>
+     <definition>
+      <paragraph>
+       Lets you, in addition to the menu predefined selection, choose the type of data-blocks individually.
+      </paragraph>
+      <paragraph>
+       Object, Object Data, Materials, Textures, Object Animation
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     <reference internal="True" refuri="../../../files/data_blocks.html#data-system-datablock-make-single-user">
+      <inline classes="std std-ref">
+       Making Single User
+      </inline>
+     </reference>
+    </paragraph>
+   </seealso>
+   <target refid="data-system-linked-libraries-make-link">
+   </target>
+   <target refid="bpy-ops-object-make-links">
+   </target>
+  </section>
+  <section ids="make-link bpy-ops-object-make-links data-system-linked-libraries-make-link" names="make\ link bpy.ops.object.make_links data-system-linked-libraries-make-link">
+   <title>
+    Make Link
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể -- Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Make Link...`">
+         Object ‣ Make Link...
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-L
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Links objects between scenes or data-blocks of the active object to all selected objects.
+In some case (i.e. Object Data, Modifier) the target objects must be
+of the same type than the active one or capable of receiving the data.
+If targets already have some data linked to them, it will be unlinked first.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Objects to Scene
+     </term>
+     <definition>
+      <paragraph>
+       Links the selected objects into a different scene than the current one.
+The
+       <emphasis>
+        Link Objects to Scene
+       </emphasis>
+       in the
+       <reference internal="True" refuri="../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+        <inline classes="std std-ref">
+         Adjust Last Operation
+        </inline>
+       </reference>
+       panel lets you choose between scenes.
+      </paragraph>
+      <paragraph>
+       This makes the same object exist in more than one scene at once,
+including its position and animation data.
+The object's origin will change its color to reflect that.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Type
+     </term>
+     <definition>
+      <paragraph>
+       Data-block type to link.
+      </paragraph>
+      <paragraph>
+       Object Data, Materials, Animation Data, Collection, Instance Collection,
+Modifiers, Fonts
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Transfer UV Maps
+        </term>
+        <definition>
+         <paragraph>
+          The active UV map of the selected objects will be replaced by a copy of
+the active UV map of the active object. If the selected object doesn't
+have any UV maps, it is created. Objects must be of type mesh and
+must have a matching topology.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     <reference internal="True" refuri="../../../files/data_blocks.html#data-system-datablock-make-single-user">
+      <inline classes="std std-ref">
+       Making Single User
+      </inline>
+     </reference>
+     for unlinking data-blocks.
+    </paragraph>
+   </seealso>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,823 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/subdividing/bevel.rst">
+ <target refid="tool-mesh-bevel">
+ </target>
+ <section ids="bevel tool-mesh-bevel" names="bevel bo\ tròn\ --\ bevel tool-mesh-bevel">
+  <title>
+   Bo Tròn -- Bevel
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Biên Soạn -- Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Edge --&gt; Bevel Edges`">
+        Edge ‣ Bevel Edges
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Ctrl-B
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Vertex --&gt; Bevel Vertices`">
+        Vertex ‣ Bevel Vertices
+       </inline>
+       (vertex-only)
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Shift-Ctrl-B
+       </literal>
+       (vertex-only)
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The
+   <emphasis>
+    Bevel
+   </emphasis>
+   tool allows you to create chamfered or rounded corners on geometry.
+A bevel is an effect that smooths out edges and corners.
+  </paragraph>
+  <paragraph>
+   True world edges are very seldom exactly sharp.
+Not even a knife blade edge can be considered perfectly sharp.
+Most edges are intentionally beveled for mechanical and practical reasons.
+  </paragraph>
+  <paragraph>
+   Bevels are also useful for giving realism to non-organic models. In the real world,
+the blunt edges on objects catch the light and change the shading around the edges.
+This gives a solid, realistic look,
+as opposed to un-beveled objects which can look too perfect.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_cubes.jpg'}" uri="images/modeling_meshes_editing_subdividing_bevel_cubes.jpg"/>
+   <caption>
+    Cubes with and without bevel.
+   </caption>
+  </figure>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <paragraph>
+    The
+    <emphasis>
+     Bevel Edges
+    </emphasis>
+    tool works only on selected edges with exactly two adjacent faces.
+It will recognize any edges included in a vertex or face selection as well,
+and perform the bevel the same as if those edges were explicitly selected.
+In "vertex only" mode, the
+    <emphasis>
+     Bevel Vertices
+    </emphasis>
+    tool works on selected vertices instead of edges,
+and there is no requirement about having any adjacent faces.
+The
+    <emphasis>
+     Bevel
+    </emphasis>
+    tool smooths the edges and/or "corners" (vertices)
+by replacing them with faces making smooth profiles with a specified number of
+    <emphasis>
+     segments
+    </emphasis>
+    (see the options below for details about the bevel algorithm).
+   </paragraph>
+   <paragraph>
+    Use
+    <literal classes="kbd">
+     Ctrl-B
+    </literal>
+    or a method listed above to run the tool.
+Move the mouse to interactively or type a number to specify the bevel offset,
+and scroll the
+    <literal classes="kbd">
+     Wheel
+    </literal>
+    to increase or decrease the number of segments (see below).
+   </paragraph>
+   <table>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_example-1.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_example-1.png" width="320px"/>
+         <caption>
+          Selected edge before beveling.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_example-2.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_example-2.png" width="320px"/>
+         <caption>
+          Result of bevel (one segment).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_example-3.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_example-3.png" width="320px"/>
+         <caption>
+          Result of bevel (vertex only).
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <note>
+    <paragraph>
+     Normal (edge) beveling only works on edges that have exactly two faces
+attached to them. Vertex beveling has no such restriction.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Amount
+      <literal classes="kbd">
+       A
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       You can change the bevel amount by moving the mouse towards and away from the object,
+a bit like with transform tools.
+The exact meaning of the value depends on the
+       <emphasis>
+        Amount Type
+       </emphasis>
+       option (see below).
+As usual, the scaling can be controlled to a finer degree by holding
+       <literal classes="kbd">
+        Shift
+       </literal>
+       to scale in 0.001 steps.
+       <literal classes="kbd">
+        LMB
+       </literal>
+       finalizes the operation,
+       <literal classes="kbd">
+        RMB
+       </literal>
+       or
+       <literal classes="kbd">
+        Esc
+       </literal>
+       aborts the action.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Loại Lượng
+      <literal classes="kbd">
+       M
+      </literal>
+      -- Amount Type
+      <literal classes="kbd">
+       M
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Selects how the
+       <emphasis>
+        Amount
+       </emphasis>
+       value controls the size of the bevel. According to the selection, the amount is:
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Dịch Chuyển -- Offset
+        </term>
+        <definition>
+         <paragraph>
+          The distance of a new edge from the original.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Chiều Rộng -- Width
+        </term>
+        <definition>
+         <paragraph>
+          The width of the bevel face.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Chiều/Độ Sâu -- Depth
+        </term>
+        <definition>
+         <paragraph>
+          The perpendicular distance from the original edge to the bevel face.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Phần Trăm -- Percent
+        </term>
+        <definition>
+         <paragraph>
+          The percentage of the length of adjacent edges that the new edges slide.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <paragraph>
+       For vertex-only bevels, the Offset and Depth types measure from the original vertex,
+and the Width type is measured from a new vertex to the center of the new face (as half the amount).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phân Đoạn
+      <literal classes="kbd">
+       S
+      </literal>
+      -- Segments
+      <literal classes="kbd">
+       S
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       The number of segments in the bevel can be defined by
+scrolling the mouse
+       <literal classes="kbd">
+        Wheel
+       </literal>
+       to increase or decrease this value.
+The greater the number of segments, the smoother the bevel.
+Or press
+       <literal classes="kbd">
+        S
+       </literal>
+       to change the number with mouse movements, as well as numeric input.
+      </paragraph>
+      <paragraph>
+       Alternatively, you can manually enter a segment number value while using the tool,
+or in the Mesh Tool options panel after using the tool.
+      </paragraph>
+      <figure ids="id5">
+       <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_example-4.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_example-4.png" width="320px"/>
+       <caption>
+        Bevel with four segments.
+       </caption>
+      </figure>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mặt Cắt
+      <literal classes="kbd">
+       P
+      </literal>
+      -- Profile
+      <literal classes="kbd">
+       P
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       This is a number between 0 and 1 that controls the shape of the profile (side view of a beveled edge).
+The default value, 0.5, gives a circular arc (if the faces meet at right angles).
+Values less than that give a flatter profile, with 0.25 being exactly flat,
+and values less than that giving a concave bevel. Values more than 0.5 give a more convex profile.
+Similarly as
+       <emphasis>
+        Segments
+       </emphasis>
+       it can be set with mouse movements and numeric input after toggling
+       <literal classes="kbd">
+        P
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Duy Điểm Đỉnh
+      <literal classes="kbd">
+       V
+      </literal>
+      -- Vertex Only
+      <literal classes="kbd">
+       V
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       When selected, the tool is in "vertex only" mode, and only vertices will be beveled.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chống Đè Gối Lên Nhau
+      <literal classes="kbd">
+       C
+      </literal>
+      -- Clamp Overlap
+      <literal classes="kbd">
+       C
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Limits the width of each beveled edge so that edges cannot cause
+overlapping intersections with other geometry.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lướt Theo Mạch Lưới -- Loop Slide
+     </term>
+     <definition>
+      <paragraph>
+       If there are unbeveled edges along with beveled edges into a vertex,
+the bevel tries to slide along those edges when possible.
+Turning the option off can lead to more even bevel widths.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mark Seams
+      <literal classes="kbd">
+       U
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       If a seam edge crosses a non-seam one and you bevel all of them,
+this option will maintain the expected propagation of seams.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mark Sharp
+      <literal classes="kbd">
+       K
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Similar to Mark Seams, but for sharp edges.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nguyên Liệu -- Material
+     </term>
+     <definition>
+      <paragraph>
+       The
+       <emphasis>
+        Material
+       </emphasis>
+       number specifies which material should be assigned to the new faces created by the
+       <emphasis>
+        Bevel
+       </emphasis>
+       tool.
+With the default, -1, the material is inherited from the closest existing face ("closest" can be a bit ambiguous).
+Otherwise, the number is the slot index of the material to use for all newly created faces.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Harden Normals
+      <literal classes="kbd">
+       H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, the per-vertex face normals of the bevel faces are adjusted to
+match the surrounding faces, and the normals of the surrounding faces are not affected.
+This will keep the surrounding faces flat (if they were before),
+with the bevel faces shading smoothly into them. For this effect to work,
+custom split normals need to be enabled, which requires Auto Smooth to be enabled
+(see
+       <reference internal="True" refuri="../normals.html">
+        <inline classes="doc">
+         Normals
+        </inline>
+       </reference>
+       ).
+As a convenience, that option will be enabled for you if it is not already when you enable Harden Normals here.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Face Strength Mode
+     </term>
+     <definition>
+      <paragraph>
+       Set
+       <emphasis>
+        Face Strength
+       </emphasis>
+       on the faces involved in the bevel, according to the specified mode.
+This can be used in conjunction with
+a
+       <reference internal="True" refuri="../../../modifiers/modify/weighted_normal.html">
+        <inline classes="doc">
+         Weight Normals Modifier
+        </inline>
+       </reference>
+       (with the
+       <emphasis>
+        Face Influence
+       </emphasis>
+       option checked).
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         None
+        </term>
+        <definition>
+         <paragraph>
+          Do not set face strength.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         New
+        </term>
+        <definition>
+         <paragraph>
+          Set the face strength of new faces along edges to
+          <emphasis>
+           Medium
+          </emphasis>
+          ,
+and the face strength of new faces at vertices to
+          <emphasis>
+           Weak
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Affected
+        </term>
+        <definition>
+         <paragraph>
+          In addition to those set for the
+          <emphasis>
+           New
+          </emphasis>
+          case,
+also set the faces adjacent to new faces to have strength
+          <emphasis>
+           Strong
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         All
+        </term>
+        <definition>
+         <paragraph>
+          In addition to those set for the
+          <emphasis>
+           Affected
+          </emphasis>
+          option,
+also set all the rest of the faces of the model to have strength
+          <emphasis>
+           Strong
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Outer Miter
+      <literal classes="kbd">
+       O
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       A
+       <emphasis>
+        miter
+       </emphasis>
+       is formed when two beveled edges meet at an angle.
+On the side where the angle is greater than 180 degrees, if any, it is called an
+       <emphasis>
+        outer miter
+       </emphasis>
+       .
+This option specifies the pattern that Blender uses at an outer miter.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sharp
+        </term>
+        <definition>
+         <paragraph>
+          Edges meet at a sharp point, with no extra vertices introduced on the edges.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Patch
+        </term>
+        <definition>
+         <paragraph>
+          Edges meet at a sharp point but in addition, two extra vertices are introduced near the point
+so that the edges and faces at the vertex may be less pinched together than
+what occurs in the
+          <emphasis>
+           Sharp
+          </emphasis>
+          case.
+The
+          <emphasis>
+           Spread
+          </emphasis>
+          slider controls how far the new vertices are from the meeting point.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Arc
+        </term>
+        <definition>
+         <paragraph>
+          Two vertices are introduced near the meeting point, and a curved arc joins them together.
+The
+          <emphasis>
+           Spread
+          </emphasis>
+          slider controls how far the new vertices are from the meeting point.
+The
+          <emphasis>
+           Profile
+          </emphasis>
+          slider controls the shape of the arc.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <paragraph>
+       The current choices are shown in this diagram, where the outer miter is along the horizontal surface.
+      </paragraph>
+      <table>
+       <tgroup cols="3">
+        <colspec colwidth="33">
+        </colspec>
+        <colspec colwidth="33">
+        </colspec>
+        <colspec colwidth="33">
+        </colspec>
+        <tbody>
+         <row>
+          <entry>
+           <figure ids="id6">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-2.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-2.png" width="320px"/>
+            <caption>
+             Sharp outer miter.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id7">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-3.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-3.png" width="320px"/>
+            <caption>
+             Patch outer miter.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id8">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-4.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-4.png" width="320px"/>
+            <caption>
+             Arc outer miter.
+            </caption>
+           </figure>
+          </entry>
+         </row>
+        </tbody>
+       </tgroup>
+      </table>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Inner Miter
+      <literal classes="kbd">
+       I
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       An
+       <emphasis>
+        Inner Miter
+       </emphasis>
+       is formed when the angle between two beveled edges is less than 180 degrees.
+This option specifies the pattern Blender uses at an inner miter.
+The options are the same as for Outer Miter, except that
+       <emphasis>
+        Patch
+       </emphasis>
+       makes no sense and is therefore omitted.
+Inner miters are shown in the following diagram, where two inner miters are on the vertical surfaces.
+      </paragraph>
+      <table>
+       <tgroup cols="2">
+        <colspec colwidth="50">
+        </colspec>
+        <colspec colwidth="50">
+        </colspec>
+        <tbody>
+         <row>
+          <entry>
+           <figure ids="id9">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-5.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-5.png" width="200px"/>
+            <caption>
+             Sharp inner miter.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id10">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-6.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-6.png" width="200px"/>
+            <caption>
+             Arc inner miter.
+            </caption>
+           </figure>
+          </entry>
+         </row>
+        </tbody>
+       </tgroup>
+      </table>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Spread
+     </term>
+     <definition>
+      <paragraph>
+       The value used to spread extra vertices apart for
+       <emphasis>
+        Outer
+       </emphasis>
+       and
+       <emphasis>
+        Inner Miters
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <table>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id11">
+         <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_example-5.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_example-5.png" width="320px"/>
+         <caption>
+          Result of beveling multiple edges.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id12">
+         <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_example-6.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_example-6.png" width="320px"/>
+         <caption>
+          Another example of beveling multiple edges.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id13">
+         <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_example-7.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_example-7.png" width="320px"/>
+         <caption>
+          An example using Profile=0.150.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <seealso>
+    <paragraph>
+     Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier
+    </paragraph>
+    <paragraph>
+     The
+     <reference internal="True" refuri="../../../modifiers/generate/bevel.html">
+      <inline classes="doc">
+       Bevel Modifier
+      </inline>
+     </reference>
+     is a non-destructive alternative to the Bevel tool.
+    </paragraph>
+   </seealso>
+  </section>
+ </section>
+</document>

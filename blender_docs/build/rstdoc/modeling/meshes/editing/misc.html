@@ -1,0 +1,304 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/misc.rst">
+ <section ids="miscellaneous-editing-tools" names="miscellaneous\ editing\ tools --\ miscellaneous\ editing\ tools">
+  <title>
+   -- Miscellaneous Editing Tools
+  </title>
+  <target refid="mesh-edit-sort-elements">
+  </target>
+  <section ids="sort-elements mesh-edit-sort-elements" names="sort\ elements --\ sort\ elements mesh-edit-sort-elements">
+   <title>
+    -- Sort Elements
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Sắp Thứ Tự Yếu Tố... (Sort Elements...)`">
+         Khung Lưới (Mesh) ‣ Sắp Thứ Tự Yếu Tố... (Sort Elements...)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool (available from the
+    <emphasis>
+     Specials
+    </emphasis>
+    ,
+    <emphasis>
+     Vertices
+    </emphasis>
+    ,
+    <emphasis>
+     Edges
+    </emphasis>
+    and
+    <emphasis>
+     Faces
+    </emphasis>
+    menus)
+allows you to reorder the matching selected mesh elements, following various methods.
+Note that when called from the
+    <emphasis>
+     Specials
+    </emphasis>
+    menu,
+the affected element types are the same as the active select modes.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Trục Z của Góc Nhìn -- View Z Axis
+     </term>
+     <definition>
+      <paragraph>
+       Sort along the active view's Z axis, from farthest to nearest by default
+(use
+       <emphasis>
+        Reverse
+       </emphasis>
+       if you want it the other way).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trục X của Góc Nhìn -- View X Axis
+     </term>
+     <definition>
+      <paragraph>
+       Sort along the active view's X axis, from left to right by default (again, there is the
+       <emphasis>
+        Reverse
+       </emphasis>
+       option).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khoảng Cách Con Trỏ -- Cursor Distance
+     </term>
+     <definition>
+      <paragraph>
+       Sort from nearest to farthest away from the 3D cursor position (
+       <emphasis>
+        Reverse
+       </emphasis>
+       also available).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nguyên Liệu -- Material
+     </term>
+     <definition>
+      <paragraph>
+       Sort faces, and faces only, from those having the lowest material's index to those having the highest.
+Order of faces inside each of those "material groups" remains unchanged.
+Note that the
+       <emphasis>
+        Reverse
+       </emphasis>
+       option only reverses the order of the materials,
+       <emphasis>
+        not
+       </emphasis>
+       the order of the faces inside them.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cái Được Chọn -- Selected
+     </term>
+     <definition>
+      <paragraph>
+       Move all selected elements to the beginning (or end, if
+       <emphasis>
+        Reverse
+       </emphasis>
+       enabled),
+without affecting their relative orders.
+Warning: This option will also affect
+       <strong>
+        unselected
+       </strong>
+       elements' indices!
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Ngẫu Nhiên Hóa -- Randomize
+     </term>
+     <definition>
+      <paragraph>
+       Randomizes indices of selected elements (
+       <emphasis>
+        without
+       </emphasis>
+       affecting those of unselected ones).
+The seed option allows you to get another randomization --
+the same seed over the same mesh/set of selected elements will always give the same result!
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đảo Ngược -- Reverse
+     </term>
+     <definition>
+      <paragraph>
+       Simply reverse the order of the selected elements.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <hint>
+    <paragraph>
+     Enabling the Display Indices Option
+    </paragraph>
+    <paragraph>
+     Enable the
+     <emphasis>
+      Developer Extras
+     </emphasis>
+     Option in
+     <inline classes="menuselection" rawtext=":menuselection:`Preferences --&gt; Interface --&gt; Display`">
+      Preferences ‣ Interface ‣ Display
+     </inline>
+     panel,
+a checkbox will appear in
+     <inline classes="menuselection" rawtext=":menuselection:`Display &amp; Shading Menu --&gt; Viewport Overlay --&gt; Developer --&gt; Indices`">
+      Display &amp; Shading Menu ‣ Viewport Overlay ‣ Developer ‣ Indices
+     </inline>
+     .
+    </paragraph>
+   </hint>
+   <target refid="object-separate">
+   </target>
+  </section>
+  <section ids="separate object-separate" names="separate phân\ tách/rã\ --\ separate object-separate">
+   <title>
+    Phân Tách/Rã -- Separate
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Mesh --&gt; Separate`">
+         Mesh ‣ Separate
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         P
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    At some point, you will come to a time when you need to cut parts away from a mesh to be separate.
+   </paragraph>
+   <paragraph>
+    To separate an object, the vertices (or faces) must be selected and then separated,
+though there are several different ways to do this.
+   </paragraph>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/modeling_meshes_editing_misc_separate-example.png'}" uri="images/modeling_meshes_editing_misc_separate-example.png"/>
+    <caption>
+     Suzanne dissected neatly.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Cái Được Chọn -- Selected
+     </term>
+     <definition>
+      <paragraph>
+       This option separates the selection to a new object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- All Loose Parts
+     </term>
+     <definition>
+      <paragraph>
+       Separates the mesh in its unconnected parts.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Theo Nguyên Liệu -- By Material
+     </term>
+     <definition>
+      <paragraph>
+       Creates separate mesh objects for each material.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     <reference internal="True" refuri="../../../scene_layout/object/editing/introduction.html#object-join">
+      <inline classes="std std-ref">
+       Joining objects
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </seealso>
+  </section>
+ </section>
+</document>

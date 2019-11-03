@@ -1,0 +1,204 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/uv/uv_sculpt.rst">
+ <target refid="bpy-types-toolsettings-use-uv-sculpt">
+ </target>
+ <section ids="uv-sculpting bpy-types-toolsettings-use-uv-sculpt" names="uv\ sculpting điêu\ khắc\ uv\ --\ uv\ sculpting bpy.types.toolsettings.use_uv_sculpt">
+  <title>
+   Điêu Khắc UV -- UV Sculpting
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Paint Mode and Mask Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Giá Công Cụ (Tools Shelf) --&gt; Tùy Chọn (Options) --&gt; Điêu Khắc UV (UV Sculpt)`">
+        Giá Công Cụ (Tools Shelf) ‣ Tùy Chọn (Options) ‣ Điêu Khắc UV (UV Sculpt)
+       </inline>
+       ,
+       <inline classes="menuselection" rawtext=":menuselection:`Giá Công Cụ (Tools Shelf) --&gt; Công Cụ (Tools)`">
+        Giá Công Cụ (Tools Shelf) ‣ Công Cụ (Tools)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`UV (UVs) --&gt; Điêu Khắc UV (UV Sculpt)`">
+        UV (UVs) ‣ Điêu Khắc UV (UV Sculpt)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Q
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The UV Sculpting "mode" allow you to grab, pinch and smooth UVs, just like Sculpt Mode.
+It can be activated with
+   <literal classes="kbd">
+    Q
+   </literal>
+   or by checking UV Sculpt in the
+   <emphasis>
+    UVs
+   </emphasis>
+   menu.
+  </paragraph>
+  <section ids="uv-sculpt" names="uv\ sculpt điêu\ khắc\ uv\ --\ uv\ sculpt">
+   <title>
+    Điêu Khắc UV -- UV Sculpt
+   </title>
+   <paragraph>
+    When UV sculpting is activated, the Toolbar shows the brush tool selection and options.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Khóa Ranh Giới -- Lock Borders
+     </term>
+     <definition>
+      <paragraph>
+       Locks the boundary of UV islands from being affected by the brush.
+This is very useful to preserve the shape of UV islands.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Điêu Khắc Toàn Bộ các Hải Đảo -- Sculpt All Islands
+     </term>
+     <definition>
+      <paragraph>
+       To edit all islands and not only the island nearest to the brush center
+when the sculpt stroke was started.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Công Cụ Điêu Khắc UV -- UV Sculpt Tools
+     </term>
+     <definition>
+      <paragraph>
+       Brushes that operate on UVs.
+All brushes use the Airbrush Stroke Method: they continue to act as long as you keep
+       <literal classes="kbd">
+        LMB
+       </literal>
+       pressed.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Nắm Giữ -- Grab
+         <literal classes="kbd">
+          G
+         </literal>
+        </term>
+        <definition>
+         <paragraph>
+          The Grab brush moves UVs around.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Nới Lỏng -- Relax
+         <literal classes="kbd">
+          S
+         </literal>
+         ,
+         <literal classes="kbd">
+          Shift-LMB
+         </literal>
+        </term>
+        <definition>
+         <paragraph>
+          The Relax brush makes UVs more evenly distributed.
+The algorithm relies on space, not stretch minimization,
+so most probably a minimize stretch will have to be run for optimal results.
+However it is great to use after stitching islands,
+or when unwrap produces cluttered results to smooth the distribution of UVs.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Phương Pháp Hồi Phục -- Relaxation Method
+           </term>
+           <definition>
+            <paragraph>
+             There are two relax algorithms:
+            </paragraph>
+            <paragraph>
+             Laplacian, HC
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Véo -- Pinch
+         <literal classes="kbd">
+          P
+         </literal>
+        </term>
+        <definition>
+         <paragraph>
+          The Pinch brush moves UVs toward the brush's center.
+The pinch brush can be inverted by pressing
+          <literal classes="kbd">
+           Ctrl-LMB
+          </literal>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hiển Thị Bút Vẽ -- Show Brush
+     </term>
+     <definition>
+      <paragraph>
+       Ẩn giấu con trỏ điêu khắc.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

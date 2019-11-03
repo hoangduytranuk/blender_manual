@@ -1,0 +1,1314 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/addons/import_export/io_scene_gltf2.rst">
+ <section ids="gltf-2-0" names="gltf\ 2.0">
+  <title>
+   glTF 2.0
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Category
+     </field_name>
+     <field_body>
+      <paragraph>
+       Import-Export
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`File --&gt; Import/Export --&gt; glTF 2.0 (.glb, .gltf)`">
+        File ‣ Import/Export ‣ glTF 2.0 (.glb, .gltf)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <section ids="usage" names="usage">
+   <title>
+    Usage
+   </title>
+   <paragraph>
+    glTF™ (GL Transmission Format) is used for transmission and loading of 3D models
+in web and native applications. glTF reduces the size of 3D models and
+the runtime processing needed to unpack and render those models.
+This format is commonly used on the web, and has support in various 3D engines
+such as Unity3D, Unreal Engine 4, and Godot.
+   </paragraph>
+   <paragraph>
+    This importer/exporter supports the following glTF 2.0 features:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Meshes
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Materials (Principled BSDF) and Shadeless (Unlit)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Textures
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Cameras
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Punctual lights (point, spot, and directional)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Animation (keyframe, shape key, and skinning)
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <section ids="meshes" names="meshes">
+    <title>
+     Meshes
+    </title>
+    <paragraph>
+     glTF's internal structure mimics the memory buffers commonly used by graphics chips
+when rendering in real-time, such that assets can be delivered to desktop, web, or mobile clients
+and be promptly displayed with minimal processing. As a result, quads and n-gons
+are automatically converted to triangles when exporting to glTF.
+Discontinuous UVs and flat-shaded edges may result in moderately higher vertex counts in glTF
+compared to Blender, as such vertices are separated for export.
+Likewise, curves and other non-mesh data are not preserved,
+and must be converted to meshes prior to export.
+    </paragraph>
+   </section>
+   <section ids="materials" names="materials">
+    <title>
+     Materials
+    </title>
+    <paragraph>
+     The core material system in glTF supports a metal/rough
+     <abbreviation explanation="Physically Based Rendering">
+      PBR
+     </abbreviation>
+     workflow
+with the following channels of information:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Base Color
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Metallic
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Roughness
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Baked Ambient Occlusion
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Normal Map
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Emissive
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <figure ids="id1">
+     <image candidates="{'*': 'images/addons_io-gltf2_material-channels.jpg'}" uri="images/addons_io-gltf2_material-channels.jpg"/>
+     <caption>
+      An example of the various image maps available in the glTF 2.0 core format. This is
+the
+      <reference name="water bottle sample model" refuri="https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/WaterBottle">
+       water bottle sample model
+      </reference>
+      shown alongside slices of its various image maps.
+     </caption>
+    </figure>
+   </section>
+   <section ids="imported-materials" names="imported\ materials">
+    <title>
+     Imported Materials
+    </title>
+    <paragraph>
+     The glTF material system is different from Blender's own materials. When a glTF file is imported,
+the add-on will construct a set of Blender nodes to replicate each glTF material as closely as possible.
+    </paragraph>
+    <paragraph>
+     The importer supports Metal/Rough PBR (core glTF), Spec/Gloss PBR (
+     <literal>
+      KHR_materials_pbrSpecularGlossiness
+     </literal>
+     )
+and Shadeless (
+     <literal>
+      KHR_materials_unlit
+     </literal>
+     ) materials.
+    </paragraph>
+    <tip>
+     <paragraph>
+      Examining the result of the material import process is a good way to see examples of
+the types of material nodes and settings that can be exported to glTF.
+     </paragraph>
+    </tip>
+   </section>
+   <section ids="exported-materials" names="exported\ materials">
+    <title>
+     Exported Materials
+    </title>
+    <paragraph>
+     The exporter supports Metal/Rough PBR (core glTF) and Shadeless (
+     <literal>
+      KHR_materials_unlit
+     </literal>
+     ) materials.
+It will construct a glTF material based on the nodes it recognizes in the Blender material.
+The material export process handles the settings described below.
+    </paragraph>
+    <note>
+     <paragraph>
+      When image textures are used by materials, glTF requires that images be in PNG or JPEG format.
+The add-on will automatically convert images from other formats, increasing export time.
+     </paragraph>
+    </note>
+    <tip>
+     <paragraph>
+      To create Shadeless (Unlit) materials, use the Background material type.
+     </paragraph>
+    </tip>
+    <section ids="base-color" names="base\ color">
+     <title>
+      Base Color
+     </title>
+     <paragraph>
+      The glTF base color is determined by looking for a Base Color input on a Principled BSDF node.
+If the input is unconnected, the input's default color (the color field next to the unconnected socket)
+is used as the Base Color for the glTF material.
+     </paragraph>
+     <figure ids="id2">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-baseColor-solidGreen.png'}" uri="images/addons_io-gltf2_material-baseColor-solidGreen.png"/>
+      <caption>
+       A solid base color can be specified directly on the node.
+      </caption>
+     </figure>
+     <paragraph>
+      If an Image Texture node is found to be connected to the Base Color input,
+that image will be used as the glTF base color.
+     </paragraph>
+     <figure ids="id3">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-baseColor-imageHookup.png'}" uri="images/addons_io-gltf2_material-baseColor-imageHookup.png"/>
+      <caption>
+       An image is used as the glTF base color.
+      </caption>
+     </figure>
+    </section>
+    <section ids="metallic-and-roughness" names="metallic\ and\ roughness">
+     <title>
+      Metallic and Roughness
+     </title>
+     <paragraph>
+      These values are read from the Principled BSDF node. If both of these inputs are unconnected,
+the node will display sliders to control their respective values between 0.0 and 1.0,
+and these values will be copied into the glTF.
+     </paragraph>
+     <paragraph>
+      When using an image, glTF expects the metallic values to be encoded in the blue (
+      <literal>
+       B
+      </literal>
+      ) channel,
+and roughness to be encoded in the green (
+      <literal>
+       G
+      </literal>
+      ) channel of the same image.
+If images are connected to the Blender node in a manner that does not follow this convention,
+the add-on may attempt to adapt the image to the correct form during exporting (with an increased export time).
+     </paragraph>
+     <paragraph>
+      In the Blender node tree, it is recommended to use a Separate RGB node
+to separate the channels from an Image Texture node, and
+connect the green (
+      <literal>
+       G
+      </literal>
+      ) channel to Roughness, and blue (
+      <literal>
+       B
+      </literal>
+      ) to Metallic.
+The glTF exporter will recognize this arrangement as matching the glTF standard, and
+that will allow it to simply copy the image texture into the glTF file during export.
+     </paragraph>
+     <paragraph>
+      The Image Texture node for this should have its
+      <emphasis>
+       Color Space
+      </emphasis>
+      set to Non-Color.
+     </paragraph>
+     <figure ids="id4">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-metalRough.png'}" uri="images/addons_io-gltf2_material-metalRough.png"/>
+      <caption>
+       A metallic/roughness image connected in a manner consistent with the glTF standard,
+allowing it to be used verbatim inside an exported glTF file.
+      </caption>
+     </figure>
+    </section>
+    <section ids="baked-ambient-occlusion" names="baked\ ambient\ occlusion">
+     <title>
+      Baked Ambient Occlusion
+     </title>
+     <paragraph>
+      glTF is capable of storing a baked ambient occlusion map.
+Currently there is no arrangement of nodes that causes Blender
+to use such a map in exactly the same way as intended in glTF.
+However, if the exporter finds a custom node group by the name of
+      <literal>
+       glTF Settings
+      </literal>
+      , and
+finds an input named
+      <literal>
+       Occlusion
+      </literal>
+      on that node group,
+it will look for an Image Texture attached there to use as the occlusion map in glTF.
+The effect need not be shown in Blender, as Blender has other ways of showing ambient occlusion,
+but this method will allow the exporter to write an occlusion image to the glTF.
+This can be useful to real-time glTF viewers, particularly on platforms where there
+may not be spare power for computing such things at render time.
+     </paragraph>
+     <figure ids="id5">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-occlusionOnly.png'}" uri="images/addons_io-gltf2_material-occlusionOnly.png"/>
+      <caption>
+       A pre-baked ambient occlusion map, connected to a node that doesn't render but will export to glTF.
+      </caption>
+     </figure>
+     <tip>
+      <paragraph>
+       The easiest way to create the custom node group is to import an existing glTF model
+that contains an occlusion map, such as
+the
+       <reference name="water bottle" refuri="https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/WaterBottle">
+        water bottle
+       </reference>
+       or another existing model. A manually created custom node group can also be used.
+      </paragraph>
+     </tip>
+     <paragraph>
+      glTF stores occlusion in the red (
+      <literal>
+       R
+      </literal>
+      ) channel, allowing it to optionally share
+the same image with the roughness and metallic channels.
+     </paragraph>
+     <figure ids="id6">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-orm-hookup.png'}" uri="images/addons_io-gltf2_material-orm-hookup.png"/>
+      <caption>
+       This combination of nodes mimics the way glTF packs occlusion, roughness, and
+metallic values into a single image.
+      </caption>
+     </figure>
+     <tip>
+      <paragraph>
+       The Cycles render engine has a Bake panel that can be used to bake
+ambient occlusion maps. The resulting image can be saved and connected
+directly to the
+       <literal>
+        glTF Settings
+       </literal>
+       node.
+      </paragraph>
+     </tip>
+    </section>
+    <section ids="normal-map" names="normal\ map">
+     <title>
+      Normal Map
+     </title>
+     <paragraph>
+      To use a normal map in glTF, connect an Image Texture node's color output
+to a Normal Map node's color input, and then connect the Normal Map normal output to
+the Principled BSDF node's normal input. The Image Texture node
+for this should have its
+      <emphasis>
+       Color Space
+      </emphasis>
+      property set to Non-Color.
+     </paragraph>
+     <paragraph>
+      The Normal Map node must remain on its default property of Tangent Space as
+this is the only type of normal map currently supported by glTF.
+The strength of the normal map can be adjusted on this node.
+The exporter is not exporting these nodes directly, but will use them to locate
+the correct image and will copy the strength setting into the glTF.
+     </paragraph>
+     <figure ids="id7">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-normal.png'}" uri="images/addons_io-gltf2_material-normal.png"/>
+      <caption>
+       A normal map image connected such that the exporter will find it and copy it
+to the glTF file.
+      </caption>
+     </figure>
+     <tip>
+      <paragraph>
+       The Cycles render engine has a Bake panel that can be used to bake
+tangent-space normal maps from almost any other arrangement of normal vector nodes.
+Switch the Bake type to Normal. Keep the default space settings
+(space: Tangent, R: +X, G: +Y, B: +Z) when using this bake panel for glTF.
+The resulting baked image can be saved and plugged into to a new material using
+the Normal Map node as described above, allowing it to export correctly.
+      </paragraph>
+      <paragraph>
+       See:
+       <reference internal="True" refuri="../../render/cycles/baking.html">
+        <inline classes="doc">
+         Cycles Render Baking
+        </inline>
+       </reference>
+      </paragraph>
+     </tip>
+    </section>
+    <section ids="emissive" names="emissive">
+     <title>
+      Emissive
+     </title>
+     <paragraph>
+      An Image Texture node can be connected to an Emission shader node, and
+optionally combined with properties from a Principled BSDF node by way of an Add shader node.
+     </paragraph>
+     <paragraph>
+      If the glTF exporter finds an image connected to the Emission shader node,
+it will export that image as the glTF material's emissive texture.
+     </paragraph>
+     <figure ids="id8">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-emissive.png'}" uri="images/addons_io-gltf2_material-emissive.png"/>
+      <caption>
+       An Emission node can be added to existing nodes.
+      </caption>
+     </figure>
+     <note>
+      <paragraph>
+       The
+       <emphasis>
+        Emission
+       </emphasis>
+       input of the Principled BSDF node is not yet supported by this exporter.
+This may change in a future version.
+      </paragraph>
+     </note>
+    </section>
+    <section ids="double-sided-backface-culling" names="double\ sided\ /\ backface\ culling">
+     <title>
+      Double Sided / Backface Culling
+     </title>
+     <paragraph>
+      For materials where only the front faces will be visible, turn on
+      <emphasis>
+       Backface Culling
+      </emphasis>
+      in
+the
+      <emphasis>
+       Settings
+      </emphasis>
+      panel of an Eevee material. When using other engines (Cycles, Workbench)
+you can temporarily switch to Eevee to configure this setting, then switch back.
+     </paragraph>
+     <paragraph>
+      Leave this box un-checked for double-sided materials.
+     </paragraph>
+     <figure ids="id9">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-backfaceCulling.png'}" uri="images/addons_io-gltf2_material-backfaceCulling.png"/>
+      <caption>
+       The inverse of this setting controls glTF's
+       <literal>
+        DoubleSided
+       </literal>
+       flag.
+      </caption>
+     </figure>
+    </section>
+    <section ids="blend-modes" names="blend\ modes">
+     <title>
+      Blend Modes
+     </title>
+     <paragraph>
+      The Base Color input can optionally supply alpha values.
+How these values are treated by glTF depends on the selected blend mode.
+     </paragraph>
+     <paragraph>
+      With the Eevee render engine selected, each material has a Blend Mode on
+the material settings panel. Use this setting to define how alpha values from
+the Base Color channel are treated in glTF. Three settings are supported by glTF:
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Opaque
+       </term>
+       <definition>
+        <paragraph>
+         Alpha values are ignored (the default).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Alpha Blend
+       </term>
+       <definition>
+        <paragraph>
+         Lower alpha values cause blending with background objects.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Alpha Clip
+       </term>
+       <definition>
+        <paragraph>
+         Alpha values below the
+         <emphasis>
+          Clip Threshold
+         </emphasis>
+         setting will cause portions
+of the material to not be rendered at all. Everything else is rendered as opaque.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <figure ids="id10">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-alphaBlend.png'}" uri="images/addons_io-gltf2_material-alphaBlend.png"/>
+      <caption>
+       With the Eevee engine selected, a material's blend modes are configurable.
+      </caption>
+     </figure>
+     <note>
+      <paragraph>
+       Be aware that transparency (or
+       <emphasis>
+        Alpha Blend
+       </emphasis>
+       mode) is complex for real-time engines
+to render, and may behave in unexpected ways after export. Where possible,
+use
+       <emphasis>
+        Alpha Clip
+       </emphasis>
+       mode instead, or place
+       <emphasis>
+        Opaque
+       </emphasis>
+       polygons behind only
+a single layer of
+       <emphasis>
+        Alpha Blend
+       </emphasis>
+       polygons.
+      </paragraph>
+     </note>
+    </section>
+    <section ids="uv-mapping" names="uv\ mapping">
+     <title>
+      UV Mapping
+     </title>
+     <paragraph>
+      Control over UV map selection and transformations is available by connecting a UV Map node
+and a Mapping node to any Image Texture node.
+     </paragraph>
+     <paragraph>
+      Settings from the Mapping node are exported using a glTF extension named
+      <literal>
+       KHR_texture_transform
+      </literal>
+      .
+There is a mapping type selector across the top.
+      <emphasis>
+       Point
+      </emphasis>
+      is the recommended type for export.
+      <emphasis>
+       Texture
+      </emphasis>
+      and
+      <emphasis>
+       Vector
+      </emphasis>
+      are also supported. The supported offsets are:
+     </paragraph>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        <emphasis>
+         Location
+        </emphasis>
+        - X and Y
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <emphasis>
+         Rotation
+        </emphasis>
+        - Z only
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <emphasis>
+         Scale
+        </emphasis>
+        - X and Y
+       </paragraph>
+      </list_item>
+     </bullet_list>
+     <paragraph>
+      For the
+      <emphasis>
+       Texture
+      </emphasis>
+      type,
+      <emphasis>
+       Scale
+      </emphasis>
+      X and Y must be equal (uniform scaling).
+     </paragraph>
+     <figure ids="id11">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-mapping.png'}" uri="images/addons_io-gltf2_material-mapping.png"/>
+      <caption>
+       A deliberate choice of UV mapping.
+      </caption>
+     </figure>
+     <tip>
+      <paragraph>
+       These nodes are optional. Not all glTF readers support multiple UV maps or texture transforms.
+      </paragraph>
+     </tip>
+    </section>
+    <section ids="factors" names="factors">
+     <title>
+      Factors
+     </title>
+     <paragraph>
+      Any Image Texture nodes may optionally be multiplied with a constant color or scalar.
+These will be written as factors in the glTF file, which are numbers that are multiplied
+with the specified image textures. These are not common.
+     </paragraph>
+    </section>
+    <section ids="example" names="example">
+     <title>
+      Example
+     </title>
+     <paragraph>
+      A single material may use all of the above at the same time, if desired. This figure shows
+a typical node structure when several of the above options are applied at once:
+     </paragraph>
+     <figure ids="id12">
+      <image candidates="{'*': 'images/addons_io-gltf2_material-principled.png'}" uri="images/addons_io-gltf2_material-principled.png"/>
+      <caption>
+       A Principled BSDF material with an emissive texture.
+      </caption>
+     </figure>
+    </section>
+   </section>
+   <section ids="extensions" names="extensions">
+    <title>
+     Extensions
+    </title>
+    <paragraph>
+     The core glTF 2.0 format can be extended with extra information, using glTF extensions.
+This allows the file format to hold details that were not considered universal at the time of first publication.
+Not all glTF readers support all extensions, but some are fairly common.
+    </paragraph>
+    <paragraph>
+     Certain Blender features can only be exported to glTF via these extensions.
+The following
+     <reference name="glTF 2.0 extensions" refuri="https://github.com/KhronosGroup/glTF/tree/master/extensions">
+      glTF 2.0 extensions
+     </reference>
+     are supported directly by this add-on:
+    </paragraph>
+    <rubric>
+     Import
+    </rubric>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <literal>
+        KHR_materials_pbrSpecularGlossiness
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        KHR_lights_punctual
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        KHR_materials_unlit
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        KHR_texture_transform
+       </literal>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <rubric>
+     Export
+    </rubric>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <literal>
+        KHR_draco_mesh_compression
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        KHR_lights_punctual
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        KHR_materials_unlit
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        KHR_texture_transform
+       </literal>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="animation" names="animation">
+    <title>
+     Animation
+    </title>
+    <paragraph>
+     glTF allows multiple animations per file, with animations targeted to
+particular objects at time of export. To ensure that an animation is included,
+either (a) make it the active Action on the object, (b) create a single-strip NLA track,
+or (c) stash the action.
+    </paragraph>
+    <rubric>
+     Supported
+    </rubric>
+    <paragraph>
+     Only certain types of animation are supported:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Keyframe (translation, rotation, scale)
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Shape keys
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Armatures / skinning
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     Animation of other properties, like lights or materials, will be ignored.
+    </paragraph>
+    <paragraph>
+     An
+     <emphasis>
+      NLA Strip animation
+     </emphasis>
+     consists of multiple actions on multiple objects that
+should play together. To create an NLA strip animation with the name "My
+Animation", push the action that should play each object onto an NLA track for
+that object with the name "My Animation".
+    </paragraph>
+    <figure ids="id13">
+     <image candidates="{'*': 'images/addons_io-gltf2_animation-nla-strip-animation-example.png'}" uri="images/addons_io-gltf2_animation-nla-strip-animation-example.png"/>
+     <caption>
+      Will be exported as an animation called "My Animation" with ConeAction
+playing on the Cone and CubeAction playing on the Cube.
+     </caption>
+    </figure>
+    <paragraph>
+     NLA Strip animations will be exported if the
+     <inline classes="menuselection" rawtext=":menuselection:`Animation --&gt; NLA Strips`">
+      Animation ‣ NLA Strips
+     </inline>
+     option is
+selected (on by default). All glTF animations are imported as NLA Strip animations.
+    </paragraph>
+    <paragraph>
+     If option is disabled, Blender NLA strip actions will be ignored.
+Only active action of each objects will be taken into account, and merged into a single glTF animation.
+    </paragraph>
+   </section>
+   <section ids="custom-properties" names="custom\ properties">
+    <title>
+     Custom Properties
+    </title>
+    <paragraph>
+     Custom properties on most objects are preserved in glTF export/import, and
+may be used for user-specific purposes.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="file-format-variations" names="file\ format\ variations">
+   <title>
+    File Format Variations
+   </title>
+   <paragraph>
+    The glTF specification identifies different ways the data can be stored.
+The importer handles all of these ways. The exporter will ask the user to
+select one of the following forms:
+   </paragraph>
+   <section ids="gltf-binary-glb" names="gltf\ binary\ (.glb)">
+    <title>
+     glTF Binary (
+     <literal>
+      .glb
+     </literal>
+     )
+    </title>
+    <paragraph>
+     This produces a single
+     <literal>
+      .glb
+     </literal>
+     file with all mesh data, image textures, and
+related information packed into a single binary file.
+    </paragraph>
+    <tip>
+     <paragraph>
+      Using a single file makes it easy to share or copy the model to other systems and services.
+     </paragraph>
+    </tip>
+   </section>
+   <section ids="gltf-separate-gltf-bin-textures" names="gltf\ separate\ (.gltf\ +\ .bin\ +\ textures)">
+    <title>
+     glTF Separate (
+     <literal>
+      .gltf
+     </literal>
+     +
+     <literal>
+      .bin
+     </literal>
+     + textures)
+    </title>
+    <paragraph>
+     This produces a JSON text-based
+     <literal>
+      .gltf
+     </literal>
+     file describing the overall structure,
+along with a
+     <literal>
+      .bin
+     </literal>
+     file containing mesh and vector data, and
+optionally a number of
+     <literal>
+      .png
+     </literal>
+     or
+     <literal>
+      .jpg
+     </literal>
+     files containing image textures
+referenced by the
+     <literal>
+      .gltf
+     </literal>
+     file.
+    </paragraph>
+    <tip>
+     <paragraph>
+      Having an assortment of separate files makes it much easier for a user to
+go back and edit any JSON or images after the export has completed.
+     </paragraph>
+    </tip>
+    <note>
+     <paragraph>
+      Be aware that sharing this format requires sharing all of these separate files
+together as a group.
+     </paragraph>
+    </note>
+   </section>
+   <section ids="gltf-embedded-gltf" names="gltf\ embedded\ (.gltf)">
+    <title>
+     glTF Embedded (
+     <literal>
+      .gltf
+     </literal>
+     )
+    </title>
+    <paragraph>
+     This produces a JSON text-based
+     <literal>
+      .gltf
+     </literal>
+     file, with all mesh data and
+image data encoded (using Base64) within the file. This form is useful if
+the asset must be shared over a plain-text-only connection.
+    </paragraph>
+    <warning>
+     <paragraph>
+      This is the least efficient of the available forms, and should only be used when required.
+     </paragraph>
+    </warning>
+   </section>
+  </section>
+  <section ids="properties" names="properties">
+   <title>
+    Properties
+   </title>
+   <section ids="import" names="import">
+    <title>
+     Import
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Pack Images
+      </term>
+      <definition>
+       <paragraph>
+        Pack all images into the blend-file.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Shading
+      </term>
+      <definition>
+       <paragraph>
+        How normals are computed during import.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="export" names="export">
+    <title>
+     Export
+    </title>
+    <section ids="general-tab" names="general\ tab">
+     <title>
+      General Tab
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Format
+       </term>
+       <definition>
+        <paragraph>
+         See:
+         <reference name="File Format Variations" refid="file-format-variations">
+          File Format Variations
+         </reference>
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Selected Objects
+       </term>
+       <definition>
+        <paragraph>
+         Export selected objects only.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Apply Modifiers
+       </term>
+       <definition>
+        <paragraph>
+         Apply modifiers (excluding armatures) to mesh objects.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Y Up
+       </term>
+       <definition>
+        <paragraph>
+         Export using glTF convention, +Y up.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Custom Properties
+       </term>
+       <definition>
+        <paragraph>
+         Export custom properties as glTF extras.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Remember Export Settings
+       </term>
+       <definition>
+        <paragraph>
+         Store export settings in the Blender file, so they will be recalled next time
+the file is opened.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Copyright
+       </term>
+       <definition>
+        <paragraph>
+         Legal rights and conditions for the model.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="meshes-tab" names="meshes\ tab">
+     <title>
+      Meshes Tab
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        UVs
+       </term>
+       <definition>
+        <paragraph>
+         Export UVs (texture coordinates) with meshes.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Normals
+       </term>
+       <definition>
+        <paragraph>
+         Export vertex normals with meshes.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tangents
+       </term>
+       <definition>
+        <paragraph>
+         Export vertex tangents with meshes.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Vertex Colors
+       </term>
+       <definition>
+        <paragraph>
+         Export vertex colors with meshes.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Materials
+       </term>
+       <definition>
+        <paragraph>
+         Export materials.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Draco mesh compression
+       </term>
+       <definition>
+        <paragraph>
+         Compress meshes using Google Draco.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Compression level
+       </term>
+       <definition>
+        <paragraph>
+         Higher compression results in slower encoding and decoding.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Position quantization bits
+       </term>
+       <definition>
+        <paragraph>
+         Higher values result in better compression rates.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Normal quantization bits
+       </term>
+       <definition>
+        <paragraph>
+         Higher values result in better compression rates.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Texcoord quantization bits
+       </term>
+       <definition>
+        <paragraph>
+         Higher values result in better compression rates.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="objects-tab" names="objects\ tab">
+     <title>
+      Objects Tab
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Cameras
+       </term>
+       <definition>
+        <paragraph>
+         Export cameras.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Punctual Lights
+       </term>
+       <definition>
+        <paragraph>
+         Export directional, point, and spot lights. Uses the
+         <literal>
+          KHR_lights_punctual
+         </literal>
+         glTF extension.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="animation-tab" names="animation\ tab">
+     <title>
+      Animation Tab
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Use Current Frame
+       </term>
+       <definition>
+        <paragraph>
+         Export the scene in the current animation frame.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Animations
+       </term>
+       <definition>
+        <paragraph>
+         Exports active actions and NLA tracks as glTF animations.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Limit to Playback Range
+       </term>
+       <definition>
+        <paragraph>
+         Clips animations to selected playback range.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Sampling Rate
+       </term>
+       <definition>
+        <paragraph>
+         How often to evaluate animated values (in frames).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Always Sample Animations
+       </term>
+       <definition>
+        <paragraph>
+         Apply sampling to all animations.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        NLA Strips
+       </term>
+       <definition>
+        <paragraph>
+         Whether to export NLA strip animations.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Skinning
+       </term>
+       <definition>
+        <paragraph>
+         Export skinning (armature) data.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Bake Skinning Constraints
+       </term>
+       <definition>
+        <paragraph>
+         Apply skinning constraints to armatures.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Include All Bone Influences
+       </term>
+       <definition>
+        <paragraph>
+         Allow &gt;4 joint vertex influences. Models may appear incorrectly in many viewers.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Shape Keys
+       </term>
+       <definition>
+        <paragraph>
+         Export shape keys (morph targets).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Shape Key Normals
+       </term>
+       <definition>
+        <paragraph>
+         Export vertex normals with shape keys (morph targets).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Shape Key Tangents
+       </term>
+       <definition>
+        <paragraph>
+         Export vertex tangents with shape keys (morph targets).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+  </section>
+  <section ids="contributing" names="contributing">
+   <title>
+    Contributing
+   </title>
+   <paragraph>
+    This importer/exporter is developed through
+the
+    <reference name="glTF-Blender-IO repository" refuri="https://github.com/KhronosGroup/glTF-Blender-IO">
+     glTF-Blender-IO repository
+    </reference>
+    ,
+where you can file bug reports, submit feature requests, or contribute code.
+   </paragraph>
+   <paragraph>
+    Discussion and development of the glTF 2.0 format itself takes place on
+the Khronos Group
+    <reference name="glTF GitHub repository" refuri="https://github.com/KhronosGroup/glTF">
+     glTF GitHub repository
+    </reference>
+    ,
+and feedback there is welcome.
+   </paragraph>
+  </section>
+ </section>
+</document>

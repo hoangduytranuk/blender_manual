@@ -1,0 +1,157 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/shader/emission.rst">
+ <target refid="bpy-types-shadernodeemission">
+ </target>
+ <section ids="emission bpy-types-shadernodeemission" names="emission phát\ xạ\ --\ emission bpy.types.shadernodeemission">
+  <title>
+   Phát Xạ -- Emission
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_shader_emission_node.png'}" uri="images/render_shader-nodes_shader_emission_node.png"/>
+   <caption>
+    Emission Shader.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Emission
+   </emphasis>
+   node is used to add Lambertian emission shader.
+This can for example, be used for material and light surface outputs.
+  </paragraph>
+  <paragraph>
+   Cycles uses a physically correct light falloff by default,
+whereas Blender Internal uses a smoothed falloff with a Distance parameter.
+A similar effect can be found by using the Light Falloff node with the Smooth parameter.
+  </paragraph>
+  <paragraph>
+   Light strength for point, spot and area lights is specified in Watts.
+This means you typically need higher values than Blender Internal,
+as you could not use a 1W light to light a room; you need something stronger like a 100W light.
+  </paragraph>
+  <paragraph>
+   Sun lights are specified in Watts/m
+   <superscript>
+    2
+   </superscript>
+   , which require much smaller values like 1 W/m
+   <superscript>
+    2
+   </superscript>
+   .
+This can be confusing, but specifying strength in Watts would not have been convenient;
+the real sun for example has strength 384.6×10
+   <superscript>
+    24
+   </superscript>
+   W.
+Emission shaders on meshes are also in Watts/m
+   <superscript>
+    2
+   </superscript>
+   .
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Color of the emitted light.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sức Mạnh/Cường Độ -- Strength
+     </term>
+     <definition>
+      <paragraph>
+       Strength of the emitted light. For point and area lights, the unit is Watts.
+For materials, a value of 1.0 will ensure that the object in the image has
+the exact same color as the Color input, i.e. make it 'shadeless'.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Nút này không có tính chất nào cả.
+   </paragraph>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Phát Xạ -- Emission
+     </term>
+     <definition>
+      <paragraph>
+       The Emission shader output can both be plugged into the
+       <emphasis>
+        Surface Input
+       </emphasis>
+       as well as
+the
+       <emphasis>
+        Volume Input
+       </emphasis>
+       of the
+       <reference internal="True" refuri="../output/material.html">
+        <inline classes="doc">
+         Material
+        </inline>
+       </reference>
+       output node.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_emission_example.jpg'}" uri="images/render_shader-nodes_shader_emission_example.jpg"/>
+         <caption>
+          Emission shader, with strength at 1.0.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_emission_example-bright.jpg'}" uri="images/render_shader-nodes_shader_emission_example-bright.jpg"/>
+         <caption>
+          Emission shader, with strength at 3.0.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

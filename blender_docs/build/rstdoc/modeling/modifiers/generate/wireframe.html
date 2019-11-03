@@ -1,0 +1,228 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/generate/wireframe.rst">
+ <target refid="bpy-types-wireframemodifier">
+ </target>
+ <section ids="wireframe-modifier bpy-types-wireframemodifier" names="wireframe\ modifier bộ\ điều\ chỉnh\ khung\ dây\ --\ wireframe\ modifier bpy.types.wireframemodifier">
+  <title>
+   Bộ Điều Chỉnh Khung Dây -- Wireframe Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Wireframe
+   </emphasis>
+   modifier transforms a mesh into a wireframe by iterating over its
+faces, collecting all edges and turning those edges into four sided polygons.
+Be aware of the fact that your mesh needs to have faces to be wireframed.
+You can define the thickness, the material and several other parameters of the generated
+wireframe dynamically via the given modifier options.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_generate_wireframe_panel.png'}" uri="images/modeling_modifiers_generate_wireframe_panel.png"/>
+    <caption>
+     The Wireframe modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Độ Dày -- Thickness
+     </term>
+     <definition>
+      <paragraph>
+       The depth or size of the wireframes.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển -- Offset
+     </term>
+     <definition>
+      <paragraph>
+       A value between (-1 to 1) to change whether the wireframes are
+generated inside or outside of the original mesh.
+Set to zero,
+       <emphasis>
+        Offset
+       </emphasis>
+       will center the wireframes around the original edges.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       Restrict the modifier to only this vertex group.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Đảo Nghịch -- Invert
+        </term>
+        <definition>
+         <paragraph>
+          Inverts the vertex group weights.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hệ Số -- Factor
+        </term>
+        <definition>
+         <paragraph>
+          Percentage that the vertex has influence over the final wireframe result.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Miết Nếp Gấp của Cạnh -- Crease Edges
+     </term>
+     <definition>
+      <paragraph>
+       This option is intended for usage with
+the
+       <reference internal="True" refuri="subdivision_surface.html">
+        <inline classes="doc">
+         Subdivision
+        </inline>
+       </reference>
+       modifier.
+Enable this option to crease edges on their junctions and prevent large curved intersections.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Trọng Lượng Nếp Gấp -- Crease Weight
+        </term>
+        <definition>
+         <paragraph>
+          Define how much crease (0 to 1, nothing to full) the junctions should receive.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều Dày Đều Đặn -- Even Thickness
+     </term>
+     <definition>
+      <paragraph>
+       Maintain thickness by adjusting for sharp corners. Sometimes improves quality but also increases computation time.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều Dày Tương Đối -- Relative Thickness
+     </term>
+     <definition>
+      <paragraph>
+       Determines the edge thickness by the length of the edge. Longer edges will be thicker.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Ranh Giới -- Boundary
+     </term>
+     <definition>
+      <paragraph>
+       Creates wireframes on mesh island boundaries.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thay Thế Bản Gốc -- Replace Original
+     </term>
+     <definition>
+      <paragraph>
+       If this option is enabled, the original mesh is replaced by the generated wireframe.
+If not, the wireframe is generated on top of it.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển của Nguyên Liệu -- Material Offset
+     </term>
+     <definition>
+      <paragraph>
+       Uses the chosen material index as the material for the wireframe;
+this is applied as an offset from the first material.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <warning>
+    <paragraph>
+     Wireframe thickness is an approximation. While
+     <emphasis>
+      Even Thickness
+     </emphasis>
+     should yield good results in many cases,
+skinny faces can cause ugly spikes. In this case you can either reduce the extreme angles in the geometry
+or disable the
+     <emphasis>
+      Even Thickness
+     </emphasis>
+     option.
+    </paragraph>
+   </warning>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/modeling_modifiers_generate_wireframe_result.jpg'}" uri="images/modeling_modifiers_generate_wireframe_result.jpg" width="420px"/>
+    <caption>
+     Wireframes on a displaced plane.
+    </caption>
+   </figure>
+   <paragraph>
+    In this example, the wireframes carry a second (dark) material while the displaced plane uses its original one.
+   </paragraph>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/modeling_modifiers_generate_wireframe_example-weights.png'}" uri="images/modeling_modifiers_generate_wireframe_example-weights.png" width="420px"/>
+    <caption>
+     Vertex Group weighting.
+    </caption>
+   </figure>
+   <paragraph>
+    The weights of the vertex group gradually change from 0 to 1.
+   </paragraph>
+   <figure ids="id4">
+    <image candidates="{'*': 'images/modeling_modifiers_generate_wireframe_example-crease.png'}" uri="images/modeling_modifiers_generate_wireframe_example-crease.png" width="420px"/>
+    <caption>
+     Wireframe and Subdivision Surface modifier.
+    </caption>
+   </figure>
+   <paragraph>
+    Cube with enabled
+    <emphasis>
+     Crease Edges
+    </emphasis>
+    option. The
+    <emphasis>
+     Crease Weight
+    </emphasis>
+    is set to 0, 0.5 and 1.
+   </paragraph>
+  </section>
+ </section>
+</document>

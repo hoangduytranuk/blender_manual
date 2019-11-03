@@ -1,0 +1,346 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/drivers/usage.rst">
+ <section ids="usage" names="usage">
+  <title>
+   Usage
+  </title>
+  <paragraph>
+   Drivers can be added to properties via their context menu, a shortcut, copy-pasted,
+or by typing an expression directly into the property's value.
+  </paragraph>
+  <paragraph>
+   After adding drivers, they are usually modified in the
+   <reference internal="True" refuri="../../editors/drivers_editor.html">
+    <inline classes="doc">
+     Drivers editor
+    </inline>
+   </reference>
+   ,
+or via a simplified
+   <emphasis>
+    Edit Driver
+   </emphasis>
+   popover invoked from the property context menu.
+  </paragraph>
+  <section ids="add-driver" names="add\ driver">
+   <title>
+    Add Driver
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Context menu --&gt; Add Driver`">
+         Context menu ‣ Add Driver
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-D
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The usual way to add a driver to a property is to
+    <literal classes="kbd">
+     RMB
+    </literal>
+    click a property,
+then choose
+    <emphasis>
+     Add Driver
+    </emphasis>
+    in the context menu.
+Drivers can also be added by pressing
+    <literal classes="kbd">
+     Ctrl-D
+    </literal>
+    with the mouse over the property.
+   </paragraph>
+   <paragraph>
+    This operation adds a driver with a single variable (which needs to be filled in),
+and displays the
+    <emphasis>
+     Edit Driver
+    </emphasis>
+    popover.
+   </paragraph>
+  </section>
+  <section ids="edit-driver" names="edit\ driver">
+   <title>
+    Edit Driver
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Context menu --&gt; Edit Driver`">
+         Context menu ‣ Edit Driver
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Displays a popover window that allows editing the custom expression and input variables
+of the driver without opening the full
+    <emphasis>
+     Drivers Editor
+    </emphasis>
+    .
+   </paragraph>
+   <paragraph>
+    Many drivers don't use their
+    <reference internal="True" refuri="../../editors/graph_editor/fcurves/introduction.html">
+     <inline classes="doc">
+      F-Curve
+     </inline>
+    </reference>
+    component, so this reduced interface is sufficient.
+   </paragraph>
+  </section>
+  <section ids="open-drivers-editor" names="open\ drivers\ editor">
+   <title>
+    Open Drivers Editor
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Context menu --&gt; Open Drivers Editor`">
+         Context menu ‣ Open Drivers Editor
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Opens a new window with the
+    <emphasis>
+     Drivers Editor
+    </emphasis>
+    and
+selects the driver associated with the property.
+   </paragraph>
+  </section>
+  <section ids="copy-paste" names="copy\ &amp;\ paste">
+   <title>
+    Copy &amp; Paste
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Context menu --&gt; Copy Driver`">
+         Context menu ‣ Copy Driver
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Context menu --&gt; Paste Driver`">
+         Context menu ‣ Paste Driver
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Drivers can be copied and pasted via the context menu.
+When adding drivers with the same settings, this can save time modifying settings.
+   </paragraph>
+   <target refid="drivers-copy-as-new">
+   </target>
+  </section>
+  <section ids="copy-as-new-driver drivers-copy-as-new" names="copy\ as\ new\ driver drivers-copy-as-new">
+   <title>
+    Copy As New Driver
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Context menu --&gt; Copy As New Driver`">
+         Context menu ‣ Copy As New Driver
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    A driver that sets the property value to the value of a different property can be
+quickly created by using the
+    <emphasis>
+     Copy As New Driver
+    </emphasis>
+    context menu option of the input
+property, and then pasting the result onto the output property via
+    <emphasis>
+     Paste Driver
+    </emphasis>
+    .
+   </paragraph>
+   <paragraph>
+    It is also possible to add the new driver variable to an existing driver using
+the
+    <reference internal="True" refuri="drivers_panel.html#drivers-variables">
+     <inline classes="std std-ref">
+      Paste Driver Variables
+     </inline>
+    </reference>
+    button in the editor panel.
+   </paragraph>
+  </section>
+  <section ids="expression" names="expression">
+   <title>
+    Expression
+   </title>
+   <paragraph>
+    This is a quick way to add drivers with a scripted expression.
+First click the property you want to add a driver to, then type a hash
+    <literal>
+     #
+    </literal>
+    and a scripted expression.
+   </paragraph>
+   <paragraph>
+    Some examples:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <literal>
+       #frame
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       #frame / 20.0
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       #sin(frame)
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       #cos(frame)
+      </literal>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="removing-drivers" names="removing\ drivers">
+   <title>
+    Removing Drivers
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Context menu --&gt; Delete Driver(s)`">
+         Context menu ‣ Delete Driver(s)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Context menu --&gt; Delete Single Driver`">
+         Context menu ‣ Delete Single Driver
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-Alt-D
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Removes driver(s) associated with the property, either for the single selected property
+or sub-channel, or all components of a vector.
+   </paragraph>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,104 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/build/windows.rst">
+ <section ids="building-on-windows" names="building\ on\ windows">
+  <title>
+   Building on Windows
+  </title>
+  <paragraph>
+   Chuyển đổi các tập tin RST thành các trang HTML đẹp. Có hai cách để thi hành quá trình xây dựng.
+  </paragraph>
+  <rubric>
+   Trình Duyệt Tập Tin -- File browser
+  </rubric>
+  <paragraph>
+   Thi hành bản
+   <literal>
+    make.bat
+   </literal>
+   trong thư mục
+   <literal>
+    C:\blender_docs
+   </literal>
+   .
+  </paragraph>
+  <tip>
+   <paragraph>
+    Tạo đường tắt trên mặt bàn làm việc màn hình tới công cụ
+    <literal>
+     make
+    </literal>
+    .
+   </paragraph>
+  </tip>
+  <rubric>
+   Cửa Sổ Bàn Giao Tiếp -- Command prompt
+  </rubric>
+  <enumerated_list enumtype="arabic" prefix="" suffix=".">
+   <list_item>
+    <paragraph>
+     Hoặc mở một cửa sổ bàn giao tiếp và chuyển sang kho lưu trữ bằng lệnh
+     <literal>
+      cd C:\blender_docs
+     </literal>
+     .
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Xây dựng bằng cách sử dụng lệnh sau:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     make
+    </literal_block>
+   </list_item>
+  </enumerated_list>
+  <paragraph>
+   Quá trình xây dựng có thể mất vài phút lần đầu tiên (hoặc sau bất kỳ thay đổi lớn nào), nhưng lần sau bạn xây dựng nó thì thường chỉ mất vài giây thôi.
+  </paragraph>
+  <note>
+   <paragraph>
+    Nếu bạn gặp dòng báo lỗi kết thúc với thông điệp
+    <literal>
+     TypeError: an integer is required (got type str) : Lỗi trong Kiểu Dữ Liệu : đòi hỏi một số nguyên (song lại nhận được kiểu chuỗi ký tự)
+    </literal>
+    , bạn có thể cần phải cài đặt một phiên bản cũ hơn của phần mềm
+    <emphasis>
+     Babel
+    </emphasis>
+    (Thư viện Quốc tế hóa của Python).
+   </paragraph>
+   <paragraph>
+    Để làm điều này, chỉ cần thi hành:
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    pip install sphinx "babel&lt;2.0"
+   </literal_block>
+  </note>
+  <section ids="viewing-the-local-manual" names="viewing\ the\ local\ manual duyệt\ thảo\ bản\ hướng\ dẫn\ sử\ dụng\ cục\ bộ\ --\ viewing\ the\ local\ manual">
+   <title>
+    Duyệt Thảo Bản Hướng Dẫn Sử Dụng Cục Bộ -- Viewing the Local Manual
+   </title>
+   <paragraph>
+    Một khi các bản tài liệu đã được xây dựng xong, bạn có thể tìm thấy toàn bộ các tập tin HTML trong thư mục
+    <literal>
+     C:\blender_docs\build\html
+    </literal>
+    . Hãy thử mở
+    <literal>
+     \build\html\index.html
+    </literal>
+    trong trình duyệt trang mạng của bạn và đọc bản hướng dẫn sử dụng:
+   </paragraph>
+   <transition>
+   </transition>
+   <paragraph>
+    Tiếp tục với bước tiếp theo:
+    <reference internal="True" refuri="../editing.html">
+     <inline classes="doc">
+      Biên Soạn
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </section>
+ </section>
+</document>

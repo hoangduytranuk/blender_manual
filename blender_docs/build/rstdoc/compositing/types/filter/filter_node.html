@@ -1,0 +1,241 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/filter/filter_node.rst">
+ <target refid="bpy-types-compositornodefilter">
+ </target>
+ <section ids="filter-node bpy-types-compositornodefilter" names="filter\ node nút\ bộ\ lọc\ --\ filter\ node bpy.types.compositornodefilter">
+  <title>
+   Nút Bộ Lọc -- Filter Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeFilter.png'}" uri="images/compositing_node-types_CompositorNodeFilter.png"/>
+   <caption>
+    Nút Bộ Lọc.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Bộ Lọc thực hành một số các bộ lọc thông dụng để làm nổi bật hình ảnh lên.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Điều chế lượng ảnh hưởng mà nút tác động đến hình ảnh xuất ra.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại -- Type
+     </term>
+     <definition>
+      <paragraph>
+       Thể loại Làm Mềm (Soften), Laplace, Sobel, Prewitt và Kirsch, tất cả, đều thực hành nhiệm vụ phát hiện cạnh (mỗi cái theo một phương pháp khác nhau một chút) dựa trên phép tính vectơ (vector calculus) và các phương trình lý thuyết tập hợp (set theory equations).
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Mềm Hóa -- Soften
+        </term>
+        <definition>
+         <paragraph>
+          Làm nhòe hình ảnh một chút.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Làm Sắc Nét -- Sharpen
+        </term>
+        <definition>
+         <paragraph>
+          Tăng cường độ tương phản, đặc biệt là ở các cạnh.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Laplace
+        </term>
+        <definition>
+         <paragraph>
+          Làm mềm chung quanh các cạnh.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Sobel
+        </term>
+        <definition>
+         <paragraph>
+          Tạo một âm bản của hình ảnh để làm nổi bật các cạnh lên.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Prewitt
+        </term>
+        <definition>
+         <paragraph>
+          Thử nghiệm tiến bộ hóa phương pháp Sobel.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Kirsch
+        </term>
+        <definition>
+         <paragraph>
+          Tiến bộ hơn phương pháp Sobel hoặc Prewitt trong việc hòa trộn, nhất là khi tiếp cận các cạnh.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Ngả Bóng Tối -- Shadow
+        </term>
+        <definition>
+         <paragraph>
+          Thi hành ảnh hưởng chạm nổi, làm tối đi các cạnh bên ngoài.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <table ids="nut-bo-loc-co-bay-7-che-do-duoc-hien-thi-o-day" names="nút\ bộ\ lọc\ có\ bảy\ (7)\ chế\ độ,\ được\ hiển\ thị\ ở\ đây.">
+    <title>
+     Nút Bộ Lọc có bảy (7) chế độ, được hiển thị ở đây.
+    </title>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/compositing_types_filter_filter-node_example-1-original.png'}" uri="images/compositing_types_filter_filter-node_example-1-original.png"/>
+         <caption>
+          Hình ảnh gốc.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/compositing_types_filter_filter-node_example-2-soften.png'}" uri="images/compositing_types_filter_filter-node_example-2-soften.png"/>
+         <caption>
+          Làm Mềm -- Soften.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/compositing_types_filter_filter-node_example-3-sharpen.png'}" uri="images/compositing_types_filter_filter-node_example-3-sharpen.png"/>
+         <caption>
+          Làm Sắc Nét -- Sharpen.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/compositing_types_filter_filter-node_example-4-laplace.png'}" uri="images/compositing_types_filter_filter-node_example-4-laplace.png"/>
+         <caption>
+          Laplace.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/compositing_types_filter_filter-node_example-5-sobel.png'}" uri="images/compositing_types_filter_filter-node_example-5-sobel.png"/>
+         <caption>
+          Sobel.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id7">
+         <image candidates="{'*': 'images/compositing_types_filter_filter-node_example-6-prewitt.png'}" uri="images/compositing_types_filter_filter-node_example-6-prewitt.png"/>
+         <caption>
+          Prewitt.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id8">
+         <image candidates="{'*': 'images/compositing_types_filter_filter-node_example-7-kirsch.png'}" uri="images/compositing_types_filter_filter-node_example-7-kirsch.png"/>
+         <caption>
+          Kirsch.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id9">
+         <image candidates="{'*': 'images/compositing_types_filter_filter-node_example-8-shadow.png'}" uri="images/compositing_types_filter_filter-node_example-8-shadow.png"/>
+         <caption>
+          Ngả Bóng -- Shadow.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

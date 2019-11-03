@@ -1,0 +1,643 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>-- Smoke Domain &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/smoke/types/domain.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="-- Smoke Flow Object" href="flow_object.html" />
+    <link rel="prev" title="-- Smoke Types" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">-- Particles System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">-- Smoke Simulation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">-- Smoke Types</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">-- Smoke Domain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flow_object.html">-- Smoke Flow Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collision.html">Va Đập -- Collision</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../material.html">-- Smoke Material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../baking.html">-- Baking Smoke Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="../index.html">-- Smoke Simulation</a> &raquo;</li>
+        
+          <li><a href="index.html">-- Smoke Types</a> &raquo;</li>
+        
+      <li>-- Smoke Domain</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/physics/smoke/types/domain.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="smoke-domain">
+<span id="bpy-types-smokedomainsettings"></span><h1>-- Smoke Domain<a class="headerlink" href="#smoke-domain" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Lý (Physics) ‣ Khói (Smoke)</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The domain object contains the entire simulation. Smoke and fire cannot leave the domain,
+it will either collide with the edge or disappear, depending on the domain's settings.</p>
+<p>Keep in mind that large domains require higher resolutions and longer bake times.
+You will want to make it just large enough that the simulation will fit inside it,
+but not so large that it takes too long to compute the simulation.</p>
+<p>To create a domain, add a cube <span class="menuselection">Cộng Thêm (Add) ‣ Khung Lưới (Mesh) ‣ Lập Thể (Cube)</span>, <kbd class="kbd docutils literal notranslate">Shift-A</kbd> and transform it until it encloses the area where you want smoke. Translation, rotation, and scaling are all allowed. To turn it into a smoke domain, click <em>Smoke</em> in <span class="menuselection">Tính Chất (Properties) ‣ Vật Lý (Physics)</span>, then select <em>Domain</em> as the <em>Smoke Type</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">You <em>can</em> use other shapes of mesh objects as domain objects,
+but the smoke simulator will use the shape's <a class="reference internal" href="../../../glossary/index.html#term-bounding-box"><span class="xref std std-term">bounding box</span></a>
+as the domain bounds. In other words, the actual shape of the domain will still be rectangular.</p>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Smoke ‣ Settings</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils" id="smoke-resolution">
+<dt>Độ Phân Giải -- Resolution</dt>
+<dd><p class="first">The smoke domain is subdivided into many &quot;cells&quot; called voxels (see <a class="reference internal" href="../../../glossary/index.html#term-voxel"><span class="xref std std-term">voxel</span></a>)
+which make up &quot;pixels&quot; of smoke. This setting controls the number of subdivisions in the domain.
+Higher numbers of subdivisions are one way of creating higher resolution smoke (see <a class="reference internal" href="#high-resolution">High Resolution</a>).</p>
+<p>Since the resolution is defined in terms of <em>subdivisions</em>,
+larger domains will need more divisions to get an equivalent resolution to a small domain.</p>
+<p class="last">Also see <a class="reference internal" href="#note-on-divisions-and-high-resolution">Note on Divisions and High Resolution</a>.</p>
+</dd>
+<dt>Tỷ Lệ Thời Gian -- Time Scale</dt>
+<dd>Controls the speed of the simulation. Low values result in a &quot;slow motion&quot; simulation,
+while higher values can be used to advance the simulation faster
+(useful for generating smoke for use in still renders).</dd>
+<dt>Ranh Giới Va Đập -- Border Collisions</dt>
+<dd><p class="first">Controls which sides of the domain will allow smoke &quot;through&quot; the domain,
+making it disappear without influencing the rest of the simulation,
+and which sides will deflect smoke as if colliding with
+a <a class="reference internal" href="collision.html"><span class="doc">Collision Object</span></a>.</p>
+<dl class="last docutils">
+<dt>Chiều Dựng Đứng Mở -- Vertically Open</dt>
+<dd>Smoke disappears when it hits the top or bottom of the domain, but collides with the walls.</dd>
+<dt>Mở -- Open</dt>
+<dd>Smoke disappears when it hits any side of the domain.</dd>
+<dt>Va Đập vào Tất Cả -- Collide All</dt>
+<dd>Smoke collides with all sides of the domain.</dd>
+</dl>
+</dd>
+<dt>Empty space</dt>
+<dd>Value under which voxels are considered to be empty.</dd>
+</dl>
+</div>
+<div class="section" id="behavior">
+<h2>Behavior<a class="headerlink" href="#behavior" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Smoke ‣ Behavior</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Tỷ Trọng -- Density</dt>
+<dd><p class="first">Controls how much smoke is affected by density.</p>
+<ul class="last simple">
+<li>Values above 0 will cause the smoke to rise (simulating smoke which is lighter than ambient air).</li>
+<li>Values below 0 will cause smoke to sink (simulating smoke which is heavier than ambient air).</li>
+</ul>
+</dd>
+</dl>
+<dl class="docutils" id="smoke-domain-temp-diff">
+<dt>-- Temperature Difference</dt>
+<dd><p class="first">The <em>Temperature Difference</em> setting controls how much smoke is affected by temperature.</p>
+<p>The effect this setting has on smoke depends on
+the per flow object <a class="reference internal" href="flow_object.html#smoke-flow-temp-diff"><span class="std std-ref">Temperature Difference</span></a>:</p>
+<ul class="simple">
+<li>Values above 0 will result in the smoke rising when the flow object <em>Temperature Difference</em> is
+set to a positive value, and smoke sinking when the flow object <em>Temperature Difference</em> is
+set to a negative value.</li>
+<li>Values below 0 will result in the opposite of positive values, i.e.
+smoke emitted from flow objects with a positive <em>Temperature Difference</em> will sink,
+and smoke from flow objects with a negative <em>Temperature Difference</em> will rise.</li>
+</ul>
+<p class="last">Note that smoke from multiple flow objects with different temperatures
+will mix and warm up/cool down until an equilibrium is reached.</p>
+</dd>
+<dt>Độ Xoáy -- Vorticity</dt>
+<dd><p class="first">Controls the amount of turbulence in the smoke. Higher values will make lots of small swirls,
+while lower values make smoother shapes.</p>
+<div class="last figure" id="id1">
+<a class="reference internal image-reference" href="../../../_images/physics_smoke_types_domain_vorticity.jpg"><img alt="../../../_images/physics_smoke_types_domain_vorticity.jpg" src="../../../_images/physics_smoke_types_domain_vorticity.jpg" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Comparison of different amounts of vorticity. The domain on the left has a vorticity of 3,
+while the domain on the right has a vorticity of 0.01.</span></p>
+</div>
+</dd>
+<dt>Tan Biến -- Dissolve</dt>
+<dd>Allow smoke to dissipate over time.</dd>
+<dt>Thời Gian -- Time</dt>
+<dd>Speed of smoke's dissipation in frames.</dd>
+<dt>Chậm -- Slow</dt>
+<dd>Dissolve smoke in a logarithmic fashion. Dissolves quickly at first, but lingers longer.</dd>
+</dl>
+</div>
+<div class="section" id="smoke-flames">
+<h2>Khói Lửa -- Smoke Flames<a class="headerlink" href="#smoke-flames" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Smoke ‣ Flames</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Reaction Speed</dt>
+<dd>How fast fuel burns. Larger values result in smaller flames (fuel burns before it can go very far),
+smaller values result in larger flames (fuel has time to flow farther before being fully consumed).</dd>
+<dt>Khói -- Smoke</dt>
+<dd>Amount of extra smoke created automatically to simulate burnt fuel.</dd>
+<dt>Độ Xoáy -- Vorticity</dt>
+<dd>Additional vorticity for flames.</dd>
+<dt>Temperature Ignition</dt>
+<dd>Minimum temperature of flames.</dd>
+<dt>Tối Đa -- Maximum</dt>
+<dd>Maximum temperature of flames.</dd>
+<dt>Màu Khói -- Smoke Color</dt>
+<dd>Color of smoke created by burnt fuel.</dd>
+</dl>
+</div>
+<div class="section" id="adaptive-domain">
+<h2>Adaptive Domain<a class="headerlink" href="#adaptive-domain" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Smoke ‣ Adaptive Domain</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When enabled, the domain will adaptively shrink to best fit the smoke,
+saving computation time by leaving voxels without smoke out of the simulation.
+Unless the <em>Additional</em> option is used, the adaptive domain will not exceed the bounds of the original domain.</p>
+<dl class="docutils">
+<dt>Gia Lượng -- Additional</dt>
+<dd>Number of voxels to add around the outside of the domain.</dd>
+<dt>Lề -- Margin</dt>
+<dd>Amount of extra space to leave around smoke, measured in voxels.
+With very fast-moving smoke larger margins may be required to prevent the smoke from being cut off
+by the adaptive boundary, but note this will increase the number of voxels which need to be computed.</dd>
+<dt>Giới Hạn -- Threshold</dt>
+<dd>Smallest amount of smoke a voxel can contain before it is considered empty
+and the adaptive domain is allowed to cut it out of the simulation.</dd>
+</dl>
+</div>
+<div class="section" id="high-resolution">
+<span id="smoke-high-resolution"></span><h2>High Resolution<a class="headerlink" href="#high-resolution" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Smoke ‣ High Resolution</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The High Resolution option lets you simulate at a low resolution and then it uses noise techniques
+to enhance the resolution without actually computing it. This allows animators to set up a low
+resolution simulation quickly and later add details without changing the overall fluid motion.
+Also see <a class="reference internal" href="#note-on-divisions-and-high-resolution">Note on Divisions and High Resolution</a>.</p>
+<dl class="docutils">
+<dt>Resolution Divisions</dt>
+<dd>Factor by which to enhance the resolution of smoke using the specified noise method.</dd>
+<dt>Flow Sampling</dt>
+<dd>Method for sampling the high resolution flow.</dd>
+<dt>Phương Pháp Sinh Nhiễu -- Noise Method</dt>
+<dd><p class="first">The two options, <em>Wavelet</em> and <em>FFT</em>, are very similar.</p>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../../../_images/physics_smoke_types_domain_high-resolution-method.jpg"><img alt="../../../_images/physics_smoke_types_domain_high-resolution-method.jpg" src="../../../_images/physics_smoke_types_domain_high-resolution-method.jpg" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Comparison of noise methods. <em>Wavelet</em> on the left, <em>FFT</em> on the right.</span></p>
+</div>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last"><em>Wavelet</em> is an implementation of <a class="reference external" href="https://web.archive.org/web/20140911163550/https://graphics.ethz.ch/research/physics_animation_fabrication/simulation/turb.php">Turbulence for Fluid Simulation</a>.</p>
+</div>
+</dd>
+<dt>Sức Mạnh/Cường Độ -- Strength</dt>
+<dd><p class="first">Strength of noise.</p>
+<div class="last figure" id="id3">
+<a class="reference internal image-reference" href="../../../_images/physics_smoke_types_domain_high-resolution-strength.jpg"><img alt="../../../_images/physics_smoke_types_domain_high-resolution-strength.jpg" src="../../../_images/physics_smoke_types_domain_high-resolution-strength.jpg" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">From left to right, the domains' high resolution strengths are set to 0, 2, and 6.</span></p>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">The visibility of high resolution smoke in the viewport can be toggled in the render
+<a class="reference internal" href="../../../render/cycles/render_settings/simplify.html#render-cycles-simplify-viewport"><span class="std std-ref">Simplify options</span></a>.</p>
+</div>
+<div class="section" id="note-on-divisions-and-high-resolution">
+<h3>-- Note on Divisions and High Resolution<a class="headerlink" href="#note-on-divisions-and-high-resolution" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#smoke-high-resolution"><span class="std std-ref">High Resolution Divisions</span></a>
+and <a class="reference internal" href="#smoke-resolution"><span class="std std-ref">Domain Subdivisions</span></a> are not equivalent.
+By using different combinations of these resolution settings, you can obtain a variety of different styles of smoke.</p>
+<div class="figure align-center" id="id4">
+<img alt="../../../_images/physics_smoke_types_domain_high-resolution-comparison.jpg" src="../../../_images/physics_smoke_types_domain_high-resolution-comparison.jpg" />
+<p class="caption"><span class="caption-text">Comparison between a domain with 24 divisions and 4 <em>High Resolution</em> divisions (left),
+and a domain with 100 divisions and 1 <em>High Resolution</em> division (right).</span></p>
+</div>
+<p>Low division simulations with lots of <em>High Resolution</em>
+divisions generally appear smaller in real-world scale
+(larger flames, etc.) and can be used to achieve pyroclastic plumes such as this:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../../_images/physics_smoke_types_domain_note-on-resolution.jpg"><img alt="../../../_images/physics_smoke_types_domain_note-on-resolution.jpg" src="../../../_images/physics_smoke_types_domain_note-on-resolution.jpg" style="width: 550px;" /></a>
+</div>
+<p>High <em>Domain Division</em> simulations tend to appear larger in real-world scale, with many smaller details.</p>
+</div>
+</div>
+<div class="section" id="collections">
+<h2>Collections<a class="headerlink" href="#collections" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ Physics ‣ Collections</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Flow</dt>
+<dd>If set, only objects in the specified <a class="reference internal" href="../../../scene_layout/collections/collections.html"><span class="doc">Collection</span></a>
+will be allowed to act as flow objects in this domain.</dd>
+<dt>Collision</dt>
+<dd>If set, only objects in the specified <a class="reference internal" href="../../../scene_layout/collections/collections.html"><span class="doc">Collection</span></a>
+will be allowed to act as collision objects in this domain.</dd>
+</dl>
+</div>
+<div class="section" id="smoke-cache">
+<h2>Bộ Nhớ Đệm Khói -- Smoke Cache<a class="headerlink" href="#smoke-cache" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Smoke ‣ Cache</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>See <a class="reference internal" href="../baking.html"><span class="doc">Baking</span></a>.</p>
+</div>
+<div class="section" id="field-weights">
+<span id="smoke-field-weights"></span><h2>Field Weights<a class="headerlink" href="#field-weights" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ Physics ‣ Field Weights</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These settings determine how much gravity and
+<a class="reference internal" href="../../forces/force_fields/index.html"><span class="doc">Force Fields</span></a> affect the smoke.</p>
+<dl class="docutils">
+<dt>Effector Collection</dt>
+<dd>When set, smoke can only be influenced by force fields in the specified collection.</dd>
+<dt>Trọng Lực -- Gravity</dt>
+<dd>How much the smoke is affected by Gravity.</dd>
+<dt>Toàn Bộ -- All</dt>
+<dd>Overall influence of all force fields.</dd>
+</dl>
+<p>The other settings determine how much influence individual force field types have.</p>
+<div class="figure" id="id5">
+<a class="reference internal image-reference" href="../../../_images/physics_smoke_types_domain_force-field-demo.jpg"><img alt="../../../_images/physics_smoke_types_domain_force-field-demo.jpg" src="../../../_images/physics_smoke_types_domain_force-field-demo.jpg" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Smoke with a wind force field.</span></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flow_object.html" class="btn btn-neutral float-right" title="-- Smoke Flow Object" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="-- Smoke Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

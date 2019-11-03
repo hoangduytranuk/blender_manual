@@ -1,0 +1,200 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/advanced/operators.rst">
+ <section ids="operators" names="operators thao\ tác/toán\ tử\ --\ operators">
+  <title>
+   Thao Tác/Toán Tử -- Operators
+  </title>
+  <target refid="bpy-ops-wm-debug-menu">
+  </target>
+  <section ids="debug-menu bpy-ops-wm-debug-menu" names="debug\ menu trình\ đơn\ hiệu\ chỉnh\ lỗi\ --\ debug\ menu bpy.ops.wm.debug_menu">
+   <title>
+    Trình Đơn Hiệu Chỉnh Lỗi -- Debug Menu
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-Alt-D
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This operator brings up a menu to set Blender into a certain debug mode.
+   </paragraph>
+   <paragraph>
+    See the
+    <reference name="source code" refuri="https://developer.blender.org/diffusion/B/browse/master/source/blender/blenkernel/BKE_global.h">
+     source code
+    </reference>
+    for a description of what each value does.
+   </paragraph>
+   <tip>
+    <paragraph>
+     Developers can search the code for
+     <literal>
+      G.debug_value
+     </literal>
+     to find other possible uses for this operator.
+    </paragraph>
+   </tip>
+   <note>
+    <paragraph>
+     Additional debug options are available by launching Blender in debug mode or setting
+     <literal>
+      bpy.app.debug = True
+     </literal>
+     .
+    </paragraph>
+   </note>
+   <target refid="bpy-ops-wm-redraw-timer">
+   </target>
+  </section>
+  <section ids="redraw-timer bpy-ops-wm-redraw-timer" names="redraw\ timer vẽ\ lại\ đồng\ hồ\ --\ redraw\ timer bpy.ops.wm.redraw_timer">
+   <title>
+    Vẽ Lại Đồng Hồ -- Redraw Timer
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-Alt-T
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This operator brings up a menu with a list of tests to benchmark UI render times along with undo/redo functions.
+   </paragraph>
+   <target refid="bpy-ops-wm-memory-statistics">
+   </target>
+  </section>
+  <section ids="memory-statistics bpy-ops-wm-memory-statistics" names="memory\ statistics thống\ kê\ về\ bộ\ nhớ\ --\ memory\ statistics bpy.ops.wm.memory_statistics">
+   <title>
+    Thống Kê về Bộ Nhớ -- Memory Statistics
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal>
+         --debug-memory
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This operator which can be found by searching "Memory Statistics" from
+the
+    <reference internal="True" refuri="../interface/controls/templates/operator_search.html">
+     <inline classes="doc">
+      Operator Search
+     </inline>
+    </reference>
+    will print useful information about memory objects, their size and user count.
+   </paragraph>
+   <important>
+    <paragraph>
+     To fully use this operator run Blender from the console with
+     <literal>
+      --debug-memory
+     </literal>
+     .
+    </paragraph>
+   </important>
+   <target refid="bpy-ops-wm-dependency-relations">
+   </target>
+  </section>
+  <section ids="dependency-relations bpy-ops-wm-dependency-relations" names="dependency\ relations quan\ hệ\ phụ\ thuộc\ --\ dependency\ relations bpy.ops.wm.dependency_relations">
+   <title>
+    Quan Hệ Phụ Thuộc -- Dependency Relations
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal>
+         --debug-depsgraph
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This operator which can be found by searching "Dependency Relations" from
+the
+    <reference internal="True" refuri="../interface/controls/templates/operator_search.html">
+     <inline classes="doc">
+      Operator Search
+     </inline>
+    </reference>
+    will print the relations for every scene and object in the blend-file.
+   </paragraph>
+   <important>
+    <paragraph>
+     This operator will only work if Blender is started from the console with
+     <literal>
+      --debug-depsgraph
+     </literal>
+     .
+    </paragraph>
+   </important>
+  </section>
+ </section>
+</document>

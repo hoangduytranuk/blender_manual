@@ -1,0 +1,603 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quy Trình Làm Việc &amp; Các Ví Dụ -- Workflow &amp; Examples &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/drivers/workflow_examples.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Xử Lý Sự Cố -- Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="Bảng các Bộ Điều Vận -- Drivers Panel" href="drivers_panel.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Animation &amp; Rigging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keyframes/index.html">Khung Khóa -- Keyframes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../armatures/index.html">Cốt -- Armatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lattice.html">Giàn Lưới -- Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints/index.html">Ràng Buộc -- Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../actions.html">Hành Động -- Actions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Bộ Điều Vận -- Drivers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drivers_panel.html">Bảng các Bộ Điều Vận -- Drivers Panel</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Quy Trình Làm Việc &amp; Các Ví Dụ -- Workflow &amp; Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transform-driver">Bộ Điều Vận Biến Hóa -- Transform Driver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scripted-expression-orbit-a-point">Scripted Expression - Orbit a Point</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-function-square-value">Custom Function - Square Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shape-key-drivers">Shape Key Drivers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="troubleshooting.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../markers.html">Dấu Mốc -- Markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shape_keys/index.html">Hình Mẫu -- Shape Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion_paths.html">Đường Chuyển Động -- Motion Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Animation &amp; Rigging</a> &raquo;</li>
+        
+          <li><a href="index.html">Bộ Điều Vận -- Drivers</a> &raquo;</li>
+        
+      <li>Quy Trình Làm Việc &amp; Các Ví Dụ -- Workflow &amp; Examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/animation/drivers/workflow_examples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="workflow-examples">
+<h1>Quy Trình Làm Việc &amp; Các Ví Dụ -- Workflow &amp; Examples<a class="headerlink" href="#workflow-examples" title="Permalink to this headline">¶</a></h1>
+<p>Simple Drivers can be configured from the pop-over that appears when adding a new Driver.</p>
+<p>When adding multiple Drivers or for more advanced configurations,
+it is useful to have open the <a class="reference internal" href="../../editors/drivers_editor.html"><span class="doc">Drivers Editor</span></a>.</p>
+<div class="section" id="transform-driver">
+<h2>Bộ Điều Vận Biến Hóa -- Transform Driver<a class="headerlink" href="#transform-driver" title="Permalink to this headline">¶</a></h2>
+<p>Control a property with an object's transform.
+In this example, the Y rotation of Object 2 will be driven by the X position of Object 1.</p>
+<p>Starting from a simple setup with two objects:</p>
+<ol class="arabic">
+<li><p class="first">Add a Driver to the <em>Rotation Y</em> property of the second object via the context menu or with <kbd class="kbd docutils literal notranslate">Ctrl-D</kbd>.</p>
+<div class="figure">
+<img alt="../../_images/animation_drivers_workflow-examples_transform-driver-1.png" src="../../_images/animation_drivers_workflow-examples_transform-driver-1.png" />
+</div>
+</li>
+<li><p class="first">Open the <em>Drivers Editor</em> and select the <em>Y Euler Rotation</em> property in the channels region.</p>
+</li>
+<li><p class="first">Open the Sidebar region and select the <em>Drivers</em> tab.</p>
+</li>
+<li><p class="first">Configure the driver to be the <em>Averaged Value</em> of a <em>Transform Channel</em> of the first object.</p>
+<div class="figure">
+<img alt="../../_images/animation_drivers_workflow-examples_transform-driver-2.png" src="../../_images/animation_drivers_workflow-examples_transform-driver-2.png" />
+</div>
+</li>
+<li><p class="first">Experiment with moving the first object and notice how it affects the Y rotation of the second object.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="scripted-expression-orbit-a-point">
+<h2>Scripted Expression - Orbit a Point<a class="headerlink" href="#scripted-expression-orbit-a-point" title="Permalink to this headline">¶</a></h2>
+<p>Orbit an object's position around a point with a custom <em>Scripted Expression</em>.
+The object's position will change when scrubbing the timeline.</p>
+<p>Using trigonometry, circular motion can be defined in 2D using the sinus and cosine functions.
+(See <a class="reference external" href="https://en.wikipedia.org/wiki/Unit_circle">Unit Circle</a>.)</p>
+<p>In this example, the current frame is used as the variable that induces the motion.
+<code class="docutils literal notranslate"><span class="pre">frame</span></code> is a <a class="reference internal" href="drivers_panel.html#drivers-simple-expressions"><span class="std std-ref">Simple Expression</span></a> that corresponds to
+<code class="docutils literal notranslate"><span class="pre">bpy.context.scene.frame_current</span></code>.</p>
+<div class="figure">
+<img alt="../../_images/animation_drivers_workflow-examples_object-rotation.png" src="../../_images/animation_drivers_workflow-examples_object-rotation.png" />
+</div>
+<ol class="arabic simple">
+<li>Add a driver to the X Location property.<ol class="arabic">
+<li>Set the <em>Driver Type</em> to <em>Scripted Expression</em>.</li>
+<li>Add the expression <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">+</span> <span class="pre">(sin(frame</span> <span class="pre">/</span> <span class="pre">8)</span> <span class="pre">*</span> <span class="pre">4)</span></code>, where:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">frame/8</span></code> : is the current frame of the animation, divided by 8 to slow the orbit down.</li>
+<li><code class="docutils literal notranslate"><span class="pre">(sin(</span> <span class="pre">)*4)</span></code> : multiplies the result of <code class="docutils literal notranslate"><span class="pre">sin(frame/8)</span></code> by 4 for a bigger circle.</li>
+<li><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">+</span></code> : is used to control the offset to the orbit center point.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Add a driver to the Y Location property with the expression <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">+</span> <span class="pre">(cos(frame</span> <span class="pre">/</span> <span class="pre">8)</span> <span class="pre">*</span> <span class="pre">4)</span></code>.</li>
+<li>Scrub the timeline to see the effect.
+Experiment with the variables to control the size and center of the orbit.</li>
+</ol>
+</div>
+<div class="section" id="custom-function-square-value">
+<span id="driver-namespace"></span><h2>Custom Function - Square Value<a class="headerlink" href="#custom-function-square-value" title="Permalink to this headline">¶</a></h2>
+<p>Create a custom function to get the square of a value (i.e. <em>value</em><sup>2</sup>).
+Adding the function to the <em>Driver Namespace</em> allows it to be used from driver expressions.</p>
+<p>The <em>Driver Namespace</em> has a list of built-in functions for use in driver expressions,
+as well as constants such as π and e.
+These can be inspected via the Python Console:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">driver_namespace</span><span class="p">[</span><span class="s1">&#39; &lt;tab&gt;</span>
+<span class="go">                              acos&#39;]</span>
+<span class="go">                              acosh&#39;]</span>
+<span class="go">                              asin&#39;]</span>
+<span class="go">                              asinh&#39;]</span>
+<span class="go">                              atan&#39;]</span>
+<span class="go">                              ...</span>
+</pre></div>
+</div>
+<p>To add a new function to the <em>Driver Namespace</em>, the function itself needs to be implemented
+and then added to the <code class="docutils literal notranslate"><span class="pre">bpy.app.driver_namespace</span></code>.</p>
+<ol class="arabic">
+<li><p class="first">Add the following to the Text Editor inside Blender and press <em>Run Script</em>.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bpy</span>
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+   <span class="sd">&quot;&quot;&quot;Returns the square of the given value&quot;&quot;&quot;</span>
+   <span class="k">return</span> <span class="n">val</span> <span class="o">*</span> <span class="n">val</span>
+
+<span class="c1"># Add function to driver_namespace.</span>
+<span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">driver_namespace</span><span class="p">[</span><span class="s1">&#39;square&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">square</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add a driver with a <em>Scripted Expression</em> such as <code class="docutils literal notranslate"><span class="pre">square(frame)</span></code>.</p>
+</li>
+<li><p class="first">Observe the effect when scrubbing the timeline.</p>
+</li>
+</ol>
+<p>There are more custom function examples available in Blender's Text Editor
+<span class="menuselection">Templates ‣ Python ‣ Driver Functions</span>.</p>
+<p>Since <a class="reference internal" href="drivers_panel.html#drivers-simple-expressions"><span class="std std-ref">Simple Expressions</span></a> cannot access
+custom functions, using them only makes sense for complex computations.</p>
+</div>
+<div class="section" id="shape-key-drivers">
+<span id="shapekey-driver-example"></span><h2>Shape Key Drivers<a class="headerlink" href="#shape-key-drivers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="improved-mesh-deformation">
+<h3>Improved Mesh Deformation<a class="headerlink" href="#improved-mesh-deformation" title="Permalink to this headline">¶</a></h3>
+<p>Fix intersection problems that happen when using armatures and weight painting, especially at joints.
+Shape keys can also be used to tweak and refine a rig, for example to suggest muscle formations.
+In this example, a shape key is used to improve the deformation at the elbow of a rudimentary arm.</p>
+<div class="figure" id="id1">
+<img alt="../../_images/animation_drivers_workflow-examples_shape-key_improved_deformation.png" src="../../_images/animation_drivers_workflow-examples_shape-key_improved_deformation.png" />
+<p class="caption"><span class="caption-text">Left: Skeletal mesh deformation without correction.
+Right: Corrective shape key applied</span></p>
+</div>
+<dl class="docutils">
+<dt>Setup</dt>
+<dd><ol class="first arabic simple">
+<li>Add a mesh (in this example, a cylinder with loop cuts).</li>
+<li>Add an armature with a chain of bones.</li>
+<li>Skin the mesh to the armature using weight painting.</li>
+</ol>
+<p class="last">(Note: to parent the mesh to the armature: select the mesh first,
+then the armature and use <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> to parent with auto weights.)</p>
+</dd>
+</dl>
+<p>Experiment with posing the armature and observe the deformation at the joint.
+To fix intersection problems or angles that look unsatisfactory,
+you can associate a <a class="reference internal" href="../shape_keys/index.html"><span class="doc">Shape Key</span></a> with a pose.</p>
+<dl class="docutils">
+<dt>Shape Key</dt>
+<dd><ol class="first last arabic simple">
+<li>Pose the armature such that the problems are visible.
+Be sure to cover the extreme poses that you want to support for the rig.</li>
+<li>With the mesh selected, add a new <em>Shape Key</em> in addition to the <em>Basis</em> key.
+<span class="menuselection">Properties ‣ Mesh tab ‣ Shape Keys</span></li>
+<li>In order to author the shape key on top of the armature deformation,
+enable both <em>Edit Mode Display</em> and <em>Cage Editing</em> in the armature modifier.
+<span class="menuselection">Properties ‣ Modifiers tab ‣ Armature Modifier ‣ Header</span></li>
+<li>Enter Edit Mode and select the new shape key in the properties panel.
+Adjust the vertices as desired.
+Select the <em>Basis</em> key to toggle between the original mesh and your edits.
+(Note: be careful to apply edits only to your shape and not to
+the original mesh or other existing keys.)</li>
+</ol>
+</dd>
+</dl>
+<p>Once you are satisfied with how the deformation looks for the problematic pose,
+you'll need to configure a driver to activate the shape smoothly when entering that position.</p>
+<dl class="docutils">
+<dt>Driver</dt>
+<dd><ol class="first arabic simple">
+<li>Add a driver to the <em>Value</em> of the shape key you've created.</li>
+<li>Open the Drivers Editor and select the driver.</li>
+</ol>
+<dl class="last docutils">
+<dt>Method 1 -- Direct mapping to a bone rotation value</dt>
+<dd><p class="first">A simple way to configure the driver is with a direct correspondence of
+the value of a bone's rotation channel to the shape key activation <em>Value</em>.
+This method has the disadvantage of relying on a single channel of a bone's
+rotation which might be insufficient to precisely express the condition
+under which the shape key should be activated.</p>
+<ol class="last arabic">
+<li><p class="first">In the Drivers tab, select the <em>Averaged Value</em> of the rotation of
+the bone you're posing.</p>
+<p>Understand the rotation axis that you're interested in by enabling axes display
+in the armature or by observing the bone's transform values in the Properties.</p>
+<p>Select the rotation channel and set it to local, meaning, the bone's
+rotation value relative to its parent bone.</p>
+<div class="figure">
+<img alt="../../_images/animation_drivers_workflow-examples_shape-key_method1.png" src="../../_images/animation_drivers_workflow-examples_shape-key_method1.png" />
+</div>
+</li>
+<li><p class="first">Manually set points in the driver curve by selecting a handle and
+dragging it or inserting values in the <em>F-Curve</em> tab.
+The Y axis represents the shape key <em>Value</em>, which should go from 0.0 to 1.0.
+The X axis is usually the frame, but for this driver it represents the rotation value in radians.
+You can have more than two points in the curve and tweak the transitions
+with the handles in the curve view (<kbd class="kbd docutils literal notranslate">G</kbd> to move).</p>
+</li>
+<li><p class="first">To verify that the driver behaves correctly, deselect the option to
+only show drivers for selected objects. This way, you can pose the armature
+and keep an eye on the driver.</p>
+</li>
+</ol>
+</dd>
+<dt>Method 2 -- Rotational difference to a target bone</dt>
+<dd><p class="first">This method requires an additional <em>target</em> or <em>corrective</em> bone, but it
+better expresses the spatial condition in 3D space of the bone that is
+causing the problem.</p>
+<ol class="last arabic">
+<li><p class="first">In armature Edit Mode, add a new bone extruded from Bone 1,
+in the position at which Bone 2 should have the shape key active.
+This type of bones usually follow a naming convention such as
+&quot;TAR-&quot; (target) or &quot;COR-&quot; (corrective).</p>
+</li>
+<li><p class="first">In the Drivers tab, select the <em>Averaged Value</em> of the rotational difference
+between the bone you're rotating and the target bone.
+A rotational difference is the minimum angle between two objects in World Space.
+It is therefore important that the bones have the same root,
+so that the only thing affecting the angle between the bones is the rotation of one of them.
+When the deformation bone (Bone 2) reaches the target rotation (TAR-Bone 2)
+the rotational difference will be 0°.</p>
+<div class="figure">
+<img alt="../../_images/animation_drivers_workflow-examples_shape-key_method2.png" src="../../_images/animation_drivers_workflow-examples_shape-key_method2.png" />
+</div>
+</li>
+<li><p class="first">Manually adjust the driver curve handles so that the shape key <em>Value</em>
+(Y axis) is 1.0 when the rotational difference (X axis) is 0°.
+The <em>Value</em> should be 0.0 when the arm is extended, at which point
+the rotational difference should be around 90° or more (in radians).</p>
+</li>
+<li><p class="first">See the steps in Method 1 on how to adjust the curve handles and
+confirm that the functionality is working. Pose the armature to
+verify that the ranges are correct.</p>
+</li>
+</ol>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="chained-relative-shape-keys">
+<h3>Chained Relative Shape Keys<a class="headerlink" href="#chained-relative-shape-keys" title="Permalink to this headline">¶</a></h3>
+<p>Activate different shape keys in succession.
+In this example, moving a single bone will activate first <em>Key 1</em> and then <em>Key 2</em>.
+See also <a class="reference internal" href="../shape_keys/introduction.html#animation-shapekeys-relative-vs-absolute"><span class="std std-ref">relative shape keys mix additively</span></a>.</p>
+<dl class="docutils">
+<dt>Shape Keys</dt>
+<dd>Add two shape keys to a mesh, besides the <em>Basis</em>.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id2">
+<a class="reference internal image-reference" href="../../_images/animation_drivers_workflow-examples_chained-shape-keys_basis.png"><img alt="../../_images/animation_drivers_workflow-examples_chained-shape-keys_basis.png" src="../../_images/animation_drivers_workflow-examples_chained-shape-keys_basis.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Basis</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id3">
+<a class="reference internal image-reference" href="../../_images/animation_drivers_workflow-examples_chained-shape-keys_key1.png"><img alt="../../_images/animation_drivers_workflow-examples_chained-shape-keys_key1.png" src="../../_images/animation_drivers_workflow-examples_chained-shape-keys_key1.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Key 1: top faces moved up by 1m</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id4">
+<a class="reference internal image-reference" href="../../_images/animation_drivers_workflow-examples_chained-shape-keys_key2.png"><img alt="../../_images/animation_drivers_workflow-examples_chained-shape-keys_key2.png" src="../../_images/animation_drivers_workflow-examples_chained-shape-keys_key2.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Key 2: inner top moved up by 1m</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Drivers</dt>
+<dd><p class="first">Add an armature with a single bone to control the shape keys.
+The goal is to activate the keys in succession as this bone moves up.</p>
+<div class="figure">
+<img alt="../../_images/animation_drivers_workflow-examples_chained-shape-keys_result.png" src="../../_images/animation_drivers_workflow-examples_chained-shape-keys_result.png" />
+</div>
+<p>As shown in the picture above, when the bone is halfway up, both <em>Key 1</em> and <em>Key 2</em> have an influence.
+It is a matter of preference if <em>Key 1</em> should be at its maximum <em>Value</em> before <em>Key 2</em> starts to become active,
+or how much they should overlap. This example shows a seamless blend.</p>
+<p>For a seamless blend where there is overlap, <em>Key 1</em> should have a <em>Value</em> of 0.0 when the bone
+is at the bottom and increase linearly to 1.0 until the bone is past the midpoint height.
+<em>Key 2</em> should have a value of 0.0 before the midpoint height and then increase at the same
+rate than <em>Key 1</em> until reaching <em>Value</em> 1.0 when the bone is at maximum height.</p>
+<ol class="last arabic">
+<li><p class="first">Add a driver to the <em>Value</em> of <em>Key 1</em> and <em>Key 2</em>.
+In the <em>Drivers</em> tab, configure both drivers to be the <em>Averaged Value</em> of
+a variable with the bone's Z location.</p>
+</li>
+<li><p class="first">Determine the range of the bone's motion in the World Z axis by moving it up so that it is
+aligned with the top of the mesh when both keys are active. Here we will use [0.0 , 2.5].</p>
+</li>
+<li><p class="first">Configure the driver functions so that the <em>Value</em> of the shape keys (Y axis) is as
+desired for the bone's height (X axis).</p>
+<p>The driver functions should be linear, therefore, they can be defined analytically
+with a function of type <span class="math notranslate nohighlight">\(y = a + bx\)</span>,
+where <span class="math notranslate nohighlight">\(a\)</span> is an offset in <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(b\)</span> is the slope.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">In the <em>Modifiers</em> tab, add a <em>Generator</em> of type <em>Extended Polynomial</em> for both drivers.</p>
+</li>
+<li><p class="first">Play with the values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> so that the curves go from [0.0 , 1.0]
+in the Y axis and from [0.0 , 2.5] in the X axis.
+The curves should overlap in the mid area of the X axis and they should have the same slope (<span class="math notranslate nohighlight">\(b\)</span>).</p>
+<p>Possible values are <em>Key 1</em>: <span class="math notranslate nohighlight">\(y = 0.0 + 0.6x\)</span> and <em>Key 2</em>: <span class="math notranslate nohighlight">\(y = -0.5 + 0.6x\)</span>.</p>
+<div class="figure">
+<img alt="../../_images/animation_drivers_workflow-examples_chained-shape-keys_driver-setup.png" src="../../_images/animation_drivers_workflow-examples_chained-shape-keys_driver-setup.png" />
+</div>
+<p>Note that the functions go outside the range [0.0 , 1.0] for the shape keys' <em>Value</em>,
+but that has no effect because <em>Value</em> is clamped in a <em>Range</em> in the <em>Shape Keys</em> panel.</p>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Xử Lý Sự Cố -- Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="drivers_panel.html" class="btn btn-neutral float-left" title="Bảng các Bộ Điều Vận -- Drivers Panel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

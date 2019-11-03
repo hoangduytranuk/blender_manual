@@ -1,0 +1,227 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/uv/generated_uvs.rst">
+ <section ids="generated-uvs" names="generated\ uvs uv\ sinh\ tạo\ --\ generated\ uvs">
+  <title>
+   UV Sinh Tạo -- Generated UVs
+  </title>
+  <target refid="properties-texture-space">
+  </target>
+  <target refid="bpy-types-texspace">
+  </target>
+  <target refid="bpy-types-mesh-texture-mesh">
+  </target>
+  <target refid="bpy-types-curve-use-uv-as-generated">
+  </target>
+  <target refid="bpy-ops-curve-match-texture-space">
+  </target>
+  <section ids="properties bpy-ops-curve-match-texture-space bpy-types-curve-use-uv-as-generated bpy-types-mesh-texture-mesh bpy-types-texspace properties-texture-space" names="properties tính\ chất\ --\ properties bpy.ops.curve.match_texture_space bpy.types.curve.use_uv_as_generated bpy.types.mesh.texture_mesh bpy.types.*texspace properties-texture-space">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --&gt; Dữ Liệu Vật Thể (Object Data) --&gt; Không Gian Chất Liệu (Texture Space)`">
+         Trình Biên Soạn Tính Chất (Properties editor) ‣ Dữ Liệu Vật Thể (Object Data) ‣ Không Gian Chất Liệu (Texture Space)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    These are settings of the
+    <reference internal="True" refuri="../../glossary/index.html#term-texture-space">
+     <inline classes="xref std std-term">
+      texture space
+     </inline>
+    </reference>
+    used by generated texture mapping.
+The visualization of the texture space can be activated in the
+    <reference internal="True" refuri="../../scene_layout/object/properties/display.html">
+     <inline classes="doc">
+      Viewport Display
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Không Gian Chất Liệu Tự Động -- Auto Texture Space
+     </term>
+     <definition>
+      <paragraph>
+       Adjusts the active object's texture space automatically when transforming the object.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Vị Trí, Kích Thước -- Location, Size
+        </term>
+        <definition>
+         <paragraph>
+          If the texture space is not calculated automatically then you can define
+the location and size of the texture space relative to the base object.
+These can also be adjusted from the 3D View, see
+          <reference name="Editing" refid="editing">
+           Editing
+          </reference>
+          for more information.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <transition>
+   </transition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Khung Lưới Chất Liệu -- Texture Mesh
+     </term>
+     <definition>
+      <paragraph>
+       Use another mesh for texture indices, the vertex of the two objects must be perfectly aligned.
+otherwise the UV map will be distorted. Note that, this is only for mesh objects.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dùng UV để Ánh Xạ -- Use UV for Mapping
+     </term>
+     <definition>
+      <paragraph>
+       Use UV values as generated texture coordinates. Note that, this is only for curve objects.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xứng Hợp với Không Gian Chất Liệu -- Match Texture Space
+     </term>
+     <definition>
+      <paragraph>
+       Modifies the
+       <emphasis>
+        Location
+       </emphasis>
+       and
+       <emphasis>
+        Size
+       </emphasis>
+       to match the objects bounding box.
+This disables Auto Texture Space. Note that, this is only for curve objects.
+      </paragraph>
+      <comment xml:space="preserve">
+       is Match Texture Space the same thing as Auto Texture Space?
+      </comment>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="properties-texture-space-editing">
+   </target>
+  </section>
+  <section ids="editing properties-texture-space-editing" names="editing biên\ soạn\ --\ editing properties-texture-space-editing">
+   <title>
+    Biên Soạn -- Editing
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể và Chế Độ Biên Soạn -- Object Mode and Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Transform --&gt; Scale/Move Texture Space`">
+         Object ‣ Transform ‣ Scale/Move Texture Space
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    To modify the texture space from the 3D View, enable
+    <reference internal="True" refuri="../../scene_layout/object/editing/transform/basics.html#modeling-transform-edit-texture-space">
+     <inline classes="std std-ref">
+      Edit Texture Space
+     </inline>
+    </reference>
+    while
+    <reference internal="True" refuri="../../scene_layout/object/editing/transform/basics.html">
+     <inline classes="doc">
+      transforming
+     </inline>
+    </reference>
+    an object.
+   </paragraph>
+  </section>
+  <section ids="accessing" names="accessing truy\ cập\ --\ accessing">
+   <title>
+    Truy Cập -- Accessing
+   </title>
+   <paragraph>
+    The automatically calculated UV map can be accessed by an object's material through
+the
+    <emphasis>
+     Generated
+    </emphasis>
+    output of the
+    <reference internal="True" refuri="../../render/shader_nodes/input/texture_coordinate.html">
+     <inline classes="doc">
+      Nút Tọa Độ Chất Liệu -- Texture Coordinate Node
+     </inline>
+    </reference>
+    .
+This output can then be used to map any texture onto an object.
+   </paragraph>
+   <tip>
+    <paragraph>
+     Generated texture spaces do not have rotation support, to overcome this,
+a
+     <reference internal="True" refuri="../../render/shader_nodes/vector/mapping.html">
+      <inline classes="doc">
+       Nút Ánh Xạ -- Mapping Node
+      </inline>
+     </reference>
+     can be used to rotate the UV map.
+    </paragraph>
+   </tip>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,459 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/preferences/keymap.rst">
+ <target refid="prefs-input-keymap-editor">
+ </target>
+ <section ids="keymap prefs-input-keymap-editor" names="keymap prefs-input-keymap-editor">
+  <title>
+   Keymap
+  </title>
+  <paragraph>
+   The keymap editor lets you adjust your keymap via:
+  </paragraph>
+  <field_list>
+   <field>
+    <field_name>
+     Presets
+    </field_name>
+    <field_body>
+     <paragraph>
+      Predefined keymaps which come with Blender and can be added to.
+     </paragraph>
+    </field_body>
+   </field>
+   <field>
+    <field_name>
+     Preferences
+    </field_name>
+    <field_body>
+     <paragraph>
+      Keymaps may define their own preferences to change the functionality or add additional key bindings.
+     </paragraph>
+    </field_body>
+   </field>
+   <field>
+    <field_name>
+     Key Map Items
+    </field_name>
+    <field_body>
+     <paragraph>
+      You may add/remove/edit individual keymap entries.
+     </paragraph>
+    </field_body>
+   </field>
+  </field_list>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/editors_preferences_section_keymap.png'}" uri="images/editors_preferences_section_keymap.png"/>
+   <caption>
+    Blender Preferences Keymap section.
+   </caption>
+  </figure>
+  <section ids="preset-management" names="preset\ management">
+   <title>
+    Preset Management
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Keymap Presets
+     </term>
+     <definition>
+      <paragraph>
+       Select the keymap from a list of predefined keymaps.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Import
+     </term>
+     <definition>
+      <paragraph>
+       Importing opens a File Browser to select a
+       <literal>
+        .py
+       </literal>
+       file to add to the list of keymap presets.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Export
+     </term>
+     <definition>
+      <paragraph>
+       Saves the current keymap configuration as a preset others may use.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         All Keymaps
+        </term>
+        <definition>
+         <paragraph>
+          When disabled, only the keymaps and categories that have been modified by the user will be exported.
+In addition, add-ons may register keymaps to their respective functions,
+however, these keymaps are not exported unless changed by the user.
+This exported file may be thought of as a
+          <emphasis>
+           "keymap delta"
+          </emphasis>
+          instead of a full keymap export.
+         </paragraph>
+         <paragraph>
+          When enabled, the entire keymap is written.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="filtering" names="filtering">
+    <title>
+     Filtering
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Filter Type
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Name
+         </term>
+         <definition>
+          <paragraph>
+           Search the keymap item by the operator name it runs.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Key Binding
+         </term>
+         <definition>
+          <paragraph>
+           Search the keymap item by the key used to activate it.
+          </paragraph>
+          <hint>
+           <paragraph>
+            You could for example search with
+            <literal>
+             Ctrl Shift C
+            </literal>
+            for keymap items that use all these keys.
+           </paragraph>
+          </hint>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Search
+      </term>
+      <definition>
+       <paragraph>
+        The text to search (leave blank to disable).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="preferences" names="preferences">
+   <title>
+    Preferences
+   </title>
+   <paragraph>
+    Keymaps may define their own preferences, these are predefined adjustments to the keymap you can make
+without having to manually adjust individual keymap items which can cause problems with newer
+    <reference name="Blender Versions" refid="blender-versions">
+     Blender Versions
+    </reference>
+    .
+   </paragraph>
+   <paragraph>
+    See the
+    <reference internal="True" refuri="../../interface/keymap/blender_default.html#keymap-blender-default-prefs">
+     <inline classes="std std-ref">
+      default keymap preferences
+     </inline>
+    </reference>
+    for options available in the default keymap.
+   </paragraph>
+  </section>
+  <section ids="editor" names="editor">
+   <title>
+    Editor
+   </title>
+   <paragraph>
+    The Keymap editor lets you change the default hotkeys. You can change keymaps for each of Blender's editors.
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/editors_preferences_keymap_keymap-editor.png'}" uri="images/editors_preferences_keymap_keymap-editor.png"/>
+    <caption>
+     Keymap editor.
+    </caption>
+   </figure>
+   <rubric>
+    Usage
+   </rubric>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Select the keymap you want to change and click on the white arrows to open up the keymap tree.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Select which Input will control the function.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Change hotkeys as you want. Just click on the shortcut input and enter the new shortcut.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Active
+     </term>
+     <definition>
+      <paragraph>
+       Un-check to disable this keymap item.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Map Type
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Keyboard
+        </term>
+        <definition>
+         <paragraph>
+          Single hotkey or key-combination.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Mouse
+        </term>
+        <definition>
+         <paragraph>
+          Actions from mouse buttons, tablet or touchpad input.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         NDOF
+        </term>
+        <definition>
+         <paragraph>
+          Movement from a 3D mouse (
+          <reference internal="True" refuri="../../glossary/index.html#term-ndof">
+           <inline classes="xref std std-term">
+            NDOF
+           </inline>
+          </reference>
+          ) device.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tweak
+        </term>
+        <definition>
+         <paragraph>
+          Mouse click and drag
+          <emphasis>
+           (optionally map drag direction to different actions)
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Text Input
+        </term>
+        <definition>
+         <paragraph>
+          Use this function by entering a text.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Timer
+        </term>
+        <definition>
+         <paragraph>
+          Used to control actions based on a time period.
+e.g. By default,
+          <emphasis>
+           Animation Step
+          </emphasis>
+          uses "Timer 0",
+          <emphasis>
+           Smooth View
+          </emphasis>
+          uses "Timer 1".
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Operator ID Name
+     </term>
+     <definition>
+      <paragraph>
+       The identifier for the operator to call.
+      </paragraph>
+      <hint>
+       <paragraph>
+        See
+        <literal classes="xref py py-mod">
+         bpy.ops
+        </literal>
+        for a list of operators (remove the
+        <literal>
+         bpy.
+        </literal>
+        prefix for the identifier).
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Event
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Type
+        </term>
+        <definition>
+         <paragraph>
+          The key or button that activates this keymap item (depending on the map type).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Value
+        </term>
+        <definition>
+         <paragraph>
+          The action (such as press, release, click, drag, etc.), (depending on the map type).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Modifier
+        </term>
+        <definition>
+         <paragraph>
+          Additional keys to hold (such as
+          <literal classes="kbd">
+           Ctrl
+          </literal>
+          ,
+          <literal classes="kbd">
+           Shift
+          </literal>
+          ,
+          <literal classes="kbd">
+           Alt
+          </literal>
+          ).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Operator Properties
+     </term>
+     <definition>
+      <paragraph>
+       Changes to the defaults properties this operator is activated with
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     <reference internal="True" refuri="../../advanced/keymap_editing.html#keymap-customize">
+      <inline classes="std std-ref">
+       Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization
+      </inline>
+     </reference>
+     for more information on keymap editing.
+    </paragraph>
+   </seealso>
+   <section ids="restoring" names="restoring">
+    <title>
+     Restoring
+    </title>
+    <paragraph>
+     If you want to restore the default settings for a keymap,
+just click on the
+     <emphasis>
+      Restore
+     </emphasis>
+     button at the top right of this keymap.
+    </paragraph>
+    <tip>
+     <paragraph>
+      Instead of deleting the default keymap to create your custom one,
+you can just add a new
+      <emphasis>
+       Preset
+      </emphasis>
+      for both the mouse and keyboard.
+     </paragraph>
+    </tip>
+   </section>
+  </section>
+  <section ids="known-limitations" names="known\ limitations">
+   <title>
+    Known Limitations
+   </title>
+   <section ids="blender-versions" names="blender\ versions">
+    <title>
+     Blender Versions
+    </title>
+    <paragraph>
+     A problem with modifying your own keymap is newer Blender versions key change the way tools are accessed,
+breaking your customized keymap.
+    </paragraph>
+    <paragraph>
+     While the keymap can be manually updated, the more customizations you make, the higher the chance of conflicts
+in newer Blender versions is.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,176 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/deform/warp.rst">
+ <target refid="bpy-types-warpmodifier">
+ </target>
+ <section ids="warp-modifier bpy-types-warpmodifier" names="warp\ modifier bộ\ điều\ chỉnh\ làm\ cong\ --\ warp\ modifier bpy.types.warpmodifier">
+  <title>
+   Bộ Điều Chỉnh Làm Cong -- Warp Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Warp
+   </emphasis>
+   modifier can be used to warp parts of a mesh to a new location in
+a very flexible way, by using two objects to select the "from" and "to" regions,
+with options for using a curve falloff, texture and/or vertex group.
+  </paragraph>
+  <figure align="center" ids="id1">
+   <image candidates="{'*': 'images/modeling_modifiers_deform_warp_example.png'}" uri="images/modeling_modifiers_deform_warp_example.png"/>
+   <caption>
+    A Warp modifier applied to a grid mesh.
+   </caption>
+  </figure>
+  <paragraph>
+   This modifier is a bit tricky to understand at first.
+It requires two points, specified by the two target objects' origins.
+The "from" point designates a point in space that is pulled toward the "to" point.
+It is akin to using
+the
+   <reference internal="True" refuri="../../../scene_layout/object/editing/transform/control/proportional_edit.html">
+    <inline classes="doc">
+     Proportional Editing
+    </inline>
+   </reference>
+   in Edit Mode.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_warp_panel.png'}" uri="images/modeling_modifiers_deform_warp_panel.png"/>
+    <caption>
+     The Warp modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Từ -- From
+     </term>
+     <definition>
+      <paragraph>
+       The object defining the origin transformation of the warp.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tới -- To
+     </term>
+     <definition>
+      <paragraph>
+       The object defining the destination transformation of the warp.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Duy Trì Thể Tích -- Preserve Volume
+     </term>
+     <definition>
+      <paragraph>
+       Enables volume preservation when rotating one of the transforms.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sức Mạnh/Cường Độ -- Strength
+     </term>
+     <definition>
+      <paragraph>
+       Sets how strong the effect is.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bán Kính -- Radius
+     </term>
+     <definition>
+      <paragraph>
+       Sets the distance from the transforms that can be warped by the transform handles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Loại Giảm Dần -- Falloff Type
+     </term>
+     <definition>
+      <paragraph>
+       Sets the way the strength of the warp change as it goes from the center of the transform to the
+       <emphasis>
+        Radius
+       </emphasis>
+       value.
+See
+       <reference internal="True" refuri="../../../scene_layout/object/editing/transform/control/proportional_edit.html">
+        <inline classes="doc">
+         Proportional Editing
+        </inline>
+       </reference>
+       for descriptions of the falloff types.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    You can finely control which vertices are affected by the warp, and to what extent,
+using a vertex group and/or a texture.
+   </paragraph>
+   <paragraph>
+    See
+    <reference internal="True" refuri="../common_options.html#modifiers-common-options-masking">
+     <inline classes="std std-ref">
+      common masking options
+     </inline>
+    </reference>
+    for a complete reference.
+   </paragraph>
+  </section>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <paragraph>
+    The
+    <emphasis>
+     Warp
+    </emphasis>
+    modifier can be awkward to use sometimes, and its use case is rather small,
+But there are a few still. For example, it can be used to have
+an interactive
+    <reference internal="True" refuri="../../../scene_layout/object/editing/transform/control/proportional_edit.html">
+     <inline classes="doc">
+      Proportional Editing
+     </inline>
+    </reference>
+    that can be used for animations.
+   </paragraph>
+   <paragraph>
+    Another way to use this modifier is similar to
+the
+    <reference internal="True" refuri="mesh_deform.html">
+     <inline classes="doc">
+      Deform Modifier
+     </inline>
+    </reference>
+    .
+This allows you to deform parts of the mesh without having to make a vertex group.
+   </paragraph>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure align="center" ids="id3">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_warp_example-curve-falloff.png'}" uri="images/modeling_modifiers_deform_warp_example-curve-falloff.png"/>
+    <caption>
+     Warp Modifier with a custom falloff curve.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

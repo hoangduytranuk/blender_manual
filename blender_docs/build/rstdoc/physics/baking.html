@@ -1,0 +1,431 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/baking.rst">
+ <target refid="bpy-types-pointcache">
+ </target>
+ <target refid="bpy-ops-ptcache">
+ </target>
+ <section ids="baking-physics-simulations bpy-ops-ptcache bpy-types-pointcache" names="baking\ physics\ simulations --\ baking\ physics\ simulations bpy.ops.ptcache bpy.types.pointcache">
+  <title>
+   -- Baking Physics Simulations
+  </title>
+  <paragraph>
+   <reference internal="True" refuri="../glossary/index.html#term-baking">
+    <inline classes="xref std std-term">
+     Baking
+    </inline>
+   </reference>
+   refers to the act of storing or caching the results of a calculation.
+  </paragraph>
+  <paragraph>
+   The result of a simulation is automatically cached to memory when the animation is played,
+so that the next time it runs, it can be replayed more quickly by reading the results from the memory.
+  </paragraph>
+  <paragraph>
+   If you bake the simulation the cache is protected,
+and you will be unable to change the simulation settings
+until you clear the baked frames by clicking
+   <emphasis>
+    Free Bake
+   </emphasis>
+   .
+  </paragraph>
+  <paragraph>
+   It is generally recommended to bake your physics simulations before rendering.
+Aside from no longer needing to go through the time-consuming process of simulating again,
+baking can help prevent potential glitches and ensure that the outcome of the simulation
+remains exactly the same every time.
+  </paragraph>
+  <comment xml:space="preserve">
+   A screenshot of the baking interface is intentionally omitted, as it
+the available options vary slightly between different physics systems.
+  </comment>
+  <note>
+   <paragraph>
+    Most physics simulators in Blender use a similar system,
+but not all have exactly the same settings available. All the settings are covered here,
+but individual physics types may not provide all these options.
+   </paragraph>
+  </note>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/physics_baking_multi-cache-interface.png'}" uri="images/physics_baking_multi-cache-interface.png"/>
+   <caption>
+    Two different caches stored simultaneously.
+   </caption>
+  </figure>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     -- Caches List
+    </term>
+    <definition>
+     <paragraph>
+      Blender allows for storing and managing multiple caches at once for the same physics object.
+You can manage the caches with this
+      <reference internal="True" refuri="../interface/controls/templates/list_presets.html#ui-list-view">
+       <inline classes="std std-ref">
+        list view
+       </inline>
+      </reference>
+      .
+     </paragraph>
+     <paragraph>
+      Caches can be added and removed with the
+      <literal classes="kbd">
+       Plus
+      </literal>
+      and
+      <literal classes="kbd">
+       Minus
+      </literal>
+      buttons.
+Renaming a cache can be done by either double-clicking or pressing
+      <literal classes="kbd">
+       Ctrl-LMB
+      </literal>
+      on the desired cache.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Bộ Nhớ Đệm trên Đĩa -- Disk Cache
+     </term>
+     <definition>
+      <paragraph>
+       The cache of a baked simulation will be stored inside the blend-file when you save it.
+When
+       <emphasis>
+        Disk Cache
+       </emphasis>
+       is checked, Blender will save the Cache separately to the drive
+in a folder named
+       <literal>
+        blendcache_[filename]
+       </literal>
+       alongside the blend-file.
+(The blend-file must be saved first.)
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Use Library Path
+        </term>
+        <definition>
+         <paragraph>
+          Share the disk cache when the physics object is
+          <reference internal="True" refuri="../files/linked_libraries.html">
+           <inline classes="doc">
+            linked
+           </inline>
+          </reference>
+          into another blend-file.
+         </paragraph>
+         <paragraph>
+          When this option is enabled, linked versions of the object will reference the same disk cache.
+Otherwise linked versions of the object will use independent caches.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Nén -- Compression
+        </term>
+        <definition>
+         <paragraph>
+          The compression level for cache files. Some physics caches can be very large (such as smoke).
+Blender can compress these caches in order to save space.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Không Có -- None
+           </term>
+           <definition>
+            <paragraph>
+             Do not compress the cache.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Nguồn Sáng -- Light
+           </term>
+           <definition>
+            <paragraph>
+             Compression will optimize the speed of compressing/decompressing operations over file size.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Nặng -- Heavy
+           </term>
+           <definition>
+            <paragraph>
+             Compression will result in smaller cache files more than
+             <emphasis>
+              Light
+             </emphasis>
+             ,
+however, requires more CPU time to compress/decompress.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bên Ngoài -- External
+     </term>
+     <definition>
+      <paragraph>
+       Allows you to read the cache from a drive using a user-specified file path.
+      </paragraph>
+      <comment xml:space="preserve">
+       (wip) The Smoke Cache (is always Disk Cache) can also be written to an arbitrary directory.
+      </comment>
+      <note>
+       <paragraph>
+        The cache name in
+        <emphasis>
+         Caches List
+        </emphasis>
+        and the
+        <emphasis>
+         Index Number
+        </emphasis>
+        has to exactly match the external cache files name in order to work.
+The cache files name format is
+        <literal>
+         name_frame_index.bphys
+        </literal>
+        .
+       </paragraph>
+      </note>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         -- Index Number
+        </term>
+        <definition>
+         <paragraph>
+          The index number of cache files. (The last two digits of the files name.)
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tập Tin -- File Path
+        </term>
+        <definition>
+         <paragraph>
+          Select the directory path to the cache files.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bắt Đầu -- Start
+     </term>
+     <definition>
+      <paragraph>
+       Frame on which to start the simulation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kết Thúc -- End
+     </term>
+     <definition>
+      <paragraph>
+       Frame on which to stop the simulation.
+      </paragraph>
+      <note>
+       <paragraph>
+        The simulation is only calculated for positive frames
+in between the
+        <emphasis>
+         Start
+        </emphasis>
+        and
+        <emphasis>
+         End
+        </emphasis>
+        frames of the
+        <emphasis>
+         Cache
+        </emphasis>
+        panel, whether you bake or not.
+So if you want a simulation that is longer than the default frame range you have to change the
+        <emphasis>
+         End
+        </emphasis>
+        frame.
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bước Bộ Nhớ Đệm -- Cache Step
+     </term>
+     <definition>
+      <paragraph>
+       Interval for storing simulation data.
+      </paragraph>
+      <note>
+       <paragraph>
+        Some physics systems (such as particles)
+allow for positions to be stored only on every nth frame,
+letting the positions for in-between frames be interpolated.
+Using a cache step greater than one will result in a smaller cache,
+but the result may differ from the original simulation.
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="physics-bake">
+   </target>
+  </section>
+  <section ids="baking physics-bake" names="baking nướng\ --\ baking physics-bake">
+   <title>
+    Nướng -- Baking
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Nướng -- Bake
+     </term>
+     <definition>
+      <paragraph>
+       Start baking.
+Blender will become unresponsive during most baking operations.
+The cursor will display as a number representing the progress of the baking.
+You need to be in Object Mode to bake.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="free-physics-bake">
+   </target>
+   <definition_list ids="free-physics-bake" names="free-physics-bake">
+    <definition_list_item>
+     <term>
+      Phóng Thích Nướng -- Free Bake
+     </term>
+     <definition>
+      <paragraph>
+       Mark the baked cache as temporary. The data will still exist,
+but will be removed with the next object modification and frame change.
+This button is only available when the physics system has been baked.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="calc-physics-bake-to-frame">
+   </target>
+   <definition_list ids="calc-physics-bake-to-frame" names="calc-physics-bake-to-frame">
+    <definition_list_item>
+     <term>
+      Tính đến Khung Hình -- Calculate To Frame
+     </term>
+     <definition>
+      <paragraph>
+       Bake only up to the current frame. Limited by
+       <emphasis>
+        End
+       </emphasis>
+       frame set in the cache settings.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bộ Nhớ Đệm Hiện Tại thành Nướng -- Current Cache to Bake
+     </term>
+     <definition>
+      <paragraph>
+       Store any temporarily cached simulation data as a bake.
+Note that playing the animation will try to simulate any visible physics simulations.
+Depending on the physics type, this data may be temporarily cached.
+Normally such temporary caches are cleared when an object or setting is
+modified, but converting it to a bake will "save" it.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nướng Tất Cả các Động Năng -- Bake All Dynamics
+     </term>
+     <definition>
+      <paragraph>
+       Bake all physics systems in the scene, even those of different types.
+Useful for baking complex setups involving interactions between different physics types.
+      </paragraph>
+      <paragraph>
+       See
+       <reference internal="True" refid="physics-bake">
+        <inline classes="std std-ref">
+         Bake
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phóng Thích Tất Cả các Nướng -- Free All Bakes
+     </term>
+     <definition>
+      <paragraph>
+       Free bakes of all physics systems in the scene, even those of different types.
+      </paragraph>
+      <paragraph>
+       See
+       <reference internal="True" refid="free-physics-bake">
+        <inline classes="std std-ref">
+         Free Bake
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cập Nhật Tất Cả vào Khung Hình -- Update All To Frame
+     </term>
+     <definition>
+      <paragraph>
+       Bake all physics systems in the scene to the current frame.
+      </paragraph>
+      <paragraph>
+       See
+       <reference internal="True" refid="calc-physics-bake-to-frame">
+        <inline classes="std std-ref">
+         Calculate To Frame
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

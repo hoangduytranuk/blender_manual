@@ -1,0 +1,283 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/particles/emitter/physics/fluid.rst">
+ <target refid="bpy-types-particlefluidsettings">
+ </target>
+ <section ids="fluid bpy-types-particlefluidsettings" names="fluid chất\ lỏng\ --\ fluid bpy.types.particlefluidsettings">
+  <title>
+   Chất Lỏng -- Fluid
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Hệ Thống Hạt (Particle System) --&gt; Vật Lý (Physics)`">
+        Hệ Thống Hạt (Particle System) ‣ Vật Lý (Physics)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Thể Loại -- Type
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chất Lỏng -- Fluid
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <comment xml:space="preserve">
+   TODO2.8:
+.. figure:: /images/physics_particles_emitter_physics_fluid_panel.png
+
+   Fluid Physics settings.
+  </comment>
+  <paragraph>
+   Fluid particles are similar to Newtonian ones but this time particles are influenced by
+internal forces like pressure, surface tension, viscosity, springs, etc.
+From liquids to slime, goo to sand and wispy smoke the number of possible use cases is endless.
+  </paragraph>
+  <paragraph>
+   Blender particle fluids use the SPH techniques to solve the particles fluid equations.
+Smoothed-particle hydrodynamics (SPH) is a computational method used for simulating fluid flows.
+It has been used in many fields of research, including astrophysics, ballistics, vulcanology,
+and oceanography. It is a mesh-free Lagrangian method (where the coordinates move with the fluid),
+and the resolution of the method can easily be adjusted with respect to variables such as the density.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <paragraph>
+    Fluid physics share options with
+    <reference internal="True" refuri="newtonian.html">
+     <inline classes="doc">
+      Newtonian Physics
+     </inline>
+    </reference>
+    .
+These are covered on that page.
+   </paragraph>
+   <section ids="fluid-properties" names="fluid\ properties --\ fluid\ properties">
+    <title>
+     -- Fluid Properties
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Độ Cứng -- Stiffness
+      </term>
+      <definition>
+       <paragraph>
+        How incompressible the fluid is.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Độ Nhớt -- Viscosity
+      </term>
+      <definition>
+       <paragraph>
+        Linear viscosity. Use lower viscosity for thicker fluids.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Độ Nổi -- Buoyancy
+      </term>
+      <definition>
+       <paragraph>
+        Artificial buoyancy force in negative gravity direction based on pressure differences inside the fluid.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="advanced" names="advanced cao\ cấp\ --\ advanced">
+    <title>
+     Cao Cấp -- Advanced
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Bảng -- Panel
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Physics --&gt; Advanced`">
+          Particle System ‣ Physics ‣ Advanced
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Hệ Số Lực Đẩy -- Repulsion Factor
+      </term>
+      <definition>
+       <paragraph>
+        How strongly the fluid tries to keep from clustering (factor of stiffness).
+Checkbox sets repulsion as a factor of stiffness.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Stiff Viscosity
+      </term>
+      <definition>
+       <paragraph>
+        Creates viscosity for expanding fluid. Checkbox sets this to be a factor of normal viscosity.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bán Kính Tương Tác -- Interaction Radius
+      </term>
+      <definition>
+       <paragraph>
+        Fluid's interaction radius. Checkbox sets this to be a factor of 4 ×
+        <emphasis>
+         particle size
+        </emphasis>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tỷ Trọng Nghỉ -- Rest Density
+      </term>
+      <definition>
+       <paragraph>
+        Density of fluid when at rest. Checkbox sets this to be a factor of default density.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="springs" names="springs lực\ đàn\ hồi\ --\ springs">
+    <title>
+     Lực Đàn Hồi -- Springs
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Bảng -- Panel
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Physics --&gt; Springs`">
+          Particle System ‣ Physics ‣ Springs
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Lực -- Force
+      </term>
+      <definition>
+       <paragraph>
+        Spring force.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chiều Dài Nghỉ -- Rest Length
+      </term>
+      <definition>
+       <paragraph>
+        Rest length of springs. Factor of particle radius. Checkbox sets this to be a factor of 2 ×
+        <emphasis>
+         particle size
+        </emphasis>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lực đàn hồi có tính đàn nhớt -- Viscoelastic Springs
+      </term>
+      <definition>
+       <paragraph>
+        Use viscoelastic springs instead of Hooke's springs.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Giới Hạn Co Giãn -- Elastic Limit
+      </term>
+      <definition>
+       <paragraph>
+        How much the spring has to be stretched/compressed in order to change its rest length.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tính Mềm Dẻo -- Plasticity
+      </term>
+      <definition>
+       <paragraph>
+        How much the spring rest length can change after the elastic limit is crossed.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chiều Dài Trạng Thái Nghỉ Khởi Đầu -- Initial Rest Length
+      </term>
+      <definition>
+       <paragraph>
+        Use initial length as spring rest length instead of 2 ×
+        <emphasis>
+         particle size
+        </emphasis>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khung Hình -- Frames
+      </term>
+      <definition>
+       <paragraph>
+        Create springs for this number of frames since particle's birth (0 is always).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

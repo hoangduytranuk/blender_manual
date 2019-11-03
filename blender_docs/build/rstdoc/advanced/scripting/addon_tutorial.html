@@ -1,0 +1,1030 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/advanced/scripting/addon_tutorial.rst">
+ <comment xml:space="preserve">
+  This document is an exception to the rule of not having tutorials in the reference manual.
+Since this doesn't quite belong on the API docs either.
+It's important we have at least one place with good basic info on how to write an add-on.
+-- ideasman42
+ </comment>
+ <section ids="add-on-tutorial" names="add-on\ tutorial hướng\ dẫn\ về\ trình\ bổ\ sung\ --\ add-on\ tutorial">
+  <title>
+   Hướng Dẫn về Trình Bổ Sung -- Add-on Tutorial
+  </title>
+  <section ids="intended-audience" names="intended\ audience đối\ tượng\ dự\ định\ --\ intended\ audience">
+   <title>
+    Đối Tượng Dự Định -- Intended Audience
+   </title>
+   <paragraph>
+    This tutorial is designed to help technical artists or developers learn to extend Blender.
+An understanding of the basics of Python is expected for those working through this tutorial.
+   </paragraph>
+   <section ids="prerequisites" names="prerequisites điều\ kiện\ tiên\ quyết\ (đòi\ hỏi)\ --\ prerequisites">
+    <title>
+     Điều Kiện Tiên Quyết (Đòi Hỏi) -- Prerequisites
+    </title>
+    <paragraph>
+     Before going through the tutorial you should...
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Be familiar with the basics of working in Blender.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Know how to run a script in Blender's Text editor.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Have an understanding of Python primitive types (int, boolean, string, list, tuple, dictionary, and set).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Be familiar with the concept of Python modules.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Have a basic understanding of classes (object orientation) in Python.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     Suggested reading before starting this tutorial.
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <reference name="Dive Into Python" refuri="http://getpython3.com/diveintopython3/index.html">
+        Dive Into Python
+       </reference>
+       sections (1, 2, 3, 4, and 7).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference name="Blender API Quickstart" refuri="https://docs.blender.org/api/blender_python_api_current/info_quickstart.html">
+        Blender API Quickstart
+       </reference>
+       to help become familiar with Blender/Python basics.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     To best troubleshoot any error message Python prints while writing scripts, you run Blender from a terminal.
+See
+     <reference name="Use The Terminal" refuri="https://docs.blender.org/api/blender_python_api_current/info_tips_and_tricks.html#use-the-terminal">
+      Use The Terminal
+     </reference>
+     .
+    </paragraph>
+   </section>
+  </section>
+  <section ids="documentation-links" names="documentation\ links những\ đường\ kết\ nối\ đến\ tài\ liệu\ --\ documentation\ links">
+   <title>
+    Những Đường Kết Nối đến Tài Liệu -- Documentation Links
+   </title>
+   <paragraph>
+    While going through the tutorial, you may want to look into our reference documentation.
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <reference name="Blender API Overview" refuri="https://docs.blender.org/api/blender_python_api_current/info_overview.html">
+       Blender API Overview
+      </reference>
+      :
+This document is rather detailed but helpful if you want to know more on a topic.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.context.html#module-bpy.context">
+       <literal>
+        bpy.context
+       </literal>
+      </reference>
+      API reference --
+Handy to have a list of available items your script may operate on.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.types.Operator.html#bpy.types.Operator">
+       <literal>
+        bpy.types.Operator
+       </literal>
+      </reference>
+      --
+The following add-ons define operators, these docs give details and more examples of operators.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="what-is-an-add-on" names="what\ is\ an\ add-on? trình\ bổ\ sung\ là\ gì?\ --\ what\ is\ an\ add-on?">
+   <title>
+    Trình Bổ Sung là gì? -- What is an Add-on?
+   </title>
+   <paragraph>
+    An add-on is simply a Python module with some additional requirements so Blender
+can display it in a list with useful information.
+   </paragraph>
+   <paragraph>
+    To give an example, here is the simplest possible add-on:
+   </paragraph>
+   <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+    bl_info = {
+    "name": "My Test Add-on",
+    "blender": (2, 80, 0),
+    "category": "Object",
+}
+def register():
+    print("Hello World")
+def unregister():
+    print("Goodbye World")
+   </literal_block>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      <literal>
+       bl_info
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       is a dictionary containing add-on metadata such as the title,
+version and author to be displayed in the Preferences add-on list.
+It also specifies the minimum Blender version required to run the script;
+older versions won't display the addon in the list.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       register
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       is a function which only runs when enabling the add-on,
+this means the module can be loaded without activating the add-on.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       unregister
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       is a function to unload anything setup by
+       <literal>
+        register
+       </literal>
+       ,
+this is called when the add-on is disabled.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    Notice this add-on does not do anything related to Blender
+(the
+    <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.data.html#module-bpy">
+     <literal>
+      bpy
+     </literal>
+    </reference>
+    module is not imported for example).
+   </paragraph>
+   <paragraph>
+    This is a contrived example of an add-on that serves to illustrate the point
+that the base requirements of an add-on are simple.
+   </paragraph>
+   <paragraph>
+    An add-on will typically register operators, panels, menu items, etc,
+but it's worth noting that
+    <emphasis>
+     any
+    </emphasis>
+    script can do this,
+when executed from the Text editor or even the interactive console --
+there is nothing inherently different about an add-on that allows it to integrate with Blender,
+such functionality is just provided by the
+    <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.data.html#module-bpy">
+     <literal>
+      bpy
+     </literal>
+    </reference>
+    module for any script to access.
+   </paragraph>
+   <paragraph>
+    So an add-on is just a way to encapsulate a Python module in a way a user can easily utilize.
+   </paragraph>
+   <note>
+    <paragraph>
+     Running this script within the Text editor won't print anything,
+to see the output it must be installed through the Preferences.
+Messages will be printed when enabling and disabling.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="your-first-add-on" names="your\ first\ add-on trình\ bổ\ sung\ đầu\ tiên\ của\ bạn\ --\ your\ first\ add-on">
+   <title>
+    Trình Bổ Sung Đầu Tiên của Bạn -- Your First Add-on
+   </title>
+   <paragraph>
+    The simplest possible add-on above is useful as an example but not much else.
+This next add-on is simple but shows how to integrate a script into Blender using an
+    <literal>
+     Operator
+    </literal>
+    which is the typical way to define a tool accessed from menus, buttons and keyboard shortcuts.
+   </paragraph>
+   <paragraph>
+    For the first example we will make a script that simply moves all objects in a scene.
+   </paragraph>
+   <section dupnames="write\ the\ script" ids="write-the-script" names="viết\ tập\ lệnh\ --\ write\ the\ script">
+    <title>
+     Viết Tập Lệnh -- Write the Script
+    </title>
+    <paragraph>
+     Add the following script to the Text editor in Blender:
+    </paragraph>
+    <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+     import bpy
+
+scene = bpy.context.scene
+for obj in scene.objects:
+    obj.location.x += 1.0
+    </literal_block>
+    <paragraph>
+     Click the
+     <reference internal="True" refuri="../../editors/text_editor.html#editors-text-run-script">
+      <inline classes="std std-ref">
+       Run Script button
+      </inline>
+     </reference>
+     ,
+all objects in the active scene are moved by 1.0 unit.
+    </paragraph>
+   </section>
+   <section ids="write-the-add-on-simple" names="write\ the\ add-on\ (simple) viết\ trình\ bổ\ sung\ (đơn\ giản)\ --\ write\ the\ add-on\ (simple)">
+    <title>
+     Viết Trình Bổ Sung (Đơn Giản) -- Write the Add-on (Simple)
+    </title>
+    <paragraph>
+     This add-on takes the body of the script above, and adds it to an operator's
+     <literal>
+      execute()
+     </literal>
+     function.
+    </paragraph>
+    <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+     bl_info = {
+    "name": "Move X Axis",
+    "blender": (2, 80, 0),
+    "category": "Object",
+}
+
+import bpy
+
+
+class ObjectMoveX(bpy.types.Operator):
+    """My Object Moving Script"""      # Use this as a tooltip for menu items and buttons.
+    bl_idname = "object.move_x"        # Unique identifier for buttons and menu items to reference.
+    bl_label = "Move X by One"         # Display name in the interface.
+    bl_options = {'REGISTER', 'UNDO'}  # Enable undo for the operator.
+
+    def execute(self, context):        # execute() is called when running the operator.
+
+        # The original script
+        scene = context.scene
+        for obj in scene.objects:
+            obj.location.x += 1.0
+
+        return {'FINISHED'}            # Lets Blender know the operator finished successfully.
+
+def register():
+    bpy.utils.register_class(ObjectMoveX)
+
+
+def unregister():
+    bpy.utils.unregister_class(ObjectMoveX)
+
+
+# This allows you to run the script directly from Blender's Text editor
+# to test the add-on without having to install it.
+if __name__ == "__main__":
+    register()
+    </literal_block>
+    <note>
+     <paragraph>
+      <literal>
+       bl_info
+      </literal>
+      is split across multiple lines, this is just a style convention used to more easily add items.
+     </paragraph>
+    </note>
+    <note>
+     <paragraph>
+      Rather than using
+      <literal>
+       bpy.context.scene
+      </literal>
+      , we use the
+      <literal>
+       context.scene
+      </literal>
+      argument passed to
+      <literal>
+       execute()
+      </literal>
+      .
+In most cases these will be the same. However in some cases, operators will be passed a custom context
+so script authors should prefer the
+      <literal>
+       context
+      </literal>
+      argument passed to operators.
+     </paragraph>
+    </note>
+    <paragraph>
+     To test the script, you can copy and paste it into Blender's Text editor and run it.
+This will execute the script directly and call register immediately.
+    </paragraph>
+    <paragraph>
+     However running the script won't move any objects. For this, you need to execute the newly registered operator.
+    </paragraph>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/advanced_scripting_addon-tutorial_operator-search-menu.png'}" uri="images/advanced_scripting_addon-tutorial_operator-search-menu.png"/>
+     <caption>
+      Operator Search menu.
+     </caption>
+    </figure>
+    <paragraph>
+     Do this by pressing
+     <literal classes="kbd">
+      F3
+     </literal>
+     to bring up the operator search menu and type in
+"Move X by One" (the
+     <literal>
+      bl_label
+     </literal>
+     ), then
+     <literal classes="kbd">
+      Return
+     </literal>
+     .
+    </paragraph>
+    <paragraph>
+     The objects should move as before.
+    </paragraph>
+    <paragraph>
+     <emphasis>
+      Keep this add-on open in Blender for the next step - Installing.
+     </emphasis>
+    </paragraph>
+   </section>
+   <section ids="install-the-add-on" names="install\ the\ add-on cài\ đặt\ trình\ bổ\ sung\ --\ install\ the\ add-on">
+    <title>
+     Cài Đặt Trình Bổ Sung -- Install the Add-on
+    </title>
+    <paragraph>
+     Once you have your add-on within in Blender's Text editor,
+you will want to be able to install it so it can be enabled in the Preferences to load on startup.
+    </paragraph>
+    <paragraph>
+     Even though the add-on above is a test, let's go through the steps anyway so you know how to do it for later.
+    </paragraph>
+    <paragraph>
+     To install the Blender text as an add-on, you will first have to save it to disk. Take care to obey the naming
+restrictions that apply to Python modules and end with a
+     <literal>
+      .py
+     </literal>
+     extension.
+    </paragraph>
+    <paragraph>
+     Once the file is on disk, you can install it as you would for an add-on downloaded online.
+    </paragraph>
+    <paragraph>
+     Open the
+     <inline classes="menuselection" rawtext=":menuselection:`Preferences --&gt; Add-ons --&gt; Install...`">
+      Preferences ‣ Add-ons ‣ Install...
+     </inline>
+     and select the file.
+    </paragraph>
+    <paragraph>
+     Now the add-on will be listed and you can enable it by pressing the checkbox,
+if you want it to be enabled on restart, press
+     <emphasis>
+      Save as Default
+     </emphasis>
+     .
+    </paragraph>
+    <note>
+     <paragraph>
+      The destination of the add-on depends on your Blender configuration.
+When installing an add-on the source and destination paths are printed in the console.
+You can also find add-on path locations by running this in the Python Console.
+     </paragraph>
+     <literal_block force_highlighting="True" highlight_args="{}" language="python" linenos="False" xml:space="preserve">
+      import addon_utils
+print(addon_utils.paths())
+     </literal_block>
+     <paragraph>
+      More is written on this topic here:
+      <reference internal="True" refuri="../blender_directory_layout.html#blender-directory-layout">
+       <inline classes="std std-ref">
+        Directory Layout
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </note>
+   </section>
+  </section>
+  <section ids="your-second-add-on" names="your\ second\ add-on trình\ bổ\ sung\ thứ\ hai\ của\ bạn\ --\ your\ second\ add-on">
+   <title>
+    Trình Bổ Sung Thứ Hai của Bạn -- Your Second Add-on
+   </title>
+   <paragraph>
+    For our second add-on, we will focus on object instancing -- this is -- to make linked
+copies of an object in a similar way to what you may have seen with the array modifier.
+   </paragraph>
+   <section dupnames="write\ the\ script" ids="id1" names="viết\ tập\ lệnh\ --\ write\ the\ script">
+    <title>
+     Viết Tập Lệnh -- Write the Script
+    </title>
+    <paragraph>
+     As before, first we will start with a script, develop it, then convert it into an add-on.
+    </paragraph>
+    <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+     import bpy
+from bpy import context
+
+# Get the current scene
+scene = context.scene
+
+# Get the 3D cursor location
+cursor = scene.cursor.location
+
+# Get the active object (assume we have one)
+obj = context.active_object
+
+# Now make a copy of the object
+obj_new = obj.copy()
+
+# The new object has to be added to a collection in the scene
+scene.collection.objects.link(obj_new)
+
+# Now we can place the object
+obj_new.location = cursor
+    </literal_block>
+    <paragraph>
+     Now try copying this script into Blender and run it on the default Cube.
+Make sure you click to move the 3D cursor before running as the duplicate will appear at the cursor's location.
+    </paragraph>
+    <paragraph>
+     After running, notice that when you go into
+     <emphasis>
+      Edit Mode
+     </emphasis>
+     to change the Cube -- all of the copies change.
+In Blender, this is known as
+     <emphasis>
+      Linked Duplicates
+     </emphasis>
+     .
+    </paragraph>
+    <paragraph>
+     Next, we're going to do this in a loop, to make an array of objects between the active object and the cursor.
+    </paragraph>
+    <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+     import bpy
+from bpy import context
+
+scene = context.scene
+cursor = scene.cursor.location
+obj = context.active_object
+
+# Use a fixed value for now, eventually make this user adjustable
+total = 10
+
+# Add 'total' objects into the scene
+for i in range(total):
+    obj_new = obj.copy()
+    scene.collection.objects.link(obj_new)
+
+    # Now place the object in between the cursor
+    # and the active object based on 'i'
+    factor = i / total
+    obj_new.location = (obj.location * factor) + (cursor * (1.0 - factor))
+    </literal_block>
+    <paragraph>
+     Try running this script with the active object and the cursor spaced apart to see the result.
+    </paragraph>
+    <paragraph>
+     With this script you'll notice we're doing some math with the object location and cursor,
+this works because both are 3D
+     <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/mathutils.html#mathutils.Vector">
+      <literal>
+       mathutils.Vector
+      </literal>
+     </reference>
+     instances,
+a convenient class provided by the
+     <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/mathutils.html#module-mathutils">
+      <literal>
+       mathutils
+      </literal>
+     </reference>
+     module which
+allows vectors to be multiplied by numbers and matrices.
+    </paragraph>
+    <paragraph>
+     If you are interested in this area, read into
+     <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/mathutils.html#mathutils.Vector">
+      <literal>
+       mathutils.Vector
+      </literal>
+     </reference>
+     -- there are many handy utility functions such as getting the angle between vectors,
+cross product, dot products as well as more advanced functions in
+     <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/mathutils.geometry.html#module-mathutils.geometry">
+      <literal>
+       mathutils.geometry
+      </literal>
+     </reference>
+     such as Bézier spline interpolation and ray-triangle intersection.
+    </paragraph>
+    <paragraph>
+     For now we will focus on making this script an add-on, but it's good to know that this
+3D math module is available and can help you with more advanced functionality later on.
+    </paragraph>
+   </section>
+   <section ids="write-the-add-on" names="write\ the\ add-on viết\ trình\ bổ\ sung\ --\ write\ the\ add-on">
+    <title>
+     Viết Trình Bổ Sung -- Write the Add-on
+    </title>
+    <paragraph>
+     The first step is to convert the script as-is into an add-on:
+    </paragraph>
+    <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+     bl_info = {
+    "name": "Cursor Array",
+    "blender": (2, 80, 0),
+    "category": "Object",
+}
+
+import bpy
+
+
+class ObjectCursorArray(bpy.types.Operator):
+    """Object Cursor Array"""
+    bl_idname = "object.cursor_array"
+    bl_label = "Cursor Array"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        scene = context.scene
+        cursor = scene.cursor.location
+        obj = context.active_object
+
+        total = 10
+
+        for i in range(total):
+            obj_new = obj.copy()
+            scene.collection.objects.link(obj_new)
+
+            factor = i / total
+            obj_new.location = (obj.location * factor) + (cursor * (1.0 - factor))
+
+        return {'FINISHED'}
+
+def register():
+    bpy.utils.register_class(ObjectCursorArray)
+
+
+def unregister():
+    bpy.utils.unregister_class(ObjectCursorArray)
+
+
+if __name__ == "__main__":
+    register()
+    </literal_block>
+    <paragraph>
+     Everything here has been covered in the previous steps, you may want to try run
+the add-on still and consider what could be done to make it more useful.
+    </paragraph>
+    <paragraph>
+     The two of the most obvious missing things are -- having the total fixed at 10,
+and having to access the operator from space-bar is not very convenient.
+    </paragraph>
+    <paragraph>
+     Both these additions are explained next, with the final script afterwards.
+    </paragraph>
+    <section ids="operator-property" names="operator\ property tính\ chất\ của\ operator\ --\ operator\ property">
+     <title>
+      Tính Chất của Operator -- Operator Property
+     </title>
+     <paragraph>
+      There are a variety of property types that are used for tool settings, common property types include:
+int, float, vector, color, boolean and string.
+     </paragraph>
+     <paragraph>
+      These properties are handled differently to typical Python class attributes
+because Blender needs to display them in the interface,
+store their settings in keymaps and keep settings for reuse.
+     </paragraph>
+     <paragraph>
+      While this is handled in a fairly Pythonic way, be mindful that you are in fact defining tool settings that
+are loaded into Blender and accessed by other parts of Blender, outside of Python.
+     </paragraph>
+     <paragraph>
+      To get rid of the literal 10 for
+      <literal>
+       total
+      </literal>
+      , we'll use an operator property.
+Operator properties are defined via bpy.props module, this is added to the class body:
+     </paragraph>
+     <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+      # moved assignment from execute() to the body of the class...
+total: bpy.props.IntProperty(name="Steps", default=2, min=1, max=100)
+
+# and this is accessed on the class
+# instance within the execute() function as...
+self.total
+     </literal_block>
+     <paragraph>
+      These properties from
+      <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.props.html#module-bpy.props">
+       <literal>
+        bpy.props
+       </literal>
+      </reference>
+      are handled specially by Blender
+when the class is registered so they display as buttons in the user interface.
+There are many arguments you can pass to properties to set limits,
+change the default and display a tooltip.
+     </paragraph>
+     <seealso>
+      <paragraph>
+       <literal classes="xref py py-mod">
+        bpy.props.IntProperty
+       </literal>
+      </paragraph>
+     </seealso>
+     <paragraph>
+      This document doesn't go into details about using other property types.
+However, the link above includes examples of more advanced property usage.
+     </paragraph>
+    </section>
+    <section ids="menu-item" names="menu\ item trình\ mục\ --\ menu\ item">
+     <title>
+      Trình Mục -- Menu Item
+     </title>
+     <paragraph>
+      Add-ons can add to the user interface of existing panels, headers and menus defined in Python.
+     </paragraph>
+     <paragraph>
+      For this example we'll add to an existing menu.
+     </paragraph>
+     <figure ids="id3">
+      <image candidates="{'*': 'images/advanced_scripting_addon-tutorial_menu-id.png'}" uri="images/advanced_scripting_addon-tutorial_menu-id.png"/>
+      <caption>
+       Menu Identifier.
+      </caption>
+     </figure>
+     <paragraph>
+      To find the identifier of a menu, first enable
+      <emphasis>
+       Python Tooltips
+      </emphasis>
+      in the preferences.
+Then you can hover your mouse over the menu item and the identifier is displayed.
+     </paragraph>
+     <paragraph>
+      The method used for adding a menu item is to append a draw function into an existing class:
+     </paragraph>
+     <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+      def menu_func(self, context):
+    self.layout.operator(ObjectCursorArray.bl_idname)
+
+def register():
+    bpy.types.VIEW3D_MT_object.append(menu_func)
+     </literal_block>
+     <paragraph>
+      For docs on extending menus, see:
+      <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.types.Menu.html#bpy.types.Menu">
+       <literal>
+        bpy.types.Menu
+       </literal>
+      </reference>
+      .
+     </paragraph>
+    </section>
+    <section ids="keymap" names="keymap bố\ trí\ bàn\ phím\ --\ keymap">
+     <title>
+      Bố Trí Bàn Phím -- Keymap
+     </title>
+     <paragraph>
+      In Blender, add-ons have their own keymaps so as not to interfere with Blender's built-in keymaps.
+     </paragraph>
+     <paragraph>
+      In the example below, a new object mode
+      <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.types.KeyMap.html#bpy.types.KeyMap">
+       <literal>
+        bpy.types.KeyMap
+       </literal>
+      </reference>
+      is added,
+then a
+      <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem">
+       <literal>
+        bpy.types.KeyMapItem
+       </literal>
+      </reference>
+      is added to the keymap which references
+our newly added operator, using
+      <literal classes="kbd">
+       Shift-Ctrl-T
+      </literal>
+      as the key shortcut to activate it.
+     </paragraph>
+     <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+      # store keymaps here to access after registration
+addon_keymaps = []
+
+def register():
+
+    # handle the keymap
+    wm = bpy.context.window_manager
+    km = wm.keyconfigs.addon.keymaps.new(name='Object Mode', space_type='EMPTY')
+
+    kmi = km.keymap_items.new(ObjectCursorArray.bl_idname, 'T', 'PRESS', ctrl=True, shift=True)
+    kmi.properties.total = 4
+
+    addon_keymaps.append((km, kmi))
+
+
+def unregister():
+
+    # handle the keymap
+    for km, kmi in addon_keymaps:
+        km.keymap_items.remove(kmi)
+    addon_keymaps.clear()
+     </literal_block>
+     <paragraph>
+      Notice how the keymap item can have a
+      <literal>
+       total
+      </literal>
+      setting different than the default set by the operator,
+this allows you to have multiple keys accessing the same operator with different settings.
+     </paragraph>
+     <note>
+      <paragraph>
+       While
+       <literal classes="kbd">
+        Shift-Ctrl-T
+       </literal>
+       is not a default Blender key shortcut,
+it is hard to make sure add-ons will not overwrite each other's keymaps,
+At least take care when assigning keys that they do not
+conflict with important functionality within Blender.
+      </paragraph>
+     </note>
+     <paragraph>
+      For API documentation on the functions listed above, see:
+     </paragraph>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        <literal classes="xref py py-class">
+         bpy.types.KeyMaps.new
+        </literal>
+        ,
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.types.KeyMap.html#bpy.types.KeyMap">
+         <literal>
+          bpy.types.KeyMap
+         </literal>
+        </reference>
+        ,
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <literal classes="xref py py-class">
+         bpy.types.KeyMapItems.new
+        </literal>
+        ,
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <reference internal="False" reftitle="(in Blender 2.81.15 Python API v34c835cbd10d)" refuri="https://docs.blender.org/api/2.81/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem">
+         <literal>
+          bpy.types.KeyMapItem
+         </literal>
+        </reference>
+        .
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </section>
+    <section ids="bringing-it-all-together" names="bringing\ it\ all\ together tổng\ hợp\ toàn\ bộ\ --\ bringing\ it\ all\ together">
+     <title>
+      Tổng Hợp Toàn Bộ -- Bringing It All Together
+     </title>
+     <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+      bl_info = {
+    "name": "Cursor Array",
+    "blender": (2, 80, 0),
+    "category": "Object",
+}
+
+import bpy
+
+
+class ObjectCursorArray(bpy.types.Operator):
+    """Object Cursor Array"""
+    bl_idname = "object.cursor_array"
+    bl_label = "Cursor Array"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    total: bpy.props.IntProperty(name="Steps", default=2, min=1, max=100)
+
+    def execute(self, context):
+        scene = context.scene
+        cursor = scene.cursor.location
+        obj = context.active_object
+
+        for i in range(self.total):
+            obj_new = obj.copy()
+            scene.collection.objects.link(obj_new)
+
+            factor = i / self.total
+            obj_new.location = (obj.location * factor) + (cursor * (1.0 - factor))
+
+        return {'FINISHED'}
+
+
+def menu_func(self, context):
+    self.layout.operator(ObjectCursorArray.bl_idname)
+
+# store keymaps here to access after registration
+addon_keymaps = []
+
+
+def register():
+    bpy.utils.register_class(ObjectCursorArray)
+    bpy.types.VIEW3D_MT_object.append(menu_func)
+
+    # handle the keymap
+    wm = bpy.context.window_manager
+    # Note that in background mode (no GUI available), keyconfigs are not available either,
+    # so we have to check this to avoid nasty errors in background case.
+    kc = wm.keyconfigs.addon
+    if kc:
+        km = wm.keyconfigs.addon.keymaps.new(name='Object Mode', space_type='EMPTY')
+        kmi = km.keymap_items.new(ObjectCursorArray.bl_idname, 'T', 'PRESS', ctrl=True, shift=True)
+        kmi.properties.total = 4
+        addon_keymaps.append((km, kmi))
+
+def unregister():
+    # Note: when unregistering, it's usually good practice to do it in reverse order you registered.
+    # Can avoid strange issues like keymap still referring to operators already unregistered...
+    # handle the keymap
+    for km, kmi in addon_keymaps:
+        km.keymap_items.remove(kmi)
+    addon_keymaps.clear()
+
+    bpy.utils.unregister_class(ObjectCursorArray)
+    bpy.types.VIEW3D_MT_object.remove(menu_func)
+
+
+if __name__ == "__main__":
+    register()
+     </literal_block>
+     <figure ids="id4">
+      <image candidates="{'*': 'images/advanced_scripting_addon-tutorial_in-menu.png'}" uri="images/advanced_scripting_addon-tutorial_in-menu.png"/>
+      <caption>
+       In the menu.
+      </caption>
+     </figure>
+     <paragraph>
+      Run the script (or save it and add it through the Preferences like before) and it will appear in the
+      <emphasis>
+       Object
+      </emphasis>
+      menu.
+     </paragraph>
+     <figure ids="id5">
+      <image candidates="{'*': 'images/advanced_scripting_addon-tutorial_op-prop.png'}" uri="images/advanced_scripting_addon-tutorial_op-prop.png"/>
+      <caption>
+       Operator Property.
+      </caption>
+     </figure>
+     <paragraph>
+      After selecting it from the menu, you can choose how many instances of the cube you want create.
+     </paragraph>
+     <note>
+      <paragraph>
+       Directly executing the script multiple times will add the menu each time too.
+While not useful behavior, there's nothing to worry about since add-ons will not
+register themselves multiple times when enabled through the Preferences.
+      </paragraph>
+     </note>
+    </section>
+   </section>
+  </section>
+  <section ids="conclusions" names="conclusions kết\ luận\ --\ conclusions">
+   <title>
+    Kết Luận -- Conclusions
+   </title>
+   <paragraph>
+    Add-ons can encapsulate certain functionality neatly for writing tools
+to improve your workflow or for writing utilities for others to use.
+   </paragraph>
+   <paragraph>
+    While there are limits to what Python can do within Blender,
+there is certainly a lot that can be achieved without having to dive into Blender's C/C++ code.
+   </paragraph>
+   <paragraph>
+    The example given in the tutorial is limited, but shows the Blender API used
+for common tasks that you can expand on to write your own tools.
+   </paragraph>
+   <section ids="further-reading" names="further\ reading đọc\ thêm\ --\ further\ reading">
+    <title>
+     Đọc Thêm -- Further Reading
+    </title>
+    <paragraph>
+     Blender comes with commented templates which are accessible from the Text editor's header.
+If you have specific areas you want to see example code for, this is a good place to start.
+    </paragraph>
+    <paragraph>
+     Here are some sites you might like to check on after completing this tutorial.
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <reference name="Blender/Python API Overview" refuri="https://docs.blender.org/api/blender_python_api_current/info_overview.html">
+        Blender/Python API Overview
+       </reference>
+       --
+       <emphasis>
+        For more background details on Blender/Python integration.
+       </emphasis>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference name="How to Think Like a Computer Scientist" refuri="http://interactivepython.org/courselib/static/thinkcspy/index.html">
+        How to Think Like a Computer Scientist
+       </reference>
+       --
+       <emphasis>
+        Great info for those who are still learning Python.
+       </emphasis>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference name="Blender Development (Wiki)" refuri="https://wiki.blender.org">
+        Blender Development (Wiki)
+       </reference>
+       --
+       <emphasis>
+        Blender Development, general information and helpful links.
+       </emphasis>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference name="DevTalk" refuri="https://devtalk.blender.org/c/python">
+        DevTalk
+       </reference>
+       --
+       <emphasis>
+        Forum where people ask Python development questions.
+       </emphasis>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+ </section>
+</document>

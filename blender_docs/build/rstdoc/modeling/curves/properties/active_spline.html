@@ -1,0 +1,480 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/curves/properties/active_spline.rst">
+ <target refid="bpy-types-spline">
+ </target>
+ <section ids="active-spline bpy-types-spline" names="active\ spline bpy.types.spline">
+  <title>
+   Active Spline
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Curve --&gt; Active Spline`">
+        Properties ‣ Curve ‣ Active Spline
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The
+   <emphasis>
+    Active Spline
+   </emphasis>
+   panel is used in Edit Mode to control properties of the currently selected spline.
+  </paragraph>
+  <target refid="spline-common-options">
+  </target>
+  <target refid="bpy-types-spline-use-cyclic-u">
+  </target>
+  <target refid="bpy-types-spline-resolution-u">
+  </target>
+  <target refid="bpy-types-spline-use-smooth">
+  </target>
+  <rubric ids="bpy-types-spline-use-smooth bpy-types-spline-resolution-u bpy-types-spline-use-cyclic-u spline-common-options" names="bpy.types.spline.use_smooth bpy.types.spline.resolution_u bpy.types.spline.use_cyclic_u spline-common-options">
+   Common Options
+  </rubric>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Cyclic U
+    </term>
+    <definition>
+     <paragraph>
+      Closes the active spline.
+     </paragraph>
+     <table>
+      <tgroup cols="2">
+       <colspec colwidth="50">
+       </colspec>
+       <colspec colwidth="50">
+       </colspec>
+       <tbody>
+        <row>
+         <entry>
+          <figure ids="id1">
+           <image candidates="{'*': 'images/modeling_curves_properties_data_nurbs-default.png'}" uri="images/modeling_curves_properties_data_nurbs-default.png"/>
+           <caption>
+            Default NURBS curve.
+           </caption>
+          </figure>
+         </entry>
+         <entry>
+          <figure ids="id2">
+           <image candidates="{'*': 'images/modeling_curves_properties_data_nurbs-cyclic.png'}" uri="images/modeling_curves_properties_data_nurbs-cyclic.png"/>
+           <caption>
+            A NURBS curve with Cyclic applied.
+           </caption>
+          </figure>
+         </entry>
+        </row>
+       </tbody>
+      </tgroup>
+     </table>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Resolution U
+    </term>
+    <definition>
+     <paragraph>
+      Alters the
+      <reference internal="True" refuri="shape.html#bpy-types-curve-resolution-u">
+       <inline classes="std std-ref">
+        resolution
+       </inline>
+      </reference>
+      of each segment by changing the number of subdivisions.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Smooth
+    </term>
+    <definition>
+     <paragraph>
+      Use
+      <reference internal="True" refuri="../../meshes/editing/normals.html#modeling-meshes-editing-normals-shading">
+       <inline classes="std std-ref">
+        Smooth Shading
+       </inline>
+      </reference>
+      for any 3D geometry.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <section ids="poly" names="poly">
+   <title>
+    Poly
+   </title>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/modeling_curves_properties_data_active-spline-panel-poly.png'}" uri="images/modeling_curves_properties_data_active-spline-panel-poly.png"/>
+    <caption>
+     Active Spline panel: Poly Spline.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Cyclic U
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refid="spline-common-options">
+        <inline classes="std std-ref">
+         Common Options
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Smooth
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refid="spline-common-options">
+        <inline classes="std std-ref">
+         Common Options
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-types-spline-tilt-interpolation">
+   </target>
+   <target refid="bpy-types-spline-radius-interpolation">
+   </target>
+  </section>
+  <section ids="bezier bpy-types-spline-radius-interpolation bpy-types-spline-tilt-interpolation" names="bézier bpy.types.spline.radius_interpolation bpy.types.spline.tilt_interpolation">
+   <title>
+    Bézier
+   </title>
+   <figure align="center" ids="id4">
+    <image candidates="{'*': 'images/modeling_curves_properties_data_active-spline-panel-bezier.png'}" uri="images/modeling_curves_properties_data_active-spline-panel-bezier.png"/>
+    <caption>
+     Active Spline panel: Bézier Spline.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Cyclic U
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refid="spline-common-options">
+        <inline classes="std std-ref">
+         Common Options
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Resolution U
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refid="spline-common-options">
+        <inline classes="std std-ref">
+         Common Options
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Interpolation Tilt
+     </term>
+     <definition>
+      <paragraph>
+       Alters how the tilt of a segment is calculated.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Radius
+     </term>
+     <definition>
+      <paragraph>
+       Alters how the radius of a beveled curve is calculated.
+The effects are easier to see after
+       <reference internal="True" refuri="../editing/curve.html#modeling-curve-radius">
+        <inline classes="std std-ref">
+         increasing the radius
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Smooth
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refid="spline-common-options">
+        <inline classes="std std-ref">
+         Common Options
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-types-spline-use-bezier-u">
+   </target>
+   <target refid="bpy-types-spline-use-endpoint-u">
+   </target>
+   <target refid="bpy-types-spline-order-u">
+   </target>
+  </section>
+  <section ids="nurbs bpy-types-spline-order-u bpy-types-spline-use-endpoint-u bpy-types-spline-use-bezier-u" names="nurbs bpy.types.spline.order_u bpy.types.spline.use_endpoint_u bpy.types.spline.use_bezier_u">
+   <title>
+    NURBS
+   </title>
+   <paragraph>
+    One of the characteristics of a NURBS object is the
+    <emphasis>
+     knot vector
+    </emphasis>
+    .
+This is a sequence of numbers used to determine the influence of the control points on the curve.
+While you cannot edit the knot vectors directly,
+you can influence them through the
+    <emphasis>
+     Endpoint
+    </emphasis>
+    and
+    <emphasis>
+     Bézier
+    </emphasis>
+    options in the Active Spline panel.
+Note that, the
+    <emphasis>
+     Endpoint
+    </emphasis>
+    and
+    <emphasis>
+     Bézier
+    </emphasis>
+    settings only apply to open NURBS curves.
+   </paragraph>
+   <figure align="center" ids="id5">
+    <image candidates="{'*': 'images/modeling_curves_properties_data_active-spline-panel-nurbs.png'}" uri="images/modeling_curves_properties_data_active-spline-panel-nurbs.png"/>
+    <caption>
+     Active Spline: NURBS Spline.
+    </caption>
+   </figure>
+   <target refid="modeling-curve-knot">
+   </target>
+   <definition_list ids="modeling-curve-knot" names="modeling-curve-knot">
+    <definition_list_item>
+     <term>
+      Cyclic U
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refid="spline-common-options">
+        <inline classes="std std-ref">
+         Common Options
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bézier U
+     </term>
+     <definition>
+      <paragraph>
+       Makes the NURBS curve act like a Bézier curve.
+The NURBS control points act like
+       <emphasis>
+        Free
+       </emphasis>
+       handles of Bézier curve.
+Depending on the
+       <emphasis>
+        Order
+       </emphasis>
+       , 3 or 4 control points form one curve segment.
+       <emphasis>
+        Cyclic
+       </emphasis>
+       and
+       <emphasis>
+        Endpoint
+       </emphasis>
+       must be disabled for this option to work.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Endpoint U
+     </term>
+     <definition>
+      <paragraph>
+       Makes the curve contact the end control points.
+       <emphasis>
+        Cyclic
+       </emphasis>
+       must be disabled for this option to work.
+      </paragraph>
+      <table>
+       <tgroup cols="2">
+        <colspec colwidth="50">
+        </colspec>
+        <colspec colwidth="50">
+        </colspec>
+        <tbody>
+         <row>
+          <entry>
+           <figure ids="id6">
+            <image candidates="{'*': 'images/modeling_curves_properties_data_nurbs-default.png'}" uri="images/modeling_curves_properties_data_nurbs-default.png"/>
+            <caption>
+             Default NURBS curve.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id7">
+            <image candidates="{'*': 'images/modeling_curves_properties_data_nurbs-endpoint.png'}" uri="images/modeling_curves_properties_data_nurbs-endpoint.png"/>
+            <caption>
+             A NURBS curve with Endpoint enabled.
+            </caption>
+           </figure>
+          </entry>
+         </row>
+        </tbody>
+       </tgroup>
+      </table>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="modeling-curve-order">
+   </target>
+   <definition_list ids="modeling-curve-order" names="modeling-curve-order">
+    <definition_list_item>
+     <term>
+      Order U
+     </term>
+     <definition>
+      <paragraph>
+       The order of the NURBS curve determines the area of influence of the control points over the curve.
+Higher order values means that a single control point has a greater
+influence over a greater relative proportion of the curve.
+The valid range of
+       <emphasis>
+        Order
+       </emphasis>
+       values is 2-6 depending on the number of control points present in the curve.
+      </paragraph>
+      <table>
+       <tgroup cols="2">
+        <colspec colwidth="50">
+        </colspec>
+        <colspec colwidth="50">
+        </colspec>
+        <tbody>
+         <row>
+          <entry>
+           <figure ids="id8">
+            <image candidates="{'*': 'images/modeling_curves_properties_data_nurbs-default.png'}" uri="images/modeling_curves_properties_data_nurbs-default.png"/>
+            <caption>
+             NURBS curves with orders of 4.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id9">
+            <image candidates="{'*': 'images/modeling_curves_properties_data_nurbs-order.png'}" uri="images/modeling_curves_properties_data_nurbs-order.png"/>
+            <caption>
+             NURBS curves with orders of 2.
+            </caption>
+           </figure>
+          </entry>
+         </row>
+        </tbody>
+       </tgroup>
+      </table>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Resolution U
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refid="spline-common-options">
+        <inline classes="std std-ref">
+         Common Options
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Smooth
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refid="spline-common-options">
+        <inline classes="std std-ref">
+         Common Options
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

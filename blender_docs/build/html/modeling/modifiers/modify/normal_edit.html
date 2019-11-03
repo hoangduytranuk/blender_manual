@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bộ Điều Chỉnh Pháp Tuyến -- Normal Edit Modifier &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/modify/normal_edit.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Bộ Điều Chỉnh Phóng Chiếu UV -- UV Project Modifier" href="uv_project.html" />
+    <link rel="prev" title="-- Mesh Sequence Cache Modifier" href="mesh_sequence_cache.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">-- Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh -- Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#modify">Sửa Đổi -- Modify</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="data_transfer.html">Bộ Điều Chỉnh Thuyên Chuyển  Dữ Liệu -- Data Transfer Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_cache.html">-- Mesh Cache Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_sequence_cache.html">-- Mesh Sequence Cache Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Pháp Tuyến -- Normal Edit Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_project.html">Bộ Điều Chỉnh Phóng Chiếu UV -- UV Project Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_warp.html">-- UV Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_edit.html">-- Vertex Weight Edit Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_mix.html">-- Vertex Weight Mix Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_proximity.html">-- Vertex Weight Proximity Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weighted_normal.html">Weighted Normal Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Sinh Tạo -- Generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#simulate">Mô Phỏng -- Simulate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
+        
+      <li>Bộ Điều Chỉnh Pháp Tuyến -- Normal Edit Modifier</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modeling/modifiers/modify/normal_edit.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="normal-edit-modifier">
+<span id="bpy-types-normaleditmodifier"></span><h1>Bộ Điều Chỉnh Pháp Tuyến -- Normal Edit Modifier<a class="headerlink" href="#normal-edit-modifier" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Normal Edit</em> modifier affects (or generates) custom normals. It uses a few simple parametric methods
+to compute them (quite useful in game development and architecture areas), and mixes back those generated normals
+with existing ones.</p>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id1">
+<img alt="../../../_images/modeling_modifiers_modify_normal-edit_panel.png" src="../../../_images/modeling_modifiers_modify_normal-edit_panel.png" />
+<p class="caption"><span class="caption-text">Normal Edit Modifier.</span></p>
+</div>
+<dl class="docutils">
+<dt>Chế Độ -- Mode</dt>
+<dd><dl class="first last docutils">
+<dt>Tỏa Tròn -- Radial</dt>
+<dd>Aligns normals with the <code class="docutils literal notranslate"><span class="pre">(origin,</span> <span class="pre">vertex_coordinates)</span></code> vector, in other words all normals seems to radiate
+from the given center point, as if they were emitted from an ellipsoid surface.</dd>
+<dt>Định Hướng -- Directional</dt>
+<dd>Makes all normals point (converge) towards a given target object.</dd>
+</dl>
+</dd>
+<dt>Vật Thể Mục Tiêu -- Target Object</dt>
+<dd><p class="first">Uses this object's origin as reference point when generating normals.</p>
+<p class="last">Optional in <em>Radial</em> mode, mandatory in <em>Directional</em> one.</p>
+</dd>
+<dt>Pháp Tuyến Song Song -- Parallel Normals</dt>
+<dd><p class="first">Makes all normals parallel to the line between both objects' origins,
+instead of converging towards target's origin.</p>
+<p class="last">Only relevant in <em>Directional</em> mode.</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt>
+<dd><p class="first">Gives modified object's origin an offset before using it to generate normals.</p>
+<p class="last">Only relevant in <em>Radial</em> mode if no <em>Target Object</em> is set,
+and in <em>Directional</em> mode when <em>Parallel Normals</em> is set.</p>
+</dd>
+</dl>
+<div class="section" id="mix-mode">
+<h3>Chế Độ Pha Trộn -- Mix Mode<a class="headerlink" href="#mix-mode" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Chế Độ Pha Trộn -- Mix Mode</dt>
+<dd><p class="first">How to affect existing normals with newly generated ones.</p>
+<p class="last">Note that the <em>Multiply</em> option is <strong>not</strong> a cross product, but a mere component-by-component multiplication.</p>
+</dd>
+<dt>Hệ Số Pha Trộn -- Mix Factor</dt>
+<dd>How much of the generated normals get mixed into existing ones.</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
+<dd>Allows per-item fine control of the mix factor. The vertex group influence can be reverted by using the small
+&quot;arrow&quot; button to the right.</dd>
+<dt>Góc Lớn Nhất -- Max Angle</dt>
+<dd>Forbids new generated normals to have an angle to the original normal above that given threshold.
+This is useful to prevent extreme changes, that can even lead to inverting the front/back sides of a face,
+and consequently to ugly shading artifacts.</dd>
+<dt>-- Lock Polygon Normals (padlock icon)</dt>
+<dd>Prevents flipping (reversing front/back sides) of polygons which normal does not match anymore
+the side to which point its corners' custom normals. Can also help avoiding shading issues.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Sử Dụng -- Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>This modifier can be used to quickly generate radial normals for low-poly tree foliage or
+&quot;fix&quot; shading of toon-like rendering by partially bending default normals...</p>
+<p>The only mandatory prerequisite to use it is to enable the <em>Auto Smooth</em> option in Mesh properties, <em>Normals</em> panel.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">More complex normal manipulations can be achieved by copying normals from one mesh to another,
+see the <a class="reference internal" href="data_transfer.html"><span class="doc">Data Transfer Modifier</span></a>.
+Some shading effects can also make use of
+the <a class="reference internal" href="weighted_normal.html"><span class="doc">Weighted Normals modifier</span></a>.</p>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_normal-edit_example.jpg"><img alt="../../../_images/modeling_modifiers_modify_normal-edit_example.jpg" src="../../../_images/modeling_modifiers_modify_normal-edit_example.jpg" style="width: 680px;" /></a>
+<p class="caption"><span class="caption-text">Examples of editing custom normals to point towards a given direction,
+see <a class="reference external" href="http://download.blender.org/ftp/mont29/persistent_data/sapling_CN.blend">example blend-file</a>.</span></p>
+</div>
+<p>The left tree mesh has unmodified normals, while on the right one a <em>Normal Edit</em> modifier is used to bend them
+towards the camera. This shading trick is often used in games to fake scattering in trees and other vegetation.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="uv_project.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Phóng Chiếu UV -- UV Project Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mesh_sequence_cache.html" class="btn btn-neutral float-left" title="-- Mesh Sequence Cache Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

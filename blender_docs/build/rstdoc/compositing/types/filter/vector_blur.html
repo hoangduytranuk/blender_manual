@@ -1,0 +1,201 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/filter/vector_blur.rst">
+ <target refid="bpy-types-compositornodevecblur">
+ </target>
+ <section ids="vector-motion-blur-node bpy-types-compositornodevecblur" names="vector\ (motion)\ blur\ node nút\ nhòe\ mờ\ (chuyển\ động)\ vectơ\ --\ vector\ (motion)\ blur\ node bpy.types.compositornodevecblur">
+  <title>
+   Nút Nhòe Mờ (Chuyển Động) Vectơ -- Vector (Motion) Blur Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeVecBlur.png'}" uri="images/compositing_node-types_CompositorNodeVecBlur.png"/>
+   <caption>
+    Nút Nhòe Mờ Vectơ.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Nhòe Mờ Vectơ (Vector Blur node) là một phương pháp mô phỏng sự
+   <emphasis>
+    Nhòe Mờ Chuyển Động
+   </emphasis>
+   --
+   <reference internal="True" refuri="../../../glossary/index.html#term-motion-blur">
+    <inline classes="xref std std-term">
+     Motion blur
+    </inline>
+   </reference>
+   -- nhanh tróng trong quá trình tổng hợp. Nó sử dụng lượt kết xuất tốc độ véctơ (vector speed render pass) để làm nhòe các điểm ảnh của hình ảnh trong 2 chiều (2D).
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh, để kết nối vào lượt kết xuất "Kết Hợp" (Combined)
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Z
+     </term>
+     <definition>
+      <paragraph>
+       Chiều sâu Z, để kết nối với lượt kết xuất "Độ Sâu" (Depth)
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tốc Độ -- Speed
+     </term>
+     <definition>
+      <paragraph>
+       Input for the "Vector" render pass.
+See
+       <reference internal="True" refuri="../../../render/layers/passes.html">
+        <inline classes="doc">
+         Cycles render passes
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Lượng Mẫu Vật -- Samples
+     </term>
+     <definition>
+      <paragraph>
+       Hệ số chất lượng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Làm Nhòe -- Blur
+     </term>
+     <definition>
+      <paragraph>
+       Hệ số tỷ lệ hóa dành cho véctơ chuyển động (thực ra là "tốc độ màn chập" (shutter speed) trong đơn vị khung hình)
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tốc Độ -- Speed
+     </term>
+     <definition>
+      <paragraph>
+       Làm nhòe Véctơ (vector blur) có thể tạo nên giả tượng như các vệt sáng, đường thẳng và những cái khác. Để giải quyết vấn đề này, bộ lọc áp dụng sự hạn định, để giới hạn (tuyển chọn) những điểm ảnh nào sẽ được làm nhòe. Tốc độ được đặt trong đơn vị điểm ảnh.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tốc Độ Tối Đa -- Maximum Speed
+        </term>
+        <definition>
+         <paragraph>
+          Ngưỡng tối đa. Đại đa số các giả tượng gây ra là do các điểm ảnh chuyển động quá nhanh.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tốc Độ Tối Thiểu -- Minimum Speed
+        </term>
+        <definition>
+         <paragraph>
+          Ngưỡng tối thiểu dành cho các điểm ảnh chuyển động, có thể tách biệt những điểm ảnh hầu như không di chuyển khỏi những cái di chuyển. Đặc biệt khi bản thân máy quay phim là vật di chuyển, véctơ chắn lọc có thể trở thành toàn bộ hình ảnh.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra của hình ảnh đã được làm nhòe chuyển động.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <paragraph>
+    Ngay cả khi với một sắp đặt tổng hợp đúng đắn, có tất cả các nút Hình Ảnh, Z và Tốc Độ (Speed) kết nối với các lượt thích hợp, thì giả tượng cũng vẫn có thể xảy ra. Các lượt kết xuất 2D không có chứa thông tin 3D, và do đó, thông tin về những gì nằm đằng sau một vật thể chuyển động, hoặc nằm ngoài tầm nhìn của máy quay phim, bị mất đi.
+   </paragraph>
+   <paragraph>
+    Kết quả tốt hơn có thể đạt được bằng cách là kết xuất cảnh thành nhiều tầng lớp kết xuất khác nhau, áp dụng véctơ nhòe mờ cho từng lớp kết xuất riêng một và sau đó tổng hợp các kết quả lại. Thông thường thì một nhân vật hoạt hình sẽ được kết xuất trong một tầng lớp kết xuất riêng, tách ra khỏi sự bài trí ở nền, nhất là khi có tóc hoặc có độ trong suốt tham gia vào thì điều này là điều rất quan trọng.
+   </paragraph>
+   <paragraph>
+    Đối với những giả tượng khác thì cái này có thể giúp làm nhòe đôi chút lượt Tốc Độ (Speed pass) hoặc để đặt một giới hạn Tốc Độ Tối Đa (Maximum Speed). Điều này sẽ giúp làm cho chuyển động trở nên mịn màng, song nếu làm mờ quá nhiều thì sẽ dẫn đến các vấn đề riêng của bản thân nó.
+   </paragraph>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <paragraph>
+    <emphasis>
+     Vectơ tốc độ
+    </emphasis>
+    (speed vector) trong ví dụ này được tạo ra bằng cách hoạt họa hình cầu theo chiều ngang và sử dụng một khung hình ở điểm giữa của chuỗi hành động.
+   </paragraph>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/compositing_types_filter_vector-blur_example-base.jpg'}" uri="images/compositing_types_filter_vector-blur_example-base.jpg" width="300px"/>
+         <caption>
+          Kết quả kết xuất, không có xử lý hậu kỳ.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/compositing_types_filter_vector-blur_example-1.jpg'}" uri="images/compositing_types_filter_vector-blur_example-1.jpg" width="300px"/>
+         <caption>
+          Tổng hợp, với lượng Mẫu Vật (Samples) đặt là 32 và độ Làm Nhòe (Blur) đặt là 1,0.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

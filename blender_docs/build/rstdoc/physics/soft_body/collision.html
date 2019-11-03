@@ -1,0 +1,289 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/soft_body/collision.rst">
+ <section ids="collision" names="collision va\ đập\ --\ collision">
+  <title>
+   Va Đập -- Collision
+  </title>
+  <paragraph>
+   There are two different collision types that you may use:
+collision between different objects and internal collision.
+We should set one thing straight from the start --
+the primary targets of the collision calculation are the vertices of a soft body.
+So if you have too few vertices too few collision takes place.
+Secondarily, you can use edges and faces to improve the collision calculation.
+  </paragraph>
+  <section ids="collisions-with-other-objects" names="collisions\ with\ other\ objects --\ collisions\ with\ other\ objects">
+   <title>
+    -- Collisions with Other Objects
+   </title>
+   <paragraph>
+    For a soft body to collide with another object there are a few prerequisites:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      If
+      <emphasis>
+       Collision Collection
+      </emphasis>
+      is set, the object must belong to the collection.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The collision object has to be a mesh object.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      You have to activate the
+      <emphasis>
+       Collision
+      </emphasis>
+      in the
+      <emphasis>
+       Physics
+      </emphasis>
+      tab for the collision object.
+The collision object may also be a soft body.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <section ids="examples" names="examples ví\ dụ\ --\ examples">
+    <title>
+     Ví Dụ -- Examples
+    </title>
+    <paragraph>
+     A soft body cube colliding with a plane (Fig.
+     <reference internal="True" refid="fig-softbody-collision-plane1">
+      <inline classes="std std-ref">
+       A soft body cube colliding with a plane.
+      </inline>
+     </reference>
+     )
+works pretty well, but a soft body plane falls right through a cube
+that it is supposed to collide with (Fig.
+     <reference internal="True" refid="fig-softbody-collision-plane2">
+      <inline classes="std std-ref">
+       A soft body plane colliding with a cube, so no interaction at all.
+      </inline>
+     </reference>
+     ).
+    </paragraph>
+    <table>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <target refid="fig-softbody-collision-plane1">
+         </target>
+         <figure ids="id1 fig-softbody-collision-plane1" names="fig-softbody-collision-plane1">
+          <image candidates="{'*': 'images/physics_soft-body_collision_cube-plane-1.png'}" uri="images/physics_soft-body_collision_cube-plane-1.png"/>
+          <caption>
+           A soft body cube colliding with a plane.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <target refid="fig-softbody-collision-plane2">
+         </target>
+         <figure ids="id2 fig-softbody-collision-plane2" names="fig-softbody-collision-plane2">
+          <image candidates="{'*': 'images/physics_soft-body_collision_cube-plane-2.png'}" uri="images/physics_soft-body_collision_cube-plane-2.png"/>
+          <caption>
+           A soft body plane colliding with a cube, so no interaction at all.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <paragraph>
+     Why is that? Because the default method of calculation only checks to see if the four vertices
+of the soft body plane collides with the cube as the plane is pulled down by gravity.
+You can activate
+     <emphasis>
+      Collision: Face
+     </emphasis>
+     (in the
+     <emphasis>
+      Soft Body Edges
+     </emphasis>
+     panel) to enable collision between
+the face of the plane and the object instead, but this type of calculation takes much longer.
+    </paragraph>
+    <paragraph>
+     Let us have a closer look at the collision calculation, so you can get an idea of how we might optimize it.
+    </paragraph>
+   </section>
+   <section ids="calculating-collisions" names="calculating\ collisions --\ calculating\ collisions">
+    <title>
+     -- Calculating Collisions
+    </title>
+    <paragraph>
+     Soft body simulations are by default done on a per-vertex basis. If the vertices of the soft body
+do not collide with the collision object, there will be no interaction between the two objects.
+    </paragraph>
+    <paragraph>
+     In the video below, you can see the vertices colliding with a plane.
+If a vertex penetrates the zone between
+     <emphasis>
+      Outer
+     </emphasis>
+     and
+     <emphasis>
+      Inner
+     </emphasis>
+     , it is repulsed by a force in
+the direction of the face normal. The position that a vertex finally ends up in is dependent
+on the forces that act upon it. In the example (the first vertex on the left in the video below)
+gravity and the repulsion force of the face balance out.
+The speed at which the vertex is pulled out of the collision zone is influenced by the
+     <emphasis>
+      Choke
+     </emphasis>
+     parameter
+in the
+     <reference internal="True" refuri="settings.html#physics-softbody-settings-solver">
+      <inline classes="std std-ref">
+       Soft Body Solver settings
+      </inline>
+     </reference>
+     .
+    </paragraph>
+    <youtube aspect="None" height="None" id="YnerUKP1ptQ" width="None">
+    </youtube>
+    <seealso>
+     <paragraph>
+      Download the
+      <reference name="blend-file" refuri="https://en.blender.org/uploads/8/8d/CollidingVertices.blend">
+       blend-file
+      </reference>
+      .
+     </paragraph>
+    </seealso>
+    <paragraph>
+     Now let's see what happens if we make vertices heavier and let them travel at a faster speed.
+In the video above, you can see vertices traveling at different speeds.
+The two on the far right (fifth and sixth) are traveling so fast that they pass right through
+the collision zone (this is because of the default solver precision, which we can fix later).
+You will notice that the fourth vertex also travels quite fast and because it is heavier
+it breaches the inner zone. The first three vertices collide correctly.
+    </paragraph>
+    <paragraph>
+     You can set up your collision so that edges and even faces are included in the collision calculation
+in the
+     <emphasis>
+      Soft Body Edges
+     </emphasis>
+     panel with the Collision
+     <emphasis>
+      Face
+     </emphasis>
+     and
+     <emphasis>
+      Edge
+     </emphasis>
+     options.
+The collision is then calculated differently. It is checked whether the edge or face
+intersects with the collision object, the collision zones are not used.
+    </paragraph>
+   </section>
+   <section ids="good-collisions" names="good\ collisions --\ good\ collisions">
+    <title>
+     -- Good Collisions
+    </title>
+    <paragraph>
+     If the collision you have set up is not behaving properly, you can try the following:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       The soft body object must have more subdivisions than the collision object.
+Add loop cuts to the soft body object in strategic areas that
+you know are most likely to be involved in a collision.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Check the direction of the face normals.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       If the collision object has sharp spikes, they might penetrate the soft body.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       The resolution of the solver must match the speed at which soft body vertices are traveling.
+Lower the parameter
+       <emphasis>
+        Error Limit
+       </emphasis>
+       and carefully increase
+       <emphasis>
+        Min Step
+       </emphasis>
+       .
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <emphasis>
+        Outer
+       </emphasis>
+       and
+       <emphasis>
+        Inner
+       </emphasis>
+       should be large enough, but zones of opposite faces should not overlap,
+or you have forces in opposite directions.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       If you use strong forces you should use large zones.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Set
+       <emphasis>
+        Choke
+       </emphasis>
+       to a high enough value (all the way up if necessary) if you have difficulties with repelled vertices.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Colliding faces are difficult to control and need long calculation times. Try not to use them.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     Often it is better to create a simplified mesh to use as your collision object,
+however, this may be difficult if you are using an animated mesh.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="self-collisions" names="self-collisions --\ self-collisions">
+   <title>
+    -- Self-Collisions
+   </title>
+   <paragraph>
+    For information on self-collision please refer to
+the
+    <reference internal="True" refuri="settings.html#physics-softbody-settings-self-collision">
+     <inline classes="std std-ref">
+      Self-Collision
+     </inline>
+    </reference>
+    settings.
+   </paragraph>
+  </section>
+ </section>
+</document>

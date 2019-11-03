@@ -23,7 +23,7 @@ import os
 # Not used directly by Sphinx, only used by this file.
 #
 
-blender_version = '2.80'
+blender_version = '2.81'
 
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -51,7 +51,9 @@ extensions = [
     'vimeo',
     'sphinx.ext.mathjax',
     'sphinx.ext.intersphinx',
-    '404'
+    '404',
+    #'process_doctree'
+    'TranslateTitleLines'
 ]
 
 # Is there a better way to check for PDF building?

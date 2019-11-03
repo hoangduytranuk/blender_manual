@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Giới Thiệu -- Introduction &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/forces/force_fields/introduction.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Lực -- Force" href="types/force.html" />
+    <link rel="prev" title="Trường Lực -- Force Fields" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">-- Particles System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../smoke/index.html">-- Smoke Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Forces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../gravity.html">Trọng Lực -- Gravity</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Trường Lực -- Force Fields</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#types">Thể Loại -- Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="../index.html">Forces</a> &raquo;</li>
+        
+          <li><a href="index.html">Trường Lực -- Force Fields</a> &raquo;</li>
+        
+      <li>Giới Thiệu -- Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/physics/forces/force_fields/introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>Giới Thiệu -- Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Force Fields offer a way to influence a simulation, in example to add extra movement.
+<a class="reference internal" href="../../particles/index.html"><span class="doc">Particles</span></a>, <a class="reference internal" href="../../soft_body/index.html"><span class="doc">Soft Bodies</span></a>,
+<a class="reference internal" href="../../rigid_body/index.html"><span class="doc">Rigid Bodies</span></a>, and <a class="reference internal" href="../../cloth/index.html"><span class="doc">Cloth objects</span></a>
+can all be affected by forces fields.
+Force Fields automatically affect everything.
+To remove a simulation or particle system from their influence,
+simply turn down the influence of that type of Force Field in its Field Weights panel.</p>
+<ul class="simple">
+<li>All types of objects and particles can generate fields,
+but only curve object can bear <em>Curve Guides</em> fields.</li>
+<li>Force Fields can also be generated from particles.
+See <a class="reference internal" href="../../particles/emitter/physics/index.html"><span class="doc">Particle Physics</span></a>.</li>
+<li>The objects need to share at least one common layer to have an effect.</li>
+</ul>
+<p>You may limit the effect on particles to a group of objects
+(see the <a class="reference internal" href="../../particles/emitter/physics/index.html"><span class="doc">Particle Physics</span></a> page).</p>
+<div class="section" id="creating-a-force-field">
+<h2>-- Creating a Force Field<a class="headerlink" href="#creating-a-force-field" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể -- Object Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Lý (Physics) ‣ Trường (Fields)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To create a single Force Field, you can select <span class="menuselection">Cộng Thêm (Add) ‣ Trường Lực (Force Field)</span> and select the desired force field. This method creates an Empty with the force field attached.</p>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">Examples of Empty with the force field attached.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id2">
+<img alt="../../../_images/physics_forces_force-fields_types_vortex_visualzation.png" src="../../../_images/physics_forces_force-fields_types_vortex_visualzation.png" />
+<p class="caption"><span class="caption-text">Vortex force field.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id3">
+<img alt="../../../_images/physics_forces_force-fields_types_wind_visualzation.png" src="../../../_images/physics_forces_force-fields_types_wind_visualzation.png" />
+<p class="caption"><span class="caption-text">Wind force field.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id4">
+<img alt="../../../_images/physics_forces_force-fields_types_force_visualzation.png" src="../../../_images/physics_forces_force-fields_types_force_visualzation.png" />
+<p class="caption"><span class="caption-text">Force force field.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>To create a field from an existing object you have to select the object and
+change to the <em>Physics</em> tab. Select the field type in the <em>Fields</em> menu.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>After changing the fields <em>Fields</em> panel or deflection <em>Collision</em> panel settings,
+you have to recalculate the particle, soft body or cloth system by <em>Free Cache</em>,
+this is not done automatically.</p>
+<p class="last">Particles react to all kinds of <em>Force Fields</em>,
+soft bodies only to <em>Force</em>, <em>Wind</em>, <em>Vortex</em>
+(they react on <em>Harmonic</em> fields but not in a useful way).</p>
+</div>
+</div>
+<div class="section" id="common-field-settings">
+<h2>-- Common Field Settings<a class="headerlink" href="#common-field-settings" title="Permalink to this headline">¶</a></h2>
+<p>Most Fields have the same settings, even though they act very differently.
+Settings unique to a field type are described below.
+Curve Guide and Texture Fields have very different options.</p>
+<dl class="docutils">
+<dt>Hình Dạng -- Shape</dt>
+<dd><p class="first">Sets the direction which is used to calculate the effector force.
+For force fields from an empty object only <em>Point</em> and <em>Plane</em> shapes are available,
+as for a field from a 3D object there are additional <em>Surface</em> and <em>Every Point</em> options,
+and <em>Curve</em> for a field from a curve.</p>
+<dl class="last docutils">
+<dt>Điểm -- Point</dt>
+<dd>Point with omni-directional influence.
+Uses the object origin as the effector point.</dd>
+<dt>Mặt Phẳng -- Plane</dt>
+<dd>Influence only in the local Z direction.</dd>
+<dt>Bề Mặt -- Surface</dt>
+<dd>The force field acts on a 3D object's surface.
+In this case, the Z axis is the surface normal.</dd>
+<dt>Mọi Điểm -- Every Point</dt>
+<dd>Uses every vertex in the mesh object as an effector point.</dd>
+<dt>Đường Cong -- Curve</dt>
+<dd>The force field acts along a curve object.</dd>
+</dl>
+</dd>
+<dt>Sức Mạnh/Cường Độ -- Strength</dt>
+<dd>The strength of the field effect.
+This can be positive or negative to change the direction that the force operates in.
+A force field's strength is scaled with the force object's scale,
+allowing you to scale up and down the scene, keeping the same effects.</dd>
+<dt>Luồng -- Flow</dt>
+<dd>If non-zero, the effective force depends on the particle velocity.
+The value defines how quickly the effector force (acceleration)
+will be converted into the constant &quot;air flow&quot; velocity.</dd>
+<dt>Noise Amount</dt>
+<dd>Adds noise to the strength of the force.</dd>
+<dt>Mầm -- Seed</dt>
+<dd>Changes the seed of the random noise.</dd>
+<dt>Affect Location</dt>
+<dd>Influence the location of particles.</dd>
+<dt>Affect Rotation</dt>
+<dd>Influence the rotation of particles.</dd>
+<dt>Absorption</dt>
+<dd>Force gets absorbed by collision objects.</dd>
+</dl>
+<div class="section" id="falloff">
+<h3>Suy Giảm Dần -- Falloff<a class="headerlink" href="#falloff" title="Permalink to this headline">¶</a></h3>
+<p>Here you can specify the shape of the force field
+(if the falloff <em>Power</em> is greater than 0).</p>
+<dl class="docutils">
+<dt>Hình Dạng -- Shape</dt>
+<dd><dl class="first last docutils">
+<dt>Hình Cầu -- Sphere</dt>
+<dd>The falloff is uniform in all directions, as in a sphere.</dd>
+<dt>Hình Ống -- Tube</dt>
+<dd>The falloff results in a tube-shaped force field.
+The field's <em>Radial Power</em> can be adjusted,
+as well as the <em>Minimum</em> and <em>Maximum</em> distances of the field.</dd>
+<dt>Hình Nón -- Cone</dt>
+<dd>The falloff results in a cone-shaped force field. Additional options are the same as those of <em>Tube</em> options.</dd>
+</dl>
+</dd>
+<dt>Hướng Z -- Z Direction</dt>
+<dd>The force can be set to apply only in the direction of the positive Z axis, negative Z axis, or both.</dd>
+<dt>Lũy Thừa -- Power</dt>
+<dd>How the power of the force field changes with the distance from the force field.
+If <em>r</em> is the distance from the origin of the object, the force changes with 1/<em>r</em><sup>power</sup>.
+A falloff of 2 changes the force field with 1/<em>r</em><sup>2</sup>,
+which is the falloff of gravitational pull.</dd>
+<dt>Khoảng Cách Tối Đa -- Max Distance</dt>
+<dd>Makes the force field affect other objects only within a specified maximum radius
+(shown by an additional circle around the object).</dd>
+<dt>-- Min Distance</dt>
+<dd>The distance from the object's origin, up to where the force field is effective with full strength.
+If you have a falloff of 0 this parameter will have no effect,
+because the field is effective with full strength up to <em>Max Distance</em> (or the infinity).
+Shown by an additional circle around the object.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="types/force.html" class="btn btn-neutral float-right" title="Lực -- Force" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Trường Lực -- Force Fields" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

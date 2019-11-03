@@ -1,0 +1,147 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/matte/channel_key.rst">
+ <target refid="bpy-types-compositornodechannelmatte">
+ </target>
+ <section ids="channel-key-node bpy-types-compositornodechannelmatte" names="channel\ key\ node nút\ kênh\ làm\ màu\ khóa\ --\ channel\ key\ node bpy.types.compositornodechannelmatte">
+  <title>
+   Nút Kênh làm Màu Khóa -- Channel Key Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeChannelMatte.png'}" uri="images/compositing_node-types_CompositorNodeChannelMatte.png"/>
+   <caption>
+    Nút Kênh làm Màu Khóa.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút
+   <emphasis>
+    Kênh làm Màu Khóa
+   </emphasis>
+   tách phân các vật thể ở nền đằng sau khỏi các vật thể ở nền đằng trước bằng sự chênh lệch về mức độ giữa các kênh đã chọn.
+  </paragraph>
+  <paragraph>
+   Chẳng hạn, trong không gian màu YUV, cái này có lợi trong việc tổng hợp đoạn phim thư viện về cảnh nổ cháy (rất chói) thường được quay trên một nền trơn, sẫm màu.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Không Gian Màu Sắc -- Color Space
+     </term>
+     <definition>
+      <paragraph>
+       Nút bấm này cho phép chọn không gian màu sắc nào mà các kênh sẽ đại diện.
+      </paragraph>
+      <paragraph>
+       RGB (Đỏ, Lục, Lam), HSV (Sắc Thái, Độ Bão Hòa, Giá Trị), YUV, YCbCr
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kênh -- Channel
+     </term>
+     <definition>
+      <paragraph>
+       Nút bấm này cho phép chọn kênh đã định trong
+       <emphasis>
+        Không Gian Màu Sắc
+       </emphasis>
+       (Color Space) để sử dụng xác định lớp lồng (matte).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thuật Toán -- Algorithm
+     </term>
+     <definition>
+      <paragraph>
+       Tối đa (Max.), Đơn (Single)
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giới Hạn -- Limit
+     </term>
+     <definition>
+      <paragraph>
+       Việc phân tách giữa hai giá trị để tạo một dốc màu chuyển sắc (gradient) của độ trong suốt giữa các vật thể ở nền đằng trước và nền đằng sau là một việc hoàn toàn có thể.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Cao -- High
+        </term>
+        <definition>
+         <paragraph>
+          Determines the lowest values that are considered foreground.
+(Which is supposed to be -- relatively -- height values: from this value to 1.0.)
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Thấp -- Low
+        </term>
+        <definition>
+         <paragraph>
+          Determines the highest values that are considered to be background objects.
+(Which is supposed to be -- relatively -- low values: from 0.0 to this value.)
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh có kênh alpha được điều chỉnh cho vùng chọn khóa hóa.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lớp Lồng -- Matte
+     </term>
+     <definition>
+      <paragraph>
+       Một bản màn chắn alpha trắng-đen của khóa.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

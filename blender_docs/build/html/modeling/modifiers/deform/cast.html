@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/cast.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier" href="corrective_smooth.html" />
+    <link rel="prev" title="Bộ Điều Chỉnh Cốt -- Armature Modifier" href="armature.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">-- Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh -- Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Sửa Đổi -- Modify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Sinh Tạo -- Generate</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="armature.html">Bộ Điều Chỉnh Cốt -- Armature Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve.html">Bộ Điều Chỉnh Đường Cong -- Curve Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displace.html">Bộ Điều Chỉnh Dời Hình -- Displace Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hooks.html">Bộ Điều Chỉnh Móc -- Hook Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_deform.html">Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lattice.html">Bộ Điều Chỉnh Giàn Lưới -- Lattice Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">-- Mesh Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrinkwrap.html">Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_deform.html">-- Simple Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth.html">Bộ Điều Chỉnh Làm Mịn -- Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_deform.html">-- Surface Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warp.html">Bộ Điều Chỉnh Làm Cong -- Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wave.html">Bộ Điều Chỉnh Tạo Sóng -- Wave Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#simulate">Mô Phỏng -- Simulate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
+        
+      <li>Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modeling/modifiers/deform/cast.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cast-modifier">
+<span id="bpy-types-castmodifier"></span><h1>Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier<a class="headerlink" href="#cast-modifier" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Cast</em> modifier shifts the shape of a mesh, curve,
+surface or lattice, towards any of a few predefined shapes (sphere, cylinder, cuboid).</p>
+<p>It is equivalent to the <a class="reference internal" href="../../meshes/editing/transform/to_sphere.html#tool-transform-to-sphere"><span class="std std-ref">To Sphere</span></a> tool in Edit Mode,
+and what other programs call &quot;Spherify&quot; or &quot;Spherize&quot;, but, as written above,
+it is not limited to casting to a sphere.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">The <a class="reference internal" href="smooth.html"><span class="doc">Smooth Modifier</span></a> is a good companion to <em>Cast</em>,
+since the cast shape sometimes needs smoothing to look nicer or even to fix shading artifacts.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">For performance reasons, this modifier only works with local coordinates.
+If the modified object looks wrong, you may need to apply its
+<a class="reference internal" href="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-transform-apply"><span class="std std-ref">transformations</span></a>, especially when casting to a cylinder.</p>
+</div>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id1">
+<img alt="../../../_images/modeling_modifiers_deform_cast_panel.png" src="../../../_images/modeling_modifiers_deform_cast_panel.png" />
+<p class="caption"><span class="caption-text">The Cast modifier.</span></p>
+</div>
+<dl class="docutils">
+<dt>Loại Khuôn Đúc -- Cast Type</dt>
+<dd>Menu to choose target shape of the projection: <em>Sphere</em>, <em>Cylinder</em> or <em>Cuboid</em>.</dd>
+<dt>Axis X/Y/Z</dt>
+<dd>Toggle buttons to enable/disable the modifier in the X, Y, Z axes directions
+(X and Y only for <em>Cylinder</em> cast type, since the Z axis remains unaffected).</dd>
+<dt>Hệ Số -- Factor</dt>
+<dd><p class="first">The factor to control blending between original and cast vertex positions.</p>
+<p>It is a linear interpolation: 0.0 gives original coordinates (i.e. modifier has no effect),
+1.0 casts to the target shape.</p>
+<p class="last">Values below 0.0 or above 1.0 exaggerate the deformation, sometimes in interesting ways.</p>
+</dd>
+<dt>Bán Kính -- Radius</dt>
+<dd>If non-zero, this radius defines a sphere of influence.
+Vertices outside it are not affected by the modifier.</dd>
+<dt>Kích Thước -- Size</dt>
+<dd>Alternative size for the projected shape. If zero,
+it is defined by the initial shape and the control object, if any.</dd>
+<dt>-- From radius</dt>
+<dd>If activated, calculate <em>Size</em> from <em>Radius</em>, for smoother results.</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
+<dd>If set, restrict the effect to the only vertices in that vertex group.
+This allows selective, real-time casting, by painting vertex weights.</dd>
+<dt>-- Control Object</dt>
+<dd><p class="first">The name of an object to control the effect.
+The location of this object's origin defines the center of the projection.
+Also, its size and rotation transform the projected vertices.</p>
+<div class="last admonition hint">
+<p class="first admonition-title">Gợi ý</p>
+<p class="last">Animating (keyframing) this control object also animates the modified object's casting deformation.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="example">
+<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_cast_example.jpg"><img alt="../../../_images/modeling_modifiers_deform_cast_example.jpg" src="../../../_images/modeling_modifiers_deform_cast_example.jpg" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Top: Suzanne without modifiers. Middle: Suzanne with each type of Cast Modifier (Sphere, Cylinder and Cuboid).
+Bottom: Same as above, but now only X axis is enabled.
+<a class="reference external" href="https://wiki.blender.org/wiki/File:263-Cast-Modifier.blend">Sample blend-file</a>.</span></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="corrective_smooth.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="armature.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Cốt -- Armature Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/generate/decimate.rst">
+ <target refid="bpy-types-decimatemodifier">
+ </target>
+ <section ids="decimate-modifier bpy-types-decimatemodifier" names="decimate\ modifier bộ\ điều\ chỉnh\ tiêu\ hao\ --\ decimate\ modifier bpy.types.decimatemodifier">
+  <title>
+   Bộ Điều Chỉnh Tiêu Hao -- Decimate Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Decimate
+   </emphasis>
+   modifier allows you to reduce the vertex/face count of a mesh with minimal shape changes.
+  </paragraph>
+  <paragraph>
+   This is not usually used on meshes which have been created by modeling carefully and economically
+(where all vertices and faces are necessary to correctly define the shape).
+But if the mesh is the result of complex modeling,
+sculpting and/or applied
+   <reference internal="True" refuri="subdivision_surface.html">
+    <inline classes="doc">
+     Subdivision Surface
+    </inline>
+   </reference>
+   /
+   <reference internal="True" refuri="multiresolution.html">
+    <inline classes="doc">
+     Multiresolution
+    </inline>
+   </reference>
+   modifiers,
+the
+   <emphasis>
+    Decimate
+   </emphasis>
+   one can be used to reduce the polygon count for a performance increase,
+or simply remove unnecessary vertices and edges.
+  </paragraph>
+  <paragraph>
+   Unlike the majority of existing modifiers, this one does not allow
+you to visualize your changes in Edit Mode.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <section ids="decimate-type" names="decimate\ type --\ decimate\ type">
+    <title>
+     -- Decimate Type
+    </title>
+    <section ids="collapse" names="collapse thu\ lại\ --\ collapse">
+     <title>
+      Thu Lại -- Collapse
+     </title>
+     <figure align="right" ids="id1">
+      <image candidates="{'*': 'images/modeling_modifiers_generate_decimate_panel-collapse.png'}" uri="images/modeling_modifiers_generate_decimate_panel-collapse.png"/>
+      <caption>
+       The Decimate modifier in Collapse mode.
+      </caption>
+     </figure>
+     <paragraph>
+      Merges vertices together progressively, taking the shape of the mesh into account.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Tỷ Số -- Ratio
+       </term>
+       <definition>
+        <paragraph>
+         The ratio of faces to keep after decimation.
+        </paragraph>
+        <bullet_list bullet="-">
+         <list_item>
+          <paragraph>
+           On 1.0: the mesh is unchanged.
+          </paragraph>
+         </list_item>
+         <list_item>
+          <paragraph>
+           On 0.5: edges have been collapsed such that half the number of faces remain (see note below).
+          </paragraph>
+         </list_item>
+         <list_item>
+          <paragraph>
+           On 0.0: all faces have been removed.
+          </paragraph>
+         </list_item>
+        </bullet_list>
+        <note>
+         <paragraph>
+          Although the
+          <emphasis>
+           Ratio
+          </emphasis>
+          is directly proportional to the number of remaining faces,
+triangles are used when calculating the ratio.
+         </paragraph>
+         <paragraph>
+          This means that if your mesh contains quads or other polygons,
+the number of remaining faces will be larger than expected,
+because those will remain unchanged if their edges are not collapsed.
+         </paragraph>
+         <paragraph>
+          This is only true if the
+          <emphasis>
+           Triangulate
+          </emphasis>
+          option is disabled.
+         </paragraph>
+        </note>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Nhóm Điểm Đỉnh -- Vertex Group
+       </term>
+       <definition>
+        <paragraph>
+         A vertex group that controls what parts of the mesh are decimated.
+        </paragraph>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           Hệ Số -- Factor
+          </term>
+          <definition>
+           <paragraph>
+            The amount of influence the
+            <emphasis>
+             Vertex Group
+            </emphasis>
+            has on the decimation.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tam Giác Hóa -- Triangulate
+       </term>
+       <definition>
+        <paragraph>
+         Keeps any resulting triangulated geometry from the decimation process.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Đối Xứng -- Symmetry
+       </term>
+       <definition>
+        <paragraph>
+         Maintains symmetry on a single axis.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="un-subdivide" names="un-subdivide phi\ phân\ hóa\ --\ un-subdivide">
+     <title>
+      Phi Phân Hóa -- Un-Subdivide
+     </title>
+     <figure align="right" ids="id2">
+      <image candidates="{'*': 'images/modeling_modifiers_generate_decimate_panel-un-subdivide.png'}" uri="images/modeling_modifiers_generate_decimate_panel-un-subdivide.png"/>
+      <caption>
+       The Decimate modifier in Un-Subdivide mode.
+      </caption>
+     </figure>
+     <paragraph>
+      It can be thought of as the reverse of subdivide.
+It attempts to remove edges that were the result of a subdivide operation.
+It is intended for meshes with a mainly grid-based topology (without giving uneven geometry).
+If additional editing has been done after the subdivide operation, the results may be unexpected.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Số Lần Lặp Lại -- Iterations
+       </term>
+       <definition>
+        <paragraph>
+         The number of times to perform the un-subdivide operation.
+Two iterations is the same as one subdivide operation, so you will usually want to use even numbers.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="planar" names="planar mặt\ phẳng\ --\ planar">
+     <title>
+      Mặt Phẳng -- Planar
+     </title>
+     <figure align="right" ids="id3">
+      <image candidates="{'*': 'images/modeling_modifiers_generate_decimate_panel-planar.png'}" uri="images/modeling_modifiers_generate_decimate_panel-planar.png"/>
+      <caption>
+       The Decimate modifier in Planar mode.
+      </caption>
+     </figure>
+     <paragraph>
+      It reduces details on forms comprised of mainly flat surfaces.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Giới Hạn Góc -- Angle Limit
+       </term>
+       <definition>
+        <paragraph>
+         Dissolve geometry which form angles (between surfaces) higher than this setting.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Toàn Bộ Ranh Giới -- All Boundaries
+       </term>
+       <definition>
+        <paragraph>
+         When enabled, all vertices along the boundaries of faces are dissolved.
+This can give nicer results when using a high
+         <emphasis>
+          Angle Limit
+         </emphasis>
+         .
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Phân Giới -- Delimit
+       </term>
+       <definition>
+        <paragraph>
+         Prevent dissolving geometry in certain places.
+        </paragraph>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           Pháp Tuyến -- Normal
+          </term>
+          <definition>
+           <paragraph>
+            Does not dissolve edges on the borders of areas where the face normals are reversed.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Nguyên Liệu -- Material
+          </term>
+          <definition>
+           <paragraph>
+            Does not dissolve edges on the borders of where different materials are assigned.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Đường Khâu -- Seam
+          </term>
+          <definition>
+           <paragraph>
+            Does not dissolve edges marked as seams.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+   <section ids="further-options" names="further\ options tùy\ chọn\ khác\ --\ further\ options">
+    <title>
+     Tùy Chọn Khác -- Further Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Số Lượng Bề Mặt -- Face Count
+      </term>
+      <definition>
+       <paragraph>
+        This label shows the number of remaining faces as a result of applying the
+        <emphasis>
+         Decimate
+        </emphasis>
+        modifier.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

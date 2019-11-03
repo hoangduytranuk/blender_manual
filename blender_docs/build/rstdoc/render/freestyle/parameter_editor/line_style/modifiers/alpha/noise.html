@@ -1,0 +1,70 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/freestyle/parameter_editor/line_style/modifiers/alpha/noise.rst">
+ <comment xml:space="preserve">
+  DO NOT EDIT FILE. This is simply a stub which copies everything from the link below.
+ </comment>
+ <section ids="noise" names="noise">
+  <title>
+   Noise
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Noise
+   </emphasis>
+   modifier uses a pseudo-random number generator to variably distribute the property along the stroke.
+  </paragraph>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Amplitude
+    </term>
+    <definition>
+     <paragraph>
+      The maximum value of the noise. A higher amplitude means a less transparent (more solid) stroke.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Period
+    </term>
+    <definition>
+     <paragraph>
+      The period of the noise. This means how quickly the property value can change.
+A higher value means a more smoothly changing color along the stroke.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Seed
+    </term>
+    <definition>
+     <paragraph>
+      Seed used by the pseudo-random number generator.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Asymmetric
+    </term>
+    <definition>
+     <paragraph>
+      Thickness only -- Allows the thickness to be distributed unevenly at every point.
+Internally, the stroke is represented as a backbone with a thickness to the right and left side.
+All other thickness shaders make sure that the left and right thickness values are equal.
+For the Noise shader however, a meaningful (and good-looking) result
+can be created by assigning different values to either side of the backbone.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <figure align="center" ids="id1">
+   <image candidates="{'*': 'images/render_freestyle_parameter-editor_line-style_modifiers_properties_thickness-noise-example.png'}" uri="images/render_freestyle_parameter-editor_line-style_modifiers_properties_thickness-noise-example.png" width="50%"/>
+   <caption>
+    Effect generated with a noise thickness modifier using asymmetric thickness.
+   </caption>
+  </figure>
+ </section>
+</document>

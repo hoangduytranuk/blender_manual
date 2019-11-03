@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kết Xuất -- Render &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/particles/emitter/render.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Viewport Display" href="display.html" />
+    <link rel="prev" title="Chất Lỏng -- Fluid" href="physics/fluid.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">-- Particles System</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../particle_system_panel.html">-- Particle System Panel</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Vật Phát Sinh -- Emitter</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="emission.html">Phát Xạ -- Emission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cache.html">Bộ Nhớ Đệm -- Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="velocity.html">Tốc Lực -- Velocity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rotation.html">Xoay Chiều -- Rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Kết Xuất -- Render</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display.html">Viewport Display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="children.html">Con Cái -- Children</a></li>
+<li class="toctree-l4"><a class="reference internal" href="force_field.html">Trường Lực -- Force Fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vertex_groups.html">Nhóm Điểm Đỉnh -- Vertex Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hair/index.html">Tóc -- Hair</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../texture_influence.html">-- Texture Influence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mode.html">-- Particle Edit Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../smoke/index.html">-- Smoke Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="../index.html">-- Particles System</a> &raquo;</li>
+        
+          <li><a href="index.html">Vật Phát Sinh -- Emitter</a> &raquo;</li>
+        
+      <li>Kết Xuất -- Render</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/physics/particles/emitter/render.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="render">
+<h1>Kết Xuất -- Render<a class="headerlink" href="#render" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Hệ Thống Hạt (Particle System) ‣ Kết Xuất (Render)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Render Panel controls how particles appear when they are rendered.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Cycles supports only Object and Collection render types.</p>
+</div>
+<div class="section" id="common-settings">
+<h2>Common Settings<a class="headerlink" href="#common-settings" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Scale</dt>
+<dd>Todo.</dd>
+<dt>Scale Randomness</dt>
+<dd>Todo.</dd>
+<dt>Material</dt>
+<dd>Set which of the object's materials is used to shade the particles.</dd>
+<dt>Coordinates System</dt>
+<dd>Use a different object's coordinates to determine the birth of particles.</dd>
+<dt>Show Emitter</dt>
+<dd>When disabled, the emitter is no longer rendered. Activate the button <em>Emitter</em> to also render the mesh.</dd>
+</dl>
+</div>
+<div class="section" id="render-as">
+<h2>Render As<a class="headerlink" href="#render-as" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="none">
+<h3>Không Có -- None<a class="headerlink" href="#none" title="Permalink to this headline">¶</a></h3>
+<p>When set to <em>None</em>, particles are not rendered.
+This is useful if you are using the particles to duplicate objects.</p>
+</div>
+<div class="section" id="halo">
+<span id="particle-halo"></span><h3>Hào Quang -- Halo<a class="headerlink" href="#halo" title="Permalink to this headline">¶</a></h3>
+<p>Halo are rendered as glowing dots or a little cloud of light.
+Although they are not really lights because they do not cast light into the scene like a light object.
+They are called <em>Halos</em> because you can see them, but they do not have any substance.</p>
+</div>
+<div class="section" id="path">
+<h3>Đường/Đi/Dẫn -- Path<a class="headerlink" href="#path" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Path</em> visualization needs a <a class="reference internal" href="../hair/index.html"><span class="doc">Hair</span></a> particle system or
+<a class="reference internal" href="physics/keyed.html"><span class="doc">Keyed</span></a> particles.</p>
+<dl class="docutils">
+<dt>B-Spline</dt>
+<dd>Interpolate hair using B-splines.
+This may be an option for you if you want to use low <em>Render</em> values.
+You loose a bit of control but gain smoother paths.</dd>
+<dt>Số Bước -- Steps</dt>
+<dd>Set the number of subdivisions of the rendered paths (the value is a power of 2).
+You should set this value carefully,
+because if you increase the render value by two you need four times more memory to render.
+Also the rendering is faster if you use low render values (sometimes drastically).
+But how low you can go with this value depends on the waviness of the hair (the value is a power of 2).
+This means 0 steps give 1 subdivision,
+1 give 2 subdivisions, 2 --&gt; 4, 3 --&gt; 8, 4 --&gt; 16, ... <em>n</em> --&gt; <em>n</em><sup>2</sup>.</dd>
+</dl>
+</div>
+<div class="section" id="timing">
+<h3>Thời Định -- Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Render ‣ Timing</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Hair</td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Thời Gian Đường Đi Tuyệt Đối -- Absolute Path Time</dt>
+<dd>Path timing is in absolute frames.</dd>
+<dt>Kết Thúc -- End</dt>
+<dd>End time of the practical path.</dd>
+<dt>Ngẫu Nhiên -- Random</dt>
+<dd>Give the path length a random variation.</dd>
+</dl>
+</div>
+<div class="section" id="object">
+<h3>Vật Thể -- Object<a class="headerlink" href="#object" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Render ‣ Object</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Instance Object</dt>
+<dd>The specified object is instanced in place of each particle.</dd>
+<dt>Global Coordinates</dt>
+<dd>Use object's global coordinates for instancing.</dd>
+<dt>Object Rotation</dt>
+<dd>Use the rotation of the object.</dd>
+<dt>Object Scale</dt>
+<dd>Use the size of the object.</dd>
+</dl>
+</div>
+<div class="section" id="collection">
+<h3>Collection<a class="headerlink" href="#collection" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Render ‣ Collection</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Instance Collection</dt>
+<dd>The objects that belong to a collection are instanced sequentially in the place of the particles.</dd>
+<dt>Whole Collection</dt>
+<dd>Use the whole group at once, instead of one of its elements, the group being displayed in place of each particle.</dd>
+<dt>Chọn Ngẫu Nhiên -- Pick Random</dt>
+<dd>The objects in the group are selected in a random order, and only one object is displayed in place of a particle.
+Please note that this mechanism fully replaces old Blender particles system using parentage
+and <em>Instancing Verts</em> to replace particles with actual geometry.
+This method is fully deprecated and does not work anymore.</dd>
+<dt>Global Coordinates</dt>
+<dd>Use object's global coordinates for instancing.</dd>
+<dt>Object Rotation</dt>
+<dd>Use the rotation of the objects.</dd>
+<dt>Object Scale</dt>
+<dd>Use the size of the objects.</dd>
+</dl>
+<div class="section" id="use-count">
+<h4>Dùng Số Lượng -- Use Count<a class="headerlink" href="#use-count" title="Permalink to this headline">¶</a></h4>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Render ‣ Collection ‣ Use Count</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Use objects multiple times in the same groups.
+Specify the order and number of times to repeat each object with the list view that appears.
+You can duplicate an object in the list with the <kbd class="kbd docutils literal notranslate">Plus</kbd> button,
+or remove a duplicate with the <kbd class="kbd docutils literal notranslate">Minus</kbd> button.</p>
+</div>
+</div>
+</div>
+<div class="section" id="extra">
+<h2>Extra<a class="headerlink" href="#extra" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Render ‣ Extra</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Parents Particles</dt>
+<dd>Render also parent particles if child particles are used.
+Children have a lot of different deformation options,
+so the straight parents would stand between their curly children.
+So by default <em>Parents</em> are not rendered if you activate <em>Children</em>.
+See <a class="reference internal" href="children.html"><span class="doc">Children</span></a>.</dd>
+<dt>Chưa Được Sinh Tạo -- Unborn</dt>
+<dd>Render particles before they are born.</dd>
+<dt>Dead</dt>
+<dd>Render particles after they have died.
+This is very useful if particles die in a collision <em>Die on hit</em>, so you can cover objects with particles.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="display.html" class="btn btn-neutral float-right" title="Viewport Display" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="physics/fluid.html" class="btn btn-neutral float-left" title="Chất Lỏng -- Fluid" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

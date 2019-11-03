@@ -1,0 +1,288 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/textures/image.rst">
+ <target refid="bpy-types-shadernodeteximage">
+ </target>
+ <section ids="image-texture-node bpy-types-shadernodeteximage" names="image\ texture\ node nút\ chất\ liệu\ hình\ ảnh\ --\ image\ texture\ node bpy.types.shadernodeteximage">
+  <title>
+   Nút Chất Liệu Hình Ảnh -- Image Texture Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_textures_image_node.png'}" uri="images/render_shader-nodes_textures_image_node.png"/>
+   <caption>
+    Image Texture Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Image Texture
+   </emphasis>
+   is used to add an image file as a texture.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       Texture coordinate for texture look-up. If this socket is left unconnected,
+UV coordinates from the active UV render layer are used.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Image Data-Block
+     </term>
+     <definition>
+      <paragraph>
+       Image data-block used as the image source. Currently not all images supported by Blender can be used by Cycles.
+In particular, generated, packed images or animations are not supported currently.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Không Gian Màu Sắc -- Color Space
+     </term>
+     <definition>
+      <paragraph>
+       Type of data that the image contains, either Color or Non-Color Data.
+For most color textures the default of Color should be used, but in case of e.g. a bump or alpha map,
+the pixel values should be interpreted as Non-Color Data, to avoid doing any unwanted color space conversions.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nội Suy -- Interpolation
+     </term>
+     <definition>
+      <paragraph>
+       Method to scale images up or down for rendering.
+      </paragraph>
+      <comment xml:space="preserve">
+       same as in the Environment Texture node
+      </comment>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tuyến Tính -- Linear
+        </term>
+        <definition>
+         <paragraph>
+          Regular quality interpolation.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Lập Phương -- Cubic
+        </term>
+        <definition>
+         <paragraph>
+          Smoother, better quality interpolation. For bump maps this should be used to get best results.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Gần Nhất -- Closest
+        </term>
+        <definition>
+         <paragraph>
+          No interpolation, use only closest pixel for rendering pixel art.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Smart
+         <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+          Cycles Only
+         </inline>
+        </term>
+        <definition>
+         <paragraph>
+          Only for Open Shading Language. Use cubic interpolation when scaling up and linear when scaling down,
+for a better performance and sharpness.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phóng Chiếu -- Projection
+     </term>
+     <definition>
+      <paragraph>
+       Projection to use for mapping the textures.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Bằng Phẳng -- Flat
+        </term>
+        <definition>
+         <paragraph>
+          Uses the XY coordinates for mapping.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hình Hộp -- Box
+        </term>
+        <definition>
+         <paragraph>
+          Maps the image to the six sides of a virtual box, based on the normal,
+using XY, YZ and XYZ coordinates depending on the side.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Hòa Trộn -- Blend
+           </term>
+           <definition>
+            <paragraph>
+             For Box mapping, the amount to blend between sides of the box,
+to get rid of sharp transitions between the different sides.
+Blending is useful to map a procedural-like image texture pattern seamlessly on a model.
+0.0 gives no blending; higher values give a smoother transition.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hình Cầu -- Sphere
+        </term>
+        <definition>
+         <paragraph>
+          Sphere mapping is the best type for mapping a sphere,
+and it is perfect for making planets and similar objects.
+It is often very useful for creating organic objects.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hình Ống -- Tube
+        </term>
+        <definition>
+         <paragraph>
+          Maps the texture around an object like a label on a bottle.
+The texture is therefore more stretched on the cylinder.
+This mapping is of course very good for making the label on a bottle,
+or assigning stickers to rounded objects. However,
+this is not a cylindrical mapping so the ends of the cylinder are undefined.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nới Rộng/Đuôi -- Extension
+     </term>
+     <definition>
+      <paragraph>
+       Extension defines how the image is extrapolated past the original bounds:
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Lặp Lại -- Repeat
+        </term>
+        <definition>
+         <paragraph>
+          Will repeat the image horizontally and vertically giving tiled-looking result.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Nới/Mở Rộng -- Extend
+        </term>
+        <definition>
+         <paragraph>
+          Will extend the image by repeating pixels on its edges.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đoạn Phim -- Clip
+        </term>
+        <definition>
+         <paragraph>
+          Clip to the original image size and set all the exterior pixels values to transparent black.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       RGB color from image. If the image has alpha, the color is premultiplied with alpha if the Alpha output is used,
+and unpremultiplied or straight if the Alpha output is not used.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Alpha
+     </term>
+     <definition>
+      <paragraph>
+       Alpha channel from image.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_shader-nodes_textures_image_example.jpg'}" uri="images/render_shader-nodes_textures_image_example.jpg"/>
+    <caption>
+     Image texture from
+     <reference name="GoodTextures.com" refuri="http://www.goodtextures.com/">
+      GoodTextures.com
+     </reference>
+     .
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

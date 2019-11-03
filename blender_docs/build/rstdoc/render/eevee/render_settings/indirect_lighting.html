@@ -1,0 +1,174 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/eevee/render_settings/indirect_lighting.rst">
+ <target refid="bpy-ops-scene-light-cache">
+ </target>
+ <target refid="bpy-types-sceneeevee-gi">
+ </target>
+ <section ids="indirect-lighting bpy-types-sceneeevee-gi bpy-ops-scene-light-cache" names="indirect\ lighting áng\ sáng\ gián\ tiếp\ --\ indirect\ lighting bpy.types.sceneeevee.gi bpy.ops.scene.light_cache">
+  <title>
+   Áng Sáng Gián Tiếp -- Indirect Lighting
+  </title>
+  <paragraph>
+   While not strictly correct, all lighting that is not coming straight out
+from a light object is considered as indirect lighting in Eevee.
+That means distant
+   <reference internal="True" refuri="../../../glossary/index.html#term-hdri">
+    <inline classes="xref std std-term">
+     HDRI
+    </inline>
+   </reference>
+   lighting (or World) is considered as indirect lighting.
+Mesh objects using an Emission node are also considered as indirect lighting.
+  </paragraph>
+  <paragraph>
+   In Eevee, indirect lighting is separated into two component: Diffuse and Specular.
+Both have different needs and representation. For efficiency,
+the indirect lighting data is precomputed on demand into a static lighting cache.
+  </paragraph>
+  <paragraph>
+   As of now the light cache is static and needs to be computed before rendering.
+It cannot be updated per frame (unless via scripting).
+This limitation is being worked on and will be removed in future versions.
+  </paragraph>
+  <paragraph>
+   Only view independent lighting can be baked. This is why Reflection Planes are not stored inside the light cache.
+  </paragraph>
+  <paragraph>
+   The visibility and collections used during the baking process are the ones in the current Active View Layer.
+  </paragraph>
+  <paragraph>
+   To enable light bounces through large environments, the light baking process can be run multiple times
+while injecting the previous bake result into the bake.
+  </paragraph>
+  <paragraph>
+   Light bounces only concerns diffuse lighting.
+  </paragraph>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Kết Xuất (Render) --&gt; Áng Sáng Gián Tiếp (Indirect Lighting)`">
+        Kết Xuất (Render) ‣ Áng Sáng Gián Tiếp (Indirect Lighting)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     -- Auto Bake
+    </term>
+    <definition>
+     <paragraph>
+      Enabling this option will trigger baking when a probe is changed; useful when positioning probes objects.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Diffuse Bounces
+    </term>
+    <definition>
+     <paragraph>
+      Number of bounces to compute when baking the diffuse irradiance.
+Total baking time is more or less multiplied by the number of bounce.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     -- Cubemap Size
+    </term>
+    <definition>
+     <paragraph>
+      Size of the reflection cubemaps.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Diffuse Occlusion
+    </term>
+    <definition>
+     <paragraph>
+      Each irradiance sample also stores a shadow map that is used to minimize indirect light leaking.
+This parameter defines the size of this shadow map.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     -- Irradiance Smoothing
+    </term>
+    <definition>
+     <paragraph>
+      Smooths irradiance interpolation but introduces light bleeding.
+The irradiance visibility term can make the lighting not interpolate smoothly on some surfaces.
+This setting relaxes the weight of that interpolation.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     -- Clamp Glossy
+    </term>
+    <definition>
+     <paragraph>
+      Clamp pixel intensity to reduce noise inside glossy reflections from reflection cubemaps (0 is disabled).
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     -- Filter Quality
+    </term>
+    <definition>
+     <paragraph>
+      Takes more samples during cubemap filtering to remove artifacts. For now, only has an effect on cubemaps.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <section ids="display" names="display">
+   <title>
+    Display
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Cubemap Size
+     </term>
+     <definition>
+      <paragraph>
+       Display the Reflection Cubemaps present in the cache directly in the 3D View.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Irradiance Size
+     </term>
+     <definition>
+      <paragraph>
+       Display the Irradiance Samples present in the cache in the 3D View.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     Cache data display only works in the 3D Viewport and
+only if the viewport uses world lighting in LookDev mode or is in Render Preview mode.
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

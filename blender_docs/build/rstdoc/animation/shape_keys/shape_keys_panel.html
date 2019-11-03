@@ -1,0 +1,447 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/shape_keys/shape_keys_panel.rst">
+ <section ids="shape-keys-panel" names="shape\ keys\ panel bảng\ hình\ mẫu\ --\ shape\ keys\ panel">
+  <title>
+   Bảng Hình Mẫu -- Shape Keys Panel
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/animation_shape-keys_shape-keys-panel_basis.png'}" uri="images/animation_shape-keys_shape-keys-panel_basis.png"/>
+   <caption>
+    Shape Keys panel.
+   </caption>
+  </figure>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Trình Biên Soạn -- Editor
+     </field_name>
+     <field_body>
+      <paragraph>
+       Trình Biên Soạn Tính Chất -- Properties editor
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Tổng Thể -- All modes
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Dữ Liệu Vật Thể (Object Data) --&gt; Hình Mẫu (Shape Keys)`">
+        Dữ Liệu Vật Thể (Object Data) ‣ Hình Mẫu (Shape Keys)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The Shape Keys panel is used for authoring shape keys.
+  </paragraph>
+  <section ids="settings" names="settings sắp\ đặt\ --\ settings">
+   <title>
+    Sắp Đặt -- Settings
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chỉ Số Hình Mẫu Đang Hoạt Động -- Active Shape Key Index
+     </term>
+     <definition>
+      <paragraph>
+       A
+       <reference internal="True" refuri="../../interface/controls/templates/list_presets.html#ui-list-view">
+        <inline classes="std std-ref">
+         List View
+        </inline>
+       </reference>
+       .
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Value (number)
+        </term>
+        <definition>
+         <paragraph>
+          In Relative mode: Value is the current influence of the shape key used for blending between
+the shape (value=1.0) and its reference key (value=0.0). The reference key is usually the Basis shape.
+The weight of the blend can be extrapolated above 1.0 and below 0.0.
+         </paragraph>
+         <paragraph>
+          In Absolute mode: Value is the
+          <emphasis>
+           Evaluation Time
+          </emphasis>
+          at which the shape will have maximum influence.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Mute (check mark)
+        </term>
+        <definition>
+         <paragraph>
+          If unchecked, the shape key will not be taken into consideration when
+mixing the shape key stack into the result visible in the 3D Viewport.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đặc Biệt -- Specials
+        </term>
+        <definition>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Hình Dạng Mới Từ Pha Trộn -- New Shape From Mix
+           </term>
+           <definition>
+            <paragraph>
+             Add a new shape key with the current deformed shape of the object.
+This differs from the
+             <literal>
+              +
+             </literal>
+             button of the list, as that one always copies
+the Basis shape independently of the current mix.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Phản Chiếu Đối Xứng Hình Mẫu -- Mirror Shape Key
+           </term>
+           <definition>
+            <paragraph>
+             If your mesh is symmetrical, in
+             <emphasis>
+              Object Mode
+             </emphasis>
+             , you can mirror the shape keys on the X axis.
+This will not work unless the mesh vertices are perfectly symmetrical.
+Use the
+             <inline classes="menuselection" rawtext=":menuselection:`Mesh --&gt; Symmetrize`">
+              Mesh ‣ Symmetrize
+             </inline>
+             tool in
+             <emphasis>
+              Edit Mode
+             </emphasis>
+             .
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Phản Chiếu Đối Xứng Hình Mẫu (Cấu Trúc Liên Kết) -- Mirror Shape Key (Topology)
+           </term>
+           <definition>
+            <paragraph>
+             Same as
+             <emphasis>
+              Mirror Shape Key
+             </emphasis>
+             though it detects the mirrored vertices based on the topology of the mesh.
+The mesh vertices do not have to be perfectly symmetrical for this action to work.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Join as Shapes (Transfer Mix)
+           </term>
+           <definition>
+            <paragraph>
+             Transfer the current resulting shape from a different object.
+            </paragraph>
+            <paragraph>
+             Select the object to copy, then the object to copy into.
+Use this action and a new shape key will be added to the active object
+with the current mix of the first object.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Thuyên Chuyển Hình Mẫu -- Transfer Shape Key
+           </term>
+           <definition>
+            <paragraph>
+             Transfer the active shape key from a different object
+regardless of its current influence.
+            </paragraph>
+            <paragraph>
+             Select the object to copy, then the object to copy into.
+Use this action and a new shape key will be added to the active object
+with the active shape of the first object.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tương Đối -- Relative
+     </term>
+     <definition>
+      <paragraph>
+       Set the shape keys to
+       <emphasis>
+        Relative
+       </emphasis>
+       or
+       <emphasis>
+        Absolute
+       </emphasis>
+       .
+See
+       <reference internal="True" refuri="introduction.html#animation-shapekeys-relative-vs-absolute">
+        <inline classes="std std-ref">
+         Relative or Absolute Shape Keys
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Shape Key Lock (pin icon)
+     </term>
+     <definition>
+      <paragraph>
+       Show the active shape in the 3D Viewport without blending.
+       <emphasis>
+        Shape Key Lock
+       </emphasis>
+       gets automatically enabled while the object is in
+       <emphasis>
+        Edit Mode
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Shape Key Edit Mode (edit mode icon)
+     </term>
+     <definition>
+      <paragraph>
+       If enabled, when entering
+       <emphasis>
+        Edit Mode
+       </emphasis>
+       the active shape key will
+       <strong>
+        not
+       </strong>
+       take maximum influence as is default.
+Instead, the current blend of shape keys will be visible and can be edited from that state.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="relative-shape-keys" names="relative\ shape\ keys hình\ mẫu\ tương\ đối\ --\ relative\ shape\ keys">
+    <title>
+     Hình Mẫu Tương Đối -- Relative Shape Keys
+    </title>
+    <paragraph>
+     See
+     <reference internal="True" refuri="introduction.html#animation-shapekeys-relative-vs-absolute">
+      <inline classes="std std-ref">
+       Relative or Absolute Shape Keys
+      </inline>
+     </reference>
+     .
+    </paragraph>
+    <paragraph>
+     With absolute shape keys, the value shown for each shape in the list represents
+the current weight or influence of that shape in the current
+     <emphasis>
+      Mix
+     </emphasis>
+     .
+    </paragraph>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/animation_shape-keys_shape-keys-panel_relative.png'}" uri="images/animation_shape-keys_shape-keys-panel_relative.png"/>
+     <caption>
+      Relative Shape Keys options.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Clear Shape Keys
+       <literal>
+        X
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Set all influence values, or weights, to zero.
+Useful to quickly guarantee that the result shown in the 3D Viewport is not affected by shapes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="animation-shapekey-relative-value">
+    </target>
+    <definition_list ids="animation-shapekey-relative-value" names="animation-shapekey-relative-value">
+     <definition_list_item>
+      <term>
+       Giá Trị -- Value
+      </term>
+      <definition>
+       <paragraph>
+        The weight of the blend between the shape key and its reference key (usually the Basis shape).
+       </paragraph>
+       <paragraph>
+        A value of 0.0 denotes 100% influence of the reference key and 1.0 of the shape key.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Phạm Vi -- Range
+      </term>
+      <definition>
+       <paragraph>
+        Minimum and maximum range for the influence value of the active shape key.
+Blender can extrapolate results when the
+        <emphasis>
+         Value
+        </emphasis>
+        goes lower than 0.0 or above 1.0.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Nhóm Điểm Đỉnh -- Vertex Group
+      </term>
+      <definition>
+       <paragraph>
+        Limit the active shape key deformation to a vertex group.
+Useful to break down a complex shape into components by assigning temporary vertex groups
+to the complex shape and copying the result into new simpler shapes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Relative To
+      </term>
+      <definition>
+       <paragraph>
+        Select the shape key to deform from. This is called the
+        <emphasis>
+         Reference Key
+        </emphasis>
+        for that shape.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="absolute-shape-keys" names="absolute\ shape\ keys hình\ mẫu\ tuyệt\ đối\ --\ absolute\ shape\ keys">
+    <title>
+     Hình Mẫu Tuyệt Đối -- Absolute Shape Keys
+    </title>
+    <paragraph>
+     See
+     <reference internal="True" refuri="introduction.html#animation-shapekeys-relative-vs-absolute">
+      <inline classes="std std-ref">
+       Relative or Absolute Shape Keys
+      </inline>
+     </reference>
+     .
+    </paragraph>
+    <paragraph>
+     With absolute shape keys, the value shown for each shape in the list represents
+the
+     <emphasis>
+      Evaluation Time
+     </emphasis>
+     at which that shape key will be active.
+    </paragraph>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/animation_shape-keys_shape-keys-panel_absolute.png'}" uri="images/animation_shape-keys_shape-keys-panel_absolute.png"/>
+     <caption>
+      Absolute Shape Keys options.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Re-Time Shape Keys (clock icon)
+      </term>
+      <definition>
+       <paragraph>
+        Absolute shape keys are timed, by order in the list, at a constant interval.
+This button resets the timing for the keys. Useful if keys were removed or re-ordered.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Nội Suy -- Interpolation
+      </term>
+      <definition>
+       <paragraph>
+        Controls the interpolation between shape keys.
+       </paragraph>
+       <paragraph>
+        Linear, Cardinal, Catmull-Rom, B-Spline
+       </paragraph>
+       <target refid="fig-interpolation-type">
+       </target>
+       <figure ids="id4 fig-interpolation-type" names="fig-interpolation-type">
+        <image candidates="{'*': 'images/animation_shape-keys_shape-keys-panel_interpolation-types.png'}" uri="images/animation_shape-keys_shape-keys-panel_interpolation-types.png"/>
+        <caption>
+         Different types of interpolation.
+        </caption>
+        <legend>
+         <paragraph>
+          The red line represents interpolated values between keys (black dots).
+         </paragraph>
+        </legend>
+       </figure>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Thời Điểm Đánh Giá -- Evaluation Time
+      </term>
+      <definition>
+       <paragraph>
+        Controls the shape key influence. Scrub to see the effect of the current configuration.
+Typically, this property is keyed for animation or rigged with a driver.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

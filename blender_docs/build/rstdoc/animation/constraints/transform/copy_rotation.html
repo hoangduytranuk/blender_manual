@@ -1,0 +1,169 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/transform/copy_rotation.rst">
+ <target refid="bpy-types-copyrotationconstraint">
+ </target>
+ <section ids="copy-rotation-constraint bpy-types-copyrotationconstraint" names="copy\ rotation\ constraint ràng\ buộc\ sao\ chép\ sự\ xoay\ chiều\ --\ copy\ rotation\ constraint bpy.types.copyrotationconstraint">
+  <title>
+   Ràng Buộc Sao Chép sự Xoay Chiều -- Copy Rotation Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Copy Rotation
+   </emphasis>
+   constraint forces its owner to match the rotation of its target.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_transform_copy-rotation_panel.png
+
+   Copy Rotation panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+        <inline classes="std std-ref">
+         Chỉ Danh của Dữ Liệu -- Data ID
+        </inline>
+       </reference>
+       sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Order
+     </term>
+     <definition>
+      <paragraph>
+       Allows specifying which
+       <reference internal="True" refuri="../../../glossary/index.html#term-euler">
+        <inline classes="xref std std-term">
+         Euler
+        </inline>
+       </reference>
+       order to use during the copy operation.
+Defaults to the order of the owner.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      X, Y, Z
+     </term>
+     <definition>
+      <paragraph>
+       These buttons control which axes are constrained.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Đảo Nghịch -- Invert
+        </term>
+        <definition>
+         <paragraph>
+          The
+          <emphasis>
+           Invert
+          </emphasis>
+          buttons invert their respective rotation values.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mix
+     </term>
+     <definition>
+      <paragraph>
+       Specifies how the new rotation is combined with the existing rotation.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Replace
+        </term>
+        <definition>
+         <paragraph>
+          The new axis values replace existing values.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Add
+        </term>
+        <definition>
+         <paragraph>
+          The new axis values are added to the existing values.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Before Original
+        </term>
+        <definition>
+         <paragraph>
+          The new rotation is added before the existing rotation, as if it was applied to
+a parent of the constraint owner.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         After Original
+        </term>
+        <definition>
+         <paragraph>
+          The new rotation is added after the existing rotation, as if it was applied to
+a child of the constraint owner.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Offset (Legacy)
+        </term>
+        <definition>
+         <paragraph>
+          This replicates the behavior of the original Offset checkbox. It was intended
+to be similar to the
+          <emphasis>
+           Before Original
+          </emphasis>
+          behavior, but does not work correctly
+with multiple axis rotations, and is thus deprecated.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Không Gian -- Space
+     </term>
+     <definition>
+      <paragraph>
+       Sự chuyển đổi tiêu chuẩn giữa các không gian.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <vimeo aspect="None" height="None" id="171073854" width="None">
+   </vimeo>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,1166 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Rigify &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/rigging/rigify.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Sequencer" href="../sequencer/index.html" />
+    <link rel="prev" title="Rigging" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../import_export/index.html">Import-Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Rigging</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Rigify</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Trình Bổ Sung -- Add-ons</a> &raquo;</li>
+        
+          <li><a href="index.html">Rigging</a> &raquo;</li>
+        
+      <li>Rigify</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/addons/rigging/rigify.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rigify">
+<h1>Rigify<a class="headerlink" href="#rigify" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Rigify helps automate the creation of character rigs. It is based around a building-block approach,
+where you build complete rigs out of smaller rig parts (e.g. arms, legs, spines, fingers...).
+The rig parts are currently few in number, but as more rig parts are added to
+Rigify it should become more and more capable of rigging a large variety of characters and creatures.</p>
+<p>Rigify also operates on the principle that once a rig is created, that rig should no longer need Rigify.
+This means you can always distribute rigs created with Rigify to people
+who do not have it and the rigs will still function completely.</p>
+<p>It is important to note that Rigify only automates the creation of the rig controls and bones.
+It does not attach the rig to a mesh, so you still have to do skinning etc. yourself.</p>
+<div class="section" id="main-features">
+<h3>Main Features<a class="headerlink" href="#main-features" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Modular rigging</dt>
+<dd>Rigify build blocks can be mixed together to rig any character you want.
+If you need to build a character with five arms and one leg
+Rigify can handle it for you creating all the required complex controls system
+(FK, IK, and all the relative snapping tools and the UI) in few seconds.</dd>
+<dt>Nondisruptive re-rig</dt>
+<dd>If the generated rig doesn’t fit all the features you need or, for example,
+you decide to add something more to your character (like a sixth arm or a tail),
+you can re-generate your rig without losing your previously generated features and your animation data.</dd>
+<dt>Advanced and flexible feature set for character animation</dt>
+<dd>The included rig samples (limbs, spines, tails, fingers, faces…) adds to all the stretchy FK/IK features
+a direct deformation secondary layer that lets you flex, bend and deform the character as you like
+through interactive Bendy Bones controls.</dd>
+<dt>Shareable animation through all Rigify rigs</dt>
+<dd>Since the control system is generated by Rigify, if you share a meta-rig through different characters
+you will be able to share data between them even if they have different proportions.</dd>
+<dt>Extendable feature set</dt>
+<dd>You can save and encode your meta-rigs to a button to have them available at any time
+without recreating it by hand or share your meta-rigs with other people.
+Through Python scripting you can also extend Rigify with new Rigify-types or new rig samples.</dd>
+<dt>Ready to go</dt>
+<dd>Once you generate your rig you won’t need Rigify or any other add-on to use it.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="activation">
+<h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Open Blender and go to Preferences then the Add-ons tab.</li>
+<li>Click Rigging then Rigify to enable the script.</li>
+</ul>
+</div>
+<div class="section" id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Add a meta-rig structure from the <span class="menuselection">Add ‣ Armature</span> menu.</li>
+<li>Edit the bone positions to match the character geometry.</li>
+<li>In the armature properties click on the <em>Generate</em> button to generate the rig.</li>
+</ol>
+<div class="section" id="add-a-predefined-meta-rig">
+<h3>Add a Predefined Meta-Rig<a class="headerlink" href="#add-a-predefined-meta-rig" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Object Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Add ‣ Armature</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-A</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Rigify stores all the information required to generate complex rig controls and mechanism in
+more simple armatures called “meta-rigs”.</p>
+<p>The precompiled meta-rigs can be found in the <em>Add</em> menu.
+Currently available meta-rig types are:</p>
+<ul class="simple">
+<li>Basic Human</li>
+<li>Basic Quadruped</li>
+<li>Human</li>
+<li>Cat</li>
+<li>Wolf</li>
+<li>Horse</li>
+<li>Shark</li>
+</ul>
+</div>
+<div class="section" id="edit-bone-positions">
+<h3>Edit Bone Positions<a class="headerlink" href="#edit-bone-positions" title="Permalink to this headline">¶</a></h3>
+<p>To correctly match your character, meta-rig bones must be moved to correct positions.
+This can be achieved in two different ways: Pose Mode or Edit Mode.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Rigify assumes that 1 unit corresponds to 1 meter. So a human is about 2 units tall.
+If your character is in a different scale and you are more familiar with modeling rather than rigging,
+it is suggested to scale it to Rigify dimensions before positioning the meta-rig bones.
+f you want to scale the character’s geometry, we suggest you to first scale up the character in Object Mode,
+then apply the geometry scale with the <em>Apply Scale</em> tool.</p>
+</div>
+<div class="section" id="rigify-human-alignment-tips">
+<h4>Rigify Human Alignment Tips<a class="headerlink" href="#rigify-human-alignment-tips" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Limbs: Keep the legs as straight as possible in the front view (Rigify human works better in predictable cases).
+Give the knee and the elbow a slight bend angle (Rigify needs to know where your knee/elbow is pointing).</p>
+</li>
+<li><p class="first">Torso: Keep the spine as straight as possible in the front view (Rigify human works better in predictable cases).
+The last bone of the spine is the head. By default the next two bones (top to bottom)
+are considered the neck bones. It is suggested to keep the neck bones as aligned as possible while editing.</p>
+</li>
+<li><p class="first">Face: Positioning face bones can be tricky if you are not an expert in bone editing and
+they are almost useless if you plan to make facial animation through shape keys.
+Consider removing face features from your character if they aren’t really needed.
+If you don’t need the face all the face bones can be deleted.
+All the face bones are on the first armature layer by default.
+You can select them by displaying only bone layer 1, selecting all of its content and
+then deleting the bones in Edit Mode to correctly remove the face.</p>
+<p>If you want to scale all the face bones at once, consider scaling the face master bone
+in Pose Mode (see Pose Mode matching method).
+The face master bone is placed in the same position of the head bone.
+To select it easily, hide all other bone layers.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="pose-mode-matching-basic">
+<h3>Pose Mode Matching (Basic)<a class="headerlink" href="#pose-mode-matching-basic" title="Permalink to this headline">¶</a></h3>
+<p>Enter the meta-rig Pose Mode. Rotate, scale, and translate the bones in the correct position.
+When bones are in correct positions (always staying in Pose Mode)
+use <span class="menuselection">Apply ‣ Apply Pose As Rest Pose</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Connected bones cannot be translated in Pose Mode.
+You can scale the parent bones to match the general length and then refine child bones scale.
+For more detailed information on armature modes please refer to
+the <a class="reference internal" href="../../animation/armatures/bones/editing/introduction.html"><span class="doc">armatures section</span></a>.</p>
+</div>
+</div>
+<div class="section" id="edit-mode-matching-advanced">
+<h3>Edit Mode Matching (Advanced)<a class="headerlink" href="#edit-mode-matching-advanced" title="Permalink to this headline">¶</a></h3>
+<p>Some basic armature display setup is suggested before entering bone Edit Mode.</p>
+<p>With the meta-rig selected, go in the Properties editor and click on the Object tab.
+Scroll down to the display panel and enable X-ray and under <em>Maximum Draw Type</em> selector select <em>Wire</em>.
+This way the bones will always be drawn in wireframe on top of your geometry.</p>
+<p>Then, always in the Properties editor click on the Armatures tab and under display check the <em>Axis</em> checkbox.
+This way you the bones rotation axes will be displayed during the edit process.</p>
+<p>For more detailed information on armature display modes please refer to
+the <a class="reference internal" href="../../animation/armatures/properties/display.html"><span class="doc">Display panel page</span></a>.</p>
+</div>
+<div class="section" id="bone-positioning-guide">
+<h3>Bone Positioning Guide<a class="headerlink" href="#bone-positioning-guide" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="face-bones">
+<h4>Face Bones<a class="headerlink" href="#face-bones" title="Permalink to this headline">¶</a></h4>
+<p>Start by identifying basic face landmarks to follow as guide for bones placement.</p>
+<ul class="simple">
+<li>Orange lines represent bones that should be placed in closed loops.</li>
+<li>Yellow lines represent bones whose position depends on surrounding bone loops.</li>
+<li>Red lines represent outer edge bones.</li>
+<li>Purple lines represent bridging bones used to cover deforming flesh.</li>
+</ul>
+<p>The eyes-nose loop area is split in different parts identified by bone names. Follow the image to place the bones.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Brow Placement</p>
+<p class="last">Keeping aligned the mid bones in &quot;brow&quot;, &quot;brow.b&quot;, &quot;lid.t&quot;, &quot;lid.t&quot; and
+cheek will give better results after rig generation.</p>
+</div>
+<p>Also the jaw-ear area is split in different parts identified by bone names. Follow the image to place the bones.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Jaw Placement</p>
+<p class="last">Try to place &quot;ear.L&quot; bone covering the part of the ear attached to the mandible (lower jaw).
+Do the same with temple bone trying to cover the part you don’t want to move with the jaw,
+this way you will also determine the jaw pivot position.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Cảnh báo</p>
+<p class="last">While placing the lip bones you should keep the opposite bone chains merged in the middle.
+Tearing the merge point apart may result in a misalignment of controls in the final rig.</p>
+</div>
+<p>After the main face bones are placed use the cheek bone to connect the eye-nose area to the jaw mouth area.
+Then do the same with the brow area. This process will automatically define face muscles compression areas.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Merge Points</p>
+<p class="last">The rig will generically work as its best if you keep the bone connected at their merge points.</p>
+</div>
+<p>Position the eye bones in the eye pivot point facing right <strong>toward</strong> the face on the Y axis.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Eye Pivot</p>
+<p class="last">If your eye has a spherical shape you can define its pivot by entering Edit Mode and
+selecting two opposite vertices on the center meridian -- or the opposite poles -- and
+snapping the cursor to selection by pressing <span class="menuselection">Snap ‣ Cursor To Selected</span>.
+If your eye is a complete sphere and its location it’s not applied, than you can just use its center of mass.</p>
+</div>
+<p>Finally position the teeth bones on your teeth geometry and the tongue bone chain as described in the figure.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Tongue</p>
+<p class="last">The tongue will work better if the bones are aligned at the symmetry line.</p>
+</div>
+<p>Before generating the rig ensure the face master bone is facing upward.</p>
+</div>
+<div class="section" id="torso-bones">
+<h4>Torso Bones<a class="headerlink" href="#torso-bones" title="Permalink to this headline">¶</a></h4>
+<p>Start by identifying on your character basic torso zones to follow as guide for bones placement.</p>
+<p>Head, chest and pelvis are rigid zones, so they require less bones.
+Having a good edge loop placement around zone boundaries on your model
+will help in having correct deformation after armature binding.</p>
+<p>Starting from the side view, place the main spine bones trying to use
+one bone for the rigid areas and two for the flexible ones.
+In addition to the main spine, the torso is provided with additional pelvis bones (to oppose the leg bending),
+two breast controls and two shoulder bones.</p>
+<p>Even if the pelvis bones will not appear in the final rig as controls, they will contribute to deformation.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Bone Placement</p>
+<p class="last">Try to keep the spine as centered as possible inside the mesh bounding volume,
+just apply a slight offset toward the back. In a similar way, consider the shoulder bones as general deformers;
+placing it too forward -- where the collar bone should be -- could cause undesired deformations.</p>
+</div>
+</div>
+<div class="section" id="limbs-bones">
+<h4>Limbs Bones<a class="headerlink" href="#limbs-bones" title="Permalink to this headline">¶</a></h4>
+<p>While placing the arm bones try to start having a straight line that goes from
+the shoulder to the hand in both front and top view. After this is done just add a slight bend to the elbow.
+This can be easily done by going in the top view, entering armature Edit Mode and
+sliding the bone junction between forearm and upper_arm slightly toward the world’s Y axis.</p>
+<p>For the leg you can follow a similar process. Start by aligning the leg bones creating a straight line from
+the hips to the ankle, then place the foot and the toe accordingly.
+Remember to add a slight bend to the knee. This can be easily done by going in the side view,
+entering armature Edit Mode and sliding the bone junction between thigh and shin slightly toward the world’s Y axis.</p>
+<p>Finally align the heel bone by going in the front view and placing his head and
+tail to fill the foot size from side to side then, in the side view,
+align the bone at the point where the heel just touches the ground floor.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">From version 0.5 and above there is no more need of manual bone rolls alignment,
+the generate function will take care of that for you evaluating it from bend axis;
+just insert a slight bend in your limb and it’s done!
+If you need more control on the orientation follow the guidelines described in <a class="reference internal" href="#advanced-usage">Advanced Usage</a>.</p>
+</div>
+</div>
+<div class="section" id="fingers-bones">
+<h4>Fingers Bones<a class="headerlink" href="#fingers-bones" title="Permalink to this headline">¶</a></h4>
+<p>Start by placing, finger by finger, all the knocks in place.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Fingers Placement</p>
+<p class="last">An easy and effective method to do this operation is to select on the mesh
+the corresponding edge loop in Edit Mode and use the <em>Cursor to Selection</em> snap.
+Then you can snap the bone to the corresponding loop using the <em>Selection to Cursor</em> snap.</p>
+</div>
+<p>Finalize the positioning by taking care of bone rolls (the X axis is set as bend axis).</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Bone Roll</p>
+<p>If your character's hand is placed like the above figures, finger axis alignment can be easily done by
+selecting all the bones of the single finger chain and
+recalculating the bone rolls <span class="menuselection">Recalculate Roll ‣ Global -Z Axis</span>.</p>
+<p class="last">Thumb may require more tweaking depending on your character's mesh topology,
+usually <span class="menuselection">Recalculate Roll ‣ Global +Y Axis</span> is a good starting point.</p>
+</div>
+<p>When the fingers are in place proceed placing the palm bones.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Palm Placement</p>
+<p class="last">Try to keep palm bones' heads at a little distance between each other.
+This distance is required for Rigify to define the palm controls hierarchy.
+Palm axis alignment can be easily done by selecting all the palm bones and
+recalculating the bone rolls <span class="menuselection">Recalculate Roll ‣ Global -Z Axis</span>.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last">For more detailed information on bones and rolls refer to
+the <a class="reference internal" href="../../animation/armatures/bones/structure.html"><span class="doc">Bone Structure</span></a> and <a class="reference internal" href="../../animation/armatures/bones/editing/transform.html#armature-bone-roll"><span class="std std-ref">Lăn Xương -- Bone Roll</span></a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="generating-the-rig">
+<h3>Generating the Rig<a class="headerlink" href="#generating-the-rig" title="Permalink to this headline">¶</a></h3>
+<p>With the bones in the correct positions, jump back in Object Mode, go to the Armature tab,
+scroll down to the bottom and click on the <em>Generate</em> button to finalize the rig creation.
+The generation process will take from few seconds to one minute depending on
+rig complexity and hardware specs of your machine.
+If the generated rig needs tweaking you can modify the meta-rig accordingly and
+then click again on the generate button. If the rig already exists,
+Rigify will simply overwrite it retaining all your modifiers and constraints and -- where possible --
+all the previously generated features.</p>
+<p>If you need to generate more than one rig in the scene or update a specific one
+(when there are more than one in the same file) follow the instructions in the <a class="reference internal" href="#advanced-rig-generation">Advanced Rig Generation</a> section.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Rig Updating</p>
+<p class="last">To make the rig overwriting work as expected, you need to have <strong>both</strong> the rig and
+the meta-rig visible before generating again.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Cảnh báo</p>
+<p class="last">As with all Python add-ons, Blender interface cannot be updated until the Python script execution is over.
+Wait until the rig appears to see the results.</p>
+</div>
+</div>
+<div class="section" id="binding-the-geometry-to-the-rig">
+<h3>Binding the Geometry to the Rig<a class="headerlink" href="#binding-the-geometry-to-the-rig" title="Permalink to this headline">¶</a></h3>
+<p>To bind the geometry to the rig you can use your preferred tools. Just few things you have to know:</p>
+<ul class="simple">
+<li>All the deforming bones are on the armature layer 30.</li>
+<li>Eyes and Teeth bones are not deforming. You are supposed to bind the eyes and teeth geometry
+through Child Of constraints.</li>
+<li>Usually armature deform with automatic weights do a really good job out of the box
+if you correctly place your bones (and there’s enough topology to work with!).</li>
+</ul>
+<p>For more detailed information on armature layers, armature modifier and weight painting refer to the Blender manual.</p>
+</div>
+<div class="section" id="rig-features-description">
+<h3>Rig Features Description<a class="headerlink" href="#rig-features-description" title="Permalink to this headline">¶</a></h3>
+<p>After human rig generation a new armature named “Rig” will be added to your scene.
+This is the character rig you have generated from the human meta-rig and will contain all the features.</p>
+<div class="section" id="limbs">
+<h4>Limbs<a class="headerlink" href="#limbs" title="Permalink to this headline">¶</a></h4>
+<p>Each limb will have a gear widget at its base. This is the utility bone that contains all the sub-rig properties.
+The rig features will be displayed anyway when the affected bone is selected but
+if you are looking in the Graph editor for those properties’ animated values, this is most likely the bone to look at.
+Rigify’s super limb will list the following features:</p>
+<dl class="docutils">
+<dt>IK/FK Snapping</dt>
+<dd>To snap one chain to another just select the control you want to snap and
+in the Sidebar panel the snap buttons will appear. Click on the snap you want and it’s done!</dd>
+<dt>FK Limb Isolation</dt>
+<dd><p class="first">Slider (0, 1)</p>
+<p class="last">When set to 1 the FK arm will not rotate with the torso and will retain is rotation in world space instead.</p>
+</dd>
+<dt>IK Following</dt>
+<dd><p class="first">Boolean (0=False, 1=True)</p>
+<p>When the IK follow is set to 1 the IK limb will follow his parent depending on the Root/Parent slider.
+When set to 0 the IK limb will stay fixed in space whatever the rest of the rig will do.
+This is an useful option if you want to create your own Child Of constraint on the IK limb toward
+another part of the rig itself (like parenting the hand to the head).</p>
+<dl class="last docutils">
+<dt>IK Limb Domain Space Select</dt>
+<dd><p class="first">Slider Root/Parent (0=Root, 1=Parent)</p>
+<p class="last">When set to Root the IK limb will move with the root,
+when set to Parent will move along with the torso.
+This value depends from the IK Follow option.</p>
+</dd>
+</dl>
+</dd>
+<dt>IK/FK Limb Interactive Blending</dt>
+<dd><p class="first">Slider (0=IK, 1=FK)</p>
+<p class="last">When set to IK the arm will follow the IK controls,
+when set to FK the arm will follow the FK controls.</p>
+</dd>
+<dt>Pole Vector Type Switch</dt>
+<dd><p class="first">Boolean (0=Rotational Pole, 1=Standard pole vector)</p>
+<p>When set to 0 the IK arm will use the rotational pole vector (the arrow at the base of the limb).
+Rotating/translating/scaling the arrow will control the IK limb base.
+When set to 1 the classic pole vector will be displayed and used to orient the IK limb.
+The arrow will continue to handle the scale and the location of the IK limb base.</p>
+<dl class="last docutils">
+<dt>Pole Vector Following</dt>
+<dd><p class="first">Slider (0= Root, 1=Limb)</p>
+<p class="last">If pole vector switch is set to 1 (standard pole), then this value defines the pole’s parenting.
+If Pole Following is set to 1 then the pole vector will be parented to the limb,
+if set to 0 will instead follow the root. This properties also depends on the IK follow control.
+When The general IK follow is set to 0, then the pole vector following will have no effect.</p>
+</dd>
+</dl>
+</dd>
+<dt>IK Auto-Stretching</dt>
+<dd><p class="first">Slider (0=No stretching, 1=Full Stretch)</p>
+<p class="last">When set to 0 the IK limb it’s constrained to his rest length.
+When set to 1 the IK limb will stretch until it reaches the IK effector.</p>
+</dd>
+<dt>Bendy Bones Flexible Tweaking</dt>
+<dd><p class="first">For each limb -- depending on the user defined meta-rig options -- multiple bone segments will be created.
+Each bone can be controlled by controls placed at the respective bone’s head/tail.
+Tweaks movement will depend from the general IK limb position but
+they can be moved apart, twisted and scaled freely, even reaching virtually impossible limb shapes.</p>
+<p class="last">Just select the desired tweak control and do whatever you want with it.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="torso">
+<h4>Torso<a class="headerlink" href="#torso" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Neck Follow</dt>
+<dd><p class="first">Slider (0=Neck Follows Torso, 1=Neck Follows Chest)</p>
+<p class="last">This slider controls the rotations isolation for the neck bones.
+When set to 0 the neck will stay oriented as the Torso (the big box control).
+When set to 1 the neck will be oriented as the Chest (the big circle in the shoulder area).</p>
+</dd>
+<dt>Head Follow</dt>
+<dd><p class="first">Slider (0=Head Follows Torso, 1=Head Follows Neck)</p>
+<p class="last">This slider controls the rotations isolation for the head.
+When set to 0 the head will stay oriented as the Torso (the big box control).
+When set to 1 the head will be oriented as the neck.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="face">
+<h4>Face<a class="headerlink" href="#face" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Mouth Lock</dt>
+<dd><p class="first">Slider (0=Free Lips, 1=Lips Sealed)</p>
+<p class="last">This slider controls the mouth opening.
+When set to 0 moving/rotating the jaw bone will result in mouth opening,
+when set to 1 the lips will stay sealed while the jaw is moving.</p>
+</dd>
+<dt>Eyes Following</dt>
+<dd><p class="first">Slider (0=locked eyelids, 1=automatic eyelids)</p>
+<p class="last">This slider controls the eyelid automation.
+When set to 1 the eyelids and the lower eyebrow will follow
+the eye movement giving a realistic effect to the character,
+when set to 0 no automation will happen.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" id="advanced-usage">
+<h2>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Add a single bone from the <span class="menuselection">Add ‣ Armature</span> menu.</li>
+<li>Go in armature Edit Mode and build the meta rig by samples or Rigify-types.</li>
+<li>Define Rigify layers, bone grouping and selection sets.</li>
+<li>In the armature properties click on the <em>Generate</em> button to generate the rig.</li>
+</ol>
+<div class="section" id="how-rigify-works">
+<h3>How Rigify Works<a class="headerlink" href="#how-rigify-works" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Rigify Meta-Rigs are split in multiple Sub-Rigs</dt>
+<dd>A meta-rig is an assembly of bone chains. A bone chain is identified by the <em>Connected</em> attribute.
+Bone chains can be further connected together by parenting them without using the <em>Connected</em> attribute
+(i.e. using the <em>Keep Offset</em> option while parenting).</dd>
+<dt>A custom attribute is set on the first bone of the sub-rig chain</dt>
+<dd>Each first bone of a bone chain has a custom attribute on it which is a Rigify custom property
+that identifies the sub-rig type. At rig generation time Rigify will determine which controls and
+deform bones will be created processing the meta-rig from the first bone to the last of each chain.</dd>
+<dt>New meta-rigs are created assembling sub-rigs samples</dt>
+<dd>Since a meta-rig is just a collection of sub-rigs,
+new meta-rigs can be built assembling sub-rigs in different ways.
+This way an infinite number of meta-rigs can be built from the same rigging blocks.</dd>
+<dt>All the mechanics, deformation bones and widget are created on a single click</dt>
+<dd>The meta-rig contains more information than the visualized bones.
+In fact at generation time Rigify will identify each sub-rig type and depending on
+the selected options will create all the sophisticated controls, switches, and
+deforming bones with a single click.</dd>
+</dl>
+</div>
+<div class="section" id="rigify-rig-types">
+<h3>Rigify Rig Types<a class="headerlink" href="#rigify-rig-types" title="Permalink to this headline">¶</a></h3>
+<p>Rig types are the properties collection used by Rigify to identify what kind of rig the user is building.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">The list of available rig types appears in the Bone properties tab when the bone is selected in Pose Mode.
+Scroll down the Properties editor to find Rigify Type panel.</p>
+</div>
+<p>The currently available rig types are:</p>
+<div class="section" id="basics">
+<h4>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">basic.copy_chain</span></code></dt>
+<dd><p class="first">Will copy the bone chain keeping all the parent relations untouched. Useful as utility rig-type for custom rigs.</p>
+<p>Requirement: A chain of at least two connected bones.</p>
+<dl class="last docutils">
+<dt>control (boolean)</dt>
+<dd>When checked control bones and widgets will be created.</dd>
+<dt>deform (boolean)</dt>
+<dd>When checked deform bones will be created.</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">basic.super_copy</span></code></dt>
+<dd><p class="first">Will copy the bone. Useful as utility rig type for adding custom features or specific deform bones to your rigs.</p>
+<p>Requirement: A single bone.</p>
+<dl class="last docutils">
+<dt>control (boolean)</dt>
+<dd>When checked control bone and widgets will be created.</dd>
+<dt>widget (boolean)</dt>
+<dd>When checked a circle widget will be created in replacement to the standard.</dd>
+<dt>deform (boolean)</dt>
+<dd>When checked deform bone will be created.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="spines">
+<h4>Spines<a class="headerlink" href="#spines" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">spines.super_spine</span></code></dt>
+<dd><p class="first">Will create a complete bendy and stretchy b-bones spine system based on bone numbers of
+your bone chain and user defined options.</p>
+<p>Requirement: A chain of at least three connected bones (base system).</p>
+<dl class="last docutils">
+<dt>pivot position (integer)</dt>
+<dd>Defines the pivot position for torso and hips.</dd>
+<dt>head (boolean)</dt>
+<dd><p class="first">When checked neck and head systems will be added to your spine rig.</p>
+<dl class="last docutils">
+<dt>neck position (integer)</dt>
+<dd>Defines the bone where the neck system starts. The last bone will always be the head system.
+If neck position is the last bone of the chain, then only the head system will be created ignoring the neck.</dd>
+</dl>
+</dd>
+<dt>tail (boolean)</dt>
+<dd><p class="first">When checked tail system will be added to your spine rig.</p>
+<dl class="last docutils">
+<dt>tail position (integer)</dt>
+<dd>Defines the bone where the tail system starts. The next bone will always be the hips system.</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="id1">
+<h4>Limbs<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">limbs.simple_tentacle</span></code></dt>
+<dd><p class="first">Will create a bendy and stretchy b-bones tentacle chain or automatic bendy and stretchy finger controls.</p>
+<p>Requirement: A chain of at least two connected bones.</p>
+<dl class="last docutils">
+<dt>Automation Axis (X, Y, Z, None)</dt>
+<dd>Enables the automation on the selected axis. Multiple axis or none can be selected holding <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd>.
+When enabled the controls of the last bones will copy the rotations from the previous ones.
+The option is exposed on the controls of the final rig as a Copy Rotation constraint and
+can be disabled even after rig is generated, or at animation time.</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">limbs.super_finger</span></code></dt>
+<dd><p class="first">Will create a bendy and stretchy chain or automatic bendy and stretchy finger depending on a master control bone.</p>
+<p>Requirement: A chain of at least two connected bones.</p>
+<dl class="last docutils">
+<dt>Bend Rotation Axis (X, Y, Z, -X, -Y, -Z)</dt>
+<dd>Defines the automatic rotation axis to be linked to the scale of the master bone.</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">limbs.super_limb</span></code></dt>
+<dd><p class="first">Will create a full featured bendy and stretchy limb depending on the user defined options.
+Available limb types:</p>
+<dl class="last docutils">
+<dt>Arm</dt>
+<dd><p class="first">Requirement: A chain of at least three connected bones (upper_arm, forearm, hand).</p>
+<dl class="last docutils">
+<dt>Rotation Axis (Automatic, X, Z)</dt>
+<dd>Defines the bend axis for the IK chain. FK chains will have a totally free degree of rotation on all axes.</dd>
+<dt>Limb Segments (integer)</dt>
+<dd>Defines the number of additional tweak controls each limb bone will have on the final rig.</dd>
+<dt>B-Bone Segments (integer)</dt>
+<dd>Defines the number of b-bone segments each tweak control will be split into.</dd>
+<dt>FK Extra Layers</dt>
+<dd>Defines on which bone layer the FK chain will be created.
+The yellow dot shows where will be placed the IK chain
+(by default is the same layer of meta-rig's limb chain).</dd>
+<dt>Tweak Extra Layers</dt>
+<dd>Defines on which bone layer the Tweak controls will be created.
+The yellow dot shows where will be placed the IK chain
+(by default is the same layer of meta-rig's limb chain).</dd>
+</dl>
+</dd>
+<dt>Leg</dt>
+<dd><p class="first">Requirement: A chain of at least four connected bones and a last child used as
+heel pivot (thigh, shin, foot, toe, heel).</p>
+<dl class="last docutils">
+<dt>Rotation Axis (Automatic, X, Z)</dt>
+<dd>Defines the bend axis for the IK chain. FK chains will have a totally free degree of rotation on all axes.</dd>
+<dt>Limb Segments (integer)</dt>
+<dd>Defines the number of additional tweak controls each limb bone will have on the final rig.</dd>
+<dt>B-Bone Segments (integer)</dt>
+<dd>Defines the number of b-bone segments each tweak control will be split into.</dd>
+<dt>FK Extra Layers</dt>
+<dd>Defines on which bone layer the FK chain will be created.
+The yellow dot shows where will be placed the IK chain
+(by default is the same layer of meta-rig's limb chain).</dd>
+<dt>Tweak Extra Layers</dt>
+<dd>Defines on which bone layer the Tweak controls will be created.
+The yellow dot shows where will be placed the IK chain
+(by default is the same layer of meta-rig's limb chain).</dd>
+</dl>
+</dd>
+<dt>Paw</dt>
+<dd><p class="first">Requirement: A chain of at least four connected bones (upper_arm, forearm, paw, toe) or (thigh, shin, paw, toe).</p>
+<dl class="last docutils">
+<dt>Rotation Axis (Automatic, X, Z)</dt>
+<dd>Defines the bend axis for the IK chain. FK chains will have a totally free degree of rotation on all axes.</dd>
+<dt>Limb Segments (integer)</dt>
+<dd>Defines the number of additional tweak controls each limb bone will have on the final rig.</dd>
+<dt>B-Bone Segments (integer)</dt>
+<dd>Defines the number of b-bone segments each tweak control will be split into.</dd>
+<dt>FK Extra Layers</dt>
+<dd>Defines on which bone layer the FK chain will be created.
+The yellow dot shows where will be placed the IK chain
+(by default is the same layer of meta-rig's limb chain).</dd>
+<dt>Tweak Extra Layers</dt>
+<dd>Defines on which bone layer the Tweak controls will be created.
+The yellow dot shows where will be placed the IK chain
+(by default is the same layer of meta-rig's limb chain).</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">limbs.super_palm</span></code></dt>
+<dd><p class="first">Will create a palm system based on the distance between palm bones.</p>
+<p>Requirement: At least two bones child of the same parent.
+The property has to be set on the inner palm bones (think it as index's metacarpus),
+the rig control will appear on the last palm bone (think it as pinky's metacarpus).</p>
+<dl class="last docutils">
+<dt>Bend Rotation Axis (X, Z)</dt>
+<dd>Defines the automatic rotation axis to be used on the palm bones.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="faces">
+<h4>Faces<a class="headerlink" href="#faces" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">faces.super_face</span></code></dt>
+<dd><p class="first">Will create a face system based on the bones child to the parent that has the property set on it.</p>
+<p class="last">Requirement: All the face bones bundled in the <code class="docutils literal notranslate"><span class="pre">faces.super_face</span></code> sample had to be present and
+child of the master bone that has the Rigify-type <em>face</em> property set.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="experimental">
+<h4>Experimental<a class="headerlink" href="#experimental" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">experimental.super_chain</span></code></p>
+</div>
+</div>
+<div class="section" id="rigify-rig-samples">
+<h3>Rigify Rig Samples<a class="headerlink" href="#rigify-rig-samples" title="Permalink to this headline">¶</a></h3>
+<p>Rig samples are just pre-built bone chains with corresponding rig type assigned to the first bone of the chain.
+The currently available rig samples are:</p>
+<p class="rubric">Basics</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">basic.copy_chain</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">basic.super_copy</span></code></li>
+</ul>
+<p class="rubric">Spines</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">spines.super_spine</span></code></li>
+</ul>
+<p class="rubric">Limbs</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">limbs.arm</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">limbs.paw</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">limbs.rear_paw</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">limbs.simple_tentacle</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">limbs.super_finger</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">limbs.super_limb</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">limbs.super_palm</span></code></li>
+</ul>
+<p class="rubric">Faces</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">faces.super_face</span></code></li>
+</ul>
+<p class="rubric">Experimental</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">experimental.super_chain</span></code></li>
+</ul>
+</div>
+<div class="section" id="add-a-new-armature-object">
+<h3>Add a New Armature Object<a class="headerlink" href="#add-a-new-armature-object" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Object Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Add ‣ Armature ‣ Single Bone</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-A</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Building your own meta-rig from scratch requires an armature object to work with.
+Just add a single bone from the <em>Add</em> menu.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">At this stage naming the newly added armature &quot;meta-rig&quot; is a good idea.
+You can do it at any time (or not at all) but it's suggested to do it before going on
+so it will always be clear on which armature you have to work when editing the meta-rig structure.</p>
+</div>
+<div class="section" id="edit-armature">
+<h4>Edit Armature<a class="headerlink" href="#edit-armature" title="Permalink to this headline">¶</a></h4>
+<p>Now that there is an armature object to work -- with the armature selected -- enter armature Edit Mode.
+Building a meta-rig from scratch in Edit Mode can be done in two ways:</p>
+<ol class="arabic simple">
+<li>Adding rig samples.</li>
+<li>Creating bone chains.</li>
+</ol>
+<div class="section" id="adding-samples-basic">
+<h5>Adding Samples (Basic)<a class="headerlink" href="#adding-samples-basic" title="Permalink to this headline">¶</a></h5>
+<p>Adding samples in Edit Mode is a good way to start building a meta-rig.
+This way you can become familiar with the available building blocks and how they are meant to be used.
+To add a rig sample:</p>
+<ol class="arabic simple">
+<li>Go in the armature tab.</li>
+<li>Scroll down to Rigify panel.</li>
+<li>Select a sample from the list.</li>
+<li>Click on the <em>Add sample</em> button.</li>
+<li>Edit the bone positions to match your character.</li>
+</ol>
+</div>
+<div class="section" id="using-rig-types-advanced">
+<h5>Using Rig Types (Advanced)<a class="headerlink" href="#using-rig-types-advanced" title="Permalink to this headline">¶</a></h5>
+<ol class="arabic simple">
+<li>Create your bone chains in Edit Mode.</li>
+<li>Assign the correct rig type to the first bone of each chain in Pose Mode.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Each sub rig has a required number of bones as input. If you are unsure on how to use rig-types properties,
+add a rig sample to your armature to see how it is supposed to be used.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="layers-bone-groups-selection-sets">
+<h3>Layers, Bone Groups &amp; Selection Sets<a class="headerlink" href="#layers-bone-groups-selection-sets" title="Permalink to this headline">¶</a></h3>
+<p>Armature layers are usually used to isolate bones.
+Rigify can take advantage of armature layer to generate extra features and the user interface for the final rig.
+Blender 2.79 can handle 32 separate layers for each armature.
+The armature layers are visualized under the armature tab. They are split in two separate groups of 16:
+The top row contains layers from 1 to 8 and from 9 to 16.
+The bottom row layers form 17 to 24 and form 25 to 32.</p>
+<p>Rigify layers are displayed in a vertical layout inside their own separate panel named Rigify Layer Names.</p>
+<ul>
+<li><p class="first">The first column shows the layer number.</p>
+</li>
+<li><p class="first">The second column is a display toggle.</p>
+<p>This toggle controls the armature layer visibility.
+It has the same effect of enabling/disabling the layer visibility from the top armature layers menu.
+It is just redrawn here for a simplicity.</p>
+</li>
+<li><p class="first">The third column sets a specific layer name to be used to build the rig UI of the final rig.
+If set, a button with the specified name will be created in the rig_ui to control the visibility of
+this specific armature layer. If layer contains at least one bone but its name field is empty,
+a button with no name will be created in the rig UI.</p>
+</li>
+<li><p class="first">The fourth column defines in which UI row the layer button will be created.</p>
+<p>This numbers define the layer ordering in the UI and will ignore the effective layer number.
+If two layer have the same row number their UI buttons will be created in the same row.</p>
+</li>
+<li><p class="first">The fifth column is a toggle for the selection set.</p>
+<p>If checked a selection set with that name will be created and associated to the final rig.</p>
+</li>
+<li><p class="first">The sixth column defines the Rigify Bone Grouping.</p>
+<p>If Rigify Bone Groups are set, the user can make the association between
+the bones on the layer and the specified bone group from the list.
+The controls on the final rig will inherit the bone grouping through this value.</p>
+</li>
+<li><p class="first">The seventh column displays -- if set -- the associated bone group name.</p>
+</li>
+</ul>
+<p>In order to use the Bone Groups in the <em>Rigify Layer Names</em> fields,
+<em>Rigify Bone Groups</em> must be set through the specific panel.
+Usually this panel is displayed just above Rigify Layer Names panel.</p>
+<p>Rigify Bone Groups are used to define bone colors on the final rig.
+The top two rows of the Rigify Bone Groups panel are used to define the bone colors general behavior.
+Usually color themes use a gradient of colors to define the different bone states: default, selected and active.
+When multiple color themes are used in the same rig, identifying which bone is selected or
+active can be tricky since each color will have its corresponding state.</p>
+<p>To override this behavior Rigify Bone Groups unifies the active and selected states with the same color.
+This is defined by two values:</p>
+<dl class="docutils">
+<dt>Unified Selected/Active Colors</dt>
+<dd>When this option is active adding a bone group in the list will always keep the colors consistent.
+When a color scheme is added as from a theme, the color scheme is loaded as is.
+Click on the <em>Apply</em> button to force the system to unify selected and active colors.</dd>
+<dt>Selected/Active Colors</dt>
+<dd>This two color fields define respectively <em>Selected</em> and <em>Active</em> colors.
+By default Rigify reads this colors from the theme defined by the user in the Blender preferences.
+This way the <em>Selected</em>/<em>Active</em> colors can always have a predictable and consistent behavior in the UI.
+The colors can be customized by clicking on the relative color field.
+To reset them to the Blender current theme value just click on the button with the update icon.</dd>
+</dl>
+<p>Bone Groups can be added and deleted as done in the general Bone Group panel
+by clicking on the <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">-</span></code> buttons.
+All Bone Groups can be deleted at once by clicking on the specials menu.</p>
+<p>To add the predefined Rigify Default Bone Groups list click on <em>Add Standard</em> button.</p>
+<p>To add a specific theme with its own color scheme, select it from the list and click on the <em>Add From Theme</em> button.</p>
+</div>
+<div class="section" id="advanced-rig-generation">
+<h3>Advanced Rig Generation<a class="headerlink" href="#advanced-rig-generation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="advanced-options-features">
+<h4>Advanced Options Features<a class="headerlink" href="#advanced-options-features" title="Permalink to this headline">¶</a></h4>
+<p>When Advanced Options are enabled, user will be able to:</p>
+<ul class="simple">
+<li>Generate more than one rig per scene.</li>
+<li>Generate a rig with a specific name.</li>
+<li>Update/Overwrite a specific rig.</li>
+</ul>
+</div>
+<div class="section" id="advanced-options-activation">
+<h4>Advanced Options Activation<a class="headerlink" href="#advanced-options-activation" title="Permalink to this headline">¶</a></h4>
+<p>Advanced Rig Generation Options are locked by default. Click on the <em>Advanced Options</em> button to enable.
+With Advanced Options enabled the panel will be updated displaying two main modes:</p>
+<ul class="simple">
+<li>Overwrite</li>
+<li>New</li>
+</ul>
+<p>By default overwrite is selected. At this stage if you don't touch anything in the UI the generate function
+will be invoked as is, meaning in fact that generating the rig now will create a new rig from the meta-rig
+if none is present in the scene, or overwrite the default one if you have already generated a rig from a meta-rig.
+For further information about the Rigify generate function look at basic usage section.</p>
+<div class="section" id="new-rig-mode">
+<h5>New Rig Mode<a class="headerlink" href="#new-rig-mode" title="Permalink to this headline">¶</a></h5>
+<p>The <em>New</em> rig mode will let the user generate a new rig from the meta-rig regardless of
+an already generated rig is present in the scene.
+A specific name for the rig can be set by the user through the specific <em>Rig Name</em> text field.
+If no name is set, Rigify will generate an armature object named &quot;rig&quot; and a Python script named <code class="docutils literal notranslate"><span class="pre">rig_ui.py</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Keep in mind that along with the rig, Rigify generates also a <code class="docutils literal notranslate"><span class="pre">rig_ui</span></code> Python script
+which controls the UI in the 3D View. This Python script will be named accordingly with the specified rig name.</p>
+</div>
+</div>
+<div class="section" id="overwrite-rig-mode">
+<h5>Overwrite Rig Mode<a class="headerlink" href="#overwrite-rig-mode" title="Permalink to this headline">¶</a></h5>
+<p>The <em>Overwrite</em> rig mode will let the user specify a target rig to be overwritten.
+If none is set Rigify will search and eventually overwrite an armature object named &quot;rig&quot; and
+a Python script named <code class="docutils literal notranslate"><span class="pre">rig_ui.py</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="library-linking">
+<h3>Library Linking<a class="headerlink" href="#library-linking" title="Permalink to this headline">¶</a></h3>
+<p>When linking a rig into another file, you generally want to create a group that includes the generated rig,
+the character mesh, and the &quot;WGT-&quot; objects. You do not need to include the meta-rig.
+You then link in the group, make a group instance, and make the rig proxy.</p>
+<p>You also need to separately link in the <code class="docutils literal notranslate"><span class="pre">rig_ui.py</span></code> text data-block.
+Otherwise the rig UI will not appear in the Sidebar.</p>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Category:</th><td class="field-body">Rigging</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Automatic rigging from building-block components.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Location:</th><td class="field-body"><span class="menuselection">Properties ‣ Armature, Bone</span>, <span class="menuselection">3D View ‣ Tools panel</span>,
+<span class="menuselection">3D View ‣ Add menu ‣ Armature</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name">File:</th><td class="field-body">rigify folder</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Nathan Vegdahl, Lucio Rossi, Ivan Cappiello, Alexander Gavrilov</td>
+</tr>
+<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">GPL</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">This add-on is bundled with Blender.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sequencer/index.html" class="btn btn-neutral float-right" title="Sequencer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Rigging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

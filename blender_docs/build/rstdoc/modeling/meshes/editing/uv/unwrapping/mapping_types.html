@@ -1,0 +1,836 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/uv/unwrapping/mapping_types.rst">
+ <comment xml:space="preserve">
+  TODO/Review: {{review|im=additional examples}}.
+ </comment>
+ <section ids="mapping-types" names="mapping\ types thể\ loại\ ánh\ xạ\ --\ mapping\ types">
+  <title>
+   Thể Loại Ánh Xạ -- Mapping Types
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Trình Biên Soạn -- Editor
+     </field_name>
+     <field_body>
+      <paragraph>
+       Khung Nhìn 3D -- 3D View
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Biên Soạn -- Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Shading/UVs --&gt; UVs --&gt; UV Mapping: Unwrap`">
+        Toolbar ‣ Shading/UVs ‣ UVs ‣ UV Mapping: Unwrap
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Mở Gói UV (UV Unwrap)`">
+        Khung Lưới (Mesh) ‣ Mở Gói UV (UV Unwrap)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        U
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Trình Biên Soạn -- Editor
+     </field_name>
+     <field_body>
+      <paragraph>
+       UV Editor
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Góc Nhìn -- View mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Tools --&gt; UV Tools --&gt; UV Unwrap: Unwrap`">
+        Toolbar ‣ Tools ‣ UV Tools ‣ UV Unwrap: Unwrap
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`UV (UVs) --&gt; Mở Gói (Unwrap)`">
+        UV (UVs) ‣ Mở Gói (Unwrap)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        E
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Blender offers several ways of mapping UVs.
+The simpler projection methods use formulas that map 3D space onto 2D space,
+by interpolating the position of points toward a point/axis/plane through a surface.
+The more advanced methods can be used with more complex models, and have more specific uses.
+  </paragraph>
+  <comment xml:space="preserve">
+   (todo move)? split in basic/advanced -- if more content added. old wiki:
+  </comment>
+  <comment xml:space="preserve">
+   Basic: Cube, Cylinder, Sphere Projection; Project from View
+Based on the fundamental geometry of the object, and how it is being viewed,
+  </comment>
+  <comment xml:space="preserve">
+   Advanced: Unwrap; Smart UV Project; Lightmap Pack; Follow Active Quads
+  </comment>
+  <target refid="bpy-ops-uv-unwrap">
+  </target>
+  <section ids="unwrap bpy-ops-uv-unwrap" names="unwrap mở\ gói\ --\ unwrap bpy.ops.uv.unwrap">
+   <title>
+    Mở Gói -- Unwrap
+   </title>
+   <figure ids="id7">
+    <image candidates="{'*': 'images/modeling_meshes_editing_uv_unwrapping_mapping-types_unwrap-example.png'}" uri="images/modeling_meshes_editing_uv_unwrapping_mapping-types_unwrap-example.png" width="420px"/>
+    <caption>
+     Result of unwrapping Suzanne.
+    </caption>
+   </figure>
+   <paragraph>
+    Flattens the mesh surface by cutting along
+    <reference internal="True" refuri="seams.html">
+     <inline classes="doc">
+      seams
+     </inline>
+    </reference>
+    .
+Useful for organic shapes.
+   </paragraph>
+   <paragraph>
+    Begin by selecting all faces to be unwrapped in the 3D View. With our faces selected, it is now time to unwrap them. In the 3D View, select
+    <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Mở Gói UV (UV Unwrap) --&gt; Mở Gói (Unwrap)`">
+     Khung Lưới (Mesh) ‣ Mở Gói UV (UV Unwrap) ‣ Mở Gói (Unwrap)
+    </inline>
+    or
+    <literal classes="kbd">
+     U
+    </literal>
+    and select Unwrap.
+   </paragraph>
+   <paragraph>
+    You can also do this from the UV Editor with
+    <inline classes="menuselection" rawtext=":menuselection:`UVs --&gt; Unwrap`">
+     UVs ‣ Unwrap
+    </inline>
+    or
+    <literal classes="kbd">
+     E
+    </literal>
+    .
+This method will unwrap all of the faces and reset previous work.
+The UVs menu will appear in the UV Editor after unwrapping has been performed once.
+   </paragraph>
+   <paragraph>
+    This tool unwraps the faces of the object to provide
+the "best fit" scenario based on how the faces are connected and will fit within the image,
+and takes into account any seams within the selected faces.
+If possible, each selected face gets its own different area of the image and is not overlapping any other faces UV's.
+If all faces of an object are selected, then each face is mapped to some portion of the image.
+   </paragraph>
+   <section dupnames="options" ids="options" names="tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <paragraph>
+     Blender has two ways of calculating the unwrapping.
+They can be selected in the tool setting in the tool panel in the 3D View.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Cơ Sở Góc -- Angle Based
+      </term>
+      <definition>
+       <paragraph>
+        This method gives a good 2D representation of a mesh.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bảo Giác -- Conformal
+      </term>
+      <definition>
+       <paragraph>
+        Uses LSCM (Least Squares Conformal Mapping). This usually gives a less accurate UV mapping than Angle Based,
+but works better for simpler objects.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lấp Lỗ -- Fill Holes
+      </term>
+      <definition>
+       <paragraph>
+        Activating Fill Holes will prevent overlapping from occurring and better represent any holes in the UV regions.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Giữ Đúng Tỷ Lệ Tương Quan -- Correct Aspect
+      </term>
+      <definition>
+       <paragraph>
+        Map UVs taking image aspect into account.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Dùng Bộ Điều Chỉnh Phân Hóa Mặt -- Use Subdivision Surface Modifier
+      </term>
+      <definition>
+       <paragraph>
+        Map UVs taking vertex position after Subdivision Surface Modifier into account.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lề -- Margin
+      </term>
+      <definition>
+       <paragraph>
+        Space between UV islands.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <tip>
+     <paragraph>
+      A face's UV image texture only has to use
+      <emphasis>
+       part
+      </emphasis>
+      of the image, not the
+      <emphasis>
+       whole
+      </emphasis>
+      image.
+Also, portions of the same image can be shared by multiple faces.
+A face can be mapped to less and less of the total image.
+     </paragraph>
+    </tip>
+    <target refid="bpy-ops-uv-smart-project">
+    </target>
+   </section>
+  </section>
+  <section ids="smart-uv-project bpy-ops-uv-smart-project" names="smart\ uv\ project phóng\ chiếu\ uv\ thông\ minh\ --\ smart\ uv\ project bpy.ops.uv.smart_project">
+   <title>
+    Phóng Chiếu UV Thông Minh -- Smart UV Project
+   </title>
+   <figure ids="id8">
+    <image candidates="{'*': 'images/modeling_meshes_editing_uv_unwrapping_mapping-types_smart-project.png'}" uri="images/modeling_meshes_editing_uv_unwrapping_mapping-types_smart-project.png" width="670px"/>
+    <caption>
+     Smart UV project on a cube.
+    </caption>
+   </figure>
+   <paragraph>
+    Smart UV Project, (previously called the Archimapper)
+cuts the mesh based on an angle threshold (angular changes in your mesh).
+This gives you fine control over how automatic seams are be created.
+It is good method for simple and complex geometric forms,
+such as mechanical objects or architecture.
+   </paragraph>
+   <paragraph>
+    This algorithm examines the shape of your object,
+the faces selected and their relation to one another,
+and creates a UV map based on this information and settings that you supply.
+   </paragraph>
+   <paragraph>
+    In the example to the right,
+the Smart Mapper mapped all of the faces of a cube to a neat arrangement of three sides on top,
+three sides on the bottom, for all six sides of the cube to fit squarely,
+just like the faces of the cube.
+   </paragraph>
+   <paragraph>
+    For more complex mechanical objects, this tool can very quickly and easily create
+a very logical and straightforward UV layout for you.
+   </paragraph>
+   <section dupnames="options" ids="id1" names="tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <paragraph>
+     The
+     <reference internal="True" refuri="../../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+      <inline classes="std std-ref">
+       Adjust Last Operation
+      </inline>
+     </reference>
+     panel allows fine control over how the mesh is unwrapped:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Giới Hạn Góc -- Angle Limit
+      </term>
+      <definition>
+       <paragraph>
+        This controls how faces are grouped: a higher limit will lead to many small groups but less distortion,
+while a lower limit will create fewer groups at the expense of more distortion.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lề của Hải Đảo -- Island Margin
+      </term>
+      <definition>
+       <paragraph>
+        This controls how closely the UV islands are packed together.
+A higher number will add more space in between islands.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Trọng Lượng Diện Tích -- Area Weight
+      </term>
+      <definition>
+       <paragraph>
+        Weight projection's vector by faces with larger areas.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="bpy-ops-uv-lightmap-pack">
+    </target>
+   </section>
+  </section>
+  <section ids="lightmap-pack bpy-ops-uv-lightmap-pack" names="lightmap\ pack đóng\ gói\ ánh\ xạ\ ánh\ sáng\ --\ lightmap\ pack bpy.ops.uv.lightmap_pack">
+   <title>
+    Đóng Gói Ánh Xạ Ánh Sáng -- Lightmap Pack
+   </title>
+   <paragraph>
+    Lightmap Pack takes each of a mesh's faces, or selected faces,
+and packs them into the UV bounds. Lightmaps are used primarily in gaming contexts,
+where lighting information is baked onto texture maps,
+when it is essential to utilize as much UV space as possible.
+It can also work on several meshes at once.
+It has several options that appear in the Toolbar:
+   </paragraph>
+   <paragraph>
+    You can set the tool to map just
+    <emphasis>
+     Selected Faces
+    </emphasis>
+    or
+    <emphasis>
+     All Faces
+    </emphasis>
+    if
+working with a single mesh.
+   </paragraph>
+   <paragraph>
+    The
+    <emphasis>
+     Selected Mesh Object
+    </emphasis>
+    option works on multiple meshes. To use this,
+in
+    <emphasis>
+     Object Mode
+    </emphasis>
+    select several mesh objects,
+then go into
+    <emphasis>
+     Edit Mode
+    </emphasis>
+    and activate the tool.
+   </paragraph>
+   <section dupnames="options" ids="id2" names="tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Chia Sẻ Không Gian Chất Liệu -- Share Tex Space
+      </term>
+      <definition>
+       <paragraph>
+        This is useful if mapping more than one mesh.
+It attempts to fit all of the objects' faces in the UV bounds without overlapping.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Ánh Xạ UV Mới -- New UV Map
+      </term>
+      <definition>
+       <paragraph>
+        If mapping multiple meshes, this option creates a new UV map for each mesh.
+See
+        <reference internal="True" refuri="../../../../../editors/uv/layout_management.html">
+         <inline classes="doc">
+          Managing the Layout
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hình Ảnh Mới -- New Image
+      </term>
+      <definition>
+       <paragraph>
+        Assigns new images for every mesh, but only one if
+        <emphasis>
+         Shared Tex Space
+        </emphasis>
+        is enabled.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Khổ Ảnh -- Image Size
+         </term>
+         <definition>
+          <paragraph>
+           Set the size of the new image.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chất Lượng Đóng Gói -- Pack Quality
+      </term>
+      <definition>
+       <paragraph>
+        Pre-packing before the more complex Box packing.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lề -- Margin
+      </term>
+      <definition>
+       <paragraph>
+        This controls how closely the UV islands are packed together.
+A higher number will add more space in between islands.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="bpy-ops-uv-follow-active-quads">
+    </target>
+   </section>
+  </section>
+  <section ids="follow-active-quads bpy-ops-uv-follow-active-quads" names="follow\ active\ quads đi\ theo\ tứ\ giác\ đang\ hoạt\ động\ --\ follow\ active\ quads bpy.ops.uv.follow_active_quads">
+   <title>
+    Đi Theo Tứ Giác Đang Hoạt Động -- Follow Active Quads
+   </title>
+   <paragraph>
+    The Follow Active Quads tool takes the selected faces and lays them out
+by following continuous face loops, even if the mesh face is irregularly-shaped.
+Note that it does not respect the image size,
+so you may have to scale them all down a bit to fit the image area.
+   </paragraph>
+   <section dupnames="options" ids="id3" names="tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <paragraph>
+     Edge Length Mode:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Đều Đặn -- Even
+      </term>
+      <definition>
+       <paragraph>
+        Space all UVs evenly.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chiều Dài -- Length
+      </term>
+      <definition>
+       <paragraph>
+        Average space UVs edge length of each loop.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <note>
+     <paragraph>
+      Please note that it is the shape of the active quad in UV space that is being followed,
+not its shape in 3D space. To get a clean 90-degree unwrap make sure the active quad is
+a rectangle in UV space before using "Follow active quad".
+     </paragraph>
+    </note>
+    <target refid="bpy-ops-uv-cube-project">
+    </target>
+   </section>
+  </section>
+  <section ids="cube-projection bpy-ops-uv-cube-project" names="cube\ projection phóng\ chiếu\ hình\ lập\ phương\ --\ cube\ projection bpy.ops.uv.cube_project">
+   <title>
+    Phóng Chiếu Hình Lập Phương -- Cube Projection
+   </title>
+   <paragraph>
+    Cube Projection maps the mesh onto the faces of a cube, which is then unfolded.
+It projects the mesh onto six separate planes, creating six UV islands.
+In the UV editor, these will appear overlapped, but can be moved.
+See
+    <reference internal="True" refuri="../layout.html">
+     <inline classes="doc">
+      Editing UVs
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <section dupnames="options" ids="id4" names="tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Kích Thước Lập Phương -- Cube Size
+      </term>
+      <definition>
+       <paragraph>
+        Set the size of the cube to be projected onto.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <section ids="common" names="common sắp\ đặt\ chung\ --\ common">
+     <title>
+      Sắp Đặt Chung -- Common
+     </title>
+     <paragraph>
+      The following settings are common for the Cube, Cylinder, and Sphere mappings:
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Giữ Đúng Tỷ Lệ Tương Quan -- Correct Aspect
+       </term>
+       <definition>
+        <paragraph>
+         Map UVs will take the images aspect ratio into consideration.
+If an image has already been mapped to the
+         <reference internal="True" refuri="../../../../../glossary/index.html#term-texture-space">
+          <inline classes="xref std std-term">
+           texture space
+          </inline>
+         </reference>
+         that is non-square,
+the projection will take this into account and distort the mapping to appear correct.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Hạn Định trong Ranh Giới -- Clip to Bounds
+       </term>
+       <definition>
+        <paragraph>
+         Any UVs that lie outside the (0 to 1) range will be clipped to that range
+by being moved to the UV space border it is closest to.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tỷ Lệ Hóa cho Khít Ranh Giới -- Scale to Bounds
+       </term>
+       <definition>
+        <paragraph>
+         If the UV map is larger than the (0 to 1) range, the entire map will be scaled to fit inside.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <target refid="bpy-ops-uv-cylinder-project">
+     </target>
+     <target refid="bpy-ops-uv-sphere-project">
+     </target>
+    </section>
+   </section>
+  </section>
+  <section ids="cylinder-and-sphere-projection bpy-ops-uv-sphere-project bpy-ops-uv-cylinder-project" names="cylinder\ and\ sphere\ projection phóng\ chiếu\ hình\ cầu\ và\ hình\ trụ\ --\ cylinder\ and\ sphere\ projection bpy.ops.uv.sphere_project bpy.ops.uv.cylinder_project">
+   <title>
+    Phóng Chiếu Hình Cầu và Hình Trụ -- Cylinder and Sphere Projection
+   </title>
+   <figure ids="id9">
+    <image candidates="{'*': 'images/modeling_meshes_editing_uv_unwrapping_mapping-types_sphere-projection.png'}" uri="images/modeling_meshes_editing_uv_unwrapping_mapping-types_sphere-projection.png" width="420px"/>
+    <caption>
+     Using an equirectangular image with a Sphere Projection.
+    </caption>
+   </figure>
+   <paragraph>
+    Cylindrical and Spherical mappings have the same options. The difference is that
+a cylindrical mapping projects the UVs on a plane toward the cylinder shape,
+while a spherical map takes into account the sphere's curvature,
+and each latitude line becomes evenly spaced.
+Useful for spherical shapes, like eyes, planets, etc.
+   </paragraph>
+   <paragraph>
+    Normally, to unwrap a cylinder (tube) as if you slit it lengthwise and folded it flat,
+Blender wants the view to be vertical, with the tube standing "up".
+Different views will project the tube onto the UV map differently, skewing the image if used.
+However, you can set the axis on which the calculation is done manually.
+This same idea works for the sphere mapping:
+   </paragraph>
+   <paragraph>
+    Recall the opening cartographer's approaching to mapping the world? Well,
+you can achieve the same here when unwrapping a sphere from different perspectives. Normally,
+to unwrap a sphere, view the sphere with the poles at the top and bottom. After unwrapping,
+Blender will give you an equirectangular projection;
+the point at the equator facing you will be in the middle of the image.
+A polar view will give a very different but common projection map. Using an equirectangular projection
+map of the earth as the UV image will give a very nice planet mapping onto the sphere.
+   </paragraph>
+   <section dupnames="options" ids="id5" names="tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Chiều Hướng -- Direction
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Góc Nhìn trên các Cực -- View on Poles
+         </term>
+         <definition>
+          <paragraph>
+           Use when viewing from the top (at a pole) by using an axis that is straight down from the view.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Góc Nhìn trên Xích Đạo -- View on Equator
+         </term>
+         <definition>
+          <paragraph>
+           Use if view is looking at the equator, by using a vertical axis.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Canh Hàng theo Vật Thể -- Align to Object
+         </term>
+         <definition>
+          <paragraph>
+           Uses the object's transform to calculate the axis.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Canh_Hàng -- Align
+      </term>
+      <definition>
+       <paragraph>
+        Select which axis is up.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Cực ZX -- Polar ZX
+         </term>
+         <definition>
+          <paragraph>
+           Polar 0 is on the X axis.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Cực ZY -- Polar ZY
+         </term>
+         <definition>
+          <paragraph>
+           Polar 0 is on the Y axis.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bán Kính -- Radius
+      </term>
+      <definition>
+       <paragraph>
+        The radius of the cylinder to use.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="bpy-ops-uv-project-from-view">
+    </target>
+   </section>
+  </section>
+  <section ids="project-from-view bpy-ops-uv-project-from-view" names="project\ from\ view phóng\ chiếu\ từ\ góc\ nhìn\ --\ project\ from\ view bpy.ops.uv.project_from_view">
+   <title>
+    Phóng Chiếu Từ Góc Nhìn -- Project from View
+   </title>
+   <paragraph>
+    Project from View takes the current view in the 3D View and flattens the mesh as it appears.
+Use this option if you are using a picture of a real object as a UV Texture for an object that
+you have modeled. You will get some stretching in areas where the model recedes away from you.
+   </paragraph>
+   <section dupnames="options" ids="id6" names="tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <paragraph>
+     See also
+     <reference name="Common" refid="common">
+      Common
+     </reference>
+     options.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Chính Giao -- Orthographic
+      </term>
+      <definition>
+       <paragraph>
+        Apply an orthographic projection.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="project-from-view-bounds" names="project\ from\ view\ (bounds) phóng\ chiếu\ từ\ góc\ nhìn\ (ranh\ giới)\ --\ project\ from\ view\ (bounds)">
+   <title>
+    Phóng Chiếu từ Góc Nhìn (Ranh Giới) -- Project from View (Bounds)
+   </title>
+   <paragraph>
+    Similar to
+    <reference name="Project from View" refid="project-from-view">
+     Project from View
+    </reference>
+    ,
+but with
+    <emphasis>
+     Scale to Bounds
+    </emphasis>
+    and
+    <emphasis>
+     Correct Aspect
+    </emphasis>
+    activated.
+   </paragraph>
+   <target refid="bpy-ops-uv-reset">
+   </target>
+  </section>
+  <section ids="reset bpy-ops-uv-reset" names="reset hoàn\ lại\ --\ reset bpy.ops.uv.reset">
+   <title>
+    Hoàn Lại -- Reset
+   </title>
+   <paragraph>
+    Reset UVs maps each face to fill the UV grid, giving each face the same mapping.
+   </paragraph>
+   <paragraph>
+    If we were to use an image that was tileable,
+the surface would be covered in a smooth repetition of that image,
+with the image skewed to fit the shape of each individual face.
+Use this unwrapping option to reset the map and undo any unwrapping (go back to the start).
+   </paragraph>
+  </section>
+ </section>
+</document>

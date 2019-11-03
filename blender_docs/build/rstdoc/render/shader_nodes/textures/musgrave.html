@@ -1,0 +1,416 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/textures/musgrave.rst">
+ <target refid="bpy-types-shadernodetexmusgrave">
+ </target>
+ <section ids="musgrave-texture-node bpy-types-shadernodetexmusgrave" names="musgrave\ texture\ node --\ musgrave\ texture\ node bpy.types.shadernodetexmusgrave">
+  <title>
+   -- Musgrave Texture Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_textures_musgrave_node.png'}" uri="images/render_shader-nodes_textures_musgrave_node.png"/>
+   <caption>
+    Musgrave Texture Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Musgrave Texture
+   </emphasis>
+   node evaluates a fractal Perlin noise at the input texture coordinates.
+Unlike the
+   <emphasis>
+    Noise Texture
+   </emphasis>
+   , which is also a fractal Perlin noise,
+the
+   <emphasis>
+    Musgrave Texture
+   </emphasis>
+   allows greater control over how octaves are combined.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <paragraph>
+    The inputs are dynamic, they become available if needed depending on the node properties.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       Texture coordinate to evaluate the noise at;
+defaults to
+       <emphasis>
+        Generated
+       </emphasis>
+       texture coordinates if the socket is left unconnected.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      W
+     </term>
+     <definition>
+      <paragraph>
+       Texture coordinate to evaluate the noise at.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tỷ Lệ -- Scale
+     </term>
+     <definition>
+      <paragraph>
+       Scale of the base noise octave.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chi Tiết -- Detail
+     </term>
+     <definition>
+      <paragraph>
+       Number of noise octaves.
+The fractional part of the input is multiplied by the magnitude of the highest octave.
+Higher number of octaves corresponds to a higher render time.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kích Thước -- Dimension
+     </term>
+     <definition>
+      <paragraph>
+       The difference between the magnitude of each two consecutive octaves.
+Larger values corresponds to smaller magnitudes for higher octaves.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Khuyết Rỗng -- Lacunarity
+     </term>
+     <definition>
+      <paragraph>
+       The difference between the scale of each two consecutive octaves.
+Larger values corresponds to larger scale for higher octaves.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển -- Offset
+     </term>
+     <definition>
+      <paragraph>
+       An added offset to each octave, determines the level where the highest octave will appear.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Gia Lượng -- Gain
+     </term>
+     <definition>
+      <paragraph>
+       An extra multiplier to tune the magnitude of octaves.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Dimensions
+     </term>
+     <definition>
+      <paragraph>
+       The dimensions of the space to evaluate the noise in.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         1D
+        </term>
+        <definition>
+         <paragraph>
+          Evaluate the noise in 1D space at the input
+          <emphasis>
+           W
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         2D
+        </term>
+        <definition>
+         <paragraph>
+          Evaluate the noise in 2D space at the input
+          <emphasis>
+           Vector
+          </emphasis>
+          . The Z component is ignored.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         3D
+        </term>
+        <definition>
+         <paragraph>
+          Evaluate the noise in 3D space at the input
+          <emphasis>
+           Vector
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         4D
+        </term>
+        <definition>
+         <paragraph>
+          Evaluate the noise in 4D space at the input
+          <emphasis>
+           Vector
+          </emphasis>
+          and the input
+          <emphasis>
+           W
+          </emphasis>
+          as the fourth dimension.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    Higher dimensions corresponds to higher render time, so lower dimensions should be used
+unless higher dimensions are necessary.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại -- Type
+     </term>
+     <definition>
+      <paragraph>
+       Type of the Musgrave texture.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         -- fBM (fractal Brownian Motion)
+        </term>
+        <definition>
+         <paragraph>
+          Produces an unnatural homogeneous and isotropic result.
+Uses an additive cascade, the values are simply added together.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đa Phân Dạng -- Multifractal
+        </term>
+        <definition>
+         <paragraph>
+          The result is more uneven (varies with location), more similar to a real terrain.
+Uses a multiplicative cascade.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đa Phân Dạng Lai Ghép -- Hybrid Multifractal
+        </term>
+        <definition>
+         <paragraph>
+          Creates peaks and valleys with different roughness values, like real mountains rise out of flat plains.
+Combines the additive cascade with a multiplicative cascade.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đa Phân Dạng Gợn Nhấp Nhô -- Ridged Multifractal
+        </term>
+        <definition>
+         <paragraph>
+          Creates sharp peaks. Calculates the absolute value of the noise,
+creating "canyons", and then flips the surface upside down.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Hetero Terrain (Heterogeneous Terrain)
+        </term>
+        <definition>
+         <paragraph>
+          Similar to
+          <emphasis>
+           Hybrid Multifractal
+          </emphasis>
+          creates a heterogeneous terrain, but with the likeness of river channels.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Texture value.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <table classes="colwidths-given" ids="id2">
+    <title>
+     Remapped Musgrave texture such that most values are visible.
+    </title>
+    <tgroup cols="2">
+     <colspec colwidth="65">
+     </colspec>
+     <colspec colwidth="35">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/render_shader-nodes_textures_musgrave_nodes.png'}" uri="images/render_shader-nodes_textures_musgrave_nodes.png" width="460px"/>
+         <caption>
+          Nodes for the image to the right.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/render_shader-nodes_textures_musgrave_example.jpg'}" uri="images/render_shader-nodes_textures_musgrave_example.jpg" width="320px"/>
+         <caption>
+          Musgrave texture.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <section ids="musgrave-types" names="musgrave\ types --\ musgrave\ types">
+    <title>
+     -- Musgrave Types
+    </title>
+    <table ids="id5">
+     <title>
+      Different Musgrave types with the same parameters.
+     </title>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id6">
+          <image candidates="{'*': 'images/render_shader-nodes_textures_musgrave_example-type-fbm.jpg'}" uri="images/render_shader-nodes_textures_musgrave_example-type-fbm.jpg" width="320px"/>
+          <caption>
+           fBM (fractal Brownian Motion).
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id7">
+          <image candidates="{'*': 'images/render_shader-nodes_textures_musgrave_example-type-multifractal.jpg'}" uri="images/render_shader-nodes_textures_musgrave_example-type-multifractal.jpg" width="320px"/>
+          <caption>
+           Multifractal.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <figure ids="id8">
+          <image candidates="{'*': 'images/render_shader-nodes_textures_musgrave_example-type-hybrid.jpg'}" uri="images/render_shader-nodes_textures_musgrave_example-type-hybrid.jpg" width="320px"/>
+          <caption>
+           Hybrid Multifractal.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id9">
+          <image candidates="{'*': 'images/render_shader-nodes_textures_musgrave_example-type-terrain.jpg'}" uri="images/render_shader-nodes_textures_musgrave_example-type-terrain.jpg" width="320px"/>
+          <caption>
+           Heterogeneous Terrain.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <figure ids="id10">
+          <image candidates="{'*': 'images/render_shader-nodes_textures_musgrave_example-type-ridged.jpg'}" uri="images/render_shader-nodes_textures_musgrave_example-type-ridged.jpg" width="320px"/>
+          <caption>
+           Ridged Multifractal.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <comment xml:space="preserve">
+         </comment>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <seealso>
+     <paragraph>
+      <reference internal="True" refuri="../../materials/components/displacement.html">
+       <inline classes="doc">
+        Displacement
+       </inline>
+      </reference>
+     </paragraph>
+    </seealso>
+   </section>
+  </section>
+ </section>
+</document>

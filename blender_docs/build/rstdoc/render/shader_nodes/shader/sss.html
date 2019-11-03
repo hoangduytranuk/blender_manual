@@ -1,0 +1,234 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/shader/sss.rst">
+ <target refid="bpy-types-shadernodesubsurfacescattering">
+ </target>
+ <section ids="subsurface-scattering bpy-types-shadernodesubsurfacescattering" names="subsurface\ scattering tán\ xạ\ dưới\ bề\ mặt\ --\ subsurface\ scattering bpy.types.shadernodesubsurfacescattering">
+  <title>
+   Tán Xạ Dưới Bề Mặt -- Subsurface Scattering
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_shader_sss_node.png'}" uri="images/render_shader-nodes_shader_sss_node.png"/>
+   <caption>
+    Subsurface Scattering Shader.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Subsurface Scattering
+   </emphasis>
+   node is used to add simple subsurface multiple scattering,
+for materials such as skin, wax, marble, milk and others. For these materials,
+rather than light being reflect directly off the surface, it will penetrate the surface and
+bounce around internally before getting absorbed or leaving the surface at a nearby point.
+  </paragraph>
+  <paragraph>
+   How far the color scatters on average can be configured per RGB color channel. For example,
+for skin, red colors scatter further, which gives distinctive red-colored shadows,
+and a soft appearance.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Về màu sắc của bề mặt, hoặc về thể chất mà nói, xác suất ánh sáng được phản xạ cho mỗi bước sóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tỷ Lệ -- Scale
+     </term>
+     <definition>
+      <paragraph>
+       Global scale factor for the scattering radius.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bán Kính -- Radius
+     </term>
+     <definition>
+      <paragraph>
+       Average distance that light scatters below the surface.
+Higher radius gives a softer appearance, as light bleeds into shadows and through the object.
+The scattering distance is specified separately for the RGB channels,
+to render materials such as skin where red light scatters deeper.
+The X, Y and Z values are mapped to the R, G and B values, respectively.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Sắc/Nhọn -- Sharpness
+     </term>
+     <definition>
+      <paragraph>
+       Used only with
+       <emphasis>
+        Cubic
+       </emphasis>
+       falloff.
+Values increasing from 0 to 1 prevents softening of sharp edges and reduces unwanted darkening.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pháp Tuyến -- Normal
+     </term>
+     <definition>
+      <paragraph>
+       Pháp tuyến sử dụng cho việc tô bóng; nếu không có gì kết nối thì pháp tuyến tô bóng mặc định sẽ được sử dụng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Làm Nhòe Chất Liệu -- Texture Blur
+     </term>
+     <definition>
+      <paragraph>
+       How much of the texture will be blurred along with the lighting,
+mixing the texture at the incoming and outgoing points on the surface.
+Note that the right choice depends on the texture.
+Consider for example a texture created from a photograph of skin,
+in this case the colors will already be pre-blurred and texture blur could be set to 0.
+Even for hand-painted textures, no blurring or minimal blurring might be appropriate,
+as a texture artist would likely paint in softening already.
+One would usually not even know what an unblurred skin texture looks like; we always see it blurred.
+For a procedural texture on the other hand this option would likely have a higher value.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Phương Pháp -- Method
+     </term>
+     <definition>
+      <paragraph>
+       Rendering method to simulate subsurface scattering.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Christensen-Burley
+        </term>
+        <definition>
+         <paragraph>
+          Is an approximation to physically-based volume scattering.
+Gives less blurry results than Cubic and Gaussian functions.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Random Walk
+         <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+          Cycles Only
+         </inline>
+        </term>
+        <definition>
+         <paragraph>
+          Provides the most accurate results for thin and curved objects.
+This comes at the cost of increased render time or noise for more dense media like skin,
+but also better geometry detail preservation.
+Random Walk uses true volumetric scattering inside the mesh,
+which means that it works best for closed meshes.
+Overlapping faces and holes in the mesh can cause problems.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Lập Phương -- Cubic
+        </term>
+        <definition>
+         <paragraph>
+          Is a sharp falloff useful for many simple materials. The function is
+          <math>
+           (radius - x)^3
+          </math>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Gaus -- Gaussian
+        </term>
+        <definition>
+         <paragraph>
+          Gives a smoother falloff following a normal distribution,
+which is particularly useful for more advanced materials that use measured
+data that was fitted to one or more such Gaussian functions.
+The function is
+          <math>
+           e^{-8x^2/ radius^2}
+          </math>
+          ,
+such that the radius roughly matches the maximum falloff distance.
+To match a given measured variance
+          <emphasis>
+           v
+          </emphasis>
+          , set
+          <math>
+           radius = sqrt(16 × v)
+          </math>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      BSSRDF
+     </term>
+     <definition>
+      <paragraph>
+       <abbreviation explanation="Bidirectional subsurface scattering distribution function">
+        BSSRDF
+       </abbreviation>
+       shader output.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_sss_example.jpg'}" uri="images/render_shader-nodes_shader_sss_example.jpg"/>
+    <caption>
+     Random Walk subsurface scattering.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

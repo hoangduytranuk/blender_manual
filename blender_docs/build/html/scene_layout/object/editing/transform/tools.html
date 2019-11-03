@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Công Cụ Biến Hóa -- Transform Tools &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/transform/tools.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="next" title="Đối Xứng Hóa/Gương -- Mirror" href="mirror.html" />
+    <link rel="prev" title="Transform Options" href="control/options.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Scenes &amp; Objects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../scene/index.html">Cảnh -- Scenes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Vật Thể -- Objects</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../types.html">Thể Loại Vật Thể -- Object Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../origin.html">Tọa độ của Vật Thể -- Object Origin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Biên Soạn -- Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Biến Hóa -- Transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../duplication.html">Tạo Bản Sao -- Duplication</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../toolbar/index.html">Toolbar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../collections/index.html">Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../view_layers/index.html">View Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Scenes &amp; Objects</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Vật Thể -- Objects</a> &raquo;</li>
+        
+          <li><a href="../index.html">Biên Soạn -- Editing</a> &raquo;</li>
+        
+          <li><a href="index.html">Biến Hóa -- Transform</a> &raquo;</li>
+        
+      <li>Công Cụ Biến Hóa -- Transform Tools</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/scene_layout/object/editing/transform/tools.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="transform-tools">
+<h1>Công Cụ Biến Hóa -- Transform Tools<a class="headerlink" href="#transform-tools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="randomize-transform">
+<span id="bpy-ops-object-randomize-transform"></span><h2>Ngẫu Nhiên Hóa sự Biến Hóa -- Randomize Transform<a class="headerlink" href="#randomize-transform" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể và Chế Độ Biên Soạn -- Object Mode and Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Biến Hóa (Transform) ‣ Ngẫu Nhiên Hóa sự Biến Hóa (Randomize Transform)</span>, <span class="menuselection">Khung Lưới (Mesh) ‣ Biến Hóa (Transform) ‣ Ngẫu Nhiên Hóa (Randomize)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="figure align-right" id="id3" style="width: 180px">
+<img alt="../../../../_images/scene-layout_object_editing_transform_tools_randomize.png" src="../../../../_images/scene-layout_object_editing_transform_tools_randomize.png" />
+<p class="caption"><span class="caption-text">Randomize transform options.</span></p>
+</div>
+<p>This tool allows you to apply a randomized transformation.</p>
+<div class="section" id="object-mode">
+<h3>Chế Độ Vật Thể -- Object Mode<a class="headerlink" href="#object-mode" title="Permalink to this headline">¶</a></h3>
+<p>In Object Mode it randomizes the move, rotate,
+and scale values to an object or multiple objects. When applied on multiple objects,
+each object gets its own seed value, and will get different transform results from the rest.</p>
+<div class="section" id="options">
+<h4>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Mầm Ngẫu Nhiên -- Random Seed</dt>
+<dd>The random seed is an offset to the randomized transformation.
+A different seed will produce a new result.</dd>
+<dt>Biến Hóa Delta -- Transform Delta</dt>
+<dd>Randomize <a class="reference internal" href="../../properties/transforms.html#transform-delta"><span class="std std-ref">Delta Transform</span></a>
+values instead of regular transform.</dd>
+<dt>Ngẫu Nhiên Hóa Vị Trí -- Randomize Location</dt>
+<dd>Randomize Location values.</dd>
+<dt>Vị Trí -- Location</dt>
+<dd>The maximum distances the objects can move along each axis.</dd>
+<dt>Ngẫu Nhiên Hóa sự Xoay Chiều -- Randomize Rotation</dt>
+<dd>Randomize rotation values.</dd>
+<dt>Xoay Chiều -- Rotation</dt>
+<dd>The maximum angle the objects can rotate on each axis.</dd>
+<dt>Ngẫu Nhiên Hóa Tỷ Lệ -- Randomize Scale</dt>
+<dd>Randomize scale values.</dd>
+<dt>Đổi Tỷ Lệ Đồng Đều -- Scale Even</dt>
+<dd>Use the same scale for each axis.</dd>
+<dt>Tỷ Lệ -- Scale</dt>
+<dd>The maximum scale randomization over each axis.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="edit-mode">
+<h3>Chế Độ Biên Soạn -- Edit Mode<a class="headerlink" href="#edit-mode" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Randomize</em> tool in Edit Mode allows you to displace the vertices of a mesh
+along their normal.</p>
+<div class="section" id="id1">
+<h4>Tùy Chọn -- Options<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Số/Lượng -- Amount</dt>
+<dd>Distance of the displacement.</dd>
+<dt>Đồng Đều -- Uniform</dt>
+<dd>Adds a random offset of the amount.</dd>
+<dt>Pháp Tuyến -- Normal</dt>
+<dd>Adds a random offset to the displacement normal.</dd>
+<dt>Mầm Ngẫu Nhiên -- Random Seed</dt>
+<dd>The random seed is an offset to the random transformation.
+A different seed will produce a new result.</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" id="align-objects">
+<span id="bpy-ops-object-align"></span><h2>Canh Hàng Vật Thể -- Align Objects<a class="headerlink" href="#align-objects" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể -- Object Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Biến Hóa (Transform) ‣ Canh Hàng Vật Thể (Align Objects)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Align tool is used to align multiple selected objects so they line up on a specified axis.</p>
+<div class="section" id="id2">
+<h3>Tùy Chọn -- Options<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Chất Lượng Cao -- High Quality</dt>
+<dd>Uses more precise math to better determine the locations for the objects.
+In case of positive or negative bounding box alignment,
+if one or more of the selected objects have any rotation transformations
+(or delta rotation transformations), it is recommended to check <em>High Quality</em>
+so that their bounding box is calculated with precision for all three global axes.</dd>
+<dt>Chế Độ Sắp Hàng -- Align Mode</dt>
+<dd><p class="first">The <em>Align Mode</em> control will define what part of the objects will be aligned:</p>
+<dl class="last docutils">
+<dt>Trung Tâm -- Centers</dt>
+<dd>The objects centers.</dd>
+<dt>Bên Dương/Âm -- Positive Sides/Negative Sides</dt>
+<dd>Bên dương hoặc âm (trên các trục toàn cầu) của các hộp viền khung tương ứng của chúng</dd>
+</dl>
+</dd>
+<dt>Tương Đối Với -- Relative To</dt>
+<dd><p class="first">The <em>Relative To</em> control will let us choose to align the objects to:</p>
+<dl class="last docutils">
+<dt>Đang/Hoạt Động -- Active</dt>
+<dd>The active object.</dd>
+<dt>Lựa Chọn -- Selection</dt>
+<dd>The median point of the selection.</dd>
+<dt>Con Trỏ 3D -- 3D Cursor</dt>
+<dd>The current position of the 3D Cursor.</dd>
+<dt>Tọa Độ Gốc của Cảnh -- Scene Origin</dt>
+<dd>The global origin.</dd>
+</dl>
+</dd>
+<dt>Sắp Hàng X, Y, Z -- Align X, Y, Z</dt>
+<dd>Chọn xem trục nào là trục để sắp hàng/căn chỉnh các vật thể lựa chọn vào.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mirror.html" class="btn btn-neutral float-right" title="Đối Xứng Hóa/Gương -- Mirror" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="control/options.html" class="btn btn-neutral float-left" title="Transform Options" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

@@ -1,0 +1,578 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/transform/basics.rst">
+ <section ids="basic-transformations" names="basic\ transformations những\ biến\ hóa\ cơ\ bản\ --\ basic\ transformations">
+  <title>
+   Những Biến Hóa Cơ Bản -- Basic Transformations
+  </title>
+  <target refid="bpy-ops-transform-translate">
+  </target>
+  <section ids="move bpy-ops-transform-translate" names="move bpy.ops.transform.translate">
+   <title>
+    Move
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Object Mode, Edit Mode, and Pose Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Object/Mesh/Curve/Surface --&gt; Transform --&gt; Move`">
+         Object/Mesh/Curve/Surface ‣ Transform ‣ Move
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         G
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    In Object Mode, the move option lets you move objects.
+Translation means changing location of objects. It also lets you move any elements
+that make up the object within the 3D space of the active 3D View.
+   </paragraph>
+   <paragraph>
+    Pressing
+    <literal classes="kbd">
+     G
+    </literal>
+    activates "Move" transformation mode. The selected object
+or element then moves freely according to the mouse pointer's location and camera.
+   </paragraph>
+   <paragraph>
+    To confirm the action, press
+    <literal classes="kbd">
+     LMB
+    </literal>
+    .
+   </paragraph>
+   <paragraph>
+    While Move is active, the amount of change in the X, Y, and Z coordinates
+is displayed in the footer (at the upper left corner) of the 3D Viewport.
+   </paragraph>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/scene-layout_object_editing_transform_basics_grab-display-values.png'}" uri="images/scene-layout_object_editing_transform_basics_grab-display-values.png"/>
+    <caption>
+     Translation Display.
+    </caption>
+   </figure>
+   <tip>
+    <paragraph>
+     Moving an object in Object Mode changes the object's origin.
+Moving the object's vertices/edges/faces in Edit Mode does not change the object's origin.
+    </paragraph>
+   </tip>
+   <target refid="bpy-ops-transform-rotate">
+   </target>
+  </section>
+  <section ids="rotate bpy-ops-transform-rotate" names="rotate xoay\ chiều\ --\ rotate bpy.ops.transform.rotate">
+   <title>
+    Xoay Chiều -- Rotate
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể/Khung Lưới/Đường Cong/Bề Mặt (Object/Mesh/Curve/Surface) --&gt; Biến Hóa (Transform) --&gt; Xoay Chiều (Rotate)`">
+         Vật Thể/Khung Lưới/Đường Cong/Bề Mặt (Object/Mesh/Curve/Surface) ‣ Biến Hóa (Transform) ‣ Xoay Chiều (Rotate)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         R
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Rotation is also known as a spin, twist, orbit, pivot, revolve, or roll and
+involves changing the orientation of elements (vertices, edges, faces, objects, etc.)
+around one or more axes or
+the
+    <reference internal="True" refuri="control/pivot_point/index.html">
+     <inline classes="doc">
+      Pivot Point
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <paragraph>
+    The angle of rotation is displayed in the footer (at the upper left corner) of the 3D Viewport.
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/scene-layout_object_editing_transform_basics_rotate-display-values.png'}" uri="images/scene-layout_object_editing_transform_basics_rotate-display-values.png"/>
+    <caption>
+     Rotation values.
+    </caption>
+   </figure>
+   <target refid="view3d-transform-trackball">
+   </target>
+   <target refid="bpy-ops-transform-trackball">
+   </target>
+   <section ids="trackball-rotation bpy-ops-transform-trackball view3d-transform-trackball" names="trackball\ rotation xoay\ chiều\ dùng\ hình\ cầu\ điều\ khiển\ --\ trackball\ rotation bpy.ops.transform.trackball view3d-transform-trackball">
+    <title>
+     Xoay Chiều dùng Hình Cầu Điều Khiển -- Trackball Rotation
+    </title>
+    <paragraph>
+     A free rotation mode. Press
+     <literal classes="kbd">
+      R R
+     </literal>
+     to enable Trackball rotation.
+    </paragraph>
+    <target refid="bpy-ops-transform-resize">
+    </target>
+   </section>
+  </section>
+  <section ids="scale bpy-ops-transform-resize" names="scale tỷ\ lệ\ --\ scale bpy.ops.transform.resize">
+   <title>
+    Tỷ Lệ -- Scale
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể/Khung Lưới/Đường Cong/Bề Mặt (Object/Mesh/Curve/Surface) --&gt; Biến Hóa (Transform) --&gt; Tỷ Lệ (Scale)`">
+         Vật Thể/Khung Lưới/Đường Cong/Bề Mặt (Object/Mesh/Curve/Surface) ‣ Biến Hóa (Transform) ‣ Tỷ Lệ (Scale)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         S
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Scaling means changing proportions of objects. Pressing
+    <literal classes="kbd">
+     S
+    </literal>
+    will enter
+the
+    <emphasis>
+     Scale
+    </emphasis>
+    transformation mode where the selected element is scaled inward or
+outward according to the mouse pointer's location. The element's scale will
+increase as the mouse pointer is moved away from the Pivot Point and decrease as
+the pointer is moved towards it. If the mouse pointer crosses from the original side of
+the
+    <reference internal="True" refuri="control/pivot_point/index.html">
+     <inline classes="doc">
+      Pivot Point
+     </inline>
+    </reference>
+    to the opposite side, the scale will continue in the negative direction and flip the element.
+   </paragraph>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/scene-layout_object_editing_transform_basics_scale-basic-usage.png'}" uri="images/scene-layout_object_editing_transform_basics_scale-basic-usage.png"/>
+    <caption>
+     Basic scale usage. From left to right, the panels show: the original Object,
+a scaled down Object, a scaled up Object and a scale-flipped Object.
+    </caption>
+   </figure>
+   <paragraph>
+    The amount of scaling will be displayed in the footer of the 3D Viewport.
+   </paragraph>
+   <figure ids="id4">
+    <image candidates="{'*': 'images/scene-layout_object_editing_transform_basics_scale-display-values.png'}" uri="images/scene-layout_object_editing_transform_basics_scale-display-values.png"/>
+    <caption>
+     Scale values.
+    </caption>
+   </figure>
+   <target refid="tool-scale-cage">
+   </target>
+   <section ids="scale-cage tool-scale-cage" names="scale\ cage tool-scale-cage">
+    <title>
+     Scale Cage
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Scale --&gt; Scale Cage`">
+          Toolbar ‣ Scale ‣ Scale Cage
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     The
+     <emphasis>
+      Scale Cage
+     </emphasis>
+     tool is a bounding box around the object(s) which scales objects from a particular point or axis.
+The tool works by selecting a scale point and dragging inwards or outwards to adjust the scale accordingly.
+The origin for the scale will be from the point on the cube directly opposite from the point selected.
+Selecting points on the faces of the cube scales along one axis,
+selecting points on the edges of the cube scales along two axes,
+and selecting points on the vertices of the cube scales along all three axes.
+    </paragraph>
+    <figure align="center" ids="id5">
+     <image candidates="{'*': 'images/scene-layout_object_editing_transform_basics_scale_cage.png'}" uri="images/scene-layout_object_editing_transform_basics_scale_cage.png"/>
+     <caption>
+      Scale Cage tool.
+     </caption>
+    </figure>
+   </section>
+  </section>
+  <section ids="common-options" names="common\ options tùy\ chọn\ chung\ --\ common\ options">
+   <title>
+    Tùy Chọn Chung -- Common Options
+   </title>
+   <paragraph>
+    There are multiple ways to transform an element which include:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      The keyboard shortcut.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The menu in the header.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The
+      <reference internal="True" refuri="control/gizmos.html">
+       <inline classes="doc">
+        3D Transform Gizmos
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The
+      <reference internal="True" refuri="../../properties/transforms.html">
+       <inline classes="doc">
+        Transform panel
+       </inline>
+      </reference>
+      in the Sidebar region or the Object tab.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <section ids="confirm-and-cancel" names="confirm\ and\ cancel chấp\ thuận\ và\ hủy\ --\ confirm\ and\ cancel">
+    <title>
+     Chấp Thuận và Hủy -- Confirm and Cancel
+    </title>
+    <paragraph>
+     <literal classes="kbd">
+      LMB
+     </literal>
+     click to accept changes.
+    </paragraph>
+    <paragraph>
+     To cancel the transformation press
+     <literal classes="kbd">
+      RMB
+     </literal>
+     or
+     <literal classes="kbd">
+      Esc
+     </literal>
+     instead. This will
+reset the object or element to its original state.
+    </paragraph>
+    <seealso>
+     <paragraph>
+      Using combination of shortcuts gives you more control over your
+transformation. See
+      <reference internal="True" refuri="control/index.html">
+       <inline classes="doc">
+        Transform Control
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </seealso>
+   </section>
+   <section ids="adjust-last-operation" names="adjust\ last\ operation">
+    <title>
+     Adjust Last Operation
+    </title>
+    <paragraph>
+     In the case of the 3D View, there is the possibility to tweak the operation once
+accepted, using the specific
+     <reference internal="True" refuri="../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+      <inline classes="std std-ref">
+       Adjust Last Operation
+      </inline>
+     </reference>
+     panel corresponding to the tool.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Giá Trị -- Value
+      </term>
+      <definition>
+       <paragraph>
+        The amount of the transformation.
+       </paragraph>
+       <paragraph>
+        Vector, Angle
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Trục Ràng Buộc -- Constrain Axis
+      </term>
+      <definition>
+       <paragraph>
+        Used to constraint the transformation to one or more axes.
+       </paragraph>
+       <paragraph>
+        X, Y, Z
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Định Hướng -- Orientation
+      </term>
+      <definition>
+       <paragraph>
+        Shows the
+        <reference internal="True" refuri="control/orientations.html">
+         <inline classes="doc">
+          Orientations
+         </inline>
+        </reference>
+        of the constraint axes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Biên Soạn Cân Đối, Dốc Suy Giảm, Kích Thước -- Proportional Editing, Falloff, Size
+      </term>
+      <definition>
+       <paragraph>
+        Activates/deactivates
+        <emphasis>
+         Proportional Editing
+        </emphasis>
+        and configures the
+        <emphasis>
+         Falloff
+        </emphasis>
+        type and
+        <emphasis>
+         Size
+        </emphasis>
+        of
+the
+        <reference internal="True" refuri="control/proportional_edit.html">
+         <inline classes="doc">
+          Chỉnh Sửa Cân Đối -- Proportional Edit
+         </inline>
+        </reference>
+        tool.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="modeling-transform-edit-texture-space">
+    </target>
+    <definition_list ids="modeling-transform-edit-texture-space" names="modeling_transform_edit-texture-space">
+     <definition_list_item>
+      <term>
+       Biên Soạn Không Gian Chất Liệu -- Edit Texture Space
+       <literal classes="kbd">
+        Shift-T
+       </literal>
+       <literal classes="kbd">
+        Shift-Alt-T
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        This checkbox lets you apply the transformation on the
+        <reference internal="True" refuri="../../../../editors/uv/generated_uvs.html#properties-texture-space">
+         <inline classes="std std-ref">
+          Texture Space
+         </inline>
+        </reference>
+        ,
+instead of the object or element itself. Only available in translation and scale.
+This option is also available via the shortcuts,
+        <literal classes="kbd">
+         Shift-T
+        </literal>
+        (move) and
+        <literal classes="kbd">
+         Shift-Alt-T
+        </literal>
+        (scale).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xác Nhận khi Thả Ra -- Confirm on Release
+      </term>
+      <definition>
+       <paragraph>
+        Shows if either the operation was drag-and-release or move-and-confirm.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="workflow" names="workflow quy\ trình\ làm\ việc\ --\ workflow">
+    <title>
+     Quy Trình Làm Việc -- Workflow
+    </title>
+    <section ids="using-keyboard-shortcuts" names="using\ keyboard\ shortcuts sử\ dụng\ phím\ tắt\ --\ using\ keyboard\ shortcuts">
+     <title>
+      Sử Dụng Phím Tắt -- Using Keyboard Shortcuts
+     </title>
+     <enumerated_list enumtype="arabic" prefix="" suffix=".">
+      <list_item>
+       <paragraph>
+        Use
+        <literal classes="kbd">
+         LMB
+        </literal>
+        to select the elements you want to transform.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Tap
+        <literal classes="kbd">
+         G
+        </literal>
+        , or
+        <literal classes="kbd">
+         R
+        </literal>
+        , or
+        <literal classes="kbd">
+         S
+        </literal>
+        once to enter the transformation mode.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Transform the elements by moving the mouse.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <literal classes="kbd">
+         LMB
+        </literal>
+        click to accept changes.
+       </paragraph>
+      </list_item>
+     </enumerated_list>
+    </section>
+   </section>
+  </section>
+ </section>
+</document>

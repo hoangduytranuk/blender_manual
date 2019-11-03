@@ -1,0 +1,219 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/interface/annotate_tool.rst">
+ <target refid="tool-annotate">
+ </target>
+ <section ids="annotate-tool tool-annotate" names="annotate\ tool tool-annotate">
+  <title>
+   Annotate Tool
+  </title>
+  <paragraph>
+   The annotation tool is available in multiple editors.
+It can be used to add notes to e.g. 3D objects or node setups.
+  </paragraph>
+  <paragraph>
+   The annotation tool can be activated in the Toolbar on the left side.
+It has a couple of sub-tools listed below.
+  </paragraph>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Annotate
+    </term>
+    <definition>
+     <paragraph>
+      Draw free-hand strokes in the main window.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Annotate Line
+    </term>
+    <definition>
+     <paragraph>
+      Click and drag to create a line.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Annotate Polygon
+    </term>
+    <definition>
+     <paragraph>
+      Click multiple times to create multiple connected lines.
+The current polygon is finished when
+      <literal classes="kbd">
+       Esc
+      </literal>
+      or
+      <literal classes="kbd">
+       RMB
+      </literal>
+      is pressed.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Annotate Eraser
+    </term>
+    <definition>
+     <paragraph>
+      Click and drag to remove lines drawn previously.
+     </paragraph>
+     <paragraph>
+      The eraser has a
+      <emphasis>
+       Radius
+      </emphasis>
+      setting found in
+      <inline classes="menuselection" rawtext=":menuselection:`Tool Settings --&gt; Eraser`">
+       Tool Settings ‣ Eraser
+      </inline>
+      .
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <section ids="settings" names="settings">
+   <title>
+    Settings
+   </title>
+   <section ids="common" names="common">
+    <title>
+     Common
+    </title>
+    <paragraph>
+     There is a panel,
+     <inline classes="menuselection" rawtext=":menuselection:`Sidebar --&gt; View --&gt; Annotations`">
+      Sidebar ‣ View ‣ Annotations
+     </inline>
+     ,
+in it multiple annotation layers can be managed.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Color
+      </term>
+      <definition>
+       <paragraph>
+        Adjusts the color of existing and new strokes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Thickness
+      </term>
+      <definition>
+       <paragraph>
+        Adjusts the thickness of existing and new strokes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Onion Skin
+      </term>
+      <definition>
+       <paragraph>
+        Shows a ghosted image of strokes made in frames before and after the current frame.
+Onion skinning only works in the 3D Viewport and Sequencer.
+See the Grease Pencil documentation for an explanation of
+        <reference internal="True" refuri="../grease_pencil/properties/onion_skinning.html">
+         <inline classes="doc">
+          Onion Skinning
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="d-editor" names="3d\ editor">
+    <title>
+     3D Editor
+    </title>
+    <paragraph>
+     When creating new annotations in the 3D View, there is one tool setting.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Placement
+      </term>
+      <definition>
+       <paragraph>
+        The
+        <emphasis>
+         Placement
+        </emphasis>
+        option determines where the line is drawn in 3D space.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          3D Cursor
+         </term>
+         <definition>
+          <paragraph>
+           Draw on an imaginary plane that goes through the 3D cursor.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          View
+         </term>
+         <definition>
+          <paragraph>
+           Draw in screen space instead of in 3D space.
+That means, that the line will stay on the same position in the screen,
+even when e.g. the camera rotates.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Surface
+         </term>
+         <definition>
+          <paragraph>
+           Project the line on the surface under the mouse.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="d-editors" names="2d\ editors">
+    <title>
+     2D Editors
+    </title>
+    <paragraph>
+     In 2D editors, the
+     <emphasis>
+      Placement
+     </emphasis>
+     option does not exist.
+When the annotation tool is enabled, the settings for managing multiple layers
+can be found in the
+     <inline classes="menuselection" rawtext=":menuselection:`Tool --&gt; Active Tool`">
+      Tool ‣ Active Tool
+     </inline>
+     panel in the right Sidebar.
+    </paragraph>
+    <figure align="center" ids="id1">
+     <image candidates="{'*': 'images/interface_annotate-tool_node-editor.png'}" uri="images/interface_annotate-tool_node-editor.png"/>
+     <caption>
+      Annotations tool in a node editor.
+     </caption>
+    </figure>
+   </section>
+  </section>
+ </section>
+</document>

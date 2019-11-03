@@ -1,0 +1,546 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/particles/emitter/render.rst">
+ <section ids="render" names="render kết\ xuất\ --\ render">
+  <title>
+   Kết Xuất -- Render
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Hệ Thống Hạt (Particle System) --&gt; Kết Xuất (Render)`">
+        Hệ Thống Hạt (Particle System) ‣ Kết Xuất (Render)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The Render Panel controls how particles appear when they are rendered.
+  </paragraph>
+  <note>
+   <paragraph>
+    Cycles supports only Object and Collection render types.
+   </paragraph>
+  </note>
+  <section ids="common-settings" names="common\ settings">
+   <title>
+    Common Settings
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Scale
+     </term>
+     <definition>
+      <paragraph>
+       Todo.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Scale Randomness
+     </term>
+     <definition>
+      <paragraph>
+       Todo.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Material
+     </term>
+     <definition>
+      <paragraph>
+       Set which of the object's materials is used to shade the particles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Coordinates System
+     </term>
+     <definition>
+      <paragraph>
+       Use a different object's coordinates to determine the birth of particles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Show Emitter
+     </term>
+     <definition>
+      <paragraph>
+       When disabled, the emitter is no longer rendered. Activate the button
+       <emphasis>
+        Emitter
+       </emphasis>
+       to also render the mesh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="render-as" names="render\ as">
+   <title>
+    Render As
+   </title>
+   <section ids="none" names="none không\ có\ --\ none">
+    <title>
+     Không Có -- None
+    </title>
+    <paragraph>
+     When set to
+     <emphasis>
+      None
+     </emphasis>
+     , particles are not rendered.
+This is useful if you are using the particles to duplicate objects.
+    </paragraph>
+    <target refid="particle-halo">
+    </target>
+   </section>
+   <section ids="halo particle-halo" names="halo hào\ quang\ --\ halo particle-halo">
+    <title>
+     Hào Quang -- Halo
+    </title>
+    <paragraph>
+     Halo are rendered as glowing dots or a little cloud of light.
+Although they are not really lights because they do not cast light into the scene like a light object.
+They are called
+     <emphasis>
+      Halos
+     </emphasis>
+     because you can see them, but they do not have any substance.
+    </paragraph>
+   </section>
+   <section ids="path" names="path đường/đi/dẫn\ --\ path">
+    <title>
+     Đường/Đi/Dẫn -- Path
+    </title>
+    <comment xml:space="preserve">
+     TODO2.8:
+.. figure:: /images/physics_particles_emitter_render_path.png
+
+   The Visualization panel for Path visualization.
+    </comment>
+    <paragraph>
+     The
+     <emphasis>
+      Path
+     </emphasis>
+     visualization needs a
+     <reference internal="True" refuri="../hair/index.html">
+      <inline classes="doc">
+       Hair
+      </inline>
+     </reference>
+     particle system or
+     <reference internal="True" refuri="physics/keyed.html">
+      <inline classes="doc">
+       Keyed
+      </inline>
+     </reference>
+     particles.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       B-Spline
+      </term>
+      <definition>
+       <paragraph>
+        Interpolate hair using B-splines.
+This may be an option for you if you want to use low
+        <emphasis>
+         Render
+        </emphasis>
+        values.
+You loose a bit of control but gain smoother paths.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Số Bước -- Steps
+      </term>
+      <definition>
+       <paragraph>
+        Set the number of subdivisions of the rendered paths (the value is a power of 2).
+You should set this value carefully,
+because if you increase the render value by two you need four times more memory to render.
+Also the rendering is faster if you use low render values (sometimes drastically).
+But how low you can go with this value depends on the waviness of the hair (the value is a power of 2).
+This means 0 steps give 1 subdivision,
+1 give 2 subdivisions, 2 --&gt; 4, 3 --&gt; 8, 4 --&gt; 16, ...
+        <emphasis>
+         n
+        </emphasis>
+        --&gt;
+        <emphasis>
+         n
+        </emphasis>
+        <superscript>
+         2
+        </superscript>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="timing" names="timing thời\ định\ --\ timing">
+    <title>
+     Thời Định -- Timing
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Bảng -- Panel
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Render --&gt; Timing`">
+          Particle System ‣ Render ‣ Timing
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Type
+       </field_name>
+       <field_body>
+        <paragraph>
+         Hair
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Thời Gian Đường Đi Tuyệt Đối -- Absolute Path Time
+      </term>
+      <definition>
+       <paragraph>
+        Path timing is in absolute frames.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Kết Thúc -- End
+      </term>
+      <definition>
+       <paragraph>
+        End time of the practical path.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Ngẫu Nhiên -- Random
+      </term>
+      <definition>
+       <paragraph>
+        Give the path length a random variation.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="object" names="object vật\ thể\ --\ object">
+    <title>
+     Vật Thể -- Object
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Bảng -- Panel
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Render --&gt; Object`">
+          Particle System ‣ Render ‣ Object
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Instance Object
+      </term>
+      <definition>
+       <paragraph>
+        The specified object is instanced in place of each particle.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Global Coordinates
+      </term>
+      <definition>
+       <paragraph>
+        Use object's global coordinates for instancing.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Object Rotation
+      </term>
+      <definition>
+       <paragraph>
+        Use the rotation of the object.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Object Scale
+      </term>
+      <definition>
+       <paragraph>
+        Use the size of the object.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="collection" names="collection">
+    <title>
+     Collection
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Bảng -- Panel
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Render --&gt; Collection`">
+          Particle System ‣ Render ‣ Collection
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Instance Collection
+      </term>
+      <definition>
+       <paragraph>
+        The objects that belong to a collection are instanced sequentially in the place of the particles.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Whole Collection
+      </term>
+      <definition>
+       <paragraph>
+        Use the whole group at once, instead of one of its elements, the group being displayed in place of each particle.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chọn Ngẫu Nhiên -- Pick Random
+      </term>
+      <definition>
+       <paragraph>
+        The objects in the group are selected in a random order, and only one object is displayed in place of a particle.
+Please note that this mechanism fully replaces old Blender particles system using parentage
+and
+        <emphasis>
+         Instancing Verts
+        </emphasis>
+        to replace particles with actual geometry.
+This method is fully deprecated and does not work anymore.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Global Coordinates
+      </term>
+      <definition>
+       <paragraph>
+        Use object's global coordinates for instancing.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Object Rotation
+      </term>
+      <definition>
+       <paragraph>
+        Use the rotation of the objects.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Object Scale
+      </term>
+      <definition>
+       <paragraph>
+        Use the size of the objects.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <section ids="use-count" names="use\ count dùng\ số\ lượng\ --\ use\ count">
+     <title>
+      Dùng Số Lượng -- Use Count
+     </title>
+     <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+      <title>
+       Tham Chiếu -- Reference
+      </title>
+      <field_list>
+       <field>
+        <field_name>
+         Bảng -- Panel
+        </field_name>
+        <field_body>
+         <paragraph>
+          <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Render --&gt; Collection --&gt; Use Count`">
+           Particle System ‣ Render ‣ Collection ‣ Use Count
+          </inline>
+         </paragraph>
+        </field_body>
+       </field>
+      </field_list>
+     </admonition>
+     <paragraph>
+      Use objects multiple times in the same groups.
+Specify the order and number of times to repeat each object with the list view that appears.
+You can duplicate an object in the list with the
+      <literal classes="kbd">
+       Plus
+      </literal>
+      button,
+or remove a duplicate with the
+      <literal classes="kbd">
+       Minus
+      </literal>
+      button.
+     </paragraph>
+    </section>
+   </section>
+  </section>
+  <section ids="extra" names="extra">
+   <title>
+    Extra
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Render --&gt; Extra`">
+         Particle System ‣ Render ‣ Extra
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Parents Particles
+     </term>
+     <definition>
+      <paragraph>
+       Render also parent particles if child particles are used.
+Children have a lot of different deformation options,
+so the straight parents would stand between their curly children.
+So by default
+       <emphasis>
+        Parents
+       </emphasis>
+       are not rendered if you activate
+       <emphasis>
+        Children
+       </emphasis>
+       .
+See
+       <reference internal="True" refuri="children.html">
+        <inline classes="doc">
+         Children
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chưa Được Sinh Tạo -- Unborn
+     </term>
+     <definition>
+      <paragraph>
+       Render particles before they are born.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dead
+     </term>
+     <definition>
+      <paragraph>
+       Render particles after they have died.
+This is very useful if particles die in a collision
+       <emphasis>
+        Die on hit
+       </emphasis>
+       , so you can cover objects with particles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

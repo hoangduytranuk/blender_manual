@@ -1,0 +1,602 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/advanced/blender_directory_layout.rst">
+ <target refid="blender-directory-layout">
+ </target>
+ <section ids="blender-s-directory-layout blender-directory-layout" names="blender's\ directory\ layout blender-directory-layout">
+  <title>
+   Blender's Directory Layout
+  </title>
+  <paragraph>
+   This page documents the different directories used by Blender
+   <emphasis>
+    (which can be helpful for troubleshooting)
+   </emphasis>
+   .
+  </paragraph>
+  <paragraph>
+   There are three different directories Blender may use,
+their exact locations are platform dependent.
+  </paragraph>
+  <field_list>
+   <field>
+    <field_name>
+     ĐỊA PHƯƠNG -- LOCAL
+    </field_name>
+    <field_body>
+     <paragraph>
+      Vị trí của cấu hình và dữ liệu sử dụng trong khi phần mềm đang hoạt động (dành cho gói độc lập).
+     </paragraph>
+    </field_body>
+   </field>
+   <field>
+    <field_name>
+     NGƯỜI DÙNG -- USER
+    </field_name>
+    <field_body>
+     <paragraph>
+      Location of configuration files (typically in the user's home directory).
+     </paragraph>
+    </field_body>
+   </field>
+   <field>
+    <field_name>
+     HỆ THỐNG -- SYSTEM
+    </field_name>
+    <field_body>
+     <paragraph>
+      Vị trí của dữ liệu sử dụng thời gian chạy (lúc đang hoạt động) để cài đặt trên toàn hệ thống (có thể chỉ đọc mà thôi).
+     </paragraph>
+    </field_body>
+   </field>
+  </field_list>
+  <paragraph>
+   Để cài đặt hệ thống, cả hai thư mục
+   <strong>
+    SYSTEM
+   </strong>
+   và
+   <strong>
+    USER
+   </strong>
+   đều cần thiết.
+  </paragraph>
+  <paragraph>
+   For locally extracted Blender distributions, the user configuration and run-time data are
+kept in the same subdirectory, allowing multiple Blender versions to run without conflict,
+ignoring the
+   <strong>
+    USER
+   </strong>
+   and
+   <strong>
+    SYSTEM
+   </strong>
+   files.
+This requires you to create a folder named
+   <literal>
+    config
+   </literal>
+   in the
+   <strong>
+    LOCAL
+   </strong>
+   directory.
+  </paragraph>
+  <section ids="platform-dependent-paths" names="platform\ dependent\ paths những\ đường\ dẫn\ phụ\ thuộc\ nền\ tảng\ (hệ\ điều\ hành)\ --\ platform\ dependent\ paths">
+   <title>
+    Những Đường Dẫn Phụ Thuộc Nền Tảng (Hệ Điều Hành) -- Platform Dependent Paths
+   </title>
+   <paragraph>
+    Dưới đây là các vị trí mặc định cho mỗi hệ thống:
+   </paragraph>
+   <section ids="linux" names="linux">
+    <title>
+     Linux
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       ĐỊA PHƯƠNG -- LOCAL
+      </field_name>
+      <field_body>
+       <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+        ./2.81/
+       </literal_block>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       NGƯỜI DÙNG -- USER
+      </field_name>
+      <field_body>
+       <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+        $HOME/.config/blender/2.81/
+       </literal_block>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       HỆ THỐNG -- SYSTEM
+      </field_name>
+      <field_body>
+       <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+        /usr/share/blender/2.81/
+       </literal_block>
+      </field_body>
+     </field>
+    </field_list>
+    <note>
+     <paragraph>
+      The path ./2.81/ is relative to the Blender executable and
+is used for self-contained bundles distributed by official blender.org builds.
+     </paragraph>
+    </note>
+    <note>
+     <paragraph>
+      Đường dẫn
+      <strong>
+       USER
+      </strong>
+      (
+      <emphasis>
+       NGƯỜI DÙNG
+      </emphasis>
+      ) sẽ sử dụng biến môi trường
+      <literal>
+       $XDG_CONFIG_HOME
+      </literal>
+      nếu nó được thiết lập:
+     </paragraph>
+     <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+      $XDG_CONFIG_HOME/blender/2.81/
+     </literal_block>
+    </note>
+   </section>
+   <section ids="macos" names="macos hệ\ điều\ hành\ macintosh\ của\ apple\ --\ macos">
+    <title>
+     Hệ Điều Hành Macintosh của Apple -- macOS
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       ĐỊA PHƯƠNG -- LOCAL
+      </field_name>
+      <field_body>
+       <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+        ./2.81/
+       </literal_block>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       NGƯỜI DÙNG -- USER
+      </field_name>
+      <field_body>
+       <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+        /Users/$USER/Library/Application Support/Blender/2.81/
+       </literal_block>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       HỆ THỐNG -- SYSTEM
+      </field_name>
+      <field_body>
+       <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+        /Library/Application Support/Blender/2.81/
+       </literal_block>
+      </field_body>
+     </field>
+    </field_list>
+    <note>
+     <paragraph>
+      macOS stores the Blender binary in
+      <literal>
+       ./Blender.app/Contents/MacOS/Blender
+      </literal>
+      .
+The local path to data and config is:
+     </paragraph>
+     <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+      ./Blender.app/Contents/Resources/2.81/
+     </literal_block>
+    </note>
+   </section>
+   <section ids="windows" names="windows">
+    <title>
+     Windows
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       ĐỊA PHƯƠNG -- LOCAL
+      </field_name>
+      <field_body>
+       <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+        .\2.81\
+       </literal_block>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       NGƯỜI DÙNG -- USER
+      </field_name>
+      <field_body>
+       <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+        %USERPROFILE%\AppData\Roaming\Blender Foundation\Blender\2.81\
+       </literal_block>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       HỆ THỐNG -- SYSTEM
+      </field_name>
+      <field_body>
+       <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+        %USERPROFILE%\AppData\Roaming\Blender Foundation\Blender\2.81\
+       </literal_block>
+      </field_body>
+     </field>
+    </field_list>
+   </section>
+  </section>
+  <section ids="path-layout" names="path\ layout bố\ trí\ đường\ dẫn\ --\ path\ layout">
+   <title>
+    Bố Trí Đường Dẫn -- Path Layout
+   </title>
+   <paragraph>
+    Đây là cách bố trí đường dẫn được sử dụng trong các thư mục được mô tả ở trên.
+   </paragraph>
+   <paragraph>
+    Trong đó
+    <literal>
+     ./config/startup.blend
+    </literal>
+    có thể nằm tại
+    <literal>
+     ~/.blender/|BLENDER_VERSION|/config/startup.blend
+    </literal>
+    chẳng hạn.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./autosave/ ...
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Autosave blend-file location. (Windows only, temp directory used for other systems.)
+      </paragraph>
+      <paragraph>
+       Thứ tự lùng tìm:
+       <literal>
+        LOCAL, USER
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./config/ ...
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Mặc định &amp; thông tin về phiên sử dụng.
+      </paragraph>
+      <paragraph>
+       Thứ tự lùng tìm:
+       <literal>
+        LOCAL, USER
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./config/startup.blend
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Tập tin mặc định để nạp nạp vào bộ nhớ khi khởi động.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./config/userpref.blend
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Các tùy chọn mặc định để nạp vào bộ nhớ khi khởi động.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./config/bookmarks.txt
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Các dấu trang cho Trình Duyệt Tập Tin (Những thư mục được đánh dấu, ghi lại).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./config/recent-files.txt
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Trình đơn liệt kê tập tin sử dụng gần đây nhất
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./datafiles/ ...
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Những tập tin sử dụng trong khi phần mềm đang chạy
+      </paragraph>
+      <paragraph>
+       Thứ tự lùng tìm:
+       <literal>
+        LOCAL, USER, SYSTEM
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./datafiles/locale/{language}/
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Các tập tin ngôn ngữ tĩnh biên dịch trước dành cho sự phiên dịch Giao Diện Người Dùng
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/ ...
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Các tập lệnh Python cho giao diện người dùng và các công cụ.
+      </paragraph>
+      <paragraph>
+       Thứ tự lùng tìm:
+       <literal>
+        LOCAL, USER, SYSTEM
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/addons/*.py
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Python add-ons which may be enabled in the Preferences include import/export format support,
+render engine integration and many handy utilities.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/addons/modules/*.py
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Modules for add-ons to use
+(added to Python's
+       <literal>
+        sys.path
+       </literal>
+       ).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/addons_contrib/*.py
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Một thư mục cho các trình bổ sung được sử dụng cho các tiện ích bổ sung do cộng đồng quản lý (phải được tạo một cách thủ công).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/addons_contrib/modules/*.py
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Modules for
+       <literal>
+        addons_contrib
+       </literal>
+       to use
+(added to Python's
+       <literal>
+        sys.path
+       </literal>
+       ).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/modules/*.py
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Các mô đun Python chứa các API cốt lõi của chúng ta và các hàm tiện ích cho các tập lệnh khác để nhập khẩu (đã được thêm vào `` sys.path`` của Python).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/startup/*.py
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Các tập lệnh được nhập tự động khi khởi động.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/presets/{preset}/*.py
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Những sắp đặt sẵn được sử dụng để lưu trữ các cài đặt do người dùng xác định cho vải, các định dạng kết xuất, v.v.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/templates_py/*.py
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Các tập lệnh mẫu có thể được truy cập từ
+       <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Văn Bản (Text Editor) --&gt; Khuôn Mẫu (Templates) --&gt; Python`">
+        Trình Biên Soạn Văn Bản (Text Editor) ‣ Khuôn Mẫu (Templates) ‣ Python
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./scripts/templates_osl/*.osl
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Ví dụ về các bộ tô bóng OSL, có thể được truy cập từ
+       <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Văn Bản (Text Editor) --&gt; Khuôn Mẫu (Templates) --&gt; Ngôn Ngữ Tô Bóng Mở (Open Shading Language)`">
+        Trình Biên Soạn Văn Bản (Text Editor) ‣ Khuôn Mẫu (Templates) ‣ Ngôn Ngữ Tô Bóng Mở (Open Shading Language)
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       ./python/ ...
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Bản phân phối có kèm Python.
+      </paragraph>
+      <paragraph>
+       Thứ tự lùng tìm:
+       <literal>
+        LOCAL, SYSTEM
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="temp-dir">
+   </target>
+  </section>
+  <section ids="temporary-directory temp-dir" names="temporary\ directory thư\ mục\ tạm\ thời\ --\ temporary\ directory temp-dir">
+   <title>
+    Thư Mục Tạm Thời -- Temporary Directory
+   </title>
+   <paragraph>
+    Thư mục tạm thời được sử dụng để lưu trữ các tập tin khác nhau trong thời gian phần mềm đang hoạt động (bao gồm các lớp kết xuất, bộ nhớ đệm  cache vật lý, bộ nhớ sao chép và bản ghi sự cố).
+   </paragraph>
+   <paragraph>
+    Thư mục tạm thời được chọn dựa trên mức độ ưu tiên sau:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Tùy Chọn Người Dùng (xin xem mục
+      <reference internal="True" refuri="../editors/preferences/file_paths.html#prefs-file-paths">
+       <inline classes="std std-ref">
+        File Paths
+       </inline>
+      </reference>
+      ).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Environment variables (
+      <literal>
+       TEMP
+      </literal>
+      on Windows,
+      <literal>
+       TMP
+      </literal>
+      &amp;
+      <literal>
+       TMP_DIR
+      </literal>
+      on other platforms).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Thư mục
+      <literal>
+       /tmp/
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+ </section>
+</document>

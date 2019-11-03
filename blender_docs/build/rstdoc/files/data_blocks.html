@@ -1,0 +1,1737 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/files/data_blocks.rst">
+ <target refid="bpy-types-id">
+ </target>
+ <target refid="bpy-types-blenddata">
+ </target>
+ <section ids="data-blocks bpy-types-blenddata bpy-types-id" names="data-blocks khối\ dữ\ liệu\ --\ data-blocks bpy.types.blenddata bpy.types.id">
+  <title>
+   Khối Dữ Liệu -- Data-Blocks
+  </title>
+  <paragraph>
+   The base unit for any Blender project is the data-block. Examples of data-blocks include:
+meshes, objects, materials, textures, node trees, scenes, texts, brushes, and even Workspaces.
+  </paragraph>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/files_data-blocks_outliner-blender-file-view.png'}" uri="images/files_data-blocks_outliner-blender-file-view.png"/>
+   <caption>
+    Blender File view of the Outliner.
+   </caption>
+  </figure>
+  <paragraph>
+   A data-block is a generic abstraction of very different kinds of data,
+which features a common set of basic features, properties and behaviors.
+  </paragraph>
+  <paragraph>
+   Some common characteristics:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     They are the primary contents of the blend-file.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     They can reference to each other, for reuse and instancing.
+(Child/parent, object/object-data, materials/images, in modifiers or constraints too...)
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Their names are unique within a blend-file, for a given type.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     They can be added/removed/edited/duplicated.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     They can be linked between files (only enabled for a limited set of data-blocks).
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     They can have their own animation data.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     They can have
+     <reference internal="True" refid="files-data-blocks-custom-properties">
+      <inline classes="std std-ref">
+       Custom Properties
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <paragraph>
+   User will typically interact with the higher level data types (objects, meshes, etc.).
+When doing more complex projects, managing data-blocks becomes more important,
+especially when inter-linking blend-files.
+The main editor for that is the
+   <reference internal="True" refuri="../editors/outliner.html">
+    <inline classes="doc">
+     Outliner
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <paragraph>
+   Not every data in Blender is a data-block,
+bones, sequence strips or vertex groups e.g. are not,
+they belong to armature, scene and mesh types respectively.
+  </paragraph>
+  <section ids="life-time" names="life\ time">
+   <title>
+    Life Time
+   </title>
+   <paragraph>
+    Every data-block has its usage counted (reference count), when there is more than one,
+you can see the number of current users of a data-block to the right of its name in the UI.
+   </paragraph>
+   <paragraph>
+    Blender follows the general rule that unused data is eventually removed.
+   </paragraph>
+   <paragraph>
+    Since it is common to add and remove a lot of data while working,
+this has the advantage of not having to manually manage every single data-block.
+   </paragraph>
+   <paragraph>
+    This works by skipping zero user data-blocks when writing blend-files.
+   </paragraph>
+   <target refid="data-system-datablock-fake-user">
+   </target>
+   <section ids="protected data-system-datablock-fake-user" names="protected data-system-datablock-fake-user">
+    <title>
+     Protected
+    </title>
+    <paragraph>
+     Since zero user data-blocks are not saved,
+there are times when you want to force the data to be kept irrespective of its users.
+    </paragraph>
+    <paragraph>
+     If you are building a blend-file to serve as a library of things that you intend to link to and from other files,
+you will need to make sure that they do not accidentally get deleted from the library file.
+    </paragraph>
+    <paragraph>
+     To protect a data-block, use the button with the shield icon next to its name.
+The data-block will then never be silently deleted by Blender,
+but you can still do it manually if needed.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="sharing" names="sharing">
+   <title>
+    Sharing
+   </title>
+   <paragraph>
+    Data-blocks can be shared among other data-blocks.
+   </paragraph>
+   <paragraph>
+    Examples where sharing data is common:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Sharing textures among materials.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Sharing meshes between objects (instances).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Sharing animated actions between objects,
+for example to make all the lights dim together.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    You can also share data-blocks between files, see:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <reference internal="True" refuri="linked_libraries.html">
+       <inline classes="doc">
+        linked libraries
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <target refid="data-system-datablock-make-single-user">
+   </target>
+  </section>
+  <section ids="making-single-user data-system-datablock-make-single-user" names="making\ single\ user data-system-datablock-make-single-user">
+   <title>
+    Making Single User
+   </title>
+   <paragraph>
+    When a data-block is shared between several users, you can make a copy of it for a given user.
+To do so, click on the user-count button to the right of its name.
+This will duplicate that data-block and assign the newly created copy to that usage only.
+   </paragraph>
+   <note>
+    <paragraph>
+     Objects have a set of more advanced actions to become single-user,
+see
+     <reference internal="True" refuri="../scene_layout/object/editing/duplication.html">
+      <inline classes="doc">
+       their documentation
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </note>
+  </section>
+  <section ids="removing-data-blocks" names="removing\ data-blocks xóa\ bỏ\ khối\ dữ\ liệu\ --\ removing\ data-blocks">
+   <title>
+    Xóa Bỏ Khối Dữ Liệu -- Removing Data-Blocks
+   </title>
+   <paragraph>
+    As covered in
+    <reference name="Life Time" refid="life-time">
+     Life Time
+    </reference>
+    , data-blocks are typically removed when they are no longer used.
+   </paragraph>
+   <paragraph>
+    They can also be manually
+    <emphasis>
+     unlinked
+    </emphasis>
+    or
+    <emphasis>
+     deleted
+    </emphasis>
+    .
+   </paragraph>
+   <paragraph>
+    Unlinking a data-block means that its user won't use it anymore.
+This can be achieved by clicking on the "X" icon next to a data-block's name.
+   </paragraph>
+   <paragraph>
+    If you unlink a data-block from all of its users,
+it will eventually be deleted by Blender as described above (unless it is a protected one).
+   </paragraph>
+   <paragraph>
+    Deleting a data-block directly erases it from the blend-file, automatically unlinking it from all of its users.
+This can be achieved by
+    <literal classes="kbd">
+     Shift-LMB
+    </literal>
+    on the "X" icon next to its name.
+   </paragraph>
+   <warning>
+    <paragraph>
+     Deleting some data-blocks can lead to deletion of some of its users, which would become invalid without it.
+The main example is that object-data deletion (like mesh, curve, camera...) will also delete all objects using it.
+    </paragraph>
+   </warning>
+   <paragraph>
+    Those two operations are also available in the context menu
+when
+    <literal classes="kbd">
+     RMB
+    </literal>
+    -clicking on a data-block in the
+    <emphasis>
+     Outliner
+    </emphasis>
+    .
+   </paragraph>
+   <target refid="data-system-datablock-types">
+   </target>
+  </section>
+  <section ids="data-block-types data-system-datablock-types" names="data-block\ types thể\ loại\ của\ khối\ dữ\ liệu\ --\ data-block\ types data-system-datablock-types">
+   <title>
+    Thể Loại của Khối Dữ Liệu -- Data-Block Types
+   </title>
+   <comment xml:space="preserve">
+    EDITORS NOTE:
+Mostly we want to avoid long lists of data -- but in this case,
+it is the only comprehensive list of data-blocks, and something which you cannot
+find directly just through looking at the interface.
+::
+(TODO add) links to related docs for each type.
+   </comment>
+   <comment xml:space="preserve">
+    Image source Scene tab --&gt; Active keying set panel --&gt; ID-block (sound replaced).
+   </comment>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/files_data-blocks_id-types.png'}" uri="images/files_data-blocks_id-types.png"/>
+    <caption>
+     Data-blocks types with their icon.
+    </caption>
+   </figure>
+   <paragraph>
+    For reference, here is a table of data-blocks types stored in blend-files.
+   </paragraph>
+   <field_list>
+    <field>
+     <field_name>
+      Kết Nối -- Link
+     </field_name>
+     <field_body>
+      <paragraph>
+       Library Linking, supports being linked into other blend-files.
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Đóng Gói -- Pack
+     </field_name>
+     <field_body>
+      <paragraph>
+       File Packing, supports file contents being packed into the blend-file
+       <emphasis>
+        (not applicable for most data-blocks which have no file reference)
+       </emphasis>
+       .
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+   <comment xml:space="preserve">
+    EDITORS NOTE:
+For each data-block, we have 2 lines.
+1) a terse description.
+2) how its used.
+::
+Keep these short.
+   </comment>
+   <container classes="lead">
+    <comment xml:space="preserve">
+     clear
+    </comment>
+   </container>
+   <table classes="colwidths-given valign">
+    <tgroup cols="4">
+     <colspec colwidth="20">
+     </colspec>
+     <colspec colwidth="5">
+     </colspec>
+     <colspec colwidth="5">
+     </colspec>
+     <colspec colwidth="70">
+     </colspec>
+     <thead>
+      <row>
+       <entry>
+        <paragraph>
+         Thể Loại -- Type
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         Kết Nối -- Link
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         Đóng Gói -- Pack
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         Miêu Tả -- Description
+        </paragraph>
+       </entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../animation/actions.html">
+          <inline classes="doc">
+           Action
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Stores animation F-curves.
+         </line>
+         <line>
+          Used as data-block animation data,
+         </line>
+         <line>
+          and the Non-Linear Animation editor.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../animation/armatures/introduction.html">
+          <inline classes="doc">
+           Armature
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Skeleton used to deform meshes.
+         </line>
+         <line>
+          Used as data of armature objects, and by the Armature Modifier.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../sculpt_paint/brush/brush.html">
+          <inline classes="doc">
+           Brush
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Used by paint tools.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/cameras.html">
+          <inline classes="doc">
+           Camera
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Used as data by camera objects.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../modeling/modifiers/modify/mesh_sequence_cache.html">
+          <inline classes="doc">
+           Cache File
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Used by Mesh Cache modifiers.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../modeling/curves/introduction.html">
+          <inline classes="doc">
+           Curve
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Used as data by curve, font &amp; surface objects.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../modeling/texts/introduction.html">
+          <inline classes="doc">
+           Font
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          References font files.
+         </line>
+         <line>
+          Used by curve object-data of text objects.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../grease_pencil/introduction.html">
+          <inline classes="doc">
+           Grease Pencil
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          2D/3D sketch data used by Grease Pencil objects.
+         </line>
+         <line>
+          Used as overlay
+          <emphasis>
+           helper
+          </emphasis>
+          info, by the
+         </line>
+         <line>
+          3D View, Image, Sequencer &amp; Movie Clip editors.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../scene_layout/collections/introduction.html">
+          <inline classes="doc">
+           Collection
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Group and organize objects in scenes.
+         </line>
+         <line>
+          Used to instance objects, and in library linking.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../editors/image/introduction.html">
+          <inline classes="doc">
+           Image
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Image files.
+         </line>
+         <line>
+          Used by shader nodes and textures.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../animation/shape_keys/introduction.html">
+          <inline classes="doc">
+           Keys (Shape Keys)
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✗
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Geometry shape storage, which can be animated.
+         </line>
+         <line>
+          Used by mesh, curve, and lattice objects.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/lights/light_object.html">
+          <inline classes="doc">
+           Light
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Used as object data by light objects.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="linked_libraries.html">
+          <inline classes="doc">
+           Library
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✗
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          References to an external blend-file.
+         </line>
+         <line>
+          Access from the Outliner's
+          <emphasis>
+           Blender File
+          </emphasis>
+          view.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/freestyle/introduction.html">
+          <inline classes="doc">
+           Line Style
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Used by the Freestyle renderer.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../animation/lattice.html">
+          <inline classes="doc">
+           Lattice
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Grid based lattice deformation.
+         </line>
+         <line>
+          Used as data of lattice objects, and by the Lattice Modifier.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../movie_clip/masking/introduction.html">
+          <inline classes="doc">
+           Mask
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          2D animated mask curves.
+         </line>
+         <line>
+          Used by compositing nodes &amp; sequencer strip.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/materials/introduction.html">
+          <inline classes="doc">
+           Material
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Set shading and texturing render properties.
+         </line>
+         <line>
+          Used by objects, meshes &amp; curves.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../modeling/metas/introduction.html">
+          <inline classes="doc">
+           Metaball
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          An isosurface in 3D space.
+         </line>
+         <line>
+          Used as data of metaball objects.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../modeling/meshes/introduction.html">
+          <inline classes="doc">
+           Mesh
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Geometry made of vertices/edges/faces.
+         </line>
+         <line>
+          Used as data of mesh objects.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../editors/clip/introduction.html">
+          <inline classes="doc">
+           Movie Clip
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✗
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Reference to an image sequence or video file.
+         </line>
+         <line>
+          Used in the
+          <emphasis>
+           Movie Clip
+          </emphasis>
+          editor.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/shader_nodes/groups.html">
+          <inline classes="doc">
+           Node Tree
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Groups of re-usable nodes.
+         </line>
+         <line>
+          Used in the node editors.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../scene_layout/object/introduction.html">
+          <inline classes="doc">
+           Object
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          An entity in the scene with location,
+         </line>
+         <line>
+          scale, rotation.
+         </line>
+         <line>
+          Used by scenes &amp; collections.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../sculpt_paint/brush/stroke.html">
+          <inline classes="doc">
+           Paint Curve
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Stores a paint or sculpt stroke.
+         </line>
+         <line>
+          Access from the paint tools.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../sculpt_paint/index.html">
+          <inline classes="doc">
+           Palette
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Store color presets.
+         </line>
+         <line>
+          Access from the paint tools.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../physics/particles/introduction.html">
+          <inline classes="doc">
+           Particle
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Particle settings.
+         </line>
+         <line>
+          Used by particle systems.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/eevee/lightprobes/introduction.html">
+          <inline classes="doc">
+           Light Probe
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Help achieve complex real-time lighting in Eevee.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../scene_layout/scene/introduction.html">
+          <inline classes="doc">
+           Scene
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Primary store of all data displayed and animated.
+         </line>
+         <line>
+          Used as top-level storage for objects &amp; animation.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/output/audio/speaker.html">
+          <inline classes="doc">
+           Sounds
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Reference to sound files.
+         </line>
+         <line>
+          Used as data of speaker objects.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/output/audio/speaker.html">
+          <inline classes="doc">
+           Speaker
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Sound sources for a 3D scene.
+         </line>
+         <line>
+          Used as data of speaker object.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../editors/text_editor.html">
+          <inline classes="doc">
+           Text
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✗
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Text data.
+         </line>
+         <line>
+          Used by Python scripts and OSL shaders.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/materials/legacy_textures/introduction.html">
+          <inline classes="doc">
+           Texture
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          2D/3D textures.
+         </line>
+         <line>
+          Used by brushes and modifiers.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../interface/window_system/introduction.html">
+          <inline classes="doc">
+           Window Manager
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✗
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          The overarching manager for all of Blender's UI.
+         </line>
+         <line>
+          Includes Workspaces, notification system, operators, and keymaps.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../render/lights/world.html">
+          <inline classes="doc">
+           World
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✓
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          Define global render environment settings.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../interface/window_system/workspaces.html">
+          <inline classes="doc">
+           Workspace
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         ✗
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         —
+        </paragraph>
+       </entry>
+       <entry>
+        <line_block>
+         <line>
+          UI layout.
+         </line>
+         <line>
+          Used by each window, which has its own workspace.
+         </line>
+        </line_block>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <target refid="files-data-blocks-custom-properties">
+   </target>
+   <target refid="bpy-types-bpy-struct">
+   </target>
+   <target refid="bpy-ops-wm-properties">
+   </target>
+  </section>
+  <section ids="custom-properties bpy-ops-wm-properties bpy-types-bpy-struct files-data-blocks-custom-properties" names="custom\ properties bpy.ops.wm.properties bpy.types.bpy_struct files-data_blocks-custom-properties">
+   <title>
+    Custom Properties
+   </title>
+   <figure align="right" ids="id3">
+    <image candidates="{'*': 'images/files_data-blocks_add.png'}" uri="images/files_data-blocks_add.png"/>
+    <caption>
+     Custom Properties panel.
+    </caption>
+   </figure>
+   <paragraph>
+    Custom properties are a way to store your own data in Blender's data-blocks.
+It can be used for rigging (where bones and objects can have custom properties driving other properties),
+and Python scripts, where it's common to define new settings not available in Blender.
+   </paragraph>
+   <paragraph>
+    Only certain data supports custom properties:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      All
+      <reference internal="True" refid="data-system-datablock-types">
+       <inline classes="std std-ref">
+        data-blocks types
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Bones and pose bones.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Sequence strips.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    To add a custom property, search for the
+    <emphasis>
+     Custom Properties
+    </emphasis>
+    panel,
+found at the bottom of most
+    <reference internal="True" refuri="../editors/properties_editor.html">
+     <inline classes="doc">
+      Properties Editor
+     </inline>
+    </reference>
+    or Sidebar region, and hit
+    <emphasis>
+     Add
+    </emphasis>
+    .
+   </paragraph>
+   <section ids="editing-properties" names="editing\ properties">
+    <title>
+     Editing Properties
+    </title>
+    <section ids="user-interface" names="user\ interface">
+     <title>
+      User Interface
+     </title>
+     <paragraph>
+      Custom properties can be edited using the panel available for data types that support it.
+     </paragraph>
+     <figure align="right" ids="id4">
+      <image candidates="{'*': 'images/files_data-blocks_edit.png'}" uri="images/files_data-blocks_edit.png"/>
+      <caption>
+       Custom Properties edit pop-up.
+      </caption>
+     </figure>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Property Name
+       </term>
+       <definition>
+        <paragraph>
+         The name of the custom property.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Property Value
+       </term>
+       <definition>
+        <paragraph>
+         This does two things: first it sets the current value of the custom property, and
+second, it defines the data type of the property.
+        </paragraph>
+        <paragraph>
+         Custom properties can be of the following types: Integers, Floats, Strings, Booleans,
+or short vectors of Integers or Floats.
+        </paragraph>
+        <paragraph>
+         See the table below for a list of examples for each:
+        </paragraph>
+        <field_list>
+         <field>
+          <field_name>
+           Integers
+          </field_name>
+          <field_body>
+           <paragraph>
+            1, 2, 3, 4,
+           </paragraph>
+          </field_body>
+         </field>
+         <field>
+          <field_name>
+           Floats
+          </field_name>
+          <field_body>
+           <paragraph>
+            3.141, 5.0, 6.125,
+           </paragraph>
+          </field_body>
+         </field>
+         <field>
+          <field_name>
+           Strings
+          </field_name>
+          <field_body>
+           <paragraph>
+            any text,
+           </paragraph>
+          </field_body>
+         </field>
+         <field>
+          <field_name>
+           Booleans
+          </field_name>
+          <field_body>
+           <paragraph>
+            <literal>
+             True
+            </literal>
+            ,
+            <literal>
+             False
+            </literal>
+           </paragraph>
+          </field_body>
+         </field>
+         <field>
+          <field_name>
+           Vectors
+          </field_name>
+          <field_body>
+           <paragraph>
+            <literal>
+             [1, 2, 3]
+            </literal>
+            ,
+            <literal>
+             [1.0, 2.0, 3.0]
+            </literal>
+           </paragraph>
+          </field_body>
+         </field>
+        </field_list>
+        <note>
+         <paragraph>
+          Booleans are handled very similar to integers and only work
+when using Min/Max values that are integers and that are no more than 1 apart.
+         </paragraph>
+         <paragraph>
+          At this point, the booleans will still look like integers but behave like
+booleans having one lower, off, value and a higher, on, value.
+         </paragraph>
+        </note>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Default Value
+       </term>
+       <definition>
+        <paragraph>
+         This sets the default value of the property used by the Reset to Default Value operator.
+        </paragraph>
+        <warning>
+         <paragraph>
+          Default values are used as the basis of
+          <reference internal="True" refuri="../editors/nla/properties_modifiers.html#nla-blend-modes">
+           <inline classes="std std-ref">
+            NLA blending
+           </inline>
+          </reference>
+          ,
+and a nonsensical default (e.g. 0 for a property used for scaling) on a property intended for
+being keyframed is likely to cause issues.
+         </paragraph>
+        </warning>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Min
+       </term>
+       <definition>
+        <paragraph>
+         The minimum value the custom property can take.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Max
+       </term>
+       <definition>
+        <paragraph>
+         The maximum value the custom property can take.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <figure align="right" ids="id5">
+      <image candidates="{'*': 'images/files_data-blocks_edit_color.png'}" uri="images/files_data-blocks_edit_color.png"/>
+      <caption>
+       Custom Property settings for a color with alpha.
+      </caption>
+     </figure>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Use Soft Limits
+       </term>
+       <definition>
+        <paragraph>
+         Enables limits that the
+         <emphasis>
+          Property Value
+         </emphasis>
+         slider can be adjusted to
+without having to input the value numerically.
+        </paragraph>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           Soft Min
+          </term>
+          <definition>
+           <paragraph>
+            The minimum value for the soft limit.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Soft Max
+          </term>
+          <definition>
+           <paragraph>
+            The maximum value for the soft limit.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tooltip
+       </term>
+       <definition>
+        <paragraph>
+         Allows you to write a custom
+         <reference internal="True" refuri="../getting_started/help.html">
+          <inline classes="doc">
+           Tooltip
+          </inline>
+         </reference>
+         for your property.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Subtype
+       </term>
+       <definition>
+        <paragraph>
+         For vector properties, specifies the kind of data the property contains,
+which affects how it appears in the
+         <abbreviation explanation="User Interface">
+          UI
+         </abbreviation>
+         . Most useful for color properties.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="python-access" names="python\ access">
+     <title>
+      Python Access
+     </title>
+     <paragraph>
+      Custom properties can be accessed in a similar way to
+      <reference name="dictionaries" refuri="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">
+       dictionaries
+      </reference>
+      ,
+with the constraints that keys can only be strings,
+and values can only be strings, numbers, arrays of such, or nested properties.
+     </paragraph>
+     <paragraph>
+      See the
+      <reference name="API documentation" refuri="https://www.blender.org/api/blender_python_api_current/info_quickstart.html#custom-properties">
+       API documentation
+      </reference>
+      for details.
+     </paragraph>
+    </section>
+   </section>
+  </section>
+ </section>
+</document>

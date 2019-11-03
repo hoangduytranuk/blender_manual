@@ -1,0 +1,335 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/textures/point_density.rst">
+ <section ids="point-density-node" names="point\ density\ node nút\ mật\ độ\ điểm\ --\ point\ density\ node">
+  <title>
+   Nút Mật Độ Điểm -- Point Density Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_textures_point-density_node.png'}" uri="images/render_shader-nodes_textures_point-density_node.png"/>
+   <caption>
+    Point Density Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Point Density
+   </emphasis>
+   node is used to add volumetric points for each particle or vertex of another object.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       Texture coordinate to sample texture at;
+defaults to global position (
+       <emphasis>
+        Position
+       </emphasis>
+       output of
+       <emphasis>
+        Geometry
+       </emphasis>
+       node) if the socket is left unconnected.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Point Data
+     </term>
+     <definition>
+      <paragraph>
+       Where to get points from.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Hệ Thống Hạt -- Particle System
+        </term>
+        <definition>
+         <paragraph>
+          Use each particle position from the specified particle system.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Điểm Đỉnh của Vật Thể -- Object Vertices
+        </term>
+        <definition>
+         <paragraph>
+          Use each vertex position from the specified object.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vật Thể -- Object
+     </term>
+     <definition>
+      <paragraph>
+       Which object's vertices or particle system will be used.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hệ Thống Hạt -- Particle System
+     </term>
+     <definition>
+      <paragraph>
+       Particle positions from this system will be used.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Không Gian -- Space
+     </term>
+     <definition>
+      <paragraph>
+       The coordinate system for mapping points.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Không Gian Thế Giới -- World Space
+        </term>
+        <definition>
+         <paragraph>
+          Map each point exactly where the source particle/vertex is.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Không Gian Vật Thể -- Object Space
+        </term>
+        <definition>
+         <paragraph>
+          Fit the points from the source particles/vertices
+inside the bounding box of the object with the point density texture.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bán Kính -- Radius
+     </term>
+     <definition>
+      <paragraph>
+       Size of the points.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nội Suy -- Interpolation
+     </term>
+     <definition>
+      <paragraph>
+       Texel filtering type.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Gần Nhất -- Closest
+        </term>
+        <definition>
+         <paragraph>
+          No interpolation, use nearest texel. Produces blocky looking points.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tuyến Tính -- Linear
+        </term>
+        <definition>
+         <paragraph>
+          Interpolate linearly between texels, producing soft, round points.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Lập Phương -- Cubic
+        </term>
+        <definition>
+         <paragraph>
+          Use cubic falloff, producing very soft points. Useful when points are very densely packed.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Phân Giải -- Resolution
+     </term>
+     <definition>
+      <paragraph>
+       The dimensions of the texture holding the point data.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nguồn Màu Sắc -- Color Source
+     </term>
+     <definition>
+      <paragraph>
+       Which attribute of the particle system or mesh is used to color the output.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         -- Particle Color Sources
+        </term>
+        <definition>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Tuổi Thọ Hạt -- Particle Age
+           </term>
+           <definition>
+            <paragraph>
+             Lifetime mapped as (0.0 - 1.0) intensity.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Tốc Độ Hạt -- Particle Speed
+           </term>
+           <definition>
+            <paragraph>
+             Particle speed (absolute magnitude of velocity) mapped as (0.0 - 1.0) intensity.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Vận Tốc Hạt -- Particle Velocity
+           </term>
+           <definition>
+            <paragraph>
+             XYZ velocity mapped to RGB colors.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Vertex Color Sources
+        </term>
+        <definition>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Màu Điểm Đỉnh -- Vertex Color
+           </term>
+           <definition>
+            <paragraph>
+             Use a vertex color layer for coloring the point density texture.
+            </paragraph>
+            <note>
+             <paragraph>
+              Vertex colors are defined per face corner.
+A single vertex can have as many different colors as faces it is part of.
+The actual color of the point density texture is averaged from all vertex corners.
+             </paragraph>
+            </note>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Trọng Lượng Điểm Đỉnh -- Vertex Weight
+           </term>
+           <definition>
+            <paragraph>
+             Use weights from a vertex group as intensity values.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Pháp Tuyến Điểm Đỉnh -- Vertex Normals
+           </term>
+           <definition>
+            <paragraph>
+             Use object-space vertex normals as RGB values.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra của màu chất liệu.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tỷ Trọng -- Density
+     </term>
+     <definition>
+      <paragraph>
+       Density of volume.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_shader-nodes_textures_point-density_example.jpg'}" uri="images/render_shader-nodes_textures_point-density_example.jpg" width="200px"/>
+    <caption>
+     Domain object with Point Density texture using vertices from ball as points.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

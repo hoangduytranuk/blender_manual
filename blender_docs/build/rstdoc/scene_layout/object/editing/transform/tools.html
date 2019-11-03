@@ -1,0 +1,396 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/transform/tools.rst">
+ <section ids="transform-tools" names="transform\ tools công\ cụ\ biến\ hóa\ --\ transform\ tools">
+  <title>
+   Công Cụ Biến Hóa -- Transform Tools
+  </title>
+  <target refid="bpy-ops-object-randomize-transform">
+  </target>
+  <section ids="randomize-transform bpy-ops-object-randomize-transform" names="randomize\ transform ngẫu\ nhiên\ hóa\ sự\ biến\ hóa\ --\ randomize\ transform bpy.ops.object.randomize_transform">
+   <title>
+    Ngẫu Nhiên Hóa sự Biến Hóa -- Randomize Transform
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể và Chế Độ Biên Soạn -- Object Mode and Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Biến Hóa (Transform) --&gt; Ngẫu Nhiên Hóa sự Biến Hóa (Randomize Transform)`">
+         Vật Thể (Object) ‣ Biến Hóa (Transform) ‣ Ngẫu Nhiên Hóa sự Biến Hóa (Randomize Transform)
+        </inline>
+        ,
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Biến Hóa (Transform) --&gt; Ngẫu Nhiên Hóa (Randomize)`">
+         Khung Lưới (Mesh) ‣ Biến Hóa (Transform) ‣ Ngẫu Nhiên Hóa (Randomize)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <figure align="right" ids="id3" width="180px">
+    <image candidates="{'*': 'images/scene-layout_object_editing_transform_tools_randomize.png'}" uri="images/scene-layout_object_editing_transform_tools_randomize.png"/>
+    <caption>
+     Randomize transform options.
+    </caption>
+   </figure>
+   <paragraph>
+    This tool allows you to apply a randomized transformation.
+   </paragraph>
+   <section ids="object-mode" names="object\ mode chế\ độ\ vật\ thể\ --\ object\ mode">
+    <title>
+     Chế Độ Vật Thể -- Object Mode
+    </title>
+    <paragraph>
+     In Object Mode it randomizes the move, rotate,
+and scale values to an object or multiple objects. When applied on multiple objects,
+each object gets its own seed value, and will get different transform results from the rest.
+    </paragraph>
+    <section dupnames="options" ids="options" names="tùy\ chọn\ --\ options">
+     <title>
+      Tùy Chọn -- Options
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Mầm Ngẫu Nhiên -- Random Seed
+       </term>
+       <definition>
+        <paragraph>
+         The random seed is an offset to the randomized transformation.
+A different seed will produce a new result.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Biến Hóa Delta -- Transform Delta
+       </term>
+       <definition>
+        <paragraph>
+         Randomize
+         <reference internal="True" refuri="../../properties/transforms.html#transform-delta">
+          <inline classes="std std-ref">
+           Delta Transform
+          </inline>
+         </reference>
+         values instead of regular transform.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Ngẫu Nhiên Hóa Vị Trí -- Randomize Location
+       </term>
+       <definition>
+        <paragraph>
+         Randomize Location values.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Vị Trí -- Location
+       </term>
+       <definition>
+        <paragraph>
+         The maximum distances the objects can move along each axis.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Ngẫu Nhiên Hóa sự Xoay Chiều -- Randomize Rotation
+       </term>
+       <definition>
+        <paragraph>
+         Randomize rotation values.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Xoay Chiều -- Rotation
+       </term>
+       <definition>
+        <paragraph>
+         The maximum angle the objects can rotate on each axis.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Ngẫu Nhiên Hóa Tỷ Lệ -- Randomize Scale
+       </term>
+       <definition>
+        <paragraph>
+         Randomize scale values.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Đổi Tỷ Lệ Đồng Đều -- Scale Even
+       </term>
+       <definition>
+        <paragraph>
+         Use the same scale for each axis.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tỷ Lệ -- Scale
+       </term>
+       <definition>
+        <paragraph>
+         The maximum scale randomization over each axis.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+   <section ids="edit-mode" names="edit\ mode chế\ độ\ biên\ soạn\ --\ edit\ mode">
+    <title>
+     Chế Độ Biên Soạn -- Edit Mode
+    </title>
+    <paragraph>
+     The
+     <emphasis>
+      Randomize
+     </emphasis>
+     tool in Edit Mode allows you to displace the vertices of a mesh
+along their normal.
+    </paragraph>
+    <section dupnames="options" ids="id1" names="tùy\ chọn\ --\ options">
+     <title>
+      Tùy Chọn -- Options
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Số/Lượng -- Amount
+       </term>
+       <definition>
+        <paragraph>
+         Distance of the displacement.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Đồng Đều -- Uniform
+       </term>
+       <definition>
+        <paragraph>
+         Adds a random offset of the amount.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Pháp Tuyến -- Normal
+       </term>
+       <definition>
+        <paragraph>
+         Adds a random offset to the displacement normal.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Mầm Ngẫu Nhiên -- Random Seed
+       </term>
+       <definition>
+        <paragraph>
+         The random seed is an offset to the random transformation.
+A different seed will produce a new result.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <target refid="bpy-ops-object-align">
+     </target>
+    </section>
+   </section>
+  </section>
+  <section ids="align-objects bpy-ops-object-align" names="align\ objects canh\ hàng\ vật\ thể\ --\ align\ objects bpy.ops.object.align">
+   <title>
+    Canh Hàng Vật Thể -- Align Objects
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể -- Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Biến Hóa (Transform) --&gt; Canh Hàng Vật Thể (Align Objects)`">
+         Vật Thể (Object) ‣ Biến Hóa (Transform) ‣ Canh Hàng Vật Thể (Align Objects)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The Align tool is used to align multiple selected objects so they line up on a specified axis.
+   </paragraph>
+   <section dupnames="options" ids="id2" names="tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Chất Lượng Cao -- High Quality
+      </term>
+      <definition>
+       <paragraph>
+        Uses more precise math to better determine the locations for the objects.
+In case of positive or negative bounding box alignment,
+if one or more of the selected objects have any rotation transformations
+(or delta rotation transformations), it is recommended to check
+        <emphasis>
+         High Quality
+        </emphasis>
+        so that their bounding box is calculated with precision for all three global axes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chế Độ Sắp Hàng -- Align Mode
+      </term>
+      <definition>
+       <paragraph>
+        The
+        <emphasis>
+         Align Mode
+        </emphasis>
+        control will define what part of the objects will be aligned:
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Trung Tâm -- Centers
+         </term>
+         <definition>
+          <paragraph>
+           The objects centers.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bên Dương/Âm -- Positive Sides/Negative Sides
+         </term>
+         <definition>
+          <paragraph>
+           Bên dương hoặc âm (trên các trục toàn cầu) của các hộp viền khung tương ứng của chúng
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tương Đối Với -- Relative To
+      </term>
+      <definition>
+       <paragraph>
+        The
+        <emphasis>
+         Relative To
+        </emphasis>
+        control will let us choose to align the objects to:
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Đang/Hoạt Động -- Active
+         </term>
+         <definition>
+          <paragraph>
+           The active object.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Lựa Chọn -- Selection
+         </term>
+         <definition>
+          <paragraph>
+           The median point of the selection.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Con Trỏ 3D -- 3D Cursor
+         </term>
+         <definition>
+          <paragraph>
+           The current position of the 3D Cursor.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Tọa Độ Gốc của Cảnh -- Scene Origin
+         </term>
+         <definition>
+          <paragraph>
+           The global origin.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Sắp Hàng X, Y, Z -- Align X, Y, Z
+      </term>
+      <definition>
+       <paragraph>
+        Chọn xem trục nào là trục để sắp hàng/căn chỉnh các vật thể lựa chọn vào.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

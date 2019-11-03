@@ -1,0 +1,592 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/primitives.rst">
+ <target refid="bpy-ops-mesh-primitive-add">
+ </target>
+ <section ids="primitives bpy-ops-mesh-primitive-add" names="primitives hình\ cơ\ bản\ --\ primitives bpy.ops.mesh.primitive*add">
+  <title>
+   Hình Cơ Bản -- Primitives
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Vật Thể và Chế Độ Biên Soạn -- Object Mode and Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Cộng Thêm (Add) --&gt; Khung Lưới (Mesh)`">
+        Cộng Thêm (Add) ‣ Khung Lưới (Mesh)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Shift-A
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   A common object type used in a 3D scene is a mesh.
+Blender comes with a number of "primitive" mesh shapes that you can start modeling from.
+You can also add primitives in Edit Mode at the 3D cursor.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/modeling_meshes_primitives_all.png'}" uri="images/modeling_meshes_primitives_all.png"/>
+   <caption>
+    Blender's standard primitives.
+   </caption>
+  </figure>
+  <note>
+   <paragraph>
+    Planar Primitives
+   </paragraph>
+   <paragraph>
+    You can make a planar mesh three-dimensional by moving one or more of the vertices out of its plane
+(applies to
+    <emphasis>
+     Plane
+    </emphasis>
+    ,
+    <emphasis>
+     Circle
+    </emphasis>
+    and
+    <emphasis>
+     Grid
+    </emphasis>
+    ).
+A simple circle is often used as a starting point to create even the most complex of meshes.
+   </paragraph>
+  </note>
+  <section ids="common-options" names="common\ options tùy\ chọn\ chung\ --\ common\ options">
+   <title>
+    Tùy Chọn Chung -- Common Options
+   </title>
+   <paragraph>
+    These options can be specified in the
+    <reference internal="True" refuri="../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+     <inline classes="std std-ref">
+      Adjust Last Operation
+     </inline>
+    </reference>
+    panel,
+which appears when the object is created.
+Options included in more than one primitive are:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Sinh Tạo các UV -- Generate UVs
+     </term>
+     <definition>
+      <paragraph>
+       Generates a default UV unwrapping of new geometry.
+This will be defined in the first UV layer (which will get added if needed).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Radius/Size, Align to View, Location, Rotation
+     </term>
+     <definition>
+      <paragraph>
+       Xin xem thêm về
+       <reference internal="True" refuri="../../scene_layout/object/types.html#object-common-options">
+        <inline classes="std std-ref">
+         Các Tùy Chọn Chung -- Common Object Options
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="plane" names="plane mặt\ phẳng\ --\ plane">
+   <title>
+    Mặt Phẳng -- Plane
+   </title>
+   <paragraph>
+    The standard plane is a single quad face, which is composed of four vertices, four edges, and one face.
+It is like a piece of paper lying on a table;
+it is not a three-dimensional object because it is flat and has no thickness.
+Objects that can be created with planes include floors, tabletops, or mirrors.
+   </paragraph>
+  </section>
+  <section ids="cube" names="cube lập\ thể\ --\ cube">
+   <title>
+    Lập Thể -- Cube
+   </title>
+   <paragraph>
+    A standard cube contains eight vertices, twelve edges, and six faces,
+and is a three-dimensional object. Objects that can be created out of cubes include dice,
+boxes, or crates.
+   </paragraph>
+  </section>
+  <section ids="circle" names="circle hình\ tròn\ --\ circle">
+   <title>
+    Hình Tròn -- Circle
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Điểm Đỉnh -- Vertices
+     </term>
+     <definition>
+      <paragraph>
+       The number of vertices that define the circle or polygon.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thể Loại Phủ Kín -- Fill Type
+     </term>
+     <definition>
+      <paragraph>
+       Set how the circle will be filled.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Hình Rẻ Quạt -- Triangle Fan
+        </term>
+        <definition>
+         <paragraph>
+          Fill with triangular faces which share a vertex in the middle.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đa Giác -- N-gon
+        </term>
+        <definition>
+         <paragraph>
+          Fill with a single
+          <reference internal="True" refuri="../../glossary/index.html#term-n-gon">
+           <inline classes="xref std std-term">
+            n-gon
+           </inline>
+          </reference>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Không -- Nothing
+        </term>
+        <definition>
+         <paragraph>
+          Do not fill. Creates only the outer ring of vertices.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="uv-sphere" names="uv\ sphere hình\ cầu\ uv\ --\ uv\ sphere">
+   <title>
+    Hình Cầu UV -- UV Sphere
+   </title>
+   <paragraph>
+    A standard UV sphere is made out of quad faces and a triangle fan at the top and bottom.
+It can be used for texturing.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Phân Đoạn -- Segments
+     </term>
+     <definition>
+      <paragraph>
+       Number of vertical segments. Like the Earth's meridians, going pole to pole.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vành Nhẫn -- Rings
+     </term>
+     <definition>
+      <paragraph>
+       Number of horizontal segments. These are like the Earth's parallels.
+      </paragraph>
+      <note>
+       <paragraph>
+        Rings are face loops and not edge loops, which would be one less.
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="icosphere" names="icosphere nhị\ thập\ diện\ cầu\ --\ icosphere">
+   <title>
+    Nhị Thập Diện Cầu -- Icosphere
+   </title>
+   <paragraph>
+    An icosphere is a polyhedral sphere made up of triangles.
+Icospheres are normally used to achieve a more isotropical layout of
+vertices than a UV sphere, in other words, they are uniform in every direction.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Lượng Phân Hóa -- Subdivisions
+     </term>
+     <definition>
+      <paragraph>
+       How many recursions are used to define the sphere.
+At level 1 the icosphere is an icosahedron, a solid with 20 equilateral triangular faces.
+Each increase in the number of subdivisions splits each triangular face into four triangles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     Subdividing an icosphere raises the vertex count very quickly even with few iterations
+(10 times creates 5,242,880 triangles),
+Adding such a dense mesh is a sure way to cause the program to crash.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="cylinder" names="cylinder hình\ trụ\ --\ cylinder">
+   <title>
+    Hình Trụ -- Cylinder
+   </title>
+   <paragraph>
+    Objects that can be created out of cylinders include handles or rods.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Điểm Đỉnh -- Vertices
+     </term>
+     <definition>
+      <paragraph>
+       The number of vertical edges between the circles used to define the cylinder or prism.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều/Độ Sâu -- Depth
+     </term>
+     <definition>
+      <paragraph>
+       Sets the starting height of the cylinder.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Loại Hình Học Phủ Đầu -- Cap Fill Type
+     </term>
+     <definition>
+      <paragraph>
+       Similar to circle (see above). When set to none, the created object will be a tube.
+Objects that can be created out of tubes include pipes or drinking glasses
+(the basic difference between a cylinder and a tube is that the former has closed ends).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="cone" names="cone hình\ nón\ --\ cone">
+   <title>
+    Hình Nón -- Cone
+   </title>
+   <paragraph>
+    Objects that can be created out of cones include spikes or pointed hats.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Điểm Đỉnh -- Vertices
+     </term>
+     <definition>
+      <paragraph>
+       The number of vertical edges between the circles or tip, used to define the cone or pyramid.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bán Kính 1 -- Radius 1
+     </term>
+     <definition>
+      <paragraph>
+       Sets the radius of the circular base of the cone.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bán Kính 2 -- Radius 2
+     </term>
+     <definition>
+      <paragraph>
+       Sets the radius of the tip of the cone. which will create a frustum (a pyramid or cone with the top cut off).
+A value of 0 will produce a standard cone shape.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều/Độ Sâu -- Depth
+     </term>
+     <definition>
+      <paragraph>
+       Sets the starting height of the cone.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Loại Hình Học Phủ Đáy -- Base Fill Type
+     </term>
+     <definition>
+      <paragraph>
+       Similar to circle (see above).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="torus" names="torus hình\ xuyến\ --\ torus">
+   <title>
+    Hình Xuyến -- Torus
+   </title>
+   <paragraph>
+    A doughnut-shaped primitive created by rotating a circle around an axis.
+The overall dimensions can be defined by two methods.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Sắp Đặt Sẵn của Toán Tử -- Operator Presets
+     </term>
+     <definition>
+      <paragraph>
+       Torus preset settings for reuse. These presets are stored as scripts in the proper presets directory.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Số Phân Đoạn của Vòng -- Major Segments
+     </term>
+     <definition>
+      <paragraph>
+       Number of segments for the main ring of the torus.
+If you think of a torus as a "spin" operation around an axis, this is how many steps are in the spin.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Minor segments
+     </term>
+     <definition>
+      <paragraph>
+       Number of segments for the minor ring of the torus.
+This is the number of vertices of each circular segment.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="torus-dimensions" names="torus\ dimensions kích\ thước\ hình\ xuyến\ --\ torus\ dimensions">
+    <title>
+     Kích Thước Hình Xuyến -- Torus Dimensions
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       -- Add Mode
+      </term>
+      <definition>
+       <paragraph>
+        Change the way the torus is defined.
+       </paragraph>
+       <paragraph>
+        Major/Minor, Exterior/Interior
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Bán Kính Vòng -- Major Radius
+         </term>
+         <definition>
+          <paragraph>
+           Radius from the origin to the center of the cross sections.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bán Kính Mặt Cắt -- Minor Radius
+         </term>
+         <definition>
+          <paragraph>
+           Radius of the torus' cross section.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bán Kính Ngoại -- Exterior Radius
+         </term>
+         <definition>
+          <paragraph>
+           If viewed along the major axis,
+this is the radius from the center to the outer edge.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bán Kính Nội -- Interior Radius
+         </term>
+         <definition>
+          <paragraph>
+           If viewed along the major axis,
+this is the radius of the hole in the center.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="grid" names="grid đồ\ thị\ --\ grid">
+   <title>
+    Đồ Thị -- Grid
+   </title>
+   <paragraph>
+    A regular quadratic grid which is a subdivided plane.
+Example objects that can be created out of grids include landscapes
+and organic surfaces.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Lượng Phân Hóa X -- X Subdivisions
+     </term>
+     <definition>
+      <paragraph>
+       The number of spans in the X axis.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lượng Phân Hóa Y -- Y Subdivisions
+     </term>
+     <definition>
+      <paragraph>
+       The number of spans in the Y axis.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="monkey" names="monkey đầu\ khỉ\ --\ monkey">
+   <title>
+    Đầu Khỉ -- Monkey
+   </title>
+   <paragraph>
+    This adds a stylized monkey head to use as a test mesh,
+use
+    <reference internal="True" refuri="../../glossary/index.html#term-subdivision-surface">
+     <inline classes="xref std std-term">
+      Subdivision Surface
+     </inline>
+    </reference>
+    for a refined shape.
+   </paragraph>
+   <paragraph>
+    This is intended as a test mesh, similar to:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <reference name="Utah Teapot" refuri="https://en.wikipedia.org/wiki/Utah_teapot">
+       Utah Teapot
+      </reference>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <reference name="Stanford Bunny" refuri="https://en.wikipedia.org/wiki/Stanford_Bunny">
+       Stanford Bunny
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <hint>
+    <paragraph>
+     History
+    </paragraph>
+    <paragraph>
+     This is a gift from old NaN to the community and is seen as a programmer's joke or
+"Easter Egg". It creates a monkey's head once you press the
+     <emphasis>
+      Monkey
+     </emphasis>
+     button.
+The Monkey's name is "Suzanne" and is Blender's mascot.
+    </paragraph>
+   </hint>
+   <note>
+    <paragraph>
+     Trình Bổ Sung -- Add-ons
+    </paragraph>
+    <paragraph>
+     In addition to the basic geometric primitives,
+Blender has a number of script generated meshes to offer as pre-installed add-ons.
+These are available when enabled in the
+     <reference internal="True" refuri="../../editors/preferences/addons.html">
+      <inline classes="doc">
+       Preferences
+      </inline>
+     </reference>
+     (select the Category
+     <emphasis>
+      Add Mesh
+     </emphasis>
+     , then check any desired items).
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

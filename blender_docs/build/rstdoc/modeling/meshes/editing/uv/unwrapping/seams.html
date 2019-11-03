@@ -1,0 +1,312 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/uv/unwrapping/seams.rst">
+ <section ids="seams" names="seams đường\ khâu\ --\ seams">
+  <title>
+   Đường Khâu -- Seams
+  </title>
+  <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+   <title>
+    Giới Thiệu -- Introduction
+   </title>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/modeling_meshes_editing_uv_unwrapping_seams_simple.png'}" uri="images/modeling_meshes_editing_uv_unwrapping_seams_simple.png" width="300px"/>
+    <caption>
+     Simple seam on a cylinder.
+    </caption>
+   </figure>
+   <paragraph>
+    For many cases, using the Unwrap calculations of Cube, Cylinder, Sphere,
+or best fit will produce a good UV layout. However, for more complex meshes,
+especially those with lots of indentations, you may want to define a
+    <emphasis>
+     seam
+    </emphasis>
+    to limit and
+guide any of the unwrapping processes.
+   </paragraph>
+   <paragraph>
+    Just like in sewing, a seam is where the ends of the image/cloth are sewn together.
+In unwrapping, the mesh is unwrapped at the seams.
+Think of this method as peeling an orange or skinning an animal.
+You make a series of cuts in the skin, then peel it off. You could then flatten it out,
+applying some amount of stretching. These cuts are the same as seams.
+   </paragraph>
+   <paragraph>
+    When using this method, you need to be aware of how much stretching there is.
+The more seams there are, the less stretching there is,
+but this is often an issue for the texturing process.
+It is a good idea to have as few seams as possible while having the least amount of stretching.
+Try to hide seams where they will not be seen. In productions where 3D paint is used,
+this becomes less of an issue, as projection painting can easily deal with seams,
+as opposed to 2D texturing, where it is difficult to match the edges of different UV islands.
+   </paragraph>
+   <paragraph>
+    The workflow is the following:
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Create seams.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Unwrap.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Adjust seams and repeat.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Manually adjust UVs.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <target refid="bpy-ops-uv-mark-seam">
+   </target>
+  </section>
+  <section ids="marking-seams bpy-ops-uv-mark-seam" names="marking\ seams đánh\ dấu\ đường\ khâu\ --\ marking\ seams bpy.ops.uv.mark_seam">
+   <title>
+    Đánh Dấu Đường Khâu -- Marking Seams
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Biên Soạn -- Editor
+      </field_name>
+      <field_body>
+       <paragraph>
+        Khung Nhìn 3D -- 3D View
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Shading/UV --&gt; UVs --&gt; UV Mapping: Mark/Clear Seam`">
+         Toolbar ‣ Shading/UV ‣ UVs ‣ UV Mapping: Mark/Clear Seam
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Cạnh (Edges) --&gt; Đánh Dấu/Xóa Đường Khâu (Mark/Clear Seam)`">
+         Khung Lưới (Mesh) ‣ Cạnh (Edges) ‣ Đánh Dấu/Xóa Đường Khâu (Mark/Clear Seam)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Biên Soạn -- Editor
+      </field_name>
+      <field_body>
+       <paragraph>
+        UV Editor
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Góc Nhìn -- View mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Tools --&gt; UV Tools --&gt; UV Unwrap: Mark/Clear Seam`">
+         Toolbar ‣ Tools ‣ UV Tools ‣ UV Unwrap: Mark/Clear Seam
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`UV (UVs) --&gt; Đánh Dấu/Xóa Đường Khâu (Mark/Clear Seam)`">
+         UV (UVs) ‣ Đánh Dấu/Xóa Đường Khâu (Mark/Clear Seam)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/modeling_meshes_editing_uv_unwrapping_seams_suzanne.png'}" uri="images/modeling_meshes_editing_uv_unwrapping_seams_suzanne.png" width="250px"/>
+    <caption>
+     Seamed Suzanne.
+    </caption>
+   </figure>
+   <paragraph>
+    To add an edge to a seam, simply select the edge and press
+    <literal classes="kbd">
+     Ctrl-E
+    </literal>
+    to
+    <emphasis>
+     Mark Seam
+    </emphasis>
+    ,
+or to remove it, use
+    <literal classes="kbd">
+     Ctrl-E
+    </literal>
+    to
+    <emphasis>
+     Clear Seam
+    </emphasis>
+    .
+   </paragraph>
+   <paragraph>
+    In the example to the right, the back-most edge of the cylinder was selected as the seam
+(to hide the seam), and the default unwrap calculation was used.
+In the UV Editor, you can see that all the faces are nicely unwrapped,
+just as if you cut the seam with a scissors and spread out the fabric.
+   </paragraph>
+   <paragraph>
+    When marking seams, you can use the
+    <inline classes="menuselection" rawtext=":menuselection:`Chọn (Select) --&gt; Kết Nối Bề Mặt (Linked Faces)`">
+     Chọn (Select) ‣ Kết Nối Bề Mặt (Linked Faces)
+    </inline>
+    or
+    <literal classes="kbd">
+     Ctrl-L
+    </literal>
+    in Face Select Mode to check your work. This menu option selects all faces connected to the selected one, up to a seam. If faces outside your intended seam are selected, you know that your seam is not continuous. You do not need continuous seams, however, as long as they resolve regions that may stretch.
+   </paragraph>
+   <paragraph>
+    Just as there are many ways to skin a cat, there are many ways to go about deciding where seams should go.
+In general though, you should think as if you were holding the object in one hand, and a pair of
+sharp scissors in the other, and you want to cut it apart and spread it on the table with as little
+tearing as possible. Note that we seamed the outside edges of her ears, to separate the front from the back.
+Her eyes are disconnected sub-meshes, so they are automatically unwrapped by themselves.
+A seam runs along the back of her head vertically, so that each side of her head is flattened out.
+   </paragraph>
+   <paragraph>
+    Another use for seams is to limit the faces unwrapped. For example, when texturing a head, you
+do not really need to texture the scalp on the top and back of the head since it will be
+covered in hair. So define a seam at the hairline. Then, when you select a frontal face,
+and then select linked faces before unwrapping,
+the select will only go up to the hairline seam, and the scalp will not be unwrapped.
+   </paragraph>
+   <paragraph>
+    When unwrapping anything that is bilateral, like a head or a body, seam it along the mirror axis.
+For example, cleave a head or a whole body right down the middle in front view. When you unwrap,
+you will be able to overlay both halves onto the same
+    <reference internal="True" refuri="../../../../../glossary/index.html#term-texture-space">
+     <inline classes="xref std std-term">
+      texture space
+     </inline>
+    </reference>
+    ,
+so that the image pixels for the right hand will be shared with the left;
+the right side of the face will match the left, etc.
+   </paragraph>
+   <note>
+    <paragraph>
+     You
+     <strong>
+      do not
+     </strong>
+     have to come up with "one unwrapping that works perfectly for everything everywhere."
+As we will discuss later, you can easily have multiple UV unwrappings,
+using different approaches in different areas of your mesh.
+    </paragraph>
+   </note>
+   <target refid="bpy-ops-uv-seams-from-islands">
+   </target>
+   <section ids="mark-seams-from-island bpy-ops-uv-seams-from-islands" names="mark\ seams\ from\ island đánh\ dấu\ đường\ khâu\ dùng\ biên\ giới\ hải\ đảo\ --\ mark\ seams\ from\ island bpy.ops.uv.seams_from_islands">
+    <title>
+     Đánh Dấu Đường Khâu dùng Biên Giới Hải Đảo -- Mark Seams from Island
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Góc Nhìn -- View mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Bảng -- Panel
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Tools --&gt; UV Tools: --&gt; Unwrap: Mark Seams from Island`">
+          Toolbar ‣ Tools ‣ UV Tools: ‣ Unwrap: Mark Seams from Island
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`UV (UVs) --&gt; Đường Khâu từ Hải Đảo (Seams from Island)`">
+          UV (UVs) ‣ Đường Khâu từ Hải Đảo (Seams from Island)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Adds seams at the boundaries of existing UV islands.
+This is useful when modifying the UVs of already unwrapped meshes.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

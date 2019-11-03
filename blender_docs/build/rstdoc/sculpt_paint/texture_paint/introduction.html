@@ -1,0 +1,360 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/sculpt_paint/texture_paint/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   A UV texture is a picture (image, sequence or movie)
+that is used to color the surface of a mesh.
+The UV texture is mapped to the mesh through one or more UV maps.
+There are three ways to establish the image used by the UV texture:
+  </paragraph>
+  <enumerated_list enumtype="arabic" prefix="" suffix=".">
+   <list_item>
+    <paragraph>
+     Paint a flat image in the Image Editor onto the currently selected UV texture,
+using its UV map to transfer the colors to the faces of the mesh.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Paint the mesh in the 3D View, and let Blender use
+the currently selected UV map to update the UV texture
+(see
+     <reference internal="True" refuri="index.html#painting-texture-index">
+      <inline classes="std std-ref">
+       Projection Painting
+      </inline>
+     </reference>
+     ).
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Use any image editing program to create an image. In the Image Editor,
+select the UV texture and load the image. Blender will then use
+that texture's UV map to transfer the colors to the faces of the mesh.
+    </paragraph>
+   </list_item>
+  </enumerated_list>
+  <paragraph>
+   Blender features a built-in paint mode called
+   <emphasis>
+    Texture Paint
+   </emphasis>
+   which is designed
+specifically to help you edit your UV textures and images quickly and
+easily in either the Image Editor or the 3D Viewport.
+Since a UV texture is just a special-purpose image,
+you can also use any external paint program, like GIMP or Krita.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/sculpt-paint_texture-paint_introduction_example.png'}" uri="images/sculpt-paint_texture-paint_introduction_example.png" width="430px"/>
+   <caption>
+    Texture painting in Blender.
+   </caption>
+  </figure>
+  <paragraph>
+   Since a mesh can have layers of UV textures, there may be many images that color the mesh.
+However, each UV texture only has one image.
+  </paragraph>
+  <paragraph>
+   <emphasis>
+    Texture Paint
+   </emphasis>
+   works in both a 3D View and the Image Editor.
+In the 3D View in Texture Paint Mode, you paint directly on the mesh by
+projecting onto the UVs.
+  </paragraph>
+  <section ids="getting-started" names="getting\ started khởi\ đầu\ --\ getting\ started">
+   <title>
+    Khởi Đầu -- Getting Started
+   </title>
+   <paragraph>
+    Once you have unwrapped your model to a UV map, you can begin the texturing
+process. You cannot paint on a mesh in Texture Paint Mode
+without
+    <strong>
+     first
+    </strong>
+    unwrapping your mesh,
+    <strong>
+     and
+    </strong>
+    doing one of the following steps. Either:
+   </paragraph>
+   <paragraph>
+    See:
+    <reference internal="True" refuri="../../modeling/meshes/editing/uv/applying_image.html">
+     <inline classes="doc">
+      Applying Image
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <paragraph>
+    After you have done one of these two things,
+you can modify the image using the Texture Paint Mode:
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/sculpt-paint_texture-paint_introduction_paint-mode.png'}" uri="images/sculpt-paint_texture-paint_introduction_paint-mode.png"/>
+    <caption>
+     Enabling paint mode.
+    </caption>
+   </figure>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Activate the Texture Paint workspace. Here the 3D View has the Texture Paint
+Mode enabled and the Image Editor is already switched to Paint mode.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In the 3D View, select Texture Paint Mode from the mode selector in the header,
+and you can paint directly onto the mesh.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In the Image Editor, switch the mode to Paint (shown to the right).
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <note>
+    <paragraph>
+     Square Power of Two
+    </paragraph>
+    <paragraph>
+     <emphasis>
+      Texture Paint
+     </emphasis>
+     is very fast and responsive when working in the 3D View and
+when your image is sized as a square where the side lengths are a power of
+two, e.g. 256×256, 512×512, 1024×1024, etc.
+    </paragraph>
+   </note>
+   <paragraph>
+    Once you enable Texture Painting, your mouse becomes a brush.
+To work with the UV layout (for example, to move coordinates) you must go back to "View" mode.
+   </paragraph>
+   <paragraph>
+    As soon as you enable Texture Painting or switch to Texture Paint Mode,
+brush settings become available in the Toolbar.
+   </paragraph>
+   <paragraph>
+    In the Image Editor, you paint on a flat canvas that is wrapped around the mesh using UV coordinates.
+Any changes made in the Image Editor show up immediately in the 3D View, and vice versa.
+   </paragraph>
+   <paragraph>
+    A full complement of brushes and colors can be selected from the Sidebar region in the Image Editor.
+Brush changes made in either panel are immediately reflected in the other panel.
+However, the modified texture will
+    <strong>
+     not
+    </strong>
+    be saved automatically;
+you must explicitly do so by
+    <inline classes="menuselection" rawtext=":menuselection:`Image Editor --&gt; Image --&gt; Save`">
+     Image Editor ‣ Image ‣ Save
+    </inline>
+    .
+   </paragraph>
+   <section ids="missing-data" names="missing\ data thiếu\ dữ\ liệu\ --\ missing\ data">
+    <title>
+     Thiếu Dữ Liệu -- Missing Data
+    </title>
+    <paragraph>
+     When no UV layers or texture slots can be detected,
+the system will display a warning and a few controls to add the relevant data in the Toolbar.
+You will not be able to paint until all missing data have been added.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       -- Add Simple UVs
+      </term>
+      <definition>
+       <paragraph>
+        The
+        <emphasis>
+         Add Simple UVs
+        </emphasis>
+        does a simple cube unwrap followed by a pack operation.
+It's still recommended to make a custom unwrap.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Thêm Khe Sơn -- Add Paint Slot
+      </term>
+      <definition>
+       <paragraph>
+        Add a material (if missing) and/or a texture slot. (Todo 2.72)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="texture-preview" names="texture\ preview --\ texture\ preview">
+   <title>
+    -- Texture Preview
+   </title>
+   <paragraph>
+    If your texture is already used to color, bump map, displace, alpha-transparent, etc.,
+a surface of a model in your scene (in other technical words,
+is mapped to some aspect of a texture via a texture channel using UV as a map input),
+you can see the effects of your painting in the context of your scene as you paint.
+   </paragraph>
+   <paragraph>
+    To do this, set up side-by-side areas, one Area in 3D View set to
+    <emphasis>
+     Texture
+    </emphasis>
+    shading option,
+and in the second Area the Image Editor loaded with your image.
+Position the 3D View to show the object that is UV-mapped to the loaded image.
+In the image to the right, the texture being painted is mapped to the "Normal" attribute,
+and is called "bump mapping", where the grayscale image is used to make the flat surface appear bumpy.
+See Texture Mapping Output for more information on bump mapping.
+   </paragraph>
+  </section>
+  <section ids="saving" names="saving --\ saving">
+   <title>
+    -- Saving
+   </title>
+   <paragraph>
+    If the header menu item Image has an asterisk next to it means that the image has been changed, but not saved. Use the
+    <inline classes="menuselection" rawtext=":menuselection:`Hình Ảnh (Image) --&gt; Lưu Hình Ảnh (Save Image)`">
+     Hình Ảnh (Image) ‣ Lưu Hình Ảnh (Save Image)
+    </inline>
+    option to save your work with a different name or overwrite the original image.
+   </paragraph>
+   <note>
+    <paragraph>
+     Chất Liệu của UV -- UV Textures
+    </paragraph>
+    <paragraph>
+     Since images used as UV textures are functionally different from other images,
+you should keep them in a directory separate from other images.
+    </paragraph>
+   </note>
+   <paragraph>
+    The image format for saving is independent of the format for rendering.
+The format for saving a UV image is selected in the header of the File Browser,
+and defaults to
+    <literal>
+     PNG
+    </literal>
+    (
+    <literal>
+     .png
+    </literal>
+    ).
+   </paragraph>
+   <paragraph>
+    If Packing is enabled in the File Browser's header, or if you manually
+    <inline classes="menuselection" rawtext=":menuselection:`Hình Ảnh (Image) --&gt; Đóng Gói Hình Ảnh (Pack Image)`">
+     Hình Ảnh (Image) ‣ Đóng Gói Hình Ảnh (Pack Image)
+    </inline>
+    , saving your images to a separate file is not necessary.
+   </paragraph>
+  </section>
+  <section ids="using-an-external-image-editor" names="using\ an\ external\ image\ editor --\ using\ an\ external\ image\ editor">
+   <title>
+    -- Using an External Image Editor
+   </title>
+   <paragraph>
+    If you use an external program to edit your UV texture, you must:
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Run that paint program (GIMP, Krita, Photoshop
+      <superscript>
+       ®
+      </superscript>
+      , etc.).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Load the image or create a new one.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Change the image.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      And re-save it within that program.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Back in Blender, you reload the image in the Image Editor.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <paragraph>
+    You want to use an external program if you have teams of people using different programs
+that are developing the UV textures, or if you want to apply any special effects
+that Texture Paint does not feature, or if you are much more familiar with
+your favorite paint program.
+   </paragraph>
+  </section>
+  <section ids="known-limitations" names="known\ limitations những\ hạn\ chế\ từng\ biết\ đến\ --\ known\ limitations">
+   <title>
+    Những Hạn Chế Từng Biết Đến -- Known Limitations
+   </title>
+   <section ids="uv-overlap" names="uv\ overlap --\ uv\ overlap">
+    <title>
+     -- UV Overlap
+    </title>
+    <paragraph>
+     In general overlapping UVs are not supported (as with texture baking).
+    </paragraph>
+    <paragraph>
+     However, this is only a problem when a single brush stroke paints onto multiple faces
+that share a texture.
+    </paragraph>
+   </section>
+   <section ids="perspective-view-faces-behind-the-view" names="perspective\ view\ &amp;\ faces\ behind\ the\ view --\ perspective\ view\ &amp;\ faces\ behind\ the\ view">
+    <title>
+     -- Perspective View &amp; Faces Behind the View
+    </title>
+    <paragraph>
+     When painting onto a face which is partially behind the view (in perspective mode),
+the face cannot be painted on.
+To avoid this, zoom out or use an orthographic viewport.
+    </paragraph>
+   </section>
+   <section ids="perspective-view-low-poly" names="perspective\ view\ &amp;\ low\ poly --\ perspective\ view\ &amp;\ low\ poly">
+    <title>
+     -- Perspective View &amp; Low Poly
+    </title>
+    <paragraph>
+     When painting onto a face in perspective mode onto a low-poly object with
+normals pointing away from the view, painting may fail; to workaround disable
+the
+     <emphasis>
+      Normal
+     </emphasis>
+     option in the paint panel.
+    </paragraph>
+    <paragraph>
+     Typically this happens when painting onto the side of a cube
+(see
+     <reference name="Bug report T34665" refuri="https://developer.blender.org/T34665">
+      Bug report T34665
+     </reference>
+     ).
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

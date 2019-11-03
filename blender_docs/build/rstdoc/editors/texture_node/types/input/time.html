@@ -1,0 +1,154 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/texture_node/types/input/time.rst">
+ <target ids="['bpy-types-texturenodecurvetime']" names="['bpy.types.texturenodecurvetime']">
+ </target>
+ <comment xml:space="preserve">
+  DO NOT EDIT FILE. This is simply a stub which copies everything from the link below.
+ </comment>
+ <section ids="time-node" names="time\ node nút\ thời\ gian\ --\ time\ node">
+  <title>
+   Nút Thời Gian -- Time Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeTime.png'}" uri="images/compositing_node-types_CompositorNodeTime.png"/>
+   <caption>
+    Nút Thời Gian.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Time node
+   </emphasis>
+   generates a factor value (from 0.0 to 1.0)
+that changes according to the curve as time progresses through the
+   <emphasis>
+    Timeline
+   </emphasis>
+   .
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <paragraph>
+    Nút này không có đầu vào.
+   </paragraph>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đường Cong -- Curve
+     </term>
+     <definition>
+      <paragraph>
+       Giá trị Y được xác định bởi đường cong là hệ số đầu ra. Đối với các điều khiển về đường cong, xin hãy xem mục:
+       <reference internal="True" refuri="../../../../interface/controls/templates/curve.html#ui-curve-widget">
+        <inline classes="std std-ref">
+         Thành tố điều khiển đường cong -- Curve widget
+        </inline>
+       </reference>
+       .
+      </paragraph>
+      <tip>
+       <paragraph>
+        Đảo lật đường cong ngược lại sẽ đảo ngược thời gian cung cấp ở đầu vào, song làm như vậy sẽ khó quan sát và dễ gây ra sự lãng quên trong quá trình thiết lập nút.
+       </paragraph>
+      </tip>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bắt Đầu, Kết Thúc (Đầu,Cuối) -- Start, End
+     </term>
+     <definition>
+      <paragraph>
+       Khung hình mở đầu và khung hình kết thúc trong phạm vi thời gian quyết định các giá trị đầu ra rằng chúng sẽ kéo dài bao lâu. Phạm vi này trở thành trục X của biểu đồ. Đầu vào về thời gian (
+       <emphasis>
+        time input
+       </emphasis>
+       ) có thể được đảo ngược bằng cách xác định khung hình bắt đầu lớn hơn khung hình kết thúc.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       A speed of time factor (from 0.00 to 1.00) relative to the frame rate
+defined in the
+       <reference internal="True" refuri="../../../../render/output/settings.html#render-tab-dimensions">
+        <inline classes="std std-ref">
+         Render Dimensions Panel
+        </inline>
+       </reference>
+       .
+The factor changes according to the defined curve.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <hint>
+    <paragraph>
+     Giá trị xuất ở đầu ra -- Output values
+    </paragraph>
+    <paragraph>
+     Nút
+     <reference internal="True" refuri="../../../../compositing/types/vector/map_value.html">
+      <inline classes="doc">
+       Ánh Xạ Giá Trị -- Map Value
+      </inline>
+     </reference>
+     có thể được sử dụng để ánh xạ đầu ra sang thành một giá trị thích hợp hơn. Đôi khi, với các đường cong, nút Thời gian có thể xuất ra một số lớn hơn 1, hoặc nhỏ hơn 0. Để bảo toàn, xin hãy sử dụng chức năng hạn định (
+     <emphasis>
+      clamping
+     </emphasis>
+     ) của nút Ánh Xạ Giá Trị  để giới hạn đầu ra.
+    </paragraph>
+   </hint>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_input_time_example.png'}" uri="images/compositing_types_input_time_example.png"/>
+    <caption>
+     Những điều khiển về thời gian, từ trái sang phải: Vô Hiệu (
+     <emphasis>
+      no effect
+     </emphasis>
+     ), Làm Chậm Lại (
+     <emphasis>
+      slow down
+     </emphasis>
+     ), Đứng Im (
+     <emphasis>
+      freeze
+     </emphasis>
+     ), Tăng Tốc (
+     <emphasis>
+      accelerate
+     </emphasis>
+     ), Đảo Ngược (
+     <emphasis>
+      reverse
+     </emphasis>
+     ).
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

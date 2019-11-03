@@ -1,0 +1,215 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/grease_pencil/modifiers/generate/build.rst">
+ <target refid="bpy-types-buildgpencilmodifier">
+ </target>
+ <section ids="build-modifier bpy-types-buildgpencilmodifier" names="build\ modifier bpy.types.buildgpencilmodifier">
+  <title>
+   Build Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Build
+   </emphasis>
+   modifier make strokes appear or disappear in a frame range to
+create the effect of animating lines being drawn or erased.
+  </paragraph>
+  <section ids="options" names="options">
+   <title>
+    Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/grease-pencil_modifiers_generate_build_panel.png'}" uri="images/grease-pencil_modifiers_generate_build_panel.png"/>
+    <caption>
+     The Build modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mode
+     </term>
+     <definition>
+      <paragraph>
+       Determines how many strokes are being animated at a time.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sequential
+        </term>
+        <definition>
+         <paragraph>
+          Strokes appear/disappear one after the other, but only a single one changes at a time.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Concurrent
+        </term>
+        <definition>
+         <paragraph>
+          Multiple stroke appear/disappear at a time.
+         </paragraph>
+         <paragraph>
+          If enabled you can set the
+          <emphasis>
+           Time Alignment
+          </emphasis>
+          .
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Time Alignment
+           </term>
+           <definition>
+            <definition_list>
+             <definition_list_item>
+              <term>
+               Align Start
+              </term>
+              <definition>
+               <paragraph>
+                All stroke start at the same time (i.e. shorter strokes finish earlier).
+               </paragraph>
+              </definition>
+             </definition_list_item>
+             <definition_list_item>
+              <term>
+               Align End
+              </term>
+              <definition>
+               <paragraph>
+                All stroke end at the same time (i.e. shorter strokes start later).
+               </paragraph>
+              </definition>
+             </definition_list_item>
+            </definition_list>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="transition" names="transition">
+    <title>
+     Transition
+    </title>
+    <paragraph>
+     Determines the animation type to build the strokes.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Grow
+      </term>
+      <definition>
+       <paragraph>
+        Shows points in the order they occur in each stroke, from first to last stroke.
+(Simulating lines being drawn.)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Shrink
+      </term>
+      <definition>
+       <paragraph>
+        Hide points from the end of each stroke to the start, from last to first stroke.
+(Simulating lines being erased.)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Fade
+      </term>
+      <definition>
+       <paragraph>
+        Hide points in the order they occur in each stroke, from first to last stroke.
+(Simulating ink fading or vanishing after getting drawn.)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="frame-range" names="frame\ range">
+    <title>
+     Frame Range
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Start Delay
+      </term>
+      <definition>
+       <paragraph>
+        Number of frames after each
+        <emphasis>
+         Grease Pencil
+        </emphasis>
+        keyframe before the modifier has any effects.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Length
+      </term>
+      <definition>
+       <paragraph>
+        Maximum number of frames that the build effect can run for.
+(Unless another
+        <emphasis>
+         Grease Pencil
+        </emphasis>
+        keyframe occurs before this time has elapsed.)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Restrict Frame range
+      </term>
+      <definition>
+       <paragraph>
+        If enabled, only modify strokes during the specified frame range.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Start/End
+         </term>
+         <definition>
+          <paragraph>
+           Determines the start and end frame for the build effect.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="influence-filter" names="influence\ filter">
+    <title>
+     Influence Filter
+    </title>
+    <paragraph>
+     See
+     <reference internal="True" refuri="../introduction.html#grease-pencil-modifier-influence-filters">
+      <inline classes="std std-ref">
+       Influence Filters
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

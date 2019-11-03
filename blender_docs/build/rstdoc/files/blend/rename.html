@@ -1,0 +1,445 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/files/blend/rename.rst">
+ <section ids="rename" names="rename">
+  <title>
+   Rename
+  </title>
+  <target refid="tools-rename-active">
+  </target>
+  <section ids="rename-active-item tools-rename-active" names="rename\ active\ item tools_rename-active">
+   <title>
+    Rename Active Item
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Edit --&gt; Rename Active Item`">
+         Edit ‣ Rename Active Item
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         F2
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <emphasis>
+     Rename Active Item
+    </emphasis>
+    operator renames the active
+    <reference internal="True" refuri="../../scene_layout/object/index.html">
+     <inline classes="doc">
+      Object
+     </inline>
+    </reference>
+    or
+    <reference internal="True" refuri="../../interface/controls/nodes/index.html">
+     <inline classes="doc">
+      Node
+     </inline>
+    </reference>
+    .
+When the operator is executed, a pop-up menu appears.
+The text field shows the name of the current item and can be overwritten to rename the item.
+    <literal classes="kbd">
+     Return
+    </literal>
+    confirms the name while
+    <literal classes="kbd">
+     Esc
+    </literal>
+    cancels the operator.
+   </paragraph>
+   <target refid="bpy-ops-wm-batch-rename">
+   </target>
+  </section>
+  <section ids="batch-rename bpy-ops-wm-batch-rename" names="batch\ rename bpy.ops.wm.batch_rename">
+   <title>
+    Batch Rename
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Edit --&gt; Batch Rename`">
+         Edit ‣ Batch Rename
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Alt-F2
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <emphasis>
+     Batch Rename
+    </emphasis>
+    operator can rename many data-block names at once.
+When the operator is executed, a popup menu appears with some options and operations to modify the name.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Data Type
+     </term>
+     <definition>
+      <paragraph>
+       The
+       <reference internal="True" refuri="../data_blocks.html#data-system-datablock-types">
+        <inline classes="std std-ref">
+         data-block type
+        </inline>
+       </reference>
+       to perform the batch rename operations on.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Data Source
+     </term>
+     <definition>
+      <paragraph>
+       Where to look for the data-blocks that are intended to be renamed.
+       <emphasis>
+        Selected
+       </emphasis>
+       looks within the currently selected objects.
+While,
+       <emphasis>
+        All
+       </emphasis>
+       looks within the entire
+       <reference internal="True" refuri="../../scene_layout/view_layers/index.html">
+        <inline classes="doc">
+         View Layer
+        </inline>
+       </reference>
+       .
+To the left of this option gives a readout on how many data-blocks are able to be renamed.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="operations" names="operations">
+    <title>
+     Operations
+    </title>
+    <paragraph>
+     The
+     <emphasis>
+      Batch Rename
+     </emphasis>
+     has several sub Operations that to modify the data names.
+The default operation is
+     <emphasis>
+      Find/Replace
+     </emphasis>
+     however, other operations can be added
+to modify the data names farther.
+    </paragraph>
+    <section ids="find-replace" names="find/replace">
+     <title>
+      Find/Replace
+     </title>
+     <paragraph>
+      <emphasis>
+       Find/Replace
+      </emphasis>
+      searches for a particular string in the names and optionally replaces it with a new string.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Find
+       </term>
+       <definition>
+        <paragraph>
+         The string of text to look for in names.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Replace
+       </term>
+       <definition>
+        <paragraph>
+         The string of text to replace for in matching names found from the
+         <emphasis>
+          Find
+         </emphasis>
+         string.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Regular Expressions
+       </term>
+       <definition>
+        <paragraph>
+         Enables the use of
+         <reference name="Regular Expressions" refuri="https://en.wikipedia.org/wiki/Regular_expression">
+          Regular Expressions
+         </reference>
+         which are a powerful way to tailor the
+         <emphasis>
+          Find
+         </emphasis>
+         /
+         <emphasis>
+          Replace
+         </emphasis>
+         strings.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Case Sensitive
+       </term>
+       <definition>
+        <paragraph>
+         Search results must match the
+         <emphasis>
+          Find
+         </emphasis>
+         string's case exactly.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="set-name" names="set\ name">
+     <title>
+      Set Name
+     </title>
+     <paragraph>
+      <emphasis>
+       Set Name
+      </emphasis>
+      works the most similar to
+      <reference name="Rename Active Item" refid="rename-active-item">
+       Rename Active Item
+      </reference>
+      by renaming the current data-block without having to do a find and replace operation.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Method
+       </term>
+       <definition>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           New
+          </term>
+          <definition>
+           <paragraph>
+            Disregards the current name replacing it with the "new" name.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Prefix
+          </term>
+          <definition>
+           <paragraph>
+            Adds text to the beginning of the current name.
+This is useful for tools that look for special text in the prefix of a data-block name.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Suffix
+          </term>
+          <definition>
+           <paragraph>
+            Adds text to the end of the current name.
+This is useful for tools that look for special text in the Suffix of a data-block name.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Name
+       </term>
+       <definition>
+        <paragraph>
+         Defines the new name or the text to add as a prefix/suffix,
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="strip-characters" names="strip\ characters">
+     <title>
+      Strip Characters
+     </title>
+     <paragraph>
+      <emphasis>
+       Strip Characters
+      </emphasis>
+      cleans up names by removing certain
+character types from either the beginning or the end of the name.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Spaces
+       </term>
+       <definition>
+        <paragraph>
+         Strips any space characters from the name, e.g. "Living Room   " becomes "Living Room".
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Digits
+       </term>
+       <definition>
+        <paragraph>
+         Strips any numerical characters from the name, e.g. "cube.001" becomes "cube.".
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Punctuation
+       </term>
+       <definition>
+        <paragraph>
+         Strips any punctuation characters (
+         <literal>
+          ,.?!:; etc...
+         </literal>
+         ) from the name, e.g. "cube?" becomes "cube".
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <tip>
+      <paragraph>
+       Multiple character types can be removed at once by
+       <literal classes="kbd">
+        Shift-LMB
+       </literal>
+       on the types.
+      </paragraph>
+     </tip>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Start
+       </term>
+       <definition>
+        <paragraph>
+         Strips and any leading characters in the name.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        End
+       </term>
+       <definition>
+        <paragraph>
+         Strips and any trailing characters in the name.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="change-case" names="change\ case">
+     <title>
+      Change Case
+     </title>
+     <paragraph>
+      <emphasis>
+       Change Case
+      </emphasis>
+      modifies the case of names to be on of the following:
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Upper Case
+       </term>
+       <definition>
+        <paragraph>
+         Changes all text to be in upper case, e.g. "cube.001" becomes "CUBE.001".
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Lower Case
+       </term>
+       <definition>
+        <paragraph>
+         Changes all text to be in lower case, e.g. "CUBE.001" becomes "cube.001".
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Title Caps
+       </term>
+       <definition>
+        <paragraph>
+         Changes all text to be in title case, e.g. "living room" becomes "Living Room".
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,256 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/cloth/examples.rst">
+ <section ids="examples" names="examples ví\ dụ\ --\ examples">
+  <title>
+   Ví Dụ -- Examples
+  </title>
+  <paragraph>
+   To start with cloth, the first thing you need, of course, is some fabric. So,
+let us delete the default cube and add a plane. In order to get some good floppy and flexible fabric,
+you will need to subdivide it several times, about eight is a good number.
+So
+   <literal classes="kbd">
+    Tab
+   </literal>
+   into
+   <emphasis>
+    Edit Mode
+   </emphasis>
+   and subdivide the mesh a couple of times.
+  </paragraph>
+  <paragraph>
+   Now, we will make this cloth by going to the Physics tab.
+Scroll down until you see the
+   <emphasis>
+    Cloth
+   </emphasis>
+   panel, and press the
+   <emphasis>
+    Cloth
+   </emphasis>
+   button.
+Now, a lot of settings will appear, most of which we will ignore for now.
+  </paragraph>
+  <paragraph>
+   That is all you need to do to set your cloth up for animating,
+but if you playback the animation, the drop of your newly created fabric will be quite unspectacular.
+That is what we will cover in the next two sections about pinning and colliding.
+  </paragraph>
+  <section ids="using-simulation-to-shape-sculpt-a-mesh" names="using\ simulation\ to\ shape/sculpt\ a\ mesh --\ using\ simulation\ to\ shape/sculpt\ a\ mesh">
+   <title>
+    -- Using Simulation to Shape/Sculpt a Mesh
+   </title>
+   <paragraph>
+    You can
+    <emphasis>
+     Apply
+    </emphasis>
+    the Cloth Modifier at any point to freeze the mesh in
+position at that frame. You can then re-enable the cloth,
+setting the start and end frames from which to run the simulation forward.
+   </paragraph>
+   <paragraph>
+    Another example of aging is a flag.
+Define the flag as a simple grid shape and pin the edge against the flagpole.
+Simulate for 50 frames or so, and the flag will drop to its "rest" position.
+Apply the
+    <emphasis>
+     Cloth
+    </emphasis>
+    Modifier.
+If you want the flag to flap or otherwise move in the scene,
+re-enable it for the frame range when it is in camera view.
+   </paragraph>
+  </section>
+  <section ids="smoothing-of-cloth" names="smoothing\ of\ cloth --\ smoothing\ of\ cloth">
+   <title>
+    -- Smoothing of Cloth
+   </title>
+   <paragraph>
+    Now, if you followed this from the previous section, your cloth is probably looking a little blocky.
+In order to make it look nice and smooth like the picture you need to apply
+a Smooth and/or Subdivision Surface Modifier in the
+    <emphasis>
+     Modifiers
+    </emphasis>
+    tab.
+Then, in the Toolbar, find the
+    <emphasis>
+     Edit
+    </emphasis>
+    panel and Press
+    <emphasis>
+     Smooth
+    </emphasis>
+    .
+   </paragraph>
+  </section>
+  <section ids="cloth-on-armature" names="cloth\ on\ armature --\ cloth\ on\ armature">
+   <title>
+    -- Cloth on Armature
+   </title>
+   <paragraph>
+    Clothing can be simulated and pinned to an armature.
+For example, a character could have a baggy tunic pinned to the character's waist with a belt.
+   </paragraph>
+   <paragraph>
+    The typical workflow for pinning:
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Set the armature to its bind pose.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Model clothing that encloses but does not penetrate the character's mesh.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Parent the clothing objects to the armature. The armature will now have several child meshes bound to it.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Create a new vertex group on each cloth object for its pinned vertices.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Add vertices to be pinned to this vertex group and give these vertices non-zero weights
+(you probably want weight = 1).
+For example the belt area of the tunic would be in the vertex group and have weight one.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Designate the clothing objects as "cloth" in the Physics tab of the Properties editor.
+Make sure the Cloth Modifier is below the Armature Modifier in the modifier stack.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In the cloth Shape panel select the vertex group.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Add
+      <reference internal="True" refuri="../collision.html">
+       <inline classes="doc">
+        collision physics
+       </inline>
+      </reference>
+      to the character's mesh.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The clothing is now ready; non-pinned vertices will be under control of the Cloth modifier.
+Pinned vertices will be under control of the Armature modifier.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <note>
+    <paragraph>
+     When animating or posing the character you must begin from the bind pose.
+Move the character to its initial pose over several frames so the physics engine can simulate the clothing moving.
+Very fast movements and teleport jumps can break the physics simulation.
+    </paragraph>
+   </note>
+   <paragraph>
+    <reference name="Regression blend-file" refuri="https://wiki.blender.org/wiki/File:Cloth-regression-armature.blend">
+     Regression blend-file
+    </reference>
+    .
+   </paragraph>
+  </section>
+  <section ids="cloth-with-animated-vertex-groups" names="cloth\ with\ animated\ vertex\ groups --\ cloth\ with\ animated\ vertex\ groups">
+   <title>
+    -- Cloth with Animated Vertex Groups
+   </title>
+   <paragraph>
+    Cloth with animated pinned vertices:
+    <reference name="Regression blend-file" refuri="https://wiki.blender.org/wiki/File:Cloth_anim_vertex.blend">
+     Regression blend-file
+    </reference>
+    .
+Unsupported: Starting with a goal of 0 and increasing it,
+but still having the vertex not pinned will
+    <strong>
+     not
+    </strong>
+    work (e.g. from goal = 0 to goal = 0.5).
+   </paragraph>
+  </section>
+  <section ids="cloth-with-dynamic-paint" names="cloth\ with\ dynamic\ paint --\ cloth\ with\ dynamic\ paint">
+   <title>
+    -- Cloth with Dynamic Paint
+   </title>
+   <paragraph>
+    Cloth with Dynamic Paint using animated vertex groups:
+    <reference name="Regression blend-file" refuri="https://wiki.blender.org/wiki/File:Cloth_dynamic_paint.blend">
+     Regression blend-file
+    </reference>
+    .
+Unsupported: Starting with a goal of 0 and increasing it, but still having the vertex not pinned will
+    <strong>
+     not
+    </strong>
+    work
+(e.g. from goal = 0 to goal = 0.5) because the necessary "goal springs" cannot be generated on-the-fly.
+   </paragraph>
+  </section>
+  <section ids="using-cloth-for-soft-bodies" names="using\ cloth\ for\ soft\ bodies --\ using\ cloth\ for\ soft\ bodies">
+   <title>
+    -- Using Cloth for Soft Bodies
+   </title>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/physics_cloth_examples_softbody1.jpg'}" uri="images/physics_cloth_examples_softbody1.jpg" width="200px"/>
+    <caption>
+     Using cloth for soft bodies.
+    </caption>
+   </figure>
+   <paragraph>
+    Cloth can also be used to simulate soft bodies.
+It is for sure not its main purpose but it works nonetheless.
+The example image uses standard
+    <emphasis>
+     Rubber
+    </emphasis>
+    material, no fancy settings,
+just
+    <literal classes="kbd">
+     Alt-A
+    </literal>
+    .
+   </paragraph>
+   <paragraph>
+    Blend-file for the example image:
+    <reference name="Using Cloth for soft bodies" refuri="https://wiki.blender.org/wiki/File:Cloth-sb1.blend">
+     Using Cloth for soft bodies
+    </reference>
+    .
+   </paragraph>
+  </section>
+  <section ids="cloth-with-wind" names="cloth\ with\ wind --\ cloth\ with\ wind">
+   <title>
+    -- Cloth with Wind
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/physics_cloth_examples_flag2.jpg'}" uri="images/physics_cloth_examples_flag2.jpg" width="200px"/>
+    <caption>
+     Flag with wind applied.
+    </caption>
+   </figure>
+   <paragraph>
+    Regression blend-file for Cloth with wind and self-collisions (also the blend for the image above):
+    <reference name="Cloth flag with wind and self-collisions" refuri="https://wiki.blender.org/wiki/File:Cloth-flag2.blend">
+     Cloth flag with wind and self-collisions
+    </reference>
+    .
+   </paragraph>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>-- Render Baking &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/cycles/baking.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="-- Optimizing Renders" href="optimizations/index.html" />
+    <link rel="prev" title="Tùy Chọn Thử Nghiệm -- Experimental Features" href="features.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Cycles</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="render_settings/index.html">Render Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="world_settings.html">World Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="object_settings/index.html">-- Object Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material_settings.html">-- Material Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light_settings.html">Light Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu_rendering.html">-- GPU Rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html">Tùy Chọn Thử Nghiệm -- Experimental Features</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">-- Render Baking</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#settings">Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="optimizations/index.html">-- Optimizing Renders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Phong Cách Tự Do -- Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">-- Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Rendering</a> &raquo;</li>
+        
+          <li><a href="index.html">Cycles</a> &raquo;</li>
+        
+      <li>-- Render Baking</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/render/cycles/baking.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="render-baking">
+<span id="bpy-types-bakesettings"></span><h1>-- Render Baking<a class="headerlink" href="#render-baking" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Kết Xuất (Render) ‣ Nướng (Bake)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Cycles shaders and lighting can be baked to image textures.
+This has a few different purposes, most commonly:</p>
+<ul class="simple">
+<li>Baking textures like base color or normal maps for export to game engines.</li>
+<li>Baking ambient occlusion or procedural textures,
+as a base for texture painting or further edits.</li>
+<li>Creating light maps to provide global illumination or speed up rendering in games.</li>
+</ul>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>Baking requires a mesh to have a UV map, and an image texture node with an image to be baked to.
+The active (last selected) image texture node is used as the baking target.</p>
+<p>Use Render Bake in intensive light/shadow solutions,
+such as AO or soft shadows from area lights. If you bake AO for the main objects,
+you will not have to enable it for the full render, saving render time.</p>
+<p>Cycles uses the render settings (samples, bounces, ...) for baking.
+This way the quality of the baked textures should match the result you get from the rendered scene.</p>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bake-types">
+<h3>Bake Types<a class="headerlink" href="#bake-types" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Tổng Hợp -- Combined</dt>
+<dd><p class="first">Bakes all materials, textures, and lighting except specularity.</p>
+<p class="last">The passes that contribute to the combined pass can be toggled individually to form the final map.</p>
+</dd>
+<dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt>
+<dd>Bakes ambient occlusion as specified in the World panels. Ignores all lights in the scene.</dd>
+<dt>Ngả Bóng Tối -- Shadow</dt>
+<dd>Bakes shadows and lighting.</dd>
+<dt>Pháp Tuyến -- Normals</dt>
+<dd><p class="first">Bakes normals to an RGB image.</p>
+<dl class="docutils">
+<dt>Không Gian Pháp Tuyến -- Normal Space</dt>
+<dd><p class="first">Normals can be baked in different spaces:</p>
+<dl class="last docutils">
+<dt>Không gian vật thể -- Object space</dt>
+<dd>Normals in object coordinates, independent of object transformation, but dependent on deformation.</dd>
+<dt>-- Tangent space</dt>
+<dd>Normals in tangent space coordinates, independent of object transformation and deformation.
+This is the default, and the right choice in most cases, since then the normal map can be used for animated
+objects too.</dd>
+</dl>
+</dd>
+<dt>-- Normal Swizzle</dt>
+<dd>Axis to bake into the red, green and blue channel.</dd>
+</dl>
+<p class="last">For materials the same spaces can be chosen in the image texture options
+next to the existing <em>Normal Map</em> setting. For correct results,
+the setting here should match the setting used for baking.</p>
+</dd>
+<dt>UV</dt>
+<dd>Bakes colors of materials and textures only, without shading.</dd>
+<dt>Phát Xạ -- Emit</dt>
+<dd>Bakes Emission, or the Glow color of a material.</dd>
+<dt>Môi Trường -- Environment</dt>
+<dd>Bakes the environment (i.e. the world surface shader defined for the scene) onto
+the selected object(s) as seen by rays cast from the world origin.</dd>
+<dt>-- Diffuse, Glossy, Transmission, Subsurface</dt>
+<dd><p class="first">Bakes the diffuse, glossiness, transmission of subsurface pass of a material.</p>
+<ul class="last simple">
+<li>If only color is selected you get the pass color,
+which is a property of the surface and independent of sampling refinement.</li>
+<li>If color is not selected, you get the direct and/or indirect contributions in gray-scale.</li>
+<li>If color and either direct or indirect are selected, you get the direct and/or indirect contributions colored.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="selected-to-active">
+<h3>Selected to Active<a class="headerlink" href="#selected-to-active" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>-- Select to Active</dt>
+<dd>Bake shading on the surface of selected objects to the active object.
+The rays are cast from the low-poly object inwards towards the high-poly object.
+If the high-poly object is not entirely involved by the low-poly object, you can tweak the rays start point with
+<em>Ray Distance</em> or <em>Cage Extrusion</em> (depending on whether or not you are using cage).
+For even more control you can use a <em>Cage Object</em>.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>Memory Usage</p>
+<p class="last">There is a CPU fixed memory footprint for every object used to bake from.
+In order to avoid crashes due to lack of memory, the high-poly objects can be joined before the baking process.
+The render tiles parameter also influence the memory usage, so the bigger the tile the less overhead you have,
+but the more memory it will take during baking (either in GPU or CPU).</p>
+</div>
+<dl class="docutils">
+<dt>Khung Lồng -- Cage</dt>
+<dd>Cast rays to active object from a cage.
+A cage is a ballooned-out version of the low-poly mesh created either automatically
+(by adjusting the ray distance) or manually (by specifying an object to use).
+When not using a cage the rays will conform to the mesh normals. This produces glitches on the edges,
+but it is a preferable method when baking into planes to avoid the need of adding extra loops around the edges.</dd>
+<dt>Khoảng Cách Tia Xạ -- Ray Distance</dt>
+<dd>Distance to use for the inward ray cast when using selected to active.
+Ray distance is only available when not using <em>Cage</em>.</dd>
+<dt>Đẩy Trồi Khung Lồng -- Cage Extrusion</dt>
+<dd>Distance to use for the inward ray cast when using <em>Selected to Active</em> and <em>Cage</em>.
+The inward rays are casted from a version of the active object with disabled Edge Split Modifiers.
+Hard splits (e.g. when the Edge Split Modifier is applied) should be avoided because they will lead to non-smooth
+normals around the edges.</dd>
+<dt>Khung Lồng -- Cage</dt>
+<dd><p class="first">Object to use as cage instead of calculating the cage from the active object with the <em>Cage Extrusion</em>.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">When the base mesh extruded does not give good results,
+you can create a copy of the base mesh and modify it to use as a <em>Cage</em>.
+Both meshes need to have the same <a class="reference internal" href="../../glossary/index.html#term-topology"><span class="xref std std-term">topology</span></a> (number of faces and face order).</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="output">
+<h3>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Lề -- Margin</dt>
+<dd>Baked result is extended this many pixels beyond the border of each UV &quot;island&quot;, to soften seams in the texture.</dd>
+<dt>Xóa Sạch -- Clear</dt>
+<dd>If selected, clears the image before baking render.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="optimizations/index.html" class="btn btn-neutral float-right" title="-- Optimizing Renders" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="features.html" class="btn btn-neutral float-left" title="Tùy Chọn Thử Nghiệm -- Experimental Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

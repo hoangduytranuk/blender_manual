@@ -1,0 +1,271 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/transform/warp.rst">
+ <section ids="warp" names="warp uốn\ oằn/kéo\ --\ warp">
+  <title>
+   Uốn Oằn/Kéo -- Warp
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Edit Modes
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Vật Thể/Khung Lưới/Đường Cong/Bề Mặt (Object/Mesh/Curve/Surface) --&gt; Biến Hóa (Transform) --&gt; Uốn Oằn/Kéo (Warp)`">
+        Vật Thể/Khung Lưới/Đường Cong/Bề Mặt (Object/Mesh/Curve/Surface) ‣ Biến Hóa (Transform) ‣ Uốn Oằn/Kéo (Warp)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_operator-panel.png'}" uri="images/modeling_meshes_editing_transform_warp_operator-panel.png"/>
+   <caption>
+    Warp tool options.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Warp
+   </emphasis>
+   transformation takes selected elements and
+warps them around the 3D cursor by a certain angle.
+Note that this transformation is always dependent on the location of the 3D cursor.
+The Pivot Point is not taken into account.
+The results of the
+   <emphasis>
+    Warp
+   </emphasis>
+   transformation are also view dependent.
+  </paragraph>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <table ids="id2">
+    <title>
+     In this example, a plane is warped around the 3D cursor by the indicated number of degrees.
+    </title>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_mesh.png'}" uri="images/modeling_meshes_editing_transform_warp_mesh.png"/>
+         <caption>
+          Trước.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_mesh-90.png'}" uri="images/modeling_meshes_editing_transform_warp_mesh-90.png"/>
+         <caption>
+          Warp Angle 90.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_mesh-180.png'}" uri="images/modeling_meshes_editing_transform_warp_mesh-180.png"/>
+         <caption>
+          Warp Angle 180.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_mesh-360.png'}" uri="images/modeling_meshes_editing_transform_warp_mesh-360.png"/>
+         <caption>
+          Warp Angle 360.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <section ids="cursor-position-and-view" names="cursor\ position\ and\ view --\ cursor\ position\ and\ view">
+    <title>
+     -- Cursor Position and View
+    </title>
+    <paragraph>
+     The location of the 3D cursor can be used to alter the results of the
+     <emphasis>
+      Warp
+     </emphasis>
+     transformation.
+As can be seen from the example in this section, the
+     <emphasis>
+      Warp
+     </emphasis>
+     radius
+is dependent on the distance of the cursor from the selected elements.
+The greater the distance, the greater the radius.
+    </paragraph>
+    <paragraph>
+     The result of the
+     <emphasis>
+      Warp
+     </emphasis>
+     transform is also influenced by your current view.
+The example in this section shows the results of a 180 degree
+     <emphasis>
+      Warp
+     </emphasis>
+     transform applied
+to the same Plane mesh when in different views.
+    </paragraph>
+    <table ids="id7">
+     <title>
+      This image shows how the Warp transform is influenced by the location of the cursor.
+     </title>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id8">
+          <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_mesh.png'}" uri="images/modeling_meshes_editing_transform_warp_mesh.png"/>
+          <caption>
+           Trước.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id9">
+          <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_mesh-180.png'}" uri="images/modeling_meshes_editing_transform_warp_mesh-180.png"/>
+          <caption>
+           Warp Angle 180.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <figure ids="id10">
+          <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_mesh-cursor.png'}" uri="images/modeling_meshes_editing_transform_warp_mesh-cursor.png"/>
+          <caption>
+           Trước.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id11">
+          <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_mesh-cursor-180.png'}" uri="images/modeling_meshes_editing_transform_warp_mesh-cursor-180.png"/>
+          <caption>
+           Warp Angle 180.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <table ids="id12">
+     <title>
+      This image shows the influence of the current view.
+     </title>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id13">
+          <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_view-1.png'}" uri="images/modeling_meshes_editing_transform_warp_view-1.png"/>
+          <caption>
+           Trước.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id14">
+          <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_view-2.png'}" uri="images/modeling_meshes_editing_transform_warp_view-2.png"/>
+          <caption>
+           Warp Angle 180 in XZ view.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <figure ids="id15">
+          <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_view-3.png'}" uri="images/modeling_meshes_editing_transform_warp_view-3.png"/>
+          <caption>
+           Warp Angle 180 in YZ view.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id16">
+          <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_view-4.png'}" uri="images/modeling_meshes_editing_transform_warp_view-4.png"/>
+          <caption>
+           Warp Angle 180 in User view.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <note>
+     <paragraph>
+      Warping text
+     </paragraph>
+     <paragraph>
+      If you want to warp text, you will need to convert it from a Text Object to Mesh
+using
+      <reference internal="True" refuri="../../../../scene_layout/object/editing/introduction.html#object-convert-to">
+       <inline classes="std std-ref">
+        Chuyển Đổi Sang -- Convert To
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </note>
+   </section>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <figure ids="id17">
+    <image candidates="{'*': 'images/modeling_meshes_editing_transform_warp_text.jpg'}" uri="images/modeling_meshes_editing_transform_warp_text.jpg"/>
+    <caption>
+     Text wrapped around logo.
+    </caption>
+   </figure>
+   <paragraph>
+    This was made by creating the Blender logo and text as separate Objects.
+The text was converted to a mesh and then warped around the Blender logo.
+   </paragraph>
+  </section>
+ </section>
+</document>

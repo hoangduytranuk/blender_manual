@@ -1,0 +1,207 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/deform/cast.rst">
+ <target refid="bpy-types-castmodifier">
+ </target>
+ <section ids="cast-modifier bpy-types-castmodifier" names="cast\ modifier bộ\ điều\ chỉnh\ đúc\ khuôn\ --\ cast\ modifier bpy.types.castmodifier">
+  <title>
+   Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Cast
+   </emphasis>
+   modifier shifts the shape of a mesh, curve,
+surface or lattice, towards any of a few predefined shapes (sphere, cylinder, cuboid).
+  </paragraph>
+  <paragraph>
+   It is equivalent to the
+   <reference internal="True" refuri="../../meshes/editing/transform/to_sphere.html#tool-transform-to-sphere">
+    <inline classes="std std-ref">
+     To Sphere
+    </inline>
+   </reference>
+   tool in Edit Mode,
+and what other programs call "Spherify" or "Spherize", but, as written above,
+it is not limited to casting to a sphere.
+  </paragraph>
+  <tip>
+   <paragraph>
+    The
+    <reference internal="True" refuri="smooth.html">
+     <inline classes="doc">
+      Smooth Modifier
+     </inline>
+    </reference>
+    is a good companion to
+    <emphasis>
+     Cast
+    </emphasis>
+    ,
+since the cast shape sometimes needs smoothing to look nicer or even to fix shading artifacts.
+   </paragraph>
+  </tip>
+  <note>
+   <paragraph>
+    For performance reasons, this modifier only works with local coordinates.
+If the modified object looks wrong, you may need to apply its
+    <reference internal="True" refuri="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-transform-apply">
+     <inline classes="std std-ref">
+      transformations
+     </inline>
+    </reference>
+    , especially when casting to a cylinder.
+   </paragraph>
+  </note>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_cast_panel.png'}" uri="images/modeling_modifiers_deform_cast_panel.png"/>
+    <caption>
+     The Cast modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Loại Khuôn Đúc -- Cast Type
+     </term>
+     <definition>
+      <paragraph>
+       Menu to choose target shape of the projection:
+       <emphasis>
+        Sphere
+       </emphasis>
+       ,
+       <emphasis>
+        Cylinder
+       </emphasis>
+       or
+       <emphasis>
+        Cuboid
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Axis X/Y/Z
+     </term>
+     <definition>
+      <paragraph>
+       Toggle buttons to enable/disable the modifier in the X, Y, Z axes directions
+(X and Y only for
+       <emphasis>
+        Cylinder
+       </emphasis>
+       cast type, since the Z axis remains unaffected).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       The factor to control blending between original and cast vertex positions.
+      </paragraph>
+      <paragraph>
+       It is a linear interpolation: 0.0 gives original coordinates (i.e. modifier has no effect),
+1.0 casts to the target shape.
+      </paragraph>
+      <paragraph>
+       Values below 0.0 or above 1.0 exaggerate the deformation, sometimes in interesting ways.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bán Kính -- Radius
+     </term>
+     <definition>
+      <paragraph>
+       If non-zero, this radius defines a sphere of influence.
+Vertices outside it are not affected by the modifier.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kích Thước -- Size
+     </term>
+     <definition>
+      <paragraph>
+       Alternative size for the projected shape. If zero,
+it is defined by the initial shape and the control object, if any.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- From radius
+     </term>
+     <definition>
+      <paragraph>
+       If activated, calculate
+       <emphasis>
+        Size
+       </emphasis>
+       from
+       <emphasis>
+        Radius
+       </emphasis>
+       , for smoother results.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       If set, restrict the effect to the only vertices in that vertex group.
+This allows selective, real-time casting, by painting vertex weights.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Control Object
+     </term>
+     <definition>
+      <paragraph>
+       The name of an object to control the effect.
+The location of this object's origin defines the center of the projection.
+Also, its size and rotation transform the projected vertices.
+      </paragraph>
+      <hint>
+       <paragraph>
+        Animating (keyframing) this control object also animates the modified object's casting deformation.
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_cast_example.jpg'}" uri="images/modeling_modifiers_deform_cast_example.jpg" width="400px"/>
+    <caption>
+     Top: Suzanne without modifiers. Middle: Suzanne with each type of Cast Modifier (Sphere, Cylinder and Cuboid).
+Bottom: Same as above, but now only X axis is enabled.
+     <reference name="Sample blend-file" refuri="https://wiki.blender.org/wiki/File:263-Cast-Modifier.blend">
+      Sample blend-file
+     </reference>
+     .
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

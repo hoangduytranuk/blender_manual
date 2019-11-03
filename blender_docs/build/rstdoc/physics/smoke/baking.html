@@ -1,0 +1,218 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/smoke/baking.rst">
+ <section ids="baking-smoke-simulations" names="baking\ smoke\ simulations --\ baking\ smoke\ simulations">
+  <title>
+   -- Baking Smoke Simulations
+  </title>
+  <comment xml:space="preserve">
+   TODO2.8:
+.. figure:: /images/physics_smoke_baking_interface.png
+   :align: right
+
+   *Smoke Cache* options.
+  </comment>
+  <paragraph>
+   <reference internal="True" refuri="../../glossary/index.html#term-baking">
+    <inline classes="xref std std-term">
+     Baking
+    </inline>
+   </reference>
+   is used to store the outcome of a simulation so it does not need to be recalculated.
+  </paragraph>
+  <paragraph>
+   Smoke baking settings are in
+   <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Physics --&gt; Smoke --&gt; Cache`">
+    Properties ‣ Physics ‣ Smoke ‣ Cache
+   </inline>
+   .
+Unlike most physics simulations smoke physics has some settings that are specific to smoke.
+  </paragraph>
+  <section ids="file-format" names="file\ format định\ dạng\ tập\ tin\ --\ file\ format">
+   <title>
+    Định Dạng Tập Tin -- File Format
+   </title>
+   <paragraph>
+    File format that the cache data is to be stored.
+   </paragraph>
+   <section ids="point-cache" names="point\ cache bộ\ nhớ\ đệm\ điểm\ --\ point\ cache">
+    <title>
+     Bộ Nhớ Đệm Điểm -- Point Cache
+    </title>
+    <paragraph>
+     Blender's own caching format.
+    </paragraph>
+   </section>
+   <section ids="openvdb" names="openvdb">
+    <title>
+     OpenVDB
+    </title>
+    <paragraph>
+     Advanced and efficient storage method developed by
+     <reference name="DreamWorks Animation" refuri="http://www.dreamworksanimation.com/">
+      DreamWorks Animation
+     </reference>
+     .
+    </paragraph>
+    <paragraph>
+     The simulation fields can be found in the
+     <literal>
+      .vdb
+     </literal>
+     files under the following names:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       "color"
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       "density"
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       "heat"
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       "heat old" (the temperature at the previous frame)
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       "flame"
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       "fuel"
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       "react" (reaction coordinates, used for fire)
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       "velocity"
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       "shadow" (the shadows of the volume computed for viewport rendering)
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       "texture coordinates" (used for turbulence)
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Nén -- Compression
+      </term>
+      <definition>
+       <paragraph>
+        Method of data compression.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Zip
+         </term>
+         <definition>
+          <paragraph>
+           Efficient but slower compression method.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Blosc
+         </term>
+         <definition>
+          <paragraph>
+           Multi-threaded compression with about the same quality and size as
+           <literal>
+            Zip
+           </literal>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Không Có -- None
+         </term>
+         <definition>
+          <paragraph>
+           Do not compress the data.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Độ Lớn của Dữ Liệu -- Data Depth
+      </term>
+      <definition>
+       <paragraph>
+        Bit depth for writing all scalar (including vectors), lower values reduce the file size of the cache.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Float (Nửa) -- Float (Half)
+         </term>
+         <definition>
+          <paragraph>
+           Half float (16 bit data). Gives less data with the benefit of smaller file sizes.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Float (Đơn) -- Float (Full)
+         </term>
+         <definition>
+          <paragraph>
+           Full float (32 bit data). Gives more data at the cost of larger file sizes.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <seealso>
+     <paragraph>
+      For other options see the
+      <reference internal="True" refuri="../baking.html">
+       <inline classes="doc">
+        General Baking
+       </inline>
+      </reference>
+      docs for more information.
+     </paragraph>
+    </seealso>
+    <note>
+     <paragraph>
+      Baking can only been done once your blend-file is saved.
+If your blend-file has not been saved, the
+      <emphasis>
+       Smoke Cache
+      </emphasis>
+      panel will be disabled.
+     </paragraph>
+    </note>
+   </section>
+  </section>
+ </section>
+</document>

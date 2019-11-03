@@ -1,0 +1,427 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/transform/transformation.rst">
+ <target refid="bpy-types-transformconstraint">
+ </target>
+ <section ids="transformation-constraint bpy-types-transformconstraint" names="transformation\ constraint ràng\ buộc\ biến\ hóa\ --\ transformation\ constraint bpy.types.transformconstraint">
+  <title>
+   Ràng Buộc Biến Hóa -- Transformation Constraint
+  </title>
+  <paragraph>
+   This constraint is more complex and versatile than the other "transform" constraints.
+It allows you to map one type of transform properties (i.e. location, rotation or scale)
+of the target, to the same or another type of transform properties of the owner,
+within a given range of values (which might be different for each target and owner property).
+You can also switch between axes, and use the range values not as limits,
+but rather as "markers" to define a mapping between input (target) and output (owner) values.
+  </paragraph>
+  <paragraph>
+   So, e.g. you can use the position of the target along the X axis to control the rotation of
+the owner around the Z axis, stating that 1 unit along the target X axis corresponds
+to 10 units around the owner Z axis. Typical uses for this include gears (see note below),
+and rotation based on location setups.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_transform_transformation_panel.png
+
+   Transformation panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+        <inline classes="std std-ref">
+         Chỉ Danh của Dữ Liệu -- Data ID
+        </inline>
+       </reference>
+       sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Ngoại Suy -- Extrapolate
+     </term>
+     <definition>
+      <paragraph>
+       By default, the
+       <emphasis>
+        min
+       </emphasis>
+       and
+       <emphasis>
+        max
+       </emphasis>
+       values bound the input and output values;
+all values outside these ranges are clipped to them.
+When you enable this button, the
+       <emphasis>
+        min
+       </emphasis>
+       and
+       <emphasis>
+        max
+       </emphasis>
+       values are no longer strict limits,
+but rather "markers" defining a proportional (linear) mapping between input and corresponding output values.
+Let us illustrate that with two graphs Fig.
+       <reference internal="True" refid="fig-constraints-transformation-extrapolate">
+        <inline classes="std std-ref">
+         The Extrapolate principles.
+        </inline>
+       </reference>
+       .
+In these pictures, the input range (in abscissa) is set to (1.0 to 4.0),
+and its corresponding output range (in ordinate), to (1.0 to 2.0).
+The yellow curve represents the mapping between input and output.
+      </paragraph>
+      <target refid="fig-constraints-transformation-extrapolate">
+      </target>
+      <table ids="id1 fig-constraints-transformation-extrapolate" names="fig-constraints-transformation-extrapolate">
+       <title>
+        The Extrapolate principles.
+       </title>
+       <tgroup cols="2">
+        <colspec colwidth="50">
+        </colspec>
+        <colspec colwidth="50">
+        </colspec>
+        <tbody>
+         <row>
+          <entry>
+           <figure ids="id2">
+            <image candidates="{'*': 'images/animation_constraints_transform_transformation_extrapolate-1.png'}" uri="images/animation_constraints_transform_transformation_extrapolate-1.png" width="300px"/>
+            <caption>
+             Extrapolate disabled: the output values are bounded inside the (1.0 to 2.0) range.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id3">
+            <image candidates="{'*': 'images/animation_constraints_transform_transformation_extrapolate-2.png'}" uri="images/animation_constraints_transform_transformation_extrapolate-2.png" width="300px"/>
+            <caption>
+             Extrapolate enabled: the output values are "free" to proportionally follow the input ones.
+            </caption>
+           </figure>
+          </entry>
+         </row>
+        </tbody>
+       </tgroup>
+      </table>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="source" names="source nguồn\ --\ source">
+    <title>
+     Nguồn -- Source
+    </title>
+    <paragraph>
+     It contains the input (from target) settings.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Ánh Xạ Từ -- Map From
+      </term>
+      <definition>
+       <paragraph>
+        The radio buttons allow you to select which type of property to use.
+       </paragraph>
+       <paragraph>
+        Location, Rotation, and Scale
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mode (Rotation)
+      </term>
+      <definition>
+       <paragraph>
+        Allows specifying the type of rotation input to use, including different
+        <reference internal="True" refuri="../../../glossary/index.html#term-euler">
+         <inline classes="xref std std-term">
+          Euler
+         </inline>
+        </reference>
+        orders,
+        <reference internal="True" refuri="../../../glossary/index.html#term-quaternion">
+         <inline classes="xref std std-term">
+          Quaternion
+         </inline>
+        </reference>
+        , and other
+        <reference internal="True" refuri="../../drivers/drivers_panel.html#drivers-variables-rotation-modes">
+         <inline classes="std std-ref">
+          Rotation Channel Modes
+         </inline>
+        </reference>
+        .
+Defaults to using the
+        <reference internal="True" refuri="../../../glossary/index.html#term-euler">
+         <inline classes="xref std std-term">
+          Euler
+         </inline>
+        </reference>
+        order of the constraint owner.
+       </paragraph>
+       <paragraph>
+        In the
+        <emphasis>
+         Quaternion
+        </emphasis>
+        mode the channels are converted to weighted angles in the same way as
+the swing angles of the
+        <reference internal="True" refuri="../../drivers/drivers_panel.html#drivers-variables-rotation-modes">
+         <inline classes="std std-ref">
+          Swing and X/Y/Z Twist
+         </inline>
+        </reference>
+        modes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Từ -- From
+      </term>
+      <definition>
+       <paragraph>
+        Independently for each axis (X, Y, and Z) the min and max number fields control
+the lower and upper bounds of the input value range.
+Note that if a min value is higher than its corresponding max value,
+the constraint behaves as if it had the same value as the max one.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Source to Destination Mapping
+      </term>
+      <definition>
+       <paragraph>
+        The three
+        <emphasis>
+         Axis Mapping
+        </emphasis>
+        selectors allow you to select which input axis to map to,
+respectively (from top to bottom), the X, Y and Z output (owner) axes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="destination" names="destination --\ destination">
+    <title>
+     -- Destination
+    </title>
+    <paragraph>
+     It contains the output (to owner) settings.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Ánh Xạ Tới -- Map To
+      </term>
+      <definition>
+       <paragraph>
+        The three radio buttons allow you to select which type of property to control.
+       </paragraph>
+       <paragraph>
+        Location, Rotation, and Scale
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Order (Rotation)
+      </term>
+      <definition>
+       <paragraph>
+        For rotation, allows specifying which
+        <reference internal="True" refuri="../../../glossary/index.html#term-euler">
+         <inline classes="xref std std-term">
+          Euler
+         </inline>
+        </reference>
+        order to use during evaluation
+of the constraint. Defaults to using the order of the constraint owner.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tới -- To
+      </term>
+      <definition>
+       <paragraph>
+        The
+        <emphasis>
+         min
+        </emphasis>
+        and
+        <emphasis>
+         max
+        </emphasis>
+        number fields control the lower and upper bounds of the output value range,
+independently for each mapped axis.
+Note that if a min value is higher than its corresponding max value,
+the constraint behaves as if it had the same value as the max one.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mix
+      </term>
+      <definition>
+       <paragraph>
+        Specifies how the result of the constraint is combined with the existing transformation.
+The set of available choices varies based on the type of transformation.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Replace
+         </term>
+         <definition>
+          <paragraph>
+           The result of the constraint replaces the existing transformation.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Multiply (Scale)
+         </term>
+         <definition>
+          <paragraph>
+           The new values are multiplied with the existing axis values.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Add (Location, Rotation)
+         </term>
+         <definition>
+          <paragraph>
+           The new values are added to the existing axis values.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Before Original (Rotation)
+         </term>
+         <definition>
+          <paragraph>
+           The new rotation is added before the existing rotation, as if it was applied to
+a parent of the constraint owner.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          After Original (Rotation)
+         </term>
+         <definition>
+          <paragraph>
+           The new rotation is added after the existing rotation, as if it was applied to
+a child of the constraint owner.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Không Gian -- Space
+      </term>
+      <definition>
+       <paragraph>
+        Sự chuyển đổi tiêu chuẩn giữa các không gian.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <note>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        For historical reasons, the
+        <emphasis>
+         Mix
+        </emphasis>
+        mode defaults to
+        <emphasis>
+         Add
+        </emphasis>
+        for location and rotation,
+and
+        <emphasis>
+         Replace
+        </emphasis>
+        for scale.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        When using the rotation transform properties of the target as input,
+whatever the real values are, the constraint will always "take them back" into the (-180 to 180) range.
+E.g. if the target has a rotation of 420 degrees around its X axis,
+the values used as
+        <emphasis>
+         X
+        </emphasis>
+        input by the constraint will be:
+       </paragraph>
+       <paragraph>
+        <math>
+         ((420 + 180) modulo 360) - 180 = 60 - ...
+        </math>
+       </paragraph>
+       <paragraph>
+        This is why this constraint is not really suited for gears!
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Similarly, when using the scale transform properties of the target as input,
+whatever the real values are, the constraint will always take their absolute values (i.e. invert negative ones).
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        When a
+        <emphasis>
+         min
+        </emphasis>
+        value is higher than its corresponding
+        <emphasis>
+         max
+        </emphasis>
+        one,
+both are considered equal to the
+        <emphasis>
+         max
+        </emphasis>
+        one. This implies you cannot create "reversed" mappings...
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </note>
+    <vimeo aspect="None" height="None" id="171275353" width="None">
+    </vimeo>
+   </section>
+  </section>
+ </section>
+</document>

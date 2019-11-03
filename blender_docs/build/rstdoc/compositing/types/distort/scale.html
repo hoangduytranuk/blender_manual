@@ -1,0 +1,174 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/distort/scale.rst">
+ <target refid="bpy-types-compositornodescale">
+ </target>
+ <section ids="scale-node bpy-types-compositornodescale" names="scale\ node nút\ tỷ\ lệ\ --\ scale\ node bpy.types.compositornodescale">
+  <title>
+   Nút Tỷ Lệ -- Scale Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeScale.png'}" uri="images/compositing_node-types_CompositorNodeScale.png"/>
+   <caption>
+    Scale Node.
+   </caption>
+  </figure>
+  <paragraph>
+   This node scales the size of an image.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      X, Y
+     </term>
+     <definition>
+      <paragraph>
+       Scale in the axis directions, only available if
+       <emphasis>
+        Space
+       </emphasis>
+       is set to
+       <emphasis>
+        Relative
+       </emphasis>
+       or
+       <emphasis>
+        Absolute
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Không Gian -- Space
+     </term>
+     <definition>
+      <paragraph>
+       Coordinate Space to scale relative to.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tương Đối -- Relative
+        </term>
+        <definition>
+         <paragraph>
+          Percentage values relative to the dimensions of the image input.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tuyệt Đối -- Absolute
+        </term>
+        <definition>
+         <paragraph>
+          Size of an image by using absolute pixel values.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Kích Thước Cảnh -- Scene Size
+        </term>
+        <definition>
+         <paragraph>
+          Sizes an image to the size of the final render resolution for the scene.
+For example, rendering a scene at the standard 1080p resolution but setting the render percentage at 50%,
+will produce a 1080p image with the scene scaled down 50% and leaving the rest of the image as alpha.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Kích Thước Kết Xuất -- Render Size
+        </term>
+        <definition>
+         <paragraph>
+          Image dimensions set in the Render panel.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Kéo Giãn, Khít Vừa, Cắt Xén -- Stretch, Fit, Crop
+           </term>
+           <definition>
+            <paragraph>
+             Stretch distorts the image so that it fits into the render size.
+Fit scales the image until the bigger axis "fits" into the render size.
+Crop cuts the image so that it is the same aspect ratio as the render size.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            X, Y
+           </term>
+           <definition>
+            <paragraph>
+             Offset factor for the final scaled image.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <paragraph>
+    For instance X: 0.5 and Y: 0.5 would produce an image which width and
+height would be half of what they used to be.
+   </paragraph>
+   <paragraph>
+    Use this node to match image sizes.
+Most nodes produce an image that is the same size as the image input into their top image socket.
+To uniformly combine two images of different size,
+the second image has to be scaled up to match the resolution of the first.
+   </paragraph>
+  </section>
+ </section>
+</document>

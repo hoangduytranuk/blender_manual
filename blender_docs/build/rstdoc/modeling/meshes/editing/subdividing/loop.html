@@ -1,0 +1,515 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/subdividing/loop.rst">
+ <target refid="bpy-ops-mesh-loopcut-slide">
+ </target>
+ <section ids="loop-subdivide bpy-ops-mesh-loopcut-slide" names="loop\ subdivide --\ loop\ subdivide bpy.ops.mesh.loopcut_slide">
+  <title>
+   -- Loop Subdivide
+  </title>
+  <target refid="tool-mesh-loop-cut">
+  </target>
+  <section ids="loop-cut-and-slide tool-mesh-loop-cut" names="loop\ cut\ and\ slide vòng\ mạch\ phân\ chia\ và\ trượt\ đẩy\ --\ loop\ cut\ and\ slide tool-mesh-loop_cut">
+   <title>
+    Vòng Mạch Phân Chia và Trượt Đẩy -- Loop Cut and Slide
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Tools --&gt; Mesh Tools --&gt; Add: Loop Cut and Slide`">
+         Toolbar ‣ Tools ‣ Mesh Tools ‣ Add: Loop Cut and Slide
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-R
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    <emphasis>
+     Loop Cut and Slide
+    </emphasis>
+    splits a loop of faces by inserting a new edge loop intersecting the chosen edge.
+   </paragraph>
+   <section ids="usage" names="usage sử\ dụng\ --\ usage">
+    <title>
+     Sử Dụng -- Usage
+    </title>
+    <paragraph>
+     The tool is interactive and has two steps:
+    </paragraph>
+    <section ids="pre-visualizing-the-cut" names="pre-visualizing\ the\ cut --\ pre-visualizing\ the\ cut">
+     <title>
+      -- Pre-visualizing the Cut
+     </title>
+     <paragraph>
+      After the tool is activated, move the cursor over a desired edge.
+The cut to be made is marked with a magenta colored line as you move the mouse over the various edges.
+The to be created edge loop stops at the poles (tris and n-gons) where the existing face loop terminates.
+     </paragraph>
+    </section>
+    <section ids="sliding-the-new-edge-loop" names="sliding\ the\ new\ edge\ loop --\ sliding\ the\ new\ edge\ loop">
+     <title>
+      -- Sliding the new Edge Loop
+     </title>
+     <paragraph>
+      Once an edge is chosen via
+      <literal classes="kbd">
+       LMB
+      </literal>
+      ,
+you can move the mouse along the edge to determine where the new edge loop will be placed.
+This is identical to the
+      <reference internal="True" refuri="../edges.html#modeling-meshes-editing-edge-slide">
+       <inline classes="std std-ref">
+        Edge Slide tool
+       </inline>
+      </reference>
+      .
+Clicking
+      <literal classes="kbd">
+       LMB
+      </literal>
+      again confirms and makes the cut at the pre-visualized location,
+or clicking
+      <literal classes="kbd">
+       RMB
+      </literal>
+      forces the cut to exactly 50%.
+This step is skipped when using multiple edge loops (see below).
+     </paragraph>
+     <table>
+      <tgroup cols="3">
+       <colspec colwidth="33">
+       </colspec>
+       <colspec colwidth="33">
+       </colspec>
+       <colspec colwidth="33">
+       </colspec>
+       <tbody>
+        <row>
+         <entry>
+          <figure ids="id1">
+           <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_loop_before.png'}" uri="images/modeling_meshes_editing_subdividing_loop_before.png" width="200px"/>
+           <caption>
+            Mesh before inserting edge loop.
+           </caption>
+          </figure>
+         </entry>
+         <entry>
+          <figure ids="id2">
+           <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_loop_preview.png'}" uri="images/modeling_meshes_editing_subdividing_loop_preview.png" width="200px"/>
+           <caption>
+            Preview of edge loop location.
+           </caption>
+          </figure>
+         </entry>
+         <entry>
+          <figure ids="id3">
+           <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_loop_placement.png'}" uri="images/modeling_meshes_editing_subdividing_loop_placement.png" width="200px"/>
+           <caption>
+            Interactive placement of edge loop between adjacent loops.
+           </caption>
+          </figure>
+         </entry>
+        </row>
+       </tbody>
+      </tgroup>
+     </table>
+    </section>
+   </section>
+   <section ids="options" names="options tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <paragraph>
+     The options are available while the tool is in use, and later in the
+     <reference internal="True" refuri="../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+      <inline classes="std std-ref">
+       Adjust Last Operation
+      </inline>
+     </reference>
+     panel.
+    </paragraph>
+    <section ids="loop-cut" names="loop\ cut vòng\ mạch\ phân\ chia\ --\ loop\ cut">
+     <title>
+      Vòng Mạch Phân Chia -- Loop Cut
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Số Phân Đoạn
+        <literal classes="kbd">
+         Wheel
+        </literal>
+        or
+        <literal classes="kbd">
+         PageUp
+        </literal>
+        /
+        <literal classes="kbd">
+         PageDown
+        </literal>
+        -- Number of Cuts
+        <literal classes="kbd">
+         Wheel
+        </literal>
+        or
+        <literal classes="kbd">
+         PageUp
+        </literal>
+        /
+        <literal classes="kbd">
+         PageDown
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         After activating the tool, but before confirming initial loop location,
+you can increase and decrease the number of cuts to create,
+by entering a number with the keyboard, scrolling
+         <literal classes="kbd">
+          Wheel
+         </literal>
+         or using
+         <literal classes="kbd">
+          PageUp
+         </literal>
+         and
+         <literal classes="kbd">
+          PageDown
+         </literal>
+         .
+        </paragraph>
+        <note>
+         <paragraph>
+          When creating multiple loops, these cuts are uniformly distributed in the original face loop,
+and you will
+          <emphasis>
+           not
+          </emphasis>
+          be able to control their positions.
+         </paragraph>
+        </note>
+        <table>
+         <tgroup cols="2">
+          <colspec colwidth="50">
+          </colspec>
+          <colspec colwidth="50">
+          </colspec>
+          <tbody>
+           <row>
+            <entry>
+             <figure ids="id4">
+              <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_loop_multicut.png'}" uri="images/modeling_meshes_editing_subdividing_loop_multicut.png" width="250px"/>
+              <caption>
+               Preview of multiple edge loops.
+              </caption>
+             </figure>
+            </entry>
+            <entry>
+             <figure ids="id5">
+              <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_loop_multicut-after.png'}" uri="images/modeling_meshes_editing_subdividing_loop_multicut-after.png" width="250px"/>
+              <caption>
+               Result of using multiple cuts.
+              </caption>
+             </figure>
+            </entry>
+           </row>
+          </tbody>
+         </tgroup>
+        </table>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Độ Mịn
+        <literal classes="kbd">
+         Alt-Wheel
+        </literal>
+        -- Smoothness
+        <literal classes="kbd">
+         Alt-Wheel
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Smoothing causes edge loops to be placed in an interpolated position, relative to the face it is added to,
+causing them to be shifted outwards or inwards by a given percentage,
+similar to the
+         <emphasis>
+          Subdivide Smooth
+         </emphasis>
+         tool. When not using smoothing,
+new vertices for the new edge loop are placed exactly on the pre-existing edges.
+This keeps subdivided faces flat, but can distort geometry,
+particularly when using
+         <reference internal="True" refuri="../../../modifiers/generate/subdivision_surface.html">
+          <inline classes="doc">
+           Subdivision Surfaces
+          </inline>
+         </reference>
+         .
+Smoothing can help maintain the curvature of a surface once it is subdivided.
+        </paragraph>
+        <table>
+         <tgroup cols="2">
+          <colspec colwidth="50">
+          </colspec>
+          <colspec colwidth="50">
+          </colspec>
+          <tbody>
+           <row>
+            <entry>
+             <figure ids="id6">
+              <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_loop_unsmooth.png'}" uri="images/modeling_meshes_editing_subdividing_loop_unsmooth.png" width="250px"/>
+              <caption>
+               Added edge loops without smoothing.
+              </caption>
+             </figure>
+            </entry>
+            <entry>
+             <figure ids="id7">
+              <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_loop_smooth.png'}" uri="images/modeling_meshes_editing_subdividing_loop_smooth.png" width="250px"/>
+              <caption>
+               Same edge loops, but with smoothing value.
+              </caption>
+             </figure>
+            </entry>
+           </row>
+          </tbody>
+         </tgroup>
+        </table>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Suy Giảm Dần -- Falloff
+       </term>
+       <definition>
+        <paragraph>
+         Falloff type for
+         <emphasis>
+          Smoothness
+         </emphasis>
+         , changes the shape of the profile.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="edge-slide" names="edge\ slide trượt_đẩy_cạnh\ --\ edge\ slide">
+     <title>
+      Trượt_Đẩy_Cạnh -- Edge Slide
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Đồng Đều -- Even
+        <literal classes="kbd">
+         E
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Only available for single edge loops.
+This matches the shape of the edge loop to one of the adjacent edge loops.
+(See
+         <reference internal="True" refuri="../edges.html#modeling-meshes-editing-edge-slide">
+          <inline classes="std std-ref">
+           Edge Slide tool
+          </inline>
+         </reference>
+         for details.)
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Đảo Lật
+        <literal classes="kbd">
+         F
+        </literal>
+        -- Flip
+        <literal classes="kbd">
+         F
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         When Even is enabled, this flips the target edge loop to match.
+(See
+         <reference internal="True" refuri="../edges.html#modeling-meshes-editing-edge-slide">
+          <inline classes="std std-ref">
+           Edge Slide tool
+          </inline>
+         </reference>
+         for details.)
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+  </section>
+  <section ids="offset-edge-slide" names="offset\ edge\ slide thêm\ cạnh\ và\ trượt\ đẩy\ --\ offset\ edge\ slide">
+   <title>
+    Thêm Cạnh và Trượt Đẩy -- Offset Edge Slide
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Tools --&gt; Mesh Tools --&gt; Add: Offset Edge Slide`">
+         Toolbar ‣ Tools ‣ Mesh Tools ‣ Add: Offset Edge Slide
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Shift-Ctrl-R
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Add two edge loops on either side of selected loops.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đóng Kín Điểm Kết Thúc -- Cap Endpoint
+     </term>
+     <definition>
+      <paragraph>
+       Extends the loop by creating triangles at endpoints.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trượt_Đẩy_Cạnh -- Edge Slide
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refuri="../edges.html#modeling-meshes-editing-edge-slide">
+        <inline classes="std std-ref">
+         Edge Slide tool
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="subdivide-edge-ring" names="subdivide\ edge-ring phân\ hóa\ vòng\ đai\ cạnh\ --\ subdivide\ edge-ring">
+   <title>
+    Phân Hóa Vòng Đai Cạnh -- Subdivide Edge-Ring
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Cạnh (Edges) --&gt; Phân Hóa Vòng Đai Cạnh (Subdivide Edge-Ring)`">
+         Khung Lưới (Mesh) ‣ Cạnh (Edges) ‣ Phân Hóa Vòng Đai Cạnh (Subdivide Edge-Ring)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Take an edge ring, and subdivide with interpolation options.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tùy Chọn -- Options
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refuri="../edges.html#modeling-meshes-editing-bridge-edge-loops">
+        <inline classes="std std-ref">
+         Bridge Edge Loops
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

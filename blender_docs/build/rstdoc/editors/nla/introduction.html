@@ -1,0 +1,601 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/nla/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   The NLA editor, short for Non-Linear Animation, can manipulate and repurpose
+   <reference internal="True" refuri="../../animation/actions.html">
+    <inline classes="doc">
+     Hành Động -- Actions
+    </inline>
+   </reference>
+   ,
+without the tedium of handling keyframes. It is often used to make broad,
+significant changes to a scene's animation, with relative ease.
+It can also repurpose, chain together a sequence of motions, and "layered" actions, which make it easier to organize,
+and version-control your animation.
+  </paragraph>
+  <section ids="header" names="header tiêu\ đề\ --\ header">
+   <title>
+    Tiêu Đề -- Header
+   </title>
+   <section ids="view-menu" names="view\ menu trình\ đơn\ góc\ nhìn\ --\ view\ menu">
+    <title>
+     Trình Đơn Góc Nhìn -- View Menu
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Realtime Updates
+      </term>
+      <definition>
+       <paragraph>
+        When transforming NLA-strips, the changes to the animation are propagated to other views.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hiển Thị các Đường Cong-F Khống Chế -- Show Control F-Curves
+      </term>
+      <definition>
+       <paragraph>
+        Overlays a graph of the NLA-strip's influence on top of the strip.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hiển Thị Dấu Mốc Địa Phương -- Show Local Markers
+      </term>
+      <definition>
+       <paragraph>
+        Shows action-local markers on the strip, this is useful when synchronizing time across strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Set Preview Range
+      </term>
+      <definition>
+       <paragraph>
+        Selecting a preview range by dragging in the NLA Editor.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Clear Preview Range
+      </term>
+      <definition>
+       <paragraph>
+        Unset the preview range
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Auto Select Preview Range
+      </term>
+      <definition>
+       <paragraph>
+        Automatically select the preview range based on the range of keyframes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <seealso>
+     <paragraph>
+      Xin xem mục Timeline's
+      <reference internal="True" refuri="../timeline.html#timeline-view-menu">
+       <inline classes="std std-ref">
+        Trình Đơn Góc Nhìn -- View Menu
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </seealso>
+   </section>
+   <section ids="select-menu" names="select\ menu trình\ đơn\ lựa\ chọn\ --\ select\ menu">
+    <title>
+     Trình Đơn Lựa Chọn -- Select Menu
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       All
+      </term>
+      <definition>
+       <paragraph>
+        Select all NLA-strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       None
+      </term>
+      <definition>
+       <paragraph>
+        Deselect all NLA-strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Invert
+      </term>
+      <definition>
+       <paragraph>
+        Invert the current selection of NLA-strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Box Select
+      </term>
+      <definition>
+       <paragraph>
+        Select NLA-strips by drawing a box. All NLA-strips that intersects the box
+will be added to the current selection.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Border Axis Range
+      </term>
+      <definition>
+       <paragraph>
+        Select NLA-strips by drawing a box. All NLA-strips that intersects the frames
+of the drawn box will be added to the current selection.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Before Current Frame
+      </term>
+      <definition>
+       <paragraph>
+        Select all NLA-strips before the current frame.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       After Current Frame
+      </term>
+      <definition>
+       <paragraph>
+        Select all NLA-strips after the current frame.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="markers-menu" names="markers\ menu trình\ đơn\ dấu\ mốc\ --\ markers\ menu">
+    <title>
+     Trình Đơn Dấu Mốc -- Markers Menu
+    </title>
+    <paragraph>
+     <reference internal="True" refuri="../../animation/markers.html">
+      <inline classes="doc">
+       Dấu Mốc -- Markers
+      </inline>
+     </reference>
+     được sử dụng để biểu thị khung hình có những điểm trọng yếu hoặc các sự đáng phải để ý trong một hoạt hình. Giống hầu hết các trình biên soạn hoạt họa, điểm đánh dấu được hiển thị ở dưới đáy của trình biên soạn.
+    </paragraph>
+    <figure ids="id1">
+     <image candidates="{'*': 'images/editors_graph-editor_introduction_markers.png'}" uri="images/editors_graph-editor_introduction_markers.png"/>
+     <caption>
+      Dấu Mốc trong Trình Biên Soạn Hoạt Họa.
+     </caption>
+    </figure>
+    <paragraph>
+     For descriptions of the different marker tools, see
+     <reference internal="True" refuri="../../animation/markers.html#animation-markers-editing">
+      <inline classes="std std-ref">
+       Editing Markers
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+   <section ids="edit-menu" names="edit\ menu trình\ đơn\ biên\ soạn\ --\ edit\ menu">
+    <title>
+     Trình Đơn Biên Soạn -- Edit Menu
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Transform
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Move
+         </term>
+         <definition>
+          <paragraph>
+           Move the selected NLA-strips in time or to different NLA-track.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Extend
+         </term>
+         <definition>
+          <paragraph>
+           Extend the selected NLA-strips.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Scale
+         </term>
+         <definition>
+          <paragraph>
+           Scale the selected NLA-strips.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Snap
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Current Frame
+         </term>
+         <definition>
+          <paragraph>
+           Move the start of selected NLA-strips to the current frame.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Nearest Frame
+         </term>
+         <definition>
+          <paragraph>
+           Move the start of the selected NLA-strips to the nearest frame.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Nearest Second
+         </term>
+         <definition>
+          <paragraph>
+           Move the start of the selected NLA-strips to the nearest second.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Nearest Marker
+         </term>
+         <definition>
+          <paragraph>
+           Move the start of the selected NLA-strips to the nearest marker.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Duplicate
+      </term>
+      <definition>
+       <paragraph>
+        Make a copy of the selected NLA-strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Linked Duplicate
+      </term>
+      <definition>
+       <paragraph>
+        Make a shallow copy of the selected NLA-strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Split Strips
+      </term>
+      <definition>
+       <paragraph>
+        NLA-Split the selected strips into two NLA-strips. The split happens at the current frame.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Delete Strips
+      </term>
+      <definition>
+       <paragraph>
+        Delete selected NLA-Strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Toggle Muting
+      </term>
+      <definition>
+       <paragraph>
+        Mute or unmute the selected NLA-strips. Muted NLA-strips will not influence the animation.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Apply Scale
+      </term>
+      <definition>
+       <paragraph>
+        Apply the scale of the selected NLA-strips to their referenced Actions.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Clear Scale
+      </term>
+      <definition>
+       <paragraph>
+        Reset the scaling of the selected NLA-strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Sync Action Length
+      </term>
+      <definition>
+       <paragraph>
+        Synchronize the length of the action to the length used in the NLA-strip.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Make Single User
+      </term>
+      <definition>
+       <paragraph>
+        This tool ensures that none of the selected strips use an action
+which is also used by any other strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Swap Strips
+      </term>
+      <definition>
+       <paragraph>
+        Swap the order of the selected NLA-strips in their NLA-track.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Move Strips Up
+      </term>
+      <definition>
+       <paragraph>
+        Move selected NLA-strips a track up if there is room.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Move Strips Down
+      </term>
+      <definition>
+       <paragraph>
+        Move selected NLA-strips a track down if there is room.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Track Ordering
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          To Top
+         </term>
+         <definition>
+          <paragraph>
+           Move selected track to the top of the tracks.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Up
+         </term>
+         <definition>
+          <paragraph>
+           Move selected track one track up.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Down
+         </term>
+         <definition>
+          <paragraph>
+           Move selected track one track down.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          To Bottom
+         </term>
+         <definition>
+          <paragraph>
+           Move selected tracks to the bottom of the tracks.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Remove Empty Animation Data
+      </term>
+      <definition>
+       <paragraph>
+        Remove Animation Data from selected objects when they don't contain any animation.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Start Editing Stashed Action
+      </term>
+      <definition>
+       <paragraph>
+        It will enter and exit Tweak Mode as usual, but will also make sure that the action can be edited in isolation
+(by flagging the NLA track that the action strip comes from as being "solo").
+This is useful for editing stashed actions, without the rest of the NLA Stack interfering.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Start Tweaking Strips Actions
+      </term>
+      <definition>
+       <paragraph>
+        The contents of Action strips can be edited, but you must be in
+        <emphasis>
+         Tweak Mode
+        </emphasis>
+        to do so.
+The keyframes of the action can then be edited in the Dope Sheet.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="add" names="add cộng\ thêm\ --\ add">
+    <title>
+     Cộng Thêm -- Add
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Add Action strip
+      </term>
+      <definition>
+       <paragraph>
+        Add an NLA-strip referencing an Action to the active track.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Add Transition
+      </term>
+      <definition>
+       <paragraph>
+        Add an NLA-strip to create a transition between a selection of two adjacent NLA-strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Add Sound Strip
+      </term>
+      <definition>
+       <paragraph>
+        Add an NLA-strip controlling when the Speaker object plays its sound clip.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Add Meta-Strip
+      </term>
+      <definition>
+       <paragraph>
+        Group selected NLA-strips into a meta strip.
+A meta strip will group the selected NLA-strips of the same NLA-track.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Remove Meta-Strip
+      </term>
+      <definition>
+       <paragraph>
+        Ungroup selected Meta strips.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Add Tracks
+      </term>
+      <definition>
+       <paragraph>
+        Add a new NLA-Track on top of the selected object.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Add Track Above Selected
+      </term>
+      <definition>
+       <paragraph>
+        Add a new NLA-Track just above the selected NLA-track.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Include Selected Objects
+      </term>
+      <definition>
+       <paragraph>
+        Let the selected objects appear in the NLA Editor. This is done by adding
+an empty animation data object to the selected object.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

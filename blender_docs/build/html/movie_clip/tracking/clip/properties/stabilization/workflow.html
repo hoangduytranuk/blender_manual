@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quy Trình Làm Việc -- Workflow &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/movie_clip/tracking/clip/properties/stabilization/workflow.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../../search.html" />
+    <link rel="next" title="Khung Nhìn Đồ Thị -- Graph View" href="../../../graph.html" />
+    <link rel="prev" title="Bảng Ổn Định Hóa 2D -- 2D Stabilization Panel" href="panel.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Tracking &amp; Masking</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">Giám Sát Chuyển Động -- Motion Tracking</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">-- Clip View</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../marker.html">Dấu Giám Sát -- Tracking Marker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../editing/index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../header.html">Header</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">Tính Chất -- Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../graph.html">Khung Nhìn Đồ Thị -- Graph View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dope_sheet.html">Góc Nhìn Bảng Hành Động -- Dope Sheet View</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../masking/index.html">-- Masking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../editors/clip/index.html">Movie Clip Editor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Tracking &amp; Masking</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Giám Sát Chuyển Động -- Motion Tracking</a> &raquo;</li>
+        
+          <li><a href="../../index.html">-- Clip View</a> &raquo;</li>
+        
+          <li><a href="../index.html">Tính Chất -- Properties</a> &raquo;</li>
+        
+          <li><a href="index.html">Ổn Định Hóa 2D -- 2D Stabilization</a> &raquo;</li>
+        
+      <li>Quy Trình Làm Việc -- Workflow</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/movie_clip/tracking/clip/properties/stabilization/workflow.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="workflow">
+<h1>Quy Trình Làm Việc -- Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h1>
+<p>Depending on the original footage's properties, achieving good stabilization results might be simple and easy,
+or it might require some work, dedication and careful planning. This section covers some practical considerations
+to help improving the results.</p>
+<div class="section" id="the-simple-case">
+<h2>Trường Hợp Đơn Giản -- The Simple Case<a class="headerlink" href="#the-simple-case" title="Permalink to this headline">¶</a></h2>
+<p>Whenever the camera is basically fixed, or at least &quot;almost&quot; stationary, and the footage is crisp and
+without motion blur, perfect stabilization is easy to achieve. This might be the case when a tripod was used,
+but wind or vibrations on the floor (e.g. on a stage) caused some minor shakes.
+Shoulder camera shots done by an experienced operator also frequently fall into this category.</p>
+<ul class="simple">
+<li>Use as few points as possible. Start with a single point right on the main subject.</li>
+<li>Track this single point as accurate as possible. Beware of movements and shape changes of the tracked feature.
+Proceed in small increments (e.g. 50 frames), zoom in and readjust the target point manually when it drifts away.
+Another option is to use a larger target area for tracking; since we're tracking only a single point,
+the slower tracking speed might be acceptable.</li>
+<li>After enabling the basic (location) stabilization, consider if you really need rotation stabilization.
+Often, some minor, slow swinging movements are not really noticeable and do not warrant the additional working time
+and quality loss caused by rotation and scale stabilization.</li>
+<li>For rotation, start with one extra point, well spaced but preferably still attached to the main subject.</li>
+<li>Consider to fix some slow residual motion by manually animating the &quot;<em>Expected</em> *&quot; parameters,
+before you even think of adding more tracking markers. Because doing so is often not worth the effort.</li>
+<li>If you need to add more points, the most important goal is to achieve <em>symmetry.</em>
+Place location tracking points symmetrically above and below the horizon.
+Place rotation tracking points into diagonally opposed direction, always centered around the main focal area.</li>
+</ul>
+</div>
+<div class="section" id="avoid-problematic-footage">
+<h2>Tránh các Đoạn Phim Có Vấn Đề -- Avoid Problematic Footage<a class="headerlink" href="#avoid-problematic-footage" title="Permalink to this headline">¶</a></h2>
+<p>The 2D stabilizer can not work miracles; some flaws simply can not be fixed satisfactory.
+Notorious issues are motion blur, rolling shutter, pumping autofocus and moving compression artifacts.
+Especially if you do succeed with basic stabilization, such image flaws become yet the more noticeable and annoying.
+When on set or on location, it might be tempting to &quot;fix matters in postpro&quot;.
+Resist that deception, it rarely works out well.</p>
+<ul class="simple">
+<li>Prefer a short exposure time to avoid motion blur.
+While motion blur is good to render filmed movements more smooth and natural,
+it seriously impedes the ability to track features precisely.
+As a guideline, try to get at least to 1/250 s.</li>
+<li>Prefer higher frame rates. The more <em>temporal resolution</em> the stabilizer has to work on, the better the results.
+If you have the option to choose between progressive and interlaced modes, by all means use interlaced
+and deinterlace the footage to the <em>doubled frame rate</em>. This can be done with
+the <a class="reference external" href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1">yadif</a> filter of FFmpeg: use the mode 1 (<code class="docutils literal notranslate"><span class="pre">send_field</span></code>).</li>
+<li>Beware of the <a class="reference internal" href="../../../../../glossary/index.html#term-rolling-shutter"><span class="xref std std-term">Rolling Shutter</span></a> effect. Avoid fast lateral movements.
+If you can, prefer a camera which produces less rolling shutter.
+Also, using a higher frame rate reduces the amount of rolling shutter; another reason to prefer
+interlaced over progressive for the purpose at hand.</li>
+<li>Switch off autofocus.
+Better plan your movement beforehand, set a fixed focus and rely on depth of field through using a small aperture.
+Pumping movements might not be so noticeable to the human observer, but the feature tracking tends to slide away
+on defocused image elements; fixing this manually after the fact can cause a huge waste of time.</li>
+<li>Increase the lighting level, at least use a higher sensitivity.
+This helps to set a fast shutter speed plus a small aperture.
+Better lighting and good exposure also help to reduce the impact of compression artifacts.
+If you can, also select a codec with less data reduction, better color space, etc.
+Inevitably, we're loosing some quality through the interpolation necessary for stabilization.
+Plus we're loosing some quality due to color space conversion.</li>
+</ul>
+</div>
+<div class="section" id="elaborate-movements">
+<h2>Di Chuyển Phức Tạp -- Elaborate Movements<a class="headerlink" href="#elaborate-movements" title="Permalink to this headline">¶</a></h2>
+<p>When the footage builds on elaborate intended movement of the camera,
+the process of stabilization becomes more involved --
+especially when there is a shift in the main area of interest within the shot.
+When working with many tracks and fine-grained animation,
+it is easy to get into a situation where additional manipulations actually decrease the quality,
+while it might be hard to spot and locate the root cause of problems.
+Recommendation is to proceed systematically, starting from the general outline down to tweaking of specific aspects.</p>
+<ol class="arabic">
+<li><p class="first">Understand the nature of the movements in the shot, both the intended and the accidental.</p>
+</li>
+<li><p class="first">Track some relevant features for location.</p>
+</li>
+<li><p class="first">Establish the basic location stabilization.
+This includes the decision, which feature to use for what segment of the shot.
+Work with the track weights to get an overall consistent movement of the weight center,
+in accordance with the inherent focus of the shot.</p>
+</li>
+<li><p class="first">Define the panning movements of the virtual camera (through animation of the <em>Expected Position</em> parameter).</p>
+</li>
+<li><p class="first">Add tracking for rotation and zoom stabilization.</p>
+</li>
+<li><p class="first">Fine-tuning pass:</p>
+<p>Break down the whole duration of the shot into logical segments to define the intended camera movement.
+Then refine those segments incrementally step-by-step, until the overall result looks satisfactory...</p>
+</li>
+</ol>
+</div>
+<div class="section" id="animating-stabilization-parameters">
+<h2>Hoạt Hình các Tham Số Ổn Định Hóa -- Animating Stabilization Parameters<a class="headerlink" href="#animating-stabilization-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Animating some parameters over duration of the shot is often necessary, at least to get the final touch,
+including control of the scale factor to hide the dancing black borders.
+Unfortunately there is a <strong>known limitation</strong> in the current version:
+it is not possible to open the generic animation editors (Graph editor and Dope Sheet)
+for animation data beyond the 3D scene. So, while it <em>is possible</em> to set keyframes <em>right within the UI controls</em>
+of the stabilizer (either through pressing the <kbd class="kbd docutils literal notranslate">I</kbd> key or with the help of the context menu),
+it is not possible to manipulate the resulting curves graphically.
+The only way to readjust or remove a misguided keyframe is to locate
+the timeline to the very frame and then use the context menu of the animated UI control.
+(Hint: the color of the UI control changes when you have located at precisely the frame number of the keyframe.)</p>
+</div>
+<div class="section" id="irregular-track-setup">
+<h2>Sắp Đặt Giám Sát Bất Thường -- Irregular Track Setup<a class="headerlink" href="#irregular-track-setup" title="Permalink to this headline">¶</a></h2>
+<p>It might not be possible to track a given feature over the whole duration of the shot.
+The feature might be blurred or obscured; it might even move out of sight entirely,
+due to deliberate camera movement.
+In such a situation, we need <em>another tracked feature</em> to take on its role, and we need some <em>overlap time</em>
+to get a smooth transition without visible jump.</p>
+<div class="figure align-right" id="id1">
+<a class="reference internal image-reference" href="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_workflow_irregular-tracks.png"><img alt="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_workflow_irregular-tracks.png" src="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_workflow_irregular-tracks.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Irregular Tracks.</span></p>
+</div>
+<p>The stabilizer is able to deal with gaps and partial coverage within the given tracks.
+However, the basic assumption is that each track covers a single,
+fixed reference point whenever there is any usable/enabled data.
+Thus, you must not &quot;reuse&quot; a given track to follow several different points,
+rather you should disable and thus end one track, when tracking this feature is no longer feasible.
+You may include &quot;gaps&quot;, when a tracking point is temporarily disabled or unavailable,
+but you should start a new track for each distinct new feature to be tracked.</p>
+<p>Each track contributes to the overall result by the degree controlled through its <em>Stab Weight</em> parameter.
+It is evaluated on a per-frame basis, which enables us to control the influence of a track by <em>animating</em> this
+<em>Stab Weight</em>. You may imagine the overall working of the stabilizer as if each tracking point &quot;drags&quot; the image
+through a flexible spring: When you turn down the <em>Stab Weight</em> of a tracking point,
+you decrease the amount of &quot;drag&quot;
+it creates. Sometimes the contribution of different tracks has to work partially counter each other.
+This effect might be used to cancel out spurious movement, e.g. as caused by perspective.
+But when, in such a situation, one of the involved tracks suddenly goes away,
+a jump in image position or rotation might be the result. Thus, whenever we notice
+a jump at the very frame where some partially covered track starts or ends, we need to soften the transition.
+We do so by animating the <em>Stab Weight</em> gradually down, so that it reaches zero at the boundary point.
+In a similar vein, when we plan a &quot;handover&quot; between several partially covered tracks, we define a <em>cross-fade</em> over
+the duration where the tracks overlap, again by animating the <em>Stab Weight</em> parameters accordingly.
+But even with such cross-fade smoothing, some residual movement might remain,
+which then needs to be corrected with the <em>Expected Position</em>
+or <em>Expected rotation</em> parameters. It is crucial to avoid &quot;overshooting&quot; movements in such a situation --
+always strive at setting the animation keyframes onto precisely the same frame number
+for all the tracks and parameters involved.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../../graph.html" class="btn btn-neutral float-right" title="Khung Nhìn Đồ Thị -- Graph View" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="panel.html" class="btn btn-neutral float-left" title="Bảng Ổn Định Hóa 2D -- 2D Stabilization Panel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

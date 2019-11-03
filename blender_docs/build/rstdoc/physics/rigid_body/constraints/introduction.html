@@ -1,0 +1,232 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/rigid_body/constraints/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   <reference internal="True" refuri="../../../glossary/index.html#term-constraint">
+    <inline classes="xref std std-term">
+     Constraints
+    </inline>
+   </reference>
+   (also known as joints) for rigid bodies connect two rigid bodies.
+  </paragraph>
+  <paragraph>
+   The physics constraints are meant to be attached to an
+   <reference internal="True" refuri="../../../glossary/index.html#term-empty">
+    <inline classes="xref std std-term">
+     Empty
+    </inline>
+   </reference>
+   object.
+The constraint then has fields which can be pointed at the two physics-enabled object
+which will be bound by the constraint.
+The
+   <emphasis>
+    Empty
+   </emphasis>
+   object provides a location and axis for the constraint distinct from the two constrained objects.
+The location of the entity hosting the physics constraint marks a location and
+set of axes on each of the two constrained objects.
+These two anchor points are calculated at the beginning of the animation and their position and
+orientation remain fixed in the
+   <emphasis>
+    local
+   </emphasis>
+   coordinate system of the object for the duration of the animation.
+The objects can move far from the constraint object, but the constraint anchor moves with the object.
+If this feature seems limiting, consider using multiple objects with a non-physics
+   <emphasis>
+    Child of
+   </emphasis>
+   constraint and
+animate the relative location of the child.
+  </paragraph>
+  <section ids="connect" names="connect kết\ nối\ --\ connect">
+   <title>
+    Kết Nối -- Connect
+   </title>
+   <paragraph>
+    The quickest way to constrain two objects is to select both and
+click the
+    <emphasis>
+     Connect
+    </emphasis>
+    button in
+    <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Rigid Body`">
+     Object ‣ Rigid Body
+    </inline>
+    .
+This creates a new
+    <emphasis>
+     Empty
+    </emphasis>
+    object (named "Constraint") with a physics constraint
+already attached and pointing at the two selected objects.
+   </paragraph>
+  </section>
+  <section ids="physics-menu" names="physics\ menu">
+   <title>
+    Physics Menu
+   </title>
+   <paragraph>
+    Also you can create
+    <emphasis>
+     Rigid Body Constraint
+    </emphasis>
+    on one of the two constrained objects with
+    <emphasis>
+     Rigid Body Constraint
+    </emphasis>
+    button of the
+    <emphasis>
+     Physics
+    </emphasis>
+    tab in the Properties editor.
+This constraint is dependent on the object location and rotation on which it was created.
+This way, there are no
+    <emphasis>
+     Empty
+    </emphasis>
+    object created for the constraint.
+The role of the
+    <emphasis>
+     Empty
+    </emphasis>
+    object is put on this object.
+The constrained object can be then set as
+    <emphasis>
+     Passive
+    </emphasis>
+    type for better driving the constrain.
+   </paragraph>
+   <paragraph>
+    Additional parameters appear in the
+    <emphasis>
+     Rigid Body Constraint
+    </emphasis>
+    panel of the
+    <emphasis>
+     Physics
+    </emphasis>
+    tab in the Properties editor
+for the selected
+    <emphasis>
+     Empty
+    </emphasis>
+    object or the one of the two constrained objects with the created constraint.
+   </paragraph>
+  </section>
+  <section ids="common-options" names="common\ options tùy\ chọn\ chung\ --\ common\ options">
+   <title>
+    Tùy Chọn Chung -- Common Options
+   </title>
+   <paragraph>
+    Rigid Body Constraint panel.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Bật -- Enabled
+     </term>
+     <definition>
+      <paragraph>
+       Specifies whether the constraint is active during the simulation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tắt Va Đập -- Disable Collisions
+     </term>
+     <definition>
+      <paragraph>
+       Allows constrained objects to pass through one another.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vật Thể 1 -- Object 1
+     </term>
+     <definition>
+      <paragraph>
+       First object to be constrained.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vật Thể 2 -- Object 2
+     </term>
+     <definition>
+      <paragraph>
+       Second object to be constrained.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Có Thể Bị Phá Hủy -- Breakable
+     </term>
+     <definition>
+      <paragraph>
+       Allows constraint to break during simulation. Disabled for the
+       <emphasis>
+        Motor
+       </emphasis>
+       constraint.
+This can be used to simulate destruction.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Giới Hạn -- Threshold
+        </term>
+        <definition>
+         <paragraph>
+          Impulse strength that needs to be reached before constraint breaks.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đổi Số Lần Lặp Lại -- Override Iterations
+     </term>
+     <definition>
+      <paragraph>
+       Allows to make constraints stronger (more iterations) or weaker (less iterations)
+than specified in the rigid body world.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Số Lần Lặp Lại -- Iterations
+        </term>
+        <definition>
+         <paragraph>
+          Number of constraint solver iterations made per simulation step for this constraint.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giới Hạn -- Limits
+     </term>
+     <definition>
+      <paragraph>
+       By using limits you can constrain objects even more by specifying a translation/rotation range on/around
+respectively one axis (see below for each one individually). To lock one axis, set both limits to 0.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

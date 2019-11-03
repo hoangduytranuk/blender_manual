@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tính Chất của Cảnh -- Scene Properties &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/scene_layout/scene/properties.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Vật Thể -- Objects" href="../object/index.html" />
+    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Scenes &amp; Objects</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Cảnh -- Scenes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tính Chất của Cảnh -- Scene Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#scene">Cảnh -- Scene</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#units">Đơn Vị -- Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gravity">Trọng Lực -- Gravity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keying-sets">Bộ Khóa -- Keying Sets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#audio">Âm Thanh -- Audio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rigid-body-world">Thế Giới Thân Cứng -- Rigid Body World</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../object/index.html">Vật Thể -- Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collections/index.html">Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../view_layers/index.html">View Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Scenes &amp; Objects</a> &raquo;</li>
+        
+          <li><a href="index.html">Cảnh -- Scenes</a> &raquo;</li>
+        
+      <li>Tính Chất của Cảnh -- Scene Properties</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/scene_layout/scene/properties.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scene-properties">
+<h1>Tính Chất của Cảnh -- Scene Properties<a class="headerlink" href="#scene-properties" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scene">
+<span id="bpy-types-scene-active-clip"></span><span id="bpy-types-scene-background-set"></span><span id="bpy-types-scene-camera"></span><h2>Cảnh -- Scene<a class="headerlink" href="#scene" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Cảnh (Scene)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Máy Quay Phim -- Camera</dt>
+<dd>Used to select which camera is used as the active camera.
+You can also set the active camera in the 3D View with <kbd class="kbd docutils literal notranslate">Ctrl-0</kbd>.</dd>
+</dl>
+<dl class="docutils" id="scene-background-set">
+<dt>Background Scene</dt>
+<dd><p class="first">Allows you to use a scene as a background,
+this is typically useful when you want to focus on animating the foreground for example,
+without background elements getting in the way.</p>
+<p>This scene can have its own animation, physics simulations, etc,
+but you will have to select it from the <em>Scene</em> data-block menu, if you want to edit any of its contents.</p>
+<p>Sets can themselves have a background set (they're recursively included).
+So you can always make additions to existing scenes by using them as a background
+to a newly created scene where your additions are made.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">This can also be used in combination with <a class="reference internal" href="../object/editing/duplication.html#data-system-linked-libraries-make-link"><span class="std std-ref">Linking to a Scene</span></a>,
+where one blend-file contains the environment, which can be reused in many places.</p>
+</div>
+</dd>
+<dt>Active Movie Clip</dt>
+<dd>Active movie clip for constraints and viewport display.</dd>
+</dl>
+</div>
+<div class="section" id="units">
+<span id="bpy-types-unitsettings"></span><span id="data-scenes-props-units"></span><h2>Đơn Vị -- Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Đơn Vị (Units)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Unit System</dt>
+<dd><dl class="first last docutils">
+<dt>Không Có -- None</dt>
+<dd>Use units that have with no relation to the real world,
+practically this is the same as <em>Metric</em> just without unit names.</dd>
+<dt>Metric</dt>
+<dd>Use the metric unit system in this scene.</dd>
+<dt>Imperial</dt>
+<dd>Use the imperial unit system in this scene.</dd>
+</dl>
+</dd>
+<dt>Thang Đo -- Unit Scale</dt>
+<dd><p class="first">Scale factor to use when converting between internal units and values displayed in the user interface.
+This can be changed when modeling at microscopic or astronomical scales.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">This only influences the values displayed in the user interface
+and not how things behave internally. For example, physics simulations
+don't take the unit scale into account.</p>
+</div>
+</dd>
+<dt>Tách Biệt Đơn Vị -- Separate Units</dt>
+<dd>When using <em>Metric</em> or <em>Imperial</em>, display properties as multiple values.
+For example, <code class="docutils literal notranslate"><span class="pre">2.285m</span></code> will become <code class="docutils literal notranslate"><span class="pre">2m</span> <span class="pre">28.5cm</span></code>.</dd>
+<dt>Rotation</dt>
+<dd><dl class="first last docutils">
+<dt>Degrees</dt>
+<dd>Use degrees for angles in the user interface.</dd>
+<dt>Radians</dt>
+<dd>Use radians for angles in the user interface.</dd>
+</dl>
+</dd>
+<dt>Chiều Dài -- Length</dt>
+<dd><dl class="first last docutils">
+<dt>Adaptive</dt>
+<dd>The unit used for a specific value depends on the magnitude of the value.
+For example, some values might be displayed as <code class="docutils literal notranslate"><span class="pre">23cm</span></code> while others are
+displayed as <code class="docutils literal notranslate"><span class="pre">10km</span></code>.</dd>
+<dt>Meters/Centimeters/Feet/...</dt>
+<dd>A fixed unit that will be used for all lengths in the user interface.</dd>
+</dl>
+</dd>
+<dt>Mass</dt>
+<dd>See <em>Length</em>.</dd>
+<dt>Time</dt>
+<dd>See <em>Length</em>.</dd>
+</dl>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">Imperial Length Units</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head stub">Full Name</th>
+<th class="head">Short Name(s)</th>
+<th class="head">Scale of a Meter</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><th class="stub">thou</th>
+<td><code class="docutils literal notranslate"><span class="pre">mil</span></code></td>
+<td>0.0000254</td>
+</tr>
+<tr class="row-odd"><th class="stub">inch</th>
+<td><code class="docutils literal notranslate"><span class="pre">&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">in</span></code></td>
+<td>0.0254</td>
+</tr>
+<tr class="row-even"><th class="stub">foot, feet</th>
+<td><code class="docutils literal notranslate"><span class="pre">'</span></code>, <code class="docutils literal notranslate"><span class="pre">ft</span></code></td>
+<td>0.3048</td>
+</tr>
+<tr class="row-odd"><th class="stub">yard</th>
+<td><code class="docutils literal notranslate"><span class="pre">yd</span></code></td>
+<td>0.9144</td>
+</tr>
+<tr class="row-even"><th class="stub">chain</th>
+<td><code class="docutils literal notranslate"><span class="pre">ch</span></code></td>
+<td>20.1168</td>
+</tr>
+<tr class="row-odd"><th class="stub">furlong</th>
+<td><code class="docutils literal notranslate"><span class="pre">fur</span></code></td>
+<td>201.168</td>
+</tr>
+<tr class="row-even"><th class="stub">mile</th>
+<td><code class="docutils literal notranslate"><span class="pre">mi</span></code>, <code class="docutils literal notranslate"><span class="pre">m</span></code></td>
+<td>1609.344</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Metric Length Units</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head stub">Full Name</th>
+<th class="head">Short Name(s)</th>
+<th class="head">Scale of a Meter</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><th class="stub">micrometer</th>
+<td><code class="docutils literal notranslate"><span class="pre">um</span></code></td>
+<td>0.000001</td>
+</tr>
+<tr class="row-odd"><th class="stub">millimeter</th>
+<td><code class="docutils literal notranslate"><span class="pre">mm</span></code></td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><th class="stub">centimeter</th>
+<td><code class="docutils literal notranslate"><span class="pre">cm</span></code></td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><th class="stub">decimeter</th>
+<td><code class="docutils literal notranslate"><span class="pre">dm</span></code></td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><th class="stub">meter</th>
+<td><code class="docutils literal notranslate"><span class="pre">m</span></code></td>
+<td>1.0</td>
+</tr>
+<tr class="row-odd"><th class="stub">dekameter</th>
+<td><code class="docutils literal notranslate"><span class="pre">dam</span></code></td>
+<td>10.0</td>
+</tr>
+<tr class="row-even"><th class="stub">hectometer</th>
+<td><code class="docutils literal notranslate"><span class="pre">hm</span></code></td>
+<td>100.0</td>
+</tr>
+<tr class="row-odd"><th class="stub">kilometer</th>
+<td><code class="docutils literal notranslate"><span class="pre">km</span></code></td>
+<td>1000.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gravity">
+<h2>Trọng Lực -- Gravity<a class="headerlink" href="#gravity" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Trọng Lực (Gravity)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Options to control global gravity used for physics effects.</p>
+<p>See the <a class="reference internal" href="../../physics/forces/gravity.html"><span class="doc">Physics chapter</span></a> for more information.</p>
+</div>
+<div class="section" id="keying-sets">
+<h2>Bộ Khóa -- Keying Sets<a class="headerlink" href="#keying-sets" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Bộ Khóa (Keying Sets)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>See <a class="reference internal" href="../../animation/keyframes/keying_sets.html"><span class="doc">Bộ Khóa -- Keying Sets</span></a>.</p>
+</div>
+<div class="section" id="audio">
+<span id="bpy-types-scene-audio-volume"></span><span id="bpy-ops-sound-bake-animation"></span><span id="data-scenes-audio"></span><h2>Âm Thanh -- Audio<a class="headerlink" href="#audio" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Âm Thanh (Audio)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Options to control global audio settings.</p>
+<dl class="docutils">
+<dt>Thể Tích -- Volume</dt>
+<dd>Volume for the scene.</dd>
+<dt>Mô Hình Khoảng Cách -- Distance Model</dt>
+<dd>Changes how the sound attenuation is calculated based on the distance.
+Most physically correct is the <em>Inverse</em> model,
+but it's also possible to choose a linear and an exponential falloff.
+The clamped modes limit the volume to be lower than 100% (1.0),
+that means if the distance is smaller than the reference distance, the volume is always 100%.
+For an exact description of each option
+see the <a class="reference external" href="https://www.openal.org/documentation/">OpenAL documentation</a>.</dd>
+</dl>
+<span id="bpy-types-ffmpegsettings-audio-mixrate"></span><dl class="docutils" id="bpy-types-ffmpegsettings-audio-channels">
+<dt>Format Settings</dt>
+<dd><p class="first">These settings, along with the settings found
+in the <a class="reference internal" href="../../render/output/file_formats.html#render-output-video-encoding-panel"><span class="std std-ref">Encoding Panel</span></a>
+change how sound is exported while rendering.</p>
+<p>To control how sounds plays back from within Blender, see the audio settings
+in the <a class="reference internal" href="../../editors/preferences/system.html#prefs-system-sound"><span class="std std-ref">Preferences</span></a>.</p>
+<dl class="last docutils">
+<dt>Audio Channels</dt>
+<dd>Sets the audio channel count. Available options are:
+<em>Mono</em>, <em>Stereo</em>, <em>4 Channels</em>, <em>5.1 Surround</em>, <em>7.1 Surround</em>.</dd>
+<dt>Sample Rate</dt>
+<dd>Sets the audio <a class="reference external" href="https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate">sampling rate</a>.</dd>
+</dl>
+</dd>
+<dt>Doppler Speed</dt>
+<dd>Speed of the sound for the Doppler effect calculations.
+The typical value is 343.3 m/s in air, in water for example this value is around 1560 m/s.</dd>
+<dt>Doppler Factor</dt>
+<dd>Controls how strong the Doppler effect is.
+You can exaggerate or attenuate the change of pitch, but physically correct is a factor of 1.0.</dd>
+<dt>Cập Nhật Bộ Nhớ Đệm Hoạt Họa -- Update Animation Cache</dt>
+<dd>Updates the audio animation cache. This is useful if you start noticing artifact in the audio.</dd>
+</dl>
+</div>
+<div class="section" id="rigid-body-world">
+<h2>Thế Giới Thân Cứng -- Rigid Body World<a class="headerlink" href="#rigid-body-world" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Thế Giới Thân Cứng (Rigid Body World)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <em>Rigid Body World</em> is a group of rigid body objects,
+which holds settings that apply to all rigid bodies in this simulation.</p>
+<p>See <a class="reference internal" href="../../physics/rigid_body/world.html"><span class="doc">Rigid Body World</span></a> for more information.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../object/index.html" class="btn btn-neutral float-right" title="Vật Thể -- Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

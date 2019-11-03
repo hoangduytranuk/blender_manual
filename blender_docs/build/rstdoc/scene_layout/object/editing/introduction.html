@@ -1,0 +1,340 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   This section describes tools for manipulating objects in Object Mode.
+All editing tools can be found in Object menu.
+  </paragraph>
+  <target refid="bpy-ops-object-join">
+  </target>
+  <target refid="object-join">
+  </target>
+  <section ids="join object-join bpy-ops-object-join" names="join hội\ nhập/chắp\ nối\ --\ join object-join bpy.ops.object.join">
+   <title>
+    Hội Nhập/Chắp Nối -- Join
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể -- Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Chắp Nối (Join)`">
+         Vật Thể (Object) ‣ Chắp Nối (Join)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-J
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Join merges all selected objects into the last selected
+    <emphasis>
+     Active
+    </emphasis>
+    object.
+All object data is linked to the active object (which must be selected).
+All objects must be of the same type: mesh, curve, surface or armature.
+If several curves are joined, each one will keep its subtype (NURBS or Bézier).
+   </paragraph>
+   <note>
+    <paragraph>
+     Object data has many attributes which may be handled when joining.
+    </paragraph>
+    <paragraph>
+     Materials, vertex groups, UV and Vertex layers will be merged.
+    </paragraph>
+    <paragraph>
+     Modifiers, constraints, groups and parent relationships are ignored
+when joining and will not be applied to the active object.
+    </paragraph>
+   </note>
+   <target refid="object-convert-to">
+   </target>
+   <target refid="bpy-ops-object-convert">
+   </target>
+  </section>
+  <section ids="convert-to bpy-ops-object-convert object-convert-to" names="convert\ to chuyển\ đổi\ sang\ --\ convert\ to bpy.ops.object.convert object-convert-to">
+   <title>
+    Chuyển Đổi Sang -- Convert To
+   </title>
+   <section ids="curve-from-mesh-text" names="curve\ from\ mesh/text đường\ cong\ từ\ khung\ lưới/văn\ bản\ --\ curve\ from\ mesh/text">
+    <title>
+     Đường Cong từ Khung Lưới/Văn Bản -- Curve from Mesh/Text
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Vật Thể -- Object Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Chuyển Đổi thành (Convert to) --&gt; Đường Cong từ Khung Lưới/Văn Bản (Curve from Mesh/Text)`">
+          Vật Thể (Object) ‣ Chuyển Đổi thành (Convert to) ‣ Đường Cong từ Khung Lưới/Văn Bản (Curve from Mesh/Text)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Mesh objects and text objects can be converted into curve objects.
+In mesh objects, only edges belonging to no faces will be taken into account.
+The resulting curve will be a Poly curve type, but can be converted to have
+smooth segments as described in
+     <reference internal="True" refuri="../../../modeling/curves/editing/curve.html#curve-convert-type">
+      <inline classes="std std-ref">
+       Set Spline Type
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+   <section ids="mesh-from-curve-metaball-surface-text" names="mesh\ from\ curve/metaball/surface/text khung\ lưới\ từ\ đường\ cong/siêu\ cầu/bề\ mặt/văn\ bản\ --\ mesh\ from\ curve/metaball/surface/text">
+    <title>
+     Khung Lưới từ Đường Cong/Siêu Cầu/Bề Mặt/Văn Bản -- Mesh from Curve/Metaball/Surface/Text
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Vật Thể -- Object Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Convert to --&gt; Mesh from Curve/Meta/Surf/Text`">
+          Object ‣ Convert to ‣ Mesh from Curve/Meta/Surf/Text
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Converts the selected curve, metaball, surface and text objects to mesh objects.
+The actual defined resolution of these objects will be taken into account for the conversion.
+Note that it also keeps the faces and volumes created by closed and extruded curves.
+    </paragraph>
+   </section>
+   <section ids="options" names="options tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Duy Trì Bản Gốc -- Keep Original
+      </term>
+      <definition>
+       <paragraph>
+        Duplicates the original object before converting it.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="object-show-hide">
+    </target>
+    <target refid="bpy-ops-object-hide-view">
+    </target>
+   </section>
+  </section>
+  <section ids="show-hide bpy-ops-object-hide-view object-show-hide" names="show/hide hiện/ẩn\ --\ show/hide bpy.ops.object.hide_view object-show-hide">
+   <title>
+    Hiện/Ẩn -- Show/Hide
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Hiện/Ẩn (Show/Hide)`">
+         Vật Thể (Object) ‣ Hiện/Ẩn (Show/Hide)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Show Hidden Objects
+      <literal classes="kbd">
+       Alt-H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Reveals all hidden objects.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Ẩn Giấu cái Được Chọn -- Hide Selected
+      <literal classes="kbd">
+       H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Hides all selected objects.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Ẩn Giấu Cái Không Được Chọn -- Hide Unselected
+      <literal classes="kbd">
+       Shift-H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Hides all unselected objects of the scene.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-ops-object-delete">
+   </target>
+  </section>
+  <section ids="delete bpy-ops-object-delete" names="delete xóa\ --\ delete bpy.ops.object.delete">
+   <title>
+    Xóa -- Delete
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể -- Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Xóa (Delete)`">
+         Vật Thể (Object) ‣ Xóa (Delete)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         X
+        </literal>
+        or
+        <literal classes="kbd">
+         Delete
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The selected objects are deleted from the scene.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Delete Globally
+     </term>
+     <definition>
+      <paragraph>
+       Delete the selected objects from all scenes.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

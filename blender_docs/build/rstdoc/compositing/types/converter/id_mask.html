@@ -1,0 +1,175 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/converter/id_mask.rst">
+ <target refid="bpy-types-compositornodeidmask">
+ </target>
+ <section ids="bpy-types-compositornodeidmask id-mask-node" names="id\ mask\ node nút\ chắn\ lọc\ id\ --\ id\ mask\ node bpy.types.compositornodeidmask">
+  <title>
+   Nút Chắn Lọc ID -- ID Mask Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeIDMask.png'}" uri="images/compositing_node-types_CompositorNodeIDMask.png"/>
+   <caption>
+    Nút Chắn Lọc ID.
+   </caption>
+  </figure>
+  <paragraph>
+   <emphasis>
+    Nút Chắn Lọc ID
+   </emphasis>
+   (lọc chỉ số) có thể được sử dụng để truy cập màn chắn alpha trên mỗi một vật thể hoặc trên mỗi một vật liệu.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giá trị ID -- ID value
+     </term>
+     <definition>
+      <paragraph>
+       Chỉ số lượt kết xuất cung cấp,
+       <emphasis>
+        Chỉ Số Vật Thể
+       </emphasis>
+       (Object Index) hoặc lượt
+       <emphasis>
+        Chỉ Số Chất Liệu
+       </emphasis>
+       (Material Index), tức là đầu ra của
+       <reference internal="True" refuri="../input/render_layers.html">
+        <inline classes="doc">
+         Nút Tầng Lớp Kết Xuất -- Render Layers node
+        </inline>
+       </reference>
+       hoặc
+       <reference internal="True" refuri="../input/render_layers.html">
+        <inline classes="doc">
+         Nút hình ảnh -- Image node
+        </inline>
+       </reference>
+       với định dạng đa tầng lớp (multi-layer).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chỉ Số -- Index
+     </term>
+     <definition>
+      <paragraph>
+       Sự lựa chọn về chỉ số đã xác định trước đây.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chống Răng Cưa -- Anti-Aliased
+     </term>
+     <definition>
+      <paragraph>
+       Chức năng hậu xử lý này tinh chỉnh màn chắn. Xin xem thêm mục
+       <emphasis>
+        Chống Răng Cưa
+       </emphasis>
+       --
+       <reference internal="True" refuri="../../../glossary/index.html#term-anti-aliasing">
+        <inline classes="xref std std-term">
+         anti-aliasing
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Alpha
+     </term>
+     <definition>
+      <paragraph>
+       Màn chắn là màu trắng, trong khi vật thể, hoặc những nơi không phải là màn chắn, là màu đen. Nếu vật thể trong suốt thì màn chắn alpha biểu thị điều này dùng các giá trị màu xám.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     Trong Blender Nội Tại (
+     <emphasis>
+      Blender Internal
+     </emphasis>
+     ) nếu một vật thể trong suốt nằm ở phía trước một vật thể khác thì màn chắn sẽ không phản ảnh khả năng hiển thị một phần của vật thể nằm ở phía sau.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="setup" names="setup sắp\ đặt\ --\ setup">
+   <title>
+    Sắp Đặt -- Setup
+   </title>
+   <paragraph>
+    An index can be specify for any object or material in the scene.
+The Object Index can be set in Properties Editor
+    <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Relations --&gt; Pass Index`">
+     Object ‣ Relations ‣ Pass Index
+    </inline>
+    and
+    <inline classes="menuselection" rawtext=":menuselection:`Material --&gt; Settings --&gt; Pass Index`">
+     Material ‣ Settings ‣ Pass Index
+    </inline>
+    for the Material Index.
+To be accessible after rendering,
+    <emphasis>
+     Object Index
+    </emphasis>
+    or
+    <emphasis>
+     Material Index
+    </emphasis>
+    render pass has to be enabled.
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_converter_id-mask_relations-panel.png'}" uri="images/compositing_types_converter_id-mask_relations-panel.png"/>
+    <caption>
+     Chỉ Số Lượt Vật Thể.
+    </caption>
+   </figure>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <paragraph>
+    Trong ví dụ này, hình lập thể màu đỏ phía sau bên trái được gán Chỉ Số Lượt (Pass Index) là 1 và khối lập phương bên phải Chỉ Số Lượt là 2. Nơi hai hình khối giao nhau, sẽ có nhiễu điểm ảnh (pixelation) đáng chú ý xảy ra, vì chúng kết hợp với nhau ở một góc nhọn và có màu khác nhau. Sử dụng màn chắn từ vật thể 1, tức cái đã được làm mịn (chống răng cưa) ở các cạnh, chúng tôi dùng một
+    <emphasis>
+     nút hòa trộn
+    </emphasis>
+    (Mix Node), và đặt phép
+    <emphasis>
+     Nhân
+    </emphasis>
+    (Multiply) để nhân các cạnh đã làm mịn của hình ảnh, hòng loại bỏ các đường nét khó chịu đó đi, và do đó làm mịn được.
+   </paragraph>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/compositing_types_converter_id-mask_example.png'}" uri="images/compositing_types_converter_id-mask_example.png"/>
+    <caption>
+     Ví dụ về nút Chắn Lọc Id
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

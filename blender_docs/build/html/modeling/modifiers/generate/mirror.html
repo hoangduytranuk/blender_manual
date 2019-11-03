@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bộ Điều Chỉnh Đối Xứng -- Mirror Modifier &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/mirror.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="-- Multiresolution Modifier" href="multiresolution.html" />
+    <link rel="prev" title="Bộ Điều Chỉnh Màn Chắn -- Mask Modifier" href="mask.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">-- Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh -- Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Sửa Đổi -- Modify</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#generate">Sinh Tạo -- Generate</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html">Bộ Điều Chỉnh Mảng -- Array Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bevel.html">Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="booleans.html">Bộ Điều Chỉnh Bool -- Boolean Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build.html">Bộ Điều Chỉnh Xây Dựng -- Build Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decimate.html">Bộ Điều Chỉnh Tiêu Hao -- Decimate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edge_split.html">-- Edge Split Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mask.html">Bộ Điều Chỉnh Màn Chắn -- Mask Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Đối Xứng -- Mirror Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multiresolution.html">-- Multiresolution Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="remesh.html">Bộ Điều Chỉnh Kiến Tạo Lại Khung Lưới -- Remesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="screw.html">Bộ Điều Chỉnh Xoáy Ốc -- Screw Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="skin.html">Bộ Điều Chỉnh Da -- Skin Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidify.html">Bộ Điều Chỉnh Tạo Độ Dày -- Solidify Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision_surface.html">-- Subdivision Surface Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangulate.html">Bộ Điều Chỉnh Tam Giác Hóa -- Triangulate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wireframe.html">Bộ Điều Chỉnh Khung Dây -- Wireframe Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#simulate">Mô Phỏng -- Simulate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
+        
+      <li>Bộ Điều Chỉnh Đối Xứng -- Mirror Modifier</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modeling/modifiers/generate/mirror.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mirror-modifier">
+<span id="bpy-types-mirrormodifier"></span><h1>Bộ Điều Chỉnh Đối Xứng -- Mirror Modifier<a class="headerlink" href="#mirror-modifier" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Mirror</em> modifier mirrors a mesh along its local X, Y and/or Z axes, across the <a class="reference internal" href="../../../glossary/index.html#term-object-origin"><span class="xref std std-term">Object Origin</span></a>.
+It can also use another object as the mirror center, then use that object's local axes instead of its own.</p>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id1">
+<img alt="../../../_images/modeling_modifiers_generate_mirror_panel.png" src="../../../_images/modeling_modifiers_generate_mirror_panel.png" />
+<p class="caption"><span class="caption-text">The Mirror modifier.</span></p>
+</div>
+<dl class="docutils">
+<dt>Trục -- Axis</dt>
+<dd><p class="first">The X, Y, Z axis along which to mirror, i.e. the axis perpendicular to the mirror plane of symmetry.</p>
+<p>To understand how the axis applies to the mirror direction, if you were to mirror on the X axis,
+the positive X values of the original mesh would become the negative X values on the mirrored side.</p>
+<p class="last">You can select more than one of these axes. And will then get more mirrored copies.
+With one axis you get a single mirror, with two axes four mirrors, and with all three axes eight mirrors.</p>
+</dd>
+<dt>Bisect</dt>
+<dd>If the mesh is already on both sides of the mirror plane, it is cut by that plane,
+and only one side (the &quot;negative&quot; one by default) is kept to perform the mirror process.</dd>
+<dt>Flip</dt>
+<dd>When <em>Bisect</em> is enabled on an axis, you can use this setting to switch the side kept and mirrored
+(i.e. when it is enabled, the &quot;positive&quot; side will be kept, instead of the &quot;negative&quot; one).</dd>
+<dt>Vật Thể Đối Xứng -- Mirror Object</dt>
+<dd><p class="first">An <a class="reference internal" href="../../../interface/controls/buttons/eyedropper.html#ui-eyedropper"><span class="std std-ref">Object Selector</span></a> to select an object (usually an empty),
+which position and rotation will be used to define mirror planes
+(instead of using the ones from the modified object).</p>
+<p class="last">You can animate it to animate the mirror effect.</p>
+</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Groups</dt>
+<dd><p class="first">Try to mirror existing vertex groups.</p>
+<p>A very nice feature, but one that has very specific prerequisites:</p>
+<ul class="last simple">
+<li>The vertex groups you want to mirror must be named following the usual left/right pattern
+(i.e. suffixed by something like &quot;.R&quot;, &quot;.right&quot;, &quot;.L&quot;, etc.).</li>
+<li>The mirror side vertex group must already exist (it will not be created automatically).
+It must also be completely empty (no vertices assigned to it).</li>
+</ul>
+</dd>
+<dt>Hội Nhập -- Merge</dt>
+<dd>Where a vertex is in the same place (within the <em>Merge Limit</em> distance) as its mirror
+it will be merged with the mirrored vertex.</dd>
+<dt>Giới Hạn Hội Nhập -- Merge Limit</dt>
+<dd>The maximum distance between a vertex and its mirror copy at which they are merged together
+(being snapped on the mirror plane). Needs <em>Merge</em> to be enabled.</dd>
+<dt>Xén -- Clipping</dt>
+<dd><p class="first">Prevents vertices from moving through the mirror plane(s) while the user is transforming them in Edit Mode.</p>
+<p>If it is enabled but vertices are beyond the mirror plane and outside of the <em>Merge Limit</em>,
+the vertices will not be merged. But as soon as the vertices are within <em>Merge Limit</em>
+they are snapped together and cannot be moved beyond the mirror plane.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Vertices on the mirror plane will be unable to move away from the mirror plane
+as long as <em>Clipping</em> is enabled.
+You must disable it to be able to move the vertices along the mirror axis again.</p>
+</div>
+</dd>
+<dt>-- Flip UV</dt>
+<dd><p class="first">The <em>Flip U</em> and <em>Flip V</em> options allows you to mirror the UV texture coordinates across the middle of the image.</p>
+<p class="last">E.g. if you have a vertex with UV coordinates of (0.3, 0.9),
+its mirror copy will have UV coordinates of (0.7, 0.1).</p>
+</dd>
+<dt>-- UV Offsets</dt>
+<dd><p class="first">Amount to shift mirrored UVs on the U/V axes.</p>
+<p class="last">It's useful for baking (as overlapping UVs can cause artifacts to appear in the baked map),
+so the UVs can be moved outside the image and not used for baking, but still be used for display.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="hints">
+<h2>Gợi ý -- Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h2>
+<p>Many modeling tasks involve creating objects that are symmetrical.
+This modifier offers a simple and efficient way to do this, with real-time update of the mirror as you edit it.
+Once your modeling is completed you can either click <em>Apply</em> to make a real version of your mesh,
+or leave it as-is for future editing.</p>
+<div class="section" id="accurately-positioning-the-mirror-plane">
+<h3>-- Accurately Positioning the Mirror Plane<a class="headerlink" href="#accurately-positioning-the-mirror-plane" title="Permalink to this headline">¶</a></h3>
+<p>To apply a <em>Mirror</em> modifier, it is common to have to move the object's origin onto
+the edge or face that is to be the axis for mirroring.
+This can be tricky when attempted visually.</p>
+<p>A good technique to achieve an exact position is
+to select the edge, then <a class="reference internal" href="../../../scene_layout/object/editing/transform/control/snap.html"><span class="doc">snap</span></a> <em>Cursor to Selection</em>.
+This will position the 3D Cursor in the center of the edge.
+Finally, use the <a class="reference internal" href="../../../scene_layout/object/origin.html#bpy-ops-object-origin-set"><span class="std std-ref">Set Origin</span></a> menu, and select <em>Origin to 3D Cursor</em>.
+This will move the object's origin (and thus, the mirror plane) to where the 3D cursor is located,
+and the mirroring will be exact.</p>
+<p>An alternative is to use an Empty as a <em>Mirror Object</em> that you move to the correct position.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="multiresolution.html" class="btn btn-neutral float-right" title="-- Multiresolution Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mask.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Màn Chắn -- Mask Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

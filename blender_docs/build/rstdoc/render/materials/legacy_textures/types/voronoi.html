@@ -1,0 +1,269 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/materials/legacy_textures/types/voronoi.rst">
+ <target refid="bpy-types-voronoitexture">
+ </target>
+ <section ids="voronoi bpy-types-voronoitexture" names="voronoi bpy.types.voronoitexture">
+  <title>
+   Voronoi
+  </title>
+  <paragraph>
+   The Voronoi texture is used to generate very convincing Metal,
+especially the "Hammered" effect. Organic shaders (e.g. scales, veins in skin).
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/render_materials_legacy-textures_types_voronoi_panel.png'}" uri="images/render_materials_legacy-textures_types_voronoi_panel.png"/>
+   <caption>
+    Voronoi Texture panels.
+   </caption>
+  </figure>
+  <section ids="options" names="options">
+   <title>
+    Options
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Distance Metric
+     </term>
+     <definition>
+      <paragraph>
+       This procedural texture has seven Distance Metric options.
+These determine the algorithm to find the distance between cells of the texture. These options are:
+      </paragraph>
+      <bullet_list bullet="-">
+       <list_item>
+        <paragraph>
+         Minkowski
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Minkowski 4
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Minkowski 1/2
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Chebychev
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Manhattan
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Distance Squared
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Actual Distance
+        </paragraph>
+       </list_item>
+      </bullet_list>
+      <paragraph>
+       The
+       <emphasis>
+        Minkowski
+       </emphasis>
+       setting has a user definable value (the
+       <emphasis>
+        Exponent
+       </emphasis>
+       button)
+which determines the Minkowski exponent
+       <emphasis>
+        e
+       </emphasis>
+       of the distance function:
+      </paragraph>
+      <block_quote>
+       <paragraph>
+        (
+        <emphasis>
+         x
+        </emphasis>
+        <superscript>
+         e
+        </superscript>
+        +
+        <emphasis>
+         y
+        </emphasis>
+        <superscript>
+         e
+        </superscript>
+        +
+        <emphasis>
+         z
+        </emphasis>
+        <superscript>
+         e
+        </superscript>
+        )
+        <superscript>
+         1/e
+        </superscript>
+       </paragraph>
+      </block_quote>
+      <paragraph>
+       A value of one produces the
+       <emphasis>
+        Manhattan
+       </emphasis>
+       distance metric, a value less than one produces stars
+(at 0.5, it gives a
+       <emphasis>
+        Minkowski 1/2
+       </emphasis>
+       ), and higher values produce square cells
+(at 4.0, it gives a
+       <emphasis>
+        Minkowski 4
+       </emphasis>
+       , at 10.0, a
+       <emphasis>
+        Chebychev
+       </emphasis>
+       ).
+So nearly all Distance Settings are basically the same -- a variation of
+       <emphasis>
+        Minkowski
+       </emphasis>
+       .
+      </paragraph>
+      <paragraph>
+       You can get irregularly-shaped rounded cells with
+the
+       <emphasis>
+        Actual Distance
+       </emphasis>
+       /
+       <emphasis>
+        Distance Squared
+       </emphasis>
+       options.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <table>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/render_materials_legacy-textures_types_voronoi_minkowski0-5.jpg'}" uri="images/render_materials_legacy-textures_types_voronoi_minkowski0-5.jpg" width="200px"/>
+         <caption>
+          Minkowski Exponent: 0.5 (Minkowski 1/2).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/render_materials_legacy-textures_types_voronoi_minkowski1.jpg'}" uri="images/render_materials_legacy-textures_types_voronoi_minkowski1.jpg" width="200px"/>
+         <caption>
+          Minkowski Exponent: 1 (Manhattan).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/render_materials_legacy-textures_types_voronoi_minkowski2.jpg'}" uri="images/render_materials_legacy-textures_types_voronoi_minkowski2.jpg" width="200px"/>
+         <caption>
+          Minkowski Exponent: 2 (Actual Distance).
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/render_materials_legacy-textures_types_voronoi_minkowski4.jpg'}" uri="images/render_materials_legacy-textures_types_voronoi_minkowski4.jpg" width="200px"/>
+         <caption>
+          Minkowski Exponent: 4 (Minkowski 4).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/render_materials_legacy-textures_types_voronoi_minkowski10.jpg'}" uri="images/render_materials_legacy-textures_types_voronoi_minkowski10.jpg" width="200px"/>
+         <caption>
+          Minkowski Exponent: 10 (Chebychev).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id7">
+         <image candidates="{'*': 'images/render_materials_legacy-textures_types_voronoi_distancesquared.jpg'}" uri="images/render_materials_legacy-textures_types_voronoi_distancesquared.jpg" width="200px"/>
+         <caption>
+          Distance Squared (more contrast than Actual Distance).
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Feature Weights
+     </term>
+     <definition>
+      <paragraph>
+       These four sliders at the bottom of the Voronoi panel represent the values of the four Worley constants,
+which are used to calculate the distances between each cell in the texture based on the distance metric.
+Adjusting these values can have some interesting effects on the end result...
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <comment xml:space="preserve">
+    (no gallery yet) Check the Samples Gallery for some examples of these settings and what textures they produce.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Coloring
+     </term>
+     <definition>
+      <paragraph>
+       Four settings (
+       <emphasis>
+        Intensity
+       </emphasis>
+       ,
+       <emphasis>
+        Position
+       </emphasis>
+       ,
+       <emphasis>
+        Position and Outline
+       </emphasis>
+       , and
+       <emphasis>
+        Position, Outline, and Intensity
+       </emphasis>
+       )
+that can use four different noise basis as methods to calculate color and intensity of the texture output.
+This gives the Voronoi texture you create with the "Worley Sliders"
+a completely different appearance and is the equivalent of the noise basis setting found on the other textures.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

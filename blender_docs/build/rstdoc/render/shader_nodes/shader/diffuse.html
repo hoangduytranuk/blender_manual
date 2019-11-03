@@ -1,0 +1,138 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/shader/diffuse.rst">
+ <target refid="bpy-types-shadernodebsdfdiffuse">
+ </target>
+ <section ids="diffuse-bsdf bpy-types-shadernodebsdfdiffuse" names="diffuse\ bsdf bsdf\ khuếch\ tán\ --\ diffuse\ bsdf bpy.types.shadernodebsdfdiffuse">
+  <title>
+   BSDF Khuếch Tán -- Diffuse BSDF
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_shader_diffuse_node.png'}" uri="images/render_shader-nodes_shader_diffuse_node.png"/>
+   <caption>
+    Diffuse BSDF.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Diffuse
+   </emphasis>
+   <abbreviation explanation="Bidirectional scattering distribution function">
+    BSDF
+   </abbreviation>
+   node is used to add Lambertian and Oren-Nayar diffuse reflection.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Color of the surface, or physically speaking,
+the probability that light is reflected or transmitted for each wavelength.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Roughness
+      <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+       Cycles Only
+      </inline>
+     </term>
+     <definition>
+      <paragraph>
+       Surface roughness; 0.0 gives standard Lambertian reflection, higher values activate the Oren-Nayar BSDF.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pháp Tuyến -- Normal
+     </term>
+     <definition>
+      <paragraph>
+       Pháp tuyến sử dụng cho việc tô bóng; nếu không có gì kết nối thì pháp tuyến tô bóng mặc định sẽ được sử dụng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Nút này không có tính chất nào cả.
+   </paragraph>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      BSDF
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra chuẩn của bộ tô bóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <table classes="colwidths-auto">
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_diffuse_example.jpg'}" uri="images/render_shader-nodes_shader_diffuse_example.jpg"/>
+         <caption>
+          Lambertian reflection.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_diffuse_behavior.svg'}" uri="images/render_shader-nodes_shader_diffuse_behavior.svg" width="308px"/>
+         <caption>
+          Diffuse shader behavior.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_diffuse_example-oren-nayar.jpg'}" uri="images/render_shader-nodes_shader_diffuse_example-oren-nayar.jpg"/>
+         <caption>
+          Oren-Nayar reflection.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <comment xml:space="preserve">
+        </comment>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

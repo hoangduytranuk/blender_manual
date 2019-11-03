@@ -1,0 +1,225 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/materials/legacy_textures/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_menu.png'}" uri="images/render_materials_legacy-textures_introduction_menu.png" width="230px"/>
+   <caption>
+    The Texture Type list in the Texture panel of the Texture buttons. (Non-procedural textures darkened out.)
+   </caption>
+  </figure>
+  <paragraph>
+   Procedural textures are textures that are defined mathematically.
+They are generally relatively simple to use,
+because they do not need to be mapped in a special way.
+This does not mean that procedural textures cannot become very complex.
+  </paragraph>
+  <paragraph>
+   These types of textures are 'real' 3D. By that we mean that they fit together perfectly at
+the edges and continue to look like what they are meant to look like even when they are cut;
+as if a block of wood had really been cut in two.
+Procedural textures are not filtered or anti-aliased. This is hardly ever a problem:
+the user can easily keep the specified frequencies within acceptable limits.
+  </paragraph>
+  <section ids="common-options" names="common\ options">
+   <title>
+    Common Options
+   </title>
+   <section ids="noise-basis" names="noise\ basis">
+    <title>
+     Noise Basis
+    </title>
+    <paragraph>
+     Each noise-based Blender texture (except Voronoi and Simple Noise) has
+a
+     <emphasis>
+      Noise Basis
+     </emphasis>
+     setting that allows the user to select
+which algorithm is used to generate the texture.
+This list includes the original Blender noise algorithm.
+The
+     <emphasis>
+      Noise Basis
+     </emphasis>
+     settings makes the procedural textures extremely flexible (especially
+     <emphasis>
+      Musgrave
+     </emphasis>
+     ).
+    </paragraph>
+    <paragraph>
+     The
+     <emphasis>
+      Noise Basis
+     </emphasis>
+     governs the structural appearance of the texture:
+    </paragraph>
+    <table>
+     <tgroup cols="3">
+      <colspec colwidth="33">
+      </colspec>
+      <colspec colwidth="33">
+      </colspec>
+      <colspec colwidth="33">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id2">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-blender-original.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-blender-original.jpg" width="160px"/>
+          <caption>
+           Blender Original.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id3">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f1.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f1.jpg" width="160px"/>
+          <caption>
+           Voronoi F1.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id4">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f2-f1.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f2-f1.jpg" width="160px"/>
+          <caption>
+           Voronoi F2-F1.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <figure ids="id5">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-original-perlin.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-original-perlin.jpg" width="160px"/>
+          <caption>
+           Original Perlin.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id6">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f2.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f2.jpg" width="160px"/>
+          <caption>
+           Voronoi F2.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id7">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-voronoi-crackle.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-voronoi-crackle.jpg" width="160px"/>
+          <caption>
+           Voronoi Crackle.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <figure ids="id8">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-improved-perlin.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-improved-perlin.jpg" width="160px"/>
+          <caption>
+           Improved Perlin.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id9">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f3.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f3.jpg" width="160px"/>
+          <caption>
+           Voronoi F3.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id10">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-cell-noise.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-cell-noise.jpg" width="160px"/>
+          <caption>
+           Cell Noise.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <figure ids="id11">
+          <image candidates="{'*': 'images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f4.jpg'}" uri="images/render_materials_legacy-textures_introduction_noise-basis-voronoi-f4.jpg" width="160px"/>
+          <caption>
+           Voronoi F4.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <comment xml:space="preserve">
+         </comment>
+        </entry>
+        <entry>
+         <comment xml:space="preserve">
+         </comment>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <paragraph>
+     There are two more possible settings for
+     <emphasis>
+      Noise Basis
+     </emphasis>
+     , which are relatively similar to
+     <emphasis>
+      Blender Original
+     </emphasis>
+     :
+Improved Perlin and Original Perlin.
+    </paragraph>
+   </section>
+   <section ids="nabla" names="nabla">
+    <title>
+     Nabla
+    </title>
+    <paragraph>
+     Almost all procedural textures in Blender use derivatives for calculating normals for texture mapping
+(except
+     <emphasis>
+      Blend
+     </emphasis>
+     and
+     <emphasis>
+      Magic
+     </emphasis>
+     ). This is important for Normal and Displacement Maps.
+The strength of the effect is controlled with the
+     <emphasis>
+      Nabla
+     </emphasis>
+     number field.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="hints" names="hints">
+   <title>
+    Hints
+   </title>
+   <paragraph>
+    Procedural textures can either produce colored textures, intensity only textures,
+textures with alpha values and normal textures.
+If intensity only ones are used the result is a black-and-white texture,
+which can be greatly enhanced by the use of ramps.
+If on the other hand you use ramps and need an intensity value,
+you have to switch on
+    <emphasis>
+     No RGB
+    </emphasis>
+    in the
+    <emphasis>
+     Mapping
+    </emphasis>
+    panel.
+   </paragraph>
+  </section>
+ </section>
+</document>

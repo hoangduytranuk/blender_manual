@@ -1,0 +1,185 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/deform/simple_deform.rst">
+ <target refid="bpy-types-simpledeformmodifier">
+ </target>
+ <section ids="simple-deform-modifier bpy-types-simpledeformmodifier" names="simple\ deform\ modifier --\ simple\ deform\ modifier bpy.types.simpledeformmodifier">
+  <title>
+   -- Simple Deform Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Simple Deform
+   </emphasis>
+   modifier allows easy application of a simple deformation to
+an object (meshes, lattices, curves, surfaces and texts are supported).
+  </paragraph>
+  <paragraph>
+   Using another object, it is possible to define the axis and origin of the deformation,
+allowing application of very different effects.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_simple-deform_panel.png'}" uri="images/modeling_modifiers_deform_simple-deform_panel.png"/>
+    <caption>
+     The Simple Deform modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chế Độ -- Mode
+     </term>
+     <definition>
+      <paragraph>
+       Defines the kind of deformation which will be applied.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Xoắn -- Twist
+        </term>
+        <definition>
+         <paragraph>
+          Rotates the mesh around the specified
+          <emphasis>
+           Axis
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bẻ Cong -- Bend
+        </term>
+        <definition>
+         <paragraph>
+          Bends the mesh over the specified
+          <emphasis>
+           Axis
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Vuốt Thon -- Taper
+        </term>
+        <definition>
+         <paragraph>
+          Linearly scales along the specified
+          <emphasis>
+           Axis
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Kéo Giãn -- Stretch
+        </term>
+        <definition>
+         <paragraph>
+          Stretches the object along the specified
+          <emphasis>
+           Axis
+          </emphasis>
+          (negative
+          <emphasis>
+           Factor
+          </emphasis>
+          leads to squash),
+preserving volume by scaling inversely on the two other axes.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       The name of the vertex group that indicates whether and how much each vertex is influenced by the deformation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Axis, Origin
+     </term>
+     <definition>
+      <paragraph>
+       The name of an object that defines the origin and axis of deformation (usually an empty). This object can be:
+      </paragraph>
+      <bullet_list bullet="-">
+       <list_item>
+        <paragraph>
+         Rotated to control the axis (its local
+         <emphasis>
+          Axis
+         </emphasis>
+         is now used as the deformation one).
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Moved to control the origin of the deformation.
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Scaled to change the deformation factor.
+        </paragraph>
+       </list_item>
+      </bullet_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Angle/Factor
+     </term>
+     <definition>
+      <paragraph>
+       The amount of deformation. Can be negative to reverse the deformation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giới Hạn -- Limits
+     </term>
+     <definition>
+      <paragraph>
+       These settings allow you to set the lower and upper limits of the deformation.
+The upper limit cannot be lower than the lower one.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lock X/Y/Z (Twist, Taper and Stretch modes only)
+     </term>
+     <definition>
+      <paragraph>
+       These controls whether the coordinates along the two other axes are allowed to change or not.
+E.g. if you
+       <emphasis>
+        Stretch
+       </emphasis>
+       your object along its Z axis,
+it is possible to squash along the X axis only, by locking the Y one.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,165 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/deform/surface_deform.rst">
+ <section ids="surface-deform-modifier" names="surface\ deform\ modifier --\ surface\ deform\ modifier">
+  <title>
+   -- Surface Deform Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Surface Deform
+   </emphasis>
+   modifier allows an arbitrary mesh surface to
+control the deformation of another, essentially transferring its motion/deformation.
+One great use for this is to have a proxy mesh for cloth simulation,
+which will in turn drive the motion of your final and more detailed mesh,
+which would otherwise not be suitable for simulation.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_surface-deform_panel.png'}" uri="images/modeling_modifiers_deform_surface-deform_panel.png"/>
+    <caption>
+     The Surface Deform modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       The object to which to bind (this setting is unavailable after binding).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dốc Suy Giảm của Nội Suy -- Interpolation falloff
+     </term>
+     <definition>
+      <paragraph>
+       How much a vertex bound to one face of the target will be affected by the surrounding faces
+(this setting is unavailable after binding).
+This essentially controls how smooth the deformations are.
+      </paragraph>
+      <note>
+       <paragraph>
+        While lower values result in smoother deformations,
+they may also introduce slight artifacts.
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kết Buộc -- Bind
+     </term>
+     <definition>
+      <paragraph>
+       Bind the current state of the modified mesh to the current state of the target mesh,
+such that any later change in the target mesh will deform the modified mesh as well.
+Note that until the bind has been executed, this modifier will have no effect at all.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tháo Kết Buộc -- Unbind
+     </term>
+     <definition>
+      <paragraph>
+       Once the mesh is bound, the
+       <emphasis>
+        Bind
+       </emphasis>
+       button changes to
+       <emphasis>
+        Unbind
+       </emphasis>
+       .
+Executing this frees the modified mesh from the target, and resets it to its original shape.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     The meshes are bound with regard to global coordinates,
+but later transformations on the objects are ignored.
+This means that one can freely transform the target or modified object after binding,
+without affecting the modified object.
+The modified mesh will only pick up changes to the target object's mesh itself.
+    </paragraph>
+   </note>
+   <note>
+    <paragraph>
+     The further a mesh deviates from the target mesh surface,
+the more likely it is to get undesirable artifacts.
+This is an inherent characteristic of surface binding in general,
+so it is recommended to have reasonably well matching meshes, in order to get a good bind.
+    </paragraph>
+   </note>
+   <warning>
+    <paragraph>
+     Target Mesh Validity
+    </paragraph>
+    <paragraph>
+     While there are no restrictions with regard to the modified mesh,
+the target object's mesh has a few constraints, which if not followed, will prevent a successful binding:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       It must
+       <strong>
+        not
+       </strong>
+       contain edges with more than two faces.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       It must
+       <strong>
+        not
+       </strong>
+       contain concave faces.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       It must
+       <strong>
+        not
+       </strong>
+       contain overlapping vertices (doubles).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       It must
+       <strong>
+        not
+       </strong>
+       contain faces with collinear edges.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </warning>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_surface-deform_example.png'}" uri="images/modeling_modifiers_deform_surface-deform_example.png"/>
+    <caption>
+     Cloth simulation copied to an arbitrary mesh with rings as instancing faces.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

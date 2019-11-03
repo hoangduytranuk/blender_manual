@@ -1,0 +1,459 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/motion_paths.rst">
+ <target refid="bpy-types-animviz">
+ </target>
+ <target refid="bpy-ops-object-paths-calculate">
+ </target>
+ <section ids="motion-paths bpy-ops-object-paths-calculate bpy-types-animviz" names="motion\ paths đường\ chuyển\ động\ --\ motion\ paths bpy.ops.object.paths_calculate bpy.types.animviz">
+  <title>
+   Đường Chuyển Động -- Motion Paths
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Trình Biên Soạn -- Editor
+     </field_name>
+     <field_body>
+      <paragraph>
+       3D View, Properties editor
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Vật Thể -- Object Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --&gt; Vật Thể (Object) --&gt; Đường Chuyển Động (Motion Paths)`">
+        Trình Biên Soạn Tính Chất (Properties editor) ‣ Vật Thể (Object) ‣ Đường Chuyển Động (Motion Paths)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Trình Biên Soạn -- Editor
+     </field_name>
+     <field_body>
+      <paragraph>
+       3D View, Properties editor
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Tư Thế -- Pose Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --&gt; Cốt (Armature) --&gt; Đường Chuyển Động (Motion Paths)`">
+        Trình Biên Soạn Tính Chất (Properties editor) ‣ Cốt (Armature) ‣ Đường Chuyển Động (Motion Paths)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Tư Thế (Pose) --&gt; Đường Chuyển Động (Motion Paths)`">
+        Tư Thế (Pose) ‣ Đường Chuyển Động (Motion Paths)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/animation_motion-paths_example-object.png'}" uri="images/animation_motion-paths_example-object.png" width="400px"/>
+   <caption>
+    An animated cube with its motion path displayed.
+   </caption>
+  </figure>
+  <paragraph>
+   The Motion Paths tool allows you to visualize the motion of points as paths over a series of frames.
+These points can be object origins and bone joints.
+  </paragraph>
+  <paragraph>
+   To create or remove motion paths, it is necessary to first select the bones. Then:
+  </paragraph>
+  <enumerated_list enumtype="arabic" prefix="" suffix=".">
+   <list_item>
+    <paragraph>
+     To show the paths (or update them, if needed), click on the
+     <emphasis>
+      Calculate Path
+     </emphasis>
+     button.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     To hide the paths, click on the
+     <emphasis>
+      Clear Paths
+     </emphasis>
+     button.
+    </paragraph>
+   </list_item>
+  </enumerated_list>
+  <note>
+   <paragraph>
+    Remember that only selected bones and their paths are affected by these actions!
+   </paragraph>
+  </note>
+  <paragraph>
+   The paths are shown in a light shade of gray for unselected points,
+and a slightly blueish gray for selected ones.
+Around the current frame a glow indicate the direction of movement:
+blue towards future frames and green towards the past.
+Each frame is displayed by a small white dot on the paths.
+  </paragraph>
+  <paragraph>
+   The paths are automatically updated when you edit your poses/keyframes,
+and they are also active during animation playback. Playing the animation
+affects the paths only when the
+   <emphasis>
+    Around Current Frame
+   </emphasis>
+   option is enabled.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/animation_motion-paths_panel.png'}" uri="images/animation_motion-paths_panel.png"/>
+    <caption>
+     The Motion Paths panel in the Armature tab.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại -- Type
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Quanh Khung Phim -- Around Frame
+        </term>
+        <definition>
+         <paragraph>
+          Display paths of points within a fixed number of frames around the current frame.
+When you enable this button, you get paths for a given number of frames before and after the current one
+(again, as with ghosts).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Trong Phạm Vi -- In Range
+        </term>
+        <definition>
+         <paragraph>
+          Display paths of points within specified range.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Clock Button
+           </term>
+           <definition>
+            <paragraph>
+             Updates the display frame range from the scene frame range.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Frame Range
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Trước, Sau -- Before, After
+        </term>
+        <definition>
+         <paragraph>
+          Number of frames to show before and after the current frame
+(only for
+          <emphasis>
+           Around Current Frame
+          </emphasis>
+          Onion-skinning method).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bắt Đầu, Kết Thúc (Đầu,Cuối) -- Start, End
+        </term>
+        <definition>
+         <paragraph>
+          Starting and Ending frame of range of paths to display/calculate
+(not for
+          <emphasis>
+           Around Current Frame
+          </emphasis>
+          Onion-skinning method).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bước -- Step
+        </term>
+        <definition>
+         <paragraph>
+          Allows displaying one point for every
+          <emphasis>
+           n
+          </emphasis>
+          frames on the path.
+Mostly useful when you enable the frame number display (see below), to avoid cluttering the 3D Views.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cache/Bone Cache
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Từ, Tới -- From, To
+        </term>
+        <definition>
+         <paragraph>
+          These are the start/end frames of the range in which motion paths are shown.
+You cannot modify this range without deleting the motion path first.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tính Toán/Cập Nhật Đường Dẫn -- Calculate/Update Paths
+     </term>
+     <definition>
+      <paragraph>
+       If no paths have been calculated, Calculate Paths will create a new motion path in cache based on
+the options specified in the pop-up menu or the
+       <reference internal="True" refuri="../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+        <inline classes="std std-ref">
+         Adjust Last Operation
+        </inline>
+       </reference>
+       panel.
+      </paragraph>
+      <paragraph>
+       If a path has already been calculated, Update Paths will update the path shape to the current animation.
+To change the frame range of the calculated path, you need to delete the path and calculate it again.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Bắt Đầu, Kết Thúc (Đầu,Cuối) -- Start, End
+        </term>
+        <definition>
+         <paragraph>
+          These are the start/end frames of the range in which motion paths are shown.
+You have to
+          <emphasis>
+           Calculate Paths
+          </emphasis>
+          again if you modify this setting, to update the paths in the 3D Views.
+The start frame is
+          <emphasis>
+           inclusive
+          </emphasis>
+          (i.e. if you set
+          <emphasis>
+           Start
+          </emphasis>
+          to 1, you will really see the frame 1 as starting point of the paths...).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Vị Trí Nướng -- Bake Location
+        </term>
+        <definition>
+         <paragraph>
+          Bones only -- By default, you get the tips' paths.
+By changing this setting to Tails, you will get the paths of the bone's roots
+(remember that in Blender UI, bones' roots are called "heads"...).
+You have to
+          <emphasis>
+           Calculate Paths
+          </emphasis>
+          again if you modify this setting,
+to update the paths in the 3D Views.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa các Đường Dẫn
+      <literal>
+       X
+      </literal>
+      -- Clear Paths
+      <literal>
+       X
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Clears paths on all objects/bones or just the selected ones when holding
+       <literal classes="kbd">
+        Shift
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="show" names="show hiển\ thị\ --\ show">
+    <title>
+     Hiển Thị -- Show
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Số Khung Hình -- Frame Numbers
+      </term>
+      <definition>
+       <paragraph>
+        When enabled, a small number appears next to each frame dot on the path,
+which is of course the number of the corresponding frame.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khung Khóa -- Keyframes
+      </term>
+      <definition>
+       <paragraph>
+        When enabled, big yellow square dots are displayed on motion paths, showing the keyframes of their bones
+(i.e. only the paths of keyed bones at a given frame get a yellow dot at this frame).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       + Non-Grouped Keyframes
+      </term>
+      <definition>
+       <paragraph>
+        For bone motion paths, it searches the whole Action for keyframes instead of
+in groups with matching name only (this is slower).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Số Khung Khóa -- Keyframe Numbers
+      </term>
+      <definition>
+       <paragraph>
+        When enabled, you will see the numbers of the displayed keyframes,
+so this option is obviously only valid when
+        <emphasis>
+         Show Keys
+        </emphasis>
+        is enabled.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lines
+      </term>
+      <definition>
+       <paragraph>
+        Toggles whether the lines between the points are shown.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Thickness, Custom Color
+         </term>
+         <definition>
+          <paragraph>
+           Customizable thickness and color for the lines.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/animation_motion-paths_example-armature.png'}" uri="images/animation_motion-paths_example-armature.png"/>
+    <caption>
+     An example of a motion path of an armature.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,423 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/cleanup.rst">
+ <section ids="clean-up" names="clean\ up dọn\ dẹp\ --\ clean\ up">
+  <title>
+   Dọn Dẹp -- Clean up
+  </title>
+  <paragraph>
+   These tools are to help cleanup degenerate geometry and fill in missing areas of a mesh.
+  </paragraph>
+  <target refid="bpy-ops-mesh-decimate">
+  </target>
+  <section ids="decimate-geometry bpy-ops-mesh-decimate" names="decimate\ geometry tiêu\ hao\ hình\ học\ --\ decimate\ geometry bpy.ops.mesh.decimate">
+   <title>
+    Tiêu Hao Hình Học -- Decimate Geometry
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Dọn Dẹp (Clean up) --&gt; Tiêu Hao Hình Học (Decimate Geometry)`">
+         Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Tiêu Hao Hình Học (Decimate Geometry)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The Decimate Geometry tool allows you to reduce
+the vertex/face count of a mesh with minimal shape changes.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tỷ Số -- Ratio
+     </term>
+     <definition>
+      <paragraph>
+       Ratio of triangles to reduce to.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       Use the active vertex group as an influence.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Trọng Lượng -- Weight
+        </term>
+        <definition>
+         <paragraph>
+          Strength of the vertex group.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đảo Nghịch -- Invert
+        </term>
+        <definition>
+         <paragraph>
+          Inverts the vertex group.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đối Xứng -- Symmetry
+     </term>
+     <definition>
+      <paragraph>
+       Maintain symmetry on either the
+       <emphasis>
+        X
+       </emphasis>
+       ,
+       <emphasis>
+        Y
+       </emphasis>
+       , or
+       <emphasis>
+        Z
+       </emphasis>
+       axis.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     This tool works similar to the
+     <reference internal="True" refuri="../../modifiers/generate/decimate.html">
+      <inline classes="doc">
+       Decimate Modifier
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </seealso>
+  </section>
+  <section ids="fill-holes" names="fill\ holes lấp\ lỗ\ --\ fill\ holes">
+   <title>
+    Lấp Lỗ -- Fill Holes
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Dọn Dẹp (Clean up) --&gt; Lấp Lỗ (Fill Holes)`">
+         Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Lấp Lỗ (Fill Holes)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool can take a large selection and detect the holes in the mesh, filling them in.
+   </paragraph>
+   <paragraph>
+    This is different from the face creation operator in three important respects:
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Holes are detected, so there is no need to manually find and select the edges around the holes.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Holes can have a limit for the number of sides (so only quads or tris are filled in for example).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Mesh data is copied from surrounding geometry (UVs, vertex colors, multi-res, all layers),
+since manually creating this data is very time-consuming.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+  </section>
+  <section ids="make-planar-faces" names="make\ planar\ faces tạo\ bề\ mặt\ bằng\ phẳng\ --\ make\ planar\ faces">
+   <title>
+    Tạo Bề Mặt Bằng Phẳng -- Make Planar Faces
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Dọn Dẹp (Clean up) --&gt; Tạo Bề Mặt Bằng Phẳng (Make Planar Faces)`">
+         Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Tạo Bề Mặt Bằng Phẳng (Make Planar Faces)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <emphasis>
+     Make Planar Faces
+    </emphasis>
+    iteratively flattens faces.
+This can happen with faces over three vertices and
+it is a common convention that faces should be kept planar.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Distance to move the vertices each iteration.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Số Lần Lặp Lại -- Iterations
+     </term>
+     <definition>
+      <paragraph>
+       Number of times to repeat the operation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="split-non-planar-faces" names="split\ non-planar\ faces phân\ chia\ các\ bề\ mặt\ không\ phẳng\ --\ split\ non-planar\ faces">
+   <title>
+    Phân Chia các Bề Mặt Không Phẳng -- Split Non-Planar Faces
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Dọn Dẹp (Clean up) --&gt; Phân Chia các Bề Mặt Không Phẳng (Split Non-Planar Faces)`">
+         Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Phân Chia các Bề Mặt Không Phẳng (Split Non-Planar Faces)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool avoids ambiguous areas of geometry by splitting non-flat faces when they are bent
+beyond a given limit.
+   </paragraph>
+  </section>
+  <section ids="split-concave-faces" names="split\ concave\ faces phân\ chia\ các\ bề\ mặt\ lõm\ --\ split\ concave\ faces">
+   <title>
+    Phân Chia các Bề Mặt Lõm -- Split Concave Faces
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Dọn Dẹp (Clean up) --&gt; Phân Chia các Bề Mặt Lõm (Split Concave Faces)`">
+         Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Phân Chia các Bề Mặt Lõm (Split Concave Faces)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool can be used to convert any
+    <reference internal="True" refuri="../../../glossary/index.html#term-concave-face">
+     <inline classes="xref std std-term">
+      concave face
+     </inline>
+    </reference>
+    to convex
+by splitting the concave into two or more convex faces.
+   </paragraph>
+  </section>
+  <section ids="delete-loose-geometry" names="delete\ loose\ geometry --\ delete\ loose\ geometry">
+   <title>
+    -- Delete Loose Geometry
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Dọn Dẹp (Clean up) --&gt; Xóa Rời Rạc (Delete Loose)`">
+         Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Xóa Rời Rạc (Delete Loose)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool removes disconnected vertices and edges (optionally faces).
+   </paragraph>
+  </section>
+  <section ids="degenerate-dissolve" names="degenerate\ dissolve hòa\ tan\ suy\ biến\ --\ degenerate\ dissolve">
+   <title>
+    Hòa Tan Suy Biến -- Degenerate Dissolve
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Dọn Dẹp (Clean up) --&gt; Hòa Tan Suy Biến (Degenerate Dissolve)`">
+         Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Hòa Tan Suy Biến (Degenerate Dissolve)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool collapses / removes geometry which you typically will not want.
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Edges with no length.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Faces with no areas (faces on a point or thin faces).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Face corners with no area.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+ </section>
+</document>

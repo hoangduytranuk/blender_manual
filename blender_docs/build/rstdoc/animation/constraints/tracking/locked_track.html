@@ -1,0 +1,178 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/tracking/locked_track.rst">
+ <target refid="bpy-types-lockedtrackconstraint">
+ </target>
+ <section ids="locked-track-constraint bpy-types-lockedtrackconstraint" names="locked\ track\ constraint ràng\ buộc\ giám\ sát\ cố\ định\ --\ locked\ track\ constraint bpy.types.lockedtrackconstraint">
+  <title>
+   Ràng Buộc Giám Sát Cố Định -- Locked Track Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Locked Track
+   </emphasis>
+   constraint is a bit tricky to explain, both graphically and textual.
+Basically, it is a
+   <reference internal="True" refuri="track_to.html">
+    <inline classes="doc">
+     Track To constraint
+    </inline>
+   </reference>
+   ,
+but with a locked axis, i.e.
+an axis that cannot rotate (change its orientation). Hence,
+the owner can only track its target by rotating around this axis,
+and unless the target is in the plane perpendicular to the locked axis, and crossing the owner,
+this owner cannot really point at its target.
+  </paragraph>
+  <paragraph>
+   Let us take the best real-world equivalent: a compass.
+It can rotate to point in the general direction of its target
+(the magnetic North, or a neighbor magnet), but it cannot point
+   <emphasis>
+    directly at it
+   </emphasis>
+   ,
+because it spins like a wheel on an axle.
+If a compass is sitting on a table and there is a magnet directly above it,
+the compass cannot point to it. If we move the magnet more to one side of the compass,
+it still cannot point
+   <emphasis>
+    at
+   </emphasis>
+   the target,
+but it can point in the general direction of the target,
+and still obey its restrictions of the axle.
+  </paragraph>
+  <paragraph>
+   When using a
+   <emphasis>
+    Locked Track
+   </emphasis>
+   constraint, you can think of the target as a magnet,
+and the owner as a compass.
+The
+   <emphasis>
+    Lock
+   </emphasis>
+   axis will function as the axle around which the owner spins,
+and the
+   <emphasis>
+    To
+   </emphasis>
+   axis will function as the compass' needle.
+Which axis does what is up to you!
+  </paragraph>
+  <paragraph>
+   If you have trouble understanding the buttons of this constraint, read the tooltips,
+they are pretty good. If you do not know where your object's axes are,
+enable
+   <emphasis>
+    Axis
+   </emphasis>
+   in
+   <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Armature --&gt; Viewport Display`">
+    Properties ‣ Armature ‣ Viewport Display
+   </inline>
+   .
+Or, if you are working with bones, turn on the
+   <emphasis>
+    Axes
+   </emphasis>
+   button
+in the
+   <emphasis>
+    Armature
+   </emphasis>
+   menu's
+   <emphasis>
+    Display
+   </emphasis>
+   panel.
+  </paragraph>
+  <paragraph>
+   This constraint was designed to work cooperatively with the
+   <emphasis>
+    Track To
+   </emphasis>
+   constraint.
+If you set the axes buttons right for these two constraints,
+   <emphasis>
+    Track To
+   </emphasis>
+   can be used to point the axle at a primary target,
+and
+   <emphasis>
+    Locked Track
+   </emphasis>
+   can spin the owner around that axle to a secondary target.
+  </paragraph>
+  <paragraph>
+   This constraint also works very well for 2D billboarding.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_tracking_locked-track_panel.png
+
+   Locked track panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+        <inline classes="std std-ref">
+         Chỉ Danh của Dữ Liệu -- Data ID
+        </inline>
+       </reference>
+       sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tới -- To
+     </term>
+     <definition>
+      <paragraph>
+       The tracking local axis, i.e. the owner's axis to point at the target.
+The negative options force the relevant axis to point away from the target.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khóa -- Lock
+     </term>
+     <definition>
+      <paragraph>
+       The locked local axis, i.e. the owner's axis which cannot be re-oriented to track the target.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <important>
+    <paragraph>
+     If you choose the same axis for
+     <emphasis>
+      To
+     </emphasis>
+     and
+     <emphasis>
+      Lock
+     </emphasis>
+     , the constraint will no
+longer be functional (red state).
+    </paragraph>
+   </important>
+   <vimeo aspect="None" height="None" id="171280773" width="None">
+   </vimeo>
+  </section>
+ </section>
+</document>

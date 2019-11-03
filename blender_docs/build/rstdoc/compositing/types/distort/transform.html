@@ -1,0 +1,152 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/distort/transform.rst">
+ <target refid="bpy-types-compositornodetransform">
+ </target>
+ <section ids="transform-node bpy-types-compositornodetransform" names="transform\ node nút\ biến\ hóa\ --\ transform\ node bpy.types.compositornodetransform">
+  <title>
+   Nút Biến Hóa -- Transform Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeTransform.png'}" uri="images/compositing_node-types_CompositorNodeTransform.png"/>
+   <caption>
+    Transform Node.
+   </caption>
+  </figure>
+  <paragraph>
+   This node combines the functionality of three other nodes:
+   <reference internal="True" refuri="scale.html">
+    <inline classes="doc">
+     Scale
+    </inline>
+   </reference>
+   ,
+   <reference internal="True" refuri="translate.html">
+    <inline classes="doc">
+     translate
+    </inline>
+   </reference>
+   ,
+and
+   <reference internal="True" refuri="rotate.html">
+    <inline classes="doc">
+     rotate
+    </inline>
+   </reference>
+   nodes.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      X, Y
+     </term>
+     <definition>
+      <paragraph>
+       Used to move the input image horizontally and vertically.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Góc Độ -- Angle
+     </term>
+     <definition>
+      <paragraph>
+       Used to rotate an image around its center.
+Positive values rotate counter-clockwise and negative ones clockwise.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tỷ Lệ -- Scale
+     </term>
+     <definition>
+      <paragraph>
+       Used to resize the image. The scaling is relative, meaning a value of 0.5
+gives half the size and a value of 2.0 gives twice the size of the original image.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Bộ/Thanh Lọc -- Filter
+     </term>
+     <definition>
+      <paragraph>
+       Interpolation Methods.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Gần Nhất -- Nearest
+        </term>
+        <definition>
+         <paragraph>
+          Không có nội suy, sử dụng điểm ảnh lân cận nhất.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Song Tuyến Tính -- Bilinear
+        </term>
+        <definition>
+         <paragraph>
+          Nội suy đơn giản giữa các điểm ảnh lân cận.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Song Lập Phương -- Bicubic
+        </term>
+        <definition>
+         <paragraph>
+          Nội suy chất lượng cao nhất.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

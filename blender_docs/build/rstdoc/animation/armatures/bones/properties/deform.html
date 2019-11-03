@@ -1,0 +1,193 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/armatures/bones/properties/deform.rst">
+ <section ids="deform" names="deform biến\ dạng\ --\ deform">
+  <title>
+   Biến Dạng -- Deform
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Toàn Bộ các Chế Độ -- All Modes
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Xương (Bone) --&gt; Biến Dạng (Deform)`">
+        Xương (Bone) ‣ Biến Dạng (Deform)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <comment xml:space="preserve">
+   TODO2.8
+.. figure:: /images/animation_armatures_bones_properties_deform_panel.png
+
+   The Deform panel.
+  </comment>
+  <paragraph>
+   In this panel you can set deformation options for each bone.
+  </paragraph>
+  <paragraph>
+   Toggling the checkbox in the panel header off,
+prevents the bone from deforming the geometry at all,
+overriding any weights that it might have been assigned before; It mutes its influence.
+  </paragraph>
+  <paragraph>
+   It also excludes the active bone in the automatic weight calculation when the mesh is
+parented to the armature using the
+   <emphasis>
+    Armature Deform
+   </emphasis>
+   tool with the "With Automatic Weights" option.
+  </paragraph>
+  <target refid="armature-bones-envelope">
+  </target>
+  <section ids="envelope armature-bones-envelope" names="envelope vỏ\ bao\ --\ envelope armature-bones-envelope">
+   <title>
+    Vỏ Bao -- Envelope
+   </title>
+   <figure align="right" ids="id1" width="180px">
+    <image candidates="{'*': 'images/animation_armatures_bones_structure_envelope-edit-mode.png'}" uri="images/animation_armatures_bones_structure_envelope-edit-mode.png"/>
+    <caption>
+     Bone influence areas for envelopes method.
+    </caption>
+   </figure>
+   <paragraph>
+    Envelopes is the most general skinning method. It works with all available object types for
+skinning (meshes, lattices, curves, surfaces and texts).
+It is based on proximity between bones and their geometry,
+each bone having two different areas of influence,
+shown in the
+    <emphasis>
+     Envelope
+    </emphasis>
+    visualization:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      The inside area, materialized by the "solid" part of the bone, and controlled by both root and tip radius.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The outside area, materialized by the lighter part around the bone,
+and controlled by the
+      <emphasis>
+       Distance
+      </emphasis>
+      setting.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <container classes="lead">
+    <comment xml:space="preserve">
+     clear
+    </comment>
+   </container>
+   <seealso>
+    <paragraph>
+     The
+     <reference internal="True" refuri="../editing/transform.html">
+      <inline classes="doc">
+       editing pages
+      </inline>
+     </reference>
+     for how to edit these properties.
+    </paragraph>
+   </seealso>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Envelope Distance
+     </term>
+     <definition>
+      <paragraph>
+       The Distance defines a volume which is the range within the bone
+has an influence on vertices of the deformed object.
+The geometry is less and less affected by the bone as it goes away by following a quadratic decay.
+      </paragraph>
+      <figure ids="id2">
+       <image candidates="{'*': 'images/animation_armatures_bones_properties_deform_envelope-distance.png'}" uri="images/animation_armatures_bones_properties_deform_envelope-distance.png"/>
+       <caption>
+        Single bone with various different envelope sizes.
+       </caption>
+      </figure>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Envelope Weight
+     </term>
+     <definition>
+      <paragraph>
+       A bone property, that controls the global influence of the bone over the deformed object,
+when using the envelopes method.
+      </paragraph>
+      <paragraph>
+       It is only useful for the parts of geometry that are "shared",
+influenced by more than one bone (generally, at the joints...) -- a bone with a high weight will
+have more influence on the result than one with a low weight...
+Note that when set to 0.0, it has the same effect as disabling the
+       <emphasis>
+        Deform
+       </emphasis>
+       option.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bán Kính -- Radius
+     </term>
+     <definition>
+      <paragraph>
+       Set the radius for the head and the tail of envelope bones.
+Inside this volume, the geometry if fully affected by the bone.
+      </paragraph>
+      <figure ids="id3">
+       <image candidates="{'*': 'images/animation_armatures_bones_properties_deform_envelope-radius.png'}" uri="images/animation_armatures_bones_properties_deform_envelope-radius.png"/>
+       <caption>
+        Three Armature Bones all using Envelope Weight.
+       </caption>
+       <legend>
+        <paragraph>
+         The 1st with a default radius value, the two others with differing Tail and Head radius values.
+        </paragraph>
+       </legend>
+      </figure>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Envelope Multiply
+     </term>
+     <definition>
+      <paragraph>
+       This option controls how the two deforming methods interact, when they are both enabled.
+By default, when they are both active, all vertices belonging to at least one vertex group are only deformed
+through the vertex groups method. The other "orphan" vertices being handled by the envelopes one.
+When you enable this option, the "deformation influence" that this bone would have on a vertex
+(based from its envelope settings) is multiplied with this vertex's weight in the corresponding vertex group.
+In other words, the vertex groups method is further "weighted" by the envelopes method.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

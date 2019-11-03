@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Bộ Điều Chỉnh Bool -- Boolean Modifier" href="booleans.html" />
+    <link rel="prev" title="Bộ Điều Chỉnh Mảng -- Array Modifier" href="array.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">-- Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh -- Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Sửa Đổi -- Modify</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#generate">Sinh Tạo -- Generate</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html">Bộ Điều Chỉnh Mảng -- Array Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="booleans.html">Bộ Điều Chỉnh Bool -- Boolean Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build.html">Bộ Điều Chỉnh Xây Dựng -- Build Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decimate.html">Bộ Điều Chỉnh Tiêu Hao -- Decimate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edge_split.html">-- Edge Split Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mask.html">Bộ Điều Chỉnh Màn Chắn -- Mask Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mirror.html">Bộ Điều Chỉnh Đối Xứng -- Mirror Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multiresolution.html">-- Multiresolution Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="remesh.html">Bộ Điều Chỉnh Kiến Tạo Lại Khung Lưới -- Remesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="screw.html">Bộ Điều Chỉnh Xoáy Ốc -- Screw Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="skin.html">Bộ Điều Chỉnh Da -- Skin Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidify.html">Bộ Điều Chỉnh Tạo Độ Dày -- Solidify Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision_surface.html">-- Subdivision Surface Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangulate.html">Bộ Điều Chỉnh Tam Giác Hóa -- Triangulate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wireframe.html">Bộ Điều Chỉnh Khung Dây -- Wireframe Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#simulate">Mô Phỏng -- Simulate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
+        
+      <li>Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modeling/modifiers/generate/bevel.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bevel-modifier">
+<span id="bpy-types-bevelmodifier"></span><h1>Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier<a class="headerlink" href="#bevel-modifier" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Bevel</em> modifier bevels the edges of the mesh it is applied to,
+with some control of how and where the bevel is applied to the mesh.</p>
+<p>It is a non-destructive alternative to
+the <a class="reference internal" href="../../meshes/editing/subdividing/bevel.html"><span class="doc">Bevel Operation</span></a> in Edit Mode.</p>
+<table border="1" class="docutils align-center" id="id1">
+<caption><span class="caption-text">Side views of a cube.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id2">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_bevel_square-not.png"><img alt="../../../_images/modeling_modifiers_generate_bevel_square-not.png" src="../../../_images/modeling_modifiers_generate_bevel_square-not.png" style="width: 150px;" /></a>
+<p class="caption"><span class="caption-text">Not beveled.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id3">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_bevel_square.png"><img alt="../../../_images/modeling_modifiers_generate_bevel_square.png" src="../../../_images/modeling_modifiers_generate_bevel_square.png" style="width: 150px;" /></a>
+<p class="caption"><span class="caption-text">Beveled.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id4">
+<img alt="../../../_images/modeling_modifiers_generate_bevel_panel.png" src="../../../_images/modeling_modifiers_generate_bevel_panel.png" />
+<p class="caption"><span class="caption-text">The Bevel modifier.</span></p>
+</div>
+<dl class="docutils">
+<dt>Chiều Rộng -- Width</dt>
+<dd><p class="first">The size of the bevel effect. See <em>Width Method</em> below.</p>
+<div class="last figure" id="id5">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_bevel_cubes.png"><img alt="../../../_images/modeling_modifiers_generate_bevel_cubes.png" src="../../../_images/modeling_modifiers_generate_bevel_cubes.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-text">Three Cubes with 0.1, 0.3 and 0.5 bevel widths.</span></p>
+</div>
+</dd>
+<dt>Phân Đoạn -- Segments</dt>
+<dd>The number of edge loops added along the bevel's face.</dd>
+<dt>Mặt Cắt -- Profile</dt>
+<dd>The shape of the bevel, from concave to convex. It has no effect if <em>Segments</em> is less than 2.</dd>
+<dt>Nguyên Liệu -- Material</dt>
+<dd>The index of the material slot to use for the bevel.
+When set to -1, the material of the nearest original face will be used.</dd>
+<dt>Chỉ các Điểm Đỉnh Thôi -- Only Vertices</dt>
+<dd><p class="first">When enabled, only the areas near vertices are beveled, the edges remain unchanged.</p>
+<div class="last figure" id="id6">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_bevel_cubes-vertices-only.png"><img alt="../../../_images/modeling_modifiers_generate_bevel_cubes-vertices-only.png" src="../../../_images/modeling_modifiers_generate_bevel_cubes-vertices-only.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-text">Three cubes with 0.1, 0.3 and 0.5 bevel widths, with <em>Only Vertices</em> option enabled.</span></p>
+</div>
+</dd>
+<dt>Chống Đè Gối Lên Nhau -- Clamp Overlap</dt>
+<dd>Limits the width of each beveled edge so that edges cannot cause
+overlapping intersections with other geometry.</dd>
+<dt>Lướt Theo Mạch Lưới -- Loop Slide</dt>
+<dd>If there are unbeveled edges along with beveled edges into a vertex,
+the bevel tries to slide along those edges when possible.
+Turning the option off can lead to more even bevel widths.</dd>
+<dt>Mark Seams</dt>
+<dd>If a seam edge crosses a non-seam one and you bevel all of them,
+this option will maintain the expected propagation of seams.</dd>
+<dt>Mark Sharp</dt>
+<dd>Similar to Mark Seams, but for sharp edges.</dd>
+<dt>Harden Normals</dt>
+<dd>When enabled, the per-vertex face normals of the bevel faces are adjusted to
+match the surrounding faces, and the normals of the surrounding faces are not affected.
+This will keep the surrounding faces flat (if they were before),
+with the bevel faces shading smoothly into them. For this effect to work,
+you need custom normals data, which requires <em>Auto Smooth</em> option to be enabled
+(see <a class="reference internal" href="../../meshes/editing/normals.html"><span class="doc">Normals</span></a>).</dd>
+<dt>Phương Pháp Hạn Chế -- Limit Method</dt>
+<dd><p class="first">Used to control where a bevel is applied to the mesh.</p>
+<dl class="last docutils">
+<dt>Không Có -- None</dt>
+<dd>No limit, all edges will be beveled.</dd>
+<dt>Góc Độ -- Angle</dt>
+<dd>Only edges where the adjacent faces form an angle smaller than the defined threshold will be beveled.
+Intended to allow you to bevel only the sharp edges of an object without affecting its smooth surfaces.</dd>
+<dt>Trọng Lượng -- Weight</dt>
+<dd>Use each edge's bevel weight to determine the width of the bevel.
+When the bevel weight is 0.0, no bevel is applied.
+See <a class="reference internal" href="../../meshes/editing/edges.html"><span class="doc">here</span></a> about adjusting bevel weights.</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
+<dd>Use weights from a vertex group to determine the width of the bevel.
+When the vertex weight is 0.0, no bevel is applied.
+An edge is only beveled if both of its vertices are in the vertex group.
+See <a class="reference internal" href="../../meshes/properties/vertex_groups/vertex_groups.html"><span class="doc">here</span></a> about adjusting vertex group weights.</dd>
+</dl>
+</dd>
+<dt>-- Width Method</dt>
+<dd><p class="first">Declares how <em>Width</em> will be interpreted to determine the amount of bevel.</p>
+<div class="figure align-right" id="id7">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_bevel_width-methods.png"><img alt="../../../_images/modeling_modifiers_generate_bevel_width-methods.png" src="../../../_images/modeling_modifiers_generate_bevel_width-methods.png" style="width: 240px;" /></a>
+<p class="caption"><span class="caption-text">Width methods.</span></p>
+</div>
+<dl class="last docutils">
+<dt>Dịch Chuyển -- Offset</dt>
+<dd>Value is interpreted as the distance from the original edge to the edge of the beveled face.</dd>
+<dt>Chiều Rộng -- Width</dt>
+<dd>Value is interpreted as the distance between the two new edges formed by the bevel.</dd>
+<dt>Chiều/Độ Sâu -- Depth</dt>
+<dd>Value is the perpendicular distance from the new bevel face to original edge.</dd>
+<dt>Phần Trăm -- Percent</dt>
+<dd>Similar to <em>Offset</em> but the value is interpreted as a percentage of the adjacent edge length.</dd>
+</dl>
+</dd>
+<dt>Set Face Strength Mode</dt>
+<dd><p class="first">Set <em>Face Strength</em> on the faces involved in the bevel, according to the mode specified here.
+This can be used in conjunction with a following
+<a class="reference internal" href="../modify/weighted_normal.html"><span class="doc">Weighted Normals</span></a> modifier
+(with the <em>Face Influence</em> option checked).</p>
+<dl class="last docutils">
+<dt>Không Có -- None</dt>
+<dd>Do not set face strength.</dd>
+<dt>New</dt>
+<dd>Set the face strength of new faces along edges to <em>Medium</em>,
+and the face strength of new faces at vertices to <em>Weak</em>.</dd>
+<dt>Affected</dt>
+<dd>In addition to those set for the <em>New</em> case,
+also set the faces adjacent to new faces to have strength <em>Strong</em>.</dd>
+<dt>All</dt>
+<dd>In addition to those set for the <em>Affected</em> case,
+also set all the rest of the faces of the model to have strength <em>Strong</em>.</dd>
+</dl>
+</dd>
+<dt>Miter Patterns</dt>
+<dd><p class="first">A <em>miter</em> is formed when two beveled edges meet at an angle.
+On the side where the angle is greater than 180 degrees, if any, it is called an <em>outer miter</em>.
+If it is less than 180 degrees, then it is called an <em>inner miter</em>.
+The outer and inner miters can each be set to one of these patterns:</p>
+<dl class="docutils">
+<dt>Sharp</dt>
+<dd>Edges meet at a sharp point, with no extra vertices introduced on the edges.</dd>
+<dt>Patch</dt>
+<dd><p class="first">Edges meet at a sharp point but in addition, two extra vertices are introduced near the point
+so that the edges and faces at the vertex may be less pinched together than
+what occurs in the <em>Sharp</em> case.
+This pattern does makes no sense for inner miters, so it behaves like <em>Arc</em> for them.</p>
+<p class="last">The <em>Spread</em> slider controls how far the new vertices are from the meeting point.</p>
+</dd>
+<dt>Arc</dt>
+<dd><p class="first">Two vertices are introduced near the meeting point, and a curved arc joins them together.</p>
+<p>The <em>Spread</em> slider controls how far the new vertices are from the meeting point.</p>
+<p class="last">The <em>Profile</em> slider controls the shape of the arc.</p>
+</dd>
+</dl>
+<table border="1" class="last docutils" id="id8">
+<caption><span class="caption-text">Diagrams of the miter patterns.</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id9">
+<img alt="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-2.png" src="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-2.png" />
+<p class="caption"><span class="caption-text">Sharp outer miter.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id10">
+<img alt="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-3.png" src="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-3.png" />
+<p class="caption"><span class="caption-text">Patch outer miter.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id11">
+<img alt="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-4.png" src="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-4.png" />
+<p class="caption"><span class="caption-text">Arc outer miter.</span></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last figure" id="id12">
+<img alt="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-5.png" src="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-5.png" />
+<p class="caption"><span class="caption-text">Sharp inner miter.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id13">
+<img alt="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-6.png" src="../../../_images/modeling_meshes_editing_subdividing_bevel_miter-6.png" />
+<p class="caption"><span class="caption-text">Arc inner miter.</span></p>
+</div>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Spread</dt>
+<dd>The value used to spread extra vertices apart for non-sharp miters.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="booleans.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Bool -- Boolean Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="array.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Mảng -- Array Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

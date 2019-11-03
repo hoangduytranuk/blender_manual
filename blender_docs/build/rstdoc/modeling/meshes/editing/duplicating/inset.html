@@ -1,0 +1,247 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/duplicating/inset.rst">
+ <target refid="tool-mesh-inset-faces">
+ </target>
+ <section ids="inset-faces tool-mesh-inset-faces" names="inset\ faces cắt\ nội\ bề\ mặt\ --\ inset\ faces tool-mesh-inset_faces">
+  <title>
+   Cắt Nội Bề Mặt -- Inset Faces
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Biên Soạn -- Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Tools --&gt; Mesh Tools --&gt; Add: Inset Faces`">
+        Toolbar ‣ Tools ‣ Mesh Tools ‣ Add: Inset Faces
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Bề Mặt (Faces) --&gt; Cắt Nội Bề Mặt (Inset Faces)`">
+        Khung Lưới (Mesh) ‣ Bề Mặt (Faces) ‣ Cắt Nội Bề Mặt (Inset Faces)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        I
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   This tool takes the currently selected faces and creates an inset of them,
+with adjustable thickness and depth. Think of it as like creating an edge loop,
+but relative to the selected edges, even in complex meshes.
+  </paragraph>
+  <paragraph>
+   The tool is modal, such that when you activate it,
+you may adjust the thickness with your mouse position.
+You may also adjust the depth of the inset during the modal operation by holding
+   <literal classes="kbd">
+    Ctrl
+   </literal>
+   .
+  </paragraph>
+  <table>
+   <tgroup cols="2">
+    <colspec colwidth="50">
+    </colspec>
+    <colspec colwidth="50">
+    </colspec>
+    <tbody>
+     <row>
+      <entry>
+       <figure ids="id1">
+        <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_inset_before.png'}" uri="images/modeling_meshes_editing_duplicating_inset_before.png" width="320px"/>
+        <caption>
+         Selection to inset.
+        </caption>
+       </figure>
+      </entry>
+      <entry>
+       <figure ids="id2">
+        <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_inset_after.png'}" uri="images/modeling_meshes_editing_duplicating_inset_after.png" width="320px"/>
+        <caption>
+         Selection with inset.
+        </caption>
+       </figure>
+      </entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id3">
+    <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_inset_options.png'}" uri="images/modeling_meshes_editing_duplicating_inset_options.png"/>
+    <caption>
+     Inset operator options.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Ranh Giới
+      <literal classes="kbd">
+       B
+      </literal>
+      -- Boundary
+      <literal classes="kbd">
+       B
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Determines whether open edges will be inset or not.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển Đều -- Offset Even
+     </term>
+     <definition>
+      <paragraph>
+       Scale the offset to give a more even thickness.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển Tương Đối -- Offset Relative
+     </term>
+     <definition>
+      <paragraph>
+       Scale the offset by lengths of surrounding geometry.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bám theo Cạnh -- Edge Rail
+     </term>
+     <definition>
+      <paragraph>
+       Created vertices slide along the original edges of the inner geometry, instead of the normals.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Dày -- Thickness
+     </term>
+     <definition>
+      <paragraph>
+       Set the size of the offset.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều/Độ Sâu
+      <literal classes="kbd">
+       Ctrl
+      </literal>
+      -- Depth
+      <literal classes="kbd">
+       Ctrl
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Raise or lower the newly inset faces to add depth.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cắt Ngoại
+      <literal classes="kbd">
+       O
+      </literal>
+      -- Outset
+      <literal classes="kbd">
+       O
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Create an outset rather than an inset.
+Causes the geometry to be created surrounding selection (instead of within).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chọn Ngoài -- Select Outer
+     </term>
+     <definition>
+      <paragraph>
+       Toggle which side of the inset is selected after the operation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cá Nhân
+      <literal classes="kbd">
+       I
+      </literal>
+      -- Individual
+      <literal classes="kbd">
+       I
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       By default the Inset tool operates on the region around selected faces,
+but with this option each selected face can be inset on its own.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nội Suy -- Interpolate
+     </term>
+     <definition>
+      <paragraph>
+       Interpolate mesh data: e.g. UV's, vertex colors, weights, etc.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

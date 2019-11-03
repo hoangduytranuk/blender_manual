@@ -1,0 +1,528 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/texts/layout.rst">
+ <section ids="text-layout" names="text\ layout">
+  <title>
+   Text Layout
+  </title>
+  <paragraph>
+   Text in Blender can be laid out in some relatively advanced ways,
+defining columns or blocks of text, using different alignments, and so on.
+  </paragraph>
+  <paragraph>
+   Those features are similar in concept to what you can find in
+   <abbreviation explanation="DeskTop Publishing">
+    DTP
+   </abbreviation>
+   software
+(like
+   <reference name="Scribus" refuri="https://www.scribus.net/">
+    Scribus
+   </reference>
+   ), although at a very basic level currently.
+  </paragraph>
+  <section ids="paragraph" names="paragraph">
+   <title>
+    Paragraph
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        All
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Properties editor --&gt; Font --&gt; Paragraph`">
+         Properties editor ‣ Font ‣ Paragraph
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <emphasis>
+     Paragraph
+    </emphasis>
+    Panel has settings for the alignment and spacing of text.
+   </paragraph>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/modeling_texts_properties_paragraph-settings.png'}" uri="images/modeling_texts_properties_paragraph-settings.png"/>
+    <caption>
+     The Paragraph panel.
+    </caption>
+   </figure>
+   <section ids="alignment" names="alignment">
+    <title>
+     Alignment
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Horizontal Alignment
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Left
+         </term>
+         <definition>
+          <paragraph>
+           Aligns text to the left of the frames when using them,
+else uses the origin of the
+           <emphasis>
+            Text
+           </emphasis>
+           object as the starting point of the text (which grows to the right).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Center
+         </term>
+         <definition>
+          <paragraph>
+           Centers text in the frames when using them,
+else uses the origin of the
+           <emphasis>
+            Text
+           </emphasis>
+           object as the mid-point of the text
+(which grows equally to the left and right).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Right
+         </term>
+         <definition>
+          <paragraph>
+           Aligns text to the right of the frames when using them,
+else uses the origin of the
+           <emphasis>
+            Text
+           </emphasis>
+           object as the ending point of the text (which grows to the left).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Justify
+         </term>
+         <definition>
+          <paragraph>
+           Only flushes a line when it is terminated by a word-wrap (
+           <strong>
+            not
+           </strong>
+           by a newline),
+and uses
+           <emphasis>
+            white-space
+           </emphasis>
+           instead of
+           <emphasis>
+            character spacing
+           </emphasis>
+           (kerning) to fill lines.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Flush
+         </term>
+         <definition>
+          <paragraph>
+           Always flushes the line, even when it is still being typed-in.
+It uses character spacing (kerning) to fill lines.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+       <note>
+        <paragraph>
+         Both
+         <emphasis>
+          Justify
+         </emphasis>
+         and
+         <emphasis>
+          Flush
+         </emphasis>
+         only work within frames.
+        </paragraph>
+       </note>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Vertical Alignment
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Top Base-Line
+         </term>
+         <definition>
+          <bullet_list bullet="-">
+           <list_item>
+            <paragraph>
+             With text boxes, aligns the 'top' base-line of the text to the top of the frames.
+            </paragraph>
+           </list_item>
+           <list_item>
+            <paragraph>
+             With no text box, aligns the actual base-line of the text to the origin of the object,
+and grows to the bottom.
+            </paragraph>
+           </list_item>
+          </bullet_list>
+          <note>
+           <paragraph>
+            That difference of reference point in the first line
+depending on usage of boxes or not is indeed confusing.
+           </paragraph>
+          </note>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Top
+         </term>
+         <definition>
+          <bullet_list bullet="-">
+           <list_item>
+            <paragraph>
+             With text boxes, aligns the top of the text to the top of the frames.
+            </paragraph>
+           </list_item>
+           <list_item>
+            <paragraph>
+             With no text box, aligns the top of the text to the origin of the object, and grows to the bottom.
+            </paragraph>
+           </list_item>
+          </bullet_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Center
+         </term>
+         <definition>
+          <bullet_list bullet="-">
+           <list_item>
+            <paragraph>
+             With text boxes, centers the text in the frames.
+            </paragraph>
+           </list_item>
+           <list_item>
+            <paragraph>
+             With no text box, centers the text on the origin of the object,
+and grows in both top and bottom directions equally.
+            </paragraph>
+           </list_item>
+          </bullet_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bottom
+         </term>
+         <definition>
+          <bullet_list bullet="-">
+           <list_item>
+            <paragraph>
+             With text boxes, align the bottom of the text to the bottom of the frames.
+            </paragraph>
+           </list_item>
+           <list_item>
+            <paragraph>
+             With no text box, align the bottom of the text to the origin of the object, and grows to the top.
+            </paragraph>
+           </list_item>
+          </bullet_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bottom Base-Line
+         </term>
+         <definition>
+          <bullet_list bullet="-">
+           <list_item>
+            <paragraph>
+             With text boxes, aligns the base-line of the text to the bottom of the frames.
+            </paragraph>
+           </list_item>
+           <list_item>
+            <paragraph>
+             With no text box, aligns the base-line of the text to the origin of the object, and grows to the top.
+            </paragraph>
+           </list_item>
+          </bullet_list>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="spacing" names="spacing">
+    <title>
+     Spacing
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Character Spacing
+      </term>
+      <definition>
+       <paragraph>
+        A factor by which space between each character (kerning) is scaled in width.
+       </paragraph>
+       <paragraph>
+        In Edit Mode in the
+        <emphasis>
+         3D View
+        </emphasis>
+        , you can also control individual kerning
+at text cursor position by pressing
+        <literal classes="kbd">
+         Alt-Left
+        </literal>
+        /
+        <literal classes="kbd">
+         Alt-Right
+        </literal>
+        to decrease/increase it.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Word Spacing
+      </term>
+      <definition>
+       <paragraph>
+        A factor by which white-space between words is scaled in width.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Line Spacing
+      </term>
+      <definition>
+       <paragraph>
+        A factor by which the vertical space between lines is scaled.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Offset X/Y
+      </term>
+      <definition>
+       <paragraph>
+        These settings control the X and Y offset of the text position within the object.
+This applies relatively to the object's origin, either to the whole text or, when using text boxes, to each frame.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="bpy-types-textbox">
+    </target>
+   </section>
+  </section>
+  <section ids="text-boxes bpy-types-textbox" names="text\ boxes bpy.types.textbox">
+   <title>
+    Text Boxes
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        All
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Properties editor --&gt; Font --&gt; Text Boxes`">
+         Properties editor ‣ Font ‣ Text Boxes
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Text boxes (or frames) allow you to distribute the text among rectangular areas within a single text object.
+An arbitrary number of freely positionable and re-sizable text frames are allowed per text object.
+   </paragraph>
+   <paragraph>
+    The text flows continuously from the lowest-numbered frame to the highest-numbered frame with text
+inside each frame word-wrapped.
+It flows between frames when a lower-numbered frame cannot fit any more text.
+If the last frame is reached, text overflows out of it (by default, see options below).
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/modeling_texts_properties_frame-upperpanel-area.png'}" uri="images/modeling_texts_properties_frame-upperpanel-area.png"/>
+    <caption>
+     Text Boxes panel.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Add Textbox
+     </term>
+     <definition>
+      <paragraph>
+       Inserts a new frame, just after the current one (in text flow order).
+The new frame will have the same size and position as the selected one.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Delete
+      <literal>
+       X
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Delete the current frame.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Overflow
+     </term>
+     <definition>
+      <paragraph>
+       How to handle text overflowing available space in the defined boxes.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Overflow
+        </term>
+        <definition>
+         <paragraph>
+          Just keep text running out of the last box.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Scale to Fit
+        </term>
+        <definition>
+         <paragraph>
+          Scale text to fit into the available space.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Truncate
+        </term>
+        <definition>
+         <paragraph>
+          Hide the end of the text that does not fit into the available space.
+         </paragraph>
+         <note>
+          <paragraph>
+           It will only truncate in
+           <emphasis>
+            Object Mode
+           </emphasis>
+           ,
+in
+           <emphasis>
+            Edit Mode
+           </emphasis>
+           the whole text remains visible (and overflows as needed).
+          </paragraph>
+         </note>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Size X/Y
+     </term>
+     <definition>
+      <paragraph>
+       Specifies the width and height of the text box, if set to
+       <strong>
+        zero
+       </strong>
+       no word-wrap happens
+(it is ignored, and the whole text box system is disabled if all are set to a null size).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Offset X/Y
+     </term>
+     <definition>
+      <paragraph>
+       Controls the
+       <emphasis>
+        X
+       </emphasis>
+       and
+       <emphasis>
+        Y
+       </emphasis>
+       offset of the frame, i.e. its position.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/modeling_texts_properties_frame-example4.png'}" uri="images/modeling_texts_properties_frame-example4.png"/>
+    <caption>
+     Multiple columns, text flowing between boxes.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

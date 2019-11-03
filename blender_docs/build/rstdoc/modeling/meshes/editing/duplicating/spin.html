@@ -1,0 +1,435 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/duplicating/spin.rst">
+ <target refid="bpy-ops-mesh-spin">
+ </target>
+ <target ids="['tool-mesh-spin', 'bpy-ops-mesh-spin']" names="['tool-mesh-spin', 'bpy.ops.mesh.spin']">
+ </target>
+ <comment xml:space="preserve">
+  TODO/Review: {{review|text=reorganize, elaborate}}.
+ </comment>
+ <section ids="spin" names="spin xoay\ tròn\ --\ spin">
+  <title>
+   Xoay Tròn -- Spin
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Biên Soạn -- Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Tools --&gt; Mesh Tools --&gt; Add: Spin`">
+        Toolbar ‣ Tools ‣ Mesh Tools ‣ Add: Spin
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Alt-R
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The
+   <emphasis>
+    Spin
+   </emphasis>
+   tool extrudes (or duplicates it if the selection is manifold) the selected elements,
+rotating around a specific point and axis.
+  </paragraph>
+  <paragraph>
+   Use the tool to create the sort of objects that you would produce on a lathe
+(this tool is often called a "lathe"-tool or a "sweep"-tool in the literature, for this reason).
+In fact, it does a sort of circular extrusion of your selected elements,
+centered on the 3D cursor, and around the axis perpendicular to the working view...
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     The point of view will determine around which axis the extrusion spins...
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     The position of the 3D cursor will be the center of the rotation.
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Số Bước -- Steps
+     </term>
+     <definition>
+      <paragraph>
+       Specifies how many copies will be extruded along the "sweep".
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Duplicate
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, will keep the original selected elements as separated islands in the mesh
+(i.e. unlinked to the result of the spin extrusion).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Góc Độ -- Angle
+     </term>
+     <definition>
+      <paragraph>
+       Specifies the angle "swept" by this tool, in degrees (e.g. set it to 180 for half a turn).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Auto Merge
+     </term>
+     <definition>
+      <paragraph>
+       Automatically merges the first a last duplicates,
+if they make a full revolution which results in overlapping geometry.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Flip Normals
+     </term>
+     <definition>
+      <paragraph>
+       Reverses the
+       <reference internal="True" refuri="../../../../glossary/index.html#term-normal">
+        <inline classes="xref std std-term">
+         normal's
+        </inline>
+       </reference>
+       direction for any resulting geometry.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trung Tâm -- Center
+     </term>
+     <definition>
+      <paragraph>
+       Specifies the center of the spin. By default it uses the cursor position.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trục -- Axis
+     </term>
+     <definition>
+      <paragraph>
+       Specify the spin axis as a vector. By default it uses the view axis (viewport).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <target refid="fig-mesh-spin-glass">
+   </target>
+   <figure ids="id1 fig-mesh-spin-glass" names="fig-mesh-spin-glass">
+    <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_spin_glass-profile.png'}" uri="images/modeling_meshes_editing_duplicating_spin_glass-profile.png" width="300px"/>
+    <caption>
+     Glass profile.
+    </caption>
+   </figure>
+   <paragraph>
+    First, create a mesh representing the profile of your object.
+If you are modeling a hollow object, it is a good idea to thicken the outline.
+Fig.
+    <reference internal="True" refid="fig-mesh-spin-glass">
+     <inline classes="std std-ref">
+      Glass profile.
+     </inline>
+    </reference>
+    shows the profile for a wine glass we will model as a demonstration.
+   </paragraph>
+   <paragraph>
+    Go to
+    <emphasis>
+     Edit Mode
+    </emphasis>
+    and select all the vertices of the Profile with
+    <literal classes="kbd">
+     A
+    </literal>
+    .
+   </paragraph>
+   <paragraph>
+    We will be rotating the object around the cursor in the top view,
+so switch to the top view with
+    <literal classes="kbd">
+     Numpad7
+    </literal>
+    .
+   </paragraph>
+   <target refid="fig-mesh-spin-glass-top">
+   </target>
+   <figure ids="id2 fig-mesh-spin-glass-top" names="fig-mesh-spin-glass-top">
+    <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_spin_glass-profile-before.png'}" uri="images/modeling_meshes_editing_duplicating_spin_glass-profile-before.png" width="300px"/>
+    <caption>
+     Glass profile, top view in Edit Mode, just before spinning.
+    </caption>
+   </figure>
+   <paragraph>
+    Place the cursor along the center of the profile by selecting one of the vertices along the center, and snapping the 3D cursor to that location with
+    <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Contrỏ (Cursor) --&gt; Lựa Chọn (Selection)`">
+     Khung Lưới (Mesh) ‣ Contrỏ (Cursor) ‣ Lựa Chọn (Selection)
+    </inline>
+    . (Fig.
+    <reference internal="True" refid="fig-mesh-spin-glass-top">
+     <inline classes="std std-ref">
+      Glass profile, top view in Edit Mode, just before spinning.
+     </inline>
+    </reference>
+    ) shows the wine glass profile from top view, with the cursor correctly positioned.
+   </paragraph>
+   <paragraph>
+    Click the
+    <emphasis>
+     Spin
+    </emphasis>
+    button. If you have more than one 3D View open, the cursor will
+change to an arrow with a question mark and you will have to click in the area containing
+the top view before continuing. If you have only one 3D View open,
+the spin will happen immediately. Fig.
+    <reference internal="True" refid="fig-mesh-spin-profile">
+     <inline classes="std std-ref">
+      Spun profile.
+     </inline>
+    </reference>
+    shows the result of a successful spin.
+   </paragraph>
+  </section>
+  <section ids="angle" names="angle góc\ độ\ --\ angle">
+   <title>
+    Góc Độ -- Angle
+   </title>
+   <target refid="fig-mesh-spin-profile">
+   </target>
+   <table ids="id3 fig-mesh-spin-profile" names="fig-mesh-spin-profile">
+    <title>
+     Spun profile.
+    </title>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_spin_spun-profile360.png'}" uri="images/modeling_meshes_editing_duplicating_spin_spun-profile360.png" width="320px"/>
+         <caption>
+          Spun profile using an angle of 360.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_spin_spun-profile120.png'}" uri="images/modeling_meshes_editing_duplicating_spin_spun-profile120.png" width="320px"/>
+         <caption>
+          Spun profile using an angle of 120.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+  <section ids="duplicate" names="duplicate">
+   <title>
+    Duplicate
+   </title>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_spin_result.png'}" uri="images/modeling_meshes_editing_duplicating_spin_result.png" width="320px"/>
+         <caption>
+          Result of spin operation.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id7">
+         <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_spin_dubli.png'}" uri="images/modeling_meshes_editing_duplicating_spin_dubli.png" width="320px"/>
+         <caption>
+          Result of Dupli enabled.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+  <section ids="merge-duplicates" names="merge\ duplicates --\ merge\ duplicates">
+   <title>
+    -- Merge Duplicates
+   </title>
+   <target refid="fig-mesh-screw-duplicate">
+   </target>
+   <figure ids="id8 fig-mesh-screw-duplicate" names="fig-mesh-screw-duplicate">
+    <image candidates="{'*': 'images/modeling_meshes_editing_duplicating_spin_dublicate-vertices.png'}" uri="images/modeling_meshes_editing_duplicating_spin_dublicate-vertices.png" width="300px"/>
+    <caption>
+     Duplicate vertices.
+    </caption>
+   </figure>
+   <paragraph>
+    The spin operation leaves duplicate vertices along the profile.
+You can select all vertices at the seam with Box select
+    <literal classes="kbd">
+     B
+    </literal>
+    (shown in Fig.
+    <reference internal="True" refid="fig-mesh-screw-duplicate">
+     <inline classes="std std-ref">
+      Duplicate vertices.
+     </inline>
+    </reference>
+    ) and perform a
+    <emphasis>
+     Merge by Distance
+    </emphasis>
+    operation.
+   </paragraph>
+   <paragraph>
+    Notice the selected vertex count before and after the
+    <emphasis>
+     Merge by Distance
+    </emphasis>
+    operation
+    <literal>
+     Vertex count after removing doubles
+    </literal>
+    . If all goes well, the final vertex count
+(38 in this example) should match the number of the original profile noted in
+    <inline classes="menuselection" rawtext=":menuselection:`Mesh data --&gt; Vertex and face numbers`">
+     Mesh data ‣ Vertex and face numbers
+    </inline>
+    .
+If not, some vertices were missed and you will need to weld them manually.
+Or, worse, too many vertices will have been merged.
+   </paragraph>
+   <note>
+    <paragraph>
+     Merging Two Vertices into One
+    </paragraph>
+    <paragraph>
+     To merge (weld) two vertices together, select both of them by
+     <literal classes="kbd">
+      Shift-RMB
+     </literal>
+     clicking on them. Press
+     <literal classes="kbd">
+      S
+     </literal>
+     to start scaling and hold down
+     <literal classes="kbd">
+      Ctrl
+     </literal>
+     while scaling to scale the points down to 0 units in the X, Y and Z axis.
+     <literal classes="kbd">
+      LMB
+     </literal>
+     to complete the scaling operation and click the
+     <emphasis>
+      Merge by Distance
+     </emphasis>
+     button in
+the Toolbar in
+     <emphasis>
+      Edit Mode
+     </emphasis>
+     (also available with
+     <inline classes="menuselection" rawtext=":menuselection:`Specials --&gt; Merge by Distance`">
+      Specials ‣ Merge by Distance
+     </inline>
+     ).
+    </paragraph>
+    <paragraph>
+     Alternatively, you can use
+     <inline classes="menuselection" rawtext=":menuselection:`Đặc Biệt (Specials) --&gt; Hội Nhập (Merge)`">
+      Đặc Biệt (Specials) ‣ Hội Nhập (Merge)
+     </inline>
+     from the same
+     <emphasis>
+      Specials
+     </emphasis>
+     menu (or
+     <literal classes="kbd">
+      Alt-M
+     </literal>
+     ). Then, in the new pop-up menu, choose whether the merged vertex will be at the center of the selected vertices or at the 3D cursor. The first choice is better in our case!
+    </paragraph>
+   </note>
+  </section>
+  <section ids="recalculate-normals" names="recalculate\ normals tính\ lại\ pháp\ tuyến\ --\ recalculate\ normals">
+   <title>
+    Tính Lại Pháp Tuyến -- Recalculate Normals
+   </title>
+   <paragraph>
+    All that remains now is to recalculate the normals to the outside by selecting all vertices,
+pressing
+    <literal classes="kbd">
+     Ctrl-N
+    </literal>
+    and validating
+    <emphasis>
+     Recalculate Normals Outside
+    </emphasis>
+    in the pop-up menu.
+   </paragraph>
+  </section>
+ </section>
+</document>

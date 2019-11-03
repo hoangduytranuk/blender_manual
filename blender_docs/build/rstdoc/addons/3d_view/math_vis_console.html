@@ -1,0 +1,204 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/addons/3d_view/math_vis_console.rst">
+ <section ids="math-vis-console" names="math\ vis\ console">
+  <title>
+   Math Vis Console
+  </title>
+  <section ids="introduction" names="introduction">
+   <title>
+    Introduction
+   </title>
+   <paragraph>
+    Sometimes when writing Python scripts you stumble on complicated
+matrix transformations, ray intersections, rotation conversions, mesh modifications, etc.
+where its useful to view lines, points and matrices in the viewport to better understand the problem.
+   </paragraph>
+   <paragraph>
+    Creating mesh data for this purpose isn't difficult but is cumbersome.
+The purpose of this add-on is to make it as quick and easy as possible.
+   </paragraph>
+  </section>
+  <section ids="activation" names="activation">
+   <title>
+    Activation
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Open Blender and go to Preferences then the Add-ons tab.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Click 3D View then Math Vis (Console) to enable the script.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="instructions" names="instructions">
+   <title>
+    Instructions
+   </title>
+   <paragraph>
+    Math Vis works by displaying Python Console defined mathutils typed variables in the 3D Viewport.
+   </paragraph>
+   <paragraph>
+    The following types are supported:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Point:
+      <literal>
+       Vector(...)
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Line:
+      <literal>
+       [Vector(...), Vector(...), ...]
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Transformation:
+      <literal>
+       Matrix(...)
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Transformations (without translation):
+      <literal>
+       Quaternion(...)
+      </literal>
+      /
+      <literal>
+       Euler(...)
+      </literal>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="usage" names="usage">
+   <title>
+    Usage
+   </title>
+   <figure align="center" width="680px">
+    <image candidates="{'*': 'images/addons_3dview_math_vis.jpg'}" uri="images/addons_3dview_math_vis.jpg"/>
+   </figure>
+   <paragraph>
+    Create a Python Console editor.
+In the Python Console define a mathutils variable:
+   </paragraph>
+   <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+    hello_world = Vector((1, 2, 3))
+   </literal_block>
+   <paragraph>
+    You should now be able to see this point in the 3D View!
+   </paragraph>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Category
+      </field_name>
+      <field_body>
+       <paragraph>
+        3D View
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Description
+      </field_name>
+      <field_body>
+       <paragraph>
+        Display console defined mathutils variables in the 3D View.
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Location
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Scene --&gt; Python Console Menu`">
+         Properties ‣ Scene ‣ Python Console Menu
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       File
+      </field_name>
+      <field_body>
+       <paragraph>
+        space_view3d_math_vis.py
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Author
+      </field_name>
+      <field_body>
+       <paragraph>
+        Campbell Barton
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Maintainer
+      </field_name>
+      <field_body>
+       <paragraph>
+        Campbell Barton
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       License
+      </field_name>
+      <field_body>
+       <paragraph>
+        GPL
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Support Level
+      </field_name>
+      <field_body>
+       <paragraph>
+        Official
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Note
+      </field_name>
+      <field_body>
+       <paragraph>
+        This add-on is bundled with Blender.
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+  </section>
+ </section>
+</document>

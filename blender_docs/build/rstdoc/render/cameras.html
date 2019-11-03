@@ -1,0 +1,1067 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/cameras.rst">
+ <section ids="cameras" names="cameras">
+  <title>
+   Cameras
+  </title>
+  <paragraph>
+   A
+   <emphasis>
+    Camera
+   </emphasis>
+   is an object that provides a means of rendering images from Blender.
+It defines which portion of a scene is visible in the rendered image.
+  </paragraph>
+  <paragraph>
+   Cameras are invisible in renders, so they do not have any material or texture settings.
+However, they do have
+   <emphasis>
+    Object
+   </emphasis>
+   and
+   <emphasis>
+    Editing
+   </emphasis>
+   setting panels available
+which are displayed when a camera is the selected (active!) object.
+  </paragraph>
+  <seealso>
+   <paragraph>
+    <reference internal="True" refuri="../editors/3dview/navigate/camera_view.html">
+     <inline classes="doc">
+      3D Viewport Camera Navigation
+     </inline>
+    </reference>
+    for documentation about managing cameras in the viewport.
+   </paragraph>
+  </seealso>
+  <section ids="properties" names="properties">
+   <title>
+    Properties
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Editor
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Camera`">
+         Properties ‣ Camera
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <target refid="camera-lens-type">
+   </target>
+   <section ids="lens camera-lens-type" names="lens camera-lens-type">
+    <title>
+     Lens
+    </title>
+    <rubric>
+     Type
+    </rubric>
+    <paragraph>
+     The camera lens options control the way 3D objects are represented in a 2D image.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Perspective
+      </term>
+      <definition>
+       <paragraph>
+        This matches how you view things in the real world.
+Objects in the distance will appear smaller than objects in the foreground,
+and parallel lines (such as the rails on a railroad) will appear to converge as they get farther away.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Focal Length/Field of View
+         </term>
+         <definition>
+          <paragraph>
+           The
+           <reference internal="True" refuri="../glossary/index.html#term-focal-length">
+            <inline classes="xref std std-term">
+             focal length
+            </inline>
+           </reference>
+           controls the amount of zoom, i.e.
+the amount of the scene which is visible all at once.
+Longer focal lengths result in a smaller
+           <abbreviation explanation="Field of View">
+            FOV
+           </abbreviation>
+           (more zoom),
+while short focal lengths allow you to see more of the scene at once
+(larger
+           <abbreviation explanation="Field of View">
+            FOV
+           </abbreviation>
+           , less zoom).
+          </paragraph>
+          <table>
+           <tgroup cols="2">
+            <colspec colwidth="50">
+            </colspec>
+            <colspec colwidth="50">
+            </colspec>
+            <tbody>
+             <row>
+              <entry>
+               <figure ids="id1">
+                <image candidates="{'*': 'images/render_cameras_traintracks-perspective-BI.jpg'}" uri="images/render_cameras_traintracks-perspective-BI.jpg"/>
+                <caption>
+                 Perspective camera with 35mm focal length.
+                </caption>
+               </figure>
+              </entry>
+              <entry>
+               <figure ids="id2">
+                <image candidates="{'*': 'images/render_cameras_traintracks-perspective-telephoto-BI.jpg'}" uri="images/render_cameras_traintracks-perspective-telephoto-BI.jpg"/>
+                <caption>
+                 Perspective camera with 210mm focal length instead of 35mm.
+                </caption>
+               </figure>
+              </entry>
+             </row>
+            </tbody>
+           </tgroup>
+          </table>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Lens Unit
+            </term>
+            <definition>
+             <paragraph>
+              The focal length can be set either in terms of millimeters or the actual
+              <reference internal="True" refuri="../glossary/index.html#term-field-of-view">
+               <inline classes="xref std std-term">
+                Field of View
+               </inline>
+              </reference>
+              as an angle.
+             </paragraph>
+             <figure align="center">
+              <image candidates="{'*': 'images/render_cameras_perspective.svg'}" uri="images/render_cameras_perspective.svg" width="50%"/>
+             </figure>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+          <hint>
+           <paragraph>
+            While the camera is moving towards an object the
+            <emphasis>
+             Focal Length
+            </emphasis>
+            property can be decreased
+to produce a
+            <emphasis>
+             Dolly Zoom
+            </emphasis>
+            camera effect, or vice versa.
+           </paragraph>
+           <paragraph>
+            <reference name="This video" refuri="https://vimeo.com/15837189">
+             This video
+            </reference>
+            demonstrates the
+            <emphasis>
+             Dolly Zoom
+            </emphasis>
+            camera effect.
+           </paragraph>
+          </hint>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Orthographic
+      </term>
+      <definition>
+       <paragraph>
+        With
+        <emphasis>
+         Orthographic
+        </emphasis>
+        perspective objects always appear at their actual size, regardless of distance.
+This means that parallel lines appear parallel, and do not converge like they do with
+        <emphasis>
+         Perspective
+        </emphasis>
+        .
+       </paragraph>
+       <figure ids="id3">
+        <image candidates="{'*': 'images/render_cameras_traintracks-orthographic-BI.jpg'}" uri="images/render_cameras_traintracks-orthographic-BI.jpg" width="50%"/>
+        <caption>
+         Render from the same camera angle as the previous examples, but with orthographic perspective.
+        </caption>
+       </figure>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Orthographic Scale
+         </term>
+         <definition>
+          <paragraph>
+           This controls the apparent size of objects projected on the image.
+          </paragraph>
+          <paragraph>
+           Note that this is effectively the only setting which applies to orthographic perspective.
+Since parallel lines do not converge in orthographic mode (no vanishing points),
+the lens shift settings are equivalent to translating the camera in the 3D View.
+          </paragraph>
+          <figure align="center">
+           <image candidates="{'*': 'images/render_cameras_orthographic.svg'}" uri="images/render_cameras_orthographic.svg" width="50%"/>
+          </figure>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Panoramic
+      </term>
+      <definition>
+       <paragraph>
+        Panoramic cameras only work in Cycles.
+See the Cycles
+        <reference internal="True" refuri="cycles/object_settings/cameras.html#cycles-panoramic-camera">
+         <inline classes="std std-ref">
+          panoramic camera
+         </inline>
+        </reference>
+        settings for more information.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Shift
+      </term>
+      <definition>
+       <paragraph>
+        Allows for the adjustment of
+        <emphasis>
+         vanishing points
+        </emphasis>
+        .
+        <emphasis>
+         Vanishing points
+        </emphasis>
+        refer to the positions to which parallel lines converge.
+In these render examples, the most obvious vanishing point is at the end of the railroad.
+       </paragraph>
+       <table>
+        <tgroup cols="2">
+         <colspec colwidth="50">
+         </colspec>
+         <colspec colwidth="50">
+         </colspec>
+         <tbody>
+          <row>
+           <entry>
+            <figure ids="id4">
+             <image candidates="{'*': 'images/render_cameras_traintracks-perspective-lens-shift-BI.jpg'}" uri="images/render_cameras_traintracks-perspective-lens-shift-BI.jpg"/>
+             <caption>
+              Horizontal lens shift of 0.330.
+             </caption>
+            </figure>
+           </entry>
+           <entry>
+            <figure ids="id5">
+             <image candidates="{'*': 'images/render_cameras_traintracks-perspective-rotate-BI.jpg'}" uri="images/render_cameras_traintracks-perspective-rotate-BI.jpg"/>
+             <caption>
+              Rotation of the camera object instead of a lens shift.
+             </caption>
+            </figure>
+           </entry>
+          </row>
+         </tbody>
+        </tgroup>
+       </table>
+       <paragraph>
+        Notice how the horizontal lines remain perfectly horizontal when using the lens shift,
+but do get skewed when rotating the camera object.
+       </paragraph>
+       <note>
+        <paragraph>
+         Using lens shift is equivalent to rendering an image with a larger
+         <abbreviation explanation="Field of View">
+          FOV
+         </abbreviation>
+         and cropping it off-center.
+        </paragraph>
+       </note>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="camera-clipping">
+    </target>
+    <definition_list ids="camera-clipping" names="camera-clipping">
+     <definition_list_item>
+      <term>
+       Clip Start and End
+      </term>
+      <definition>
+       <paragraph>
+        The interval in which objects are directly visible,
+Any objects outside this range still influence the image indirectly,
+as further light bounces are not clipped.
+       </paragraph>
+       <note>
+        <paragraph>
+         For viewport rendering, setting clipping distances to limited values
+is important to ensure sufficient rasterization precision.
+Ray tracing renders do not suffer from this issue so much,
+and as such more extreme values can safely be set.
+        </paragraph>
+       </note>
+       <tip>
+        <paragraph>
+         When
+         <emphasis>
+          Limits
+         </emphasis>
+         in the
+         <emphasis>
+          Display
+         </emphasis>
+         panel is enabled,
+the clip bounds will be visible as two yellow connected dots on the camera line of sight.
+        </paragraph>
+       </tip>
+       <seealso>
+        <bullet_list bullet="-">
+         <list_item>
+          <paragraph>
+           <reference internal="True" refuri="../editors/3dview/properties/sidebar.html">
+            <inline classes="doc">
+             3D View clipping
+            </inline>
+           </reference>
+          </paragraph>
+         </list_item>
+        </bullet_list>
+       </seealso>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="bpy-types-cameradofsettings">
+    </target>
+   </section>
+   <section ids="depth-of-field bpy-types-cameradofsettings" names="depth\ of\ field bpy.types.cameradofsettings">
+    <title>
+     Depth of Field
+    </title>
+    <paragraph>
+     Real-world cameras transmit light through a lens that bends and focuses it onto the sensor.
+Because of this, objects that are a certain distance away are in focus,
+but objects in front and behind that are blurred.
+    </paragraph>
+    <figure align="center" ids="id6">
+     <image candidates="{'*': 'images/render_cameras_dof-bokeh.jpg'}" uri="images/render_cameras_dof-bokeh.jpg" width="50%"/>
+     <caption>
+      Example of DOF bokeh effect.
+     </caption>
+    </figure>
+    <paragraph>
+     The area in focus is called the
+     <emphasis>
+      focal point
+     </emphasis>
+     and can be set using either an exact value,
+or by using the distance between the camera and a chosen object:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Focus Object
+      </term>
+      <definition>
+       <paragraph>
+        Choose an object which will determine the focal point. Linking an object will deactivate the distance parameter.
+Typically this is used to give precise control over the position of the focal point,
+and also allows it to be animated or constrained to another object.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Focal Distance
+      </term>
+      <definition>
+       <paragraph>
+        Sets the distance to the focal point when no
+        <emphasis>
+         Focus Object
+        </emphasis>
+        is specified.
+If
+        <emphasis>
+         Limits
+        </emphasis>
+        are enabled, a yellow cross is shown on the camera line of sight at this distance.
+       </paragraph>
+       <hint>
+        <paragraph>
+         Hover the mouse over the
+         <emphasis>
+          Distance
+         </emphasis>
+         property and press
+         <literal classes="kbd">
+          E
+         </literal>
+         to use a special
+         <emphasis>
+          Depth Picker
+         </emphasis>
+         .
+Then click on a point in the 3D View to sample the distance from that point to the camera.
+        </paragraph>
+       </hint>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <section ids="aperture" names="aperture">
+     <title>
+      Aperture
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        F-Stop
+       </term>
+       <definition>
+        <paragraph>
+         F-Stop ratio that defines the amount of blurring.
+Lower values give a strong depth of field effect.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Blades
+       </term>
+       <definition>
+        <paragraph>
+         Total number of polygonal blades used to alter the shape of the blurred objects
+in the render, and render preview. As with the viewport, the minimum amount of
+blades to enable the bokeh effect is 3, resulting in a triangular-shaped blur.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Rotation
+       </term>
+       <definition>
+        <paragraph>
+         Rotate the polygonal blades along the facing axis, and will rotate in a clockwise,
+and counter-clockwise fashion.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Ratio
+       </term>
+       <definition>
+        <paragraph>
+         Change the amount of distortion to simulate the anamorphic bokeh effect.
+A setting of 1.0 shows no distortion, where a number below 1.0 will cause a horizontal distortion,
+and a higher number will cause a vertical distortion.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <target refid="bpy-types-camera-sensor">
+     </target>
+    </section>
+   </section>
+   <section ids="camera bpy-types-camera-sensor" names="camera bpy.types.camera.sensor">
+    <title>
+     Camera
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Camera Presets
+      </term>
+      <definition>
+       <paragraph>
+        <reference internal="True" refuri="../interface/controls/templates/list_presets.html#ui-presets">
+         <inline classes="std std-ref">
+          Presets
+         </inline>
+        </reference>
+        to match real cameras.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="render-camera-sensor-size">
+    </target>
+    <definition_list ids="render-camera-sensor-size" names="render-camera-sensor-size">
+     <definition_list_item>
+      <term>
+       Sensor size
+      </term>
+      <definition>
+       <paragraph>
+        This setting is an alternative way to control the focal length,
+it is useful to match the camera in Blender to a physical camera and lens combination,
+e.g. for
+        <reference internal="True" refuri="../movie_clip/index.html">
+         <inline classes="doc">
+          motion tracking
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Sensor Fit
+      </term>
+      <definition>
+       <paragraph>
+        Option to control which dimension (vertical or horizontal) along which field of view angle fits.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="bpy-types-displaysafeareas">
+    </target>
+    <target refid="bpy-ops-safe-areas">
+    </target>
+    <target refid="camera-safe-areas">
+    </target>
+   </section>
+   <section ids="safe-areas camera-safe-areas bpy-ops-safe-areas bpy-types-displaysafeareas" names="safe\ areas camera-safe-areas bpy.ops.safe_areas bpy.types.displaysafeareas">
+    <title>
+     Safe Areas
+    </title>
+    <paragraph>
+     Safe areas are guides used to position elements to ensure that
+the most important parts of the content can be seen across all screens.
+    </paragraph>
+    <paragraph>
+     Different screens have varying amounts of
+     <reference internal="True" refuri="../glossary/index.html#term-overscan">
+      <inline classes="xref std std-term">
+       overscan
+      </inline>
+     </reference>
+     (especially older TV sets).
+That means that not all content will be visible to all viewers,
+since parts of the image surrounding the edges are not shown.
+To work around this problem TV producers defined two areas where content is guaranteed to be shown:
+action safe and title safe.
+    </paragraph>
+    <paragraph>
+     Modern LCD/plasma screens with purely digital signals have no
+     <reference internal="True" refuri="../glossary/index.html#term-overscan">
+      <inline classes="xref std std-term">
+       overscan
+      </inline>
+     </reference>
+     ,
+yet safe areas are still considered best practice and may be legally required for broadcast.
+    </paragraph>
+    <paragraph>
+     In Blender, safe areas can be set from the Camera and Sequencer views.
+    </paragraph>
+    <figure align="center" ids="id7">
+     <image candidates="{'*': 'images/render_cameras_safe-areas-main-BI.png'}" uri="images/render_cameras_safe-areas-main-BI.png" width="50%"/>
+     <caption>
+      Red line: Action safe. Green line: Title safe.
+     </caption>
+    </figure>
+    <paragraph>
+     The Safe Areas can be customized by their outer margin,
+which is a percentage scale of the area between the center and the render size.
+Values are shared between the Video Sequence editor and camera view.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Title Safe Margins X/Y
+      </term>
+      <definition>
+       <paragraph>
+        Also known as
+        <emphasis>
+         Graphics Safe
+        </emphasis>
+        .
+Place all important information (graphics or text) inside this area to
+ensure it can be seen by the majority of viewers.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Action Safe Margins X/Y
+      </term>
+      <definition>
+       <paragraph>
+        Make sure any significant action or characters in the shot are inside this area.
+This zone also doubles as a sort of "margin" for the screen which can be used
+to keep elements from piling up against the edges.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <tip>
+     <paragraph>
+      Each country sets a legal standard for broadcasting.
+These include, among other things, specific values for safe areas.
+Blender defaults for safe areas follow the EBU (European Union) standard.
+Make sure you are using the correct values when working for broadcast to avoid any trouble.
+     </paragraph>
+    </tip>
+    <section ids="center-cut-safe-areas" names="center-cut\ safe\ areas">
+     <title>
+      Center-Cut Safe Areas
+     </title>
+     <paragraph>
+      Center-cuts are a second set of safe areas to ensure content
+is seen correctly on screens with a different aspect ratio.
+Old TV sets receiving
+      <literal>
+       16:9
+      </literal>
+      or
+      <literal>
+       21:9
+      </literal>
+      video will cut off the sides.
+Position content inside the center-cut areas to make sure the most important elements
+of your composition can still be visible in these screens.
+     </paragraph>
+     <paragraph>
+      Blender defaults show a
+      <literal>
+       4:3
+      </literal>
+      (square) ratio inside
+      <literal>
+       16:9
+      </literal>
+      (widescreen).
+     </paragraph>
+     <figure align="center" ids="id8">
+      <image candidates="{'*': 'images/render_cameras_safe-areas-cuts-BI.png'}" uri="images/render_cameras_safe-areas-cuts-BI.png" width="50%"/>
+      <caption>
+       Cyan line: action center safe. Blue line: title center safe.
+      </caption>
+     </figure>
+     <target refid="bpy-types-camerabackgroundimage">
+     </target>
+    </section>
+   </section>
+   <section ids="background-images bpy-types-camerabackgroundimage" names="background\ images bpy.types.camerabackgroundimage">
+    <title>
+     Background Images
+    </title>
+    <paragraph>
+     A background picture in your camera can be very helpful in many situations:
+modeling is obviously one, but it is also useful when painting
+(e.g. you can have reference pictures of faces when painting textures directly on your model...),
+or animation (when using a video as background), etc.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Background Source
+      </term>
+      <definition>
+       <paragraph>
+        The source of the background image.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Image
+         </term>
+         <definition>
+          <paragraph>
+           Use an external image, image sequence, video file or generated texture.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Movie Clip
+         </term>
+         <definition>
+          <paragraph>
+           Use one of the Movie Clip data-blocks.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Alpha
+      </term>
+      <definition>
+       <paragraph>
+        Controls the transparency of the background image.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Depth
+      </term>
+      <definition>
+       <paragraph>
+        Choose whether the image is shown behind all objects, or in front of everything.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Frame Method
+      </term>
+      <definition>
+       <paragraph>
+        Controls how the image is placed in the camera view.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Stretch
+         </term>
+         <definition>
+          <paragraph>
+           Forces the image dimensions to match the camera bounds (may alter the aspect ratio).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Fit
+         </term>
+         <definition>
+          <paragraph>
+           Scales the image down to fit inside the camera view without altering the aspect ratio.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Crop
+         </term>
+         <definition>
+          <paragraph>
+           Scales the image up so that it fills the entire camera view,
+but without altering the aspect ratio (some of the image will be cropped).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Offset X/Y
+      </term>
+      <definition>
+       <paragraph>
+        Positions the background image using these offsets.
+       </paragraph>
+       <paragraph>
+        In orthographic views, this is measured in the normal scene units.
+In the camera view, this is measured relative to the camera bounds
+(0.1 will offset it by 10% of the view width/height).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Rotation
+      </term>
+      <definition>
+       <paragraph>
+        Rotates the image around its center.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Scale
+      </term>
+      <definition>
+       <paragraph>
+        Scales the image up or down from its center.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Flip Horizontally
+      </term>
+      <definition>
+       <paragraph>
+        Swaps the image around, such that the left side is now on the right, and the right now on the left.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Flip Vertically
+      </term>
+      <definition>
+       <paragraph>
+        Swaps the image around, such that the top side is now on the bottom, and the bottom now on the top.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="bpy-types-camera-show">
+    </target>
+    <target refid="bpy-types-camera-display-size">
+    </target>
+   </section>
+   <section ids="viewport-display bpy-types-camera-display-size bpy-types-camera-show" names="viewport\ display bpy.types.camera.display_size bpy.types.camera.show">
+    <title>
+     Viewport Display
+    </title>
+    <figure align="center" ids="id9">
+     <image candidates="{'*': 'images/render_cameras_display-view-BI.png'}" uri="images/render_cameras_display-view-BI.png" width="50%"/>
+     <caption>
+      Camera view displaying safe areas, sensor and name.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Size
+      </term>
+      <definition>
+       <paragraph>
+        Size of the camera visualization in the 3D View. This setting has
+        <strong>
+         no
+        </strong>
+        effect on the render output of a camera.
+The camera visualization can also be scaled using the standard Scale
+        <literal classes="kbd">
+         S
+        </literal>
+        transform key.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Limits
+      </term>
+      <definition>
+       <paragraph>
+        Shows a line which indicates
+        <emphasis>
+         Start
+        </emphasis>
+        and
+        <emphasis>
+         End Clipping
+        </emphasis>
+        values.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mist
+      </term>
+      <definition>
+       <paragraph>
+        Toggles viewing of the mist limits on and off.
+The limits are shown as two connected white dots on the camera line of sight.
+The mist limits and other options are set in the
+        <emphasis>
+         World
+        </emphasis>
+        panel,
+in the
+        <reference internal="True" refuri="cycles/world_settings.html#render-cycles-integrator-world-mist">
+         <inline classes="std std-ref">
+          Mist section
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Sensor
+      </term>
+      <definition>
+       <paragraph>
+        Displays a dotted frame in camera view.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Name
+      </term>
+      <definition>
+       <paragraph>
+        Toggle name display on and off in camera view.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <section ids="passepartout" names="passepartout">
+     <title>
+      Passepartout
+     </title>
+     <paragraph>
+      This option darkens the area outside of the camera's field of view.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Alpha
+       </term>
+       <definition>
+        <paragraph>
+         Controls the transparency of the passepartout mask.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <target refid="bpy-types-camera-show-composition">
+     </target>
+    </section>
+    <section ids="composition-guides bpy-types-camera-show-composition" names="composition\ guides bpy.types.camera.show_composition">
+     <title>
+      Composition Guides
+     </title>
+     <paragraph>
+      <emphasis>
+       Composition Guides
+      </emphasis>
+      enable overlays onto the camera display that can help when framing a shot.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Center
+       </term>
+       <definition>
+        <paragraph>
+         Adds lines dividing the frame in half vertically and horizontally.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Center Diagonal
+       </term>
+       <definition>
+        <paragraph>
+         Adds lines connecting opposite corners.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Thirds
+       </term>
+       <definition>
+        <paragraph>
+         Adds lines dividing the frame in thirds vertically and horizontally.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Golden Ratio
+       </term>
+       <definition>
+        <paragraph>
+         Divides the width and height into Golden proportions (about 0.618 of the size from all sides of the frame).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Golden Triangle A
+       </term>
+       <definition>
+        <paragraph>
+         Displays a diagonal line from the lower left to upper right corners,
+then adds perpendicular lines that pass through the top left and bottom right corners.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Golden Triangle B
+       </term>
+       <definition>
+        <paragraph>
+         Same as A, but with the opposite corners.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Harmonious Triangle A
+       </term>
+       <definition>
+        <paragraph>
+         Displays a diagonal line from the lower left to upper right corners,
+then lines from the top left and bottom right corners to 0.618 the lengths of the opposite side.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Harmonious Triangle B
+       </term>
+       <definition>
+        <paragraph>
+         Same as A, but with the opposite corners.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+  </section>
+ </section>
+</document>

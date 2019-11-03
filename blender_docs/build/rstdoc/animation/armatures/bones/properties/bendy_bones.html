@@ -1,0 +1,485 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/armatures/bones/properties/bendy_bones.rst">
+ <comment xml:space="preserve">
+  (todo 2.78 add) images: https://code.blender.org/2016/05/
+ </comment>
+ <comment xml:space="preserve">
+  an-in-depth-look-at-how-b-bones-work-including-details-of-the-new-bendy-bones/
+ </comment>
+ <target refid="bendy-bones">
+ </target>
+ <section ids="bendy-bones id1" names="bendy\ bones bendy-bones">
+  <title>
+   Bendy Bones
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       All Modes
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Bone --&gt; Bendy Bones`">
+        Bone ‣ Bendy Bones
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Bendy Bones (B-Bones) are an easy way to replace long chains of many small rigid bones.
+A common use case for curved bones is to model spine columns or facial bones.
+  </paragraph>
+  <section ids="technical-details" names="technical\ details">
+   <title>
+    Technical Details
+   </title>
+   <paragraph>
+    Blender treats the bone as a section of a Bézier curve passing through the bones' joints.
+Each of the
+    <emphasis>
+     Segments
+    </emphasis>
+    will bend and roll to follow this invisible curve
+representing a tessellated point of the Bézier curve.
+The control points at each end of the curve are the endpoints of the bone.
+The shape of the B-Bones can be controlled using a series of properties or
+indirectly through the neighboring bones (i.e. first child and parent).
+The properties construct handles on either end of the bone to control the curvature.
+   </paragraph>
+   <comment xml:space="preserve">
+    move to constraint &gt; common?
+   </comment>
+   <paragraph>
+    When using the B-bone as a constraint target
+    <reference internal="True" refuri="../../../../interface/controls/templates/data_block.html#ui-data-id">
+     <inline classes="std std-ref">
+      Chỉ Danh của Dữ Liệu -- Data ID
+     </inline>
+    </reference>
+    offers an option to follow the curvature.
+   </paragraph>
+   <note>
+    <paragraph>
+     However, if the bone is used as a target rather than to deform geometry,
+only
+     <emphasis>
+      Armature
+     </emphasis>
+     and
+     <emphasis>
+      Copy Transforms
+     </emphasis>
+     constraints will use the full
+transformation including roll and scale.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="display" names="display">
+   <title>
+    Display
+   </title>
+   <paragraph>
+    You can see these segments only if bones are visualized as
+    <emphasis>
+     B-bones
+    </emphasis>
+    .
+   </paragraph>
+   <paragraph>
+    When not visualized as
+    <emphasis>
+     B-Bone
+    </emphasis>
+    s, bones are always shown as rigid sticks,
+even though the bone segments are still present and effective.
+This means that even in e.g.
+    <emphasis>
+     Octahedron
+    </emphasis>
+    visualization,
+if some bones in a chain have several segments,
+they will nonetheless smoothly deform their geometry.
+   </paragraph>
+  </section>
+  <section ids="rest-pose" names="rest\ pose">
+   <title>
+    Rest Pose
+   </title>
+   <paragraph>
+    The initial shape of a B-Bone can be defined in Edit Mode as a rest pose of that bone.
+This is useful for curved facial features like curved eyebrows or mouths.
+   </paragraph>
+   <paragraph>
+    B-Bones have two sets of the Bendy Bone properties -- one for Edit mode (i.e. the Rest Pose/Base Rig) and
+another for Pose Mode -- adding together their values to get the final transforms.
+   </paragraph>
+  </section>
+  <section dupnames="example" ids="example">
+   <title>
+    Example
+   </title>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <target refid="fig-rig-bone-intro-bbone">
+        </target>
+        <figure ids="id3 fig-rig-bone-intro-bbone" names="fig-rig-bone-intro-bbone">
+         <image candidates="{'*': 'images/animation_armatures_bones_properties_bendy-bones_b-bones-1.png'}" uri="images/animation_armatures_bones_properties_bendy-bones_b-bones-1.png"/>
+         <caption>
+          Bones with just one segment in Edit Mode.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/animation_armatures_bones_properties_bendy-bones_b-bones-2.png'}" uri="images/animation_armatures_bones_properties_bendy-bones_b-bones-2.png"/>
+         <caption>
+          The Bézier curve superposed to the chain, with its handles placed at bones' joints.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <target refid="fig-rig-bone-intro-same">
+        </target>
+        <figure ids="id5 fig-rig-bone-intro-same" names="fig-rig-bone-intro-same">
+         <image candidates="{'*': 'images/animation_armatures_bones_properties_bendy-bones_b-bones-3.png'}" uri="images/animation_armatures_bones_properties_bendy-bones_b-bones-3.png"/>
+         <caption>
+          The same armature in Object Mode.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <comment xml:space="preserve">
+        </comment>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <paragraph>
+    In Fig.
+    <reference internal="True" refid="fig-rig-bone-intro-bbone">
+     <inline classes="std std-ref">
+      Bones with just one segment in Edit Mode.
+     </inline>
+    </reference>
+    we connected three bones,
+each one made of five segments.
+   </paragraph>
+   <paragraph>
+    Look at Fig.
+    <reference internal="True" refid="fig-rig-bone-intro-same">
+     <inline classes="std std-ref">
+      The same armature in Object Mode.
+     </inline>
+    </reference>
+    ,
+we can see how the bones' segments smoothly "blend" into each other, even for roll.
+   </paragraph>
+   <figure ids="id6">
+    <image candidates="{'*': 'images/animation_armatures_bones_properties_bendy-bones_pose-mode.png'}" uri="images/animation_armatures_bones_properties_bendy-bones_pose-mode.png"/>
+    <caption>
+     An armature in Pose Mode, B-Bone visualization: Bone.003 has one segment,
+Bone.004 has four, and Bone.005 has sixteen.
+    </caption>
+   </figure>
+  </section>
+  <section ids="options" names="options">
+   <title>
+    Options
+   </title>
+   <section ids="segments" names="segments">
+    <title>
+     Segments
+    </title>
+    <paragraph>
+     The
+     <emphasis>
+      Segments
+     </emphasis>
+     number field allows you to set the number of segments, which the given bone is subdivided into.
+Segments are small, rigid linked child bones that interpolate between the root and the tip.
+The higher this setting, the smoother "bends" the bone, but the heavier the pose calculations.
+    </paragraph>
+   </section>
+   <section ids="curve-xy-offsets" names="curve\ xy\ offsets">
+    <title>
+     Curve XY Offsets
+    </title>
+    <paragraph>
+     Applies offsets to the curve handle positions on the plane perpendicular to the bone's primary (Y) axis.
+As a result, the handle moves per axis (XY) further from its original location, causing the curve to bend.
+    </paragraph>
+   </section>
+   <section ids="roll" names="roll">
+    <title>
+     Roll
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Roll In, Out
+      </term>
+      <definition>
+       <paragraph>
+        The roll value (or twisting around the main Y axis of the bone) is interpolated per segment,
+between the start and end roll values.
+It is applied as a rotational offset on top of the previous rotation.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Inherit End Roll
+      </term>
+      <definition>
+       <paragraph>
+        If enabled, the
+        <emphasis>
+         Roll Out
+        </emphasis>
+        value of the
+        <emphasis>
+         Start Handle
+        </emphasis>
+        bone (connected parent by default)
+will be implicitly added to the
+        <emphasis>
+         Roll In
+        </emphasis>
+        setting of the current bone.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="scale" names="scale">
+    <title>
+     Scale
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Scale In X/Y, Scale Out X/Y
+      </term>
+      <definition>
+       <paragraph>
+        Scaling factor that adjusts the thickness of each segment for the X and Y axes only,
+i.e. length (Z axis) is not affected. Similar to
+        <emphasis>
+         Roll
+        </emphasis>
+        it is interpolated per segment.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="easing" names="easing">
+    <title>
+     Easing
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Ease In, Out
+      </term>
+      <definition>
+       <paragraph>
+        The
+        <emphasis>
+         Ease In/Out
+        </emphasis>
+        number fields, change the "length" of the
+        <reference internal="True" refuri="../../../../modeling/curves/structure.html#curve-handle-type-auto">
+         <inline classes="std std-ref">
+          "auto"
+         </inline>
+        </reference>
+        Bézier handle
+to control the "root handle" and "tip handle" of the bone, respectively.
+       </paragraph>
+       <paragraph>
+        These values are proportional to the default length,
+which of course automatically varies depending on bone length,
+angle with the reference handle, and so on.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <table ids="id7">
+     <title>
+      Ease In/Out settings example, with a materialized Bézier curve.
+     </title>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id8">
+          <image candidates="{'*': 'images/animation_armatures_bones_properties_bendy-bones_curve-in-out-1.png'}" uri="images/animation_armatures_bones_properties_bendy-bones_curve-in-out-1.png" width="320px"/>
+          <caption>
+           Bone.004 with default In and Out (1.0).
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id9">
+          <image candidates="{'*': 'images/animation_armatures_bones_properties_bendy-bones_curve-in-out-2.png'}" uri="images/animation_armatures_bones_properties_bendy-bones_curve-in-out-2.png" width="320px"/>
+          <caption>
+           Bone.004 with In at 2.0, and Out at 0.0.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+   </section>
+   <section ids="custom-handles" names="custom\ handles">
+    <title>
+     Custom Handles
+    </title>
+    <paragraph>
+     B-Bones can use custom bones as their reference bone handles, instead of only using the connected parent/child bones.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Start, End Handle Type
+      </term>
+      <definition>
+       <paragraph>
+        Specifies the type of the handle from the following choices:
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Automatic
+         </term>
+         <definition>
+          <paragraph>
+           The connected parent (or first connected child) of the bone is chosen as the handle.
+Calculations are done according to the
+           <emphasis>
+            Absolute
+           </emphasis>
+           handle type below.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Absolute
+         </term>
+         <definition>
+          <paragraph>
+           The Bézier handle is controlled by the position of the head (tail) of the handle bone
+relative to the head (tail) of the current bone. If the handle is also a B-Bone,
+additional processing is applied to further smooth the transition, assuming that
+the bones in effect form a chain.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Relative
+         </term>
+         <definition>
+          <paragraph>
+           The Bézier handle is controlled by the offset of the head (tail) of the handle bone from its rest pose.
+The use of this type is not recommended due to numerical stability issues near zero offset.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Tangent
+         </term>
+         <definition>
+          <paragraph>
+           The Bézier handle is controlled by the orientation of the handle bone, independent of its location.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Custom Handle
+      </term>
+      <definition>
+       <paragraph>
+        For types other than
+        <emphasis>
+         Automatic
+        </emphasis>
+        , a bone to use as handle has to be manually selected.
+Switching to a custom handle type without selecting a bone can be used to effectively disable the handle.
+       </paragraph>
+       <paragraph>
+        It is valid for two bones to refer to each other as handles -- this correlation is applied
+in connected chains with
+        <emphasis>
+         Automatic
+        </emphasis>
+        handles.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <tip>
+     <paragraph>
+      Keying Set
+     </paragraph>
+     <paragraph>
+      The "BBone Shape" Keying Set includes all Bendy Bones properties.
+     </paragraph>
+    </tip>
+   </section>
+   <section dupnames="example" ids="id2">
+    <title>
+     Example
+    </title>
+    <figure ids="id10">
+     <image candidates="{'*': 'images/animation_armatures_bones_properties_bendy-bones_settings-demo.png'}" uri="images/animation_armatures_bones_properties_bendy-bones_settings-demo.png"/>
+     <caption>
+      Visualization of the Bendy Bones properties.
+     </caption>
+     <legend>
+      <paragraph>
+       From Left: 1) Curve X/Y offsets, 2) Scale In/Out, 3) Roll In/Out
+      </paragraph>
+     </legend>
+    </figure>
+   </section>
+  </section>
+ </section>
+</document>

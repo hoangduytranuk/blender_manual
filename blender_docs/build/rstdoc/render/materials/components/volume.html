@@ -1,0 +1,193 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/materials/components/volume.rst">
+ <section ids="volumes" names="volumes --\ volumes">
+  <title>
+   -- Volumes
+  </title>
+  <paragraph>
+   Volume rendering can be used to render effects like fire, smoke, mist, absorption in glass,
+and many other effects that cannot be represented by surface meshes alone.
+  </paragraph>
+  <paragraph>
+   To set up a volume, you create a mesh that defines the bounds within which the volume exists.
+In the material you typically remove the surface nodes and instead connect volume nodes to
+define the shading inside the volume.
+For effects such as absorption in glass you can use both a surface and volume shader.
+The world can also use a volume shader to create effects such as mist.
+  </paragraph>
+  <section ids="shading" names="shading tô\ bóng\ --\ shading">
+   <title>
+    Tô Bóng -- Shading
+   </title>
+   <section ids="principled-volume" names="principled\ volume thể\ tích\ nguyên\ tắc\ --\ principled\ volume">
+    <title>
+     Thể Tích Nguyên Tắc -- Principled Volume
+    </title>
+    <paragraph>
+     <reference internal="True" refuri="../../shader_nodes/shader/volume_principled.html">
+      <inline classes="doc">
+       Principled Volume
+      </inline>
+     </reference>
+     is a physically-based volume shader that can be used to create a wide range of volume materials.
+It supports scattering, absorption and emission in one easy to use node.
+Fire can be rendered with blackbody emission.
+    </paragraph>
+    <figure align="center" ids="id1">
+     <image candidates="{'*': 'images/render_materials_components_volume_principled.jpg'}" uri="images/render_materials_components_volume_principled.jpg"/>
+     <caption>
+      Smoke and fire rendered with Principled Volume shader.
+     </caption>
+    </figure>
+   </section>
+   <section ids="volume-components" names="volume\ components --\ volume\ components">
+    <title>
+     -- Volume Components
+    </title>
+    <paragraph>
+     For more control, volume shading components can be manually combined into a custom shader setup.
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../../shader_nodes/shader/volume_absorption.html">
+        <inline classes="doc">
+         Volume Absorption
+        </inline>
+       </reference>
+       will absorb part of the light as it passes through the volume.
+This can be used to shade for example black smoke or colored glass objects, or mixed with the volume scatter node.
+This node is similar to the transparent BSDF node,
+it blocks part of the light and lets other light pass straight through.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../../shader_nodes/shader/volume_scatter.html">
+        <inline classes="doc">
+         Volume Scatter
+        </inline>
+       </reference>
+       lets light scatter in other directions as it hits particles in the volume.
+The anisotropy defines in which direction the light is more likely to scatter.
+A value of 0 will let light scatter evenly in all directions (similar to the diffuse BSDF node),
+negative values let light scatter mostly backwards, and positive values let light scatter mostly forward.
+This can be used to shade white smoke or clouds for example.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../../shader_nodes/shader/emission.html">
+        <inline classes="doc">
+         Emission
+        </inline>
+       </reference>
+       will emit light from the volume, for example for fire.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <figure align="center" ids="id2">
+     <image candidates="{'*': 'images/render_materials_components_volume_node.jpg'}" uri="images/render_materials_components_volume_node.jpg"/>
+     <caption>
+      Volume Absorption, Scatter and Emission
+     </caption>
+    </figure>
+   </section>
+   <section ids="attributes" names="attributes thuộc\ tính\ --\ attributes">
+    <title>
+     Thuộc Tính -- Attributes
+    </title>
+    <paragraph>
+     When rendering smoke and fire, volume attributes are used to define the shape and shading of the volume.
+The Principled Volume shader will use them by default, while custom volume shaders can use
+the Attribute node to get attributes such as density, color and temperature.
+    </paragraph>
+   </section>
+   <section ids="density" names="density tỷ\ trọng\ --\ density">
+    <title>
+     Tỷ Trọng -- Density
+    </title>
+    <paragraph>
+     All volume shaders have a density input.
+The density defines how much of the light will interact with the volume,
+getting absorbed or scattered, and how much will pass straight through. For effects such as
+smoke you would specify a density field to indicate where in the volume there is smoke and
+how much (density bigger than 0), and where there is no smoke (density equals 0).
+    </paragraph>
+    <paragraph>
+     Volumes in the real world consist of particles,
+a higher density means there are more particles per unit volume. More particles means there is
+a higher chance for light to collide with a particle and get absorbed or scattered,
+rather than passing straight through.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="mesh-volumes" names="mesh\ volumes thể\ tích\ khung\ lưới\ --\ mesh\ volumes">
+   <title>
+    Thể Tích Khung Lưới -- Mesh Volumes
+   </title>
+   <paragraph>
+    Meshes used for volume render should be closed and
+    <reference internal="True" refuri="../../../glossary/index.html#term-manifold">
+     <inline classes="xref std std-term">
+      manifold
+     </inline>
+    </reference>
+    .
+That means that there should be no holes in the mesh.
+Each edge must be connected to exactly two faces
+such that there are no holes or T-shaped faces
+where three or more faces are connected to an edge.
+   </paragraph>
+   <paragraph>
+    Normals must point outside for correct results.
+The normals are used to determine if a ray enters or exits a volume,
+and if they point in a wrong direction, or there is a hole in the mesh,
+then the renderer is unable to decide what is the inside or outside of the volume.
+   </paragraph>
+   <paragraph>
+    These rules are the same as for rendering glass refraction correctly.
+   </paragraph>
+  </section>
+  <section ids="world-volume" names="world\ volume --\ world\ volume">
+   <title>
+    -- World Volume
+   </title>
+   <paragraph>
+    A volume shader can also be applied to the world, filling the entire space.
+   </paragraph>
+   <paragraph>
+    Currently, this is most useful for night time or other dark scenes,
+as the world surface shader or sun lights will have no effect if a volume shader is used.
+This is because the world background is assumed to be infinitely far away,
+which is accurate enough for the sun for example.
+However, for modeling effects such as fog or atmospheric scattering,
+it is not a good assumption that the volume fills the entire space,
+as most of the distance between the sun and the earth is empty space.
+For such effects it is be better to create a volume object surrounding the scene.
+The size of this object will determine how much light is scattered or absorbed.
+   </paragraph>
+  </section>
+  <section ids="multiple-scattering" names="multiple\ scattering đa\ tán\ xạ\ --\ multiple\ scattering">
+   <title>
+    Đa Tán Xạ -- Multiple Scattering
+   </title>
+   <paragraph>
+    Real-world effects such as scattering in clouds or subsurface scattering require many
+scattering bounces. However, unbiased rendering of such effects can be noisy, so by default
+the number of bounces is zero in Cycles, and no support is available in Eevee.
+The effect you get when rendering with zero volume bounces is what is known as
+"single scattering", the effect from more bounces is "multiple scattering".
+   </paragraph>
+   <paragraph>
+    For rendering materials like skin or milk that require multiple scattering,
+subsurface scattering is more efficient and easier to control. Particularly the random walk
+method can accurately render such materials.
+   </paragraph>
+   <paragraph>
+    For materials such as clouds or smoke that do not have a well defined surface,
+volume rendering is required. These look best with many scattering bounces,
+but in practice one might have to limit the number of bounces to keep render times acceptable.
+   </paragraph>
+  </section>
+ </section>
+</document>

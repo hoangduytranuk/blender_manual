@@ -1,0 +1,260 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/particles/emitter/rotation.rst">
+ <comment xml:space="preserve">
+  TODO2.8, Add: Angular Velocity: Axis changed, added options.
+ </comment>
+ <section ids="rotation" names="rotation xoay\ chiều\ --\ rotation">
+  <title>
+   Xoay Chiều -- Rotation
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Hệ Thống Hạt (Particle System) --&gt; Xoay Chiều (Rotation)`">
+        Hệ Thống Hạt (Particle System) ‣ Xoay Chiều (Rotation)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <comment xml:space="preserve">
+   TODO2.8:
+.. figure:: /images/physics_particles_emitter_rotation_panel.png
+
+   Particles rotation settings.
+  </comment>
+  <paragraph>
+   These parameters specify how the individual particles are rotated during their travel.
+To visualize the rotation of a particle you should choose visualization type
+   <emphasis>
+    Axis
+   </emphasis>
+   in the Visualization panel and increase the
+   <emphasis>
+    Display Size
+   </emphasis>
+   .
+  </paragraph>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     -- Orientation Axis
+    </term>
+    <definition>
+     <paragraph>
+      Sets the initial rotation of the particle by aligning the X axis in the direction of:
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Không Có -- None
+       </term>
+       <definition>
+        <paragraph>
+         The global X axis.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Pháp Tuyến -- Normal
+       </term>
+       <definition>
+        <paragraph>
+         Orient to the emitter's surface normal, the objects Y axis points outwards.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Pháp Tuyến-Tiếp Tuyến -- Normal-Tangent
+       </term>
+       <definition>
+        <paragraph>
+         As with normal, orient the Y axis to the surface normal.
+Also orient the X axis to the tangent for control over the objects rotation about the normal.
+requires UV coordinates, the UV rotation effects the objects orientation, currently uses the active UV map.
+This allow deformation without the objects rotating in relation to their surface.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tốc Lực -- Velocity
+       </term>
+       <definition>
+        <paragraph>
+         The particle's initial velocity.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Global X, Y, Z
+       </term>
+       <definition>
+        <paragraph>
+         One of the global axes.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Object X, Y, Z
+       </term>
+       <definition>
+        <paragraph>
+         One of the emitter object axes.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Ngẫu Nhiên -- Random
+       </term>
+       <definition>
+        <paragraph>
+         Randomizes rotation.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Pha Sóng -- Phase
+    </term>
+    <definition>
+     <paragraph>
+      Initial rotation phase.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Randomize Phase
+    </term>
+    <definition>
+     <paragraph>
+      Adds a random variation to the
+      <emphasis>
+       Phase
+      </emphasis>
+      .
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Năng Động -- Dynamic
+    </term>
+    <definition>
+     <paragraph>
+      If Dynamic is enabled, only initializes particles to the choosen rotation and angular velocity and
+let the physics simulation handle the rest.
+Particles then change their angular velocity if they collide with other objects
+(like in the real world due to friction between the colliding surfaces).
+Otherwise the angular velocity is predetermined at all times (i.e. set rotation to dynamic/constant).
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <section ids="angular-velocity" names="angular\ velocity vận\ tốc\ góc\ --\ angular\ velocity">
+   <title>
+    Vận Tốc Góc -- Angular Velocity
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Rotation --&gt; Angular Velocity`">
+         Particle System ‣ Rotation ‣ Angular Velocity
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Trục -- Axis
+     </term>
+     <definition>
+      <paragraph>
+       The selector specifies the axis of angular velocity to be.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Không Có -- None
+        </term>
+        <definition>
+         <paragraph>
+          A zero vector (no rotation).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Xoay Tròn -- Spin
+        </term>
+        <definition>
+         <paragraph>
+          The particles velocity vector.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Ngẫu Nhiên -- Random
+        </term>
+        <definition>
+         <paragraph>
+          A random vector.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <hint>
+       <paragraph>
+        Đường Cong Hướng Đạo -- Curve Guide
+       </paragraph>
+       <paragraph>
+        If you use a Curve Guide and want the particles to follow the curve,
+you have to set Angular Velocity to Spin and leave the rotation on Constant
+(i.e. do not turn on Dynamic). Curve Follow does not work for particles.
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Amount
+     </term>
+     <definition>
+      <paragraph>
+       The magnitude of angular velocity.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

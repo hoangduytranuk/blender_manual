@@ -1,0 +1,148 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/troubleshooting/gpu/linux/intel.rst">
+ <section ids="linux-intel" names="linux\ --\ intel">
+  <title>
+   Linux -- Intel
+  </title>
+  <paragraph>
+   Blender uses of OpenGL for the 3D Viewport and user interface.
+The graphics card (GPU) and driver have a big impact on Blender's behavior and performance.
+  </paragraph>
+  <paragraph>
+   This section lists possible solutions for graphics glitches, problems with Eevee and Cycles,
+and crashes related to your GPU.
+  </paragraph>
+  <section ids="drivers" names="drivers">
+   <title>
+    Drivers
+   </title>
+   <paragraph>
+    Upgrading to the latest graphics drivers often solves problems.
+Newer drivers have bug fixes that help Blender function correctly.
+   </paragraph>
+   <paragraph>
+    On Linux, graphics drivers are usually installed as a package by your Linux
+distribution. Installing the latest drivers is typically done by upgrading
+packages or the distribution as a whole. Some distributions provide multiple
+packages for multiple drivers versions, giving you the choice to install newer
+versions.
+   </paragraph>
+  </section>
+  <section ids="common-problems" names="common\ problems">
+   <title>
+    Common Problems
+   </title>
+   <section ids="unsupported-graphics-driver-error" names="unsupported\ graphics\ driver\ error">
+    <title>
+     Unsupported Graphics Driver Error
+    </title>
+    <paragraph>
+     This means your graphics card and driver do not have the minimum required OpenGL 3.3 version needed by Blender.
+    </paragraph>
+    <paragraph>
+     Installing the latest driver can help upgrade the OpenGL version,
+though some graphics cards are simply too old to run the latest Blender.
+Using Blender 2.79 or earlier is the only option then.
+    </paragraph>
+   </section>
+   <section ids="crash-on-startup" names="crash\ on\ startup">
+    <title>
+     Crash on Startup
+    </title>
+    <paragraph>
+     Try running Blender from the
+     <reference internal="True" refuri="../../../advanced/command_line/index.html">
+      <inline classes="doc">
+       command line
+      </inline>
+     </reference>
+     ,
+to see if any helpful error messages are printed.
+    </paragraph>
+    <paragraph>
+     On Windows, graphics drivers can sometimes get corrupted.
+In this case it can help to uninstall all graphics drivers (there may be multiple from Intel, AMD and NVIDIA) and
+perform a clean installation with drivers from the manufacturer's website.
+    </paragraph>
+   </section>
+   <section ids="poor-performance" names="poor\ performance">
+    <title>
+     Poor Performance
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Update your graphics drivers (see above).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       On laptops, make sure you are using a dedicated GPU (see above).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Try lowering quality settings in
+       <inline classes="menuselection" rawtext=":menuselection:`Preferences --&gt; System --&gt; Memory &amp; Limits`">
+        Preferences ‣ System ‣ Memory &amp; Limits
+       </inline>
+       .
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Try undoing settings in your graphics drivers, if you made any changes there.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="render-errors" names="render\ errors">
+    <title>
+     Render Errors
+    </title>
+    <paragraph>
+     See
+     <reference internal="True" refuri="../../../render/eevee/limitations.html">
+      <inline classes="doc">
+       Eevee
+      </inline>
+     </reference>
+     and
+     <reference internal="True" refuri="../../../render/cycles/gpu_rendering.html">
+      <inline classes="doc">
+       Cycles
+      </inline>
+     </reference>
+     documentation respectively.
+    </paragraph>
+   </section>
+   <section ids="wrong-selection-in-3d-viewport" names="wrong\ selection\ in\ 3d\ viewport">
+    <title>
+     Wrong Selection in 3D Viewport
+    </title>
+    <paragraph>
+     See
+     <reference internal="True" refuri="../../3d_view.html#troubleshooting-3dview-invalid-selection">
+      <inline classes="std std-ref">
+       Invalid Selection, Disable Anti-Aliasing
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+  </section>
+  <section ids="information" names="information">
+   <title>
+    Information
+   </title>
+   <paragraph>
+    To find out which graphics card and driver Blender is using,
+use
+    <inline classes="menuselection" rawtext=":menuselection:`Help --&gt; Save System Info`">
+     Help ‣ Save System Info
+    </inline>
+    inside Blender.
+The OpenGL section will have information about your graphics card, vendor and driver version.
+   </paragraph>
+  </section>
+ </section>
+</document>

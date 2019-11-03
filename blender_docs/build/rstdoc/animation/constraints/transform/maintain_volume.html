@@ -1,0 +1,118 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/transform/maintain_volume.rst">
+ <target refid="bpy-types-maintainvolumeconstraint">
+ </target>
+ <section ids="maintain-volume-constraint bpy-types-maintainvolumeconstraint" names="maintain\ volume\ constraint ràng\ buộc\ duy\ trì\ thể\ tích\ --\ maintain\ volume\ constraint bpy.types.maintainvolumeconstraint">
+  <title>
+   Ràng Buộc Duy Trì Thể Tích -- Maintain Volume Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Maintain Volume
+   </emphasis>
+   constraint limits the volume of a mesh or
+a bone to a given ratio of its original volume.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_transform_maintain-volume_panel.png
+
+   Maintain Volume Constraint.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tự Do -- Free
+     </term>
+     <definition>
+      <paragraph>
+       The free-scaling axis of the object.
+      </paragraph>
+      <paragraph>
+       X, Y, Z
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mode
+     </term>
+     <definition>
+      <paragraph>
+       Specifies how the constraint handles scaling of the non-free axes.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Strict
+        </term>
+        <definition>
+         <paragraph>
+          This mode overrides non-free axis scaling to strictly maintain the specified volume.
+Only the ratio between the scale of the non-free axes is passed through.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Uniform
+        </term>
+        <definition>
+         <paragraph>
+          This mode maintains the volume as specified only when the pre-constraint scaling is uniform.
+Deviations from uniform scaling on non-free axes are passed through.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Single Axis
+        </term>
+        <definition>
+         <paragraph>
+          This mode maintains the volume only when the object is scaled just on its free axis.
+Any additional non-free axis scaling is passed through.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thể Tích -- Volume
+     </term>
+     <definition>
+      <paragraph>
+       The bone's rest volume.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Không Gian -- Space
+     </term>
+     <definition>
+      <paragraph>
+       Ràng buộc này cho phép bạn chọn không gian nào để tính toán các thuộc tính biến đổi (transform properties) của chủ sở hữu.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     <reference name="Harkyman on the development of the Maintain Volume constraint" refuri="http://www.harkyman.com/2010/03/16/maintaining-bone-volume-a-new-constraint/">
+      Harkyman on the development of the Maintain Volume constraint
+     </reference>
+     .
+    </paragraph>
+   </seealso>
+   <vimeo aspect="None" height="None" id="171275315" width="None">
+   </vimeo>
+  </section>
+ </section>
+</document>

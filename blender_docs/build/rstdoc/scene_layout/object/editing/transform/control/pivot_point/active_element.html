@@ -1,0 +1,236 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/transform/control/pivot_point/active_element.rst">
+ <section ids="active-element" names="active\ element phần\ tử\ đang\ hoạt\ động\ --\ active\ element">
+  <title>
+   Phần Tử Đang Hoạt Động -- Active Element
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Vật Thể và Chế Độ Biên Soạn -- Object Mode and Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Tiêu Đề -- Header
+     </field_name>
+     <field_body>
+      <paragraph>
+       <image alt="pivot-icon" candidates="{'*': 'images/scene-layout_object_editing_transform_control_pivot-point_menu.png'}" uri="images/scene-layout_object_editing_transform_control_pivot-point_menu.png"/>
+       <inline classes="menuselection" rawtext=":menuselection:`Điểm Tựa (Pivot Point) --&gt; Phần Tử Đang Hoạt Động (Active Element)`">
+        Điểm Tựa (Pivot Point) ‣ Phần Tử Đang Hoạt Động (Active Element)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Alt-Period
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The
+   <emphasis>
+    active element
+   </emphasis>
+   can be an object, vertex, edge or a face.
+The active element is the last one to be selected and
+will be shown in a lighter orange color when in
+   <emphasis>
+    Object Mode
+   </emphasis>
+   and white when in
+   <emphasis>
+    Edit Mode
+   </emphasis>
+   .
+With
+   <emphasis>
+    Active Element
+   </emphasis>
+   as
+   <emphasis>
+    Pivot
+   </emphasis>
+   set to active, all transformations will occur relative to the active element.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_pivot-point_active-element_object-mode-display.png'}" uri="images/scene-layout_object_editing_transform_control_pivot-point_active-element_object-mode-display.png"/>
+   <caption>
+    Display of active elements in Object Mode where the active element (cube) is a lighter orange.
+   </caption>
+  </figure>
+  <figure ids="id2">
+   <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-display.png'}" uri="images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-display.png"/>
+   <caption>
+    Active elements for vertices, edges and faces in Edit Mode are displayed in white.
+   </caption>
+  </figure>
+  <section ids="in-object-mode" names="in\ object\ mode trong\ chế\ độ\ vật\ thể\ --\ in\ object\ mode">
+   <title>
+    Trong Chế Độ Vật Thể -- In Object Mode
+   </title>
+   <paragraph>
+    When in
+    <emphasis>
+     Object Mode
+    </emphasis>
+    ,
+rotation and scaling happen around the origin of the active object.
+This is shown by the figure to the below where the active object (the cube)
+remains in the same location (note its position relative to the 3D cursor)
+while the other objects rotate and scale in relation to the active element.
+   </paragraph>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_pivot-point_active-element_object-mode-rotation.png'}" uri="images/scene-layout_object_editing_transform_control_pivot-point_active-element_object-mode-rotation.png"/>
+    <caption>
+     Rotation and scaling with the cube as the active element.
+    </caption>
+   </figure>
+  </section>
+  <section ids="in-edit-mode" names="in\ edit\ mode trong\ chế\ độ\ biên\ soạn\ --\ in\ edit\ mode">
+   <title>
+    Trong Chế Độ Biên Soạn -- In Edit Mode
+   </title>
+   <paragraph>
+    Using the active element as a pivot point in
+    <emphasis>
+     Edit Mode
+    </emphasis>
+    may seem complex but all
+the possible transformations follow a few rules:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      The pivot point is always at the median of the active element.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The transformations occur by transformation of the
+      <emphasis>
+       vertices
+      </emphasis>
+      of the selected element(s).
+If an unselected element shares one or more vertices with a selected element
+then the unselected one will get some degree of transformation also.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    Let us examine the following examples: in each case we will see that the two rules apply.
+   </paragraph>
+   <section ids="single-selection" names="single\ selection đơn\ lựa\ chọn\ --\ single\ selection">
+    <title>
+     Đơn Lựa Chọn -- Single Selection
+    </title>
+    <paragraph>
+     When one single element is selected it becomes automatically active. In the image below,
+you can see that when it is transformed its vertices move, with the consequence that any
+adjacent element which shares one or more vertices with the active element is also
+transformed.
+    </paragraph>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-single.png'}" uri="images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-single.png"/>
+     <caption>
+      Edit Mode and only one element selected.
+     </caption>
+    </figure>
+    <paragraph>
+     Let us review each case:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <emphasis>
+        Faces
+       </emphasis>
+       have their pivot point where their selection dot appears, which is where the median of their vertices is.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <emphasis>
+        Edges
+       </emphasis>
+       have their pivot point on their middle since this is always where the median of an edge is.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       A single
+       <emphasis>
+        Vertex
+       </emphasis>
+       has no dimensions at all so it cannot show any transformation
+(except translation, which is not affected by the pivot point).
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="multiple-selection" names="multiple\ selection đa\ lựa\ chọn\ --\ multiple\ selection">
+    <title>
+     Đa Lựa Chọn -- Multiple Selection
+    </title>
+    <paragraph>
+     When multiple elements are selected they all transform.
+The pivot points stay in the same place as what we have described above.
+In the image below, the selected elements have been rotated.
+    </paragraph>
+    <figure ids="id5">
+     <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-multiple.png'}" uri="images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-multiple.png"/>
+     <caption>
+      Edit Mode and multiple selections.
+     </caption>
+    </figure>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       For
+       <emphasis>
+        Faces
+       </emphasis>
+       the transformation occurs around the selection dot of the active face.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <emphasis>
+        Edges
+       </emphasis>
+       also keep the same behavior with their pivot point at their median.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       There is a case for
+       <emphasis>
+        Vertices
+       </emphasis>
+       this time: the active Vertex is where the pivot point resides.
+All other vertices are transformed relative to it.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+ </section>
+</document>

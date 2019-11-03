@@ -1,0 +1,163 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/eevee/render_settings/volumetrics.rst">
+ <target refid="bpy-types-sceneeevee-volumetric">
+ </target>
+ <section ids="volumetrics bpy-types-sceneeevee-volumetric" names="volumetrics thể\ tích\ --\ volumetrics bpy.types.sceneeevee.volumetric">
+  <title>
+   Thể Tích -- Volumetrics
+  </title>
+  <paragraph>
+   Eevee simulate volumetric scattering by evaluating all volume objects inside the view frustum.
+  </paragraph>
+  <paragraph>
+   For this it uses several 3D texture which have a high video memory usage.
+The texture dimensions can be tweaked using the
+   <emphasis>
+    Tile Size
+   </emphasis>
+   and
+   <emphasis>
+    Samples
+   </emphasis>
+   parameters.
+  </paragraph>
+  <paragraph>
+   Object volumes have some
+   <reference internal="True" refuri="../limitations.html#eevee-limitations-volumetrics">
+    <inline classes="std std-ref">
+     limitations
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Render --&gt; Volumetrics`">
+        Properties ‣ Render ‣ Volumetrics
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Bắt Đầu -- Start
+    </term>
+    <definition>
+     <paragraph>
+      Start distance of the volumetric effect.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Kết Thúc -- End
+    </term>
+    <definition>
+     <paragraph>
+      End distance of the volumetric effect.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Kích Thước Ô -- Tile Size
+    </term>
+    <definition>
+     <paragraph>
+      Controls the quality of the volumetric effects. Lower size increases video memory usage and quality.
+This is the size in pixels of a volumetric cell.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Lượng Mẫu Vật -- Samples
+    </term>
+    <definition>
+     <paragraph>
+      Number of samples to compute volumetric effects. Higher count increases video memory usage and quality.
+These samples are distributed along the view depth (view Z axis).
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Phân Phối -- Distribution
+    </term>
+    <definition>
+     <paragraph>
+      Blend between linear and exponential sample distribution. Higher values puts more samples near the camera.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <target refid="bpy-types-sceneeevee-volumetric-light">
+  </target>
+  <section ids="volumetric-lighting bpy-types-sceneeevee-volumetric-light" names="volumetric\ lighting --\ volumetric\ lighting bpy.types.sceneeevee.volumetric_light">
+   <title>
+    -- Volumetric Lighting
+   </title>
+   <paragraph>
+    Let the volume scattering scatter light in the scene.
+Unnecessary if no Volume Scatter is present in the scene.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Light Clamping
+     </term>
+     <definition>
+      <paragraph>
+       Clamp light contribution of the volume scattering effect. Reduces flickering and noise.
+Set to 0.0 to disable clamping.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-types-sceneeevee-volumetric-shadow">
+   </target>
+  </section>
+  <section ids="volumetric-shadows bpy-types-sceneeevee-volumetric-shadow" names="volumetric\ shadows --\ volumetric\ shadows bpy.types.sceneeevee.volumetric_shadow">
+   <title>
+    -- Volumetric Shadows
+   </title>
+   <paragraph>
+    Approximate light absorption of the surrounding volume objects. This makes the volumes more opaque to light.
+This is a very expensive option and has limitations (link).
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mẫu Vật Bóng Tối -- Shadow Samples
+     </term>
+     <definition>
+      <paragraph>
+       Number of samples to compute volumetric shadowing.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     <reference internal="True" refuri="../limitations.html#eevee-limitations-volumetrics">
+      <inline classes="std std-ref">
+       Limitations
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </seealso>
+  </section>
+ </section>
+</document>

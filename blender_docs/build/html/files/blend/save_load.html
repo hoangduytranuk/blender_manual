@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Blend Files &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/files/blend/save_load.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Packed Data" href="packed_data.html" />
+    <link rel="prev" title="Blender File" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Files &amp; Data System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Blender File</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Blend Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#opening-files">Opening Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#saving-files">Saving Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#relative-paths">Relative Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="packed_data.html">Packed Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="previews.html">Blend-Files Previews</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rename.html">Rename</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data_blocks.html">Khối Dữ Liệu -- Data-Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linked_libraries.html">Thư Viện Kết Nối -- Linked Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../media/index.html">-- Media Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../import_export.html">Nhập &amp; Xuất Tập Tin -- Importing &amp; Exporting Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Files &amp; Data System</a> &raquo;</li>
+        
+          <li><a href="index.html">Blender File</a> &raquo;</li>
+        
+      <li>Blend Files</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/files/blend/save_load.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="blend-files">
+<h1>Blend Files<a class="headerlink" href="#blend-files" title="Permalink to this headline">¶</a></h1>
+<p>Saving and opening blend-file are usually done using the <a class="reference internal" href="../../editors/file_browser.html"><span class="doc">File Browser</span></a>.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">Blend-files can also be opened by dragging and dropping blend-files into the Blender window.
+This method also allows to <a class="reference internal" href="../linked_libraries.html"><span class="doc">link/append</span></a> the file.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>Unsaved Changes</p>
+<p>By default, when exiting Blender or loading a new blend-file, if you have unsaved changes,
+a pop-up will ask you to either confirm discarding those changes, or save them.</p>
+<p class="last">This behavior can be disabled with the <em>Save Prompt</em> option in the <a class="reference internal" href="../../editors/preferences/save_load.html#prefs-save-load"><span class="std std-ref">Save &amp; Load</span></a> section
+of the <em>Preferences</em>.</p>
+</div>
+<div class="section" id="opening-files">
+<span id="files-blend-open"></span><h2>Opening Files<a class="headerlink" href="#opening-files" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id4">
+<img alt="../../_images/files_blend_save-load_file-browser-open.png" src="../../_images/files_blend_save-load_file-browser-open.png" />
+<p class="caption"><span class="caption-text">The File Browser in open configuration.</span></p>
+</div>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">File ‣ Open...</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-O</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The upper text field displays the current directory path,
+and the lower text field contains the selected filename.</p>
+</div>
+<div class="section" id="options">
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils" id="file-load-ui">
+<dt>Load UI</dt>
+<dd><p class="first">When enabled, the screen layout saved inside each blend-file is used,
+replacing the current layout and <a class="reference internal" href="../../interface/window_system/workspaces.html"><span class="doc">Workspaces</span></a>.
+Otherwise the file screen layout is ignored.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">If you want to work on a blend-file using your own defaults, start a fresh Blender,
+open the File Browser and turn off the <em>Load UI</em> button, and open the desired file.</p>
+</div>
+</dd>
+<dt>Trusted Source</dt>
+<dd>When enabled, Python scripts and drivers that may be included in the file will be run automatically.
+Enable this only if you created the file yourself,
+or you trust that the person who gave it to you did not include any malicious code with it.
+See <a class="reference internal" href="../../advanced/scripting/security.html"><span class="doc">Python Security</span></a> to configure default trust options.</dd>
+</dl>
+</div>
+<div class="section" id="other-file-open-options">
+<span id="id1"></span><h3>Other File Open Options<a class="headerlink" href="#other-file-open-options" title="Permalink to this headline">¶</a></h3>
+<p>From the <em>File</em> menu, you can also open files with the following tools:</p>
+<dl class="docutils">
+<dt>Open Recent</dt>
+<dd>Lists recently used files. Click on one to load it in.</dd>
+<dt>Recover Last Session</dt>
+<dd>This will load the <code class="docutils literal notranslate"><span class="pre">quit.blend</span></code> file Blender automatically saved just before exiting.
+This option enables you to recover your last work session if, for example, you closed Blender by accident.</dd>
+<dt>Recover Auto Save</dt>
+<dd>This will allow you to open an automatically saved file to recover it.</dd>
+</dl>
+<div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last"><a class="reference internal" href="../../troubleshooting/recover.html#troubleshooting-file-recovery"><span class="std std-ref">Auto Saves</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="saving-files">
+<span id="files-blend-save"></span><h2>Saving Files<a class="headerlink" href="#saving-files" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id5">
+<img alt="../../_images/files_blend_save-load_file-browser-save.png" src="../../_images/files_blend_save-load_file-browser-save.png" />
+<p class="caption"><span class="caption-text">The File Browser in save configuration.</span></p>
+</div>
+<div class="section" id="id2">
+<h3>Usage<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">File ‣ Save</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-S</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">File ‣ Save As...</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-Ctrl-S</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">File ‣ Save Copy...</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There are a number of slightly different methods you can use to save your blend-file to your drive:</p>
+<dl class="docutils">
+<dt>Save <kbd class="kbd docutils literal notranslate">Ctrl-S</kbd></dt>
+<dd>Save current blend-file over itself (if it was not saved yet, this will automatically switch to <em>Save As...</em>).</dd>
+<dt>Save As... <kbd class="kbd docutils literal notranslate">Shift-Ctrl-S</kbd></dt>
+<dd>Choose a file path to save the blend-file to.</dd>
+<dt>Save Copy</dt>
+<dd>Choose a file path to save the blend-file to, but return to editing the original file upon completion.
+This can be used to save backups of the current working state without modifying the original file.</dd>
+</dl>
+<div class="admonition warning">
+<p class="first admonition-title">Cảnh báo</p>
+<p class="last">If a file with the same given name already exists,
+the text field will turn red as a warning that the file will be overwritten.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">Use the <em>plus</em> or <em>minus</em> buttons to the right of the file name,
+or <kbd class="kbd docutils literal notranslate">NumpadPlus</kbd>, <kbd class="kbd docutils literal notranslate">NumpadMinus</kbd> to increase/decrease a number at the end of the file name
+(e.g. changing <code class="docutils literal notranslate"><span class="pre">file_01.blend</span></code> to <code class="docutils literal notranslate"><span class="pre">file_02.blend</span></code>).</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Options<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils" id="files-blend-compress">
+<dt>Compress File</dt>
+<dd><p class="first">When enabled, the saved file will be smaller, but take longer to save and load.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>While compression is useful for distributing files online
+and saving disk space for large projects it has drawbacks too.</p>
+<p class="last">This option may slow down Blender when you quit,
+or under normal operation when Blender is saving your backup files.</p>
+</div>
+<div class="last admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last">Linked Libraries <a class="reference internal" href="../linked_libraries.html#files-linked-libraries-known-limitations-compression"><span class="std std-ref">Compression &amp; Memory Use</span></a>.</p>
+</div>
+</dd>
+<dt>Remap Relative</dt>
+<dd>This option remaps <a class="reference internal" href="#files-blend-relative-paths"><span class="std std-ref">Relative Paths</span></a>
+(such as linked libraries and images) when saving a file in a new location.</dd>
+<dt>Save Copy</dt>
+<dd>This option saves a copy of the actual working state but does not make the saved file active.</dd>
+</dl>
+<div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last"><a class="reference internal" href="../../troubleshooting/recover.html#troubleshooting-file-recovery"><span class="std std-ref">Auto Save</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="relative-paths">
+<span id="files-blend-relative-paths"></span><h2>Relative Paths<a class="headerlink" href="#relative-paths" title="Permalink to this headline">¶</a></h2>
+<p>Many blend-files reference external images or other linked blend-files.
+A path tells Blender where to look for these files.
+If the external files are moved, the blend-file that references them will not look right.</p>
+<p>When you specify one of these external files, the default option is to make the path relative.
+Blender stores a partial path evaluated relative to the directory location of the referencing blend-file.
+This choice helps when you need to reorganize folders or move your files.</p>
+<p>With a relative path, you can move the blend-file to a new location provided
+the externally linked files are moved along with it.
+For example, you could send someone a folder that contains a blend-file
+and a subfolder of external images that it references.</p>
+<p>When relative paths are supported, the File Browser provides a <em>Relative Path</em> checkbox,
+when entering the path into a text field, use a double slash prefix (<code class="docutils literal notranslate"><span class="pre">//</span></code>) to make it so.</p>
+<p>Relative paths are the default but this can be changed
+in the <a class="reference internal" href="../../editors/preferences/file_paths.html"><span class="doc">File</span></a> tab of the <em>Preferences</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">You cannot use relative paths into a new <em>untitled</em> blend-file.
+Save it before linking to external files.</p>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Gợi ý</p>
+<p class="last">If it is necessary to relocate a blend-file relative to its linked resources,
+use Blender's File <a class="reference internal" href="#files-blend-save"><span class="std std-ref">Save As...</span></a>
+function which has an option to <em>Remap Relative</em> file links.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="packed_data.html" class="btn btn-neutral float-right" title="Packed Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Blender File" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

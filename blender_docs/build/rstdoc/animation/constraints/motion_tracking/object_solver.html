@@ -1,0 +1,135 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/motion_tracking/object_solver.rst">
+ <target refid="bpy-types-objectsolverconstraint">
+ </target>
+ <section ids="object-solver-constraint bpy-types-objectsolverconstraint" names="object\ solver\ constraint ràng\ buộc\ giải\ nghiệm\ vật\ thể\ --\ object\ solver\ constraint bpy.types.objectsolverconstraint">
+  <title>
+   Ràng Buộc Giải Nghiệm Vật Thể -- Object Solver Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Object Solver
+   </emphasis>
+   constraint gives the owner of this constraint,
+the location and rotation of the "solved object motion".
+  </paragraph>
+  <paragraph>
+   The "solved object motion" is where Blender thinks the physical,
+real-world (tracked) object was, relative to the camera that filmed it.
+  </paragraph>
+  <paragraph>
+   Can be used to add a mesh to video for example.
+  </paragraph>
+  <note>
+   <paragraph>
+    This constraint only works after you have set up a minimum of eight markers and pressed
+    <reference internal="True" refuri="../../../movie_clip/tracking/clip/editing/solve.html#editors-movie-clip-tracking-clip-solve-motion">
+     <inline classes="std std-ref">
+      Solve object Motion
+     </inline>
+    </reference>
+    .
+Located at
+    <inline classes="menuselection" rawtext=":menuselection:`Movie Clip Editor --&gt; Toolbar --&gt; Solve --&gt; Solve Camera Motion`">
+     Movie Clip Editor ‣ Toolbar ‣ Solve ‣ Solve Camera Motion
+    </inline>
+    .
+   </paragraph>
+   <paragraph>
+    If it says
+    <emphasis>
+     Solve Camera Motion
+    </emphasis>
+    instead of
+    <emphasis>
+     Solve Object Motion
+    </emphasis>
+    then go into
+the
+    <inline classes="menuselection" rawtext=":menuselection:`Movie Clip Editor --&gt; Sidebar region --&gt; Objects`">
+     Movie Clip Editor ‣ Sidebar region ‣ Objects
+    </inline>
+    and switch it from the camera, to an object.
+   </paragraph>
+  </note>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_motion-tracking_object-solver_panel.png
+
+   Object Solver Constraint panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đoạn Phim Đang Hoạt Động -- Active Clip
+     </term>
+     <definition>
+      <paragraph>
+       Receive tracking data from the active movie clip in the Movie Clip editor.
+If unchecked, an option appears to choose from the other clips.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vật Thể -- Object
+     </term>
+     <definition>
+      <paragraph>
+       Select a tracked object to receive transform data from.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Máy Quay Phim -- Camera
+     </term>
+     <definition>
+      <paragraph>
+       Select the camera to which the motion is parented to (if active empty scene camera is used).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đảo Nghịch -- Set Inverse
+     </term>
+     <definition>
+      <paragraph>
+       Moves the origin of the object to the origin of the camera.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa Đảo Nghịch -- Clear Inverse
+     </term>
+     <definition>
+      <paragraph>
+       Moves the origin of the object back to the spot set
+in the Movie Clip Editor
+       <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Solve --&gt; Orientation --&gt; Set Origin`">
+        Toolbar ‣ Solve ‣ Orientation ‣ Set Origin
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Ràng Buộc thành Đường Cong-F -- Constraint to F-Curve
+     </term>
+     <definition>
+      <paragraph>
+       Applies the constraint, creating keyframes for the transforms.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

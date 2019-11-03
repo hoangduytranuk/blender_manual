@@ -1,0 +1,295 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/eevee/lighting.rst">
+ <section ids="light-settings" names="light\ settings">
+  <title>
+   Light Settings
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Light`">
+        Properties ‣ Light
+       </inline>
+       and
+       <inline classes="menuselection" rawtext=":menuselection:`Shader Editor --&gt; Sidebar --&gt; Settings`">
+        Shader Editor ‣ Sidebar ‣ Settings
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Next to lighting from the background and any object with an emission shader,
+lights are another way to add light into the scene.
+The difference is that they are not directly visible in the rendered image,
+and can be more easily managed as objects of their own type.
+  </paragraph>
+  <section ids="common" names="common">
+   <title>
+    Common
+   </title>
+   <paragraph>
+    <reference internal="True" refuri="../lights/light_object.html">
+     <inline classes="doc">
+      Light settings
+     </inline>
+    </reference>
+    for all renderers.
+   </paragraph>
+  </section>
+  <section ids="eevee" names="eevee">
+   <title>
+    Eevee
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Lóng Lánh -- Specular
+     </term>
+     <definition>
+      <paragraph>
+       Specular Light intensity multiplier. Use it for more artistic control.
+Setting this to anything but 1.0 will yield non-photorealistic result.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Custom Distance
+     </term>
+     <definition>
+      <paragraph>
+       If enabled uses
+       <emphasis>
+        Distance
+       </emphasis>
+       as the custom attenuation distance instead of global light threshold.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Distance
+        </term>
+        <definition>
+         <paragraph>
+          Specifies where light influence will be set to 0.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <seealso>
+       <paragraph>
+        <reference internal="True" refuri="render_settings/shadows.html">
+         <inline classes="doc">
+          Light Threshold
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </seealso>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     The light's
+     <emphasis>
+      Power
+     </emphasis>
+     /
+     <emphasis>
+      Strength
+     </emphasis>
+     affect both specular and diffuse light.
+    </paragraph>
+   </note>
+   <target refid="bpy-types-light-shadow">
+   </target>
+  </section>
+  <section ids="shadows bpy-types-light-shadow" names="shadows bpy.types.*light.shadow">
+   <title>
+    Shadows
+   </title>
+   <section ids="common-parameters" names="common\ parameters">
+    <title>
+     Common Parameters
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Clip Start
+      </term>
+      <definition>
+       <paragraph>
+        Distance from the light object at which the shadow map starts.
+Any object before this distance will not appear to cast shadows.
+        <emphasis>
+         Clip Start
+        </emphasis>
+        will only appear for point, spot and area lights.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bias
+      </term>
+      <definition>
+       <paragraph>
+        Bias applied to the depth test to reduce self shadowing artifacts.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="contact-shadows" names="contact\ shadows">
+    <title>
+     Contact Shadows
+    </title>
+    <paragraph>
+     This type of shadow exists to fix light leaking caused by bias or shadow map undersampling.
+It uses the depth buffer to find occluders (just like Screen Space Reflections).
+However, just like Screen Space Reflections it has the same limitations,
+namely, unknown object thickness and effect disappearing at screen edges.
+    </paragraph>
+    <tip>
+     <paragraph>
+      The distance of action of Contact Shadows should remain quite small.
+They are not accurate enough to shadow the entire scene.
+     </paragraph>
+    </tip>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Distance
+      </term>
+      <definition>
+       <paragraph>
+        World space distance in which to search for screen space occluder.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bias
+      </term>
+      <definition>
+       <paragraph>
+        Bias applied to the ray tracing to reduce self-shadowing artifacts.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Thickness
+      </term>
+      <definition>
+       <paragraph>
+        Pixel thickness used to detect occlusion, treating any potential occluder as this thick.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="eevee-cascaded-shadow-map">
+    </target>
+   </section>
+   <section ids="cascaded-shadow-map eevee-cascaded-shadow-map" names="cascaded\ shadow\ map eevee-cascaded-shadow-map">
+    <title>
+     Cascaded Shadow Map
+    </title>
+    <paragraph>
+     These special kind of shadow maps are used by Sun lights.
+This is because they can shadow large scenes by distributing multiple shadow maps over the frustum range.
+Each cascade covers a different portion of the view frustum.
+Do note that cascade shadow maps are always updated because they are view dependent.
+This means they have a high performance impact.
+    </paragraph>
+    <note>
+     <paragraph>
+      In orthographic view the cascades cover the whole depth range of the camera
+with an evenly distributed shadow precision.
+     </paragraph>
+    </note>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Count
+      </term>
+      <definition>
+       <paragraph>
+        Number of cascades to use. More cascades means better precision but a lower update rate.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Fade
+      </term>
+      <definition>
+       <paragraph>
+        Fade transition area between two cascades.
+Higher values means less overall resolution because cascades need to overlap.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Max Distance
+      </term>
+      <definition>
+       <paragraph>
+        Distance away from the view origin (or camera origin if in camera view) to cover by the cascade.
+If the view far clip distance is lower than Max Distance, the lowest of the two will be used.
+Only works in perspective view.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Distribution
+      </term>
+      <definition>
+       <paragraph>
+        Puts more resolution towards the near clip plane. Only works in perspective view.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <seealso>
+     <paragraph>
+      <reference internal="True" refuri="limitations.html#eevee-limitations-shadows">
+       <inline classes="std std-ref">
+        Limitations
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </seealso>
+   </section>
+  </section>
+  <section ids="limitations" names="limitations">
+   <title>
+    Limitations
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Unlike in Cycles, the
+      <emphasis>
+       Size
+      </emphasis>
+      of spot lights does not change the softness of the cone.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,224 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/install/windows.rst">
+ <section ids="installation-on-windows" names="installation\ on\ windows">
+  <title>
+   Installation on Windows
+  </title>
+  <paragraph>
+   Hướng dẫn này bao gồm các chủ đề sau:
+  </paragraph>
+  <enumerated_list enumtype="arabic" prefix="" suffix=".">
+   <list_item>
+    <paragraph>
+     <reference name="Cài đặt Python -- Installing Python" refid="installing-python">
+      Cài đặt Python -- Installing Python
+     </reference>
+     (được sử dụng để "chuyển đổi" các tập tin nguồn sang dạng HTML)
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <reference name="Cài Đặt SVN và Tải Kho Lưu Trữ về Máy -- Installing SVN and Downloading the Repository" refid="installing-svn-and-downloading-the-repository">
+      Cài Đặt SVN và Tải Kho Lưu Trữ về Máy -- Installing SVN and Downloading the Repository
+     </reference>
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <reference name="Thiết Lập Môi Trường Biên Tập -- Setting up the Build Environment" refid="setting-up-the-build-environment">
+      Thiết Lập Môi Trường Biên Tập -- Setting up the Build Environment
+     </reference>
+    </paragraph>
+   </list_item>
+  </enumerated_list>
+  <section ids="installing-python" names="installing\ python cài\ đặt\ python\ --\ installing\ python">
+   <title>
+    Cài Đặt Python -- Installing Python
+   </title>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Download the
+      <reference name="Python installation package" refuri="https://www.python.org/downloads/">
+       Python installation package
+      </reference>
+      for Windows.
+In this guide version 3.6.x is used.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Cài đặt Python bằng trình hướng dẫn cài đặt. Xin vui lòng đảm bảo rằng bạn đã bật tùy chọn
+      <literal>
+       Thêm Python vào PATH -- Add Python to PATH
+      </literal>
+      :
+     </paragraph>
+     <figure ids="id1">
+      <image candidates="{'*': 'images/about_contribute_install_windows_installer.png'}" uri="images/about_contribute_install_windows_installer.png"/>
+      <caption>
+       Tùy chọn phải được bật để bạn có thể biên dịch bản hướng dẫn sử dụng bằng tập lệnh
+       <literal>
+        make
+       </literal>
+       .
+      </caption>
+     </figure>
+     <paragraph>
+      Tất cả các cài đặt khác có thể vẫn để như sắp đặt mặc định.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+  </section>
+  <section ids="installing-svn-and-downloading-the-repository" names="installing\ svn\ and\ downloading\ the\ repository cài\ đặt\ svn\ và\ tải\ về\ máy\ kho\ lưu\ trữ\ --\ installing\ svn\ and\ downloading\ the\ repository">
+   <title>
+    Cài Đặt SVN và Tải về Máy Kho Lưu Trữ -- Installing SVN and Downloading the Repository
+   </title>
+   <paragraph>
+    Trong hướng dẫn này, chúng tôi sẽ sử dụng TortoiseSVN, mặc dù bất kỳ trình khách ứng dụng Subversion nào cũng có thể sử dụng được.
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Download
+      <reference name="TortoiseSVN" refuri="https://tortoisesvn.net/downloads.html">
+       TortoiseSVN
+      </reference>
+      for Windows.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Cài đặt TortoiseSVN bằng trình hướng dẫn cài đặt. Khi chọn các tính năng sẽ được cài đặt, bạn nên cho bật
+      <emphasis>
+       công cụ trình khách dòng lệnh -- command line client tools
+      </emphasis>
+      để cho phép mình truy cập vào SVN từ dòng lệnh (thực hiện việc này không có gì hại cả, và ngược lại, có thể rất hữu ích nếu bạn gặp phải bất kỳ rắc rối nào).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Sau khi cài đặt xong, hãy tạo một thư mục mới để chứa tất cả mọi thứ liên quan đến Bản Hướng Dẫn Sử Dụng Blender. Trong hướng dẫn này, chúng ta sẽ sử dụng
+      <literal>
+       C:\blender_docs
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Mở thư mục mới, nhấp chuột phải và chọn
+      <emphasis>
+       SVN Checkout ... -- Kiểm Xuất SVN
+      </emphasis>
+      từ trình đơn ngữ cảnh.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Trong ô
+      <emphasis>
+       Địa chỉ của kho lưu trữ - URL of repository
+      </emphasis>
+      , làm ơn điền:
+      <literal>
+       https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Trong ô
+      <emphasis>
+       Thư mục kiểm xuất -- Checkout directory
+      </emphasis>
+      , làm ơn điền:
+      <literal>
+       C:\blender_docs
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Nhấp vào
+      <emphasis>
+       OK
+      </emphasis>
+      - kho lưu trữ hiện sẽ được tải xuống, có thể mất vài phút, tùy thuộc vào chất lượng đường kết nối Internet của bạn.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+  </section>
+  <section ids="setting-up-the-build-environment" names="setting\ up\ the\ build\ environment thiết\ lập\ môi\ trường\ biên\ dịch\ --\ setting\ up\ the\ build\ environment">
+   <title>
+    Thiết Lập Môi Trường Biên Dịch -- Setting up the Build Environment
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Open a Command Prompt. (Run as Administrator)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Bước vào thư mục
+      <literal>
+       blender_docs
+      </literal>
+      vừa được kiến tạo và bổ sung bởi việc kiểm xuất (checkout) SVN:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      cd C:\blender_docs
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Bên trong thư mục đó có một tập tin với cái tên
+      <literal>
+       requirements.txt
+      </literal>
+      , và trong đó có chứa một danh sách tất cả các phần mềm phụ thuộc mà chúng ta cần phải có. Để cài đặt các phụ thuộc này, chúng ta có thể sử dụng lệnh
+      <literal>
+       pip
+      </literal>
+      như sau:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      pip install -r requirements.txt
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Nếu mọi việc xảy ra trôi chảy thì bạn sẽ thấy thông báo sau khi nó hoàn thành:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      Successfully installed Jinja2 MarkupSafe Pygments Sphinx docutils sphinx-rtd-theme Cleaning up...
+     </literal_block>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    Trong khi thiết lập, một số cảnh báo có thể xuất hiện, nhưng đừng lo lắng về chúng. Đương nhiên, nếu có bất kỳ lỗi nào xảy ra, chúng có thể gây ra một số rắc rối.
+   </paragraph>
+   <note>
+    <paragraph>
+     Thỉnh thoảng, bạn có thể muốn đảm bảo là các thư viện phụ thuộc của bạn được cập nhật với những thay đổi gần đây nhất, bằng cách sử dụng:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     pip install -r requirements.txt --upgrade
+    </literal_block>
+   </note>
+   <transition>
+   </transition>
+   <paragraph>
+    Tiếp tục với bước tiếp theo:
+    <reference internal="True" refuri="../build/windows.html">
+     <inline classes="doc">
+      Biên Dịch
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </section>
+ </section>
+</document>

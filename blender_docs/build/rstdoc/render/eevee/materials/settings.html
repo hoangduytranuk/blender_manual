@@ -1,0 +1,313 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/eevee/materials/settings.rst">
+ <section ids="material-settings" names="material\ settings --\ material\ settings">
+  <title>
+   -- Material Settings
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Material --&gt; Options`">
+        Properties ‣ Material ‣ Options
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <section ids="backface-culling" names="backface\ culling">
+   <title>
+    Backface Culling
+   </title>
+   <paragraph>
+    Backface Culling hides the back side of faces in the final render.
+   </paragraph>
+   <target refid="bpy-types-material-blend-method">
+   </target>
+  </section>
+  <section ids="blend-mode bpy-types-material-blend-method" names="blend\ mode chế\ độ\ hòa\ trộn\ --\ blend\ mode bpy.types.material.blend_method">
+   <title>
+    Chế Độ Hòa Trộn -- Blend Mode
+   </title>
+   <paragraph>
+    After calculating the color of a surface, the blend mode defines how it is added to the color buffer.
+Depending on this, the final color will be different.
+   </paragraph>
+   <note>
+    <paragraph>
+     Alpha Blending is considered a "Transparent" blend mode
+and has implications regarding screen space effects.
+    </paragraph>
+   </note>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đục -- Opaque
+     </term>
+     <definition>
+      <paragraph>
+       The previous color will be overwritten by the surface color.
+The alpha component is ignored. This is the fastest option.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cắt Bằng Alpha -- Alpha Clip
+     </term>
+     <definition>
+      <paragraph>
+       The previous color will be overwritten by the surface color,
+but only if the alpha value is above the clip threshold.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Alpha Hashed
+     </term>
+     <definition>
+      <paragraph>
+       The previous color will be overwritten by the surface color,
+but only if the alpha value is above a random clip threshold.
+This statistical approach is noisy but is able to approximate alpha blending without any sorting problem.
+Increasing the sample count in the render settings will reduce the resulting noise.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Alpha Blending
+     </term>
+     <definition>
+      <paragraph>
+       Use alpha blending to overlay the surface color on top of the previous color.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="sorting-problem" names="sorting\ problem --\ sorting\ problem">
+    <title>
+     -- Sorting Problem
+    </title>
+    <paragraph>
+     When writing to the color buffer using transparent blend modes,
+the order in which the color blending happens is important as it can change the final output color.
+As of now Eevee does not support per-fragment (pixel) sorting or per-triangle sorting.
+Only per-object sorting is available and is automatically done on all transparent surfaces based on object origin.
+    </paragraph>
+    <note>
+     <paragraph>
+      This per-object sorting has already a cost and having thousands of
+these objects in a scene will greatly degrade performance.
+     </paragraph>
+    </note>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       -- Show Backside
+      </term>
+      <definition>
+       <paragraph>
+        If enabled, all transparent fragments will be rendered.
+If disabled, only the front-most surface fragments will be rendered.
+Disable this option to ensure correct appearance of transparency from any point of view.
+Then using
+        <emphasis>
+         Alpha Blending
+        </emphasis>
+        this option should be disabled because with
+        <emphasis>
+         Alpha Blending
+        </emphasis>
+        ,
+the order in which triangles are sorted is important.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="transparent-shadow" names="transparent\ shadow --\ transparent\ shadow">
+   <title>
+    -- Transparent Shadow
+   </title>
+   <paragraph>
+    Type of shadows used for a transparent surface.
+Eevee does not support colored shadow maps.
+   </paragraph>
+   <paragraph>
+    Half transparent shadows can be produced by using hashed transparent shadows and
+a larger Soft value on the shadow map.
+   </paragraph>
+   <note>
+    <paragraph>
+     This option does not change the behavior of contact shadows which are traced using the depth buffer.
+If the material is writing to the depth buffer
+(in other words, if the blend mode is set to either
+     <emphasis>
+      Opaque
+     </emphasis>
+     ,
+     <emphasis>
+      Alpha Clip
+     </emphasis>
+     or
+     <emphasis>
+      Alpha Hashed
+     </emphasis>
+     ),
+contact shadows will be casted by the surface material regardless of the
+     <emphasis>
+      Transparent Shadow
+     </emphasis>
+     type.
+    </paragraph>
+   </note>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Không Có -- None
+     </term>
+     <definition>
+      <paragraph>
+       The surface will not cast any shadow.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đục -- Opaque
+     </term>
+     <definition>
+      <paragraph>
+       The surface will cast shadows like an opaque surface.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đoạn Phim -- Clip
+     </term>
+     <definition>
+      <paragraph>
+       The surface will cast shadows like an opaque surface,
+but only areas where the alpha value is above the clip threshold.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Hashed
+     </term>
+     <definition>
+      <paragraph>
+       The surface will cast shadows like an opaque surface,
+but only areas where the alpha value is above a random threshold.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="screen-space-refraction" names="screen\ space\ refraction --\ screen\ space\ refraction">
+   <title>
+    -- Screen Space Refraction
+   </title>
+   <paragraph>
+    Enabling Screen Space Refraction on a surface means that refraction BSDFs
+will do a raytrace against the depth buffer to find the most accurate refracted color.
+This has a big performance cost if the surface covers a lot of pixels.
+   </paragraph>
+   <paragraph>
+    Screen Space Reflections and Ambient Occlusion are not compatible with Screen Space Refraction.
+They will be disabled on the surfaces that use it.
+Surfaces that use Screen Space Refraction will not appear in Screen Space Reflections at the right place.
+Surfaces that use Screen Space Refraction will not cast Ambient Occlusion onto other surfaces.
+   </paragraph>
+   <paragraph>
+    If this option is disabled or if the Screen Space Refraction raytrace fails,
+the refracted ray will use the color of the nearest probe.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Screen Space Refraction
+     </term>
+     <definition>
+      <paragraph>
+       Enables screen space refraction.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Refraction Depth
+     </term>
+     <definition>
+      <paragraph>
+       If Refraction Depth is not 0.0, all refraction BSDFs in the shader will act as if
+the object is a thin slab of the refraction material having this thickness.
+This will model a second refraction event that will double the absorption color and
+start the refraction ray after this second event.
+      </paragraph>
+      <paragraph>
+       This option greatly increases the quality of thin glass objects.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-types-material-use-sss-translucency">
+   </target>
+  </section>
+  <section ids="subsurface-translucency bpy-types-material-use-sss-translucency" names="subsurface\ translucency --\ subsurface\ translucency bpy.types.material.use_sss_translucency">
+   <title>
+    -- Subsurface Translucency
+   </title>
+   <paragraph>
+    Eevee's Subsurface Scattering algorithm works by blurring the irradiance in screen space.
+This means that if no visible part of the surface is lit, the effect disappears.
+   </paragraph>
+   <paragraph>
+    However, true Subsurface Scattering goes beneath the surface and can travel a lot of distance.
+This is why a human ear lit from behind appears red on the front side.
+   </paragraph>
+   <paragraph>
+    That is what this effect mimics. This translucency approximation only works
+with lights that have shadow maps and only on Subsurface BSDFs (not the Translucency BSDFs).
+It does not work with indirect lighting. The soft parameter of the shadow maps also affects this effect.
+   </paragraph>
+  </section>
+  <section ids="pass-index" names="pass\ index">
+   <title>
+    Pass Index
+   </title>
+   <paragraph>
+    Index number for the
+    <emphasis>
+     Material Index
+    </emphasis>
+    <reference internal="True" refuri="../../layers/passes.html">
+     <inline classes="doc">
+      render pass
+     </inline>
+    </reference>
+    .
+This can be used to give a mask to a material which then can be read with
+the
+    <reference internal="True" refuri="../../../compositing/types/converter/id_mask.html">
+     <inline classes="doc">
+      ID Mask Node
+     </inline>
+    </reference>
+    in the compositor.
+   </paragraph>
+  </section>
+ </section>
+</document>

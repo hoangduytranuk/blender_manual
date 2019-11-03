@@ -1,0 +1,186 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/generate/edge_split.rst">
+ <target refid="bpy-types-edgesplitmodifier">
+ </target>
+ <section ids="edge-split-modifier bpy-types-edgesplitmodifier" names="edge\ split\ modifier --\ edge\ split\ modifier bpy.types.edgesplitmodifier">
+  <title>
+   -- Edge Split Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Edge Split
+   </emphasis>
+   modifier splits, duplicates edges within a mesh,
+breaking 'links' between faces around those split edges.
+  </paragraph>
+  <paragraph>
+   The edges to split can be determined from the edge angle (i.e. angle between faces forming that edge),
+and/or edges marked as sharp.
+  </paragraph>
+  <paragraph>
+   Splitting an edge affects vertex normal generation at that edge, making the edge appear sharp.
+Hence, this modifier can be used to achieve the same effect as
+   <reference internal="True" refuri="../../meshes/structure.html#auto-smooth">
+    <inline classes="std std-ref">
+     Auto Smooth
+    </inline>
+   </reference>
+   ,
+making edges appear sharp when their angle is above a certain threshold.
+It can also be used for manual control of the smoothing process,
+where the user defines which edges should appear smooth or sharp
+(see
+   <reference internal="True" refuri="../../meshes/editing/normals.html#modeling-meshes-editing-normals-shading">
+    <inline classes="std std-ref">
+     Mesh Smoothing
+    </inline>
+   </reference>
+   for other ways to do this).
+If desired, both modes can be active at once.
+  </paragraph>
+  <note>
+   <paragraph>
+    This modifier is kept mostly for historical/compatibility reasons.
+Everything it can do in shading, and much more,
+can now be achieved using
+    <reference internal="True" refuri="../../meshes/structure.html#modeling-meshes-normals-custom">
+     <inline classes="std std-ref">
+      custom normals
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <paragraph>
+    Unless you really need the topology changes it generates, it is not advised to use it in new projects.
+   </paragraph>
+  </note>
+  <note>
+   <paragraph>
+    Splitting edges can also be
+    <reference internal="True" refuri="../../meshes/editing/edges.html#bpy-ops-mesh-edge-split">
+     <inline classes="std std-ref">
+      performed manually
+     </inline>
+    </reference>
+    in Edit Mode.
+   </paragraph>
+  </note>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_generate_edge-split_panel.png'}" uri="images/modeling_modifiers_generate_edge-split_panel.png"/>
+    <caption>
+     The Edge Split modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Góc Độ của Cạnh -- Edge Angle
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, edges will be split if the angle between its
+two adjacent faces is greater than the
+       <emphasis>
+        Split Angle
+       </emphasis>
+       .
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Góc Độ Tách Phân -- Split Angle
+        </term>
+        <definition>
+         <paragraph>
+          On 0: all edges are split. On 180: no edges are split.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cạnh Sắc/Nhọn -- Sharp Edges
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, edges will be split if they were
+       <reference internal="True" refuri="../../meshes/editing/edges.html#bpy-ops-mesh-mark-sharp">
+        <inline classes="std std-ref">
+         marked as sharp
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     <reference internal="True" refuri="../../../glossary/index.html#term-non-manifold">
+      <inline classes="xref std std-term">
+       Non-manifold
+      </inline>
+     </reference>
+     edges will always be split.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/modeling_modifiers_generate_edge-split_example-1.png'}" uri="images/modeling_modifiers_generate_edge-split_example-1.png"/>
+         <caption>
+          Flat shading.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/modeling_modifiers_generate_edge-split_example-2.png'}" uri="images/modeling_modifiers_generate_edge-split_example-2.png"/>
+         <caption>
+          Smooth shading.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/modeling_modifiers_generate_edge-split_example-3.png'}" uri="images/modeling_modifiers_generate_edge-split_example-3.png"/>
+         <caption>
+          Smooth shading with Edge Split.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/modeling_modifiers_generate_edge-split_example-4.png'}" uri="images/modeling_modifiers_generate_edge-split_example-4.png"/>
+         <caption>
+          Smooth shading with Edge Split and Subdivision Surface.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

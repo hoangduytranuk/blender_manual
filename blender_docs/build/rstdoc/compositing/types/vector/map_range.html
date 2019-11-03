@@ -1,0 +1,109 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/vector/map_range.rst">
+ <target refid="bpy-types-compositornodemaprange">
+ </target>
+ <section ids="map-range-node bpy-types-compositornodemaprange" names="map\ range\ node nút\ ánh\ xạ\ phạm\ vi\ --\ map\ range\ node bpy.types.compositornodemaprange">
+  <title>
+   Nút Ánh Xạ Phạm Vi -- Map Range Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeMapRange.png'}" uri="images/compositing_node-types_CompositorNodeMapRange.png"/>
+   <caption>
+    Nút Ánh Xạ Phạm Vi.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút này cho phép chuyển đổi (ánh xạ) một phạm vi giá trị đầu vào sang một phạm vi đích. Theo mặc định, các giá trị nằm ngoài phạm vi đầu vào chỉ định cũng sẽ được ánh xạ cân đối theo. Nút này tương tự như nút
+   <reference internal="True" refuri="map_value.html#bpy-types-compositornodemapvalue">
+    <inline classes="std std-ref">
+     Ánh Xạ Giá Trị -- Map Value
+    </inline>
+   </reference>
+   nhưng cung cấp một phương pháp trực quan hơn để xác định phạm vi đầu ra mong muốn.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào tiêu chuẩn của giá trị.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Từ Tối Thiểu/Tối Đa -- From Min/Max
+     </term>
+     <definition>
+      <paragraph>
+       Khởi đầu/kết thúc của phạm vi giá trị đầu vào.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tới Tối Thiểu/Tối Đa -- To Min/Max
+     </term>
+     <definition>
+      <paragraph>
+       Khởi đầu/kết thúc của phạm vi đích.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hạn Định -- Clamp
+     </term>
+     <definition>
+      <paragraph>
+       Hạn định các giá trị tại điểm Tối Thiểu/Tối Đa của phạm vi đích.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của giá trị.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <paragraph>
+    Một trường hợp sử dụng quan trọng là ánh xạ phạm vi ban đầu của kênh về độ sâu Z sang phạm vi khả dụng hơn một cách dễ dàng (ví dụ: 0,0 - 1,0) để sử dụng làm một lớp lồng (
+    <reference internal="True" refuri="../../../glossary/index.html#term-matte">
+     <inline classes="xref std std-term">
+      Matte
+     </inline>
+    </reference>
+    ) cho các thao tác thanh lọc hoặc tô màu.
+   </paragraph>
+  </section>
+ </section>
+</document>

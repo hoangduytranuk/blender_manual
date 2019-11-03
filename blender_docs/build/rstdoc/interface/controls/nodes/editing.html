@@ -1,0 +1,621 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/interface/controls/nodes/editing.rst">
+ <section ids="editing" names="editing biên\ soạn\ --\ editing">
+  <title>
+   Biên Soạn -- Editing
+  </title>
+  <section ids="transform" names="transform biến\ hóa\ --\ transform">
+   <title>
+    Biến Hóa -- Transform
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Node --&gt; Move, Rotate, Resize`">
+         Node ‣ Move, Rotate, Resize
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         G
+        </literal>
+        ,
+        <literal classes="kbd">
+         R
+        </literal>
+        ,
+        <literal classes="kbd">
+         S
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Move a single node by clicking and dragging it around. A node can be clicked almost anywhere to start dragging.
+Multiple nodes can be moved after pressing
+    <literal classes="kbd">
+     G
+    </literal>
+    .
+   </paragraph>
+   <paragraph>
+    In general it is recommended to arrange your nodes within the view such that the data flows from
+left to right, top to bottom.
+   </paragraph>
+   <paragraph>
+    A node can be resized by dragging the edges on the left or right side.
+   </paragraph>
+  </section>
+  <section ids="connecting-sockets" names="connecting\ sockets kết\ nối\ các\ ổ\ cắm\ --\ connecting\ sockets">
+   <title>
+    Kết Nối các Ổ Cắm -- Connecting Sockets
+   </title>
+   <section dupnames="interactively" ids="interactively" names="tương\ tác\ --\ interactively">
+    <title>
+     Tương Tác -- Interactively
+    </title>
+    <paragraph>
+     <literal classes="kbd">
+      LMB
+     </literal>
+     -click on a socket and drag. You will see a line coming out of it: This is called a
+     <emphasis>
+      link
+     </emphasis>
+     .
+    </paragraph>
+    <paragraph>
+     Keep dragging and connect the link to an input socket of another node, then release the
+     <literal classes="kbd">
+      LMB
+     </literal>
+     .
+    </paragraph>
+    <paragraph>
+     While multiple links can route out of an output socket, only a single link can be attached to an input socket.
+    </paragraph>
+    <paragraph>
+     To reposition the outgoing links of a node, rather than adding a new one,
+hold
+     <literal classes="kbd">
+      Ctrl
+     </literal>
+     while dragging from an output socket.
+This works for single as well as for multiple outgoing links.
+    </paragraph>
+    <paragraph>
+     Nodes that have no connections can be inserted on a link.
+Just move the node over the link and release when the link is highlighted.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Tạo các Kết Nối
+       <literal classes="kbd">
+        F
+       </literal>
+       -- Make Links
+       <literal classes="kbd">
+        F
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Select multiple nodes with open sockets, then use the Make Links to create links between them.
+Use Make Links again if there are other nodes which can be connected.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tạo và Thay Thế Kết Nối
+       <literal classes="kbd">
+        Shift-F
+       </literal>
+       -- Make and Replace Links
+       <literal classes="kbd">
+        Shift-F
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        <emphasis>
+         Make and Replace Links
+        </emphasis>
+        works similarly to
+        <emphasis>
+         Make Links
+        </emphasis>
+        , but it will replace existing links if any exist.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="disconnecting-sockets" names="disconnecting\ sockets ngắt\ kết\ nối\ các\ ổ\ cắm\ --\ disconnecting\ sockets">
+   <title>
+    Ngắt Kết Nối các Ổ Cắm -- Disconnecting Sockets
+   </title>
+   <section dupnames="interactively" ids="id1" names="tương\ tác\ --\ interactively">
+    <title>
+     Tương Tác -- Interactively
+    </title>
+    <paragraph>
+     Drag the link from an input socket and let it go keeping it unconnected.
+    </paragraph>
+   </section>
+   <section ids="cut-links" names="cut\ links ngắt\ kết\ nối\ --\ cut\ links">
+    <title>
+     Ngắt Kết Nối -- Cut Links
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Toàn Bộ các Chế Độ -- All Modes
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Nút (Node) --&gt; Ngắt Kết Nối (Cut Links)`">
+          Nút (Node) ‣ Ngắt Kết Nối (Cut Links)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Ctrl-RMB
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     To break a link between sockets click in an empty area, near the link you want to disconnect, and
+drag: You will see a little cutter icon appearing at your mouse pointer.
+Move it over the link itself, and release.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Detach Links
+       <literal classes="kbd">
+        Alt-D
+       </literal>
+       ,
+       <literal classes="kbd">
+        Alt-LMB
+       </literal>
+       drag
+      </term>
+      <definition>
+       <paragraph>
+        Use Detach Links in order to cut all links attached to selected nodes at once.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="duplicate" names="duplicate sao\ chép\ --\ duplicate">
+   <title>
+    Sao Chép -- Duplicate
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Nút (Node) --&gt; Sao Chép (Duplicate)`">
+         Nút (Node) ‣ Sao Chép (Duplicate)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Shift-D
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Click
+    <literal classes="kbd">
+     LMB
+    </literal>
+    or
+    <literal classes="kbd">
+     RMB
+    </literal>
+    on the desired node, press
+    <literal classes="kbd">
+     Shift-D
+    </literal>
+    and
+move the mouse away to see the duplicate of the selected node appearing under the mouse pointer.
+   </paragraph>
+   <note>
+    <paragraph>
+     When you duplicate a node, the new node will be positioned
+     <emphasis>
+      exactly
+     </emphasis>
+     on top of the node that was duplicated.
+If you leave it there (and it is quite easy to do so),
+you can
+     <strong>
+      not
+     </strong>
+     easily tell that there are
+     <emphasis>
+      two
+     </emphasis>
+     nodes there!
+When in doubt, select a node and move it slightly to see if something is hidden underneath.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="copy-paste" names="copy/paste">
+   <title>
+    Copy/Paste
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Node --&gt; Copy`">
+         Node ‣ Copy
+        </inline>
+        ,
+        <inline classes="menuselection" rawtext=":menuselection:`Node --&gt; Paste`">
+         Node ‣ Paste
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-C
+        </literal>
+        ,
+        <literal classes="kbd">
+         Ctrl-V
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Not only the selected nodes but also the connections between them are copied to the clipboard.
+   </paragraph>
+   <note>
+    <paragraph>
+     The pasted node will be placed in the
+     <emphasis>
+      same
+     </emphasis>
+     position as when it was copied.
+Use the same cautions as when duplicating.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="delete" names="delete xóa\ --\ delete">
+   <title>
+    Xóa -- Delete
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Xóa -- Delete
+      <literal classes="kbd">
+       X
+      </literal>
+      ,
+      <literal classes="kbd">
+       Delete
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Deletes the selected node(s).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa và Tái Kết Nối
+      <literal classes="kbd">
+       Ctrl-X
+      </literal>
+      -- Delete with Reconnect
+      <literal classes="kbd">
+       Ctrl-X
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Delete the node(s) without loosing the connections.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="mute" names="mute giải\ hoạt\ --\ mute">
+   <title>
+    Giải Hoạt -- Mute
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Nút (Node) --&gt; Bật/Tắt Hoạt Tính của Nút (Toggle Node Mute)`">
+         Nút (Node) ‣ Bật/Tắt Hoạt Tính của Nút (Toggle Node Mute)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         M
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Muting a node removes the contribution of the node to the node tree,
+and makes all links pass through that node without change.
+Links will appear red as an indicator of passing through the muted node.
+   </paragraph>
+  </section>
+  <section ids="show-hide" names="show/hide hiện/ẩn\ --\ show/hide">
+   <title>
+    Hiện/Ẩn -- Show/Hide
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Ẩn -- Hide
+      <literal classes="kbd">
+       H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Collapses the node so only the node header is visible.
+This can also be toggled by clicking the triangle at the top left of the node header.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bật/Tắt Duyệt Thảo Nút
+      <literal classes="kbd">
+       Shift-H
+      </literal>
+      -- Toggle Node Preview
+      <literal classes="kbd">
+       Shift-H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Shows/Hides a preview region on the node that displays the frame
+after that node's operation has been applied. This can also be toggled
+by clicking the material ball icon in the node header.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hiện/Ẩn các Ổ Cắm Nút bị Ẩn Giấu
+      <literal classes="kbd">
+       Ctrl-H
+      </literal>
+      -- Toggle Hidden Node Sockets
+      <literal classes="kbd">
+       Ctrl-H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Collapses/Expands any input or output sockets that have no other nodes connected to them.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bật/Tắt các Tùy Chọn của Nút -- Toggle Node Options
+     </term>
+     <definition>
+      <paragraph>
+       Shows/Hides all node properties.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thu Mình và Ẩn Giấu các Ổ Cắm Chưa Dùng -- Collapse and Hide Unused Sockets
+     </term>
+     <definition>
+      <paragraph>
+       Applies both the
+       <emphasis>
+        Toggle Hidden Node Sockets
+       </emphasis>
+       and
+       <emphasis>
+        Hide
+       </emphasis>
+       operations.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-ops-node-read-viewlayers">
+   </target>
+   <target refid="bpy-ops-node-read-fullsamplelayers">
+   </target>
+  </section>
+  <section ids="layers bpy-ops-node-read-fullsamplelayers bpy-ops-node-read-viewlayers" names="layers tầng\ lớp\ --\ layers bpy.ops.node.read_fullsamplelayers bpy.ops.node.read_viewlayers">
+   <title>
+    Tầng Lớp -- Layers
+   </title>
+   <note>
+    <paragraph>
+     The tools are only used in the
+     <reference internal="True" refuri="../../../compositing/index.html">
+      <inline classes="doc">
+       Compositor
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </note>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đọc các Tầng Kết Xuất
+      <literal classes="kbd">
+       Ctrl-R
+      </literal>
+      -- Read Render Layers
+      <literal classes="kbd">
+       Ctrl-R
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Reads all the current scene's render layers from cache, as needed.
+This can be used to save RAM while rendering because the render layers do not have to be saved in RAM.
+This can also be used to recover some information from a failed render.
+For this to work,
+       <reference internal="True" refuri="../../../render/cycles/render_settings/performance.html#render-properties-save-buffers">
+        <inline classes="std std-ref">
+         Save Buffers
+        </inline>
+       </reference>
+       must be enabled.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

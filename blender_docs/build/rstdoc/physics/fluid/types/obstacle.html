@@ -1,0 +1,175 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/fluid/types/obstacle.rst">
+ <target refid="bpy-types-obstaclefluidsettings">
+ </target>
+ <section ids="fluid-obstacle bpy-types-obstaclefluidsettings" names="fluid\ obstacle --\ fluid\ obstacle bpy.types.obstaclefluidsettings">
+  <title>
+   -- Fluid Obstacle
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Vật Lý (Physics) --&gt; Chất Lỏng (Fluid)`">
+        Vật Lý (Physics) ‣ Chất Lỏng (Fluid)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Thể Loại -- Type
+     </field_name>
+     <field_body>
+      <paragraph>
+       Trướng Ngại Vật -- Obstacle
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   This object will be used as an obstacle in the simulation. As with a fluid object,
+obstacle objects currently should not intersect. As for fluid objects,
+the actual mesh geometry is used for obstacles. For objects with a volume,
+make sure that the normals of the obstacle are calculated correctly, and radiating properly
+(use the
+   <inline classes="menuselection" rawtext=":menuselection:`Mesh --&gt; Normals --&gt; Recalculate Outside`">
+    Mesh ‣ Normals ‣ Recalculate Outside
+   </inline>
+   in mesh edit mode),
+particularly when using a spinned container.
+Applying a
+   <reference internal="True" refuri="../../../modeling/modifiers/generate/subdivision_surface.html">
+    <inline classes="doc">
+     Subdivision Surface Modifier
+    </inline>
+   </reference>
+   before baking the simulation could also be a good idea if the mesh is not animated.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại Thiết Lập Thể Tích -- Volume Initialization Type
+     </term>
+     <definition>
+      <paragraph>
+       Xin xem thêm về
+       <reference internal="True" refuri="introduction.html#fluid-initialization">
+        <inline classes="std std-ref">
+         Thiết Lập Thể Tích -- Volume Initialization Type
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Slip type
+     </term>
+     <definition>
+      <paragraph>
+       Determines the stickiness of the obstacle surface, called "Surface Adhesion".
+Surface Adhesion depends in the real world on the fluid and the graininess or
+friction/adhesion/absorption qualities of the surface.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Không Trôi -- No Slip
+        </term>
+        <definition>
+         <paragraph>
+          Causes the fluid to stick to the obstacle (zero velocity).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Trôi Tự Do -- Free Slip
+        </term>
+        <definition>
+         <paragraph>
+          Allows movement along the obstacle (only zero normal velocity).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Partial Slip
+        </term>
+        <definition>
+         <paragraph>
+          Mixes both types, with 0 being mostly no slip, and 1 being identical to free slip.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <paragraph>
+       Note that if the mesh is moving, it will be treated as no slip automatically.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/physics_fluid_types_obstacle_bndtcomp.jpg'}" uri="images/physics_fluid_types_obstacle_bndtcomp.jpg"/>
+    <caption>
+     Example of the different boundary types for a drop falling onto the slanted wall.
+From left to right: no slip, partial slip 0.3, partial slip 0.7 and free slip.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Khung Lưới Hoạt Họa/Xuất -- Animated Mesh/Export
+     </term>
+     <definition>
+      <paragraph>
+       Xin xem thêm về
+       <reference internal="True" refuri="introduction.html#fluid-animated-mesh">
+        <inline classes="std std-ref">
+         Khung Lưới Hoạt Họa/Xuất -- Animated Mesh/Export
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Amount
+     </term>
+     <definition>
+      <paragraph>
+       Amount of mixing between no- and free-slip, described above.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hệ Số Tác Động -- Impact Factor
+     </term>
+     <definition>
+      <paragraph>
+       Amount of fluid volume correction for gain/loss from impacting with moving objects.
+If this object is not moving, this setting has no effect.
+However, if it is and the fluid collides with it, a negative value takes volume away from the Domain,
+and a positive number adds to it. Ranges from -2.0 to 10.0.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

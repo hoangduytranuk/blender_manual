@@ -1,0 +1,172 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/lattice.rst">
+ <target refid="bpy-types-lattice">
+ </target>
+ <target refid="bpy-ops-lattice">
+ </target>
+ <target refid="bpy-types-latticepoint">
+ </target>
+ <section dupnames="lattice" ids="lattice bpy-types-latticepoint bpy-ops-lattice bpy-types-lattice" names="giàn\ lưới\ --\ lattice bpy.types.latticepoint bpy.ops.lattice bpy.types.lattice">
+  <title>
+   Giàn Lưới -- Lattice
+  </title>
+  <paragraph>
+   Lattice -- or commonly called deformation cage outside of Blender.
+A lattice consists of a three-dimensional non-renderable grid of vertices.
+Its main use is to apply a deformation to the object it controls with a
+   <reference internal="True" refuri="../modeling/modifiers/deform/lattice.html">
+    <inline classes="doc">
+     Bộ Điều Chỉnh Giàn Lưới -- Lattice Modifier
+    </inline>
+   </reference>
+   .
+If the object is parented with
+   <emphasis>
+    Lattice Deform
+   </emphasis>
+   a Lattice Modifier is automatically applied.
+  </paragraph>
+  <section ids="editing" names="editing biên\ soạn\ --\ editing">
+   <title>
+    Biên Soạn -- Editing
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đảo Chiều (Không Biến Dạng) -- Flip (Distortion Free)
+     </term>
+     <definition>
+      <paragraph>
+       Mirrors the vertices displacement from their base position.
+      </paragraph>
+      <paragraph>
+       U, V, W
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sắp Đều -- Make Regular
+     </term>
+     <definition>
+      <paragraph>
+       Resets the whole lattice to a regular grid, where the cells are scaled to one cubic unit.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_lattice_panel.png
+   :align: right
+
+   Lattice properties.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giàn Lưới -- Lattice
+     </term>
+     <definition>
+      <paragraph>
+       A
+       <reference internal="True" refuri="../interface/controls/templates/data_block.html#ui-data-block">
+        <inline classes="std std-ref">
+         Trình Đơn Khối Dữ Liệu -- Data-Block Menu
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section dupnames="lattice" ids="id1" names="giàn\ lưới\ --\ lattice">
+    <title>
+     Giàn Lưới -- Lattice
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Số Điểm -- Points
+      </term>
+      <definition>
+       <paragraph>
+        Rate of subdivision in the axes:
+       </paragraph>
+       <paragraph>
+        U, V, W
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Interpolation Type
+      </term>
+      <definition>
+       <paragraph>
+        Selector for each axis. See
+        <reference internal="True" refuri="shape_keys/shape_keys_panel.html#fig-interpolation-type">
+         <inline classes="std std-ref">
+          Different types of interpolation.
+         </inline>
+        </reference>
+        .
+       </paragraph>
+       <paragraph>
+        Linear, Cardinal, Catmull-Rom, B-Spline
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bên Ngoài -- Outside
+      </term>
+      <definition>
+       <paragraph>
+        Takes only the vertices on the surface of the lattice into account.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Nhóm Điểm Đỉnh -- Vertex Group
+      </term>
+      <definition>
+       <paragraph>
+        The strength of the influence assigned as a weight to the individual vertices in the selected vertex group.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8 Maybe update the images (color &amp; style)
+   </comment>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/animation_lattice_view.png'}" uri="images/animation_lattice_view.png"/>
+    <caption>
+     Lattice around the cube object in Object Mode.
+    </caption>
+   </figure>
+   <paragraph>
+    The lattice should be scaled and moved to fit around your object in Object Mode.
+Any scaling applied to the object in Edit Mode will result in the object deforming.
+This includes applying its scale with
+    <literal classes="kbd">
+     Ctrl-A
+    </literal>
+    as this will achieve the same result as
+scaling the lattice in Edit Mode, and therefore the object.
+   </paragraph>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Nhóm Nút -- Node Groups &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/compositing/types/groups.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Nút Bố Trí -- Layout Nodes" href="layout/index.html" />
+    <link rel="prev" title="Nút Dịch Chuyển -- Translate Node" href="distort/translate.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tổng Hợp -- Compositing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../properties.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#node-types">Thể Loại Nút -- Node Types</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="input/index.html">Nút Đầu Vào -- Input Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output/index.html">Nút Đầu Ra -- Output Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="color/index.html">Nút Màu Sắc -- Color Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="converter/index.html">Nút Chuyển Đổi -- Converter Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filter/index.html">Nút Bộ Lọc -- Filter Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector/index.html">Nút Véctơ -- Vector Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matte/index.html">Nút Lớp Lồng -- Matte Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distort/index.html">Nút Biến Dạng -- Distort Nodes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Nhóm Nút -- Node Groups</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#make-group">Tạo Nhóm -- Make Group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#edit-group">Biên Soạn Nhóm -- Edit Group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ungroup">Rã Nhóm -- Ungroup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#group-insert">Chèn Thêm vào Nhóm -- Group Insert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#appending-node-groups">Bổ Sung Nhóm Nút -- Appending Node Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="layout/index.html">Nút Bố Trí -- Layout Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../editors/index.html">Trình Biên Soạn -- Editors</a> &raquo;</li>
+        
+          <li><a href="../index.html">Tổng Hợp -- Compositing</a> &raquo;</li>
+        
+      <li>Nhóm Nút -- Node Groups</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/compositing/types/groups.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="bpy-types-compositornodegroup"></span><div class="section" id="node-groups">
+<h1>Nhóm Nút -- Node Groups<a class="headerlink" href="#node-groups" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-right" id="id1">
+<img alt="../../_images/interface_controls_nodes_groups_node-group-example.png" src="../../_images/interface_controls_nodes_groups_node-group-example.png" />
+<p class="caption"><span class="caption-text">Ví dụ về nhóm nút.</span></p>
+</div>
+<p>Việc nhóm các nút có thể đơn giản hóa một cây nút bằng cách cho phép việc tạo một thực thể và ẩn dấu các phần của cây. Cả hai loại nút, nút chất liệu và nút tổng hợp, đều có thể nhóm lại được.</p>
+<p>Nói một cách khái niệm, việc nhóm các nút lại cho phép bạn chỉ định một <em>tập hợp</em> các nút mà bạn có thể coi như là một đơn nút. Các nhóm nút tương tự như các hàm trong lập trình vậy. Sau đó, bạn có thể tái sử dụng chúng bên trong, cái mà sau đó được gọi là Nhóm Nút (NodeGroups)hoặc trong các tập tin blend khác, khi chèn thêm vào, được gọi là Cây Nút (NodeTrees).</p>
+<p>Một ví dụ: Nếu bạn đã tạo một nguyên liệu mà bạn muốn sử dụng với các yếu tố đầu vào khác nhau, ví dụ: màu khuếch tán: nhựa màu đỏ, nhựa màu xanh lá cây, thì bạn có thể tạo các nguyên liệu riêng biệt bằng nút <em>Biến thành Đơn Người Dùng</em> (<em>Make Single User</em>) cho mỗi màu khác nhau, với bản sao của phần cây mô tả vật liệu nhựa. Nếu bạn muốn chỉnh sửa nguyên liệu, thì bạn cần phải chỉnh sửa lại tất cả các nguyên liệu. Một phương pháp tốt hơn để tái sử dụng là tạo các nhóm nút, chỉ cho lộ ra các tham số đầu vào (ví dụ: màu khuếch tán) (<em>diffuse color</em>).</p>
+<p>Các nhóm nút lồng nhau cũng được hỗ trợ nữa, chẳng hạn, một nhóm nút có thể được chèn vào hoặc được tạo bên trong một nhóm nút khác.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Các nhóm nút đệ quy sẽ bị cấm hoạt động đối với toàn bộ hệ thống nút hiện tại, nhằm ngăn chặn sự đệ quy vô hạn. Một nhóm nút không bao giờ có thể chứa chính bản thân nó (hoặc nhóm khác có chứa chính bản thân nó).</p>
+</div>
+<div class="section" id="make-group">
+<h2>Tạo Nhóm -- Make Group<a class="headerlink" href="#make-group" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Node ‣ Make Group</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-G</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To create a node group, select the nodes you want to include, then
+press <kbd class="kbd docutils literal notranslate">Ctrl-G</kbd>, <span class="menuselection">Group ‣ Make Group</span>.
+A node group will have a green title bar. All of the selected nodes will now be contained within the node group.
+Default naming for the node group is &quot;NodeGroup&quot;, &quot;NodeGroup.001&quot; etc.
+There is a name field in the node group you can click into to change the name of the group.
+Change the name of the node group to something meaningful.
+When appending node groups from one blend-file to another,
+Blender does not make a distinction between material node groups or composite node groups,
+so it is recommended to use some naming convention that will allow you to easily distinguish between the two types.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>What <strong>not</strong> to include in node groups:</p>
+<p>Hãy nhớ rằng điều thiết yếu là một nhóm phải là một thành phần phần mềm dễ tái sử dụng, khép kín. Nhóm nút nguyên liệu <strong>không nên</strong> bao gồm:</p>
+<dl class="last docutils">
+<dt>Nút Đầu Vào -- Input nodes</dt>
+<dd>Nếu bạn bao gồm một nút nguồn trong nhóm của bạn thì kết quả sẽ là bạn có nút nguồn xuất hiện <em>hai lần</em>: một nằm bên trong nhóm và một nằm bên ngoài nhóm trong mạng lưới nút nguyên liệu mới.</dd>
+<dt>Nút Đầu Ra -- Output node</dt>
+<dd>Nếu bạn bao gồm một nút đầu ra trong nhóm thì bạn sẽ không có một ổ cắm đầu ra có <em>từ</em> (ra khỏi) nhóm!</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="edit-group">
+<h2>Biên Soạn Nhóm -- Edit Group<a class="headerlink" href="#edit-group" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Node ‣ Edit Group</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tiêu Đề -- Header:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Chuyển về Cây Nút Phụ Huynh (Go to Parent Node Tree)</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Tab</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Tab</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>With a node group selected, <kbd class="kbd docutils literal notranslate">Tab</kbd> expands the node to a frame, and the individual nodes within
+it are shown. You can move them around, play with their individual controls, re-thread them internally, etc.
+just like you can if they were a normal part of the editor view. You will not be able, though,
+to thread them to a node outside the group; you have to use the external sockets on the side of the node group.
+While <kbd class="kbd docutils literal notranslate">Tab</kbd> can be used to both enter and exit a group, <kbd class="kbd docutils literal notranslate">Ctrl-Tab</kbd> only exits.</p>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../../_images/render_cycles_optimizations_reducing-noise_glass-group.png"><img alt="../../_images/render_cycles_optimizations_reducing-noise_glass-group.png" src="../../_images/render_cycles_optimizations_reducing-noise_glass-group.png" style="width: 620px;" /></a>
+<p class="caption"><span class="caption-text">Ví dụ về nhóm nút mở rộng.</span></p>
+</div>
+<div class="section" id="interface">
+<h3>Giao Diện -- Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="interactively">
+<h4>Tương Tác -- Interactively<a class="headerlink" href="#interactively" title="Permalink to this headline">¶</a></h4>
+<p>Khi một nhóm nút được kiến tạo, các nút <em>Đầu Vào của Nhóm</em> (Group Input) và <em>Đầu Ra của Nhóm</em> (Group Output) mới sẽ được sinh tạo ra để biểu thị luồng chảy của dữ liệu vào và ra khỏi nhóm. Khi được kiến tạo, các kết nối đến ổ cắm đầu vào đến từ các nút không được chọn sẽ được gắn vào các ổ cắm mới trên nút <em>Đầu Vào của Nhóm</em>. Tương tự, các kết nối ra ngoài đến các ổ cắm đầu vào của các nút không được chọn sẽ được gắn vào nút <em>Đầu Ra của Nhóm</em> mới.</p>
+<p>Nếu trong quá trình phát triển nhóm nút, một tham số bổ sung cần phải được đưa vào nhóm thì một ổ cắm cần phải được bổ sung vào phần <em>Đầu Vào của Nhóm</em> (Group Input). Điều này có thể dễ dàng thực hiện bằng cách cho thêm một kết nối từ ổ cắm rỗng ở phía bên phải của <em>Đầu Vào của Nhóm</em> (Group Input) vào ổ cắm đầu vào mong muốn trên nút yêu cầu đầu vào. Đối với dữ liệu mà bạn muốn cung cấp ra khỏi nhóm, làm tương tự như quá trình này trên <em>Đầu Ra của Nhóm</em> (Group Output).</p>
+</div>
+<div class="section" id="panel">
+<h4>Bảng -- Panel<a class="headerlink" href="#panel" title="Permalink to this headline">¶</a></h4>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Node ‣ Interface</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="figure align-right" id="id3">
+<img alt="../../_images/interface_controls_nodes_groups_interface-panel.png" src="../../_images/interface_controls_nodes_groups_interface-panel.png" />
+<p class="caption"><span class="caption-text">The interface panel for editing groups.</span></p>
+</div>
+<p>Có thể cho thêm các ổ cắm, thay đổi trật tự, hoặc xóa bỏ, đồng thời, mình còn có thể định nghĩa các tên miêu tả cùng những chi tiết về giá trị dữ liệu đầu vào nữa.</p>
+<p>If you have multiple inputs or outputs, they can be re-ordered by selecting the socket in the list
+and then moving it up or down with the arrow buttons on the right side of the panel.
+The larger plus sign buttons below the list will add an unconnected socket of the same type
+as the selected socket or a value socket if there is no selection.
+The triangle at the bottom of the list has filtering functions to facilitate finding nodes
+if the group has a large number of sockets.</p>
+</div>
+</div>
+</div>
+<div class="section" id="ungroup">
+<h2>Rã Nhóm -- Ungroup<a class="headerlink" href="#ungroup" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Nhóm (Group) ‣ Rã Nhóm (Ungroup)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-G</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <kbd class="kbd docutils literal notranslate">Alt-G</kbd> tool removes the group and places the individual nodes into your editor workspace.
+No internal connections are lost, and now you can thread internal nodes to other nodes in your workspace.</p>
+<dl class="docutils">
+<dt>Separate <kbd class="kbd docutils literal notranslate">P</kbd></dt>
+<dd><p class="first">Separate selected nodes from the node group.</p>
+<dl class="last docutils">
+<dt>Sao Chép -- Copy</dt>
+<dd>Copy to parent node tree, keep group intact.</dd>
+<dt>Di Chuyển -- Move</dt>
+<dd>Move to parent node tree, remove from group.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="group-insert">
+<h2>Chèn Thêm vào Nhóm -- Group Insert<a class="headerlink" href="#group-insert" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Nhóm (Group) ‣ Chèn Thêm vào Nhóm (Group Insert)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Selecting a set of nodes, ending with the destination group node, and pressing <span class="menuselection">Nhóm (Group) ‣ Chèn Thêm vào Nhóm (Group Insert)</span> will move those nodes into that group. The moved nodes are collected into a group of their own to preserve their connection context, having their own group input and output nodes. The group's existing input and output nodes are updated with new sockets, if any, from the new nodes. The node group must be edited to contain a single <em>Group Input</em> and a single <em>Group Output</em> node.</p>
+</div>
+<div class="section" id="appending-node-groups">
+<h2>Bổ Sung Nhóm Nút -- Appending Node Groups<a class="headerlink" href="#appending-node-groups" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Biên Soạn -- Editor:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Topbar</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Tập Tin (File) ‣ Kết Nối/Bổ Sung (Link/Append)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Once you have appended a Node Tree to your blend-file, you can make use of it in a node editor by
+pressing <kbd class="kbd docutils literal notranslate">Shift-A</kbd>, <span class="menuselection">Add ‣ Group</span>, then selecting the appended group.
+The &quot;control panel&quot; of the Group include the individual controls for the grouped nodes.
+You can change them by working with the Group node like any other node.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="layout/index.html" class="btn btn-neutral float-right" title="Nút Bố Trí -- Layout Nodes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="distort/translate.html" class="btn btn-neutral float-left" title="Nút Dịch Chuyển -- Translate Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

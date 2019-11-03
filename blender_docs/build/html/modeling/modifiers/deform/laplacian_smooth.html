@@ -1,0 +1,867 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/laplacian_smooth.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier" href="laplacian_deform.html" />
+    <link rel="prev" title="Bộ Điều Chỉnh Móc -- Hook Modifier" href="hooks.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">-- Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh -- Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Sửa Đổi -- Modify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Sinh Tạo -- Generate</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="armature.html">Bộ Điều Chỉnh Cốt -- Armature Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cast.html">Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve.html">Bộ Điều Chỉnh Đường Cong -- Curve Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displace.html">Bộ Điều Chỉnh Dời Hình -- Displace Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hooks.html">Bộ Điều Chỉnh Móc -- Hook Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_deform.html">Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lattice.html">Bộ Điều Chỉnh Giàn Lưới -- Lattice Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">-- Mesh Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrinkwrap.html">Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_deform.html">-- Simple Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth.html">Bộ Điều Chỉnh Làm Mịn -- Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_deform.html">-- Surface Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warp.html">Bộ Điều Chỉnh Làm Cong -- Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wave.html">Bộ Điều Chỉnh Tạo Sóng -- Wave Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#simulate">Mô Phỏng -- Simulate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
+        
+      <li>Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modeling/modifiers/deform/laplacian_smooth.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="laplacian-smooth-modifier">
+<span id="bpy-types-laplaciansmoothmodifier"></span><h1>Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier<a class="headerlink" href="#laplacian-smooth-modifier" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Laplacian Smooth</em> modifier allows you to reduce noise on a mesh's surface with minimal changes to its shape.</p>
+<p>It can also exaggerate the shape using a negative <em>Factor</em>.</p>
+<p>The <em>Laplacian Smooth</em> is useful for objects that have been reconstructed from
+the real world and contain undesirable noise. It removes noise while still
+preserving desirable geometry as well as the shape of the original model.</p>
+<p>This modifier is based on a curvature flow <em>Laplace Beltrami</em> operator in a diffusion equation.</p>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id1">
+<img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_panel.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_panel.png" />
+<p class="caption"><span class="caption-text">The Laplacian Smooth modifier.</span></p>
+</div>
+<dl class="docutils">
+<dt>Lặp Lại -- Repeat</dt>
+<dd><p class="first">Repetitions allow you to run the Laplacian smoothing multiple times.
+Each repetition causes the flow curvature of the mesh to be recalculated again,
+and as a result it removes more noise with every new iteration using a small <em>Factor</em> &lt; 1.0.</p>
+<p>When on 0, no smoothing is done.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">More repetitions will take longer to calculate.
+So beware of doing so on meshes with a large number of vertices.</p>
+</div>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">With a factor of 0.5.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id3">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id4">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat1.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat1.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat1.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 1.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id5">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat5.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat5.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat5.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 5.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id6">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat10.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat10.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat10.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 10.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils" id="id7">
+<caption><span class="caption-text">With a factor of 2.0.</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id8">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id9">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-repeat1.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-repeat1.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-repeat1.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 1.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id10">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-repeat5.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-repeat5.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-repeat5.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 5.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id11">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-repeat10.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-repeat10.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-repeat10.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 10.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="last docutils" id="id12">
+<caption><span class="caption-text">With a factor of -0.5.</span><a class="headerlink" href="#id12" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id13">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id14">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat1.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat1.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat1.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 1.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id15">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat5.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat5.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat5.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 5.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id16">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat10.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat10.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat10.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Repeat: 10.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Hệ Số -- Factor</dt>
+<dd><p class="first">Controls the amount of displacement of every vertex along the flow curvature.</p>
+<ul class="simple">
+<li>Using a small <em>Factor</em>, you can remove noise from the shape without affecting desirable geometry.</li>
+<li>Using a large <em>Factor</em>, you get smoothed versions of the shape at the cost of fine geometry details.</li>
+<li>Using a negative <em>Factor</em>, you can enhance the shape, preserving desirable geometry.</li>
+<li>When the <em>Factor</em> is negative, multiple iterations can magnify the noise.</li>
+</ul>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id17">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: 0.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id18">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda0-5.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda0-5.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda0-5.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: 0.5.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id19">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: 2.5.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id20">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda5-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda5-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda5-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: 5.0.</span></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last figure" id="id21">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda0-0.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda0-0.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda0-0.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: 0.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id22">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda1-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda1-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda1-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: 1.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id23">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda10-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda10-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda10-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: 10.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id24">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda50-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda50-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-lambda50-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: 50.0.</span></p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last figure" id="id25">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: 0.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id26">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-lambda20-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-lambda20-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-lambda20-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: -20.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id27">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-lambda50-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-lambda50-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-lambda50-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: -50.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id28">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-lambda300-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-lambda300-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-lambda300-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Factor: -300.0.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Đường Ranh Giới -- Border</dt>
+<dd><p class="first">Since there is no way to calculate the curvature flow on border edges, they must be controlled separately.
+Border edges are smoothed using a much simpler method, using this property to control the influence.</p>
+<p>Positive values will smooth the vertex positions,
+while negative values will &quot;enhance&quot; them by transforming them in the opposite direction.</p>
+<table border="1" class="docutils" id="id29">
+<caption><span class="caption-text">With a factor of 2.5.</span><a class="headerlink" href="#id29" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id30">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_border0-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_border0-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_border0-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: 0.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id31">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_border1-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_border1-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_border1-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: 1.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id32">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_border.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_border.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_border.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: 2.5.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id33">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_border10-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_border10-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_border10-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: 10.0.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils" id="id34">
+<caption><span class="caption-text">With a factor of 20.0.</span><a class="headerlink" href="#id34" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id35">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border0-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border0-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border0-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: 0.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id36">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border1-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border1-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border1-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: 1.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id37">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border5-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border5-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border5-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: 5.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id38">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border20-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border20-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-border20-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: 20.0.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="last docutils" id="id39">
+<caption><span class="caption-text">With a factor of -30.0.</span><a class="headerlink" href="#id39" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id40">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-0-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-0-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-0-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: 0.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id41">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-20-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-20-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-20-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: -20.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id42">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-50-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-50-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-50-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: -50.0.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id43">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-200-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-200-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cup-200-0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Border: -200.0.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Axis X/Y/Z</dt>
+<dd><p class="first">Toggle buttons to enable/disable deforming vertices in the X, Y and/or Z axes directions.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id44">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">X, Y, Z: Unselected.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id45">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis-xyz.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis-xyz.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis-xyz.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">X, Y, Z: Selected.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id46">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis-xy.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis-xy.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis-xy.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">X, Z: Selected.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id47">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis-x.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis-x.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-axis-x.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">X: Selected.</span></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last figure" id="id48">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">X, Y, Z: Unselected.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id49">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xyz.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xyz.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xyz.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">X, Y, Z: Selected.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id50">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xy.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xy.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xy.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">X, Z: Selected.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id51">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-x.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-x.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-x.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">X: Selected.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Duy Trì Thể Tích -- Preserve Volume</dt>
+<dd><p class="first">The smoothing process can produce shrinkage.
+That is significant for large <em>Factor</em> or large <em>Repeat</em> values.
+You can use that option to reduce that effect.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id52">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume-false.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume-false.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume-false.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Off.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id53">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume-true.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume-true.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume-true.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">On.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id54">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume2-false.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume2-false.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume2-false.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Off.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id55">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume2-true.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume2-true.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_cube-volume2-true.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">On.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
+<dd><p class="first">A vertex group name, to constrain the effect to a group of vertices only.
+Allows for selective, real-time smoothing or enhancing, by painting vertex weights.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Original Geometry</th>
+<th class="head">No Group Chosen</th>
+<th class="head">Trọng Lượng Điểm Đỉnh -- Vertex Weights</th>
+<th class="head">Kết Quả -- Result</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-paint.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-paint.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-paint.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-wgroup.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-wgroup.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-wgroup.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis.png" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xyz.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xyz.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xyz.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-paint.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-paint.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-paint.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-wgroup.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-wgroup.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-wgroup.png" style="width: 130px;" /></a>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex1.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex1.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex1.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex2.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex2.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex2.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex3.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex3.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex3.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Bình Thường Hóa -- Normalized</dt>
+<dd><p class="first">When enabled, the results will depend on face sizes. When disabled, geometry spikes may occur.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id56">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized0.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Original Geometry.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id57">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized1.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized1.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized1.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">On.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id58">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized2.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized2.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized2.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Off.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id59">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized3.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized3.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_monkey-normalized3.jpg" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Off, High Factor.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<div class="admonition hint">
+<p class="first admonition-title">Gợi ý</p>
+<p class="last">Meshes with a great number of vertices, more than ten thousand (10,000),
+may take several minutes for processing. You can use small portions of the mesh for testing
+before executing the modifier on the entire model.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id60">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Femme front view
+<a class="reference external" href="https://en.blender.org/uploads/8/8f/Apinzonf_GSOC_2012_Media_femme_front.blend">blend-file</a>.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id61">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_border0-0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_border0-0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_border0-0.jpg" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Femme side view
+<a class="reference external" href="https://en.blender.org/uploads/4/47/Apinzonf_GSOC_2012_Media_femme_side.blend">blend-file</a>.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id62">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-wgroup.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-wgroup.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-wgroup.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Cube smooth
+<a class="reference external" href="https://en.blender.org/uploads/5/54/Apinzonf_GSOC_2012_Media_cube_smooth.blend">blend-file</a>.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id63">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Shape enhanced
+<a class="reference external" href="https://en.blender.org/uploads/4/44/Apinzonf_Shape_Enhanced_camel.blend">blend-file</a>.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last"><a class="reference internal" href="smooth.html"><span class="doc">Smooth Modifier</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="laplacian_deform.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hooks.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Móc -- Hook Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

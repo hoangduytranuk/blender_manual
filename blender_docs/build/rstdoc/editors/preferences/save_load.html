@@ -1,0 +1,398 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/preferences/save_load.rst">
+ <target refid="prefs-save-load">
+ </target>
+ <section ids="save-load prefs-save-load" names="save\ &amp;\ load prefs-save-load">
+  <title>
+   Save &amp; Load
+  </title>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/editors_preferences_section_save-load.png'}" uri="images/editors_preferences_section_save-load.png"/>
+   <caption>
+    Preferences Save/Load section.
+   </caption>
+  </figure>
+  <section ids="blend-files" names="blend\ files">
+   <title>
+    Blend Files
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Relative Paths
+     </term>
+     <definition>
+      <paragraph>
+       Default value for
+       <reference internal="True" refuri="../../files/blend/save_load.html#files-blend-relative-paths">
+        <inline classes="std std-ref">
+         Relative Paths
+        </inline>
+       </reference>
+       when loading external files
+such as images, sounds &amp; linked libraries.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Compress File
+     </term>
+     <definition>
+      <paragraph>
+       Default value for
+       <reference internal="True" refuri="../../files/blend/save_load.html#files-blend-compress">
+        <inline classes="std std-ref">
+         Compress file
+        </inline>
+       </reference>
+       when saving blend files.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Load UI
+     </term>
+     <definition>
+      <paragraph>
+       Default value for
+       <reference internal="True" refuri="../../files/blend/save_load.html#file-load-ui">
+        <inline classes="std std-ref">
+         Load UI
+        </inline>
+       </reference>
+       when loading blend files.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Save Preview Images
+     </term>
+     <definition>
+      <paragraph>
+       Previews of images and materials in the
+       <reference internal="True" refuri="../file_browser.html">
+        <inline classes="doc">
+         File Browser
+        </inline>
+       </reference>
+       are created on demand. To save these previews into your blend-file,
+enable this option (at the cost of increasing the size of your blend-file).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tabs as Spaces
+     </term>
+     <definition>
+      <paragraph>
+       Entering
+       <literal classes="kbd">
+        Tab
+       </literal>
+       in the Text Editor adds the appropriate number of spaces
+instead of using characters.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Save Prompt
+     </term>
+     <definition>
+      <paragraph>
+       Asks for confirmation before closing or opening a new
+blend-file if the current file has unsaved changes
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Save Versions
+     </term>
+     <definition>
+      <paragraph>
+       Number of versions created (for backup) when saving newer versions of a file.
+      </paragraph>
+      <paragraph>
+       This option keeps saved versions of your file in the same directory,
+using extensions:
+       <literal>
+        .blend1
+       </literal>
+       ,
+       <literal>
+        .blend2
+       </literal>
+       , etc.,
+with the number increasing to the number of versions you specify.
+      </paragraph>
+      <paragraph>
+       Older files will be named with a higher number.
+E.g. with the default setting of 2, you will have three versions of your file:
+      </paragraph>
+      <field_list>
+       <field>
+        <field_name>
+         <literal>
+          *.blend
+         </literal>
+        </field_name>
+        <field_body>
+         <paragraph>
+          last saved.
+         </paragraph>
+        </field_body>
+       </field>
+       <field>
+        <field_name>
+         <literal>
+          *.blend1
+         </literal>
+        </field_name>
+        <field_body>
+         <paragraph>
+          second last saved.
+         </paragraph>
+        </field_body>
+       </field>
+       <field>
+        <field_name>
+         <literal>
+          *.blend2
+         </literal>
+        </field_name>
+        <field_body>
+         <paragraph>
+          third last saved.
+         </paragraph>
+        </field_body>
+       </field>
+      </field_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Recent Files
+     </term>
+     <definition>
+      <paragraph>
+       Number of files displayed in
+       <inline classes="menuselection" rawtext=":menuselection:`File --&gt; Open Recent`">
+        File ‣ Open Recent
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="prefs-auto-save">
+   </target>
+   <section ids="auto-save prefs-auto-save" names="auto\ save prefs-auto-save">
+    <title>
+     Auto Save
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Auto Save Temporary Files
+      </term>
+      <definition>
+       <paragraph>
+        Enables
+        <reference internal="True" refuri="../../troubleshooting/recover.html">
+         <inline classes="doc">
+          Auto Save
+         </inline>
+        </reference>
+        .
+Tells Blender to
+        <emphasis>
+         automatically
+        </emphasis>
+        save a backup copy of your work-in-progress files to the
+        <reference internal="True" refuri="../../advanced/blender_directory_layout.html#temp-dir">
+         <inline classes="std std-ref">
+          Thư Mục Tạm Thời -- Temporary Directory
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Timer
+      </term>
+      <definition>
+       <paragraph>
+        This specifies the number of minutes to wait between each
+        <reference internal="True" refuri="../../troubleshooting/recover.html">
+         <inline classes="doc">
+          Auto Save
+         </inline>
+        </reference>
+        .
+The default value of the Blender installation is 2 minutes.
+The minimum is 1, and the Maximum is 60 (save every hour).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="prefs-auto-execution">
+    </target>
+   </section>
+   <section ids="auto-execution prefs-auto-execution" names="auto\ execution prefs-auto-execution">
+    <title>
+     Auto Execution
+    </title>
+    <paragraph>
+     Python scripts (including driver expressions) are not executed by default for security reasons.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Auto Run Python Scripts
+      </term>
+      <definition>
+       <paragraph>
+        You may be working on projects where you only load files from trusted sources,
+making it more convenient to allow scripts to be executed automatically.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Excluded Paths
+      </term>
+      <definition>
+       <paragraph>
+        Blend-files in these folders will
+        <emphasis>
+         not
+        </emphasis>
+        automatically run Python scripts.
+This can be used to define where blend-files from untrusted sources are kept.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <seealso>
+     <paragraph>
+      <reference internal="True" refuri="../../advanced/scripting/security.html">
+       <inline classes="doc">
+        Python Security
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </seealso>
+   </section>
+  </section>
+  <section ids="file-browser" names="file\ browser">
+   <title>
+    File Browser
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Filter File Extensions
+     </term>
+     <definition>
+      <paragraph>
+       By activating this, the file region in the File Browser will only show appropriate files
+(i.e. blend-files when loading a complete Blender setting).
+The selection of file types may be changed in the file region.
+      </paragraph>
+      <figure ids="id2">
+       <image candidates="{'*': 'images/editors_preferences_save-load_filter.png'}" uri="images/editors_preferences_save-load_filter.png"/>
+       <caption>
+        File extension filter.
+       </caption>
+      </figure>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hide Dot File/Data-blocks
+     </term>
+     <definition>
+      <paragraph>
+       Hide file which start with
+       <literal>
+        .
+       </literal>
+       on File Browsers and ID selector.
+      </paragraph>
+      <hint>
+       <paragraph>
+        Data-blocks beginning with a
+        <literal>
+         .
+        </literal>
+        can be selected by typing in the
+        <literal>
+         .
+        </literal>
+        characters.
+When explicitly written, the setting to hide these data-blocks is ignored.
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hide Recent Locations
+     </term>
+     <definition>
+      <paragraph>
+       Hide the
+       <emphasis>
+        Recent
+       </emphasis>
+       panel of the
+       <reference internal="True" refuri="../file_browser.html">
+        <inline classes="doc">
+         File Browser
+        </inline>
+       </reference>
+       which displays recently accessed folders.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hide System Bookmarks
+     </term>
+     <definition>
+      <paragraph>
+       Hide System Bookmarks in the
+       <emphasis>
+        File Browser
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Show Thumbnails
+     </term>
+     <definition>
+      <paragraph>
+       Default to the thumbnail view of files when using the
+       <reference internal="True" refuri="../file_browser.html">
+        <inline classes="doc">
+         File Browser
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

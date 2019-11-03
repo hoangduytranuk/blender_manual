@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Biên Soạn -- Editing &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/keyframes/editing.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Bộ Khóa -- Keying Sets" href="keying_sets.html" />
+    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Animation &amp; Rigging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Khung Khóa -- Keyframes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Biên Soạn -- Editing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#insert-keyframes">Chèn Thêm Khung Khóa -- Insert Keyframes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-keyframes">Xóa Khung Khóa -- Delete Keyframes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clear-keyframes">Xóa các Khung Khóa -- Clear Keyframes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#editing-keyframes">Biên Soạn các Khung Hình -- Editing Keyframes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="keying_sets.html">Bộ Khóa -- Keying Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../armatures/index.html">Cốt -- Armatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lattice.html">Giàn Lưới -- Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints/index.html">Ràng Buộc -- Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../actions.html">Hành Động -- Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers/index.html">Bộ Điều Vận -- Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markers.html">Dấu Mốc -- Markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shape_keys/index.html">Hình Mẫu -- Shape Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion_paths.html">Đường Chuyển Động -- Motion Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Animation &amp; Rigging</a> &raquo;</li>
+        
+          <li><a href="index.html">Khung Khóa -- Keyframes</a> &raquo;</li>
+        
+      <li>Biên Soạn -- Editing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/animation/keyframes/editing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="editing">
+<h1>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="insert-keyframes">
+<span id="bpy-ops-anim-keyframe-insert"></span><h2>Chèn Thêm Khung Khóa -- Insert Keyframes<a class="headerlink" href="#insert-keyframes" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể -- Object Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Hoạt Họa (Animation) ‣ Chèn Khung Khóa (Insert Keyframe...)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">I</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There are several methods of adding new keys. Namely:</p>
+<ul class="simple">
+<li>In the 3D View, pressing <kbd class="kbd docutils literal notranslate">I</kbd> will bring up a menu to choose what to add a keyframe to.</li>
+<li>Hovering over a property and pressing <kbd class="kbd docutils literal notranslate">I</kbd> or with the context menu by <kbd class="kbd docutils literal notranslate">RMB</kbd>
+a property and choose <em>Insert Keyframe</em> from the menu.</li>
+</ul>
+<div class="section" id="auto-keyframe">
+<h3>Tạo Khung Khóa Tự Động -- Auto Keyframe<a class="headerlink" href="#auto-keyframe" title="Permalink to this headline">¶</a></h3>
+<div class="figure" id="id1">
+<img alt="../../_images/editors_timeline_keyframes-auto.png" src="../../_images/editors_timeline_keyframes-auto.png" />
+<p class="caption"><span class="caption-text">Timeline Auto Keyframe.</span></p>
+</div>
+<p>Auto Keyframe is the record button in the <em>Timeline</em> header. Auto Keyframe adds
+keyframes automatically to the set frame if the value for transform type properties changes.</p>
+<p>See <a class="reference internal" href="../../editors/timeline.html#animation-editors-timeline-autokeyframe"><span class="std std-ref">Timeline Keyframe Control</span></a> for more info.</p>
+</div>
+</div>
+<div class="section" id="delete-keyframes">
+<span id="bpy-ops-anim-keyframe-delete"></span><h2>Xóa Khung Khóa -- Delete Keyframes<a class="headerlink" href="#delete-keyframes" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể -- Object Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Hoạt Họa (Animation) ‣ Xóa Bỏ Khung Khóa (Delete Keyframes...)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-I</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There are several methods of removing keyframes:</p>
+<ul class="simple">
+<li>In the 3D View press <kbd class="kbd docutils literal notranslate">Alt-I</kbd> to remove keys from selected objects on the current frame.</li>
+<li>When the mouse is over a value, press <kbd class="kbd docutils literal notranslate">Alt-I</kbd>.</li>
+<li><kbd class="kbd docutils literal notranslate">RMB</kbd> a value and choose <em>Delete Keyframe</em> from the menu.</li>
+</ul>
+</div>
+<div class="section" id="clear-keyframes">
+<span id="bpy-ops-anim-keyframe-clear"></span><h2>Xóa các Khung Khóa -- Clear Keyframes<a class="headerlink" href="#clear-keyframes" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể -- Object Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Hoạt Họa (Animation) ‣ Xóa Sạch Khung Khóa (Clear Keyframes...)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Removes all keyframes from the selected object.</p>
+</div>
+<div class="section" id="editing-keyframes">
+<h2>Biên Soạn các Khung Hình -- Editing Keyframes<a class="headerlink" href="#editing-keyframes" title="Permalink to this headline">¶</a></h2>
+<p>Keyframes can be edited in two editors. To do so go to either
+the <a class="reference internal" href="../../editors/graph_editor/index.html"><span class="doc">Graph Editor</span></a>
+or the <a class="reference internal" href="../../editors/dope_sheet/index.html"><span class="doc">Dope Sheet</span></a>.</p>
+</div>
+<div class="section" id="examples">
+<h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="keyframe-animation">
+<h3>Hoạt Họa Khung Khóa -- Keyframe Animation<a class="headerlink" href="#keyframe-animation" title="Permalink to this headline">¶</a></h3>
+<p>This example shows you how to animate a cube's location, rotation, and scale.</p>
+<ol class="arabic simple">
+<li>First, in the <em>Timeline</em>, or other animation editors, set the frame to 1.</li>
+<li>With the <em>Cube</em> selected in <em>Object Mode</em>, press <kbd class="kbd docutils literal notranslate">I</kbd> in the 3D View.</li>
+<li>From the <em>Insert Keyframe Menu</em> select <em>LocRotScale</em>.
+This will record the location, rotation, and scale, for the <em>Cube</em> on frame 1.</li>
+<li>Set the frame to 100.</li>
+<li>Use Move <kbd class="kbd docutils literal notranslate">G</kbd>, Rotate <kbd class="kbd docutils literal notranslate">R</kbd>, Scale <kbd class="kbd docutils literal notranslate">S</kbd>, to transform the cube.</li>
+<li>Press <kbd class="kbd docutils literal notranslate">I</kbd> in the 3D View. From the <em>Insert Keyframe Menu</em>, select <em>LocRotScale</em>.</li>
+</ol>
+<p>To test the animation, press <kbd class="kbd docutils literal notranslate">Spacebar</kbd> to play.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="keying_sets.html" class="btn btn-neutral float-right" title="Bộ Khóa -- Keying Sets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

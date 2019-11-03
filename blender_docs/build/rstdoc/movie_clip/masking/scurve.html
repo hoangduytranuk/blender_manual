@@ -1,0 +1,74 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/movie_clip/masking/scurve.rst">
+ <section ids="s-curves" names="s-curves đường\ cong-s\ --\ s-curves">
+  <title>
+   Đường Cong-S -- S-Curves
+  </title>
+  <paragraph>
+   The curve type used for creating mask splines is almost a Bézier curve, but with some differences.
+Smooth edges of the mask are defined by feathering.
+The curve needed to support feathering in a way that stuck to the curve as you edited it,
+for ease of editing an animation. These are called S-curves.
+  </paragraph>
+  <paragraph>
+   Besides the handles, every control point also has points that define the feather between
+the current point and the next point on the spline.
+Each feather point is stored in UW space,
+where U means position across spline segment, and W (weight) means distance between main spline and feather points.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/movie-clip_masking_scurve_schematic.svg'}" uri="images/movie-clip_masking_scurve_schematic.svg" width="420px"/>
+   <caption>
+    Giải thích về đường cong-s
+   </caption>
+  </figure>
+  <paragraph>
+   This allows for deforming the main spline in almost any way,
+and the feather will be updated automatically to reflect that change.
+  </paragraph>
+  <paragraph>
+   For example if there is just rotation of the spline,
+feather would stay completely unchanged. If one point's feather is moved,
+the other feathers will be automatically stretched uniformly along that segment
+and the overall shape will be almost the same as artists would want it to be.
+  </paragraph>
+  <section ids="primitives" names="primitives hình\ cơ\ bản\ --\ primitives">
+   <title>
+    Hình Cơ Bản -- Primitives
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Mask --&gt; Add`">
+         Toolbar ‣ Mask ‣ Add
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Shift-A
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    There are two primitives available: a Bézier Circle and a Square with vector handles.
+   </paragraph>
+  </section>
+ </section>
+</document>

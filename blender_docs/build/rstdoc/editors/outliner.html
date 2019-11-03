@@ -1,0 +1,1338 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/outliner.rst">
+ <target refid="bpy-types-spaceoutliner">
+ </target>
+ <target refid="bpy-ops-outliner">
+ </target>
+ <section ids="outliner bpy-ops-outliner bpy-types-spaceoutliner" names="outliner mục\ lục\ --\ outliner bpy.ops.outliner bpy.types.spaceoutliner">
+  <title>
+   Mục Lục -- Outliner
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/editors_outliner_interface.png'}" uri="images/editors_outliner_interface.png"/>
+   <caption>
+    The Outliner editor.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Outliner
+   </emphasis>
+   is a list that organizes data in the blend-file,
+i.e. the scene data, Video Sequencer data, or anything that gets stored in a blend-file.
+The
+   <emphasis>
+    Outliner
+   </emphasis>
+   can be used to:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     View the data in the scene.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Select and deselect objects in the scene.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Hide or show an object in the scene.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Enable or disable selection (to make an object "unselectable" in the 3D Viewport).
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Enable or disable the rendering of an object.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Delete objects from the scene.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Unlink data (equivalent to pressing the
+     <emphasis>
+      X
+     </emphasis>
+     button next to the name of a data-block).
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Manage collections in the scene.
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <comment xml:space="preserve">
+   (TODO) create new objects by drag &amp; drop from the outliner
+  </comment>
+  <paragraph>
+   Each row in the
+   <emphasis>
+    Outliner
+   </emphasis>
+   shows a data-block. You can
+   <literal classes="kbd">
+    LMB
+   </literal>
+   click the disclosure triangle to
+the left of a name to expand the current data-block and see what other data-blocks it contains.
+Holding
+   <literal classes="kbd">
+    Shift
+   </literal>
+   when clicking on the disclosure triangle will expand child data-blocks recursively.
+   <literal classes="kbd">
+    LMB
+   </literal>
+   Clicking and dragging along disclosure triangles will expand or collapse multiple data-blocks.
+  </paragraph>
+  <section ids="selecting-and-activating" names="selecting\ and\ activating lựa\ chọn\ và\ kích\ hoạt\ --\ selecting\ and\ activating">
+   <title>
+    Lựa Chọn và Kích Hoạt -- Selecting and Activating
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/editors_outliner_selection.png'}" uri="images/editors_outliner_selection.png"/>
+    <caption>
+     Selected data-blocks with the Cube active.
+    </caption>
+   </figure>
+   <paragraph>
+    Selection is done with
+    <literal classes="kbd">
+     LMB
+    </literal>
+    (and/or the
+    <reference name="context menu" refid="context-menu">
+     context menu
+    </reference>
+    , see below) on the row of
+a data-block outside the name/icon area. Single selections will also activate the data-block.
+The rows of selected data-blocks are highlighted blue, with the active data-block highlighted in a lighter blue.
+   </paragraph>
+   <paragraph>
+    Clicking in empty space below the list of data-blocks will deselect all.
+   </paragraph>
+   <note>
+    <paragraph>
+     By default, selecting data-blocks in the Outliner will select the respective objects,
+bones, and sequences in the 3D View and Sequencer.
+Selections in the 3D View and Sequencer will be synced to each Outliner.
+To disable selection syncing, turn off the toggle in the
+     <reference name="filter" refid="filter">
+      filter
+     </reference>
+     popover.
+    </paragraph>
+   </note>
+   <paragraph>
+    Children of a data-block can also be selected by clicking the icon that is displayed to
+the right of the parent data-block's name.
+   </paragraph>
+   <section ids="selecting-multiple-data-blocks" names="selecting\ multiple\ data-blocks">
+    <title>
+     Selecting Multiple Data-Blocks
+    </title>
+    <paragraph>
+     Extend the selection one data-block at a time using
+     <literal classes="kbd">
+      Ctrl-LMB
+     </literal>
+     .
+Each data-block added to the selection this way will be made the active data-block.
+    </paragraph>
+    <paragraph>
+     Select a range of elements from the active element using
+     <literal classes="kbd">
+      Shift-LMB
+     </literal>
+     .
+To select a range without deselecting the previous selection, use
+     <literal classes="kbd">
+      Shift-Ctrl-LMB
+     </literal>
+     .
+    </paragraph>
+    <paragraph>
+     A click and drag from any location in the Outliner other than a name or icon will begin a box selection.
+Use
+     <literal classes="kbd">
+      Shift
+     </literal>
+     to add and
+     <literal classes="kbd">
+      Ctrl
+     </literal>
+     to subtract from existing selections with box select.
+Box select can also be started with
+     <literal classes="kbd">
+      B
+     </literal>
+     .
+    </paragraph>
+    <paragraph>
+     To select all items use
+     <literal classes="kbd">
+      A
+     </literal>
+     ;
+     <literal classes="kbd">
+      Alt-A
+     </literal>
+     will deselect all items.
+    </paragraph>
+    <paragraph>
+     The keyboard arrow keys can be used to navigate and select in the Outliner.
+Keyboard selection and navigation starts from the active data-block,
+but does not change the active data-block.
+    </paragraph>
+    <table classes="colwidths-given">
+     <tgroup cols="2">
+      <colspec colwidth="10">
+      </colspec>
+      <colspec colwidth="90">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <paragraph>
+          <literal classes="kbd">
+           Up
+          </literal>
+         </paragraph>
+        </entry>
+        <entry>
+         <paragraph>
+          Select the previous element in the list.
+         </paragraph>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <paragraph>
+          <literal classes="kbd">
+           Down
+          </literal>
+         </paragraph>
+        </entry>
+        <entry>
+         <paragraph>
+          Select the next element in the list.
+         </paragraph>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <paragraph>
+          <literal classes="kbd">
+           Shift-Up
+          </literal>
+         </paragraph>
+        </entry>
+        <entry>
+         <paragraph>
+          Select the previous element without deselecting.
+         </paragraph>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <paragraph>
+          <literal classes="kbd">
+           Shift-Down
+          </literal>
+         </paragraph>
+        </entry>
+        <entry>
+         <paragraph>
+          Select the next element without deselecting.
+         </paragraph>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <paragraph>
+          <literal classes="kbd">
+           Left
+          </literal>
+         </paragraph>
+        </entry>
+        <entry>
+         <paragraph>
+          Close the data-block.
+         </paragraph>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <paragraph>
+          <literal classes="kbd">
+           Right
+          </literal>
+         </paragraph>
+        </entry>
+        <entry>
+         <paragraph>
+          Open the data-block to view children.
+         </paragraph>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <paragraph>
+          <literal classes="kbd">
+           Shift-Left
+          </literal>
+         </paragraph>
+        </entry>
+        <entry>
+         <paragraph>
+          Close this and all child data-blocks.
+         </paragraph>
+        </entry>
+       </row>
+       <row>
+        <entry>
+         <paragraph>
+          <literal classes="kbd">
+           Shift-Right
+          </literal>
+         </paragraph>
+        </entry>
+        <entry>
+         <paragraph>
+          Open this and all child data-blocks.
+         </paragraph>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+   </section>
+  </section>
+  <section ids="toggling-interaction-modes" names="toggling\ interaction\ modes">
+   <title>
+    Toggling Interaction Modes
+   </title>
+   <paragraph>
+    Selecting some data-blocks with
+    <literal classes="kbd">
+     LMB
+    </literal>
+    will toggle into the relevant interaction
+mode. For example, selecting the mesh data of the cube will select the cube and
+enter
+    <emphasis>
+     Edit Mode
+    </emphasis>
+    . Selecting the data-block again will toggle back into
+    <emphasis>
+     Object Mode
+    </emphasis>
+   </paragraph>
+   <paragraph>
+    If the data-block type supports multi-editing,
+you can use
+    <literal classes="kbd">
+     Shift
+    </literal>
+    to add/remove objects from the edit mode.
+   </paragraph>
+  </section>
+  <section ids="relations-management" names="relations\ management">
+   <title>
+    Relations Management
+   </title>
+   <figure align="right" ids="id3">
+    <image candidates="{'*': 'images/editors_outliner_relations.png'}" uri="images/editors_outliner_relations.png"/>
+    <caption>
+     Linking objects to a collection.
+    </caption>
+   </figure>
+   <paragraph>
+    Data-blocks can be dragged and dropped to manage data relations in the Outliner.
+To begin a drag and drop,
+    <literal classes="kbd">
+     LMB
+    </literal>
+    click and drag from the name or icon of a data-block.
+   </paragraph>
+   <paragraph>
+    Objects can be moved to collections by dropping on the name or contents of a collection.
+To link an object to a collection, hold
+    <literal classes="kbd">
+     Ctrl
+    </literal>
+    while dropping.
+   </paragraph>
+   <paragraph>
+    To set parent-child relations between objects, drop an object onto another object
+while holding
+    <literal classes="kbd">
+     Shift
+    </literal>
+    .
+   </paragraph>
+   <note>
+    <paragraph>
+     Drag and drop will attempt to operate on the entire selection. Selected data-blocks
+that are incompatible with the operation will remain unmodified.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="context-menu" names="context\ menu trình\ đơn\ ngữ\ cảnh\ --\ context\ menu">
+   <title>
+    Trình Đơn Ngữ Cảnh -- Context Menu
+   </title>
+   <paragraph>
+    Show the context menu for a data-block with
+    <literal classes="kbd">
+     RMB
+    </literal>
+    on the icon or name.
+Depending on the type of the preselected data-block(s), you will have all or part of the following options:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Copy/Paste
+     </term>
+     <definition>
+      <paragraph>
+       Copy/pastes selected data-blocks.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa -- Delete
+     </term>
+     <definition>
+      <paragraph>
+       Deletes the selected data-block.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Select, Select Hierarchy, Deselect
+     </term>
+     <definition>
+      <paragraph>
+       Add object to current selection without making it the active one.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="editors-outliner-collections">
+   </target>
+   <section ids="collections editors-outliner-collections" names="collections editors-outliner-collections">
+    <title>
+     Collections
+    </title>
+    <paragraph>
+     Collections are a way Blender uses to organize scenes.
+Collections contain objects and everything thing else in a scene.
+They can include collections themselves and are fully recursive.
+    </paragraph>
+    <seealso>
+     <paragraph>
+      Read more about
+      <reference internal="True" refuri="../scene_layout/collections/index.html">
+       <inline classes="doc">
+        Collections
+       </inline>
+      </reference>
+     </paragraph>
+    </seealso>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       New
+      </term>
+      <definition>
+       <paragraph>
+        Creates a new collection.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Duplicate Collections
+      </term>
+      <definition>
+       <paragraph>
+        Recursively duplicates the collection including all child collections, objects, and object data.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Duplicate Linked
+      </term>
+      <definition>
+       <paragraph>
+        Duplicate entire hierarchy keeping content linked with original.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xóa Thứ Bậc -- Delete Hierarchy
+      </term>
+      <definition>
+       <paragraph>
+        Deletes the collection and all of its child objects.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Instance to Scene
+      </term>
+      <definition>
+       <paragraph>
+        Creates a new
+        <reference internal="True" refuri="../scene_layout/object/properties/instancing/collection.html">
+         <inline classes="doc">
+          collection instance
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Visibility
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Isolate
+         </term>
+         <definition>
+          <paragraph>
+           Hides all collections except the selected collection and any parent collections (if any exist).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Show/Hide
+         </term>
+         <definition>
+          <paragraph>
+           Shows/Hides the selected collection from the
+           <reference internal="True" refuri="../scene_layout/view_layers/index.html">
+            <inline classes="doc">
+             View Layer
+            </inline>
+           </reference>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Show/Hide Inside
+         </term>
+         <definition>
+          <paragraph>
+           Shows/Hides all items that are a member of the selected collection, include child collections,
+from the
+           <reference internal="True" refuri="../scene_layout/view_layers/index.html">
+            <inline classes="doc">
+             View Layer
+            </inline>
+           </reference>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Enable/Disable in Viewports
+         </term>
+         <definition>
+          <paragraph>
+           Enables/disables drawing in the
+           <reference internal="True" refuri="../scene_layout/view_layers/index.html">
+            <inline classes="doc">
+             View Layer
+            </inline>
+           </reference>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Enable/Disable in Renders
+         </term>
+         <definition>
+          <paragraph>
+           Enables/disables visibility of the collection in renders.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       View Layer
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Disable/Enable in View Layer
+         </term>
+         <definition>
+          <paragraph>
+           Disables/Enables the collection from the view layer.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="id-data-menu" names="id\ data\ menu">
+    <title>
+     ID Data Menu
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Ngắt Kết Nối -- Unlink
+      </term>
+      <definition>
+       <paragraph>
+        To unlink a data-block from its "owner" (e.g. a material from its mesh).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Địa Phương Hóa -- Make Local
+      </term>
+      <definition>
+       <paragraph>
+        To create a "local" duplicate of this data-block.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Biến Thành Đơn Người Dùng -- Make Single User
+      </term>
+      <definition>
+       <paragraph>
+        This feature is not yet implemented.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xóa -- Delete
+      </term>
+      <definition>
+       <paragraph>
+        Deletes the selected data-block.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tái Ánh Xạ Người Dùng -- Remap Users
+      </term>
+      <definition>
+       <paragraph>
+        Remap Users of a data-block to another one (of same type of course).
+This means you can e.g. replace all usages of a material or texture by another one.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Copy/Paste
+      </term>
+      <definition>
+       <paragraph>
+        Copy/pastes selected data-blocks.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Thêm người dùng giả, Xóa Người Dùng Giả -- Add Fake User, Clear Fake User
+      </term>
+      <definition>
+       <paragraph>
+        Adds a "dummy" (fake) user so that the selected data-block always gets saved even if it has no users.
+The fake user can be removed with
+        <emphasis>
+         Clear Fake User
+        </emphasis>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Rename
+       <literal classes="kbd">
+        F2
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Renames the selected data-block.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chọn Cái Đã Kết Nối -- Select Linked
+      </term>
+      <definition>
+       <paragraph>
+        Selects the linked data, see
+        <reference internal="True" refuri="../scene_layout/object/selecting.html#bpy-ops-object-select-linked">
+         <inline classes="std std-ref">
+          Select Linked
+         </inline>
+        </reference>
+        for more information.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="view-menu" names="view\ menu trình\ đơn\ góc\ nhìn\ --\ view\ menu">
+    <title>
+     Trình Đơn Góc Nhìn -- View Menu
+    </title>
+    <paragraph>
+     The view menu is part of the context menu and supported in all the Outliner elements.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Hiển Thị cái Đang Hoạt Động -- Show Active
+      </term>
+      <definition>
+       <paragraph>
+        Centers the Tree View to selected object
+        <literal classes="kbd">
+         Period
+        </literal>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hiển Thị Thứ Bậc -- Show Hierarchy
+      </term>
+      <definition>
+       <paragraph>
+        To collapse all levels of the tree
+        <literal classes="kbd">
+         Home
+        </literal>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hiện/Ẩn Một Tầng -- Show/Hide One Level
+      </term>
+      <definition>
+       <paragraph>
+        Expand one level down in the tree
+        <literal classes="kbd">
+         NumpadPlus
+        </literal>
+        and
+        <literal classes="kbd">
+         NumpadMinus
+        </literal>
+        to collapse.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <note>
+     <paragraph>
+      Some data-block types will not have a context menu at all!
+     </paragraph>
+    </note>
+   </section>
+  </section>
+  <section ids="restriction-columns" names="restriction\ columns">
+   <title>
+    Restriction Columns
+   </title>
+   <paragraph>
+    The following toggles, in the right side of the
+    <emphasis>
+     Outliner
+    </emphasis>
+    editor,
+are available for collections, objects, bones, modifiers and constraints.
+   </paragraph>
+   <paragraph>
+    By default only the temporary viewport visibility is enabled.
+The other options can be enabled in the
+    <emphasis>
+     Restriction Toggles
+    </emphasis>
+    option in the Outliner
+    <reference name="filter" refid="filter">
+     filter
+    </reference>
+    .
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Holding
+      <literal classes="kbd">
+       Shift
+      </literal>
+      sets or unsets the value to all its child collections or objects.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Holding
+      <literal classes="kbd">
+       Ctrl
+      </literal>
+      isolates the object or collection, so they are the only ones with its value set.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tầm Nhìn (biểu tượng hình cái mắt) -- Visibility (eye icon)
+     </term>
+     <definition>
+      <paragraph>
+       Toggles the visibility of the object in the 3D View.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Enable collection (checkbox)
+     </term>
+     <definition>
+      <paragraph>
+       Exclude the collection from the view layer.
+This is not really a restriction column. It is shown besides the collection icon.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     The following options need to first be enabled in the Outliner filter.
+    </paragraph>
+   </note>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Khả Năng Lựa Chọn (biểu tượng con trỏ chuột) -- Selectability (mouse cursor icon)
+     </term>
+     <definition>
+      <paragraph>
+       This is useful for if you have placed something in the scene
+and do not want to accidentally select it when working on something else.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kết Xuất (biểu tượng máy chụp ảnh) -- Rendering (camera icon)
+     </term>
+     <definition>
+      <paragraph>
+       This will still keep the object visible in the scene, but it will be ignored by the renderer.
+Usually used by support objects that help modeling and animation yet do not belong in the final images.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Global Viewport Visibility (screen icon)
+     </term>
+     <definition>
+      <paragraph>
+       This will still render the object/collection, but it will be ignored by all the viewports.
+Often used for collections with high-poly objects that need to be instanced in other files.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Holdout (collection only)
+     </term>
+     <definition>
+      <paragraph>
+       Mask out objects in collection from view layer --
+       <emphasis>
+        Cycles only
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Indirect Only (collection only)
+     </term>
+     <definition>
+      <paragraph>
+       Objects in these collections only contribute to indirect light --
+       <emphasis>
+        Cycles only
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="header" names="header tiêu\ đề\ --\ header">
+   <title>
+    Tiêu Đề -- Header
+   </title>
+   <section ids="display-mode" names="display\ mode chế\ độ\ hiển\ thị\ --\ display\ mode">
+    <title>
+     Chế Độ Hiển Thị -- Display Mode
+    </title>
+    <paragraph>
+     The editors header has a select menu that let you filter what the Outliner should show.
+It helps to narrow the list of objects so that you can find things quickly and easily.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Scenes
+      </term>
+      <definition>
+       <paragraph>
+        Shows
+        <emphasis>
+         everything
+        </emphasis>
+        the
+        <emphasis>
+         Outliner
+        </emphasis>
+        can display (in all scenes, all view layers, etc.).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       View Layer
+      </term>
+      <definition>
+       <paragraph>
+        Shows all the collections and objects in the current view layer.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Trình Tự -- Sequence
+      </term>
+      <definition>
+       <paragraph>
+        Lists
+        <reference internal="True" refuri="../files/data_blocks.html">
+         <inline classes="doc">
+          data-block
+         </inline>
+        </reference>
+        that are used by the
+        <reference internal="True" refuri="../video_editing/index.html">
+         <inline classes="doc">
+          Sequencer
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tập Tin Blender -- Blender File
+      </term>
+      <definition>
+       <paragraph>
+        Lists all data in the current blend-file.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Data API
+      </term>
+      <definition>
+       <paragraph>
+        Lists every
+        <reference internal="True" refuri="../files/data_blocks.html">
+         <inline classes="doc">
+          data-block
+         </inline>
+        </reference>
+        along with any properties that they might have.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Dữ Liệu Mồ Côi -- Orphan Data
+      </term>
+      <definition>
+       <paragraph>
+        Lists
+        <reference internal="True" refuri="../files/data_blocks.html">
+         <inline classes="doc">
+          data-blocks
+         </inline>
+        </reference>
+        which are unused and/or will be lost when the file is reloaded.
+It includes data-blocks which have only a fake user. You can add/remove Fake User
+by clicking on cross/tick icon in the right side of the Outliner editor.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="searching" names="searching tìm\ kiếm\ --\ searching">
+    <title>
+     Tìm Kiếm -- Searching
+    </title>
+    <paragraph>
+     You can search the view for data-blocks,
+by using Search field in the header of the
+     <emphasis>
+      Outliner
+     </emphasis>
+     ,
+The
+     <reference name="Filter" refid="filter">
+      Filter
+     </reference>
+     menu lets you toggle the following options:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       So Sánh Mẫn Cảm với Loại Chữ -- Case Sensitive Matches Only
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Duy Khớp Hoàn Toàn -- Complete Matches Only
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="filter" names="filter">
+    <title>
+     Filter
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Restriction Toggles
+      </term>
+      <definition>
+       <paragraph>
+        Set which
+        <reference name="Restriction Columns" refid="restriction-columns">
+         Restriction Columns
+        </reference>
+        should be visible.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Sắp Xếp theo Thứ Tự Anphabe -- Sort Alphabetically
+      </term>
+      <definition>
+       <paragraph>
+        Sort the entries alphabetically.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Sync Selection
+      </term>
+      <definition>
+       <paragraph>
+        Sync Outliner selection to and from the
+        <reference internal="True" refuri="3dview/index.html">
+         <inline classes="doc">
+          3D View
+         </inline>
+        </reference>
+        and
+        <reference internal="True" refuri="../video_editing/index.html">
+         <inline classes="doc">
+          Sequencer
+         </inline>
+        </reference>
+        editors. Disable to manage collections, object
+relations, and scene data without changing the selection state. Selection syncing is
+only available in Scenes, View Layer, and Sequence display modes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Collections
+      </term>
+      <definition>
+       <paragraph>
+        List the objects and collections under
+the
+        <reference internal="True" refuri="../scene_layout/collections/index.html">
+         <inline classes="doc">
+          collection hierarchy
+         </inline>
+        </reference>
+        of the scene.
+Objects may appear in more than one collection.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Objects
+      </term>
+      <definition>
+       <paragraph>
+        List of all the objects, respecting the other filter options.
+Disabled only if you need an overview of the collections without the objects.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Object State
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          All
+         </term>
+         <definition>
+          <paragraph>
+           The default option, no restrictions.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Visible
+         </term>
+         <definition>
+          <paragraph>
+           List only the objects visible in the viewports.
+The global and temporary visibility settings are taken into consideration.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Invisible
+         </term>
+         <definition>
+          <paragraph>
+           List only the objects not visible in the viewports.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Cái Được Chọn -- Selected
+         </term>
+         <definition>
+          <paragraph>
+           Lists the object(s) that are currently selected in the 3D View.
+See
+           <reference internal="True" refuri="../scene_layout/object/selecting.html">
+            <inline classes="doc">
+             selecting in the 3D View
+            </inline>
+           </reference>
+           for more information.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Đang/Hoạt Động -- Active
+         </term>
+         <definition>
+          <paragraph>
+           Lists only the active (often last selected) object.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Object Contents
+      </term>
+      <definition>
+       <paragraph>
+        List materials, modifiers, mesh data, ...
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Object Children
+      </term>
+      <definition>
+       <paragraph>
+        List the object children. If the
+        <emphasis>
+         Collections
+        </emphasis>
+        option is enabled,
+you will see the object children even if the children are not in the collection.
+However the Outliner shows them as a dashed line.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Data-Block
+      </term>
+      <definition>
+       <paragraph>
+        Allows you to filter out certain data-blocks currently present in the scene.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="miscellaneous" names="miscellaneous">
+    <title>
+     Miscellaneous
+    </title>
+    <paragraph>
+     Some options in the header will only show if compatible with the active
+     <reference name="Display Mode" refid="display-mode">
+      Display Mode
+     </reference>
+     .
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       New Collection (View Layer)
+      </term>
+      <definition>
+       <paragraph>
+        Add a new collection inside selected collection.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Filter ID Type (Orphan Data, Blender File)
+      </term>
+      <definition>
+       <paragraph>
+        Restrict the type of the data-blocks shown in the Outliner.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Keying Sets (Data API)
+      </term>
+      <definition>
+       <paragraph>
+        Add/Remove selected data to the active
+        <reference internal="True" refuri="../animation/keyframes/keying_sets.html">
+         <inline classes="doc">
+          Keying Set
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Drivers
+      </term>
+      <definition>
+       <paragraph>
+        Add/Remove
+        <reference internal="True" refuri="../animation/drivers/index.html">
+         <inline classes="doc">
+          Drivers
+         </inline>
+        </reference>
+        to the selected item.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Purge (Orphan Data)
+      </term>
+      <definition>
+       <paragraph>
+        Remove all unused data-blocks from the file (cannot be undone).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <figure ids="id4">
+    <image candidates="{'*': 'images/editors_outliner_example.png'}" uri="images/editors_outliner_example.png"/>
+    <caption>
+     The Outliner with different kinds of data.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

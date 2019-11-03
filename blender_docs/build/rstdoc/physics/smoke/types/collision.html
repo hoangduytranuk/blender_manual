@@ -1,0 +1,155 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/smoke/types/collision.rst">
+ <target refid="bpy-types-smokecollsettings">
+ </target>
+ <section ids="collision bpy-types-smokecollsettings" names="collision va\ đập\ --\ collision bpy.types.smokecollsettings">
+  <title>
+   Va Đập -- Collision
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Vật Lý (Physics) --&gt; Khói (Smoke)`">
+        Vật Lý (Physics) ‣ Khói (Smoke)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Thể Loại -- Type
+     </field_name>
+     <field_body>
+      <paragraph>
+       Va Đập -- Collision
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   <emphasis>
+    Smoke Collision
+   </emphasis>
+   objects are used to deflect smoke and influence airflow.
+  </paragraph>
+  <paragraph>
+   To define any mesh object as a
+   <emphasis>
+    Smoke Collision
+   </emphasis>
+   object, add smoke physics by clicking
+   <emphasis>
+    Smoke
+   </emphasis>
+   in
+   <inline classes="menuselection" rawtext=":menuselection:`Tính Chất (Properties) --&gt; Vật Lý (Physics)`">
+    Tính Chất (Properties) ‣ Vật Lý (Physics)
+   </inline>
+   . Then select
+   <emphasis>
+    Collision
+   </emphasis>
+   as the
+   <emphasis>
+    Smoke Type
+   </emphasis>
+   .
+  </paragraph>
+  <comment xml:space="preserve">
+   TODO2.8:
+.. figure:: /images/physics_smoke_types_collision_settings.png
+   :align: right
+
+   Smoke Collision options.
+  </comment>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO, cannot figure out what the differences between the collision types are :/
+   </comment>
+   <comment xml:space="preserve">
+    Wild speculation on SE: https://blender.stackexchange.com/q/1723/599
+   </comment>
+   <comment xml:space="preserve">
+    Lukas Toenne investigated this (https://developer.blender.org/T45842#329325) and
+it appears that rigid and static are the same.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể loại va đập -- Collision type
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tĩnh Tại -- Static
+        </term>
+        <definition>
+         <paragraph>
+          Simple collision model which can be calculated quickly, but may be inaccurate for moving objects.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hoạt Họa -- Animated
+        </term>
+        <definition>
+         <paragraph>
+          More complex collision model which takes into account impulse imparted to smoke when the collider is moving.
+Calculations are slower, but more accurate for moving objects.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Cứng -- Rigid
+        </term>
+        <definition>
+         <paragraph>
+          Identical to
+          <emphasis>
+           Static
+          </emphasis>
+          (unfinished code).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="forces" names="forces lực\ --\ forces">
+   <title>
+    Lực -- Forces
+   </title>
+   <paragraph>
+    <reference internal="True" refuri="../../forces/force_fields/index.html">
+     <inline classes="doc">
+      Force Fields
+     </inline>
+    </reference>
+    (such as wind or vortex) are supported, like most physics systems.
+The influence individual force types have can be
+    <reference internal="True" refuri="domain.html#smoke-field-weights">
+     <inline classes="std std-ref">
+      controlled
+     </inline>
+    </reference>
+    per domain object.
+   </paragraph>
+  </section>
+ </section>
+</document>

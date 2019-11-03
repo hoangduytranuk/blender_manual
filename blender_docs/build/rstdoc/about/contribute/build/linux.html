@@ -1,0 +1,83 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/build/linux.rst">
+ <section ids="building-on-linux" names="building\ on\ linux xây\ dựng\ trên\ hệ\ điều\ hành\ linux\ --\ building\ on\ linux">
+  <title>
+   Xây Dựng trên Hệ Điều Hành Linux -- Building on Linux
+  </title>
+  <paragraph>
+   Chuyển đổi các tập tin RST thành các trang HTML đẹp.
+  </paragraph>
+  <paragraph>
+   Mở một thiết bị đầu cuối ở thư mục
+   <literal>
+    ~/blender_docs
+   </literal>
+   và chỉ cần thi hành:
+  </paragraph>
+  <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+   make
+  </literal_block>
+  <paragraph>
+   Đây là lệnh bạn sẽ luôn luôn sử dụng khi xây dựng bản tài liệu. Quá trình xây dựng có thể mất vài phút lần đầu tiên (hoặc sau bất kỳ thay đổi lớn nào), nhưng lần sau bạn xây dựng nó thì thường chỉ mất vài giây thôi.
+  </paragraph>
+  <section ids="viewing-the-local-manual" names="viewing\ the\ local\ manual duyệt\ thảo\ bản\ hướng\ dẫn\ sử\ dụng\ cục\ bộ\ --\ viewing\ the\ local\ manual">
+   <title>
+    Duyệt Thảo Bản Hướng Dẫn Sử Dụng Cục Bộ -- Viewing the Local Manual
+   </title>
+   <paragraph>
+    Một khi các bản tài liệu đã được xây dựng xong, bạn có thể tìm thấy toàn bộ các tập tin HTML trong thư mục
+    <literal>
+     ~/blender_docs/build/html
+    </literal>
+    . Hãy thử mở
+    <literal>
+     build/html/contents.html
+    </literal>
+    trong trình duyệt trang mạng của bạn và đọc bản hướng dẫn sử dụng:
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    xdg-open build/html/index.html
+   </literal_block>
+   <paragraph>
+    Như vậy là bạn đã có thể xây dựng bản hướng dẫn sử dụng rồi, phần tiếp theo sẽ nói về tùy chọn xây dựng nhanh chóng.
+   </paragraph>
+  </section>
+  <section ids="building-a-single-chapter" names="building\ a\ single\ chapter xây\ dựng\ một\ chương\ mà\ thôi\ --\ building\ a\ single\ chapter">
+   <title>
+    Xây Dựng một Chương mà thôi -- Building a Single Chapter
+   </title>
+   <paragraph>
+    Nếu bạn đang làm việc trên một chương cụ thể nào đó của bản hướng dẫn sử dụng, bạn có thể xây dựng nó một cách nhanh chóng bằng cách sử dụng:
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    make
+    <chapter name="">
+    </chapter>
+   </literal_block>
+   <paragraph>
+    Ví dụ, để chỉ xây dựng tài liệu cho các modifier, sử dụng
+    <literal>
+     make modifiers
+    </literal>
+    . Bạn có thể xem hướng dẫn xây dựng nhanh này bằng cách mở
+    <literal>
+     build/html/contents_quicky.html
+    </literal>
+    .
+   </paragraph>
+   <paragraph>
+    Việc xây dựng này sẽ xảy ra rất nhanh, nhưng nó cũng có nghĩa là việc xây dựng hoàn chỉnh tiếp tới của tất cả các chương sẽ chậm lại.
+   </paragraph>
+   <transition>
+   </transition>
+   <paragraph>
+    Tiếp tục với bước tiếp theo:
+    <reference internal="True" refuri="../editing.html">
+     <inline classes="doc">
+      Biên Soạn
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </section>
+ </section>
+</document>

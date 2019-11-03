@@ -1,0 +1,198 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/color/color_correction.rst">
+ <target refid="bpy-types-compositornodecolorcorrection">
+ </target>
+ <section ids="color-correction-node bpy-types-compositornodecolorcorrection" names="color\ correction\ node nút\ chỉnh\ sửa\ màu\ --\ color\ correction\ node bpy.types.compositornodecolorcorrection">
+  <title>
+   Nút Chỉnh Sửa Màu -- Color Correction Node
+  </title>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeColorCorrection.png'}" uri="images/compositing_node-types_CompositorNodeColorCorrection.png"/>
+   <caption>
+    Nút Chỉnh Sửa Màu.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Chỉnh Sửa Màu có thể điều chỉnh màu sắc của một hình ảnh, phân tách màu sắc ra thành một số phạm vi sắc độ  (nổi bật, sắc thái trung độ và bóng tối) và chỉ tác động đến các kênh Đỏ,Lục,Lam (RGB) cần thiết mà thôi.
+  </paragraph>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đỏ, Lục, Lam -- Red, Green, Blue
+     </term>
+     <definition>
+      <paragraph>
+       Chỉ định kênh RGB nào sẽ bị ảnh hưởng bởi sự hiệu chỉnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="correction-tools-columns" names="correction\ tools\ (columns) công\ cụ\ chỉnh\ sửa\ (các\ cột)\ --\ correction\ tools\ (columns)">
+    <title>
+     Công Cụ Chỉnh Sửa (Các Cột) -- Correction Tools (Columns)
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Độ Bão Hòa -- Saturation
+      </term>
+      <definition>
+       <paragraph>
+        Điều chỉnh độ bão hòa của hình ảnh.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Độ Tương Phản -- Contrast
+      </term>
+      <definition>
+       <paragraph>
+        Điều chỉnh độ tương phản của hình ảnh.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Gamma
+      </term>
+      <definition>
+       <paragraph>
+        Exponential gamma correction, affecting the midtones of the image. (Works like Power in the Color Balance node.)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Gia Lượng -- Gain
+      </term>
+      <definition>
+       <paragraph>
+        Multiplier, stronger influence on the highlights. (Works like Slope in the Color Balance node.)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Nâng -- Lift
+      </term>
+      <definition>
+       <paragraph>
+        This value (can be negative) will be added (+), linear lightens or darkens the image.
+(Works like
+        <emphasis>
+         Offset
+        </emphasis>
+        in the Color Balance node.)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="tonal-ranges-rows" names="tonal\ ranges\ (rows) phạm\ vi\ sắc\ thái\ (các\ hàng)\ --\ tonal\ ranges\ (rows)">
+    <title>
+     Phạm Vi Sắc Thái (các Hàng) -- Tonal Ranges (Rows)
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Chính -- Master
+      </term>
+      <definition>
+       <paragraph>
+        Những thanh trượt này tác động đến toàn bộ phạm vi sắc thái.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Điểm Nhấn -- Highlights
+      </term>
+      <definition>
+       <paragraph>
+        Những thanh trượt này chỉ tác động đến những điểm nổi bật.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Trung Độ -- Midtones
+      </term>
+      <definition>
+       <paragraph>
+        Những thanh trượt này chỉ ảnh hưởng đến các trung sắc.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bóng Tối -- Shadows
+      </term>
+      <definition>
+       <paragraph>
+        Tác động đến những sắc thái sẫm của hình ảnh, thường sẽ ảnh hưởng đến các vùng bóng tối.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khở Đầu của Trung Sắc, Kết Thúc của Trung Sắc -- Midtones Start, Midtones End
+      </term>
+      <definition>
+       <paragraph>
+        Xác định điểm bắt đầu và kết thúc của dải trung sắc, tức là các giá trị mà trong đó toàn bộ dải sắc thái được chia thành các vùng: điểm nổi bật, trung sắc và vùng bóng tối (bao gồm có sự chuyển tiếp mịn màng giữa các vùng với chiều rộng là 0,2 đơn vị).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Màn Chắn -- Mask
+     </term>
+     <definition>
+      <paragraph>
+       Điều chế lượng ảnh hưởng mà nút tác động đến hình ảnh xuất ra.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,164 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/transform/mirror.rst">
+ <target refid="bpy-ops-transform-mirror">
+ </target>
+ <section ids="mirror bpy-ops-transform-mirror" names="mirror đối\ xứng\ hóa/gương\ --\ mirror bpy.ops.transform.mirror">
+  <title>
+   Đối Xứng Hóa/Gương -- Mirror
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Vật Thể/Khung Lưới (Object/Mesh) --&gt; Đối Xứng Hóa/Gương (Mirror)`">
+        Vật Thể/Khung Lưới (Object/Mesh) ‣ Đối Xứng Hóa/Gương (Mirror)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Ctrl-M
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Mirroring an Object or Mesh selection will create a reversed version of the selection.
+The position of the mirrored version of the selection is determined by
+the
+   <reference internal="True" refuri="control/pivot_point/index.html">
+    <inline classes="doc">
+     Pivot Point
+    </inline>
+   </reference>
+   .
+A common use of mirroring is to model half an object, duplicate it and then use
+the mirror transform to create a reversed version to complete the model.
+  </paragraph>
+  <note>
+   <paragraph>
+    Mirrored duplicates can also be created with a
+    <reference internal="True" refuri="../../../../modeling/modifiers/generate/mirror.html">
+     <inline classes="doc">
+      Mirror Modifier
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </note>
+  <target refid="fig-mesh-duplicating-mirror-selection">
+  </target>
+  <figure ids="id1 fig-mesh-duplicating-mirror-selection" names="fig-mesh-duplicating-mirror-selection">
+   <image candidates="{'*': 'images/scene-layout_object_editing_transform_mirror_example.png'}" uri="images/scene-layout_object_editing_transform_mirror_example.png"/>
+   <caption>
+    Mirroring a selection.
+   </caption>
+  </figure>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <paragraph>
+    To mirror a selection along a particular global axis, press:
+    <literal classes="kbd">
+     Ctrl-M
+    </literal>
+    , followed by
+    <literal classes="kbd">
+     X
+    </literal>
+    ,
+    <literal classes="kbd">
+     Y
+    </literal>
+    or
+    <literal classes="kbd">
+     Z
+    </literal>
+    .
+The image
+    <reference internal="True" refid="fig-mesh-duplicating-mirror-selection">
+     <inline classes="std std-ref">
+      Mirroring a Selection
+     </inline>
+    </reference>
+    shows the results of this action after a mesh element has been duplicated.
+   </paragraph>
+   <paragraph>
+    In Mesh mode, you can mirror the selection on the currently selected
+    <reference internal="True" refuri="control/orientations.html">
+     <inline classes="doc">
+      Transform Orientations
+     </inline>
+    </reference>
+    by pressing the appropriate axis key a second time. For example,
+if the Transform Orientation is set to
+    <emphasis>
+     Normal
+    </emphasis>
+    , pressing:
+    <literal classes="kbd">
+     Ctrl-M
+    </literal>
+    , followed by
+    <literal classes="kbd">
+     X
+    </literal>
+    and then
+    <literal classes="kbd">
+     X
+    </literal>
+    again
+will mirror the selection along the X axis of the
+    <emphasis>
+     Normal Orientation
+    </emphasis>
+    .
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/scene-layout_object_editing_transform_mirror_panel.png'}" uri="images/scene-layout_object_editing_transform_mirror_panel.png"/>
+    <caption>
+     Mirror
+     <reference internal="True" refuri="../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+      <inline classes="std std-ref">
+       Adjust Last Operation
+      </inline>
+     </reference>
+     panel.
+    </caption>
+   </figure>
+   <paragraph>
+    You can alternatively hold the
+    <literal classes="kbd">
+     MMB
+    </literal>
+    to interactively mirror the object by moving
+the mouse in the direction of the mirror axis.
+   </paragraph>
+  </section>
+ </section>
+</document>

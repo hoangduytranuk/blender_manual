@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vật Thể Phụ Huynh -- Parenting Objects &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/scene_layout/object/properties/relations/parents.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="next" title="Bổ Sung về Mối Quan Hệ -- Relations Extras" href="extras.html" />
+    <link rel="prev" title="-- Object Relations" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Scenes &amp; Objects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../scene/index.html">Cảnh -- Scenes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Vật Thể -- Objects</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../types.html">Thể Loại Vật Thể -- Object Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../origin.html">Tọa độ của Vật Thể -- Object Origin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../editing/index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Tính Chất -- Properties</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../transforms.html">Tính Chất Biến Hóa -- Transform Properties</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">-- Object Relations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../collections/index.html">Collections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../instancing/index.html">Instancing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../visibility.html">Visibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../display.html">Viewport Display</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../toolbar/index.html">Toolbar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../collections/index.html">Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../view_layers/index.html">View Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Scenes &amp; Objects</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Vật Thể -- Objects</a> &raquo;</li>
+        
+          <li><a href="../index.html">Tính Chất -- Properties</a> &raquo;</li>
+        
+          <li><a href="index.html">-- Object Relations</a> &raquo;</li>
+        
+      <li>Vật Thể Phụ Huynh -- Parenting Objects</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/scene_layout/object/properties/relations/parents.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parenting-objects">
+<span id="bpy-types-object-parent"></span><h1>Vật Thể Phụ Huynh -- Parenting Objects<a class="headerlink" href="#parenting-objects" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="make-parent">
+<span id="bpy-ops-object-parent-set"></span><h2>Đặt Phụ Huynh -- Make Parent<a class="headerlink" href="#make-parent" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể -- Object Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Phụ Huynh (Parent)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-P</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When modeling a complex object, such as a watch,
+you may choose to model the different parts as separate objects. However,
+all of the parts may be attached to each other. In these cases,
+you want to designate one object as the parent of all the children. Movement,
+rotation or scaling of the parent also affects the children.</p>
+<p>To parent objects, select at least two objects (select the <em>Child Objects</em> first,
+and select the <em>Parent Object</em> last), and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd>.
+The <em>Set Parent To</em> menu will pop up allowing you to select from one of several
+possible different parenting types.
+Selecting one of the entries in <em>Set Parent To</em> confirms,
+and the child/children to parent relationship is created.</p>
+<p>The last object selected will be the <em>Active Object</em> (outlined in light orange),
+and will also be the <em>Parent Object</em>.
+If you selected multiple objects before selecting the parent,
+they will all be children of the parent and will be at the same level of the hierarchy
+(they are &quot;siblings&quot;).</p>
+<p>The <em>Set Parent To</em> pop-up menu is context-sensitive, which means
+the number of entries it displays can change depending on what objects are selected
+when the <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> shortcut is used.</p>
+<p>For parenting without <a class="reference internal" href="#parent-inverse">Parent Inverse</a>, use the <kbd class="kbd docutils literal notranslate">Shift-Ctrl-P</kbd> shortcut instead.</p>
+<p>Moving, rotating or scaling the parent will also usually move/rotate/scale the child/children.
+However, moving/rotating/scaling the child/children of the parent will not result in the parent
+moving/rotating/scaling. In other words,
+the direction of influence is from parent to child and not child to parent.</p>
+<p>In general when using <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> or <span class="menuselection">Thanh Tiêu Đề Góc Nhìn 3D (3D View Header) ‣ Vật Thể (Object) ‣ Phụ Huynh (Parent)</span> to parent objects, the <em>Child Objects</em> can only have one <em>Parent Object</em>. If a <em>Child Object</em> already has a <em>Parent Object</em> and you give it another parent then Blender will remove the previous parent relationship.</p>
+<div class="section" id="parent-inverse">
+<h3>Parent Inverse<a class="headerlink" href="#parent-inverse" title="Permalink to this headline">¶</a></h3>
+<p>When objects are parented with <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd>, the current transformation of the parent
+is stored in a hidden <em>Parent Inverse</em> matrix. By using that, the location, rotation and
+scale properties of the child can continue to be effectively interpreted in world space,
+as long as the parent doesn't move.</p>
+<p>For parenting without assigning the matrix, use the <kbd class="kbd docutils literal notranslate">Shift-Ctrl-P</kbd> shortcut instead.
+This creates an alternative parent-child-relationship where child object's properties are
+evaluated in the parent's coordinate system. This is the better choice for CAD purposes,
+for example.</p>
+<p>The matrix can also be cleared after parenting by using <a class="reference internal" href="#bpy-ops-object-parent-clear"><span class="std std-ref">Clear Parent Inverse</span></a>.</p>
+</div>
+<div class="section" id="parent-types">
+<h3>Parent Types<a class="headerlink" href="#parent-types" title="Permalink to this headline">¶</a></h3>
+<p>Blender supports many different types of parenting, listed below:</p>
+<ul class="simple">
+<li>Vật Thể -- Object</li>
+<li>Xương -- Bone</li>
+<li>Điểm Đỉnh -- Vertex</li>
+<li>Điểm Đỉnh (Tam Giác) -- Vertex (Triangle)</li>
+</ul>
+<p class="rubric">-- Setups</p>
+<p>Besides parenting the selected objects,
+it adds a Modifier or Constraint to the child objects, with the parent as target object
+or activates a parent property i.e. <em>Follow Path</em>.</p>
+<ul class="simple">
+<li><a class="reference internal" href="../../../../animation/armatures/skinning/parenting.html"><span class="doc">Armature Deform</span></a></li>
+<li><a class="reference internal" href="../../../../modeling/modifiers/deform/curve.html"><span class="doc">Curve Deform</span></a></li>
+<li><a class="reference internal" href="../../../../modeling/curves/properties/path_animation.html#curve-path-animation"><span class="std std-ref">Follow Path</span></a></li>
+<li><a class="reference internal" href="../../../../animation/constraints/relationship/follow_path.html"><span class="doc">Path Constraint</span></a></li>
+<li><a class="reference internal" href="../../../../modeling/modifiers/deform/lattice.html"><span class="doc">Lattice Deform</span></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="object-parent">
+<span id="object-parenting"></span><h2>Phụ Huynh của Vật Thể -- Object Parent<a class="headerlink" href="#object-parent" title="Permalink to this headline">¶</a></h2>
+<p><em>Object Parent</em> is the most general form of parenting that Blender supports.
+If will take selected objects and make the last selected object the <em>Parent Object</em>,
+while all other selected objects will be <em>Child Objects</em>.
+The child objects will inherit the transformations of the parent. The parent object can be of any type.</p>
+<div class="section" id="object-keep-transform-parent">
+<h3>Phụ Huynh của Vật Thể (Duy Trì Biến Hóa) -- Object (Keep Transform) Parent<a class="headerlink" href="#object-keep-transform-parent" title="Permalink to this headline">¶</a></h3>
+<p><em>Object (Keep Transform) Parent</em> works in a very similar way to <em>Object Parent</em>. The major difference is in whether
+the <em>Child Objects</em> will remember any previous transformations applied to them from the previous <em>Parent Object</em>.</p>
+<p>Since explaining this in an easy to understand technical way is hard,
+let's instead use an example to demonstrate.</p>
+<p>Assume that we have a scene consisting of three objects,
+those being two Empty Objects named &quot;EmptyA&quot; and &quot;EmptyB&quot;, and a Monkey object.
+Fig. <a class="reference internal" href="#fig-view3d-parent-scene-no"><span class="std std-ref">Scene with no parenting.</span></a> shows the three objects with no parenting relationships active on them.</p>
+<div class="figure" id="id1">
+<span id="fig-view3d-parent-scene-no"></span><img alt="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-a.png" src="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-a.png" />
+<p class="caption"><span class="caption-text">Scene with no parenting.</span></p>
+</div>
+<p>If you select the Monkey object by <kbd class="kbd docutils literal notranslate">RMB</kbd> click and then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd>
+click &quot;EmptyA&quot; object and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and finally select <em>Object</em>
+from the <em>Set Parent To</em> pop-up menu.
+This will result in &quot;EmptyA&quot; object being the <em>Parent Object</em> of the Monkey object.
+With only &quot;EmptyA&quot; selected rotating/scaling/moving it will result in
+the Monkey object being altered respectively.</p>
+<p>Scale the &quot;EmptyA&quot; object, so that the Monkey becomes smaller and moves to the left a little.</p>
+<div class="figure" id="id2">
+<img alt="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-b.png" src="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-b.png" />
+<p class="caption"><span class="caption-text">The monkey is the child object of &quot;EmptyA&quot;.</span></p>
+</div>
+<p>If you select only the Monkey object by <kbd class="kbd docutils literal notranslate">RMB</kbd> click and then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd>
+click &quot;EmptyB&quot; object and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and select <em>Object</em> from
+the <em>Set Parent To</em> pop-up menu.
+This will result in &quot;EmptyB&quot; object being the <em>Parent Object</em> of the Monkey object.
+Notice that when you change the parent of the Monkey the scale of the Monkey changed.</p>
+<div class="figure" id="id3">
+<img alt="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-c.png" src="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-c.png" />
+<p class="caption"><span class="caption-text">The monkey is the child object of &quot;EmptyB&quot;.</span></p>
+</div>
+<p>This happens because the Monkey object never had its scale altered directly,
+the change came about because it was the child of &quot;EmptyA&quot; which had its scale altered.
+Changing the Monkey's parent to &quot;EmptyB&quot; resulted in those indirect changes in scale being
+removed, because &quot;EmptyB&quot; has not had its scale altered.</p>
+<p>This is often the required behavior, but it is also sometimes useful that if you change your
+<em>Parent Object</em> that the <em>Child Object</em> keep any previous transformations
+it got from the old <em>Parent Object</em>; If instead when changing the <em>Parent Object</em> of the Monkey
+from &quot;EmptyA&quot; to &quot;EmptyB&quot; we had chosen parenting type <em>Object (Keep Transform)</em>,
+the Monkey would keep its scale information it obtained from the old parent &quot;EmptyA&quot;
+when it is assigned to the new parent &quot;EmptyB&quot;;</p>
+<div class="figure" id="id4">
+<img alt="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-d.png" src="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-d.png" />
+<p class="caption"><span class="caption-text">The Object (Keep Transform) parent method.</span></p>
+</div>
+<p>If you want to follow along with the above description here is the blend-file used to describe
+<em>Object (Keep Transform)</em> parenting method:</p>
+<p><a class="reference external" href="https://wiki.blender.org/wiki/File:Parent_-_Object_(Keep_Transform)_(Demo_File).blend">File:Parent_-_Object_(Keep_Transform)_(Demo_File).blend</a>.</p>
+</div>
+</div>
+<div class="section" id="bone-parent">
+<h2>Phụ huynh của xương -- Bone Parent<a class="headerlink" href="#bone-parent" title="Permalink to this headline">¶</a></h2>
+<p>Bone parenting allows you to make a certain bone in an armature the Parent Object of another object.
+This means that when transforming an armature the Child Object will only move
+if the specific bone is the Child Object of moves.</p>
+<div class="figure" id="id5">
+<span id="fig-view3d-parent-bone-parent"></span><img alt="../../../../_images/scene-layout_object_properties_relations_parents_bone1.png" src="../../../../_images/scene-layout_object_properties_relations_parents_bone1.png" />
+<p class="caption"><span class="caption-text">Three pictures of armatures with four bones.</span></p>
+</div>
+<p>In Fig. <a class="reference internal" href="#fig-view3d-parent-bone-parent"><span class="std std-ref">Three pictures of armatures with four bones.</span></a> with the 2nd bone being the Bone Parent of the Child Object Cube.
+The Cube is only transformed if the 1st or 2nd bones are.
+Notice altering the 3rd and 4th bones has no effect on the Cone.</p>
+<p>To use Bone Parenting, you must first select all the Child Objects you wish to parent to a specific Armature Bone,
+then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd> select the Armature Object and switch it into Pose Mode and
+then select the specific bone you wish to be the Parent Bone by <kbd class="kbd docutils literal notranslate">RMB</kbd> selecting it.
+Once done press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and select Bone from the Set Parent To pop-up menu.</p>
+<p>Now transforming that bone in Pose Mode will result in the Child Objects also transforming.</p>
+<div class="section" id="relative-parenting">
+<h3>Phụ Huynh Hóa Tương Đối -- Relative Parenting<a class="headerlink" href="#relative-parenting" title="Permalink to this headline">¶</a></h3>
+<p>Bone Relative parenting is an option you can toggle for each bone.
+This works in the same way as Bone parenting with one difference.</p>
+<p>With Bone parenting if you have parented a bone to some Child Objects and
+you select that bone and switch it into Edit Mode and then move that bone;
+When you switch back into Pose Mode on that bone,
+the Child Object which is parented to that bone will snap back to the location of the bone in Pose Mode.</p>
+<div class="figure" id="id6">
+<span id="fig-view3d-parent-bone-parent-child"></span><img alt="../../../../_images/scene-layout_object_properties_relations_parents_bone2.png" src="../../../../_images/scene-layout_object_properties_relations_parents_bone2.png" />
+<p class="caption"><span class="caption-text">Single armature bone which has a child object cube parented to it using bone parenting.</span></p>
+</div>
+<p>In Fig. <a class="reference internal" href="#fig-view3d-parent-bone-parent-child"><span class="std std-ref">Single armature bone which has a child object cube parented to it using bone parenting.</span></a> the 1st picture shows the position of the cube and
+armature before the bone is moved in Edit Mode.
+2nd picture shows the position of the cube and armature after the bone was selected in Edit Mode,
+moved and switched back into Pose Mode. Notice that the Child Object moves to the new location of the Pose Bone.</p>
+<p>Bone Relative parenting works differently;
+If you move a Parent Bone in Edit Mode, when you switch back to Pose Mode,
+the Child Objects will not move to the new location of the Pose Bone.</p>
+<div class="figure" id="id7">
+<span id="fig-view3d-parent-bone-parent-relative"></span><img alt="../../../../_images/scene-layout_object_properties_relations_parents_bone3.png" src="../../../../_images/scene-layout_object_properties_relations_parents_bone3.png" />
+<p class="caption"><span class="caption-text">Single bone with bone relative parent to a cube.</span></p>
+</div>
+<p>In Fig. <a class="reference internal" href="#fig-view3d-parent-bone-parent-relative"><span class="std std-ref">Single bone with bone relative parent to a cube.</span></a> the 1st picture
+shows the position of the cube and armature before the bone is moved in Edit Mode.
+2nd picture shows the position of the cube and armature after the bone was selected in Edit Mode,
+moved and switched back into Pose Mode.
+Notice that the Child Object does not move to the new location of the Pose Bone.</p>
+</div>
+</div>
+<div class="section" id="vertex-parent">
+<h2>Phụ Huynh của Điểm Đỉnh -- Vertex Parent<a class="headerlink" href="#vertex-parent" title="Permalink to this headline">¶</a></h2>
+<p>For objects of type curve, surface, mesh and lattice,
+there is the possibility to use one of its vertices or points as the parent of other objects.
+You can parent an object to a single vertex or a group of three vertices as well;
+that way the child/children will move when the parent mesh is deformed.</p>
+<div class="section" id="vertex-parent-from-edit-mode">
+<h3>Phụ Huynh của Điểm Đỉnh trong Chế Độ Biên Soạn -- Vertex Parent from Edit Mode<a class="headerlink" href="#vertex-parent-from-edit-mode" title="Permalink to this headline">¶</a></h3>
+<p>In <em>Object Mode</em>, select the child/children and then the parent object.
+<kbd class="kbd docutils literal notranslate">Tab</kbd> into <em>Edit Mode</em> and on the parent object select either one vertex
+that defines a single point, or select three vertices that define an area
+(the three vertices do not have to form a complete face;
+they can be any three vertices of the parent object),
+and then press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and confirm.</p>
+<p>At this point, if a single vertex was selected,
+a relationship/parenting line will be drawn from the vertex to the child/children. If three
+vertices were selected then a relationship/parenting line is drawn from the averaged center of
+the three points (of the parent object) to the child/children. Now,
+as the parent mesh deforms and the chosen parent vertex/vertices move,
+the child/children will move as well.</p>
+</div>
+<div class="section" id="vertex-parent-from-object-mode">
+<h3>Phụ Huynh của Điểm Đỉnh trong Chế Độ Vật Thể -- Vertex Parent from Object Mode<a class="headerlink" href="#vertex-parent-from-object-mode" title="Permalink to this headline">¶</a></h3>
+<p>Vertex parenting can be performed from object mode,
+this is done like regular object parenting,
+press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> in object mode and select <em>Vertex</em> or <em>Vertex (Triangle)</em>.</p>
+<p>The nearest vertices will be used from each object which is typically what you would want.</p>
+<table border="1" class="docutils" id="id8">
+<caption><span class="caption-text">Vertex Parent example.</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id9">
+<a class="reference internal image-reference" href="../../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-1.png"><img alt="../../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-1.png" src="../../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-1.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">The small cubes can each be automatically parented to a triad of nearby vertices on the icosphere using
+the &quot;Vertex (Triangle)&quot; in the set parent context menu.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id10">
+<a class="reference internal image-reference" href="../../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-2.png"><img alt="../../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-2.png" src="../../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-2.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Reshaping the object in edit mode then means each of the cubes follows their vertex parent separately.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id11">
+<a class="reference internal image-reference" href="../../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-3.png"><img alt="../../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-3.png" src="../../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-3.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Re-scaling the parent icosphere in object mode means the child cubes are also rescaled as expected.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The parent context menu item means users can rapidly set up a large number of vertex parent
+relationships,
+and avoid the tedious effort of establishing each parent-child vertex relationship separately.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">It is in fact a sort of &quot;reversed&quot; <a class="reference internal" href="../../../../modeling/modifiers/deform/hooks.html"><span class="doc">hook</span></a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="move-child">
+<h3>Di Chuyển Con Cái -- Move Child<a class="headerlink" href="#move-child" title="Permalink to this headline">¶</a></h3>
+<p>You can <em>move</em> a child object to its parent by clearing its origin.
+The relationship between the parent and child is not affected.
+Select the child object and press <kbd class="kbd docutils literal notranslate">Alt-O</kbd>.
+By confirming the child object will snap to the parent's location.
+Use the <em>Outliner</em> view to verify that the child object is still parented.</p>
+</div>
+<div class="section" id="clear-parent">
+<span id="bpy-ops-object-parent-clear"></span><h3>Xóa Phụ Huynh -- Clear Parent<a class="headerlink" href="#clear-parent" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể -- Object Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Phụ Huynh (Parent)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-P</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You can <em>remove</em> a parent-child relationship via <kbd class="kbd docutils literal notranslate">Alt-P</kbd>.</p>
+<dl class="docutils">
+<dt>Xóa Phụ Huynh -- Clear Parent</dt>
+<dd>If the parent in the group is selected, nothing is done.
+If a child or children are selected, they are disassociated from the parent,
+or freed, and they return to their <em>original</em> location, rotation, and size.</dd>
+<dt>Xóa nhưng Duy Trì Biến Hóa -- Clear and Keep Transformation</dt>
+<dd><p class="first">Frees the children from the parent, and <em>keeps</em> the location, rotation, and size given to them by the parent.</p>
+<p class="last">See <a class="reference internal" href="#non-uniform-scale">Non-Uniform Scale</a> which may apply here.</p>
+</dd>
+<dt>Đảo Nghịch Xóa Phụ Huynh -- Clear Parent Inverse</dt>
+<dd>Instead of removing the hierarchical parent-child relationship, this clears
+the <a class="reference internal" href="#parent-inverse">Parent Inverse</a> matrix from the selected objects. With an empty matrix,
+the location, rotation and scale properties of the children are interpreted
+in the coordinate space of the parent.</dd>
+</dl>
+<div class="admonition hint">
+<p class="first admonition-title">Gợi ý</p>
+<p><strong>Use the Outliner</strong></p>
+<p class="last">There is another way to see the parent-child relationship in groups and that is to use the <em>Outliner</em> view
+of the <a class="reference internal" href="../../../../editors/outliner.html"><span class="doc">Outliner editor</span></a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Những Hạn Chế Từng Biết Đến -- Known Limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="non-uniform-scale">
+<h3>Đổi Tỷ Lệ Đồng Đều -- Non-Uniform Scale<a class="headerlink" href="#non-uniform-scale" title="Permalink to this headline">¶</a></h3>
+<p>A parent with non-uniform scale and rotation in relation to its child may cause a <em>shear</em> effect.</p>
+<p>While this is supported by parenting, the shear will be lost when the parent is cleared since it
+can't be represented by location, scale and rotation.</p>
+<p>If <em>Clear and Keep Transformation</em> moves the object, non-uniform scale is the most likely cause.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="extras.html" class="btn btn-neutral float-right" title="Bổ Sung về Mối Quan Hệ -- Relations Extras" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="-- Object Relations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

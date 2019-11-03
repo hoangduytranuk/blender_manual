@@ -1,0 +1,389 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/transform/control/axis_locking.rst">
+ <section dupnames="axis\ locking" ids="axis-locking" names="khóa\ trục\ --\ axis\ locking">
+  <title>
+   Khóa Trục -- Axis Locking
+  </title>
+  <figure align="right" ids="id2">
+   <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_precision_axis-locking_z-axis.png'}" uri="images/scene-layout_object_editing_transform_control_precision_axis-locking_z-axis.png" width="200px"/>
+   <caption>
+    Axis locking.
+   </caption>
+  </figure>
+  <paragraph>
+   This option limits the transformation to the specified axis.
+  </paragraph>
+  <paragraph>
+   <reference internal="True" refuri="../introduction.html">
+    <inline classes="doc">
+     Transformations (translation/scale/rotation)
+    </inline>
+   </reference>
+   in
+   <emphasis>
+    Object Mode
+   </emphasis>
+   and
+   <emphasis>
+    Edit Mode
+   </emphasis>
+   (as well as extrusions in
+   <emphasis>
+    Edit Mode
+   </emphasis>
+   )
+can be locked to a particular axis relative to
+the current
+   <reference internal="True" refuri="orientations.html">
+    <inline classes="doc">
+     transform orientation
+    </inline>
+   </reference>
+   .
+By locking a transformation to a particular axis you are restricting transformations to a single dimension.
+  </paragraph>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <paragraph>
+    A locked axis will display in a brighter color than an unlocked axis. For example in the image to the right,
+the Z axis is shown in light blue as movement is constrained to this axis. This example, can be achieved in two ways:
+   </paragraph>
+   <section ids="hotkey" names="hotkey phím\ tắt\ --\ hotkey">
+    <title>
+     Phím Tắt -- Hotkey
+    </title>
+    <paragraph>
+     The axis of movement can be changed at any time during transformation by typing
+     <literal classes="kbd">
+      X
+     </literal>
+     ,
+     <literal classes="kbd">
+      Y
+     </literal>
+     ,
+     <literal classes="kbd">
+      Z
+     </literal>
+     .
+    </paragraph>
+   </section>
+   <section ids="pointing" names="pointing --\ pointing">
+    <title>
+     -- Pointing
+    </title>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_precision_axis-locking_scale-mmb.png'}" uri="images/scene-layout_object_editing_transform_control_precision_axis-locking_scale-mmb.png"/>
+     <caption>
+      Axis constraint in action.
+     </caption>
+    </figure>
+    <paragraph>
+     Holding
+     <literal classes="kbd">
+      MMB
+     </literal>
+     after starting a transformation lets you select an axis to constrain to.
+A visual option to constrain the translation will be available,
+showing the three axes in the 3D View space. A dotted white line is used as a pointer.
+The axis of choice to confirm the operation
+will depend on the highlighted axis about which the
+     <literal classes="kbd">
+      MMB
+     </literal>
+     is released.
+    </paragraph>
+    <paragraph>
+     When you already moved the mouse in the desired direction,
+pressing
+     <literal classes="kbd">
+      MMB
+     </literal>
+     will lock to the axis which was pointed at.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="axis-locking-types" names="axis\ locking\ types thể\ loại\ khóa\ trục\ --\ axis\ locking\ types">
+   <title>
+    Thể Loại Khóa Trục -- Axis Locking Types
+   </title>
+   <section dupnames="axis\ locking" ids="id1" names="khóa\ trục\ --\ axis\ locking">
+    <title>
+     Khóa Trục -- Axis Locking
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Object and Edit Modes (move, rotate, scale, extrude)
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          X
+         </literal>
+         ,
+         <literal classes="kbd">
+          Y
+         </literal>
+         ,
+         <literal classes="kbd">
+          Z
+         </literal>
+         or
+         <literal classes="kbd">
+          MMB
+         </literal>
+         after moving the mouse in the desired direction.
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Axis locking limits the transformation to a single axis (or forbids transformations along two axes).
+An object, face, vertex or other selectable item will only be able to move,
+scale or rotate in a single dimension.
+    </paragraph>
+    <target refid="view3d-transform-plane-lock">
+    </target>
+   </section>
+   <section ids="plane-locking view3d-transform-plane-lock" names="plane\ locking --\ plane\ locking view3d-transform-plane-lock">
+    <title>
+     -- Plane Locking
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Object and Edit Modes (move, scale)
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Shift-X
+         </literal>
+         ,
+         <literal classes="kbd">
+          Shift-Y
+         </literal>
+         ,
+         <literal classes="kbd">
+          Shift-Z
+         </literal>
+         or
+         <literal classes="kbd">
+          Shift-MMB
+         </literal>
+         after moving the mouse in the desired direction.
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <figure align="right" ids="id4">
+     <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_precision_axis-locking_plane-locking.png'}" uri="images/scene-layout_object_editing_transform_control_precision_axis-locking_plane-locking.png" width="200px"/>
+     <caption>
+      Plane locking.
+     </caption>
+    </figure>
+    <paragraph>
+     Plane locking locks the transformation to
+     <emphasis>
+      two
+     </emphasis>
+     axes
+(or forbids transformations along one axis),
+thus creating a plane in which the element can be moved or scaled freely.
+Plane locking only affects translation and scaling.
+    </paragraph>
+    <paragraph>
+     Note that for rotation, both axis and plane locking have the same effect because a rotation is
+always constrained around one axis.
+     <emphasis>
+      Trackball
+     </emphasis>
+     type rotations
+     <literal classes="kbd">
+      R R
+     </literal>
+     cannot be locked at all.
+    </paragraph>
+   </section>
+   <section ids="axis-locking-modes" names="axis\ locking\ modes --\ axis\ locking\ modes">
+    <title>
+     -- Axis Locking Modes
+    </title>
+    <paragraph>
+     A single key press constrains movement to the corresponding
+     <emphasis>
+      Global
+     </emphasis>
+     axis.
+A second key press of the
+     <emphasis>
+      same
+     </emphasis>
+     key constrains movement to the current transform orientation selection
+(except if it is set to
+     <emphasis>
+      Global
+     </emphasis>
+     , in which case the
+     <emphasis>
+      Local
+     </emphasis>
+     orientation is used).
+Finally, a third key press of the same key removes constraints.
+    </paragraph>
+    <paragraph>
+     The orientation can be set
+in the
+     <reference internal="True" refuri="orientations.html">
+      <inline classes="doc">
+       Transform Orientation
+      </inline>
+     </reference>
+     selector of the 3D View header.
+    </paragraph>
+    <comment xml:space="preserve">
+     or independent in the :ref:`ui-undo-redo-adjust-last-operation` panel?
+    </comment>
+    <paragraph>
+     For example, if the current transform orientation is set to
+     <emphasis>
+      Normal
+     </emphasis>
+     ,
+pressing
+     <literal classes="kbd">
+      G
+     </literal>
+     to start translation, followed by
+     <literal classes="kbd">
+      Z
+     </literal>
+     will lock translation
+in the Z direction relative to the
+     <emphasis>
+      Global
+     </emphasis>
+     orientation, pressing
+     <literal classes="kbd">
+      Z
+     </literal>
+     again will lock translation to the Z axis relative to the
+     <emphasis>
+      Normal
+     </emphasis>
+     orientation.
+Pressing
+     <literal classes="kbd">
+      Z
+     </literal>
+     again will remove all constraints.
+The current mode will be displayed in the left-hand side of the
+     <emphasis>
+      3D View header
+     </emphasis>
+     .
+    </paragraph>
+    <table ids="cac-che-do-khoa-truc" names="các\ chế\ độ\ khóa\ trục.">
+     <title>
+      Các chế độ khóa trục.
+     </title>
+     <tgroup cols="4">
+      <colspec colwidth="25">
+      </colspec>
+      <colspec colwidth="25">
+      </colspec>
+      <colspec colwidth="25">
+      </colspec>
+      <colspec colwidth="25">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id5">
+          <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-1.png'}" uri="images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-1.png" width="320px"/>
+          <caption>
+           Z axis locking in Global orientation.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id6">
+          <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-2.png'}" uri="images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-2.png" width="320px"/>
+          <caption>
+           Z axis locking in Local orientation.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id7">
+          <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-3.png'}" uri="images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-3.png" width="320px"/>
+          <caption>
+           Z axis locking in Global orientation with vertex selection.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id8">
+          <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-4.png'}" uri="images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-4.png" width="320px"/>
+          <caption>
+           Z axis locking in Normal orientation with vertex selection.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <paragraph>
+     As can be seen in the
+     <emphasis>
+      Axis locking modes
+     </emphasis>
+     image,
+the direction of the transform also takes into account the selection.
+    </paragraph>
+    <paragraph>
+     Note that using a locked axis does not prevent you from using the keyboard to enter
+     <reference internal="True" refuri="numeric_input.html">
+      <inline classes="doc">
+       numeric transformation
+      </inline>
+     </reference>
+     values.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

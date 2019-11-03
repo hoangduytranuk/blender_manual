@@ -1,0 +1,221 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/video_editing/sequencer/strips/movie_image.rst">
+ <target refid="bpy-types-moviesequence">
+ </target>
+ <section ids="movie-strips bpy-types-moviesequence" names="movie\ strips bpy.types.moviesequence">
+  <title>
+   Movie Strips
+  </title>
+  <paragraph>
+   To add a movie (with or without audio) select a movie file(s) in the File Browser
+e.g. in the Audio-Video Interleaved format (
+   <literal>
+    *.avi
+   </literal>
+   file).
+  </paragraph>
+  <note>
+   <paragraph>
+    Clips can be Huge
+   </paragraph>
+   <paragraph>
+    A three minute Quicktime
+    <literal>
+     .mov
+    </literal>
+    file can be 140Megs.
+Loading it, even over a high-speed LAN can take some time.
+Do not assume your computer or Blender has locked up if nothing happens for awhile.
+   </paragraph>
+  </note>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/sequencer_sequencer_strips_movie-image_example.png'}" uri="images/sequencer_sequencer_strips_movie-image_example.png"/>
+    <caption>
+     Imported movie strip with audio track underneath.
+    </caption>
+   </figure>
+   <paragraph>
+    In the strip itself, you can see strip name, path to source file, and strip length.
+   </paragraph>
+   <target refid="bpy-types-imagesequence">
+   </target>
+  </section>
+ </section>
+ <section ids="image-sequence-strips bpy-types-imagesequence" names="image/sequence\ strips bpy.types.imagesequence">
+  <title>
+   Image/Sequence Strips
+  </title>
+  <section ids="single-image" names="single\ image đơn\ hình\ ảnh\ --\ single\ image">
+   <title>
+    Đơn Hình Ảnh -- Single Image
+   </title>
+   <paragraph>
+    When you add a single still image (
+    <literal>
+     *.jpg
+    </literal>
+    ,
+    <literal>
+     *.png
+    </literal>
+    , etc.),
+Blender creates a 25 frames long strip which will show this image along the strips range.
+   </paragraph>
+  </section>
+  <section ids="image-sequence" names="image\ sequence trình\ tự\ hình\ ảnh\ --\ image\ sequence">
+   <title>
+    Trình Tự Hình Ảnh -- Image Sequence
+   </title>
+   <paragraph>
+    In the case of (numbered) image sequences
+(e.g.
+    <literal>
+     *-0001.jpg
+    </literal>
+    ,
+    <literal>
+     *-0002.jpg
+    </literal>
+    ,
+    <literal>
+     *-0003.jpg
+    </literal>
+    , etc, of any image format), you have a choice:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Phạm Vi -- Range
+     </term>
+     <definition>
+      <paragraph>
+       Navigate into the directory and
+       <literal classes="kbd">
+        LMB
+       </literal>
+       click and drag over a range of names to highlight multiple files.
+You can page down and continue
+       <literal classes="kbd">
+        Shift-LMB
+       </literal>
+       click-dragging to add more to the selection.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hàng Loạt -- Batch
+     </term>
+     <definition>
+      <paragraph>
+       <literal classes="kbd">
+        Shift-LMB
+       </literal>
+       click selected non-related stills for batch processing; each image will be one frame,
+in sort order, and can be a mix of file types (
+       <literal>
+        jpg
+       </literal>
+       ,
+       <literal>
+        png
+       </literal>
+       ,
+       <literal>
+        exr
+       </literal>
+       , etc.).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Toàn Bộ -- All
+     </term>
+     <definition>
+      <paragraph>
+       Press
+       <literal classes="kbd">
+        A
+       </literal>
+       to select/deselect all files in the directory.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <tip>
+    <paragraph>
+     Dealing with Different Sizes
+    </paragraph>
+    <paragraph>
+     Dealing with different sized images and different sized outputs is tricky.
+If you have a mismatch between the size of the input image and the render output size,
+the VSE will try to auto-scale the image to fit it entirely in the output.
+This may result in clipping. If you do not want that, use
+     <emphasis>
+      Crop
+     </emphasis>
+     and/or
+     <emphasis>
+      Offset
+     </emphasis>
+     in the Input
+panel to move and select a region of the image within the output. When you use
+     <emphasis>
+      Crop
+     </emphasis>
+     or
+     <emphasis>
+      Offset
+     </emphasis>
+     ,
+the auto-scaling will be disabled and you can manually re-scale by adding the Transform effect.
+    </paragraph>
+   </tip>
+  </section>
+  <section ids="add-image-strip" names="add\ image\ strip thêm\ dải\ về\ hình\ ảnh\ --\ add\ image\ strip">
+   <title>
+    Thêm Dải về Hình Ảnh -- Add Image Strip
+   </title>
+   <section ids="placeholder-images" names="placeholder\ images hình\ ảnh\ giữ\ chỗ\ --\ placeholder\ images">
+    <title>
+     Hình Ảnh Giữ Chỗ -- Placeholder Images
+    </title>
+    <paragraph>
+     Image sequences can use placeholder files.
+This works by enabling
+     <emphasis>
+      Use placeholders
+     </emphasis>
+     checkbox when adding an image strip.
+The option detects the frame range of opened images using Blender's frame naming scheme
+(
+     <literal>
+      filename + frame number + .extension
+     </literal>
+     ) and makes an image sequence
+with all files in between even if they are missing.
+This allows you to render an image sequence with a few frames missing and
+still the image strip will have the correct range to account for the missing frames displayed as black.
+When the missing frames are rendered or placed in the same folder,
+you can
+     <reference internal="True" refuri="../navigating.html#bpy-ops-sequencer-refresh-all">
+      <inline classes="std std-ref">
+       refresh
+      </inline>
+     </reference>
+     the Sequencer and get the missing frames in the strip.
+The option is also available when using the
+     <emphasis>
+      Change Data/File
+     </emphasis>
+     operator and
+allows you to add more images to the range.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

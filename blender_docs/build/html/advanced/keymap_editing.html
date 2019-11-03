@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/advanced/keymap_editing.html"/>
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="next" title="Giới Hạn Làm Việc -- Working Limits" href="limits.html" />
+    <link rel="prev" title="Khuôn Mẫu của Trình Ứng Dụng -- Application Templates" href="app_templates.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Cao Cấp -- Advanced</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="command_line/index.html">Dòng Lệnh -- Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripting/index.html">-- Scripting &amp; Extending Blender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_templates.html">Khuôn Mẫu của Trình Ứng Dụng -- Application Templates</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#keys">Phím -- Keys</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#available-keys">Những Phím Có Thể Sử Dụng -- Available Keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-action-keys">Những Phím Đa-Hành Động -- Multi-Action Keys</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#common-operations">Những Thao Tác Thông Thường -- Common Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-bindings-for-pop-ups">Những Bố Trí Phím cho Trình Đơn Bật Lên -- Key Bindings for Pop-Ups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-bindings-for-properties">Những Gắn Kết về Phím Bấm cho các Tính Chất -- Key Bindings for Properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Giới Hạn Làm Việc -- Working Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Thao Tác/Toán Tử -- Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blender_directory_layout.html">Blender's Directory Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Cao Cấp -- Advanced</a> &raquo;</li>
+        
+      <li>Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/advanced/keymap_editing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="keymap-customization">
+<span id="keymap-customize"></span><h1>Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization<a class="headerlink" href="#keymap-customization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="keys">
+<h2>Phím -- Keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="available-keys">
+<h3>Những Phím Có Thể Sử Dụng -- Available Keys<a class="headerlink" href="#available-keys" title="Permalink to this headline">¶</a></h3>
+<p>Khi điều chỉnh bố trí bàn phím thì nên sử dụng những phím không gây xung khắc với bố trí bàn phím mặc định của Blender.</p>
+<p>Đây là những phím chưa sử dụng đến và có khả năng sẽ không bao giờ sử dụng đến trong tương lai.</p>
+<dl class="docutils">
+<dt>F-Keys (<kbd class="kbd docutils literal notranslate">F5</kbd> - <kbd class="kbd docutils literal notranslate">F8</kbd>)</dt>
+<dd>These F-keys (including modifier combination)
+have been intentionally kept free for users to bind their own keys to.</dd>
+<dt><kbd class="kbd docutils literal notranslate">OSKey</kbd> (also known as the <code class="docutils literal notranslate"><span class="pre">Windows-Key</span></code>, <code class="docutils literal notranslate"><span class="pre">Cmd</span></code> or <code class="docutils literal notranslate"><span class="pre">Super</span></code>)</dt>
+<dd><p class="first">Blender không sử dụng phím này cho bất cứ một gắn kết nào cả.</p>
+<p class="last"><em>macOS</em> is an exception, where <kbd class="kbd docutils literal notranslate">Cmd</kbd> replaces <kbd class="kbd docutils literal notranslate">Ctrl</kbd>
+except in cases it would conflict with the systems key bindings.</p>
+</dd>
+<dt>Nháy Kép Phím Bổ Trợ -- Modifier Double Click</dt>
+<dd>Gắn kết các phím bổ trợ làm những phím chính cũng được hỗ trợ. Để tránh sự xung khắc xảy ra với những sử dụng thông thường thì bạn có thể gắn kết nó với nháy kép.</dd>
+</dl>
+</div>
+<div class="section" id="multi-action-keys">
+<h3>Những Phím Đa-Hành Động -- Multi-Action Keys<a class="headerlink" href="#multi-action-keys" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="click-drag">
+<h4>Bấm/Kéo Rê -- Click/Drag<a class="headerlink" href="#click-drag" title="Permalink to this headline">¶</a></h4>
+<p>Việc cấu hình một đơn phím để thi hành nhiều hành động một lúc là một việc hoàn toàn khả dĩ, bằng cách dùng sự kiện <em>Bấm</em> (Click) thay vì <em>Ấn</em> (Press). Sau đó bạn có thể gắn <em>Kéo Rê</em> (Drag) vào một hành động riêng biệt.</p>
+<p>Việc làm này có lợi cho việc pha trộn các hành động, mà trong đó, nó sử dụng sự kiện kéo rê, chẳng hạn, bật/tắt một sắp đặt nào đó với phím tab, kéo rê để mở trình đơn hình rẻ quạt, hiển thị toàn bộ các tùy chọn liên quan đến sắp đặt.</p>
+</div>
+<div class="section" id="click-tweak">
+<h4>Bấm/Hiệu Chỉnh -- Click/Tweak<a class="headerlink" href="#click-tweak" title="Permalink to this headline">¶</a></h4>
+<p>Không giống với bấm/kéo rê, cái này chỉ hoạt động với các nút bấm của chuột mà thôi, song có lợi thế là các sự kiện hiệu chỉnh có khả năng là hữu hướng (directional).</p>
+<p>To use this, events in this keymap must use <em>Click</em> instead of <em>Press</em>,
+then you can bind <em>Tweak</em> actions to the mouse buttons.</p>
+<p>This is used in the default keymap in the 3D Viewport,
+<kbd class="kbd docutils literal notranslate">Alt-MMB</kbd> dragging in different directions rotates the view.</p>
+</div>
+</div>
+</div>
+<div class="section" id="common-operations">
+<h2>Những Thao Tác Thông Thường -- Common Operations<a class="headerlink" href="#common-operations" title="Permalink to this headline">¶</a></h2>
+<p>Phần này sẽ liệt kê những thao tác chung hữu ích có thể sử dụng được.</p>
+<div class="section" id="key-bindings-for-pop-ups">
+<h3>Những Bố Trí Phím cho Trình Đơn Bật Lên -- Key Bindings for Pop-Ups<a class="headerlink" href="#key-bindings-for-pop-ups" title="Permalink to this headline">¶</a></h3>
+<p>Chúng ta có thể gán các phím tắt cho các trình đơn và các bảng, ngay cả khi chúng chỉ chỉ có thể truy cập được từ các trình đơn nhánh ở những chố khác mà thôi.</p>
+<dl class="docutils">
+<dt>Mở một Trình Đơn Bật Lên</dt>
+<dd>Mở bất cứ một trình đơn nào dùng cái bấm của phím.</dd>
+<dt>Mở một trình đơn rẻ quạt (<code class="docutils literal notranslate"><span class="pre">wm.call_menu_pie</span></code>)</dt>
+<dd>Mở bất cứ trình đơn rẻ quạt nào dùng cái bấm của phím.</dd>
+<dt>Mở một Bảng (<code class="docutils literal notranslate"><span class="pre">wm.call_panel</span></code>)</dt>
+<dd>Mở một bảng bật lên (còn được gọi là một pop-over)</dd>
+</dl>
+<div class="section" id="menu-panel-identifiers">
+<h4>Menu &amp; Panel Identifiers<a class="headerlink" href="#menu-panel-identifiers" title="Permalink to this headline">¶</a></h4>
+<p>Để tìm <em>Tên</em> (<code class="docutils literal notranslate"><span class="pre">name</span></code>) của một trình đơn thì hãy cho bật sở thích <span class="menuselection">Giao diện (Interface) ‣ Hiển Thị (Display) ‣ Chú Giải Công Cụ Python (Python Tooltips)</span> lên.</p>
+<p>Then hover the cursor over the popover button or menu item,
+for sub-menus you will need to use the back arrow to prevent the sub-menu from opening and gaining focus.</p>
+</div>
+</div>
+<div class="section" id="key-bindings-for-properties">
+<h3>Những Gắn Kết về Phím Bấm cho các Tính Chất -- Key Bindings for Properties<a class="headerlink" href="#key-bindings-for-properties" title="Permalink to this headline">¶</a></h3>
+<p>Có rất nhiều các tính chất mà bạn có thể gắn một bố trí phím cho nó. Để tránh việc phải xác định các thao tác (phép toán) cho mỗi tính chất thì hãy sử dụng các thao tác (phép toán) phổ thông (generic operators) thay vì:</p>
+<p>Các thao tác (phép toán) để điều chỉnh tính chất khởi đầu bằng <code class="docutils literal notranslate"><span class="pre">wm.context_</span></code>.</p>
+<p>Một số cái thuộc thể loại này bao gồm:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">wm.context_toggle</span></code> đảo giá trị của một tính chất <em>bool</em> (boolean property) (giữa Đúng/Sai (True/False)).</li>
+<li><code class="docutils literal notranslate"><span class="pre">wm.context_cycle_enum</span></code> tuần hoàn một tính chất <em>bảng liệt kê</em> (<abbr title="enumeration">enum</abbr>) từ đầu đến cuối, hoặc ngược lại.</li>
+<li><code class="docutils literal notranslate"><span class="pre">wm.context_menu_enum</span></code> hiển thị một trình đơn bật lên cho một tính chất <em>bảng liệt kê</em> (enum property).</li>
+<li><code class="docutils literal notranslate"><span class="pre">wm.context_pie_enum</span></code> hiển thị một trình đơn rẻ quạt cho một tính chất <em>bảng liệt kê</em> (enum property).</li>
+<li><code class="docutils literal notranslate"><span class="pre">wm.context_scale_float</span></code> tỷ lệ hóa một con số (sử dụng để tăng/giảm cỡ bút vẽ chẳng hạn).</li>
+<li><code class="docutils literal notranslate"><span class="pre">wm.context_toggle_enum</span></code> đảo lật giữa hai tùy chọn của một tùy chọn của một <em>bảng liệt kê</em> (enum).</li>
+<li><code class="docutils literal notranslate"><span class="pre">wm.context_modal_mouse</span></code> di chuyển con trỏ để tương tác đổi một giá trị.</li>
+</ul>
+<p>Xin xem thêm bài <a class="reference external" href="https://docs.blender.org/api/current/bpy.ops.wm.html">bpy.ops.wm</a> để xem toàn bộ danh sách.</p>
+<p>Mỗi một thao tác (phép toán) này có một sắp đặt về <em>đường dẫn dữ liệu</em> (<code class="docutils literal notranslate"><span class="pre">data_path</span></code>) để tham chiếu tính chất hòng thay đổi.</p>
+<p>Để tìm <em>đường dẫn dữ liệu</em> (<code class="docutils literal notranslate"><span class="pre">data_path</span></code>), chúng ta cần phải có một kiến thức cơ bản về Python.</p>
+<p>Chẳng hạn, bạn có thể sử dụng <em>bàn giao tiếp Python</em> (Python Console) để tiếp cận một tính chất kiểu bool (boolean property) mà bạn muốn gắn kết vào một phím bấm:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">show_name</span>
+</pre></div>
+</div>
+<p>Để gắn kết cái này vào một phím bấm, tạo thêm một bố trí bàn phím mới, xin hãy sử dụng thao tác (phép toán) <code class="docutils literal notranslate"><span class="pre">wm.context_toggle</span></code> với <em>đường dẫn dữ liệu</em> (<code class="docutils literal notranslate"><span class="pre">data_path</span></code>) đặt thành <code class="docutils literal notranslate"><span class="pre">object.show_name</span></code> (lưu ý, tiền tố tàng ẩn <code class="docutils literal notranslate"><span class="pre">bpy.context</span></code>).</p>
+<p>Xin xem thêm bài <a class="reference external" href="https://docs.blender.org/api/current/bpy.context.html">bpy.context</a> để biết về những thuộc tính ngữ cảnh khác.</p>
+<p>Chúng ta có thể sử dụng tài liệu về giao diện lập trình Python (Python API) để tìm các tính chất, hoặc sử dụng tính năng tự động hoàn thành (auto-complete) của bàn giao tiếp Python (Python Console) để xem xét các tính chất vốn có.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="limits.html" class="btn btn-neutral float-right" title="Giới Hạn Làm Việc -- Working Limits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="app_templates.html" class="btn btn-neutral float-left" title="Khuôn Mẫu của Trình Ứng Dụng -- Application Templates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

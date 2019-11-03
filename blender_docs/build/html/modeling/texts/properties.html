@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tính Chất -- Properties &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/texts/properties.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="-- Empties" href="../empties.html" />
+    <link rel="prev" title="Text Layout" href="layout.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Văn Bản -- Text</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selecting_editing.html">Lựa Chọn &amp; Biên Soạn -- Selecting &amp; Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layout.html">Text Layout</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tính Chất -- Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#shape">Hình Dạng -- Shape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#texture-space">Không Gian Chất Liệu -- Texture Space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometry">Hình Dạng -- Geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#font">Phông -- Font</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#paragraph-text-boxes">Paragraph &amp; Text Boxes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../empties.html">-- Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="index.html">Văn Bản -- Text</a> &raquo;</li>
+        
+      <li>Tính Chất -- Properties</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/modeling/texts/properties.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="properties">
+<h1>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="shape">
+<h2>Hình Dạng -- Shape<a class="headerlink" href="#shape" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ Text ‣ Shape</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Most of the settings in the <em>Shape</em> panel are shared with those of
+<a class="reference internal" href="../curves/properties/shape.html"><span class="doc">Curves</span></a>
+data-blocks, please refer to those for details.</p>
+<dl class="docutils">
+<dt>-- Fast Editing</dt>
+<dd>Does not fill the letters in Edit Mode, only show their outline.</dd>
+</dl>
+</div>
+<div class="section" id="texture-space">
+<h2>Không Gian Chất Liệu -- Texture Space<a class="headerlink" href="#texture-space" title="Permalink to this headline">¶</a></h2>
+<p>Each Object can have an automatically generated UV map, these maps can be adjusted here.</p>
+<p>See <a class="reference internal" href="../../editors/uv/generated_uvs.html#properties-texture-space"><span class="std std-ref">Generated UV Properties</span></a> for more information.</p>
+</div>
+<div class="section" id="geometry">
+<h2>Hình Dạng -- Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ Font ‣ Geometry</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Dịch Chuyển -- Offset</dt>
+<dd>Offset the control points of the curves defining the letters, which will make them thinner or thicker.
+Use with care, it can quickly lead to artifacts...</dd>
+</dl>
+<div class="section" id="extrusion-taper-bevel">
+<h3>Extrusion, Taper &amp; Bevel<a class="headerlink" href="#extrusion-taper-bevel" title="Permalink to this headline">¶</a></h3>
+<p>The remaining settings of that panel, which are used to give volume to the letters,
+are also shared with the <a class="reference internal" href="../curves/properties/geometry.html"><span class="doc">Curves</span></a> data-blocks,
+please refer to those for details.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">How the Taper object effect works depends on how the curves defining the letters are built.
+The results can often look quite random...</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last"><a class="reference internal" href="../curves/properties/geometry.html#modeling-curve-bevel"><span class="std std-ref">Bevel</span></a> is applied to the curves defining the letters,
+which means that usually it will follow their outlines
+(there will be two parallel beveled curves, and not a single one, as one might expect).</p>
+</div>
+</div>
+</div>
+<div class="section" id="font">
+<span id="modeling-text-character"></span><h2>Phông -- Font<a class="headerlink" href="#font" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties editor ‣ Font ‣ Font</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>-- Bold</dt>
+<dd>Toggled with the <em>Bold</em> button before typing.
+Text can also be set to <strong>bold</strong> by selecting it then using the <em>Bold</em> entry in the <em>Text</em> menu of the 3D View.</dd>
+<dt>-- Italics</dt>
+<dd>Toggled with the <em>Italic</em> button before typing.
+Text can also be set to <em>italic</em> by selecting it then using the <em>Italic</em> entry in the <em>Text</em> menu of the 3D View.</dd>
+<dt>-- Underline</dt>
+<dd>Enables underlining, as controlled by the <a class="reference internal" href="#modeling-text-character-underline"><span class="std std-ref">underline settings</span></a> below.</dd>
+<dt>-- Small Caps</dt>
+<dd><p class="first">Enable this option to type characters as small caps.</p>
+<p class="last">The size of the <em>Small Caps</em> can be changed with
+the <a class="reference internal" href="#modeling-text-character-underline"><span class="std std-ref">Small Caps Scale setting</span></a>.</p>
+</dd>
+</dl>
+<div class="section" id="transform">
+<h3>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Kích Thước -- Size</dt>
+<dd>Controls the size of the whole text (no way to control each char size independently).
+Note however, that chars with different fonts (different styles, see below) might have different visible sizes.</dd>
+<dt>Xiêu Vẹo -- Shear</dt>
+<dd><p class="first">Controls the inclination of the whole text.
+As similar as it may seem, this is not the same thing as italics style.</p>
+<div class="last figure" id="id1">
+<a class="reference internal image-reference" href="../../_images/modeling_texts_properties_shear-example.png"><img alt="../../_images/modeling_texts_properties_shear-example.png" src="../../_images/modeling_texts_properties_shear-example.png" style="width: 340px;" /></a>
+<p class="caption"><span class="caption-text">Shear example.</span></p>
+</div>
+</dd>
+<dt>Object Font</dt>
+<dd><p class="first">Allows individual objects to be used to render fonts, you can create/model your own complex font inside Blender!
+This field is used to select the objects prefix name (object &quot;family&quot;) to be used
+to locate the individual characters used for typing.
+This is quite a complex process, so here are detailed steps to follow:</p>
+<ol class="arabic simple">
+<li>Create the font characters, each character can be any object type (mesh, curve, etc.).
+They must all have a name following the naming schema:
+&quot;common prefix&quot; followed by the &quot;character name&quot; (e.g. &quot;ft.a&quot;, &quot;ft.b&quot;, etc.).</li>
+<li>For the <em>Text</em> object, enable
+<a class="reference internal" href="../../scene_layout/object/properties/instancing/verts.html"><span class="doc">Instancing Vertices</span></a>.</li>
+<li>In the <em>Font</em> tab, fill the <em>Object Font</em> field with the &quot;common prefix&quot; of your &quot;font&quot; objects.
+Now, each time a character in your text matches the <em>suffix part</em> of a &quot;font&quot; object's name,
+this object is duplicated on this character.</li>
+</ol>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">The objects are duplicated so that their center is positioned at
+the <em>lower right corner</em> of the corresponding characters.</p>
+</div>
+</dd>
+<dt>-- Text on Curve</dt>
+<dd><p class="first">Select a curve object for the text object to follow.</p>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../../_images/modeling_texts_properties_curved-lowres-example.png"><img alt="../../_images/modeling_texts_properties_curved-lowres-example.png" src="../../_images/modeling_texts_properties_curved-lowres-example.png" style="width: 360px;" /></a>
+<p class="caption"><span class="caption-text">Text on curve.</span></p>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">You should rather use the <a class="reference internal" href="../modifiers/deform/curve.html"><span class="doc">Curve modifier</span></a>,
+which offers more control, and is the standard way to achieve such effects in modern Blender.</p>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="modeling-text-character-underline">
+<dt>-- Underline</dt>
+<dd>Toggled with the <em>Underline</em> button before typing.
+Text can also be set to Underlined by selecting it
+then using the <em>Underline</em> entry in the <em>Text</em> menu of the <em>3D View</em>.</dd>
+<dt>Underline Position</dt>
+<dd>This allows you to shift vertically the position of the underline.</dd>
+<dt>Underline Thickness</dt>
+<dd>This controls the thickness of the underline.</dd>
+<dt>Small Caps Scale</dt>
+<dd>The scaling applied to capital letters to turn them into small caps.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="paragraph-text-boxes">
+<h2>Paragraph &amp; Text Boxes<a class="headerlink" href="#paragraph-text-boxes" title="Permalink to this headline">¶</a></h2>
+<p>Those panels control the general <a class="reference internal" href="layout.html"><span class="doc">layout of the text</span></a> in the object.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../empties.html" class="btn btn-neutral float-right" title="-- Empties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="layout.html" class="btn btn-neutral float-left" title="Text Layout" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

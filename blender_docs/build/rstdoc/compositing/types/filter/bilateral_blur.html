@@ -1,0 +1,218 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/filter/bilateral_blur.rst">
+ <target refid="bpy-types-compositornodebilateralblur">
+ </target>
+ <section ids="bilateral-blur-node bpy-types-compositornodebilateralblur" names="bilateral\ blur\ node nút\ nhòe\ mờ\ song\ phương\ --\ bilateral\ blur\ node bpy.types.compositornodebilateralblur">
+  <title>
+   Nút Nhòe Mờ Song Phương -- Bilateral Blur Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeBilateralblur.png'}" uri="images/compositing_node-types_CompositorNodeBilateralblur.png"/>
+   <caption>
+    Nút Nhòe Mờ Song Phương
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Nhòe Mờ Song Phương thực hiện hiệu ứng nhòe tùy ứng chất lượng cao trên hình ảnh nguồn, cho phép làm nhòe mờ các hình ảnh trong khi giữ nguyên các cạnh sắc nét của chúng.
+  </paragraph>
+  <paragraph>
+   Nó có thể được sử dụng cho nhiều mục đích khác nhau như: làm mịn các lượt kết xuất nhiễu để tránh thời gian tính toán dài hơn, chẳng hạn trong trường hợp Tính Hấp Thụ Quang Xạ Môi Trường Dò Tia (ray-traced ambient occlusion), khúc xạ nhòe mờ/phản quang, bóng tối mềm mại, hoặc tạo các hiệu ứng tổng hợp không giống ảnh chụp (non-photorealistic).
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh đầu vào tiêu chuẩn. Nếu chỉ có hình ảnh đầu vào được kết nối mà thôi thì nút sẽ làm nhòe hình ảnh theo các nét viền tồn tại trong hình ảnh nguồn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Định Vị -- Determinator
+     </term>
+     <definition>
+      <paragraph>
+       Là cái không bắt buộc và nếu phần Định Vị (Determinator) được kết nối vào thì nó sẽ đóng vai trò là nguồn để xác định các cạnh/đường ranh giới cho quá trình làm nhòe mờ trong hình ảnh. Điều này có lợi thế lớn trong trường hợp hình ảnh nguồn quá nhiễu, song các pháp tuyến cùng với sự kết hợp của Bộ Đệm Z (Z-buffer) vẫn có thể xác định được các đường ranh giới/cạnh của các đối tượng một cách chính xác nữa.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Số Lần Lặp Lại -- Iterations
+     </term>
+     <definition>
+      <paragraph>
+       Xác định số lần bộ lọc cần thực hiện thao tác trên hình ảnh. Thực ra, cái này xác định bán kính làm nhòe mờ.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sigma của Màu -- Color Sigma
+     </term>
+     <definition>
+      <paragraph>
+       Xác định ngưỡng mà sự khác biệt màu sắc trong hình ảnh được coi như là các cạnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sigma của Không Gian -- Space Sigma
+     </term>
+     <definition>
+      <paragraph>
+       Một biến số tinh chỉnh bán kính nhòe mờ.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_filter_bilateral-blur_example-1.png'}" uri="images/compositing_types_filter_bilateral-blur_example-1.png" width="600px"/>
+    <caption>
+     Hấp Thụ Quang Xạ Môi Trường mịn hóa song phương (Bilateral smoothed Ambient Occlusion).
+     <reference name="Ví dụ tập tin blend" refuri="https://en.blender.org/uploads/2/2a/Bilateral_blur_example_01.blend">
+      Ví dụ tập tin blend
+     </reference>
+    </caption>
+   </figure>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/compositing_types_filter_bilateral-blur_example-1-render.jpg'}" uri="images/compositing_types_filter_bilateral-blur_example-1-render.jpg" width="320px"/>
+         <caption>
+          Kết quả kết xuất.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/compositing_types_filter_bilateral-blur_example-1-composite.jpg'}" uri="images/compositing_types_filter_bilateral-blur_example-1-composite.jpg" width="320px"/>
+         <caption>
+          Tổng hợp.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <figure ids="id5">
+    <image candidates="{'*': 'images/compositing_types_filter_bilateral-blur_example-2.png'}" uri="images/compositing_types_filter_bilateral-blur_example-2.png" width="600px"/>
+    <caption>
+     Khúc xạ nhòe mờ giả song phương và bóng tối mịn hóa dò tia.
+     <reference name="Ví dụ tập tin blend" refuri="https://en.blender.org/uploads/e/e4/Bilateral_blur_example_02.blend">
+      Ví dụ tập tin blend
+     </reference>
+    </caption>
+   </figure>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/compositing_types_filter_bilateral-blur_example-2-render.jpg'}" uri="images/compositing_types_filter_bilateral-blur_example-2-render.jpg" width="320px"/>
+         <caption>
+          Kết quả kết xuất.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id7">
+         <image candidates="{'*': 'images/compositing_types_filter_bilateral-blur_example-2-composite.jpg'}" uri="images/compositing_types_filter_bilateral-blur_example-2-composite.jpg" width="320px"/>
+         <caption>
+          Tổng hợp.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <figure ids="id8">
+    <image candidates="{'*': 'images/compositing_types_filter_bilateral-blur_example-3.png'}" uri="images/compositing_types_filter_bilateral-blur_example-3.png" width="600px"/>
+    <caption>
+     Bóng tối đệm mịn hóa song phương.
+     <reference name="Ví dụ tập tin blend" refuri="https://en.blender.org/uploads/b/ba/Bilateral_blur_example_03.blend">
+      Ví dụ tập tin blend
+     </reference>
+    </caption>
+   </figure>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id9">
+         <image candidates="{'*': 'images/compositing_types_filter_bilateral-blur_example-3-render.jpg'}" uri="images/compositing_types_filter_bilateral-blur_example-3-render.jpg" width="320px"/>
+         <caption>
+          Kết quả kết xuất.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id10">
+         <image candidates="{'*': 'images/compositing_types_filter_bilateral-blur_example-3-composite.jpg'}" uri="images/compositing_types_filter_bilateral-blur_example-3-composite.jpg" width="320px"/>
+         <caption>
+          Tổng hợp.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

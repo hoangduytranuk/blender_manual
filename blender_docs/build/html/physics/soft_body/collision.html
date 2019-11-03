@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Va Đập -- Collision &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/soft_body/collision.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Ví Dụ -- Examples" href="examples.html" />
+    <link rel="prev" title="-- Interior" href="forces/interior.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Thân Mềm -- Soft Body</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Sắp Đặt -- Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="forces/index.html">Lực -- Forces</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Va Đập -- Collision</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#collisions-with-other-objects">-- Collisions with Other Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#self-collisions">-- Self-Collisions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="index.html">Thân Mềm -- Soft Body</a> &raquo;</li>
+        
+      <li>Va Đập -- Collision</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/physics/soft_body/collision.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="collision">
+<h1>Va Đập -- Collision<a class="headerlink" href="#collision" title="Permalink to this headline">¶</a></h1>
+<p>There are two different collision types that you may use:
+collision between different objects and internal collision.
+We should set one thing straight from the start --
+the primary targets of the collision calculation are the vertices of a soft body.
+So if you have too few vertices too few collision takes place.
+Secondarily, you can use edges and faces to improve the collision calculation.</p>
+<div class="section" id="collisions-with-other-objects">
+<h2>-- Collisions with Other Objects<a class="headerlink" href="#collisions-with-other-objects" title="Permalink to this headline">¶</a></h2>
+<p>For a soft body to collide with another object there are a few prerequisites:</p>
+<ul class="simple">
+<li>If <em>Collision Collection</em> is set, the object must belong to the collection.</li>
+<li>The collision object has to be a mesh object.</li>
+<li>You have to activate the <em>Collision</em> in the <em>Physics</em> tab for the collision object.
+The collision object may also be a soft body.</li>
+</ul>
+<div class="section" id="examples">
+<h3>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>A soft body cube colliding with a plane (Fig. <a class="reference internal" href="#fig-softbody-collision-plane1"><span class="std std-ref">A soft body cube colliding with a plane.</span></a>)
+works pretty well, but a soft body plane falls right through a cube
+that it is supposed to collide with (Fig. <a class="reference internal" href="#fig-softbody-collision-plane2"><span class="std std-ref">A soft body plane colliding with a cube, so no interaction at all.</span></a>).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id1">
+<span id="fig-softbody-collision-plane1"></span><img alt="../../_images/physics_soft-body_collision_cube-plane-1.png" src="../../_images/physics_soft-body_collision_cube-plane-1.png" />
+<p class="caption"><span class="caption-text">A soft body cube colliding with a plane.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id2">
+<span id="fig-softbody-collision-plane2"></span><img alt="../../_images/physics_soft-body_collision_cube-plane-2.png" src="../../_images/physics_soft-body_collision_cube-plane-2.png" />
+<p class="caption"><span class="caption-text">A soft body plane colliding with a cube, so no interaction at all.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Why is that? Because the default method of calculation only checks to see if the four vertices
+of the soft body plane collides with the cube as the plane is pulled down by gravity.
+You can activate <em>Collision: Face</em> (in the <em>Soft Body Edges</em> panel) to enable collision between
+the face of the plane and the object instead, but this type of calculation takes much longer.</p>
+<p>Let us have a closer look at the collision calculation, so you can get an idea of how we might optimize it.</p>
+</div>
+<div class="section" id="calculating-collisions">
+<h3>-- Calculating Collisions<a class="headerlink" href="#calculating-collisions" title="Permalink to this headline">¶</a></h3>
+<p>Soft body simulations are by default done on a per-vertex basis. If the vertices of the soft body
+do not collide with the collision object, there will be no interaction between the two objects.</p>
+<p>In the video below, you can see the vertices colliding with a plane.
+If a vertex penetrates the zone between <em>Outer</em> and <em>Inner</em>, it is repulsed by a force in
+the direction of the face normal. The position that a vertex finally ends up in is dependent
+on the forces that act upon it. In the example (the first vertex on the left in the video below)
+gravity and the repulsion force of the face balance out.
+The speed at which the vertex is pulled out of the collision zone is influenced by the <em>Choke</em> parameter
+in the <a class="reference internal" href="settings.html#physics-softbody-settings-solver"><span class="std std-ref">Soft Body Solver settings</span></a>.</p>
+<iframe src="https://www.youtube.com/embed/YnerUKP1ptQ" style="border: 0; height: 345px; width: 560px">
+</iframe><div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last">Download the <a class="reference external" href="https://en.blender.org/uploads/8/8d/CollidingVertices.blend">blend-file</a>.</p>
+</div>
+<p>Now let's see what happens if we make vertices heavier and let them travel at a faster speed.
+In the video above, you can see vertices traveling at different speeds.
+The two on the far right (fifth and sixth) are traveling so fast that they pass right through
+the collision zone (this is because of the default solver precision, which we can fix later).
+You will notice that the fourth vertex also travels quite fast and because it is heavier
+it breaches the inner zone. The first three vertices collide correctly.</p>
+<p>You can set up your collision so that edges and even faces are included in the collision calculation
+in the <em>Soft Body Edges</em> panel with the Collision <em>Face</em> and <em>Edge</em> options.
+The collision is then calculated differently. It is checked whether the edge or face
+intersects with the collision object, the collision zones are not used.</p>
+</div>
+<div class="section" id="good-collisions">
+<h3>-- Good Collisions<a class="headerlink" href="#good-collisions" title="Permalink to this headline">¶</a></h3>
+<p>If the collision you have set up is not behaving properly, you can try the following:</p>
+<ul class="simple">
+<li>The soft body object must have more subdivisions than the collision object.
+Add loop cuts to the soft body object in strategic areas that
+you know are most likely to be involved in a collision.</li>
+<li>Check the direction of the face normals.</li>
+<li>If the collision object has sharp spikes, they might penetrate the soft body.</li>
+<li>The resolution of the solver must match the speed at which soft body vertices are traveling.
+Lower the parameter <em>Error Limit</em> and carefully increase <em>Min Step</em>.</li>
+<li><em>Outer</em> and <em>Inner</em> should be large enough, but zones of opposite faces should not overlap,
+or you have forces in opposite directions.</li>
+<li>If you use strong forces you should use large zones.</li>
+<li>Set <em>Choke</em> to a high enough value (all the way up if necessary) if you have difficulties with repelled vertices.</li>
+<li>Colliding faces are difficult to control and need long calculation times. Try not to use them.</li>
+</ul>
+<p>Often it is better to create a simplified mesh to use as your collision object,
+however, this may be difficult if you are using an animated mesh.</p>
+</div>
+</div>
+<div class="section" id="self-collisions">
+<h2>-- Self-Collisions<a class="headerlink" href="#self-collisions" title="Permalink to this headline">¶</a></h2>
+<p>For information on self-collision please refer to
+the <a class="reference internal" href="settings.html#physics-softbody-settings-self-collision"><span class="std std-ref">Self-Collision</span></a> settings.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples.html" class="btn btn-neutral float-right" title="Ví Dụ -- Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="forces/interior.html" class="btn btn-neutral float-left" title="-- Interior" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/interface/controls/templates/color_ramp.rst">
+ <target refid="ui-color-ramp-widget">
+ </target>
+ <target refid="bpy-types-colorramp">
+ </target>
+ <section ids="color-ramp-widget bpy-types-colorramp ui-color-ramp-widget" names="color\ ramp\ widget thành\ tố\ dốc\ màu\ --\ color\ ramp\ widget bpy.types.colorramp ui-color-ramp-widget">
+  <title>
+   Thành Tố Dốc Màu -- Color Ramp Widget
+  </title>
+  <paragraph>
+   <emphasis>
+    Color Ramps
+   </emphasis>
+   enables the user to specify a range of colors based on color stops.
+Color stops are similar to a mark indicating where exactly the chosen color should be.
+The interval from each of the stops, added to the ramp, is a result of the color interpolation and
+chosen interpolation method.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/interface_controls_templates_color-ramp_color-ramp.png'}" uri="images/interface_controls_templates_color-ramp_color-ramp.png"/>
+   <caption>
+    Color ramp.
+   </caption>
+  </figure>
+  <section ids="controls" names="controls điều\ khiển\ --\ controls">
+   <title>
+    Điều Khiển -- Controls
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Cộng Thêm -- Add
+      <literal>
+       +
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Clicking on this button will add a stop to your color ramp.
+The stops are added from the last selected stop to the next one, from left to right and
+they will be placed in the middle of both stops.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa -- Delete
+      <literal>
+       -
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Deletes the selected color stop from the list.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Specials
+      <literal>
+       v
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Contains more operators for the color ramp.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Flip Color Ramp
+        </term>
+        <definition>
+         <paragraph>
+          Flips the gradient, inverting the values of the color ramp.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Distribute Stops from Left
+        </term>
+        <definition>
+         <paragraph>
+          Distribute the stops so that every step has the same space to the right.
+This is mostly useful when used with Constant interpolation mode.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Distribute Stops Evenly
+        </term>
+        <definition>
+         <paragraph>
+          Space between all neighboring stops becomes equal.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Eyedropper (pipette icon)
+         <literal classes="kbd">
+          E
+         </literal>
+        </term>
+        <definition>
+         <paragraph>
+          An
+          <reference internal="True" refuri="../buttons/eyedropper.html#ui-eyedropper">
+           <inline classes="std std-ref">
+            Eyedropper
+           </inline>
+          </reference>
+          to sample a color or gradient from the interface to be used in the color ramp.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Reset Color Ramp
+        </term>
+        <definition>
+         <paragraph>
+          Resets the color ramp to its default state.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chế Độ Màu -- Color Mode
+     </term>
+     <definition>
+      <paragraph>
+       Selection of the
+       <reference internal="True" refuri="../../../glossary/index.html#term-color-space">
+        <inline classes="xref std std-term">
+         color space
+        </inline>
+       </reference>
+       used for interpolation.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Đỏ, Lục, Lam -- RGB
+        </term>
+        <definition>
+         <paragraph>
+          Blends color by mixing each color channel and combining.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         HSV/HSL
+        </term>
+        <definition>
+         <paragraph>
+          Blends colors by first converting to HSV or HSL, mixing, then combining again.
+This has the advantage of maintaining saturation between different hues,
+where RGB would de-saturate, this allows for a richer gradient.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tùy Chọn về Nội Suy -- Interpolation Options
+     </term>
+     <definition>
+      <paragraph>
+       Enables the user to choose the types of calculations for the color interpolation for each color stop.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Đỏ, Lục, Lam -- RGB
+        </term>
+        <definition>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            B-Spline
+           </term>
+           <definition>
+            <paragraph>
+             Uses a
+             <emphasis>
+              B-Spline
+             </emphasis>
+             Interpolation for the color stops.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Số Lượng -- Cardinal
+           </term>
+           <definition>
+            <paragraph>
+             Uses a
+             <emphasis>
+              Cardinal
+             </emphasis>
+             Interpolation for the color stops.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Tuyến Tính -- Linear
+           </term>
+           <definition>
+            <paragraph>
+             Uses a
+             <emphasis>
+              Linear
+             </emphasis>
+             Interpolation for the color stops.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Mềm Mại -- Ease
+           </term>
+           <definition>
+            <paragraph>
+             Uses an
+             <emphasis>
+              Ease
+             </emphasis>
+             Interpolation for the color stops.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Đồng Đều -- Constant
+           </term>
+           <definition>
+            <paragraph>
+             Uses a
+             <emphasis>
+              Constant
+             </emphasis>
+             Interpolation for the color stops.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         HSV và HSL -- HSV and HSL
+        </term>
+        <definition>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Thuận Chiều Kim Đồng Hồ -- Clockwise
+           </term>
+           <definition>
+            <paragraph>
+             Clockwise interpolation around the HSV/HSL wheel.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Ngược Chiều Kim Đồng Hồ -- Counter-Clockwise
+           </term>
+           <definition>
+            <paragraph>
+             Counterclockwise around the HSV/HSL wheel.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Gần -- Near
+           </term>
+           <definition>
+            <paragraph>
+             Nearest route around the wheel.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Xa -- Far
+           </term>
+           <definition>
+            <paragraph>
+             Furthest route around the wheel.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <figure ids="id2">
+       <image candidates="{'*': 'images/interface_controls_templates_color-ramp_interpolation.png'}" uri="images/interface_controls_templates_color-ramp_interpolation.png" width="600px"/>
+       <caption>
+        HSV and HSL interpolation options.
+       </caption>
+      </figure>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Điểm Đánh Dấu của Màu Đang Hoạt Động -- Active Color Stop
+     </term>
+     <definition>
+      <paragraph>
+       Index of the active color stop (shown as a dashed line).
+Allows you to change the active color when colors may be too close to easily select with the cursor.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vị Trí -- Position
+     </term>
+     <definition>
+      <paragraph>
+       This slider controls the positioning of the selected color stop in the range.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Opens a color picker for the user to specify color and Alpha for the selected color stop.
+When a color is using Alpha, the color field is then divided in two, with the left side
+showing the base color and the right side showing the color with the alpha value.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="shortcuts" names="shortcuts đường\ cắt\ ngắn\ --\ shortcuts">
+    <title>
+     Đường Cắt Ngắn -- Shortcuts
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        LMB
+       </literal>
+       (drag) moves colors.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        Ctrl-LMB
+       </literal>
+       (click) adds a new control point.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+ </section>
+</document>

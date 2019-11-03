@@ -1,0 +1,121 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/input/mask.rst">
+ <target refid="bpy-types-compositornodemask">
+ </target>
+ <section ids="mask-node bpy-types-compositornodemask" names="mask\ node nút\ màn\ chắn\ --\ mask\ node bpy.types.compositornodemask">
+  <title>
+   Nút Màn Chắn -- Mask Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeMask.png'}" uri="images/compositing_node-types_CompositorNodeMask.png"/>
+   <caption>
+    Nút Màn Chắn.
+   </caption>
+  </figure>
+  <paragraph>
+   The Mask node can be used to select a
+   <reference internal="True" refuri="../../../movie_clip/masking/index.html">
+    <inline classes="doc">
+     Mask data-block
+    </inline>
+   </reference>
+   .
+This node can be used with other nodes, for example to Invert, Multiply or Mix, or used as a factor input.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <paragraph>
+    Nút này không có ổ cắm đầu vào.
+   </paragraph>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màn Chắn -- Masks
+     </term>
+     <definition>
+      <paragraph>
+       Khối dữ liệu màn chắn có thể lựa chọn. Nếu nhãn được để trống thì tên của màn chắn sẽ được đặt vào thay thế.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mép Nhòe -- Feather
+     </term>
+     <definition>
+      <paragraph>
+       Sử dụng hoặc bỏ qua các điểm xác định cho mép nhòe trên đường cong splines, xin xem
+       <reference internal="True" refuri="../../../movie_clip/masking/selecting_editing.html#mask-feather">
+        <inline classes="std std-ref">
+         Mép Nhòe của Màn Chắn
+        </inline>
+       </reference>
+       để biết thêm chi tiết.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kích Thước -- Size
+     </term>
+     <definition>
+      <paragraph>
+       Kích Thước Cảnh (Scene Size) sẽ cho một hình ảnh với kích thước của độ phân giải kết xuất dành cho cảnh, co giãn tỷ lệ tùy ứng trong khi kết xuất với các độ phân giải khác nhau. Cố Định (Fixed) sẽ cho kích thước cố định trong lượng điểm ảnh (pixel). Cố Định/Cảnh (Fixed/Scene) sẽ cho một kích thước bằng lượng điểm ảnh (pixel), song vẫn co giãn khi chúng ta thay đổi phần trăm của độ phân giải kết xuất trong cảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Làm Nhòe Chuyển Động -- Motion Blur
+     </term>
+     <definition>
+      <paragraph>
+       Đối với các màn chắn được hoạt hình, tạo một màn chắn nhòe mờ chuyển động từ các khung hình chung quanh, với số lượng mẫu vật nhất định (giá trị cao hơn sẽ cho chất lượng tốt hơn) và thời gian màn trập máy ảnh tính bằng giây.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màn Chắn -- Mask
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh đen trắng của màn chắn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_input_mask_example.png'}" uri="images/compositing_types_input_mask_example.png"/>
+    <caption>
+     Ví dụ về nút Màn Chắn.
+    </caption>
+   </figure>
+   <paragraph>
+    Trong ví dụ trên, nút
+    <emphasis>
+     Màn Chắn
+    </emphasis>
+    (Mask) được sử dụng để cô lập đối tượng, tách khỏi nền, để bảo tồn nó khỏi bị sửa đổi.
+   </paragraph>
+  </section>
+ </section>
+</document>

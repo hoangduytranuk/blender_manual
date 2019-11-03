@@ -1,0 +1,332 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/grease_pencil/modes/weight_paint/weights_menu.rst">
+ <section ids="weights-menu" names="weights\ menu">
+  <title>
+   Weights Menu
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Weights`">
+        Weights
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   This page covers many of the tools in the
+   <emphasis>
+    Weights
+   </emphasis>
+   menu.
+  </paragraph>
+  <section ids="normalize-all" names="normalize\ all">
+   <title>
+    Normalize All
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Weights --&gt; Normalize All`">
+         Weights ‣ Normalize All
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    For each point, this tool makes sure that the sum of the weights across all vertex groups is equal to 1.
+It normalizes all of the vertex groups, except for locked groups, which keep their weight values untouched.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Lock Active
+     </term>
+     <definition>
+      <paragraph>
+       Keep the values of the active group while normalizing all the others.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="normalize" names="normalize">
+   <title>
+    Normalize
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Weights --&gt; Normalize`">
+         Weights ‣ Normalize
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool only works on the active vertex group.
+All points keep their relative weights, but the entire set of weights is scaled up
+such that the highest weight value is 1.0.
+   </paragraph>
+  </section>
+  <section ids="invert" names="invert">
+   <title>
+    Invert
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Weights --&gt; Invert`">
+         Weights ‣ Invert
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Replaces each weight of the selected vertex group by × -1.0 weight.
+   </paragraph>
+   <paragraph>
+    Examples:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Original 1.0 converts to 0.0
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Original 0.5 remains 0.5
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Original 0.0 converts to 1.0
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Subset
+     </term>
+     <definition>
+      <paragraph>
+       Restrict the tool to a subset.
+See
+       <reference internal="True" refuri="../../../sculpt_paint/weight_paint/editing.html#bpy-ops-object-vertex-group-levels">
+        <inline classes="std std-ref">
+         The Subset Option
+        </inline>
+       </reference>
+       about how subsets are defined.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Add Weights
+     </term>
+     <definition>
+      <paragraph>
+       Add vertices that have no weight before inverting (these weights will all be set to 1.0).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Remove Weights
+     </term>
+     <definition>
+      <paragraph>
+       Remove vertices from the vertex group if they are 0.0 after inverting.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="smooth" names="smooth">
+   <title>
+    Smooth
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Weights --&gt; Smooth`">
+         Weights ‣ Smooth
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Smooths the weights of the active vertex group.
+   </paragraph>
+  </section>
+  <section ids="generate-weights" names="generate\ weights">
+   <title>
+    Generate Weights
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Weights --&gt; Generate Weights`">
+         Weights ‣ Generate Weights
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Generate automatic weight for armatures (requires the Armature modifier).
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      With Empty Group
+     </term>
+     <definition>
+      <paragraph>
+       When parenting it will create an empty vertex groups on the child objects (if they do not exist already)
+for and named after each deforming bone in the armature.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      With Automatic Weights
+     </term>
+     <definition>
+      <paragraph>
+       Works similar to
+       <emphasis>
+        With Empty Groups
+       </emphasis>
+       , but it will not leave the vertex groups empty.
+It calculates how much influence a particular bone would have on points based on the distance
+from those points to a particular bone (“bone heat” algorithm).
+This influence will be assigned as weights in the vertex groups.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

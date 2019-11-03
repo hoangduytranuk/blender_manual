@@ -1,0 +1,225 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/deform/hooks.rst">
+ <target refid="bpy-types-hookmodifier">
+ </target>
+ <section ids="hook-modifier bpy-types-hookmodifier" names="hook\ modifier bộ\ điều\ chỉnh\ móc\ --\ hook\ modifier bpy.types.hookmodifier">
+  <title>
+   Bộ Điều Chỉnh Móc -- Hook Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Hook
+   </emphasis>
+   modifier is used to deform a
+   <emphasis>
+    Mesh
+   </emphasis>
+   ,
+   <emphasis>
+    Curve
+   </emphasis>
+   or
+   <emphasis>
+    Lattice
+   </emphasis>
+   using another object
+(usually an
+   <emphasis>
+    Empty
+   </emphasis>
+   or a
+   <emphasis>
+    Bone
+   </emphasis>
+   but it can be any object).
+  </paragraph>
+  <paragraph>
+   As an object specified as hook moves, it pulls vertices or control points from the geometry with it.
+You can think of it as animated
+   <reference internal="True" refuri="../../../scene_layout/object/editing/transform/control/proportional_edit.html">
+    <inline classes="doc">
+     Proportional Editing
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <paragraph>
+   While hooks do not give you the fine control over vertices movement that shape keys do,
+they have the advantage that you can select vertices directly for manipulation.
+  </paragraph>
+  <paragraph>
+   To assign selected vertices (in Edit Mode) you can use the
+   <emphasis>
+    Assign
+   </emphasis>
+   button on the modifier panel
+or use the
+   <reference internal="True" refuri="../../meshes/editing/vertices.html#bpy-ops-object-hook-add-selob">
+    <inline classes="std std-ref">
+     Add Hook
+    </inline>
+   </reference>
+   menu.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_hooks_panel.png'}" uri="images/modeling_modifiers_deform_hooks_panel.png"/>
+    <caption>
+     The Hook modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vật Thể -- Object
+     </term>
+     <definition>
+      <paragraph>
+       The name of the object to hook vertices to.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       Allows you to define the influence per vertex.
+      </paragraph>
+      <paragraph>
+       Useful when you want something other than a spherical field of influence.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bán Kính -- Radius
+     </term>
+     <definition>
+      <paragraph>
+       The size of the hooks influence.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sức Mạnh/Cường Độ -- Strength
+     </term>
+     <definition>
+      <paragraph>
+       Adjust this hooks influence on the vertices, were (0.0 to 1.0) (no change to fully follows the hook).
+      </paragraph>
+      <paragraph>
+       Since multiple hooks can work on the same vertices, you can weight the influence of a hook using this property.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Loại Giảm Dần -- Falloff Type
+     </term>
+     <definition>
+      <paragraph>
+       This can be used to adjust the kind of influence curve that the hook has on the mesh.
+You can also define a custom curve to get a much higher level of control.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Suy Giảm Đồng Đều -- Uniform Falloff
+     </term>
+     <definition>
+      <paragraph>
+       This setting is useful when using hooks on scaled objects,
+especially in cases where non-uniform scale would stretch the result of the hook.
+      </paragraph>
+      <paragraph>
+       This is especially useful for lattices, where it is common to use non-uniform scaling.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    The following settings are only available in Edit Mode:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hoàn Lại -- Reset
+     </term>
+     <definition>
+      <paragraph>
+       Recalculate and clear the offset transform of the hook.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tái Định Trung Tâm -- Recenter
+     </term>
+     <definition>
+      <paragraph>
+       Set the hook center to the 3D cursor position.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chọn -- Select
+     </term>
+     <definition>
+      <paragraph>
+       Select the vertices affected by this hook.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chỉ Định -- Assign
+     </term>
+     <definition>
+      <paragraph>
+       Assigns selected vertices to this hook.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <warning>
+    <paragraph>
+     The Hook Modifier stores vertex indices from the original mesh to determine what to affect.
+This means that modifiers that generate geometry, like
+     <emphasis>
+      Subdivision Surface
+     </emphasis>
+     ,
+should always be put
+     <strong>
+      after
+     </strong>
+     the
+     <emphasis>
+      Hook
+     </emphasis>
+     one in the stack.
+Otherwise, the generated geometry will be left out of the hook's influence.
+    </paragraph>
+   </warning>
+  </section>
+  <section ids="example" names="example">
+   <title>
+    Example
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_hooks_example.png'}" uri="images/modeling_modifiers_deform_hooks_example.png" width="460px"/>
+    <caption>
+     Empty used as Hook to deform a subdivided cube.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

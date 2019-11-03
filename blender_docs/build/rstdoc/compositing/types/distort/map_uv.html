@@ -1,0 +1,148 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/distort/map_uv.rst">
+ <target refid="bpy-types-compositornodemapuv">
+ </target>
+ <section ids="map-uv-node bpy-types-compositornodemapuv" names="map\ uv\ node nút\ ánh\ xạ\ uv\ --\ map\ uv\ node bpy.types.compositornodemapuv">
+  <title>
+   Nút Ánh Xạ UV -- Map UV Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeMapUV.png'}" uri="images/compositing_node-types_CompositorNodeMapUV.png"/>
+   <caption>
+    Map UV node.
+   </caption>
+  </figure>
+  <paragraph>
+   With this node objects can be "re-textured" after they have been rendered.
+  </paragraph>
+  <paragraph>
+   To apply a texture to individual enumerated objects
+the
+   <reference internal="True" refuri="../converter/id_mask.html">
+    <inline classes="doc">
+     ID Mask Node
+    </inline>
+   </reference>
+   could be used.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       The new 2D texture.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      UV
+     </term>
+     <definition>
+      <paragraph>
+       The input for UV render pass.
+See
+       <reference internal="True" refuri="../../../render/layers/passes.html">
+        <inline classes="doc">
+         Cycles render passes
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <hint>
+    <paragraph>
+     To store the UV pass a multi-layer OpenEXR format could be used.
+    </paragraph>
+   </hint>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Alpha
+     </term>
+     <definition>
+      <paragraph>
+       Alpha threshold is used to fade out pixels on boundaries.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       The resulting image is the input image texture distorted to match the UV coordinates.
+That image can then be overlay mixed with the original image to paint
+the texture on top of the original. Adjust alpha and the mix factor to control
+how much the new texture overlays the old.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <hint>
+    <paragraph>
+     When painting the new texture,
+it helps to have the UV maps for the original objects in the scene,
+it is recommended to keep those UV texture outlines around even, when shooting is done.
+    </paragraph>
+   </hint>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <paragraph>
+    In the example below, we have overlaid a grid pattern on top of the two heads after they have been rendered. During rendering, we enabled the UV layer in the Properties editor
+    <inline classes="menuselection" rawtext=":menuselection:`Tầng Kết Xuất (Render Layer) --&gt; Các Lượt (Passes)`">
+     Tầng Kết Xuất (Render Layer) ‣ Các Lượt (Passes)
+    </inline>
+    . Using a mix node ("Overlay" in figure), we mix that new UV texture over the original face. We can use this grid texture to help in any motion tracking that we need to do.
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_distort_map-uv_example-1.png'}" uri="images/compositing_types_distort_map-uv_example-1.png" width="700px"/>
+    <caption>
+     Adding a grid UV textures for motion tracking.
+    </caption>
+   </figure>
+   <paragraph>
+    In the next example, we overlay a logo on top of a mesh composed of two intersecting cubes,
+and we ensure that we Enable the Alpha premultiply button on the Mix node.
+The logo is used as additional UV texture on top of the existing texture. Other examples include
+the possibility that there was used an unauthorized product box during the initial animation,
+and it is needed to substitute in a different product sponsor after rendering.
+   </paragraph>
+   <hint>
+    <paragraph>
+     Due to limits of this node, it is not recommended to rush pre-production rendering under
+the guise of "fixing it later".
+    </paragraph>
+   </hint>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/compositing_types_distort_map-uv_example-2.png'}" uri="images/compositing_types_distort_map-uv_example-2.png" width="700px"/>
+    <caption>
+     Adding UV textures in post-production.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

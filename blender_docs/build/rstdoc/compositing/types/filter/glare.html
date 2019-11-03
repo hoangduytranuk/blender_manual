@@ -1,0 +1,259 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/filter/glare.rst">
+ <target refid="bpy-types-compositornodeglare">
+ </target>
+ <section ids="glare-node bpy-types-compositornodeglare" names="glare\ node nút\ lóe\ sáng\ --\ glare\ node bpy.types.compositornodeglare">
+  <title>
+   Nút Lóe Sáng -- Glare Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeGlare.png'}" uri="images/compositing_node-types_CompositorNodeGlare.png"/>
+   <caption>
+    Nút Lóe Sáng.
+   </caption>
+  </figure>
+  <paragraph>
+   <emphasis>
+    Nút Lóe Sáng
+   </emphasis>
+   được sử dụng để tạo ảnh hưởng lóe sáng của ống kính, ảnh hưởng sương mù, ảnh hưởng hừng sáng chung quanh những phần lộ ra (bị phơi sáng) của một hình ảnh và nhiều cái khác nữa.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <section ids="glare-type" names="glare\ type thể\ loại\ lóe\ sáng\ --\ glare\ type">
+    <title>
+     Thể Loại Lóe Sáng -- Glare Type
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Ảo Ảnh -- Ghosts
+      </term>
+      <definition>
+       <paragraph>
+        Tạo độ mờ ảo trên một hình ảnh.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Vệt Sáng -- Streaks
+      </term>
+      <definition>
+       <paragraph>
+        Tạo những vệt sáng kéo dài sử dụng để mô phỏng sự lóe sáng của ống kính.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Vệt Sáng -- Streaks
+         </term>
+         <definition>
+          <paragraph>
+           Tổng số lượng vệt sáng.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Góc Độ Dịch Chuyển -- Angle Offset
+         </term>
+         <definition>
+          <paragraph>
+           Hệ số dịch chuyển trong xoay chiều của các vệt sáng.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Mờ Dần -- Fade
+         </term>
+         <definition>
+          <paragraph>
+           Hệ số mờ dần của các vệt sáng.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hừng Sáng Mù Sương -- Fog Glow
+      </term>
+      <definition>
+       <paragraph>
+        Hiện tượng trông giống như
+        <emphasis>
+         Ảo Ảnh
+        </emphasis>
+        (ma ảo), song kích thước nhỏ hơn và tạo sự mờ ảo không khí, hoặc sự "hừng sáng" (glow) chung quanh hình ảnh.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Kích Thước -- Size
+         </term>
+         <definition>
+          <paragraph>
+           Tỷ lệ của vùng hừng sáng tương đối với kích thước của các điểm ảnh sáng nguyên gốc.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Ngôi Sao Đơn Giản -- Simple Star
+      </term>
+      <definition>
+       <paragraph>
+        Làm việc tương tự như các
+        <emphasis>
+         Vệt Sáng
+        </emphasis>
+        (Streaks) song cho ra một hình dạng đơn giản hơn, trông giống như một ngôi sao.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Mờ Dần -- Fade
+         </term>
+         <definition>
+          <paragraph>
+           Hệ số mờ dần của các vệt sáng.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Xoay Chiều 45° -- Rotate 45
+         </term>
+         <definition>
+          <paragraph>
+           Xoay chiều các vệt sáng 45°.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="common-options" names="common\ options tùy\ chọn\ chung\ --\ common\ options">
+    <title>
+     Tùy Chọn Chung -- Common Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Chất Lượng -- Quality
+      </term>
+      <definition>
+       <paragraph>
+        Nếu không đặt thành những cái khác ngoài giá trị
+        <emphasis>
+         Cao
+        </emphasis>
+        (High) thì hiệu ứng lóe sáng sẽ không được áp dụng vào những bản sao của hình ảnh với độ phân giải thấp hơn. Điều này có thể có lợi trong việc làm giảm số lần kết xuất trong khi kết xuất thử để xem trước.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Số Lần Lặp Lại -- Iterations
+      </term>
+      <definition>
+       <paragraph>
+        The number of times to run through the filter algorithm.
+Higher values will give more accurate results but will take longer to compute.
+Note that, this is not available for
+        <emphasis>
+         Fog Glow
+        </emphasis>
+        as it does not use an iterative-based algorithm.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chuyển Điệu Màu -- Color Modulation
+      </term>
+      <definition>
+       <paragraph>
+        Sử dụng cho
+        <emphasis>
+         Vệt Sáng
+        </emphasis>
+        (Streaks), và
+        <emphasis>
+         Ảo Ảnh
+        </emphasis>
+        (Ghosts) để tạo ảnh hưởng tán sắc đặc biệt.
+       </paragraph>
+       <paragraph>
+        Johannes Itten diễn tả ảnh hưởng Chuyển Điệu Màu (Color Modulation) này là những biến điệu tinh tế về sắc (tones) và màu (chroma).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hòa Trộn -- Mix
+      </term>
+      <definition>
+       <paragraph>
+        Giá trị điều chế lượng hiệu ứng tác động vào hình ảnh. Giá trị -1 sẽ cho hình ảnh gốc, giá trị 0 sẽ cho lượng hòa trộn 50/50 (nửa nọ, nửa kia), và 1 sẽ cho tác động của hiệu ứng toàn phần.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Giới Hạn -- Threshold
+      </term>
+      <definition>
+       <paragraph>
+        Những điểm ảnh sáng hơn giá trị này sẽ bị bộ lọc lóe sáng tác động.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

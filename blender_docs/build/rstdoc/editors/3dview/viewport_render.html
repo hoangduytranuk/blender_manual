@@ -1,0 +1,226 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/3dview/viewport_render.rst">
+ <section ids="viewport-render" names="viewport\ render">
+  <title>
+   Viewport Render
+  </title>
+  <paragraph>
+   Viewport rendering uses the 3D Viewport rendering for quick
+   <emphasis>
+    preview
+   </emphasis>
+   renders.
+  </paragraph>
+  <paragraph>
+   This allows you to inspect your animatic
+(for object movements, alternate angles, etc.).
+  </paragraph>
+  <paragraph>
+   This can also be used to preview your animations --
+in the event your scene is too complex for your system to play back in real-time in the 3D View.
+  </paragraph>
+  <paragraph>
+   You can use
+   <emphasis>
+    Viewport Render
+   </emphasis>
+   to render both images and animations.
+  </paragraph>
+  <paragraph>
+   Below is a comparison between the Viewport render and a final render using
+the Cycles Renderer.
+  </paragraph>
+  <table ids="id1">
+   <title>
+    Model by © 2016 pokedstudio.com
+   </title>
+   <tgroup cols="3">
+    <colspec colwidth="33">
+    </colspec>
+    <colspec colwidth="33">
+    </colspec>
+    <colspec colwidth="33">
+    </colspec>
+    <tbody>
+     <row>
+      <entry>
+       <figure ids="id2">
+        <image candidates="{'*': 'images/editors_3dview_viewport-render_example-workbench-render.jpg'}" uri="images/editors_3dview_viewport-render_example-workbench-render.jpg" width="320px"/>
+        <caption>
+         Viewport render using Solid Mode.
+        </caption>
+       </figure>
+      </entry>
+      <entry>
+       <figure ids="id3">
+        <image candidates="{'*': 'images/editors_3dview_viewport-render_example-eevee-render.jpg'}" uri="images/editors_3dview_viewport-render_example-eevee-render.jpg" width="320px"/>
+        <caption>
+         Viewport render using Look Dev Mode.
+        </caption>
+       </figure>
+      </entry>
+      <entry>
+       <figure ids="id4">
+        <image candidates="{'*': 'images/editors_3dview_viewport-render_example-cycles-render.jpg'}" uri="images/editors_3dview_viewport-render_example-cycles-render.jpg" width="320px"/>
+        <caption>
+         Full render.
+        </caption>
+       </figure>
+      </entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+  <tip>
+   <paragraph>
+    Disable overlays to render the viewport without any additional overlays.
+   </paragraph>
+   <paragraph>
+    While this option is not specific to Viewport rendering, it's often useful to
+enable, since it removes data such as rigs and empties that can be a distraction.
+   </paragraph>
+  </tip>
+  <section ids="settings" names="settings sắp\ đặt\ --\ settings">
+   <title>
+    Sắp Đặt -- Settings
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Biên Soạn -- Editor
+      </field_name>
+      <field_body>
+       <paragraph>
+        Topbar
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Render --&gt; Viewport Render Options`">
+         Render ‣ Viewport Render Options
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    For the most part,
+    <emphasis>
+     Viewport Render
+    </emphasis>
+    uses the current viewport settings.
+Some settings are located in the render panel of the render engine
+that is used to render the view.
+   </paragraph>
+   <paragraph>
+    Solid mode uses the render settings of Workbench;
+LookDev mode uses the render settings of Eevee.
+   </paragraph>
+   <paragraph>
+    Sampling and Alpha Transparency Mode options can be set in
+    <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Render --&gt; Sampling`">
+     Properties ‣ Render ‣ Sampling
+    </inline>
+    .
+Make sure the Workbench or Eevee render engine is selected to see the appropriate values.
+   </paragraph>
+   <paragraph>
+    Additionally, some render settings are used too:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Render Dimensions
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Render Aspect
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      File Format &amp; Output (file path, format, compression settings, etc.)
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="rendering" names="rendering kết\ xuất\ --\ rendering">
+   <title>
+    Kết Xuất -- Rendering
+   </title>
+   <paragraph>
+    Activating
+    <emphasis>
+     Viewport Render
+    </emphasis>
+    will render from the current active view.
+This means that if you are not in an active camera view then
+a virtual camera is used to match the current perspective.
+To get an image from the camera point of view,
+enter the active camera view with
+    <literal classes="kbd">
+     Numpad0
+    </literal>
+    .
+   </paragraph>
+   <paragraph>
+    As with a normal render, you can abort it with
+    <literal classes="kbd">
+     Esc
+    </literal>
+    .
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Render a Still Image
+     </term>
+     <definition>
+      <paragraph>
+       To render a still image, use
+       <inline classes="menuselection" rawtext=":menuselection:`3D Viewport --&gt; View --&gt; Viewport Render Image`">
+        3D Viewport ‣ View ‣ Viewport Render Image
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Render an Animation
+     </term>
+     <definition>
+      <paragraph>
+       to render an animation, use
+       <inline classes="menuselection" rawtext=":menuselection:`3D Viewport --&gt; View --&gt; Viewport Render Animation`">
+        3D Viewport ‣ View ‣ Viewport Render Animation
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <tip>
+    <paragraph>
+     You can limit the viewport render to a particular region with
+     <reference internal="True" refuri="navigate/regions.html#editors-3dview-navigate-render-region">
+      <inline classes="std std-ref">
+       Render Regions
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </tip>
+  </section>
+ </section>
+</document>

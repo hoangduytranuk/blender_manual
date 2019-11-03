@@ -1,0 +1,165 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/color/tone_map.rst">
+ <target refid="bpy-types-compositornodetonemap">
+ </target>
+ <section ids="tone-map-node bpy-types-compositornodetonemap" names="tone\ map\ node nút\ ánh\ xạ\ sắc\ thái\ --\ tone\ map\ node bpy.types.compositornodetonemap">
+  <title>
+   Nút Ánh Xạ Sắc Thái -- Tone Map Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeTonemap.png'}" uri="images/compositing_node-types_CompositorNodeTonemap.png"/>
+   <caption>
+    Nút Ánh Xạ Sắc Thái.
+   </caption>
+  </figure>
+  <paragraph>
+   Ánh Xạ Sắc Thái là một kỹ thuật được sử dụng trong việc xử lý hình ảnh và trong đồ họa máy tính để ánh xạ một bộ màu sắc sang một cái khác, hòng nhằm ước lệ diện mạo của các hình ảnh có dải động cao (high dynamic range:HDR) trong một phương tiện thông tin có dải động (dynamic range) hạn chế hơn.
+  </paragraph>
+  <paragraph>
+   Về cơ bản mà nói, Ánh Xạ Sắc Thái giải quyết vấn đề thuyên giảm độ tương phản mạnh từ các giá trị cảnh (rad) sang phạm vi có thể hiển thị được (trên màn hình), đồng thời bảo toàn chi tiết và màu sắc của hình ảnh. Điều này rất quan trọng hòng để duy trì nội dung cảnh ban đầu.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       <abbreviation explanation="Dải Động Cao -- High Dynamic Range">
+        Hình ảnh HDR
+       </abbreviation>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại -- Type
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Phương Pháp Đơn Giản - Rh -- Rh Simple
+        </term>
+        <definition>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Khóa -- Key
+           </term>
+           <definition>
+            <paragraph>
+             The value the average luminance is mapped to.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Dịch Chuyển -- Offset
+           </term>
+           <definition>
+            <paragraph>
+             Thông thường thì nó luôn luôn là 1, song có thể được sử dụng như một điều khiển bổ sung để thay đổi đường cong về độ sáng.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Gamma
+           </term>
+           <definition>
+            <paragraph>
+             Nếu không sử dụng thì đặt là 1.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tế bào cảm nhận ánh sáng - R/D -- R/D Photoreceptor
+        </term>
+        <definition>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Cường Độ -- Intensity
+           </term>
+           <definition>
+            <paragraph>
+             Nếu nhỏ hơn 0 thì sẽ làm tối hình ảnh đi; nếu không, thì làm cho nó sáng hơn.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Độ Tương Phản -- Contrast
+           </term>
+           <definition>
+            <paragraph>
+             Đặt thành 0 để sử dụng sự ước tính từ hình ảnh đầu vào.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Thích Nghi -- Adaptation
+           </term>
+           <definition>
+            <paragraph>
+             Nếu là 0 thì toàn cầu; nếu là 1 thì dựa trên cường độ của điểm ảnh.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Chỉnh Sửa Màu -- Color Correction
+           </term>
+           <definition>
+            <paragraph>
+             Nếu 0 thì tất cả các kênh đều giống nhau; nếu là 1 thì mỗi cái riêng biệt.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       <abbreviation explanation="Dải Động Thấp -- Low Dynamic Range">
+        Hình ảnh LDR
+       </abbreviation>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,124 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/filter/sun_beams.rst">
+ <target refid="bpy-types-compositornodesunbeams">
+ </target>
+ <section ids="sun-beams-node bpy-types-compositornodesunbeams" names="sun\ beams\ node nút\ tia\ nắng\ --\ sun\ beams\ node bpy.types.compositornodesunbeams">
+  <title>
+   Nút Tia Nắng -- Sun Beams Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeSunBeams.png'}" uri="images/compositing_node-types_CompositorNodeSunBeams.png"/>
+   <caption>
+    Nút Tia Nắng.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Tia Nắng cung cấp một phương pháp tính toán ít công sức để tạo hiệu ứng, như cái tên của nó chỉ ra, duy dựa trên độ sáng của hình ảnh.
+  </paragraph>
+  <paragraph>
+   Tia Nắng (Sun Beams) là một hiệu ứng 2D để mô phỏng ảnh hưởng của nguồn sáng chói tán xạ trong một môi trường
+   <reference name="Tia Hoàng Hôn -- Crepuscular Rays" refuri="https://en.wikipedia.org/wiki/Crepuscular_rays">
+    Tia Hoàng Hôn -- Crepuscular Rays
+   </reference>
+   . Hiện tượng này có thể được tạo ra bởi các bộ máy kết xuất, song sự chiếu sáng thể tích toàn diện là một việc khá khó khăn và mất nhiều thời gian kết xuất.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chiều Rộng/Cao của Nguồn -- Source width, height
+     </term>
+     <definition>
+      <paragraph>
+       Source point of the rays as a factor of the image dimensions.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều Dài của Tia Xạ -- Ray length
+     </term>
+     <definition>
+      <paragraph>
+       Length of the rays as a factor of the image size.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <paragraph>
+    Thông thường, bước đầu tiên là xác định khu vực mà các tia xạ phóng vào. Bất cứ sự phản quang ánh sáng của bề mặt khuếch xạ nào cũng đều sẽ không đóng góp vào sự tán xạ như vậy trong thế giới thực, do đó, cần phải được loại trừ ra khỏi nguồn dữ liệu đầu vào. Những phương pháp khả dĩ để thực hiện điều này là:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Entirely separate image as a light source.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Brightness/contrast tweaking to leave only the brightest areas.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Muting shadow and midtone colors, which is a bit more flexible.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Masking for ultimate control.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    After generating the sun beams from such a light source image they can then be overlayed on the original image.
+Usually, a simple "Add" mix node is sufficient,
+and physically correct because the scattered light adds to the final result.
+   </paragraph>
+   <figure>
+    <image candidates="{'*': 'images/compositing_types_filter_sun-beams_example.jpg'}" uri="images/compositing_types_filter_sun-beams_example.jpg" width="400px"/>
+   </figure>
+  </section>
+ </section>
+</document>

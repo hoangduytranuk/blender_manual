@@ -1,0 +1,363 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/deform/armature.rst">
+ <target refid="bpy-types-armaturemodifier">
+ </target>
+ <section ids="armature-modifier bpy-types-armaturemodifier" names="armature\ modifier bộ\ điều\ chỉnh\ cốt\ --\ armature\ modifier bpy.types.armaturemodifier">
+  <title>
+   Bộ Điều Chỉnh Cốt -- Armature Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Armature
+   </emphasis>
+   modifier is used for building skeletal systems (rigs) for animating
+the poses of characters and anything else which needs to be posed.
+  </paragraph>
+  <paragraph>
+   By adding an armature system to an object,
+that object can be deformed accurately so that geometry does not have to be animated by hand.
+  </paragraph>
+  <seealso>
+   <paragraph>
+    For more details on armatures usage, see the
+    <reference internal="True" refuri="../../../animation/armatures/index.html">
+     <inline classes="doc">
+      armature section
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </seealso>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_armature_panel.png'}" uri="images/modeling_modifiers_deform_armature_panel.png"/>
+    <caption>
+     The Armature modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vật Thể -- Object
+     </term>
+     <definition>
+      <paragraph>
+       The name of the armature object used by this modifier.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Duy Trì Thể Tích -- Preserve Volume
+     </term>
+     <definition>
+      <paragraph>
+       Use quaternions for preserving volume of object during deformation. It can be better in many situations.
+      </paragraph>
+      <paragraph>
+       Without it, rotations at joints tend to scale down the neighboring geometry,
+up to nearly zero at 180 degrees from rest position.
+With it, the geometry is no longer scaled down, but there is a "gap",
+a discontinuity when reaching 180 degrees from rest position.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <table ids="id2">
+    <title>
+     Example of
+     <emphasis>
+      Preserve Volume
+     </emphasis>
+     effects.
+Note that the icosphere is deformed using the envelopes weights.
+    </title>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/modeling_modifiers_deform_armature_preserve-volume-1.png'}" uri="images/modeling_modifiers_deform_armature_preserve-volume-1.png" width="200px"/>
+         <caption>
+          Initial state.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/modeling_modifiers_deform_armature_preserve-volume-2.png'}" uri="images/modeling_modifiers_deform_armature_preserve-volume-2.png" width="200px"/>
+         <caption>
+          100° rotation,
+          <emphasis>
+           Preserve Volume
+          </emphasis>
+          disabled.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/modeling_modifiers_deform_armature_preserve-volume-3.png'}" uri="images/modeling_modifiers_deform_armature_preserve-volume-3.png" width="200px"/>
+         <caption>
+          180° rotation,
+          <emphasis>
+           Preserve Volume
+          </emphasis>
+          disabled.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/modeling_modifiers_deform_armature_preserve-volume-4.png'}" uri="images/modeling_modifiers_deform_armature_preserve-volume-4.png" width="200px"/>
+         <caption>
+          100° rotation,
+          <emphasis>
+           Preserve Volume
+          </emphasis>
+          enabled.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id7">
+         <image candidates="{'*': 'images/modeling_modifiers_deform_armature_preserve-volume-5.png'}" uri="images/modeling_modifiers_deform_armature_preserve-volume-5.png" width="200px"/>
+         <caption>
+          179.9° rotation,
+          <emphasis>
+           Preserve Volume
+          </emphasis>
+          enabled.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id8">
+         <image candidates="{'*': 'images/modeling_modifiers_deform_armature_preserve-volume-6.png'}" uri="images/modeling_modifiers_deform_armature_preserve-volume-6.png" width="200px"/>
+         <caption>
+          180.1° rotation,
+          <emphasis>
+           Preserve Volume
+          </emphasis>
+          enabled.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       A vertex group of the object, which weights will be used to determine the influence of this
+modifier's results when mixing it with the results from other
+       <emphasis>
+        Armature
+       </emphasis>
+       ones.
+      </paragraph>
+      <paragraph>
+       Only meaningful when having at least two of these modifiers on the same object,
+with
+       <emphasis>
+        Multi Modifier
+       </emphasis>
+       activated.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Invert ("double arrow" icon)
+        </term>
+        <definition>
+         <paragraph>
+          Inverts the influence set by the vertex group defined in previous setting
+(i.e. reverses the weight values of this group).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="bind-to" names="bind\ to --\ bind\ to">
+    <title>
+     -- Bind To
+    </title>
+    <paragraph>
+     Methods to bind the armature to the mesh.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Nhóm Điểm Đỉnh -- Vertex Groups
+      </term>
+      <definition>
+       <paragraph>
+        Meshes and lattices only. When enabled, bones of a given name will deform vertices which belong to
+        <reference internal="True" refuri="../../meshes/properties/vertex_groups/index.html">
+         <inline classes="doc">
+          vertex groups
+         </inline>
+        </reference>
+        of the same name.
+e.g. a bone named "forearm", will only affect the vertices in the "forearm" vertex group.
+       </paragraph>
+       <paragraph>
+        The influence of one bone on a given vertex is controlled by the weight of this vertex in the relevant group.
+A much more precise method than
+        <emphasis>
+         Bone Envelopes
+        </emphasis>
+        , but also generally longer to set up.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Vỏ Bao của Xương -- Bone Envelopes
+      </term>
+      <definition>
+       <paragraph>
+        When enabled, bones will deform vertices or control points near them,
+defined by each bone's envelope radius and distance.
+This lets
+        <reference internal="True" refuri="../../../animation/armatures/bones/properties/deform.html#armature-bones-envelope">
+         <inline classes="std std-ref">
+          bone envelopes
+         </inline>
+        </reference>
+        control the deformation
+(i.e. bones deform vertices in their neighborhood).
+       </paragraph>
+       <table ids="id9">
+        <title>
+         Example of skinning methods.
+        </title>
+        <tgroup cols="2">
+         <colspec colwidth="50">
+         </colspec>
+         <colspec colwidth="50">
+         </colspec>
+         <tbody>
+          <row>
+           <entry>
+            <figure ids="id10">
+             <image candidates="{'*': 'images/modeling_modifiers_deform_armature_vertex-groups-skinning-1.png'}" uri="images/modeling_modifiers_deform_armature_vertex-groups-skinning-1.png" width="320px"/>
+             <caption>
+              The weights of the "arm" vertex group.
+             </caption>
+            </figure>
+           </entry>
+           <entry>
+            <figure ids="id11">
+             <image candidates="{'*': 'images/modeling_modifiers_deform_armature_vertex-groups-skinning-2.png'}" uri="images/modeling_modifiers_deform_armature_vertex-groups-skinning-2.png" width="320px"/>
+             <caption>
+              The weights of the "forearm" vertex group.
+             </caption>
+            </figure>
+           </entry>
+          </row>
+          <row>
+           <entry>
+            <figure ids="id12">
+             <image candidates="{'*': 'images/modeling_modifiers_deform_armature_vertex-groups-skinning-3.png'}" uri="images/modeling_modifiers_deform_armature_vertex-groups-skinning-3.png" width="320px"/>
+             <caption>
+              The result when posing the armature.
+             </caption>
+            </figure>
+           </entry>
+           <entry>
+            <figure ids="id13">
+             <image candidates="{'*': 'images/modeling_modifiers_deform_armature_vertex-groups-skinning-4.png'}" uri="images/modeling_modifiers_deform_armature_vertex-groups-skinning-4.png" width="320px"/>
+             <caption>
+              The same pose, but using envelopes method rather that vertex groups.
+             </caption>
+            </figure>
+           </entry>
+          </row>
+         </tbody>
+        </tgroup>
+       </table>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <tip>
+     <paragraph>
+      When envelopes are disabled, Blender uses the set of existing vertex group names to
+determine which bones are actually necessary to evaluate the modifier.
+Removing empty vertex groups helps to reduce dependencies, and can be essential
+if the mesh is used during evaluation of other bones in the same armature,
+e.g. as the target of a
+      <reference internal="True" refuri="../../../animation/constraints/relationship/shrinkwrap.html">
+       <inline classes="doc">
+        Shrinkwrap
+       </inline>
+      </reference>
+      constraint.
+     </paragraph>
+    </tip>
+   </section>
+   <section ids="multi-modifier" names="multi\ modifier nhiều\ bộ\ điều\ chỉnh\ --\ multi\ modifier">
+    <title>
+     Nhiều Bộ Điều Chỉnh -- Multi Modifier
+    </title>
+    <paragraph>
+     Use the same data as a previous modifier (usually also an
+     <emphasis>
+      Armature
+     </emphasis>
+     one) as input.
+This allows you to use several armatures to deform the same object, all based on the "non-deformed" data
+(i.e. this avoids having the second
+     <emphasis>
+      Armature
+     </emphasis>
+     modifier deform the result of the first one...).
+    </paragraph>
+    <paragraph>
+     The results of the
+     <emphasis>
+      Armature
+     </emphasis>
+     modifiers are then mixed together, using the weights of
+the
+     <emphasis>
+      Vertex Group
+     </emphasis>
+     as "mixing guides".
+    </paragraph>
+    <tip>
+     <paragraph>
+      <emphasis>
+       Armature
+      </emphasis>
+      modifiers can quickly be added to objects by
+      <reference internal="True" refuri="../../../scene_layout/object/properties/relations/parents.html#bpy-ops-object-parent-set">
+       <inline classes="std std-ref">
+        parenting
+       </inline>
+      </reference>
+      them to an armature.
+     </paragraph>
+    </tip>
+   </section>
+  </section>
+ </section>
+</document>

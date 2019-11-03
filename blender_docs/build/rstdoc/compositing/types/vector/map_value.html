@@ -1,0 +1,182 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/vector/map_value.rst">
+ <target refid="bpy-types-compositornodemapvalue">
+ </target>
+ <section ids="map-value-node bpy-types-compositornodemapvalue" names="map\ value\ node nút\ ánh\ xạ\ giá\ trị\ --\ map\ value\ node bpy.types.compositornodemapvalue">
+  <title>
+   Nút Ánh Xạ Giá Trị -- Map Value Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeMapValue.png'}" uri="images/compositing_node-types_CompositorNodeMapValue.png"/>
+   <caption>
+    Nút Ánh Xạ Giá Trị.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Ánh Xạ Giá Trị được sử dụng để tỷ lệ hóa (scale), dịch chuyển (offset), và hạn định (clamp) các giá trị.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Standard Value input. (Value refers to each vector in the set.)
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển -- Offset
+     </term>
+     <definition>
+      <paragraph>
+       Hệ số được thêm vào giá trị đầu vào.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kích Thước -- Size
+     </term>
+     <definition>
+      <paragraph>
+       Tỷ lệ hóa (nhân) giá trị đầu vào.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sử dụng Tối Thiểu, Tối Đa -- Use Minimum, Maximum
+     </term>
+     <definition>
+      <paragraph>
+       Bật tính năng này lên để kích hoạt phép toán liên quan của chúng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tối Thiểu, Tối Đa -- Min, Max
+     </term>
+     <definition>
+      <paragraph>
+       Xác định một phạm vi giữa tối thiểu và tối đa để hạn định (
+       <reference internal="True" refuri="../../../glossary/index.html#term-clamp">
+        <inline classes="xref std std-term">
+         clamp
+        </inline>
+       </reference>
+       ) giá trị đầu vào.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của giá trị.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <section ids="z-depth-map" names="z-depth\ map ánh\ xạ\ độ\ sâu\ z\ --\ z-depth\ map">
+    <title>
+     Ánh Xạ Độ Sâu Z -- Z-Depth Map
+    </title>
+    <paragraph>
+     Điều này đặc biệt hữu ích khi mình muốn tạo hiệu ứng độ sâu trường ảnh, trong đó nút Ánh Xạ Giá Trị (
+     <reference internal="True" refid="bpy-types-compositornodemapvalue">
+      <inline classes="std std-ref">
+       Map Value
+      </inline>
+     </reference>
+     ) được sử dụng để ánh xạ giá trị Z (có thể là 20, 30 hoặc thậm chí là 500 tùy theo cảnh) sang phạm vi giữa (0 đến 1), thích hợp để kết nối với nút Làm Nhòe (
+     <reference internal="True" refuri="../filter/blur_node.html#bpy-types-compositornodeblur">
+      <inline classes="std std-ref">
+       Blur
+      </inline>
+     </reference>
+     ).
+    </paragraph>
+   </section>
+   <section ids="multiplying-values" names="multiplying\ values nhân\ các\ giá\ trị\ --\ multiplying\ values">
+    <title>
+     Nhân các Giá Trị -- Multiplying Values
+    </title>
+    <paragraph>
+     Nút Ánh Xạ Giá Trị (
+     <reference internal="True" refid="bpy-types-compositornodemapvalue">
+      <inline classes="std std-ref">
+       Map Value
+      </inline>
+     </reference>
+     ) cũng có thể được sử dụng để nhân giá trị lên thành một giá trị đầu ra mong muốn. Trong sơ đồ nhỏ ở bên phải, nút Thời Gian (
+     <reference internal="True" refuri="../../../editors/texture_node/types/input/time.html#bpy-types-texturenodecurvetime">
+      <inline classes="std std-ref">
+       Time
+      </inline>
+     </reference>
+     ) cho ra một giá trị trong phạm vi từ 0,0 đến 1,0, được phân tỷ lệ đồng đều trên 30 khung hình. Nút Ánh Xạ Giá Trị (
+     <reference internal="True" refid="bpy-types-compositornodemapvalue">
+      <inline classes="std std-ref">
+       Map Value
+      </inline>
+     </reference>
+     )
+     <emphasis>
+      đầu tiên
+     </emphasis>
+     nhân giá trị đầu vào lên 2, dẫn đến giá trị của đầu ra được phân tỷ lệ từ 0,0 đến 2,0 trên 30 khung hình. Nút Ánh Xạ Giá Trị (
+     <reference internal="True" refid="bpy-types-compositornodemapvalue">
+      <inline classes="std std-ref">
+       Map Value
+      </inline>
+     </reference>
+     )
+     <emphasis>
+      thứ hai
+     </emphasis>
+     khấu trừ 1 khỏi giá trị đầu vào, tạo ra các giá trị hoạt động trong khoảng từ (-1,00 đến 1) và nhân nó với 150 để tạo thành giá trị đầu ra trong khoảng từ (-150 đến 150) trong trình tự 30 khung hình.
+    </paragraph>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/compositing_types_vector_map-value_example.png'}" uri="images/compositing_types_vector_map-value_example.png"/>
+     <caption>
+      Sử dụng nút Ánh Xạ Giá Trị (
+      <reference internal="True" refid="bpy-types-compositornodemapvalue">
+       <inline classes="std std-ref">
+        Map Value
+       </inline>
+      </reference>
+      ) để thực hiện tính nhân.
+     </caption>
+    </figure>
+   </section>
+  </section>
+ </section>
+</document>

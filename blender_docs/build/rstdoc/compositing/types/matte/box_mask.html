@@ -1,0 +1,205 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/matte/box_mask.rst">
+ <target refid="bpy-types-compositornodeboxmask">
+ </target>
+ <section ids="box-mask-node bpy-types-compositornodeboxmask" names="box\ mask\ node nút\ màn\ chắn\ hình\ hộp\ --\ box\ mask\ node bpy.types.compositornodeboxmask">
+  <title>
+   Nút Màn Chắn Hình Hộp -- Box Mask Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeBoxMask.png'}" uri="images/compositing_node-types_CompositorNodeBoxMask.png"/>
+   <caption>
+    Nút Màn Chắn Hình Hộp.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút
+   <emphasis>
+    Màn Chắn Hình Hộp
+   </emphasis>
+   kiến tạo một hình ảnh thích hợp để sử dụng nó như một lớp lồng đơn giản.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màn Chắn -- Mask
+     </term>
+     <definition>
+      <paragraph>
+       Một chắn lọc tùy chọn (không bắt buộc) để sử dụng làm cơ sở cho các thao tác (phép toán) chắn lọc.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Cường độ của màn chắn sinh tạo.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      X, Y
+     </term>
+     <definition>
+      <paragraph>
+       Position of the center of the box as a fraction of the total width or height.
+(0.5, 0.5 creates a centered box; 0.0, 0.0 creates a box in the lower left.)
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều Rộng -- Width
+     </term>
+     <definition>
+      <paragraph>
+       Chiều rộng của hình hộp như một hệ số của tổng chiều rộng của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều Cao -- Height
+     </term>
+     <definition>
+      <paragraph>
+       Chiều cao của hình hộp như một hệ số của tổng
+       <emphasis>
+        chiều rộng
+       </emphasis>
+       (width), chứ không phải chiều cao.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xoay Chiều -- Rotation
+     </term>
+     <definition>
+      <paragraph>
+       Xoay chiều hình hộp chung quanh trung tâm của nó.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thể Loại Màn Chắn -- Mask Type
+     </term>
+     <definition>
+      <paragraph>
+       Phép toán để sử dụng với màn chắn đầu vào.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Cộng Thêm -- Add
+        </term>
+        <definition>
+         <paragraph>
+          Cái này sẽ tạo ra một
+          <emphasis>
+           kết hợp
+          </emphasis>
+          (union) của màn chắn đầu vào và màn chắn do máy sinh tạo ra: Khu vực được màn chắn do máy sinh tạo bao phủ sẽ được đặt thành
+          <emphasis>
+           Giá Trị
+          </emphasis>
+          (Value) đã chỉ định. Những bộ phận khác của màn chắn đầu vào sẽ được truyền qua nguyên vẹn, không thay đổi, hoặc sẽ được đặt thành màu đen nếu không có màn chắn đầu vào.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Trừ Khấu -- Subtract
+        </term>
+        <definition>
+         <paragraph>
+          Values of the input mask have the specified
+          <emphasis>
+           Value
+          </emphasis>
+          subtracted from them.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Nhân -- Multiply
+        </term>
+        <definition>
+         <paragraph>
+          Cái này sẽ cho ra khoảng
+          <emphasis>
+           giao cắt
+          </emphasis>
+          (intersection) giữa màn chắn đã sinh tạo này và màn chắn ở đầu vào: Các giá trị của màn chắn đầu vào được nhân với
+          <emphasis>
+           Giá Trị
+          </emphasis>
+          (Value) đã chỉ định cho diện tích mà màn chắn sinh tạo bao trùm. Toàn bộ những khu vực khác sẽ trở thành màu đen.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đảo Nghịch -- Not
+        </term>
+        <definition>
+         <paragraph>
+          Bất cứ khu vực nào được bao trùm bởi cả hai, màn chắn đầu vào và màn chắn đã sinh tạo sẽ trở thành màu đen. Những khu vực mà màn chắn sinh tạo bao trùm là màu đen trên màn chắn đầu vào sẽ trở thành
+          <emphasis>
+           Giá Trị
+          </emphasis>
+          (Value) chỉ định. Những khu vực không được màn chắn sinh tạo bao trùm sẽ được giữ nguyên, không thay đổi.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màn Chắn -- Mask
+     </term>
+     <definition>
+      <paragraph>
+       Màn chắn hình chữ nhật đã sinh tạo sẽ được hội nhập với màn chắn đầu vào. Màn chắn tạo nên sẽ là cỡ của kích thước bản kết xuất cảnh hiện tại.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <tip>
+    <paragraph>
+     Để có được các cạnh mềm mại thì hãy đưa màn chắn kết quả đi qua một
+     <reference internal="True" refuri="../filter/blur_node.html">
+      <inline classes="doc">
+       Nút làm nhòe - blur node
+      </inline>
+     </reference>
+     với một mức độ nhẹ, vừa phải.
+    </paragraph>
+   </tip>
+  </section>
+ </section>
+</document>

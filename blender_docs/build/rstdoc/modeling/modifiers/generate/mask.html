@@ -1,0 +1,139 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/generate/mask.rst">
+ <target refid="bpy-types-maskmodifier">
+ </target>
+ <section ids="mask-modifier bpy-types-maskmodifier" names="mask\ modifier bộ\ điều\ chỉnh\ màn\ chắn\ --\ mask\ modifier bpy.types.maskmodifier">
+  <title>
+   Bộ Điều Chỉnh Màn Chắn -- Mask Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Mask
+   </emphasis>
+   modifier allows vertices of an object to be hidden dynamically based on vertex groups.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chế Độ -- Mode
+     </term>
+     <definition>
+      <paragraph>
+       The Mask Modifier can hide parts of a mesh based on two different modes, selectable from this select menu.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Nhóm Điểm Đỉnh -- Vertex Group
+        </term>
+        <definition>
+         <paragraph>
+          When the
+          <emphasis>
+           Vertex Group
+          </emphasis>
+          option is selected,
+all vertices belonging to the chosen Vertex Group (with a weight above zero) will be visible,
+and all other vertices will be hidden.
+         </paragraph>
+         <table ids="id1">
+          <title>
+           The Mask modifier, Vertex Group mode.
+          </title>
+          <tgroup cols="2">
+           <colspec colwidth="50">
+           </colspec>
+           <colspec colwidth="50">
+           </colspec>
+           <tbody>
+            <row>
+             <entry>
+              <figure>
+               <image candidates="{'*': 'images/modeling_modifiers_generate_mask_vertex-group.png'}" uri="images/modeling_modifiers_generate_mask_vertex-group.png"/>
+              </figure>
+             </entry>
+             <entry>
+              <figure>
+               <image candidates="{'*': 'images/modeling_modifiers_generate_mask_panel-vertex-group.png'}" uri="images/modeling_modifiers_generate_mask_panel-vertex-group.png"/>
+              </figure>
+             </entry>
+            </row>
+           </tbody>
+          </tgroup>
+         </table>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Cốt -- Armature
+        </term>
+        <definition>
+         <paragraph>
+          When in Pose Mode,
+vertices belonging to the Vertex Group associated with the active bone (same names) will be visible.
+Vertices not in that group will be hidden.
+         </paragraph>
+         <table ids="id2">
+          <title>
+           The Mask modifier, Armature mode.
+          </title>
+          <tgroup cols="2">
+           <colspec colwidth="50">
+           </colspec>
+           <colspec colwidth="50">
+           </colspec>
+           <tbody>
+            <row>
+             <entry>
+              <figure>
+               <image candidates="{'*': 'images/modeling_modifiers_generate_mask_armature.png'}" uri="images/modeling_modifiers_generate_mask_armature.png"/>
+              </figure>
+             </entry>
+             <entry>
+              <figure>
+               <image candidates="{'*': 'images/modeling_modifiers_generate_mask_panel-armature.png'}" uri="images/modeling_modifiers_generate_mask_panel-armature.png"/>
+              </figure>
+             </entry>
+            </row>
+           </tbody>
+          </tgroup>
+         </table>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đảo Nghịch -- Inverse
+     </term>
+     <definition>
+      <paragraph>
+       Normally, vertices belonging to the selected Vertex Group (or group associated with the active pose bone)
+will be shown. The
+       <emphasis>
+        Invert
+       </emphasis>
+       toggle allows you to reverse this behavior, instead only showing vertices
+which do not belong to the Vertex Group.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Threshold
+     </term>
+     <definition>
+      <paragraph>
+       Vertices with weights less or equal to this value will be hidden.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

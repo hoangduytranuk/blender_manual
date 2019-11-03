@@ -1,0 +1,232 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/filter/bokeh_blur.rst">
+ <target refid="bpy-types-compositornodebokehblur">
+ </target>
+ <section ids="bokeh-blur-node bpy-types-compositornodebokehblur" names="bokeh\ blur\ node nút\ nhòe\ mờ\ bokeh\ --\ bokeh\ blur\ node bpy.types.compositornodebokehblur">
+  <title>
+   Nút Nhòe Mờ Bokeh -- Bokeh Blur Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeBokehBlur.png'}" uri="images/compositing_node-types_CompositorNodeBokehBlur.png"/>
+   <caption>
+    Nút Nhòe Mờ Bokeh.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Nhòe Mờ Bokeh tạo ra một loại nhòe mờ kiểu bokeh tương tự như hiệu ứng Mất Nét (Defocus) (vật thể nằm ngoài trường ảnh), song không giống với hiệu ứng Mất Nét, một vùng lấy nét được xác định trong trình Tổng Hợp (compositor). Đồng thời, cũng có sự linh hoạt hơn trong thể loại nhòe mờ được áp dụng thông qua nút
+   <reference internal="True" refuri="../input/bokeh_image.html">
+    <inline classes="doc">
+     Hình Nhòe Bokeh -- Bokeh Image
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <paragraph>
+   Một số tối ưu hóa hiệu suất thi hành cũng tồn tại, ví như sự hỗ trợ trong OpenCL, với sự hạn chế khu vực tính toán và chắn lọc (masking).
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhòe Bokeh -- Bokeh
+     </term>
+     <definition>
+      <paragraph>
+       Đây là một đầu vào cung cấp cho nút
+       <reference internal="True" refuri="../input/bokeh_image.html">
+        <inline classes="doc">
+         Hình Nhòe Bokeh -- Bokeh Image
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kích Thước -- Size
+     </term>
+     <definition>
+      <paragraph>
+       Kích thước khống chế lượng nhòe mờ. Kích thước (Size) có thể là một giá trị duy nhất trên toàn bộ hình ảnh, hoặc một giá trị biến được kiểm soát bởi một hình ảnh ở đầu vào. Để sử dụng phương thức thứ hai thì tùy chọn Kích Thước Biến Thiên (Variable Size) phải được chọn. Xin xem các ví dụ ở phần dưới đây để biết thêm về cách sử dụng phương pháp này.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khung Hộp Viền -- Bounding Box
+     </term>
+     <definition>
+      <paragraph>
+       Cái này có thể được sử dụng với một nút lớp lồng
+       <reference internal="True" refuri="../matte/box_mask.html">
+        <inline classes="doc">
+         Màn Chắn Hình Hộp -- Box Mask
+        </inline>
+       </reference>
+       hoặc với một nút đầu vào
+       <reference internal="True" refuri="../input/mask.html">
+        <inline classes="doc">
+         Màn Chắn -- Mask
+        </inline>
+       </reference>
+       Điều này có thể hữu ích, ví dụ, khi phát triển một hệ thống nút bằng cách cho phép chỉ một khu vực nhỏ của hình ảnh được thanh lọc, do đó tiết kiệm thời gian tổng hợp, sau mỗi lần điều chỉnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Kích Thước Biến Thiên -- Variable Size
+     </term>
+     <definition>
+      <paragraph>
+       Cho phép bán kính nhòe mờ thay đổi, nếu đầu vào Kích Thước (Size) là một hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ nhòe mờ tối đa -- Max blur
+     </term>
+     <definition>
+      <paragraph>
+       Độ nhòe mờ tối đa được dùng để hoạt động như một công cụ tối ưu hóa, bằng cách giới hạn số lượng điểm ảnh mà tính nhòe mờ được tính toán.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <paragraph>
+    Sau đây là ba ví dụ về phương pháp kích thước đầu vào có thể được sử dụng.
+   </paragraph>
+   <paragraph>
+    Một hình ảnh alpha
+    <reference internal="True" refuri="../converter/id_mask.html">
+     <inline classes="doc">
+      Chắn lọc ID -- ID masked
+     </inline>
+    </reference>
+    Có thể được sử dụng để nền thì nhòe mờ trong khi các đối tượng ở đằng trước vẫn nằm trong trường ảnh, rõ nét. Để tránh được các cạnh bất bình thường thì nên sử dụng
+    <reference internal="True" refuri="dilate_erode.html">
+     <inline classes="doc">
+      Nút Giãn Ra -- Dilate Node
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <paragraph>
+    Lượt về Z có thể được biểu thị bằng nút
+    <reference internal="True" refuri="../vector/map_value.html">
+     <inline classes="doc">
+      Ánh Xạ Giá Trị -- Map Value
+     </inline>
+    </reference>
+    và một nút
+    <reference internal="True" refuri="../converter/color_ramp.html">
+     <inline classes="doc">
+      Dốc Màu -- Color Ramp
+     </inline>
+    </reference>
+    như được đặc tả trong bài
+    <reference internal="True" refuri="../input/render_layers.html">
+     <inline classes="doc">
+      Các Tầng Lớp Kết Xuất -- Render Layers
+     </inline>
+    </reference>
+    . Một nút
+    <reference internal="True" refuri="../converter/math.html">
+     <inline classes="doc">
+      Toán -- Math
+     </inline>
+    </reference>
+    <emphasis>
+     Nhân (multiply)
+    </emphasis>
+    có thể được sử dụng tiếp theo dốc màu, hòng để những giá trị nhòe mờ lớn hơn 1 có thể sử dụng được cho những vật nằm ngoài trường ảnh.
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_filter_bokeh-blur_example-1.png'}" uri="images/compositing_types_filter_bokeh-blur_example-1.png" width="640px"/>
+    <caption>
+     Lượt về Z được sử dụng.
+    </caption>
+   </figure>
+   <paragraph>
+    Một hình ảnh thang độ xám được tạo ra một cách thủ công có thể được sử dụng để xác định các vùng sắc nét và nhòe mờ của một hình ảnh có sẵn. Một lần nữa, một Nút Nhân (Multiply Node) có thể được sử dụng hầu cho giá trị nhòe mờ lớn hơn 1 được sử dụng.
+   </paragraph>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/compositing_types_filter_bokeh-blur_example-2.png'}" uri="images/compositing_types_filter_bokeh-blur_example-2.png" width="640px"/>
+    <caption>
+     Hình ảnh được sử dụng.
+    </caption>
+   </figure>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/compositing_types_filter_bokeh-blur_example-1-render.jpg'}" uri="images/compositing_types_filter_bokeh-blur_example-1-render.jpg"/>
+         <caption>
+          Lượt về Z được sử dụng.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/compositing_types_filter_bokeh-blur_example-2-render.jpg'}" uri="images/compositing_types_filter_bokeh-blur_example-2-render.jpg"/>
+         <caption>
+          Hình ảnh được sử dụng.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

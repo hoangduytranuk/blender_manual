@@ -1,0 +1,136 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/cloth/settings/shape.rst">
+ <section ids="shape" names="shape">
+  <title>
+   Shape
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Physics --&gt; Cloth --&gt; Shape`">
+        Physics ‣ Cloth ‣ Shape
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/physics_cloth_settings_cloth-settings_pinning.png'}" uri="images/physics_cloth_settings_cloth-settings_pinning.png"/>
+   <caption>
+    Cloth Shape.
+   </caption>
+  </figure>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Pin Group
+    </term>
+    <definition>
+     <paragraph>
+      Vertex Group to use for pinning.
+     </paragraph>
+     <paragraph>
+      The shape of the cloth can be controlled by pinning cloth to
+a
+      <reference internal="True" refuri="../../../modeling/meshes/properties/vertex_groups/index.html">
+       <inline classes="doc">
+        Vertex Group
+       </inline>
+      </reference>
+      .
+There are several ways of doing this including
+      <reference internal="True" refuri="../../../sculpt_paint/weight_paint/index.html">
+       <inline classes="doc">
+        Weight Painting
+       </inline>
+      </reference>
+      areas you want to pin.
+The weight of each vertex in the group controls how strongly it is pinned.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Stiffness
+    </term>
+    <definition>
+     <paragraph>
+      Target position stiffness.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Sewing
+    </term>
+    <definition>
+     <paragraph>
+      Another method of restraining cloth similar to pinning is sewing springs.
+Sewing springs are virtual springs that pull vertices in one part of
+a cloth mesh toward vertices in another part of the cloth mesh.
+This is different from pinning which binds vertices of the cloth mesh in place or to another object.
+A clasp on a cloak could be created with a sewing spring.
+The spring could pull two corners of a cloak about a character's neck.
+This could result in a more realistic simulation than pinning the cloak to
+the character's neck since the cloak would be free to slide about the character's neck and shoulders.
+     </paragraph>
+     <paragraph>
+      Sewing springs are created by adding extra edges to a cloth mesh that are not included in any faces.
+They should connect vertices in the mesh that should be pulled together.
+For example the corners of a cloak.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Max Sewing Force
+    </term>
+    <definition>
+     <paragraph>
+      Maximum force that can be applied by sewing springs. Zero means unbounded, but it is not
+recommended to leave the field at zero in most cases, as it can cause instability due to
+extreme forces in the initial frames where the ends of the sewing springs are far apart.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Shrinking Factor
+    </term>
+    <definition>
+     <paragraph>
+      Factor by which to shrink the cloth.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Dynamic Mesh
+    </term>
+    <definition>
+     <paragraph>
+      Allows animating the rest shape of cloth using shape keys or
+modifiers (e.g. an Armature modifier or any deformation modifier) placed above the Cloth modifier.
+When it is enabled, the rest shape is recalculated every frame, allowing unpinned
+cloth to squash and stretch following the character with the help of shape keys or modifiers, but
+otherwise move freely under control of the physics simulation.
+     </paragraph>
+     <paragraph>
+      Normally cloth uses the state of the object in the first frame to compute
+the natural rest shape of the cloth, and keeps that constant throughout the simulation.
+This is reasonable for fully realistic scenes, but does not quite work for clothing
+on cartoon style characters that use a lot of squash and stretch.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+ </section>
+</document>

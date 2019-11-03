@@ -1,0 +1,380 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/interface/controls/templates/curve.rst">
+ <target refid="ui-curve-widget">
+ </target>
+ <section ids="curve-widget ui-curve-widget" names="curve\ widget thành\ tố\ đường\ cong\ --\ curve\ widget ui-curve-widget">
+  <title>
+   Thành Tố Đường Cong -- Curve Widget
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/interface_controls_templates_curve_curve.png'}" uri="images/interface_controls_templates_curve_curve.png"/>
+   <caption>
+    Thành tố đường cong.
+   </caption>
+  </figure>
+  <paragraph>
+   The purpose of the
+   <emphasis>
+    Curve Widget
+   </emphasis>
+   is to allow the user to modify an input
+(such as an image) in an intuitive manner by
+smoothly adjusting the values up and down using the curve.
+  </paragraph>
+  <paragraph>
+   The input values are mapped to the X axis of the graph, and the output values are mapped to the Y axis.
+  </paragraph>
+  <section ids="control-points" names="control\ points điểm\ điều\ khiển\ --\ control\ points">
+   <title>
+    Điểm Điều Khiển -- Control Points
+   </title>
+   <paragraph>
+    Like all curves in Blender, the curve of the
+    <emphasis>
+     Curve Widget
+    </emphasis>
+    is controlled using
+    <emphasis>
+     control points
+    </emphasis>
+    .
+   </paragraph>
+   <paragraph>
+    By default, there are two control points: one at (0.0, 0.0) and one at (1.0, 1.0),
+meaning the input is mapped directly to the output (unchanged).
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Di Chuyển -- Move
+     </term>
+     <definition>
+      <paragraph>
+       Simply click and drag it around.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cộng Thêm -- Add
+     </term>
+     <definition>
+      <paragraph>
+       Click anywhere on the curve where there is not already a control point.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa -- Remove
+     </term>
+     <definition>
+      <paragraph>
+       Select it and click the
+       <literal>
+        X
+       </literal>
+       button at the top right.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="controls" names="controls điều\ khiển\ --\ controls">
+   <title>
+    Điều Khiển -- Controls
+   </title>
+   <paragraph>
+    Above the curve graph is a row of controls. These are:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Zoom In (plus magnifying glass icon)
+     </term>
+     <definition>
+      <paragraph>
+       Zoom into the center of the graph to show more details and provide more accurate control.
+To navigate around the curve while zoomed in, click and drag in an empty part of the graph.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Zoom Out (minus magnifying glass icon)
+     </term>
+     <definition>
+      <paragraph>
+       Zoom out of the graph to show fewer details and view the graph as a whole.
+You cannot zoom out further than the clipping region (see
+       <emphasis>
+        Clipping
+       </emphasis>
+       below).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Specials
+      <literal>
+       v
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       A
+       <reference internal="True" refuri="../buttons/menus.html#ui-specials-menu">
+        <inline classes="std std-ref">
+         Specials
+        </inline>
+       </reference>
+       menu with tools to operate on control points or to set properties.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Hoàn Lại Góc Nhìn -- Reset View
+        </term>
+        <definition>
+         <paragraph>
+          Resets the view of the curve.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Handle Options
+        </term>
+        <definition>
+         <paragraph>
+          Controls how the control points affect the curve shape.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Tay Cầm Vectơ -- Vector Handle
+           </term>
+           <definition>
+            <paragraph>
+             Vector handles create straight lines;
+breaking the tangent at the curve handle, making it an angle.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Tay Cầm Tự Động -- Auto Handle
+           </term>
+           <definition>
+            <paragraph>
+             Automatic handles that create smooth curves.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Auto Clamped Handle
+           </term>
+           <definition>
+            <paragraph>
+             Automatic handles that create smooth curves, which prevents overshoot.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+         <table>
+          <tgroup cols="3">
+           <colspec colwidth="33">
+           </colspec>
+           <colspec colwidth="33">
+           </colspec>
+           <colspec colwidth="33">
+           </colspec>
+           <tbody>
+            <row>
+             <entry>
+              <figure ids="id2">
+               <image candidates="{'*': 'images/interface_controls_templates_curve_handle-vector.png'}" uri="images/interface_controls_templates_curve_handle-vector.png"/>
+               <caption>
+                Vector Handles.
+               </caption>
+              </figure>
+             </entry>
+             <entry>
+              <figure ids="id3">
+               <image candidates="{'*': 'images/interface_controls_templates_curve_handle-auto.png'}" uri="images/interface_controls_templates_curve_handle-auto.png"/>
+               <caption>
+                Auto Handles.
+               </caption>
+              </figure>
+             </entry>
+             <entry>
+              <figure ids="id4">
+               <image candidates="{'*': 'images/interface_controls_templates_curve_handle-auto-clamped.png'}" uri="images/interface_controls_templates_curve_handle-auto-clamped.png"/>
+               <caption>
+                Auto Clamped Handles.
+               </caption>
+              </figure>
+             </entry>
+            </row>
+           </tbody>
+          </tgroup>
+         </table>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Extend Options
+        </term>
+        <definition>
+         <paragraph>
+          Controls how the curve is extended before the first control point and after the last control point.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Mở Rộng Chiều Ngang -- Extend Horizontal
+           </term>
+           <definition>
+            <paragraph>
+             Causes the curve to stay horizontal before the first point and after the last point.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Mở Rộng Ngoại Suy -- Extend Extrapolated
+           </term>
+           <definition>
+            <paragraph>
+             Causes the curve to extrapolate before the first point and after the last point,
+based on the shape of the curve.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+         <table>
+          <tgroup cols="2">
+           <colspec colwidth="50">
+           </colspec>
+           <colspec colwidth="50">
+           </colspec>
+           <tbody>
+            <row>
+             <entry>
+              <figure ids="id5">
+               <image candidates="{'*': 'images/interface_controls_templates_curve_extend-horizontal.png'}" uri="images/interface_controls_templates_curve_extend-horizontal.png"/>
+               <caption>
+                Extend Horizontal.
+               </caption>
+              </figure>
+             </entry>
+             <entry>
+              <figure ids="id6">
+               <image candidates="{'*': 'images/interface_controls_templates_curve_extend-extrapolate.png'}" uri="images/interface_controls_templates_curve_extend-extrapolate.png"/>
+               <caption>
+                Extend Extrapolated.
+               </caption>
+              </figure>
+             </entry>
+            </row>
+           </tbody>
+          </tgroup>
+         </table>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hoàn Lại Đồ Thị -- Reset Curve
+        </term>
+        <definition>
+         <paragraph>
+          Resets the curve to default (removes all points added to the curve).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Clipping Options (dot icon)
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sử Dụng Cắt Xén -- Use Clipping
+        </term>
+        <definition>
+         <paragraph>
+          Forces curve points to stay between specified values.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tối thiểu X/Y và Tối Đa X/Y -- Min X/Y and Max X/Y
+        </term>
+        <definition>
+         <paragraph>
+          Set the minimum and maximum bounds of the curve points.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Delete
+      <literal>
+       X
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Remove the selected control point. The first and last points cannot be deleted.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      X, Y
+     </term>
+     <definition>
+      <paragraph>
+       The coordinates of the selected control point.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sao Chép/Dán -- Copy/Paste
+      <literal classes="kbd">
+       Ctrl-C
+      </literal>
+      ,
+      <literal classes="kbd">
+       Ctrl-V
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       The whole curve can be copied from one Curve Widget to another by hovering over
+the curve graph and pressing
+       <literal classes="kbd">
+        Ctrl-C
+       </literal>
+       ,
+       <literal classes="kbd">
+        Ctrl-V
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

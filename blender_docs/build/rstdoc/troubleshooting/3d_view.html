@@ -1,0 +1,485 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/troubleshooting/3d_view.rst">
+ <comment xml:space="preserve">
+  (Todo &lt;2.8 add) GL texture limit.
+ </comment>
+ <section ids="d-view" names="3d\ view khung\ nhìn\ 3d\ --\ 3d\ view">
+  <title>
+   Khung Nhìn 3D -- 3D View
+  </title>
+  <section ids="rendering" names="rendering">
+   <title>
+    Rendering
+   </title>
+   <target refid="troubleshooting-depth">
+   </target>
+   <section ids="depth-buffer-glitches troubleshooting-depth" names="depth\ buffer\ glitches --\ depth\ buffer\ glitches troubleshooting-depth">
+    <title>
+     -- Depth Buffer Glitches
+    </title>
+    <paragraph>
+     Sometimes when setting a large
+     <reference internal="True" refuri="../editors/3dview/properties/sidebar.html#dview-view-clip">
+      <inline classes="std std-ref">
+       clipping range
+      </inline>
+     </reference>
+     will allow you to see both near and far objects,
+but reduces the depth precision resulting in artifacts.
+    </paragraph>
+    <table>
+     <tgroup cols="3">
+      <colspec colwidth="33">
+      </colspec>
+      <colspec colwidth="33">
+      </colspec>
+      <colspec colwidth="33">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id1">
+          <image candidates="{'*': 'images/troubleshooting_3d-view_graphics-z-fighting-none.png'}" uri="images/troubleshooting_3d-view_graphics-z-fighting-none.png" width="200px"/>
+          <caption>
+           Model with no clipping artifacts.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id2">
+          <image candidates="{'*': 'images/troubleshooting_3d-view_graphics-z-fighting-example.png'}" uri="images/troubleshooting_3d-view_graphics-z-fighting-example.png" width="200px"/>
+          <caption>
+           Model with clipping artifacts.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id3">
+          <image candidates="{'*': 'images/troubleshooting_3d-view_graphics-z-fighting-example-editmode.png'}" uri="images/troubleshooting_3d-view_graphics-z-fighting-example-editmode.png" width="200px"/>
+          <caption>
+           Mesh with artifacts in Edit Mode.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <paragraph>
+     To avoid this:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Increase the near clipping when working on large scenes.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Decrease the far clipping when objects are not viewed at a distance.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     When perspective is disabled only the far Clip End is used, very high values can still give artifacts.
+    </paragraph>
+    <paragraph>
+     This is
+     <strong>
+      not
+     </strong>
+     specific to Blender, all OpenGL/DirectX graphics applications have these same limitations.
+    </paragraph>
+   </section>
+   <section ids="objects-invisible-in-camera-view" names="objects\ invisible\ in\ camera\ view --\ objects\ invisible\ in\ camera\ view">
+    <title>
+     -- Objects Invisible in Camera View
+    </title>
+    <paragraph>
+     If you have a large scene, viewing it through Camera View may not display all of the Objects in the scene.
+One possibility may be that the
+     <reference internal="True" refuri="../render/cameras.html#camera-clipping">
+      <inline classes="std std-ref">
+       clipping distance
+      </inline>
+     </reference>
+     of the camera is too low.
+The camera will only show objects that fall within the clipping range.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="performance" names="performance hiệu\ suất\ thi\ hành\ --\ performance">
+   <title>
+    Hiệu Suất Thi Hành -- Performance
+   </title>
+   <section ids="slow-rendering" names="slow\ rendering">
+    <title>
+     Slow Rendering
+    </title>
+    <paragraph>
+     There are a couple of reasons why you may be experiencing a slow viewport.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       -- Old Hardware
+      </term>
+      <definition>
+       <paragraph>
+        Sometimes your hardware, mainly your graphics card, may be too slow to keep up with your model.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Upgrade Graphics Driver
+      </term>
+      <definition>
+       <paragraph>
+        In some cases, slow selection is resolved by using updated drivers.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="slow-selection" names="slow\ selection --\ slow\ selection">
+    <title>
+     -- Slow Selection
+    </title>
+    <paragraph>
+     Blender uses OpenGL for selection, some graphics card drivers are slow at performing this operation.
+    </paragraph>
+    <paragraph>
+     This becomes especially problematic on dense geometry.
+    </paragraph>
+    <paragraph>
+     Possible Solutions:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       OpenGL Depth Picking (Preferences)
+      </term>
+      <definition>
+       <paragraph>
+        See
+        <inline classes="menuselection" rawtext=":menuselection:`Preferences --&gt; Viewport --&gt; Selection`">
+         Preferences ‣ Viewport ‣ Selection
+        </inline>
+        .
+       </paragraph>
+       <paragraph>
+        This option is enabled by default, disabling it may give a better performance at
+the cost of selection accuracy.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Upgrade Graphics Driver
+      </term>
+      <definition>
+       <paragraph>
+        In some cases, slow selection is resolved by using updated drivers.
+        <emphasis>
+         It is generally good to use recent drivers when using 3D software.
+        </emphasis>
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Select Centers (Workaround)
+      </term>
+      <definition>
+       <paragraph>
+        In
+        <emphasis>
+         Object Mode
+        </emphasis>
+        , holding
+        <literal classes="kbd">
+         Ctrl
+        </literal>
+        while selecting uses the object center point.
+While this can be useful on its own, it has the side effect of not relying on OpenGL selection.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Change Display Mode (Workaround)
+      </term>
+      <definition>
+       <paragraph>
+        Using
+        <emphasis>
+         Wireframe
+        </emphasis>
+        display mode can be used to more quickly select different objects.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <note>
+     <paragraph>
+      Obviously, the workarounds listed here are not long term solutions,
+but it is handy to know if you are stuck using a system with poor OpenGL support.
+     </paragraph>
+     <paragraph>
+      Ultimately, if none of these options work out it may be worth upgrading your hardware.
+     </paragraph>
+    </note>
+   </section>
+  </section>
+  <section ids="navigation" names="navigation điều\ hướng\ --\ navigation">
+   <title>
+    Điều Hướng -- Navigation
+   </title>
+   <section ids="lost-in-space" names="lost\ in\ space --\ lost\ in\ space">
+    <title>
+     -- Lost in Space
+    </title>
+    <paragraph>
+     When navigating your scene, you may accidentally navigate away from your scene
+and find yourself with a blank viewport. There are two ways to fix this:
+    </paragraph>
+    <enumerated_list enumtype="arabic" prefix="" suffix=".">
+     <list_item>
+      <paragraph>
+       Select an object in the
+       <reference internal="True" refuri="../editors/outliner.html">
+        <inline classes="doc">
+         Outliner
+        </inline>
+       </reference>
+       ,
+then zoom to that object with
+       <inline classes="menuselection" rawtext=":menuselection:`View --&gt; Frame Selected`">
+        View ‣ Frame Selected
+       </inline>
+       or
+       <literal classes="kbd">
+        NumpadPeriod
+       </literal>
+       .
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Use
+       <literal classes="kbd">
+        Home
+       </literal>
+       to fit all objects into the 3D View.
+      </paragraph>
+     </list_item>
+    </enumerated_list>
+   </section>
+   <section ids="invisible-limit-zooming-in" names="invisible\ limit\ zooming\ in --\ invisible\ limit\ zooming\ in">
+    <title>
+     -- Invisible Limit Zooming In
+    </title>
+    <paragraph>
+     Sometimes when navigating you may be trying to zoom in but it seems that you have hit a limit
+to how far you can zoom.
+This is because Blender uses a central point to orbit around.
+    </paragraph>
+    <paragraph>
+     In practice this is good for modeling an object which you rotate about a lot to see from all sides
+(think of a potter using a wheel).
+However, this makes it awkward to explore a scene or model an object from the 'inside', for example.
+    </paragraph>
+    <section ids="solutions" names="solutions --\ solutions">
+     <title>
+      -- Solutions
+     </title>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        Use
+        <reference internal="True" refuri="../editors/3dview/navigate/navigation.html#dview-nav-zoom-dolly">
+         <inline classes="std std-ref">
+          View Dolly
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Use
+        <reference internal="True" refuri="../editors/3dview/navigate/walk_fly.html#dview-fly-walk">
+         <inline classes="std std-ref">
+          Walk/Fly modes
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Use
+        <reference internal="True" refuri="../editors/preferences/navigation.html#prefs-auto-depth">
+         <inline classes="std std-ref">
+          Auto Depth
+         </inline>
+        </reference>
+        and
+        <reference internal="True" refuri="../editors/preferences/navigation.html#prefs-zoom-mouse-pos">
+         <inline classes="std std-ref">
+          Zoom to Mouse Position
+         </inline>
+        </reference>
+        .
+These tools will make sure the distance is always the value under the mouse cursor,
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Use
+        <reference internal="True" refuri="../editors/3dview/navigate/navigation.html#dview-nav-zoom-region">
+         <inline classes="std std-ref">
+          Zoom Region
+         </inline>
+        </reference>
+        as it also resets the center point when zooming.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Center the view around the mouse cursor
+        <literal classes="kbd">
+         Alt-MMB
+        </literal>
+        .
+This will take the position under the cursor and make it your viewpoint center.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Use an
+        <abbreviation explanation="N-Degrees of Freedom">
+         NDOF
+        </abbreviation>
+        , also known as a 3D mouse,
+see
+        <reference internal="True" refuri="../getting_started/configuration/hardware.html#hardware-ndof">
+         <inline classes="std std-ref">
+          configuring peripherals
+         </inline>
+        </reference>
+        for more information.
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </section>
+   </section>
+  </section>
+  <section ids="tools" names="tools công\ cụ\ --\ tools">
+   <title>
+    Công Cụ -- Tools
+   </title>
+   <target refid="troubleshooting-3dview-invalid-selection">
+   </target>
+   <section ids="invalid-selection troubleshooting-3dview-invalid-selection" names="invalid\ selection --\ invalid\ selection troubleshooting-3dview-invalid-selection">
+    <title>
+     -- Invalid Selection
+    </title>
+    <paragraph>
+     There are times when selection fails under some configurations,
+often this is noticeable in mesh
+     <emphasis>
+      Edit Mode
+     </emphasis>
+     ,
+selecting vertices/edges/faces where random elements are selected.
+    </paragraph>
+    <paragraph>
+     Internally Blender uses
+     <reference internal="True" refuri="../glossary/index.html#term-opengl">
+      <inline classes="xref std std-term">
+       OpenGL
+      </inline>
+     </reference>
+     for selection,
+so the graphics card driver relies on giving correct results.
+    </paragraph>
+    <paragraph>
+     Possible Solutions:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Disable Anti-Aliasing
+       <reference internal="True" refuri="../glossary/index.html#term-multisampling">
+        <inline classes="xref std std-term">
+         Multisampling
+        </inline>
+       </reference>
+      </term>
+      <definition>
+       <paragraph>
+        This is by far the most common cause of selection issues.
+       </paragraph>
+       <paragraph>
+        There are known problems with some graphics cards when using multisampling.
+       </paragraph>
+       <paragraph>
+        You can disable this option by:
+       </paragraph>
+       <bullet_list bullet="-">
+        <list_item>
+         <paragraph>
+          Turning multisampling off in your graphics card driver options.
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Turning
+          <emphasis>
+           Multisampling
+          </emphasis>
+          off in the
+          <reference internal="True" refuri="../editors/preferences/viewport.html#prefs-system-multisampling">
+           <inline classes="std std-ref">
+            System Preferences
+           </inline>
+          </reference>
+          .
+         </paragraph>
+        </list_item>
+       </bullet_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Change Anti-Aliasing Sample Settings
+      </term>
+      <definition>
+       <paragraph>
+        Depending on your OpenGL configuration,
+some specific sample settings may work while others fail.
+       </paragraph>
+       <paragraph>
+        Unfortunately finding working configuration involves trial &amp; error testing.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Upgrade Graphics Driver
+      </term>
+      <definition>
+       <paragraph>
+        As with any OpenGL-related issues, using recent drivers can resolve problems.
+       </paragraph>
+       <paragraph>
+        However, it should be noted that this is a fairly common problem and remains unresolved with many drivers.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

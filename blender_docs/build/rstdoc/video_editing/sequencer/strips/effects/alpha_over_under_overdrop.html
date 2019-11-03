@@ -1,0 +1,183 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/video_editing/sequencer/strips/effects/alpha_over_under_overdrop.rst">
+ <section ids="alpha-over-under-over-drop" names="alpha\ over,\ under\ &amp;\ over\ drop alpha\ chồng\ lên,\ thả\ trên\ &amp;\ dưới\ --\ alpha\ over,\ under\ &amp;\ over\ drop">
+  <title>
+   Alpha Chồng Lên, Thả Trên &amp; Dưới -- Alpha Over, Under &amp; Over Drop
+  </title>
+  <paragraph>
+   Using the alpha (transparency channel),
+this effect composites a result based on transparent areas of the dominant image.
+If you use a Scene strip, the areas of the image where there is not anything solid are transparent;
+they have an alpha value of 0. If you use a movie strip, that movie has an alpha value of 1 (completely opaque).
+  </paragraph>
+  <paragraph>
+   So, you can use the
+   <emphasis>
+    Alpha Over
+   </emphasis>
+   /
+   <emphasis>
+    Alpha Under
+   </emphasis>
+   effect to composite the CGI Scene on top of your movie.
+The result is your model doing whatever as if it was part of the movie.
+The
+   <inline classes="menuselection" rawtext=":menuselection:`Adjust --&gt; Compositing --&gt; Opacity`">
+    Adjust ‣ Compositing ‣ Opacity
+   </inline>
+   controls how much
+the foreground is mixed over the background, fading in the foreground on top of the background.
+The colors of transparent foreground image areas are ignored and do not change the color of the background.
+  </paragraph>
+  <target refid="bpy-types-alphaoversequence">
+  </target>
+  <section ids="alpha-over bpy-types-alphaoversequence" names="alpha\ over alpha\ chồng\ lên\ --\ alpha\ over bpy.types.alphaoversequence">
+   <title>
+    Alpha Chồng Lên -- Alpha Over
+   </title>
+   <paragraph>
+    With
+    <emphasis>
+     Alpha Over
+    </emphasis>
+    , the strips are layered up in the order selected; the first strip selected is the background,
+and the second one goes
+    <emphasis>
+     over
+    </emphasis>
+    the first one selected.
+The
+    <emphasis>
+     Opacity
+    </emphasis>
+    controls the transparency of the
+    <emphasis>
+     foreground
+    </emphasis>
+    , i.e.
+    <emphasis>
+     Opacity
+    </emphasis>
+    of 0.0;
+will only show the background, and an
+    <emphasis>
+     Opacity
+    </emphasis>
+    of 1.0 will completely override the background with the foreground
+(except in the transparent areas of this one, of course!)
+   </paragraph>
+   <warning>
+    <paragraph>
+     By clicking the
+     <emphasis>
+      Premultiply Alpha
+     </emphasis>
+     button in the Sidebar of the foreground strip,
+the alpha values of the two strips are not multiplied or added together.
+Use this effect when adding a foreground strip that has a variable alpha channel
+(some opaque areas, some transparent, some in between) over a strip that has a flat opaque
+(alpha=1.0 or greater) channel. If you notice a glow around your foreground objects,
+or strange transparent areas of your foreground object when using
+     <emphasis>
+      Alpha Over
+     </emphasis>
+     ,
+enable
+     <emphasis>
+      Premultiply
+     </emphasis>
+     .
+    </paragraph>
+   </warning>
+  </section>
+  <section ids="example" names="example">
+   <title>
+    Example
+   </title>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/sequencer_sequencer_strips_effects_alpha-over-under-overdrop_example.png'}" uri="images/sequencer_sequencer_strips_effects_alpha-over-under-overdrop_example.png"/>
+    <caption>
+     Alpha Over Effect.
+    </caption>
+   </figure>
+   <target refid="bpy-types-alphaundersequence">
+   </target>
+  </section>
+  <section ids="alpha-under bpy-types-alphaundersequence" names="alpha\ under alpha\ dưới\ --\ alpha\ under bpy.types.alphaundersequence">
+   <title>
+    Alpha Dưới -- Alpha Under
+   </title>
+   <paragraph>
+    With
+    <emphasis>
+     Alpha Under
+    </emphasis>
+    , this is the contrary:
+The first strip selected is the foreground, and the second one, the background.
+Moreover, the
+    <emphasis>
+     Opacity
+    </emphasis>
+    controls the transparency of the
+    <emphasis>
+     background
+    </emphasis>
+    , i.e. an
+    <emphasis>
+     Opacity
+    </emphasis>
+    of 0.0;
+will only show the foreground (the background is completely transparent),
+and an
+    <emphasis>
+     Opacity
+    </emphasis>
+    of 1.0 will give the same results as with
+    <emphasis>
+     Alpha Over
+    </emphasis>
+    .
+   </paragraph>
+   <target refid="bpy-types-overdropsequence">
+   </target>
+  </section>
+  <section ids="over-drop bpy-types-overdropsequence" names="over\ drop bpy.types.overdropsequence">
+   <title>
+    Over Drop
+   </title>
+   <paragraph>
+    <emphasis>
+     Over Drop
+    </emphasis>
+    is between the two others: as with
+    <emphasis>
+     Alpha Under
+    </emphasis>
+    ,
+the first selected strip will be the foreground, but as with
+    <emphasis>
+     Alpha Over
+    </emphasis>
+    ,
+the
+    <emphasis>
+     Opacity
+    </emphasis>
+    controls the transparency of this foreground.
+   </paragraph>
+   <paragraph>
+    The
+    <emphasis>
+     Over Drop
+    </emphasis>
+    effect is much like the Cross,
+but puts preference to the top or second image,
+giving more of a gradual overlay effect than a blend like the Cross does. Of course,
+all of the Alpha effects respect the alpha (transparency) channel, whereas Cross does not.
+   </paragraph>
+   <paragraph>
+    The degree of Alpha applied, and thus color mixing, can be controlled by an F-curve.
+Creating a Sine wave could have the effect of the foreground fading in and out.
+   </paragraph>
+  </section>
+ </section>
+</document>

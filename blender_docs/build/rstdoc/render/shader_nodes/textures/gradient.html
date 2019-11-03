@@ -1,0 +1,167 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/textures/gradient.rst">
+ <target refid="bpy-types-shadernodetexgradient">
+ </target>
+ <section ids="gradient-texture-node bpy-types-shadernodetexgradient" names="gradient\ texture\ node --\ gradient\ texture\ node bpy.types.shadernodetexgradient">
+  <title>
+   -- Gradient Texture Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_textures_gradient_node.png'}" uri="images/render_shader-nodes_textures_gradient_node.png"/>
+   <caption>
+    Gradient Texture Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Gradient Texture
+   </emphasis>
+   node generates interpolated color and intensity values based on the input vector.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       Tọa độ chất liệu để lấy mẫu vật chất liệu tại đó; Trong trường hợp ổ cắm không có kết nối nào thì sử dụng tọa độ của chất liệu sinh tạo (Generated).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại -- Type
+     </term>
+     <definition>
+      <paragraph>
+       Controls the type of gradient generated.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tuyến Tính -- Linear
+        </term>
+        <definition>
+         <paragraph>
+          Directly returns the input X coordinate.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bậc Hai -- Quadratic
+        </term>
+        <definition>
+         <paragraph>
+          Interpolates the input X coordinate quadratically.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Chậm Rãi -- Easing
+        </term>
+        <definition>
+         <paragraph>
+          Uses a combination of quadratic and linear interpolation
+to return a smooth gradient from the input X coordinate.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Chéo Góc -- Diagonal
+        </term>
+        <definition>
+         <paragraph>
+          Averages the input X and Y coordinates.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hình Cầu -- Spherical
+        </term>
+        <definition>
+         <paragraph>
+          Creates an inverse gradient using the length of the input vector; the maximum value is at (0, 0, 0).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Quadratic Sphere
+        </term>
+        <definition>
+         <paragraph>
+          The same as Spherical, except interpolated quadratically.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tỏa Tròn -- Radial
+        </term>
+        <definition>
+         <paragraph>
+          Returns a value based on the angle of the input around the Z axis.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra của màu chất liệu.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Cường độ xuất của chất liệu.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_shader-nodes_textures_gradient_example.jpg'}" uri="images/render_shader-nodes_textures_gradient_example.jpg" width="200px"/>
+    <caption>
+     Gradient texture using object coordinates.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

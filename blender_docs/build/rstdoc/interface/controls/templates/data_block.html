@@ -1,0 +1,411 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/interface/controls/templates/data_block.rst">
+ <target refid="ui-data-block">
+ </target>
+ <section ids="data-block-menu ui-data-block" names="data-block\ menu trình\ đơn\ khối\ dữ\ liệu\ --\ data-block\ menu ui-data-block">
+  <title>
+   Trình Đơn Khối Dữ Liệu -- Data-Block Menu
+  </title>
+  <paragraph>
+   A set of menu buttons used to link
+   <reference internal="True" refuri="../../../files/data_blocks.html">
+    <inline classes="doc">
+     Khối Dữ Liệu -- Data-Blocks
+    </inline>
+   </reference>
+   to
+each other. If data-blocks are linked the data will be updated across
+all of the
+   <reference internal="True" refuri="../../../glossary/index.html#term-data-user">
+    <inline classes="xref std std-term">
+     data users
+    </inline>
+   </reference>
+   when edited.
+  </paragraph>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/interface_controls_templates_data-block_data-block.png'}" uri="images/interface_controls_templates_data-block_data-block.png"/>
+   <caption>
+    A data-block menu with a search field.
+   </caption>
+  </figure>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Thể Loại -- Type
+    </term>
+    <definition>
+     <paragraph>
+      Shows an icon indicating the data-block type. It opens up the following pop-up menu.
+The data-block can be dragged from here e.g. to drag a material onto an object in the 3D View or
+into a
+      <reference internal="True" refid="ui-data-id">
+       <inline classes="std std-ref">
+        Chỉ Danh của Dữ Liệu -- Data ID
+       </inline>
+      </reference>
+      field.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Liệt Kê -- List
+       </term>
+       <definition>
+        <paragraph>
+         A list of data-blocks available in the current blend-file, or a link to select an item from.
+The menu may show a preview besides the items and
+a search field to search the items in the list by name.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Tên -- Name
+    </term>
+    <definition>
+     <paragraph>
+      Displays the internal name of the linked Data-Block, which can be edited as a regular text field.
+If a name is already assigned, Blender will add a digit to the name like ".001".
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Số Người Dùng -- User count
+    </term>
+    <definition>
+     <paragraph>
+      Displays the number of
+      <reference internal="True" refuri="../../../glossary/index.html#term-data-user">
+       <inline classes="xref std std-term">
+        data users
+       </inline>
+      </reference>
+      of the data.
+Clicking on user count button will make it a single-user copy,
+with it linked only to the active object/object's data.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Fake User (shield icon)
+    </term>
+    <definition>
+     <paragraph>
+      Keeps the data-block saved in the blend-file, even if it has no
+      <reference internal="True" refuri="../../../glossary/index.html#term-real-user">
+       <inline classes="xref std std-term">
+        Real User
+       </inline>
+      </reference>
+      .
+When activated an "F" will be shown before the name in the list.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Make Local (chain icon)
+    </term>
+    <definition>
+     <paragraph>
+      Todo &lt;2.79.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     New/Add (files icon)
+    </term>
+    <definition>
+     <paragraph>
+      Creates a new data-block or duplicates the current data-block and applies it.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Open file (folder icon)
+    </term>
+    <definition>
+     <paragraph>
+      Opens the
+      <reference internal="True" refuri="../../../editors/file_browser.html">
+       <inline classes="doc">
+        File Browser
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Unpack file (bin icon)
+    </term>
+    <definition>
+     <paragraph>
+      <reference internal="True" refuri="../../../files/blend/packed_data.html#pack-unpack-data">
+       <inline classes="std std-ref">
+        Unpack
+       </inline>
+      </reference>
+      the file packed into the current blend-file to external ones.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Tháo gắn kết khối dữ liệu -- Unlink data-block
+     <literal>
+      X
+     </literal>
+    </term>
+    <definition>
+     <paragraph>
+      Clears the link.
+      <literal classes="kbd">
+       Shift-LMB
+      </literal>
+      to set the users to zero
+allowing the data to be fully deleted from the blend-file.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <paragraph>
+   Sometimes there is a
+   <reference internal="True" refuri="list_presets.html#ui-list-view">
+    <inline classes="std std-ref">
+     list
+    </inline>
+   </reference>
+   of applied data-blocks
+(such as a list of materials used on the object).
+  </paragraph>
+  <seealso>
+   <paragraph>
+    Data-blocks are discussed further in the
+    <reference internal="True" refuri="../../../files/data_blocks.html">
+     <inline classes="doc">
+      Data System chapter
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </seealso>
+  <section ids="preview" names="preview duyệt\ thảo\ --\ preview">
+   <title>
+    Duyệt Thảo -- Preview
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/interface_controls_templates_data-block_preview.png'}" uri="images/interface_controls_templates_data-block_preview.png"/>
+    <caption>
+     The Data-Block menu with preview.
+    </caption>
+   </figure>
+   <paragraph>
+    In the Tool Settings is a version of the data-block menu with a bigger preview.
+   </paragraph>
+   <container classes="lead">
+    <comment xml:space="preserve">
+     clear
+    </comment>
+   </container>
+   <comment xml:space="preserve">
+    rename to selector?
+   </comment>
+   <target refid="ui-data-id">
+   </target>
+  </section>
+  <section ids="data-id ui-data-id" names="data\ id chỉ\ danh\ của\ dữ\ liệu\ --\ data\ id ui-data-id">
+   <title>
+    Chỉ Danh của Dữ Liệu -- Data ID
+   </title>
+   <figure align="right" ids="id3">
+    <image candidates="{'*': 'images/interface_controls_templates_data-block_data-id.png'}" uri="images/interface_controls_templates_data-block_data-id.png"/>
+    <caption>
+     A Data ID field.
+    </caption>
+   </figure>
+   <paragraph>
+    A Data ID is a text field with an icon on the left, which opens a pop-up.
+Data ID is a unique name for an object. Data ID is used to refer to
+objects, and therefore Blender does not allow any two objects of same
+type to have same ID (same name). If Data ID is already in use,
+Blender will automatically append a number to the end to prevent ID collision
+(for example "Cube.001").
+   </paragraph>
+   <paragraph>
+    Menus showing Data IDs can show the following elements:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại -- Type
+     </term>
+     <definition>
+      <paragraph>
+       The icon on the left specifies the accepted data-block type.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tên -- Name
+     </term>
+     <definition>
+      <paragraph>
+       The text field functions as a search field by matching elements in the list.
+Press
+       <literal classes="kbd">
+        Tab
+       </literal>
+       to auto-complete names up to the level a match is found.
+If more than one match exists, you have to continue typing.
+If you type an invalid name, the value will remain unchanged.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Liệt Kê -- List
+     </term>
+     <definition>
+      <paragraph>
+       Lets you select the data-block directly.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Ống Hút -- Eyedropper
+     </term>
+     <definition>
+      <paragraph>
+       In some Data IDs there is an
+       <reference internal="True" refuri="../buttons/eyedropper.html#ui-eyedropper">
+        <inline classes="std std-ref">
+         Eyedropper
+        </inline>
+       </reference>
+       available through the pipette icon on the right side.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Loại Bỏ
+      <literal>
+       X
+      </literal>
+      -- Remove
+      <literal>
+       X
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Click the
+       <literal>
+        X
+       </literal>
+       button on the right to remove the reference.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="sub-ids" names="sub\ ids id\ phụ\ --\ sub\ ids">
+    <title>
+     ID Phụ -- Sub IDs
+    </title>
+    <paragraph>
+     Related types of IDs may become available to select a property or child object,
+depending on the object type.
+    </paragraph>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/interface_controls_templates_data-block_subids.png'}" uri="images/interface_controls_templates_data-block_subids.png"/>
+     <caption>
+      Sub ID Example.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Nhóm Điểm Đỉnh -- Vertex Group
+      </term>
+      <definition>
+       <paragraph>
+        If the selected object in the
+        <emphasis>
+         Name
+        </emphasis>
+        field is a mesh or a lattice,
+an additional field is displayed where a vertex group can be selected.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xương -- Bone
+      </term>
+      <definition>
+       <paragraph>
+        If the selected object in the
+        <emphasis>
+         Name
+        </emphasis>
+        field is an armature,
+a new field is displayed offering the choice to specify
+an individual bone by entering its name in the
+        <emphasis>
+         Bone
+        </emphasis>
+        data ID.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Đầu/Đuôi -- Head/Tail
+         </term>
+         <definition>
+          <paragraph>
+           If a Bone is set, a new field is displayed offering
+the choice of whether the head or tail of a Bone will be pointed at.
+The slider defines where along this bone the point lies interpolating along the bone axis in a straight line.
+A value of zero will point at the Head/Root of a Bone,
+while a value of one will point at the Tail/Tip of a Bone.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             -- Use B-Bone Shape
+            </term>
+            <definition>
+             <paragraph>
+              When the bone is a
+              <reference internal="True" refuri="../../../animation/armatures/bones/properties/bendy_bones.html">
+               <inline classes="doc">
+                bendy bone
+               </inline>
+              </reference>
+              ,
+click on this button to make the point follow the curvature of the B-spline between head and tail.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

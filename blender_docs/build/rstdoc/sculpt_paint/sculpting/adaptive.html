@@ -1,0 +1,96 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/sculpt_paint/sculpting/adaptive.rst">
+ <section ids="adaptive-sculpting" names="adaptive\ sculpting --\ adaptive\ sculpting">
+  <title>
+   -- Adaptive Sculpting
+  </title>
+  <paragraph>
+   In order for sculpting to give accurate and predictable results, Blender needs geometry to work with.
+One way to accomplish this is starting off with a highly subdivided mesh.
+The other way involves using either of two adaptive sculpting methods to add geometry dynamically.
+  </paragraph>
+  <section ids="dynamic-topology" names="dynamic\ topology --\ dynamic\ topology">
+   <title>
+    -- Dynamic Topology
+   </title>
+   <paragraph>
+    Dynamic topology (aka dyntopo) is a dynamic tessellation
+sculpting method that adds and removes details under the brush.
+This works by first tessellating the mesh then applying the sculpting stroke on top of the tessellated mesh.
+   </paragraph>
+   <paragraph>
+    This makes it possible to sculpt complex shapes out of a simple mesh,
+rather than just adding details onto a modeled base mesh.
+   </paragraph>
+   <seealso>
+    <paragraph>
+     Dynamic Topology can be enabled in the
+     <reference internal="True" refuri="tool_settings/dyntopo.html">
+      <inline classes="doc">
+       Dyntopo panel
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </seealso>
+  </section>
+  <section ids="multiresolution-modifier" names="multiresolution\ modifier --\ multiresolution\ modifier">
+   <title>
+    -- Multiresolution Modifier
+   </title>
+   <paragraph>
+    The Multiresolution Modifier can be used to dynamically subdivide the mesh.
+The more subdivision the more computing will be needed. With the Blender stack
+non-destructive data, multi-resolution sculpting will help when you have a clean topology base mesh.
+   </paragraph>
+   <paragraph>
+    When sculpting with multiple resolutions you have the ability to sculpt in different levels of subdivision,
+this mean you can sculpt some details in subdivision level 1 and add more details in
+subdivision 2 and go back to subdivision 1 correct some mistakes. While this workflow is
+often used, the Multiresolution Modifier has some limitations. You may end up with some mesh distortions.
+As an advice, add as most details as possible before adding more subdivisions.
+Clay brush works better with multi-resolution sculpting to sculpt secondary forms.
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Step up one multires level
+      <literal classes="kbd">
+       PageUp
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Step down one multires level
+      <literal classes="kbd">
+       PageDown
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Set multires level
+      <literal classes="kbd">
+       Ctrl-0
+      </literal>
+      to
+      <literal classes="kbd">
+       Ctrl-5
+      </literal>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <seealso>
+    <paragraph>
+     Read more about the
+     <reference internal="True" refuri="../../modeling/modifiers/generate/multiresolution.html">
+      <inline classes="doc">
+       Multiresolution Modifier
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </seealso>
+  </section>
+ </section>
+</document>

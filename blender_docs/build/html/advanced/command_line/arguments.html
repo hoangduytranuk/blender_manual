@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Những Tham Số Dòng Lệnh -- Command Line Arguments &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Command Line Rendering" href="render.html" />
+    <link rel="prev" title="Windows" href="launch/windows.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cao Cấp -- Advanced</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Dòng Lệnh -- Command Line</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launch/index.html">Launching from the Command Line</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Những Tham Số Dòng Lệnh -- Command Line Arguments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#render-options">Tùy Chọn Kết Xuất -- Render Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#format-options">Tùy Chọn về Định Dạng -- Format Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#animation-playback-options">Tùy Chọn Chơi Lại Hoạt Họa -- Animation Playback Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#window-options">Tùy Chọn Cửa Sổ -- Window Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python-options">Tùy Chọn về Python -- Python Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#logging-options">Logging Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debug-options">Tùy Chọn về Điều Tra Lỗi -- Debug Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#misc-options">Tùy Chọn Linh Tinh -- Misc Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-options">Tùy Chọn Khác -- Other Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#argument-parsing">Phân Tích Tham Số -- Argument Parsing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#argument-order">Trật Tự của Tham Số -- Argument Order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#environment-variables">Biến Số Môi Trường -- Environment Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="render.html">Command Line Rendering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripting/index.html">-- Scripting &amp; Extending Blender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app_templates.html">Khuôn Mẫu của Trình Ứng Dụng -- Application Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keymap_editing.html">Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../limits.html">Giới Hạn Làm Việc -- Working Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators.html">Thao Tác/Toán Tử -- Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blender_directory_layout.html">Blender's Directory Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Cao Cấp -- Advanced</a> &raquo;</li>
+        
+          <li><a href="index.html">Dòng Lệnh -- Command Line</a> &raquo;</li>
+        
+      <li>Những Tham Số Dòng Lệnh -- Command Line Arguments</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/advanced/command_line/arguments.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="command-line-arguments">
+<span id="command-line-args"></span><h1>Những Tham Số Dòng Lệnh -- Command Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h1>
+<p>Blender 2.81 Usage: blender [args ...] [file] [args ...]</p>
+<div class="section" id="render-options">
+<h2>Tùy Chọn Kết Xuất -- Render Options<a class="headerlink" href="#render-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-b</span></code>, <code class="docutils literal notranslate"><span class="pre">--background</span></code></dt>
+<dd>Run in background (often used for UI-less rendering).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-a</span></code>, <code class="docutils literal notranslate"><span class="pre">--render-anim</span></code></dt>
+<dd>Render frames from start to end (inclusive).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-S</span></code>, <code class="docutils literal notranslate"><span class="pre">--scene</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code></dt>
+<dd>Set the active scene <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> for rendering.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-f</span></code>, <code class="docutils literal notranslate"><span class="pre">--render-frame</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code></dt>
+<dd><p class="first">Render frame <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code> and save it.</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">+&lt;frame&gt;</span></code> start frame relative, <code class="docutils literal notranslate"><span class="pre">-&lt;frame&gt;</span></code> end frame relative.</li>
+<li>A comma separated list of frames can also be used (no spaces).</li>
+<li>A range of frames can be expressed using <code class="docutils literal notranslate"><span class="pre">..</span></code> separator between the first and last frames (inclusive).</li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-s</span></code>, <code class="docutils literal notranslate"><span class="pre">--frame-start</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code></dt>
+<dd>Set start to frame <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code>, supports +/- for relative frames too.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-e</span></code>, <code class="docutils literal notranslate"><span class="pre">--frame-end</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code></dt>
+<dd>Set end to frame <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code>, supports +/- for relative frames too.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-j</span></code>, <code class="docutils literal notranslate"><span class="pre">--frame-jump</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;frames&gt;</span></code></dt>
+<dd>Set number of frames to step forward after each rendered frame.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-o</span></code>, <code class="docutils literal notranslate"><span class="pre">--render-output</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;path&gt;</span></code></dt>
+<dd><p class="first">Set the render path and file name.
+Use <code class="docutils literal notranslate"><span class="pre">//</span></code> at the start of the path to render relative to the blend-file.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">#</span></code> characters are replaced by the frame number, and used to define zero padding.</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">animation_##_test.png</span></code> becomes <code class="docutils literal notranslate"><span class="pre">animation_01_test.png</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">test-######.png</span></code> becomes <code class="docutils literal notranslate"><span class="pre">test-000001.png</span></code></li>
+</ul>
+<p>When the filename does not contain <code class="docutils literal notranslate"><span class="pre">#</span></code>, The suffix <code class="docutils literal notranslate"><span class="pre">####</span></code> is added to the filename.</p>
+<p>The frame number will be added at the end of the filename, eg:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b animation.blend -o //render_ -F PNG -x <span class="m">1</span> -a
+</pre></div>
+</div>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">//render_</span></code> becomes <code class="docutils literal notranslate"><span class="pre">//render_####</span></code>, writing frames as <code class="docutils literal notranslate"><span class="pre">//render_0001.png</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-E</span></code>, <code class="docutils literal notranslate"><span class="pre">--engine</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;engine&gt;</span></code></dt>
+<dd>Specify the render engine.
+Use <code class="docutils literal notranslate"><span class="pre">-E</span></code> help to list available engines.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-t</span></code>, <code class="docutils literal notranslate"><span class="pre">--threads</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;threads&gt;</span></code></dt>
+<dd>Use amount of <code class="docutils literal notranslate"><span class="pre">&lt;threads&gt;</span></code> for rendering and other operations
+[1-64], 0 for systems processor count.</dd>
+</dl>
+</div>
+<div class="section" id="format-options">
+<h2>Tùy Chọn về Định Dạng -- Format Options<a class="headerlink" href="#format-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-F</span></code>, <code class="docutils literal notranslate"><span class="pre">--render-format</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;format&gt;</span></code></dt>
+<dd><p class="first">Set the render format.
+Valid options are:
+<code class="docutils literal notranslate"><span class="pre">TGA</span></code> <code class="docutils literal notranslate"><span class="pre">RAWTGA</span></code> <code class="docutils literal notranslate"><span class="pre">JPEG</span></code> <code class="docutils literal notranslate"><span class="pre">IRIS</span></code> <code class="docutils literal notranslate"><span class="pre">IRIZ</span></code> <code class="docutils literal notranslate"><span class="pre">AVIRAW</span></code> <code class="docutils literal notranslate"><span class="pre">AVIJPEG</span></code> <code class="docutils literal notranslate"><span class="pre">PNG</span></code> <code class="docutils literal notranslate"><span class="pre">BMP</span></code></p>
+<p class="last">Formats that can be compiled into Blender, not available on all systems:
+<code class="docutils literal notranslate"><span class="pre">HDR</span></code> <code class="docutils literal notranslate"><span class="pre">TIFF</span></code> <code class="docutils literal notranslate"><span class="pre">OPEN_EXR</span></code> <code class="docutils literal notranslate"><span class="pre">OPEN_EXR_MULTILAYER</span></code> <code class="docutils literal notranslate"><span class="pre">MPEG</span></code> <code class="docutils literal notranslate"><span class="pre">CINEON</span></code> <code class="docutils literal notranslate"><span class="pre">DPX</span></code> <code class="docutils literal notranslate"><span class="pre">DDS</span></code> <code class="docutils literal notranslate"><span class="pre">JP2</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-x</span></code>, <code class="docutils literal notranslate"><span class="pre">--use-extension</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;bool&gt;</span></code></dt>
+<dd>Set option to add the file extension to the end of the file.</dd>
+</dl>
+</div>
+<div class="section" id="animation-playback-options">
+<h2>Tùy Chọn Chơi Lại Hoạt Họa -- Animation Playback Options<a class="headerlink" href="#animation-playback-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-a</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;options&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;file(s)&gt;</span></code></dt>
+<dd><p class="first">Instead of showing Blender's user interface, this runs Blender as an animation player,
+to view movies and image sequences rendered in Blender (ignored if <code class="docutils literal notranslate"><span class="pre">-b</span></code> is set).</p>
+<p>Playback Arguments:</p>
+<dl class="last docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-p</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;sx&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;sy&gt;</span></code></dt>
+<dd>Open with lower left corner at <code class="docutils literal notranslate"><span class="pre">&lt;sx&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;sy&gt;</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-m</span></code></dt>
+<dd>Read from disk (Do not buffer).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-f</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;fps&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;fps-base&gt;</span></code></dt>
+<dd>Specify FPS to start with.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-j</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code></dt>
+<dd>Set frame step to <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-s</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code></dt>
+<dd>Play from <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-e</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code></dt>
+<dd>Play until <code class="docutils literal notranslate"><span class="pre">&lt;frame&gt;</span></code>.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="window-options">
+<h2>Tùy Chọn Cửa Sổ -- Window Options<a class="headerlink" href="#window-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-w</span></code>, <code class="docutils literal notranslate"><span class="pre">--window-border</span></code></dt>
+<dd>Force opening with borders.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-W</span></code>, <code class="docutils literal notranslate"><span class="pre">--window-fullscreen</span></code></dt>
+<dd>Force opening in fullscreen mode.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-p</span></code>, <code class="docutils literal notranslate"><span class="pre">--window-geometry</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;sx&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;sy&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;w&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;h&gt;</span></code></dt>
+<dd>Open with lower left corner at <code class="docutils literal notranslate"><span class="pre">&lt;sx&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;sy&gt;</span></code> and width and height as <code class="docutils literal notranslate"><span class="pre">&lt;w&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;h&gt;</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-M</span></code>, <code class="docutils literal notranslate"><span class="pre">--window-maximized</span></code></dt>
+<dd>Force opening maximized.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-con</span></code>, <code class="docutils literal notranslate"><span class="pre">--start-console</span></code></dt>
+<dd>Start with the console window open (ignored if <code class="docutils literal notranslate"><span class="pre">-b</span></code> is set), (Windows only).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--no-native-pixels</span></code></dt>
+<dd>Do not use native pixel size, for high resolution displays (MacBook <code class="docutils literal notranslate"><span class="pre">Retina</span></code>).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--no-window-focus</span></code></dt>
+<dd>Open behind other windows and without taking focus.</dd>
+</dl>
+</div>
+<div class="section" id="python-options">
+<h2>Tùy Chọn về Python -- Python Options<a class="headerlink" href="#python-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-y</span></code>, <code class="docutils literal notranslate"><span class="pre">--enable-autoexec</span></code></dt>
+<dd>Enable automatic Python script execution (default).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-Y</span></code>, <code class="docutils literal notranslate"><span class="pre">--disable-autoexec</span></code></dt>
+<dd>Disable automatic Python script execution (pydrivers &amp; startup scripts).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-P</span></code>, <code class="docutils literal notranslate"><span class="pre">--python</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;filename&gt;</span></code></dt>
+<dd>Run the given Python script file.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--python-text</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code></dt>
+<dd>Run the given Python script text block.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--python-expr</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;expression&gt;</span></code></dt>
+<dd>Run the given expression as a Python script.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--python-console</span></code></dt>
+<dd>Run Blender with an interactive console.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--python-exit-code</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;code&gt;</span></code></dt>
+<dd>Set the exit-code in [0..255] to exit if a Python exception is raised
+(only for scripts executed from the command line), zero disables.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--addons</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;addon(s)&gt;</span></code></dt>
+<dd>Comma separated list of add-ons (no spaces).</dd>
+</dl>
+</div>
+<div class="section" id="logging-options">
+<h2>Logging Options<a class="headerlink" href="#logging-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">--log</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;match&gt;</span></code></dt>
+<dd>Enable logging categories, taking a single comma separated argument.
+Multiple categories can be matched using a <code class="docutils literal notranslate"><span class="pre">.*</span></code> suffix,
+so <code class="docutils literal notranslate"><span class="pre">--log</span> <span class="pre">&quot;wm.*&quot;</span></code> logs every kind of window-manager message.
+Use &quot;^&quot; prefix to ignore, so <code class="docutils literal notranslate"><span class="pre">--log</span> <span class="pre">&quot;*,^wm.operator.*&quot;</span></code> logs all except for <code class="docutils literal notranslate"><span class="pre">wm.operators.*</span></code>
+Use &quot;*&quot; to log everything.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--log-level</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;level&gt;</span></code></dt>
+<dd>Set the logging verbosity level (higher for more details) defaults to 1,
+use -1 to log all levels.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--log-show-basename</span></code></dt>
+<dd>Only show file name in output (not the leading path).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--log-show-backtrace</span></code></dt>
+<dd>Show a back trace for each log message (debug builds only).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--log-show-timestamp</span></code></dt>
+<dd>Show a timestamp for each log message in seconds since start.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--log-file</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;filename&gt;</span></code></dt>
+<dd>Set a file to output the log to.</dd>
+</dl>
+</div>
+<div class="section" id="debug-options">
+<h2>Tùy Chọn về Điều Tra Lỗi -- Debug Options<a class="headerlink" href="#debug-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-d</span></code>, <code class="docutils literal notranslate"><span class="pre">--debug</span></code></dt>
+<dd><p class="first">Turn debugging on.</p>
+<ul class="last simple">
+<li>Enables memory error detection</li>
+<li>Disables mouse grab (to interact with a debugger in some cases)</li>
+<li>Keeps Python's <code class="docutils literal notranslate"><span class="pre">sys.stdin</span></code> rather than setting it to None</li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-value</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;value&gt;</span></code></dt>
+<dd>Set debug value of <code class="docutils literal notranslate"><span class="pre">&lt;value&gt;</span></code> on startup.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-events</span></code></dt>
+<dd>Enable debug messages for the event system.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-ffmpeg</span></code></dt>
+<dd>Enable debug messages from FFmpeg library.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-handlers</span></code></dt>
+<dd>Enable debug messages for event handling.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-libmv</span></code></dt>
+<dd>Enable debug messages from libmv library.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-cycles</span></code></dt>
+<dd>Enable debug messages from Cycles.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-memory</span></code></dt>
+<dd>Enable fully guarded memory allocation and debugging.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-jobs</span></code></dt>
+<dd>Enable time profiling for background jobs.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-python</span></code></dt>
+<dd>Enable debug messages for Python.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-depsgraph</span></code></dt>
+<dd>Enable all debug messages from dependency graph.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-depsgraph-eval</span></code></dt>
+<dd>Enable debug messages from dependency graph related on evaluation.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-depsgraph-build</span></code></dt>
+<dd>Enable debug messages from dependency graph related on graph construction.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-depsgraph-tag</span></code></dt>
+<dd>Enable debug messages from dependency graph related on tagging.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-depsgraph-no-threads</span></code></dt>
+<dd>Switch dependency graph to a single threaded evaluation.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-depsgraph-time</span></code></dt>
+<dd>Enable debug messages from dependency graph related on timing.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-depsgraph-pretty</span></code></dt>
+<dd>Enable colors for dependency graph debug messages.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-gpu</span></code></dt>
+<dd>Enable gpu debug context and information for OpenGL 4.3+.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-gpumem</span></code></dt>
+<dd>Enable GPU memory stats in status bar.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-gpu-shaders</span></code></dt>
+<dd>Enable GPU memory stats in status bar.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-gpu-force-workarounds</span></code></dt>
+<dd>Enable GPU memory stats in status bar.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-wm</span></code></dt>
+<dd>Enable debug messages for the window manager, shows all operators in search, shows keymap errors.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-all</span></code></dt>
+<dd>Enable all debug messages.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-io</span></code></dt>
+<dd>Enable debug messages for I/O (collada, ...).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-fpe</span></code></dt>
+<dd>Enable floating point exceptions.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--disable-crash-handler</span></code></dt>
+<dd>Disable the crash handler.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--disable-abort-handler</span></code></dt>
+<dd>Disable the abort handler.</dd>
+</dl>
+</div>
+<div class="section" id="misc-options">
+<h2>Tùy Chọn Linh Tinh -- Misc Options<a class="headerlink" href="#misc-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">--app-template</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code></dt>
+<dd>Set the application template (matching the directory name), use <code class="docutils literal notranslate"><span class="pre">default</span></code> for none.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--factory-startup</span></code></dt>
+<dd>Skip reading the startup.blend in the user's home directory.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--enable-library-override</span></code></dt>
+<dd>Enable Library Override features in the UI.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--enable-event-simulate</span></code></dt>
+<dd>Enable event simulation testing feature <code class="docutils literal notranslate"><span class="pre">bpy.types.Window.event_simulate</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--env-system-datafiles</span></code></dt>
+<dd>Set the <code class="docutils literal notranslate"><span class="pre">BLENDER_SYSTEM_DATAFILES</span></code> environment variable.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--env-system-scripts</span></code></dt>
+<dd>Set the <code class="docutils literal notranslate"><span class="pre">BLENDER_SYSTEM_SCRIPTS</span></code> environment variable.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--env-system-python</span></code></dt>
+<dd>Set the <code class="docutils literal notranslate"><span class="pre">BLENDER_SYSTEM_PYTHON</span></code> environment variable.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-noaudio</span></code></dt>
+<dd>Force sound system to None.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-setaudio</span></code></dt>
+<dd>Force sound system to a specific device.
+<code class="docutils literal notranslate"><span class="pre">NULL</span></code> <code class="docutils literal notranslate"><span class="pre">SDL</span></code> <code class="docutils literal notranslate"><span class="pre">OPENAL</span></code> <code class="docutils literal notranslate"><span class="pre">JACK</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">--help</span></code></dt>
+<dd>Print this help text and exit.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-R</span></code></dt>
+<dd>Register blend-file extension, then exit (Windows only).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-r</span></code></dt>
+<dd>Silently register blend-file extension, then exit (Windows only).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-v</span></code>, <code class="docutils literal notranslate"><span class="pre">--version</span></code></dt>
+<dd>Print Blender version and exit.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--</span></code></dt>
+<dd>End option processing, following arguments passed unchanged. Access via Python's <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code>.</dd>
+</dl>
+</div>
+<div class="section" id="other-options">
+<h2>Tùy Chọn Khác -- Other Options<a class="headerlink" href="#other-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">/?</span></code></dt>
+<dd>Print this help text and exit (windows only).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--debug-freestyle</span></code></dt>
+<dd>Enable debug messages for Freestyle.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--verbose</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;verbose&gt;</span></code></dt>
+<dd>Set logging verbosity level.</dd>
+</dl>
+</div>
+<div class="section" id="argument-parsing">
+<h2>Phân Tích Tham Số -- Argument Parsing<a class="headerlink" href="#argument-parsing" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Arguments must be separated by white space, eg:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -ba test.blend
+</pre></div>
+</div>
+<p>...will exit since <code class="docutils literal notranslate"><span class="pre">-ba</span></code> is an unknown argument.</p>
+</div></blockquote>
+</div>
+<div class="section" id="argument-order">
+<h2>Trật Tự của Tham Số -- Argument Order<a class="headerlink" href="#argument-order" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Arguments are executed in the order they are given. eg:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender --background test.blend --render-frame <span class="m">1</span> --render-output <span class="s1">&#39;/tmp&#39;</span>
+</pre></div>
+</div>
+<p>...will not render to <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> because <code class="docutils literal notranslate"><span class="pre">--render-frame</span> <span class="pre">1</span></code> renders before the output path is set.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender --background --render-output /tmp test.blend --render-frame <span class="m">1</span>
+</pre></div>
+</div>
+<p>...will not render to <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> because loading the blend-file overwrites the render output that was set.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender --background test.blend --render-output /tmp --render-frame <span class="m">1</span>
+</pre></div>
+</div>
+<p>...works as expected.</p>
+</div></blockquote>
+</div>
+<div class="section" id="environment-variables">
+<h2>Biến Số Môi Trường -- Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">BLENDER_USER_CONFIG:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Directory for user configuration files.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">BLENDER_USER_SCRIPTS:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Directory for user scripts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">BLENDER_SYSTEM_SCRIPTS:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Directory for system wide scripts.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">BLENDER_USER_DATAFILES:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Directory for user data files (icons, translations, ..).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">BLENDER_SYSTEM_DATAFILES:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Directory for system wide data files.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">BLENDER_SYSTEM_PYTHON:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Directory for system Python libraries.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">TEMP:</th><td class="field-body">Store temporary files here.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">TMP:</th><td class="field-body">or $TMPDIR           Store temporary files here.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">SDL_AUDIODRIVER:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">LibSDL audio driver - alsa, esd, dma.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">PYTHONHOME:</th><td class="field-body">Path to the Python directory, eg. /usr/lib/python.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="render.html" class="btn btn-neutral float-right" title="Command Line Rendering" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="launch/windows.html" class="btn btn-neutral float-left" title="Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

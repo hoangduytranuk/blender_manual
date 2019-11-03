@@ -1,0 +1,353 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/transform/control/precision.rst">
+ <section dupnames="precision" ids="precision">
+  <title>
+   Precision
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Object and Edit Modes
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Ctrl
+       </literal>
+       and/or
+       <literal classes="kbd">
+        Shift
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Holding
+   <literal classes="kbd">
+    Ctrl
+   </literal>
+   during a transform operation (such as move, rotate or scale)
+will toggle
+   <reference internal="True" refuri="snap.html#transform-snap">
+    <inline classes="std std-ref">
+     Transform Snapping
+    </inline>
+   </reference>
+   .
+When the
+   <reference internal="True" refuri="snap.html#transform-snap-element">
+    <inline classes="std std-ref">
+     Snap Element
+    </inline>
+   </reference>
+   is set to
+   <emphasis>
+    Increment
+   </emphasis>
+   ,
+this allows the transformation to be performed in discrete amounts.
+  </paragraph>
+  <paragraph>
+   Holding
+   <literal classes="kbd">
+    Shift
+   </literal>
+   during a transform operation will transform
+the object at 1/10th the speed, allowing much finer control.
+  </paragraph>
+  <paragraph>
+   The magnitude of the transformation can be viewed in the 3D View header.
+Releasing
+   <literal classes="kbd">
+    Ctrl
+   </literal>
+   or
+   <literal classes="kbd">
+    Shift
+   </literal>
+   during the transformation will cause
+the movement to revert back to its normal mode of operation.
+  </paragraph>
+  <note>
+   <paragraph>
+    The snapping behaviors described on this page
+    <strong>
+     only
+    </strong>
+    apply
+when
+    <reference internal="True" refuri="snap.html#transform-snap-element">
+     <inline classes="std std-ref">
+      Increment Snap
+     </inline>
+    </reference>
+    is selected.
+   </paragraph>
+  </note>
+  <tip>
+   <paragraph>
+    It is possible to enable both snapping and precision mode,
+simply hold
+    <literal classes="kbd">
+     Ctrl
+    </literal>
+    and
+    <literal classes="kbd">
+     Shift
+    </literal>
+    . This has the following effects:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Move
+     </term>
+     <definition>
+      <paragraph>
+       Changes in 0.1 unit increments, regardless of zoom level.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Rotation
+     </term>
+     <definition>
+      <paragraph>
+       Changes in 1 unit increments.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Scale
+     </term>
+     <definition>
+      <paragraph>
+       Changes in 0.01 unit increments.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </tip>
+  <section ids="usage" names="usage">
+   <title>
+    Usage
+   </title>
+   <section ids="with-hotkeys" names="with\ hotkeys">
+    <title>
+     With Hotkeys
+    </title>
+    <paragraph>
+     Press
+     <literal classes="kbd">
+      G
+     </literal>
+     ,
+     <literal classes="kbd">
+      R
+     </literal>
+     or
+     <literal classes="kbd">
+      S
+     </literal>
+     and then hold either
+     <literal classes="kbd">
+      Ctrl
+     </literal>
+     ,
+     <literal classes="kbd">
+      Shift
+     </literal>
+     or
+     <literal classes="kbd">
+      Shift-Ctrl
+     </literal>
+     .
+    </paragraph>
+   </section>
+   <section ids="with-the-transform-gizmo" names="with\ the\ transform\ gizmo">
+    <title>
+     With the Transform Gizmo
+    </title>
+    <paragraph>
+     Hold
+     <literal classes="kbd">
+      Ctrl
+     </literal>
+     ,
+     <literal classes="kbd">
+      Shift
+     </literal>
+     or
+     <literal classes="kbd">
+      Shift-Ctrl
+     </literal>
+     and click on the appropriate
+gizmo handle. Then move the mouse in the desired direction.
+The reverse action will also work i.e. clicking the gizmo handle and
+then holding the shortcut key for precision control.
+    </paragraph>
+    <seealso>
+     <paragraph>
+      <reference internal="True" refuri="gizmos.html">
+       <inline classes="doc">
+        Read more about the Transform Gizmo
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </seealso>
+    <tip>
+     <paragraph>
+      Combining with Other Controls
+     </paragraph>
+     <paragraph>
+      All of the precision controls detailed on the page can be combined with
+the
+      <reference internal="True" refuri="axis_locking.html">
+       <inline classes="doc">
+        Axis Locking
+       </inline>
+      </reference>
+      controls and
+used with the different
+      <reference internal="True" refuri="pivot_point/index.html">
+       <inline classes="doc">
+        Pivot Points
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </tip>
+   </section>
+  </section>
+  <section ids="snapping" names="snapping">
+   <title>
+    Snapping
+   </title>
+   <section ids="move" names="move">
+    <title>
+     Move
+    </title>
+    <figure align="right" ids="id2" width="200px">
+     <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_precision_introduction_blender-units.png'}" uri="images/scene-layout_object_editing_transform_control_precision_introduction_blender-units.png" width="200px"/>
+     <caption>
+      One unit (default zoom level).
+     </caption>
+    </figure>
+    <paragraph>
+     Snapping while moving objects changes the object location in 1 unit increments.
+While in an
+     <reference internal="True" refuri="../../../../../editors/3dview/navigate/align.html">
+      <inline classes="doc">
+       aligned view
+      </inline>
+     </reference>
+     ,
+The increment amount is changed based on the
+     <reference internal="True" refuri="../../../../../editors/3dview/navigate/navigation.html#editors-3dview-navigation-zoom">
+      <inline classes="std std-ref">
+       zoom level
+      </inline>
+     </reference>
+     .
+For example, at a base zoom level objects are moved in increments of 1 unit (i.e. between the two light gray lines).
+Zooming in enough to see the next set of gray lines will snap in increments of 1/10 of a unit.
+Zooming in further until will snap in increments of 1/100 of a unit and so on until the zoom limit is reached.
+Zooming out will have the opposite effect and
+cause movement to happen by increments of 10, 100 units, etc.
+    </paragraph>
+    <container classes="lead">
+     <comment xml:space="preserve">
+      clear
+     </comment>
+    </container>
+   </section>
+   <section ids="rotation" names="rotation">
+    <title>
+     Rotation
+    </title>
+    <paragraph>
+     Holding
+     <literal classes="kbd">
+      Ctrl
+     </literal>
+     will cause rotations of 5 degrees.
+    </paragraph>
+   </section>
+   <section ids="scale" names="scale">
+    <title>
+     Scale
+    </title>
+    <paragraph>
+     Holding
+     <literal classes="kbd">
+      Ctrl
+     </literal>
+     will cause size changes in increments of 0.1 units.
+    </paragraph>
+    <note>
+     <paragraph>
+      Snapping modes
+     </paragraph>
+     <paragraph>
+      Note that if you have a
+      <reference internal="True" refuri="snap.html#transform-snap-element">
+       <inline classes="std std-ref">
+        Snap Element
+       </inline>
+      </reference>
+      option enabled,
+holding
+      <literal classes="kbd">
+       Ctrl
+      </literal>
+      will cause the selection to snap to the nearest element.
+     </paragraph>
+     <paragraph>
+      Read more about
+      <reference internal="True" refuri="snap.html">
+       <inline classes="doc">
+        snapping
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </note>
+   </section>
+  </section>
+  <section dupnames="precision" ids="id1">
+   <title>
+    Precision
+   </title>
+   <paragraph>
+    Holding
+    <literal classes="kbd">
+     Shift
+    </literal>
+    during transformations allows for very fine control that does not
+rely on fixed increments. Rather, large movements of the mouse across
+the screen only result in small transformations of the selection.
+   </paragraph>
+   <paragraph>
+    In rotation mode the selected element will be rotate in 0.01 degree increments.
+   </paragraph>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,176 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/fluid/types/control.rst">
+ <target refid="bpy-types-controlfluidsettings">
+ </target>
+ <section ids="fluid-control bpy-types-controlfluidsettings" names="fluid\ control --\ fluid\ control bpy.types.controlfluidsettings">
+  <title>
+   -- Fluid Control
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Vật Lý (Physics) --&gt; Chất Lỏng (Fluid)`">
+        Vật Lý (Physics) ‣ Chất Lỏng (Fluid)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Thể Loại -- Type
+     </field_name>
+     <field_body>
+      <paragraph>
+       Điều Khiển -- Control
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Using the Lattice-Boltzmann method, the fluid is controlled using particles which define local
+force fields and are generated automatically from either a physical simulation or a sequence
+of target shapes. At the same time, as much as possible of the natural fluid motion is preserved.
+  </paragraph>
+  <youtube aspect="None" height="None" id="WruTNnF6Ztg" width="None">
+  </youtube>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8:
+.. figure:: /images/physics_fluid_types_control_panel.png
+
+   Fluid control options.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Bật -- Enabled
+     </term>
+     <definition>
+      <paragraph>
+       Controls whether the control object contributes to the fluid system.
+This is useful when animating the fluid control object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chất Lượng -- Quality
+     </term>
+     <definition>
+      <paragraph>
+       Higher quality result in more control particles for the fluid control object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đảo Ngược các Khung Hình -- Reverse Frames
+     </term>
+     <definition>
+      <paragraph>
+       Reverses the control object's movement.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thời Gian -- Time
+     </term>
+     <definition>
+      <paragraph>
+       You specify the time interval (start and end time) during which the fluid control object is active.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Attraction Force
+     </term>
+     <definition>
+      <paragraph>
+       Specifies the force which gets emitted by the fluid control object.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sức Mạnh/Cường Độ -- Strength
+        </term>
+        <definition>
+         <paragraph>
+          The strength of the force.
+Positive force results in attraction of the fluid, negative force in avoidance.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Velocity Force
+     </term>
+     <definition>
+      <paragraph>
+       If the fluid control object moves, the resulting velocity can also introduce a force to the fluid.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sức Mạnh/Cường Độ -- Strength
+        </term>
+        <definition>
+         <paragraph>
+          The strength of the effect.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bán Kính -- Radius
+        </term>
+        <definition>
+         <paragraph>
+          The radius of the force.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <paragraph>
+    In these examples,
+the Fluid Control is used to control part of the fluid so that it has a certain shape
+(the sphere drop or the teapot drop) before it falls in the rest of the fluid:
+   </paragraph>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/physics_fluid_types_control_example1.jpg'}" uri="images/physics_fluid_types_control_example1.jpg"/>
+    <caption>
+     Falling drop.
+    </caption>
+   </figure>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/physics_fluid_types_control_example2.jpg'}" uri="images/physics_fluid_types_control_example2.jpg"/>
+    <caption>
+     "Magic Fluid Control".
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

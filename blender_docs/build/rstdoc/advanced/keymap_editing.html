@@ -1,0 +1,406 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/advanced/keymap_editing.rst">
+ <target refid="keymap-customize">
+ </target>
+ <section ids="keymap-customization keymap-customize" names="keymap\ customization điều\ chỉnh\ bố\ trí\ bàn\ phím\ --\ keymap\ customization keymap-customize">
+  <title>
+   Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization
+  </title>
+  <section ids="keys" names="keys phím\ --\ keys">
+   <title>
+    Phím -- Keys
+   </title>
+   <section ids="available-keys" names="available\ keys những\ phím\ có\ thể\ sử\ dụng\ --\ available\ keys">
+    <title>
+     Những Phím Có Thể Sử Dụng -- Available Keys
+    </title>
+    <paragraph>
+     Khi điều chỉnh bố trí bàn phím thì nên sử dụng những phím không gây xung khắc với bố trí bàn phím mặc định của Blender.
+    </paragraph>
+    <paragraph>
+     Đây là những phím chưa sử dụng đến và có khả năng sẽ không bao giờ sử dụng đến trong tương lai.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       F-Keys (
+       <literal classes="kbd">
+        F5
+       </literal>
+       -
+       <literal classes="kbd">
+        F8
+       </literal>
+       )
+      </term>
+      <definition>
+       <paragraph>
+        These F-keys (including modifier combination)
+have been intentionally kept free for users to bind their own keys to.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       <literal classes="kbd">
+        OSKey
+       </literal>
+       (also known as the
+       <literal>
+        Windows-Key
+       </literal>
+       ,
+       <literal>
+        Cmd
+       </literal>
+       or
+       <literal>
+        Super
+       </literal>
+       )
+      </term>
+      <definition>
+       <paragraph>
+        Blender không sử dụng phím này cho bất cứ một gắn kết nào cả.
+       </paragraph>
+       <paragraph>
+        <emphasis>
+         macOS
+        </emphasis>
+        is an exception, where
+        <literal classes="kbd">
+         Cmd
+        </literal>
+        replaces
+        <literal classes="kbd">
+         Ctrl
+        </literal>
+        except in cases it would conflict with the systems key bindings.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Nháy Kép Phím Bổ Trợ -- Modifier Double Click
+      </term>
+      <definition>
+       <paragraph>
+        Gắn kết các phím bổ trợ làm những phím chính cũng được hỗ trợ. Để tránh sự xung khắc xảy ra với những sử dụng thông thường thì bạn có thể gắn kết nó với nháy kép.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="multi-action-keys" names="multi-action\ keys những\ phím\ đa-hành\ động\ --\ multi-action\ keys">
+    <title>
+     Những Phím Đa-Hành Động -- Multi-Action Keys
+    </title>
+    <section ids="click-drag" names="click/drag bấm/kéo\ rê\ --\ click/drag">
+     <title>
+      Bấm/Kéo Rê -- Click/Drag
+     </title>
+     <paragraph>
+      Việc cấu hình một đơn phím để thi hành nhiều hành động một lúc là một việc hoàn toàn khả dĩ, bằng cách dùng sự kiện
+      <emphasis>
+       Bấm
+      </emphasis>
+      (Click) thay vì
+      <emphasis>
+       Ấn
+      </emphasis>
+      (Press). Sau đó bạn có thể gắn
+      <emphasis>
+       Kéo Rê
+      </emphasis>
+      (Drag) vào một hành động riêng biệt.
+     </paragraph>
+     <paragraph>
+      Việc làm này có lợi cho việc pha trộn các hành động, mà trong đó, nó sử dụng sự kiện kéo rê, chẳng hạn, bật/tắt một sắp đặt nào đó với phím tab, kéo rê để mở trình đơn hình rẻ quạt, hiển thị toàn bộ các tùy chọn liên quan đến sắp đặt.
+     </paragraph>
+    </section>
+    <section ids="click-tweak" names="click/tweak bấm/hiệu\ chỉnh\ --\ click/tweak">
+     <title>
+      Bấm/Hiệu Chỉnh -- Click/Tweak
+     </title>
+     <paragraph>
+      Không giống với bấm/kéo rê, cái này chỉ hoạt động với các nút bấm của chuột mà thôi, song có lợi thế là các sự kiện hiệu chỉnh có khả năng là hữu hướng (directional).
+     </paragraph>
+     <paragraph>
+      To use this, events in this keymap must use
+      <emphasis>
+       Click
+      </emphasis>
+      instead of
+      <emphasis>
+       Press
+      </emphasis>
+      ,
+then you can bind
+      <emphasis>
+       Tweak
+      </emphasis>
+      actions to the mouse buttons.
+     </paragraph>
+     <paragraph>
+      This is used in the default keymap in the 3D Viewport,
+      <literal classes="kbd">
+       Alt-MMB
+      </literal>
+      dragging in different directions rotates the view.
+     </paragraph>
+    </section>
+   </section>
+  </section>
+  <section ids="common-operations" names="common\ operations những\ thao\ tác\ thông\ thường\ --\ common\ operations">
+   <title>
+    Những Thao Tác Thông Thường -- Common Operations
+   </title>
+   <paragraph>
+    Phần này sẽ liệt kê những thao tác chung hữu ích có thể sử dụng được.
+   </paragraph>
+   <section ids="key-bindings-for-pop-ups" names="key\ bindings\ for\ pop-ups những\ bố\ trí\ phím\ cho\ trình\ đơn\ bật\ lên\ --\ key\ bindings\ for\ pop-ups">
+    <title>
+     Những Bố Trí Phím cho Trình Đơn Bật Lên -- Key Bindings for Pop-Ups
+    </title>
+    <paragraph>
+     Chúng ta có thể gán các phím tắt cho các trình đơn và các bảng, ngay cả khi chúng chỉ chỉ có thể truy cập được từ các trình đơn nhánh ở những chố khác mà thôi.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Mở một Trình Đơn Bật Lên
+      </term>
+      <definition>
+       <paragraph>
+        Mở bất cứ một trình đơn nào dùng cái bấm của phím.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mở một trình đơn rẻ quạt (
+       <literal>
+        wm.call_menu_pie
+       </literal>
+       )
+      </term>
+      <definition>
+       <paragraph>
+        Mở bất cứ trình đơn rẻ quạt nào dùng cái bấm của phím.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mở một Bảng (
+       <literal>
+        wm.call_panel
+       </literal>
+       )
+      </term>
+      <definition>
+       <paragraph>
+        Mở một bảng bật lên (còn được gọi là một pop-over)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <section ids="menu-panel-identifiers" names="menu\ &amp;\ panel\ identifiers">
+     <title>
+      Menu &amp; Panel Identifiers
+     </title>
+     <paragraph>
+      Để tìm
+      <emphasis>
+       Tên
+      </emphasis>
+      (
+      <literal>
+       name
+      </literal>
+      ) của một trình đơn thì hãy cho bật sở thích
+      <inline classes="menuselection" rawtext=":menuselection:`Giao diện (Interface) --&gt; Hiển Thị (Display) --&gt; Chú Giải Công Cụ Python (Python Tooltips)`">
+       Giao diện (Interface) ‣ Hiển Thị (Display) ‣ Chú Giải Công Cụ Python (Python Tooltips)
+      </inline>
+      lên.
+     </paragraph>
+     <paragraph>
+      Then hover the cursor over the popover button or menu item,
+for sub-menus you will need to use the back arrow to prevent the sub-menu from opening and gaining focus.
+     </paragraph>
+    </section>
+   </section>
+   <section ids="key-bindings-for-properties" names="key\ bindings\ for\ properties những\ gắn\ kết\ về\ phím\ bấm\ cho\ các\ tính\ chất\ --\ key\ bindings\ for\ properties">
+    <title>
+     Những Gắn Kết về Phím Bấm cho các Tính Chất -- Key Bindings for Properties
+    </title>
+    <paragraph>
+     Có rất nhiều các tính chất mà bạn có thể gắn một bố trí phím cho nó. Để tránh việc phải xác định các thao tác (phép toán) cho mỗi tính chất thì hãy sử dụng các thao tác (phép toán) phổ thông (generic operators) thay vì:
+    </paragraph>
+    <paragraph>
+     Các thao tác (phép toán) để điều chỉnh tính chất khởi đầu bằng
+     <literal>
+      wm.context_
+     </literal>
+     .
+    </paragraph>
+    <paragraph>
+     Một số cái thuộc thể loại này bao gồm:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <literal>
+        wm.context_toggle
+       </literal>
+       đảo giá trị của một tính chất
+       <emphasis>
+        bool
+       </emphasis>
+       (boolean property) (giữa Đúng/Sai (True/False)).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        wm.context_cycle_enum
+       </literal>
+       tuần hoàn một tính chất
+       <emphasis>
+        bảng liệt kê
+       </emphasis>
+       (
+       <abbreviation explanation="enumeration">
+        enum
+       </abbreviation>
+       ) từ đầu đến cuối, hoặc ngược lại.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        wm.context_menu_enum
+       </literal>
+       hiển thị một trình đơn bật lên cho một tính chất
+       <emphasis>
+        bảng liệt kê
+       </emphasis>
+       (enum property).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        wm.context_pie_enum
+       </literal>
+       hiển thị một trình đơn rẻ quạt cho một tính chất
+       <emphasis>
+        bảng liệt kê
+       </emphasis>
+       (enum property).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        wm.context_scale_float
+       </literal>
+       tỷ lệ hóa một con số (sử dụng để tăng/giảm cỡ bút vẽ chẳng hạn).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        wm.context_toggle_enum
+       </literal>
+       đảo lật giữa hai tùy chọn của một tùy chọn của một
+       <emphasis>
+        bảng liệt kê
+       </emphasis>
+       (enum).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal>
+        wm.context_modal_mouse
+       </literal>
+       di chuyển con trỏ để tương tác đổi một giá trị.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     Xin xem thêm bài
+     <reference name="bpy.ops.wm" refuri="https://docs.blender.org/api/current/bpy.ops.wm.html">
+      bpy.ops.wm
+     </reference>
+     để xem toàn bộ danh sách.
+    </paragraph>
+    <paragraph>
+     Mỗi một thao tác (phép toán) này có một sắp đặt về
+     <emphasis>
+      đường dẫn dữ liệu
+     </emphasis>
+     (
+     <literal>
+      data_path
+     </literal>
+     ) để tham chiếu tính chất hòng thay đổi.
+    </paragraph>
+    <paragraph>
+     Để tìm
+     <emphasis>
+      đường dẫn dữ liệu
+     </emphasis>
+     (
+     <literal>
+      data_path
+     </literal>
+     ), chúng ta cần phải có một kiến thức cơ bản về Python.
+    </paragraph>
+    <paragraph>
+     Chẳng hạn, bạn có thể sử dụng
+     <emphasis>
+      bàn giao tiếp Python
+     </emphasis>
+     (Python Console) để tiếp cận một tính chất kiểu bool (boolean property) mà bạn muốn gắn kết vào một phím bấm:
+    </paragraph>
+    <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+     bpy.context.object.show_name
+    </literal_block>
+    <paragraph>
+     Để gắn kết cái này vào một phím bấm, tạo thêm một bố trí bàn phím mới, xin hãy sử dụng thao tác (phép toán)
+     <literal>
+      wm.context_toggle
+     </literal>
+     với
+     <emphasis>
+      đường dẫn dữ liệu
+     </emphasis>
+     (
+     <literal>
+      data_path
+     </literal>
+     ) đặt thành
+     <literal>
+      object.show_name
+     </literal>
+     (lưu ý, tiền tố tàng ẩn
+     <literal>
+      bpy.context
+     </literal>
+     ).
+    </paragraph>
+    <paragraph>
+     Xin xem thêm bài
+     <reference name="bpy.context" refuri="https://docs.blender.org/api/current/bpy.context.html">
+      bpy.context
+     </reference>
+     để biết về những thuộc tính ngữ cảnh khác.
+    </paragraph>
+    <paragraph>
+     Chúng ta có thể sử dụng tài liệu về giao diện lập trình Python (Python API) để tìm các tính chất, hoặc sử dụng tính năng tự động hoàn thành (auto-complete) của bàn giao tiếp Python (Python Console) để xem xét các tính chất vốn có.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,160 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/patch_commit.rst">
+ <section ids="patch-commit" names="patch\ &amp;\ commit bản\ liệt\ kê\ sửa\ đổi\ và\ chuyển\ giao\ sửa\ đổi\ --\ patch\ &amp;\ commit">
+  <title>
+   Bản Liệt Kê Sửa Đổi và Chuyển Giao Sửa Đổi -- Patch &amp; Commit
+  </title>
+  <target refid="contribute-patch-submit">
+  </target>
+  <section ids="submit-patches contribute-patch-submit" names="submit\ patches đệ\ trình\ các\ sửa\ đổi\ --\ submit\ patches contribute-patch_submit">
+   <title>
+    Đệ Trình các Sửa Đổi -- Submit Patches
+   </title>
+   <paragraph>
+    Một vài lần đầu thực hiện các thay đổi trong sách hướng dẫn, bạn sẽ cần phải gửi chúng đến dưới dạng một bản liệt kê các sửa đổi
+    <strong>
+     patches
+    </strong>
+    để quản trị viên xem xét. Điều này chỉ là để đảm bảo rằng chúng tôi duy trì bản hướng dẫn sử dụng có chất lượng tốt, và bạn không vô tình mà làm hỏng bất cứ một điều gì trọng yếu, trước khi bạn thành thục với hệ thống làm việc.
+   </paragraph>
+   <paragraph>
+    Để gửi bản liệt kê các sửa đổi, xin hãy làm theo quy trình sau đây:
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Thực hiện bất kỳ thay đổi nào mà bạn mong muốn.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Tạo bản liệt kê sửa đổi/chắp vá (
+      <strong>
+       patch
+      </strong>
+      ) bằng cách thi hành:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      svn diff &gt; filename.diff
+     </literal_block>
+     <paragraph>
+      Điều này tạo ra một tập tin văn bản đơn giản, cho thấy văn bản nào đã được thêm vào, xóa hoặc thay đổi giữa các tập tin đang làm việc của bạn và kho lưu trữ trung tâm.
+     </paragraph>
+     <paragraph>
+      Nếu bạn đã kiến tạo bản mới, hoặc đã xóa các tập tin đi, thì bạn sẽ cần phải thi hành
+      <literal>
+       svn add /path/to/file
+      </literal>
+      hoặc
+      <literal>
+       svn rm /path/to/file
+      </literal>
+      trước khi tạo bản liệt kê sự chênh lệch
+      <literal>
+       diff
+      </literal>
+      . Để xem danh sách các tập tin bị ảnh hưởng, hãy thi hành
+      <literal>
+       svn status
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <reference name="Tải tập tin liệt kê sự chênh lệch lên đây" refuri="https://developer.blender.org/differential/diff/create/">
+       Tải tập tin liệt kê sự chênh lệch lên đây
+      </reference>
+      . Nếu bạn chưa có tài khoản thì bạn có thể
+      <reference name="đăng ký lấy một cái" refuri="https://developer.blender.org/auth/register/">
+       đăng ký lấy một cái
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Sau khi gửi bản liệt kê sự chênh lệch, bạn sẽ bị yêu cầu "Tạo bản chỉnh sửa mới" (Create a new Revision) trước khi bạn có thể thêm tiêu đề và mô tả về các thay đổi của mình.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Please check if the Documentation project is assigned in the tag's field in order to notify
+the team of your patch.
+You can also
+      <reference internal="True" refuri="index.html#contribute-contact">
+       <inline classes="std std-ref">
+        contact
+       </inline>
+      </reference>
+      the team over the mailing list or
+      <reference internal="True" refuri="../../getting_started/about/community.html#blender-chat">
+       <inline classes="std std-ref">
+        Blender Chat
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Họ sẽ xem xét bản liệt kê sửa đổi của bạn và báo cho bạn biết về bất kỳ thay đổi về những sửa đổi của bạn mà bạn có thể phải làm lại hoặc là chuyển giao những sửa đổi của bạn vào kho
+      <literal>
+       commit
+      </literal>
+      nếu được chấp nhận.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <note>
+    <paragraph>
+     Nếu bản sửa đổi của bạn bao gồm các thay đổi trong các hình ảnh hoặc có các hình ảnh bổ sung thì bạn chỉ cần đính kèm chúng khi bạn tạo phiên bản sửa đổi mới (revision).
+    </paragraph>
+   </note>
+   <paragraph>
+    Các bản liệt kê sửa đổi đơn giản chắc chắn sẽ được chấp nhận rất nhanh. Một khi bạn đã thành thục với việc thực hiện các thay đổi và không cần sự hỗ trợ nữa, chúng tôi sẽ cắt bỏ người trung gian và cho phép bạn quyền truy cập trực tiếp để chỉnh sửa bản hướng dẫn sử dụng.
+   </paragraph>
+  </section>
+  <section ids="commit-directly" names="commit\ directly trực\ tiếp\ chuyển\ giao\ sửa\ đổi\ vào\ kho\ lưu\ trữ\ --\ commit\ directly">
+   <title>
+    Trực Tiếp Chuyển Giao Sửa Đổi vào Kho Lưu Trữ -- Commit Directly
+   </title>
+   <paragraph>
+    Thay vì tạo tập tin liệt kê các sửa đổi, việc chuyển giao sửa đổi vào kho dự trữ sẽ trực tiếp thi hành đến kho lưu trữ trung tâm của chúng tôi.
+   </paragraph>
+   <paragraph>
+    Bạn chỉ cần thi hành:
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    svn commit -m "This is what I did"
+   </literal_block>
+   <paragraph>
+    Nếu bạn không đánh
+    <literal>
+     -m "thông báo"
+    </literal>
+    , thì bạn sẽ được nhắc nhở là bạn cần phải nhập thông báo trong một trình soạn thảo văn bản riêng.
+   </paragraph>
+   <paragraph>
+    Đừng bao giờ quên thi hành lệnh cập nhật
+    <literal>
+     svn update
+    </literal>
+    trước khi chuyển giao các sửa đổi vào kho dự trữ.
+   </paragraph>
+   <paragraph>
+    Sau đó, bạn sẽ phải điền tên người dùng của mình (tại
+    <literal>
+     developer.blender.org
+    </literal>
+    ) và mật khẩu, trước khi thay đổi được chuyển giao để lưu lại.
+   </paragraph>
+   <paragraph>
+    Các tập tin đã sửa đổi của bạn sẽ được tải lên kho lưu trữ trung tâm để những người khác tiếp tục làm việc và cộng tác. Các chuyển giao về sửa đổi sẽ được lưu trữ và theo dõi trong kho
+    <reference name="Diffusion" refuri="https://developer.blender.org/diffusion/BM/">
+     Diffusion
+    </reference>
+    . Các thay đổi của bạn sẽ rất nhanh chóng được đăng trong bản hướng dẫn sử dụng trực tuyến.
+   </paragraph>
+  </section>
+ </section>
+</document>

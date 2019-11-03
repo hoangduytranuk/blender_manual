@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Giới Thiệu -- Introduction &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/soft_body/introduction.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Sắp Đặt -- Settings" href="settings.html" />
+    <link rel="prev" title="Thân Mềm -- Soft Body" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Thân Mềm -- Soft Body</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Giới Thiệu -- Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#typical-scenarios-for-using-soft-bodies">-- Typical Scenarios for using Soft Bodies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-a-soft-body">-- Creating a Soft Body</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interaction-in-real-time">-- Interaction in Real-Time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tips">Ngọn -- Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Sắp Đặt -- Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="forces/index.html">Lực -- Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collision.html">Va Đập -- Collision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="index.html">Thân Mềm -- Soft Body</a> &raquo;</li>
+        
+      <li>Giới Thiệu -- Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/physics/soft_body/introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>Giới Thiệu -- Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Soft body simulation is used for simulating soft deformable objects.
+It was designed primarily for adding secondary motion to animation,
+like jiggle for body parts of a moving character.</p>
+<p>It also works for simulating more general soft objects that bend, deform and
+react to forces like gravity and wind, or collide with other objects.</p>
+<p>While it can simulate cloth and other stiff types of deformable objects to
+an extent, the <a class="reference internal" href="../cloth/index.html"><span class="doc">Cloth Simulation</span></a> can do it better
+with a solver specifically designed for this purpose.</p>
+<p>The simulation works by combining existing animation on the object with forces
+acting on it. There are exterior forces like gravity or force fields and
+interior forces that hold the vertices together.
+This way you can simulate the shapes that an object would take on in reality if it had volume,
+was filled with something, and was acted on by real forces.</p>
+<p>Soft bodies can interact with other objects through <em>Collision</em>.
+They can interact with themselves through <em>Self-Collision</em>.</p>
+<p>The result of the soft body simulation can be converted to a static object.
+You can also <em>bake edit</em> the simulation, i.e.
+edit intermediate results and run the simulation from there.</p>
+<div class="section" id="typical-scenarios-for-using-soft-bodies">
+<h2>-- Typical Scenarios for using Soft Bodies<a class="headerlink" href="#typical-scenarios-for-using-soft-bodies" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id1">
+<span id="fig-softbody-intro-cone"></span><a class="reference internal image-reference" href="../../_images/physics_soft-body_introduction_windcone.jpg"><img alt="../../_images/physics_soft-body_introduction_windcone.jpg" src="../../_images/physics_soft-body_introduction_windcone.jpg" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-text">The wind cone is a soft body, as the suspension.</span></p>
+<div class="legend">
+<a class="reference external" href="https://vimeo.com/1865817">Animation</a></div>
+</div>
+<p>Soft bodies are well suited for:</p>
+<ul class="simple">
+<li>Jiggle on moving characters.</li>
+<li>Elastic and deformable objects made of materials like rubber or gelatin.</li>
+<li>Tree branches moving in the wind, swinging ropes, and the like.</li>
+<li>Flags, wide sleeves, cushions or other simple fabric reacting to forces.</li>
+</ul>
+<p>The following videos may give you some more ideas:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?v=hLnY-OFUBzM">https://www.youtube.com/watch?v=hLnY-OFUBzM</a></li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=qdusMZlBbQ4">https://www.youtube.com/watch?v=qdusMZlBbQ4</a></li>
+</ul>
+</div>
+<div class="section" id="creating-a-soft-body">
+<h2>-- Creating a Soft Body<a class="headerlink" href="#creating-a-soft-body" title="Permalink to this headline">¶</a></h2>
+<p>Soft body simulation works for all objects that have vertices or control points
+(meshes, curves, surfaces, and lattices).</p>
+<p>To add a soft body simulation to an object,
+go to the <em>Physics</em> tab (bouncing ball icon) in the Properties editor
+and activate the <em>Soft Body</em> button.
+For a reference of all the settings see <a class="reference internal" href="settings.html"><span class="doc">this page</span></a>.</p>
+<p>You start a soft body simulation by playback animation with <kbd class="kbd docutils literal notranslate">Alt-A</kbd>,
+and stop the simulation with <kbd class="kbd docutils literal notranslate">Esc</kbd> or <kbd class="kbd docutils literal notranslate">Alt-A</kbd>.</p>
+</div>
+<div class="section" id="interaction-in-real-time">
+<h2>-- Interaction in Real-Time<a class="headerlink" href="#interaction-in-real-time" title="Permalink to this headline">¶</a></h2>
+<p>To work with a soft body simulation, you will find it handy to use the Timeline editor.
+You can change between frames and the simulation will always be shown in the actual state.
+You can interact in real-time with the simulation,
+e.g. by moving collision objects or shaking a soft body object.</p>
+<p>You can then select the soft body object while running the simulation and <em>Apply</em>
+the modifier in the <em>Modifiers</em> tab of the Properties editor.
+This makes the deformation permanent.</p>
+</div>
+<div class="section" id="tips">
+<h2>Ngọn -- Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Soft bodies work especially well if the objects have an even vertex distribution.
+You need enough vertices for good collisions. You change the deformation
+(the stiffness) if you add more vertices in a certain region.</li>
+<li>The calculation of collisions may take a long time. If something is not visible, why calculate it?</li>
+<li>To speed up the collision calculation it is often useful to collide with an additional,
+simpler, invisible, somewhat larger object.</li>
+<li>Use soft bodies only where it makes sense.
+If you try to cover a body mesh with a tight piece of cloth and animate solely with soft body,
+you will have no success. Self-collision of soft body hair may be activated,
+but that is a path that you have to wander alone. We will deal with
+<a class="reference internal" href="collision.html"><span class="doc">Collisions</span></a> in detail later.</li>
+<li>Try and use a <em>Lattice</em> or a <em>Curve Guide</em> soft body instead of the object itself. This may be magnitudes faster.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="settings.html" class="btn btn-neutral float-right" title="Sắp Đặt -- Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Thân Mềm -- Soft Body" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

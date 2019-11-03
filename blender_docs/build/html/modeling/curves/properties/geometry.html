@@ -1,0 +1,582 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hình Dạng -- Geometry &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/curves/properties/geometry.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Path Animation" href="path_animation.html" />
+    <link rel="prev" title="Shape" href="shape.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Đường Cong -- Curves</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../toolbar/index.html">Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Hình Cơ Bản -- Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../editing/index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Tính Chất -- Properties</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Hình Dạng -- Geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="path_animation.html">Path Animation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="active_spline.html">Active Spline</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../curve_display.html">Đường Cong Hiển Thị -- Curve Display</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">-- Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../index.html">Đường Cong -- Curves</a> &raquo;</li>
+        
+          <li><a href="index.html">Tính Chất -- Properties</a> &raquo;</li>
+        
+      <li>Hình Dạng -- Geometry</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modeling/curves/properties/geometry.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="geometry">
+<h1>Hình Dạng -- Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-center" id="id1">
+<img alt="../../../_images/modeling_curves_properties_geometry_panel.png" src="../../../_images/modeling_curves_properties_geometry_panel.png" />
+<p class="caption"><span class="caption-text">Geometry panel.</span></p>
+</div>
+<dl class="docutils">
+<dt>Dịch Chuyển -- Offset</dt>
+<dd><p class="first">Moves the extrusion parallel to the curve normals.</p>
+<div class="last figure" id="id2">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-offset.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-offset.png" src="../../../_images/modeling_curves_properties_geometry_extrude-offset.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Bézier Circle -1 offset, 0.5 extrusion, 0.25 Bevel Depth, 10 Bevel resolution.</span></p>
+</div>
+</dd>
+<dt>Đẩy Trồi/Nới -- Extrude</dt>
+<dd><p class="first">Will extrude the curve along both the positive and negative local Z axes.
+Turns a one-dimensional curve into a two-dimensional curve by giving it height.
+With a scale is the sum of both directions, perpendicular to the curve's normals.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id3">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-bezier-circle.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-bezier-circle.png" src="../../../_images/modeling_curves_properties_geometry_extrude-bezier-circle.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Bézier Circle 0.0 extrude (Edit Mode).</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id4">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-after.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-after.png" src="../../../_images/modeling_curves_properties_geometry_extrude-after.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Extruded by 0.5 (Object Mode).</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Vật Thể Vuốt Thon -- Taper Object</dt>
+<dd><p class="first">The taper curve is evaluated along the local X axis,
+using the local Y axis for width control. Note also that:
+Tapering a curve causes it to get thinner towards one end.
+You can also alter the proportions of the Taper throughout the tapered object
+by moving/scaling/rotating the control points of the Taper Object.
+The Taper Object can only be another curve.
+Editing the handles and control points of the Taper Object will cause the original Object to change shape.</p>
+<p>In order for this to work:</p>
+<ul class="last simple">
+<li>It must be an <em>open curve</em>.</li>
+<li>The taper is applied independently to all curves of the extruded object.</li>
+<li>Only the first curve in a <em>Taper Object</em> is evaluated, even if you have several separated segments.</li>
+<li>The scaling starts at the first control point on the left
+and moves along the curve to the last control point on the right.</li>
+<li>Negative scaling, (e.g. negative local Y on the taper curve) is possible as well.
+However, rendering artifacts may appear.</li>
+<li>Might need to increase the curve resolution to see more detail of the taper.</li>
+<li>With closed curves, the taper curve in <em>Taper Object</em> acts along the whole curve (perimeter of the object),
+not just the length of the object, and varies the extrusion depth. In these cases,
+you want the relative height of the <em>Taper Object</em>
+Taper curve at both ends to be the same, so that the cyclic point
+(the place where the endpoint of the curve connects to the beginning) is a smooth transition.</li>
+</ul>
+</dd>
+<dt>Ánh Xạ Vuốt Thon -- Map Taper</dt>
+<dd>For curves using a Taper Object and with modifications to the <em>Start/End Bevel Factor</em>
+the <em>Map Taper</em> option will apply the taper to the beveled part of the curve (not the whole curve).</dd>
+</dl>
+<div class="section" id="bevel">
+<span id="modeling-curve-bevel"></span><h2>Bo Tròn -- Bevel<a class="headerlink" href="#bevel" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Chiều/Độ Sâu -- Depth</dt>
+<dd><p class="first">Changes the size of the bevel.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id5">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel-depth.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel-depth.png" src="../../../_images/modeling_curves_properties_geometry_bevel-depth.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">A Curve with different Bevel depths applied (Bevel = 0.05).</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id6">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel.png" src="../../../_images/modeling_curves_properties_geometry_bevel.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">A Curve with different Bevel depths applied (Bevel = 0.25).</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Độ Phân Giải -- Resolution</dt>
+<dd><p class="first">Alters the smoothness of the bevel.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id7">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel-resolution.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel-resolution.png" src="../../../_images/modeling_curves_properties_geometry_bevel-resolution.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">A Curve with different resolutions applied (Resolution = 1).</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id8">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel.png" src="../../../_images/modeling_curves_properties_geometry_bevel.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">A Curve with different resolutions applied (Resolution = 12).</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Object</dt>
+<dd><p class="first">Controls the cross section of the extruded curve.
+The Bevel Object can only be another curve both 2D or 3D, and opened or closed.
+Editing the handles and control points of the Bevel Object will cause the original Object to change shape.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id9">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel-object.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel-object.png" src="../../../_images/modeling_curves_properties_geometry_bevel-object.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">A curve with the Bevel Object as a Bézier curve.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id10">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png" src="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">A curve with the Bevel Object as a Bézier circle.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Bịt Kín Đầu -- Fill Caps</dt>
+<dd>Seals the ends of a beveled curve.</dd>
+<dt>Bevel Start/End</dt>
+<dd><p class="first">These options determine where to start/end the Bevel operation on the curve.
+This allows to make a bevelled curve which is not fully covered with a bevel.</p>
+<p>Increasing the <em>Start Bevel Factor</em> to 0.5 will start beveling the curve 50% of the distance from the start
+of the curve (in effect shortening the curve).
+Decreasing the <em>End Bevel Factor</em> by 0.25 will start beveling the curve 25% of the distance from the end
+of the curve (again, shortening the curve).</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id11">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel.png" src="../../../_images/modeling_curves_properties_geometry_bevel.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">A curve with no Bevel factor applied.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id12">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel-start-end-factor.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel-start-end-factor.png" src="../../../_images/modeling_curves_properties_geometry_bevel-start-end-factor.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">A curve with a 0.6 End Bevel Factor.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Bevel Mapping Start/End</dt>
+<dd><p class="first">Allows to control the relation between bevel factors (number between 0 and 1) and
+the rendered start and end point of a beveled spline. Map the bevel factor:</p>
+<dl class="last docutils">
+<dt>Độ Phân Giải -- Resolution</dt>
+<dd>To the number of subdivisions of a spline (U resolution).</dd>
+<dt>Phân Đoạn -- Segments</dt>
+<dd>To the length of its segments. Mapping to segments treats the subdivisions in each segment of a curve as
+if they would have all the same length.</dd>
+<dt>Đường Cong Spline -- Spline</dt>
+<dd>The length of a spline.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="examples">
+<h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="open-2d-curve">
+<h3>-- Open 2D Curve<a class="headerlink" href="#open-2d-curve" title="Permalink to this headline">¶</a></h3>
+<p>The extrusion will create a &quot;wall&quot; or &quot;ribbon&quot; following the curve shape. If using a <em>Bevel Depth</em>,
+the wall becomes a sort of slide or gutter.
+If your normals are facing the wrong way you can switch their direction as shown
+<a class="reference internal" href="../editing/segments.html#curve-switch-direction"><span class="std std-ref">here</span></a>.</p>
+<div class="figure" id="id13">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-open-curve.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-open-curve.png" src="../../../_images/modeling_curves_properties_geometry_extrude-open-curve.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Open 2D Curve with <kbd class="kbd docutils literal notranslate">Alt-C</kbd>, fill set to none,
+zero offset, 0.5 extrusion, 0.25 Bevel Depth, 10 Bevel resolution.</span></p>
+</div>
+</div>
+<div class="section" id="closed-2d-curve">
+<h3>-- Closed 2D Curve<a class="headerlink" href="#closed-2d-curve" title="Permalink to this headline">¶</a></h3>
+<p>This is probably the most useful situation, as it will quickly create a volume, with (by default)
+two flat and parallel surfaces filling the two sides of the extruded &quot;wall&quot;. You can remove one or both of these
+faces by choosing the fill mode: both, front, back, or none.</p>
+<p>The optional bevel depth will always create a 90 degree bevels here.</p>
+<div class="figure" id="id14">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-closed-curve.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-closed-curve.png" src="../../../_images/modeling_curves_properties_geometry_extrude-closed-curve.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Closed 2D Curve, 0.5 extrude, 0.25 Bevel Depth, 10 Bevel resolution, Fill: Both.</span></p>
+</div>
+</div>
+<div class="section" id="d-curve">
+<h3>-- 3D Curve<a class="headerlink" href="#d-curve" title="Permalink to this headline">¶</a></h3>
+<p>Here the fact that the curve is closed or not has no importance --
+you will never get a volume with an extruded 3D curve, only a wall or ribbon, like with open 2D curves.</p>
+<p>However, there is one more feature with 3D curves: the <em>Tilt</em> of the control points (see above).
+It will make the ribbon twist around the curve to create a Möbius strip, for example.</p>
+</div>
+<div class="section" id="taper">
+<h3>Vuốt Thon -- Taper<a class="headerlink" href="#taper" title="Permalink to this headline">¶</a></h3>
+<p>Let us taper a simple curve circle extruded object using a taper curve. Add a curve,
+then exit <em>Edit Mode</em>. Add another one (a closed one, like a circle); call it &quot;BevelCurve&quot;,
+and enter its name in the <em>Bevel Object</em> field of the first curve
+(<em>Curve</em> tab). We now have a pipe.
+Add a third curve while in <em>Object Mode</em> and call it &quot;TaperCurve&quot;.
+Adjust the left control point by raising it up about 5 units.</p>
+<p>Now return to the Object tab,
+and edit the first curve's <em>Taper Object</em> field in the Geometry panel to reference the new taper curve
+which we called &quot;TaperCurve&quot;.
+When you hit enter the taper curve is applied immediately,
+with the results shown in Fig. <a class="reference internal" href="#fig-curves-extrude-taper-curve"><span class="std std-ref">Circle curve set as Bevel Object.</span></a>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id15">
+<span id="fig-curves-extrude-taper-curve"></span><a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png" src="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Circle curve set as Bevel Object.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id16">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-taper-object.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-taper-object.png" src="../../../_images/modeling_curves_properties_geometry_extrude-taper-object.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Taper extruded curve.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>You can see the <em>taper curve</em> being applied to the <em>extruded object</em>.
+Notice how the pipe's volume shrinks to nothing as the taper curve goes from left to right.
+If the taper curve went below the local Y axis the pipe's inside would become the outside,
+which would lead to rendering artifacts.
+Of course as an artist that may be what you are looking for!</p>
+<div class="figure" id="id17">
+<span id="fig-curves-extrude-taper1"></span><img alt="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-closer.png" src="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-closer.png" />
+<p class="caption"><span class="caption-text">Taper example 1.</span></p>
+</div>
+<p>In Fig. <a class="reference internal" href="#fig-curves-extrude-taper1"><span class="std std-ref">Taper example 1.</span></a>
+you can clearly see the effect the left taper curve has on the right curve object.
+Here the left taper curve is closer to the object origin and
+that results in a smaller curve object to the right.</p>
+<div class="figure" id="id18">
+<span id="fig-curves-extrude-taper2"></span><img alt="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-away.png" src="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-away.png" />
+<p class="caption"><span class="caption-text">Taper example 2.</span></p>
+</div>
+<p>In Fig. <a class="reference internal" href="#fig-curves-extrude-taper2"><span class="std std-ref">Taper example 2.</span></a> a control point in the taper curve to the left is moved away from
+the origin and that gives a wider result to the curve object on the right.</p>
+<div class="figure" id="id19">
+<span id="fig-curves-extrude-taper3"></span><img alt="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-irregular.png" src="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-irregular.png" />
+<p class="caption"><span class="caption-text">Taper example 3.</span></p>
+</div>
+<p>In Fig. <a class="reference internal" href="#fig-curves-extrude-taper3"><span class="std std-ref">Taper example 3.</span></a> we see the use of a more irregular taper curve applied to a curve circle.</p>
+<div class="figure" id="id20">
+<img alt="../../../_images/modeling_curves_properties_geometry_extrude-bevel-curve-tilt.png" src="../../../_images/modeling_curves_properties_geometry_extrude-bevel-curve-tilt.png" />
+<p class="caption"><span class="caption-text">Bevel extrusion with Tilt example.</span></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="path_animation.html" class="btn btn-neutral float-right" title="Path Animation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="shape.html" class="btn btn-neutral float-left" title="Shape" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

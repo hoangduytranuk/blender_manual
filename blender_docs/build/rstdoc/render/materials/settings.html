@@ -1,0 +1,134 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/materials/settings.rst">
+ <section ids="settings" names="settings">
+  <title>
+   Settings
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Material --&gt; Settings`">
+        Material ‣ Settings
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <section ids="renderer-settings" names="renderer\ settings">
+   <title>
+    Renderer Settings
+   </title>
+   <paragraph>
+    While shading nodes control the appearance, these settings control the quality and algorithms
+that each renderer uses to render the material.
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <reference internal="True" refuri="../eevee/materials/settings.html">
+       <inline classes="doc">
+        Eevee specific settings
+       </inline>
+      </reference>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <reference internal="True" refuri="../cycles/material_settings.html">
+       <inline classes="doc">
+        Cycles specific settings
+       </inline>
+      </reference>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="pass-index" names="pass\ index">
+   <title>
+    Pass Index
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Pass Index
+     </term>
+     <definition>
+      <paragraph>
+       Index number for the
+       <emphasis>
+        Material Index
+       </emphasis>
+       <reference internal="True" refuri="../layers/passes.html">
+        <inline classes="doc">
+         render pass
+        </inline>
+       </reference>
+       .
+This can be used to give a mask to a material and then be read with
+the
+       <reference internal="True" refuri="../../compositing/types/converter/id_mask.html">
+        <inline classes="doc">
+         ID Mask Node
+        </inline>
+       </reference>
+       in the compositor.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="viewport-display" names="viewport\ display">
+   <title>
+    Viewport Display
+   </title>
+   <paragraph>
+    These settings control the 3D Viewport display in solid shading.
+They provide a faster alternative to full shader nodes,
+which may be too heavy or distracting for tasks like modeling, layout or sculpting.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Color
+     </term>
+     <definition>
+      <paragraph>
+       Diffuse or metal surface color.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Metallic
+     </term>
+     <definition>
+      <paragraph>
+       Blends between a non-metallic and metallic material model.
+A value of 1.0 gives a fully specular reflection tinted with the base color,
+without diffuse reflection or transmission.
+At 0.0 the material consists of a diffuse or transmissive base layer, with a specular reflection layer on top.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Roughness
+     </term>
+     <definition>
+      <paragraph>
+       Specifies microfacet roughness of the surface for metal and specular reflection.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

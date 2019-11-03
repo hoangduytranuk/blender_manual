@@ -1,0 +1,204 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/particles/emitter/physics/keyed.rst">
+ <target refid="bpy-types-particlehairkey">
+ </target>
+ <target refid="bpy-types-particlekey">
+ </target>
+ <target refid="bpy-types-particletarget">
+ </target>
+ <section ids="keyed bpy-types-particletarget bpy-types-particlekey bpy-types-particlehairkey" names="keyed khóa\ hóa\ --\ keyed bpy.types.particletarget bpy.types.particlekey bpy.types.particlehairkey">
+  <title>
+   Khóa Hóa -- Keyed
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Hệ Thống Hạt (Particle System) --&gt; Vật Lý (Physics)`">
+        Hệ Thống Hạt (Particle System) ‣ Vật Lý (Physics)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Thể Loại -- Type
+     </field_name>
+     <field_body>
+      <paragraph>
+       Khóa Hóa -- Keyed
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The path of Keyed particles is determined between particles of any two (or more) particle systems.
+This allows the creation of a chains of systems to create long strands or groovy moving particles.
+Basically the particles have no dynamics but are interpolated from one system to the next each frame.
+  </paragraph>
+  <paragraph>
+   To setup
+   <emphasis>
+    Keyed
+   </emphasis>
+   particles you need at least two particle systems in the
+   <emphasis>
+    Keys
+   </emphasis>
+   list.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8:
+.. figure:: /images/physics_particles_emitter_physics_keyed_panel.png
+   :align: right
+
+   Keyed Physics settings.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vòng Lặp/Tuần Hoàn -- Loops
+     </term>
+     <definition>
+      <paragraph>
+       Sets the number of times the entire
+       <emphasis>
+        Keys
+       </emphasis>
+       list is repeated. Disabled if
+       <emphasis>
+        Use Timing
+       </emphasis>
+       is enabled.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dùng Thời Định -- Use Timing
+     </term>
+     <definition>
+      <paragraph>
+       Enabling this option allows you to specify the timing for each key independently,
+using the
+       <emphasis>
+        Time
+       </emphasis>
+       and
+       <emphasis>
+        Duration
+       </emphasis>
+       options.
+By default, the
+       <emphasis>
+        Use Timing
+       </emphasis>
+       option is deactivated, and the particles will pass through all keys
+for a time equal to its lifetime. A shorter lifetime means faster movement.
+The lifetime will be split equally between the keys,
+this may lead to varying particle speeds between the targets.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="relations" names="relations">
+   <title>
+    Relations
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Physics --&gt; Relations`">
+         Particle System ‣ Physics ‣ Relations
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Key Targets
+     </term>
+     <definition>
+      <paragraph>
+       The
+       <reference internal="True" refuri="../../../../interface/controls/templates/list_presets.html#ui-list-view">
+        <inline classes="std std-ref">
+         list view
+        </inline>
+       </reference>
+       of keys (target particle systems).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vật Thể -- Object
+     </term>
+     <definition>
+      <paragraph>
+       The name of a target object for the selected key. If empty it uses the current particle system.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hệ Thống -- System
+     </term>
+     <definition>
+      <paragraph>
+       Index of particle system on the target object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thời Gian -- Time
+     </term>
+     <definition>
+      <paragraph>
+       The time (frame number) at which the particles will be at the position of the selected system.
+Note also that the
+       <emphasis>
+        Start
+       </emphasis>
+       frame of the Keyed system adds an offset to this time.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khoảng Thời Gian -- Duration
+     </term>
+     <definition>
+      <paragraph>
+       How long (in frames) the particles stay on this system before they start moving to the next one.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

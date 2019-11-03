@@ -1,0 +1,146 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/cycles/light_settings.rst">
+ <section ids="light-settings" names="light\ settings">
+  <title>
+   Light Settings
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Light`">
+        Properties ‣ Light
+       </inline>
+       and
+       <inline classes="menuselection" rawtext=":menuselection:`Shader Editor --&gt; Sidebar --&gt; Settings`">
+        Shader Editor ‣ Sidebar ‣ Settings
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Next to lighting from the background and any object with an emission shader,
+lights are another way to add light into the scene.
+The difference is that they are not directly visible in the rendered image,
+and can be more easily managed as objects of their own type.
+  </paragraph>
+  <section ids="common" names="common">
+   <title>
+    Common
+   </title>
+   <paragraph>
+    <reference internal="True" refuri="../lights/light_object.html">
+     <inline classes="doc">
+      Light settings
+     </inline>
+    </reference>
+    for all renderers.
+   </paragraph>
+  </section>
+  <section ids="cycles" names="cycles">
+   <title>
+    Cycles
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Lượng Mẫu Vật -- Samples
+     </term>
+     <definition>
+      <paragraph>
+       For the branch path tracing integrator, this specifies the number of direct light samples per AA sample.
+Point lights might need only one sample, while area lights typically need more.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Va Đập Tối Đa -- Max Bounces
+     </term>
+     <definition>
+      <paragraph>
+       Maximum number of times light from the light is allowed to
+       <reference internal="True" refuri="../../glossary/index.html#term-light-bounces">
+        <inline classes="xref std std-term">
+         bounce
+        </inline>
+       </reference>
+       .
+Limited by
+       <reference internal="True" refuri="render_settings/light_paths.html#cycles-bounces">
+        <inline classes="std std-ref">
+         scene-wide bounce settings
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phát Bóng Tối -- Cast Shadow
+     </term>
+     <definition>
+      <paragraph>
+       By disabling this option, light from lights will not be blocked by objects in between.
+This can speed up rendering by not having to trace rays to the light source.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lấy Mẫu Vật Đa Trọng -- Multiple Importance Sample
+     </term>
+     <definition>
+      <paragraph>
+       By default lights use only direct light sampling. For area lights and sharp glossy reflections, however,
+this can be noisy,
+and enabling this option will enable indirect light sampling to be used in addition to reduce noise.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="render-cycles-lights-area-portals">
+   </target>
+  </section>
+  <section ids="light-portals render-cycles-lights-area-portals" names="light\ portals --\ light\ portals render-cycles-lights-area-portals">
+   <title>
+    -- Light Portals
+   </title>
+   <paragraph>
+    Area lights can also function as light portals to help sample the environment light,
+and significantly reduce noise in interior scenes.
+Note that rendering with portals is usually slower, but as it converges more quickly, less samples are required.
+   </paragraph>
+   <paragraph>
+    Light portals work by enabling the
+    <emphasis>
+     Portal
+    </emphasis>
+    option, and placing areas lights in
+windows, door openings, and any place where light will enter the interior.
+   </paragraph>
+   <paragraph>
+    In outdoor scenes most rays do not bounce much and just fly off into the sky and therefore,
+light portals are not helpful for outdoor scenes.
+   </paragraph>
+   <figure>
+    <image candidates="{'*': 'images/render_cycles_light-settings_portals2.jpg'}" uri="images/render_cycles_light-settings_portals2.jpg"/>
+   </figure>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/render_cycles_light-settings_portals.jpg'}" uri="images/render_cycles_light-settings_portals.jpg"/>
+    <caption>
+     White Room model by Jay Hardy.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

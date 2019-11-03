@@ -1,0 +1,143 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/materials/components/displacement.rst">
+ <section ids="displacement" names="displacement dịch\ hình\ --\ displacement">
+  <title>
+   Dịch Hình -- Displacement
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Nguyên Liệu (Material) --&gt; Sắp Đặt (Settings) --&gt; Dịch Hình (Displacement)`">
+        Nguyên Liệu (Material) ‣ Sắp Đặt (Settings) ‣ Dịch Hình (Displacement)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Detail can be added to the shape of a surface with displacement shaders.
+  </paragraph>
+  <paragraph>
+   To create displacement, connect a
+   <reference internal="True" refuri="../../shader_nodes/vector/displacement.html">
+    <inline classes="doc">
+     Displacement
+    </inline>
+   </reference>
+   or
+   <reference internal="True" refuri="../../shader_nodes/vector/vector_displacement.html">
+    <inline classes="doc">
+     Vector Displacement
+    </inline>
+   </reference>
+   node
+to the displacement input of the Material Output node. Procedural, painted or baked textures can
+then be connected to these nodes.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/render_materials_components_displacement_node-setup.png'}" uri="images/render_materials_components_displacement_node-setup.png"/>
+   <caption>
+    Typical displacement node setup.
+   </caption>
+  </figure>
+  <paragraph>
+   Three displacement methods exist, with varying accuracy, performance and memory usage.
+  </paragraph>
+  <figure ids="id2">
+   <image candidates="{'*': 'images/render_materials_components_displacement_example.jpg'}" uri="images/render_materials_components_displacement_example.jpg"/>
+   <caption>
+    Bump only, displacement only and displacement and bump combined.
+   </caption>
+  </figure>
+  <section ids="bump-only" names="bump\ only duy\ độ\ gồ\ ghề\ --\ bump\ only">
+   <title>
+    Duy Độ Gồ Ghề -- Bump Only
+   </title>
+   <paragraph>
+    The least accurate but most memory efficient method is to use a bump mapping.
+This method does not actually alter the mesh surface, but merely changes the shading to make it seem so.
+   </paragraph>
+   <paragraph>
+    Bump maps are often used to add smaller details on a model, for example pores or wrinkles on skin.
+   </paragraph>
+   <paragraph>
+    For baked bump maps 8-bit byte images are commonly used, however 16 or 32-bit float maps can provide
+better looking results. When using image textures use Cubic interpolation to avoid stepping artifacts,
+these are more visible for bump maps than other types of textures.
+   </paragraph>
+   <important>
+    <paragraph>
+     Because bump mapping is a fake effect, it can cause artifacts if the actual shape of the geometry
+is too different from the bump mapped shape. If this happens the strength of bump mapping should
+be reduced or actual displacement should be used.
+    </paragraph>
+   </important>
+  </section>
+  <section ids="displacement-only" names="displacement\ only duy\ phép\ dời\ hình\ --\ displacement\ only">
+   <title>
+    Duy Phép Dời Hình -- Displacement Only
+   </title>
+   <paragraph>
+    <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+     Cycles Only
+    </inline>
+   </paragraph>
+   <paragraph>
+    The most accurate and memory intensive displacement method is to apply true displacement to
+the mesh surface.
+   </paragraph>
+   <paragraph>
+    It requires the mesh to be finely subdivided, which can be memory intensive.
+    <reference internal="True" refuri="../../cycles/object_settings/adaptive_subdiv.html">
+     <inline classes="doc">
+      Adaptive Subdivision
+     </inline>
+    </reference>
+    is the best way
+to subdivide the mesh, so that exactly the right amount of subdivision is used depending on
+the distance of the object to the camera.
+   </paragraph>
+   <paragraph>
+    For baked displacement maps, best results are achieved with 16 or 32-bit float maps,
+as 8-bit byte images often can not represent all the necessary detail.
+   </paragraph>
+   <seealso>
+    <paragraph>
+     The
+     <reference internal="True" refuri="../../../modeling/modifiers/deform/displace.html">
+      <inline classes="doc">
+       Displace Modifier
+      </inline>
+     </reference>
+     can also be used to displace a mesh.
+    </paragraph>
+   </seealso>
+  </section>
+  <section ids="displacement-and-bump" names="displacement\ and\ bump phép\ dời\ hình\ và\ độ\ gồ\ ghề\ --\ displacement\ and\ bump">
+   <title>
+    Phép Dời Hình và Độ Gồ Ghề -- Displacement and Bump
+   </title>
+   <paragraph>
+    <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+     Cycles Only
+    </inline>
+   </paragraph>
+   <paragraph>
+    Both methods can be combined to use actual displacement for the bigger displacement and
+bump for the finer details. This can provide a good balance to reduce memory usage.
+   </paragraph>
+   <paragraph>
+    Once you subdivide the mesh very finely, it is better to use only actual displacement.
+Keeping bump maps will then only increase memory usage and render slower.
+   </paragraph>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,181 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/shader/glass.rst">
+ <target refid="bpy-types-shadernodebsdfglass">
+ </target>
+ <section ids="glass-bsdf bpy-types-shadernodebsdfglass" names="glass\ bsdf bsdf\ thủy\ tinh\ --\ glass\ bsdf bpy.types.shadernodebsdfglass">
+  <title>
+   BSDF Thủy Tinh -- Glass BSDF
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_shader_glass_node.png'}" uri="images/render_shader-nodes_shader_glass_node.png"/>
+   <caption>
+    Glass BSDF.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Glass
+   </emphasis>
+   <abbreviation explanation="Bidirectional scattering distribution function">
+    BSDF
+   </abbreviation>
+   is used to add a Glass-like shader mixing refraction and reflection at grazing angles.
+Like the transparent shader, only pure white will make it transparent.
+The glass shader tends to cause noise due to caustics.
+Since the Cycles path tracing integrator is not very good at rendering caustics,
+it helps to combine this with a transparent shader for shadows;
+for
+   <reference internal="True" refuri="../../cycles/optimizations/reducing_noise.html#render-cycles-reducing-noise-glass-and-transp-shadows">
+    <inline classes="std std-ref">
+     more details see here
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Color of the surface, or physically speaking, the probability that light is transmitted for each wavelength.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Ráp -- Roughness
+     </term>
+     <definition>
+      <paragraph>
+       Influences sharpness of the refraction; perfectly sharp at 0.0 and smoother with higher values.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chỉ Số Khúc Xạ (IOR) -- IOR
+     </term>
+     <definition>
+      <paragraph>
+       Index of refraction (
+       <reference internal="True" refuri="../../../glossary/index.html#term-ior">
+        <inline classes="xref std std-term">
+         IOR
+        </inline>
+       </reference>
+       ) defining how much the ray changes direction. At 1.
+0 rays pass straight through like transparent; higher values give more refraction.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pháp Tuyến -- Normal
+     </term>
+     <definition>
+      <paragraph>
+       Normal used for shading.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Phân Phối -- Distribution
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refuri="glossy.html">
+        <inline classes="doc">
+         BSDF Bóng Bẩy -- Glossy BSDF
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      BSDF
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra chuẩn của bộ tô bóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <table classes="colwidths-auto">
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_glass_example.jpg'}" uri="images/render_shader-nodes_shader_glass_example.jpg"/>
+         <caption>
+          Sharp Glass example.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_glass_behavior-sharp.svg'}" uri="images/render_shader-nodes_shader_glass_behavior-sharp.svg" width="308px"/>
+         <caption>
+          Sharp Glass behavior.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_glass_example-rough.jpg'}" uri="images/render_shader-nodes_shader_glass_example-rough.jpg"/>
+         <caption>
+          Rough Glass example.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_glass_behavior.svg'}" uri="images/render_shader-nodes_shader_glass_behavior.svg" width="308px"/>
+         <caption>
+          Rough Glass behavior.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,339 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/interface/window_system/areas.rst">
+ <target refid="bpy-types-area">
+ </target>
+ <target refid="bpy-types-areaspaces">
+ </target>
+ <section ids="areas bpy-types-areaspaces bpy-types-area" names="areas vùng\ --\ areas bpy.types.areaspaces bpy.types.area">
+  <title>
+   Vùng -- Areas
+  </title>
+  <figure align="right" ids="id1" width="250px">
+   <image candidates="{'*': 'images/interface_window-system_areas_borders.png'}" uri="images/interface_window-system_areas_borders.png" width="250px"/>
+   <caption>
+    Area boundaries are indicated by rounded corners (yellow highlights).
+   </caption>
+  </figure>
+  <paragraph>
+   The Blender window is divided up into a number of rectangles called Areas.
+Areas reserve screen space for
+   <reference internal="True" refuri="../../editors/index.html">
+    <inline classes="doc">
+     Trình Biên Soạn -- Editors
+    </inline>
+   </reference>
+   , such as the 3D Viewport, or the Outliner.
+In general an Editor provides a way to view and modify your work through a specific part of Blender.
+All hotkeys you press will affect the contents of the Editor in the Area the mouse pointer is located.
+Area boundaries are indicated by rounded (beveled) corners.
+  </paragraph>
+  <paragraph>
+   Areas can be customized to match specific tasks called
+   <reference internal="True" refuri="workspaces.html">
+    <inline classes="doc">
+     Workspaces
+    </inline>
+   </reference>
+   ,
+which can then be named and saved for later use.
+  </paragraph>
+  <section ids="resizing" names="resizing đổi\ kích\ thước\ --\ resizing">
+   <title>
+    Đổi Kích Thước -- Resizing
+   </title>
+   <figure align="right" width="250px">
+    <image candidates="{'*': 'images/interface_window-system_areas_resize.png'}" uri="images/interface_window-system_areas_resize.png" width="250px"/>
+   </figure>
+   <paragraph>
+    You can resize areas by dragging their borders with
+    <literal classes="kbd">
+     LMB
+    </literal>
+    .
+Move your mouse cursor over the border between two areas,
+so that the cursor changes to a double-headed arrow, and then click and drag.
+   </paragraph>
+  </section>
+  <section ids="splitting" names="splitting">
+   <title>
+    Splitting
+   </title>
+   <figure align="right" width="250px">
+    <image candidates="{'*': 'images/interface_window-system_areas_split.png'}" uri="images/interface_window-system_areas_split.png" width="250px"/>
+   </figure>
+   <paragraph>
+    Splitting an area will create a new area. Placing the mouse cursor
+in an area corner will change the cursor to a cross (+) to indicate that
+pressing down
+    <literal classes="kbd">
+     LMB
+    </literal>
+    will activate splitting or joining operator.
+Dragging from area corner
+    <strong>
+     inward
+    </strong>
+    will
+    <emphasis>
+     split
+    </emphasis>
+    the area.
+You define the split direction by dragging either horizontally or vertically.
+   </paragraph>
+  </section>
+  <section ids="joining" names="joining">
+   <title>
+    Joining
+   </title>
+   <figure align="right" ids="id2" width="250px">
+    <image candidates="{'*': 'images/interface_window-system_areas_join.png'}" uri="images/interface_window-system_areas_join.png" width="250px"/>
+    <caption>
+     The Properties Editor is being joined to the Outliner.
+    </caption>
+   </figure>
+   <paragraph>
+    Dragging from an area corner
+    <strong>
+     outward
+    </strong>
+    will
+    <emphasis>
+     join
+    </emphasis>
+    two areas.
+The area that will be closed gets a dark overlaid arrow.
+You can select which area will be closed by moving the mouse over areas.
+Release the
+    <literal classes="kbd">
+     LMB
+    </literal>
+    to complete the join.
+If you press
+    <literal classes="kbd">
+     Esc
+    </literal>
+    or
+    <literal classes="kbd">
+     RMB
+    </literal>
+    before releasing the mouse,
+the operation will be aborted.
+   </paragraph>
+   <note>
+    <paragraph>
+     Areas to be joined must be the same size (width or height)
+in the direction you wish to join, otherwise nothing will happen.
+This is so that the combined area remains a rectangle.
+    </paragraph>
+   </note>
+   <section ids="area-options" names="area\ options tùy\ chọn\ về\ khu\ vực\ --\ area\ options">
+    <title>
+     Tùy Chọn về Khu Vực -- Area Options
+    </title>
+    <paragraph>
+     <literal classes="kbd">
+      RMB
+     </literal>
+     on the border opens the
+     <emphasis>
+      Area Options
+     </emphasis>
+     .
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Tách phân Khu Vực -- Split Area
+      </term>
+      <definition>
+       <paragraph>
+        Shows an indicator line that lets you select the area and position where to split.
+        <literal classes="kbd">
+         Tab
+        </literal>
+        switches between vertical/horizontal.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hội Nhập các Vùng -- Join Areas
+      </term>
+      <definition>
+       <paragraph>
+        Shows the join direction overlay.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <section ids="swapping-contents" names="swapping\ contents tráo\ đổi\ nội\ dung\ --\ swapping\ contents">
+     <title>
+      Tráo Đổi Nội Dung -- Swapping Contents
+     </title>
+     <paragraph>
+      You can swap the contents between two areas with
+      <literal classes="kbd">
+       Ctrl-LMB
+      </literal>
+      on one of the corners of the initial area, dragging towards the target area,
+and releasing the mouse there. The two areas do not need to be side-by-side,
+though they must be inside the same window.
+     </paragraph>
+     <target refid="bpy-ops-screen-area-dupli">
+     </target>
+    </section>
+   </section>
+  </section>
+  <section ids="duplicate-area-into-new-window bpy-ops-screen-area-dupli" names="duplicate\ area\ into\ new\ window sao\ chép\ khu\ vực\ sang\ cửa\ sổ\ mới\ --\ duplicate\ area\ into\ new\ window bpy.ops.screen.area_dupli">
+   <title>
+    Sao Chép Khu Vực sang Cửa Sổ mới -- Duplicate Area into new Window
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`View --&gt; Area --&gt; Duplicate Area into new Window`">
+         View ‣ Area ‣ Duplicate Area into new Window
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    A new floating window containing an area can be created from
+    <inline classes="menuselection" rawtext=":menuselection:`View --&gt; Area --&gt; Duplicate Area into new Window`">
+     View ‣ Area ‣ Duplicate Area into new Window
+    </inline>
+    .
+   </paragraph>
+   <paragraph>
+    The new window is a fully functional window, which is part of the same instance of Blender.
+This can be useful, e.g. if you have multiple monitors.
+   </paragraph>
+   <paragraph>
+    You can also create a new window from an existing area by
+    <literal classes="kbd">
+     Shift-LMB
+    </literal>
+    on the area corner, then drag outward slightly.
+   </paragraph>
+   <paragraph>
+    The window can be closed with the OS
+    <emphasis>
+     Close Window
+    </emphasis>
+    button.
+   </paragraph>
+   <target refid="bpy-ops-screen-screen-full-area">
+   </target>
+  </section>
+  <section ids="toggle-maximize-area bpy-ops-screen-screen-full-area" names="toggle\ maximize\ area bật/tắt\ tối\ đa\ hóa\ diện\ tích\ --\ toggle\ maximize\ area bpy.ops.screen.screen_full_area">
+   <title>
+    Bật/Tắt Tối Đa Hóa Diện Tích -- Toggle Maximize Area
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`View --&gt; Area --&gt; Toggle Maximize Area`">
+         View ‣ Area ‣ Toggle Maximize Area
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-Spacebar
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The maximized area fill the whole application window. You can maximize an area
+with
+    <inline classes="menuselection" rawtext=":menuselection:`View --&gt; Area --&gt; Toggle Maximize Area`">
+     View ‣ Area ‣ Toggle Maximize Area
+    </inline>
+    menu entry or
+keyboard shortcut
+    <literal classes="kbd">
+     Ctrl-Spacebar
+    </literal>
+    . To return to normal size,
+use keyboard shortcut or the
+    <emphasis>
+     Back to Previous
+    </emphasis>
+    button on the Topbar.
+   </paragraph>
+   <note>
+    <paragraph>
+     The area your mouse is currently hovering over is the one
+that will be maximized using the keyboard shortcuts.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="toggle-fullscreen-area" names="toggle\ fullscreen\ area bật/tắt\ toàn\ bộ\ địa\ phận\ màn\ hình\ --\ toggle\ fullscreen\ area">
+   <title>
+    Bật/Tắt Toàn Bộ Địa Phận Màn Hình -- Toggle Fullscreen Area
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`View --&gt; Area --&gt; Toggle Fullscreen Area`">
+         View ‣ Area ‣ Toggle Fullscreen Area
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-Alt-Spacebar
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The fullscreen area contains only the main region.
+To exit the fullscreen move the mouse to the top right corner
+of the area to reveal the return icon.
+   </paragraph>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,110 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/converter/alpha_convert.rst">
+ <target refid="bpy-types-compositornodepremulkey">
+ </target>
+ <section ids="alpha-convert-node bpy-types-compositornodepremulkey" names="alpha\ convert\ node nút\ chuyển\ đổi\ alpha\ --\ alpha\ convert\ node bpy.types.compositornodepremulkey">
+  <title>
+   Nút Chuyển Đổi Alpha -- Alpha Convert Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodePremulKey.png'}" uri="images/compositing_node-types_CompositorNodePremulKey.png"/>
+   <caption>
+    Alpha Convert Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Alpha Convert Node
+   </emphasis>
+   converts the alpha channel interpretation of an image.
+  </paragraph>
+  <paragraph>
+   For compositing and rendering, premultiplied alpha is the standard in Blender.
+Render layers will be premultiplied alpha, and images loaded into rendering
+or compositing will be converted to this.
+  </paragraph>
+  <paragraph>
+   If you want to do a compositing operation with straight alpha,
+the
+   <emphasis>
+    Alpha Convert
+   </emphasis>
+   node can be used. Typically this would be a color correction operation
+where it might give better results working on RGB channels without alpha.
+If the alpha is converted to straight in the compositor,
+it should be converted back to premultiplied before the
+   <emphasis>
+    Composite Output
+   </emphasis>
+   node,
+otherwise some artifacts might occur.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Ánh Xạ -- Mapping
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Thẳng sang Nhân Trước, Nhân Trước sang Thẳng -- Straight to Premul, Premul to Straight
+        </term>
+        <definition>
+         <paragraph>
+          Conversion in both directions. Premul. stands for Premultiplied.
+For details on the difference between both ways to store alpha values see
+          <reference internal="True" refuri="../../../glossary/index.html#term-alpha-channel">
+           <inline classes="xref std std-term">
+            Alpha Channel
+           </inline>
+          </reference>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

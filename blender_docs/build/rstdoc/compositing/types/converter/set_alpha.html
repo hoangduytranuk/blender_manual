@@ -1,0 +1,166 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/converter/set_alpha.rst">
+ <target refid="bpy-types-compositornodesetalpha">
+ </target>
+ <section ids="set-alpha-node bpy-types-compositornodesetalpha" names="set\ alpha\ node nút\ đặt\ alpha\ --\ set\ alpha\ node bpy.types.compositornodesetalpha">
+  <title>
+   Nút Đặt Alpha -- Set Alpha Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeSetAlpha.png'}" uri="images/compositing_node-types_CompositorNodeSetAlpha.png"/>
+   <caption>
+    Nút Đặt Alpha.
+   </caption>
+  </figure>
+  <paragraph>
+   <emphasis>
+    Nút Đặt Alpha
+   </emphasis>
+   cho thêm một kênh alpha vào một hình ảnh.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Alpha
+     </term>
+     <definition>
+      <paragraph>
+       Lượng Alpha có thể đặt cho toàn bộ hình ảnh bằng cách sử dụng trường đầu vào (input field) hoặc bằng mỗi điểm ảnh (pixel) bằng cách kết nối vào ổ cắm.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Nút này không có tính chất nào cả.
+   </paragraph>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     Đây không phải là, và không nhằm mục đích trở thành một giải pháp toàn diện cho vấn đề tổng hợp một hình ảnh không chứa thông tin Alpha. Bạn có thể nên sử dụng phương pháp "Khóa Lọc Màu" (Chroma Keying) hoặc "Khóa Chênh Lệch" (Difference Keying) (như đã được bàn luận ở chỗ khác của bảng hướng dẫn sử dụng) nếu có thể. Nút này thường được sử dụng (với đầu vào thích hợp được cung cấp qua phương tiện ổ cắm) trong những trường hợp rắc rối khi bạn
+     <emphasis>
+      không thể
+     </emphasis>
+     , do một số lý do nào đó, sử dụng trực tiếp các kỹ thuật đó.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <section ids="fade-to-black" names="fade\ to\ black phai\ mờ\ dần\ về\ màu\ đen\ --\ fade\ to\ black">
+    <title>
+     Phai Mờ Dần về Màu Đen -- Fade To Black
+    </title>
+    <paragraph>
+     Để chuyển đối tượng từ cảnh này sang cảnh khác, một kỹ thuật phổ biến thường dùng là "chuyển mờ dần sang màu đen" (fade to black). Đúng như tên gọi của nó, khung cảnh sẽ mờ dần sang một màn hình đen. Bạn cũng có thể "chuyển mờ dần sang màu trắng" (fade to white), hoặc bất kỳ màu nào bạn muốn, nhưng màu đen là màu trung tính tốt, dễ nhìn và về giác quan mà nói, nó "hoàn lại" trí giác của người xem. Sơ đồ bài trí nút dưới đây cho thấy cách thực hiện việc này bằng nút Đặt Alpha.
+    </paragraph>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/compositing_types_converter_set-alpha_fade-to-black.png'}" uri="images/compositing_types_converter_set-alpha_fade-to-black.png"/>
+     <caption>
+      Mờ dần sang màu đen.
+     </caption>
+    </figure>
+    <paragraph>
+     Trong ví dụ trên, kênh alpha của hình ảnh lốc xoáy bị bỏ qua. Thay vào đó, a
+     <reference internal="True" refuri="../input/time.html">
+      <inline classes="doc">
+       nút thời gian -- time node
+      </inline>
+     </reference>
+     cung cấp một hệ số từ 0,00 đến 1,00 trong khoảng thời hạn 60 khung hình, tức chừng 2 giây, cho nút Đặt Alpha. Lưu ý rằng đường cong thời gian được nắn hình theo cấp số nhân, hầu cho màu đen tổng thể sẽ được chuyển mờ dần chậm chạp, song sau đó tăng tốc nhanh hơn ở đoạn cuối. Nút Đặt Alpha không cần một hình ảnh được cung cấp ở đầu vào; thay vào đó, màu đen phẳng trơn (không có chuyển sắc) được sử dụng. Nút Đặt Alpha sử dụng hệ số đầu vào (input factor) và màu sắc để tạo ra một hình ảnh màu đen có độ alpha được đặt từ 0,00 đến 1,00 nội trong khoảng thời gian của 60 khung hình, tức có nghĩa là nó biến chuyển từ hoàn toàn trong suốt đến hoàn toàn mờ đục (opaque). Hãy coi alpha như một số nhân cho mức độ nhìn rõ được mà bạn có thể thấy điểm ảnh đó. Hai hình ảnh này được kết hợp hoàn toàn bởi nút Alpha Chồng Lên (Alpha Over) (với
+     <emphasis>
+      Hệ Số
+     </emphasis>
+     (Factor) là 1,00) để tạo ra hình ảnh tổng hợp (composite image). Do đó, nút Đặt Alpha sẽ phụ thuộc vào khung hình được kết xuất, tạo ra hình ảnh màu đen có độ trong suốt nhất định. Thiết Lập và Hoạt Họa nó và bạn sẽ có một trình tự hình ảnh mờ dần sang màu đen trong khoảng thời gian 2 giây đồng hồ.
+    </paragraph>
+    <note>
+     <paragraph>
+      Không Sử Dụng Thông Tin Cảnh
+     </paragraph>
+     <paragraph>
+      This example node map does not use the Render Layer node.
+To produce this 2-second animation, no Blender scene information was used.
+This is an example of using Blender's powerful compositing abilities
+separate from its modeling and animation capabilities.
+(A Render Layer could be substituted for the Image layer,
+and the "fade-network" effect will still produce the same effect.)
+     </paragraph>
+    </note>
+   </section>
+   <section ids="fade-in-a-title" names="fade\ in\ a\ title làm\ rõ\ dần\ tiêu\ đề\ --\ fade\ in\ a\ title">
+    <title>
+     Làm Rõ Dần Tiêu Đề -- Fade In a Title
+    </title>
+    <paragraph>
+     Để giới thiệu hoạt hình của mình, bạn nên trình bày tiêu đề của đoạn hoạt hình của bạn trên một cái nền. Bạn có thể để tiêu đề bay vào, hoặc bạn có thể làm nó rõ dần lên. Để làm rõ dần lên, bạn hãy sử dụng nút Đặt Alpha với nút Thời Gian (Time) như trình bày dưới đây.
+    </paragraph>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/compositing_types_converter_set-alpha_fade-in-title.png'}" uri="images/compositing_types_converter_set-alpha_fade-in-title.png"/>
+     <caption>
+      Dùng Đặt Alpha để làm mờ dần một tiêu đề vào
+     </caption>
+    </figure>
+    <paragraph>
+     Trong ví dụ trên, đường cong Thời gian cung cấp giá trị Alpha cho ổ cắm đầu vào. Nút Tầng Kết Xuất (Render Layer) hiện tại, tức cái có tiêu đề nhìn thấy được là nút cung cấp hình ảnh. Như trước đây, nút Alpha Chồng Lên (Alpha Over) pha trộn (sử dụng các giá trị alpha) hình ảnh nền xoáy lốc và alpha của tiêu đề để tạo ra hình ảnh tổng hợp.
+    </paragraph>
+   </section>
+   <section ids="colorizing-a-bw-image" names="colorizing\ a\ bw\ image tô\ màu\ một\ hình\ ảnh\ trắng/đen\ --\ colorizing\ a\ bw\ image">
+    <title>
+     Tô Màu một Hình Ảnh Trắng/Đen -- Colorizing a BW Image
+    </title>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/compositing_types_converter_set-alpha_colorizing-image.png'}" uri="images/compositing_types_converter_set-alpha_colorizing-image.png"/>
+     <caption>
+      Sử dụng Đặt Alpha để tô màu một hình ảnh.
+     </caption>
+    </figure>
+    <paragraph>
+     In the example above, notice how the blue tinge of the render input colors the swirl.
+You can use the Set Alpha node's color field with this kind of node map to add a consistent color to a BW image.
+    </paragraph>
+    <paragraph>
+     Ở bên phải sơ đồ ví dụ, sử dụng giá trị
+     <emphasis>
+      Alpha
+     </emphasis>
+     của nút Đặt Alpha để cung cấp mức độ màu tô mong muốn. Lồng hình ảnh đầu vào và nút Đặt Alpha vào nút Alpha Chồng Lên (Alpha Over) để tô màu bất kỳ hình ảnh đen trắng nào theo phương pháp này.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

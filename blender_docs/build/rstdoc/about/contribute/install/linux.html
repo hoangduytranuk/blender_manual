@@ -1,0 +1,151 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/install/linux.rst">
+ <section ids="installation-on-linux" names="installation\ on\ linux cài\ đặt\ trên\ linux\ --\ installation\ on\ linux">
+  <title>
+   Cài đặt trên Linux -- Installation on Linux
+  </title>
+  <paragraph>
+   Hướng dẫn này bao gồm các chủ đề sau:
+  </paragraph>
+  <enumerated_list enumtype="arabic" prefix="" suffix=".">
+   <list_item>
+    <paragraph>
+     <reference name="Cài Đặt các Thành Phần Phụ Thuộc -- Installing Dependencies" refid="installing-dependencies">
+      Cài Đặt các Thành Phần Phụ Thuộc -- Installing Dependencies
+     </reference>
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <reference name="Tải Dữ Liệu từ Kho Lưu Trữ về Máy -- Downloading the Repository" refid="downloading-the-repository">
+      Tải Dữ Liệu từ Kho Lưu Trữ về Máy -- Downloading the Repository
+     </reference>
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <reference name="Thiết Lập Môi Trường Biên Tập -- Setting up the Build Environment" refid="setting-up-the-build-environment">
+      Thiết Lập Môi Trường Biên Tập -- Setting up the Build Environment
+     </reference>
+    </paragraph>
+   </list_item>
+  </enumerated_list>
+  <section ids="installing-dependencies" names="installing\ dependencies cài\ đặt\ các\ phụ\ thuộc\ --\ installing\ dependencies">
+   <title>
+    Cài Đặt các Phụ Thuộc -- Installing Dependencies
+   </title>
+   <paragraph>
+    Dưới đây là danh sách các lệnh cài đặt cho các phiên bản phân phối Linux phổ biến.
+   </paragraph>
+   <paragraph>
+    Đối với hệ thống thích hợp, hãy thi hành lệnh sau trong thiết bị đầu cuối (bàn giao tiếp):
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Debian/Ubuntu
+     </term>
+     <definition>
+      <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+       sudo apt-get install python3 python3-pip subversion
+      </literal_block>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Redhat/Fedora
+     </term>
+     <definition>
+      <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+       sudo yum install python python-pip
+      </literal_block>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Arch Linux
+     </term>
+     <definition>
+      <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+       sudo pacman -S python python-pip subversion
+      </literal_block>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="downloading-the-repository" names="downloading\ the\ repository tải\ từ\ kho\ lưu\ trữ\ xuống\ máy\ --\ downloading\ the\ repository">
+   <title>
+    Tải từ kho lưu trữ xuống máy -- Downloading the Repository
+   </title>
+   <paragraph>
+    Chỉ cần kiểm xuất (checkout) kho lưu trữ của bản hướng dẫn sử dụng Blender bằng cách sử dụng
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    cd ~
+svn checkout https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs
+   </literal_block>
+   <paragraph>
+    Kho lưu trữ bây giờ sẽ được tải xuống và mình có thể phải chờ mất vài phút, tùy theo chất lượng đường kết nối Internet của bạn.
+   </paragraph>
+  </section>
+  <section ids="setting-up-the-build-environment" names="setting\ up\ the\ build\ environment thiết\ lập\ môi\ trường\ biên\ dịch\ --\ setting\ up\ the\ build\ environment">
+   <title>
+    Thiết Lập Môi Trường Biên Dịch -- Setting up the Build Environment
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Mở một cửa sổ Thiết Bị Đầu Cuối (Bàn Giao Tiếp để đánh dòng lệnh).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Bước vào thư mục
+      <literal>
+       blender_docs
+      </literal>
+      vừa được kiến tạo và bổ sung bởi việc kiểm xuất (checkout) SVN:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      cd ~/blender_docs
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Inside that folder is a file called
+      <literal>
+       requirements.txt
+      </literal>
+      which contains a list of all the dependencies we need.
+To install these dependencies, we can use the
+      <literal>
+       pip3
+      </literal>
+      command:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      sudo pip3 install -r requirements.txt
+     </literal_block>
+    </list_item>
+   </bullet_list>
+   <note>
+    <paragraph>
+     Every now and then you may want to make sure your dependencies are up to date using:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     sudo pip3 install -r requirements.txt --upgrade
+    </literal_block>
+   </note>
+   <transition>
+   </transition>
+   <paragraph>
+    Tiếp tục với bước tiếp theo:
+    <reference internal="True" refuri="../build/linux.html">
+     <inline classes="doc">
+      Biên Tập
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </section>
+ </section>
+</document>

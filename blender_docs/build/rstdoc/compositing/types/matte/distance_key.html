@@ -1,0 +1,125 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/matte/distance_key.rst">
+ <target refid="bpy-types-compositornodedistancematte">
+ </target>
+ <section ids="distance-key-node bpy-types-compositornodedistancematte" names="distance\ key\ node nút\ khoảng\ cách\ khóa\ --\ distance\ key\ node bpy.types.compositornodedistancematte">
+  <title>
+   Nút Khoảng Cách Khóa -- Distance Key Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeDistanceMatte.png'}" uri="images/compositing_node-types_CompositorNodeDistanceMatte.png"/>
+   <caption>
+    Distance Key Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The Distance Key node determines a pixel's alpha value based on the three-dimensional
+distance between the image pixel color and the key color in a 3D color space.
+  </paragraph>
+  <paragraph>
+   This key works well when trying to single out a specific color in a background
+(not necessarily green).
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Màu Khóa -- Key Color
+     </term>
+     <definition>
+      <paragraph>
+       The color that is to be keyed.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Sai Số -- Tolerance
+     </term>
+     <definition>
+      <paragraph>
+       A threshold what the node considers a match between the key color and the foreground pixel.
+The tolerance affects how close a pixel needs to be to the background pixel
+to be considered an absolute match.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Suy Giảm Dần -- Falloff
+     </term>
+     <definition>
+      <paragraph>
+       When the Falloff value is high, pixels that are close to the Key Color are more
+transparent than pixels that are not as close to the Key Color
+(but still considered close enough to be keyed).
+When the Falloff value is low, it does not matter how close
+the pixel color (Image) is to the Key Color, it is transparent.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Không Gian Màu Sắc -- Color Space
+     </term>
+     <definition>
+      <paragraph>
+       It is also possible to work with YCbCr color space,
+but only the Cb and Cr channels are taken into consideration
+for determining the distance between the foreground and background pixels.
+      </paragraph>
+      <paragraph>
+       RGB, YCC
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       The image with an alpha channel adjusted for the keyed selection.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lớp Lồng -- Matte
+     </term>
+     <definition>
+      <paragraph>
+       Một bản màn chắn alpha trắng-đen của khóa.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

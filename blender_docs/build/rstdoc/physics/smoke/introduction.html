@@ -1,0 +1,165 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/smoke/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Smoke simulation is a subset of the fluids system, and can be used for simulating collections
+of airborne solids, liquid particulates and gases, such as those that make up smoke.
+It simulates the fluid movement of air and generates animated
+   <reference internal="True" refuri="../../glossary/index.html#term-voxel">
+    <inline classes="xref std std-term">
+     voxel
+    </inline>
+   </reference>
+   textures representing the density, heat, and velocity of other fluids or suspended particles
+(e.g. smoke) which can be used for rendering.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/physics_smoke_types_domain_note-on-resolution.jpg'}" uri="images/physics_smoke_types_domain_note-on-resolution.jpg"/>
+   <caption>
+    Example of smoke simulation.
+   </caption>
+  </figure>
+  <paragraph>
+   Smoke and fire are emitted into a
+   <reference internal="True" refuri="types/domain.html">
+    <inline classes="doc">
+     Domain
+    </inline>
+   </reference>
+   from a mesh object or particle system. Smoke movement is controlled by airflow inside the domain,
+which can be influenced by
+   <reference internal="True" refuri="types/collision.html">
+    <inline classes="doc">
+     smoke collision objects
+    </inline>
+   </reference>
+   .
+Smoke will also be affected by the scene's gravity and
+   <reference internal="True" refuri="../forces/force_fields/index.html">
+    <inline classes="doc">
+     force fields
+    </inline>
+   </reference>
+   .
+Airflow inside the domain can affect other physics simulations via the
+   <emphasis>
+    Smoke Flow
+   </emphasis>
+   force field.
+  </paragraph>
+  <section ids="workflow" names="workflow quy\ trình\ làm\ việc\ --\ workflow">
+   <title>
+    Quy Trình Làm Việc -- Workflow
+   </title>
+   <paragraph>
+    At least a
+    <reference internal="True" refuri="types/domain.html">
+     <inline classes="doc">
+      Domain
+     </inline>
+    </reference>
+    object and
+one
+    <reference internal="True" refuri="types/flow_object.html">
+     <inline classes="doc">
+      Flow object
+     </inline>
+    </reference>
+    are required to create a smoke simulation.
+A basic workflow looks like this:
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Create a
+      <reference internal="True" refuri="types/domain.html">
+       <inline classes="doc">
+        Domain Object
+       </inline>
+      </reference>
+      that defines the bounds of the simulation volume.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Define a
+      <reference internal="True" refuri="types/flow_object.html">
+       <inline classes="doc">
+        Flow object
+       </inline>
+      </reference>
+      or objects which will emit smoke and fire.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Set
+      <reference internal="True" refuri="types/collision.html">
+       <inline classes="doc">
+        Collision objects
+       </inline>
+      </reference>
+      to make the smoke interact with objects in the scene.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Assign a
+      <reference internal="True" refuri="material.html">
+       <inline classes="doc">
+        Volumetric material
+       </inline>
+      </reference>
+      to the domain object.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Save the blend-file.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <reference internal="True" refuri="baking.html">
+       <inline classes="doc">
+        Bake
+       </inline>
+      </reference>
+      the simulation.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <note>
+    <paragraph>
+     There is a
+     <emphasis>
+      Quick Smoke
+     </emphasis>
+     operator which will automatically create
+a domain object with a basic smoke/fire material.
+It can be found in
+     <inline classes="menuselection" rawtext=":menuselection:`3D View --&gt; Object --&gt; Quick Effects --&gt; Quick Smoke`">
+      3D View ‣ Object ‣ Quick Effects ‣ Quick Smoke
+     </inline>
+     ,
+or with the operator search menu
+     <literal classes="kbd">
+      F3
+     </literal>
+     .
+    </paragraph>
+   </note>
+   <note>
+    <paragraph>
+     Blender's smoke simulation is based on the paper
+     <reference name="Wavelet Turbulence for Fluid Simulation" refuri="https://www.cs.cornell.edu/~tedkim/wturb/">
+      Wavelet Turbulence for Fluid Simulation
+     </reference>
+     and associated sample code.
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

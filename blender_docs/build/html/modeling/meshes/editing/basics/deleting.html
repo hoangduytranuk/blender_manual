@@ -1,0 +1,606 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>-- Deleting &amp; Dissolving &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/basics/deleting.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="next" title="Tạo Cạnh/Bề Mặt -- Make Edge/Face" href="make_face_edge.html" />
+    <link rel="prev" title="-- Adding Geometry" href="adding.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Khung Lưới -- Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../toolbar/index.html">Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Hình Cơ Bản -- Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Biên Soạn -- Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">-- Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vertices.html">Công Cụ Điểm Đỉnh -- Vertex Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../edges.html">-- Edge Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../faces.html">-- Face Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../normals.html">Pháp Tuyến -- Normals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../transform/index.html">Biến Hóa -- Transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../duplicating/index.html">-- Duplicating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subdividing/index.html">Chia Nhỏ -- Subdividing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cleanup.html">Dọn Dẹp -- Clean up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../misc.html">-- Miscellaneous Editing Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../data_transfer.html">Thuyên Chuyển Dữ Liệu -- Data Transfer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mesh_options.html">Tùy Chọn về Khung Lưới -- Mesh Options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Phân Tích Khung Lưới -- Mesh Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">-- Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Khung Lưới -- Meshes</a> &raquo;</li>
+        
+          <li><a href="../index.html">Biên Soạn -- Editing</a> &raquo;</li>
+        
+          <li><a href="index.html">-- Basics</a> &raquo;</li>
+        
+      <li>-- Deleting &amp; Dissolving</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/modeling/meshes/editing/basics/deleting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="deleting-dissolving">
+<h1>-- Deleting &amp; Dissolving<a class="headerlink" href="#deleting-dissolving" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Toolbar ‣ Tools ‣ Mesh Tools ‣ Remove: Delete</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Xóa (Delete)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These tools can be used to remove components.</p>
+<div class="section" id="delete">
+<h2>Xóa -- Delete<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">X</kbd>, <kbd class="kbd docutils literal notranslate">Delete</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Deletes selected vertices, edges, or faces. This operation can also be limited to:</p>
+<dl class="docutils">
+<dt>Điểm Đỉnh -- Vertices</dt>
+<dd>Delete all vertices in current selection, removing any faces or edges they are connected to.</dd>
+<dt>Cạnh -- Edges</dt>
+<dd>Deletes any edges in the current selection. Removes any faces that the edge shares with it.</dd>
+<dt>Bề Mặt -- Faces</dt>
+<dd>Removes any faces in current selection.</dd>
+<dt>Duy Cạch &amp; Bề Mặt -- Only Edges &amp; Faces</dt>
+<dd>Limits the operation to only selected edges and adjacent faces.</dd>
+<dt>Duy Bề Mặt -- Only Faces</dt>
+<dd>Removes faces, but edges within the face selection are retained.</dd>
+</dl>
+</div>
+<div class="section" id="dissolve">
+<h2>Tan Biến -- Dissolve<a class="headerlink" href="#dissolve" title="Permalink to this headline">¶</a></h2>
+<p>Dissolve operations are also accessed from the delete menu.
+Dissolve will remove the geometry and fill in the surrounding geometry.
+Instead of removing the geometry, which may leave holes that you have to fill in again.</p>
+<p>Removes selected geometry, but without creating holes, effectively turning the selection into a single n-gon.
+Dissolve works slightly different based on if you have edges, faces or vertices selected.
+You can add detail where you need it, or quickly remove it where you do not.</p>
+<div class="section" id="dissolve-vertices">
+<h3>Hòa Tan Điểm Đỉnh -- Dissolve Vertices<a class="headerlink" href="#dissolve-vertices" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Xóa (Delete) ‣ Hòa Tan Điểm Đỉnh (Dissolve Vertices)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Remove the vertex, merging all surrounding faces.
+In the case of two edges, merging them into a single edge.</p>
+<dl class="docutils">
+<dt>Tách Phân Bề Mặt -- Face Split</dt>
+<dd>When dissolving vertices into surrounding faces, you can often end up with very large, uneven n-gons.
+The face split option limits dissolve to only use the corners of the faces connected to the vertex.</dd>
+<dt>-- Tear Boundaries</dt>
+<dd>Split off face corners instead of merging faces.</dd>
+</dl>
+<div class="section" id="examples">
+<h4>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
+<div class="figure" id="id1">
+<img alt="../../../../_images/modeling_meshes_editing_basics_deleting_dissolve-examples.png" src="../../../../_images/modeling_meshes_editing_basics_deleting_dissolve-examples.png" />
+<p class="caption"><span class="caption-text">1) Original mesh.
+2) Face Split: Off, Tear Boundaries: Off.
+3) Face Split: On, Tear Boundaries: Off.
+4) Face Split: On/Off, Tear Boundaries: On.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="dissolve-edges">
+<h3>Hòa Tan Cạnh -- Dissolve Edges<a class="headerlink" href="#dissolve-edges" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Xóa (Delete) ‣ Hòa Tan Cạnh (Dissolve Edges)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Removes edges sharing two faces (joining those faces).</p>
+<p>The options are the same as for the <a class="reference internal" href="#dissolve-vertices">Dissolve Vertices</a> tool.</p>
+</div>
+<div class="section" id="dissolve-faces">
+<span id="modeling-mesh-deleting-dissolve-faces"></span><h3>Hòa Tan Bề Mặt -- Dissolve Faces<a class="headerlink" href="#dissolve-faces" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Xóa (Delete) ‣ Hòa Tan Bề Mặt (Dissolve Faces)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Merges regions of faces that share edges into a single face.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">This can be accessed quickly using the <kbd class="kbd docutils literal notranslate">F</kbd> key,
+see: <a class="reference internal" href="make_face_edge.html#modeling-mesh-make-face-edge-dissolve"><span class="std std-ref">-- Dissolve Existing Faces</span></a>.</p>
+</div>
+</div>
+<div class="section" id="dissolve-context-sensitive">
+<h3>-- Dissolve (Context-Sensitive)<a class="headerlink" href="#dissolve-context-sensitive" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-X</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This is a convenient shortcut that dissolves
+based on the current selection mode (vertex, edge, face).</p>
+</div>
+</div>
+<div class="section" id="limited-dissolve">
+<h2>Hòa Tan Hạn Chế -- Limited Dissolve<a class="headerlink" href="#limited-dissolve" title="Permalink to this headline">¶</a></h2>
+<p>This tool can simplify your mesh by dissolving vertices and edges separating flat regions.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id2">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_basics_deleting_limited-dissolve-before.png"><img alt="../../../../_images/modeling_meshes_editing_basics_deleting_limited-dissolve-before.png" src="../../../../_images/modeling_meshes_editing_basics_deleting_limited-dissolve-before.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Original mesh.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id3">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_basics_deleting_limited-dissolve-after.png"><img alt="../../../../_images/modeling_meshes_editing_basics_deleting_limited-dissolve-after.png" src="../../../../_images/modeling_meshes_editing_basics_deleting_limited-dissolve-after.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Result of Limited Dissolve.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Góc Lớn Nhất -- Max Angle</dt>
+<dd>Reduces detail on planar faces and linear edges with an adjustable angle threshold.</dd>
+<dt>Toàn Bộ Ranh Giới -- All Boundaries</dt>
+<dd>Always dissolve vertices that have two edge users at boundaries.</dd>
+<dt>Phân Giới -- Delimit</dt>
+<dd>Prevent faces from joining when they don't share certain properties (material for e.g.).</dd>
+</dl>
+</div>
+<div class="section" id="edge-collapse">
+<h2>Thu Cạnh -- Edge Collapse<a class="headerlink" href="#edge-collapse" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Xóa (Delete) ‣ Thu Cạnh (Edge Collapse)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-M</kbd>, <span class="menuselection">Thu Lại (Collapse)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Merges each edge into single vertices.
+This is useful for taking a ring of edges and collapsing it,
+removing the face loop it ran through.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id4">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_basics_deleting_collapse-before.png"><img alt="../../../../_images/modeling_meshes_editing_basics_deleting_collapse-before.png" src="../../../../_images/modeling_meshes_editing_basics_deleting_collapse-before.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Selected edge ring.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id5">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_basics_deleting_collapse-after.png"><img alt="../../../../_images/modeling_meshes_editing_basics_deleting_collapse-after.png" src="../../../../_images/modeling_meshes_editing_basics_deleting_collapse-after.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Edge ring collapsed.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="edge-loop">
+<h2>Vòng Mạch -- Edge Loop<a class="headerlink" href="#edge-loop" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Edit Mode (Vertex or Edge select modes)</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Xóa (Delete) ‣ Vòng Mạch (Edge Loop)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">X</kbd> or <kbd class="kbd docutils literal notranslate">Delete</kbd>, <span class="menuselection">Vòng Mạch (Edge Loop)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Edge Loop</em> allows you to delete a selected edge loop if it is between two other edge loops.
+This will create one face loop where two previously existed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">The <em>Edge Loop</em> option is very different to the <em>Edges</em> option,
+even if you use it on edges that look like an edge loop.
+Deleting an edge loop merges the surrounding faces together to preserve the surface of the mesh.
+By deleting a chain of edges, the edges are removed, deleting the surrounding faces as well.
+This will leave holes in the mesh where the faces once were.</p>
+</div>
+<div class="section" id="example">
+<h3>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>The selected edge loop on the UV Sphere has been deleted and
+the faces have been merged with the surrounding edges.
+If the edges had been deleted by choosing <em>Edges</em> from the <em>Delete</em> menu
+there would be an empty band of deleted faces all the way around the sphere instead.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id6">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_basics_deleting_edge-loop-before.png"><img alt="../../../../_images/modeling_meshes_editing_basics_deleting_edge-loop-before.png" src="../../../../_images/modeling_meshes_editing_basics_deleting_edge-loop-before.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Selected edge loop.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id7">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_basics_deleting_edge-loop-after.png"><img alt="../../../../_images/modeling_meshes_editing_basics_deleting_edge-loop-after.png" src="../../../../_images/modeling_meshes_editing_basics_deleting_edge-loop-after.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Edge loop deleted.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<ul class="last simple">
+<li><a class="reference internal" href="../vertices.html#vertex-merging"><span class="std std-ref">Vertex merging</span></a>.</li>
+<li><a class="reference internal" href="../faces.html#mesh-faces-tristoquads"><span class="std std-ref">Tam Giác thành Tứ Giác -- Triangles to Quads</span></a>.</li>
+<li><a class="reference internal" href="../subdividing/subdivide.html#mesh-unsubdivide"><span class="std std-ref">Phi Phân Hóa -- Un-Subdivide</span></a>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="make_face_edge.html" class="btn btn-neutral float-right" title="Tạo Cạnh/Bề Mặt -- Make Edge/Face" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="adding.html" class="btn btn-neutral float-left" title="-- Adding Geometry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

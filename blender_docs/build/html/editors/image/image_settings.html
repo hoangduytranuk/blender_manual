@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sắp Đặt về Hình Ảnh -- Image Settings &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/image/image_settings.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="UV Editor" href="../uv/index.html" />
+    <link rel="prev" title="Kế Đo Lường -- Scopes" href="scopes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Biên Soạn -- Editors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../3dview/index.html">3D Viewport</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Image Editor</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="navigating.html">Navigating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="view_tab.html">View Tab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scopes.html">Kế Đo Lường -- Scopes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Sắp Đặt về Hình Ảnh -- Image Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#image-menu">Image Menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-panel">Image Panel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_editor/index.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../compositing/index.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texture_node/index.html">Nút Chất Liệu -- Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../video_editing/index.html">Video Sequencer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dope_sheet/index.html">Bảng Hành Động -- Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timeline.html">Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph_editor/index.html">Trình Biên Soạn Đồ Thị -- Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor.html">Trình Biên Soạn Văn Bản -- Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_console.html">Bàn Giao Tiếp Python -- Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outliner.html">Mục Lục -- Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../properties_editor.html">Trình Biên Soạn Tính Chất -- Properties Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preferences/index.html">Preferences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Trình Biên Soạn -- Editors</a> &raquo;</li>
+        
+          <li><a href="index.html">Image Editor</a> &raquo;</li>
+        
+      <li>Sắp Đặt về Hình Ảnh -- Image Settings</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/editors/image/image_settings.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="image-settings">
+<h1>Sắp Đặt về Hình Ảnh -- Image Settings<a class="headerlink" href="#image-settings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="image-menu">
+<h2>Image Menu<a class="headerlink" href="#image-menu" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>New</dt>
+<dd>Creates a new <a class="reference internal" href="#image-generated"><span class="std std-ref">Do Máy Sinh Tạo -- Generated</span></a> Image.</dd>
+<dt>Mở -- Open</dt>
+<dd>Load image from a file.</dd>
+<dt>Open Cache Render</dt>
+<dd>Load the current scene's render layers from disk cache, if available.
+This can be used to save RAM while rendering because the render layers do not have to be saved in RAM.
+This can also be used to recover some information from a fail render.
+For this to work, <a class="reference internal" href="../../render/cycles/render_settings/performance.html#render-properties-save-buffers"><span class="std std-ref">Save Buffers</span></a> must be enabled.</dd>
+<dt>Replace</dt>
+<dd>Replaces the current image throughout the blend-file with another image.</dd>
+<dt>Nạp Lại -- Reload</dt>
+<dd>Reload the image from the file on disk.</dd>
+<dt>Edit Externally</dt>
+<dd>Using the <em>Edit Externally</em> tool Blender will open an external image editor,
+as specified in the <em>Preferences</em> and load in the image to be edited.</dd>
+<dt>Save</dt>
+<dd>Save the image, if the image is already a file <kbd class="kbd docutils literal notranslate">Alt-S</kbd>.</dd>
+<dt>Save As</dt>
+<dd>Save the (rendered) image in a separate file <kbd class="kbd docutils literal notranslate">Shift-S</kbd> or
+you want to save it under a different name.</dd>
+<dt>Save a Copy</dt>
+<dd>Using <em>Save as Copy</em> will save the file to a specified name,
+but will keep the old one open in the Image editor.</dd>
+<dt>Save All Images</dt>
+<dd>Save all modified images. Packed images will be repacked.</dd>
+<dt>Invert</dt>
+<dd><dl class="first last docutils">
+<dt>Invert Image Colors</dt>
+<dd>Invert the colors of an image.</dd>
+<dt>Invert Channel</dt>
+<dd>Red, Green, Blue, Alpha</dd>
+</dl>
+</dd>
+<dt>Đóng Gói -- Pack</dt>
+<dd>Packs the image into the blend-file.
+See <a class="reference internal" href="../../files/blend/packed_data.html#pack-unpack-data"><span class="std std-ref">Packed Data</span></a>.</dd>
+<dt>Unpack</dt>
+<dd>Unpack the image to disk.</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Quan trọng</p>
+<p class="last">Rendered images are not automatically saved, they have to be saved to disk manually.</p>
+</div>
+</div>
+<div class="section" id="image-panel">
+<h2>Image Panel<a class="headerlink" href="#image-panel" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Hình Ảnh -- Image</dt>
+<dd><p class="first">Data-block menu.</p>
+<dl class="last docutils">
+<dt>Tạo Mới -- New <code class="docutils literal notranslate"><span class="pre">+</span></code></dt>
+<dd>The <em>New Image</em> button opens a pop-up to configure a <a class="reference internal" href="#generated">Generated</a> image.</dd>
+</dl>
+</dd>
+</dl>
+<div class="section" id="source">
+<h3>Nguồn -- Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h3>
+<p>See about supported <a class="reference internal" href="../../files/media/image_formats.html"><span class="doc">Định Dạng Đồ Họa Hỗ Trợ -- Supported Graphics Formats</span></a>.</p>
+<div class="section" id="single-image">
+<h4>Đơn Hình Ảnh -- Single Image<a class="headerlink" href="#single-image" title="Permalink to this headline">¶</a></h4>
+<p>Still image or a single frame.</p>
+</div>
+<div class="section" id="image-sequence">
+<h4>Trình Tự Hình Ảnh -- Image Sequence<a class="headerlink" href="#image-sequence" title="Permalink to this headline">¶</a></h4>
+<p>Each frame is stored in a separate file.
+How to <a class="reference internal" href="../../files/media/image_formats.html#image-formats-open-sequence"><span class="std std-ref">Mở một Trình Tự Hình Ảnh -- Opening an Image Sequence</span></a>.</p>
+<dl class="docutils">
+<dt>Khung Hình -- Frame</dt>
+<dd>A label showing the current frame.</dd>
+<dt>tùy chọn khác -- Further options</dt>
+<dd>See <a class="reference internal" href="#movie">Movie</a> below.</dd>
+</dl>
+</div>
+<div class="section" id="movie">
+<h4>Phim -- Movie<a class="headerlink" href="#movie" title="Permalink to this headline">¶</a></h4>
+<p>Frames packed into a container.</p>
+<dl class="docutils">
+<dt>Gộp Trường -- Deinterlace</dt>
+<dd>Removes fields in a video file. For example,
+if it is an analog video and it has even or odd interlacing fields.</dd>
+<dt>Khung Hình -- Frame</dt>
+<dd><dl class="first last docutils">
+<dt>Khung Hình -- Frames</dt>
+<dd>Sets the range of frames to use.</dd>
+<dt>Bắt Đầu -- Start</dt>
+<dd>Global starting frame of the sequence, when the playback should start.
+This is a global setting which means it affects all clip users such as the Movie Clip editor itself,
+motion tracking constraints and Compositor nodes.</dd>
+<dt>Dịch Chuyển -- Offset</dt>
+<dd>Offsets the first frame of the clip. It adds an extra offset to the frame number when
+converting a scene frame to the frame number in the file name.
+This option does not affect tracking data or any other associated data.</dd>
+</dl>
+</dd>
+<dt>Tương Đồng với Độ Dài của Đoạn Phim -- Match Movie Length</dt>
+<dd>This button sets image's user's length to the one of selected movie.</dd>
+<dt>Tự Động Làm Tươi Mới Lại -- Auto Refresh</dt>
+<dd>Automatically refresh images on frame changes.</dd>
+<dt>Tuần Hoàn -- Cyclic</dt>
+<dd>Start over and repeats after the last frame to create a continuous loop.</dd>
+</dl>
+</div>
+<div class="section" id="generated">
+<span id="image-generated"></span><h4>Do Máy Sinh Tạo -- Generated<a class="headerlink" href="#generated" title="Permalink to this headline">¶</a></h4>
+<p>Image generated in Blender.</p>
+<dl class="docutils">
+<dt>Chiều Rộng, Chiều Cao -- Width, Height</dt>
+<dd>The size of image in pixels.</dd>
+<dt>Màu Sắc -- Color</dt>
+<dd>Sets the fill color if creating a blank image.</dd>
+<dt>Số Thực Dấu Phẩy Động 32 bit / Bộ Đệp Số Thực Dấu Phẩy Động -- 32 bit Float / Float Buffer</dt>
+<dd>Creates a 32 bit image. This is a larger file size,
+but holds much more color information than the standard 8 bit image.
+For close ups and large gradients, it may be better to use a 32 bit image.</dd>
+<dt>Thể Loại -- Type</dt>
+<dd><dl class="first last docutils">
+<dt>Trơn -- Blank</dt>
+<dd>Creates a Blank image of a single specified color.</dd>
+<dt>Đồ Thị UV -- UV Grid</dt>
+<dd>Creates a checkerboard pattern with a colored cross (+) in each square.</dd>
+<dt>Đồ Thị Màu -- Color Grid</dt>
+<dd>Creates a more complex colored grid with letters and numbers denoting locations in the grid.
+It could be used for testing how the UVs have been mapped and to reduce stretching or distortion.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="common-options">
+<h3>Tùy Chọn Chung -- Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Tập Tin -- File</dt>
+<dd><p class="first">Use for replacing or packing files.</p>
+<dl class="last docutils">
+<dt>Đóng Gói -- Pack</dt>
+<dd>Embed the resource into the current blend-file.</dd>
+<dt>Đường/Đi/Dẫn -- Path</dt>
+<dd>Path to the linked file.</dd>
+<dt>Mở -- Open</dt>
+<dd>Opens the <a class="reference internal" href="../file_browser.html"><span class="doc">File Browser</span></a> to select a file from a drive.</dd>
+<dt>Nạp Lại -- Reload</dt>
+<dd>Reloads the file. Useful when a file has been reworked in an external application.</dd>
+</dl>
+</dd>
+<dt>Không Gian Màu Sắc -- Color Space</dt>
+<dd><p class="first"><a class="reference internal" href="../../glossary/index.html#term-color-space"><span class="xref std std-term">Color Space</span></a>.</p>
+<dl class="last docutils">
+<dt>Đỏ/Lục/Lam tiêu chuẩn -- sRGB</dt>
+<dd>Standard RGB display space.</dd>
+<dt>Tuyến Tính -- Linear</dt>
+<dd>Linear 709 (full range). Blender native linear space.</dd>
+<dt>ACES Tuyến Tính -- Linear ACES</dt>
+<dd>ACES linear space.</dd>
+<dt>XYZ</dt>
+<dd>Standard linear XYZ space.</dd>
+<dt>Phi-Sắc Tính -- Non-Color</dt>
+<dd>Color space used for images which contains non-color data (e.g. normal maps).</dd>
+<dt>Nguyên Thủy/Thô Sơ -- Raw</dt>
+<dd>Same as Non-Color.</dd>
+<dt>Filmic Log</dt>
+<dd>Intermediate log color space of Filmic view transform.</dd>
+</dl>
+</dd>
+<dt>Hiển Thị như Bản Kết Xuất -- View as Render</dt>
+<dd>Applies <a class="reference internal" href="../../render/color_management.html"><span class="doc">color transform</span></a> when displaying this image on the screen.</dd>
+<dt>Dùng Đa Góc Nhìn -- Use Multi-View</dt>
+<dd>See <a class="reference internal" href="../../render/output/multiview/index.html"><span class="doc">Multi-View</span></a>.</dd>
+<dt>Alpha</dt>
+<dd><p class="first">Representation of alpha in the image file, to convert to and from when saving and loading the image.
+See <a class="reference internal" href="../../glossary/index.html#term-alpha-channel"><span class="xref std std-term">Alpha Channel</span></a>.</p>
+<dl class="last docutils">
+<dt>Straight</dt>
+<dd>Store RGB and alpha channels separately with alpha acting as a mask, also known as unassociated alpha.
+Commonly used by image editing applications and file formats like PNG.
+This preserves colors in parts of the image with zero alpha.</dd>
+<dt>Premultiplied</dt>
+<dd>Store RGB channels with alpha multiplied in, also known as associated alpha.
+The natural format for renders and used by file formats like OpenEXR.
+This can represent purely emissive effects like fire correctly, unlike straight alpha.</dd>
+<dt>Channel Packed</dt>
+<dd>Different images are packed in the RGB and alpha channels, and they should not affect each other.
+Channel packing is commonly used by game engines to save memory.</dd>
+<dt>None</dt>
+<dd>Ignore alpha channel from the file and make image fully opaque.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../uv/index.html" class="btn btn-neutral float-right" title="UV Editor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scopes.html" class="btn btn-neutral float-left" title="Kế Đo Lường -- Scopes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

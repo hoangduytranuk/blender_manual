@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Giải -- Solve &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/movie_clip/tracking/clip/editing/solve.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="next" title="Header" href="../header.html" />
+    <link rel="prev" title="Giám Sát/Rãnh -- Track" href="track.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Tracking &amp; Masking</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Giám Sát Chuyển Động -- Motion Tracking</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">-- Clip View</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../marker.html">Dấu Giám Sát -- Tracking Marker</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../header.html">Header</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/index.html">Tính Chất -- Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../graph.html">Khung Nhìn Đồ Thị -- Graph View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dope_sheet.html">Góc Nhìn Bảng Hành Động -- Dope Sheet View</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../masking/index.html">-- Masking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../editors/clip/index.html">Movie Clip Editor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Tracking &amp; Masking</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Giám Sát Chuyển Động -- Motion Tracking</a> &raquo;</li>
+        
+          <li><a href="../index.html">-- Clip View</a> &raquo;</li>
+        
+          <li><a href="index.html">Biên Soạn -- Editing</a> &raquo;</li>
+        
+      <li>Giải -- Solve</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/movie_clip/tracking/clip/editing/solve.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="solve">
+<h1>Giải -- Solve<a class="headerlink" href="#solve" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="plane-track-panel">
+<span id="clip-tracking-plane"></span><h2>Bảng Giám Sát Mặt Phẳng -- Plane Track Panel<a class="headerlink" href="#plane-track-panel" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Create Plane Track</em> operator creates a new plane track.
+Planar tracking takes advantage of the fact that there are often planar surfaces in footage,
+by attaching markers to points on these flat planes.
+It can be used to replace things like billboards and screens on the footage with another image or video.
+It also might be used for masking.</p>
+<p>This button will create a plane object
+which is deforming in the same way as plane defined by all selected point tracks.
+At least four feature points tracked across the footage which belongs to
+the plane you want to replace are needed. More tracks will give better estimation of plane motion.</p>
+<p>Feature points used to estimate plane motion could be used from any place on the plane,
+meaning it's not necessarily need to be corners. Corners are not always easy to be tracked,
+they might be occluded. In this case you can position tracked features that lay on the same plane
+far away from the actual plane which should be replaced.</p>
+<p>This provides more information about the possible deformation of the marker in following frames,
+and such markers can be tracked even if partially occluded (appear and disappear during the time).
+It is only required that two neighbor frames have at least four common tracks.</p>
+<p>An image can be projected onto the plane with
+the <a class="reference internal" href="../../../../compositing/types/distort/plane_track_deform.html"><span class="doc">Nút Biến Dạng Giám Sát Mặt Phẳng -- Plane Track Deform Node</span></a> compositing node.</p>
+</div>
+<div class="section" id="solve-panel">
+<h2>Bảng Giải Nghiệm -- Solve Panel<a class="headerlink" href="#solve-panel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tripod">
+<h3>Chân Máy Ảnh -- Tripod<a class="headerlink" href="#tripod" title="Permalink to this headline">¶</a></h3>
+<p>Tripod Motion can be used for footage where the camera does not move and only rotates.
+Such footage can't be tracked with a generic solver approach, and
+it is impossible to determine the actual feature points in space due to a lack of information.
+So this solver will solve only the relative camera rotation and then reproject the feature points into a sphere,
+with the same distance between feature and camera for all feature points.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">This is special type of camera solver and it behaves different from regular solver.
+It means using more tracks doesn't imply more accurate solution.
+Having 5-10 tracks on frame is likely what shall be commonly used for this kind of solver.</p>
+</div>
+</div>
+<div class="section" id="keyframe">
+<h3>Khung Khóa -- Keyframe<a class="headerlink" href="#keyframe" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Khung Khóa -- Keyframe</dt>
+<dd>Automatically select keyframes for initial reconstruction.
+This option enables complex algorithms which tries to find a keyframe pair
+with minimal reconstruction error and best scene scale guess.</dd>
+<dt>Khung Hình A, B -- Keyframe A, B <kbd class="kbd docutils literal notranslate">Q</kbd>, <kbd class="kbd docutils literal notranslate">E</kbd></dt>
+<dd>Start (A) and End (B) frame of the range used for reconstruction.</dd>
+</dl>
+</div>
+<div class="section" id="refine">
+<h3>Tinh Chỉnh -- Refine<a class="headerlink" href="#refine" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Refine</em> option specifies which parameters should be refined during solve.
+Such refining is useful when you are not sure about some camera intrinsics,
+and solver should try to find the best parameter for those intrinsics.
+But you still have to know approximate initial values --
+it will fail to find correct values if they were set completely incorrectly initially.</p>
+</div>
+<div class="section" id="solve-camera-object-motion">
+<span id="editors-movie-clip-tracking-clip-solve-motion"></span><h3>Giải Nghiệm Chuyển Động của Vật Thể/Máy Quay Phim -- Solve Camera/Object Motion<a class="headerlink" href="#solve-camera-object-motion" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Camera Motion</em> operator solves the motion of camera using all tracks placed
+on the footage and two keyframes specified on this panel. There are some requirements:</p>
+<ul class="simple">
+<li>There should be at least eight common tracks on the both of the selected keyframes.</li>
+<li>There should be noticeable parallax effects between these two keyframes.</li>
+</ul>
+<p>If everything goes smoothly during the solve, the average reprojection error is reported to
+the information space and to the Clip editor header. Reprojection error means the average
+distance between reconstructed 3D position of tracks projected back to footage and
+original position of tracks. Basically, reprojection error below 0.3 means accurate reprojection,
+(0.3 - 3.0) means quite nice solving which still can be used.
+Values above 3 means some tracks should be tracked more accurately,
+or that values for focal length or distortion coefficients were set incorrectly.</p>
+</div>
+</div>
+<div class="section" id="cleanup-panel">
+<h2>Bảng Dọn Dẹp -- Cleanup Panel<a class="headerlink" href="#cleanup-panel" title="Permalink to this headline">¶</a></h2>
+<p>This panel contains operators and their settings which are needed to clean up bad tracks:
+tracks which are not tracked long enough or which failed to reconstruct accurately.</p>
+<dl class="docutils">
+<dt>Khung Hình -- Frames</dt>
+<dd>Tracks or tracked segments shorter than this number of frames will be removed.</dd>
+<dt>Sai Số -- Error</dt>
+<dd>Tracks which has reprojection error higher than this value will be removed.</dd>
+<dt>Hành Động -- Action</dt>
+<dd><p class="first">Several actions can be performed for bad tracks:</p>
+<dl class="last docutils">
+<dt>Cái Được Chọn -- Selected</dt>
+<dd>They can simply be selected.</dd>
+<dt>Xóa Giám Sát -- Delete Track</dt>
+<dd>The whole track can be deleted.</dd>
+<dt>Xóa các Phân Đoạn -- Delete Segments</dt>
+<dd>Bad segments of tracked sequence can be removed.</dd>
+</dl>
+</dd>
+<dt>Clean Tracks</dt>
+<dd>Identifies all tracks which matches settings from above and performs desired action on them.</dd>
+<dt>Filter Tracks</dt>
+<dd>This operator deletes obviously bad tracks (for example, the ones which are too short).
+Additionally, it identifies tracks which has suspicious spikes in their motion and selects them.</dd>
+</dl>
+</div>
+<div class="section" id="geometry-panel">
+<h2>Bảng Hình Học -- Geometry Panel<a class="headerlink" href="#geometry-panel" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Dấu Mốc 3D thành Khung Lưới -- 3D Markers to Mesh</dt>
+<dd>Creates a mesh which vertices matches positions of reconstructed tracks.
+It is required to have motion solved first before using this operator.
+Only tracks from the current tracking object will be used.
+The intention of this operator is to give a nice starting point for a manual mesh reconstruction.</dd>
+<dt>Kết Nối Vật Thể Rỗng với Giám Sát -- Link Empty to Track</dt>
+<dd>Creates new empty in 3D viewport and appends contraint which parts it to the active track.</dd>
+</dl>
+</div>
+<div class="section" id="orientation-panel">
+<h2>Bảng Định Hướng -- Orientation Panel<a class="headerlink" href="#orientation-panel" title="Permalink to this headline">¶</a></h2>
+<p>Scene orientation tools can be used for orienting object to bundles.</p>
+<dl class="docutils">
+<dt>Sàn -- Floor</dt>
+<dd>Use selected three markers to define a floor. Camera will be transformed in a way which makes the selected
+markers to be flat (have Z = 0).</dd>
+<dt>Tường -- Wall</dt>
+<dd>Similar to the floor orientation, but defines a wall (selected tracks are placed onto OXZ plane).</dd>
+<dt>Đặt Gốc Tọa Độ -- Set Origin</dt>
+<dd>Transform camera in a way which makes active track to be moved to a scene origin.
+Only translation is applied to the camera.</dd>
+<dt>Đặt Trục X, Y -- Set X, Y Axis</dt>
+<dd>Transform camera in a way which makes active track to become on X or Y axis. No translation is applied, meaning
+scene origin which was specified before will be preserved.</dd>
+<dt>Đặt Tỷ Lệ -- Set Scale</dt>
+<dd>Scale camera or tracking object in a way which makes distance between two selected tracks match the given value in
+Distance.</dd>
+<dt>Apply Scale</dt>
+<dd>Similar to Set Scale, but actually modifies the tracking data.</dd>
+<dt>Khoảng Cách -- Distance</dt>
+<dd>Distance in active scene units which is used by Set/Apply scale.</dd>
+</dl>
+</div>
+<div class="section" id="scene-setup">
+<h2>Thiết Lập Cảnh -- Scene Setup<a class="headerlink" href="#scene-setup" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Đặt làm Nền -- Set as Background</dt>
+<dd>Sets the clip currently being edited as the camera background for all visible 3D Views.
+If there is no visible 3D Views or the Clip Editor is open in full screen, nothing will happen.</dd>
+<dt>Thiết Lập Cảnh Giám Sát -- Setup Tracking Scene</dt>
+<dd><p class="first">Performs all usual steps to set up a VFX scene:</p>
+<ul class="last simple">
+<li>Create reference objects for floor and test object.</li>
+<li>Create node set up for combining CG with an actual clip.</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../header.html" class="btn btn-neutral float-right" title="Header" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="track.html" class="btn btn-neutral float-left" title="Giám Sát/Rãnh -- Track" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

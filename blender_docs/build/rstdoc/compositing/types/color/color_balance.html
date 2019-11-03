@@ -1,0 +1,242 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/color/color_balance.rst">
+ <target refid="bpy-types-compositornodecolorbalance">
+ </target>
+ <section ids="color-balance-node bpy-types-compositornodecolorbalance" names="color\ balance\ node nút\ cân\ bằng\ màu\ --\ color\ balance\ node bpy.types.compositornodecolorbalance">
+  <title>
+   Nút Cân Bằng Màu -- Color Balance Node
+  </title>
+  <paragraph>
+   Nút Cân Bằng Màu có thể điều chỉnh màu và giá trị của một hình ảnh.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeColorBalance.png'}" uri="images/compositing_node-types_CompositorNodeColorBalance.png"/>
+   <caption>
+    Nút Chỉnh Sửa Màu.
+   </caption>
+  </figure>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Điều chế lượng ảnh hưởng mà nút tác động đến hình ảnh xuất ra.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Có hai công thức hiệu chỉnh khác nhau có thể chọn.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Nâng/Gamma/Gia Tăng -- Lift/Gamma/Gain
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Nâng -- Lift
+        </term>
+        <definition>
+         <paragraph>
+          Tăng giá trị của màu tối.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Gamma
+        </term>
+        <definition>
+         <paragraph>
+          Sẽ điều chỉnh trung sắc (
+          <emphasis>
+           midtones
+          </emphasis>
+          ) -- màu ở khoảng giữa điểm sáng nhất và tốt nhất.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Gia Lượng -- Gain
+        </term>
+        <definition>
+         <paragraph>
+          Điều chỉnh các điểm nêu bật.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển/Lũy Thừa/Dốc (ASC-CDL) -- Offset/Power/Slope (ASC-CDL)
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Dịch Chuyển -- Offset
+        </term>
+        <definition>
+         <paragraph>
+          Summand. (Adjusts the overall brightness.)
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Cơ Sở -- Basis
+           </term>
+           <definition>
+            <paragraph>
+             Dịch chuyển bổ sung, cho phép để xác định một giá trị dịch chuyển âm.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Lũy Thừa -- Power
+        </term>
+        <definition>
+         <paragraph>
+          Over-all exponent. (Adjusts the midtones.)
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Độ Dốc -- Slope
+        </term>
+        <definition>
+         <paragraph>
+          Multiplier. (Adjusts the highlights.)
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh đầu ra tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="advanced" names="advanced cao\ cấp\ --\ advanced">
+   <title>
+    Cao Cấp -- Advanced
+   </title>
+   <section ids="the-offset-power-slope-formula" names="the\ offset/power/slope\ formula công\ thức\ dịch\ chuyển/lũy\ thừa/độ\ dốc\ --\ the\ offset/power/slope\ formula">
+    <title>
+     Công thức Dịch Chuyển/Lũy Thừa/Độ Dốc -- The Offset/Power/Slope Formula
+    </title>
+    <paragraph>
+     <emphasis>
+      out
+     </emphasis>
+     = (
+     <emphasis>
+      i
+     </emphasis>
+     ×
+     <emphasis>
+      s
+     </emphasis>
+     +
+     <emphasis>
+      o
+     </emphasis>
+     )
+     <superscript>
+      p
+     </superscript>
+    </paragraph>
+    <paragraph>
+     trong đó:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <emphasis>
+        out
+       </emphasis>
+       : Giá trị mã điểm ảnh cấp của màu sắc.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <emphasis>
+        i
+       </emphasis>
+       : Giá trị mã hóa điểm ảnh đầu vào (0 đến 1) (từ đen sang trắng).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <emphasis>
+        s
+       </emphasis>
+       : Độ dốc (bất kỳ một số từ 0 trở lên, giá trị danh nghĩa là 1.0).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <emphasis>
+        o
+       </emphasis>
+       : Dịch chuyển (bất kỳ số nào, giá trị danh nghĩa là 0).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <emphasis>
+        p
+       </emphasis>
+       : (bất kỳ một số nào lớn hơn 0, giá trị danh nghĩa là 1.0).
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+ </section>
+</document>

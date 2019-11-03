@@ -1,0 +1,326 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/movie_clip/tracking/clip/properties/introduction.rst">
+ <target refid="bpy-types-movietrackingtrack">
+ </target>
+ <section ids="introduction bpy-types-movietrackingtrack" names="introduction giới\ thiệu\ --\ introduction bpy.types.movietrackingtrack">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <target refid="movie-clip-tracking-properties-object">
+  </target>
+  <section ids="objects-panel movie-clip-tracking-properties-object" names="objects\ panel bảng\ vật\ thể\ --\ objects\ panel movie-clip-tracking-properties-object">
+   <title>
+    Bảng Vật Thể -- Objects Panel
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/movie-clip_tracking_clip_properties_introduction_objects-panel.png'}" uri="images/movie-clip_tracking_clip_properties_introduction_objects-panel.png" width="195px"/>
+    <caption>
+     Bảng các vật thể.
+    </caption>
+   </figure>
+   <paragraph>
+    Bảng này chứa một
+    <reference internal="True" refuri="../../../../interface/controls/templates/list_presets.html#ui-list-view">
+     <inline classes="std std-ref">
+      Danh sách liệt kê
+     </inline>
+    </reference>
+    tất cả các đối tượng có thể được sử dụng để giám sát, máy quay phim hoặc giải nghiệm vật thể. Theo mặc định, chỉ có một đối tượng trong danh sách này được sử dụng để giải nghiệm máy quay phim. Nó không thể bị xóa đi được và các đối tượng khác không thể được sử dụng để giải nghiệm máy quay phim; tất cả các đối tượng được thêm vào chỉ được sử dụng để theo dõi và giải nghiệm đối tượng mà thôi. Các đối tượng này có thể được tham chiếu từ các ràng buộc của Đi Theo Giám Sát (Follow Track) và Giải Nghiệm Vật Thể (Object Solver). Theo mặc định ràng buộc Đi Theo Giám Sát sử dụng vật thể máy quay phim.
+   </paragraph>
+   <paragraph>
+    If some tracks were added and tracked to the wrong object, they can be copied to another object using
+    <inline classes="menuselection" rawtext=":menuselection:`Giám Sát/Rãnh (Track) --&gt; Sao Chép Giám Sát (Copy Tracks)`">
+     Giám Sát/Rãnh (Track) ‣ Sao Chép Giám Sát (Copy Tracks)
+    </inline>
+    and
+    <inline classes="menuselection" rawtext=":menuselection:`Giám Sát/Rãnh (Track) --&gt; Dán Giám Sát (Paste Tracks)`">
+     Giám Sát/Rãnh (Track) ‣ Dán Giám Sát (Paste Tracks)
+    </inline>
+    .
+   </paragraph>
+   <paragraph>
+    The usage for all kind of objects (used for camera and object tracking) is the same:
+track features, set camera data, solve motion. Camera data is sharing between all objects and
+refining of camera intrinsics happens when solving camera motion only.
+   </paragraph>
+  </section>
+  <section ids="track-panel" names="track\ panel bảng\ giám\ sát\ --\ track\ panel">
+   <title>
+    Bảng Giám Sát -- Track Panel
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/movie-clip_tracking_clip_properties_introduction_track-panel.png'}" uri="images/movie-clip_tracking_clip_properties_introduction_track-panel.png" width="195px"/>
+    <caption>
+     Bảng giám sát.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tên -- Name
+     </term>
+     <definition>
+      <paragraph>
+       The track name can be changed with this field.
+Track names are used for linking tracking data to other areas, like a Follow Track constraint.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bật (biểu tượng con mắt) -- Enable (eye icon)
+     </term>
+     <definition>
+      <paragraph>
+       This toggle controlled the marker's enabled flag.
+If a marker is disabled, its position is not used either by solver nor by constraints.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khóa (biểu tượng cái khóa) -- Lock (padlock icon)
+     </term>
+     <definition>
+      <paragraph>
+       The toggle controls whether the track is locked. Locked tracks cannot be edited at all.
+This helps to prevent accidental changes to tracks which are "finished"
+(tracked accurate along the whole footage).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="track-preview-widget" names="track\ preview\ widget thành\ tố\ xem\ trước\ giám\ sát\ --\ track\ preview\ widget">
+    <title>
+     Thành Tố Xem Trước Giám Sát -- Track Preview Widget
+    </title>
+    <paragraph>
+     The widget in this panel is called "Track Preview" and it displays the content of the pattern area.
+This helps to check how accurately the feature is being tracked
+(controlling that there is no sliding off original position)
+and also helps to move the track back to the correct position.
+The track can be moved directly using this widget by mouse dragging.
+    </paragraph>
+    <paragraph>
+     If an anchor is used
+(the position in the image which is tracking is different from the position which is used for parenting),
+a preview widget will display the area around the anchor position.
+This configuration helps in masking some things when there is no good feature at position where
+the mask corner should be placed. Details of this technique will be written later.
+    </paragraph>
+    <paragraph>
+     There is small area below the preview widget which can be used to enlarge the vertical size of
+preview widget (the area is highlighted with two horizontal lines).
+    </paragraph>
+   </section>
+   <section ids="further-options" names="further\ options tùy\ chọn\ khác\ --\ further\ options">
+    <title>
+     Tùy Chọn Khác -- Further Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Kênh -- Channels
+      </term>
+      <definition>
+       <paragraph>
+        Tracking happens in gray-scale space, so a high contrast between the feature and
+its background yields more accurate tracking.
+In such cases disabling some color channels can help.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xem Trước Gam Xám (Trắng/Đen) -- Grayscale Preview (B/W)
+      </term>
+      <definition>
+       <paragraph>
+        Display the preview image as gray-scale even if all channels are enabled.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mask Preview (black/white icon)
+      </term>
+      <definition>
+       <paragraph>
+        Applies mask defined by an annotation tool in the preview widget.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="clip-tracking-weight">
+    </target>
+    <definition_list ids="clip-tracking-weight" names="clip-tracking-weight">
+     <definition_list_item>
+      <term>
+       Trọng Lượng -- Weight
+      </term>
+      <definition>
+       <paragraph>
+        When several tracks are used for 3D camera reconstruction, it is possible to assign
+a reduced weight to some tracks to control their influence on the solution result.
+This parameter can (and often need to) be animated.
+       </paragraph>
+       <paragraph>
+        Altering the weights of problem tracking markers can correct or greatly reduce undesirable jumps
+as feature disappear or become difficult to track.
+       </paragraph>
+       <paragraph>
+        Another use of Track Weights is when you want to reconstruct a scene from your camera solution.
+In that case you can first carefully track and solve your scene, and once you're done,
+lock all your markers with
+        <literal classes="kbd">
+         Ctrl-L
+        </literal>
+        , set the tracker weight in the Extra Settings of
+the tracker settings to zero and use the feature detection to quickly add lots of markers.
+Now track them and solve the scene again. Since their weight is zero
+they will not influence your solution at all, but you will have lots of good reference points in your scene.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Trọng Lượng Ổn Định -- Stabilization Weight
+      </term>
+      <definition>
+       <paragraph>
+        While
+        <emphasis>
+         Weight
+        </emphasis>
+        parameter is used for 3D reconstruction,
+the
+        <emphasis>
+         Stabilization Weight
+        </emphasis>
+        is used to control 2D stabilization.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Màu Định Trước -- Color Presets
+      </term>
+      <definition>
+       <paragraph>
+        The preset for the
+        <emphasis>
+         Custom Color
+        </emphasis>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Màu Tùy Chọn -- Custom Color
+      </term>
+      <definition>
+       <paragraph>
+        This setting overrides the default marker color used in the Clip editor and 3D View,
+and it helps to distinguish different type of features
+(for example, features in the background vs. foreground and so on).
+Color also can be used for "grouping" tracks so a whole group of tracks can be selected by
+color using the Select Grouped operator.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <tip>
+     <paragraph>
+      To select good points for tracking, use points in the middle of the footage timeline
+and track backwards and forwards from there.
+This will provide a greater chance of the marker and point staying in the camera shot.
+     </paragraph>
+    </tip>
+   </section>
+  </section>
+  <section ids="plane-track-panel" names="plane\ track\ panel bảng\ giám\ sát\ mặt\ phẳng\ --\ plane\ track\ panel">
+   <title>
+    Bảng Giám Sát Mặt Phẳng -- Plane Track Panel
+   </title>
+   <figure align="right" ids="id3">
+    <image candidates="{'*': 'images/movie-clip_tracking_clip_properties_introduction_plane-track-panel.png'}" uri="images/movie-clip_tracking_clip_properties_introduction_plane-track-panel.png" width="195px"/>
+    <caption>
+     Bảng giám sát mặt phẳng.
+    </caption>
+   </figure>
+   <paragraph>
+    Its properties are shown only when a plane track is selected.
+Firstly, the name of the selected plane track is shown. It can also be changed from here.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tạo Khung Khóa Tự Động -- Auto Keyframe
+     </term>
+     <definition>
+      <paragraph>
+       Toggles the auto-keyframing for corners of the plane track.
+With this enabled, keyframes will automatically get inserted when any corner is moved.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Field to select an image which will be displayed inside the plane track.
+This image is for preview purposes in the Movie Clip editor only.
+To include it in your final render,
+see
+       <reference internal="True" refuri="../../../../compositing/types/distort/plane_track_deform.html">
+        <inline classes="doc">
+         Plane Track Deform node
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Đục -- Opacity
+     </term>
+     <definition>
+      <paragraph>
+       Used to set the opacity of this image. Again,
+this is for display purposes only, and will not affect your final render.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="tracking-settings-panel" names="tracking\ settings\ panel bảng\ sắp\ đặt\ giám\ sát\ --\ tracking\ settings\ panel">
+   <title>
+    Bảng Sắp Đặt Giám Sát -- Tracking Settings Panel
+   </title>
+   <paragraph>
+    This panel contains
+    <reference internal="True" refuri="../editing/track.html#clip-tracking-settings">
+     <inline classes="std std-ref">
+      tracker settings
+     </inline>
+    </reference>
+    for each marker.
+   </paragraph>
+  </section>
+  <section ids="annotations-panel" names="annotations\ panel">
+   <title>
+    Annotations Panel
+   </title>
+   <paragraph>
+    Annotation tool strokes can be enabled/disabled with the checkbox in the panel header.
+It is a standard annotations panel where annotation layers and frames can be controlled.
+There is one difference in the behavior of the annotation tools from other areas --
+when a new layer is created "on-demand" (when making a stroke without adding a layer before this)
+the default color for the layer is set to pink. This makes the stroke easy to notice on all kinds of movies.
+   </paragraph>
+  </section>
+ </section>
+</document>

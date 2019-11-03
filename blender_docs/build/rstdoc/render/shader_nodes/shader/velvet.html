@@ -1,0 +1,136 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/shader/velvet.rst">
+ <target refid="bpy-types-shadernodebsdfvelvet">
+ </target>
+ <section ids="velvet-bsdf bpy-types-shadernodebsdfvelvet" names="velvet\ bsdf bsdf\ vải\ nhung\ --\ velvet\ bsdf bpy.types.shadernodebsdfvelvet">
+  <title>
+   BSDF Vải Nhung -- Velvet BSDF
+  </title>
+  <paragraph>
+   <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+    Cycles Only
+   </inline>
+  </paragraph>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_shader_velvet_node.png'}" uri="images/render_shader-nodes_shader_velvet_node.png"/>
+   <caption>
+    Velvet BSDF.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Velvet
+   </emphasis>
+   <abbreviation explanation="Bidirectional scattering distribution function">
+    BSDF
+   </abbreviation>
+   is used to add reflection to materials such as cloth.
+It is meant to be used together with other shaders (such as a
+   <emphasis>
+    Diffuse Shader
+   </emphasis>
+   )
+and is not particularly useful on its own.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Về màu sắc của bề mặt, hoặc về thể chất mà nói, xác suất ánh sáng được phản xạ cho mỗi bước sóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sigma
+     </term>
+     <definition>
+      <paragraph>
+       Variance of the normal distribution,
+controlling the sharpness of the peak. It can be thought of as a kind of
+       <emphasis>
+        roughness
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pháp Tuyến -- Normal
+     </term>
+     <definition>
+      <paragraph>
+       Pháp tuyến sử dụng cho việc tô bóng; nếu không có gì kết nối thì pháp tuyến tô bóng mặc định sẽ được sử dụng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Nút này không có tính chất nào cả.
+   </paragraph>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      BSDF
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra chuẩn của bộ tô bóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <table classes="colwidths-auto">
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_velvet_example.jpg'}" uri="images/render_shader-nodes_shader_velvet_example.jpg"/>
+         <caption>
+          The Velvet shader example.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_velvet_behavior.svg'}" uri="images/render_shader-nodes_shader_velvet_behavior.svg" width="308px"/>
+         <caption>
+          The Velvet shader behavior.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

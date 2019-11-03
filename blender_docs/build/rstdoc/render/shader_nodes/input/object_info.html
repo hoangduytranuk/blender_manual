@@ -1,0 +1,146 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/input/object_info.rst">
+ <target refid="bpy-types-shadernodeobjectinfo">
+ </target>
+ <section ids="object-info-node bpy-types-shadernodeobjectinfo" names="object\ info\ node nút\ thông\ tin\ vật\ thể\ --\ object\ info\ node bpy.types.shadernodeobjectinfo">
+  <title>
+   Nút Thông Tin Vật Thể -- Object Info Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_input_object-info_node.png'}" uri="images/render_shader-nodes_input_object-info_node.png"/>
+   <caption>
+    Object Info Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Object Info
+   </emphasis>
+   node gives information about the object instance.
+This can be useful to give some variation to a single material assigned to multiple instances,
+either manually controlled through the object index, based on the object location,
+or randomized for each instance. For example a Noise texture can give random colors or a Color
+Ramp can give a range of colors to be randomly picked from.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <paragraph>
+    Nút này không có đầu vào.
+   </paragraph>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Nút này không có tính chất nào cả.
+   </paragraph>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vị Trí -- Location
+     </term>
+     <definition>
+      <paragraph>
+       Location of the object in world space.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Color
+     </term>
+     <definition>
+      <paragraph>
+       Object color, same as
+       <emphasis>
+        Color
+       </emphasis>
+       in the
+       <inline classes="menuselection" rawtext=":menuselection:`Properties Editor --&gt; Object --&gt; Viewport Display`">
+        Properties Editor ‣ Object ‣ Viewport Display
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chỉ Số Vật Thể -- Object Index
+     </term>
+     <definition>
+      <paragraph>
+       Object pass index, same as
+       <emphasis>
+        Pass Index
+       </emphasis>
+       in the
+       <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties Editor) --&gt; Vật Thể (Object) --&gt; Mối Quan Hệ (Relations)`">
+        Trình Biên Soạn Tính Chất (Properties Editor) ‣ Vật Thể (Object) ‣ Mối Quan Hệ (Relations)
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chỉ Số Nguyên Liệu -- Material Index
+     </term>
+     <definition>
+      <paragraph>
+       Material pass index, same as
+       <emphasis>
+        Pass Index
+       </emphasis>
+       in the
+       <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties Editor) --&gt; Nguyên Liệu (Material) --&gt; Sắp Đặt (Settings)`">
+        Trình Biên Soạn Tính Chất (Properties Editor) ‣ Nguyên Liệu (Material) ‣ Sắp Đặt (Settings)
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Ngẫu Nhiên -- Random
+     </term>
+     <definition>
+      <paragraph>
+       Random number unique to a single object instance.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     Note that this node only works for material shading nodes;
+it does nothing for light and world shading nodes.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <figure>
+    <image candidates="{'*': 'images/render_shader-nodes_input_object-info_example.png'}" uri="images/render_shader-nodes_input_object-info_example.png" width="640px"/>
+   </figure>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_cycles_render-settings_motion-blur_example-cubes.jpg'}" uri="images/render_cycles_render-settings_motion-blur_example-cubes.jpg" width="640px"/>
+    <caption>
+     <reference name="Example blend-file" refuri="https://en.blender.org/uploads/0/03/Blender2.65_motion_blur.blend">
+      Example blend-file
+     </reference>
+     .
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

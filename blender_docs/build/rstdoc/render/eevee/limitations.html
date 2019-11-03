@@ -1,0 +1,439 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/eevee/limitations.rst">
+ <section ids="limitations" names="limitations những\ giới\ hạn\ --\ limitations">
+  <title>
+   Những Giới Hạn -- Limitations
+  </title>
+  <paragraph>
+   Eevee's goal is to be an interactive render engine. Some features may not be there yet or
+may be impossible to implement into Eevee's architecture without compromising performance.
+  </paragraph>
+  <paragraph>
+   Here is a rather exhaustive list of all the limitations you can expect while working with Eevee.
+  </paragraph>
+  <section ids="cameras" names="cameras máy\ quay\ phim\ --\ cameras">
+   <title>
+    Máy Quay Phim -- Cameras
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Only perspective and orthographic projections are currently supported.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="lights" names="lights nguồn\ sáng\ --\ lights">
+   <title>
+    Nguồn Sáng -- Lights
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Only 128 active lights can be supported by Eevee in a scene.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Only 8 Shadowed sun lights can be supported at the same time.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      As of now, lights can only have one color and do not support light node trees.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="light-probes" names="light\ probes --\ light\ probes">
+   <title>
+    -- Light Probes
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Eevee only supports up to 128 active Reflection Cubemaps.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Eevee only supports up to 64 active Irradiance Volumes.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Eevee only supports up to 16 active Reflection Planes inside the view frustum.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="indirect-lighting" names="indirect\ lighting áng\ sáng\ gián\ tiếp\ --\ indirect\ lighting">
+   <title>
+    Áng Sáng Gián Tiếp -- Indirect Lighting
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Volumetrics don't receive light from Irradiance Volumes but do receive world's diffuse lighting.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Eevee does not support "specular to diffuse" light bounces nor "specular to specular" light bounces.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      All specular lighting is turned off during baking.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <target refid="eevee-limitations-shadows">
+   </target>
+  </section>
+  <section ids="shadows eevee-limitations-shadows" names="shadows eevee-limitations-shadows">
+   <title>
+    Shadows
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Only 128 active lights can be supported by Eevee in a scene.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Only 8 Shadowed sun lights can be supported at the same time.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <target refid="eevee-limitations-volumetrics">
+   </target>
+  </section>
+  <section ids="volumetrics eevee-limitations-volumetrics" names="volumetrics thể\ tích\ --\ volumetrics eevee-limitations-volumetrics">
+   <title>
+    Thể Tích -- Volumetrics
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Only single scattering is supported.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Volumetrics are rendered only for the camera "rays". They don't appear in reflections/refractions and probes.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Volumetrics don't receive light from Irradiance Volumes but does receive world's diffuse lighting.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Volumetric shadowing does only work on other volumetrics. They won't cast shadows on solid objects in the scene.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Volumetric shadowing does only work for volumes inside the view frustum.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Volumetric lighting does not respect the lights shapes. They are treated as point lights.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="screen-space-effects" names="screen\ space\ effects">
+   <title>
+    Screen Space Effects
+   </title>
+   <paragraph>
+    Eevee is not a ray tracing engine and cannot do ray-triangle intersection.
+Instead of this, Eevee uses the depth buffer as an approximated scene representation.
+This reduces the complexity of scene scale effects and enables a higher performance.
+However, only what is in inside the view can be considered when computing these effects.
+Also, since it only uses one layer of depth, only the front-most pixel distance is known.
+   </paragraph>
+   <paragraph>
+    These limitations creates a few problems:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      The screen space effects disappear when reaching the screen border.
+This can be partially fixed by using the
+      <emphasis>
+       overscan
+      </emphasis>
+      feature.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Screen space effects lack deep information (or the thickness of objects).
+This is why most effects have a thickness parameter to control how to consider potential intersected pixels.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Blended surfaces are not considered by these effects.
+They are not part of the depth prepass and do not appear in the depth buffer.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <target refid="eevee-limitations-ao">
+   </target>
+   <section ids="ambient-occlusion eevee-limitations-ao" names="ambient\ occlusion tính\ hấp\ thụ\ quang\ xạ\ môi\ trường\ --\ ambient\ occlusion eevee-limitations-ao">
+    <title>
+     Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Objects are treated as infinitely thick, producing overshadowing if the
+       <emphasis>
+        Distance
+       </emphasis>
+       is really large.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <target refid="eevee-limitations-reflections">
+    </target>
+   </section>
+   <section ids="screen-space-reflections eevee-limitations-reflections" names="screen\ space\ reflections phản\ quang\ trong\ không\ gian\ màn\ hình\ --\ screen\ space\ reflections eevee-limitations-reflections">
+    <title>
+     Phản Quang trong Không Gian Màn Hình -- Screen Space Reflections
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Only one glossy BSDF can emit screen space reflections.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       The evaluated BSDF is currently arbitrarily chosen.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Screen Space Reflections will reflect transparent objects and objects using Screen Space Refraction
+but without accurate positioning due to the one layer depth buffer.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="screen-space-refraction" names="screen\ space\ refraction --\ screen\ space\ refraction">
+    <title>
+     -- Screen Space Refraction
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Only one refraction event is correctly modeled.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Only opaque and alpha hashed materials can be refracted.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <target refid="eevee-limitations-sss">
+    </target>
+   </section>
+   <section ids="subsurface-scattering eevee-limitations-sss" names="subsurface\ scattering eevee-limitations-sss">
+    <title>
+     Subsurface Scattering
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Only one BSSRDF can produce screen space subsurface scattering.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       The evaluated BSSRDF is currently arbitrarily chosen.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       A maximum of 254 different surfaces can use subsurface scattering.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Only scaling is adjustable per pixel. Individual RGB radii are adjustable in the socket default value.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Input radiance from each surfaces are not isolated during the blurring,
+leading to light leaking from surface to surface.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <target refid="eevee-limitations-materials">
+    </target>
+   </section>
+  </section>
+  <section ids="materials eevee-limitations-materials" names="materials nguyên\ liệu\ --\ materials eevee-limitations-materials">
+   <title>
+    Nguyên Liệu -- Materials
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Refractions
+     </term>
+     <definition>
+      <paragraph>
+       Refraction is faked by sampling the same reflection probe used by the Glossy BSDFs,
+but using the refracted view direction instead of the reflected view direction.
+Only the first refraction event is modeled correctly.
+An approximation of the second refraction event can be used for relatively thin objects using Refraction Depth.
+Using Screen Space refraction will refract what is visible inside the view,
+and use the nearest probe if there is no hit.
+      </paragraph>
+      <paragraph>
+       Screen Space Reflections and Ambient Occlusion are not compatible with Screen Space Refraction;
+they will be disabled on the surfaces that use it.
+Surfaces that use Screen Space Refraction will not appear in Screen Space Reflections at the right place.
+Surfaces that use Screen Space Refraction will not cast Ambient Occlusion onto other surfaces.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bump Mapping
+     </term>
+     <definition>
+      <paragraph>
+       As of now, bump mapping is supported using OpenGL derivatives which are the same for each block of 2x2 pixels.
+This means the bump output value will appear pixelated.
+It is recommended to use normal mapping instead.
+      </paragraph>
+      <tip>
+       <paragraph>
+        If you absolutely need to render using Bump nodes,
+render at twice the target resolution and downscale the final output.
+       </paragraph>
+      </tip>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Volume Objects
+     </term>
+     <definition>
+      <paragraph>
+       Object volume shaders will affect the whole bounding box of the object.
+The shape of the volume must be adjusted using procedural texturing inside the shader.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="shader-nodes" names="shader\ nodes nút\ tô\ bóng\ --\ shader\ nodes">
+   <title>
+    Nút Tô Bóng -- Shader Nodes
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      All BSDF's are using approximations to achieve realtime performance
+so there will always be small differences between Cycles and Eevee.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Some utility nodes are not yet compatible with Eevee (e.g. Sky Texture node).
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <seealso>
+    <paragraph>
+     For a full list of unsupported nodes see
+     <reference internal="True" refuri="materials/nodes_support.html">
+      <inline classes="doc">
+       Nodes Support
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </seealso>
+  </section>
+  <section ids="memory-management" names="memory\ management --\ memory\ management">
+   <title>
+    -- Memory Management
+   </title>
+   <paragraph>
+    In Eevee,
+    <abbreviation explanation="Graphic Processing Unit, also known as Graphics Card">
+     GPU
+    </abbreviation>
+    Memory management is done by the GPU driver.
+In theory, only the needed textures and meshes (now referred as "the resources") for a single draw call
+(i.e. one object) needs to fit into the GPU memory.
+   </paragraph>
+   <paragraph>
+    So if the scene is really heavy,
+the driver will swap things in and out to make sure all objects are rendered correctly.
+   </paragraph>
+   <paragraph>
+    In practice, using too much GPU memory can make the GPU driver crash, freeze, or kill the application.
+So be careful of what you ask.
+   </paragraph>
+   <paragraph>
+    There is no standard way of estimating if the resources will fit into the GPU memory and/or
+if the GPU will render them successfully.
+   </paragraph>
+  </section>
+  <section ids="cpu-rendering" names="cpu\ rendering --\ cpu\ rendering">
+   <title>
+    -- CPU Rendering
+   </title>
+   <paragraph>
+    Being a rasterization engine, Eevee only uses the power of
+the
+    <abbreviation explanation="Graphic Processing Unit, also known as Graphics Card">
+     GPU
+    </abbreviation>
+    to render.
+There is no plan to support
+    <abbreviation explanation="Central Processing Unit">
+     CPU
+    </abbreviation>
+    (software) rendering
+as it would be very inefficient. CPU power is still needed to handle high scene complexity
+as the geometry must be prepared by the CPU before rendering each frame.
+   </paragraph>
+  </section>
+  <section ids="multiple-gpu-support" names="multiple\ gpu\ support --\ multiple\ gpu\ support">
+   <title>
+    -- Multiple GPU Support
+   </title>
+   <paragraph>
+    There is currently no support for
+multiple
+    <abbreviation explanation="Graphic Processing Unit, also known as Graphics Card">
+     GPU
+    </abbreviation>
+    systems.
+   </paragraph>
+  </section>
+  <section ids="headless-rendering" names="headless\ rendering --\ headless\ rendering">
+   <title>
+    -- Headless Rendering
+   </title>
+   <paragraph>
+    There is currently no support for using Eevee on headless systems (i.e. without a Display Manager).
+   </paragraph>
+  </section>
+ </section>
+</document>

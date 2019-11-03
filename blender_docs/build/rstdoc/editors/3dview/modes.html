@@ -1,0 +1,410 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/3dview/modes.rst">
+ <section ids="object-modes" names="object\ modes chế\ độ\ vật\ thể\ --\ object\ modes">
+  <title>
+   Chế Độ Vật Thể -- Object Modes
+  </title>
+  <target refid="fig-view3d-mode-select">
+  </target>
+  <figure align="right" ids="id1 fig-view3d-mode-select" names="fig-view3d-mode-select">
+   <image candidates="{'*': 'images/editors_3dview_modes_menu.png'}" uri="images/editors_3dview_modes_menu.png"/>
+   <caption>
+    The Mode select menu.
+   </caption>
+  </figure>
+  <paragraph>
+   <emphasis>
+    Modes
+   </emphasis>
+   are an object-oriented feature, which means that the available modes vary
+depending on the selected active object's type -- most of them only enable
+the default
+   <emphasis>
+    Object Mode
+   </emphasis>
+   (like cameras, lights, etc.).
+  </paragraph>
+  <paragraph>
+   Each mode is designed to edit an aspect of the selected object.
+See Tab.
+   <reference internal="True" refid="tab-view3d-modes">
+    <inline classes="std std-ref">
+     -- Blender's Modes
+    </inline>
+   </reference>
+   below for details.
+  </paragraph>
+  <paragraph>
+   You set the current mode in the
+   <emphasis>
+    Mode
+   </emphasis>
+   selector of 3D View header
+(see Fig.
+   <reference internal="True" refid="fig-view3d-mode-select">
+    <inline classes="std std-ref">
+     The Mode select menu.
+    </inline>
+   </reference>
+   ).
+  </paragraph>
+  <container classes="lead">
+   <comment xml:space="preserve">
+    clear
+   </comment>
+  </container>
+  <paragraph>
+   Modes can affect many things in Blender:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     They can modify the panels and/or controls available in some Properties editor tabs.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     They can modify the behavior of the whole editor, like e.g. the UV Editor and 3D View.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     They can modify the available header tools (menus and/or menu entries, as well as other controls...).
+For example, in the 3D Viewport, the
+     <emphasis>
+      Object
+     </emphasis>
+     menu in Object Mode changes to a
+     <emphasis>
+      Mesh
+     </emphasis>
+     menu in Edit Mode
+(with an active mesh object!), and a
+     <emphasis>
+      Paint
+     </emphasis>
+     menu in Vertex Paint Mode...
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     They can modify the available shortcuts.
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <section ids="object-mode-list" names="object\ mode\ list">
+   <title>
+    Object Mode List
+   </title>
+   <target refid="tab-view3d-modes">
+   </target>
+   <table classes="colwidths-given valign" ids="blender-s-modes tab-view3d-modes" names="--\ blender's\ modes tab-view3d-modes">
+    <title>
+     -- Blender's Modes
+    </title>
+    <tgroup cols="3">
+     <colspec colwidth="10">
+     </colspec>
+     <colspec colwidth="24">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <thead>
+      <row>
+       <entry>
+        <paragraph>
+         Biểu Tượng -- Icon
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         Tên -- Name
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         Chi Tiết -- Details
+        </paragraph>
+       </entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>
+        <figure>
+         <image candidates="{'*': 'images/editors_3dview_modes_icons-object-mode.png'}" uri="images/editors_3dview_modes_icons-object-mode.png"/>
+        </figure>
+       </entry>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../../scene_layout/object/index.html">
+          <inline classes="doc">
+           Object Mode
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         The default mode, available for all object types,
+as it is dedicated to
+         <emphasis>
+          Object
+         </emphasis>
+         data-block editing (e.g. position, rotation, size).
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure>
+         <image candidates="{'*': 'images/editors_3dview_modes_icons-edit-mode.png'}" uri="images/editors_3dview_modes_icons-edit-mode.png"/>
+        </figure>
+       </entry>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../../modeling/index.html">
+          <inline classes="doc">
+           Edit Mode
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         A mode available for all renderable object types,
+as it is dedicated to their "shape"
+         <emphasis>
+          Object Data
+         </emphasis>
+         data-block editing
+(e.g. vertices/edges/faces for meshes, control points for curves/surfaces,
+strokes/points for Grease Pencil, etc.).
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure>
+         <image candidates="{'*': 'images/editors_3dview_modes_icons-sculpt-mode.png'}" uri="images/editors_3dview_modes_icons-sculpt-mode.png"/>
+        </figure>
+       </entry>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../../sculpt_paint/sculpting/index.html">
+          <inline classes="doc">
+           Sculpt Mode
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         A mesh-only mode, that enables Blender's mesh 3D-sculpting tool.
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure>
+         <image candidates="{'*': 'images/editors_3dview_modes_icons-vertex-paint.png'}" uri="images/editors_3dview_modes_icons-vertex-paint.png"/>
+        </figure>
+       </entry>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../../sculpt_paint/vertex_paint/index.html">
+          <inline classes="doc">
+           Vertex Paint Mode
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         A mesh-only mode, that allows you to set your mesh's vertices colors (i.e. to "paint" them).
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure>
+         <image candidates="{'*': 'images/editors_3dview_modes_icons-weight-paint.png'}" uri="images/editors_3dview_modes_icons-weight-paint.png"/>
+        </figure>
+       </entry>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../../sculpt_paint/weight_paint/index.html">
+          <inline classes="doc">
+           Weight Paint Mode
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         A mesh-only mode, dedicated to vertex group weighting.
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure>
+         <image candidates="{'*': 'images/editors_3dview_modes_icons-texture-paint.png'}" uri="images/editors_3dview_modes_icons-texture-paint.png"/>
+        </figure>
+       </entry>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../../sculpt_paint/texture_paint/index.html">
+          <inline classes="doc">
+           Texture Paint Mode
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         A mesh-only mode, that allows you to paint your mesh's texture directly on the model, in the 3D Views.
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure>
+         <image candidates="{'*': 'images/editors_3dview_modes_icons-particle-edit.png'}" uri="images/editors_3dview_modes_icons-particle-edit.png"/>
+        </figure>
+       </entry>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../../physics/particles/mode.html">
+          <inline classes="doc">
+           Particle Edit Mode
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         A mesh-only mode, dedicated to particle systems, useful with editable systems (hair).
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure>
+         <image candidates="{'*': 'images/editors_3dview_modes_icons-pose-mode.png'}" uri="images/editors_3dview_modes_icons-pose-mode.png"/>
+        </figure>
+       </entry>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../../animation/armatures/posing/index.html">
+          <inline classes="doc">
+           Pose Mode
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         An armature only mode, dedicated to armature posing.
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure>
+         <image candidates="{'*': 'images/editors_3dview_modes_icons-grease-pencil.png'}" uri="images/editors_3dview_modes_icons-grease-pencil.png"/>
+        </figure>
+       </entry>
+       <entry>
+        <paragraph>
+         <reference internal="True" refuri="../../grease_pencil/modes/draw/index.html">
+          <inline classes="doc">
+           Draw Mode
+          </inline>
+         </reference>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         A Grease Pencil only mode, dedicated to create Grease Pencil strokes.
+        </paragraph>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <note>
+    <paragraph>
+     The cursor becomes a brush in
+     <reference internal="True" refuri="../../sculpt_paint/index.html">
+      <inline classes="doc">
+       Paint and Sculpt Modes
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </note>
+   <paragraph>
+    We will not go into any more detail on mode usages here,
+because they are dealed with in their own sections.
+   </paragraph>
+   <hint>
+    <paragraph>
+     If you are reading this manual and some button or menu option is referenced
+that does not appear on your screen, it may be that you are not in the proper
+mode for that option to be valid.
+    </paragraph>
+   </hint>
+   <target refid="dview-multi-object-mode">
+   </target>
+  </section>
+  <section ids="multi-object-editing dview-multi-object-mode" names="multi-object\ editing 3dview-multi-object-mode">
+   <title>
+    Multi-Object Editing
+   </title>
+   <paragraph>
+    Edit and Pose Modes support editing of multiple objects at once.
+   </paragraph>
+   <paragraph>
+    This is convenient if you want to perform the same edits on multiple objects
+or want to animate multiple characters at once.
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      To use edit multiple objects at once, simply select multiple objects and enter the mode.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The Outliner can also be used to add/remove objects while you are in a mode,
+by setting or clearing the mode from the context menu, or
+      <literal classes="kbd">
+       Shift-LMB
+      </literal>
+      clicking on the objects data icon.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Only the active object will be used to display properties such as shape keys, UV layers, etc.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Selecting any element from an object will set this as the active object.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      There are limits to the kinds of operations that can run on multiple objects.
+     </paragraph>
+     <paragraph>
+      <emphasis>
+       You can't for example create an edge that has vertices from different objects.
+      </emphasis>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+ </section>
+</document>

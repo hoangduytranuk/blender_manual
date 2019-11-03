@@ -1,0 +1,632 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/video_editing/sequencer/properties/strip.rst">
+ <section ids="strip" names="strip">
+  <title>
+   Strip
+  </title>
+  <section ids="header" names="header">
+   <title>
+    Header
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Type
+     </term>
+     <definition>
+      <paragraph>
+       Strip type represented by an icon.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Name
+     </term>
+     <definition>
+      <paragraph>
+       You can name or rename your strips here.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mute (checkbox)
+     </term>
+     <definition>
+      <paragraph>
+       Strip will not produce any output.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="adjust-panel" names="adjust\ panel">
+   <title>
+    Adjust Panel
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; Strip --&gt; Adjust`">
+         Sidebar region ‣ Strip ‣ Adjust
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <emphasis>
+     Adjust
+    </emphasis>
+    panel is used to control visual properties of strips.
+   </paragraph>
+   <section ids="compositing" names="compositing">
+    <title>
+     Compositing
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Blend
+      </term>
+      <definition>
+       <paragraph>
+        Mode of blending strip with lower channels.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Opacity
+      </term>
+      <definition>
+       <paragraph>
+        Set the opacity (alpha) of the strip.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="transform" names="transform">
+    <title>
+     Transform
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Mirror X
+      </term>
+      <definition>
+       <paragraph>
+        Mirrors the image along the X axis (left to right).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mirror Y
+      </term>
+      <definition>
+       <paragraph>
+        Mirrors the image along the Y axis (top to bottom).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Image Offset
+      </term>
+      <definition>
+       <paragraph>
+        Used to move the frames along the X and Y axis.
+Additionally it disables the auto-scaling of the image.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Image Crop
+      </term>
+      <definition>
+       <paragraph>
+        Used to crop the source image, use
+        <emphasis>
+         Top
+        </emphasis>
+        ,
+        <emphasis>
+         Left
+        </emphasis>
+        ,
+        <emphasis>
+         Bottom
+        </emphasis>
+        , and
+        <emphasis>
+         Right
+        </emphasis>
+        to control which part of the image is cropped.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="video" names="video">
+    <title>
+     Video
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Strobe
+      </term>
+      <definition>
+       <paragraph>
+        To only display each nth frame. For example, if you set this to 10,
+the strip will only display frames 1, 11, 21, 31, 41... of the source.
+        <emphasis>
+         Strobe
+        </emphasis>
+        is a float value -- this way you can get a strobe effect synced exactly to a beat,
+for example, by using non-integer values.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Playback Direction
+      </term>
+      <definition>
+       <paragraph>
+        Options for choosing to play strip forwards or backwards.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="color" names="color">
+    <title>
+     Color
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Saturation
+      </term>
+      <definition>
+       <paragraph>
+        Increase or decrease the saturation of an image.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Multiply
+      </term>
+      <definition>
+       <paragraph>
+        Multiplies the colors by this value. This will increases the brightness.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Convert to Float
+      </term>
+      <definition>
+       <paragraph>
+        Converts input to float data.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="sound" names="sound">
+    <title>
+     Sound
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Volume
+      </term>
+      <definition>
+       <paragraph>
+        The volume of the sound. This value, even if animated will be reflected in the waveform.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Pitch
+      </term>
+      <definition>
+       <paragraph>
+        Coefficient of playback speed.
+This value will affect length of the strip, that will not be represented in the timeline.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Pan
+      </term>
+      <definition>
+       <paragraph>
+        Used to pan the audio from left and right channels. Only works for mono sources.
+Values can be between -2 and 2, where 0 means front/center, -1 means to the left and 1 to the right.
+In case of multichannel audio (rear speakers) you can pan to those with the higher values: -2, 2 is back.
+So this value basically represents the angle at which it's played.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="sequencer-sound-waveform">
+    </target>
+    <definition_list ids="sequencer-sound-waveform" names="sequencer-sound-waveform">
+     <definition_list_item>
+      <term>
+       Display Waveform
+      </term>
+      <definition>
+       <paragraph>
+        Display an approximate waveform of the sound file inside of the sound strip.
+The waveform reflects strip volume and it's animation using
+        <reference internal="True" refuri="../../../animation/keyframes/introduction.html">
+         <inline classes="doc">
+          keyframes
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mono
+      </term>
+      <definition>
+       <paragraph>
+        Mixdown all audio channels into a single one.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="time-panel" names="time\ panel">
+   <title>
+    Time Panel
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; Strip --&gt; Time`">
+         Sidebar region ‣ Strip ‣ Time
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The Time panel is used to control source and timeline position of the strip.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Lock (padlock icon)
+     </term>
+     <definition>
+      <paragraph>
+       Prevents the strip from being moved (found in the panel header).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Channel
+     </term>
+     <definition>
+      <paragraph>
+       Changes the channel number, or row, of the strip.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Start
+     </term>
+     <definition>
+      <paragraph>
+       Changes the starting frame number of the strip, which is the same as selecting and moving the strip.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Duration
+     </term>
+     <definition>
+      <paragraph>
+       Changes the length, in frames of the strip. This works by changing the end frame,
+which is the same as selecting and moving the strip's right handle.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      End
+     </term>
+     <definition>
+      <paragraph>
+       Specifies the ending time and ending frame number for the strip.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Strip Offset Start/End
+     </term>
+     <definition>
+      <paragraph>
+       Can be used to either extend the strip beyond the end frame by repeating the last frame.
+Or it can be used to shorten the strip, as if you were cropping the end frame.
+This is the same has adjusting the strip handles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="sequencer-duration-hard">
+   </target>
+   <definition_list ids="sequencer-duration-hard" names="sequencer-duration-hard">
+    <definition_list_item>
+     <term>
+      Hold Offset Start/End
+     </term>
+     <definition>
+      <paragraph>
+       Offset of the uncut strip content.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Playhead
+     </term>
+     <definition>
+      <paragraph>
+       Position of the Playhead relative to the start of the active strip.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="source-panel" names="source\ panel">
+   <title>
+    Source Panel
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; Strip --&gt; Source`">
+         Sidebar region ‣ Strip ‣ Source
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The Source panel is used to control sources of the strip
+such as filename and file path and various methods of interpreting these files.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Path
+     </term>
+     <definition>
+      <paragraph>
+       The directory that contains the source file.
+When the file is moved this can be updated instead of re-create the strip.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      File
+     </term>
+     <definition>
+      <paragraph>
+       The file name of the source file.
+For image strips showing an image sequence, this will be different for each frame.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Change Data/Files
+     </term>
+     <definition>
+      <paragraph>
+       Same as the
+       <emphasis>
+        Path
+       </emphasis>
+       and
+       <emphasis>
+        File
+       </emphasis>
+       fields, but this time combined to open the File Browser in order to
+find the file(s) you search. Same as
+       <inline classes="menuselection" rawtext=":menuselection:`Strip --&gt; Inputs --&gt; Change Paths/Files`">
+        Strip ‣ Inputs ‣ Change Paths/Files
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      MPEG Preseek
+     </term>
+     <definition>
+      <paragraph>
+       Movie strip only -- Use Preseek field to tell Blender to look backward and compose an image
+based on the specified amount of previous frames (e.g. 15 for MPEG-2 DVD).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Color Space
+     </term>
+     <definition>
+      <paragraph>
+       To specify the color space of the source file.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Alpha mode
+     </term>
+     <definition>
+      <paragraph>
+       If the source file has an Alpha (transparency) channel, you can choose:
+      </paragraph>
+      <paragraph>
+       <reference internal="True" refuri="../../../glossary/index.html#term-straight-alpha">
+        <inline classes="xref std std-term">
+         Straight Alpha
+        </inline>
+       </reference>
+       or
+       <reference internal="True" refuri="../../../glossary/index.html#term-premultiplied-alpha">
+        <inline classes="xref std std-term">
+         Premultiplied Alpha
+        </inline>
+       </reference>
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Stream index
+     </term>
+     <definition>
+      <paragraph>
+       Movie strip only -- For files with several movie streams, use the stream with the given index.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Deinterlace
+     </term>
+     <definition>
+      <paragraph>
+       Removes fields in a video file. For example,
+if it is an analog video and it has even or odd interlacing fields.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Resolution
+     </term>
+     <definition>
+      <paragraph>
+       Resolution of the active strip image output.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="options-for-sound-strips" names="options\ for\ sound\ strips">
+    <title>
+     Options for Sound Strips
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Sound
+      </term>
+      <definition>
+       <paragraph>
+        <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-block">
+         <inline classes="std std-ref">
+          Data-block menu
+         </inline>
+        </reference>
+        to select a sound.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Path
+      </term>
+      <definition>
+       <paragraph>
+        Path to the sound file used by this
+        <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-block">
+         <inline classes="std std-ref">
+          data-block
+         </inline>
+        </reference>
+        menu.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Pack
+      </term>
+      <definition>
+       <paragraph>
+        Pack sound into the blend-file.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Caching
+      </term>
+      <definition>
+       <paragraph>
+        Sound file is decoded and loaded into the RAM.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

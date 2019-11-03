@@ -1,0 +1,232 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/mesh_analysis.rst">
+ <target refid="bpy-types-meshstatvis">
+ </target>
+ <target refid="modeling-mesh-analysis">
+ </target>
+ <section ids="mesh-analysis modeling-mesh-analysis bpy-types-meshstatvis" names="mesh\ analysis phân\ tích\ khung\ lưới\ --\ mesh\ analysis modeling-mesh-analysis bpy.types.meshstatvis">
+  <title>
+   Phân Tích Khung Lưới -- Mesh Analysis
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Biên Soạn -- Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Header --&gt; Overlays --&gt; Mesh Analysis`">
+        Header ‣ Overlays ‣ Mesh Analysis
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Mesh analysis is useful for displaying attributes of the mesh,
+that may impact certain use cases.
+  </paragraph>
+  <paragraph>
+   The mesh analysis works in
+   <emphasis>
+    Edit Mode
+   </emphasis>
+   and
+   <emphasis>
+    Solid
+   </emphasis>
+   Viewport shading.
+It shows areas with a high value in red, and areas with a low value in blue.
+Geometry outside the range is displayed gray.
+  </paragraph>
+  <paragraph>
+   Currently the different modes target 3D printing as their primary use.
+  </paragraph>
+  <section ids="overhang" names="overhang độ\ nhô\ ra\ --\ overhang">
+   <title>
+    Độ Nhô Ra -- Overhang
+   </title>
+   <paragraph>
+    Extrusion 3D printers have a physical limit to the overhang that can be printed,
+this display mode shows the overhang with angle range and axis selection.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Minimum/Maximum
+     </term>
+     <definition>
+      <paragraph>
+       Minimum/Maximum angle to display.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Axis
+     </term>
+     <definition>
+      <paragraph>
+       Axis and direction to use as the bases to calculate the angle to visualize.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id1">
+    <image candidates="{'*': 'images/modeling_meshes_mesh-analysis_overhang.png'}" uri="images/modeling_meshes_mesh-analysis_overhang.png" width="350px"/>
+    <caption>
+     Overhang.
+    </caption>
+   </figure>
+  </section>
+  <section ids="thickness" names="thickness độ\ dày\ --\ thickness">
+   <title>
+    Độ Dày -- Thickness
+   </title>
+   <paragraph>
+    Printers have a limited
+    <emphasis>
+     wall-thickness
+    </emphasis>
+    where very thin areas cannot be printed,
+this test uses ray casting and a distance range to the thickness of the geometry.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Minimum/Maximum
+     </term>
+     <definition>
+      <paragraph>
+       Minimum/Maximum thickness to display.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Samples
+     </term>
+     <definition>
+      <paragraph>
+       Number of samples to use to calculate the thickness.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id2">
+    <image candidates="{'*': 'images/modeling_meshes_mesh-analysis_thickness.png'}" uri="images/modeling_meshes_mesh-analysis_thickness.png" width="400px"/>
+    <caption>
+     Thickness.
+    </caption>
+   </figure>
+  </section>
+  <section ids="intersections" names="intersections giao\ cắt\ nhau\ --\ intersections">
+   <title>
+    Giao Cắt Nhau -- Intersections
+   </title>
+   <paragraph>
+    Another common cause of problems for printing are intersections between surfaces,
+where the inside/outside of a model cannot be reliably detected.
+   </paragraph>
+   <paragraph>
+    Unlike other display modes, intersections have no variance and are either on or off.
+   </paragraph>
+   <figure align="center" ids="id3">
+    <image candidates="{'*': 'images/modeling_meshes_mesh-analysis_intersections.png'}" uri="images/modeling_meshes_mesh-analysis_intersections.png" width="400px"/>
+    <caption>
+     Intersecting faces.
+    </caption>
+   </figure>
+  </section>
+  <section ids="distortion" names="distortion sự\ bóp\ méo\ --\ distortion">
+   <title>
+    Sự Bóp Méo -- Distortion
+   </title>
+   <paragraph>
+    Distorted geometry can cause problems since the triangulation of a distorted n-gon is undefined.
+   </paragraph>
+   <paragraph>
+    Distortion is measured by faces which are not flat,
+with parts of the face pointing in different directions.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Minimum/Maximum
+     </term>
+     <definition>
+      <paragraph>
+       Minimum/Maximum distortion to display.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id4">
+    <image candidates="{'*': 'images/modeling_meshes_mesh-analysis_distortion.png'}" uri="images/modeling_meshes_mesh-analysis_distortion.png" width="300px"/>
+    <caption>
+     Distorted Faces.
+    </caption>
+   </figure>
+  </section>
+  <section ids="sharp-edges" names="sharp\ edges cạnh\ sắc/nhọn\ --\ sharp\ edges">
+   <title>
+    Cạnh Sắc/Nhọn -- Sharp Edges
+   </title>
+   <paragraph>
+    Similar to wall-thickness, sharp edges can form shapes that are too thin to be able to print.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Minimum/Maximum
+     </term>
+     <definition>
+      <paragraph>
+       Minimum/Maximum angle to display.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id5">
+    <image candidates="{'*': 'images/modeling_meshes_mesh-analysis_sharp-edges.png'}" uri="images/modeling_meshes_mesh-analysis_sharp-edges.png" width="350px"/>
+    <caption>
+     Sharp edges.
+    </caption>
+   </figure>
+  </section>
+  <section ids="known-limitations" names="known\ limitations">
+   <title>
+    Known Limitations
+   </title>
+   <paragraph>
+    There are some known limitations with mesh analysis:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Currently only displayed with Deform Modifiers.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      For high-poly meshes the performance is low while editing.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+ </section>
+</document>

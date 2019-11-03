@@ -1,0 +1,336 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/uv/selecting.rst">
+ <target refid="bpy-ops-uv-select">
+ </target>
+ <section ids="selecting bpy-ops-uv-select" names="selecting lựa\ chọn\ --\ selecting bpy.ops.uv.select">
+  <title>
+   Lựa Chọn -- Selecting
+  </title>
+  <paragraph>
+   Selection tools are available in the
+   <emphasis>
+    Select Menu
+   </emphasis>
+   in the header,
+and the shortcuts listed below:
+  </paragraph>
+  <section ids="menu" names="menu trình\ đơn\ --\ menu">
+   <title>
+    Trình Đơn -- Menu
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Box Select
+     </term>
+     <definition>
+      <paragraph>
+       Click and drag to box select UV coordinates.
+Alternatively, use
+       <literal classes="kbd">
+        B
+       </literal>
+       to start box selection.
+See
+       <reference internal="True" refuri="../../interface/selecting.html#tool-select-box">
+        <inline classes="std std-ref">
+         Select Box
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Box Select Pinned
+     </term>
+     <definition>
+      <paragraph>
+       Use the box lasso to select only pinned UV coordinates
+       <literal classes="kbd">
+        Ctrl-B
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chọn bằng Vòng Tròn -- Circle Select
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refuri="../../interface/selecting.html#tool-select-circle">
+        <inline classes="std std-ref">
+         Select Circle
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chọn/Bỏ Chọn Toàn Bộ -- Select/Deselect All
+     </term>
+     <definition>
+      <paragraph>
+       Selects or deselects all UV coordinates
+       <literal classes="kbd">
+        A
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đảo Nghịch -- Inverse
+     </term>
+     <definition>
+      <paragraph>
+       Inverts the current selection
+       <literal classes="kbd">
+        Ctrl-I
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chọn cái Đã Ghim Lại -- Select Pinned
+     </term>
+     <definition>
+      <paragraph>
+       Selects all pinned UVs
+       <literal classes="kbd">
+        Shift-P
+       </literal>
+       .
+See Pinning.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chọn Cái Đã Kết Nối -- Select Linked
+     </term>
+     <definition>
+      <paragraph>
+       This operator selects all UVs that are connected to currently selected UVs
+       <literal classes="kbd">
+        Ctrl-L
+       </literal>
+       .
+This works similarly to the tools in 3D View.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thêm/Bớt -- More/Less
+      <literal classes="kbd">
+       Ctrl-NumpadPlus
+      </literal>
+      ,
+      <literal classes="kbd">
+       Ctrl-NumpadMinus
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Expands/Contracts the selection to/from the adjacent elements of the selection type.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phân Tách Lựa Chọn
+      <literal classes="kbd">
+       Y
+      </literal>
+      -- Select Split
+      <literal classes="kbd">
+       Y
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Cuts apart the selected UVs from the map. Only those UVs which belong to
+fully selected faces remain selected. As the name implies, this is particularly useful to
+unlink faces and move them elsewhere. The hotkey is analogous to the mesh Split tool.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Select Overlap
+     </term>
+     <definition>
+      <paragraph>
+       Selects any UVs that are extended over other UVs while also selecting any underlying UVs.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="header" names="header tiêu\ đề\ --\ header">
+   <title>
+    Tiêu Đề -- Header
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đồng Bộ Hóa Lựa Chọn -- Sync Selection
+     </term>
+     <definition>
+      <paragraph>
+       Turning on the
+       <emphasis>
+        Sync Selection
+       </emphasis>
+       button causes selection of components
+in the 3D View to sync with their corresponding elements in the UV editor.
+If off only the selected faces are displayed in the UV editor.
+These two modes have very different results when transforming components in the UV editor.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="selection-modes" names="selection\ modes chế\ độ\ lựa\ chọn\ --\ selection\ modes">
+    <title>
+     Chế Độ Lựa Chọn -- Selection Modes
+    </title>
+    <paragraph>
+     Select Modes dependent on the Sync Selection.
+    </paragraph>
+    <section ids="sync-selection-off" names="sync\ selection\ off tắt\ đồng\ bộ\ hóa\ chọn\ lựa\ --\ sync\ selection\ off">
+     <title>
+      Tắt Đồng Bộ Hóa Chọn Lựa -- Sync Selection Off
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Điểm Đỉnh -- Vertex
+       </term>
+       <definition>
+        <paragraph>
+         Select individual vertices.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Cạnh -- Edge
+       </term>
+       <definition>
+        <paragraph>
+         Select edges.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Bề Mặt -- Face
+       </term>
+       <definition>
+        <paragraph>
+         Select faces.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Hải Đảo -- Island
+       </term>
+       <definition>
+        <paragraph>
+         Select contiguous groups of faces.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Chế Độ Lựa Chọn Dính Kết -- Sticky Selection Mode
+       </term>
+       <definition>
+        <paragraph>
+         This selector lets you enable automatic additional selection.
+        </paragraph>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           Cùng Điểm Đỉnh -- Shared Vertex
+          </term>
+          <definition>
+           <paragraph>
+            Selects UVs that share a mesh vertex, even if they are in different UV locations.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Cùng Vị Trí -- Shared Location
+          </term>
+          <definition>
+           <paragraph>
+            Selects UVs that are in the same UV location and share a mesh vertex.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Tắt -- Disabled
+          </term>
+          <definition>
+           <paragraph>
+            Disables Sticky Selection.
+When you move a UV in this mode, each face owns its own UVs, allowing them to be separated.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="sync-selection-on" names="sync\ selection\ on bật\ đồng\ bộ\ hóa\ chọn\ lựa\ --\ sync\ selection\ on">
+     <title>
+      Bật Đồng Bộ Hóa Chọn Lựa -- Sync Selection On
+     </title>
+     <paragraph>
+      When selecting UVs or Edges, it behave like
+      <emphasis>
+       Shared Vertex
+      </emphasis>
+      mode above.
+When selecting Faces, it behaves as in
+      <emphasis>
+       Disabled Stick Selection
+      </emphasis>
+      above.
+     </paragraph>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        Điểm Đỉnh -- Vertex
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Cạnh -- Edge
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Bề Mặt -- Face
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </section>
+   </section>
+  </section>
+ </section>
+</document>

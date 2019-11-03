@@ -1,0 +1,426 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/nla/strips.rst">
+ <target refid="bpy-types-nlastrip">
+ </target>
+ <section ids="strips bpy-types-nlastrip" names="strips dải\ phim\ --\ strips bpy.types.nlastrip">
+  <title>
+   Dải Phim -- Strips
+  </title>
+  <section ids="types" names="types thể\ loại\ --\ types">
+   <title>
+    Thể Loại -- Types
+   </title>
+   <paragraph>
+    There are four kinds of strips: Action, Transition, Sound clip and Meta.
+   </paragraph>
+   <section ids="action-strips" names="action\ strips dải\ hành\ động\ --\ action\ strips">
+    <title>
+     Dải Hành Động -- Action Strips
+    </title>
+    <paragraph>
+     An Action Strip is a container of keyframe data of an action. Any action used by the NLA first must be turned into an Action strip. This is done so by clicking the Push Down action button see above. Alternatively, you can go to
+     <inline classes="menuselection" rawtext=":menuselection:`Cộng Thêm (Add) --&gt; Dải Hành Động (Action Strip)`">
+      Cộng Thêm (Add) ‣ Dải Hành Động (Action Strip)
+     </inline>
+     .
+    </paragraph>
+   </section>
+   <section ids="transition-strips" names="transition\ strips dải\ chuyển\ cảnh\ --\ transition\ strips">
+    <title>
+     Dải Chuyển Cảnh -- Transition Strips
+    </title>
+    <paragraph>
+     Transitions interpolate between Actions. They must be placed in between other strips. Select two or more strips on the same track, and go to
+     <inline classes="menuselection" rawtext=":menuselection:`Cộng Thêm (Add) --&gt; Chuyển Cảnh/Tiếp (Transition)`">
+      Cộng Thêm (Add) ‣ Chuyển Cảnh/Tiếp (Transition)
+     </inline>
+     .
+    </paragraph>
+    <figure ids="id1">
+     <image candidates="{'*': 'images/editors_nla_strips_basics-transition.png'}" uri="images/editors_nla_strips_basics-transition.png"/>
+     <caption>
+      Transition Strip.
+     </caption>
+    </figure>
+   </section>
+   <section ids="sound-clip-strips" names="sound\ clip\ strips dải\ âm\ thanh\ --\ sound\ clip\ strips">
+    <title>
+     Dải Âm Thanh -- Sound Clip Strips
+    </title>
+    <paragraph>
+     Controls when a speaker plays a sound clip.
+     <inline classes="menuselection" rawtext=":menuselection:`Cộng Thêm (Add) --&gt; Đoạn Âm Thanh (Sound Clip)`">
+      Cộng Thêm (Add) ‣ Đoạn Âm Thanh (Sound Clip)
+     </inline>
+     .
+    </paragraph>
+   </section>
+   <section ids="meta-strips" names="meta\ strips dải\ siêu\ --\ meta\ strips">
+    <title>
+     Dải Siêu -- Meta Strips
+    </title>
+    <paragraph>
+     Meta strips group strips together as a whole, so you can move them as one.
+If you find yourself moving a lot of strips together, you can group them into a Meta strip.
+A Meta strip can be moved and duplicated like a normal strip.
+    </paragraph>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Cộng Thêm (Add) --&gt; Cộng Thêm Dải Siêu (Add Meta-Strips)`">
+          Cộng Thêm (Add) ‣ Cộng Thêm Dải Siêu (Add Meta-Strips)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Shift-G
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <table>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id2">
+          <image candidates="{'*': 'images/editors_nla_strips_meta1.png'}" uri="images/editors_nla_strips_meta1.png" width="320px"/>
+          <caption>
+           Select two or more strips.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id3">
+          <image candidates="{'*': 'images/editors_nla_strips_meta2.png'}" uri="images/editors_nla_strips_meta2.png" width="320px"/>
+          <caption>
+           Combine them into a meta strip.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <paragraph>
+     A Meta strip still contains the underlying strips. You can ungroup a Meta strip.
+    </paragraph>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Cộng Thêm (Add) --&gt; Xóa các Dải Siêu (Remove Meta-Strips)`">
+          Cộng Thêm (Add) ‣ Xóa các Dải Siêu (Remove Meta-Strips)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Alt-G
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+   </section>
+  </section>
+  <section ids="editing" names="editing biên\ soạn\ --\ editing">
+   <title>
+    Biên Soạn -- Editing
+   </title>
+   <section ids="start-tweaking-strips-action" names="start\ tweaking\ strips\ action bắt\ đầu\ hiệu\ chỉnh\ hành\ động\ trong\ dải\ phim\ --\ start\ tweaking\ strips\ action">
+    <title>
+     Bắt Đầu Hiệu Chỉnh Hành Động trong Dải Phim -- Start Tweaking Strips Action
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Biên Soạn (Edit) --&gt; Bắt Đầu Tinh Chỉnh Hành Động trong Dải Phim (Start Tweaking Strips Action)`">
+          Biên Soạn (Edit) ‣ Bắt Đầu Tinh Chỉnh Hành Động trong Dải Phim (Start Tweaking Strips Action)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Tab
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     The contents of Action strips can be edited, but you must be in
+     <emphasis>
+      Tweak Mode
+     </emphasis>
+     to do so.
+The keyframes of the action can then be edited in the Dope Sheet.
+    </paragraph>
+    <table>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id4">
+          <image candidates="{'*': 'images/editors_nla_strips_nla-mode.png'}" uri="images/editors_nla_strips_nla-mode.png" width="320px"/>
+          <caption>
+           Strip in NLA mode.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id5">
+          <image candidates="{'*': 'images/editors_nla_strips_edit-mode.png'}" uri="images/editors_nla_strips_edit-mode.png" width="320px"/>
+          <caption>
+           Strip in Tweak mode.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <paragraph>
+     When you finished editing the strip, simply go to
+     <inline classes="menuselection" rawtext=":menuselection:`Biên Soạn (Edit) --&gt; Tinh Chỉnh Dải Hành Động (Tweaking Strips Action)`">
+      Biên Soạn (Edit) ‣ Tinh Chỉnh Dải Hành Động (Tweaking Strips Action)
+     </inline>
+     or press
+     <literal classes="kbd">
+      Tab
+     </literal>
+     .
+    </paragraph>
+   </section>
+   <section ids="start-editing-stashed-action" names="start\ editing\ stashed\ action bắt\ đầu\ biên\ soạn\ hành\ động\ đã\ cất\ giấu\ --\ start\ editing\ stashed\ action">
+    <title>
+     Bắt Đầu Biên Soạn Hành Động đã Cất Giấu -- Start Editing Stashed Action
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Biên Soạn (Edit) --&gt; Bắt Đầu Biên Soạn Hành Động đã Cất Giấu (Start Editing Stashed Action)`">
+          Biên Soạn (Edit) ‣ Bắt Đầu Biên Soạn Hành Động đã Cất Giấu (Start Editing Stashed Action)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Shift-Tab
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     It will enter and exit Tweak Mode as usual, but will also make sure that the action can be edited in isolation
+(by flagging the NLA track that the action strip comes from as being "solo").
+This is useful for editing stashed actions, without the rest of the NLA Stack interfering.
+    </paragraph>
+   </section>
+   <section ids="duplicate" names="duplicate sao\ chép\ --\ duplicate">
+    <title>
+     Sao Chép -- Duplicate
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Biên Soạn (Edit) --&gt; Sao Chép (Duplicate)`">
+          Biên Soạn (Edit) ‣ Sao Chép (Duplicate)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Shift-D
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Creates a new instance of the selected strips with a copy of the action.
+    </paragraph>
+   </section>
+   <section ids="linked-duplicate" names="linked\ duplicate bản\ sao\ chép\ kết\ nối\ --\ linked\ duplicate">
+    <title>
+     Bản Sao Chép Kết Nối -- Linked Duplicate
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Biên Soạn (Edit) --&gt; Bản Sao Chép Kết Nối (Linked Duplicate)`">
+          Biên Soạn (Edit) ‣ Bản Sao Chép Kết Nối (Linked Duplicate)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Alt-D
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     The contents of one Action strip can be instanced multiple times. To instance another strip, select a strip, go to
+     <inline classes="menuselection" rawtext=":menuselection:`Biên Soạn (Edit) --&gt; Bản Sao Chép Kết Nối (Linked Duplicate)`">
+      Biên Soạn (Edit) ‣ Bản Sao Chép Kết Nối (Linked Duplicate)
+     </inline>
+     . It will uses the same action as the selected strips.
+    </paragraph>
+    <paragraph>
+     Now, when any strip is tweaked, the others will change too.
+If a strip other than the original is tweaked,
+the original will turn to red.
+    </paragraph>
+    <figure ids="id6">
+     <image candidates="{'*': 'images/editors_nla_strips_linked-strip-edit.png'}" uri="images/editors_nla_strips_linked-strip-edit.png"/>
+     <caption>
+      Linked duplicated strip being edited.
+     </caption>
+    </figure>
+   </section>
+   <section ids="make-single-user" names="make\ single\ user biến\ thành\ đơn\ người\ dùng\ --\ make\ single\ user">
+    <title>
+     Biến Thành Đơn Người Dùng -- Make Single User
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Biên Soạn (Edit) --&gt; Biến Thành Đơn Người Dùng (Make Single User)`">
+          Biên Soạn (Edit) ‣ Biến Thành Đơn Người Dùng (Make Single User)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          U
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     This tool ensures that none of the selected strips use an action which is also used by any other strips.
+    </paragraph>
+    <comment xml:space="preserve">
+     (dev) NOTE: This does not recursively go inside meta's, so care is still advised in that case.
+    </comment>
+   </section>
+  </section>
+ </section>
+</document>

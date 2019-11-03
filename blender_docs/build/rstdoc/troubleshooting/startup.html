@@ -1,0 +1,144 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/troubleshooting/startup.rst">
+ <section ids="startup" names="startup --\ startup">
+  <title>
+   -- Startup
+  </title>
+  <section ids="blender" names="blender">
+   <title>
+    Blender
+   </title>
+   <paragraph>
+    There are some common causes for problems when using Blender. If you cannot find a solution to your problem here,
+try asking the
+    <reference internal="True" refuri="../getting_started/about/community.html">
+     <inline classes="doc">
+      community
+     </inline>
+    </reference>
+    for help.
+   </paragraph>
+   <paragraph>
+    If Blender crashes on startup, there are a few things to check for:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      See if your computer meets the
+      <reference name="minimum requirements" refuri="https://www.blender.org/download/requirements/">
+       minimum requirements
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Confirm that your graphics card is supported and that the drivers are up to date.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Make sure you are using the correct Blender version (32 or 64 bit) for your architecture.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    Known causes listed below.
+   </paragraph>
+  </section>
+  <section ids="python" names="python">
+   <title>
+    Python
+   </title>
+   <paragraph>
+    If you get an error on startup like:
+   </paragraph>
+   <literal_block force_highlighting="True" highlight_args="{}" language="python" linenos="False" xml:space="preserve">
+    Fatal Python error: Py_Initialize: unable to load the file system codec
+   </literal_block>
+   <paragraph>
+    you may have set your system's
+    <literal>
+     PYTHONPATH
+    </literal>
+    environment variable.
+   </paragraph>
+   <paragraph>
+    In this case, Blender's bundled Python will attempt to use the
+    <literal>
+     PYTHONPATH
+    </literal>
+    .
+If the Python version is different from the version used by Blender, this will crash Blender on startup.
+   </paragraph>
+   <paragraph>
+    To solve the problem, either clear the
+    <literal>
+     PYTHONPATH
+    </literal>
+    before starting Blender
+(can also be done with a launcher script),
+or set it to a compatible Python version.
+   </paragraph>
+  </section>
+  <section ids="common-startup-messages" names="common\ startup\ messages">
+   <title>
+    Common Startup Messages
+   </title>
+   <paragraph>
+    The
+    <emphasis>
+     Blender Console Window
+    </emphasis>
+    can display many different types of status and error messages.
+Some messages simply inform the user what Blender is doing, but have no real impact on Blender's ability to function.
+Other messages can indicate serious errors that will most likely prevent Blender carrying out a particular task and
+may even make Blender non-responsive or shut down completely. The
+    <emphasis>
+     Blender Console Window
+    </emphasis>
+    messages can
+also originate internally from within the Blender code or from external sources such as
+    <reference internal="True" refuri="../editors/preferences/addons.html">
+     <inline classes="doc">
+      Python scripts
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      <literal>
+       found bundled python: {DIR}
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       This message indicates that Blender was able to find the
+       <reference internal="True" refuri="../advanced/scripting/index.html#scripting-index">
+        <inline classes="std std-ref">
+         Python
+        </inline>
+       </reference>
+       library for the Python interpreter embedded within Blender.
+If this folder is missing or unable to be found,
+it is likely that an error will occur, and this message will not appear.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       Read prefs: {DIR}/userpref.blend
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       The user preferences use this path.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

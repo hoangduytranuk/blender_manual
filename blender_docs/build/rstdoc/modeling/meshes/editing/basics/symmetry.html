@@ -1,0 +1,234 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/basics/symmetry.rst">
+ <section ids="symmetry" names="symmetry đối\ xứng\ --\ symmetry">
+  <title>
+   Đối Xứng -- Symmetry
+  </title>
+  <section ids="snap-to-symmetry" names="snap\ to\ symmetry bám\ dính\ vào\ đối\ xứng\ --\ snap\ to\ symmetry">
+   <title>
+    Bám Dính vào Đối Xứng -- Snap to Symmetry
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Bám Dính vào Đối Xứng (Snap to Symmetry)`">
+         Khung Lưới (Mesh) ‣ Bám Dính vào Đối Xứng (Snap to Symmetry)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The Snap to Symmetry tool lets you snap a mesh vertices to their mirrored neighbors.
+   </paragraph>
+   <paragraph>
+    Useful when dealing with meshes which are mostly symmetrical,
+but have vertices which have been moved enough that Blender
+does not detect them as mirrored (when X Mirror option is enabled for example).
+   </paragraph>
+   <paragraph>
+    This can be caused by accident when editing without X Mirror enabled. Sometimes models
+imported from other applications are asymmetrical enough that mirror fails too.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chiều Hướng -- Direction
+     </term>
+     <definition>
+      <paragraph>
+       Specify the axis and direction to snap. Can be any of the three axes,
+and either positive to negative, or negative to positive.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giới Hạn -- Threshold
+     </term>
+     <definition>
+      <paragraph>
+       Specify the search radius to use when finding matching vertices.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Support for blending mirrored locations from one side to the other (0.5 is an equal mix of both).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trung Tâm -- Center
+     </term>
+     <definition>
+      <paragraph>
+       Snap vertices along the center axis to zero.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id1">
+         <image candidates="{'*': 'images/modeling_meshes_editing_basics_symmetry_snap-to-symmetry-before.png'}" uri="images/modeling_meshes_editing_basics_symmetry_snap-to-symmetry-before.png" width="320px"/>
+         <caption>
+          Before Snap to Symmetry.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/modeling_meshes_editing_basics_symmetry_snap-to-symmetry-after.png'}" uri="images/modeling_meshes_editing_basics_symmetry_snap-to-symmetry-after.png" width="320px"/>
+         <caption>
+          After Snap to Symmetry.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+  <section ids="symmetrize" names="symmetrize đối\ xứng\ hóa\ --\ symmetrize">
+   <title>
+    Đối Xứng Hóa -- Symmetrize
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Đối Xứng Hóa (Symmetrize)`">
+         Khung Lưới (Mesh) ‣ Đối Xứng Hóa (Symmetrize)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <emphasis>
+     Symmetrize
+    </emphasis>
+    tool is a quick way to make a mesh symmetrical.
+    <emphasis>
+     Symmetrize
+    </emphasis>
+    works by cutting the mesh at the pivot point of the object,
+and mirroring over the geometry in the specified axis, and merges the two halves together
+(if they are connected). Also the mesh data is copied from one side to the other:
+e.g. UVs, vertex colors, vertex weights.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chiều Hướng -- Direction
+     </term>
+     <definition>
+      <paragraph>
+       Specify the axis and direction of the effect. Can be any of the three axes,
+and either positive to negative, or negative to positive.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giới Hạn -- Threshold
+     </term>
+     <definition>
+      <paragraph>
+       The vertices in this range will be snapped to the plane of symmetry.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/modeling_meshes_editing_basics_symmetry_symmetrize1.png'}" uri="images/modeling_meshes_editing_basics_symmetry_symmetrize1.png" width="320px"/>
+         <caption>
+          Mesh before Symmetrize.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/modeling_meshes_editing_basics_symmetry_symmetrize2.png'}" uri="images/modeling_meshes_editing_basics_symmetry_symmetrize2.png" width="320px"/>
+         <caption>
+          Mesh after Symmetrize.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <seealso>
+    <paragraph>
+     See
+     <reference internal="True" refuri="../transform/mirror.html">
+      <inline classes="doc">
+       Mirror
+      </inline>
+     </reference>
+     for information on mirroring, which allows you to flip geometry across an axis.
+    </paragraph>
+   </seealso>
+  </section>
+ </section>
+</document>

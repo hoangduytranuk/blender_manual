@@ -1,0 +1,131 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/input/render_layers.rst">
+ <target refid="bpy-types-compositornoderlayers">
+ </target>
+ <section ids="render-layers-node bpy-types-compositornoderlayers" names="render\ layers\ node nút\ các\ tầng\ kết\ xuất\ --\ render\ layers\ node bpy.types.compositornoderlayers">
+  <title>
+   Nút Các Tầng Kết Xuất -- Render Layers Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeRLayers.png'}" uri="images/compositing_node-types_CompositorNodeRLayers.png"/>
+   <caption>
+    Nút Các Tầng Kết Xuất
+   </caption>
+  </figure>
+  <paragraph>
+   Nút này là nơi bắt đầu để đưa một hình ảnh của cảnh của bạn vào sơ đồ nút tổng hợp.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <paragraph>
+    Nút này không có ổ cắm đầu vào.
+   </paragraph>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Cảnh -- Scene
+     </term>
+     <definition>
+      <paragraph>
+       Chọn cảnh trong tập tin blend của bạn. Thông tin về cảnh chọn là đoạn phim thô (tiền tổng hợp và tiền phối hình).
+      </paragraph>
+      <hint>
+       <paragraph>
+        Để sử dụng đoạn phim đã tổng hợp từ một cảnh khác thì nó phải được kết xuất thành bộ khung hình đa tầng lớp (ví dụ:
+        <literal>
+         OpenEXR
+        </literal>
+        ) dưới dạng kho lưu trữ tập tin trung gian và sau đó được tái nhập vào bằng nút đầu vào Hình Ảnh một lần nữa.
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tầng Kết Xuất -- Render layer
+     </term>
+     <definition>
+      <paragraph>
+       Một danh sách liệt kê các
+       <reference internal="True" refuri="../../../render/layers/index.html">
+        <inline classes="doc">
+         Tầng Kết Xuất -- Render Layers
+        </inline>
+       </reference>
+       có thể sử dụng được. Nút kết xuất là một đường cắt ngắn để tái kết xuất cảnh hiện đang hoạt động.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh được kết xuất.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Alpha
+     </term>
+     <definition>
+      <paragraph>
+       Kênh Alpha.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <rubric>
+    Những ổ cắm cho các lượt kết xuất -- Render passes sockets
+   </rubric>
+   <paragraph>
+    Tùy theo các lượt kết xuất đã cho phép (bật) (
+    <emphasis>
+     enabled
+    </emphasis>
+    ) mà các ổ cắm khác sẽ có sẵn để sử dụng được (
+    <emphasis>
+     available
+    </emphasis>
+    ). Xin xem thêm mục các
+    <reference internal="True" refuri="../../../render/layers/passes.html">
+     <inline classes="doc">
+      Lượt Kết Xuất Cycles -- Cycles render passes
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Z
+     </term>
+     <definition>
+      <paragraph>
+       Theo mặc định thì độ sâu Z được bật (
+       <emphasis>
+        enabled
+       </emphasis>
+       ).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

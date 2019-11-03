@@ -1,0 +1,399 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/output/animation.rst">
+ <section ids="rendering-animations" names="rendering\ animations --\ rendering\ animations">
+  <title>
+   -- Rendering Animations
+  </title>
+  <paragraph>
+   While rendering stills will allow you to view and save the image from the render buffer when
+it is complete, animations are a series of images, or frames,
+and are automatically saved directly out to a drive after being rendered.
+  </paragraph>
+  <paragraph>
+   After rendering the frames, you may need to edit the clips,
+or first use the Compositor to do green-screen masking, matting, color correction, DOF,
+and so on to the images. That result is then fed to the Sequencer where the strips are cut and
+mixed and a final overlay is done.
+  </paragraph>
+  <paragraph>
+   Finally you can render out from the Sequencer and compress the frames into a playable movie clip.
+  </paragraph>
+  <section ids="workflow" names="workflow quy\ trình\ làm\ việc\ --\ workflow">
+   <title>
+    Quy Trình Làm Việc -- Workflow
+   </title>
+   <paragraph>
+    Generally, you do a lot of intermediate renders of different frames in your animation to check
+for timing, lighting, placement, materials, and so on. At some point,
+you are ready to make a final render of the complete animation for publication.
+   </paragraph>
+   <paragraph>
+    There are two approaches you can use when making a movie, or animation, with or without sound.
+The approach you should use depends on the amount of CPU time you will need to render the movie.
+You can render a "typical" frame at the desired resolution,
+and then multiply by the number of frames that will ultimately go into the movie, to arrive at a total render time.
+   </paragraph>
+   <paragraph>
+    If the total render time is an hour or more, you want to use the "Frame Sequence" approach.
+For example, if you are rendering a one-minute video clip for film, there will be
+(60 seconds per minute) X (24 frames per second) or 1440 frames per minute.
+If each frame takes 30 seconds to render,
+then you will be able to render two frames per minute, or need 720 minutes (12 hours)
+of render time.
+   </paragraph>
+   <paragraph>
+    Rendering takes all available CPU time; you should render overnight,
+when the computer is not needed, or set Blender to a low priority while rendering,
+and work on other things (be careful with the RAM space!).
+   </paragraph>
+   <rubric>
+    -- Direct Approach
+   </rubric>
+   <paragraph>
+    The Direct Approach, which is highly
+    <strong>
+     not
+    </strong>
+    recommended and not a standard practice,
+is where you set your output format to an AVI or MOV format,
+and click
+    <emphasis>
+     Animation
+    </emphasis>
+    to render your scene directly out to a movie file.
+Blender creates one file that holds all the frames of your animation. You can then use
+Blender's VSE to add an audio track to the animation and render out to an MPEG format to
+complete your movie.
+   </paragraph>
+   <rubric>
+    -- Frame Sequence
+   </rubric>
+   <paragraph>
+    The Frame Sequence is a much more stable approach,
+where you set your output format to a still format (such as JPG, PNG or a multi-layer format),
+and click
+    <emphasis>
+     Animation
+    </emphasis>
+    to render your scene out to a set of images,
+where each image is a frame in the sequence.
+   </paragraph>
+   <paragraph>
+    Blender creates a file for each frame of the animation.
+You can then use Blender's compositor to perform any frame manipulation (post-processing).
+You can then use Blender's VSE to load that final image sequence,
+add an audio track to the animation, and render out to an MPEG format to complete your movie.
+The Frame Sequence approach is a little more complicated and takes more drive space,
+but gives you more flexibility.
+   </paragraph>
+   <paragraph>
+    Here are some guidelines to help you choose an approach.
+   </paragraph>
+   <rubric>
+    -- Direct Approach
+   </rubric>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Short segments with total render time &lt; 1 hour.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Stable power supply.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Computer not needed for other uses.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <rubric>
+    -- Frame Sequence Approach
+   </rubric>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Total render time &gt; 1 hour.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Post-production work needed:
+- Color/lighting adjustment
+- Green screen/matte replacement
+- Layering/compositing
+- Multiple formats and sizes of ultimate product
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Intermediate frames/adjustments needed for compression/codec.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Precise timing (e.g. lip-sync to audio track) needed in parts.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      May need to interrupt rendering to use the computer, and want to be able to resume rendering where you left off.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="frame-sequence-workflow" names="frame\ sequence\ workflow --\ frame\ sequence\ workflow">
+   <title>
+    -- Frame Sequence Workflow
+   </title>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      First prepare your animation.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In the
+      <emphasis>
+       Dimensions
+      </emphasis>
+      panel, choose the render size, Pixel Aspect Ratio, and the Range of Frames to use,
+as well as the frame rate, which should already be set.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In the Output panel set up your animation to be rendered out as images,
+generally using a format that does not compromise any quality.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Choose the output path and file type in the Output panel as well, for example
+      <literal>
+       //render/my-anim-
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Confirm the range of your animation (frame Start and End).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Save your blend-file.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Press the big
+      <emphasis>
+       Animation
+      </emphasis>
+      button.
+Do a long task (like sleeping, playing a video game, or cleaning your driveway)
+while you wait for your computer to finish rendering the frames.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Once the animation is finished,
+use your OS file explorer to navigate into the output folder (
+      <literal>
+       render
+      </literal>
+      in this example).
+You will see lots of images (
+      <literal>
+       .png
+      </literal>
+      or
+      <literal>
+       .exr
+      </literal>
+      , etc. depending on the format you chose to render)
+that have a sequence number attached to them ranging from 0000 to a max of 9999. These are your single frames.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In Blender, now go into the
+      <reference internal="True" refuri="../../video_editing/index.html">
+       <inline classes="doc">
+        Video Sequence editor
+       </inline>
+      </reference>
+      .
+     </paragraph>
+     <warning>
+      <paragraph>
+       The
+       <reference internal="True" refuri="../../video_editing/index.html">
+        <inline classes="doc">
+         VSE
+        </inline>
+       </reference>
+       does not support multi-layer EXR files.
+To render to a video format you will have to skip the next three steps and
+instead use an
+       <reference internal="True" refuri="../../compositing/types/input/image.html">
+        <inline classes="doc">
+         Image Input node
+        </inline>
+       </reference>
+       in the
+       <reference internal="True" refuri="../../compositing/types/input/image.html">
+        <inline classes="doc">
+         compositor
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </warning>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Choose
+      <emphasis>
+       Add Image
+      </emphasis>
+      from the add menu. Select all the frames from your output folder that you want to include
+in your animation (press
+      <literal classes="kbd">
+       A
+      </literal>
+      to Select All easily). They will be added as a strip to the Sequence editor.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Now you can edit the strip and add effects or simply leave it like it is.
+You can add other strips, like an audio strip.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Scrub through the animation, checking that you have included all the frames.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In the Output panel, choose the container and codec you want (e.g.
+      <literal>
+       MPEG H.264
+      </literal>
+      ) and configure them.
+The video codecs are described on the previous page:
+      <reference internal="True" refuri="settings.html">
+       <inline classes="doc">
+        Output Options
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Click the
+      <emphasis>
+       Animation
+      </emphasis>
+      render button and Blender will render out the Sequence editor output into your movie.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <paragraph>
+    Why go through all this hassle? Well, first of all, if you render out single frames, you can
+stop the render at any time by pressing
+    <literal classes="kbd">
+     Esc
+    </literal>
+    in the render window or Image editor.
+You will not lose the frames you have already rendered,
+since they have been written out to individual files.
+You can always adjust the range you want to continue from where you left off.
+   </paragraph>
+   <paragraph>
+    You can edit the frames afterwards and post-process them.
+You can add neat effects in the Sequence editor.
+You can render the same sequence into different resolutions (640×480, 320×240, etc.)
+and use different codecs (to get different file sizes and quality)
+with almost no effort whatsoever.
+   </paragraph>
+  </section>
+  <section ids="hints" names="hints gợi\ ý\ --\ hints">
+   <title>
+    Gợi ý -- Hints
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Your computer accidentally turns off in the middle of rendering your movie!
+     </term>
+     <definition>
+      <paragraph>
+       Unless your animation renders in a few minutes,
+it is best to render the animation as separate image files.
+Instead of rendering directly to a compressed movie file, use a lossless format (e.g.
+       <literal>
+        PNG
+       </literal>
+       ).
+      </paragraph>
+      <paragraph>
+       This allows you an easy recovery if there is a problem and you have to re-start the rendering,
+since the frames you have already rendered will still be in the output directory.
+      </paragraph>
+      <paragraph>
+       Just disable the
+       <emphasis>
+        Overwrite
+       </emphasis>
+       option to start rendering where you left off.
+      </paragraph>
+      <paragraph>
+       You can then make a movie out of the separate frames with Blender's Sequence editor
+or use 3rd party encoding software.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Animation Preview
+     </term>
+     <definition>
+      <paragraph>
+       It can be useful to render a subset of the animated sequence,
+since only part of an animation may have an error.
+      </paragraph>
+      <paragraph>
+       Using an image format for output,
+you can use the
+       <emphasis>
+        Frame Step
+       </emphasis>
+       option to render every
+       <emphasis>
+        N'th
+       </emphasis>
+       frame.
+Then disable
+       <emphasis>
+        Overwrite
+       </emphasis>
+       and re-render with
+       <emphasis>
+        Frame Step
+       </emphasis>
+       set to 1.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

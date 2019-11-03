@@ -1,0 +1,180 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/tracking/stretch_to.rst">
+ <target refid="bpy-types-stretchtoconstraint">
+ </target>
+ <section ids="stretch-to-constraint bpy-types-stretchtoconstraint" names="stretch\ to\ constraint ràng\ buộc\ co\ giãn\ tới\ --\ stretch\ to\ constraint bpy.types.stretchtoconstraint">
+  <title>
+   Ràng Buộc Co Giãn Tới -- Stretch To Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Stretch To
+   </emphasis>
+   constraint causes its owner to rotate and scale its Y axis towards its target.
+So it has the same tracking behavior as the
+   <reference internal="True" refuri="track_to.html">
+    <inline classes="doc">
+     Track To constraint
+    </inline>
+   </reference>
+   .
+However, it assumes that the Y axis will be the tracking and stretching axis,
+and does not give you the option of using a different one.
+  </paragraph>
+  <paragraph>
+   It also optionally has some raw volumetric features,
+so the owner can squash down as the target moves closer,
+or thin out as the target moves farther away.
+Note however, that it is not the real volume of the owner which is thus preserved,
+but rather the virtual one defined by its scale values. Hence,
+this feature works even with non-volumetric objects, like empties, 2D meshes or surfaces,
+and curves.
+  </paragraph>
+  <paragraph>
+   With bones, the "volumetric" variation scales them along their own local axes
+(remember that the local Y axis of a bone is aligned with it, from root to tip).
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_tracking_stretch-to_panel.png
+
+   Stretch To panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+        <inline classes="std std-ref">
+         Chỉ Danh của Dữ Liệu -- Data ID
+        </inline>
+       </reference>
+       sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều Dài Nghỉ -- Rest Length
+     </term>
+     <definition>
+      <paragraph>
+       This number field sets the rest distance between the owner and its target, i.e.
+the distance at which there is no deformation (stretching) of the owner.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Hoàn Lại -- Reset
+        </term>
+        <definition>
+         <paragraph>
+          When clicked, this small button will recalculate the
+          <emphasis>
+           Rest Length
+          </emphasis>
+          value,
+so that it corresponds to the actual distance between the owner and its target
+(i.e. the distance before this constraint is applied).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="constraints-stretch-to-volume-preservation">
+   </target>
+   <definition_list ids="constraints-stretch-to-volume-preservation" names="constraints-stretch-to-volume-preservation">
+    <definition_list_item>
+     <term>
+      Dao Động Thể Tích -- Volume Variation
+     </term>
+     <definition>
+      <paragraph>
+       This number field controls the amount of "volume" variation exponentially to the stretching amount.
+Note that the 0.0 value is not allowed, if you want to disable the volume feature,
+use the
+       <emphasis>
+        None
+       </emphasis>
+       button (see below).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Volume Min/Max
+     </term>
+     <definition>
+      <paragraph>
+       Limits for the volume preservation to a minimum and maximum scaling each by a
+       <emphasis>
+        Bulge
+       </emphasis>
+       factor.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Làm/Mịn Màng -- Smooth
+     </term>
+     <definition>
+      <paragraph>
+       Smoothness factor to make limits less visible.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thể Tích -- Volume
+     </term>
+     <definition>
+      <paragraph>
+       These buttons control which of the X and/or Z axes should be affected (scaled up/down)
+to preserve the virtual volume while stretching along the Y axis.
+If you enable the
+       <emphasis>
+        none
+       </emphasis>
+       button, the volumetric features are disabled.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mặt Phẳng -- Plane
+     </term>
+     <definition>
+      <paragraph>
+       These buttons are equivalent to the
+       <emphasis>
+        Up
+       </emphasis>
+       ones of
+the
+       <reference internal="True" refuri="track_to.html">
+        <inline classes="doc">
+         Track To constraint
+        </inline>
+       </reference>
+       :
+they control which of the X or Z axes should be maintained (as much as possible) aligned with the global Z axis,
+while tracking the target with the Y axis.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <vimeo aspect="None" height="None" id="171283118" width="None">
+   </vimeo>
+  </section>
+ </section>
+</document>

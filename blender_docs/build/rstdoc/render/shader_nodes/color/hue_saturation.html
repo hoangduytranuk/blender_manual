@@ -1,0 +1,207 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/color/hue_saturation.rst">
+ <target ids="['bpy-types-shadernodehuesaturation']" names="['bpy.types.shadernodehuesaturation']">
+ </target>
+ <comment xml:space="preserve">
+  DO NOT EDIT FILE. This is simply a stub which copies everything from the link below.
+ </comment>
+ <section ids="hue-saturation-value-node" names="hue\ saturation\ value\ node nút\ sắc\ thái,\ độ\ bão\ hòa,\ giá\ trị\ --\ hue\ saturation\ value\ node">
+  <title>
+   Nút Sắc Thái, Độ Bão Hòa, Giá Trị -- Hue Saturation Value Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeHueSat.png'}" uri="images/compositing_node-types_CompositorNodeHueSat.png"/>
+   <caption>
+    Nút Sắc Thái, Độ Bão Hòa.
+   </caption>
+  </figure>
+  <paragraph>
+   <emphasis>
+    Nút Sắc Thái, Độ Bão Hòa, Giá Trị
+   </emphasis>
+   áp dụng phép biến đổi màu trong không gian màu HSV. Được gọi là Sắc Thái, Độ Bão Hòa, Giá trị trong ngữ cảnh bộ tô bóng và chất liệu.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Điều chế lượng ảnh hưởng mà nút tác động đến hình ảnh xuất ra.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Các phép biến đổi là các dịch chuyển tương đối. Trong bối cảnh bộ tô bóng và chất liệu, các tính chất sau đây là những cái ở các ổ cắm đầu vào.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Sắc Thái -- Hue
+     </term>
+     <definition>
+      <paragraph>
+       Chỉ định sự xoay vòng về sắc thái của hình ảnh. 360° sẽ được ánh xạ thành (0 đến 1). Những dịch chuyển về sắc thái của 0 (-180°) và 1 (+180°) sẽ có cùng một kết quả (giống nhau).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Bão Hòa -- Saturation
+     </term>
+     <definition>
+      <paragraph>
+       Độ bão hòa 0 sẽ loại bỏ sắc thái khỏi hình ảnh, dẫn đến hình ảnh với thang độ xám (trắng/đen). Sự dịch chuyển lớn hơn 1.0 sẽ làm tăng độ bão hòa (màu tươi và rực lên).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Giá trị là độ sáng tổng thể của hình ảnh. Giảm/Tăng các giá trị sẽ dịch chuyển độ sáng/tối của một hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="hue-saturation-tips" names="hue/saturation\ tips một\ số\ gợi\ ý\ về\ sắc\ thái/độ\ bão\ hòa\ --\ hue/saturation\ tips">
+   <title>
+    Một Số Gợi Ý về Sắc Thái/Độ Bão Hòa -- Hue/Saturation Tips
+   </title>
+   <paragraph>
+    Một số điều cần ghi nhớ để có thể giúp bạn sử dụng nút này tốt hơn:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Sắc Thái là Đảo Ngược -- Hues are vice versa
+     </term>
+     <definition>
+      <paragraph>
+       Một hình ảnh màu xanh lam, với một thiết lập về Sắc Thái nằm một trong hai đầu của quang phổ (0 hoặc 1), thì xuất ra màu vàng (nhớ rằng màu trắng trừ màu xanh lam thì là màu vàng (Đỏ+Lục)). Một hình ảnh màu vàng, với thiết lập Sắc Thái tại 0 hoặc 1, là màu xanh lam.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sắc Thái và Độ Bão Hòa đồng hành với nhau -- Hue and Saturation work together.
+     </term>
+     <definition>
+      <paragraph>
+       Do vậy mà nếu một Sắc Thái (
+       <emphasis>
+        Hue
+       </emphasis>
+       ) có giá trị 0.5 sẽ giữ cho các màu lam ở cùng một sắc thái lam, song
+       <emphasis>
+        Độ Bão Hòa
+       </emphasis>
+       (
+       <emphasis>
+        Saturation
+       </emphasis>
+       ) có thể làm cho cường độ của màu đó trở nên tối hơn hoặc sáng hơn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Màu Xám và Trắng là những Màu Trung Tính -- Gray &amp; White are neutral hues
+     </term>
+     <definition>
+      <paragraph>
+       Một hình ảnh màu xám, nơi các giá trị RGB bằng nhau, không có màu sắc. Do đó, nút này chỉ có thể tác động đến
+       <emphasis>
+        Giá trị
+       </emphasis>
+       của nó mà thôi. Điều này áp dụng cho tất cả các sắc thái của màu xám, từ màu đen đến màu trắng; bất cứ nơi nào mà các giá trị đều bằng nhau.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thay đổi ảnh hưởng theo thời gian -- Changing the effect over time
+     </term>
+     <definition>
+      <paragraph>
+       Các giá trị Sắc Thái và Độ Bão Hòa có thể được hoạt họa với một
+       <emphasis>
+        Nút Thời Gian
+       </emphasis>
+       (
+       <emphasis>
+        Time Node
+       </emphasis>
+       ) hoặc bằng cách hoạt họa tính chất của nó.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     Nhuốm Màu -- Tinge
+    </paragraph>
+    <paragraph>
+     Nút HSV này chỉ đơn thuần dịch chuyển sắc thái đã có. Để tô màu một hình ảnh trắng đen hoặc để thêm màu vào hình ảnh, hãy sử dụng một nút kết hợp để thêm một màu tĩnh từ nút đầu vào RGB với hình ảnh của bạn.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="hsv-example" names="hsv\ example ví\ dụ\ về\ hsv\ --\ hsv\ example">
+   <title>
+    Ví Dụ về HSV -- HSV Example
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_color_hue-saturation_example.jpg'}" uri="images/compositing_types_color_hue-saturation_example.jpg" width="700px"/>
+    <caption>
+     Một ví dụ cơ bản.
+    </caption>
+   </figure>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/compositing_types_input_mask_example.png'}" uri="images/compositing_types_input_mask_example.png" width="700px"/>
+    <caption>
+     Một ví dụ về cách sử dụng Hệ Số đầu vào cho quá trình chắn lọc.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

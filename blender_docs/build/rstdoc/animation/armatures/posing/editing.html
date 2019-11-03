@@ -1,0 +1,1346 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/armatures/posing/editing.rst">
+ <section ids="editing" names="editing biên\ soạn\ --\ editing">
+  <title>
+   Biên Soạn -- Editing
+  </title>
+  <comment xml:space="preserve">
+   TODO2.8
+.. figure:: /images/animation_armatures_posing_editing_tools.png
+   :align: right
+
+   Pose Tools.
+  </comment>
+  <paragraph>
+   In
+   <emphasis>
+    Pose Mode
+   </emphasis>
+   , bones behave like objects. So the transform actions
+(move/rotate/scale, etc.) are very similar to the same ones in Object Mode
+(all available ones are regrouped in the
+   <inline classes="menuselection" rawtext=":menuselection:`Pose --&gt; Transform`">
+    Pose ‣ Transform
+   </inline>
+   submenu). However,
+there are some important specificities:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     Bones' relationships are crucial (see
+     <reference internal="True" refuri="../bones/properties/relations.html#bone-relations-parenting">
+      <inline classes="std std-ref">
+       Phụ Huynh Hóa -- Parenting
+      </inline>
+     </reference>
+     ).
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     The "transform center" of a given bone
+(i.e. its default pivot point, when it is the only selected one) is
+     <emphasis>
+      its root
+     </emphasis>
+     .
+Note by the way that some pivot point options seem to not work properly. In fact,
+except for the
+     <emphasis>
+      3D Cursor
+     </emphasis>
+     one, all others appear to always use the median point of the selection
+(and not e.g. the active bone's root when
+     <emphasis>
+      Active Object
+     </emphasis>
+     is selected, etc.).
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <section ids="basic-posing" names="basic\ posing --\ basic\ posing">
+   <title>
+    -- Basic Posing
+   </title>
+   <paragraph>
+    As previously noted,
+bones' transformations are performed based on the
+    <emphasis>
+     Rest Position
+    </emphasis>
+    of the armature,
+which is its state as defined in
+    <emphasis>
+     Edit Mode
+    </emphasis>
+    . This means that in rest position,
+in
+    <emphasis>
+     Pose Mode
+    </emphasis>
+    , each bone has a scale of 1.0, and null rotation and position
+(as you can see it in the
+    <emphasis>
+     Transform
+    </emphasis>
+    panel, in the 3D Views).
+   </paragraph>
+   <comment xml:space="preserve">
+    TODO2.8 Maybe update the images (color &amp; style)
+   </comment>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/animation_armatures_posing_editing_local-rotation.png'}" uri="images/animation_armatures_posing_editing_local-rotation.png"/>
+    <caption>
+     An example of locally-Y-axis locked rotation, with two bones selected.
+    </caption>
+    <legend>
+     <paragraph>
+      Note that the two green lines materializing the axes are centered on the armature's center,
+and not each bone's root...
+     </paragraph>
+    </legend>
+   </figure>
+   <paragraph>
+    Moreover, the local space for these actions is the bone's own one
+(visible when you enable the
+    <emphasis>
+     Axes
+    </emphasis>
+    option of the
+    <emphasis>
+     Armature
+    </emphasis>
+    panel).
+This is especially important when using axis locking, for example,
+there is no specific "bone roll" tool in
+    <emphasis>
+     Pose Mode
+    </emphasis>
+    ,
+as you can rotate around the bone's main axis just by locking on the local Y axis
+    <literal classes="kbd">
+     R Y Y
+    </literal>
+    ... This also works with several bones selected;
+each one is locked to its own local axis!
+   </paragraph>
+   <paragraph>
+    When you pose your armature,
+you are supposed to have one or more objects skinned on it! And obviously,
+when you transform a bone in
+    <emphasis>
+     Pose Mode
+    </emphasis>
+    ,
+its related objects or object's shape is moved/deformed accordingly, in real-time.
+Unfortunately, if you have a complex rig set-up and/or a heavy skin object,
+this might produce lag, and make interactive editing very painful.
+If you experience such troubles, try enabling the
+    <emphasis>
+     Delay Deform
+    </emphasis>
+    button of
+the
+    <emphasis>
+     Armature
+    </emphasis>
+    panel the skin objects will only be updated once you validate
+the transform operation.
+   </paragraph>
+  </section>
+  <section ids="auto-ik" names="auto\ ik ik\ tự\ động\ --\ auto\ ik">
+   <title>
+    IK Tự Động -- Auto IK
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Tư Thế -- Pose Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; Tool --&gt; Pose Options`">
+         Sidebar region ‣ Tool ‣ Pose Options
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The auto IK option in the Sidebar enables a temporary IK constraint when posing bones.
+The chain acts from the tip of the selected bone to root of the upper-most parent bone.
+Note that this mode lacks options,
+and only works by applying the resulting transform to the bones in the chain.
+   </paragraph>
+  </section>
+  <section ids="clear-transform" names="clear\ transform xóa\ biến\ hóa\ --\ clear\ transform">
+   <title>
+    Xóa Biến Hóa -- Clear Transform
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Tư Thế -- Pose Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Tư Thế (Pose) --&gt; Xóa Biến Hóa (Clear Transform)`">
+         Tư Thế (Pose) ‣ Xóa Biến Hóa (Clear Transform)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Alt-G
+        </literal>
+        ,
+        <literal classes="kbd">
+         Alt-R
+        </literal>
+        ,
+        <literal classes="kbd">
+         Alt-S
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Once you have transformed some bones, if you want to return to their rest position,
+just clear their transformations.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Location, Rotation, Scale
+      <literal classes="kbd">
+       Alt-G
+      </literal>
+      ,
+      <literal classes="kbd">
+       Alt-R
+      </literal>
+      ,
+      <literal classes="kbd">
+       Alt-S
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Clears individual transforms.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Toàn Bộ -- All
+     </term>
+     <definition>
+      <paragraph>
+       To clear everything at once.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hoàn Lại về trạng thái Chưa Khóa Hóa -- Reset Unkeyed
+     </term>
+     <definition>
+      <paragraph>
+       Clears the transforms to their keyframe state. This operator is also available in the
+       <inline classes="menuselection" rawtext=":menuselection:`Đặc Biệt (Specials) --&gt; Xóa Biến Hóa của Người Dùng (Clear User Transform)`">
+        Đặc Biệt (Specials) ‣ Xóa Biến Hóa của Người Dùng (Clear User Transform)
+       </inline>
+       menu.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Đã Được Chọn Thôi -- Only Selected
+        </term>
+        <definition>
+         <paragraph>
+          Operate on just the selected or all bones.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    Note that in
+    <emphasis>
+     Envelope
+    </emphasis>
+    visualization,
+    <literal classes="kbd">
+     Alt-S
+    </literal>
+    does not clear the scale, but rather scales the
+    <emphasis>
+     Distance
+    </emphasis>
+    influence area of the selected bones (also available through the
+    <inline classes="menuselection" rawtext=":menuselection:`Tư Thế (Pose) --&gt; Đổi Tỷ Lệ Khoảng Cách Bao Bì (Scale Envelope Distance)`">
+     Tư Thế (Pose) ‣ Đổi Tỷ Lệ Khoảng Cách Bao Bì (Scale Envelope Distance)
+    </inline>
+    menu entry, which is only effective in
+    <emphasis>
+     Envelope
+    </emphasis>
+    visualization, even though it is always available...).
+   </paragraph>
+  </section>
+  <section ids="apply" names="apply áp\ dụng\ --\ apply">
+   <title>
+    Áp Dụng -- Apply
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Tư Thế -- Pose Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Tư Thế (Pose) --&gt; Áp Dụng (Apply)`">
+         Tư Thế (Pose) ‣ Áp Dụng (Apply)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-A
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Pose as Rest Pose
+     </term>
+     <definition>
+      <paragraph>
+       Conversely, you may define the current pose as the new rest pose
+(i.e. "apply" current transformations to the
+       <emphasis>
+        Edit Mode
+       </emphasis>
+       ),
+When you do so, the skinned objects/geometry is
+       <strong>
+        also
+       </strong>
+       reset to its default,
+undeformed state, which generally means you will have to skin it again.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pose Selected as Rest Pose
+     </term>
+     <definition>
+      <paragraph>
+       Same as
+       <emphasis>
+        Pose as Rest Pose
+       </emphasis>
+       but only applies to selected bones.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Visual Transform to Pose
+     </term>
+     <definition>
+      <paragraph>
+       TODO.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Assign Custom Property Values as Default
+     </term>
+     <definition>
+      <paragraph>
+       TODO.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="in-betweens" names="in-betweens trung\ gian\ --\ in-betweens">
+   <title>
+    Trung Gian -- In-Betweens
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/animation_armatures_posing_editing_inbetweens-tools.png'}" uri="images/animation_armatures_posing_editing_inbetweens-tools.png"/>
+    <caption>
+     In-Betweens Tools.
+    </caption>
+   </figure>
+   <paragraph>
+    There are several tools for editing poses in an animation.
+   </paragraph>
+   <paragraph>
+    There are also in
+    <emphasis>
+     Pose Mode
+    </emphasis>
+    a bunch of armature-specific editing options/tools,
+like
+    <reference internal="True" refuri="../bones/editing/naming.html#armature-editing-naming-bones">
+     <inline classes="std std-ref">
+      auto-bones naming
+     </inline>
+    </reference>
+    ,
+    <reference internal="True" refuri="../bones/editing/properties.html#armature-bone-properties">
+     <inline classes="std std-ref">
+      properties switching/enabling/disabling
+     </inline>
+    </reference>
+    , etc.,
+that we already described in the armature editing pages. See the links above...
+   </paragraph>
+   <section ids="push-pose-from-breakdown" names="push\ pose\ from\ breakdown">
+    <title>
+     Push Pose from Breakdown
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Tư Thế -- Pose Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Tool
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; In-Betweens Tools --&gt; Push`">
+          Toolbar ‣ In-Betweens Tools ‣ Push
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Pose --&gt; In-Betweens --&gt; Push Pose from Breakdown`">
+          Pose ‣ In-Betweens ‣ Push Pose from Breakdown
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Ctrl-E
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     <emphasis>
+      Push Pose
+     </emphasis>
+     interpolates the current pose by making it closer to the next keyframed position.
+    </paragraph>
+   </section>
+   <section ids="push-pose-from-rest" names="push\ pose\ from\ rest">
+    <title>
+     Push Pose from Rest
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Tư Thế -- Pose Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Pose --&gt; In-Betweens --&gt; Push Pose from Rest`">
+          Pose ‣ In-Betweens ‣ Push Pose from Rest
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Similar to
+     <emphasis>
+      Push Pose from Breakdown
+     </emphasis>
+     but interpolates the pose to the rest position instead.
+Only one keyframe is needed for this tool unlike two for the other.
+    </paragraph>
+   </section>
+   <section ids="relax-pose-to-breakdown" names="relax\ pose\ to\ breakdown">
+    <title>
+     Relax Pose to Breakdown
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Tư Thế -- Pose Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Tool
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; In-Betweens Tools --&gt; Relax`">
+          Toolbar ‣ In-Betweens Tools ‣ Relax
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Pose --&gt; In-Betweens --&gt; Relax Pose to Breakdown`">
+          Pose ‣ In-Betweens ‣ Relax Pose to Breakdown
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Alt-E
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Relax pose is somewhat related to the above topic, but it is only useful with keyframed bones.
+When you edit such a bone (and hence take it "away" from its "keyed position"),
+using this tool will progressively "bring it back" to its "keyed position",
+with smaller and smaller steps as it comes near it.
+    </paragraph>
+   </section>
+   <section ids="relax-pose-to-rest" names="relax\ pose\ to\ rest">
+    <title>
+     Relax Pose to Rest
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Tư Thế -- Pose Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Pose --&gt; In-Betweens --&gt; Relax Pose to Rest`">
+          Pose ‣ In-Betweens ‣ Relax Pose to Rest
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Similar to
+     <emphasis>
+      Relax Pose to Breakdown
+     </emphasis>
+     but works to bring the pose back to the rest position instead.
+Only one keyframe is needed for this tool unlike two for the other.
+    </paragraph>
+   </section>
+   <section ids="breakdowner" names="breakdowner máy\ phân\ tích\ --\ breakdowner">
+    <title>
+     Máy Phân Tích -- Breakdowner
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Tư Thế -- Pose Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Bảng -- Panel
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Toolbar region --&gt; In-Betweens Tools --&gt; Breakdowner`">
+          Toolbar region ‣ In-Betweens Tools ‣ Breakdowner
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Tư Thế (Pose) --&gt; Trung Gian (In-Betweens) --&gt; Máy Phân Tích Tư Thế (Pose Breakdowner)`">
+          Tư Thế (Pose) ‣ Trung Gian (In-Betweens) ‣ Máy Phân Tích Tư Thế (Pose Breakdowner)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          LMB
+         </literal>
+         -drag
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Creates a suitable breakdown pose on the current frame.
+    </paragraph>
+    <paragraph>
+     The Breakdowner tool can be constrained to work on specific transforms and axes,
+by pressing the following keys while the tool is active:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        G
+       </literal>
+       ,
+       <literal classes="kbd">
+        R
+       </literal>
+       ,
+       <literal classes="kbd">
+        S
+       </literal>
+       : move, rotate, scale
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        B
+       </literal>
+       : Bendy bones
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        C
+       </literal>
+       : custom properties
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        X
+       </literal>
+       ,
+       <literal classes="kbd">
+        Y
+       </literal>
+       ,
+       <literal classes="kbd">
+        Z
+       </literal>
+       : to the corresponding axes
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+  <section ids="copy-paste-pose" names="copy/paste\ pose --\ copy/paste\ pose">
+   <title>
+    -- Copy/Paste Pose
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Tư Thế -- Pose Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Pose --&gt; Copy Pose`">
+         Pose ‣ Copy Pose
+        </inline>
+        ,
+        <inline classes="menuselection" rawtext=":menuselection:`Pose --&gt; Paste Pose`">
+         Pose ‣ Paste Pose
+        </inline>
+        ,
+        <inline classes="menuselection" rawtext=":menuselection:`Pose --&gt; Paste Pose Flipped`">
+         Pose ‣ Paste Pose Flipped
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-C
+        </literal>
+        <literal classes="kbd">
+         Ctrl-V
+        </literal>
+        <literal classes="kbd">
+         Shift-Ctrl-V
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Blender allows you to copy and paste a pose, either through the
+    <emphasis>
+     Pose
+    </emphasis>
+    menu, or
+by using hotkeys.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Copy Pose
+     </term>
+     <definition>
+      <paragraph>
+       Copy the current pose of selected bones into the pose buffer.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dán Tư Thế -- Paste Pose
+     </term>
+     <definition>
+      <paragraph>
+       Paste the buffered pose to the currently posed armature.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Paste Pose Flipped
+     </term>
+     <definition>
+      <paragraph>
+       Paste the
+       <emphasis>
+        X axis mirrored
+       </emphasis>
+       buffered pose to the currently posed armature.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    Here are important points:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      This tool works at the Blender session level, which means you can use it across armatures, scenes, and even files.
+However, the pose buffer is not saved, so you lose it when you close Blender.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      There is only one pose buffer.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Only the selected bones are taken into account during copying (i.e. you copy only selected bones' pose).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      During pasting, on the other hand, bone selection has no importance.
+The copied pose is applied on a per-name basis
+(i.e. if you had a
+      <literal>
+       forearm
+      </literal>
+      bone selected when you copied the pose,
+the
+      <literal>
+       forearm
+      </literal>
+      bone of the current posed armature will get its pose when you paste it --
+and if there is no such named bone, nothing will happen...).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      What is copied and pasted is in fact the position/rotation/scale of each bone, in its own space.
+This means that the resulting pasted pose might be very different from the originally copied one, depending on:
+     </paragraph>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        The rest position of the bones,
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        and the current pose of their parents.
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </list_item>
+   </bullet_list>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/animation_armatures_posing_editing_copy-paste-pose-examples-1.png'}" uri="images/animation_armatures_posing_editing_copy-paste-pose-examples-1.png"/>
+         <caption>
+          The rest position of our original armature.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/animation_armatures_posing_editing_copy-paste-pose-examples-2.png'}" uri="images/animation_armatures_posing_editing_copy-paste-pose-examples-2.png"/>
+         <caption>
+          The rest position of our destination armature.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <table ids="id5">
+    <title>
+     Examples of pose copy/paste.
+    </title>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/animation_armatures_posing_editing_copy-paste-pose-examples-3.png'}" uri="images/animation_armatures_posing_editing_copy-paste-pose-examples-3.png"/>
+         <caption>
+          The first copied pose (note that only two bones are selected and hence copied).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id7">
+         <image candidates="{'*': 'images/animation_armatures_posing_editing_copy-paste-pose-examples-4.png'}" uri="images/animation_armatures_posing_editing_copy-paste-pose-examples-4.png"/>
+         <caption>
+          ...pasted on the destination armature...
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id8">
+         <image candidates="{'*': 'images/animation_armatures_posing_editing_copy-paste-pose-examples-5.png'}" uri="images/animation_armatures_posing_editing_copy-paste-pose-examples-5.png"/>
+         <caption>
+          ...and mirror-pasted on the destination armature.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id9">
+         <image candidates="{'*': 'images/animation_armatures_posing_editing_copy-paste-pose-examples-6.png'}" uri="images/animation_armatures_posing_editing_copy-paste-pose-examples-6.png"/>
+         <caption>
+          The same pose as above is copied, but this time with all bones selected, ...
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id10">
+         <image candidates="{'*': 'images/animation_armatures_posing_editing_copy-paste-pose-examples-7.png'}" uri="images/animation_armatures_posing_editing_copy-paste-pose-examples-7.png"/>
+         <caption>
+          ... pasted on the destination armature...
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id11">
+         <image candidates="{'*': 'images/animation_armatures_posing_editing_copy-paste-pose-examples-8.png'}" uri="images/animation_armatures_posing_editing_copy-paste-pose-examples-8.png"/>
+         <caption>
+          ...and mirror-pasted on the destination armature.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+  <section ids="propagate" names="propagate lan\ truyền\ --\ propagate">
+   <title>
+    Lan Truyền -- Propagate
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Tư Thế -- Pose Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Tư Thế (Pose) --&gt; Lan Truyền (Propagate)`">
+         Tư Thế (Pose) ‣ Lan Truyền (Propagate)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Alt-P
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The Propagate tool copies the pose of the selected bones on the current frame over
+to the keyframes delimited by the
+    <emphasis>
+     Termination Mode
+    </emphasis>
+    .
+It automates the process of copying and pasting.
+   </paragraph>
+   <section ids="options" names="options tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       -- Termination Mode
+      </term>
+      <definition>
+       <paragraph>
+        Modes which determine how it decides when to stop overwriting keyframes.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Trong Khi Có Cùng Giá Trị -- While Held
+         </term>
+         <definition>
+          <paragraph>
+           The most complicated of the modes available, as it tries to guess when to stop propagating by
+examining the pauses in the animation curves per control
+(i.e. all F-curves for a bone, instead of per F-curve).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Đến Khung Khóa Tiếp Theo -- To Next Keyframe
+         </term>
+         <definition>
+          <paragraph>
+           Simply copies the pose to the first keyframe after (but not including any keyframe on) the current frame.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Đến Khung Khóa Cuối Cùng -- To Last Keyframe
+         </term>
+         <definition>
+          <paragraph>
+           Will simply replace the last keyframe (i.e. making action cyclic).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Trước Khung Hình -- Before Frame
+         </term>
+         <definition>
+          <paragraph>
+           To all keyframes between current frame and the
+           <emphasis>
+            End frame
+           </emphasis>
+           option.
+This option is best suited for use from scripts due to the difficulties in setting this frame value,
+though it is possible to set this manually
+via the
+           <reference internal="True" refuri="../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+            <inline classes="std std-ref">
+             Adjust Last Operation
+            </inline>
+           </reference>
+           panel if necessary.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Trước Khung Khóa Cuối Cùng -- Before Last Keyframe
+         </term>
+         <definition>
+          <paragraph>
+           To all keyframes from current frame until no more are found.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Trên các Khung Khóa Được Chọn -- On Selected Keyframes
+         </term>
+         <definition>
+          <paragraph>
+           Will apply the pose of the selected bones to all selected keyframes.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Tại các Dấu Mốc đã Chọn -- On Selected Markers
+         </term>
+         <definition>
+          <paragraph>
+           To all keyframes occurring on frames with Scene Markers after the current frame.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khung Hình Cuối -- End Frame
+      </term>
+      <definition>
+       <paragraph>
+        Defines the upper-bound for the frame range within which keyframes
+will be affected (with the lower bound being the current frame).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="show-hide" names="show/hide hiện/ẩn\ --\ show/hide">
+   <title>
+    Hiện/Ẩn -- Show/Hide
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Properties editor --&gt; Bone --&gt; Viewport Display`">
+         Properties editor ‣ Bone ‣ Viewport Display
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`... --&gt; Hiện/Ẩn (Show/Hide)`">
+         ... ‣ Hiện/Ẩn (Show/Hide)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    You do not have to use bone layers to show/hide some bones. As with objects,
+vertices or control points, you can use
+    <literal classes="kbd">
+     H
+    </literal>
+    :
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <literal classes="kbd">
+       H
+      </literal>
+      will hide the selected bone(s).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal classes="kbd">
+       Shift-H
+      </literal>
+      will hide all bones
+      <emphasis>
+       but the selected one(s)
+      </emphasis>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal classes="kbd">
+       Alt-H
+      </literal>
+      will show all hidden bones.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    You can also use the
+    <emphasis>
+     Hide
+    </emphasis>
+    checkbox of the
+    <inline classes="menuselection" rawtext=":menuselection:`Bone tab --&gt; Viewport Display panel`">
+     Bone tab ‣ Viewport Display panel
+    </inline>
+    .
+   </paragraph>
+   <paragraph>
+    Note that hidden bones are specific to a mode,
+i.e. you can hide some bones in
+    <emphasis>
+     Edit Mode
+    </emphasis>
+    ,
+they will still be visible in
+    <emphasis>
+     Pose Mode
+    </emphasis>
+    , and vice versa.
+Hidden bones in
+    <emphasis>
+     Pose Mode
+    </emphasis>
+    are also invisible in
+    <emphasis>
+     Object Mode
+    </emphasis>
+    .
+And in
+    <emphasis>
+     Edit Mode
+    </emphasis>
+    , the bone to hide must be fully selected,
+not just his root or tip.
+   </paragraph>
+  </section>
+ </section>
+</document>

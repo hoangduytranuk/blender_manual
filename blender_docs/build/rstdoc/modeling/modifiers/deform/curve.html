@@ -1,0 +1,165 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/deform/curve.rst">
+ <target refid="bpy-types-curvemodifier">
+ </target>
+ <section ids="curve-modifier bpy-types-curvemodifier" names="curve\ modifier bộ\ điều\ chỉnh\ đường\ cong\ --\ curve\ modifier bpy.types.curvemodifier">
+  <title>
+   Bộ Điều Chỉnh Đường Cong -- Curve Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Curve
+   </emphasis>
+   modifier provides a simple but efficient method of deforming a mesh along a curve object.
+  </paragraph>
+  <paragraph>
+   It works on a (global) dominant axis, X, Y, or Z.
+This means that when you move your mesh in the dominant direction (by default, the X axis),
+the mesh will traverse along the curve, as if it was a train following and deforming along rails.
+Moving the mesh perpendicularly to this axis, the object will move closer or further away from the curve.
+  </paragraph>
+  <paragraph>
+   When you move the object beyond the curve's ends, the object will continue
+to deform based on the direction vector at those ends.
+  </paragraph>
+  <note>
+   <paragraph>
+    This modifier works in global space, in other words, the actual position of the geometry
+relative to the curve is determinant to get a correct result.
+   </paragraph>
+   <paragraph>
+    Typically, you'll want your object's origin to be at the center of your geometry (not offset far away from it,
+you can e.g.
+    <reference internal="True" refuri="../../../scene_layout/object/origin.html#bpy-ops-object-origin-set">
+     <inline classes="std std-ref">
+      Set Origin to Geometry
+     </inline>
+    </reference>
+    ).
+   </paragraph>
+   <paragraph>
+    And then you'll want to start with your object's origin at the same location as your curve object's origin
+(you may use
+    <reference internal="True" refuri="../../../scene_layout/object/editing/transform/control/snap.html#bpy-ops-view3d-snap">
+     <inline classes="std std-ref">
+      snap tools
+     </inline>
+    </reference>
+    for that...).
+   </paragraph>
+  </note>
+  <paragraph>
+   If the curve is 3D, the
+   <emphasis>
+    Tilt
+   </emphasis>
+   value of its control points will be used to twist the deformed object.
+And the
+   <emphasis>
+    Radius
+   </emphasis>
+   property controls the size of the object as well.
+Those options are in the
+   <emphasis>
+    Shape
+   </emphasis>
+   panel, under
+   <reference internal="True" refuri="../../curves/properties/shape.html#curve-shape-path-curve-deform">
+    <inline classes="std std-ref">
+     Path/Curve-Deform
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <target refid="fig-modifier-curve-panel">
+   </target>
+   <figure align="right" ids="id1 fig-modifier-curve-panel" names="fig-modifier-curve-panel">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_curve_panel.png'}" uri="images/modeling_modifiers_deform_curve_panel.png"/>
+    <caption>
+     The Curve modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vật Thể -- Object
+     </term>
+     <definition>
+      <paragraph>
+       The name of the curve object that will affect the deformed object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       If set, restrict the effect to the only vertices in that vertex group.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Deformation Axis X/Y/Z/-X/-Y/-Z
+     </term>
+     <definition>
+      <paragraph>
+       This is the axis that the curve deforms along.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <table>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <target refid="fig-modifier-curve-edit">
+        </target>
+        <figure ids="id2 fig-modifier-curve-edit" names="fig-modifier-curve-edit">
+         <image candidates="{'*': 'images/modeling_modifiers_deform_curve_example-edit-curve.png'}" uri="images/modeling_modifiers_deform_curve_example-edit-curve.png" width="300px"/>
+         <caption>
+          Edit curve.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/modeling_modifiers_deform_curve_example-monkeyoncurve1.png'}" uri="images/modeling_modifiers_deform_curve_example-monkeyoncurve1.png" width="300px"/>
+         <caption>
+          Monkey on a curve.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/modeling_modifiers_deform_curve_example-monkeyoncurve2.png'}" uri="images/modeling_modifiers_deform_curve_example-monkeyoncurve2.png" width="300px"/>
+         <caption>
+          Monkey deformations.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

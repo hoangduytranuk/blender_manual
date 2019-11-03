@@ -1,0 +1,474 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>-- Musgrave Texture Node &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/musgrave.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Nút Chất Liệu Nhiễu -- Noise Texture Node" href="noise.html" />
+    <link rel="prev" title="-- Magic Texture Node" href="magic.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cycles/index.html">Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Shader Nodes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../shader/index.html">Shader</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Texture</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="brick.html">Nút Chất Liệu Gạch -- Brick Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checker.html">-- Checker Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="environment.html">-- Environment Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gradient.html">-- Gradient Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ies.html">IES Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="image.html">Nút Chất Liệu Hình Ảnh -- Image Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="magic.html">-- Magic Texture Node</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">-- Musgrave Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="noise.html">Nút Chất Liệu Nhiễu -- Noise Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="point_density.html">Nút Mật Độ Điểm -- Point Density Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sky.html">-- Sky Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi.html">Nút Chất Liệu Voronoi -- Voronoi Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wave.html">Nút Chất Liệu Sóng -- Wave Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="white_noise.html">White Noise Texture Node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm Nút -- Node Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../osl.html">Ngôn Ngữ Tô Bóng Mở -- Open Shading Language</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Phong Cách Tự Do -- Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">-- Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+        
+          <li><a href="../index.html">Shader Nodes</a> &raquo;</li>
+        
+          <li><a href="index.html">Texture</a> &raquo;</li>
+        
+      <li>-- Musgrave Texture Node</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/render/shader_nodes/textures/musgrave.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="musgrave-texture-node">
+<span id="bpy-types-shadernodetexmusgrave"></span><h1>-- Musgrave Texture Node<a class="headerlink" href="#musgrave-texture-node" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-right" id="id1">
+<img alt="../../../_images/render_shader-nodes_textures_musgrave_node.png" src="../../../_images/render_shader-nodes_textures_musgrave_node.png" />
+<p class="caption"><span class="caption-text">Musgrave Texture Node.</span></p>
+</div>
+<p>The <em>Musgrave Texture</em> node evaluates a fractal Perlin noise at the input texture coordinates.
+Unlike the <em>Noise Texture</em>, which is also a fractal Perlin noise,
+the <em>Musgrave Texture</em> allows greater control over how octaves are combined.</p>
+<div class="section" id="inputs">
+<h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
+<p>The inputs are dynamic, they become available if needed depending on the node properties.</p>
+<dl class="docutils">
+<dt>Vectơ -- Vector</dt>
+<dd>Texture coordinate to evaluate the noise at;
+defaults to <em>Generated</em> texture coordinates if the socket is left unconnected.</dd>
+<dt>W</dt>
+<dd>Texture coordinate to evaluate the noise at.</dd>
+<dt>Tỷ Lệ -- Scale</dt>
+<dd>Scale of the base noise octave.</dd>
+<dt>Chi Tiết -- Detail</dt>
+<dd>Number of noise octaves.
+The fractional part of the input is multiplied by the magnitude of the highest octave.
+Higher number of octaves corresponds to a higher render time.</dd>
+<dt>Kích Thước -- Dimension</dt>
+<dd>The difference between the magnitude of each two consecutive octaves.
+Larger values corresponds to smaller magnitudes for higher octaves.</dd>
+<dt>Độ Khuyết Rỗng -- Lacunarity</dt>
+<dd>The difference between the scale of each two consecutive octaves.
+Larger values corresponds to larger scale for higher octaves.</dd>
+<dt>Dịch Chuyển -- Offset</dt>
+<dd>An added offset to each octave, determines the level where the highest octave will appear.</dd>
+<dt>Gia Lượng -- Gain</dt>
+<dd>An extra multiplier to tune the magnitude of octaves.</dd>
+</dl>
+</div>
+<div class="section" id="properties">
+<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Dimensions</dt>
+<dd><p class="first">The dimensions of the space to evaluate the noise in.</p>
+<dl class="last docutils">
+<dt>1D</dt>
+<dd>Evaluate the noise in 1D space at the input <em>W</em>.</dd>
+<dt>2D</dt>
+<dd>Evaluate the noise in 2D space at the input <em>Vector</em>. The Z component is ignored.</dd>
+<dt>3D</dt>
+<dd>Evaluate the noise in 3D space at the input <em>Vector</em>.</dd>
+<dt>4D</dt>
+<dd>Evaluate the noise in 4D space at the input <em>Vector</em> and the input <em>W</em> as the fourth dimension.</dd>
+</dl>
+</dd>
+</dl>
+<p>Higher dimensions corresponds to higher render time, so lower dimensions should be used
+unless higher dimensions are necessary.</p>
+<dl class="docutils">
+<dt>Thể Loại -- Type</dt>
+<dd><p class="first">Type of the Musgrave texture.</p>
+<dl class="last docutils">
+<dt>-- fBM (fractal Brownian Motion)</dt>
+<dd>Produces an unnatural homogeneous and isotropic result.
+Uses an additive cascade, the values are simply added together.</dd>
+<dt>Đa Phân Dạng -- Multifractal</dt>
+<dd>The result is more uneven (varies with location), more similar to a real terrain.
+Uses a multiplicative cascade.</dd>
+<dt>Đa Phân Dạng Lai Ghép -- Hybrid Multifractal</dt>
+<dd>Creates peaks and valleys with different roughness values, like real mountains rise out of flat plains.
+Combines the additive cascade with a multiplicative cascade.</dd>
+<dt>Đa Phân Dạng Gợn Nhấp Nhô -- Ridged Multifractal</dt>
+<dd>Creates sharp peaks. Calculates the absolute value of the noise,
+creating &quot;canyons&quot;, and then flips the surface upside down.</dd>
+<dt>-- Hetero Terrain (Heterogeneous Terrain)</dt>
+<dd>Similar to <em>Hybrid Multifractal</em> creates a heterogeneous terrain, but with the likeness of river channels.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="outputs">
+<h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Hệ Số -- Factor</dt>
+<dd>Texture value.</dd>
+</dl>
+</div>
+<div class="section" id="examples">
+<h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="colwidths-given docutils" id="id2">
+<caption><span class="caption-text">Remapped Musgrave texture such that most values are visible.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id3">
+<a class="reference internal image-reference" href="../../../_images/render_shader-nodes_textures_musgrave_nodes.png"><img alt="../../../_images/render_shader-nodes_textures_musgrave_nodes.png" src="../../../_images/render_shader-nodes_textures_musgrave_nodes.png" style="width: 460px;" /></a>
+<p class="caption"><span class="caption-text">Nodes for the image to the right.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id4">
+<a class="reference internal image-reference" href="../../../_images/render_shader-nodes_textures_musgrave_example.jpg"><img alt="../../../_images/render_shader-nodes_textures_musgrave_example.jpg" src="../../../_images/render_shader-nodes_textures_musgrave_example.jpg" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Musgrave texture.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="musgrave-types">
+<h3>-- Musgrave Types<a class="headerlink" href="#musgrave-types" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils" id="id5">
+<caption><span class="caption-text">Different Musgrave types with the same parameters.</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id6">
+<a class="reference internal image-reference" href="../../../_images/render_shader-nodes_textures_musgrave_example-type-fbm.jpg"><img alt="../../../_images/render_shader-nodes_textures_musgrave_example-type-fbm.jpg" src="../../../_images/render_shader-nodes_textures_musgrave_example-type-fbm.jpg" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">fBM (fractal Brownian Motion).</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id7">
+<a class="reference internal image-reference" href="../../../_images/render_shader-nodes_textures_musgrave_example-type-multifractal.jpg"><img alt="../../../_images/render_shader-nodes_textures_musgrave_example-type-multifractal.jpg" src="../../../_images/render_shader-nodes_textures_musgrave_example-type-multifractal.jpg" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Multifractal.</span></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last figure" id="id8">
+<a class="reference internal image-reference" href="../../../_images/render_shader-nodes_textures_musgrave_example-type-hybrid.jpg"><img alt="../../../_images/render_shader-nodes_textures_musgrave_example-type-hybrid.jpg" src="../../../_images/render_shader-nodes_textures_musgrave_example-type-hybrid.jpg" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Hybrid Multifractal.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id9">
+<a class="reference internal image-reference" href="../../../_images/render_shader-nodes_textures_musgrave_example-type-terrain.jpg"><img alt="../../../_images/render_shader-nodes_textures_musgrave_example-type-terrain.jpg" src="../../../_images/render_shader-nodes_textures_musgrave_example-type-terrain.jpg" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Heterogeneous Terrain.</span></p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last figure" id="id10">
+<a class="reference internal image-reference" href="../../../_images/render_shader-nodes_textures_musgrave_example-type-ridged.jpg"><img alt="../../../_images/render_shader-nodes_textures_musgrave_example-type-ridged.jpg" src="../../../_images/render_shader-nodes_textures_musgrave_example-type-ridged.jpg" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Ridged Multifractal.</span></p>
+</div>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last"><a class="reference internal" href="../../materials/components/displacement.html"><span class="doc">Displacement</span></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="noise.html" class="btn btn-neutral float-right" title="Nút Chất Liệu Nhiễu -- Noise Texture Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="magic.html" class="btn btn-neutral float-left" title="-- Magic Texture Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

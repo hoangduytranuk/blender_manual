@@ -1,0 +1,337 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/filter/blur_node.rst">
+ <target refid="bpy-types-compositornodeblur">
+ </target>
+ <section ids="blur-node bpy-types-compositornodeblur" names="blur\ node nút\ làm\ nhòe\ --\ blur\ node bpy.types.compositornodeblur">
+  <title>
+   Nút Làm Nhòe -- Blur Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeBlur.png'}" uri="images/compositing_node-types_CompositorNodeBlur.png"/>
+   <caption>
+    Nút Làm Nhòe.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Làm Nhòe làm mờ một hình ảnh, cung cấp một số chế độ làm nhòe.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kích Thước -- Size
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào Kích Thước tùy chọn sẽ được nhân với giá trị bán kính nhòe mờ X và Y. Nó cũng chấp nhận một hình ảnh có giá trị, để khống chế bán kính làm nhòe mờ với một màn chắn. Các giá trị cần được ánh xạ giữa khoảng (0 đến 1) để đạt được hiệu ứng tối ưu.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại -- Type
+     </term>
+     <definition>
+      <paragraph>
+       Sự khác biệt giữa các thể loại nằm trong cách chúng xử lý các cạnh sắc nét, dốc màu mịn và duy trì các mức cao và thấp.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Bằng Phẳng -- Flat
+        </term>
+        <definition>
+         <paragraph>
+          Chỉ đơn giản làm nhòe mọi thứ một cách đồng đều.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hình Lều -- Tent
+        </term>
+        <definition>
+         <paragraph>
+          Duy trì giá trị cao và thấp tốt hơn bằng cách tạo dốc suy giảm tuyến tính (linear falloff).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bậc Hai -- Quadratic
+        </term>
+        <definition>
+         <paragraph>
+          Trông giống với
+          <emphasis>
+           Mờ Nhòe Gaus
+          </emphasis>
+          (Gaussian) song có thể nhanh hơn một chút, tuy trông tồi hơn một tí.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Lập Phương -- Cubic
+        </term>
+        <definition>
+         <paragraph>
+          Duy trì mức cao, nhưng làm nhòe gần giống như kiểu nhòe mờ khi vật thể ở ngoài trường ảnh (out-of-focus blur) trong khi mịn hóa các cạnh sắc nét.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Gaus -- Gaussian
+        </term>
+        <definition>
+         <paragraph>
+          Cho kết quả trông đẹp nhất nhưng thường chậm nhất.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Guass Nhanh -- Fast Gaussian
+        </term>
+        <definition>
+         <paragraph>
+          Một ước tính xấp xỉ Gaus.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Catmull-Rom
+        </term>
+        <definition>
+         <paragraph>
+          Catmull-Rom giữ các cạnh tương phản mạnh sắc nét.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Mitch
+        </term>
+        <definition>
+         <paragraph>
+          Duy trì mức cao, nhưng làm nhòe gần giống như kiểu nhòe mờ khi vật thể ở ngoài trường ảnh (out-of-focus blur) trong khi mịn hóa các cạnh sắc nét.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kích Thước Biến Thiên -- Variable Size
+     </term>
+     <definition>
+      <paragraph>
+       Cho phép bán kính nhòe mờ biến đổi, nếu đầu vào kích thước (Size) là một hình ảnh.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Nhòe Bokeh -- Bokeh
+        </term>
+        <definition>
+         <paragraph>
+          Nút Nhòe Bokeh sẽ buộc nút Làm Nhòe (blur) sử dụng Bộ Lọc Nhòe Mờ Hình Tròn. Điều này cho kết quả chất lượng cao hơn, nhưng chậm hơn so với việc sử dụng bộ lọc thông thường.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Gamma
+     </term>
+     <definition>
+      <paragraph>
+       Nút Gamma áp dụng hiệu chỉnh gamma trên hình ảnh trước khi làm nhòe mờ nó.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tương Đối -- Relative
+     </term>
+     <definition>
+      <paragraph>
+       Giá trị phần trăm của bán kính làm nhòe tương đối với kích thước của hình ảnh.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Điều Chỉnh Tỷ Lệ Tương Quan -- Aspect Correction
+        </term>
+        <definition>
+         <paragraph>
+          Không Có, Y, X -- None, Y, X
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      X, Y
+     </term>
+     <definition>
+      <paragraph>
+       Giá trị thiết lập bán kính hình trứng (ellipsoid) trong số lượng điểm ảnh để lan tràn hiệu ứng làm nhòe.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nới Rộng Đường Biên -- Extend Bounds
+     </term>
+     <definition>
+      <paragraph>
+       Cho phép hình ảnh, đang được xử lý làm nhòe, mở rộng để vượt quá kích thước ban đầu của nó.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <table ids="nut-lam-nhoe-lam-nhoe-cac-che-do-bang-cach-su-dung-20-kich-thuoc-hinh-anh-la-xy-khong-co-bokeh-gamma" names="nút\ làm\ nhòe\ làm\ nhòe\ các\ chế\ độ\ bằng\ cách\ sử\ dụng\ 20%\ kích\ thước\ hình\ ảnh\ là\ xy,\ không\ có\ bokeh/gamma.">
+    <title>
+     Nút Làm Nhòe làm nhòe các chế độ bằng cách sử dụng 20% kích thước hình ảnh là XY, không có Bokeh/Gamma.
+    </title>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/compositing_types_filter_blur-node_example-1-original.png'}" uri="images/compositing_types_filter_blur-node_example-1-original.png"/>
+         <caption>
+          Hình ảnh gốc.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/compositing_types_filter_blur-node_example-2-flat.png'}" uri="images/compositing_types_filter_blur-node_example-2-flat.png"/>
+         <caption>
+          Phẳng (Flat).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/compositing_types_filter_blur-node_example-3-tent.png'}" uri="images/compositing_types_filter_blur-node_example-3-tent.png"/>
+         <caption>
+          Lều (Tent).
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/compositing_types_filter_blur-node_example-4-quadratic.png'}" uri="images/compositing_types_filter_blur-node_example-4-quadratic.png"/>
+         <caption>
+          Bình Phương (Quadratic).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/compositing_types_filter_blur-node_example-5-cubic.png'}" uri="images/compositing_types_filter_blur-node_example-5-cubic.png"/>
+         <caption>
+          Lập Phương (Cubic).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id7">
+         <image candidates="{'*': 'images/compositing_types_filter_blur-node_example-6-gaussian.png'}" uri="images/compositing_types_filter_blur-node_example-6-gaussian.png"/>
+         <caption>
+          Gaus (Gaussian).
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id8">
+         <image candidates="{'*': 'images/compositing_types_filter_blur-node_example-7-fast-gaussian.png'}" uri="images/compositing_types_filter_blur-node_example-7-fast-gaussian.png"/>
+         <caption>
+          Gaus nhanh (Fast Gaussian).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id9">
+         <image candidates="{'*': 'images/compositing_types_filter_blur-node_example-8-catmull-rom.png'}" uri="images/compositing_types_filter_blur-node_example-8-catmull-rom.png"/>
+         <caption>
+          Catmull-Rom.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id10">
+         <image candidates="{'*': 'images/compositing_types_filter_blur-node_example-9-mitch.png'}" uri="images/compositing_types_filter_blur-node_example-9-mitch.png"/>
+         <caption>
+          Mitch.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,253 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/advanced/command_line/render.rst">
+ <target refid="command-line-render">
+ </target>
+ <section ids="command-line-rendering command-line-render" names="command\ line\ rendering command_line-render">
+  <title>
+   Command Line Rendering
+  </title>
+  <paragraph>
+   In some situations we want to increase the render speed,
+access Blender remotely to render something or build scripts that use the command line.
+  </paragraph>
+  <paragraph>
+   One advantage of using the command line is that we do not need a graphical display
+(no need for X server on Linux for example)
+and consequently we can render via a remote shell (typically SSH).
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     See
+     <reference internal="True" refuri="arguments.html">
+      <inline classes="doc">
+       Command Line Arguments
+      </inline>
+     </reference>
+     for a full list of arguments
+(for example to specify which scene to render, the end frame number, etc.), or simply run:
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     See
+     <reference internal="True" refuri="launch/index.html#command-line-launch-index">
+      <inline classes="std std-ref">
+       Command Line Launching
+      </inline>
+     </reference>
+     for specific instructions on launching Blender from the command line.
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+   blender --help
+  </literal_block>
+  <note>
+   <paragraph>
+    Arguments are executed in the order they are given!
+   </paragraph>
+   <paragraph>
+    The following command will not work, since the output and extension are set after Blender is told to render:
+   </paragraph>
+   <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+    blender -b file.blend -a -x 1 -o //render
+   </literal_block>
+   <paragraph>
+    The following command will behave as expected:
+   </paragraph>
+   <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+    blender -b file.blend -x 1 -o //render -a
+   </literal_block>
+   <paragraph>
+    <strong>
+     Always
+    </strong>
+    position
+    <literal>
+     -f
+    </literal>
+    or
+    <literal>
+     -a
+    </literal>
+    as the last arguments.
+   </paragraph>
+  </note>
+  <section ids="single-image" names="single\ image đơn\ hình\ ảnh\ --\ single\ image">
+   <title>
+    Đơn Hình Ảnh -- Single Image
+   </title>
+   <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+    blender -b file.blend -f 10
+   </literal_block>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      <literal>
+       -b
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Render in the background (without UI).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       file.blend
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Path to the blend-file to render.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       -f 10
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Render only the 10th frame.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+    blender -b file.blend -o /project/renders/frame_##### -F OPEN_EXR -f -2
+   </literal_block>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      <literal>
+       -o /project/renders/frame_#####
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Path of where to save the rendered image, using five padded zeros for the frame number.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       -F OPEN_EXR
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Override the image format specified in the blend-file and save to an OpenEXR image.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       -f -2
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Render only the second last frame.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <warning>
+    <paragraph>
+     Arguments are case sensitive!
+     <literal>
+      -F
+     </literal>
+     and
+     <literal>
+      -f
+     </literal>
+     are not the same.
+    </paragraph>
+   </warning>
+  </section>
+  <section ids="animation" names="animation hoạt\ họa\ --\ animation">
+   <title>
+    Hoạt Họa -- Animation
+   </title>
+   <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+    blender -b file.blend -a
+   </literal_block>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      <literal>
+       -a
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Render the whole animation using all the settings saved in the blend-file.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+    blender -b file.blend -E CYCLES -s 10 -e 500 -t 2 -a
+   </literal_block>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      <literal>
+       -E CYCLES
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Use the "Cycles Render" engine.
+For a list of available render engines, run
+       <literal>
+        blender -E help
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       -s 10 -e 500
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Set the start frame to
+       <literal>
+        10
+       </literal>
+       and the end frame to
+       <literal>
+        500
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       -t 2
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Use only two threads.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,300 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/tracking/spline_ik.rst">
+ <target refid="bpy-types-splineikconstraint">
+ </target>
+ <section ids="spline-ik-constraint bpy-types-splineikconstraint" names="spline\ ik\ constraint bpy.types.splineikconstraint">
+  <title>
+   Spline IK Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Spline IK
+   </emphasis>
+   constraint aligns a chain of bones along a curve.
+By leveraging the ease and flexibility of achieving aesthetically
+pleasing shapes offered by curves and the predictability and well-integrated
+control offered by bones,
+   <emphasis>
+    Spline IK
+   </emphasis>
+   is an invaluable tool in the riggers' toolbox.
+It is particularly well suited for rigging flexible body parts such as tails, tentacles,
+and spines, as well as inorganic items such as ropes.
+  </paragraph>
+  <paragraph>
+   To set up
+   <emphasis>
+    Spline IK
+   </emphasis>
+   , it is necessary to have a chain of
+connected bones and a curve to constrain these bones to:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     With the last bone in the chain selected,
+add a
+     <emphasis>
+      Spline IK
+     </emphasis>
+     constraint from the
+     <emphasis>
+      Bone Constraints
+     </emphasis>
+     tab in the
+     <emphasis>
+      Properties Editor
+     </emphasis>
+     .
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Set the 'Chain Length' setting to the number of bones in the chain
+(starting from and including the selected bone)
+that should be influenced by the curve.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Finally, set
+     <emphasis>
+      Target
+     </emphasis>
+     to the curve that should control the curve.
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <note>
+   <paragraph>
+    The IK constraints are special in that they modify multiple bones.
+For this reason, they ignore their position in the stack and always run after
+all other constraints on the affected bones. To apply constraints after IK,
+it is necessary to first copy the final transformation to a new bone chain,
+e.g. using
+    <reference internal="True" refuri="../transform/copy_transforms.html">
+     <inline classes="doc">
+      Copy Transforms
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </note>
+  <section ids="options" names="options">
+   <title>
+    Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_tracking_spline-ik_panel.png
+
+   Spline IK panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Target
+     </term>
+     <definition>
+      <paragraph>
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+        <inline classes="std std-ref">
+         Chỉ Danh của Dữ Liệu -- Data ID
+        </inline>
+       </reference>
+       used to select the target curve.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="spline-fitting" names="spline\ fitting">
+    <title>
+     Spline Fitting
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Chain Length
+      </term>
+      <definition>
+       <paragraph>
+        How many bones are included in the chain.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Even Division
+      </term>
+      <definition>
+       <paragraph>
+        Ignore the relative length of the bones when fitting to the curve.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chain Offset
+      </term>
+      <definition>
+       <paragraph>
+        Retain the offset of the root joint from the start point of the curve.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="chain-scaling" names="chain\ scaling">
+    <title>
+     Chain Scaling
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Use Curve Radius
+      </term>
+      <definition>
+       <paragraph>
+        Average radius of the endpoints is used to tweak the X and Z
+scaling of the bones, on top of the X and Z scale mode.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Y Scale Mode
+      </term>
+      <definition>
+       <paragraph>
+        Specifies how the length of a bone is scaled when it is fitted to the curve,
+in addition to the effects of target curve object scale and curvature.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          None
+         </term>
+         <definition>
+          <paragraph>
+           The bone is reset to its rest pose length.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Fit Curve
+         </term>
+         <definition>
+          <paragraph>
+           The bones are stretched to cover the entire length of the curve.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bone Original
+         </term>
+         <definition>
+          <paragraph>
+           The original Y axis scale of the bone is used.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       XZ Scale Mode
+      </term>
+      <definition>
+       <paragraph>
+        Scaling that a bone undergoes in the other two directions.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          None
+         </term>
+         <definition>
+          <paragraph>
+           Do not scale the X and Z axes.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bone Original
+         </term>
+         <definition>
+          <paragraph>
+           Use the original scaling of the bones.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Inverse Scale
+         </term>
+         <definition>
+          <paragraph>
+           Scale of the X and Z axes is the inverse of the Y scale.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Volume Preservation
+         </term>
+         <definition>
+          <paragraph>
+           Similar to the
+           <reference internal="True" refuri="stretch_to.html#constraints-stretch-to-volume-preservation">
+            <inline classes="std std-ref">
+             Stretch To
+            </inline>
+           </reference>
+           constraint.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Use Original Scale
+      </term>
+      <definition>
+       <paragraph>
+        Specifies that
+        <emphasis>
+         Inverse Scale
+        </emphasis>
+        or
+        <emphasis>
+         Volume Preservation
+        </emphasis>
+        should be applied on top of
+the original scaling of the bones, like in the Stretch To constraint.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <seealso>
+     <paragraph>
+      This subject is seen in-depth in the
+      <reference internal="True" refuri="../../armatures/posing/bone_constraints/inverse_kinematics/spline_ik.html">
+       <inline classes="doc">
+        Armature Posing section
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </seealso>
+    <vimeo aspect="None" height="None" id="171282278" width="None">
+    </vimeo>
+   </section>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,209 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/troubleshooting/recover.rst">
+ <section ids="recovering-data" names="recovering\ data --\ recovering\ data">
+  <title>
+   -- Recovering Data
+  </title>
+  <paragraph>
+   Computer crashes, power outages, or simply forgetting to save can result in
+the loss or corruption of your work. You can use Blender's
+   <emphasis>
+    Auto Save
+   </emphasis>
+   feature
+to reduce the chance of losing files when such events occur.
+  </paragraph>
+  <paragraph>
+   There are options to save a backup of your files like
+   <emphasis>
+    Auto Save
+   </emphasis>
+   that saves your file automatically over time, and
+   <emphasis>
+    Save on Quit
+   </emphasis>
+   ,
+which saves your blend-file automatically when you exit Blender.
+In addition to these functions being enabled by default,
+the
+   <emphasis>
+    Save on Quit
+   </emphasis>
+   functionality cannot be disabled.
+  </paragraph>
+  <note>
+   <paragraph>
+    For your actions, there are options like
+    <emphasis>
+     Undo
+    </emphasis>
+    ,
+    <emphasis>
+     Redo
+    </emphasis>
+    and an
+    <emphasis>
+     Undo History
+    </emphasis>
+    ,
+used to roll back from mistakes under normal operation, or return back to a specific action.
+See
+    <reference internal="True" refuri="../interface/undo_redo.html">
+     <inline classes="doc">
+      Hoàn Tác &amp; Tái Thực Hiện -- Undo &amp; Redo
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </note>
+  <paragraph>
+   The
+   <emphasis>
+    File
+   </emphasis>
+   tab of the
+   <emphasis>
+    Preferences
+   </emphasis>
+   allows you to configure the two ways
+that Blender provides for you to regress to a previous version of your work.
+See
+   <reference internal="True" refuri="../editors/preferences/save_load.html#prefs-auto-save">
+    <inline classes="std std-ref">
+     Auto Save Preferences
+    </inline>
+   </reference>
+   for details.
+  </paragraph>
+  <target refid="troubleshooting-file-recovery">
+  </target>
+  <section ids="recovering-auto-saves troubleshooting-file-recovery" names="recovering\ auto\ saves --\ recovering\ auto\ saves troubleshooting-file-recovery">
+   <title>
+    -- Recovering Auto Saves
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`File --&gt; Recover --&gt; Last Session`">
+         File ‣ Recover ‣ Last Session
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`File --&gt; Recover --&gt; Auto Save...`">
+         File ‣ Recover ‣ Auto Save...
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <section ids="recover-last-session" names="recover\ last\ session hồi\ phục\ phiên\ trước\ đây\ --\ recover\ last\ session">
+    <title>
+     Hồi Phục Phiên Trước Đây -- Recover Last Session
+    </title>
+    <paragraph>
+     The
+     <emphasis>
+      Recover Last Session
+     </emphasis>
+     will open the
+     <literal>
+      quit.blend
+     </literal>
+     file
+that is saved into the
+     <reference internal="True" refuri="../advanced/blender_directory_layout.html#temp-dir">
+      <inline classes="std std-ref">
+       Thư Mục Tạm Thời -- Temporary Directory
+      </inline>
+     </reference>
+     when you quit Blender under normal operation.
+Note that files in your temporary directory may be deleted when you reboot your computer
+(depending on your system configuration).
+    </paragraph>
+   </section>
+   <section ids="recover-auto-save" names="recover\ auto\ save hồi\ phục\ bằng\ bản\ tự\ động\ lưu\ --\ recover\ auto\ save">
+    <title>
+     Hồi Phục bằng Bản Tự Động Lưu -- Recover Auto Save
+    </title>
+    <paragraph>
+     The
+     <emphasis>
+      Recover Auto Save
+     </emphasis>
+     allows you to open the
+     <emphasis>
+      Auto Saved
+     </emphasis>
+     file.
+You will have to navigate to your
+     <reference internal="True" refuri="../advanced/blender_directory_layout.html#temp-dir">
+      <inline classes="std std-ref">
+       Thư Mục Tạm Thời -- Temporary Directory
+      </inline>
+     </reference>
+     .
+The
+     <emphasis>
+      Auto Saved
+     </emphasis>
+     files are named using a random number and have a blend extension.
+    </paragraph>
+    <paragraph>
+     It is important, when browsing, to enable the detailed list view.
+Otherwise, you will not be able to figure out the dates of the auto-saved blend-files.
+See Fig.
+     <reference internal="True" refid="fig-troubleshooting-file-browser">
+      <inline classes="std std-ref">
+       File Browser with detailed view selected.
+      </inline>
+     </reference>
+     .
+    </paragraph>
+    <target refid="fig-troubleshooting-file-browser">
+    </target>
+    <figure ids="id1 fig-troubleshooting-file-browser" names="fig-troubleshooting-file-browser">
+     <image candidates="{'*': 'images/troubleshooting_recover_display-file-date.png'}" uri="images/troubleshooting_recover_display-file-date.png"/>
+     <caption>
+      File Browser with detailed view selected.
+     </caption>
+    </figure>
+    <warning>
+     <paragraph>
+      When recovering an
+      <emphasis>
+       Auto Saved
+      </emphasis>
+      file, you will lose any changes made
+since the last
+      <emphasis>
+       Auto Save
+      </emphasis>
+      was performed.
+Only one
+      <emphasis>
+       Auto Saved
+      </emphasis>
+      file exists for each project,
+i.e. Blender does not keep older versions.
+Hence, you will not be able to go back more than a few minutes with this tool.
+     </paragraph>
+    </warning>
+   </section>
+  </section>
+ </section>
+</document>

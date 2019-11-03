@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Trình Chọn Màu -- Color Picker &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/interface/controls/templates/color_picker.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Thành Tố Dốc Màu -- Color Ramp Widget" href="color_ramp.html" />
+    <link rel="prev" title="Bảng Liệt Kê &amp; Sắp Đặt Sẵn -- List Views &amp; Presets" href="list_presets.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Giao Diện Người Dùng -- User Interface</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../splash.html">Màn Hình Chào Đón -- Splash Screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#window-system">Hệ Thống Cửa Sổ -- Window System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#keymap">Bố Trí Bàn Phím -- Keymap</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#interface-controls">Điều Khiển Giao Diện -- Interface Controls</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#buttons-and-controls">Nút Bấm và Điều Khiển -- Buttons and Controls</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#extended-controls">Những Điều Khiển Mở Rộng -- Extended Controls</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="data_block.html">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="list_presets.html">Bảng Liệt Kê &amp; Sắp Đặt Sẵn -- List Views &amp; Presets</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Trình Chọn Màu -- Color Picker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_ramp.html">Thành Tố Dốc Màu -- Color Ramp Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve.html">Thành Tố Đường Cong -- Curve Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="operator_search.html">Tìm Kiếm Thao Tác/Toán Tử -- Operator Search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nodes/index.html">Nút -- Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#tools">Công Cụ -- Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Giao Diện Người Dùng -- User Interface</a> &raquo;</li>
+        
+      <li>Trình Chọn Màu -- Color Picker</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/interface/controls/templates/color_picker.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="color-picker">
+<span id="ui-color-picker"></span><h1>Trình Chọn Màu -- Color Picker<a class="headerlink" href="#color-picker" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-right" id="id1">
+<img alt="../../../_images/interface_controls_templates_color-picker_circle-hsv.png" src="../../../_images/interface_controls_templates_color-picker_circle-hsv.png" />
+<p class="caption"><span class="caption-text">Circle HSV.</span></p>
+</div>
+<p>The color picker is a pop-up that lets you define a color value.
+Holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while dragging snaps the hue to make it quick to select primary colors.</p>
+<dl class="docutils">
+<dt>Trường về Màu Sắc -- Color field</dt>
+<dd>Lets you pick the first and second color component. The shape can be selected by the <a class="reference internal" href="#types">Types</a>.</dd>
+<dt>Thanh Trượt chọn Màu -- Color slider</dt>
+<dd>The slider with a gradient in the background lets you define the third color component.
+It can also be controlled with the <kbd class="kbd docutils literal notranslate">Wheel</kbd>.</dd>
+<dt>Không Gian Màu Sắc -- Color space</dt>
+<dd><p class="first">Selects the <a class="reference internal" href="../../../glossary/index.html#term-color-space"><span class="xref std std-term">Color Space</span></a> for the number fields below.</p>
+<p class="last">RGB, HSV/HSL, Hex</p>
+</dd>
+<dt>Giá Trị Màu -- Color values</dt>
+<dd><p class="first">Blender uses (0 to 1.0) values to express colors for RGB and HSV colors.</p>
+<p>Hexadecimal (Hex) values are expressed as <code class="docutils literal notranslate"><span class="pre">RRGGBB</span></code>.
+Shorthand hex colors are also supported as <code class="docutils literal notranslate"><span class="pre">RGB</span></code>,
+e.g. dark-yellow <code class="docutils literal notranslate"><span class="pre">FFCC00</span></code>, can be written as <code class="docutils literal notranslate"><span class="pre">FC0</span></code>.</p>
+<p class="last">For operations that are capable of using Alpha, another slider &quot;A&quot; is added.</p>
+</dd>
+<dt>Ống Hút -- Eyedropper</dt>
+<dd>The <a class="reference internal" href="../buttons/eyedropper.html#ui-eyedropper"><span class="std std-ref">Eyedropper</span></a> (pipette icon) can be used
+to sample a color value from inside the Blender window.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">In Blender, the <em>Hex</em> and HSV/HSL values are automatically <a class="reference internal" href="../../../glossary/index.html#term-gamma"><span class="xref std std-term">gamma</span></a> corrected however,
+for the RGB values, they are in Scene Linear color space, and are therefore not gamma corrected.
+For more information, see the <a class="reference internal" href="../../../render/color_management.html"><span class="doc">Color Management and Exposure</span></a> page.</p>
+</div>
+<div class="section" id="types">
+<h2>Thể Loại -- Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
+<p>The default color picker type can be selected in the Preferences,
+see: <a class="reference internal" href="../../../editors/preferences/system.html"><span class="doc">System</span></a>.</p>
+<dl class="docutils">
+<dt>Hình Tròn -- Circle</dt>
+<dd>The color values ranging from center to the borders. The center is a mix of the colors.</dd>
+<dt>Hình Vuông -- Square</dt>
+<dd>The Borders of the square are the axis for the two color components, with the center on the bottom right.</dd>
+</dl>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Color Picker types.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id3">
+<img alt="../../../_images/interface_controls_templates_color-picker_circle-hsv.png" src="../../../_images/interface_controls_templates_color-picker_circle-hsv.png" />
+<p class="caption"><span class="caption-text">Circle HSV.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id4">
+<img alt="../../../_images/interface_controls_templates_color-picker_circle-hsl.png" src="../../../_images/interface_controls_templates_color-picker_circle-hsl.png" />
+<p class="caption"><span class="caption-text">Circle HSL.</span></p>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><div class="first last figure" id="id5">
+<img alt="../../../_images/interface_controls_templates_color-picker_square-sv-h.png" src="../../../_images/interface_controls_templates_color-picker_square-sv-h.png" />
+<p class="caption"><span class="caption-text">Square (SV + H).</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id6">
+<img alt="../../../_images/interface_controls_templates_color-picker_square-hs-v.png" src="../../../_images/interface_controls_templates_color-picker_square-hs-v.png" />
+<p class="caption"><span class="caption-text">Square (HS + V).</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id7">
+<img alt="../../../_images/interface_controls_templates_color-picker_square-hv-s.png" src="../../../_images/interface_controls_templates_color-picker_square-hv-s.png" />
+<p class="caption"><span class="caption-text">Square (HV + S).</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="shortcuts">
+<h3>Đường Cắt Ngắn -- Shortcuts<a class="headerlink" href="#shortcuts" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> (drag) snaps to hue.</li>
+<li><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> (drag) precision motion.</li>
+<li><kbd class="kbd docutils literal notranslate">Wheel</kbd> adjust the brightness.</li>
+<li><kbd class="kbd docutils literal notranslate">Backspace</kbd> reset the value.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="color_ramp.html" class="btn btn-neutral float-right" title="Thành Tố Dốc Màu -- Color Ramp Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="list_presets.html" class="btn btn-neutral float-left" title="Bảng Liệt Kê &amp; Sắp Đặt Sẵn -- List Views &amp; Presets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

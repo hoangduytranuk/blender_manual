@@ -1,0 +1,183 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/generate/triangulate.rst">
+ <target refid="bpy-types-triangulatemodifier">
+ </target>
+ <section ids="triangulate-modifier bpy-types-triangulatemodifier" names="triangulate\ modifier bộ\ điều\ chỉnh\ tam\ giác\ hóa\ --\ triangulate\ modifier bpy.types.triangulatemodifier">
+  <title>
+   Bộ Điều Chỉnh Tam Giác Hóa -- Triangulate Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Triangulate
+   </emphasis>
+   modifier converts all faces in a mesh (quads and polygons) to triangular faces.
+It fulfills the exact same function as the
+   <reference internal="True" refuri="../../meshes/editing/faces.html#bpy-ops-mesh-quads-convert-to-tris">
+    <inline classes="std std-ref">
+     Triangulate
+    </inline>
+   </reference>
+   tool in Edit Mode.
+  </paragraph>
+  <table>
+   <tgroup cols="2">
+    <colspec colwidth="50">
+    </colspec>
+    <colspec colwidth="50">
+    </colspec>
+    <tbody>
+     <row>
+      <entry>
+       <figure ids="id1">
+        <image candidates="{'*': 'images/modeling_modifiers_generate_triangulate_before.png'}" uri="images/modeling_modifiers_generate_triangulate_before.png" width="320px"/>
+        <caption>
+         Mesh before Triangulate modifier.
+        </caption>
+       </figure>
+      </entry>
+      <entry>
+       <figure ids="id2">
+        <image candidates="{'*': 'images/modeling_modifiers_generate_triangulate_after.png'}" uri="images/modeling_modifiers_generate_triangulate_after.png" width="320px"/>
+        <caption>
+         Mesh after Triangulate modifier.
+        </caption>
+       </figure>
+      </entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id3">
+    <image candidates="{'*': 'images/modeling_modifiers_generate_triangulate_panel.png'}" uri="images/modeling_modifiers_generate_triangulate_panel.png"/>
+    <caption>
+     The Triangulate modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Phương Pháp Tứ Giác -- Quad Method
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Làm Đẹp -- Beauty
+        </term>
+        <definition>
+         <paragraph>
+          Split the quads in nice triangles, slower method.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Cố Định -- Fixed
+        </term>
+        <definition>
+         <paragraph>
+          Split the quads on their 1st and 3rd vertices.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         So Le Cố Định -- Fixed Alternate
+        </term>
+        <definition>
+         <paragraph>
+          Split the quads on their 2nd and 4th vertices.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đường Chéo Ngắn Nhất -- Shortest Diagonal
+        </term>
+        <definition>
+         <paragraph>
+          Split the quads based on the diagonal distance between their vertices.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      N-gon Method
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Làm Đẹp -- Beauty
+        </term>
+        <definition>
+         <paragraph>
+          Arrange the new triangles nicely, slower method.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Clip
+        </term>
+        <definition>
+         <paragraph>
+          Split the polygons using an ear-clipping algorithm
+(gives similar results to the tessellation used for the viewport rendering).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Keep Normals
+     </term>
+     <definition>
+      <paragraph>
+       When using
+       <reference internal="True" refuri="../../meshes/structure.html#modeling-meshes-normals-custom">
+        <inline classes="std std-ref">
+         custom normals
+        </inline>
+       </reference>
+       ,
+try to preserve the same shading as before triangulation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Minimum Vertices
+     </term>
+     <definition>
+      <paragraph>
+       Minimum number of vertices a face must have to be triangulated.
+For example, setting this value to 5, will prevent triangulation of
+       <reference internal="True" refuri="../../../glossary/index.html#term-quad">
+        <inline classes="xref std std-term">
+         quads
+        </inline>
+       </reference>
+       and only triangulate
+       <reference internal="True" refuri="../../../glossary/index.html#term-n-gon">
+        <inline classes="xref std std-term">
+         N-gons
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

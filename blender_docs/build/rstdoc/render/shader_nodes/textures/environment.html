@@ -1,0 +1,195 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/textures/environment.rst">
+ <target refid="bpy-types-shadernodetexenvironment">
+ </target>
+ <section ids="environment-texture-node bpy-types-shadernodetexenvironment" names="environment\ texture\ node --\ environment\ texture\ node bpy.types.shadernodetexenvironment">
+  <title>
+   -- Environment Texture Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_textures_environment_node.png'}" uri="images/render_shader-nodes_textures_environment_node.png"/>
+   <caption>
+    Environment Texture Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The Node
+   <emphasis>
+    Environmental Texture
+   </emphasis>
+   is used to light your scene using an environment map image file as a texture.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       Texture coordinate for texture look-up. If this socket is left unconnected,
+the image is mapped as environment with the Z axis as up.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Image Data-Block
+     </term>
+     <definition>
+      <paragraph>
+       Image data-block used as the image source.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Không Gian Màu Sắc -- Color Space
+     </term>
+     <definition>
+      <paragraph>
+       Type of data that the image contains, either Color or Non-Color Data.
+For most color textures the default of Color should be used, but in case of e.g. a bump or alpha map,
+the pixel values should be interpreted as Non-Color Data, to avoid doing any unwanted color space conversions.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Texture Interpolation
+     </term>
+     <definition>
+      <paragraph>
+       Interpolation method used for the environment texture. The following interpolations are available:
+      </paragraph>
+      <comment xml:space="preserve">
+       same as in the Image Texture node
+      </comment>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tuyến Tính -- Linear
+        </term>
+        <definition>
+         <paragraph>
+          Regular quality interpolation.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Gần Nhất -- Closest
+        </term>
+        <definition>
+         <paragraph>
+          No interpolation, use closest pixel.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Lập Phương -- Cubic
+        </term>
+        <definition>
+         <paragraph>
+          Smoother, better quality interpolation.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Smart
+        </term>
+        <definition>
+         <paragraph>
+          Bicubic when magnifying, otherwise Bilinear is used.
+This is only available for
+          <reference internal="True" refuri="../osl.html">
+           <inline classes="doc">
+            OSL
+           </inline>
+          </reference>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Projection Method
+     </term>
+     <definition>
+      <paragraph>
+       Allows you to use different types of environmental maps. The following methods are supported:
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Vuông Góc Đều -- Equirectangular
+        </term>
+        <definition>
+         <paragraph>
+          Projection from an Equirectangular photo.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Địa Cầu Gương -- Mirror Ball
+        </term>
+        <definition>
+         <paragraph>
+          Projection from an orthographic photo or mirror ball.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       RGB color from the image.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_shader-nodes_textures_environment_example.jpg'}" uri="images/render_shader-nodes_textures_environment_example.jpg" width="200px"/>
+    <caption>
+     HDR image from
+     <reference name="OpenFootage.net" refuri="http://www.openfootage.net/?p=986">
+      OpenFootage.net
+     </reference>
+     .
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

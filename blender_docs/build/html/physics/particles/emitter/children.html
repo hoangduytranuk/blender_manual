@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Con Cái -- Children &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/particles/emitter/children.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Trường Lực -- Force Fields" href="force_field.html" />
+    <link rel="prev" title="Viewport Display" href="display.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">-- Particles System</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../particle_system_panel.html">-- Particle System Panel</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Vật Phát Sinh -- Emitter</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="emission.html">Phát Xạ -- Emission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cache.html">Bộ Nhớ Đệm -- Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="velocity.html">Tốc Lực -- Velocity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rotation.html">Xoay Chiều -- Rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="render.html">Kết Xuất -- Render</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display.html">Viewport Display</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Con Cái -- Children</a></li>
+<li class="toctree-l4"><a class="reference internal" href="force_field.html">Trường Lực -- Force Fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vertex_groups.html">Nhóm Điểm Đỉnh -- Vertex Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hair/index.html">Tóc -- Hair</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../texture_influence.html">-- Texture Influence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mode.html">-- Particle Edit Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../smoke/index.html">-- Smoke Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="../index.html">-- Particles System</a> &raquo;</li>
+        
+          <li><a href="index.html">Vật Phát Sinh -- Emitter</a> &raquo;</li>
+        
+      <li>Con Cái -- Children</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/physics/particles/emitter/children.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="children">
+<h1>Con Cái -- Children<a class="headerlink" href="#children" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Hệ Thống Hạt (Particle System) ‣ Con Cái (Children)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Children</em> are <em>Hair</em> and <em>Keyed</em> particles assigned subparticles.
+They make it possible to work primarily with a relatively low amount of Parent particles,
+for whom the physics are calculated. The children are then aligned to their parents.
+Without recalculating the physics the number and visualization of the children can be changed.</p>
+<p>Children can be emitted from particles or from faces (with some different options).
+Emission from <em>Faces</em> has some advantages, especially the distribution is more even on each face
+(which makes it better suitable for fur and the like).
+However, children from particles follow their parents better, e.g.
+if you have a soft body animation and do not want the hair to penetrate the emitting mesh.
+But see also our manual page about <a class="reference internal" href="../hair/index.html"><span class="doc">Hair</span></a>.</p>
+<p>If you turn on children the parents are no longer rendered
+(which makes sense because the shape of the children may be quite different from that of their parents).
+If you want to see the parents additionally turn on the <em>Parents</em> button in the <em>Visualization</em> panel.</p>
+<p>Children carry the same material as their parents and are colored according to the exact
+place from where they are emitted (so all children may have different color or other attributes).</p>
+<p>The possible options depend from the type of particle system,
+and if you work with <em>Children from faces</em> or <em>Children from particles</em>.
+We do not show every possible combination,
+only the settings for a <em>Hair</em> particle system.</p>
+<div class="section" id="common-options">
+<h2>Tùy Chọn Chung -- Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>-- Child Type</dt>
+<dd><dl class="first last docutils">
+<dt>Không Có -- None</dt>
+<dd>No children are generated.</dd>
+<dt>Đơn Giản -- Simple</dt>
+<dd>Children are emitted from the parent position.</dd>
+<dt>Nội Suy -- Interpolated</dt>
+<dd>Children are emitted between the <em>Parent</em> particles on the faces of a mesh.
+They interpolate between adjacent parents. This is especially useful for fur,
+because you can achieve an even distribution.
+Some of the children can become virtual parents, which are influencing other particles nearby.</dd>
+</dl>
+</dd>
+<dt>Display Amount</dt>
+<dd>The number of children in the 3D View.</dd>
+<dt>Render Amount</dt>
+<dd>The number of children to be rendered.</dd>
+<dt>Chiều Dài -- Length</dt>
+<dd>Length of child paths.</dd>
+<dt>Giới Hạn -- Threshold</dt>
+<dd>Amount of particles left untouched by child path length.</dd>
+<dt>Mầm -- Seed</dt>
+<dd>Offset in the random number table for child particles, to get a different randomized result.</dd>
+</dl>
+<div class="section" id="clumping">
+<h3>Clumping<a class="headerlink" href="#clumping" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Children ‣ Clumping</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Dùng Đường Cong cho Tạo Khóm -- Use Clump Curve</dt>
+<dd>Use <a class="reference internal" href="../../../interface/controls/templates/curve.html#ui-curve-widget"><span class="std std-ref">Thành Tố Đường Cong -- Curve Widget</span></a> instead of parameters.</dd>
+<dt>Khóm Lại -- Clump</dt>
+<dd>Clumping amount along child strands.
+The children may meet at their tip (1.0) or start together at their root (-1.0).</dd>
+<dt>Hình Dạng -- Shape</dt>
+<dd>Form of <em>Clump</em>. Either inverse parabolic (0.99) or exponentially (-0.99).</dd>
+<dt>Twist</dt>
+<dd>Todo.</dd>
+<dt>Use Twist Curve</dt>
+<dd>Todo.</dd>
+</dl>
+<div class="section" id="clump-noise">
+<h4>Clump Noise<a class="headerlink" href="#clump-noise" title="Permalink to this headline">¶</a></h4>
+<p>Creates random clumps around the parent hair.</p>
+<dl class="docutils">
+<dt>Độ Nhiễu Khi Khóm Lại -- Clump Noise Size</dt>
+<dd>The size of the clumps.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="roughness">
+<h3>Độ Ráp -- Roughness<a class="headerlink" href="#roughness" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Children ‣ Roughness</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Dùng Đường Cong về Độ Ráp -- Use Roughness Curve</dt>
+<dd>Use <a class="reference internal" href="../../../interface/controls/templates/curve.html#ui-curve-widget"><span class="std std-ref">Thành Tố Đường Cong -- Curve Widget</span></a> instead of parameters.</dd>
+<dt>-- Uniform, Size</dt>
+<dd>It is based on children location so it varies the paths in a similar way when the children are near.</dd>
+<dt>-- Endpoint, Shape</dt>
+<dd>&quot;Rough End&quot; randomizes path ends (a bit like random negative clumping).
+Shape may be varied from &lt;1 (parabolic) to 10.0 (hyperbolic).</dd>
+<dt>-- Random, Size, Threshold</dt>
+<dd>It is based on a random vector so it is not the same for nearby children.
+The threshold can be specified to apply this to only a part of children.
+This is useful for creating a few stray children that will not do what others do.</dd>
+</dl>
+</div>
+<div class="section" id="kink">
+<h3>Xoắn Vặn -- Kink<a class="headerlink" href="#kink" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Children ‣ Kink</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="figure" id="id1">
+<span id="fig-particle-child-kink"></span><img alt="../../../_images/physics_particles_emitter_children_kink.png" src="../../../_images/physics_particles_emitter_children_kink.png" />
+<p class="caption"><span class="caption-text">Child particles with Kink.</span></p>
+<div class="legend">
+From left to right: Curl, Radial, Wave, Braid, Spiral.</div>
+</div>
+<p>With <em>Kink</em> you can rotate the children around the parent.
+See Fig. <a class="reference internal" href="#fig-particle-child-kink"><span class="std std-ref">Child particles with Kink.</span></a> above picture for the different types of <em>Kink</em>.</p>
+<dl class="docutils">
+<dt>Kink Type</dt>
+<dd><dl class="first docutils">
+<dt>Không -- Nothing</dt>
+<dd>Bị giải hoạt (tắt).</dd>
+<dt>Quăn -- Curl</dt>
+<dd>Children grow in a spiral around the parent hairs.</dd>
+<dt>Tỏa Tròn -- Radial</dt>
+<dd>Children form around the parent a wave shape that passes through the parent hair.</dd>
+<dt>Sóng -- Wave</dt>
+<dd>Children form a wave, all in the same direction.</dd>
+<dt>Tết -- Braid</dt>
+<dd>Children braid themselves around the parent hair.</dd>
+<dt>Xoắn Ốc -- Spiral</dt>
+<dd><p class="first">Generates a spiral at the end of each hair.</p>
+<dl class="last docutils">
+<dt>-- Radius, Resolution</dt>
+<dd>Define the overall size.</dd>
+<dt>Hình Dạng -- Shape</dt>
+<dd>Makes a the spiral grow in- or outward.</dd>
+</dl>
+</dd>
+</dl>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>Alignment Limitations</p>
+<p class="last">When hair is pointing straight up (along the chosen spiral axis, default Z), spirals may not show up!
+This is a limitation of the projection method used.
+Giving a slight tilt or random orientation to hairs fixes this.</p>
+</div>
+</dd>
+<dt>Biên Độ -- Amplitude</dt>
+<dd>The amplitude of the offset.</dd>
+<dt>Khóm Lại -- Clump</dt>
+<dd>How much clump effects kink amplitude.</dd>
+<dt>Độ Phẳng -- Flatness</dt>
+<dd>How flat the hairs are.</dd>
+<dt>Tần Số -- Frequency</dt>
+<dd>The frequency of the offset (1/total length). The higher the frequency the more rotations are done.</dd>
+<dt>Hình Dạng -- Shape</dt>
+<dd>Where the rotation starts (offset of rotation).</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="simple">
+<h2>Đơn Giản -- Simple<a class="headerlink" href="#simple" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Kích Thước -- Size</dt>
+<dd>Only for <em>Emitter</em>. A multiplier for children size.</dd>
+<dt>Random Size</dt>
+<dd>Random variation to the size of child particles.</dd>
+<dt>Radius</dt>
+<dd>The radius in which the children are distributed around their parents.
+This is 3D, so children may be emitted higher or lower than their parents.</dd>
+<dt>Độ Tròn -- Roundness</dt>
+<dd>The roundness of the children around their parents. Either in a sphere (1.0) or in-plane (0.0).</dd>
+</dl>
+</div>
+<div class="section" id="interpolated">
+<h2>Nội Suy -- Interpolated<a class="headerlink" href="#interpolated" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Virtual Parents</dt>
+<dd>Relative amount of virtual parents.</dd>
+<dt>Tóc Dài -- Long Hair</dt>
+<dd>Calculate children that suit long hair well.</dd>
+</dl>
+<div class="section" id="parting">
+<h3>Parting<a class="headerlink" href="#parting" title="Permalink to this headline">¶</a></h3>
+<p>TODO.</p>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id2">
+<img alt="../../../_images/physics_particles_emitter_children_round-clump.png" src="../../../_images/physics_particles_emitter_children_round-clump.png" />
+<p class="caption"><span class="caption-text">From left to right: Round: 0.0, Round: 1.0, Clump: 1.0, Clump: -1.0, Shape: -0.99.</span></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="force_field.html" class="btn btn-neutral float-right" title="Trường Lực -- Force Fields" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="display.html" class="btn btn-neutral float-left" title="Viewport Display" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

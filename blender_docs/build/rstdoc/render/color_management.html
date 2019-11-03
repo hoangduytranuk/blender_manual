@@ -1,0 +1,582 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/color_management.rst">
+ <target ids="['bpy-types-colormanaged']" names="['bpy.types.colormanaged']">
+ </target>
+ <comment xml:space="preserve">
+  TODO/Review: {{review|partial=X|im=needs images}}.
+ </comment>
+ <section ids="color-management" names="color\ management quản\ lý\ màu\ sắc\ --\ color\ management">
+  <title>
+   Quản Lý Màu Sắc -- Color Management
+  </title>
+  <paragraph>
+   Color management is important to create renders and assets that are physically accurate and look great
+on multiple display devices. It is used both to ensure all parts of the pipeline interpret colors correctly,
+and to make artistic changes like exposure and color grading.
+  </paragraph>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_color-management_different-exposures.jpg'}" uri="images/render_color-management_different-exposures.jpg" width="300px"/>
+   <caption>
+    Different views and exposures of the same render.
+   </caption>
+  </figure>
+  <paragraph>
+   Blender's color management is based on the
+   <reference name="OpenColorIO" refuri="http://opencolorio.org/">
+    OpenColorIO
+   </reference>
+   library.
+By using the same OpenColorIO configuration in multiple applications,
+the same color spaces and transforms will be available for consistent results.
+  </paragraph>
+  <section ids="workflow" names="workflow">
+   <title>
+    Workflow
+   </title>
+   <section ids="scene-linear-color-space" names="scene\ linear\ color\ space --\ scene\ linear\ color\ space">
+    <title>
+     -- Scene Linear Color Space
+    </title>
+    <paragraph>
+     For correct results, different
+     <reference internal="True" refuri="../glossary/index.html#term-color-space">
+      <inline classes="xref std std-term">
+       color spaces
+      </inline>
+     </reference>
+     are needed for rendering, display and storage of images.
+Rendering and compositing is best done in
+     <emphasis>
+      scene linear
+     </emphasis>
+     color space,
+which corresponds more closely to nature, and makes computations more physically accurate.
+    </paragraph>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/render_color-management_linear-workflow.svg'}" uri="images/render_color-management_linear-workflow.svg"/>
+     <caption>
+      An example of a linear workflow.
+     </caption>
+    </figure>
+    <paragraph>
+     If the colors are linear, it means that if in reality, we double the number of photons,
+the color values are also doubled. Put another way,
+if we have two photos/renders each with one of two lights on, and add those images together,
+the result would be the same as a render/photo with both lights on. It follows that such
+a radiometrically linear space is best for photorealistic rendering and compositing.
+    </paragraph>
+    <paragraph>
+     However, these values do not directly correspond to human perception or the way display devices
+work. and image files are often stored in different color spaces.
+So we have to take care to do the right conversion into and out of this scene linear color space.
+    </paragraph>
+   </section>
+   <section ids="display-transforms" names="display\ transforms">
+    <title>
+     Display Transforms
+    </title>
+    <paragraph>
+     Transforming scene linear colors to display involves both technical and artistic choices.
+    </paragraph>
+    <paragraph>
+     Correct display of renders requires a conversion to the display device color space.
+A computer monitor works differently from a digital cinema projector or HDTV,
+and so needs a different conversion.
+    </paragraph>
+    <paragraph>
+     There is also an artistic choice to be made.
+Partially that is because display devices cannot display the full spectrum of colors and
+only have limited brightness, so we can squeeze the colors to fit in the gamut of the device.
+Besides that, it can also be useful to give the renders a particular look,
+e.g. as if they have been printed on real camera film.
+The default Filmic transform does this.
+    </paragraph>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/render_color-management_linear-display-space.svg'}" uri="images/render_color-management_linear-display-space.svg"/>
+     <caption>
+      Conversion from linear to display device space.
+     </caption>
+    </figure>
+   </section>
+   <section ids="image-color-spaces" names="image\ color\ spaces">
+    <title>
+     Image Color Spaces
+    </title>
+    <paragraph>
+     When loading and saving media formats it is important to have color management in mind.
+File formats such as PNG or JPEG will typically store colors in a color space ready for
+display, not in a linear space. When they are used as textures in renders,
+they need to be converted to linear first, and when saving renders for display on the web,
+they also need to be converted to a display space.
+    </paragraph>
+    <paragraph>
+     For intermediate files in production, it is recommended to use
+     <emphasis>
+      OpenEXR
+     </emphasis>
+     files.
+These are always stored in scene linear color spaces, without any data loss.
+That makes them suitable to store renders that can later be composited, color graded and
+converted to different output formats.
+    </paragraph>
+    <paragraph>
+     Images can also contain data that is not actually a color. For example normal or displacement maps
+merely contain vectors and offsets. Such images should be marked as
+     <emphasis>
+      Non-Color Data
+     </emphasis>
+     so
+that no color space conversion happens on them.
+    </paragraph>
+    <target refid="render-post-color-management">
+    </target>
+   </section>
+  </section>
+  <section ids="settings render-post-color-management" names="settings sắp\ đặt\ --\ settings render-post-color-management">
+   <title>
+    Sắp Đặt -- Settings
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Properties editor --&gt; Render --&gt; Color Management`">
+         Properties editor ‣ Render ‣ Color Management
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <figure ids="id4">
+    <image candidates="{'*': 'images/render_post-process_color-management_panel.png'}" uri="images/render_post-process_color-management_panel.png"/>
+    <caption>
+     Render settings for color management.
+    </caption>
+   </figure>
+   <section ids="display" names="display hiển\ thị\ --\ display">
+    <title>
+     Hiển Thị -- Display
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Thiết bị Hiển Thị -- Display Device
+      </term>
+      <definition>
+       <paragraph>
+        The device that the image is being viewed on.
+       </paragraph>
+       <paragraph>
+        Most computer monitors are configured for the sRGB color space,
+and so when working on a computer usually this option should just be left to the default.
+It would typically be changed when viewing the image on another display device connected to the computer,
+or when writing out image files intended to be displayed on another device.
+       </paragraph>
+       <paragraph>
+        Rec709 is commonly used for HDTVs, while XYZ and DCI-P3 are common for digital projectors.
+       </paragraph>
+       <paragraph>
+        Color management can be disabled by setting the device to None.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="render" names="render kết\ xuất\ --\ render">
+    <title>
+     Kết Xuất -- Render
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Góc Nhìn -- View
+      </term>
+      <definition>
+       <paragraph>
+        These are different ways to view the image on the same display device.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Standard
+         </term>
+         <definition>
+          <paragraph>
+           Does no extra conversion besides the conversion for the display device. Often used for
+non-photorealistic results or video editing where a specific look is already baked into
+the input video.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          -- Filmic
+         </term>
+         <definition>
+          <paragraph>
+           For photorealistic results and better handling of high dynamic range colors.
+The contrast can be adjusted by changing the
+           <emphasis>
+            Look
+           </emphasis>
+           option for the Filmic view transform.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Filmic Log
+         </term>
+         <definition>
+          <paragraph>
+           Converts to Filmic log color space. This can be used for export to color grading applications,
+or to inspect the image by flattening out very dark and light areas.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Nguyên Thủy/Thô Sơ -- Raw
+         </term>
+         <definition>
+          <paragraph>
+           Intended for inspecting the image but not for final export.
+Raw gives the image without any color space conversion.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          -- False Color
+         </term>
+         <definition>
+          <paragraph>
+           Shows a heat map of image intensities, to visualize the dynamic range.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Độ Phơi Sáng -- Exposure
+      </term>
+      <definition>
+       <paragraph>
+        Used to control the image brightness (in stops) applied before color space conversion.
+It is calculated as follows:
+        <math>
+         output\_value = render\_value × 2^{(exposure)}
+        </math>
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Gamma
+      </term>
+      <definition>
+       <paragraph>
+        Extra gamma correction applied after color space conversion.
+Note that the default display transforms already perform the appropriate conversion,
+so this mainly acts as an additional effect for artistic tweaks.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Nhìn/Dáng Vẻ -- Look
+      </term>
+      <definition>
+       <paragraph>
+        Choose an artistic effect from a set of measured film response data
+which roughly emulates the look of certain film types. Applied before color space conversion.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Dùng Đường Cong -- Use Curves
+      </term>
+      <definition>
+       <paragraph>
+        Adjust RGB Curves to control image colors before color space conversion.
+Read more about using the
+        <reference internal="True" refuri="../interface/controls/templates/curve.html#ui-curve-widget">
+         <inline classes="std std-ref">
+          Thành Tố Đường Cong -- Curve Widget
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="sequencer" names="sequencer bộ\ phối\ hình\ --\ sequencer">
+    <title>
+     Bộ Phối Hình -- Sequencer
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Không Gian Màu Sắc -- Color Space
+      </term>
+      <definition>
+       <paragraph>
+        The color space that the Sequencer operates in. By default, the Sequencer operates in sRGB space,
+but it can also be set to work in Linear space like the Compositing nodes, or another color space.
+Different color spaces will give different results for color correction, crossfades, and other operations.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="image-files" names="image\ files tập\ tin\ hình\ ảnh\ --\ image\ files">
+   <title>
+    Tập Tin Hình Ảnh -- Image Files
+   </title>
+   <paragraph>
+    When working with image files, the default color space is usually the right one.
+If this is not the case, the color space of the image file can be configured in the image settings.
+A common situation where manual changes are needed is when working with or baking normal maps or displacement maps,
+for example. Such maps do not actually store colors, just data encoded as colors.
+Those images should be marked as
+    <emphasis>
+     Non-Color Data
+    </emphasis>
+    .
+   </paragraph>
+   <paragraph>
+    Image data-blocks will always store float buffers in memory in the scene linear color space,
+while a byte buffer in memory and files in a drive are stored in the color space specified with this setting:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Không Gian Màu Sắc -- Color Space
+     </term>
+     <definition>
+      <paragraph>
+       The color space of the image file on a drive. This depends on the file format,
+for example, PNG or JPEG images are often stored in sRGB, while OpenEXR images are stored in a linear color space.
+Some images such as normal, bump or stencil maps do not strictly contain 'colors',
+and on such values, no color space conversion should ever be applied.
+For such images, the color space should be set to
+       <emphasis>
+        None
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    By default only renders are displayed and saved with the render view transformations applied.
+These are the Render Result and Viewer image data-blocks,
+and the files saved directly to a drive with the Render Animation operator.
+However, when loading a render saved to an intermediate OpenEXR file,
+Blender cannot detect automatically that this is a render
+(it could be e.g. an image texture or displacement map).
+We need to specify that this is a render and that we want the transformations applied,
+with these two settings:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hiển Thị như Bản Kết Xuất -- View as Render
+     </term>
+     <definition>
+      <paragraph>
+       Display the image data-block (not only renders) with view transform, exposure, gamma, RGB curves applied.
+Useful for viewing rendered frames in linear OpenEXR files the same as when rendering them directly.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Save as Render
+     </term>
+     <definition>
+      <paragraph>
+       Option in the image save operator to apply the view transform, exposure, gamma, RGB curves.
+This is useful for saving linear OpenEXR to e.g. PNG or JPEG files in display space.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="opencolorio-configuration" names="opencolorio\ configuration --\ opencolorio\ configuration">
+   <title>
+    -- OpenColorIO Configuration
+   </title>
+   <paragraph>
+    Blender comes with a standard OpenColorIO configuration that
+contains a number of useful display devices and view transforms.
+The reference linear
+    <reference internal="True" refuri="../glossary/index.html#term-color-space">
+     <inline classes="xref std std-term">
+      color space
+     </inline>
+    </reference>
+    used is the linear color space
+with Rec. 709 chromaticities and D65 white point.
+   </paragraph>
+   <paragraph>
+    However, OpenColorIO was also designed to give a consistent user experience across
+    <reference name="multiple applications" refuri="http://opencolorio.org/CompatibleSoftware.html">
+     multiple applications
+    </reference>
+    ,
+and for this, a single shared configuration file can be used.
+Blender will use the standard OCIO environment variable to read an OpenColorIO configuration
+other than the default Blender one. More information about how to set up such a workflow
+can be found on the
+    <reference name="OpenColorIO website" refuri="http://opencolorio.org/">
+     OpenColorIO website
+    </reference>
+    .
+   </paragraph>
+   <paragraph>
+    Blender currently use the following color space rules:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      <literal>
+       scene_linear
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Color space used for rendering, compositing, and storing all float precision images in memory.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       data
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Color space for non-color data.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       XYZ
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Standard linear XYZ color space. Used for effects such as blackbody emission to convert
+from physical units to the
+       <emphasis>
+        scene_linear
+       </emphasis>
+       color space.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       color_picking
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Defines the distribution of colors in color pickers. It is expected to
+be approximately perceptually linear, have the same gamut as the
+       <emphasis>
+        scene_linear
+       </emphasis>
+       color space,
+map 0..1 values to 0..1 values in the scene linear color space for predictable editing of material albedos.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       default_sequencer
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Default color space for the Sequencer,
+       <emphasis>
+        scene_linear
+       </emphasis>
+       if not specified.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       default_byte
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Default color space for byte precision images and files,
+       <emphasis>
+        texture_paint
+       </emphasis>
+       if not specified.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      <literal>
+       default_float
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Default color space for float precision images and files,
+       <emphasis>
+        scene_linear
+       </emphasis>
+       if not specified.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    The standard Blender configuration includes support for saving and loading images in
+    <reference name="ACES" refuri="https://www.oscars.org/science-technology/sci-tech-projects/aces">
+     ACES
+    </reference>
+    (
+    <reference name="code and documentation" refuri="https://github.com/ampas/aces-dev">
+     code and documentation
+    </reference>
+    ) color spaces.
+However, the ACES gamut is larger than the Rec. 709 gamut,
+so for best results, an ACES specific configuration file should be used.
+OpenColorIO provides an
+    <reference name="ACES configuration" refuri="http://opencolorio.org/configurations/index.html">
+     ACES configuration
+    </reference>
+    file,
+though it may need a few more tweaks to be usable in production.
+   </paragraph>
+  </section>
+ </section>
+</document>

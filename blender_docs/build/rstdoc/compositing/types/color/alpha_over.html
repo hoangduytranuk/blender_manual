@@ -1,0 +1,307 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/color/alpha_over.rst">
+ <target refid="bpy-types-compositornodealphaover">
+ </target>
+ <section ids="alpha-over-node bpy-types-compositornodealphaover" names="alpha\ over\ node nút\ alpha\ chồng\ lên\ --\ alpha\ over\ node bpy.types.compositornodealphaover">
+  <title>
+   Nút Alpha Chồng Lên -- Alpha Over Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeAlphaOver.png'}" uri="images/compositing_node-types_CompositorNodeAlphaOver.png"/>
+   <caption>
+    Nút Alpha Chồng Lên.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút
+   <emphasis>
+    Alpha Chồng Lên
+   </emphasis>
+   được sử dụng để chồng tầng các lớp hình ảnh lên trên nhau.
+  </paragraph>
+  <paragraph>
+   Trong đó nếu điểm ảnh của hình ảnh nằm trước có alpha lớn hơn 0 thì hình ảnh nền sẽ được phủ lên.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Khống chế lượng của hình ảnh ở lớp trước. Hệ số nhỏ hơn 1 sẽ làm cho nền trước trong suốt hơn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào cho hình ảnh
+       <emphasis>
+        nền sau
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào cho hình ảnh
+       <emphasis>
+        nền trước
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chuyển Đổi Nhân Trước -- Convert Premultiplied
+     </term>
+     <definition>
+      <paragraph>
+       Đổi hình ảnh nền trước sang định dạng
+       <emphasis>
+        alpha nhân trước
+       </emphasis>
+       (
+       <emphasis>
+        premultiplied alpha
+       </emphasis>
+       )
+      </paragraph>
+      <paragraph>
+       Nút
+       <emphasis>
+        Alpha Chồng Lên
+       </emphasis>
+       được thiết kế để hoạt động với định dạng màu alpha
+       <emphasis>
+        nhân trước
+       </emphasis>
+       (
+       <emphasis>
+        premultiplied
+       </emphasis>
+       ). Sử dụng
+       <emphasis>
+        Chuyển đổi Alpha Nhân Trước
+       </emphasis>
+       khi bạn biết rằng hình ảnh của bạn có các giá trị màu alpha
+       <emphasis>
+        thẳng
+       </emphasis>
+       (
+       <emphasis>
+        straight
+       </emphasis>
+       ), để thực hiện thao tác chồng lên chính xác. Kết quả sẽ vẫn là alpha nhân trước.
+      </paragraph>
+      <paragraph>
+       Xin xem thêm về
+       <emphasis>
+        Kênh Alpha
+       </emphasis>
+       --
+       <reference internal="True" refuri="../../../glossary/index.html#term-alpha-channel">
+        <inline classes="xref std std-term">
+         Alpha Channel
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhân Trước -- Premultiply
+     </term>
+     <definition>
+      <paragraph>
+       Thanh trượt
+       <emphasis>
+        Nhân Trước*(*Premul
+       </emphasis>
+       ) cho phép kết hợp giữa sử dụng  alpha
+       <emphasis>
+        Nhân Trước
+       </emphasis>
+       (
+       <emphasis>
+        premultiplied
+       </emphasis>
+       ) hoặc  alpha
+       <emphasis>
+        không nhân trước
+       </emphasis>
+       (
+       <emphasis>
+        non premultiplied
+       </emphasis>
+       ).
+      </paragraph>
+      <paragraph>
+       Khi được đặt thành 1, giá trị màu nền đằng trước sẽ được nhân với alpha, tức là được nhân trước. Điều này tương đương với việc kích hoạt tùy chọn
+       <emphasis>
+        Chuyển Đổi Nhân Trước
+       </emphasis>
+       (
+       <emphasis>
+        Convert Premul
+       </emphasis>
+       ) vậy. Khi được đặt thành 0, giá trị màu sẽ không thay đổi.
+      </paragraph>
+      <paragraph>
+       Nếu
+       <emphasis>
+        Nhân Trước
+       </emphasis>
+       không phải là số không thì
+       <emphasis>
+        Chuyển Đổi Nhân Trước
+       </emphasis>
+       sẽ bị bỏ qua.
+      </paragraph>
+      <note>
+       <paragraph>
+        This is a legacy option.
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <paragraph>
+    Trong bản đồ dưới đây, nút
+    <emphasis>
+     Dốc Màu
+    </emphasis>
+    (
+    <emphasis>
+     Color Ramp
+    </emphasis>
+    ) được sử dụng để cho thêm kênh alpha vào hình ảnh luồng xoáy đen trắng. Sau đó, nút
+    <emphasis>
+     Alpha chồng lên
+    </emphasis>
+    (
+    <emphasis>
+     Alpha Over
+    </emphasis>
+    ) được sử dụng để phủ chồng lên trên một hình ảnh khác.
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_converter_color-ramp_create-alpha-mask.png'}" uri="images/compositing_types_converter_color-ramp_create-alpha-mask.png" width="600px"/>
+    <caption>
+     Lắp ráp một hình ảnh tổng hợp bằng cách sử dụng Alpha Chồng Lên (
+     <emphasis>
+      Alpha Over
+     </emphasis>
+     ).
+    </caption>
+   </figure>
+   <paragraph>
+    Trong ví dụ tiếp theo, chúng ta sử dụng điều khiển
+    <emphasis>
+     Hệ Số
+    </emphasis>
+    (
+    <emphasis>
+     Factor
+    </emphasis>
+    ) để tạo hiệu ứng "Mờ Dần Vào" (
+    <emphasis>
+     Fade In
+    </emphasis>
+    ). Hiệu ứng này có thể được hoạt họa bằng cách thêm nút
+    <emphasis>
+     Thời Gian
+    </emphasis>
+    (
+    <emphasis>
+     Time
+    </emphasis>
+    ) để cung cấp thông tin vào ổ cắm
+    <emphasis>
+     Hệ Số
+    </emphasis>
+    (
+    <emphasis>
+     Factor
+    </emphasis>
+    ), như hình bên dưới. Trong ví dụ này, trong khoảng thời gian 30 khung hình, nút
+    <emphasis>
+     Thời Gian
+    </emphasis>
+    làm nút
+    <emphasis>
+     Alpha Chồng Lên
+    </emphasis>
+    tạo ra hình ảnh khởi đầu bằng hình nền tinh khiết, và tiêu đề dần dần lách qua phông nền.
+   </paragraph>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/compositing_types_color_alpha-over_example.png'}" uri="images/compositing_types_color_alpha-over_example.png" width="600px"/>
+    <caption>
+     Tác động của hoạt họa hiệu ứng mờ dần vào khi sử dụng với Alpha Chồng Lên.
+    </caption>
+   </figure>
+   <paragraph>
+    Lưu ý hộp kiểm
+    <emphasis>
+     Chuyển Đổi Nhân Trước
+    </emphasis>
+    (
+    <emphasis>
+     Convert Premul
+    </emphasis>
+    ) được kích hoạt, vì tiền cảnh sử dụng hình ảnh PNG có alpha
+    <emphasis>
+     thẳng
+    </emphasis>
+    (
+    <emphasis>
+     straight
+    </emphasis>
+    ) .
+   </paragraph>
+  </section>
+ </section>
+</document>

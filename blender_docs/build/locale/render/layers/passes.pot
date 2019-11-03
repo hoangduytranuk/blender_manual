@@ -1,0 +1,354 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.81 Manual package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.81 Manual 2.81\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-23 22:52+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../manual/render/layers/passes.rst:4
+msgid "Passes"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:6
+#: ../../manual/render/layers/passes.rst:20
+msgid "Passes can be used to split rendered images into colors, direct and indirect light to edit them individually, and also to extract data such as depth or normals."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:13
+msgid "Cycles"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:15
+#: ../../manual/render/layers/passes.rst:163
+msgid "Reference"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:0
+#: ../../manual/render/layers/passes.rst:0
+msgid "Panel"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:18
+#: ../../manual/render/layers/passes.rst:166
+msgid ":menuselection:`Scene --> View Layers --> Passes`"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:25
+#: ../../manual/render/layers/passes.rst:170
+msgid "Lighting Passes"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:27
+#: ../../manual/render/layers/passes.rst:172
+msgid "Combined"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:28
+#: ../../manual/render/layers/passes.rst:173
+msgid "The final combination of render passes with everything included."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:30
+msgid "Noisy Image"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:30
+msgid "If denoising is enabled, the original combined pass before denoising."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:34
+msgid "Diffuse Direct"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:33
+msgid "Direct lighting from diffuse BSDFs. We define direct lighting as coming from lights, emitting surfaces, the background, or ambient occlusion after a single reflection or transmission off a surface. BSDF color is not included in this pass."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:38
+msgid "Diffuse Indirect"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:37
+msgid "Indirect lighting from diffuse BSDFs. We define indirect lighting as coming from lights, emitting surfaces or the background after more than one reflection or transmission off a surface. BSDF color is not included in this pass."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:41
+msgid "Diffuse Color"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:41
+msgid "Color weights of diffuse BSDFs. These weights are the color input socket for BSDF nodes, modified by any Mix and Add Shader nodes."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:43
+msgid "Glossy Direct, Indirect, Color"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:44
+msgid "Same as above, but for glossy BSDFs."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:45
+msgid "Transmission Direct, Indirect, Color"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:46
+msgid "Same as above, but for transmission BSDFs."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:47
+msgid "Subsurface Direct, Indirect, Color"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:48
+msgid "Same as above, but for subsurface BSDFs."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:49
+msgid "Emission"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:50
+msgid "Emission from directly visible surfaces."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:52
+msgid "Environment"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:52
+msgid "Emission from the directly visible background. When the film is set to transparent, this can be used to get the environment color and composite it back in."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:54
+msgid "Shadow"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:55
+msgid "Shadows from light objects. Mostly useful for compositing objects with shadow into existing footage."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:58
+#: ../../manual/render/layers/passes.rst:184
+msgid "Ambient Occlusion"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:57
+#: ../../manual/render/layers/passes.rst:182
+msgid "Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e. it gives a 'normalized' value between 0 and 1."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:62
+msgid ":doc:`Transparent BSDFs are given special treatment </render/cycles/render_settings/light_paths>`. A fully transparent surface is treated as if there is no surface there at all; a partially transparent surface is treated as if only part of the light rays can pass through. This means it is not included in the Transmission passes; for that a glass BSDF with index of refraction 1.0 can be used."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:70
+msgid "Combining"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:72
+msgid "All these lighting passes can be combined to produce the final image as follows:"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:78
+#: ../../manual/render/layers/passes.rst:187
+msgid "Data Passes"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:86
+#: ../../manual/render/layers/passes.rst:190
+msgid "Z"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:81
+#: ../../manual/render/layers/passes.rst:190
+msgid "Distance to any visible surfaces."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:85
+msgid "The Z pass only uses one sample. When depth values need to be blended in case of motion blur or :term:`Depth of Field`, use the mist pass."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:91
+#: ../../manual/render/layers/passes.rst:193
+msgid "Mist"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:89
+msgid "Distance to visible surfaces, mapped to the 0.0-1.0 range. When enabled, settings are in :ref:`World tab <render-cycles-integrator-world-mist>`. This pass can be used in compositing to fade out objects that are farther away."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:93
+#: ../../<generated>:1
+msgid "Normal"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:94
+#: ../../manual/render/layers/passes.rst:196
+msgid "Surface normal used for shading."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:96
+msgid "Vector"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:96
+msgid "Motion vectors for the vector blur node. The four components consist of 2D vectors giving the motion towards the next and previous frame position in pixel space."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:98
+msgid "UV"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:99
+msgid "Default render UV coordinates."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:101
+msgid "Object Index"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:101
+msgid "Creates a mask of the object that can be later read by the :doc:`ID Mask Node </compositing/types/converter/id_mask>` in the compositor."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:104
+msgid "Material Index"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:104
+msgid "Creates a mask of the material that can be later read by the :doc:`ID Mask Node </compositing/types/converter/id_mask>` in the compositor."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:109
+msgid "Denoising Data"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:107
+msgid "Passes needed by the denoiser, for performing animation denoising in a second pass after rendering the entire animation. For still image denoising as part of the render process these are not needed."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:111
+msgid "The Z, Object Index and Material Index passes are not anti-aliased."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:118
+msgid "Alpha Threshold"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:114
+msgid "Z, Index, normal, UV and vector passes are only affected by surfaces with alpha transparency equal to or higher than this threshold. With value 0.0 the first surface hit will always write to these passes, regardless of transparency. With higher values surfaces that are mostly transparent can be skipped until an opaque surface is encountered."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:121
+msgid "Cryptomatte"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:123
+msgid "Cryptomatte is a standard to efficiently create mattes for compositing. Cycles outputs the required render passes, which can then be used in the Blender compositor or another compositor with Cryptomatte support to create masks for specified objects."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:127
+msgid "Unlike the Material and Object Index passes, the objects to isolate are selected in compositing, and mattes will be anti-aliased and take into account effects like motion blur and transparency."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:130
+msgid "Object"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:131
+msgid "Render cryptomatte object pass, for isolating objects in compositing."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:132
+msgid "Material"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:133
+#: ../../manual/render/layers/passes.rst:135
+msgid "Render cryptomatte material pass, for isolating materials in compositing."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:135
+msgid "Asset"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:137
+msgid "Levels"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:138
+msgid "Sets how many unique objects can be distinguished per pixel."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:141
+msgid "Accurate Mode"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:140
+msgid "Generate a more accurate Cryptomatte pass. CPU only, may render slower and use more memory."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:144
+msgid "Typical Workflow"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:146
+msgid "Enable Cryptomatte Object render pass in the Passes panel, and render."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:147
+msgid "In the compositing nodes, create a Cryptomatte node and link the Render Layer matching Image and Cryptomatte passes to it."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:149
+msgid "Attach a Viewer node to the Pick output of the Cryptomatte node."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:150
+msgid "Use the Cryptomatte Add/Remove button to sample objects in the Pick Viewer node."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:151
+msgid "Use the Matte output of the Cryptomatte node to get the alpha mask."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:155
+msgid ":doc:`Cryptomatte Node </compositing/types/matte/cryptomatte>`."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:161
+msgid "Eevee"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:176
+msgid "Subsurface Direct"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:175
+msgid "Direct lighting from subsurface BSDFs. We define direct lighting as coming from lights, emitting surfaces, the background, or ambient occlusion after a single reflection or transmission off a surface. BSDF color is not included in this pass."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:179
+msgid "Subsurface Color"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:179
+msgid "Color weights of subsurface BSDFs. These weights are the color input socket for BSDF nodes, modified by any Mix and Add Shader nodes."
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:193
+msgid "Distance to visible surfaces, mapped to the 0.0 - 1.0 range."
+msgstr ""
+

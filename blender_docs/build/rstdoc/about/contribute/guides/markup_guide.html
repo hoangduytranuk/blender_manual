@@ -1,0 +1,730 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/guides/markup_guide.rst">
+ <section ids="markup-style-guide" names="markup\ style\ guide hướng\ dẫn\ về\ kiểu\ cách\ của\ dấu\ đánh\ --\ markup\ style\ guide">
+  <title>
+   Hướng Dẫn về Kiểu Cách của Dấu Đánh -- Markup Style Guide
+  </title>
+  <comment xml:space="preserve">
+   Editors Note:
+::
+There are many detailed conventions, e.g:
+::
+- When definition lists/bullet-points are used.
+- Word-ordering in filenames.
+- How text is wrapped.
+- The number of spaces between lines.
+- When it is/is not okay to add in Unicode characters.
+- Should comments on a page be above or below titles :)
+::
+Having a lot of detailed text on this page is off-putting to new contributors,
+so please avoid making this page into a wall-of-text,
+many conventions can be noticed along the way by reading existing text.
+  </comment>
+  <paragraph>
+   Trang này bao gồm các quy ước để viết và sử dụng cú pháp dấu đánh reSTructuredText (RST).
+  </paragraph>
+  <section ids="conventions" names="conventions quy\ ước\ --\ conventions">
+   <title>
+    Quy Ước -- Conventions
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Thụt dòng ba khoảng cách trống.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Số chữ trong các dòng phải ít hơn 120 ký tự.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Dùng chữ
+      <title_reference>
+       nghiêng
+      </title_reference>
+      cho các nút bấm/tên của trình đơn.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    Những quy ước phóng túng khác:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Tránh không dùng các ký tự trong bộ phông Unicode.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Tránh xuống dòng quá nhiều (chẳng hạn: mỗi câu một dòng).
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="headings" names="headings tiêu\ đề\ --\ headings">
+   <title>
+    Tiêu Đề -- Headings
+   </title>
+   <literal_block force_highlighting="True" highlight_args="{}" language="rst" linenos="False" xml:space="preserve">
+    #################
+  Document Part
+#################
+
+****************
+Document Chapter
+****************
+
+Document Section
+================
+
+Document Subsection
+-------------------
+
+Document Subsubsection
+^^^^^^^^^^^^^^^^^^^^^^
+
+Document Paragraph
+""""""""""""""""""
+   </literal_block>
+   <note>
+    <paragraph>
+     <emphasis>
+      Parts
+     </emphasis>
+     chỉ nên được sử dụng cho các nội dung, hoặc ở các trang mục lục mà thôi.
+    </paragraph>
+   </note>
+   <note>
+    <paragraph>
+     Mỗi tập tin
+     <literal>
+      .rst
+     </literal>
+     chỉ nên có một tên chương (
+     <literal>
+      *
+     </literal>
+     ) mà thôi.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="text-styling" names="text\ styling bố\ trí\ kiểu\ chữ\ --\ text\ styling">
+   <title>
+    Bố Trí Kiểu Chữ -- Text Styling
+   </title>
+   <paragraph>
+    Xem
+    <reference name="Tổng quan về ReStructuredText" refuri="http://www.sphinx-doc.org/en/stable/rest.html">
+     Tổng quan về ReStructuredText
+    </reference>
+    -- để biết thêm thông tin về cách tạo kiểu cách cho các phần tử khác nhau của tài liệu và cách thêm danh sách, bảng, hình ảnh và khối mã nguồn. Bản
+    <reference name="Tham chiếu Sphinx" refuri="http://www.sphinx-doc.org/en/stable/markup/">
+     Tham chiếu Sphinx
+    </reference>
+    -- cung cấp thêm các cấu trúc chi tiết bổ sung nữa.
+   </paragraph>
+   <paragraph>
+    Sau đây là các dấu đánh hữu ích để tạo kiểu cách cho văn bản:
+   </paragraph>
+   <literal_block force_highlighting="False" language="rst" linenos="False" xml:space="preserve">
+    *italic*
+**bold**
+``literal``
+   </literal_block>
+  </section>
+  <section ids="interface-elements" names="interface\ elements phần\ tử\ giao\ diện\ --\ interface\ elements">
+   <title>
+    Phần Tử Giao Diện -- Interface Elements
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <literal>
+       :kbd:`NCT`
+      </literal>
+      -- tổ hợp phím bấm nhanh và bố trí chuột.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       *Mirror*
+      </literal>
+      -- Nhãn hiệu giao diện.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       :menuselection:`Góc Nhìn 3D (3D View) --&gt; Cộng Thêm (Add) --&gt; Khung Lưới (Mesh) --&gt; Đầu Khỉ (Monkey)`
+      </literal>
+      -- trình đơn.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="code-samples" names="code\ samples ví\ dụ\ về\ mã\ nguồn\ --\ code\ samples">
+   <title>
+    Ví Dụ về Mã Nguồn -- Code Samples
+   </title>
+   <paragraph>
+    Hỗ trợ cho việc nêu bật cú pháp cũng tồn tại nếu ngôn ngữ lập trình được cung cấp, và các số dòng có thể được hiển thị theo tùy thích bằng tùy chọn
+    <literal>
+     :linenos:
+    </literal>
+    :
+   </paragraph>
+   <literal_block force_highlighting="False" language="rst" linenos="False" xml:space="preserve">
+    .. code-block:: python
+   :linenos:
+
+   import bpy
+   def some_function():
+       ...
+   </literal_block>
+  </section>
+  <section ids="images" names="images hình\ ảnh\ --\ images">
+   <title>
+    Hình Ảnh -- Images
+   </title>
+   <paragraph>
+    <literal>
+     Figure
+    </literal>
+    nên được sử dụng để đặt các hình ảnh minh họa:
+   </paragraph>
+   <literal_block force_highlighting="False" language="rst" linenos="False" xml:space="preserve">
+    .. figure:: /images/render_cycles_nodes_types_shaders_node.png
+
+   Image caption.
+   </literal_block>
+   <paragraph>
+    Để nhất quán và để đảm bảo ảnh chụp màn hình có cùng kích thước tương tự khi trôi nổi bên cạnh văn bản, tác giả nên chụp ảnh màn hình theo cách sau:
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Prepare the area you would like to capture making sure to use the default theme and setting.
+(In some cases you may not want to use the default settings e.g. if some options are hidden behind a checkbox.)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Thu phóng đến mức tối đa (giữ
+      <literal classes="kbd">
+       Bàn Số +
+      </literal>
+      hoặc
+      <literal classes="kbd">
+       Ctrl-NCG - Nút Chuột Giữa
+      </literal>
+      hoặc tương tự).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Thu nhỏ tám lần (
+      <literal classes="kbd">
+       Bàn Số -
+      </literal>
+      -- tám lần).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Trong một số trường hợp, bạn có thể sẽ muốn để lại một khoảng nhỏ xung quanh cái bạn muốn thu chụp. Cái này nên chừng khoảng 30 điểm ảnh, song không cần phải chính xác lắm.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <paragraph>
+    Điều này có thể được áp dụng cho một số phần của giao diện nhưng có thể không hiệu quả đối với mọi trường hợp.
+   </paragraph>
+   <section ids="files" names="files tập\ tin\ --\ files">
+    <title>
+     Tập Tin -- Files
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Không được sử dụng chữ hoa, không được có khoảng cách trống -- No Caps, No Gaps
+      </term>
+      <definition>
+       <paragraph>
+        Tên tập tin phải là chữ thường, dùng gạch chân để tách biệt các từ.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Sắp Xếp Trật Tự Hợp Lý, Có Tác Dụng -- Sort Usefully
+      </term>
+      <definition>
+       <paragraph>
+        Đặt tên theo thứ tự dùng các tên nhận dạng cụ thể nằm ở cuối.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Định Dạng -- Format
+      </term>
+      <definition>
+       <paragraph>
+        Sử dụng
+        <literal>
+         .png
+        </literal>
+        cho các hình ảnh có các màu cố định như ảnh chụp màn hình của giao diện Blender và
+        <literal>
+         .jpg
+        </literal>
+        cho hình ảnh có số lượng màu sắc biến đổi cao, chẳng hạn như mẫu kết xuất và các ảnh chụp.
+       </paragraph>
+       <paragraph>
+        Không sử dụng các tập tin
+        <literal>
+         .gif
+        </literal>
+        hoạt họa vì những tập tin này khó bảo trì và có thể gây mất tập trung, đồng thời chúng thường có kích thước tập tin lớn nữa. Thay vào đó, hãy sử dụng một video nếu cần (xem phần về
+        <reference name="Video" refid="videos">
+         Video
+        </reference>
+        bên dưới).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Vị Trí -- Location
+      </term>
+      <definition>
+       <paragraph>
+        Đặt hình ảnh vào thư mục
+        <literal>
+         manual/images
+        </literal>
+        . Không sử dụng các thư mục nhánh khác.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đặt Tên -- Naming
+      </term>
+      <definition>
+       <paragraph>
+        Để đặt tên các tập tin, hãy sử dụng dấu gạch chân để phân tách các chương và các phần riêng biệt, đồng thời sử dụng dấu gạch ngang để phân tách các phần có hai hoặc nhiều từ. Vì vậy, các tập tin hình ảnh sẽ trông giống thế này:
+        <literal>
+         chapter_subsection_sub-subsection_id.png
+        </literal>
+        , ví dụ:
+       </paragraph>
+       <bullet_list bullet="-">
+        <list_item>
+         <paragraph>
+          <literal>
+           interface_splash_current.png
+          </literal>
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          <literal>
+           interface_undo-redo_last.png
+          </literal>
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          <literal>
+           interface_undo-redo_repeat-history-menu.png
+          </literal>
+         </paragraph>
+        </list_item>
+       </bullet_list>
+       <paragraph>
+        Không được sử dụng các ký tự đặc biệt, hoặc các dấu cách trống!
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section dupnames="usage\ guides" ids="usage-guides" names="hướng\ dẫn\ sử\ dụng\ --\ usage\ guides">
+    <title>
+     Hướng Dẫn Sử Dụng -- Usage Guides
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Tránh việc chỉ định độ phân giải của hình ảnh, hầu cho phong cách --
+       <title_reference>
+        theme
+       </title_reference>
+       -- có thể xử lý hình ảnh một cách nhất quán và cung cấp bài trí tốt nhất đối với các kích thước màn hình khác nhau.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Khi lập tài liệu cho một bảng hoặc một phần của giao diện người dùng, tốt hơn hết là nên sử dụng một hình ảnh hiển thị tất cả các khu vực liên quan (thay vì nhiều hình ảnh cho mỗi một biểu tượng hoặc mỗi một nút) được đặt ở đỉnh của phần bạn đang viết, và sau đó giải thích các đặc tính theo thứ tự chúng xuất hiện trên hình ảnh.
+      </paragraph>
+      <note>
+       <paragraph>
+        Điều quan trọng là bản hướng dẫn sử dụng có thể phải được bảo quản lâu dài, giao diện người dùng và các tùy chọn công cụ thay đổi, vì vậy cố gắng tránh tình trạng có quá nhiều hình ảnh (đặc biệt khi chúng không cần thiết). Nếu không, việc bảo trì sẽ trở nên một gánh nặng quá lớn.
+       </paragraph>
+      </note>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+  <section ids="videos" names="videos phim\ video\ --\ videos">
+   <title>
+    Phim Video -- Videos
+   </title>
+   <paragraph>
+    Các phim video từ YouTube\
+    <superscript>
+     ™
+    </superscript>
+    và Vimeo\
+    <superscript>
+     ™
+    </superscript>
+    có thể được gắn sẵn dùng:
+   </paragraph>
+   <literal_block force_highlighting="False" language="rst" linenos="False" xml:space="preserve">
+    .. youtube:: ID
+
+.. vimeo:: ID
+   </literal_block>
+   <paragraph>
+    Chỉ danh
+    <literal>
+     ID
+    </literal>
+    của phim sẽ năm trong địa chỉ URL của phim video, chẳng hạn:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Chỉ danh ID cho
+      <literal>
+       https://www.youtube.com/watch?v=Ge2Kwy5EGE0
+      </literal>
+      -- là
+      <literal>
+       Ge2Kwy5EGE0
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Chỉ danh ID cho
+      <literal>
+       https://vimeo.com/15837189
+      </literal>
+      -- là
+      <literal>
+       15837189
+      </literal>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <section dupnames="usage\ guides" ids="id1" names="hướng\ dẫn\ sử\ dụng\ --\ usage\ guides">
+    <title>
+     Hướng Dẫn Sử Dụng -- Usage Guides
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Tránh việc cho thêm các video đòi hỏi phải dựa vào giọng nói, vì như vậy rất khó dịch thuật.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Chớ gắn sẵn các video hướng dẫn như một phương tiện giải thích một tính năng của phần mềm. Bản thân nội dung của văn bản phải giải thích về nó đầy đủ (tuy nhiên, bạn có thể bao gồm một liên kết đến video ở dưới cùng của trang, dưới tiêu đề
+       <literal>
+        Tutorials -- Trợ Lý Học Tập
+       </literal>
+       ).
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+  <section ids="useful-constructs" names="useful\ constructs cấu\ trúc\ hữu\ dụng\ --\ useful\ constructs">
+   <title>
+    Cấu Trúc Hữu Dụng -- Useful Constructs
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <literal>
+       |BLENDER_VERSION|
+      </literal>
+      -- Phân giải thành phiên bản hiện tại của Blender.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       :abbr:`SSAO (Screen Space Ambient Occlusion -- Tính Hấp Thụ Quang Xạ Môi Trường Không Gian Màn Hình)`
+      </literal>
+      -- Các từ viết tắt hiển thị toàn bộ văn bản dưới dạng chú giải công cụ cho người đọc.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       :term:`Manifold`
+      </literal>
+      -- Liên kết đến một mục trong bảng
+      <reference internal="True" refuri="../../../glossary/index.html">
+       <inline classes="doc">
+        Thuật Ngữ
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="cross-references-and-linkage" names="cross\ references\ and\ linkage đối\ chiếu\ và\ liên\ kết\ --\ cross\ references\ and\ linkage">
+   <title>
+    Đối Chiếu và Liên Kết -- Cross References and Linkage
+   </title>
+   <paragraph>
+    Bạn có thể liên kết đến một tài liệu khác trong bản hướng dẫn sử dụng bằng dòng mã sau:
+   </paragraph>
+   <literal_block force_highlighting="False" language="rst" linenos="False" xml:space="preserve">
+    :doc:`The Title
+   </literal_block>
+  </section>
+  `
+ </section>
+</document>
+<paragraph>
+ Để liên kết đến một phần cụ thể nào đó trong một tài liệu khác (hoặc trong cùng một tài liệu), bạn có thể sử dụng các nhãn hiệu cụ thể như sau:
+</paragraph>
+<literal_block force_highlighting="False" language="rst" linenos="False" xml:space="preserve">
+ .. _sample-label:
+
+[section or image to reference]
+
+Some text :ref:`Optional Title
+ <sample-label>
+  `
+ </sample-label>
+</literal_block>
+<paragraph>
+ Kết nối với một tiêu đề nào đó trong cùng tập tin:
+</paragraph>
+<literal_block force_highlighting="False" language="rst" linenos="False" xml:space="preserve">
+ Titles are Targets
+==================
+
+Body text.
+
+Implicit references, like `Titles are Targets`_
+</literal_block>
+<paragraph>
+ Kết nối với thế giới bên ngoài:
+</paragraph>
+<literal_block force_highlighting="False" language="rst" linenos="False" xml:space="preserve">
+ `Blender Website
+ <https: www.blender.org="">
+  `__
+ </https:>
+</literal_block>
+<section ids="directory-layout" names="directory\ layout bố\ trí\ của\ thư\ mục\ --\ directory\ layout">
+ <title>
+  Bố Trí của Thư Mục -- Directory Layout
+ </title>
+ <paragraph>
+  Các phần nên được kết cấu một cách chung chung như sau:
+ </paragraph>
+ <bullet_list bullet="-">
+  <list_item>
+   <paragraph>
+    <literal>
+     directory_name/
+    </literal>
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <literal>
+       index.rst
+      </literal>
+      (có chứa các đường kết nối đến những tập tin nội bộ)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       introduction.rst
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       section_1.rst
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       section_2.rst
+      </literal>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </list_item>
+ </bullet_list>
+ <paragraph>
+  Ví dụ:
+ </paragraph>
+ <bullet_list bullet="-">
+  <list_item>
+   <paragraph>
+    <literal>
+     rendering/
+    </literal>
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <literal>
+       index.rst
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       cycles/
+      </literal>
+     </paragraph>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        <literal>
+         index.rst
+        </literal>
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <literal>
+         introduction.rst
+        </literal>
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <literal>
+         materials/
+        </literal>
+       </paragraph>
+       <bullet_list bullet="-">
+        <list_item>
+         <paragraph>
+          <literal>
+           index.rst
+          </literal>
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          <literal>
+           introduction.rst
+          </literal>
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          <literal>
+           volumes.rst
+          </literal>
+         </paragraph>
+        </list_item>
+       </bullet_list>
+      </list_item>
+     </bullet_list>
+    </list_item>
+   </bullet_list>
+  </list_item>
+ </bullet_list>
+ <paragraph>
+  Đại ý là cần phải gộp tất cả các nội dung của một phần nội bên trong một thư mục. Lý tưởng nhất là mỗi phần cần có một bản
+  <literal>
+   index.rst
+  </literal>
+  (chứa TOC --
+  <literal>
+   Table Of Content : Mục Lục
+  </literal>
+  ) -- cho phần đó và
+  <literal>
+   introduction.rst
+  </literal>
+  (giới thiệu) cho nội dung của phần đó.
+ </paragraph>
+ <section ids="table-of-contents" names="table\ of\ contents mục\ lục\ --\ table\ of\ contents">
+  <title>
+   Mục Lục -- Table of Contents
+  </title>
+  <paragraph>
+   Theo mặc định, một bảng nội dung nên có hai tầng bậc:
+  </paragraph>
+  <literal_block force_highlighting="False" language="rst" linenos="False" xml:space="preserve">
+   .. toctree::
+   :maxdepth: 2
+
+   introduction.rst
+   perspective.rst
+   depth_of_field.rst
+  </literal_block>
+ </section>
+</section>
+<section ids="further-reading" names="further\ reading đọc\ thêm\ --\ further\ reading">
+ <title>
+  Đọc Thêm -- Further Reading
+ </title>
+ <paragraph>
+  Để học thêm về
+  <strong>
+   reStructuredText
+  </strong>
+  , xin xem:
+ </paragraph>
+ <definition_list>
+  <definition_list_item>
+   <term>
+    <reference name="Sphinx RST Primer" refuri="http://www.sphinx-doc.org/en/stable/rest.html">
+     Sphinx RST Primer
+    </reference>
+   </term>
+   <definition>
+    <paragraph>
+     Giới thiệu cơ bản có chất lượng tốt.
+    </paragraph>
+   </definition>
+  </definition_list_item>
+  <definition_list_item>
+   <term>
+    <reference name="Docutils reStructuredText reference" refuri="http://docutils.sourceforge.net/rst.html">
+     Docutils reStructuredText reference
+    </reference>
+   </term>
+   <definition>
+    <paragraph>
+     Các đường kết nối đến những tham chiếu và tài liệu cho người dùng.
+    </paragraph>
+   </definition>
+  </definition_list_item>
+ </definition_list>
+</section>

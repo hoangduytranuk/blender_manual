@@ -1,0 +1,483 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/addons/add_mesh/geodesic_domes.rst">
+ <section ids="geodesic-domes" names="geodesic\ domes">
+  <title>
+   Geodesic Domes
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Category
+     </field_name>
+     <field_body>
+      <paragraph>
+       Add Mesh
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Description
+     </field_name>
+     <field_body>
+      <paragraph>
+       Create Geodesic object types.
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Location
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`3D View --&gt; Add --&gt; Mesh`">
+        3D View ‣ Add ‣ Mesh
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      File
+     </field_name>
+     <field_body>
+      <paragraph>
+       add_mesh_geodesic_domes folder
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Author
+     </field_name>
+     <field_body>
+      <paragraph>
+       Andy Housten
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Maintainer
+     </field_name>
+     <field_body>
+      <paragraph>
+       To Do
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      License
+     </field_name>
+     <field_body>
+      <paragraph>
+       GPL
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <section ids="activation" names="activation">
+   <title>
+    Activation
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Open Blender and go to Preferences then the Add-ons tab.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Click Add Mesh then Geodesic Domes to enable the script.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      This add-on is bundled with Blender.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="introduction" names="introduction">
+   <title>
+    Introduction
+   </title>
+   <paragraph>
+    Original introduction from Andy Houston (Blender 2.4 series)
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Geodesic spheres based on icosahedrons, octahedrons and tetrahedrons.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Triangular, hexagonal and hex/tri combo face options.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      A function that turns the current shape into its geometric dual (sort of).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Grid, Cylinder, Parabola, Torus and Ball primitives.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Hubs and Struts. Fill out those edges and vertices with your custom, decorative meshes.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Superformula deforming. Create rounded triangles, wobbly shapes, etc.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    Introduction by Brendon Murphy (Blender 2.6/7 series)
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      This script can be used to create geodesic objects, not limited to domes or spheres.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Each mesh type created has it's own set of editable parameters.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      By editing the parameters, you can create many simple or complex mesh shapes.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Create an equal sided pyramid, a soccer ball, a wine glass and more.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Limited only by your imagination (and some cool math limitations).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Create complex mesh deformations with the superformular parameters.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In the next section we will cover the menu types and how to use the parameters to "design" your mesh.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="instructions" names="instructions">
+   <title>
+    Instructions
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Main
+     </term>
+     <definition>
+      <paragraph>
+       The
+       <emphasis>
+        Main
+       </emphasis>
+       menu is where you will do most of your work.
+The geodesic default triangle will be shown in the 3D View and the Object Creation parameters can be accessed here.
+Please note: I find it's easier to use the Object Creation parameters first before moving on to
+Faces, Struts and Hubs, these will be explained in the sections below.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    For now, let's look at the Object Types and their parameters:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Objects
+     </term>
+     <definition>
+      <paragraph>
+       There are six Object types you can create by default.
+Using the parameters you can build upon these objects to create more object types.
+Object Types have unique parameter sets and share the Superformular parameters (described below).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="geodesic-object-class-types" names="geodesic\ object\ class\ types">
+   <title>
+    Geodesic Object Class Types
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Geodesic
+     </term>
+     <definition>
+      <paragraph>
+       Please note, the
+       <emphasis>
+        Frequency
+       </emphasis>
+       parameters have a high impact on object creation.
+To create a Geodesic Dome you must increase the
+       <emphasis>
+        Frequency
+       </emphasis>
+       or the default Triangle.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Subdivide Basic/Triacon
+     </term>
+     <definition>
+      <paragraph>
+       Class 1 is the "equilateral triangle".
+Class 2 is the "cube".
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hedron
+     </term>
+     <definition>
+      <paragraph>
+       Choose between Tetrahedron, Octahedron, Icosahedron.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Point
+     </term>
+     <definition>
+      <paragraph>
+       Point (vertex), edge or face pointing upwards.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Shape
+     </term>
+     <definition>
+      <paragraph>
+       Choose between tri, hex or star face types.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Round
+     </term>
+     <definition>
+      <paragraph>
+       Choose between spherical or flat. (May not work for all object types.)
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="geodesic-object-parameters" names="geodesic\ object\ parameters">
+    <title>
+     Geodesic Object Parameters
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Frequency
+      </term>
+      <definition>
+       <paragraph>
+        Subdivide base triangles.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Radius
+      </term>
+      <definition>
+       <paragraph>
+        Overall radius.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Eccentricity
+      </term>
+      <definition>
+       <paragraph>
+        Scaling on the X/Y axis.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Squish
+      </term>
+      <definition>
+       <paragraph>
+        Scaling on the Z axis.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Square (X/Y)
+      </term>
+      <definition>
+       <paragraph>
+        Superellipse action in X/Y.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Square (Z)
+      </term>
+      <definition>
+       <paragraph>
+        Superellipse action in Z.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Rotate (X/Y)
+      </term>
+      <definition>
+       <paragraph>
+        Rotate superellipse action in X/Y.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Rotate (Z)
+      </term>
+      <definition>
+       <paragraph>
+        Rotate superellipse action in Z.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Dual
+      </term>
+      <definition>
+       <paragraph>
+        Faces become vertices, vertices become faces, edges flip.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="geodesic-object-types" names="geodesic\ object\ types">
+   <title>
+    Geodesic Object Types
+   </title>
+   <paragraph>
+    There are six Object types you can create.
+Each type has it's own set of parameters.
+As you can see most menu items are self explanatory.
+The tooltips will give you further information on individual parameters.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Gap
+     </term>
+     <definition>
+      <paragraph>
+       Shrink faces in direction.
+Add or remove rows of faces based on height (Z) or (X/Y).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phase
+     </term>
+     <definition>
+      <paragraph>
+       Rotate around a pivot.
+Useful for rotating deformation or use with
+       <emphasis>
+        Gap
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="import-your-mesh" names="import\ your\ mesh">
+   <title>
+    Import Your Mesh
+   </title>
+   <paragraph>
+    You can import your own mesh into Geodesic Domes for use within the script.
+This is limited to the Faces, Struts and Hubs menu's.
+   </paragraph>
+  </section>
+  <section ids="faces" names="faces">
+   <title>
+    Faces
+   </title>
+   <paragraph>
+    To Do
+   </paragraph>
+  </section>
+  <section ids="struts" names="struts">
+   <title>
+    Struts
+   </title>
+   <paragraph>
+    To Do
+   </paragraph>
+  </section>
+  <section ids="hubs" names="hubs">
+   <title>
+    Hubs
+   </title>
+   <paragraph>
+    To Do
+   </paragraph>
+  </section>
+  <section ids="superformular-menu" names="superformular\ menu">
+   <title>
+    Superformular Menu
+   </title>
+   <paragraph>
+    To Do
+   </paragraph>
+  </section>
+ </section>
+</document>

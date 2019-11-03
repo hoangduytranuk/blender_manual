@@ -1,0 +1,528 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/forces/force_fields/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Force Fields offer a way to influence a simulation, in example to add extra movement.
+   <reference internal="True" refuri="../../particles/index.html">
+    <inline classes="doc">
+     Particles
+    </inline>
+   </reference>
+   ,
+   <reference internal="True" refuri="../../soft_body/index.html">
+    <inline classes="doc">
+     Soft Bodies
+    </inline>
+   </reference>
+   ,
+   <reference internal="True" refuri="../../rigid_body/index.html">
+    <inline classes="doc">
+     Rigid Bodies
+    </inline>
+   </reference>
+   , and
+   <reference internal="True" refuri="../../cloth/index.html">
+    <inline classes="doc">
+     Cloth objects
+    </inline>
+   </reference>
+   can all be affected by forces fields.
+Force Fields automatically affect everything.
+To remove a simulation or particle system from their influence,
+simply turn down the influence of that type of Force Field in its Field Weights panel.
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     All types of objects and particles can generate fields,
+but only curve object can bear
+     <emphasis>
+      Curve Guides
+     </emphasis>
+     fields.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Force Fields can also be generated from particles.
+See
+     <reference internal="True" refuri="../../particles/emitter/physics/index.html">
+      <inline classes="doc">
+       Particle Physics
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     The objects need to share at least one common layer to have an effect.
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <paragraph>
+   You may limit the effect on particles to a group of objects
+(see the
+   <reference internal="True" refuri="../../particles/emitter/physics/index.html">
+    <inline classes="doc">
+     Particle Physics
+    </inline>
+   </reference>
+   page).
+  </paragraph>
+  <section ids="creating-a-force-field" names="creating\ a\ force\ field --\ creating\ a\ force\ field">
+   <title>
+    -- Creating a Force Field
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể -- Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Lý (Physics) --&gt; Trường (Fields)`">
+         Vật Lý (Physics) ‣ Trường (Fields)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    To create a single Force Field, you can select
+    <inline classes="menuselection" rawtext=":menuselection:`Cộng Thêm (Add) --&gt; Trường Lực (Force Field)`">
+     Cộng Thêm (Add) ‣ Trường Lực (Force Field)
+    </inline>
+    and select the desired force field. This method creates an Empty with the force field attached.
+   </paragraph>
+   <table ids="id1">
+    <title>
+     Examples of Empty with the force field attached.
+    </title>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/physics_forces_force-fields_types_vortex_visualzation.png'}" uri="images/physics_forces_force-fields_types_vortex_visualzation.png"/>
+         <caption>
+          Vortex force field.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/physics_forces_force-fields_types_wind_visualzation.png'}" uri="images/physics_forces_force-fields_types_wind_visualzation.png"/>
+         <caption>
+          Wind force field.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/physics_forces_force-fields_types_force_visualzation.png'}" uri="images/physics_forces_force-fields_types_force_visualzation.png"/>
+         <caption>
+          Force force field.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <paragraph>
+    To create a field from an existing object you have to select the object and
+change to the
+    <emphasis>
+     Physics
+    </emphasis>
+    tab. Select the field type in the
+    <emphasis>
+     Fields
+    </emphasis>
+    menu.
+   </paragraph>
+   <note>
+    <paragraph>
+     After changing the fields
+     <emphasis>
+      Fields
+     </emphasis>
+     panel or deflection
+     <emphasis>
+      Collision
+     </emphasis>
+     panel settings,
+you have to recalculate the particle, soft body or cloth system by
+     <emphasis>
+      Free Cache
+     </emphasis>
+     ,
+this is not done automatically.
+    </paragraph>
+    <paragraph>
+     Particles react to all kinds of
+     <emphasis>
+      Force Fields
+     </emphasis>
+     ,
+soft bodies only to
+     <emphasis>
+      Force
+     </emphasis>
+     ,
+     <emphasis>
+      Wind
+     </emphasis>
+     ,
+     <emphasis>
+      Vortex
+     </emphasis>
+     (they react on
+     <emphasis>
+      Harmonic
+     </emphasis>
+     fields but not in a useful way).
+    </paragraph>
+   </note>
+  </section>
+  <section ids="common-field-settings" names="common\ field\ settings --\ common\ field\ settings">
+   <title>
+    -- Common Field Settings
+   </title>
+   <paragraph>
+    Most Fields have the same settings, even though they act very differently.
+Settings unique to a field type are described below.
+Curve Guide and Texture Fields have very different options.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Dạng -- Shape
+     </term>
+     <definition>
+      <paragraph>
+       Sets the direction which is used to calculate the effector force.
+For force fields from an empty object only
+       <emphasis>
+        Point
+       </emphasis>
+       and
+       <emphasis>
+        Plane
+       </emphasis>
+       shapes are available,
+as for a field from a 3D object there are additional
+       <emphasis>
+        Surface
+       </emphasis>
+       and
+       <emphasis>
+        Every Point
+       </emphasis>
+       options,
+and
+       <emphasis>
+        Curve
+       </emphasis>
+       for a field from a curve.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Điểm -- Point
+        </term>
+        <definition>
+         <paragraph>
+          Point with omni-directional influence.
+Uses the object origin as the effector point.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Mặt Phẳng -- Plane
+        </term>
+        <definition>
+         <paragraph>
+          Influence only in the local Z direction.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bề Mặt -- Surface
+        </term>
+        <definition>
+         <paragraph>
+          The force field acts on a 3D object's surface.
+In this case, the Z axis is the surface normal.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Mọi Điểm -- Every Point
+        </term>
+        <definition>
+         <paragraph>
+          Uses every vertex in the mesh object as an effector point.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đường Cong -- Curve
+        </term>
+        <definition>
+         <paragraph>
+          The force field acts along a curve object.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sức Mạnh/Cường Độ -- Strength
+     </term>
+     <definition>
+      <paragraph>
+       The strength of the field effect.
+This can be positive or negative to change the direction that the force operates in.
+A force field's strength is scaled with the force object's scale,
+allowing you to scale up and down the scene, keeping the same effects.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Luồng -- Flow
+     </term>
+     <definition>
+      <paragraph>
+       If non-zero, the effective force depends on the particle velocity.
+The value defines how quickly the effector force (acceleration)
+will be converted into the constant "air flow" velocity.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Noise Amount
+     </term>
+     <definition>
+      <paragraph>
+       Adds noise to the strength of the force.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mầm -- Seed
+     </term>
+     <definition>
+      <paragraph>
+       Changes the seed of the random noise.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Affect Location
+     </term>
+     <definition>
+      <paragraph>
+       Influence the location of particles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Affect Rotation
+     </term>
+     <definition>
+      <paragraph>
+       Influence the rotation of particles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Absorption
+     </term>
+     <definition>
+      <paragraph>
+       Force gets absorbed by collision objects.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="falloff" names="falloff suy\ giảm\ dần\ --\ falloff">
+    <title>
+     Suy Giảm Dần -- Falloff
+    </title>
+    <paragraph>
+     Here you can specify the shape of the force field
+(if the falloff
+     <emphasis>
+      Power
+     </emphasis>
+     is greater than 0).
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Hình Dạng -- Shape
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Hình Cầu -- Sphere
+         </term>
+         <definition>
+          <paragraph>
+           The falloff is uniform in all directions, as in a sphere.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Hình Ống -- Tube
+         </term>
+         <definition>
+          <paragraph>
+           The falloff results in a tube-shaped force field.
+The field's
+           <emphasis>
+            Radial Power
+           </emphasis>
+           can be adjusted,
+as well as the
+           <emphasis>
+            Minimum
+           </emphasis>
+           and
+           <emphasis>
+            Maximum
+           </emphasis>
+           distances of the field.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Hình Nón -- Cone
+         </term>
+         <definition>
+          <paragraph>
+           The falloff results in a cone-shaped force field. Additional options are the same as those of
+           <emphasis>
+            Tube
+           </emphasis>
+           options.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hướng Z -- Z Direction
+      </term>
+      <definition>
+       <paragraph>
+        The force can be set to apply only in the direction of the positive Z axis, negative Z axis, or both.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lũy Thừa -- Power
+      </term>
+      <definition>
+       <paragraph>
+        How the power of the force field changes with the distance from the force field.
+If
+        <emphasis>
+         r
+        </emphasis>
+        is the distance from the origin of the object, the force changes with 1/
+        <emphasis>
+         r
+        </emphasis>
+        <superscript>
+         power
+        </superscript>
+        .
+A falloff of 2 changes the force field with 1/
+        <emphasis>
+         r
+        </emphasis>
+        <superscript>
+         2
+        </superscript>
+        ,
+which is the falloff of gravitational pull.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khoảng Cách Tối Đa -- Max Distance
+      </term>
+      <definition>
+       <paragraph>
+        Makes the force field affect other objects only within a specified maximum radius
+(shown by an additional circle around the object).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Min Distance
+      </term>
+      <definition>
+       <paragraph>
+        The distance from the object's origin, up to where the force field is effective with full strength.
+If you have a falloff of 0 this parameter will have no effect,
+because the field is effective with full strength up to
+        <emphasis>
+         Max Distance
+        </emphasis>
+        (or the infinity).
+Shown by an additional circle around the object.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

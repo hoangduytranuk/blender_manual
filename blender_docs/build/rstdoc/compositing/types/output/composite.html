@@ -1,0 +1,128 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/output/composite.rst">
+ <target refid="bpy-types-compositornodecomposite">
+ </target>
+ <section ids="composite-node bpy-types-compositornodecomposite" names="composite\ node nút\ tổng\ hợp\ --\ composite\ node bpy.types.compositornodecomposite">
+  <title>
+   Nút Tổng Hợp -- Composite Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeComposite.png'}" uri="images/compositing_node-types_CompositorNodeComposite.png"/>
+   <caption>
+    Nút Tổng Hợp.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Tổng Hợp là nơi kết quả đầu ra từ Trình Tổng Hợp (
+   <emphasis>
+    Compositor
+   </emphasis>
+   ) được kết nối với trình kết xuất (
+   <emphasis>
+    renderer
+   </emphasis>
+   ). Nút này được cập nhật sau mỗi lần kết xuất, nhưng cũng phản ánh các thay đổi trong cây nút (với điều kiện ít nhất một nút đầu vào hoàn tất đã được kết nối).
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <paragraph>
+    Việc kết nối một nút nào đó với nút Tổng Hợp (
+    <emphasis>
+     Composite
+    </emphasis>
+    ) sẽ cung cấp kết quả của cây trước nút đó vào trình Tổng Hợp (
+    <emphasis>
+     Compositor
+    </emphasis>
+    ).
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh RGB. Mặc định là màu đen, do đó, nếu nút này không được kết nối vào đâu cả thì nó sẽ cho một hình ảnh trống (
+       <emphasis>
+        blank image
+       </emphasis>
+       ).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Alpha
+     </term>
+     <definition>
+      <paragraph>
+       Kênh Alpha.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Z
+     </term>
+     <definition>
+      <paragraph>
+       Chiều/Độ sâu Z.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Dùng Alpha -- Use Alpha
+     </term>
+     <definition>
+      <paragraph>
+       Kênh alpha sử dụng, màu sắc được xử lý như alpha
+       <emphasis>
+        nhân trước
+       </emphasis>
+       (
+       <emphasis>
+        premultiplied
+       </emphasis>
+       ). Nếu bị tắt thì kênh alpha sẽ được đặt thành giá trị 1 và màu sẽ được xử lý như alpha
+       <emphasis>
+        thẳng
+       </emphasis>
+       (
+       <emphasis>
+        straight
+       </emphasis>
+       ), tức là kênh màu không thay đổi.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <paragraph>
+    Nút này không có ổ cắm đầu ra.
+   </paragraph>
+   <note>
+    <paragraph>
+     Nếu nhiều nút Tổng Hợp (
+     <emphasis>
+      Composite
+     </emphasis>
+     ) được thêm vào thì chỉ nút hiện đang hoạt động (được chọn cuối cùng, nêu bật với tiêu đề hơi tối hơn một chút) là được sử dụng mà thôi.
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

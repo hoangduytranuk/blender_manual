@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Biên Soạn -- Editing &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/video_editing/sequencer/editing.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Dải Siêu -- Meta Strips" href="meta.html" />
+    <link rel="prev" title="Lựa Chọn -- Selecting" href="selecting.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Video Editing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Bộ Phối Hình -- Sequencer</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="navigating.html">Điều Hướng -- Navigating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strips/index.html">Dải Phim -- Strips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Biên Soạn -- Editing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#move">Move</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#move-extend-from-frame">Move/Extend from Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#slip-strip-content">Xê Dịch Nội Dung Đoạn Phim -- Slip Strip Content</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#snap-strips">Bám Dính các Dải -- Snap Strips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clear-strips-offsets">Clear Strips Offsets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#duplicate-strips">Duplicate Strips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-strips">Delete Strips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#separate-images">Phân Tách Hình Ảnh -- Separate Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cut">Cut</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hold-cut">Hold Cut</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mute">Giải Hoạt -- Mute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#change">Thay Đổi -- Change</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reassign-inputs">Đổi Đầu Vào -- Reassign Inputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#context-menu">Context Menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fades">Fades</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="meta.html">Dải Siêu -- Meta Strips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties/index.html">Tính Chất -- Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../preview/index.html">Duyệt Thảo -- Preview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../editors/index.html">Trình Biên Soạn -- Editors</a> &raquo;</li>
+        
+          <li><a href="../index.html">Video Editing</a> &raquo;</li>
+        
+          <li><a href="index.html">Bộ Phối Hình -- Sequencer</a> &raquo;</li>
+        
+      <li>Biên Soạn -- Editing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/video_editing/sequencer/editing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="editing">
+<h1>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="move">
+<h2>Move<a class="headerlink" href="#move" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Transform ‣ Move</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">G</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pressing <kbd class="kbd docutils literal notranslate">G</kbd> moves the all selected strip(s).
+Move your mouse horizontally (left/right) to change the strip's position in time.
+Move vertically (up/down) to change channels.</p>
+<p>Holding down <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while dragging snaps to the start and endpoints of other strips.
+The position of the mouse relative to the selection influences where the strips are snapped.
+If it is closer to the start of the selection, then the start frame of the selection gets snapped,
+else the end frame will get snapped.</p>
+<p>To &quot;ripple edit&quot; (make room for strips you drag) hold <kbd class="kbd docutils literal notranslate">Alt</kbd> when placing a strip.</p>
+<p>You can also lock the direction to time with <kbd class="kbd docutils literal notranslate">X</kbd> or to change the strip's channel with <kbd class="kbd docutils literal notranslate">Y</kbd>.</p>
+<p>It is possible to move strips using mouse by dragging them while holding <kbd class="kbd docutils literal notranslate">LMB</kbd>.
+Currently it is possible to move only 1 strip by dragging</p>
+<div class="section" id="start-frame-offset">
+<h3>Dịch Chuyển (Vị Trí) của Khung Hình Đầu Tiên -- Start Frame Offset<a class="headerlink" href="#start-frame-offset" title="Permalink to this headline">¶</a></h3>
+<p>The <em>start frame offset</em> for that strip could be selected by clicking <kbd class="kbd docutils literal notranslate">LMB</kbd> on the left arrow of the strip;
+holding it down (or pressing <kbd class="kbd docutils literal notranslate">G</kbd> and then moving the mouse left/right)
+changes the start frame within the strip by the number of frames you move it.
+The frame number label under the strip displays the start frame of the strip.</p>
+<ul class="simple">
+<li>If you have a 20-image sequence strip, and drag the left arrow to the right by 10 frames,
+the strip will start at image 11 (images 1 to 10 will be skipped).
+Use this to clip off a roll-up or undesired lead-in.</li>
+<li>Dragging the left arrow left will create a lead-in (copies) of the first frame for as many frames as you drag it.
+Use this when you want some frames for a transition at the start of the clip.</li>
+</ul>
+</div>
+<div class="section" id="end-frame">
+<h3>Khung Hình Cuối -- End Frame<a class="headerlink" href="#end-frame" title="Permalink to this headline">¶</a></h3>
+<p>The <em>end frame</em> of the strip could be selected by clicking <kbd class="kbd docutils literal notranslate">LMB</kbd> on the right arrow of the strip;
+holding it down (or pressing <kbd class="kbd docutils literal notranslate">G</kbd>) and then moving the mouse changes the ending frame within the strip.
+The frame number label over the strip displays the end frame of the strip.</p>
+<ul class="simple">
+<li>Dragging the right arrow to the left shortens the clip;
+any original images at the tail are ignored. Use this to quickly clip off a roll-down.</li>
+<li>Dragging the right arrow to the right extends the clip.
+For movies and images sequences, more of the animation is used until exhausted.
+Extending a clip beyond its length will render as a copy of the last image.
+Use this for transitions out of this clip.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>Chọn nhiều cùng một lúc -- Multiple selection</p>
+<p class="last">You can select several (handles of) strips by <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> clicking: when you press <kbd class="kbd docutils literal notranslate">G</kbd>,
+everything that is selected will move with your mouse -- this means that,
+for example, you can at the same time move a strip, shorten two others, and extend a forth one.</p>
+</div>
+</div>
+</div>
+<div class="section" id="move-extend-from-frame">
+<h2>Move/Extend from Frame<a class="headerlink" href="#move-extend-from-frame" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Transform ‣ Move/Extend From Playhead</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">E</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>With a number of strips selected, pressing <kbd class="kbd docutils literal notranslate">E</kbd> lets you interactively extend the strips.
+This is similar to moving but is useful for extending (or shortening) time around the current frame.</p>
+<p>All selected strip handles to the &quot;mouse side&quot; of the current frame indicator will transform together,
+so you can change the duration of the current frame.</p>
+</div>
+<div class="section" id="slip-strip-content">
+<h2>Xê Dịch Nội Dung Đoạn Phim -- Slip Strip Content<a class="headerlink" href="#slip-strip-content" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Transform ‣ Slip Strip Contents</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">S</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Slip tool allows you to change the position of the contents of a strip without moving the strip itself.</p>
+</div>
+<div class="section" id="snap-strips">
+<h2>Bám Dính các Dải -- Snap Strips<a class="headerlink" href="#snap-strips" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Transform ‣ Snap Strips to Playhead</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-S</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Position your cursor (vertical blue line) to the time you want.
+Snap to current frame to start a strip exactly at the beginning of the frame.
+If your Time display is in seconds,
+you can get to fractional parts of a second by zooming the display;
+you can get all the way down to an individual frame.</p>
+</div>
+<div class="section" id="clear-strips-offsets">
+<h2>Clear Strips Offsets<a class="headerlink" href="#clear-strips-offsets" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Transform ‣ Clear Strips Offset</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-O</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To reset the (soft) start/end frame handles.</p>
+</div>
+<div class="section" id="duplicate-strips">
+<h2>Duplicate Strips<a class="headerlink" href="#duplicate-strips" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Duplicate Strips</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-D</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Duplicate a strip to make an unlinked copy;
+drag it to a time and channel, and drop it by <kbd class="kbd docutils literal notranslate">LMB</kbd> click.</p>
+</div>
+<div class="section" id="delete-strips">
+<h2>Delete Strips<a class="headerlink" href="#delete-strips" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Delete</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Delete</kbd> / <kbd class="kbd docutils literal notranslate">X</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Delete the selected strip(s).</p>
+</div>
+<div class="section" id="separate-images">
+<h2>Phân Tách Hình Ảnh -- Separate Images<a class="headerlink" href="#separate-images" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Separate Images</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Y</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For images sequence only -- Converts the strip into multiple strips, one strip for each frame.
+Useful for slide shows and other cases where you want to bring in a set on non-continuous images.</p>
+<dl class="docutils">
+<dt>Chiều Dài -- Length</dt>
+<dd>You have to specify the duration you want the resulting strips will be.</dd>
+</dl>
+</div>
+<div class="section" id="cut">
+<h2>Cut<a class="headerlink" href="#cut" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Cut</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">K</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This cuts the selected strip in two at the current frame.
+This will result in two strips which use the same source, fitting the original strip's timing and length.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Gợi ý</p>
+<p class="last">This can be thought of as a quick way to duplicate the current strip,
+adjusting the start/end frames to form two non-overlapping strips showing the same content as before.</p>
+</div>
+</div>
+<div class="section" id="hold-cut">
+<h2>Hold Cut<a class="headerlink" href="#hold-cut" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Hold Cut</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-K</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Like <em>Cut</em>, it cuts a strip in two distinct strips;
+however you will not be able to drag the endpoints to show the frames past the cut of each resulting strip.</p>
+<p>Although you can adjust the <a class="reference internal" href="properties/strip.html#sequencer-duration-hard"><span class="std std-ref">Hold Offset</span></a>
+number fields in the <em>Strip Info</em> panel.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Gợi ý</p>
+<p class="last">This can be thought of as a way to simulate splitting the video file in two parts at the cut-point,
+replacing the current strip with each.</p>
+</div>
+</div>
+<div class="section" id="mute">
+<h2>Giải Hoạt -- Mute<a class="headerlink" href="#mute" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Mute/Unmute Strips <kbd class="kbd docutils literal notranslate">H</kbd>, <kbd class="kbd docutils literal notranslate">Alt-H</kbd></dt>
+<dd>Mute or unmute the selected strips.</dd>
+<dt>Mute/Unmute Deselected Strips <kbd class="kbd docutils literal notranslate">Shift-H</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Alt-H</kbd></dt>
+<dd>Mute or unmute all strips but the selected.</dd>
+</dl>
+</div>
+<div class="section" id="change">
+<span id="sequencer-edit-change"></span><h2>Thay Đổi -- Change<a class="headerlink" href="#change" title="Permalink to this headline">¶</a></h2>
+<p>The Change sequence operator modifies the file path or effect inputs/type on active strip.</p>
+<dl class="docutils">
+<dt>Hiệu Ứng -- Effect</dt>
+<dd>Switch the effects on a selected Effect strip.</dd>
+<dt>Đường Dẫn/Tập Tin -- Path/Files</dt>
+<dd>Changes the source file contained in a selected strip.</dd>
+</dl>
+</div>
+<div class="section" id="reassign-inputs">
+<h2>Đổi Đầu Vào -- Reassign Inputs<a class="headerlink" href="#reassign-inputs" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Strip ‣ Effect Strip ‣ Reassign Inputs</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">R</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This tool can be used to assign (reconnect) effect strips in a different way.
+Just select three arbitrary strips and press <kbd class="kbd docutils literal notranslate">R</kbd>.
+If you don't create a cycle, those will be connected to a new effect chain.</p>
+<p>The Strip Menu contains additional tools for working with strips:</p>
+<ul class="simple">
+<li>Chèn Thêm/Xóa Bỏ Khoảng Cách Trống -- Insert/Remove Gap</li>
+<li>Tuần Tự Hóa Phim -- Deinterlace Movies</li>
+<li>Đặt Kích Thước Kết Xuất -- Set Render Size</li>
+<li>Tái Nạp các Dải -- Reload Strips</li>
+<li>Tráo Đổi các Đầu Vào -- Swap Inputs</li>
+<li>Khóa Dải -- Lock Strips</li>
+<li>Mở Khóa Dải -- UnLock Strips</li>
+<li>Tráo Đổi các Dải -- Swap Strips</li>
+</ul>
+</div>
+<div class="section" id="context-menu">
+<h2>Context Menu<a class="headerlink" href="#context-menu" title="Permalink to this headline">¶</a></h2>
+<p>You can activate context menu by clicking <kbd class="kbd docutils literal notranslate">RMB</kbd> in the Sequencer's timeline.</p>
+<p>In this menu you can quickly access some common tools such as:</p>
+<ul class="simple">
+<li>Copy and paste strips</li>
+<li>Cut, delete and duplicate strips</li>
+<li>Slip strip contents</li>
+<li>Snap to playhead</li>
+<li>Remove and insert gaps</li>
+<li>Lock or mute strips</li>
+</ul>
+</div>
+<div class="section" id="fades">
+<h2>Fades<a class="headerlink" href="#fades" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Add ‣ Fades</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This menu section contains operators to add and remove fades to strips. In case of visual strips, operators will animate opacity, or volume in case of audio strips.</p>
+<dl class="docutils">
+<dt>Clear Fades</dt>
+<dd>Removes fade animation from selected sequences.</dd>
+<dt>Fade In And Out</dt>
+<dd>Fade selected strips in and out.</dd>
+<dt>Fade In</dt>
+<dd>Fade in selected strips.</dd>
+<dt>Fade Out</dt>
+<dd>Fade out selected strips.</dd>
+<dt>From Playhead</dt>
+<dd>Fade from the time cursor to the end of overlapping sequences.</dd>
+<dt>To Playhead</dt>
+<dd>Fade from the start of sequences under the time cursor to the current frame.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="meta.html" class="btn btn-neutral float-right" title="Dải Siêu -- Meta Strips" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="selecting.html" class="btn btn-neutral float-left" title="Lựa Chọn -- Selecting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

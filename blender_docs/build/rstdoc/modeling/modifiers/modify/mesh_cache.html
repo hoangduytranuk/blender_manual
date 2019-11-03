@@ -1,0 +1,276 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/modify/mesh_cache.rst">
+ <target refid="bpy-types-meshcachemodifier">
+ </target>
+ <section ids="mesh-cache-modifier bpy-types-meshcachemodifier" names="mesh\ cache\ modifier --\ mesh\ cache\ modifier bpy.types.meshcachemodifier">
+  <title>
+   -- Mesh Cache Modifier
+  </title>
+  <paragraph>
+   The Mesh Cache modifier main use is for animated mesh data to be applied to a mesh and
+played back, deforming the mesh.
+  </paragraph>
+  <paragraph>
+   This works in a similar way to
+   <reference internal="True" refuri="../../../animation/shape_keys/introduction.html">
+    <inline classes="doc">
+     shape keys
+    </inline>
+   </reference>
+   ,
+but is aimed at playing back external files and is often used for interchange between applications.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_modify_mesh-cache_panel.png'}" uri="images/modeling_modifiers_modify_mesh-cache_panel.png"/>
+    <caption>
+     Mesh Cache Modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Định Dạng -- Format
+     </term>
+     <definition>
+      <paragraph>
+       The input file format (currently
+       <literal>
+        .mdd
+       </literal>
+       and
+       <literal>
+        .pc2
+       </literal>
+       are supported).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tập Tin -- File Path
+     </term>
+     <definition>
+      <paragraph>
+       Path to the cache file.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="evaluation" names="evaluation ước\ tính\ --\ evaluation">
+    <title>
+     Ước Tính -- Evaluation
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Tác Động/Ảnh Hưởng -- Influence
+      </term>
+      <definition>
+       <paragraph>
+        Factor to adjust the influence of the modifier's deformation, useful for blending in/out from the cache data.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chế Độ Biến Dạng -- Deform Mode
+      </term>
+      <definition>
+       <paragraph>
+        This setting defaults to
+        <emphasis>
+         Overwrite
+        </emphasis>
+        which will replace the vertex locations with those in the cache file.
+However, you may want to use shape keys, for example, and mix them with the mesh cache.
+In this case you can select the
+        <emphasis>
+         Deform
+        </emphasis>
+        option which integrates deformations with the mesh cache result.
+       </paragraph>
+       <note>
+        <paragraph>
+         This feature is limited to making smaller, isolated edits and
+will not work for larger changes such as re-posing limbs.
+        </paragraph>
+       </note>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Nội Suy -- Interpolation
+      </term>
+      <definition>
+       <paragraph>
+        <emphasis>
+         None
+        </emphasis>
+        , or
+        <emphasis>
+         Linear
+        </emphasis>
+        , which will blend between frames.
+Use linear when the frames in the cache file do not match up exactly with the frames in the blend-file.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="time-mapping" names="time\ mapping --\ time\ mapping">
+    <title>
+     -- Time Mapping
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Chế Độ Thời Gian -- Time Mode
+      </term>
+      <definition>
+       <paragraph>
+        Select how time is calculated.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Khung Hình -- Frame
+         </term>
+         <definition>
+          <paragraph>
+           Allows you to control the frames,
+which will ignore timing data in the file but is often useful since it gives simple control.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Thời Gian -- Time
+         </term>
+         <definition>
+          <paragraph>
+           Evaluates time in seconds,
+taking into account timing information from the file (offset and frame-times).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Hệ Số -- Factor
+         </term>
+         <definition>
+          <paragraph>
+           Evaluates the entire animation as a value in the [0, 1] range.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chế Độ Chơi -- Play Mode
+      </term>
+      <definition>
+       <paragraph>
+        Select how playback operates.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Cảnh -- Scene
+         </term>
+         <definition>
+          <paragraph>
+           Use the current frame from the scene to control playback.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Khởi Đầu Khung Hình -- Frame Start
+            </term>
+            <definition>
+             <paragraph>
+              Play the cache starting from this frame.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Tỷ Lệ Khung Hình -- Frame Scale
+            </term>
+            <definition>
+             <paragraph>
+              Scale time by this factor (applied after the start value).
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Tùy Chỉnh -- Custom
+         </term>
+         <definition>
+          <paragraph>
+           Control animation timing manually.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             -- Evaluation Value
+            </term>
+            <definition>
+             <paragraph>
+              Property used for animation time,
+this gives more control of timing (typically this value will be animated).
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="axis-mapping" names="axis\ mapping --\ axis\ mapping">
+    <title>
+     -- Axis Mapping
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       -- Forward/Up Axis
+      </term>
+      <definition>
+       <paragraph>
+        The axis for forward and up used in the source file.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lật Trục -- Flip Axis
+      </term>
+      <definition>
+       <paragraph>
+        In rare cases you may also need to flip the coordinates on an axis.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <tip>
+     <paragraph>
+      Both MDD and PC2 depend on the vertex order on the mesh remaining unchanged.
+This is a limitation of this method, so take care not to add/remove/reorder vertices once this modifier is used.
+     </paragraph>
+    </tip>
+   </section>
+  </section>
+ </section>
+</document>

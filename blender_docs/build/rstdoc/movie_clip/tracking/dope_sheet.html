@@ -1,0 +1,146 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/movie_clip/tracking/dope_sheet.rst">
+ <section ids="dope-sheet-view" names="dope\ sheet\ view góc\ nhìn\ bảng\ hành\ động\ --\ dope\ sheet\ view">
+  <title>
+   Góc Nhìn Bảng Hành Động -- Dope Sheet View
+  </title>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/movie-clip_tracking_dope-sheet_example.png'}" uri="images/movie-clip_tracking_dope-sheet_example.png"/>
+   <caption>
+    Dope Sheet View.
+   </caption>
+  </figure>
+  <paragraph>
+   The Dope Sheet View is used to visualize motion tracking data,
+it is implemented as separate view of the Movie Clip editor just like the Graph View.
+  </paragraph>
+  <paragraph>
+   It displays channels for selected tracks and each channel visualizes tracked
+segments of tracks as dark bars and keyframed positions of tracks as small diamonds.
+  </paragraph>
+  <paragraph>
+   The background is highlighted depending on the number of tracks in a frame.
+This means that if for a frame (or sequence of frames) there are less than eight tracks,
+the background will turn red;
+if there are from eight to sixteen tracks, the background will be yellow.
+  </paragraph>
+  <paragraph>
+   This is only a visual feedback, which doesn't mean that the camera motion will not
+reconstruct with less than eight tracks. It only means that you should pay attention to those frames and
+check if all possible good feature points are tracked there. Remember, if there are no good feature points in
+the frame and there are less than 16 tracks in the frame, it doesn't mean the solution won't be accurate.
+Rather, adding more tracks on bad feature points will reduce the accuracy of solution.
+  </paragraph>
+  <section ids="header" names="header tiêu\ đề\ --\ header">
+   <title>
+    Tiêu Đề -- Header
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/movie-clip_tracking_dope-sheet_sort.png'}" uri="images/movie-clip_tracking_dope-sheet_sort.png"/>
+    <caption>
+     Sort order of the channels.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hiển Thị -- Show
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Duy cái Được Chọn (biểu tượng con trỏ chuột) -- Only selected (mouse cursor icon)
+        </term>
+        <definition>
+         <paragraph>
+          Limits dope-sheet channels to only information about selected tracks.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Ẩn Giấu (biểu tượng hình con ma) -- Hidden (ghost icon)
+        </term>
+        <definition>
+         <paragraph>
+          Includes information from hidden tracks.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phương Pháp Sắp Xếp Thứ Tự -- Sort Method
+     </term>
+     <definition>
+      <paragraph>
+       Thứ tự sắp xếp của các dấu giám sát.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tên -- Name
+        </term>
+        <definition>
+         <paragraph>
+          Sắp xếp tên của các dấu giám sát theo thứ tự an-pha-bê.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Dài Nhất -- Longest
+        </term>
+        <definition>
+         <paragraph>
+          Sắp xếp thứ tự các dấu giám sát theo khoảng cách chiều dài giám sát lớn nhất.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tổng Cộng -- Total
+        </term>
+        <definition>
+         <paragraph>
+          Sắp xếp thứ tự các dấu giám sát theo số lượng khung hình tổng quan.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Sai Số Trung Bình -- Average Error
+        </term>
+        <definition>
+         <paragraph>
+          Sắp xếp thứ tự các dấu giám sát theo sai số tái dự phóng trung bình sau khi giải nghiệm máy quay phim hoặc chuyển động của vật thể.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đảo Nghịch -- Invert
+     </term>
+     <definition>
+      <paragraph>
+       To change the sort order from ascending to descending.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <paragraph>
+    The Dope Sheet View is for visualization and does not have any tools to actually edit data.
+   </paragraph>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2D Layers &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/grease_pencil/properties/layers.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Onion Skinning" href="onion_skinning.html" />
+    <link rel="prev" title="Object Data" href="data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Grease Pencil</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structure.html">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../selecting.html">Selecting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multiframe.html">Multiframe</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Properties</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="data.html">Object Data</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2D Layers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#layers-list">Layers List</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adjustments">Adjustments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#relations">Relations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#display">Display</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="onion_skinning.html">Onion Skinning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strokes.html">Strokes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display.html">Viewport Display</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Grease Pencil Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Grease Pencil Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#modes">Modes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Grease Pencil</a> &raquo;</li>
+        
+          <li><a href="index.html">Properties</a> &raquo;</li>
+        
+      <li>2D Layers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/grease_pencil/properties/layers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="d-layers">
+<span id="bpy-types-gpencillayer"></span><h1>2D Layers<a class="headerlink" href="#d-layers" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-right" id="id1">
+<img alt="../../_images/grease-pencil_properties_layers_panel.png" src="../../_images/grease-pencil_properties_layers_panel.png" />
+<p class="caption"><span class="caption-text">Grease Pencil Layers panel.</span></p>
+</div>
+<div class="section" id="layers-list">
+<h2>Layers List<a class="headerlink" href="#layers-list" title="Permalink to this headline">¶</a></h2>
+<p><em>Grease Pencil</em> objects each have a list of 2D layers for grouping and arranging strokes
+in a <a class="reference internal" href="../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">List view</span></a>. Any stroke can only belong to a single 2D layer.</p>
+<p>There is always only one active layer in the list (the selected one).
+When you draw, the new strokes are added to the active layer.</p>
+<p>By default the view order of the layers in the viewport is top to bottom.</p>
+<p>Every layer correspond to a channel in the Dope Sheet editor (in Grease Pencil mode).
+See <a class="reference internal" href="../../editors/dope_sheet/grease_pencil.html"><span class="doc">Dope Sheet</span></a> for more information.</p>
+<p>Layers can also be used together with Modifiers to only affects part of your drawing.
+See <a class="reference internal" href="../modifiers/introduction.html"><span class="doc">Modifiers</span></a> for more information.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">Sometimes the layers that your are not working on could be a distraction,
+you can activate <em>Fade Layers</em> in overlays to control the opacity of the non active layers.
+See <a class="reference internal" href="../../editors/3dview/controls/overlays.html"><span class="doc">Overlays</span></a> for more information.</p>
+</div>
+<p id="bpy-types-gpencillayer-use-onion-skinning"><span id="bpy-types-gpencillayer-hide"></span><span id="bpy-types-gpencillayer-lock"></span><span id="bpy-types-gpencillayer-mask-layer"></span>Next to the layer name there are four icons buttons that control common properties of the layer:</p>
+<dl class="docutils" id="bpy-types-gpencillayer-use-solo-mode">
+<dt>Mask (mask icon)</dt>
+<dd><p class="first">When the mask is enabled, all the layers below the current one function as a single mask.
+This mask hide any pixel in the current layer outside the mask created by the underlying layers.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id2">
+<img alt="../../_images/grease-pencil_properties_layers_mask-off.png" src="../../_images/grease-pencil_properties_layers_mask-off.png" />
+<p class="caption"><span class="caption-text">Red stroke on top layer without mask.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id3">
+<img alt="../../_images/grease-pencil_properties_layers_mask-on.png" src="../../_images/grease-pencil_properties_layers_mask-on.png" />
+<p class="caption"><span class="caption-text">Red stroke on top layer with mask activated.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Lock (padlock icon)</dt>
+<dd>Toggle layer from being editable.</dd>
+<dt>Viewport/Render Visibility (eye icon)</dt>
+<dd>Toggle layer visibility in the viewport and in render.</dd>
+<dt>Onion Skinning (onion skin icon)</dt>
+<dd>Toggle the use the layer for <a class="reference internal" href="onion_skinning.html"><span class="doc">Onion Skinning</span></a>.</dd>
+</dl>
+<p id="bpy-types-gpencillayer-opacity"><span id="bpy-types-gpencillayer-blend-mode"></span>Below the layers list there are additional common settings:</p>
+<dl class="docutils">
+<dt>Blend</dt>
+<dd>The layer blending operation to perform. See <a class="reference internal" href="../../glossary/index.html#term-color-blend-modes"><span class="xref std std-term">Color Blend Modes</span></a>.</dd>
+<dt>Opacity</dt>
+<dd>Used to set the opacity of the layer.</dd>
+</dl>
+<div class="section" id="specials">
+<h3>Specials<a class="headerlink" href="#specials" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Duplicate Layer</dt>
+<dd>Makes an exact copy of the selected layer appending a number to differentiate its name.</dd>
+<dt>Show All</dt>
+<dd>Turns on the visibility of every layer in the list.</dd>
+<dt>Hide Others</dt>
+<dd>Turns off the visibility of every layer in the list except the active one.</dd>
+<dt>Lock All</dt>
+<dd>Locks edition of all the layers in the list.</dd>
+<dt>Unlock All</dt>
+<dd>Unlocks edition of all the layers in the list.</dd>
+<dt>Autolock inactive layer</dt>
+<dd>Locks automatically the edition of every layer in the list except the active one.
+This way you avoid to make unwanted changes in other layers without the need to lock them everytime.</dd>
+<dt>Merge Down</dt>
+<dd>Merge the selected layer with the layer below, the new layer keeps the name of the lower layer.</dd>
+<dt>Copy Layer to Object</dt>
+<dd>Makes a copy of the layer and move it to the selected <em>Grease Pencil</em> object.</dd>
+</dl>
+</div>
+<div class="section" id="lock-and-visibility-general-controls">
+<h3>Lock and Visibility General Controls<a class="headerlink" href="#lock-and-visibility-general-controls" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Lock (padlock icon)</dt>
+<dd>Toggle whether the active layer is the only one that can be edited.</dd>
+<dt>Visibility (screen icon)</dt>
+<dd>Toggle whether the active layer is the only one that can be edited and is visible.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="adjustments">
+<h2>Adjustments<a class="headerlink" href="#adjustments" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id4">
+<img alt="../../_images/grease-pencil_properties_layers_adjustment.png" src="../../_images/grease-pencil_properties_layers_adjustment.png" />
+<p class="caption"><span class="caption-text">Layers adjustment panel.</span></p>
+</div>
+<dl class="docutils">
+<dt>Tint Color/Factor</dt>
+<dd>Color that tint any material colors used in the layer.
+The <em>Factor</em> controls the amount of tint color to apply.</dd>
+<dt>Stroke Thickness</dt>
+<dd>Thickness value that override the strokes thickness in the layer.</dd>
+<dt>Pass Index</dt>
+<dd><p class="first">The layer index number can be used with some modifiers to restrict changes to only certain areas.</p>
+<p class="last">See <a class="reference internal" href="../modifiers/introduction.html"><span class="doc">Modifiers</span></a> for more information.</p>
+</dd>
+<dt>View Layer</dt>
+<dd>Defines the View Layer to use for the <em>Grease Pencil</em> layer.
+If empty, the layer will be included in all View Layers.
+This is useful to separate drawings parts for <a class="reference internal" href="../../compositing/introduction.html"><span class="doc">compositing</span></a>.</dd>
+<dt>Disallow Locked Materials Editing</dt>
+<dd>Avoids editing locked materials in the layer. When disabled,
+any material can be edited even if they are locked in the material list.</dd>
+</dl>
+</div>
+<div class="section" id="relations">
+<h2>Relations<a class="headerlink" href="#relations" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Parent/Type</dt>
+<dd>Select a Parent object and Type to manipulate the layer.
+The layer will inherit the transformations of the parent,
+this is especially useful when rigging for cut-out animation.</dd>
+</dl>
+</div>
+<div class="section" id="display">
+<h2>Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Custom Channel Color</dt>
+<dd>Sets the color to use in the channel region of the <a class="reference internal" href="../../editors/dope_sheet/grease_pencil.html"><span class="doc">Dope Sheet</span></a>.</dd>
+<dt>Show Only On Keyframed</dt>
+<dd>Makes the layer visible in the viewport only if it has a keyframe in the actual frame.
+This helps for example when you are in the inking process using the <em>Fill</em> tool and want to only see
+the strokes that are in the actual frame to avoid fill in unwanted regions.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="onion_skinning.html" class="btn btn-neutral float-right" title="Onion Skinning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="data.html" class="btn btn-neutral float-left" title="Object Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

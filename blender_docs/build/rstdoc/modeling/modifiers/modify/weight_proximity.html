@@ -1,0 +1,271 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/modify/weight_proximity.rst">
+ <target refid="bpy-types-vertexweightproximitymodifier">
+ </target>
+ <section ids="vertex-weight-proximity-modifier bpy-types-vertexweightproximitymodifier" names="vertex\ weight\ proximity\ modifier --\ vertex\ weight\ proximity\ modifier bpy.types.vertexweightproximitymodifier">
+  <title>
+   -- Vertex Weight Proximity Modifier
+  </title>
+  <paragraph>
+   This modifier sets the weights of the given vertex group,
+based on the distance between the object (or its vertices),
+and another target object (or its geometry).
+  </paragraph>
+  <warning>
+   <paragraph>
+    This modifier does implicit clamping of weight values in the standard (0.0 to 1.0) range.
+All values below 0.0 will be set to 0.0, and all values above 1.0 will be set to 1.0.
+   </paragraph>
+  </warning>
+  <note>
+   <paragraph>
+    You can view the modified weights in Weight Paint Mode.
+This also implies that you will have to disable the
+    <emphasis>
+     Vertex Weight Proximity
+    </emphasis>
+    modifier
+if you want to see the original weights of the vertex group you are editing.
+   </paragraph>
+  </note>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_modify_weight-proximity_panel.png'}" uri="images/modeling_modifiers_modify_weight-proximity_panel.png"/>
+    <caption>
+     The Vertex Weight Proximity modifier panel.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       Nhóm điểm đỉnh để tác động.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vật Thể Mục Tiêu -- Target Object
+     </term>
+     <definition>
+      <paragraph>
+       The object from which to compute distances.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Proximity mode
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         -- Object Distance
+        </term>
+        <definition>
+         <paragraph>
+          Use the distance between the modified mesh object and the target object as
+weight for all vertices in the affected vertex group.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Geometry Distance
+        </term>
+        <definition>
+         <paragraph>
+          Use the distance between each vertex and the target object, or its geometry.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Điểm Đỉnh -- Vertex
+           </term>
+           <definition>
+            <paragraph>
+             This will set each vertex's weight from its distance to the nearest vertex of the target object.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Cạnh -- Edge
+           </term>
+           <definition>
+            <paragraph>
+             This will set each vertex's weight from its distance to the nearest edge of the target object.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Bề Mặt -- Face
+           </term>
+           <definition>
+            <paragraph>
+             This will set each vertex's weight from its distance to the nearest face of the target object.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+         <note>
+          <paragraph>
+           If you enable more than one of them, the shortest distance will be used.
+If the target object has no geometry (e.g. an empty or camera),
+it will use the location of the object itself.
+          </paragraph>
+         </note>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thấp Nhất -- Lowest
+     </term>
+     <definition>
+      <paragraph>
+       Distance mapping to 0.0 weight.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cao Nhất -- Highest
+     </term>
+     <definition>
+      <paragraph>
+       Distance mapping to 1.0 weight.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <tip>
+    <paragraph>
+     <emphasis>
+      Lowest
+     </emphasis>
+     can be set above
+     <emphasis>
+      Highest
+     </emphasis>
+     to reverse the mapping.
+    </paragraph>
+   </tip>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Loại Giảm Dần -- Falloff Type
+     </term>
+     <definition>
+      <paragraph>
+       Type of mapping:
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tuyến Tính -- Linear
+        </term>
+        <definition>
+         <paragraph>
+          No mapping.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đồ Thị Tự Chọn -- Custom Curve
+        </term>
+        <definition>
+         <paragraph>
+          Allows the user to manually define the mapping using a curve.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Sharp, Smooth, Root and Sphere
+        </term>
+        <definition>
+         <paragraph>
+          These are classical mapping functions, from spikiest to roundest.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Ngẫu Nhiên -- Random
+        </term>
+        <definition>
+         <paragraph>
+          Uses a random value for each vertex.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Làm Tròn Số -- Median Step
+        </term>
+        <definition>
+         <paragraph>
+          Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="influence-mask-options" names="influence/mask\ options tùy\ chọn\ về\ tác\ động/màn\ chắn\ --\ influence/mask\ options">
+    <title>
+     Tùy Chọn về Tác Động/Màn Chắn -- Influence/Mask Options
+    </title>
+    <paragraph>
+     Those settings are the same for the three
+     <emphasis>
+      Vertex Weight
+     </emphasis>
+     modifiers,
+see the
+     <reference internal="True" refuri="weight_edit.html#modeling-modifiers-weight-edit-influence-mask-options">
+      <inline classes="std std-ref">
+       Vertex Weight Edit modifier
+      </inline>
+     </reference>
+     page.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <paragraph>
+    This example shows the usage of distance from a target object to dynamically control
+a
+    <reference internal="True" refuri="../deform/wave.html">
+     <inline classes="doc">
+      Wave
+     </inline>
+    </reference>
+    modifier with a modified vertex group:
+   </paragraph>
+   <vimeo aspect="None" height="None" id="30187079" width="None">
+   </vimeo>
+   <paragraph>
+    <reference name="The blend-file" refuri="https://wiki.blender.org/wiki/File:ManModifiersWeightVGroupEx.blend">
+     The blend-file
+    </reference>
+    , TEST_1 scene.
+   </paragraph>
+  </section>
+ </section>
+</document>

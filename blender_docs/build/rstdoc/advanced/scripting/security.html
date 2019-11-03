@@ -1,0 +1,216 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/advanced/scripting/security.rst">
+ <section ids="scripting-security" names="scripting\ &amp;\ security viết\ tập\ lệnh\ &amp;\ tính\ bảo\ an\ --\ scripting\ &amp;\ security">
+  <title>
+   Viết Tập Lệnh &amp; Tính Bảo An -- Scripting &amp; Security
+  </title>
+  <paragraph>
+   The ability to include Python scripts within blend-files is valuable for advanced tasks
+such as rigging and automation. However, it poses a security risk since
+Python does not restrict what a script can do.
+  </paragraph>
+  <paragraph>
+   Therefore, you should only run scripts from sources you know and trust.
+  </paragraph>
+  <paragraph>
+   Automatic execution is disabled by default,
+however, some blend-files need this to function properly.
+  </paragraph>
+  <paragraph>
+   When a blend-file tries to execute a script and is not allowed, a dialog will appear.
+In it, you can choose to
+   <emphasis>
+    Allow Execution
+   </emphasis>
+   or to
+   <emphasis>
+    Ignore
+   </emphasis>
+   the scripts.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/advanced_scripting_security_autorun-scripts-dialog.png'}" uri="images/advanced_scripting_security_autorun-scripts-dialog.png"/>
+   <caption>
+    An Auto-run warning in the Info editor's header.
+   </caption>
+  </figure>
+  <section ids="scripts-in-blend-files" names="scripts\ in\ blend-files tập\ lệnh\ trong\ tập\ tin\ blend\ --\ scripts\ in\ blend-files">
+   <title>
+    Tập Lệnh trong Tập Tin Blend -- Scripts in Blend-Files
+   </title>
+   <section ids="auto-execution" names="auto\ execution thi\ hành\ tự\ động\ --\ auto\ execution">
+    <title>
+     Thi Hành Tự Động -- Auto Execution
+    </title>
+    <paragraph>
+     Here are the different ways blend-files may automatically run scripts.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Khối Văn Bản được Đăng Ký -- Registered Text-Blocks
+      </term>
+      <definition>
+       <paragraph>
+        A text data-block can have its
+        <emphasis>
+         Register
+        </emphasis>
+        option enabled which means it will load on start.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Điều Vận Hoạt Họa -- Animation Drivers
+      </term>
+      <definition>
+       <paragraph>
+        Python expressions can be used to
+        <emphasis>
+         Drive
+        </emphasis>
+        values and are often used in more advanced rigs and animations.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="manual-execution" names="manual\ execution thi\ hành\ thủ\ công\ --\ manual\ execution">
+    <title>
+     Thi Hành Thủ Công -- Manual Execution
+    </title>
+    <paragraph>
+     There are other ways scripts in a blend-file may execute that require user
+interaction (therefore will run even when auto execution is off),
+but you should be aware that this is the case since it is not necessarily obvious.
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Running a script in the Text editor.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Rendering with Freestyle, because Freestyle uses scripts to control line styles.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+  <section ids="controlling-script-execution" names="controlling\ script\ execution điều\ khiển\ sự\ thi\ hành\ của\ tập\ lệnh\ --\ controlling\ script\ execution">
+   <title>
+    Điều Khiển sự Thi Hành của Tập Lệnh -- Controlling Script Execution
+   </title>
+   <paragraph>
+    Blender provides a number of ways to control whether scripts
+from a blend-file are allowed to automatically execute.
+   </paragraph>
+   <paragraph>
+    First of all, the File Browser has the option
+    <strong>
+     Trusted Source
+    </strong>
+    which you can use on
+a case-by-case basis to control auto execution.
+   </paragraph>
+   <paragraph>
+    However, you may forget to set this,
+or open a file without going through the File Browser --
+so you can change the default (described next).
+   </paragraph>
+   <section ids="setting-defaults" names="setting\ defaults sắp\ đặt\ mặc\ định\ --\ setting\ defaults">
+    <title>
+     Sắp Đặt Mặc Định -- Setting Defaults
+    </title>
+    <paragraph>
+     In the
+     <emphasis>
+      File
+     </emphasis>
+     tab of the Preferences,
+there is the toggle
+     <reference internal="True" refuri="../../editors/preferences/save_load.html#prefs-auto-execution">
+      <inline classes="std std-ref">
+       Auto Run Python Scripts
+      </inline>
+     </reference>
+     .
+    </paragraph>
+    <paragraph>
+     This means the
+     <strong>
+      Trusted Source
+     </strong>
+     option in the File Browser will be enabled by default,
+and scripts can run when blend-files are loaded without using the File Browser.
+    </paragraph>
+    <paragraph>
+     Once enabled you have the option to exclude certain directories,
+a typical configuration would be to trust all paths except for the download directory.
+    </paragraph>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/animation_drivers_troubleshooting_autorun-user-preference.png'}" uri="images/animation_drivers_troubleshooting_autorun-user-preference.png"/>
+     <caption>
+      The Auto Run Python Scripts checkbox.
+     </caption>
+    </figure>
+   </section>
+   <section ids="command-line" names="command\ line dòng\ lệnh\ --\ command\ line">
+    <title>
+     Dòng Lệnh -- Command Line
+    </title>
+    <paragraph>
+     You may want to perform batch rendering or some other task from the command line --
+running Blender without an interface.
+    </paragraph>
+    <paragraph>
+     In this case, the Preferences are still used but you may want to override them:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Enable with
+       <literal>
+        -y
+       </literal>
+       or
+       <literal>
+        --enable-autoexec
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Disable with
+       <literal>
+        -Y
+       </literal>
+       or
+       <literal>
+        --disable-autoexec
+       </literal>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <section ids="example" names="example ví\ dụ\ --\ example">
+     <title>
+      Ví Dụ -- Example
+     </title>
+     <paragraph>
+      Rendering an animation in background mode, allowing drivers and other scripts to run:
+     </paragraph>
+     <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+      blender --background --enable-autoexec my_movie.blend --render-anim
+     </literal_block>
+     <note>
+      <paragraph>
+       These command-line arguments can be used to start a regular Blender instance and
+will still override the Preferences.
+      </paragraph>
+     </note>
+    </section>
+   </section>
+  </section>
+ </section>
+</document>

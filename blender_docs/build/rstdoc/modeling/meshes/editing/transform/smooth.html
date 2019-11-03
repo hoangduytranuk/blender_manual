@@ -1,0 +1,251 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/transform/smooth.rst">
+ <target refid="bpy-ops-mesh-vertices-smooth">
+ </target>
+ <target refid="tool-mesh-smooth">
+ </target>
+ <section ids="smooth tool-mesh-smooth bpy-ops-mesh-vertices-smooth" names="smooth làm/mịn\ màng\ --\ smooth tool-mesh-smooth bpy.ops.mesh.vertices_smooth">
+  <title>
+   Làm/Mịn Màng -- Smooth
+  </title>
+  <section ids="smooth-vertex" names="smooth\ vertex làm\ mịn\ điểm\ đỉnh\ --\ smooth\ vertex">
+   <title>
+    Làm Mịn Điểm Đỉnh -- Smooth Vertex
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Toolbar --&gt; Tools --&gt; Mesh Tools --&gt; Deform: Smooth Vertex`">
+         Toolbar ‣ Tools ‣ Mesh Tools ‣ Deform: Smooth Vertex
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Điểm Đỉnh (Vertices) --&gt; Làm Mịn Điểm Đỉnh (Smooth Vertex)`">
+         Khung Lưới (Mesh) ‣ Điểm Đỉnh (Vertices) ‣ Làm Mịn Điểm Đỉnh (Smooth Vertex)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool smooths the selected vertices by averaging the angles between the faces.
+After using the tool, options appear in the
+    <emphasis>
+     Toolbar
+    </emphasis>
+    :
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Làm Mịn -- Smoothing
+     </term>
+     <definition>
+      <paragraph>
+       Smoothing factor.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lặp Lại -- Repeat
+     </term>
+     <definition>
+      <paragraph>
+       The number of smoothing iterations.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trục -- Axes
+     </term>
+     <definition>
+      <paragraph>
+       Limit the effect to certain axes.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <table>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id1">
+         <image candidates="{'*': 'images/modeling_meshes_editing_transform_smooth_mesh-before.png'}" uri="images/modeling_meshes_editing_transform_smooth_mesh-before.png" width="200px"/>
+         <caption>
+          Mesh before smoothing.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/modeling_meshes_editing_transform_smooth_mesh-one-iteration.png'}" uri="images/modeling_meshes_editing_transform_smooth_mesh-one-iteration.png" width="200px"/>
+         <caption>
+          Mesh after one smoothing iteration.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/modeling_meshes_editing_transform_smooth_mesh-ten-iterations.png'}" uri="images/modeling_meshes_editing_transform_smooth_mesh-ten-iterations.png" width="200px"/>
+         <caption>
+          Mesh after ten smoothing iterations.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <seealso>
+    <paragraph>
+     Chia Nhỏ -- Subdividing
+    </paragraph>
+    <paragraph>
+     Adjusting the
+     <emphasis>
+      smooth
+     </emphasis>
+     option after using
+the
+     <reference internal="True" refuri="../subdividing/subdivide.html">
+      <inline classes="doc">
+       Subdivide
+      </inline>
+     </reference>
+     tool
+results in a more organic shape.
+    </paragraph>
+   </seealso>
+   <seealso>
+    <paragraph>
+     Bộ Điều Chỉnh Làm Mịn -- Smooth Modifier
+    </paragraph>
+    <paragraph>
+     The
+     <reference internal="True" refuri="../../../modifiers/deform/smooth.html">
+      <inline classes="doc">
+       Smooth Modifier
+      </inline>
+     </reference>
+     , which can be limited to a
+     <emphasis>
+      Vertex Group
+     </emphasis>
+     ,
+is a non-destructive alternative to the Smooth tool.
+    </paragraph>
+   </seealso>
+  </section>
+  <section ids="laplacian-smooth" names="laplacian\ smooth làm\ mịn\ laplacian\ --\ laplacian\ smooth">
+   <title>
+    Làm Mịn Laplacian -- Laplacian Smooth
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Đặc Biệt (Specials) --&gt; Làm Mịn Laplacian (Laplacian Smooth)`">
+         Đặc Biệt (Specials) ‣ Làm Mịn Laplacian (Laplacian Smooth)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    See the
+    <reference internal="True" refuri="../../../modifiers/deform/laplacian_smooth.html">
+     <inline classes="doc">
+      Laplacian Smooth Modifier
+     </inline>
+    </reference>
+    for details.
+   </paragraph>
+   <paragraph>
+    Laplacian smooth uses an alternative smoothing algorithm that better preserves larger details and
+this way the overall shape of the mesh. Laplacian smooth exists as a mesh operation and
+as a non-destructive modifier.
+   </paragraph>
+   <note>
+    <paragraph>
+     Real Smoothing versus Shading Smoothing
+    </paragraph>
+    <paragraph>
+     Do not mistake this tool with the shading smoothing options described at
+     <reference internal="True" refuri="../normals.html#modeling-meshes-editing-normals-shading">
+      <inline classes="std std-ref">
+       this page
+      </inline>
+     </reference>
+     , they do not work the same!
+This tool modifies the mesh itself, to reduce its sharpness, whereas
+     <emphasis>
+      Set Smooth
+     </emphasis>
+     /
+     <emphasis>
+      Auto Smooth
+     </emphasis>
+     and co.
+only control the way the mesh is shaded,
+creating an
+     <emphasis>
+      illusion
+     </emphasis>
+     of softness, but without modifying the mesh at all...
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

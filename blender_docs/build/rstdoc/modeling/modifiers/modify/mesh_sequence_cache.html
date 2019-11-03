@@ -1,0 +1,128 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/modify/mesh_sequence_cache.rst">
+ <section ids="mesh-sequence-cache-modifier" names="mesh\ sequence\ cache\ modifier --\ mesh\ sequence\ cache\ modifier">
+  <title>
+   -- Mesh Sequence Cache Modifier
+  </title>
+  <comment xml:space="preserve">
+   (TODO2.78) wip: The *Mesh Sequence Cache Modifier* is used to.
+  </comment>
+  <paragraph>
+   Despite its name, this modifier supports meshes and curves.
+It also handles file sequences, as well as meshes and curves with varying number of vertices/control points.
+  </paragraph>
+  <paragraph>
+   Unlike the
+   <reference internal="True" refuri="mesh_cache.html">
+    <inline classes="doc">
+     Mesh Cache modifier
+    </inline>
+   </reference>
+   , it uses Alembic files as source.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tập Tin Bộ Nhớ Đệm -- Cache File
+     </term>
+     <definition>
+      <paragraph>
+       Data-block menu to select the Alembic file.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tập Tin -- File Path
+        </term>
+        <definition>
+         <paragraph>
+          Path to Alembic file.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Is sequence
+     </term>
+     <definition>
+      <paragraph>
+       Whether or not the cache is separated in a series of files.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khung Hình Áp Đặt -- Override Frame
+     </term>
+     <definition>
+      <paragraph>
+       Whether to use a custom frame for looking up data in the cache file,
+instead of using the current scene frame.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Khung Hình -- Frame
+        </term>
+        <definition>
+         <paragraph>
+          The time to use for looking up the data in the cache file,
+or to determine which to use in a file sequence.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Manual Transform Scale
+     </term>
+     <definition>
+      <paragraph>
+       Value by which to enlarge or shrink the object with respect to the world's origin.
+(Only applicable through
+a
+       <reference internal="True" refuri="../../../animation/constraints/transform/transform_cache.html">
+        <inline classes="doc">
+         Transform Cache Constraint
+        </inline>
+       </reference>
+       .)
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đường Dẫn đến Vật Thể -- Object Path
+     </term>
+     <definition>
+      <paragraph>
+       The path to the Alembic object inside the archive.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Read Data
+     </term>
+     <definition>
+      <paragraph>
+       Type of data to read for a mesh object, respectively: vertices,
+polygons, UV maps and Vertex Color layers.
+      </paragraph>
+      <paragraph>
+       Vertices, Faces, UV, Color
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

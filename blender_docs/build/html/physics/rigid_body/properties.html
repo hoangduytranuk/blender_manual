@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>-- Rigid Body Properties &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/rigid_body/properties.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Thế Giới Thân Cứng -- Rigid Body World" href="world.html" />
+    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Thân Cứng -- Rigid Body</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">-- Rigid Body Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rigid-body">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rigid-body-collisions">Va Chạm Thân Cứng -- Rigid Body Collisions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dynamics">Dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="world.html">Thế Giới Thân Cứng -- Rigid Body World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints/index.html">Ràng Buộc Thân Cứng -- Rigid Body Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tips.html">Ngọn -- Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="index.html">Thân Cứng -- Rigid Body</a> &raquo;</li>
+        
+      <li>-- Rigid Body Properties</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/physics/rigid_body/properties.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rigid-body-properties">
+<h1>-- Rigid Body Properties<a class="headerlink" href="#rigid-body-properties" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rigid-body">
+<h2>Thân Cứng -- Rigid Body<a class="headerlink" href="#rigid-body" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Lý (Physics) ‣ Thân Cứng (Rigid Body)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Thể Loại -- Type</dt>
+<dd><p class="first">Role of the rigid body in the simulation.
+Active objects can be simulated dynamically, passive object remain static.</p>
+<dl class="last docutils">
+<dt>Đang/Hoạt Động -- Active</dt>
+<dd>Object is directly controlled by simulation results.
+The possibility to select this type also available with <em>Add Active</em>
+button in the Physics tab of the Toolbar.</dd>
+<dt>Thụ Động -- Passive</dt>
+<dd>Object is directly controlled by animation system.
+Thus, this type is not available for <a class="reference internal" href="#dynamics">Dynamics</a>.
+The possibility to select this type also available with <em>Add Passive</em> button
+in the Physics tab of the Toolbar.</dd>
+</dl>
+</dd>
+<dt>Khối Lượng -- Mass</dt>
+<dd><p class="first">Specifies how heavy the object is and &quot;weights&quot; irrespective of gravity.
+There are predefined mass preset available with the <em>Calculate Mass</em> button
+in the Physics tab of the Toolbar.</p>
+<dl class="last docutils">
+<dt>Tính Toán Khối Lượng -- Calculate Mass</dt>
+<dd><p class="first">Automatically calculate mass values for rigid body objects based on its volume.
+There are many useful presets available from the menu, listing real-world objects.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Also you can have <em>Custom</em> mass material type,
+which is achieved by setting a custom density value (kg/m<sup>3</sup>).</p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>Năng Động -- Dynamic</dt>
+<dd>Enables/disables rigid body simulation for object.</dd>
+<dt>Hoạt Họa -- Animated</dt>
+<dd>Allows the rigid body additionally to be controlled by the animation system.</dd>
+</dl>
+</div>
+<div class="section" id="rigid-body-collisions">
+<h2>Va Chạm Thân Cứng -- Rigid Body Collisions<a class="headerlink" href="#rigid-body-collisions" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Rigid Body ‣ Collisions</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="collision-shapes">
+<h3>Hình Dạng Khối Va Đập -- Collision Shapes<a class="headerlink" href="#collision-shapes" title="Permalink to this headline">¶</a></h3>
+<p>The Shape option determines the collision shape of the object.</p>
+<p class="rubric">-- Primitive Shapes</p>
+<p>These are best in terms of memory/performance but do not necessarily reflect the actual shape of the object. They are calculated based on the object's bounding box. The center of gravity is always in the middle for now. Primitive shapes can be shown in the viewport by enabling <em>Bounds</em> in the <span class="menuselection">Vật Thể (Object) ‣ Hiển Thị (Display)</span> panel.</p>
+<dl class="docutils">
+<dt>Hình Hộp -- Box</dt>
+<dd>Box-like shapes (e.g. cubes), including planes (e.g. ground planes).
+The size per axis is calculated from the bounding box.</dd>
+<dt>Hình Cầu -- Sphere</dt>
+<dd>Sphere-like shapes. The radius is the largest axis of the bounding box.</dd>
+<dt>Vỏ Nhộng -- Capsule</dt>
+<dd>This points up the Z axis.</dd>
+<dt>Hình Trụ -- Cylinder</dt>
+<dd>This points up the Z axis.
+The height is taken from the Z axis, while the radius is the larger of the X or Y axes.</dd>
+<dt>Hình Nón -- Cone</dt>
+<dd>This points up the Z axis.
+The height is taken from the Z axis, while the radius is the larger of the X or Y axes.</dd>
+</dl>
+<p class="rubric">-- Mesh-Based Shapes</p>
+<p>These are calculated based on the geometry of the object so they are a better representation of the object.
+The center of gravity for these shapes is the object origin.</p>
+<dl class="docutils">
+<dt>Bao Lồi -- Convex Hull</dt>
+<dd>A mesh-like surface encompassing (e.g. shrink-wrap over) all vertices (best results with fewer vertices).
+A convex approximation of the object, has a good performance and stability.</dd>
+<dt>Khung Lưới -- Mesh</dt>
+<dd><a class="reference internal" href="../../glossary/index.html#term-mesh"><span class="xref std std-term">Mesh</span></a> consisting of triangles only, allowing for more detailed interactions than convex hulls.
+Allows to simulate concave objects, but is rather slow and unstable.</dd>
+</dl>
+</div>
+<div class="section" id="mesh-source">
+<h3>Khung Lưới Nguồn -- Mesh Source<a class="headerlink" href="#mesh-source" title="Permalink to this headline">¶</a></h3>
+<p>Users can now specify the mesh <em>Source</em> for <em>Mesh</em> bases collision shapes:</p>
+<dl class="docutils">
+<dt>Cơ Sở -- Base</dt>
+<dd>The base mesh of the object.</dd>
+<dt>Biến Dạng -- Deform</dt>
+<dd><p class="first">Includes any deformations added to the mesh (shape keys, deform modifiers).</p>
+<dl class="last docutils">
+<dt>Biến Dạng -- Deforming</dt>
+<dd>Mesh shapes can deform during simulation.</dd>
+</dl>
+</dd>
+<dt>Kết Thúc -- Final</dt>
+<dd>Includes all deformations and modifiers.</dd>
+</dl>
+</div>
+<div class="section" id="surface-response">
+<h3>-- Surface Response<a class="headerlink" href="#surface-response" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Rigid Body ‣ Surface Response</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Ma Sát -- Friction</dt>
+<dd>Resistance of object to movement. Specifies how much velocity is lost when objects collide with each other.</dd>
+<dt>Độ Nẩy Bật -- Bounciness</dt>
+<dd>Tendency of object to bounce after colliding with another (0 to 1) (rigid to perfectly elastic).
+Specifies how much objects can bounce after collisions.</dd>
+<dt>Nhóm Va Đập -- Collision Groups</dt>
+<dd>Allows rigid body collisions allocate on different groups (maximum 20).</dd>
+</dl>
+</div>
+<div class="section" id="sensitivity">
+<h3>Sensitivity<a class="headerlink" href="#sensitivity" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Rigid Body ‣ Sensitivity</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Lề -- Margin</dt>
+<dd>Threshold of distance near surface where collisions are still considered (best results when non-zero).</dd>
+</dl>
+<p>The collision margin is used to improve the performance and stability of rigid bodies.
+Depending on the shape, it behaves differently: some shapes embed it,
+while others have a visible gap around them.</p>
+<p>The margin is <em>embedded</em> for these shapes:</p>
+<ul class="simple">
+<li>Hình Cầu -- Sphere</li>
+<li>Hình Hộp -- Box</li>
+<li>Vỏ Nhộng -- Capsule</li>
+<li>Hình Trụ -- Cylinder</li>
+<li>Convex Hull: Only allows for uniform scale when embedded.</li>
+</ul>
+<p>The margin is <em>not embedded</em> for these shapes:</p>
+<ul class="simple">
+<li>Hình Nón -- Cone</li>
+<li>Active Triangle Mesh</li>
+<li>Passive Triangle Mesh: Can be set to 0 most of the time.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="dynamics">
+<h2>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Rigid Body ‣ Dynamics</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Used to control the physics of the rigid body simulation.
+This panel is available only for <em>Active</em> type of rigid bodies.</p>
+<dl class="docutils">
+<dt>Giảm Chấn -- Damping</dt>
+<dd><dl class="first last docutils">
+<dt>Dịch Chuyển -- Translation</dt>
+<dd>Amount of linear velocity that is lost over time.</dd>
+<dt>Xoay Chiều -- Rotation</dt>
+<dd>Amount of angular velocity that is lost over time.</dd>
+</dl>
+</dd>
+<dt>-- Deactivation</dt>
+<dd><dl class="first last docutils">
+<dt>Cho Phép Giải Hoạt -- Enable Deactivation</dt>
+<dd>Enable deactivation of resting rigid bodies. Allows object to be deactivated during the simulation
+(improves the performance and stability, but can cause glitches).</dd>
+<dt>Giải Hoạt Khi Bắt Đầu -- Start Deactivated</dt>
+<dd>Starts objects deactivated. They are activated on collision with other objects.</dd>
+<dt>Vận Tốc Tuyến Tính -- Linear Velocity</dt>
+<dd>Specifies the linear deactivation velocity below which the rigid body is deactivated and simulation stops
+simulating object.</dd>
+<dt>Vận Tốc Góc -- Angular Velocity</dt>
+<dd>Specifies the angular deactivation velocity below which the rigid body is deactivated and simulation stops
+simulating object.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="world.html" class="btn btn-neutral float-right" title="Thế Giới Thân Cứng -- Rigid Body World" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

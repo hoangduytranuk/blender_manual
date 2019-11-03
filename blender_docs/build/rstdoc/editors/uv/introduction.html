@@ -1,0 +1,367 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/uv/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   The UV Editor is used to map 2D assets like images/textures
+onto 3D objects and edit what are called UVs.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/editors_uv_introduction_main.png'}" uri="images/editors_uv_introduction_main.png"/>
+   <caption>
+    UV Editor with a UV map and a test grid texture.
+   </caption>
+  </figure>
+  <paragraph>
+   The most flexible way of mapping a 2D texture over a 3D object is a process called "UV mapping".
+In this process, you take your three-dimensional (X, Y &amp; Z) mesh and unwrap it to a flat two-dimensional
+(X &amp; Y ... or rather, as we shall soon see, "U &amp; V") image. Colors in the image are thus mapped to your mesh,
+and show up as the color of the faces of the mesh. Use UV texturing to provide realism to your objects that
+procedural materials and textures cannot do, and better details than Vertex Painting can provide.
+  </paragraph>
+  <section ids="uvs-explained" names="uvs\ explained">
+   <title>
+    UVs Explained
+   </title>
+   <paragraph>
+    The best analogy to understanding UV mapping is cutting up a cardboard box.
+The box is a three-dimensional (3D) object, just like the mesh cube you add to your scene.
+   </paragraph>
+   <paragraph>
+    If you were to take a pair of scissors and cut a seam or fold of the box,
+you would be able to lay it flat on a tabletop. As you are looking down at the box on the table,
+we could say that U is the left-right direction, and V is the up-down direction.
+This image is thus in two dimensions (2D). We use U and V to refer to these
+"texture-space coordinates" instead of the normal X and Y, which are always used
+(along with Z) to refer to the three-dimensional space (3D).
+   </paragraph>
+   <paragraph>
+    When the box is reassembled, a certain UV location on the paper is transferred to an (X, Y, Z)
+location on the box. This is what the computer does with a 2D image in wrapping it around a 3D object.
+   </paragraph>
+   <paragraph>
+    During the UV unwrapping process, you tell Blender exactly how to map the faces of your object (in this case, a box)
+to a flat image in the UV Editor. You have complete freedom in how to do this.
+(Continuing our previous example, imagine that, having initially laid the box flat on the tabletop,
+you now cut it into smaller pieces, somehow stretch and/or shrink those pieces,
+and then arrange them in some way upon a photograph that is also lying on that tabletop.)
+   </paragraph>
+   <section ids="example" names="example">
+    <title>
+     Example
+    </title>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/editors_uv_introduction_3d-uv-space.png'}" uri="images/editors_uv_introduction_3d-uv-space.png" width="620px"/>
+     <caption>
+      3D space (XYZ) versus UV space.
+     </caption>
+    </figure>
+    <paragraph>
+     In this image you can easily see that the shape and
+size of the marked face in 3D space is different in UV space.
+This difference is caused by the "stretching" (technically called mapping)
+of the 3D part (XYZ) onto a 2D plane (i.e. the UV map).
+    </paragraph>
+    <paragraph>
+     If a 3D object has a UV map, then, in addition to the 3D coordinates X, Y, and Z,
+each point on the object will have corresponding U and V coordinates.
+    </paragraph>
+    <note>
+     <paragraph>
+      On more complex models (like seen in the sphere above)
+there pops up an issue where the faces cannot be cut,
+but instead they are stretched in order to make them flat.
+This helps making easier UV maps, but sometimes adds distortion to the final mapped texture.
+     </paragraph>
+    </note>
+   </section>
+  </section>
+  <section ids="advantages-of-uvs" names="advantages\ of\ uvs">
+   <title>
+    Advantages of UVs
+   </title>
+   <paragraph>
+    While procedural textures (described in the previous chapters) are useful -- they never repeat
+themselves and always "fit" 3D objects -- they are not sufficient for more complex or natural objects.
+For instance, the skin on a human head will never look quite right when procedurally generated.
+Wrinkles on a human head, or scratches on a car do not occur in random places,
+but depend on the shape of the model and its usage. Manually-painted images,
+or images captured from the real world gives more control and realism.
+For details such as book covers, tapestry, rugs, stains, and detailed props,
+artists are able to control every pixel on the surface using a UV texture.
+   </paragraph>
+   <paragraph>
+    A UV map describes what part of the texture should be attached to each polygon in the model.
+Each polygon's vertex gets assigned to 2D coordinates that define which part of the image gets mapped.
+These 2D coordinates are called UVs (compare this to the XYZ coordinates in 3D).
+The operation of generating these UV maps is also called "unwrap",
+since it is as if the mesh were unfolded onto a 2D plane.
+   </paragraph>
+   <paragraph>
+    For most simple 3D models, Blender has an automatic set of unwrapping algorithms that you can easily apply.
+For more complex 3D models, regular Cubic, Cylindrical or Spherical mapping, is usually not sufficient.
+For even and accurate projection, use seams to guide the UV mapping.
+This can be used to apply textures to arbitrary and complex shapes,
+like human heads or animals. Often these textures are painted images,
+created in applications like the Gimp, Photoshop, or your favorite painting application.
+   </paragraph>
+  </section>
+  <section ids="interface" names="interface">
+   <title>
+    Interface
+   </title>
+   <section ids="header" names="header tiêu\ đề\ --\ header">
+    <title>
+     Tiêu Đề -- Header
+    </title>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/editors_uv_introduction_texturing-header.png'}" uri="images/editors_uv_introduction_texturing-header.png"/>
+     <caption>
+      UV Editor header.
+     </caption>
+    </figure>
+    <paragraph>
+     The header contains several menus and options for working with UVs.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       View
+      </term>
+      <definition>
+       <paragraph>
+        Tools for controlling how the content is displayed in the editor.
+See
+        <reference internal="True" refuri="navigating.html">
+         <inline classes="doc">
+          Navigating
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chọn -- Select
+      </term>
+      <definition>
+       <paragraph>
+        Tools for
+        <reference internal="True" refuri="selecting.html">
+         <inline classes="doc">
+          Selecting UVs
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Image
+      </term>
+      <definition>
+       <paragraph>
+        This contains options for
+        <reference internal="True" refuri="../image/index.html">
+         <inline classes="doc">
+          Image Editor
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       UV -- UVs
+      </term>
+      <definition>
+       <paragraph>
+        Contains tools for
+        <reference internal="True" refuri="../../modeling/meshes/editing/uv/unwrapping/index.html">
+         <inline classes="doc">
+          Unwrapping Meshes
+         </inline>
+        </reference>
+        and
+        <reference internal="True" refuri="../../modeling/meshes/editing/uv/layout.html">
+         <inline classes="doc">
+          Editing UVs
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Công Cụ Chọn Điểm Tựa -- Pivot Point Selector
+      </term>
+      <definition>
+       <paragraph>
+        Similar to working with Pivot Points in the 3D View.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đồng Bộ Hóa Lựa Chọn -- Sync Selection
+      </term>
+      <definition>
+       <paragraph>
+        Keeps UV and Mesh component selections in sync.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chế Độ Lựa Chọn -- Selection Modes
+      </term>
+      <definition>
+       <bullet_list bullet="-">
+        <list_item>
+         <paragraph>
+          Điểm Đỉnh -- Vertex
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Cạnh -- Edge
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Bề Mặt -- Face
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Hải Đảo -- Island
+         </paragraph>
+        </list_item>
+       </bullet_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chế Độ Lựa Chọn Dính Kết -- Sticky Selection Mode
+      </term>
+      <definition>
+       <paragraph>
+        When Sync Selection is disabled, these options control how UVs are selected.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Biên Soạn Cân Đối -- Proportional Editing
+      </term>
+      <definition>
+       <paragraph>
+        See
+        <reference internal="True" refuri="../../scene_layout/object/editing/transform/control/proportional_edit.html">
+         <inline classes="doc">
+          Proportional Editing
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bám Dính UV -- UV Snapping
+      </term>
+      <definition>
+       <paragraph>
+        Similar to Snapping in the 3D View.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bộ Chọn Lựa Ánh Xạ Chất Liệu đang hoạt động -- Active UV Texture Map Selector
+      </term>
+      <definition>
+       <paragraph>
+        Select which UV texture to use.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="sidebar-region" names="sidebar\ region">
+    <title>
+     Sidebar Region
+    </title>
+    <section ids="image-tab" names="image\ tab">
+     <title>
+      Image Tab
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Điểm Đỉnh UV -- UV Vertex
+       </term>
+       <definition>
+        <paragraph>
+         Transform Properties
+         <reference internal="True" refuri="../../modeling/meshes/editing/uv/layout.html">
+          <inline classes="doc">
+           Selecting UVs
+          </inline>
+         </reference>
+         .
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="tool-tab" names="tool\ tab">
+     <title>
+      Tool Tab
+     </title>
+     <paragraph>
+      Shows the settings for the active tool.
+     </paragraph>
+    </section>
+    <section ids="view-tab" names="view\ tab">
+     <title>
+      View Tab
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Display
+       </term>
+       <definition>
+        <paragraph>
+         See
+         <reference internal="True" refuri="display_panel.html">
+          <inline classes="doc">
+           Display Panel
+          </inline>
+         </reference>
+         .
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        2D Cursor
+       </term>
+       <definition>
+        <paragraph>
+         Control 2D cursor location.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>-- Fluid Domain &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/fluid/types/domain.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="-- Fluid Object" href="fluid_object.html" />
+    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">-- Particles System</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">-- Fluid Types</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">-- Fluid Domain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fluid_object.html">-- Fluid Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="obstacle.html">-- Fluid Obstacle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flow.html">-- Fluid Inflow / Outflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="particle.html">Hạt Chất Lỏng -- Fluid Particle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="control.html">-- Fluid Control</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../baking.html">Nướng -- Baking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../appendix.html">-- Fluid Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../smoke/index.html">-- Smoke Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="../index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a> &raquo;</li>
+        
+          <li><a href="index.html">-- Fluid Types</a> &raquo;</li>
+        
+      <li>-- Fluid Domain</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/physics/fluid/types/domain.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fluid-domain">
+<span id="bpy-types-domainfluidsettings"></span><h1>-- Fluid Domain<a class="headerlink" href="#fluid-domain" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Lý (Physics) ‣ Chất Lỏng (Fluid)</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The bounding box of the object serves as the boundary of the simulation.
+All fluid objects <strong>must</strong> be in the domain. Fluid objects outside the domain will not bake.
+No tiny droplets can move outside this domain;
+it's as if the fluid is contained within the 3D space by invisible force fields.
+There can be only a single fluid simulation domain object in the scene.</p>
+<p>The shape of the object does <strong>not</strong> matter because it will <em>always</em> be treated like a box
+(The lengths of the bounding box sides can be different).
+So, usually there will not be any reason to use another shape than a box.
+If you need obstacles or other boundaries than a box to interfere with the fluid flow,
+you need to insert additional obstacle objects <em>inside</em> the domain boundary.</p>
+<p>This object will be <em>replaced</em> by the fluid during the simulation.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Baking is done on the Domain object</p>
+<p>When you calculate the fluid simulation, you bake the simulation on the domain object.
+For this reason all the baking options are visible only when selecting the Domain Object.</p>
+<p class="last">For baking options, see <a class="reference internal" href="../baking.html"><span class="doc">Baking</span></a>.</p>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Fluid ‣ Settings</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Simulation Threads:</dt>
+<dd>Override number of threads for the simulation, 0 is automatic.</dd>
+<dt>Độ Phân Giải -- Resolution</dt>
+<dd><dl class="first docutils">
+<dt>-- Render resolution</dt>
+<dd><p class="first">The granularity at which the actual fluid simulation is performed.
+This is probably the most important setting for the simulation as it
+determines the amount of details in the fluid, the memory and disk usage as well as computational time.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id1">
+<img alt="../../../_images/physics_fluid_types_domain_resolution-low.jpg" src="../../../_images/physics_fluid_types_domain_resolution-low.jpg" />
+<p class="caption"><span class="caption-text">10cm mug at Resolution 70.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id2">
+<img alt="../../../_images/physics_fluid_types_domain_resolution-high.jpg" src="../../../_images/physics_fluid_types_domain_resolution-high.jpg" />
+<p class="caption"><span class="caption-text">10cm mug at Resolution 200.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">The amount of required memory quickly increases: a resolution of 32 requires ca. 4MB,
+64 requires ca. 30MB, while 128 already needs more than 230MB. Make sure to set the resolution low enough,
+depending on how much memory you have, to prevent Blender from crashing or freezing. Remember also that many
+operating systems limit the amount of memory that can be allocated by a single <em>process</em>, such as Blender,
+even if the <em>machine</em> contains much more than this. Find out what limitations apply to your machine.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>Resolution and Real-size of the Domain</p>
+<p class="last">Be sure to set the resolution appropriate to the real-world size of the domain
+(see the <em>Real World Size</em> in the <a class="reference internal" href="#fluid-world">Fluid World</a>).
+If the domain is not cubic, the resolution will be taken for the longest side.
+The resolutions along the other sides will be reduced according to their lengths
+(therefore, a non-cubic domain will need less memory than a cubic one, resolutions being the same).</p>
+</div>
+<dl class="last docutils">
+<dt>-- Preview resolution</dt>
+<dd>This is the resolution at which the preview surface meshes will be generated.
+So it does not influence the actual simulation.
+Even if &quot;there is nothing to see&quot; in the preview,
+there might be a thin fluid surface that cannot be resolved in the preview.</dd>
+</dl>
+</dd>
+<dt>Display</dt>
+<dd><p class="first">How to display a baked simulation in the 3D View (menu <em>Viewport Display</em>)
+and for rendering (menu <em>Render Display</em>):</p>
+<dl class="docutils">
+<dt>Hình Dạng -- Geometry</dt>
+<dd>Use the original geometry (before simulation).</dd>
+<dt>Duyệt Thảo -- Preview</dt>
+<dd>Use the preview mesh.</dd>
+<dt>Kết Thúc -- Final</dt>
+<dd>Use the final high definition mesh.</dd>
+</dl>
+<p>When no baked data is found, the original mesh will be displayed by default.</p>
+<p class="last">After you have baked a domain, it is displayed (usually) in the Blender window as the preview mesh.
+To see the size and scope of the original domain box, select <em>Geometry</em> in the left selector.</p>
+</dd>
+<dt>Thời Gian -- Time</dt>
+<dd><dl class="first docutils">
+<dt>Bắt Đầu -- Start</dt>
+<dd><p class="first">It is the simulation start time (in seconds).</p>
+<p>This option makes the simulation computation in Blender start later in the simulation.
+The domain deformations and fluid flow prior to the start time are not saved.</p>
+<p class="last">For example, if you wanted the fluid to appear to already have been flowing
+for 4 seconds before the actual first frame of data, you would enter 4.0 here.</p>
+</dd>
+<dt>Kết Thúc -- End</dt>
+<dd>It is the simulation ending time (in seconds).</dd>
+</dl>
+<div class="last admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Start and end times have nothing to do with how many frames are baked</p>
+<p>If you set <em>Start</em> time to 3.0, and <em>End</em> time to 4.0, you will simulate 1 second of fluid motion. That one second of fluid motion will be spread across however-many frames are set in <span class="menuselection">Kết Xuất (Render) ‣ Kích Thước (Dimensions)</span>.</p>
+<p class="last">This means, for example, that if you have Blender set to make 250 frames at 25 fps, the fluid
+will look like it had already been flowing for 3 seconds at the start of the simulation,
+<em>but</em> will play in slow motion (one-tenth normal speed),
+since the 1 second fluid simulation plays out over the course of 10 video seconds.
+To correct this, change the end time to 13.0 (3.0 + 10.0) to match the 250 frames at 25 fps.
+Now, the simulation will be real-time,
+since you set 10 seconds of fluid motion to simulate over 10 seconds of animation.
+Having these controls in effect gives you a &quot;speed control&quot; over the simulation.</p>
+</div>
+</dd>
+<dt>Tốc Độ -- Speed</dt>
+<dd>Fluid motion rate. The speed option can be animated to slow down or speed up time.</dd>
+<dt>Sinh Tạo Vectơ Tốc Độ -- Generate Speed Vectors</dt>
+<dd>If this button is clicked, no speed vectors will be exported.
+So by default, speed vectors are generated and stored on disk.
+They can be used to compute image-based motion blur with the compositing nodes.</dd>
+<dt>Đảo Ngược các Khung Hình -- Reverse Frames</dt>
+<dd>The simulation is calculated backward.</dd>
+<dt>Dịch Chuyển -- Offset</dt>
+<dd>Time offset when reading backed cache.</dd>
+</dl>
+</div>
+<div class="section" id="bake">
+<h2>Bake<a class="headerlink" href="#bake" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Fluid ‣ Bake</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>-- Bake Directory</dt>
+<dd>For baking options see <a class="reference internal" href="../baking.html"><span class="doc">Baking</span></a>.</dd>
+<dt>-- Bake button</dt>
+<dd>For baking options, see <a class="reference internal" href="../baking.html"><span class="doc">Baking</span></a>.</dd>
+</dl>
+</div>
+<div class="section" id="fluid-world">
+<h2>Thế Giới Chất Lỏng -- Fluid World<a class="headerlink" href="#fluid-world" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Fluid ‣ World</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Scene Size Meters</dt>
+<dd>Size of the domain object in the real world in meters.
+If you want to create a mug of coffee, this might be 10 cm (0.1 meters), while a swimming pool might be 10m.
+The size set here is for the longest side of the domain bounding box.</dd>
+<dt>-- Optimization</dt>
+<dd>How many adaptive grid levels to be used during simulation.
+Setting this to -1 will perform automatic selection.</dd>
+<dt>Hệ Số Nén -- Compressibility</dt>
+<dd>If you have problems with large standing fluid regions at a high resolution,
+it might help to reduce this number (note that this will increase computation times).</dd>
+</dl>
+</div>
+<div class="section" id="fluid-viscosity">
+<h2>Fluid Viscosity<a class="headerlink" href="#fluid-viscosity" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Fluid ‣ Viscosity</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>-- Viscosity Presets</dt>
+<dd><p class="first">The &quot;thickness&quot; of the fluid and actually the force needed to move an object of a certain surface area through it
+at a certain speed.</p>
+<p>For manual entry, please note that the normal real-world viscosity (the so-called dynamic viscosity)
+is measured in Pascal-seconds (Pa.s), or in Poise units (P, equal to 0.1 Pa.s, pronounced <em>pwaz</em>,
+from the Frenchman Jean-Louis Poiseuille, who discovered the laws on &quot;the laminar flow of viscous fluids&quot;),
+and commonly centiPoise units (cP, equal to 0.001 Pa.s, <em>sentipwaz</em>).
+Blender, on the other hand, uses the kinematic viscosity
+(which is dynamic viscosity in Pa.s, divided by the density in kg.m<sup>-3</sup>, unit m<sup>2</sup>.s<sup>-1</sup>).
+The table below gives some examples of fluids together with their dynamic and kinematic viscosities.</p>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">Blender viscosity unit conversion.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Chất Lỏng -- Fluid</th>
+<th class="head">Dynamic viscosity (in cP)</th>
+<th class="head">Kinematic viscosity (Blender, in m<sup>2</sup>.s<sup>-1</sup>)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Water (20° C)</td>
+<td>1.002×10<sup>0</sup> (1.002)</td>
+<td>1.002×10<sup>-6</sup> (0.000001002)</td>
+</tr>
+<tr class="row-odd"><td>Oil SAE 50</td>
+<td>5.0×10<sup>2</sup> (500)</td>
+<td>5.0×10<sup>-5</sup> (0.00005)</td>
+</tr>
+<tr class="row-even"><td>Honey (20° C)</td>
+<td>1.0×10<sup>4</sup> (10,000)</td>
+<td>2.0×10<sup>-3</sup> (0.002)</td>
+</tr>
+<tr class="row-odd"><td>Chocolate Syrup</td>
+<td>3.0×10<sup>4</sup> (30,000)</td>
+<td>3.0×10<sup>-3</sup> (0.003)</td>
+</tr>
+<tr class="row-even"><td>Ketchup</td>
+<td>1.0×10<sup>5</sup> (100,000)</td>
+<td>1.0×10<sup>-1</sup> (0.1)</td>
+</tr>
+<tr class="row-odd"><td>Melting Glass</td>
+<td>1.0×10<sup>15</sup></td>
+<td>1.0×10<sup>0</sup> (1.0)</td>
+</tr>
+</tbody>
+</table>
+<p>Manual entries are specified by a floating point number and an exponent.
+These floating point and exponent entry fields (scientific notation)
+simplify entering very small or large numbers. The viscosity of water at room temperature is 1.002 cP,
+or 0.001002 Pa.s; the density of water is about 1000 kg.m<sup>-3</sup>, which gives a kinematic viscosity of
+0.000001002 m<sup>2</sup>.s<sup>-1</sup> -- so the entry would be 1.002 times 10 to the minus six
+(1.002×10<sup>-6</sup> in scientific notation). Hot glass and melting iron are fluids, but very thick;
+you should enter something like 1.0×10<sup>0</sup> (= 1.0) as its kinematic viscosity
+(indicating a value of 1.0×10<sup>6</sup>cP).</p>
+<p>Note that the simulator is not suitable for non-fluids, such as materials that do not &quot;flow&quot;.
+Simply setting the viscosity to very large values will not result in rigid body behavior,
+but might cause instabilities.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>Viscosity varies</p>
+<p class="last">The default values in Blender are considered typical for those types of fluids and &quot;look right&quot; when animated.
+However, actual viscosity of some fluids,
+especially sugar-laden fluids like chocolate syrup and honey, depend highly on temperature and concentration.
+Oil viscosity varies by SAE rating.
+Glass at room temperature is basically a solid, but glass at 1500 degrees Celsius flows (nearly) like water.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="fluid-boundary">
+<h2>Ranh Giới Chất Lỏng -- Fluid Boundary<a class="headerlink" href="#fluid-boundary" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Fluid ‣ Boundary</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This box has all the slip and surface options.</p>
+<dl class="docutils">
+<dt>Thể Loại -- Type</dt>
+<dd><p class="first">The stickiness of the surface of the obstacle,
+to determine the &quot;tacky surface (Surface Adhesion).&quot;
+In the real world, and the tackiness and fluid,
+the granularity of the object surface, tack, determined by the elasticity.</p>
+<dl class="last docutils">
+<dt>Không Trôi -- No Slip</dt>
+<dd>Fluid will stick to snugly (speed 0).</dd>
+<dt>Trôi Tự Do -- Free Slip</dt>
+<dd>Fluid will move on the object (0 normal direction of speed).</dd>
+<dt>Partial Slip</dt>
+<dd>It is a two intermediate. It is almost <em>No slip</em>, 1 in the <em>Free</em> exactly the same in 0.</dd>
+</dl>
+</dd>
+<dt>Số/Lượng -- Amount</dt>
+<dd>Amount of mixing between no and free slip. 0 is no slip, 1 is free slip.</dd>
+<dt>Mịn Hóa Bề Mặt -- Surface Smoothing</dt>
+<dd>Amount of smoothing to be applied to the fluid surface.
+1.0 is standard, 0 is off, while larger values increase the amount of smoothing.</dd>
+<dt>Lượng Phân Hóa -- Subdivisions</dt>
+<dd>Allows the creation of high-res surface meshes directly during the simulation
+(as opposed to doing it afterwards like a Subdivision Surface Modifier).
+A value of 1 means no subdivision, and each increase results in one further subdivision of each fluid voxel.
+The resulting meshes thus quickly become large, and can require large amounts of disk space.
+Be careful in combination with large smoothing values --
+this can lead to long computation times due to the surface mesh generation.</dd>
+<dt>-- Remove Air Bubbles</dt>
+<dd>Enable the possibility to remove the &quot;air bubble&quot; around submerged collision object.</dd>
+</dl>
+</div>
+<div class="section" id="fluid-particles">
+<h2>Hạt Chất Lỏng -- Fluid Particles<a class="headerlink" href="#fluid-particles" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Phạm Vi -- Domain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Fluid ‣ Particles</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here you can add particles to the fluid simulated, to enhance the visual effect.</p>
+<dl class="docutils">
+<dt>Hạt theo Dõi -- Tracer Particles</dt>
+<dd>Number of tracer particles to be put into the fluid at the beginning of the simulation.
+To display them create another object with the <em>Particle</em> fluid type,
+explained below, that uses the same bake directory as the domain.</dd>
+<dt>Phát Sinh Hạt -- Generate Particles</dt>
+<dd>Controls the amount of fluid particles to create (0=off, 1=normal, &gt;1=more).
+To use it, you have to have a surface subdivision value of at least 2.</dd>
+</dl>
+<div class="figure" id="id4">
+<img alt="../../../_images/physics_fluid_types_domain_particals.jpg" src="../../../_images/physics_fluid_types_domain_particals.jpg" />
+<p class="caption"><span class="caption-text">An example of Particles effects.</span></p>
+<div class="legend">
+Left: Simulated without; Right: With particles and subdivision enabled.</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fluid_object.html" class="btn btn-neutral float-right" title="-- Fluid Object" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

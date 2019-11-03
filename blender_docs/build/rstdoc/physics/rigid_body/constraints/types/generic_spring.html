@@ -1,0 +1,209 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/rigid_body/constraints/types/generic_spring.rst">
+ <section ids="generic-spring" names="generic\ spring lực\ đàn\ hồi\ phổ\ thông\ --\ generic\ spring">
+  <title>
+   Lực Đàn Hồi Phổ Thông -- Generic Spring
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Vật Lý (Physics) --&gt; Ràng Buộc Thân Cứng (Rigid Body Constraint)`">
+        Vật Lý (Physics) ‣ Ràng Buộc Thân Cứng (Rigid Body Constraint)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Thể Loại -- Type
+     </field_name>
+     <field_body>
+      <paragraph>
+       Lực Đàn Hồi Phổ Thông -- Generic Spring
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The generic spring constraint adds some spring parameters for the X/Y/Z axes
+to all the options available on the Generic constraint.
+Using the spring alone allows the objects to bounce around as if attached
+with a spring anchored at the constraint object.
+This is usually a little too much freedom,
+so most applications will benefit from enabling translation or rotation constraints.
+  </paragraph>
+  <paragraph>
+   If the damping on the springs is set to 1, then the spring forces are prevented from realigning the anchor points,
+leading to strange behavior. If your springs are acting weird, check the damping.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8:
+.. figure:: /images/physics_rigid-body_constraints_types_generic-spring_panel.png
+   :align: right
+
+   *Generic Spring* constraint options.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giới Hạn -- Limits
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         -- X/Y/Z Axis
+        </term>
+        <definition>
+         <paragraph>
+          Enables/disables limit translation on X, Y or Z axis respectively.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Thường/Dưới -- Lower
+           </term>
+           <definition>
+            <paragraph>
+             Lower limit of translation for X, Y or Z axis respectively.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Hoa/Trên -- Upper
+           </term>
+           <definition>
+            <paragraph>
+             Upper limit of translation for X, Y or Z axis respectively.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- X/Y/Z Angle
+        </term>
+        <definition>
+         <paragraph>
+          Enables/disables limit rotation around the X, Y or Z axis respectively.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Thường/Dưới -- Lower
+           </term>
+           <definition>
+            <paragraph>
+             Lower limit of rotation for X, Y or Z axis respectively.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Hoa/Trên -- Upper
+           </term>
+           <definition>
+            <paragraph>
+             Upper limit of rotation for X, Y or Z axis respectively.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lực Đàn Hồi -- Springs
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         -- X/Y/Z Axis
+        </term>
+        <definition>
+         <paragraph>
+          Enables/disables springs translation on X, Y or Z axis respectively.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Độ Cứng -- Stiffness
+           </term>
+           <definition>
+            <paragraph>
+             Spring Stiffness of the translation on X, Y or Z axis respectively. Specifies how "bendy" the spring is.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Giảm Chấn -- Damping
+           </term>
+           <definition>
+            <paragraph>
+             Spring Damping of the translation on X, Y or Z axis respectively. Amount of damping the spring has.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- X/Y/Z Angle
+        </term>
+        <definition>
+         <paragraph>
+          Enables/disables springs rotation around the X, Y or Z axis respectively.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Độ Cứng -- Stiffness
+           </term>
+           <definition>
+            <paragraph>
+             Spring Stiffness of the rotation around the X, Y or Z axis respectively.
+Specifies how "bendy" the spring is.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Giảm Chấn -- Damping
+           </term>
+           <definition>
+            <paragraph>
+             Spring Damping of the rotation around the X, Y or Z axis respectively. Amount of damping the spring has.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,103 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/input/fresnel.rst">
+ <target refid="bpy-types-shadernodefresnel">
+ </target>
+ <section ids="fresnel-node bpy-types-shadernodefresnel" names="fresnel\ node nút\ fresnen\ --\ fresnel\ node bpy.types.shadernodefresnel">
+  <title>
+   Nút Fresnen -- Fresnel Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_input_fresnel_node.png'}" uri="images/render_shader-nodes_input_fresnel_node.png"/>
+   <caption>
+    Fresnel Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Fresnel
+   </emphasis>
+   or
+   <emphasis>
+    Dielectric Fresnel
+   </emphasis>
+   node computes how much light is reflected off a layer,
+where the rest will be refracted through the layer.
+The resulting weight can be used for layering shaders with the
+   <emphasis>
+    Mix Shader
+   </emphasis>
+   node.
+It is dependent on the angle between the surface normal and the viewing direction.
+  </paragraph>
+  <paragraph>
+   The most common use is to mix between two BSDFs using it as a blending factor in a mix shader node.
+For a simple glass material you would mix between a glossy refraction and glossy reflection.
+At grazing angles more light will be reflected than refracted as happens in reality.
+  </paragraph>
+  <paragraph>
+   For a two-layered material with a diffuse base and a glossy coating,
+you can use the same setup, mixing between a diffuse and glossy BSDF. By using the Fresnel as
+the blending factor you are specifying that any light which is refracted through the glossy
+coating layer would hit the diffuse base and be reflected off that.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chỉ Số Khúc Xạ (IOR) -- IOR
+     </term>
+     <definition>
+      <paragraph>
+       Index of refraction (
+       <reference internal="True" refuri="../../../glossary/index.html#term-ior">
+        <inline classes="xref std std-term">
+         IOR
+        </inline>
+       </reference>
+       ) of the material being entered.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pháp Tuyến -- Normal
+     </term>
+     <definition>
+      <paragraph>
+       Input meant for plugging in bump or normal maps which will affect the output.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Nút này không có tính chất nào cả.
+   </paragraph>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Fresnel weight, indicating the probability with which light
+will reflect off the layer rather than passing through.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

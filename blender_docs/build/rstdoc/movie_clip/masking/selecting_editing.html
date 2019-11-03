@@ -1,0 +1,419 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/movie_clip/masking/selecting_editing.rst">
+ <section ids="selecting-editing" names="selecting\ &amp;\ editing lựa\ chọn\ &amp;\ biên\ soạn\ --\ selecting\ &amp;\ editing">
+  <title>
+   Lựa Chọn &amp; Biên Soạn -- Selecting &amp; Editing
+  </title>
+  <section ids="selecting" names="selecting lựa\ chọn\ --\ selecting">
+   <title>
+    Lựa Chọn -- Selecting
+   </title>
+   <paragraph>
+    The usual selection tools are available:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Toggle Select All
+      <literal classes="kbd">
+       A
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Box and Circle Select
+      <literal classes="kbd">
+       B
+      </literal>
+      ,
+      <literal classes="kbd">
+       C
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Lasso Select
+      <literal classes="kbd">
+       Ctrl-Alt-LMB
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Select Linked from selection
+      <literal classes="kbd">
+       Ctrl-L
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Select Linked with mouse
+      <literal classes="kbd">
+       L
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Select tracking marker
+      <literal classes="kbd">
+       Ctrl-RMB
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="editing" names="editing biên\ soạn\ --\ editing">
+   <title>
+    Biên Soạn -- Editing
+   </title>
+   <paragraph>
+    The tools and panels available to edit masks are the same in both editors.
+Editing of mask splines happens in a way similar to editing Bézier curves or paths in GIMP or other curve editors.
+   </paragraph>
+   <tip>
+    <paragraph>
+     To get interactive feedback on the resulting mask,
+a Mask node can be connected directly to a Viewer node in the compositor,
+which will then keep updating the compositing result while editing.
+    </paragraph>
+   </tip>
+   <section ids="control-points" names="control\ points điểm\ điều\ khiển\ --\ control\ points">
+    <title>
+     Điểm Điều Khiển -- Control Points
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Thêm Điểm Đỉnh và Trượt Đẩy
+       <literal classes="kbd">
+        Ctrl-LMB
+       </literal>
+       -- Add Vertex and Slide
+       <literal classes="kbd">
+        Ctrl-LMB
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-LMB
+        </literal>
+        is used to place new control points and define handle orientations by a continued mouse drag.
+A
+        <literal classes="kbd">
+         Ctrl-LMB
+        </literal>
+        double-click will also close the curve if the last point was selected.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Biến Hóa -- Transform
+      </term>
+      <definition>
+       <paragraph>
+        Existing control points can be moved with
+        <literal classes="kbd">
+         LMB
+        </literal>
+        and
+moved, scaled and rotated with the usual
+        <literal classes="kbd">
+         G
+        </literal>
+        ,
+        <literal classes="kbd">
+         S
+        </literal>
+        ,
+        <literal classes="kbd">
+         R
+        </literal>
+        shortcuts.
+The whole spline can be moved by dragging the center dot with
+        <literal classes="kbd">
+         LMB
+        </literal>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bật/Tắt tính Tuần Hoàn
+       <literal classes="kbd">
+        Alt-C
+       </literal>
+       -- Toggle Cyclic
+       <literal classes="kbd">
+        Alt-C
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Toggle to create a closed curve or open it again.
+Close the mask by joining the last control point to the first.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xóa
+       <literal classes="kbd">
+        X
+       </literal>
+       -- Delete
+       <literal classes="kbd">
+        X
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Removes control points.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="curve-handles" names="curve\ handles tay\ cầm\ của\ đường\ cong\ --\ curve\ handles">
+    <title>
+     Tay Cầm của Đường Cong -- Curve Handles
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Trượt Đẩy Độ Cong của Spline -- Slide Spline Curvature
+      </term>
+      <definition>
+       <paragraph>
+        <literal classes="kbd">
+         LMB
+        </literal>
+        click on curve and drag to move the handle.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đặt Thể Loại Tay Cầm
+       <literal classes="kbd">
+        V
+       </literal>
+       -- Set Handle Type
+       <literal classes="kbd">
+        V
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Set handle type for selected spline points.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tính Lại Pháp Tuyến
+       <literal classes="kbd">
+        Ctrl-N
+       </literal>
+       -- Recalculate Normals
+       <literal classes="kbd">
+        Ctrl-N
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Make normals (handle directions) consistent.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đảo Chiều Hướng -- Switch Direction
+      </term>
+      <definition>
+       <paragraph>
+        Switch Direction handle directions in/out.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="mask-feather">
+    </target>
+   </section>
+   <section ids="feather mask-feather" names="feather mép\ nhòe\ --\ feather mask-feather">
+    <title>
+     Mép Nhòe -- Feather
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Thêm Điểm Đỉnh cho Mép Nhòe và Trượt Đẩy
+       <literal classes="kbd">
+        Shift-LMB
+       </literal>
+       -- Add Feather Vertex and Slide
+       <literal classes="kbd">
+        Shift-LMB
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        <literal classes="kbd">
+         Shift-LMB
+        </literal>
+        is used to define a feathering outline curve. To create an initial feather,
+sliding from a spline control point outside or inside will create and position feather points.
+After this
+        <literal classes="kbd">
+         Shift-LMB
+        </literal>
+        will insert new feather point and mouse sliding can be used to move them around.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đổi Tỷ Lệ Mép Nhòe
+       <literal classes="kbd">
+        Alt-S
+       </literal>
+       -- Scale Feather
+       <literal classes="kbd">
+        Alt-S
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Will scale the feather size.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="animation" names="animation hoạt\ họa\ --\ animation">
+    <title>
+     Hoạt Họa -- Animation
+    </title>
+    <paragraph>
+     Masks can be animated with the shape keying system.
+This can be useful when there are not enough good feature points to track in the footage,
+or the mask is not based on footage.
+Mask animation timing can be edited from the
+     <emphasis>
+      Dope Sheet's
+     </emphasis>
+     <reference internal="True" refuri="../../editors/dope_sheet/shape_key.html#dope-sheet-mask">
+      <inline classes="std std-ref">
+       Mask Mode
+      </inline>
+     </reference>
+     .
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Chèn Thêm Hình Dạng Khóa
+       <literal classes="kbd">
+        I
+       </literal>
+       -- Insert Shape Key
+       <literal classes="kbd">
+        I
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Will insert a shape key for the active mask layer at the current frame.
+This works on the level of mask layers,
+so inserting a shape key will keyframe all the splines and points contained in it.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xóa Hình Dạng Khóa
+       <literal classes="kbd">
+        Alt-I
+       </literal>
+       -- Clear Shape Key
+       <literal classes="kbd">
+        Alt-I
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Will clear the shape key for the active mask layer at the current frame.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hoàn Lại Mép Nhòe của Hoạt Hình -- Feather Reset Animation
+      </term>
+      <definition>
+       <paragraph>
+        Resets the feather offset across all animated frames.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khóa Hóa Lại những Điểm của các Hình Dạng Được Chọn -- Re-Key Points of Selected Shapes
+      </term>
+      <definition>
+       <paragraph>
+        Re-interpolate selected points on across the range of keys selected in the
+        <emphasis>
+         Dope Sheet
+        </emphasis>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="show-hide" names="show/hide hiện/ẩn\ --\ show/hide">
+    <title>
+     Hiện/Ẩn -- Show/Hide
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Hide Selected
+       <literal classes="kbd">
+        H
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Hide Unselected
+       <literal classes="kbd">
+        Shift-H
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Clear Restricted View
+       <literal classes="kbd">
+        Alt-H
+       </literal>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+ </section>
+</document>

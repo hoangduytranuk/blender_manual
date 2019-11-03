@@ -1,0 +1,1141 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/timeline.rst">
+ <target refid="bpy-types-spacetimeline">
+ </target>
+ <target refid="bpy-ops-time">
+ </target>
+ <section ids="timeline bpy-ops-time bpy-types-spacetimeline" names="timeline bpy.ops.time bpy.types.spacetimeline">
+  <title>
+   Timeline
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Timeline
+   </emphasis>
+   editor, identified by a clock icon, is used for manipulating keyframes and
+scrubbing the playhead.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/editors_timeline_interface.png'}" uri="images/editors_timeline_interface.png"/>
+   <caption>
+    The Timeline.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Timeline
+   </emphasis>
+   gives the user a broad overview of a scene's animation,
+by showing the current frame, the keyframes of the active object,
+the start and end frames of your animation sequence, as well as markers set by the user.
+  </paragraph>
+  <paragraph>
+   The
+   <emphasis>
+    Timeline
+   </emphasis>
+   includes
+   <emphasis>
+    Transport Controls
+   </emphasis>
+   , to play, pause, and skip through an animation sequence.
+  </paragraph>
+  <paragraph>
+   It also includes tools for manipulating
+   <emphasis>
+    Keyframes
+   </emphasis>
+   ,
+   <emphasis>
+    Keying Sets
+   </emphasis>
+   , and
+   <emphasis>
+    Markers
+   </emphasis>
+   .
+  </paragraph>
+  <section ids="main-view" names="main\ view khung\ nhìn\ chính\ --\ main\ view">
+   <title>
+    Khung Nhìn Chính -- Main View
+   </title>
+   <paragraph>
+    The main
+    <emphasis>
+     Timeline
+    </emphasis>
+    region displays the animation frames over time.
+   </paragraph>
+   <figure>
+    <image candidates="{'*': 'images/editors_timeline_main.png'}" uri="images/editors_timeline_main.png"/>
+   </figure>
+   <paragraph>
+    Here you can see the
+    <emphasis>
+     Keyframes
+    </emphasis>
+    (diamond shapes),
+    <emphasis>
+     Playhead
+    </emphasis>
+    (blue handle),
+    <emphasis>
+     Scrollbar
+    </emphasis>
+    (along the bottom).
+   </paragraph>
+   <section ids="adjusting-the-view" names="adjusting\ the\ view điều\ chỉnh\ khung\ nhìn\ --\ adjusting\ the\ view">
+    <title>
+     Điều Chỉnh Khung Nhìn -- Adjusting the View
+    </title>
+    <paragraph>
+     The
+     <emphasis>
+      Timeline
+     </emphasis>
+     can be panned by holding
+     <literal classes="kbd">
+      MMB
+     </literal>
+     ,
+then dragging the area left or right.
+    </paragraph>
+    <paragraph>
+     You can zoom the
+     <emphasis>
+      Timeline
+     </emphasis>
+     by using
+     <literal classes="kbd">
+      Ctrl-MMB
+     </literal>
+     , the mouse
+     <literal classes="kbd">
+      Wheel
+     </literal>
+     ,
+or pressing
+     <literal classes="kbd">
+      NumpadMinus
+     </literal>
+     and
+     <literal classes="kbd">
+      NumpadPlus
+     </literal>
+     .
+    </paragraph>
+    <paragraph>
+     You can also use the scrollbars, located at the bottom or the right of the editor, to pan and zoom the view.
+    </paragraph>
+   </section>
+   <section ids="playhead" names="playhead">
+    <title>
+     Playhead
+    </title>
+    <paragraph>
+     The
+     <emphasis>
+      Playhead
+     </emphasis>
+     is the blue vertical line with the current frame number at the top.
+    </paragraph>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/editors_timeline_cursor.png'}" uri="images/editors_timeline_cursor.png"/>
+     <caption>
+      Playhead.
+     </caption>
+    </figure>
+    <paragraph>
+     The
+     <emphasis>
+      Playhead
+     </emphasis>
+     can be set or moved to a new position by pressing or
+holding
+     <literal classes="kbd">
+      LMB
+     </literal>
+     in scrubbing area at the top of the timeline.
+    </paragraph>
+    <paragraph>
+     The
+     <emphasis>
+      Playhead
+     </emphasis>
+     can be moved in single-frame increments by pressing
+     <literal classes="kbd">
+      Left
+     </literal>
+     or
+     <literal classes="kbd">
+      Right
+     </literal>
+     ,
+or you can jump to the beginning or end frame by pressing
+     <literal classes="kbd">
+      Shift-Left
+     </literal>
+     or
+     <literal classes="kbd">
+      Shift-Right
+     </literal>
+     .
+    </paragraph>
+   </section>
+   <section ids="frame-range" names="frame\ range">
+    <title>
+     Frame Range
+    </title>
+    <paragraph>
+     By default, the
+     <emphasis>
+      Frame Range
+     </emphasis>
+     is set to start at frame 1 and end at frame 250.
+You can change the frame range in the top right of the Timeline header, or in the Output Properties.
+    </paragraph>
+   </section>
+   <section ids="keyframes" names="keyframes khung\ khóa\ --\ keyframes">
+    <title>
+     Khung Khóa -- Keyframes
+    </title>
+    <paragraph>
+     For the active and selected objects, keyframes are displayed as diamond shapes.
+    </paragraph>
+    <paragraph>
+     You can click to select one at a time, or select several by holding
+     <literal classes="kbd">
+      Shift
+     </literal>
+     ,
+or by dragging a box around the keyframes.
+You can then move single keys by dragging them,
+and you can move multiple keys by pressing
+     <literal classes="kbd">
+      G
+     </literal>
+     and scale them with
+     <literal classes="kbd">
+      S
+     </literal>
+     .
+    </paragraph>
+    <paragraph>
+     <emphasis>
+      Only Selected Channels
+     </emphasis>
+     can be enabled.
+     <inline classes="menuselection" rawtext=":menuselection:`Timeline --&gt; View --&gt; Only Selected Channels`">
+      Timeline ‣ View ‣ Only Selected Channels
+     </inline>
+     .
+For
+     <emphasis>
+      Armatures
+     </emphasis>
+     , this will display the object keyframes,
+and the keyframes for the active and selected pose bones.
+    </paragraph>
+   </section>
+   <section ids="markers" names="markers dấu\ mốc\ --\ markers">
+    <title>
+     Dấu Mốc -- Markers
+    </title>
+    <paragraph>
+     See the
+     <reference internal="True" refuri="../animation/markers.html">
+      <inline classes="doc">
+       Markers page
+      </inline>
+     </reference>
+     for more information.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="header" names="header tiêu\ đề\ --\ header">
+   <title>
+    Tiêu Đề -- Header
+   </title>
+   <section ids="popovers" names="popovers">
+    <title>
+     Popovers
+    </title>
+    <target refid="timeline-playback">
+    </target>
+    <section ids="playback-popover timeline-playback" names="playback\ popover timeline-playback">
+     <title>
+      Playback Popover
+     </title>
+     <figure>
+      <image candidates="{'*': 'images/editors_timeline_playback.png'}" uri="images/editors_timeline_playback.png"/>
+     </figure>
+     <paragraph>
+      The
+      <emphasis>
+       Playback
+      </emphasis>
+      popover contains options controlling the animation playback.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Sync Mode
+       </term>
+       <definition>
+        <figure align="right" ids="id3" width="109px">
+         <image candidates="{'*': 'images/editors_timeline_red-fps.png'}" uri="images/editors_timeline_red-fps.png"/>
+         <caption>
+          3D View red FPS.
+         </caption>
+         <legend>
+          <paragraph>
+           60:54.75
+          </paragraph>
+         </legend>
+        </figure>
+        <paragraph>
+         When you play an animation, the frame rate is displayed at the top left of the 3D View.
+If the scene is detailed and playback is slower than the set
+         <emphasis>
+          Frame Rate
+         </emphasis>
+         (see
+         <reference internal="True" refuri="../render/output/settings.html#render-tab-dimensions">
+          <inline classes="std std-ref">
+           Bảng Kích Thước -- Dimensions Panel
+          </inline>
+         </reference>
+         ),
+these options are used to synchronize the playback.
+        </paragraph>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           Không Đồng Bộ Hóa -- No Sync
+          </term>
+          <definition>
+           <paragraph>
+            Do not sync, play every frame.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Nhảy Cách Khung Hình -- Frame Dropping
+          </term>
+          <definition>
+           <paragraph>
+            Drop frames if playback is too slow.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Đồng Bộ Hóa AV -- AV-sync
+          </term>
+          <definition>
+           <paragraph>
+            (Audio/Video Synchronization). Sync to audio clock, dropping frames if playback is slow.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Rà Quét Âm Thanh -- Audio Scrubbing
+       </term>
+       <definition>
+        <paragraph>
+         If your animation has sound, this option plays bits of the sound wave
+while you move the playhead with
+         <literal classes="kbd">
+          LMB
+         </literal>
+         or keyboard arrows (like a moving playhead).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Mute Audio
+       </term>
+       <definition>
+        <paragraph>
+         Mute the sound from any audio source.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Khung Hình Phụ -- Subframes
+       </term>
+       <definition>
+        <paragraph>
+         Display and allow changing the current scene sub-frame.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Limit Playhead to Frame Range
+       </term>
+       <definition>
+        <paragraph>
+         Don't allow selecting frames outside of the playback range using the mouse.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Follow Playhead
+       </term>
+       <definition>
+        <paragraph>
+         Animation editors can be setup to always follow the time indicator as animation is being played back.
+Following will be done when animating and changing frame.
+When the cursor reaches the end of the screen, the next range of frames of the same width will be displayed.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Active Editor Only
+       </term>
+       <definition>
+        <paragraph>
+         While playing, updates the Timeline, if
+         <emphasis>
+          Animation Editors
+         </emphasis>
+         and
+         <emphasis>
+          All 3D Viewports
+         </emphasis>
+         disabled.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        All 3D Viewports
+       </term>
+       <definition>
+        <paragraph>
+         While playing, updates the 3D View and the Timeline.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Trình Biên Soạn Hoạt Họa -- Animation Editors
+       </term>
+       <definition>
+        <paragraph>
+         While playing, updates the Timeline, Dope Sheet, Graph Editor, Video Sequencer.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Trình Biên Soạn Tính Chất -- Property Editors
+       </term>
+       <definition>
+        <paragraph>
+         When the animation is playing, this will update the property values in the UI.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Trình Biên Soạn Hình Ảnh -- Image Editors
+       </term>
+       <definition>
+        <paragraph>
+         The Image editor in Mask mode.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Bộ Phối Hình -- Sequencer Editors
+       </term>
+       <definition>
+        <paragraph>
+         While playing, updates the Video Sequencer.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Trình Biên Soạn Nút -- Node Editors
+       </term>
+       <definition>
+        <paragraph>
+         While playing, updates the Node properties for the node editors.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Trình Biên Soạn Đoạn Phim -- Clip Editors
+       </term>
+       <definition>
+        <paragraph>
+         While playing, updates the Movie Clip Editor.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <target refid="timeline-keying">
+     </target>
+    </section>
+    <section ids="keying-popover timeline-keying" names="keying\ popover timeline-keying">
+     <title>
+      Keying Popover
+     </title>
+     <figure>
+      <image candidates="{'*': 'images/editors_timeline_keying.png'}" uri="images/editors_timeline_keying.png"/>
+     </figure>
+     <paragraph>
+      The
+      <emphasis>
+       Keying
+      </emphasis>
+      popover contains options that affect keyframe insertion.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Bộ Khóa Đang Hoạt Động -- Active Keying Set
+       </term>
+       <definition>
+        <figure align="right" ids="id4">
+         <image candidates="{'*': 'images/editors_timeline_keying-sets.png'}" uri="images/editors_timeline_keying-sets.png"/>
+         <caption>
+          Timeline Keying Sets.
+         </caption>
+        </figure>
+        <paragraph>
+         <emphasis>
+          Keying Sets
+         </emphasis>
+         are a set of keyframe channels in one. They are made so the user can record multiple properties at the same time. With a keying set selected, when you insert a keyframe, Blender will add keyframes for the properties in the active
+         <emphasis>
+          Keying Set
+         </emphasis>
+         . There are some built-in keying sets,
+         <emphasis>
+          LocRotScale
+         </emphasis>
+         , and also custom keying sets. Custom keying sets can be defined in the panels
+         <inline classes="menuselection" rawtext=":menuselection:`Tính Chất (Properties) --&gt; Cảnh (Scene) --&gt; Các Bộ Khóa + Bộ Khóa Đang Hoạt Động (Keying Sets + Active Keying Set)`">
+          Tính Chất (Properties) ‣ Cảnh (Scene) ‣ Các Bộ Khóa + Bộ Khóa Đang Hoạt Động (Keying Sets + Active Keying Set)
+         </inline>
+         .
+        </paragraph>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           Chèn Thêm Khung Khóa (biểu tượng dấu cộng) -- Insert Keyframes (plus icon)
+          </term>
+          <definition>
+           <paragraph>
+            Insert keyframes on the current frame for the properties in the active
+            <emphasis>
+             Keying Set
+            </emphasis>
+            .
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Xóa Khung Khóa (biểu tượng dấu trừ) -- Delete Keyframes (minus icon)
+          </term>
+          <definition>
+           <paragraph>
+            Delete keyframes on the current frame for the properties in the active
+            <emphasis>
+             Keying Set
+            </emphasis>
+            .
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Loại Khung Khóa Mới -- New Keyframe Type
+       </term>
+       <definition>
+        <paragraph>
+         <reference internal="True" refuri="../animation/keyframes/introduction.html#keyframe-type">
+          <inline classes="std std-ref">
+           Thể Loại Khung Khóa -- Keyframe Types
+          </inline>
+         </reference>
+         on insertion.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Chế Độ Tự Động Tạo Khung Khóa -- Auto-Keyframing Mode
+       </term>
+       <definition>
+        <paragraph>
+         This controls how the auto keyframe mode works.
+Only one mode can be used at a time.
+        </paragraph>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           Cộng Thêm &amp; Thay Thế -- Add &amp; Replace
+          </term>
+          <definition>
+           <paragraph>
+            Add or replace existing keyframes.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Thay Thế -- Replace
+          </term>
+          <definition>
+           <paragraph>
+            Only replace existing keyframes.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tự Động đặt Bộ Khóa (biểu tượng hai chìa khóa) -- Auto Keying Set (two keys icon)
+       </term>
+       <definition>
+        <paragraph>
+         When enabled
+         <emphasis>
+          Auto Keyframe
+         </emphasis>
+         will insert new keyframes for the properties in the active
+         <emphasis>
+          Keying Set
+         </emphasis>
+         .
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Layered Recording
+       </term>
+       <definition>
+        <paragraph>
+         Adds a new NLA Track and strip for every loop/pass made over the animation to allow non-destructive tweaking.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Cycle-Aware Keying
+       </term>
+       <definition>
+        <paragraph>
+         When inserting keyframes into
+         <reference internal="True" refuri="graph_editor/fcurves/modifiers.html#bpy-types-fmodifiercycles">
+          <inline classes="std std-ref">
+           trivially cyclic curves
+          </inline>
+         </reference>
+         , special handling
+is applied to preserve the cycle integrity (most useful while tweaking an established cycle):
+        </paragraph>
+        <bullet_list bullet="-">
+         <list_item>
+          <paragraph>
+           If a key insertion is attempted outside of the main time range of the cycle,
+it is remapped back inside the range.
+          </paragraph>
+         </list_item>
+         <list_item>
+          <paragraph>
+           When overwriting one of the end keys,
+the other one is updated appropriately.
+          </paragraph>
+         </list_item>
+        </bullet_list>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+   <section ids="menus" names="menus trình\ đơn\ --\ menus">
+    <title>
+     Trình Đơn -- Menus
+    </title>
+    <target refid="timeline-view-menu">
+    </target>
+    <section ids="view-menu timeline-view-menu" names="view\ menu trình\ đơn\ góc\ nhìn\ --\ view\ menu timeline-view-menu">
+     <title>
+      Trình Đơn Góc Nhìn -- View Menu
+     </title>
+     <paragraph>
+      The
+      <emphasis>
+       View Menu
+      </emphasis>
+      controls what you see, and what it looks like.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Hiển Thị Số Giây
+        <literal classes="kbd">
+         Ctrl-T
+        </literal>
+        -- Show Seconds
+        <literal classes="kbd">
+         Ctrl-T
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Whether to show the time in the X axis and the
+         <emphasis>
+          Playhead
+         </emphasis>
+         as
+frames (based on the FPS) or as seconds.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Đồng Bộ Hóa Thời Gian với các Cửa Sổ Khác -- Lock Time to Other Windows
+       </term>
+       <definition>
+        <paragraph>
+         It synchronizes the horizontal panning and scale of the current editor
+with the other editors (Graph, Dope Sheet, NLA) when this option is set.
+That way you always have these editors showing an identical part of the time you work on.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Duy Khung Khóa Từ các Kênh Được Chọn -- Only Keyframes from Selected Channels
+       </term>
+       <definition>
+        <paragraph>
+         For
+         <emphasis>
+          Armatures
+         </emphasis>
+         , this will display the object keyframes,
+and the keyframes for the active and selected pose bones.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Bộ Nhớ Đệm -- Cache
+       </term>
+       <definition>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           Hiển Thị Bộ Nhớ Đệm -- Show Cache
+          </term>
+          <definition>
+           <paragraph>
+            Show all enabled types.
+           </paragraph>
+           <paragraph>
+            Softbody, Particles, Cloth, Smoke, Dynamic Paint, Rigid Body.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/editors_timeline_cache.png'}" uri="images/editors_timeline_cache.png"/>
+         <caption>
+          Timeline Cache.
+         </caption>
+        </figure>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Xem Tổng Thể -- View All
+        <literal classes="kbd">
+         Home
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Maximize the area based on the Animation Range.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Xem Khung Phim -- View Frame
+        <literal classes="kbd">
+         Bàn Số 0
+        </literal>
+        -- View Frame
+        <literal classes="kbd">
+         Numpad0
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Centers the Timeline to the Playhead.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <comment xml:space="preserve">
+      removed in 2.8
+     </comment>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Kết Buộc Máy Quay Phim với Dấu Mốc
+        <literal classes="kbd">
+         Ctrl-B
+        </literal>
+        -- Bind Camera to Markers
+        <literal classes="kbd">
+         Ctrl-B
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         This is used to switch cameras during animation.
+It binds the active camera to the selected markers.
+First select a camera. Then select the marker(s). Then use the tool.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="markers-menu" names="markers\ menu trình\ đơn\ dấu\ mốc\ --\ markers\ menu">
+     <title>
+      Trình Đơn Dấu Mốc -- Markers Menu
+     </title>
+     <paragraph>
+      <reference internal="True" refuri="../animation/markers.html">
+       <inline classes="doc">
+        Dấu Mốc -- Markers
+       </inline>
+      </reference>
+      được sử dụng để biểu thị khung hình có những điểm trọng yếu hoặc các sự đáng phải để ý trong một hoạt hình. Giống hầu hết các trình biên soạn hoạt họa, điểm đánh dấu được hiển thị ở dưới đáy của trình biên soạn.
+     </paragraph>
+     <figure ids="id6">
+      <image candidates="{'*': 'images/editors_graph-editor_introduction_markers.png'}" uri="images/editors_graph-editor_introduction_markers.png"/>
+      <caption>
+       Dấu Mốc trong Trình Biên Soạn Hoạt Họa.
+      </caption>
+     </figure>
+     <paragraph>
+      Để biết nội dung về các công cụ đánh dấu khác nhau, hãy xem
+      <reference internal="True" refuri="../animation/markers.html#animation-markers-editing">
+       <inline classes="std std-ref">
+        Biên Soạn các Dấu Mốc --Editing Markers
+       </inline>
+      </reference>
+      .
+     </paragraph>
+     <target refid="animation-editors-timeline-headercontrols">
+     </target>
+    </section>
+   </section>
+   <section ids="header-controls animation-editors-timeline-headercontrols" names="header\ controls thanh\ tiêu\ đề\ --\ header\ controls animation-editors-timeline-headercontrols">
+    <title>
+     Thanh Tiêu Đề -- Header Controls
+    </title>
+    <paragraph>
+     The Timeline header controls.
+    </paragraph>
+    <figure ids="id7">
+     <image candidates="{'*': 'images/editors_timeline_header.png'}" uri="images/editors_timeline_header.png"/>
+     <caption>
+      Timeline header controls.
+     </caption>
+     <legend>
+      <paragraph>
+       1. Popovers for Playback and Keying, 2. Transport Controls, 3.Frame Controls
+      </paragraph>
+     </legend>
+    </figure>
+    <section ids="transport-controls" names="transport\ controls">
+     <title>
+      Transport Controls
+     </title>
+     <paragraph>
+      These buttons are used to set, play, rewind, the
+      <emphasis>
+       Playhead
+      </emphasis>
+      .
+     </paragraph>
+     <figure align="right" ids="id8">
+      <image candidates="{'*': 'images/editors_timeline_player-controls.png'}" uri="images/editors_timeline_player-controls.png"/>
+      <caption>
+       Transport controls.
+      </caption>
+     </figure>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Nhảy về đầu -- Jump to start (⏮)
+        <literal classes="kbd">
+         Shift-Ctrl-Down
+        </literal>
+        ,
+        <literal classes="kbd">
+         Shift-Left
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         This sets the cursor to the start of frame range.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Nhảy về khung hình trước -- Jump to previous keyframe (⏪︎)
+        <literal classes="kbd">
+         Down
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         This sets the cursor to the previous keyframe.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Quay Lại -- Rewind (◀)
+        <literal classes="kbd">
+         Shift-Alt-A
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         This plays the animation sequence in reverse.
+When playing the play buttons switch to a pause button.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Chơi -- Play (▶)
+        <literal classes="kbd">
+         Alt-A
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         This plays the animation sequence.
+When playing the play buttons switch to a pause button.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Nhảy tới khung hình tiếp theo -- Jump to next keyframe (⏩︎)
+        <literal classes="kbd">
+         Up
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         This sets the cursor to the next keyframe.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Nhảy tới cuối -- Jump to end (⏭)
+        <literal classes="kbd">
+         Shift-Ctrl-Up
+        </literal>
+        ,
+        <literal classes="kbd">
+         Shift-Right
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         This sets the cursor to the end of frame range.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tạm Ngưng -- Pause (⏸)
+        <literal classes="kbd">
+         Alt-A
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         This stops the animation.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="frame-controls" names="frame\ controls">
+     <title>
+      Frame Controls
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Khung Hình Hiện Tại
+        <literal classes="kbd">
+         Alt-Wheel
+        </literal>
+        -- Current Frame
+        <literal classes="kbd">
+         Alt-Wheel
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         The current frame of the animation/playback range.
+Also the position of the
+         <emphasis>
+          Playhead
+         </emphasis>
+         .
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Preview Range (clock icon)
+       </term>
+       <definition>
+        <paragraph>
+         This is a temporary frame range used for previewing a smaller part of the full range.
+The preview range only affects the viewport, not the rendered output.
+See
+         <reference internal="True" refuri="graph_editor/introduction.html#graph-preview-range">
+          <inline classes="std std-ref">
+           Duyệt Thảo Phạm Vi -- Preview Range
+          </inline>
+         </reference>
+         .
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Khung Hình Đầu -- Start Frame
+       </term>
+       <definition>
+        <paragraph>
+         The start frame of the animation/playback range.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Khung Hình Cuối -- End Frame
+       </term>
+       <definition>
+        <paragraph>
+         The end frame of the animation/playback range.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <comment xml:space="preserve">
+      Move to animation?
+     </comment>
+     <target refid="animation-editors-timeline-autokeyframe">
+     </target>
+    </section>
+    <section ids="keyframe-control animation-editors-timeline-autokeyframe" names="keyframe\ control điều\ khiển\ khung\ hình\ --\ keyframe\ control animation-editors-timeline-autokeyframe">
+     <title>
+      Điều Khiển Khung Hình -- Keyframe Control
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Tạo Khung Khóa Tự Động -- Auto Keyframe
+       </term>
+       <definition>
+        <figure align="right" ids="id9">
+         <image candidates="{'*': 'images/editors_timeline_keyframes-auto.png'}" uri="images/editors_timeline_keyframes-auto.png"/>
+         <caption>
+          Timeline Auto Keyframe.
+         </caption>
+        </figure>
+        <paragraph>
+         The record button enables
+         <emphasis>
+          Auto Keyframe
+         </emphasis>
+         :
+It will add and/or replace existing keyframes for the active object when you transform it in the 3D View.
+        </paragraph>
+        <paragraph>
+         For example, when enabled, first set the
+         <emphasis>
+          Playhead
+         </emphasis>
+         to the desired frame,
+then move an object in the 3D View, or set a new value for a property in the UI.
+        </paragraph>
+        <paragraph>
+         When you set a new value for the properties,
+Blender will add keyframes on the current frame for the transform properties.
+Other use cases are
+         <reference internal="True" refuri="3dview/navigate/walk_fly.html#dview-fly-walk">
+          <inline classes="std std-ref">
+           Fly/Walk Mode
+          </inline>
+         </reference>
+         to record the walk/flight path
+and
+         <reference internal="True" refuri="3dview/properties/sidebar.html#dview-lock-camera-to-view">
+          <inline classes="std std-ref">
+           Lock Camera to View
+          </inline>
+         </reference>
+         to record the navigation in camera view.
+        </paragraph>
+        <note>
+         <paragraph>
+          Note that
+          <emphasis>
+           Auto Keyframe
+          </emphasis>
+          only works for transform properties (objects and bones),
+in the 3D Views (i.e. you can't use it e.g. to animate the colors of a material in the Properties editor...).
+         </paragraph>
+        </note>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+  </section>
+ </section>
+</document>

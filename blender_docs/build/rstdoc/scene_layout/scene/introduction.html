@@ -1,0 +1,199 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/scene/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Scenes are a way to organize your work.
+Each blend-file can contain multiple scenes, which share other data such as objects and materials.
+  </paragraph>
+  <paragraph>
+   Scene management and library appending/linking are based on Blender's
+   <reference internal="True" refuri="../../files/index.html">
+    <inline classes="doc">
+     Library and Data System
+    </inline>
+   </reference>
+   ,
+so it is a good idea to read that manual page first,
+if you are not familiar with the basics of that system.
+  </paragraph>
+  <paragraph>
+   You can select and create scenes with the
+   <emphasis>
+    Scene data-block
+   </emphasis>
+   menu
+in the
+   <reference internal="True" refuri="../../interface/window_system/topbar.html">
+    <inline classes="doc">
+     Topbar
+    </inline>
+   </reference>
+  </paragraph>
+  <section ids="controls" names="controls điều\ khiển\ --\ controls">
+   <title>
+    Điều Khiển -- Controls
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Topbar --&gt; Scene`">
+         Topbar ‣ Scene
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/scene-layout_scene_introduction_menu.png'}" uri="images/scene-layout_scene_introduction_menu.png"/>
+    <caption>
+     Scene data-block menu.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Cảnh -- Scenes
+     </term>
+     <definition>
+      <paragraph>
+       A list of available scenes.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Add
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Mới -- New
+        </term>
+        <definition>
+         <paragraph>
+          Creates an empty scene with default values.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Sao Chép các Sắp Đặt -- Copy Settings
+        </term>
+        <definition>
+         <paragraph>
+          Creates an empty scene, but also copies
+the settings from the active scene into the new one.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Linked Copy
+        </term>
+        <definition>
+         <paragraph>
+          This option creates a new scene with the same settings and contents as the active scene.
+However, instead of copying the objects,
+the new scene contains links to the collections in the old scene.
+Therefore, changes to objects in the new scene will result in the same
+changes to the original scene, because the objects used are literally the same.
+The reverse is also true.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Sao Chép Toàn Phần -- Full Copy
+        </term>
+        <definition>
+         <paragraph>
+          Using this option, nothing is shared.
+This option creates a fully independent scene with copies of the active scene's contents.
+Every object in the original scene is duplicated, and a duplicate,
+private copy of its object-data is made as well.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <note>
+       <paragraph>
+        To choose between these options,
+it is useful to understand the difference between
+        <emphasis>
+         Object
+        </emphasis>
+        and
+        <emphasis>
+         Object Data
+        </emphasis>
+        .
+The choices for adding a scene, therefore, determine just how much of this information will be
+        <emphasis>
+         copied from
+        </emphasis>
+        the active scene to the new one, and how much will be
+        <emphasis>
+         shared
+        </emphasis>
+        (linked).
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa
+      <literal>
+       X
+      </literal>
+      -- Delete
+      <literal>
+       X
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       You can delete the current scene by clicking the
+       <emphasis>
+        X
+       </emphasis>
+       next to the name in the
+       <reference internal="True" refuri="../../interface/window_system/topbar.html">
+        <inline classes="doc">
+         Topbar
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     Linking to a Scene
+    </paragraph>
+    <paragraph>
+     You can
+     <reference internal="True" refuri="../object/editing/duplication.html#data-system-linked-libraries-make-link">
+      <inline classes="std std-ref">
+       link
+      </inline>
+     </reference>
+     any object from one scene to another.
+    </paragraph>
+   </seealso>
+  </section>
+ </section>
+</document>

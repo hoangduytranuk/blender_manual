@@ -1,0 +1,196 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/freestyle/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Freestyle is an edge/line-based non-photorealistic (NPR) rendering engine.
+It relies on mesh data and Z-depth information to draw lines on selected edge types.
+Various line styles can be added to produce artistic ("hand drawn", "painted", etc.)
+or technical (hard line) looks.
+  </paragraph>
+  <paragraph>
+   The two operating modes:
+   <reference internal="True" refuri="python.html">
+    <inline classes="doc">
+     Python Scripting
+    </inline>
+   </reference>
+   and
+   <reference internal="True" refuri="parameter_editor/index.html">
+    <inline classes="doc">
+     Parameter Editor
+    </inline>
+   </reference>
+   --
+allow a powerful diversity of line styles and results. Line styles such as Japanese big brush, cartoon, blueprint,
+thickness-with-depth are already pre-scripted in Python. The Parameter Editor mode allows intuitive editing of
+features such as dotted lines and easy setup of multiple line types and edge definitions.
+On top of all of that, with line style modifiers, the sky is the limit!
+  </paragraph>
+  <table>
+   <tgroup cols="2">
+    <colspec colwidth="50">
+    </colspec>
+    <colspec colwidth="50">
+    </colspec>
+    <tbody>
+     <row>
+      <entry>
+       <figure ids="id1">
+        <image candidates="{'*': 'images/render_freestyle_introduction_example-1.png'}" uri="images/render_freestyle_introduction_example-1.png"/>
+        <caption>
+         ATV buggy by Rylan Wright (RONIN). CC BY.
+(
+         <reference name="File:AtvBuggy.zip" refuri="https://wiki.blender.org/wiki/File:AtvBuggy.zip">
+          File:AtvBuggy.zip
+         </reference>
+         )
+        </caption>
+       </figure>
+      </entry>
+      <entry>
+       <figure ids="id2">
+        <image candidates="{'*': 'images/render_freestyle_introduction_example-2.png'}" uri="images/render_freestyle_introduction_example-2.png"/>
+        <caption>
+         By mato.sus304. CC BY-SA.
+(
+         <reference name="File:Mato_sus304_cut02.zip" refuri="https://wiki.blender.org/wiki/File:Mato_sus304_cut02.zip">
+          File:Mato_sus304_cut02.zip
+         </reference>
+         )
+        </caption>
+       </figure>
+      </entry>
+     </row>
+     <row>
+      <entry>
+       <figure ids="id3">
+        <image candidates="{'*': 'images/render_freestyle_introduction_example-3.png'}" uri="images/render_freestyle_introduction_example-3.png"/>
+        <caption>
+         A cartoon scene from
+         <reference name="OHA Studio" refuri="http://oha-studios.com/">
+          OHA Studio
+         </reference>
+         © Mechanimotion Entertainment.
+(
+         <reference name="blend-file" refuri="https://download.blender.org/demo/test/FreeStyle_demo_file.blend.zip">
+          blend-file
+         </reference>
+         )
+        </caption>
+       </figure>
+      </entry>
+      <entry>
+       <figure ids="id4">
+        <image candidates="{'*': 'images/render_freestyle_introduction_example-4.png'}" uri="images/render_freestyle_introduction_example-4.png"/>
+        <caption>
+         Blueprint render of Martin M-130 from 1935 by LightBWK. CC0. Warning:
+heavy file! designed for stress test Blender to the limits and may crash Blender.
+(
+         <reference name="File:M-130Blueprint.zip" refuri="https://wiki.blender.org/wiki/File:M-130Blueprint.zip">
+          File:M-130Blueprint.zip
+         </reference>
+         )
+        </caption>
+       </figure>
+      </entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+  <section ids="the-big-picture" names="the\ big\ picture --\ the\ big\ picture">
+   <title>
+    -- The Big Picture
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Activate Freestyle by the
+      <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Render --&gt; Freestyle`">
+       Properties ‣ Render ‣ Freestyle
+      </inline>
+      checkbox.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Freestyle settings are located in the
+      <reference internal="True" refuri="../../scene_layout/view_layers/index.html">
+       <inline classes="doc">
+        View Layer
+       </inline>
+      </reference>
+      properties.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      One view layer can only have one view map. A view map holds the edge detection settings
+(Crease Angle, Culling toggle, Face Smoothness toggle, Material Boundaries toggle,
+Sphere Radius, and Kr Derivative Epsilon advanced options).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      A view map can have multiple Line Sets.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      A line set controls which line types and selections will be rendered, from lines based on your scene.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Each line set uses one line style (which can be shared between multiple Line Sets).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      A line style tells Freestyle how to render the linked Line Sets in terms of color, alpha,
+thickness and other aspects.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <figure ids="id5">
+    <image candidates="{'*': 'images/render_freestyle_introduction_view-map-processes.png'}" uri="images/render_freestyle_introduction_view-map-processes.png"/>
+    <caption>
+     Block diagram of Freestyle view map and processes.
+    </caption>
+   </figure>
+  </section>
+  <section ids="known-limitations" names="known\ limitations những\ hạn\ chế\ từng\ biết\ đến\ --\ known\ limitations">
+   <title>
+    Những Hạn Chế Từng Biết Đến -- Known Limitations
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Highly memory demanding: All mesh objects in a view layer are loaded at once.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Only faced mesh objects are supported.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      No edges at face intersections are detected yet.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Freestyle rendering results do not have any Z depth information.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Panoramic cameras are not supported.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+ </section>
+</document>

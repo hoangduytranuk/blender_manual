@@ -1,0 +1,83 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/movie_clip/tracking/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Motion Tracking is used to track the motion of objects and/or a camera and, through the constraints,
+to apply this tracking data to 3D objects (or just one), which have either been created in Blender or
+imported into the application. Blender's motion tracker supports a couple of very powerful tools for 2D tracking and
+3D motion reconstruction, including camera tracking and object tracking, as well as some special features like
+the plane track for compositing. Tracks can also be used to move and deform masks for rotoscoping in the Mask Editor,
+which is available as a special mode in the Movie Clip Editor.
+  </paragraph>
+  <section ids="views" names="views đa\ góc\ nhìn\ --\ views">
+   <title>
+    Đa Góc Nhìn -- Views
+   </title>
+   <paragraph>
+    In Tracking Mode there are three different views available. You can toggle between view modes using
+the View drop-down, which is located in the header.
+When you selected a view in the whole area of the Movie Clip editor will change.
+Hence, to display a curve or dope sheet view, the editor must be split into two,
+with one switched to the curve or dope sheet view.
+   </paragraph>
+  </section>
+  <section ids="manual-lens-calibration" names="manual\ lens\ calibration hiệu\ chuẩn\ thấu\ kính\ thủ\ công\ --\ manual\ lens\ calibration">
+   <title>
+    Hiệu Chuẩn Thấu Kính Thủ Công -- Manual Lens Calibration
+   </title>
+   <paragraph>
+    All cameras record distorted video.
+Nothing can be done about this because of the manner in which optical lenses work.
+For accurate camera motion,
+the exact value of the focal length and the "strength" of distortion are needed.
+   </paragraph>
+   <paragraph>
+    Currently, focal length can be automatically obtained only from the camera's settings or from the EXIF information.
+There are some external tools which can help to find approximate values to compensate for distortion.
+There are also fully manual tools where you can use a grid which is getting affected by distortion model and
+deformed cells defines straight lines in the footage.
+   </paragraph>
+   <paragraph>
+    Within Blender you can use the Annotation tool for this -- just draw a line which should be straight on
+the footage using poly line brush and adjust the distortion values
+to make the annotations match lines on the footage.
+   </paragraph>
+   <paragraph>
+    To calibrate your camera more accurately, use the Grid calibration tool from OpenCV.
+OpenCV is using the same distortion model, so it should not be a problem.
+   </paragraph>
+  </section>
+  <section ids="camera-and-object-motion-solving" names="camera\ and\ object\ motion\ solving giải\ nghiệm\ di\ chuyển\ của\ máy\ quay\ phim\ và\ vật\ thể\ --\ camera\ and\ object\ motion\ solving">
+   <title>
+    Giải Nghiệm Di Chuyển của Máy Quay Phim và Vật Thể -- Camera and Object Motion Solving
+   </title>
+   <paragraph>
+    Blender not only supports the solving of camera motion, including tripod shots,
+but also the solving of object motion in relation to the motion of the camera.
+In addition to that there is the Plane Track, which solves the motion of all markers on one plane.
+   </paragraph>
+  </section>
+  <section ids="tools-for-scene-orientation-and-stabilization" names="tools\ for\ scene\ orientation\ and\ stabilization công\ cụ\ để\ định\ hướng\ cảnh\ và\ ổn\ định\ hóa\ --\ tools\ for\ scene\ orientation\ and\ stabilization">
+   <title>
+    Công Cụ để Định Hướng Cảnh và Ổn Định Hóa -- Tools for Scene Orientation and Stabilization
+   </title>
+   <paragraph>
+    After solve, you need to orient the real scene in the 3D scene for more convenient compositing.
+There are tools to define the floor, the scene origin, and the X/Y axes to perform scene orientation.
+   </paragraph>
+   <paragraph>
+    Sometimes, the video footage includes spurious jumps and tilting movements, like e.g. when using a hand-held camera.
+Based on some tracked image elements,
+the
+    <reference internal="True" refuri="clip/properties/stabilization/index.html">
+     <inline classes="doc">
+      Ổn Định Hóa 2D -- 2D Stabilization
+     </inline>
+    </reference>
+    is able to detect and compensate such movements to improve the quality of the final result.
+   </paragraph>
+  </section>
+ </section>
+</document>

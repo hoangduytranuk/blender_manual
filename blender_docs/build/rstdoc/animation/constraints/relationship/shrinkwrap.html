@@ -1,0 +1,361 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/relationship/shrinkwrap.rst">
+ <target refid="bpy-types-shrinkwrapconstraint">
+ </target>
+ <section ids="shrinkwrap-constraint bpy-types-shrinkwrapconstraint" names="shrinkwrap\ constraint ràng\ buộc\ co-bọc\ --\ shrinkwrap\ constraint bpy.types.shrinkwrapconstraint">
+  <title>
+   Ràng Buộc Co-Bọc -- Shrinkwrap Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Shrinkwrap
+   </emphasis>
+   constraint is the "object counterpart" of
+the
+   <reference internal="True" refuri="../../../modeling/modifiers/deform/shrinkwrap.html">
+    <inline classes="doc">
+     Shrinkwrap Modifier
+    </inline>
+   </reference>
+   .
+It moves the owner origin and therefore the owner object's location to the surface of its target.
+  </paragraph>
+  <paragraph>
+   This implies that the target
+   <emphasis>
+    must
+   </emphasis>
+   have a surface. In fact,
+the constraint is even more selective, as it can only use meshes as targets. Hence,
+the
+   <emphasis>
+    Shrinkwrap
+   </emphasis>
+   option is only shown in the
+   <emphasis>
+    Add Constraint to Active Object
+   </emphasis>
+   menu,
+   <literal classes="kbd">
+    Ctrl-Alt-C
+   </literal>
+   , (or its bone's equivalent),
+when the selected inactive object is a mesh.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_relationship_shrinkwrap_panel.png
+
+   Shrinkwrap panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+        <inline classes="std std-ref">
+         Chỉ Danh của Dữ Liệu -- Data ID
+        </inline>
+       </reference>
+       used to select the constraint's target, which
+       <emphasis>
+        must
+       </emphasis>
+       be a mesh object,
+and is not functional (red state) when it has none.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khoảng Cách -- Distance
+     </term>
+     <definition>
+      <paragraph>
+       This number field controls the offset of the owner from the shrunk computed position on the target's surface.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="shrinkwrap-type" names="shrinkwrap\ type kiểu\ co-bọc\ --\ shrinkwrap\ type">
+    <title>
+     Kiểu Co-Bọc -- Shrinkwrap Type
+    </title>
+    <paragraph>
+     This selector allows you to select which method to use to compute the point on
+the target's surface to which to move the owner's origin. You have these options:
+    </paragraph>
+    <section ids="nearest-surface-point" names="nearest\ surface\ point điểm\ gần\ nhất\ trên\ bề\ mặt\ --\ nearest\ surface\ point">
+     <title>
+      Điểm Gần Nhất Trên Bề Mặt -- Nearest Surface Point
+     </title>
+     <paragraph>
+      The chosen target's surface's point will be the nearest one to the original owner's location.
+This is the default and most commonly useful option.
+     </paragraph>
+    </section>
+    <section ids="projection" names="projection phóng\ chiếu\ --\ projection">
+     <title>
+      Phóng Chiếu -- Projection
+     </title>
+     <paragraph>
+      The target's surface point is determined by projecting the owner's origin along a given axis.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        -- Projection Axis
+       </term>
+       <definition>
+        <paragraph>
+         This axis is controlled by the radio buttons that show up when you select this type.
+This mean the projection axis can only be aligned with one of the three axes, or their opposites.
+When the projection of the owner's origin along the selected direction does not hit the target's surface,
+the owner's location is left unchanged.
+        </paragraph>
+        <paragraph>
+         +X, +Y, +Z, -X, -Y, -Z
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Không Gian Trục -- Axis Space
+       </term>
+       <definition>
+        <paragraph>
+         Coordinate space in which the axis direction is specified.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Projection Distance
+       </term>
+       <definition>
+        <paragraph>
+         Distance cutoff after which projection is assumed to have failed, leaving the location unchanged.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Face Culling
+       </term>
+       <definition>
+        <paragraph>
+         This radio button allows you to prevent any projection over the "front side"
+(respectively the "back side") of the target's faces. The "side" of a face is determined
+by its normal (front being the side "from where" the normal "originates").
+        </paragraph>
+        <paragraph>
+         Off, Front, Back
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        -- Project Opposite
+       </term>
+       <definition>
+        <paragraph>
+         In addition to the selected projection axis, project in the opposite direction and
+choose the closest hit.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Đảo Ngược Chiều Loại Bỏ -- Invert Cull
+       </term>
+       <definition>
+        <paragraph>
+         When used with
+         <emphasis>
+          Project Opposite
+         </emphasis>
+         and
+         <emphasis>
+          Face Culling
+         </emphasis>
+         , it inverts the
+         <emphasis>
+          Front
+         </emphasis>
+         or
+         <emphasis>
+          Back
+         </emphasis>
+         cull choice
+for the opposite direction.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="nearest-vertex" names="nearest\ vertex đỉnh\ gần\ nhất\ --\ nearest\ vertex">
+     <title>
+      Đỉnh Gần Nhất -- Nearest Vertex
+     </title>
+     <paragraph>
+      This method is very similar to the
+      <emphasis>
+       Nearest Surface Point
+      </emphasis>
+      one,
+except that the owner's possible shrink locations are limited to the target's vertices.
+     </paragraph>
+     <paragraph>
+      This method doesn't support the
+      <emphasis>
+       Snap Mode
+      </emphasis>
+      setting described below.
+     </paragraph>
+    </section>
+    <section ids="target-normal-projection" names="target\ normal\ projection phóng\ chiếu\ theo\ pháp\ tuyến\ đích\ --\ target\ normal\ projection">
+     <title>
+      Phóng Chiếu theo Pháp Tuyến Đích -- Target Normal Projection
+     </title>
+     <paragraph>
+      This method is similar to
+      <emphasis>
+       Nearest Surface Point
+      </emphasis>
+      , but produces a much smoother
+projection in return for being significantly slower.
+     </paragraph>
+     <paragraph>
+      Instead of finding the closest point, it searches for the nearest point
+that has its interpolated smooth normal pointing towards or away from the original owner position.
+Non-manifold boundary edges are specially handled as infinitely thin cylinders
+that emit normals in all perpendicular directions. Ignores flat shading and auto smooth settings.
+     </paragraph>
+    </section>
+   </section>
+   <section ids="snap-mode" names="snap\ mode chế\ độ\ bám\ dính\ --\ snap\ mode">
+    <title>
+     Chế Độ Bám Dính -- Snap Mode
+    </title>
+    <paragraph>
+     Most Shrinkwrap types support an additional setting to control how the owner is moved to
+the target point selected by the methods described above. Some of the choices
+only differ if
+     <emphasis>
+      Distance
+     </emphasis>
+     is not zero.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Trên Mặt -- On Surface
+      </term>
+      <definition>
+       <paragraph>
+        The owner location is always changed. The offset is applied along the projection line
+connecting the original owner location and selected target point towards
+the original position.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bên Ngoài Bề Mặt -- Outside Surface
+      </term>
+      <definition>
+       <paragraph>
+        Like
+        <emphasis>
+         On Surface
+        </emphasis>
+        , but the offset is always applied towards the outside of the target.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bên Trên Bề Mặt -- Above Surface
+      </term>
+      <definition>
+       <paragraph>
+        Like
+        <emphasis>
+         On Surface
+        </emphasis>
+        , but the offset is applied along the smooth normal of the target.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bên Trong -- Inside
+      </term>
+      <definition>
+       <paragraph>
+        The owner is not moved if it is already inside the target.
+Offset shrinks the allowed volume towards the inside along the projection line.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bên Ngoài -- Outside
+      </term>
+      <definition>
+       <paragraph>
+        The owner is not moved if it is already outside the target.
+Offset expands the exclusion volume towards the outside along the projection line.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <paragraph>
+     The
+     <emphasis>
+      Inside
+     </emphasis>
+     and
+     <emphasis>
+      Outside
+     </emphasis>
+     options can be used for very crude collision detection.
+The inside vs outside determination is done based on the target normal and
+is not always stable near 90 degree and sharper angles in the target mesh.
+    </paragraph>
+   </section>
+   <section ids="align-axis-to-normal" names="align\ axis\ to\ normal --\ align\ axis\ to\ normal">
+    <title>
+     -- Align Axis To Normal
+    </title>
+    <paragraph>
+     Whenever
+     <emphasis>
+      Snap Mode
+     </emphasis>
+     is available, it is also possible to align the specified
+local axis of the object to the smooth normal of the target at the selected
+point. The axis is selected via radio buttons.
+    </paragraph>
+    <paragraph>
+     The alignment is performed via smallest rotation, like in
+     <reference internal="True" refuri="../tracking/damped_track.html">
+      <inline classes="doc">
+       Damped Track
+      </inline>
+     </reference>
+     constraint.
+    </paragraph>
+    <vimeo aspect="None" height="None" id="171554427" width="None">
+    </vimeo>
+   </section>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,138 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/modify/uv_project.rst">
+ <target refid="bpy-types-uvprojectmodifier">
+ </target>
+ <section ids="uv-project-modifier bpy-types-uvprojectmodifier" names="uv\ project\ modifier bộ\ điều\ chỉnh\ phóng\ chiếu\ uv\ --\ uv\ project\ modifier bpy.types.uvprojectmodifier">
+  <title>
+   Bộ Điều Chỉnh Phóng Chiếu UV -- UV Project Modifier
+  </title>
+  <figure align="center" ids="id1">
+   <image candidates="{'*': 'images/modeling_modifiers_modify_uv-project_example.jpg'}" uri="images/modeling_modifiers_modify_uv-project_example.jpg" width="350px"/>
+   <caption>
+    Projecting the Blender logo onto Suzanne.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    UV Project
+   </emphasis>
+   modifier acts like a slide projector.
+It emits a UV map from the negative Z axis of a controller object
+(such as an
+   <reference internal="True" refuri="../../empties.html">
+    <inline classes="doc">
+     empty object
+    </inline>
+   </reference>
+   ),
+and applies it to the object as the "light" hits it.
+  </paragraph>
+  <paragraph>
+   <reference name="Download an example" refuri="https://wiki.blender.org/wiki/File:Uvproject.blend">
+    Download an example
+   </reference>
+   .
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/modeling_modifiers_modify_uv-project_panel.png'}" uri="images/modeling_modifiers_modify_uv-project_panel.png"/>
+    <caption>
+     The UV Project modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Ánh Xạ UV -- UV Map
+     </term>
+     <definition>
+      <paragraph>
+       Which UV map to modify. Defaults to the active rendering layer.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Máy Chiếu -- Projectors
+     </term>
+     <definition>
+      <paragraph>
+       Up to ten projector objects are supported.
+Each face will choose the closest and aligned projector with its surface normal.
+Projections emit from the negative Z axis (i.e. straight down a camera or light).
+If the projector is a camera, the projection will adhere to its perspective/orthographic setting.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vật Thể -- Objects
+     </term>
+     <definition>
+      <paragraph>
+       Specify the projector object(s).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Aspect X/Y and Scale X/Y
+     </term>
+     <definition>
+      <paragraph>
+       These allow simple manipulation of the image. Only apply when a camera is used as projector object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <section ids="general" names="general chung\ chung\ --\ general">
+    <title>
+     Chung Chung -- General
+    </title>
+    <paragraph>
+     <emphasis>
+      UV Project
+     </emphasis>
+     is great for making spotlights more diverse, and also for creating decals to break up repetition.
+    </paragraph>
+    <paragraph>
+     Usually, an
+     <reference internal="True" refuri="../../../render/shader_nodes/textures/image.html">
+      <inline classes="doc">
+       Image Texture node
+      </inline>
+     </reference>
+     mapped to the UV map
+that the modifier targets is added to the object's material.
+    </paragraph>
+    <comment xml:space="preserve">
+     Comment: think that is no more relevant for 2.80?
+    </comment>
+    <comment xml:space="preserve">
+     Perspective Cameras
+-------------------
+    </comment>
+    <comment xml:space="preserve">
+     When using perspective cameras or spot lights,
+you will likely want to enable the *UV Project* Material Option
+(available in the materials panel),
+This uses a different UV interpolation to prevent distortion.
+    </comment>
+    <comment xml:space="preserve">
+     .. note::
+    </comment>
+    <comment xml:space="preserve">
+     This option is not yet available for Cycles.
+    </comment>
+   </section>
+  </section>
+ </section>
+</document>

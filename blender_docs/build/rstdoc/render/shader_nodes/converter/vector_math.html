@@ -1,0 +1,339 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/converter/vector_math.rst">
+ <target refid="bpy-types-shadernodevectormath">
+ </target>
+ <section ids="vector-math-node bpy-types-shadernodevectormath" names="vector\ math\ node nút\ toán\ vectơ\ --\ vector\ math\ node bpy.types.shadernodevectormath">
+  <title>
+   Nút Toán Vectơ -- Vector Math Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_converter_vector-math_node.png'}" uri="images/render_shader-nodes_converter_vector-math_node.png"/>
+   <caption>
+    Vector Math Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Vector Math
+   </emphasis>
+   node performs the selected math operation on the input vectors.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <paragraph>
+    The inputs of the node are dynamic. Some inputs are only available in certain operations.
+For instance, the
+    <emphasis>
+     Scale
+    </emphasis>
+    input is only available in the
+    <emphasis>
+     Scale
+    </emphasis>
+    operator.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       Input vector A.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       Input vector B.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Scale
+     </term>
+     <definition>
+      <paragraph>
+       Input Scale.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thao Tác -- Operation
+     </term>
+     <definition>
+      <paragraph>
+       The vector math operator to be applied on the input vectors.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Cộng Thêm -- Add
+        </term>
+        <definition>
+         <paragraph>
+          The sum of A and B.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Trừ Khấu -- Subtract
+        </term>
+        <definition>
+         <paragraph>
+          The difference between A and B.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Multiply
+        </term>
+        <definition>
+         <paragraph>
+          The entrywise product of A and B.
+          <math>
+           (A.x * B.x, A.y * B.y, A.z * B.z)
+          </math>
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Divide
+        </term>
+        <definition>
+         <paragraph>
+          The entrywise division of A by B. Division by zero returns zero.
+          <math>
+           (A.x / B.x, A.y / B.y, A.z / B.z)
+          </math>
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tích có Hướng -- Cross Product
+        </term>
+        <definition>
+         <paragraph>
+          The cross product of A and B.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Project
+        </term>
+        <definition>
+         <paragraph>
+          The projection of A onto B.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Reflect
+        </term>
+        <definition>
+         <paragraph>
+          The reflection of A around the normal B. B need not be normalized.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tích Vô Hướng -- Dot Product
+        </term>
+        <definition>
+         <paragraph>
+          The dot product of A and B.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Distance
+        </term>
+        <definition>
+         <paragraph>
+          The distance between A and B.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Length
+        </term>
+        <definition>
+         <paragraph>
+          The length of A.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Scale
+        </term>
+        <definition>
+         <paragraph>
+          The result of multiplying A by the scalar input
+          <emphasis>
+           Scale
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bình Thường Hóa -- Normalize
+        </term>
+        <definition>
+         <paragraph>
+          The result of normalizing A.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Snap
+        </term>
+        <definition>
+         <paragraph>
+          The result of rounding A to the largest integer multiple of B less than or equal A.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Floor
+        </term>
+        <definition>
+         <paragraph>
+          The entrywise floor of A.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Ceil
+        </term>
+        <definition>
+         <paragraph>
+          The entrywise ceiling of A.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Modulo
+        </term>
+        <definition>
+         <paragraph>
+          The entrywise modulo of A by B.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Fraction
+        </term>
+        <definition>
+         <paragraph>
+          The fractional part of A.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Absolute
+        </term>
+        <definition>
+         <paragraph>
+          The entrywise absolute value of A.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Minimum
+        </term>
+        <definition>
+         <paragraph>
+          The entrywise minimum from A and B.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Maximum
+        </term>
+        <definition>
+         <paragraph>
+          The entrywise maximum from A and B.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <paragraph>
+    The output of the node is dynamic. It is either a vector or a scalar depending on the operator.
+For instance, the
+    <emphasis>
+     Length
+    </emphasis>
+    operator have a scalar output while the
+    <emphasis>
+     Add
+    </emphasis>
+    operator have a vector output.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       Output vector.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giá Trị -- Value
+     </term>
+     <definition>
+      <paragraph>
+       Output value.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

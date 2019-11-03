@@ -1,0 +1,466 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/properties/vertex_groups/vertex_groups.rst">
+ <section ids="vertex-groups-panel" names="vertex\ groups\ panel --\ vertex\ groups\ panel">
+  <title>
+   -- Vertex Groups Panel
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Toàn Bộ các Chế Độ -- All Modes
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Thẻ Dữ Liệu Vật Thể (Object Data tab) --&gt; Nhóm Điểm Đỉnh (Vertex Groups)`">
+        Thẻ Dữ Liệu Vật Thể (Object Data tab) ‣ Nhóm Điểm Đỉnh (Vertex Groups)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/modeling_meshes_properties_vertex-groups_introduction_panel.png'}" uri="images/modeling_meshes_properties_vertex-groups_introduction_panel.png"/>
+   <caption>
+    The Vertex Group panel.
+   </caption>
+  </figure>
+  <paragraph>
+   Vertex Groups are maintained within the
+   <emphasis>
+    Object Data
+   </emphasis>
+   Properties Editor,
+and there in the
+   <emphasis>
+    Vertex Groups
+   </emphasis>
+   panel.
+  </paragraph>
+  <target refid="bpy-ops-object-vertex-group-add">
+  </target>
+  <target refid="bpy-ops-object-vertex-group-sort">
+  </target>
+  <target refid="bpy-ops-object-vertex-group-copy">
+  </target>
+  <target refid="bpy-ops-object-vertex-group-copy-to-linked">
+  </target>
+  <target refid="bpy-ops-object-vertex-group-copy-to-selected">
+  </target>
+  <target refid="bpy-ops-object-vertex-group-remove-from">
+  </target>
+  <target refid="bpy-ops-object-vertex-group-remove">
+  </target>
+  <target refid="bpy-ops-object-vertex-group-lock">
+  </target>
+  <target refid="bpy-ops-object-vertex-group-move">
+  </target>
+  <definition_list ids="bpy-ops-object-vertex-group-move bpy-ops-object-vertex-group-lock bpy-ops-object-vertex-group-remove bpy-ops-object-vertex-group-remove-from bpy-ops-object-vertex-group-copy-to-selected bpy-ops-object-vertex-group-copy-to-linked bpy-ops-object-vertex-group-copy bpy-ops-object-vertex-group-sort bpy-ops-object-vertex-group-add" names="bpy.ops.object.vertex_group_move bpy.ops.object.vertex_group_lock bpy.ops.object.vertex_group_remove bpy.ops.object.vertex_group_remove_from bpy.ops.object.vertex_group_copy_to_selected bpy.ops.object.vertex_group_copy_to_linked bpy.ops.object.vertex_group_copy bpy.ops.object.vertex_group_sort bpy.ops.object.vertex_group_add">
+   <definition_list_item>
+    <term>
+     Nhóm Điểm Đỉnh Đang Hoạt Động -- Active Vertex Group
+    </term>
+    <definition>
+     <paragraph>
+      A
+      <reference internal="True" refuri="../../../../interface/controls/templates/list_presets.html#ui-list-view">
+       <inline classes="std std-ref">
+        List view
+       </inline>
+      </reference>
+      .
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Khóa -- Lock
+       </term>
+       <definition>
+        <paragraph>
+         Locks the group from being editable. You can only rename or delete the group.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Cộng Thêm
+        <literal>
+         +
+        </literal>
+        -- Add
+        <literal>
+         +
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Create an empty vertex group.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Xóa -- Remove
+        <literal>
+         -
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Deletes the active vertex group.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Đặc Biệt -- Specials
+       </term>
+       <definition>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           Sort by Name
+          </term>
+          <definition>
+           <paragraph>
+            Sorts Vertex Groups alphabetically.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Sort by Bone Hierarchy
+          </term>
+          <definition>
+           <paragraph>
+            (Todo)
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Sao Chép Nhóm Điểm Đỉnh -- Copy Vertex Group
+          </term>
+          <definition>
+           <paragraph>
+            Add a Copy of the active Vertex Group as a new Group.
+The new group will be named like the original group with "_copy" appended at the end of its name.
+And it will contain associations to exactly the same vertices
+with the exact same weights as in the source vertex group.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Sao Chép Nhóm Điểm Đỉnh sang những cái Kết Nối -- Copy Vertex Groups to Linked
+          </term>
+          <definition>
+           <paragraph>
+            Copy Vertex Groups of this Mesh to all linked Objects which use the same mesh data (all users of the data).
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Sao Chép Nhóm Điểm Đỉnh đến những cái Được Chọn -- Copy Vertex Group to Selected
+          </term>
+          <definition>
+           <paragraph>
+            Copy all Vertex Groups to other Selected Objects provided they have matching indices
+(typically this is true for copies of the mesh which are only deformed and not otherwise edited).
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Đối Xứng Hóa Nhóm Điểm Đỉnh -- Mirror Vertex Group
+          </term>
+          <definition>
+           <paragraph>
+            Mirrors weights and/or flips group names.
+See
+            <reference internal="True" refuri="../../../../sculpt_paint/weight_paint/editing.html#bpy-ops-object-vertex-group-mirror">
+             <inline classes="std std-ref">
+              Mirror Vertex Group
+             </inline>
+            </reference>
+            for more information.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Phản Chiếu Đối Xứng Nhóm Điểm Đỉnh (Cấu Trúc Liên Kết) -- Mirror Vertex Group (Topology)
+          </term>
+          <definition>
+           <paragraph>
+            Performs the
+            <emphasis>
+             Mirror Vertex Group
+            </emphasis>
+            with the
+            <emphasis>
+             Topology Mirror
+            </emphasis>
+            option enabled.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Xóa Khỏi Toàn Bộ các Nhóm -- Remove from All Groups
+          </term>
+          <definition>
+           <paragraph>
+            Unassigns the selected vertices from all (even locked) groups.
+After this operation has been performed, the vertices will no longer be contained in any vertex group.
+(Not available for locked groups.)
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Xóa Nhóm Đang Hoạt Động -- Clear Active Group
+          </term>
+          <definition>
+           <paragraph>
+            Remove all assigned vertices from the active Group. The group is made empty.
+Note that the vertices may still be assigned to other Vertex Groups of the Object.
+(Not available for locked groups.)
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Xóa Toàn bộ các Nhóm Không Khóa -- Delete All Unlocked Groups
+          </term>
+          <definition>
+           <paragraph>
+            Remove all Vertex Groups from the Object that are
+            <emphasis>
+             not
+            </emphasis>
+            locked.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Xóa Toàn Bộ các Nhóm -- Delete All Groups
+          </term>
+          <definition>
+           <paragraph>
+            Remove all Vertex Groups from the Object.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Khóa Toàn Bộ -- Lock All
+          </term>
+          <definition>
+           <paragraph>
+            Lock all groups.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           -- Unlock All
+          </term>
+          <definition>
+           <paragraph>
+            Unlock all groups.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           Đảo Nghịch Khóa Toàn Bộ -- Lock Invert All
+          </term>
+          <definition>
+           <paragraph>
+            Invert Group Locks.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <section ids="editing-vertex-groups" names="editing\ vertex\ groups --\ editing\ vertex\ groups">
+   <title>
+    -- Editing Vertex Groups
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Toàn Bộ các Chế Độ -- All Modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Thẻ Dữ Liệu Vật Thể (Object Data tab) --&gt; Nhóm Điểm Đỉnh (Vertex Groups)`">
+         Thẻ Dữ Liệu Vật Thể (Object Data tab) ‣ Nhóm Điểm Đỉnh (Vertex Groups)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Điểm Đỉnh (Vertex) --&gt; Nhóm Điểm Đỉnh (Vertex Groups)`">
+         Khung Lưới (Mesh) ‣ Điểm Đỉnh (Vertex) ‣ Nhóm Điểm Đỉnh (Vertex Groups)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-G
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/modeling_meshes_properties_vertex-groups_vertex-groups_panel-edit.png'}" uri="images/modeling_meshes_properties_vertex-groups_vertex-groups_panel-edit.png"/>
+    <caption>
+     Vertex Group Panel in Edit or Weight Paint Mode.
+    </caption>
+   </figure>
+   <paragraph>
+    When you switch either to
+    <emphasis>
+     Edit Mode
+    </emphasis>
+    or to
+    <emphasis>
+     Weight Paint Mode
+    </emphasis>
+    Vertex weights can be edited. The same operations are available in the 3D Views menu
+    <inline classes="menuselection" rawtext=":menuselection:`Khung Lưới (Mesh) --&gt; Điểm Đỉnh (Vertices) --&gt; Nhóm Điểm Đỉnh (Vertex Groups)`">
+     Khung Lưới (Mesh) ‣ Điểm Đỉnh (Vertices) ‣ Nhóm Điểm Đỉnh (Vertex Groups)
+    </inline>
+    or
+    <literal classes="kbd">
+     Ctrl-G
+    </literal>
+    .
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chỉ Định -- Assign
+     </term>
+     <definition>
+      <paragraph>
+       To assign the Selected vertices to the active group with the weight as defined in the
+       <emphasis>
+        Weight
+       </emphasis>
+       (see below).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa -- Remove
+     </term>
+     <definition>
+      <paragraph>
+       To remove the selected vertices from the active group (and thus also delete their weight values).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chọn -- Select
+     </term>
+     <definition>
+      <paragraph>
+       To select all vertices contained in the group.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hủy Chọn -- Deselect
+     </term>
+     <definition>
+      <paragraph>
+       To deselect all vertices contained in the group.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trọng Lượng -- Weight
+     </term>
+     <definition>
+      <paragraph>
+       The weight value that gets assigned to the selected vertices.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đặt Nhóm Đang Hoạt Động -- Set Active Group
+     </term>
+     <definition>
+      <paragraph>
+       Lets you select the group that will become the active one (menu only).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <hint>
+    <paragraph>
+     Multiple objects sharing the same mesh data have
+the peculiar property that the group names are stored on the object,
+but the weights in the mesh. This allows you to name groups
+differently on each object, but take care because removing
+a vertex group will remove the group from all objects sharing this mesh.
+    </paragraph>
+   </hint>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,98 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/output/file.rst">
+ <target refid="bpy-types-compositornodeoutputfile">
+ </target>
+ <target refid="bpy-types-nodeoutputfileslot">
+ </target>
+ <section ids="file-output-node bpy-types-nodeoutputfileslot bpy-types-compositornodeoutputfile" names="file\ output\ node nút\ xuất\ ra\ tập\ tin\ --\ file\ output\ node bpy.types.nodeoutputfileslot bpy.types.compositornodeoutputfile">
+  <title>
+   Nút Xuất Ra Tập Tin -- File Output Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeOutputFile.png'}" uri="images/compositing_node-types_CompositorNodeOutputFile.png"/>
+   <caption>
+    Nút Xuất Ra Tập Tin.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút này viết một hình ảnh, đối với mỗi khoảng khung hình chỉ định, ra tên tập tin đã điền, như một phần của một trình tự (chuỗi) khung hình.
+  </paragraph>
+  <paragraph>
+   Nút này có thể được sử dụng như một cách để tự động lưu hình ảnh sau một quá trình kết xuất; Ngoài ra, vì nút này có thể được nối ở bất kỳ đâu, trong cây nút, nó cũng có thể lưu các hình ảnh trung gian một cách tự động.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       (Các) hình ảnh sẽ được lưu khi kết xuất và được ghi vào khung hình hiện tại. Khi hoạt họa được kết xuất thì toàn bộ trình tự (chuỗi) hình ảnh sẽ được lưu.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     Để hỗ trợ sự sắp xếp và sự chồng tầng các hình ảnh tiếp theo, nút có thể cung cấp ánh xạ về chiều/độ sâu Z. Song, xin lưu ý rằng chỉ có định dạng hình ảnh OpenEXR là lưu giữ thông tin Z mà thôi.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đường Dẫn Cơ Sở -- Base Path
+     </term>
+     <definition>
+      <paragraph>
+       Không giống như đường dẫn tập tin đầu ra của kết xuất, nút này sử dụng một thư mục cơ sở và một tên hình ảnh, theo mặc định đường dẫn đầu ra gồm có:
+       <literal>
+        {đường dẫn cơ sở -- base path}/{tên tập tin -- file name}{khung hình số -- frame number}.{đuôi định dạng -- extension}
+       </literal>
+       .
+      </paragraph>
+      <paragraph>
+       Ngoài việc chia thành hai sắp đặt, trong tất cả các khía cạnh khác, sắp đặt này được xử lý giống như
+       <reference internal="True" refuri="../../../render/output/settings.html#render-tab-output">
+        <inline classes="std std-ref">
+         đường dẫn đầu ra của kết xuất -- render output path
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhãn Định Dạng Tập Tin -- File Format label
+     </term>
+     <definition>
+      <paragraph>
+       Hiển thị Định Dạng Tập Tin đã chọn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     More options could be set in the Sidebar region.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <paragraph>
+    Nút này không có ổ cắm đầu ra.
+   </paragraph>
+  </section>
+ </section>
+</document>

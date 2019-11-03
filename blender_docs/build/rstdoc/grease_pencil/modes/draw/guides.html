@@ -1,0 +1,302 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/grease_pencil/modes/draw/guides.rst">
+ <target refid="bpy-types-gpencilsculptguide">
+ </target>
+ <section ids="guides bpy-types-gpencilsculptguide" names="guides bpy.types.gpencilsculptguide">
+  <title>
+   Guides
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Draw Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Header
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Guides`">
+        Guides
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   Guides are drawing aids that make it easier to create different types of strokes.
+The Guides can be activated with the button next to the selector (grid icon).
+  </paragraph>
+  <target refid="bpy-types-gpencilsculptguide-type">
+  </target>
+  <section ids="guide-types bpy-types-gpencilsculptguide-type" names="guide\ types bpy.types.gpencilsculptguide.type">
+   <title>
+    Guide Types
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/grease-pencil_modes_draw_guides-selector.png'}" uri="images/grease-pencil_modes_draw_guides-selector.png"/>
+    <caption>
+     Guide selector activated in the 3D View header.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Circular
+     </term>
+     <definition>
+      <paragraph>
+       Constrains the drawing of new strokes to form rings from the selected reference point.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Radial
+     </term>
+     <definition>
+      <paragraph>
+       Constrains the drawing of new strokes to form rays from the selected reference point.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Parallel
+     </term>
+     <definition>
+      <paragraph>
+       Constrains the drawing of new strokes to form parallel lines.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Angle
+        </term>
+        <definition>
+         <paragraph>
+          Angle direction of the parallel lines.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Grid
+     </term>
+     <definition>
+      <paragraph>
+       Constrains the drawing of new strokes to form parallel horizontal or vertical lines.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Isometric
+     </term>
+     <definition>
+      <paragraph>
+       Constrains the drawing of new strokes to vertical or isometric lines.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Angle
+        </term>
+        <definition>
+         <paragraph>
+          Angle direction of the isometric lines.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-types-gpencilsculptguide-use-snapping">
+   </target>
+   <target refid="bpy-types-gpencilsculptguide-reference-point">
+   </target>
+   <section ids="common-options bpy-types-gpencilsculptguide-reference-point bpy-types-gpencilsculptguide-use-snapping" names="common\ options bpy.types.gpencilsculptguide.reference_point bpy.types.gpencilsculptguide.use_snapping">
+    <title>
+     Common Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Use Snapping
+      </term>
+      <definition>
+       <paragraph>
+        When enabled, snap the drawn strokes to an angle or spacing.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Spacing
+         </term>
+         <definition>
+          <paragraph>
+           Guide spacing.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Reference Point
+      </term>
+      <definition>
+       <paragraph>
+        Determines the origin point to use for the creation of the lines.
+Applies only for
+        <emphasis>
+         Circular
+        </emphasis>
+        and
+        <emphasis>
+         Radial
+        </emphasis>
+        guides.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Cursor
+         </term>
+         <definition>
+          <paragraph>
+           Use the cursor as a reference point.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Custom
+         </term>
+         <definition>
+          <paragraph>
+           Use a custom location as a reference point.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Custom Location
+            </term>
+            <definition>
+             <paragraph>
+              X, Y Z
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Object
+         </term>
+         <definition>
+          <paragraph>
+           Use an object as a reference point.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Object
+            </term>
+            <definition>
+             <paragraph>
+              An
+              <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+               <inline classes="std std-ref">
+                Data ID menu
+               </inline>
+              </reference>
+              to select the object (usually an empty),
+which location will be used as a reference point.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="examples" names="examples">
+   <title>
+    Examples
+   </title>
+   <table ids="id2">
+    <title>
+     Examples of strokes using different types of Guides.
+    </title>
+    <tgroup cols="4">
+     <colspec colwidth="25">
+     </colspec>
+     <colspec colwidth="25">
+     </colspec>
+     <colspec colwidth="25">
+     </colspec>
+     <colspec colwidth="25">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/grease-pencil_modes_draw_guide-circular.png'}" uri="images/grease-pencil_modes_draw_guide-circular.png" width="200px"/>
+         <caption>
+          Circular Guides.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/grease-pencil_modes_draw_guide-radial.png'}" uri="images/grease-pencil_modes_draw_guide-radial.png" width="200px"/>
+         <caption>
+          Radial Guides.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/grease-pencil_modes_draw_guide-parallel.png'}" uri="images/grease-pencil_modes_draw_guide-parallel.png" width="200px"/>
+         <caption>
+          Parallel Guides (30° Angle).
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/grease-pencil_modes_draw_guide-grid.png'}" uri="images/grease-pencil_modes_draw_guide-grid.png" width="200px"/>
+         <caption>
+          Grid Guides.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

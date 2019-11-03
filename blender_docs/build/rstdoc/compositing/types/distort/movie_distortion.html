@@ -1,0 +1,164 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/distort/movie_distortion.rst">
+ <target refid="bpy-types-compositornodemoviedistortion">
+ </target>
+ <section ids="movie-distortion-node bpy-types-compositornodemoviedistortion" names="movie\ distortion\ node nút\ biến\ dạng\ phim\ --\ movie\ distortion\ node bpy.types.compositornodemoviedistortion">
+  <title>
+   Nút Biến Dạng Phim -- Movie Distortion Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeMovieDistortion.png'}" uri="images/compositing_node-types_CompositorNodeMovieDistortion.png"/>
+   <caption>
+    Movie Distortion Node.
+   </caption>
+  </figure>
+  <paragraph>
+   In the real world, all camera lenses produce some or the other sort of lens distortion.
+But, whatever we render has got no distortion. So, this node helps in removing distortion from movies
+or adding distortion to render to make our render blend in with the movie clip.
+  </paragraph>
+  <paragraph>
+   Usually, it is used while motion tracking.
+  </paragraph>
+  <section ids="calculating-distortion" names="calculating\ distortion tính\ toán\ sự\ biến\ dạng\ --\ calculating\ distortion">
+   <title>
+    Tính Toán sự Biến Dạng -- Calculating Distortion
+   </title>
+   <paragraph>
+    Before using this node, one has to calculate the lens distortion of the clip. This can be done by adjusting K1, K2 and K3 values in
+    <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Đoạn Phim (Movie Clip Editor) --&gt; Tính Chất (Properties) --&gt; Lăng Kính (Lens)`">
+     Trình Biên Soạn Đoạn Phim (Movie Clip Editor) ‣ Tính Chất (Properties) ‣ Lăng Kính (Lens)
+    </inline>
+    . For more information on how to edit those values,
+    <reference name="check this out" refuri="http://blender.stackexchange.com/questions/15620">
+     check this out
+    </reference>
+    .
+   </paragraph>
+  </section>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đoạn Phim -- Movie Clip
+     </term>
+     <definition>
+      <paragraph>
+       Used to select the movie clip whose distortion is to be used.
+This can be useful if more than one movie clips are present, each having a different distortion setting.
+For controls see
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-block">
+        <inline classes="std std-ref">
+         Trình Đơn Khối Dữ Liệu -- Data-Block Menu
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phương Pháp Biến Dạng -- Distortion Method
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Chưa Biến Dạng -- Undistort
+        </term>
+        <definition>
+         <paragraph>
+          Used to undistort the image received, and is usually used for the raw distorted movie clip.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bóp Méo -- Distort
+        </term>
+        <definition>
+         <paragraph>
+          Used to distort the image received, and is usually used for rendered images.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       The image after distorting/undistorting.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="distortion-vs-undistortion" names="distortion\ vs\ undistortion biến\ dạng\ đối\ sửa\ biến\ dạng\ --\ distortion\ vs\ undistortion">
+   <title>
+    Biến Dạng đối Sửa Biến Dạng -- Distortion vs Undistortion
+   </title>
+   <paragraph>
+    Although, both, distortion of render and undistortion of movie clip are possible, and produce similar results,
+there is a difference between these two methods.
+   </paragraph>
+   <paragraph>
+    There are two kinds of lens distortion possible and, in simple terms, they can be said as:
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      When the movie clip is bulging out.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      When the movie clip is bulging in.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <paragraph>
+    For the first case, it is recommended to distort the render and leave the movie clip as it is, because,
+undistorting the movie clip will require extra pixel information, which is not available to Blender.
+Similarly, in the second case, it is recommended to undistort the movie clip and leave the render as it is,
+because, distorting the render will require those extra unavailable pixels.
+Doing the wrong method in the wrong case can create weird results around the edges, such as in the image shown.
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_distort_movie-distortion_problems.jpg'}" uri="images/compositing_types_distort_movie-distortion_problems.jpg"/>
+    <caption>
+     Problems (notice the edges?)
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

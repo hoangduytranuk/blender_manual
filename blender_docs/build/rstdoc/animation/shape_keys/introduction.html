@@ -1,0 +1,251 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/shape_keys/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Shape keys are used to deform objects into new shapes for animation.
+In other terminology, shape keys may be called "morph targets" or "blend shapes".
+  </paragraph>
+  <paragraph>
+   The most popular use cases for shape keys are in character facial animation and
+in tweaking and refining a skeletal rig.
+They are particularly useful for modeling organic soft parts and muscles
+where there is a need for more control over the resulting shape
+than what can be achieved with combination of rotation and scale.
+  </paragraph>
+  <paragraph>
+   Shape keys can be applied on object types with vertices like mesh, curve, surface and lattice.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/animation_shape-keys_introduction_example.png'}" uri="images/animation_shape-keys_introduction_example.png"/>
+   <caption>
+    Example of a mesh with different shape keys applied.
+   </caption>
+  </figure>
+  <section ids="workflow" names="workflow">
+   <title>
+    Workflow
+   </title>
+   <paragraph>
+    Shape keys are authored in the
+    <reference internal="True" refuri="shape_keys_panel.html">
+     <inline classes="doc">
+      Shape Keys panel
+     </inline>
+    </reference>
+    which is accessed in the Object Data tab of the Properties editor (e.g. the Mesh tab for mesh objects).
+   </paragraph>
+   <paragraph>
+    A shape key is modified by first selecting a shape key in the panel,
+and then moving the object's vertices to a new position in the 3D Viewport.
+   </paragraph>
+   <paragraph>
+    The panel has controls for affecting the current
+    <emphasis>
+     Value
+    </emphasis>
+    (influence, weight) of a shape.
+It is possible to see a shape in isolation or how it combines with others.
+   </paragraph>
+   <section ids="adding-and-removing-vertices" names="adding\ and\ removing\ vertices">
+    <title>
+     Adding and Removing Vertices
+    </title>
+    <paragraph>
+     It is not possible to add or remove vertices in a shape key.
+The number of vertices and how they connect is specified by the mesh, curve, surface or lattice.
+A shape key merely records a position for each vertex and therefore shapes always
+contain all the object's vertices.
+    </paragraph>
+    <paragraph>
+     When adding a vertex, all shape keys will record it with the position in which it is created.
+Workflow-wise, adding and deleting vertices after creating shape keys is possible, but it is best
+to leave the creation of shape keys for when the mesh is finished or its topology is stable.
+    </paragraph>
+   </section>
+   <section ids="adding-shape-keys" names="adding\ shape\ keys">
+    <title>
+     Adding Shape Keys
+    </title>
+    <paragraph>
+     When adding a new shape key with the
+     <literal>
+      +
+     </literal>
+     button next to the list,
+the new shape will be a copy of the Basis shape,
+independently of the current result visible in the 3D Viewport.
+    </paragraph>
+    <paragraph>
+     When adding a new shape key from
+     <inline classes="menuselection" rawtext=":menuselection:`Specials --&gt; New Shape from Mix`">
+      Specials ‣ New Shape from Mix
+     </inline>
+     ,
+the shape will start of with the vertex configuration that is visible at that moment.
+    </paragraph>
+    <paragraph>
+     When doing facial animation with relative shape keys, it can be useful to first
+create a shape key with a complex extreme pose (e.g. anger or surprise), and
+then break this complex shape into components by applying a temporary vertex group to
+the complex shape and creating a copy with
+     <emphasis>
+      New Shape from Mix
+     </emphasis>
+     .
+This technique helps reducing conflicts between different shape keys
+that would otherwise produce a double effect.
+    </paragraph>
+    <target refid="animation-shapekeys-relative-vs-absolute">
+    </target>
+   </section>
+  </section>
+  <section ids="relative-or-absolute-shape-keys animation-shapekeys-relative-vs-absolute" names="relative\ or\ absolute\ shape\ keys animation-shapekeys-relative-vs-absolute">
+   <title>
+    Relative or Absolute Shape Keys
+   </title>
+   <paragraph>
+    A mesh (curve, surface or lattice) has a stack of shape keys.
+The stack may be of
+    <emphasis>
+     Relative
+    </emphasis>
+    or
+    <emphasis>
+     Absolute
+    </emphasis>
+    type.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tương Đối -- Relative
+     </term>
+     <definition>
+      <paragraph>
+       Mainly used for muscles, limb joints, and facial animation.
+      </paragraph>
+      <paragraph>
+       Each shape is defined relative to the Basis or to another specified shape key.
+      </paragraph>
+      <paragraph>
+       The resulting effect visible in the 3D Viewport, also called
+       <emphasis>
+        Mix
+       </emphasis>
+       ,
+is the cumulative effect of each shape with its current value.
+Starting with the Basis shape, the result is obtained by
+       <strong>
+        adding
+       </strong>
+       each shape's weighted
+       <strong>
+        relative
+       </strong>
+       offset to its reference key.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Value
+        </term>
+        <definition>
+         <paragraph>
+          Represents the weight of the blend between a shape key and its reference key.
+         </paragraph>
+         <paragraph>
+          A value of 0.0 denotes 100% influence of the reference key and 1.0 of the shape key.
+Blender can extrapolate the blend between the two shapes above 1.0 and below 0.0.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Basis
+        </term>
+        <definition>
+         <paragraph>
+          Basis is the name given to the first (top-most) key in the stack.
+         </paragraph>
+         <paragraph>
+          The Basis shape represents the state of the object's vertices in their original position.
+It has no weight value and it is not keyable.
+This is the default
+          <emphasis>
+           Reference Key
+          </emphasis>
+          when creating other shapes.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tuyệt Đối -- Absolute
+     </term>
+     <definition>
+      <paragraph>
+       Mainly used to deform the objects into different shapes over time.
+      </paragraph>
+      <paragraph>
+       Each shape defines how the object's shape will be at
+       <emphasis>
+        Evaluation Time
+       </emphasis>
+       specified in its
+       <emphasis>
+        Value
+       </emphasis>
+       .
+      </paragraph>
+      <paragraph>
+       The resulting shape, or
+       <emphasis>
+        Mix
+       </emphasis>
+       , is the interpolation of the previous and next shape
+given the current
+       <emphasis>
+        Evaluation Time
+       </emphasis>
+       .
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Value
+        </term>
+        <definition>
+         <paragraph>
+          Represents the
+          <emphasis>
+           Evaluation Time
+          </emphasis>
+          at which that shape key will be active.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Basis
+        </term>
+        <definition>
+         <paragraph>
+          Basis is the name given to the first (topmost) key in the stack.
+         </paragraph>
+         <paragraph>
+          The Basis shape represents the state of the object's vertices in their original position.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

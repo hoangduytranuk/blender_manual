@@ -1,0 +1,403 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/modify/weight_mix.rst">
+ <target refid="bpy-types-vertexweightmixmodifier">
+ </target>
+ <section ids="vertex-weight-mix-modifier bpy-types-vertexweightmixmodifier" names="vertex\ weight\ mix\ modifier --\ vertex\ weight\ mix\ modifier bpy.types.vertexweightmixmodifier">
+  <title>
+   -- Vertex Weight Mix Modifier
+  </title>
+  <paragraph>
+   This modifier mixes a second vertex group (or a simple value) into the affected vertex group,
+using different operations.
+  </paragraph>
+  <important>
+   <paragraph>
+    This modifier does implicit clamping of weight values in the standard (0.0 to 1.0) range.
+All values below 0.0 will be set to 0.0, and all values above 1.0 will be set to 1.0.
+   </paragraph>
+  </important>
+  <note>
+   <paragraph>
+    You can view the modified weights in Weight Paint Mode.
+This also implies that you will have to disable the
+    <emphasis>
+     Vertex Weight Mix
+    </emphasis>
+    modifier
+if you want to see the original weights of the vertex group you are editing.
+   </paragraph>
+  </note>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_modify_weight-mix_panel.png'}" uri="images/modeling_modifiers_modify_weight-mix_panel.png"/>
+    <caption>
+     The Vertex Weight Mix modifier panel.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh A -- Vertex Group A
+     </term>
+     <definition>
+      <paragraph>
+       Nhóm điểm đỉnh để tác động.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trọng Lượng A Mặc Định -- Default Weight A
+     </term>
+     <definition>
+      <paragraph>
+       The default weight to assign to all vertices not in the given vertex group.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh B -- Vertex Group B
+     </term>
+     <definition>
+      <paragraph>
+       The second vertex group to mix into the affected one. Leave it empty if you only want to mix in a simple value.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trọng Lượng B Mặc Định -- Default Weight B
+     </term>
+     <definition>
+      <paragraph>
+       The default weight to assign to all vertices not in the given second vertex group.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chế Độ Pha Trộn -- Mix Mode
+     </term>
+     <definition>
+      <paragraph>
+       How the vertex group weights are affected by the other vertex group's weights.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         -- Replace weights
+        </term>
+        <definition>
+         <paragraph>
+          Replaces affected weights with the second group's weights.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Add to weights
+        </term>
+        <definition>
+         <paragraph>
+          Adds the values of
+          <emphasis>
+           Group B
+          </emphasis>
+          to
+          <emphasis>
+           Group A
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Subtract from weights
+        </term>
+        <definition>
+         <paragraph>
+          Subtracts the values of
+          <emphasis>
+           Group B
+          </emphasis>
+          from
+          <emphasis>
+           Group A
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Multiply weights
+        </term>
+        <definition>
+         <paragraph>
+          Multiplies the values of
+          <emphasis>
+           Group B
+          </emphasis>
+          with
+          <emphasis>
+           Group A
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Divide weights
+        </term>
+        <definition>
+         <paragraph>
+          Divides the values of
+          <emphasis>
+           Group A
+          </emphasis>
+          by
+          <emphasis>
+           Group B
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hiệu -- Difference
+        </term>
+        <definition>
+         <paragraph>
+          Subtracts the smaller of the two values from the larger.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Trung Bình -- Average
+        </term>
+        <definition>
+         <paragraph>
+          Adds the values together, then divides by 2.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Mix Set
+     </term>
+     <definition>
+      <paragraph>
+       Choose which vertices will be affected.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         -- All vertices
+        </term>
+        <definition>
+         <paragraph>
+          Affects all vertices, disregarding the vertex groups content.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Vertices from group A
+        </term>
+        <definition>
+         <paragraph>
+          Affects only vertices belonging to the affected vertex group.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Vertices from group B
+        </term>
+        <definition>
+         <paragraph>
+          Affects only vertices belonging to the second vertex group.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Vertices from one group
+        </term>
+        <definition>
+         <paragraph>
+          Affects only vertices belonging to at least one of the vertex groups.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Vertices from both groups
+        </term>
+        <definition>
+         <paragraph>
+          Affects only vertices belonging to both vertex groups.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <important>
+       <paragraph>
+        When using
+        <emphasis>
+         All vertices
+        </emphasis>
+        ,
+        <emphasis>
+         Vertices from group B
+        </emphasis>
+        or
+        <emphasis>
+         Vertices from one group
+        </emphasis>
+        ,
+vertices might be added to the affected vertex group.
+       </paragraph>
+      </important>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="influence-mask-options" names="influence/mask\ options tùy\ chọn\ về\ tác\ động/màn\ chắn\ --\ influence/mask\ options">
+    <title>
+     Tùy Chọn về Tác Động/Màn Chắn -- Influence/Mask Options
+    </title>
+    <paragraph>
+     Those settings are the same for the three
+     <emphasis>
+      Vertex Weight
+     </emphasis>
+     modifiers,
+see the
+     <reference internal="True" refuri="weight_edit.html#modeling-modifiers-weight-edit-influence-mask-options">
+      <inline classes="std std-ref">
+       Vertex Weight Edit modifier
+      </inline>
+     </reference>
+     page.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <paragraph>
+    Here is and example of using a texture and the mapping curve to generate weights used by
+the
+    <reference internal="True" refuri="../deform/wave.html">
+     <inline classes="doc">
+      Wave
+     </inline>
+    </reference>
+    modifier.
+   </paragraph>
+   <table ids="id2">
+    <title>
+     Texture channel variations.
+    </title>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/modeling_modifiers_modify_weight-mix_intensity.jpg'}" uri="images/modeling_modifiers_modify_weight-mix_intensity.jpg" width="200px"/>
+         <caption>
+          Using intensity.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/modeling_modifiers_modify_weight-mix_red.jpg'}" uri="images/modeling_modifiers_modify_weight-mix_red.jpg" width="200px"/>
+         <caption>
+          Using Red.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/modeling_modifiers_modify_weight-mix_saturation.jpg'}" uri="images/modeling_modifiers_modify_weight-mix_saturation.jpg" width="200px"/>
+         <caption>
+          Using Saturation.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <target refid="fig-modifier-vertex-weight-custom">
+   </target>
+   <table ids="id6 fig-modifier-vertex-weight-custom" names="fig-modifier-vertex-weight-custom">
+    <title>
+     Custom mapping curve with a Vertex Weight Edit modifier.
+    </title>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id7">
+         <image candidates="{'*': 'images/modeling_modifiers_modify_weight-mix_map-curve.png'}" uri="images/modeling_modifiers_modify_weight-mix_map-curve.png" width="200px"/>
+         <caption>
+          A customized mapping curve.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id8">
+         <image candidates="{'*': 'images/modeling_modifiers_modify_weight-mix_red.jpg'}" uri="images/modeling_modifiers_modify_weight-mix_red.jpg" width="200px"/>
+         <caption>
+          Custom Mapping disabled.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id9">
+         <image candidates="{'*': 'images/modeling_modifiers_modify_weight-mix_red-map.jpg'}" uri="images/modeling_modifiers_modify_weight-mix_red-map.jpg" width="200px"/>
+         <caption>
+          Custom Mapping enabled.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <vimeo aspect="None" height="None" id="30188814" width="None">
+   </vimeo>
+   <paragraph>
+    <reference name="The blend-file" refuri="https://wiki.blender.org/wiki/File:ManModifiersWeightVGroupEx.blend">
+     The blend-file
+    </reference>
+    , TEST_4 scene.
+   </paragraph>
+  </section>
+ </section>
+</document>

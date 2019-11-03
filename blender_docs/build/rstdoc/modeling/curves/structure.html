@@ -1,0 +1,272 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/curves/structure.rst">
+ <section ids="structure" names="structure cấu\ trúc\ --\ structure">
+  <title>
+   Cấu Trúc -- Structure
+  </title>
+  <section ids="splines" names="splines">
+   <title>
+    Splines
+   </title>
+   <paragraph>
+    Splines are a substructure of curves and are the individual elements that make curve objects.
+A curve object can be composed of several different splines,
+just like mesh objects can have different discontinuous meshes under the same object.
+A spline defines the shape of the curve and can be transformed by altering its
+    <reference name="Control Points" refid="control-points">
+     Control Points
+    </reference>
+    .
+Splines come in three distinct types, which are described in
+    <reference name="Spline Types" refid="spline-types">
+     Spline Types
+    </reference>
+    .
+Each spline type has a slightly different algorithm for computing how bends in the spline are represented.
+   </paragraph>
+   <paragraph>
+    Splines have their own separate properties from curves and can be altered
+by selecting the spline in Edit Mode and using
+the
+    <reference internal="True" refuri="properties/active_spline.html">
+     <inline classes="doc">
+      Active Spline
+     </inline>
+    </reference>
+    panel.
+   </paragraph>
+   <section ids="control-points" names="control\ points">
+    <title>
+     Control Points
+    </title>
+    <paragraph>
+     Similar to meshes splines have control points or vertices.
+Control points connect to other control points to form splines.
+Control points can be
+     <reference internal="True" refuri="selecting.html">
+      <inline classes="doc">
+       selected
+      </inline>
+     </reference>
+     and transformed to alter the resulting shape of the spline.
+    </paragraph>
+    <seealso>
+     <paragraph>
+      <reference internal="True" refuri="editing/index.html">
+       <inline classes="doc">
+        Curve Editing
+       </inline>
+      </reference>
+     </paragraph>
+    </seealso>
+   </section>
+  </section>
+  <section ids="spline-types" names="spline\ types">
+   <title>
+    Spline Types
+   </title>
+   <section ids="poly" names="poly">
+    <title>
+     Poly
+    </title>
+    <paragraph>
+     Poly splines are the most simple spline type as they do not
+interpolate the shape of the curve between control points.
+    </paragraph>
+    <paragraph>
+     Poly Curves are used when
+     <reference internal="True" refuri="../../scene_layout/object/editing/introduction.html#bpy-ops-object-convert">
+      <inline classes="std std-ref">
+       converting meshes to curves
+      </inline>
+     </reference>
+     .
+Because they do not interpolate the shape,
+Poly splines are able to give an accurate representation of the original mesh object.
+    </paragraph>
+    <paragraph>
+     This is the primary use case of splines, most of the time
+     <reference name="Bézier" refid="bezier">
+      Bézier
+     </reference>
+     or
+     <reference name="NURBS" refid="nurbs">
+      NURBS
+     </reference>
+     splines are used instead; both of which interpolate the shape and give smooth results.
+    </paragraph>
+    <target refid="curve-bezier">
+    </target>
+   </section>
+   <section ids="bezier curve-bezier" names="bézier curve-bezier">
+    <title>
+     Bézier
+    </title>
+    <paragraph>
+     The main elements used in editing Bézier curves are the control points and handles.
+A segment (the actual curve) is found between two control points.
+The handles define the curvature of the segment.
+    </paragraph>
+    <paragraph>
+     In the image below,
+the control points can be found in the middle of the pink line,
+while the handles comprise the extensions from the control point.
+The arrows visualize the normals of the curve, which indicate i.e.
+the direction and the tilt.
+    </paragraph>
+    <figure align="center" ids="id1">
+     <image candidates="{'*': 'images/modeling_curves_structure_control-points-handles.png'}" uri="images/modeling_curves_structure_control-points-handles.png"/>
+     <caption>
+      Bézier Curve in Edit Mode.
+     </caption>
+    </figure>
+    <target refid="curve-bezier-handle-type">
+    </target>
+    <section ids="handle-types curve-bezier-handle-type" names="handle\ types loại\ tay\ cầm\ --\ handle\ types curve-bezier-handle-type">
+     <title>
+      Loại Tay Cầm -- Handle Types
+     </title>
+     <paragraph>
+      There are four Bézier curve handle types.
+They can be accessed by pressing
+      <literal classes="kbd">
+       V
+      </literal>
+      and selecting from the list that appears,
+or by pressing the appropriate hotkey combination.
+     </paragraph>
+     <figure align="right" ids="id2">
+      <image candidates="{'*': 'images/modeling_curves_structure_bezier-handle-types.png'}" uri="images/modeling_curves_structure_bezier-handle-types.png"/>
+      <caption>
+       Bézier Curve Handle Types.
+      </caption>
+     </figure>
+     <target refid="curve-handle-type-auto">
+     </target>
+     <definition_list ids="curve-handle-type-auto" names="curve-handle-type-auto">
+      <definition_list_item>
+       <term>
+        Automatic (yellow handles)
+       </term>
+       <definition>
+        <paragraph>
+         This handle has a completely automatic length and direction
+which is set by Blender to ensure the smoothest result.
+These handles convert to
+         <emphasis>
+          Aligned
+         </emphasis>
+         handles when moved.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Vector (green handles)
+       </term>
+       <definition>
+        <paragraph>
+         Both parts of a handle always point to the previous handle or the next handle which allows
+you to create curves or sections thereof made of straight lines or with sharp corners.
+Vector handles convert to
+         <emphasis>
+          Free
+         </emphasis>
+         handles when moved.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Aligned (purple handles)
+       </term>
+       <definition>
+        <paragraph>
+         These handles always lie in a straight line,
+and give a continuous curve without sharp angles.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Free (black handles)
+       </term>
+       <definition>
+        <paragraph>
+         The handles are independent of each other.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <target refid="curve-nurbs">
+     </target>
+    </section>
+   </section>
+   <section ids="nurbs curve-nurbs" names="nurbs --\ nurbs curve-nurbs">
+    <title>
+     -- NURBS
+    </title>
+    <paragraph>
+     N.U.R.B.S. is the abbreviation for Non-Uniform Rational B-Splines.
+One of the major differences between Bézier objects and NURBS objects is that Bézier curves
+are approximations. For example, a Bézier circle is an
+     <emphasis>
+      approximation
+     </emphasis>
+     of a circle,
+whereas a NURBS circle is an
+     <emphasis>
+      exact
+     </emphasis>
+     circle.
+NURBS theory can be a
+     <emphasis>
+      very
+     </emphasis>
+     complicated topic. For an introduction,
+please consult the
+     <reference name="Wikipedia page" refuri="https://en.wikipedia.org/wiki/NURBS">
+      Wikipedia page
+     </reference>
+     .
+    </paragraph>
+    <target refid="curves-structure-nurbs-weight">
+    </target>
+    <paragraph ids="curves-structure-nurbs-weight" names="curves_structure_nurbs_weight">
+     NURBS spline control points are different than other spline types because they have a special weight property.
+This weight property controls how much influence the control point has on the surface.
+This weight should not be confused with the
+     <reference internal="True" refuri="editing/transform_panel.html#curves-weight">
+      <inline classes="std std-ref">
+       Goal Weight
+      </inline>
+     </reference>
+     ,
+which is used only for soft body simulations.
+The NURBS control point weight can be adjusted in the
+     <emphasis>
+      W
+     </emphasis>
+     number field of
+the
+     <reference internal="True" refuri="editing/transform_panel.html">
+      <inline classes="doc">
+       Transform panel
+      </inline>
+     </reference>
+     .
+    </paragraph>
+    <note>
+     <paragraph>
+      If all the control points have the same
+      <emphasis>
+       Weight
+      </emphasis>
+      then each effectively cancels each other out.
+It is the difference in the weights that cause the curve to move
+towards or away from a control point.
+     </paragraph>
+    </note>
+   </section>
+  </section>
+ </section>
+</document>

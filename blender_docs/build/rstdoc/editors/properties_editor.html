@@ -1,0 +1,411 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/properties_editor.rst">
+ <target refid="bpy-types-spaceproperties">
+ </target>
+ <section ids="properties-editor bpy-types-spaceproperties" names="properties\ editor trình\ biên\ soạn\ tính\ chất\ --\ properties\ editor bpy.types.spaceproperties">
+  <title>
+   Trình Biên Soạn Tính Chất -- Properties Editor
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/editors_properties-editor_interface.png'}" uri="images/editors_properties-editor_interface.png"/>
+   <caption>
+    The Properties editor, with
+    <emphasis>
+     Object
+    </emphasis>
+    properties shown.
+   </caption>
+  </figure>
+  <paragraph>
+   The Properties editor shows and allows editing of many active data, including the active scene and object.
+  </paragraph>
+  <section ids="tabs" names="tabs các\ thẻ\ đề\ mục\ --\ tabs">
+   <title>
+    Các Thẻ Đề Mục -- Tabs
+   </title>
+   <paragraph>
+    The Properties editor has several categories, which can be chosen via tabs (the icons column to its left).
+Each tab regroups properties and settings of a data type, and is documented in its own manual sections, linked below.
+   </paragraph>
+   <section ids="active-tool-and-workspace-settings" names="active\ tool\ and\ workspace\ settings">
+    <title>
+     Active Tool and Workspace Settings
+    </title>
+    <paragraph>
+     This first tab contains settings for the active
+     <reference internal="True" refuri="3dview/toolbar/index.html">
+      <inline classes="doc">
+       tool
+      </inline>
+     </reference>
+     (in the 3D View)
+and the current
+     <reference internal="True" refuri="../interface/window_system/workspaces.html">
+      <inline classes="doc">
+       workspace
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+   <section ids="scene" names="scene">
+    <title>
+     Scene
+    </title>
+    <paragraph>
+     These tabs contain settings for the active scene.
+    </paragraph>
+    <target refid="properties-render-tab">
+    </target>
+    <bullet_list bullet="-" ids="properties-render-tab" names="properties-render-tab">
+     <list_item>
+      <paragraph>
+       Render:
+       <reference internal="True" refuri="../render/eevee/index.html">
+        <inline classes="doc">
+         Eevee
+        </inline>
+       </reference>
+       ,
+       <reference internal="True" refuri="../render/cycles/render_settings/index.html">
+        <inline classes="doc">
+         Cycles
+        </inline>
+       </reference>
+       or
+       <reference internal="True" refuri="../render/workbench/index.html">
+        <inline classes="doc">
+         Workbench
+        </inline>
+       </reference>
+       settings
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../render/output/index.html">
+        <inline classes="doc">
+         Output
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../scene_layout/view_layers/index.html">
+        <inline classes="doc">
+         View Layer
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../scene_layout/scene/properties.html">
+        <inline classes="doc">
+         Scene
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../render/lights/world.html">
+        <inline classes="doc">
+         World
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <target refid="properties-data-tabs">
+    </target>
+   </section>
+   <section ids="object properties-data-tabs" names="object properties-data-tabs">
+    <title>
+     Object
+    </title>
+    <paragraph>
+     These tabs are used to add features, and to change properties for the active object.
+Depending on the type of the active object, some of those will be hidden.
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../scene_layout/object/properties/index.html">
+        <inline classes="doc">
+         Object
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../modeling/modifiers/index.html">
+        <inline classes="doc">
+         Modifiers
+        </inline>
+       </reference>
+       (or
+       <reference internal="True" refuri="../grease_pencil/modifiers/index.html">
+        <inline classes="doc">
+         Grease Pencil Modifiers
+        </inline>
+       </reference>
+       )
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../grease_pencil/visual_effects/index.html">
+        <inline classes="doc">
+         Object Visual Effects
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../physics/particles/index.html">
+        <inline classes="doc">
+         Particles
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../physics/index.html">
+        <inline classes="doc">
+         Physics
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../animation/constraints/index.html">
+        <inline classes="doc">
+         Object Constraints
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="object-data" names="object\ data">
+    <title>
+     Object Data
+    </title>
+    <paragraph>
+     The main tab of that category (often the only one) always has the same name,
+     <emphasis>
+      Object Data
+     </emphasis>
+     ,
+but its icon will change based of the actual type of the active object.
+    </paragraph>
+    <rubric>
+     Geometry Objects:
+    </rubric>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../modeling/meshes/properties/object_data.html">
+        <inline classes="doc">
+         Mesh
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../modeling/curves/properties/index.html">
+        <inline classes="doc">
+         Curve
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../modeling/surfaces/properties/index.html">
+        <inline classes="doc">
+         Surface
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../modeling/texts/properties.html">
+        <inline classes="doc">
+         Text
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../modeling/metas/properties.html">
+        <inline classes="doc">
+         Metaball
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../grease_pencil/properties/index.html">
+        <inline classes="doc">
+         Grease Pencil
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <rubric>
+     Rigging and Deformation Objects:
+    </rubric>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../animation/armatures/properties/index.html">
+        <inline classes="doc">
+         Armature
+        </inline>
+       </reference>
+      </paragraph>
+      <bullet_list bullet="-">
+       <list_item>
+        <paragraph>
+         <reference internal="True" refuri="../animation/armatures/bones/properties/index.html">
+          <inline classes="doc">
+           Bone
+          </inline>
+         </reference>
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         <reference internal="True" refuri="../animation/armatures/posing/bone_constraints/index.html">
+          <inline classes="doc">
+           Bone Constraints
+          </inline>
+         </reference>
+        </paragraph>
+       </list_item>
+      </bullet_list>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../animation/lattice.html">
+        <inline classes="doc">
+         Lattice
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <rubric>
+     Other Types of Objects:
+    </rubric>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../modeling/empties.html">
+        <inline classes="doc">
+         Empty
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../render/output/audio/speaker.html">
+        <inline classes="doc">
+         Speaker
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../render/cameras.html">
+        <inline classes="doc">
+         Camera
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../render/lights/light_object.html">
+        <inline classes="doc">
+         Light
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../render/eevee/lightprobes/index.html">
+        <inline classes="doc">
+         Light Probe
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="object-shading" names="object\ shading">
+    <title>
+     Object Shading
+    </title>
+    <paragraph>
+     Depending on the type of the active object, some of those will be hidden.
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../render/materials/index.html">
+        <inline classes="doc">
+         Material
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../render/materials/legacy_textures/index.html">
+        <inline classes="doc">
+         Texture
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+  <section ids="header" names="header">
+   <title>
+    Header
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/editors_properties-editor_top.png'}" uri="images/editors_properties-editor_top.png"/>
+    <caption>
+     The header of the Properties editor.
+    </caption>
+   </figure>
+   <paragraph>
+    In the header of this editor, a list of icons and text items shows the owner of the properties being edited,
+together with some dependency context if needed.
+In the example above, the material "Material" is used by the active object "Cube".
+   </paragraph>
+   <paragraph>
+    By toggling on the pin icon to the right, Blender can be told to display in that editor
+only the currently shown data-block's properties, disregarding further selection changes.
+Toggle off that pin to switch back to default behavior, showing active data-block's properties.
+   </paragraph>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,404 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/forces/force_fields/types/curve_guide.rst">
+ <section ids="curve-guide" names="curve\ guide đường\ cong\ hướng\ đạo\ --\ curve\ guide">
+  <title>
+   Đường Cong Hướng Đạo -- Curve Guide
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Vật Lý (Physics) --&gt; Trường Lực (Force Fields)`">
+        Vật Lý (Physics) ‣ Trường Lực (Force Fields)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Thể Loại -- Type
+     </field_name>
+     <field_body>
+      <paragraph>
+       Đường Cong Hướng Đạo -- Curve Guide
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The
+   <emphasis>
+    Curve Guide
+   </emphasis>
+   is used to force particles to follow a certain
+path defined by a
+   <reference internal="True" refuri="../../../../modeling/curves/index.html">
+    <inline classes="doc">
+     Curve Object
+    </inline>
+   </reference>
+   .
+A typical scenario would be to move a red blood cell inside a vein,
+or to animate the particle flow in a motor.
+You can also use
+   <emphasis>
+    Curve Guide
+   </emphasis>
+   to shape certain hair strands.
+  </paragraph>
+  <note>
+   <paragraph>
+    You can also use the
+    <reference internal="True" refuri="../../../particles/mode.html">
+     <inline classes="doc">
+      Particle Edit Mode
+     </inline>
+    </reference>
+    to define a path.
+   </paragraph>
+  </note>
+  <paragraph>
+   Since you can animate curves as a soft body or any other usual way,
+you may build very complex animations while keeping great control and keeping the simulation time to a minimum.
+  </paragraph>
+  <paragraph>
+   The option
+   <emphasis>
+    Curve Follow
+   </emphasis>
+   does not work for particles. Instead you have to set
+   <emphasis>
+    Angular Velocity
+   </emphasis>
+   (
+   <emphasis>
+    Particle system
+   </emphasis>
+   tab) to
+   <emphasis>
+    Spin
+   </emphasis>
+   and leave the rotation constant (i.e. do not turn on
+   <emphasis>
+    Dynamic
+   </emphasis>
+   ).
+  </paragraph>
+  <paragraph>
+   <emphasis>
+    Curve Guide
+   </emphasis>
+   s affect all particles on the same layer, independently from their distance to the curve.
+If you have several guides in a layer,
+their fields add up to each other (the way you may have learned it in your physics course).
+But you can limit their influence radius by changing there
+   <emphasis>
+    Minimum Distance
+   </emphasis>
+   (see below).
+  </paragraph>
+  <note>
+   <paragraph>
+    The Curve Guide does not affect
+    <reference internal="True" refuri="../../../soft_body/index.html">
+     <inline classes="doc">
+      soft bodies
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </note>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8:
+.. figure:: /images/physics_forces_force-fields_types_curve-guide_panel.png
+
+   UI for a Curve Guide force field.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Minimum Distance
+     </term>
+     <definition>
+      <paragraph>
+       The distance from the curve, up to where the force field is effective with full strength.
+If you have a falloff of 0, this parameter will have no effect,
+because the field is effective with full strength up to
+       <emphasis>
+        Max Distance
+       </emphasis>
+       (or the infinity).
+       <emphasis>
+        Min Distance
+       </emphasis>
+       is shown with a circle at the endpoints of the curve in the 3D View.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tự Do -- Free
+     </term>
+     <definition>
+      <paragraph>
+       Fraction of particle life time, that is not used for the curve.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Suy Giảm Dần -- Falloff
+     </term>
+     <definition>
+      <paragraph>
+       This setting governs the strength of the guide between
+       <emphasis>
+        Min Distance
+       </emphasis>
+       and
+       <emphasis>
+        Max Distance
+       </emphasis>
+       .
+A falloff of 1 means a linear progression.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="path" names="path đường/đi/dẫn\ --\ path">
+    <title>
+     Đường/Đi/Dẫn -- Path
+    </title>
+    <paragraph>
+     A particle follows a
+     <emphasis>
+      Curve Guide
+     </emphasis>
+     during its lifetime,
+the velocity depends on its lifetime and the length of the path.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Bổ Sung -- Additive
+      </term>
+      <definition>
+       <paragraph>
+        If you use
+        <emphasis>
+         Additive
+        </emphasis>
+        , the speed of the particles is also evaluated depending on the falloff.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Trọng Lượng -- Weights
+      </term>
+      <definition>
+       <paragraph>
+        Use Curve weights to influence the particle influence along the curve.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Maximum Distance / Use Max
+      </term>
+      <definition>
+       <paragraph>
+        The maximum influence radius. Shown by an additional circle around the curve object.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="clumping" names="clumping --\ clumping">
+    <title>
+     -- Clumping
+    </title>
+    <paragraph>
+     The other settings govern the form of the force field along the curve.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       -- Clumping Amount
+      </term>
+      <definition>
+       <paragraph>
+        The particles come together at the end of the curve (1) or they drift apart (-1).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hình Dạng -- Shape
+      </term>
+      <definition>
+       <paragraph>
+        Defines the form in which the particles come together.
++0.99: the particles meet at the end of the curve.
+0: linear progression along the curve. -0.99: the particles meet at the beginning of the curve.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="kink" names="kink xoắn\ vặn\ --\ kink">
+    <title>
+     Xoắn Vặn -- Kink
+    </title>
+    <warning>
+     <paragraph>
+      This feature is broken in the current version, see T46776.
+     </paragraph>
+    </warning>
+    <paragraph>
+     Changes the shape that the particles can take.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Thể Loại -- Type
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Quăn -- Curl
+         </term>
+         <definition>
+          <paragraph>
+           The radius of the influence depends on the distance of the curve to the emitter.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Tỏa Tròn -- Radial
+         </term>
+         <definition>
+          <paragraph>
+           A three-dimensional, standing wave.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Sóng -- Wave
+         </term>
+         <definition>
+          <paragraph>
+           A two-dimensional, standing wave.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Tết -- Braid
+         </term>
+         <definition>
+          <paragraph>
+           Braid.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Xoáy -- Roll
+         </term>
+         <definition>
+          <paragraph>
+           A one-dimensional, standing wave.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <paragraph>
+     It is not so easy to describe the resulting shapes, so have a look at the example below.
+    </paragraph>
+    <figure ids="id1">
+     <image candidates="{'*': 'images/physics_forces_force-fields_types_curve-guide_kink.jpg'}" uri="images/physics_forces_force-fields_types_curve-guide_kink.jpg" width="400px"/>
+     <caption>
+      Kink options of a curve guide. From left to right: Radial, Wave, Braid, Roll.
+      <reference name="Animation" refuri="https://vimeo.com/1866538">
+       Animation
+      </reference>
+      .
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Trục -- Axis
+      </term>
+      <definition>
+       <paragraph>
+        Which axis to use for the offset.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tần Số -- Frequency
+      </term>
+      <definition>
+       <paragraph>
+        The frequency of the offset.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Biên Độ -- Amplitude
+      </term>
+      <definition>
+       <paragraph>
+        The Amplitude of the offset.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hình Dạng -- Shape
+      </term>
+      <definition>
+       <paragraph>
+        Adjust the offset to the beginning/end.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <vimeo aspect="None" height="None" id="182780872" width="None">
+   </vimeo>
+   <figure align="center" ids="id2">
+    <image candidates="{'*': 'images/physics_forces_force-fields_types_curve-guide_example.png'}" uri="images/physics_forces_force-fields_types_curve-guide_example.png" width="560px"/>
+    <caption>
+     Curve Guide force field.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

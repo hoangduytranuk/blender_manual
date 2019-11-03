@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hướng Dẫn về Kiểu Cách của Dấu Đánh -- Markup Style Guide &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/about/contribute/guides/markup_guide.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Hướng Dẫn về Phong Cách Viết -- Writing Style Guide" href="writing_guide.html" />
+    <link rel="prev" title="Bản Liệt Kê Sửa Đổi và Chuyển Giao Sửa Đổi -- Patch &amp; Commit" href="../patch_commit.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới thiệu về bản hướng dẫn sử dụng Blender -- Introduction to the Blender Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../license.html">Giấy Phép -- License</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Đóng Góp -- Contribute</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#how-it-works">Nguyên Lý Hoạt Động -- How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#getting-started">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#guidelines">Hướng Dẫn -- Guidelines</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Hướng Dẫn về Kiểu Cách của Dấu Đánh -- Markup Style Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="writing_guide.html">Hướng Dẫn về Phong Cách Viết -- Writing Style Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maintenance_guide.html">Bảo Quản -- Maintenance</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#translations">Phiên Dịch -- Translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#contacts">Mối Liên Lạc -- Contacts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a> &raquo;</li>
+        
+          <li><a href="../index.html">Đóng Góp -- Contribute</a> &raquo;</li>
+        
+      <li>Hướng Dẫn về Kiểu Cách của Dấu Đánh -- Markup Style Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/about/contribute/guides/markup_guide.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="markup-style-guide">
+<h1>Hướng Dẫn về Kiểu Cách của Dấu Đánh -- Markup Style Guide<a class="headerlink" href="#markup-style-guide" title="Permalink to this headline">¶</a></h1>
+<p>Trang này bao gồm các quy ước để viết và sử dụng cú pháp dấu đánh reSTructuredText (RST).</p>
+<div class="section" id="conventions">
+<h2>Quy Ước -- Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Thụt dòng ba khoảng cách trống.</li>
+<li>Số chữ trong các dòng phải ít hơn 120 ký tự.</li>
+<li>Dùng chữ <cite>nghiêng</cite> cho các nút bấm/tên của trình đơn.</li>
+</ul>
+<p>Những quy ước phóng túng khác:</p>
+<ul class="simple">
+<li>Tránh không dùng các ký tự trong bộ phông Unicode.</li>
+<li>Tránh xuống dòng quá nhiều (chẳng hạn: mỗi câu một dòng).</li>
+</ul>
+</div>
+<div class="section" id="headings">
+<h2>Tiêu Đề -- Headings<a class="headerlink" href="#headings" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">#################</span>
+<span class="gh">  Document Part</span>
+<span class="gh">#################</span>
+
+<span class="gh">****************</span>
+<span class="gh">Document Chapter</span>
+<span class="gh">****************</span>
+
+<span class="gh">Document Section</span>
+<span class="gh">================</span>
+
+<span class="gh">Document Subsection</span>
+<span class="gh">-------------------</span>
+
+<span class="gh">Document Subsubsection</span>
+<span class="gh">^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="gh">Document Paragraph</span>
+<span class="gh">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last"><em>Parts</em> chỉ nên được sử dụng cho các nội dung, hoặc ở các trang mục lục mà thôi.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Mỗi tập tin <code class="docutils literal notranslate"><span class="pre">.rst</span></code> chỉ nên có một tên chương (<code class="docutils literal notranslate"><span class="pre">*</span></code>) mà thôi.</p>
+</div>
+</div>
+<div class="section" id="text-styling">
+<h2>Bố Trí Kiểu Chữ -- Text Styling<a class="headerlink" href="#text-styling" title="Permalink to this headline">¶</a></h2>
+<p>Xem <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">Tổng quan về ReStructuredText</a> -- để biết thêm thông tin về cách tạo kiểu cách cho các phần tử khác nhau của tài liệu và cách thêm danh sách, bảng, hình ảnh và khối mã nguồn. Bản <a class="reference external" href="http://www.sphinx-doc.org/en/stable/markup/">Tham chiếu Sphinx</a> -- cung cấp thêm các cấu trúc chi tiết bổ sung nữa.</p>
+<p>Sau đây là các dấu đánh hữu ích để tạo kiểu cách cho văn bản:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="ge">*italic*</span>
+<span class="gs">**bold**</span>
+<span class="s">``literal``</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interface-elements">
+<h2>Phần Tử Giao Diện -- Interface Elements<a class="headerlink" href="#interface-elements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">:kbd:`NCT`</span></code> -- tổ hợp phím bấm nhanh và bố trí chuột.</li>
+<li><code class="docutils literal notranslate"><span class="pre">*Mirror*</span></code> -- Nhãn hiệu giao diện.</li>
+<li><code class="docutils literal notranslate"><span class="pre">:menuselection:`Góc</span> <span class="pre">Nhìn</span> <span class="pre">3D</span> <span class="pre">(3D</span> <span class="pre">View)</span> <span class="pre">--&gt;</span> <span class="pre">Cộng</span> <span class="pre">Thêm</span> <span class="pre">(Add)</span> <span class="pre">--&gt;</span> <span class="pre">Khung</span> <span class="pre">Lưới</span> <span class="pre">(Mesh)</span> <span class="pre">--&gt;</span> <span class="pre">Đầu</span> <span class="pre">Khỉ</span> <span class="pre">(Monkey)`</span></code> -- trình đơn.</li>
+</ul>
+</div>
+<div class="section" id="code-samples">
+<h2>Ví Dụ về Mã Nguồn -- Code Samples<a class="headerlink" href="#code-samples" title="Permalink to this headline">¶</a></h2>
+<p>Hỗ trợ cho việc nêu bật cú pháp cũng tồn tại nếu ngôn ngữ lập trình được cung cấp, và các số dòng có thể được hiển thị theo tùy thích bằng tùy chọn <code class="docutils literal notranslate"><span class="pre">:linenos:</span></code>:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> python
+   <span class="nc">:linenos:</span>
+
+   import bpy
+   def some_function():
+<span class="cp">       ...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="images">
+<h2>Hình Ảnh -- Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Figure</span></code> nên được sử dụng để đặt các hình ảnh minh họa:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">figure</span><span class="p">::</span> /images/render_cycles_nodes_types_shaders_node.png
+
+   Image caption.
+</pre></div>
+</div>
+<p>Để nhất quán và để đảm bảo ảnh chụp màn hình có cùng kích thước tương tự khi trôi nổi bên cạnh văn bản, tác giả nên chụp ảnh màn hình theo cách sau:</p>
+<ol class="arabic simple">
+<li>Prepare the area you would like to capture making sure to use the default theme and setting.
+(In some cases you may not want to use the default settings e.g. if some options are hidden behind a checkbox.)</li>
+<li>Thu phóng đến mức tối đa (giữ <kbd class="kbd docutils literal notranslate">Bàn Số +</kbd> hoặc <kbd class="kbd docutils literal notranslate">Ctrl-NCG - Nút Chuột Giữa</kbd> hoặc tương tự).</li>
+<li>Thu nhỏ tám lần (<kbd class="kbd docutils literal notranslate">Bàn Số -</kbd> -- tám lần).</li>
+<li>Trong một số trường hợp, bạn có thể sẽ muốn để lại một khoảng nhỏ xung quanh cái bạn muốn thu chụp. Cái này nên chừng khoảng 30 điểm ảnh, song không cần phải chính xác lắm.</li>
+</ol>
+<p>Điều này có thể được áp dụng cho một số phần của giao diện nhưng có thể không hiệu quả đối với mọi trường hợp.</p>
+<div class="section" id="files">
+<h3>Tập Tin -- Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Không được sử dụng chữ hoa, không được có khoảng cách trống -- No Caps, No Gaps</dt>
+<dd>Tên tập tin phải là chữ thường, dùng gạch chân để tách biệt các từ.</dd>
+<dt>Sắp Xếp Trật Tự Hợp Lý, Có Tác Dụng -- Sort Usefully</dt>
+<dd>Đặt tên theo thứ tự dùng các tên nhận dạng cụ thể nằm ở cuối.</dd>
+<dt>Định Dạng -- Format</dt>
+<dd><p class="first">Sử dụng <code class="docutils literal notranslate"><span class="pre">.png</span></code> cho các hình ảnh có các màu cố định như ảnh chụp màn hình của giao diện Blender và <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> cho hình ảnh có số lượng màu sắc biến đổi cao, chẳng hạn như mẫu kết xuất và các ảnh chụp.</p>
+<p class="last">Không sử dụng các tập tin <code class="docutils literal notranslate"><span class="pre">.gif</span></code> hoạt họa vì những tập tin này khó bảo trì và có thể gây mất tập trung, đồng thời chúng thường có kích thước tập tin lớn nữa. Thay vào đó, hãy sử dụng một video nếu cần (xem phần về <a class="reference internal" href="#videos">Video</a> bên dưới).</p>
+</dd>
+<dt>Vị Trí -- Location</dt>
+<dd>Đặt hình ảnh vào thư mục <code class="docutils literal notranslate"><span class="pre">manual/images</span></code>. Không sử dụng các thư mục nhánh khác.</dd>
+<dt>Đặt Tên -- Naming</dt>
+<dd><p class="first">Để đặt tên các tập tin, hãy sử dụng dấu gạch chân để phân tách các chương và các phần riêng biệt, đồng thời sử dụng dấu gạch ngang để phân tách các phần có hai hoặc nhiều từ. Vì vậy, các tập tin hình ảnh sẽ trông giống thế này: <code class="docutils literal notranslate"><span class="pre">chapter_subsection_sub-subsection_id.png</span></code>, ví dụ:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">interface_splash_current.png</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">interface_undo-redo_last.png</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">interface_undo-redo_repeat-history-menu.png</span></code></li>
+</ul>
+<p class="last">Không được sử dụng các ký tự đặc biệt, hoặc các dấu cách trống!</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="usage-guides">
+<h3>Hướng Dẫn Sử Dụng -- Usage Guides<a class="headerlink" href="#usage-guides" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Tránh việc chỉ định độ phân giải của hình ảnh, hầu cho phong cách -- <cite>theme</cite> -- có thể xử lý hình ảnh một cách nhất quán và cung cấp bài trí tốt nhất đối với các kích thước màn hình khác nhau.</p>
+</li>
+<li><p class="first">Khi lập tài liệu cho một bảng hoặc một phần của giao diện người dùng, tốt hơn hết là nên sử dụng một hình ảnh hiển thị tất cả các khu vực liên quan (thay vì nhiều hình ảnh cho mỗi một biểu tượng hoặc mỗi một nút) được đặt ở đỉnh của phần bạn đang viết, và sau đó giải thích các đặc tính theo thứ tự chúng xuất hiện trên hình ảnh.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Điều quan trọng là bản hướng dẫn sử dụng có thể phải được bảo quản lâu dài, giao diện người dùng và các tùy chọn công cụ thay đổi, vì vậy cố gắng tránh tình trạng có quá nhiều hình ảnh (đặc biệt khi chúng không cần thiết). Nếu không, việc bảo trì sẽ trở nên một gánh nặng quá lớn.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="videos">
+<h2>Phim Video -- Videos<a class="headerlink" href="#videos" title="Permalink to this headline">¶</a></h2>
+<p>Các phim video từ YouTube\ <sup>™</sup> và Vimeo\ <sup>™</sup> có thể được gắn sẵn dùng:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">youtube</span><span class="p">::</span> ID
+
+<span class="p">..</span> <span class="ow">vimeo</span><span class="p">::</span> ID
+</pre></div>
+</div>
+<p>Chỉ danh <code class="docutils literal notranslate"><span class="pre">ID</span></code> của phim sẽ năm trong địa chỉ URL của phim video, chẳng hạn:</p>
+<ul class="simple">
+<li>Chỉ danh ID cho <code class="docutils literal notranslate"><span class="pre">https://www.youtube.com/watch?v=Ge2Kwy5EGE0</span></code> -- là <code class="docutils literal notranslate"><span class="pre">Ge2Kwy5EGE0</span></code></li>
+<li>Chỉ danh ID cho <code class="docutils literal notranslate"><span class="pre">https://vimeo.com/15837189</span></code> -- là <code class="docutils literal notranslate"><span class="pre">15837189</span></code></li>
+</ul>
+<div class="section" id="id1">
+<h3>Hướng Dẫn Sử Dụng -- Usage Guides<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Tránh việc cho thêm các video đòi hỏi phải dựa vào giọng nói, vì như vậy rất khó dịch thuật.</li>
+<li>Chớ gắn sẵn các video hướng dẫn như một phương tiện giải thích một tính năng của phần mềm. Bản thân nội dung của văn bản phải giải thích về nó đầy đủ (tuy nhiên, bạn có thể bao gồm một liên kết đến video ở dưới cùng của trang, dưới tiêu đề <code class="docutils literal notranslate"><span class="pre">Tutorials</span> <span class="pre">--</span> <span class="pre">Trợ</span> <span class="pre">Lý</span> <span class="pre">Học</span> <span class="pre">Tập</span></code>).</li>
+</ul>
+</div>
+</div>
+<div class="section" id="useful-constructs">
+<h2>Cấu Trúc Hữu Dụng -- Useful Constructs<a class="headerlink" href="#useful-constructs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">|BLENDER_VERSION|</span></code> -- Phân giải thành phiên bản hiện tại của Blender.</li>
+<li><code class="docutils literal notranslate"><span class="pre">:abbr:`SSAO</span> <span class="pre">(Screen</span> <span class="pre">Space</span> <span class="pre">Ambient</span> <span class="pre">Occlusion</span> <span class="pre">--</span> <span class="pre">Tính</span> <span class="pre">Hấp</span> <span class="pre">Thụ</span> <span class="pre">Quang</span> <span class="pre">Xạ</span> <span class="pre">Môi</span> <span class="pre">Trường</span> <span class="pre">Không</span> <span class="pre">Gian</span> <span class="pre">Màn</span> <span class="pre">Hình)`</span></code> -- Các từ viết tắt hiển thị toàn bộ văn bản dưới dạng chú giải công cụ cho người đọc.</li>
+<li><code class="docutils literal notranslate"><span class="pre">:term:`Manifold`</span></code> -- Liên kết đến một mục trong bảng <a class="reference internal" href="../../../glossary/index.html"><span class="doc">Thuật Ngữ</span></a>.</li>
+</ul>
+</div>
+<div class="section" id="cross-references-and-linkage">
+<h2>Đối Chiếu và Liên Kết -- Cross References and Linkage<a class="headerlink" href="#cross-references-and-linkage" title="Permalink to this headline">¶</a></h2>
+<p>Bạn có thể liên kết đến một tài liệu khác trong bản hướng dẫn sử dụng bằng dòng mã sau:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="na">:doc:</span><span class="nv">`The Title &lt;/section/path/to/file&gt;`</span>
+</pre></div>
+</div>
+<p>Để liên kết đến một phần cụ thể nào đó trong một tài liệu khác (hoặc trong cùng một tài liệu), bạn có thể sử dụng các nhãn hiệu cụ thể như sau:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="nt">_sample-label:</span>
+
+[section or image to reference]
+
+Some text <span class="na">:ref:</span><span class="nv">`Optional Title &lt;sample-label&gt;`</span>
+</pre></div>
+</div>
+<p>Kết nối với một tiêu đề nào đó trong cùng tập tin:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Titles are Targets</span>
+<span class="gh">==================</span>
+
+Body text.
+
+Implicit references, like <span class="s">`Titles are Targets`_</span>
+</pre></div>
+</div>
+<p>Kết nối với thế giới bên ngoài:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="s">`Blender Website </span><span class="si">&lt;https://www.blender.org&gt;</span><span class="s">`__</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="directory-layout">
+<h2>Bố Trí của Thư Mục -- Directory Layout<a class="headerlink" href="#directory-layout" title="Permalink to this headline">¶</a></h2>
+<p>Các phần nên được kết cấu một cách chung chung như sau:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">directory_name/</span></code><ul>
+<li><code class="docutils literal notranslate"><span class="pre">index.rst</span></code> (có chứa các đường kết nối đến những tập tin nội bộ)</li>
+<li><code class="docutils literal notranslate"><span class="pre">introduction.rst</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">section_1.rst</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">section_2.rst</span></code></li>
+</ul>
+</li>
+</ul>
+<p>Ví dụ:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">rendering/</span></code><ul>
+<li><code class="docutils literal notranslate"><span class="pre">index.rst</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cycles/</span></code><ul>
+<li><code class="docutils literal notranslate"><span class="pre">index.rst</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">introduction.rst</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">materials/</span></code><ul>
+<li><code class="docutils literal notranslate"><span class="pre">index.rst</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">introduction.rst</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">volumes.rst</span></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Đại ý là cần phải gộp tất cả các nội dung của một phần nội bên trong một thư mục. Lý tưởng nhất là mỗi phần cần có một bản <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> (chứa TOC -- <code class="docutils literal notranslate"><span class="pre">Table</span> <span class="pre">Of</span> <span class="pre">Content</span> <span class="pre">:</span> <span class="pre">Mục</span> <span class="pre">Lục</span></code>) -- cho phần đó và <code class="docutils literal notranslate"><span class="pre">introduction.rst</span></code> (giới thiệu) cho nội dung của phần đó.</p>
+<div class="section" id="table-of-contents">
+<h3>Mục Lục -- Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h3>
+<p>Theo mặc định, một bảng nội dung nên có hai tầng bậc:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:maxdepth:</span> <span class="nf">2</span>
+
+   introduction.rst
+   perspective.rst
+   depth_of_field.rst
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="further-reading">
+<h2>Đọc Thêm -- Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<p>Để học thêm về <strong>reStructuredText</strong>, xin xem:</p>
+<dl class="docutils">
+<dt><a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">Sphinx RST Primer</a></dt>
+<dd>Giới thiệu cơ bản có chất lượng tốt.</dd>
+<dt><a class="reference external" href="http://docutils.sourceforge.net/rst.html">Docutils reStructuredText reference</a></dt>
+<dd>Các đường kết nối đến những tham chiếu và tài liệu cho người dùng.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="writing_guide.html" class="btn btn-neutral float-right" title="Hướng Dẫn về Phong Cách Viết -- Writing Style Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../patch_commit.html" class="btn btn-neutral float-left" title="Bản Liệt Kê Sửa Đổi và Chuyển Giao Sửa Đổi -- Patch &amp; Commit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/matte/double_edge_mask.rst">
+ <target refid="bpy-types-compositornodedoubleedgemask">
+ </target>
+ <section ids="double-edge-mask-node bpy-types-compositornodedoubleedgemask" names="double\ edge\ mask\ node nút\ màn\ chắn\ đôi\ cạnh\ --\ double\ edge\ mask\ node bpy.types.compositornodedoubleedgemask">
+  <title>
+   Nút Màn Chắn Đôi Cạnh -- Double Edge Mask Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeDoubleEdgeMask.png'}" uri="images/compositing_node-types_CompositorNodeDoubleEdgeMask.png"/>
+   <caption>
+    Nút Màn Chắn Đôi Cạnh.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Double Edge Mask
+   </emphasis>
+   node creates a gradient between two masks.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màn Chắn Nội -- Inner Mask
+     </term>
+     <definition>
+      <paragraph>
+       A mask representing the inside shape, which will be fully white.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Màn Chắn Ngoại -- Outer Mask
+     </term>
+     <definition>
+      <paragraph>
+       A mask representing the outside shape, which will fade from black at its edges
+to white at the
+       <emphasis>
+        Inner Mask
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Cạnh Bên Trong -- Inner Edge
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Toàn Bộ -- All
+        </term>
+        <definition>
+         <paragraph>
+          All shapes in the
+          <emphasis>
+           Inner Mask
+          </emphasis>
+          contribute to the gradient, even ones that do
+not touch the
+          <emphasis>
+           Outer Mask
+          </emphasis>
+          shape.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Duy Kề Cạnh -- Adjacent Only
+        </term>
+        <definition>
+         <paragraph>
+          Only shapes in the
+          <emphasis>
+           Inner Mask
+          </emphasis>
+          that overlap with the
+          <emphasis>
+           Outer Mask
+          </emphasis>
+          contribute
+to the gradient.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <table>
+       <tgroup cols="2">
+        <colspec colwidth="50">
+        </colspec>
+        <colspec colwidth="50">
+        </colspec>
+        <tbody>
+         <row>
+          <entry>
+           <figure ids="id2">
+            <image candidates="{'*': 'images/compositing_types_matte_double-edge-mask_all.png'}" uri="images/compositing_types_matte_double-edge-mask_all.png"/>
+            <caption>
+             All.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id3">
+            <image candidates="{'*': 'images/compositing_types_matte_double-edge-mask_adjacent.png'}" uri="images/compositing_types_matte_double-edge-mask_adjacent.png"/>
+            <caption>
+             Adjacent Only.
+            </caption>
+           </figure>
+          </entry>
+         </row>
+        </tbody>
+       </tgroup>
+      </table>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cạnh của Bộ Đệm -- Buffer Edge
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Giữ Nằm Trong -- Keep In
+        </term>
+        <definition>
+         <paragraph>
+          Parts of the
+          <emphasis>
+           Outer Mask
+          </emphasis>
+          that touch the edge of the image are treated as if
+they stop at the edge.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tràn Ra -- Bleed Out
+        </term>
+        <definition>
+         <paragraph>
+          Parts of the
+          <emphasis>
+           Outer Mask
+          </emphasis>
+          that touch the edge of the image are extended
+beyond the boundary of the image.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <table>
+       <tgroup cols="2">
+        <colspec colwidth="50">
+        </colspec>
+        <colspec colwidth="50">
+        </colspec>
+        <tbody>
+         <row>
+          <entry>
+           <figure ids="id4">
+            <image candidates="{'*': 'images/compositing_types_matte_double-edge-mask_in.png'}" uri="images/compositing_types_matte_double-edge-mask_in.png"/>
+            <caption>
+             Keep In.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id5">
+            <image candidates="{'*': 'images/compositing_types_matte_double-edge-mask_bleed.png'}" uri="images/compositing_types_matte_double-edge-mask_bleed.png"/>
+            <caption>
+             Bleed Out.
+            </caption>
+           </figure>
+          </entry>
+         </row>
+        </tbody>
+       </tgroup>
+      </table>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màn Chắn -- Mask
+     </term>
+     <definition>
+      <paragraph>
+       Standard mask output.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <youtube aspect="None" height="None" id="VcjEfoNIHZs" width="None">
+   </youtube>
+  </section>
+ </section>
+</document>

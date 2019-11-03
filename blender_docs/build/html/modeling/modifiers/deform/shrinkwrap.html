@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/shrinkwrap.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="-- Simple Deform Modifier" href="simple_deform.html" />
+    <link rel="prev" title="-- Mesh Deform Modifier" href="mesh_deform.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">-- Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh -- Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Sửa Đổi -- Modify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Sinh Tạo -- Generate</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="armature.html">Bộ Điều Chỉnh Cốt -- Armature Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cast.html">Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve.html">Bộ Điều Chỉnh Đường Cong -- Curve Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displace.html">Bộ Điều Chỉnh Dời Hình -- Displace Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hooks.html">Bộ Điều Chỉnh Móc -- Hook Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_deform.html">Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lattice.html">Bộ Điều Chỉnh Giàn Lưới -- Lattice Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">-- Mesh Deform Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_deform.html">-- Simple Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth.html">Bộ Điều Chỉnh Làm Mịn -- Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_deform.html">-- Surface Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warp.html">Bộ Điều Chỉnh Làm Cong -- Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wave.html">Bộ Điều Chỉnh Tạo Sóng -- Wave Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#simulate">Mô Phỏng -- Simulate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
+        
+      <li>Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modeling/modifiers/deform/shrinkwrap.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="shrinkwrap-modifier">
+<span id="bpy-types-shrinkwrapmodifier"></span><h1>Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier<a class="headerlink" href="#shrinkwrap-modifier" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Shrinkwrap</em> modifier allows an object to &quot;shrink&quot; to the surface of another object.
+It moves each vertex of the object being modified to the closest position on
+the surface of the given mesh (using one of the four methods available).</p>
+<p>It can be applied to meshes, lattices, curves, surfaces and texts.</p>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id1">
+<img alt="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-surface-point.png" src="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-surface-point.png" />
+<p class="caption"><span class="caption-text">The Shrinkwrap modifier in Nearest Surface Point mode.</span></p>
+</div>
+<dl class="docutils">
+<dt>Mục Tiêu -- Target</dt>
+<dd>Shrink target, the mesh to shrink to/wrap around.</dd>
+<dt>Dịch Chuyển -- Offset</dt>
+<dd>The distance that must be kept from the calculated target position.</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
+<dd>The vertex group to control whether and how much each vertex is displaced to its target position.
+If a vertex is not a member of this group, it is not displaced (same as weight 0).</dd>
+</dl>
+<div class="section" id="mode">
+<h3>Chế Độ -- Mode<a class="headerlink" href="#mode" title="Permalink to this headline">¶</a></h3>
+<p>This selector specifies the method to be used to determine the nearest point on the target's surface
+for each vertex of the modified object. Some options will add some extra, specific controls to the panel.</p>
+<div class="section" id="nearest-surface-point">
+<h4>Điểm Gần Nhất Trên Bề Mặt -- Nearest Surface Point<a class="headerlink" href="#nearest-surface-point" title="Permalink to this headline">¶</a></h4>
+<p>This will select the nearest point over the surface of the shrunk target.</p>
+</div>
+<div class="section" id="project">
+<h4>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h4>
+<div class="figure align-right" id="id2">
+<img alt="../../../_images/modeling_modifiers_deform_shrinkwrap_project.png" src="../../../_images/modeling_modifiers_deform_shrinkwrap_project.png" />
+<p class="caption"><span class="caption-text">Project mode.</span></p>
+</div>
+<p>This will project vertices along a chosen axis until they touch the shrink target.
+Vertices that never touch the shrink target are left in their original position.</p>
+<dl class="docutils">
+<dt>Mức Độ Phân Hóa Bề Mặt -- Subdivision Surface Levels</dt>
+<dd>This applies a (temporary) <em>Catmull-Clark</em> subdivision to the modified object's geometry,
+before computing the wrap.</dd>
+<dt>Giới Hạn -- Limit</dt>
+<dd>This is a distance limit between original vertex and surface.
+If the distance is larger than this limit vertex would not be projected onto the surface.</dd>
+<dt>Axis X/Y/Z</dt>
+<dd>Along which local axis of the modified object the projection is done.
+These options can be combined with each other, yielding a &quot;median axis&quot; of projection.
+If none are selected, the normal direction is used.</dd>
+<dt>Direction Negative/Positive</dt>
+<dd>This allows you to select the allowed direction(s) of the shrink along the selected axis.
+If both options are enabled, the modifier tries both ways and selects the closest hit.</dd>
+<dt>Cull Faces Off/Front/Back</dt>
+<dd>Allows you to prevent any projection over the &quot;front side&quot;
+(respectively the &quot;back side&quot;) of the target's faces. The &quot;side&quot; of a face is determined
+by its normal (front being the side &quot;from where&quot; the normal &quot;originates&quot;).</dd>
+<dt>Đảo Ngược Chiều Loại Bỏ -- Invert Cull</dt>
+<dd>If <em>Cull Faces</em> is enabled, and <em>Negative</em> direction along axis is allowed,
+this option can be used to invert the <em>Front</em> or <em>Back</em> cull choice
+for the <em>Negative</em> direction. This is useful when projecting in both directions.</dd>
+<dt>Mục Tiêu Phụ -- Auxiliary Target</dt>
+<dd>An additional object to project over.</dd>
+</dl>
+</div>
+<div class="section" id="nearest-vertex">
+<h4>Đỉnh Gần Nhất -- Nearest Vertex<a class="headerlink" href="#nearest-vertex" title="Permalink to this headline">¶</a></h4>
+<div class="figure align-right" id="id3">
+<img alt="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-vertex.png" src="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-vertex.png" />
+<p class="caption"><span class="caption-text">Nearest Vertex mode.</span></p>
+</div>
+<p>This will snap vertices to the nearest vertex of the shrunk target. It adds no extra options.</p>
+<p>This method doesn't support the <em>Snap Mode</em> setting described below.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="target-normal-project">
+<h4>Target Normal Project<a class="headerlink" href="#target-normal-project" title="Permalink to this headline">¶</a></h4>
+<div class="figure align-right" id="id4">
+<img alt="../../../_images/modeling_modifiers_deform_shrinkwrap_normal-project.png" src="../../../_images/modeling_modifiers_deform_shrinkwrap_normal-project.png" />
+<p class="caption"><span class="caption-text">Target Normal Project mode.</span></p>
+</div>
+<p>This mode is similar to <em>Nearest Surface Point</em>, but produces a much smoother
+projection in return for being significantly slower.</p>
+<p>Instead of finding the closest point, it searches for the nearest point
+that has its interpolated smooth normal pointing towards or away from the original vertex position.
+Non-manifold boundary edges are specially handled as infinitely thin cylinders
+that emit normals in all perpendicular directions. Ignores flat shading and auto smooth settings.</p>
+</div>
+</div>
+<div class="section" id="snap-mode">
+<h3>Chế Độ Bám Dính -- Snap Mode<a class="headerlink" href="#snap-mode" title="Permalink to this headline">¶</a></h3>
+<p>Most modes support an additional setting to control how the vertex is moved to
+the target point selected by the methods described above. Some of the choices
+only differ if <em>Offset</em> is not zero.</p>
+<dl class="docutils">
+<dt>Trên Mặt -- On Surface</dt>
+<dd>The vertex is always moved. The offset is applied along the projection line
+connecting the original vertex and selected target point towards the original position.</dd>
+<dt>Bên Ngoài Bề Mặt -- Outside Surface</dt>
+<dd>Like <em>On Surface</em>, but the offset is always applied towards the outside of the target.</dd>
+<dt>Bên Trên Bề Mặt -- Above Surface</dt>
+<dd>Like <em>On Surface</em>, but the offset is applied along the smooth normal of the target.</dd>
+<dt>Bên Trong -- Inside</dt>
+<dd>The vertex is not moved if it is already inside the target.
+Offset shrinks the allowed volume towards the inside along the projection line.</dd>
+<dt>Bên Ngoài -- Outside</dt>
+<dd>The vertex is not moved if it is already outside the target.
+Offset expands the exclusion volume towards the outside along the projection line.</dd>
+</dl>
+<p>The <em>Inside</em> and <em>Outside</em> options can be used for very crude collision detection.
+The inside vs outside determination is done based on the target normal and
+is not always stable near 90 degree and sharper angles in the target mesh.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last"><a class="reference internal" href="../../../animation/constraints/relationship/shrinkwrap.html"><span class="doc">Shrinkwrap Constraint</span></a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="simple_deform.html" class="btn btn-neutral float-right" title="-- Simple Deform Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mesh_deform.html" class="btn btn-neutral float-left" title="-- Mesh Deform Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

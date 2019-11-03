@@ -1,0 +1,182 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/color/z_combine.rst">
+ <target refid="bpy-types-compositornodezcombine">
+ </target>
+ <section ids="z-combine-node bpy-types-compositornodezcombine" names="z\ combine\ node nút\ kết\ hợp\ z\ --\ z\ combine\ node bpy.types.compositornodezcombine">
+  <title>
+   Nút Kết Hợp Z -- Z Combine Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeZcombine.png'}" uri="images/compositing_node-types_CompositorNodeZcombine.png"/>
+   <caption>
+    Nút Kết Hợp Z.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Kết Hợp Z kết hợp hai hình ảnh dựa trên sơ đồ về độ sâu Z của chúng. Nó phủ chồng các hình ảnh lên nhau bằng cách sử dụng các giá trị Z được cung cấp để phát hiện phần nào của một hình ảnh nằm ở phía trước của cái kia.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh nền.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Z
+     </term>
+     <definition>
+      <paragraph>
+       Độ sâu Z của hình ảnh nền.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh nền trước.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Z
+     </term>
+     <definition>
+      <paragraph>
+       Độ sâu Z của hình ảnh nền trước.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Dùng Alpha -- Use Alpha
+     </term>
+     <definition>
+      <paragraph>
+       Kênh alpha của điểm ảnh trong hình ảnh đã chọn cũng được chuyển sang. Nếu một điểm ảnh nào đó trong suốt một phần hoặc toàn phần thì kết quả của quá trình Kết Hợp Z (Z Combine) cũng sẽ chỉ trong suốt một phần mà thôi; trong trường hợp ấy, hình nền sẽ nhìn thấy được thông qua điểm ảnh (đã chọn) nằm phía trước.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chống Răng Cưa Z -- Anti-Alias Z
+     </term>
+     <definition>
+      <paragraph>
+       Áp dụng
+       <reference internal="True" refuri="../../../glossary/index.html#term-anti-aliasing">
+        <inline classes="xref std std-term">
+         Chống Răng Cưa -- Anti-Aliasing
+        </inline>
+       </reference>
+       để tránh giả tượng xuất hiện ở các cạnh sắc nét, hoặc các khu vực có độ tương phản cao.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Nếu cả hai giá trị Z đều bằng nhau, nó sẽ sử dụng hình ảnh nền trước. Giá trị Z nào kém hơn sẽ quyết định điểm ảnh nào được sử dụng. Xin xem
+       <reference internal="True" refuri="../../../glossary/index.html#term-z-buffer">
+        <inline classes="xref std std-term">
+         Bộ Đệm-Z -- Z-buffer
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Z
+     </term>
+     <definition>
+      <paragraph>
+       Độ sâu Z kết hợp cho phép kết nối nhiều sự kết hợp Z lại với nhau.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_color_z-combine_example-1.png'}" uri="images/compositing_types_color_z-combine_example-1.png" width="700px"/>
+    <caption>
+     Chọn các điểm ảnh gần nhất.
+    </caption>
+   </figure>
+   <paragraph>
+    Trong ví dụ trên, kết quả kết xuất từ hai cảnh được hòa trộn bằng nút Vị Trí-Z (Z-Offset), một cái từ một quả cầu có kích thước là 1,30, và cái kia có hình lập phương với kích thước là 1,00. Hình cầu và hình lập phương được đặt tại cùng một vị trí. Khối lập phương nghiêng về phía trước, hầu cho góc ở giữa gần máy quay phim hơn là bề mặt của hình cầu; vì vậy Vị Trí-Z lựa chọn sử dụng các điểm ảnh của khối lập phương. Song quả cầu thì lại hơi lớn hơn (kích thước 1,30 so với 1,00), do đó, nó không hoàn toàn khít nằm gọn vào trong khối lập phương. Tại một số thời điểm nào đó, khi các cạnh của khối lập phương lùi xa khỏi máy quay phim, các cạnh của hình cầu sẽ trở nên gần hơn. Khi điều này xảy ra, Vị Trí-Z sử dụng các điểm ảnh của hình cầu để tạo thành hình ảnh kết quả đạt được.
+   </paragraph>
+   <paragraph>
+    Nút này có thể được sử dụng để kết hợp một nền trước với một bức vẽ lồng ở nền sau. Walt Disney là công ty tiên phong trong việc sử dụng đa lớp lồng, trong đó ba hoặc bốn lớp lồng được vẽ trên kính và đặt ở bên trái và bên phải tại các vị trí Z khác nhau; dùng phương pháp nhích máy ảnh sang bên phải tạo ra ảo tưởng về chiều sâu khi con hươu Bambi đi xuyên qua khu rừng.
+   </paragraph>
+   <note>
+    <paragraph>
+     Đầu vào hợp lệ
+    </paragraph>
+    <paragraph>
+     Các Ổ Cắm Đầu Vào Z (Z Input Sockets) không chấp nhận các giá trị cố định; chúng cần một tập hợp vectơ (xem nút Ánh Xạ Giá Trị). Các Ổ Cắm Đầu Vào Hình Ảnh (Image Input Sockets) sẽ không chấp nhận màu sắc vì nó không có tọa độ UV.
+    </paragraph>
+   </note>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/compositing_types_color_z-combine_example-2.png'}" uri="images/compositing_types_color_z-combine_example-2.png" width="700px"/>
+    <caption>
+     Hòa trộn và kết hợp hình ảnh.
+    </caption>
+   </figure>
+   <paragraph>
+    Kết Hợp Z có thể được sử dụng để kết hợp hai hình ảnh với nhau, sử dụng các giá trị Z đưa ra bởi hai lớp kết xuất. Sử dụng các giá trị Z từ hình cầu và các cảnh hình khối lập phương ở trên, cung cấp các hình ảnh khác nhau vào, tạo ra ví dụ ở bên phải.
+   </paragraph>
+   <figure ids="id4">
+    <image candidates="{'*': 'images/compositing_types_color_z-combine_example-3.png'}" uri="images/compositing_types_color_z-combine_example-3.png" width="700px"/>
+    <caption>
+     Kết Hợp Z trong hành động.
+    </caption>
+   </figure>
+   <paragraph>
+    Trong sắp xếp nút này, một cảnh kết xuất được trộn lẫn với một hình ảnh phẳng. Trong khung nhìn bên của cảnh, khối lập phương màu tím cách xa máy ảnh 10 đơn vị, và quả bóng màu xám cách xa 20 đơn vị. Con trỏ 3D cách máy ảnh khoảng 15 đơn vị. Hình ảnh là ổ đầu vào Z ở vị trí 15, do đó, nó nằm giữa khối lập phương và quả bóng. Hình ảnh kết quả dường như đặt khối lập phương trên bàn vậy.
+   </paragraph>
+   <note>
+    <paragraph>
+     Hiệu ứng Người Vô Hình
+    </paragraph>
+    <paragraph>
+     Nếu hình ảnh ở nền trước, với Alpha cao hơn ảnh nền, sau đó được hòa trộn trong Kết Hợp Z, với hình nền được phóng đại lên một chút, đường viền của vùng trong suốt sẽ làm cho hình ảnh nền biến dạng, đủ để làm cho nó trông giống như nhìn thấy được một phần nền thông qua một vật thể vô hình, như qua lăng kính Fresnen.
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,982 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/scene/properties.rst">
+ <section ids="scene-properties" names="scene\ properties tính\ chất\ của\ cảnh\ --\ scene\ properties">
+  <title>
+   Tính Chất của Cảnh -- Scene Properties
+  </title>
+  <target refid="bpy-types-scene-camera">
+  </target>
+  <target refid="bpy-types-scene-background-set">
+  </target>
+  <target refid="bpy-types-scene-active-clip">
+  </target>
+  <section ids="scene bpy-types-scene-active-clip bpy-types-scene-background-set bpy-types-scene-camera" names="scene cảnh\ --\ scene bpy.types.scene.active_clip bpy.types.scene.background_set bpy.types.scene.camera">
+   <title>
+    Cảnh -- Scene
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --&gt; Cảnh (Scene) --&gt; Cảnh (Scene)`">
+         Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Cảnh (Scene)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Máy Quay Phim -- Camera
+     </term>
+     <definition>
+      <paragraph>
+       Used to select which camera is used as the active camera.
+You can also set the active camera in the 3D View with
+       <literal classes="kbd">
+        Ctrl-0
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="scene-background-set">
+   </target>
+   <definition_list ids="scene-background-set" names="scene-background-set">
+    <definition_list_item>
+     <term>
+      Background Scene
+     </term>
+     <definition>
+      <paragraph>
+       Allows you to use a scene as a background,
+this is typically useful when you want to focus on animating the foreground for example,
+without background elements getting in the way.
+      </paragraph>
+      <paragraph>
+       This scene can have its own animation, physics simulations, etc,
+but you will have to select it from the
+       <emphasis>
+        Scene
+       </emphasis>
+       data-block menu, if you want to edit any of its contents.
+      </paragraph>
+      <paragraph>
+       Sets can themselves have a background set (they're recursively included).
+So you can always make additions to existing scenes by using them as a background
+to a newly created scene where your additions are made.
+      </paragraph>
+      <tip>
+       <paragraph>
+        This can also be used in combination with
+        <reference internal="True" refuri="../object/editing/duplication.html#data-system-linked-libraries-make-link">
+         <inline classes="std std-ref">
+          Linking to a Scene
+         </inline>
+        </reference>
+        ,
+where one blend-file contains the environment, which can be reused in many places.
+       </paragraph>
+      </tip>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Active Movie Clip
+     </term>
+     <definition>
+      <paragraph>
+       Active movie clip for constraints and viewport display.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="data-scenes-props-units">
+   </target>
+   <target refid="bpy-types-unitsettings">
+   </target>
+  </section>
+  <section ids="units bpy-types-unitsettings data-scenes-props-units" names="units đơn\ vị\ --\ units bpy.types.unitsettings data-scenes-props-units">
+   <title>
+    Đơn Vị -- Units
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --&gt; Cảnh (Scene) --&gt; Đơn Vị (Units)`">
+         Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Đơn Vị (Units)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Unit System
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Không Có -- None
+        </term>
+        <definition>
+         <paragraph>
+          Use units that have with no relation to the real world,
+practically this is the same as
+          <emphasis>
+           Metric
+          </emphasis>
+          just without unit names.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Metric
+        </term>
+        <definition>
+         <paragraph>
+          Use the metric unit system in this scene.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Imperial
+        </term>
+        <definition>
+         <paragraph>
+          Use the imperial unit system in this scene.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thang Đo -- Unit Scale
+     </term>
+     <definition>
+      <paragraph>
+       Scale factor to use when converting between internal units and values displayed in the user interface.
+This can be changed when modeling at microscopic or astronomical scales.
+      </paragraph>
+      <note>
+       <paragraph>
+        This only influences the values displayed in the user interface
+and not how things behave internally. For example, physics simulations
+don't take the unit scale into account.
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tách Biệt Đơn Vị -- Separate Units
+     </term>
+     <definition>
+      <paragraph>
+       When using
+       <emphasis>
+        Metric
+       </emphasis>
+       or
+       <emphasis>
+        Imperial
+       </emphasis>
+       , display properties as multiple values.
+For example,
+       <literal>
+        2.285m
+       </literal>
+       will become
+       <literal>
+        2m 28.5cm
+       </literal>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Rotation
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Degrees
+        </term>
+        <definition>
+         <paragraph>
+          Use degrees for angles in the user interface.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Radians
+        </term>
+        <definition>
+         <paragraph>
+          Use radians for angles in the user interface.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều Dài -- Length
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Adaptive
+        </term>
+        <definition>
+         <paragraph>
+          The unit used for a specific value depends on the magnitude of the value.
+For example, some values might be displayed as
+          <literal>
+           23cm
+          </literal>
+          while others are
+displayed as
+          <literal>
+           10km
+          </literal>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Meters/Centimeters/Feet/...
+        </term>
+        <definition>
+         <paragraph>
+          A fixed unit that will be used for all lengths in the user interface.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mass
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <emphasis>
+        Length
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Time
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <emphasis>
+        Length
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <comment xml:space="preserve">
+    Normally we would avoid documenting long lists of values
+however, this is not displayed anywhere else.
+   </comment>
+   <table ids="id1">
+    <title>
+     Imperial Length Units
+    </title>
+    <tgroup cols="3">
+     <colspec colwidth="33" stub="1">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <thead>
+      <row>
+       <entry>
+        <paragraph>
+         Full Name
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         Short Name(s)
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         Scale of a Meter
+        </paragraph>
+       </entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>
+        <paragraph>
+         thou
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          mil
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         0.0000254
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         inch
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          "
+         </literal>
+         ,
+         <literal>
+          in
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         0.0254
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         foot, feet
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          '
+         </literal>
+         ,
+         <literal>
+          ft
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         0.3048
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         yard
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          yd
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         0.9144
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         chain
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          ch
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         20.1168
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         furlong
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          fur
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         201.168
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         mile
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          mi
+         </literal>
+         ,
+         <literal>
+          m
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         1609.344
+        </paragraph>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <table ids="id2">
+    <title>
+     Metric Length Units
+    </title>
+    <tgroup cols="3">
+     <colspec colwidth="33" stub="1">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <thead>
+      <row>
+       <entry>
+        <paragraph>
+         Full Name
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         Short Name(s)
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         Scale of a Meter
+        </paragraph>
+       </entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>
+        <paragraph>
+         micrometer
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          um
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         0.000001
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         millimeter
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          mm
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         0.001
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         centimeter
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          cm
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         0.01
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         decimeter
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          dm
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         0.1
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         meter
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          m
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         1.0
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         dekameter
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          dam
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         10.0
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         hectometer
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          hm
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         100.0
+        </paragraph>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <paragraph>
+         kilometer
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         <literal>
+          km
+         </literal>
+        </paragraph>
+       </entry>
+       <entry>
+        <paragraph>
+         1000.0
+        </paragraph>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+  <section ids="gravity" names="gravity trọng\ lực\ --\ gravity">
+   <title>
+    Trọng Lực -- Gravity
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --&gt; Cảnh (Scene) --&gt; Trọng Lực (Gravity)`">
+         Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Trọng Lực (Gravity)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Options to control global gravity used for physics effects.
+   </paragraph>
+   <paragraph>
+    See the
+    <reference internal="True" refuri="../../physics/forces/gravity.html">
+     <inline classes="doc">
+      Physics chapter
+     </inline>
+    </reference>
+    for more information.
+   </paragraph>
+  </section>
+  <section ids="keying-sets" names="keying\ sets bộ\ khóa\ --\ keying\ sets">
+   <title>
+    Bộ Khóa -- Keying Sets
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --&gt; Cảnh (Scene) --&gt; Bộ Khóa (Keying Sets)`">
+         Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Bộ Khóa (Keying Sets)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    See
+    <reference internal="True" refuri="../../animation/keyframes/keying_sets.html">
+     <inline classes="doc">
+      Bộ Khóa -- Keying Sets
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <comment xml:space="preserve">
+    move to audio rendering?
+   </comment>
+   <target refid="data-scenes-audio">
+   </target>
+   <target refid="bpy-ops-sound-bake-animation">
+   </target>
+   <target refid="bpy-types-scene-audio-volume">
+   </target>
+  </section>
+  <section ids="audio bpy-types-scene-audio-volume bpy-ops-sound-bake-animation data-scenes-audio" names="audio âm\ thanh\ --\ audio bpy.types.scene.audio_volume bpy.ops.sound.bake_animation data-scenes-audio">
+   <title>
+    Âm Thanh -- Audio
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --&gt; Cảnh (Scene) --&gt; Âm Thanh (Audio)`">
+         Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Âm Thanh (Audio)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Options to control global audio settings.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Tích -- Volume
+     </term>
+     <definition>
+      <paragraph>
+       Volume for the scene.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mô Hình Khoảng Cách -- Distance Model
+     </term>
+     <definition>
+      <paragraph>
+       Changes how the sound attenuation is calculated based on the distance.
+Most physically correct is the
+       <emphasis>
+        Inverse
+       </emphasis>
+       model,
+but it's also possible to choose a linear and an exponential falloff.
+The clamped modes limit the volume to be lower than 100% (1.0),
+that means if the distance is smaller than the reference distance, the volume is always 100%.
+For an exact description of each option
+see the
+       <reference name="OpenAL documentation" refuri="https://www.openal.org/documentation/">
+        OpenAL documentation
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-types-ffmpegsettings-audio-mixrate">
+   </target>
+   <target refid="bpy-types-ffmpegsettings-audio-channels">
+   </target>
+   <definition_list ids="bpy-types-ffmpegsettings-audio-channels bpy-types-ffmpegsettings-audio-mixrate" names="bpy.types.ffmpegsettings.audio_channels bpy.types.ffmpegsettings.audio_mixrate">
+    <definition_list_item>
+     <term>
+      Format Settings
+     </term>
+     <definition>
+      <paragraph>
+       These settings, along with the settings found
+in the
+       <reference internal="True" refuri="../../render/output/file_formats.html#render-output-video-encoding-panel">
+        <inline classes="std std-ref">
+         Encoding Panel
+        </inline>
+       </reference>
+       change how sound is exported while rendering.
+      </paragraph>
+      <paragraph>
+       To control how sounds plays back from within Blender, see the audio settings
+in the
+       <reference internal="True" refuri="../../editors/preferences/system.html#prefs-system-sound">
+        <inline classes="std std-ref">
+         Preferences
+        </inline>
+       </reference>
+       .
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Audio Channels
+        </term>
+        <definition>
+         <paragraph>
+          Sets the audio channel count. Available options are:
+          <emphasis>
+           Mono
+          </emphasis>
+          ,
+          <emphasis>
+           Stereo
+          </emphasis>
+          ,
+          <emphasis>
+           4 Channels
+          </emphasis>
+          ,
+          <emphasis>
+           5.1 Surround
+          </emphasis>
+          ,
+          <emphasis>
+           7.1 Surround
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Sample Rate
+        </term>
+        <definition>
+         <paragraph>
+          Sets the audio
+          <reference name="sampling rate" refuri="https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate">
+           sampling rate
+          </reference>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Doppler Speed
+     </term>
+     <definition>
+      <paragraph>
+       Speed of the sound for the Doppler effect calculations.
+The typical value is 343.3 m/s in air, in water for example this value is around 1560 m/s.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Doppler Factor
+     </term>
+     <definition>
+      <paragraph>
+       Controls how strong the Doppler effect is.
+You can exaggerate or attenuate the change of pitch, but physically correct is a factor of 1.0.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cập Nhật Bộ Nhớ Đệm Hoạt Họa -- Update Animation Cache
+     </term>
+     <definition>
+      <paragraph>
+       Updates the audio animation cache. This is useful if you start noticing artifact in the audio.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="rigid-body-world" names="rigid\ body\ world thế\ giới\ thân\ cứng\ --\ rigid\ body\ world">
+   <title>
+    Thế Giới Thân Cứng -- Rigid Body World
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --&gt; Cảnh (Scene) --&gt; Thế Giới Thân Cứng (Rigid Body World)`">
+         Trình Biên Soạn Tính Chất (Properties editor) ‣ Cảnh (Scene) ‣ Thế Giới Thân Cứng (Rigid Body World)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <emphasis>
+     Rigid Body World
+    </emphasis>
+    is a group of rigid body objects,
+which holds settings that apply to all rigid bodies in this simulation.
+   </paragraph>
+   <paragraph>
+    See
+    <reference internal="True" refuri="../../physics/rigid_body/world.html">
+     <inline classes="doc">
+      Rigid Body World
+     </inline>
+    </reference>
+    for more information.
+   </paragraph>
+  </section>
+ </section>
+</document>

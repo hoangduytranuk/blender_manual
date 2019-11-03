@@ -1,0 +1,110 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/converter/shader_to_rgb.rst">
+ <section ids="shader-to-rgb" names="shader\ to\ rgb">
+  <title>
+   Shader To RGB
+  </title>
+  <paragraph>
+   <inline classes="guilabel" rawtext=":guilabel:`Eevee Only`">
+    Eevee Only
+   </inline>
+  </paragraph>
+  <paragraph>
+   The Shader to RGB node is typically used for non-photorealistic rendering,
+to apply additional effects on the output of BSDFs.
+For example, a color ramp on the output of a diffuse BSDF can be used to create a flexible toon shader.
+  </paragraph>
+  <paragraph>
+   Using this conversion breaks the
+   <abbreviation explanation="Physically Based Rendering">
+    PBR
+   </abbreviation>
+   pipeline and
+thus makes the result unpredictable when used in combination with effects such as
+ambient occlusion, contact shadows, soft shadows and screen space refraction.
+  </paragraph>
+  <paragraph>
+   Some effects require multiple samples to converge, and applying arbitrary changes to
+noisy input may not convert to a smooth result.
+  </paragraph>
+  <warning>
+   <paragraph>
+    If a Shader to RGB node is used, any upstream BSDF will be invisible to the following effects:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Screen Space Reflection
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Subsurface Scattering
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </warning>
+  <section ids="inputs" names="inputs">
+   <title>
+    Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Shader
+     </term>
+     <definition>
+      <paragraph>
+       Any shader such as a BSDF or Emission node can be linked here.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties">
+   <title>
+    Properties
+   </title>
+   <paragraph>
+    This node has no properties.
+   </paragraph>
+  </section>
+  <section ids="outputs" names="outputs">
+   <title>
+    Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Color
+     </term>
+     <definition>
+      <paragraph>
+       Surface color computed from BSDFs and lighting.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Alpha
+     </term>
+     <definition>
+      <paragraph>
+       Alpha transparency from any Transparent BSDFs in the input.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples">
+   <title>
+    Examples
+   </title>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/render_shader-nodes_converter_shader-to-rgb_example.jpg'}" uri="images/render_shader-nodes_converter_shader-to-rgb_example.jpg"/>
+    <caption>
+     Simple toon shading with Shader to RGB and Freestyle.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

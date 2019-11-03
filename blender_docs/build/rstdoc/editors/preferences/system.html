@@ -1,0 +1,455 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/preferences/system.rst">
+ <target refid="bpy-types-userpreferencessystem">
+ </target>
+ <section ids="system bpy-types-userpreferencessystem" names="system hệ\ thống\ --\ system bpy.types.userpreferencessystem">
+  <title>
+   Hệ Thống -- System
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    System
+   </emphasis>
+   section allows you to set graphics card options, memory limits &amp; sound settings.
+  </paragraph>
+  <paragraph>
+   If your hardware does not support some of the options described on this page,
+then they will either not show up or be corrected on startup.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/editors_preferences_section_system.png'}" uri="images/editors_preferences_section_system.png"/>
+   <caption>
+    Preferences System section.
+   </caption>
+  </figure>
+  <section ids="cycles-render-device" names="cycles\ render\ device">
+   <title>
+    Cycles Render Device
+   </title>
+   <paragraph>
+    Changes the computing device the
+    <reference internal="True" refuri="../../render/cycles/index.html">
+     <inline classes="doc">
+      Cycles
+     </inline>
+    </reference>
+    render engine uses to render images.
+Cycles can use either the CPU or certain GPU's to render images,
+for more information see the
+    <reference internal="True" refuri="../../render/cycles/gpu_rendering.html">
+     <inline classes="doc">
+      GPU Rendering
+     </inline>
+    </reference>
+    page.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Không Có -- None
+     </term>
+     <definition>
+      <paragraph>
+       When set to
+       <emphasis>
+        None
+       </emphasis>
+       or when the only option is
+       <emphasis>
+        None
+       </emphasis>
+       :
+the CPU will be used as the computing device for the Cycles Renderer.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      CUDA
+     </term>
+     <definition>
+      <paragraph>
+       If the system has a compatible NVIDIA CUDA device, it will show up an option for rendering with Cycles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      OpenCL
+     </term>
+     <definition>
+      <paragraph>
+       If the system has a compatible AMD OpenCL device, it will show up an option for rendering with Cycles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="memory-limits" names="memory\ &amp;\ limits">
+   <title>
+    Memory &amp; Limits
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Undo Steps
+     </term>
+     <definition>
+      <paragraph>
+       Number of Undo steps available.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Undo Memory Limit
+     </term>
+     <definition>
+      <paragraph>
+       Maximum memory usage in Mb (0 is unlimited).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Global Undo
+     </term>
+     <definition>
+      <paragraph>
+       This enables Blender to save actions done when you are
+       <strong>
+        not
+       </strong>
+       in
+       <emphasis>
+        Edit Mode
+       </emphasis>
+       .
+For example, duplicating Objects, changing panel settings or switching between modes.
+      </paragraph>
+      <warning>
+       <paragraph>
+        While disabling this option does save memory,
+it stops the
+        <reference internal="True" refuri="../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+         <inline classes="std std-ref">
+          Redo Panel
+         </inline>
+        </reference>
+        from functioning, also preventing tool options from being changed in some cases.
+       </paragraph>
+       <paragraph>
+        For typical usage, its best to keep this enabled.
+       </paragraph>
+      </warning>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     <reference internal="True" refuri="../../interface/undo_redo.html">
+      <inline classes="doc">
+       Read more about Undo and Redo options
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </seealso>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Sequencer Cache Limit
+     </term>
+     <definition>
+      <paragraph>
+       Upper limit of the Sequencer's memory cache (in megabytes).
+For an optimal Clip editor and Sequencer performance, high values are recommended.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Console Scroll-back Lines
+     </term>
+     <definition>
+      <paragraph>
+       The number of lines, buffered in memory of the console window.
+Useful for debugging purposes and command-line rendering.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Texture Time Out
+     </term>
+     <definition>
+      <paragraph>
+       Time since last access of a GL texture in seconds, after which it is freed.
+Set this to 0 to keep textures allocated.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Garbage Collection Rate
+        </term>
+        <definition>
+         <paragraph>
+          Number of seconds between each run of the GL texture garbage collector.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      VBO Time Out
+     </term>
+     <definition>
+      <paragraph>
+       Time since last access of a GL Vertex buffer object in seconds after which it is freed
+(set to 0 to keep VBO allocated).
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Garbage Collection Rate
+        </term>
+        <definition>
+         <paragraph>
+          Number of seconds between each run of the GL Vertex buffer object garbage collector.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="prefs-system-sound">
+   </target>
+  </section>
+  <section ids="sound prefs-system-sound" names="sound âm\ thanh\ --\ sound prefs-system-sound">
+   <title>
+    Âm Thanh -- Sound
+   </title>
+   <paragraph>
+    This panel contains the sound settings for live playback
+within Blender and are only available with
+    <emphasis>
+     SDL
+    </emphasis>
+    or
+    <emphasis>
+     OpenAL
+    </emphasis>
+    .
+To control these settings for exporting sound
+see the
+    <reference internal="True" refuri="../../render/output/file_formats.html#render-output-video-encoding-panel">
+     <inline classes="std std-ref">
+      Encoding Panel
+     </inline>
+    </reference>
+    and
+    <reference internal="True" refuri="../../scene_layout/scene/properties.html#data-scenes-audio">
+     <inline classes="std std-ref">
+      Audio Panel
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thiết bị Âm Thanh -- Audio Device
+     </term>
+     <definition>
+      <paragraph>
+       Sets the audio engine to use to process and output audio.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Không Có -- None
+        </term>
+        <definition>
+         <paragraph>
+          No Audio support (audio strips can still be loaded normally).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         SDL
+        </term>
+        <definition>
+         <paragraph>
+          Uses Simple Direct Media Layer API from
+          <reference name="libsdl.org" refuri="https://www.libsdl.org">
+           libsdl.org
+          </reference>
+          to render sounds directly to the sound device output. Very useful for sequencer strips editing.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         OpenAL
+        </term>
+        <definition>
+         <paragraph>
+          Provides buffered sound rendering with 3D/spatial support.
+Used for 3D source support by
+          <emphasis>
+           Speaker Objects
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kênh -- Channels
+     </term>
+     <definition>
+      <paragraph>
+       Sets the audio channel count. Available options are:
+       <emphasis>
+        Mono
+       </emphasis>
+       ,
+       <emphasis>
+        Stereo
+       </emphasis>
+       ,
+       <emphasis>
+        4 Channels
+       </emphasis>
+       ,
+       <emphasis>
+        5.1 Surround
+       </emphasis>
+       ,
+       <emphasis>
+        7.1 Surround
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bộ Đệm Pha Trộn -- Mixing Buffer
+     </term>
+     <definition>
+      <paragraph>
+       Sets the number of samples used by the audio mixing buffer. Available options are:
+       <emphasis>
+        512
+       </emphasis>
+       ,
+       <emphasis>
+        1024
+       </emphasis>
+       ,
+       <emphasis>
+        2048
+       </emphasis>
+       ,
+       <emphasis>
+        4096
+       </emphasis>
+       ,
+       <emphasis>
+        8192
+       </emphasis>
+       ,
+       <emphasis>
+        16384
+       </emphasis>
+       , and
+       <emphasis>
+        32768
+       </emphasis>
+       .
+Higher buffer sizes can cause latency issues,
+but if you hear clicks or other problems, try to increase the size.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tấn Số Mẫu -- Sample Rate
+     </term>
+     <definition>
+      <paragraph>
+       Sets the audio
+       <reference name="sampling rate" refuri="https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate">
+        sampling rate
+       </reference>
+       .
+Available options are:
+       <emphasis>
+        44.1 Khz
+       </emphasis>
+       ,
+       <emphasis>
+        48 Khz
+       </emphasis>
+       ,
+       <emphasis>
+        96 Khz
+       </emphasis>
+       and
+       <emphasis>
+        192 Khz
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Thái Mẫu -- Sample Format
+     </term>
+     <definition>
+      <paragraph>
+       Sets the audio sample format. Available options are:
+       <emphasis>
+        32 bit float
+       </emphasis>
+       ,
+       <emphasis>
+        8 bit Unsigned
+       </emphasis>
+       ,
+       <emphasis>
+        16 Bits Signed
+       </emphasis>
+       ,
+       <emphasis>
+        24 Bits Signed
+       </emphasis>
+       ,
+       <emphasis>
+        32 Bits Signed
+       </emphasis>
+       ,
+       <emphasis>
+        32 Bits Float
+       </emphasis>
+       , and
+       <emphasis>
+        64 Bits Float
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

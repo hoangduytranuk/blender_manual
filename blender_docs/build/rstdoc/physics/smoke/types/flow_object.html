@@ -1,0 +1,547 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/smoke/types/flow_object.rst">
+ <target refid="bpy-types-smokeflowsettings">
+ </target>
+ <section ids="smoke-flow-object bpy-types-smokeflowsettings" names="smoke\ flow\ object --\ smoke\ flow\ object bpy.types.smokeflowsettings">
+  <title>
+   -- Smoke Flow Object
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Vật Lý (Physics) --&gt; Khói (Smoke)`">
+        Vật Lý (Physics) ‣ Khói (Smoke)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Thể Loại -- Type
+     </field_name>
+     <field_body>
+      <paragraph>
+       Luồng -- Flow
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   <emphasis>
+    Smoke Flow
+   </emphasis>
+   objects are used to add or remove smoke and fire
+to a
+   <reference internal="True" refuri="domain.html">
+    <inline classes="doc">
+     Smoke Domain
+    </inline>
+   </reference>
+   object.
+  </paragraph>
+  <paragraph>
+   To define any mesh object as a
+   <emphasis>
+    Smoke Flow
+   </emphasis>
+   object, add smoke physics by clicking
+   <emphasis>
+    Smoke
+   </emphasis>
+   in
+   <inline classes="menuselection" rawtext=":menuselection:`Tính Chất (Properties) --&gt; Vật Lý (Physics)`">
+    Tính Chất (Properties) ‣ Vật Lý (Physics)
+   </inline>
+   . Then select
+   <emphasis>
+    Flow
+   </emphasis>
+   as the
+   <emphasis>
+    Smoke Type
+   </emphasis>
+   . Now you should have a default smoke flow source object. You can test this by playing the animation
+   <literal classes="kbd">
+    Alt-A
+   </literal>
+   from the first frame. If your source object is inside your domain, you should see smoke.
+  </paragraph>
+  <comment xml:space="preserve">
+   TODO2.8:
+.. figure:: /images/physics_smoke_types_flow-object_settings.png
+   :align: right
+
+   Smoke Flow options.
+  </comment>
+  <section ids="settings" names="settings">
+   <title>
+    Settings
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Physics --&gt; Smoke --&gt; Settings`">
+         Physics ‣ Smoke ‣ Settings
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Thể Loại -- Type
+      </field_name>
+      <field_body>
+       <paragraph>
+        Luồng -- Flow
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <section ids="flow-type" names="flow\ type loại\ luồng\ --\ flow\ type">
+    <title>
+     Loại Luồng -- Flow Type
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Lửa -- Fire
+      </term>
+      <definition>
+       <paragraph>
+        Emit only fire. Note that the domain will automatically create some smoke to simulate smoke left by burnt fuel.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khói -- Smoke
+      </term>
+      <definition>
+       <paragraph>
+        Emit only smoke.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lửa + Khói -- Fire + Smoke
+      </term>
+      <definition>
+       <paragraph>
+        Emit both fire and smoke.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Lối Thoát Ra -- Outflow
+      </term>
+      <definition>
+       <paragraph>
+        Remove smoke and fire. Note that the shape of the outflow will use the object's
+        <reference internal="True" refuri="../../../glossary/index.html#term-bounding-box">
+         <inline classes="xref std std-term">
+          bounding box
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="flow-source" names="flow\ source --\ flow\ source">
+    <title>
+     -- Flow Source
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Nguồn -- Source
+      </term>
+      <definition>
+       <paragraph>
+        This setting defines the method used to emit smoke and fire.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Khung Lưới -- Mesh
+         </term>
+         <definition>
+          <paragraph>
+           Create smoke/fire directly from the object's mesh.
+With this option selected there two additional settings,
+           <emphasis>
+            Surface
+           </emphasis>
+           and
+           <emphasis>
+            Volume
+           </emphasis>
+           .
+          </paragraph>
+          <block_quote>
+           <target refid="smoke-flow-surface">
+           </target>
+           <definition_list ids="smoke-flow-surface" names="smoke-flow-surface">
+            <definition_list_item>
+             <term>
+              Bề Mặt -- Surface
+             </term>
+             <definition>
+              <paragraph>
+               Maximum distance in voxels from the surface of the mesh in which smoke is created (see
+               <reference internal="True" refuri="../../../glossary/index.html#term-voxel">
+                <inline classes="xref std std-term">
+                 voxel
+                </inline>
+               </reference>
+               ).
+Since this setting uses voxels to determine distance,
+results will vary depending on the domain's resolution.
+              </paragraph>
+             </definition>
+            </definition_list_item>
+            <definition_list_item>
+             <term>
+              Thể Tích -- Volume
+             </term>
+             <definition>
+              <paragraph>
+               Amount of smoke to emit inside the emitter mesh, where 0 is none and 1 is
+Note that emitting smoke based on volume may have unpredictable results
+if your mesh is
+               <reference internal="True" refuri="../../../glossary/index.html#term-non-manifold">
+                <inline classes="xref std std-term">
+                 non-manifold
+                </inline>
+               </reference>
+               .
+              </paragraph>
+             </definition>
+            </definition_list_item>
+           </definition_list>
+          </block_quote>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Hệ Thống Hạt -- Particle System
+         </term>
+         <definition>
+          <paragraph>
+           Create smoke/fire from a particle system on the flow object. Note that only
+           <emphasis>
+            Emitter
+           </emphasis>
+           type particle systems
+can add smoke.
+See
+           <reference internal="True" refuri="../../particles/introduction.html">
+            <inline classes="doc">
+             Particles
+            </inline>
+           </reference>
+           for information on how to create a particle system.
+          </paragraph>
+          <paragraph>
+           With this option selected, there is a box to select a particle system and one additional setting,
+           <emphasis>
+            Set Size
+           </emphasis>
+           .
+          </paragraph>
+          <block_quote>
+           <definition_list>
+            <definition_list_item>
+             <term>
+              Đặt Kích Thước -- Set Size
+             </term>
+             <definition>
+              <paragraph>
+               When this setting is enabled, it allows the
+               <emphasis>
+                Size
+               </emphasis>
+               setting to define
+the maximum distance in voxels at which particles can emit smoke,
+similar to the
+               <reference internal="True" refid="smoke-flow-surface">
+                <inline classes="std std-ref">
+                 *Surface*
+                </inline>
+               </reference>
+               setting for mesh sources.
+              </paragraph>
+              <paragraph>
+               When disabled, particles will fill the nearest
+               <reference internal="True" refuri="../../../glossary/index.html#term-voxel">
+                <inline classes="xref std std-term">
+                 voxel
+                </inline>
+               </reference>
+               with smoke.
+              </paragraph>
+             </definition>
+            </definition_list_item>
+           </definition_list>
+          </block_quote>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Vận Tốc Khởi Đầu -- Initial Velocity
+      </term>
+      <definition>
+       <paragraph>
+        When enabled, smoke will inherit the momentum of the flow source.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Nguồn -- Source
+         </term>
+         <definition>
+          <paragraph>
+           Multiplier for inherited velocity. A value of 1 will emit smoke moving at the same speed as the source.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Pháp Tuyến -- Normal
+         </term>
+         <definition>
+          <paragraph>
+           When using a mesh source,
+this option controls how much velocity smoke is given along the source's
+           <reference internal="True" refuri="../../../glossary/index.html#term-normal">
+            <inline classes="xref std std-term">
+             normal
+            </inline>
+           </reference>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="initial-values" names="initial\ values --\ initial\ values">
+    <title>
+     -- Initial Values
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Tỷ Trọng Tuyệt Đối -- Absolute Density
+      </term>
+      <definition>
+       <paragraph>
+        Maximum density of smoke allowed within range of the source.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tỷ Trọng -- Density
+      </term>
+      <definition>
+       <paragraph>
+        Amount of smoke to emit at once.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="smoke-flow-temp-diff">
+    </target>
+    <definition_list ids="smoke-flow-temp-diff" names="smoke-flow-temp-diff">
+     <definition_list_item>
+      <term>
+       -- Temperature Difference
+      </term>
+      <definition>
+       <paragraph>
+        Difference between the temperature of emitted smoke and the domain's ambient temperature.
+This setting's effect on smoke depends on the domain's
+        <reference internal="True" refuri="domain.html#smoke-domain-temp-diff">
+         <inline classes="std std-ref">
+          Temperature Difference
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Màu Khói -- Smoke Color
+      </term>
+      <definition>
+       <paragraph>
+        Color of emitted smoke. When smoke of different colors are mixed they will blend together,
+eventually settling into a new combined color.
+       </paragraph>
+       <figure>
+        <image candidates="{'*': 'images/physics_smoke_types_flow-object_color-blending.jpg'}" uri="images/physics_smoke_types_flow-object_color-blending.jpg"/>
+       </figure>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tốc Độ Lửa -- Flame Rate
+      </term>
+      <definition>
+       <paragraph>
+        Amount of "fuel" being burned per second. Larger values result in larger flames,
+smaller values result in smaller flames:
+       </paragraph>
+       <figure ids="id1">
+        <image candidates="{'*': 'images/physics_smoke_types_flow-object_flame-rate.jpg'}" uri="images/physics_smoke_types_flow-object_flame-rate.jpg"/>
+        <caption>
+         Example showing two fire sources.
+The object on the left has a
+         <emphasis>
+          Flame Rate
+         </emphasis>
+         of 5, while the one on the right has 0.3.
+        </caption>
+       </figure>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Sampling Subframes
+      </term>
+      <definition>
+       <paragraph>
+        Number of subframes used to reduce gaps in emission of smoke from fast-moving sources.
+       </paragraph>
+       <figure ids="id2">
+        <image candidates="{'*': 'images/physics_smoke_types_flow-object_subframes.jpg'}" uri="images/physics_smoke_types_flow-object_subframes.jpg"/>
+        <caption>
+         Example showing two fast-moving sources.
+The object on the left uses 0 subframes, while the one on the right uses 6.
+        </caption>
+       </figure>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Nhóm Điểm Đỉnh -- Vertex Group
+      </term>
+      <definition>
+       <paragraph>
+        When set, use the specified
+        <reference internal="True" refuri="../../../modeling/meshes/properties/vertex_groups/vertex_groups.html">
+         <inline classes="doc">
+          Vertex Group
+         </inline>
+        </reference>
+        to control where smoke is emitted.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="texture" names="texture">
+   <title>
+    Texture
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Thể Loại -- Type
+      </field_name>
+      <field_body>
+       <paragraph>
+        Luồng -- Flow
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Physics --&gt; Smoke Flow --&gt; Texture`">
+         Physics ‣ Smoke Flow ‣ Texture
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <comment xml:space="preserve">
+    TODO2.8:
+.. figure:: /images/physics_smoke_types_flow-object_advanced.png
+   :align: right
+   </comment>
+   <paragraph>
+    When using a mesh as the
+    <emphasis>
+     Flow Source
+    </emphasis>
+    , you can use these settings to control where on
+the mesh smoke can be emitted from. These settings have no effect on outflow objects.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chất Liệu -- Use Texture
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, use the specified texture to control where smoke is emitted.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <container classes="lead">
+    <comment xml:space="preserve">
+     clear
+    </comment>
+   </container>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <paragraph>
+    These settings are useful for effects like this:
+   </paragraph>
+   <figure align="center">
+    <image candidates="{'*': 'images/physics_smoke_types_flow-object_texture-usecase.jpg'}" uri="images/physics_smoke_types_flow-object_texture-usecase.jpg" width="500px"/>
+   </figure>
+  </section>
+ </section>
+</document>

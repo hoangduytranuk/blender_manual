@@ -1,0 +1,135 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/fluid/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Fluid physics are used to simulate physical properties of liquids especially water.
+While creating a scene in Blender, certain objects can be marked to participate in the fluid simulation.
+These can include but not limited to, being a fluid or as an obstacle.
+For a fluid simulation you have to have a domain to define the space that the simulation takes up.
+In the domain settings you will be able to define the global simulation parameters (such as viscosity and gravity).
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/physics_fluid_introduction_example.jpg'}" uri="images/physics_fluid_introduction_example.jpg"/>
+   <caption>
+    Example of a fluid simulation.
+   </caption>
+  </figure>
+  <section ids="workflow" names="workflow quy\ trình\ làm\ việc\ --\ workflow">
+   <title>
+    Quy Trình Làm Việc -- Workflow
+   </title>
+   <paragraph>
+    In general, you follow these steps:
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      First you want to set
+the
+      <reference internal="True" refuri="types/domain.html">
+       <inline classes="doc">
+        simulation domain
+       </inline>
+      </reference>
+      ,
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Next set
+the
+      <reference internal="True" refuri="types/fluid_object.html">
+       <inline classes="doc">
+        fluid source(s)
+       </inline>
+      </reference>
+      , and specify there physical properties.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In some cases you may want to set other objects to
+      <reference internal="True" refuri="types/flow.html">
+       <inline classes="doc">
+        Control the Flow
+       </inline>
+      </reference>
+      of the fluid.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      You can also depending on your scene add other objects related to the fluid, like:
+      <reference internal="True" refuri="types/obstacle.html">
+       <inline classes="doc">
+        Obstacles
+       </inline>
+      </reference>
+      ,
+      <reference internal="True" refuri="types/particle.html">
+       <inline classes="doc">
+        Particles
+       </inline>
+      </reference>
+      floating on the fluid.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      And lastly you must
+      <reference internal="True" refuri="types/domain.html">
+       <inline classes="doc">
+        Bake the Simulation
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <tip>
+    <paragraph>
+     Baking is done on the Domain object!
+    </paragraph>
+    <paragraph>
+     When you calculate the fluid simulation, you bake the simulation on the domain object.
+    </paragraph>
+    <paragraph>
+     For this reason:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       All the baking options are visible only when selecting the Domain Object,
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Baking options are explained in the
+       <reference internal="True" refuri="baking.html#fluid-baking">
+        <inline classes="std std-ref">
+         the baking section
+        </inline>
+       </reference>
+       of the Domain manual page.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </tip>
+   <seealso>
+    <paragraph>
+     To know more about simulating fluids in Blender you can read
+the
+     <reference internal="True" refuri="appendix.html">
+      <inline classes="doc">
+       fluids appendix
+      </inline>
+     </reference>
+     .
+There you can find the limitations and workarounds, and some additional links.
+    </paragraph>
+   </seealso>
+  </section>
+ </section>
+</document>

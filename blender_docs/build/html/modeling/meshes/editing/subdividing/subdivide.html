@@ -1,0 +1,733 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Phân Hóa -- Subdivide &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/subdividing/subdivide.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="next" title="-- Loop Subdivide" href="loop.html" />
+    <link rel="prev" title="Chia Nhỏ -- Subdividing" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Khung Lưới -- Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../toolbar/index.html">Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Hình Cơ Bản -- Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Biên Soạn -- Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../basics/index.html">-- Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vertices.html">Công Cụ Điểm Đỉnh -- Vertex Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../edges.html">-- Edge Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../faces.html">-- Face Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../normals.html">Pháp Tuyến -- Normals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../transform/index.html">Biến Hóa -- Transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../duplicating/index.html">-- Duplicating</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Chia Nhỏ -- Subdividing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cleanup.html">Dọn Dẹp -- Clean up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../misc.html">-- Miscellaneous Editing Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../data_transfer.html">Thuyên Chuyển Dữ Liệu -- Data Transfer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mesh_options.html">Tùy Chọn về Khung Lưới -- Mesh Options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Phân Tích Khung Lưới -- Mesh Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">-- Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Khung Lưới -- Meshes</a> &raquo;</li>
+        
+          <li><a href="../index.html">Biên Soạn -- Editing</a> &raquo;</li>
+        
+          <li><a href="index.html">Chia Nhỏ -- Subdividing</a> &raquo;</li>
+        
+      <li>Phân Hóa -- Subdivide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/modeling/meshes/editing/subdividing/subdivide.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="subdivide">
+<span id="bpy-ops-mesh-subdivide"></span><h1>Phân Hóa -- Subdivide<a class="headerlink" href="#subdivide" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Toolbar ‣ Tools ‣ Mesh Tools ‣ Add: Subdivide</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Mesh ‣ Edges ‣ Subdivide</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Subdividing splits selected edges and faces by cutting them in half or more,
+adding new vertices, and subdividing accordingly the faces involved.
+It adds resolution to the mesh by divide faces or edges into smaller units.</p>
+<p>This process follows a few rules, depending on the settings:</p>
+<ul class="simple">
+<li>When only one edge of a face is selected (Triangle mode),
+triangles are subdivided into two triangles, and quads, into three triangles.</li>
+<li>When two edges of a face are selected:<ul>
+<li>If the face is a triangle, a new edge is created between the two new vertices,
+subdividing the triangle in a triangle and a quad.</li>
+<li>If the face is a quad, and the edges are neighbors,
+we have <em>three</em> possible behaviors, depending on the setting of <em>Corner Cut Type</em>
+(the select menu next to the <em>Subdivide</em> button, in <em>Mesh Tools</em> panel). See below for details.</li>
+<li>If the face is a quad, and the edges are opposite,
+the quad is just subdivided in two quads by the edge linking the two new vertices.</li>
+</ul>
+</li>
+<li>When three edges of a face are selected:<ul>
+<li>If the face is a triangle, this means the whole face is selected and
+it is then subdivided in four smaller triangles.</li>
+<li>If the face is a quad, first the two opposite edges are subdivided as described above.
+Then, the &quot;middle&quot; edge is subdivided, affecting its new &quot;sub-quad&quot; as described above for only one edge.</li>
+</ul>
+</li>
+<li>When four edges of a face (a quad) are selected, the face is subdivided into four smaller quads.</li>
+</ul>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p>These options are available in the <em>Tool Panel</em> after running the tool;</p>
+<dl class="docutils">
+<dt>Số Phân Đoạn -- Number of Cuts</dt>
+<dd>Specifies the number of cuts per edge to make.
+By default this is 1, cutting edges in half. A value of 2 will cut it into thirds, and so on.</dd>
+<dt>Độ Mịn -- Smoothness</dt>
+<dd><p class="first">Displaces subdivisions to maintain approximate curvature.
+The effect is similar to the way the Subdivision Surface Modifier might deform the mesh.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id1">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_smooth-before.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_smooth-before.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_smooth-before.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Mesh before subdividing.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id2">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_smooth-none.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_smooth-none.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_smooth-none.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Subdivided with no smoothing.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id3">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_smooth-after.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_smooth-after.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_smooth-after.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Subdivided with smoothing of 1.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Chế Độ Tam/Tứ Giác -- Quad/Tri Mode</dt>
+<dd>Forces subdivide to create triangles or quads instead of n-gons (see examples below).
+This mode doesn't allow the use of <em>Straight Cut</em> on quad corners.</dd>
+<dt>-- Corner Cut Type</dt>
+<dd><p class="first">This select menu controls the way quads with only two adjacent selected edges are subdivided.</p>
+<dl class="docutils">
+<dt>Hình Quạt -- Fan</dt>
+<dd>The quad is subdivided in a fan of four triangles,
+the common vertex being the one opposite to the selected edges.</dd>
+<dt>-- Inner vertices</dt>
+<dd>The selected edges are subdivided, then an edge is created between
+the two new vertices, creating a small triangle.
+This edge is also subdivided,
+and the &quot;inner vertex&quot; thus created is linked by another edge to the one opposite
+to the original selected edges. All this results in a quad subdivided in a triangle and two quads.</dd>
+<dt>Đường/Đi/Dẫn -- Path</dt>
+<dd>First an edge is created between the two opposite ends of the selected edges,
+dividing the quad in two triangles. Then, the same goes for the involved triangle as described above.</dd>
+<dt>Cắt Thẳng -- Straight Cut</dt>
+<dd>The selected edges are subdivided, then an edge is created between
+the two new vertices, creating a small triangle and n-gon.</dd>
+</dl>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id4">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-fan2.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-fan2.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-fan2.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Fan cut type.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id5">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Inner vertices cut type.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id6">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-path.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-path.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-path.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Path cut type.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Phân Dạng -- Fractal</dt>
+<dd><p class="first">Displaces the vertices in random directions after the mesh is subdivided.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id7">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-before.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-before.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-before.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Plane before subdivision.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id8">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-none.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-none.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-none.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Regular subdivision.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id9">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-after1.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-after1.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-after1.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Same mesh with fractal added.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Theo Hướng Pháp Tuyến -- Along Normal</dt>
+<dd><p class="first">Causes the vertices to move along their normals, instead of random directions.</p>
+<div class="last figure" id="id10">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-along-normal.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-along-normal.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-along-normal.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Along normal set to 1.</span></p>
+</div>
+</dd>
+<dt>Mầm Ngẫu Nhiên -- Random Seed</dt>
+<dd><p class="first">Changes the random seed of the <em>Fractal</em> noise function, producing a different result for each seed value.</p>
+<div class="last figure" id="id11">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-after2.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-after2.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_fractal-after2.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Same mesh with a different seed value.</span></p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="examples">
+<h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Below are several examples illustrating the various possibilities of the <em>Subdivide</em>
+and <em>Subdivide Multi</em> tools. Note the selection after subdivision.</p>
+<div class="figure" id="id12">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_before.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_before.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_before.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-text">The sample mesh.</span></p>
+</div>
+<div class="section" id="one-edge">
+<h3>-- One Edge<a class="headerlink" href="#one-edge" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id13">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_one-edge.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_one-edge.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_one-edge.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">One Edge.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id14">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_one-edge-tri.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_one-edge-tri.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_one-edge-tri.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad/Tri Mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="two-tri-edges">
+<h3>-- Two Tri Edges<a class="headerlink" href="#two-tri-edges" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-tri.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-tri.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-tri.png" style="width: 250px;" /></a>
+</div>
+</td>
+<td><div class="first last figure" id="id15">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-tri-tri.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-tri-tri.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-tri-tri.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad/Tri Mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="two-opposite-quad-edges">
+<h3>-- Two Opposite Quad Edges<a class="headerlink" href="#two-opposite-quad-edges" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-opposite.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-opposite.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-opposite.png" style="width: 250px;" /></a>
+</div>
+</td>
+<td><div class="first last figure" id="id16">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-opposite-tri.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-opposite-tri.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-opposite-tri.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad/Tri Mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="two-adjacent-quad-edges">
+<h3>-- Two Adjacent Quad Edges<a class="headerlink" href="#two-adjacent-quad-edges" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id17">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-fan2.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-fan2.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-fan2.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Fan cut type.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id18">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-fan.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-fan.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-fan.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad/Tri Mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id19">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Innervert cut type.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id20">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert-tri.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert-tri.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert-tri.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad/Tri Mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id21">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-path.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-path.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-path.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Path cut type.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id22">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-path-tri.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-path-tri.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-path-tri.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad/Tri Mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="three-edges">
+<h3>-- Three Edges<a class="headerlink" href="#three-edges" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges.png" style="width: 250px;" /></a>
+</div>
+</td>
+<td><div class="first last figure" id="id23">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges-tri2.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges-tri2.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges-tri2.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad/Tri Mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="tri">
+<h3>Hình Tam Giác -- Tri<a class="headerlink" href="#tri" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges-tri.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges-tri.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges-tri.png" style="width: 250px;" /></a>
+</div>
+</td>
+<td><div class="first last figure" id="id24">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges-tri-tri.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges-tri-tri.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_three-edges-tri-tri.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad/Tri Mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="quad-four-edges">
+<h3>-- Quad/Four Edges<a class="headerlink" href="#quad-four-edges" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_four-edges.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_four-edges.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_four-edges.png" style="width: 250px;" /></a>
+</div>
+</td>
+<td><div class="first last figure" id="id25">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_four-edges-tri.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_four-edges-tri.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_four-edges-tri.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad/Tri Mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="multicut">
+<h3>-- Multicut<a class="headerlink" href="#multicut" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id26">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_tri-multi.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_tri-multi.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_tri-multi.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Tri with two cuts.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id27">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_subdivide_quad-multi.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_subdivide_quad-multi.png" src="../../../../_images/modeling_meshes_editing_subdividing_subdivide_quad-multi.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Quad with two cuts.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="un-subdivide">
+<span id="mesh-unsubdivide"></span><h2>Phi Phân Hóa -- Un-Subdivide<a class="headerlink" href="#un-subdivide" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Cạnh (Edges) ‣ Phi Phân Hóa (Un-Subdivide)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Unsubdivide functions as the reverse of subdivide by attempting to remove edges
+that were the result of a subdivide operation.
+If additional editing has been done after the subdivide operation,
+unexpected results may occur.</p>
+<dl class="docutils">
+<dt>Số Lần Lặp Lại -- Iterations</dt>
+<dd>How many subdivisions to remove.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="loop.html" class="btn btn-neutral float-right" title="-- Loop Subdivide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Chia Nhỏ -- Subdividing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

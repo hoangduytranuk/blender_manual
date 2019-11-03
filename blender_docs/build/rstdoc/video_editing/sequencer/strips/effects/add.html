@@ -1,0 +1,58 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/video_editing/sequencer/strips/effects/add.rst">
+ <target refid="bpy-types-addsequence">
+ </target>
+ <section ids="add-effect bpy-types-addsequence" names="add\ effect thêm\ hiệu\ ứng\ --\ add\ effect bpy.types.addsequence">
+  <title>
+   Thêm Hiệu Ứng -- Add Effect
+  </title>
+  <paragraph>
+   The Add Effect adds the colors of two strips together.
+Use this effect with a base image strip, and a modifier strip.
+The modifier strip is either a solid color or a black-and-white mask,
+or another image entirely.
+  </paragraph>
+  <paragraph>
+   You can use this effect to increase the brightness of an image, or if you use a BW mask,
+selectively increase the brightness of certain areas of the image. The Mix node, in Add mode,
+does exactly the same thing as the Add SFX strip here,
+and is controlled the same way by feeding the Factor input.
+  </paragraph>
+  <comment xml:space="preserve">
+   Red and Cyan (Green and Blue) make White. Red and Blue make Magenta. Red and Green make Yellow.
+  </comment>
+  <paragraph>
+   The
+   <reference internal="True" refid="fig-sequencer-strips-effects-add">
+    <inline classes="std std-ref">
+     example
+    </inline>
+   </reference>
+   shows what happens when you add gray to an image.
+The image gets bright because we are adding gray
+RGB(0.5, 0.5, 0.5) to say, a blue color RGB(0.1, 0.1, 0.5) resulting in RGB(0.6, 0.6, 1.0)
+which retains the original hue (relationship between the colors) but is much brighter
+(has a higher value). When applied to the whole image like this, it seems to flash.
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <paragraph>
+    Dải này không có tùy chọn nào cả.
+   </paragraph>
+  </section>
+  <section ids="example" names="example">
+   <title>
+    Example
+   </title>
+   <target refid="fig-sequencer-strips-effects-add">
+   </target>
+   <figure ids="id1 fig-sequencer-strips-effects-add" names="fig-sequencer-strips-effects-add">
+    <image candidates="{'*': 'images/sequencer_sequencer_strips_effects_add_example.png'}" uri="images/sequencer_sequencer_strips_effects_add_example.png"/>
+    <caption>
+     Add Effect.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

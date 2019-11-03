@@ -1,0 +1,149 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/shader/toon.rst">
+ <target refid="bpy-types-shadernodebsdftoon">
+ </target>
+ <section ids="toon-bsdf bpy-types-shadernodebsdftoon" names="toon\ bsdf bsdf\ hoạt\ họa\ --\ toon\ bsdf bpy.types.shadernodebsdftoon">
+  <title>
+   BSDF Hoạt Họa -- Toon BSDF
+  </title>
+  <paragraph>
+   <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+    Cycles Only
+   </inline>
+  </paragraph>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_shader_toon_node.png'}" uri="images/render_shader-nodes_shader_toon_node.png"/>
+   <caption>
+    Toon BSDF.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Toon
+   </emphasis>
+   <abbreviation explanation="Bidirectional scattering distribution function">
+    BSDF
+   </abbreviation>
+   is used to create
+   <emphasis>
+    Diffuse
+   </emphasis>
+   and
+   <emphasis>
+    Glossy
+   </emphasis>
+   materials with cartoon light effects.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Về màu sắc của bề mặt, hoặc về thể chất mà nói, xác suất ánh sáng được phản xạ cho mỗi bước sóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kích Thước -- Size
+     </term>
+     <definition>
+      <paragraph>
+       Parameter between 0.0 and 1.0 that gives an angle of reflection between 0° and 90°.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Làm/Mịn Màng -- Smooth
+     </term>
+     <definition>
+      <paragraph>
+       This value specifies an angle over which a smooth transition from full to no reflection happens.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pháp Tuyến -- Normal
+     </term>
+     <definition>
+      <paragraph>
+       Pháp tuyến sử dụng cho việc tô bóng; nếu không có gì kết nối thì pháp tuyến tô bóng mặc định sẽ được sử dụng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thành Phần -- Component
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Khuếch Tán -- Diffuse
+        </term>
+        <definition>
+         <paragraph>
+          Use shading based on the Diffuse BSDF.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bóng Bẩy -- Glossy
+        </term>
+        <definition>
+         <paragraph>
+          Use shading based on the Glossy BSDF for specular reflection.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      BSDF
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra chuẩn của bộ tô bóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_toon_example.jpg'}" uri="images/render_shader-nodes_shader_toon_example.jpg"/>
+    <caption>
+     Example of Toon Shader.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

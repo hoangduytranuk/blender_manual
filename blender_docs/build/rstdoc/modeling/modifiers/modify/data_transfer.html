@@ -1,0 +1,601 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/modify/data_transfer.rst">
+ <target refid="bpy-types-datatransfermodifier">
+ </target>
+ <section ids="data-transfer-modifier bpy-types-datatransfermodifier" names="data\ transfer\ modifier bộ\ điều\ chỉnh\ thuyên\ chuyển\ dữ\ liệu\ --\ data\ transfer\ modifier bpy.types.datatransfermodifier">
+  <title>
+   Bộ Điều Chỉnh Thuyên Chuyển  Dữ Liệu -- Data Transfer Modifier
+  </title>
+  <paragraph>
+   The Data Transfer modifier transfers several types of data from one mesh to another.
+Data types include vertex groups, UV maps, vertex colors, custom normals...
+  </paragraph>
+  <paragraph>
+   Transfer works by generating a mapping between source mesh's items (vertices, edges, etc.)
+and destination ones, either on a one-to-one basis, or mapping several source items
+to a single destination one, using interpolation.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/modeling_modifiers_modify_data-transfer_normals-example.jpg'}" uri="images/modeling_modifiers_modify_data-transfer_normals-example.jpg" width="680px"/>
+   <caption>
+    Transferring normals between objects,
+    <reference name="see example blend-file" refuri="https://en.blender.org/uploads/a/ad/Data_Transfer_Normal_Torus.blend">
+     see example blend-file
+    </reference>
+    .
+   </caption>
+  </figure>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/modeling_modifiers_modify_data-transfer_panel.png'}" uri="images/modeling_modifiers_modify_data-transfer_panel.png"/>
+    <caption>
+     Data Transfer Modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vật Thể Nguồn -- Source Object
+     </term>
+     <definition>
+      <paragraph>
+       Mesh object to copy data from.
+      </paragraph>
+      <paragraph>
+       If the button to the right of the field is unset, the source and destination geometry
+are considered in global space when generating the mapping, otherwise they are evaluated
+in local space (i.e. as if both object's origins were at the same place).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khoảng Cách Tối Đa -- Max Distance
+     </term>
+     <definition>
+      <paragraph>
+       When the "pressure stylus" icon button to the right is enabled,
+this is the maximum distance between source and destination to get a successful mapping.
+If a destination item cannot find a source one within that range, then it will get no transferred data.
+      </paragraph>
+      <paragraph>
+       This allows to transfer a small sub-detailed mesh onto a more complete one
+(e.g. from a "hand" mesh towards a "full body" one).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bán Kính của Tia Xạ -- Ray Radius
+     </term>
+     <definition>
+      <paragraph>
+       For ray-casting-based mapping methods, the radius of the cast rays.
+Especially important for 1D and 2D items (i.e. vertices and edges),
+without some width there would be nearly no ray-casting matches...
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chế Độ Pha Trộn -- Mix Mode
+     </term>
+     <definition>
+      <paragraph>
+       Controls how destination data are affected:
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Toàn Bộ -- All
+        </term>
+        <definition>
+         <paragraph>
+          Replaces everything in destination (note that
+          <emphasis>
+           Mix Factor
+          </emphasis>
+          is still used).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Trên Giới Hạn -- Above Threshold
+        </term>
+        <definition>
+         <paragraph>
+          Only replaces destination value if it's above given threshold
+          <emphasis>
+           Mix Factor
+          </emphasis>
+          .
+How that threshold is interpreted depends on the data type,
+note that for boolean values this option fakes a logical AND.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Dưới Giới Hạn -- Below Threshold
+        </term>
+        <definition>
+         <paragraph>
+          Only replaces destination value if it's below given threshold
+          <emphasis>
+           Mix Factor
+          </emphasis>
+          .
+How that threshold is interpreted depends on the data type,
+note that for boolean values this option fakes a logical OR.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Mix, Add, Subtract, Multiply
+        </term>
+        <definition>
+         <paragraph>
+          Apply that operation, using mix factor to control how much of source or destination value to use.
+Only available for a few types (vertex groups, vertex colors).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hệ Số Pha Trộn -- Mix Factor
+     </term>
+     <definition>
+      <paragraph>
+       How much of the transferred data gets mixed into existing one (not supported by all data types).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       Allows per-item fine control of the mix factor. Vertex group influence can be reverted using the small
+"arrow" button to the right.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sinh Tạo Tầng Dữ Liệu -- Generate Data Layers
+     </term>
+     <definition>
+      <paragraph>
+       This modifier cannot generate needed data layers itself. Once the set of source data to transfer is selected,
+this button shall be used to generate matching destination layers, if needed.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="selection-of-data-to-transfer" names="selection\ of\ data\ to\ transfer --\ selection\ of\ data\ to\ transfer">
+    <title>
+     -- Selection of Data to Transfer
+    </title>
+    <paragraph>
+     To keep the size of the modifier reasonable, the kind of items to be affected must be selected first
+(vertices, edges, face corners and/or faces).
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Thể Loại Ánh Xạ -- Mapping Type
+      </term>
+      <definition>
+       <paragraph>
+        How is generated the mapping between those source and destination items. Each type has its own options,
+see
+        <reference name="Geometry Mapping" refid="geometry-mapping">
+         Geometry Mapping
+        </reference>
+        below for details.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Loại Dữ Liệu -- Data Types
+      </term>
+      <definition>
+       <paragraph>
+        The left column of toggle buttons, to select which data types to transfer.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Multi-layers Data Types Options
+      </term>
+      <definition>
+       <paragraph>
+        In those cases (vertex groups, vertex colors, UVs), one can select which source layers to transfer
+(usually, either all of them, or a single specified one), and how to affect destination
+(either by matching names, matching order/position,
+or, if a single source is selected, by specifying manually the destination layer).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mức Tinh Chỉnh Hải Đảo -- Islands Handling Refinement
+      </term>
+      <definition>
+       <paragraph>
+        This setting only affects UV transfer currently. It allows to avoid a given destination face to get
+UV coordinates from different source UV islands. Keeping it at 0.0 means no island handling at all.
+Typically, small values like 0.02 are enough to get good results, but if you are mapping from
+a very high-poly source towards a very low-poly destination, you may have to raise it quite significantly.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <paragraph>
+    First key thing to keep in mind when using this modifier is that it will
+    <strong>
+     not
+    </strong>
+    create destination data layers.
+    <emphasis>
+     Generate Data Layers
+    </emphasis>
+    button shall always be used for this purpose, once the set of source data to transfer
+has been selected. It should also be well understood that creating those data layers on destination mesh is
+    <strong>
+     not
+    </strong>
+    part of the modifier stack, which means e.g. that they will remain even once the modifier is deleted, or
+if the source data selection is modified.
+   </paragraph>
+   <section ids="geometry-mapping" names="geometry\ mapping --\ geometry\ mapping">
+    <title>
+     -- Geometry Mapping
+    </title>
+    <paragraph>
+     Geometry mapping is how a given destination mesh relates to a source mesh.
+In this process a destination vertex/edge/...
+gets a part of the source mesh assigned with functions as its data source.
+It is crucial to understand this topic well to get good results with this modifier.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Cấu Trúc Liên Kết -- Topology
+      </term>
+      <definition>
+       <paragraph>
+        The simplest option, expects both meshes to have identical number of items, and match them by order (indices).
+Useful e.g. between meshes that were identical copies, and got deformed differently.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- One-To-One Mappings
+      </term>
+      <definition>
+       <paragraph>
+        Those always select only one source item for each destination one, often based on shortest distance.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Điểm Đỉnh -- Vertices
+         </term>
+         <definition>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Đỉnh Gần Nhất -- Nearest Vertex
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's nearest vertex.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Điểm Đỉnh của Cạnh Gần Nhất -- Nearest Edge Vertex
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's nearest vertex of source's nearest edge.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Điểm Đỉnh của Bề Mặt Gần Nhất -- Nearest Face Vertex
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's nearest vertex of source's nearest face.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Cạnh -- Edges
+         </term>
+         <definition>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Điểm Đỉnh Gần Nhất -- Nearest Vertices
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's edge which vertices are nearest from destination edge's vertices.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Cạnh Gần Nhất -- Nearest Edge
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's nearest edge (using edge's midpoints).
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Cạnh Bề Mặt Gần Nhất -- Nearest Face Edge
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's nearest edge of source's nearest face (using edge's midpoints).
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          -- Face Corners
+         </term>
+         <definition>
+          <paragraph>
+           A face corner is not a real item by itself, it's some kind of split vertex attached to a specific face.
+Hence both vertex (location) and face (normal, ...) aspects are used to match them together.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             -- Nearest Corner and Best Matching Normal
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's corner having the most similar
+              <emphasis>
+               split
+              </emphasis>
+              normal with destination one,
+from those sharing the nearest source's vertex.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             -- Nearest Corner and Best Matching Face Normal
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's corner having the most similar
+              <emphasis>
+               face
+              </emphasis>
+              normal with destination one,
+from those sharing the nearest source's vertex.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             -- Nearest Corner of Nearest Face
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's nearest corner of source's nearest face.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bề Mặt -- Faces
+         </term>
+         <definition>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Bề Mặt Gần Nhất -- Nearest Face
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's nearest face.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Pháp Tuyến Tương Đồng Nhất -- Best Normal-Matching
+            </term>
+            <definition>
+             <paragraph>
+              Uses source's face which normal is most similar with destination one.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Interpolated Mappings
+      </term>
+      <definition>
+       <paragraph>
+        Those use several source items for each destination one, interpolating their data during the transfer.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Điểm Đỉnh -- Vertices
+         </term>
+         <definition>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Cạnh Gần Nhất Được Nội Suy -- Nearest Edge Interpolated
+            </term>
+            <definition>
+             <paragraph>
+              Uses nearest point on nearest source's edge, interpolates data from both source edge's vertices.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Bề Mặt Gần Nhất Được Nội Suy -- Nearest Face Interpolated
+            </term>
+            <definition>
+             <paragraph>
+              Uses nearest point on nearest source's face, interpolates data from all that source face's vertices.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Bề Mặt Dự Phóng Được Nội Suy -- Projected Face Interpolated
+            </term>
+            <definition>
+             <paragraph>
+              Uses point of face on source hit by projection of destination vertex along its own normal,
+interpolates data from all that source face's vertices.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Cạnh -- Edges
+         </term>
+         <definition>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Cạnh Dự Phóng Nội Suy -- Projected Edge Interpolated
+            </term>
+            <definition>
+             <paragraph>
+              This is a sampling process. Several rays are cast from along the destination's edge
+(interpolating both edge's vertex normals), and if enough of them hit a source's edge,
+all hit source edges' data are interpolated into destination one.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          -- Face Corners
+         </term>
+         <definition>
+          <paragraph>
+           A face corner is not a real item by itself, it's some kind of split vertex attached to a specific face.
+Hence both vertex (location) and face (normal, ...) aspects are used to match them together.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Bề Mặt Gần Nhất Được Nội Suy -- Nearest Face Interpolated
+            </term>
+            <definition>
+             <paragraph>
+              Uses nearest point of nearest source's face, interpolates data from all that source face's corners.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Bề Mặt Dự Phóng Được Nội Suy -- Projected Face Interpolated
+            </term>
+            <definition>
+             <paragraph>
+              Uses point of face on source hit by projection of destination corner along its own normal,
+interpolates data from all that source face's corners.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Bề Mặt -- Faces
+         </term>
+         <definition>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Bề Mặt Dự Phóng Được Nội Suy -- Projected Face Interpolated
+            </term>
+            <definition>
+             <paragraph>
+              This is a sampling process. Several rays are cast from the whole destination's face (along its own normal),
+and if enough of them hit a source's face, all hit source faces' data are interpolated into destination one.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <seealso>
+     <paragraph>
+      <reference internal="True" refuri="../../meshes/editing/data_transfer.html">
+       <inline classes="doc">
+        Data Transfer Operator
+       </inline>
+      </reference>
+     </paragraph>
+    </seealso>
+   </section>
+  </section>
+ </section>
+</document>

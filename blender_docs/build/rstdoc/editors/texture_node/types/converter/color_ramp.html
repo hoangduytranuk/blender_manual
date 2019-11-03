@@ -1,0 +1,140 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/texture_node/types/converter/color_ramp.rst">
+ <comment xml:space="preserve">
+  DO NOT EDIT FILE. This is simply a stub which copies everything from the link below (for texture nodes).
+ </comment>
+ <comment xml:space="preserve">
+  Editors Note: This page gets copied into :doc:`
+ </comment>
+</document>
+`
+<section ids="color-ramp-node" names="color\ ramp\ node nút\ dốc\ màu\ --\ color\ ramp\ node">
+ <title>
+  Nút Dốc Màu -- Color Ramp Node
+ </title>
+ <figure align="right" ids="id1">
+  <image candidates="{'*': 'images/compositing_node-types_CompositorNodeValToRGB.png'}" uri="images/compositing_node-types_CompositorNodeValToRGB.png"/>
+  <caption>
+   Nút Dốc Màu.
+  </caption>
+ </figure>
+ <paragraph>
+  Nút Dốc Màu (Color Ramp) được sử dụng để ánh xạ các giá trị thành các màu với việc sử dụng một dốc màu (gradient).
+ </paragraph>
+ <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+  <title>
+   Đầu Vào -- Inputs
+  </title>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Hệ Số -- Factor
+    </term>
+    <definition>
+     <paragraph>
+      Đầu vào Hệ Số (Factor) được sử dụng làm chỉ số (index) cho dốc màu.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+ </section>
+ <section ids="properties" names="properties tính\ chất\ --\ properties">
+  <title>
+   Tính Chất -- Properties
+  </title>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Dốc Màu -- Color Ramp
+    </term>
+    <definition>
+     <paragraph>
+      Đối với các điều khiển, xin hãy xem
+      <reference internal="True" refuri="../../../../interface/controls/templates/color_ramp.html#ui-color-ramp-widget">
+       <inline classes="std std-ref">
+        Thành Tố Dốc Màu -- Color Ramp Widget
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+ </section>
+ <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+  <title>
+   Đầu Ra -- Outputs
+  </title>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Hình Ảnh -- Image
+    </term>
+    <definition>
+     <paragraph>
+      Đầu ra tiêu chuẩn của hình ảnh.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Alpha
+    </term>
+    <definition>
+     <paragraph>
+      Đầu ra alpha chuẩn.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+ </section>
+ <section ids="examples" names="examples ví\ dụ\ --\ examples">
+  <title>
+   Ví Dụ -- Examples
+  </title>
+  <section ids="creating-an-alpha-mask" names="creating\ an\ alpha\ mask tạo\ màn\ chắn\ alpha\ --\ creating\ an\ alpha\ mask">
+   <title>
+    Tạo Màn Chắn Alpha -- Creating an Alpha Mask
+   </title>
+   <paragraph>
+    Một tính năng mạnh mẽ nhưng thường bị bỏ qua của Dốc Màu (Color Ramp) là tạo ra một Màn Chắn Alpha (Alpha Mask), hoặc một màn chắn để phủ lên trên một hình ảnh khác, và giống như một màn chắn, cho phép phần nào của hình nền được nhìn thấy. Ví dụ bài trí dưới đây cho thấy cách sử dụng nút Dốc Màu (Color Ramp) để thực hiện điều này:
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_converter_color-ramp_create-alpha-mask.png'}" uri="images/compositing_types_converter_color-ramp_create-alpha-mask.png" width="600px"/>
+    <caption>
+     Sử dụng nút Dốc Màu (Color Ramp) để tạo màn chắn alpha.
+    </caption>
+   </figure>
+   <paragraph>
+    In the map above, a black-and-white swirl image, which is lacking an alpha channel,
+is fed into the Color Ramp node as a
+    <emphasis>
+     Factor
+    </emphasis>
+    .
+(Technically, we should have converted the image to a value using the RGB to BW node,
+but hey, this works just as well since we are using a BW image as input.)
+   </paragraph>
+   <paragraph>
+    Chúng ta đã thiết lập nút Dốc Màu (Color Ramp) với một màu hoàn toàn trong suốt ở đầu bên trái của quang phổ và màu hoàn toàn đỏ ở bên phải. Như thấy được trong nút xem hình, nút Dốc Màu đưa ra một màn chắn hoàn toàn trong suốt ở những nơi hình ảnh có màu đen. Màu đen là số không, vì vậy Dốc Màu sử dụng màu ở đầu bên trái của quang phổ, mà chúng ta đã đặt thành trong suốt. Hình ảnh Dốc Màu hoàn toàn là màu đỏ và những chỗ hình ảnh là màu trắng (1.00) thì hoàn toàn không trong.
+   </paragraph>
+   <paragraph>
+    We verify that the output image mask is indeed transparent
+by overlaying it on top of another image.
+   </paragraph>
+  </section>
+  <section ids="colorizing-an-image" names="colorizing\ an\ image tô\ màu\ một\ hình\ ảnh\ --\ colorizing\ an\ image">
+   <title>
+    Tô Màu một Hình Ảnh -- Colorizing an Image
+   </title>
+   <paragraph>
+    Sức mạnh thực sự của Dốc Màu (Color Ramp) là nhiều màu sắc có thể được cho thêm vào quang phổ màu. Ví dụ sơ đồ tổng hợp này lấy một hình ảnh Trắng/Đen (BW) nhàm chán và làm cho nó thành một cơn lốc bốc lửa!
+   </paragraph>
+   <figure>
+    <image candidates="{'*': 'images/compositing_types_converter_color-ramp_colorizing-image.png'}" uri="images/compositing_types_converter_color-ramp_colorizing-image.png" width="600px"/>
+   </figure>
+   <paragraph>
+    Trong ví dụ này, chúng ta ánh xạ các sắc thái của màu xám trong hình ảnh cung cấp thành ba màu, lam, vàng và đỏ, tất cả đều ở mức cực độ, hoàn toàn rõ ràng, không trong,  (Alpha = 1,00). Ở những chỗ hình ảnh có màu đen, Dốc Màu (Color Ramp) thay thế màu làm vào, màu hiện đang được chọn. Nơi nó có pha màu xám, Dốc Màu chọn một màu tương ứng từ quang phổ (hơi xanh lam, vàng, tới hơi đỏ). Ở chỗ nào hình ảnh có màu trắng hoàn toàn, Dốc Màu chọn màu đỏ.
+   </paragraph>
+  </section>
+ </section>
+</section>

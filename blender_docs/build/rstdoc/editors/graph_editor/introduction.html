@@ -1,0 +1,964 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/graph_editor/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   The Graph Editor allows users to adjust animation curves over time for any animatable property.
+   <reference internal="True" refuri="fcurves/introduction.html">
+    <inline classes="doc">
+     F-Curves
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/editors_graph-editor_introduction_example.png'}" uri="images/editors_graph-editor_introduction_example.png"/>
+   <caption>
+    Trình Biên Soạn Đồ Thị.
+   </caption>
+  </figure>
+  <section ids="main-region" names="main\ region">
+   <title>
+    Main Region
+   </title>
+   <paragraph>
+    The curve view allows you to view and edit F-curves.
+An F-curve has several key parts:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đường Cong -- Curve
+     </term>
+     <definition>
+      <paragraph>
+       The curve defines the value (Y axis) of the property over time (X axis).
+      </paragraph>
+      <paragraph>
+       Xin xem mục
+       <reference internal="True" refuri="fcurves/index.html">
+        <inline classes="doc">
+         F-Curves
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khung Khóa -- Keyframes
+     </term>
+     <definition>
+      <paragraph>
+       Keyframes are user-defined values on certain frames and are represented
+by little black squares which become orange if selected.
+      </paragraph>
+      <paragraph>
+       Xin xem mục
+       <reference internal="True" refuri="../../animation/keyframes/index.html">
+        <inline classes="doc">
+         Keyframes
+        </inline>
+       </reference>
+       for more information.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tay Cầm -- Handles
+     </term>
+     <definition>
+      <paragraph>
+       Mỗi một khung khóa có một tay cầm  nhằm giúp xác định các giá trị của đường cong giữa các khung khóa. Những tay cầm này được đại diện bởi những đường thẳng kéo dài với đầu tròn, và có thể được chọn hoặc thay đổi để biến đổi hình dạng của đường cong.
+      </paragraph>
+      <paragraph>
+       Xin xem mục
+       <reference internal="True" refuri="fcurves/introduction.html#editors-graph-fcurves-settings-handles">
+        <inline classes="std std-ref">
+         Loại Tay Cầm -- Handle Types
+        </inline>
+       </reference>
+       for more information.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/editors_graph-editor_introduction_f-curve-example.png'}" uri="images/editors_graph-editor_introduction_f-curve-example.png"/>
+    <caption>
+     Một đường cong đơn giản.
+    </caption>
+   </figure>
+   <seealso>
+    <paragraph>
+     Xin xem mục
+     <reference internal="True" refuri="fcurves/introduction.html">
+      <inline classes="doc">
+       F-Curves
+      </inline>
+     </reference>
+     for more info.
+    </paragraph>
+   </seealso>
+   <section ids="navigation" names="navigation điều\ hướng\ --\ navigation">
+    <title>
+     Điều Hướng -- Navigation
+    </title>
+    <paragraph>
+     Tương tự như các trình soạn thảo khác, bạn có thể:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Lia -- Pan
+      </term>
+      <definition>
+       <paragraph>
+        Pan the view vertically (values) or horizontally (time) with click and drag
+        <literal classes="kbd">
+         MMB
+        </literal>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Thu-Phóng -- Zoom
+      </term>
+      <definition>
+       <paragraph>
+        Zoom in and out with the mouse wheel
+        <literal classes="kbd">
+         Wheel
+        </literal>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đổi Tỷ Lệ Góc Nhìn -- Scale View
+      </term>
+      <definition>
+       <paragraph>
+        Scale the view vertically or horizontally
+        <literal classes="kbd">
+         Ctrl-MMB
+        </literal>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <paragraph>
+     In addition, you can also use the scrollbars to pan and zoom the view.
+    </paragraph>
+    <target refid="graph-editor-2d-cursor">
+    </target>
+    <target refid="bpy-types-spacegrapheditor-cursor">
+    </target>
+   </section>
+   <section ids="playhead-2d-cursor bpy-types-spacegrapheditor-cursor graph-editor-2d-cursor" names="playhead\ &amp;\ 2d\ cursor bpy.types.spacegrapheditor.cursor graph_editor-2d-cursor">
+    <title>
+     Playhead &amp; 2D Cursor
+    </title>
+    <figure align="right" ids="id3">
+     <image candidates="{'*': 'images/editors_graph-editor_introduction_2dcursor.png'}" uri="images/editors_graph-editor_introduction_2dcursor.png"/>
+     <caption>
+      Graph Editor 2D Cursor.
+     </caption>
+    </figure>
+    <paragraph>
+     The current frame is represented by a blue vertical line called the
+     <emphasis>
+      Playhead
+     </emphasis>
+     .
+    </paragraph>
+    <paragraph>
+     As in the
+     <reference internal="True" refuri="../timeline.html">
+      <inline classes="doc">
+       Timeline
+      </inline>
+     </reference>
+     ,
+you can change the current frame by
+     <literal classes="kbd">
+      LMB
+     </literal>
+     -dragging in the scrubbing area at the top of the editor.
+    </paragraph>
+    <paragraph>
+     The blue horizontal line is called the
+     <emphasis>
+      2D Cursor
+     </emphasis>
+     .
+This can be enabled or disabled via the
+     <emphasis>
+      View Menu
+     </emphasis>
+     or the
+     <emphasis>
+      View Properties
+     </emphasis>
+     panel.
+    </paragraph>
+    <paragraph>
+     These two lines can be used as a reference for moving and scaling keyframe handles.
+    </paragraph>
+    <seealso>
+     <paragraph>
+      Xin xem mục Graph Editor's
+      <reference internal="True" refuri="fcurves/properties.html#graph-editor-view-properties">
+       <inline classes="std std-ref">
+        Tính Chất của Góc Nhìn -- View Properties
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </seealso>
+   </section>
+   <section ids="view-axes" names="view\ axes xem\ các\ trục\ --\ view\ axes">
+    <title>
+     Xem các Trục -- View Axes
+    </title>
+    <paragraph>
+     For
+     <emphasis>
+      Actions
+     </emphasis>
+     the X axis represents time,
+the Y axis represents the value to set the property.
+    </paragraph>
+    <paragraph>
+     Depending on the selected curves, the values have different meaning:
+for example rotation properties are shown in degrees.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="header" names="header tiêu\ đề\ --\ header">
+   <title>
+    Tiêu Đề -- Header
+   </title>
+   <target refid="graph-view-menu">
+   </target>
+   <section ids="view-menu graph-view-menu" names="view\ menu trình\ đơn\ góc\ nhìn\ --\ view\ menu graph-view-menu">
+    <title>
+     Trình Đơn Góc Nhìn -- View Menu
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Cập Nhật Thời Gian Thực -- Realtime Updates
+      </term>
+      <definition>
+       <paragraph>
+        When transforming keyframes, changes to the animation data are propagated to other views.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hiển Thị Con Trỏ -- Show Cursor
+      </term>
+      <definition>
+       <paragraph>
+        Toggles the visibility of the
+        <reference name="Playhead &amp; 2D Cursor" refid="playhead-2d-cursor">
+         Playhead &amp; 2D Cursor
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hiển Thị Khung Trượt -- Show Sliders
+      </term>
+      <definition>
+       <paragraph>
+        A toggle option that shows the value sliders for the channels.
+See the Fig.
+        <reference internal="True" refuri="../dope_sheet/introduction.html#fig-dope-sheet-action">
+         <inline classes="std std-ref">
+          The Action editor's channels region.
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hiển Thị Màu của Nhóm -- Show Group Colors
+      </term>
+      <definition>
+       <paragraph>
+        Display groups and channels with colors matching their corresponding groups.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tự Động Hòa Nhập Khung Khóa -- AutoMerge Keyframes
+      </term>
+      <definition>
+       <paragraph>
+        Automatically merge nearby keyframes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Use High Quality Display
+      </term>
+      <definition>
+       <paragraph>
+        Display F-curves using anti-aliasing and other fancy effects (disable for a better performance).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hiển Thị Tay Cầm
+       <literal classes="kbd">
+        Ctrl-H
+       </literal>
+       -- Show Handles
+       <literal classes="kbd">
+        Ctrl-H
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Toggles the display of a curve's handles in the curve view.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Duy Khung Khóa của Đường Cong Được Chọn -- Only Selected Curve Keyframes
+      </term>
+      <definition>
+       <paragraph>
+        Only shows the keyframes markers on the selected curves.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Duy Tay Cầm của Khung Khóa Được Chọn -- Only Selected Keyframes Handles
+      </term>
+      <definition>
+       <paragraph>
+        Only shows the handles for the currently selected curves.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xem Tổng Thể -- View All
+       <literal classes="kbd">
+        Home
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Reset viewable area to show all keyframes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xem Cái Được Chọn -- View Selected
+       <literal classes="kbd">
+        Bàn Số 0
+       </literal>
+       -- View Selected
+       <literal classes="kbd">
+        NumpadPeriod
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Reset viewable area to show selected keyframes.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xem Khung Phim -- View Frame
+       <literal classes="kbd">
+        Bàn Số 0
+       </literal>
+       -- View Frame
+       <literal classes="kbd">
+        Numpad0
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Centers the area to the Playhead.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <seealso>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        Xin xem mục Graph Editor's
+        <reference internal="True" refuri="fcurves/properties.html#graph-editor-view-properties">
+         <inline classes="std std-ref">
+          Tính Chất của Góc Nhìn -- View Properties
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Xin xem mục Timeline's
+        <reference internal="True" refuri="../timeline.html#timeline-view-menu">
+         <inline classes="std std-ref">
+          Trình Đơn Góc Nhìn -- View Menu
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </seealso>
+    <target refid="graph-preview-range">
+    </target>
+    <section ids="preview-range graph-preview-range" names="preview\ range duyệt\ thảo\ phạm\ vi\ --\ preview\ range graph-preview-range">
+     <title>
+      Duyệt Thảo Phạm Vi -- Preview Range
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Đặt Phạm Vi Duyệt Thảo
+        <literal classes="kbd">
+         P
+        </literal>
+        -- Set Preview Range
+        <literal classes="kbd">
+         P
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Interactively define frame range used for playback.
+Allows you to define a temporary preview range to use for animation playback
+(this is the same thing as the
+         <emphasis>
+          Playback Range
+         </emphasis>
+         option of
+the
+         <reference internal="True" refuri="../timeline.html#animation-editors-timeline-headercontrols">
+          <inline classes="std std-ref">
+           Timeline editor header
+          </inline>
+         </reference>
+         ).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Xóa Phạm Vi Duyệt Thảo
+        <literal classes="kbd">
+         Alt-P
+        </literal>
+        -- Clear Preview Range
+        <literal classes="kbd">
+         Alt-P
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Clears the preview range.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tự Động Đặt Phạm Vi Duyệt Thảo
+        <literal classes="kbd">
+         Ctrl-Alt-P
+        </literal>
+        -- Auto-Set Preview Range
+        <literal classes="kbd">
+         Ctrl-Alt-P
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Automatically sets the preview range to playback the whole action or
+the selected NLA strips.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+   </section>
+   <section ids="markers-menu" names="markers\ menu trình\ đơn\ dấu\ mốc\ --\ markers\ menu">
+    <title>
+     Trình Đơn Dấu Mốc -- Markers Menu
+    </title>
+    <paragraph>
+     <reference internal="True" refuri="../../animation/markers.html">
+      <inline classes="doc">
+       Dấu Mốc -- Markers
+      </inline>
+     </reference>
+     được sử dụng để biểu thị khung hình có những điểm trọng yếu hoặc các sự đáng phải để ý trong một hoạt hình. Giống hầu hết các trình biên soạn hoạt họa, điểm đánh dấu được hiển thị ở dưới đáy của trình biên soạn.
+    </paragraph>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/editors_graph-editor_introduction_markers.png'}" uri="images/editors_graph-editor_introduction_markers.png"/>
+     <caption>
+      Dấu Mốc trong Trình Biên Soạn Hoạt Họa.
+     </caption>
+    </figure>
+    <paragraph>
+     Để biết nội dung về các công cụ đánh dấu khác nhau, hãy xem
+     <reference internal="True" refuri="../../animation/markers.html#animation-markers-editing">
+      <inline classes="std std-ref">
+       Biên Soạn các Dấu Mốc --Editing Markers
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+   <section ids="view-controls" names="view\ controls điều\ khiển\ góc\ nhìn\ --\ view\ controls">
+    <title>
+     Điều Khiển Góc Nhìn -- View Controls
+    </title>
+    <figure ids="id5">
+     <image candidates="{'*': 'images/editors_graph-editor_introduction_header-view.png'}" uri="images/editors_graph-editor_introduction_header-view.png"/>
+     <caption>
+      Những điều khiển về góc nhìn.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Duy Hiển Thị cái Được Chọn (biểu tượng con trỏ chuột) -- Show Only Selected (mouse cursor icon)
+      </term>
+      <definition>
+       <paragraph>
+        Only include curves related to the selected objects and data.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Show Hidden (dashed object icon)
+      </term>
+      <definition>
+       <paragraph>
+        Include curves from objects/bones that are not visible.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Show Only Errors (warning triangle icon)
+      </term>
+      <definition>
+       <paragraph>
+        Only include curves and drivers that are disabled or have errors.
+Useful for debugging.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Filter popover (funnel icon)
+      </term>
+      <definition>
+       <paragraph>
+        Only include curves with keywords contained in the search field.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Đa-Từ (biểu tượng AZ) -- Multi-Word (az icon)
+         </term>
+         <definition>
+          <paragraph>
+           Fuzzy/Multi-Word name filtering matches word snippets/partial words,
+instead of having to match everything. It breaks down the search string based on white-space placement.
+e.g. "lo ro" will filter all location and rotation, while "lc rt" will
+           <emphasis>
+            not
+           </emphasis>
+           work.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Thanh Lọc theo Thể Loại -- Type Filter
+         </term>
+         <definition>
+          <paragraph>
+           Thanh lọc các đường cong theo thể loại tính chất.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Sắp Xếp Thứ Tự Khối Dữ Liệu (biểu tượng AZ) -- Data-block Sort (az icon)
+         </term>
+         <definition>
+          <paragraph>
+           Objects data-blocks appear in alphabetical order, so that it is easier to find where they occur
+(as well as helping to keep the animation of related objects together in the NLA for instance).
+          </paragraph>
+          <paragraph>
+           If you find that your playback speed suffers from this being enabled
+(it should only really be an issue when working with lots of objects in the scene),
+you can turn this off.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bình Thường Hóa -- Normalize
+      </term>
+      <definition>
+       <paragraph>
+        Normalize curves so the maximum or minimum point equals 1.0 or -1.0.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Tự Động -- Auto
+         </term>
+         <definition>
+          <paragraph>
+           Automatically recalculate curve normalization on every curve edit.
+This is useful to prevent curves from jumping after tweaking it.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="f-curve-controls" names="f-curve\ controls">
+    <title>
+     F-Curve Controls
+    </title>
+    <figure ids="id6">
+     <image candidates="{'*': 'images/editors_graph-editor_introduction_header-edit.png'}" uri="images/editors_graph-editor_introduction_header-edit.png"/>
+     <caption>
+      F-Curve controls.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Soạn Thảo Cân Đối
+       <literal classes="kbd">
+        O
+       </literal>
+       -- Proportional Editing
+       <literal classes="kbd">
+        O
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        See
+        <reference internal="True" refuri="../../scene_layout/object/editing/transform/control/proportional_edit.html">
+         <inline classes="doc">
+          Proportional Editing
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tự Động Bám Dính -- Auto Snap
+      </term>
+      <definition>
+       <paragraph>
+        Auto snap the keyframes for transformations.
+       </paragraph>
+       <bullet_list bullet="-">
+        <list_item>
+         <paragraph>
+          Không Tự Động Bám Dính -- No Auto-Snap
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Bước Khung Hình -- Frame Step
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Khoảng Giây -- Second Step
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Khung Hình Gần Nhất -- Nearest Frame
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Giây Gần Nhất -- Nearest Second
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Dấu Mốc Gần Nhất -- Nearest Marker
+         </paragraph>
+        </list_item>
+       </bullet_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Điểm Tựa -- Pivot Point
+      </term>
+      <definition>
+       <paragraph>
+        Pivot point for rotation.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Tâm của Khung Viền Hình Hộp -- Bounding Box Center
+         </term>
+         <definition>
+          <paragraph>
+           Center of the selected keyframes.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Con Trỏ 2D -- 2D Cursor
+         </term>
+         <definition>
+          <paragraph>
+           Center of the
+           <emphasis>
+            2D Cursor
+           </emphasis>
+           .
+           <emphasis>
+            Playhead
+           </emphasis>
+           +
+           <emphasis>
+            Cursor
+           </emphasis>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Trọng Tâm Cá Nhân -- Individual Centers
+         </term>
+         <definition>
+          <paragraph>
+           Rotate the selected keyframe
+           <emphasis>
+            Bézier
+           </emphasis>
+           handles.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Create Snapshot (framed F-curve icon)
+      </term>
+      <definition>
+       <paragraph>
+        Tạo một bức tranh với hình dạng hiện tại của các đường cong.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="sidebar-region" names="sidebar\ region">
+   <title>
+    Sidebar Region
+   </title>
+   <paragraph>
+    The panels in the
+    <emphasis>
+     Sidebar region
+    </emphasis>
+    .
+   </paragraph>
+   <section ids="view-tab" names="view\ tab mục\ góc\ nhìn\ --\ view\ tab">
+    <title>
+     Mục Góc Nhìn -- View Tab
+    </title>
+    <comment xml:space="preserve">
+     (Todo) duplicated here: \editors\graph_editor\fcurves\properties.rst
+    </comment>
+   </section>
+   <section ids="view-properties-panel" names="view\ properties\ panel góc\ nhìn\ bảng\ tính\ chất\ --\ view\ properties\ panel">
+    <title>
+     Góc Nhìn Bảng Tính Chất -- View Properties Panel
+    </title>
+    <figure ids="id7">
+     <image candidates="{'*': 'images/editors_graph-editor_fcurves_properties_view-panel.png'}" uri="images/editors_graph-editor_fcurves_properties_view-panel.png"/>
+     <caption>
+      Góc nhìn bảng tính chất.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Hiển Thị Con Trỏ -- Show Cursor
+      </term>
+      <definition>
+       <paragraph>
+        Hiển thị
+        <emphasis>
+         Con Trỏ
+        </emphasis>
+        chiều dọc.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Con Trỏ từ Lựa Chọn -- Cursor from Selection
+      </term>
+      <definition>
+       <paragraph>
+        Đặt con trỏ 2D vào trung tâm của các khung khóa được chọn.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Con Trỏ X -- Cursor X
+      </term>
+      <definition>
+       <paragraph>
+        <emphasis>
+         Playhead
+        </emphasis>
+        X position.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Vào Khóa -- To Keys
+         </term>
+         <definition>
+          <paragraph>
+           Snap selected keyframes to the
+           <emphasis>
+            Playhead
+           </emphasis>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Con Trỏ Y -- Cursor Y
+      </term>
+      <definition>
+       <paragraph>
+        Vị trí Y theo chiều dọc của
+        <emphasis>
+         Con Trỏ
+        </emphasis>
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Vào Khóa -- To Keys
+         </term>
+         <definition>
+          <paragraph>
+           Bám dính các khung hình được chọn vào
+           <emphasis>
+            Con Trỏ
+           </emphasis>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="further-tabs" names="further\ tabs những\ bảng\ mục\ khác\ --\ further\ tabs">
+    <title>
+     Những Bảng Mục Khác -- Further Tabs
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Mục Đường Cong-F -- F-Curve Tab
+      </term>
+      <definition>
+       <paragraph>
+        Xin xem mục
+        <reference internal="True" refuri="fcurves/properties.html">
+         <inline classes="doc">
+          F-Curve
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mục Bộ Điều Chỉnh -- Modifiers Tab
+      </term>
+      <definition>
+       <paragraph>
+        See
+        <reference internal="True" refuri="fcurves/modifiers.html">
+         <inline classes="doc">
+          F-Curve Modifiers
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

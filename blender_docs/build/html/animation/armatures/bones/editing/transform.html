@@ -1,0 +1,606 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Biến Hóa -- Transform &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/armatures/bones/editing/transform.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="next" title="-- Editing Bones" href="bones.html" />
+    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Animation &amp; Rigging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../keyframes/index.html">Khung Khóa -- Keyframes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Cốt -- Armatures</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Xương -- Bones</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../properties/index.html">Tính Chất -- Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../skinning/index.html">Bọc Da -- Skinning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../posing/index.html">Tạo Tư Thế -- Posing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../lattice.html">Giàn Lưới -- Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints/index.html">Ràng Buộc -- Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../actions.html">Hành Động -- Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivers/index.html">Bộ Điều Vận -- Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../markers.html">Dấu Mốc -- Markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../shape_keys/index.html">Hình Mẫu -- Shape Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../motion_paths.html">Đường Chuyển Động -- Motion Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Animation &amp; Rigging</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Cốt -- Armatures</a> &raquo;</li>
+        
+          <li><a href="../index.html">Xương -- Bones</a> &raquo;</li>
+        
+          <li><a href="index.html">Biên Soạn -- Editing</a> &raquo;</li>
+        
+      <li>Biến Hóa -- Transform</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/animation/armatures/bones/editing/transform.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="transform">
+<h1>Biến Hóa -- Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>Biến Hóa -- Transform<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>We will not detail here the various transformations of bones, nor things like axis locking, pivot points, and so on,
+as they are common to most object editing, and already described in
+the <a class="reference internal" href="../../../../scene_layout/object/editing/transform/control/index.html"><span class="doc">mesh section</span></a>.
+The same goes for mirroring,
+as it is nearly the same as with <a class="reference internal" href="../../../../modeling/meshes/editing/transform/mirror.html"><span class="doc">mesh editing</span></a>.
+Just keep in mind that bones' roots and tips behave more or less like meshes' vertices,
+and bones themselves act like edges in a mesh.</p>
+<p>As you know, bones can have two types of relationships: They can be parented,
+and in addition connected. Parented bones behave in <em>Edit Mode</em> exactly as if they
+had no relations. They can be moved, rotated, scaled, etc. without affecting their descendants.
+However, connected bones must always have parent's tips connected to child's roots,
+so by transforming a bone, you will affect all its connected parent/children/siblings.</p>
+<p>While with other transform tools, the &quot;local axes&quot; means the object's axes,
+here they are the bone's own axes (when you lock to a local axis,
+by pressing the relevant key twice, the constraint is applied along the selected bone's local axis,
+not the armature object's axis).</p>
+<p>Finally, you can edit in the <em>Transform</em> panel in the Sidebar region
+the positions and radius of both joints of the active selected bone,
+as well as its <a class="reference internal" href="#armature-bone-roll"><span class="std std-ref">roll rotation</span></a>.</p>
+</div>
+<div class="section" id="scale-radius">
+<h2>Đổi Tỷ Lệ Bán Kính -- Scale Radius<a class="headerlink" href="#scale-radius" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Cốt (Armature) ‣ Biến Hóa (Transform) ‣ Đổi Tỷ Lệ Bán Kính (Scale Radius)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-S</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You can alter the radius that a bone has by selecting the head, body or tail of a bone,
+and then press <kbd class="kbd docutils literal notranslate">Alt-S</kbd> and move the mouse left or right.
+If the body is selected the mean radius will be scaled.
+And as usual, with connected bones, you scale at the same time the radius
+of the parent's tip and of the children's roots.</p>
+<p>You can also alter the bone radius by selecting the tail or head of the bone you wish to alter,
+then navigate to <span class="menuselection">Properties Editor ‣ Bone ‣ Deform ‣ Radius Section</span>
+and entering new values for the <em>Tail</em> and <em>Head</em> number fields.</p>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Bone Scale and Scale Radius comparison.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id3">
+<img alt="../../../../_images/animation_armatures_bones_selecting_single-bone.png" src="../../../../_images/animation_armatures_bones_selecting_single-bone.png" />
+<p class="caption"><span class="caption-text">A single selected bone in Octahedron visualization.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id4">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-2.png" src="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-2.png" />
+<p class="caption"><span class="caption-text">After normal scale.</span></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last figure" id="id5">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-3.png" src="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-3.png" />
+<p class="caption"><span class="caption-text">A single selected bone in Envelope visualization.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id6">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-4.png" src="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-4.png" />
+<p class="caption"><span class="caption-text">After Scaled Radius. Its length remains the same, but its joints' radius are bigger.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note that, when you resize a bone (either by directly scaling it, or by moving one of its joints),
+Blender automatically adjusts the end-radii of its envelope proportionally to the size of the modification.
+Therefore, it is advisable to place all the bones first, and only then edit their properties.</p>
+</div>
+<div class="section" id="scale-envelope-distance">
+<h2>Đổi Tỷ Lệ Khoảng Cách Bao Bì -- Scale Envelope Distance<a class="headerlink" href="#scale-envelope-distance" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Edit Mode and Pose Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Cốt (Armature) ‣ Biến Hóa (Transform) ‣ Đổi Tỷ Lệ Khoảng Cách Bao Bì (Scale Envelope Distance)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-Alt-S</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You can alter the size of the Bone Envelope volume by clicking on the body of the bone you want to alter,
+<kbd class="kbd docutils literal notranslate">Ctrl-Alt-S</kbd> then drag your mouse left or right and the Bone Envelope volume will alter accordingly.</p>
+<p>You can also alter the Bone Envelope volume by selecting the Bone you wish to alter and then navigate to <span class="menuselection">Trình Biên Soạn Tính Chất (Properties Editor) ‣ Xương (Bone) ‣ Biến Dạng (Deform) ‣ Vỏ Bao (Envelope) ‣ Khoảng Cách (Distance)</span> then enter a new value into it.</p>
+<p>Altering the Bone Envelope volume does not alter the size of the bone just the range
+within which it can influence vertices of child objects.</p>
+<table border="1" class="docutils" id="id7">
+<caption><span class="caption-text">Envelope scaling example.</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id8">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-3.png" src="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-3.png" />
+<p class="caption"><span class="caption-text">A single bone selected in Envelope visualization.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id9">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-5.png" src="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-radius-5.png" />
+<p class="caption"><span class="caption-text">Its envelope distance scaled.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils" id="id10">
+<caption><span class="caption-text">&quot;Bone size&quot; scaling example.</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id11">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-size-1.png" src="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-size-1.png" />
+<p class="caption"><span class="caption-text">A single &quot;default size&quot; bone selected in B-Bone visualization.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id12">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-size-2.png" src="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-size-2.png" />
+<p class="caption"><span class="caption-text">Its envelope distance scaled.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id13">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-size-3.png" src="../../../../_images/animation_armatures_bones_editing_transform_scaling-bone-size-3.png" />
+<p class="caption"><span class="caption-text">The same armature in Object Mode and B-Bone visualization, with Bone.004's size scaled up.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="align-bones">
+<h2>Canh Hàng Xương -- Align Bones<a class="headerlink" href="#align-bones" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Cốt (Armature) ‣ Biến Hóa (Transform) ‣ Canh Hàng Xương (Align Bones)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-Alt-A</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Rotates the selected bones to achieve the same orientation as the active one.</p>
+</div>
+<div class="section" id="bone-roll">
+<span id="armature-bone-roll"></span><h2>Lăn Xương -- Bone Roll<a class="headerlink" href="#bone-roll" title="Permalink to this headline">¶</a></h2>
+<p>In <em>Edit Mode</em>, you can control the bone roll
+(i.e. the rotation around the Y axis of the bone).</p>
+<p>However, after editing the armature, or when using <a class="reference internal" href="../../../../glossary/index.html#term-euler-rotation"><span class="xref std std-term">euler rotation</span></a>,
+you may want to set the bone roll.</p>
+<div class="section" id="set-bone-roll">
+<h3>-- Set Bone Roll<a class="headerlink" href="#set-bone-roll" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Cốt (Armature) ‣ Lăn Xương (Bone Roll) ‣ Đặt (Set)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-R</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This is a transform mode where you can edit the roll of all selected bones.</p>
+</div>
+<div class="section" id="recalculate-bone-roll">
+<h3>-- Recalculate Bone Roll<a class="headerlink" href="#recalculate-bone-roll" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Cốt (Armature) ‣ Lăn Xương (Bone Roll) ‣ Tính Toán Lại (Recalculate)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-N</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>-- Axis Orientation</dt>
+<dd><dl class="first last docutils">
+<dt>-- Local Tangent</dt>
+<dd><p class="first">Align roll relative to the axis defined by the bone and its parent.</p>
+<p class="last">X, Z</p>
+</dd>
+<dt>-- Global Axis</dt>
+<dd><p class="first">Align roll to global X, Y, Z axis.</p>
+<p class="last">X, Y, Z</p>
+</dd>
+<dt>Xương Hoạt Động -- Active Bone</dt>
+<dd>Follow the rotation of the active bone.</dd>
+<dt>Trục của Góc Nhìn -- View Axis</dt>
+<dd>Set the roll to align with the viewport.</dd>
+<dt>Contrỏ -- Cursor</dt>
+<dd>Set the roll towards the 3D cursor.</dd>
+</dl>
+</dd>
+<dt>Lật Trục -- Flip Axis</dt>
+<dd>Reverse the axis direction.</dd>
+<dt>Xoay Chiều Ngắn Nhất -- Shortest Rotation</dt>
+<dd>Avoids rolling the bone over 90 degrees from its current value.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="switch-direction">
+<h2>Đảo Chiều Hướng -- Switch Direction<a class="headerlink" href="#switch-direction" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Armature ‣ Switch Direction</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-F</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This tool allows you to switch the direction of the selected bones
+(i.e. their root will become their tip, and vice versa).</p>
+<p>Switching the direction of a bone will generally break the chain(s) it belongs to.
+However, if you switch a whole (part of a) chain, the switched bones will still be parented/connected,
+but in &quot;reversed order&quot;. See the Fig. <a class="reference internal" href="#fig-rig-properties-switch"><span class="std std-ref">Switching example.</span></a>.</p>
+<span id="fig-rig-properties-switch"></span><table border="1" class="docutils" id="id14">
+<caption><span class="caption-text">Switching example.</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id15">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_switch-direction-1.png" src="../../../../_images/animation_armatures_bones_editing_transform_switch-direction-1.png" />
+<p class="caption"><span class="caption-text">An armature with one selected bone, and one selected chain of three bones, just before switching.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id16">
+<img alt="../../../../_images/animation_armatures_bones_editing_transform_switch-direction-2.png" src="../../../../_images/animation_armatures_bones_editing_transform_switch-direction-2.png" />
+<p class="caption"><span class="caption-text">The selected bones have been switched. Bone.005 is no more connected nor parented to anything.
+The chain of switched bones still exists, but reversed (now Bone.002 is its root, and Bone is its tip).
+Bone.003 is now a free bone.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bones.html" class="btn btn-neutral float-right" title="-- Editing Bones" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

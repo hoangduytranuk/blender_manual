@@ -1,0 +1,485 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Draw Brush &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/grease_pencil/modes/draw/tool_settings/brushes/draw_brush.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../../search.html" />
+    <link rel="next" title="Fill Brush" href="fill_brush.html" />
+    <link rel="prev" title="Circle Tool" href="../circle.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Grease Pencil</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../structure.html">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../primitives.html">Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../selecting.html">Selecting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../multiframe.html">Multiframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../properties/index.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modifiers/index.html">Grease Pencil Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../materials/index.html">Grease Pencil Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html#modes">Modes</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Grease Pencil Draw Mode</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tools.html">Drawing Tools</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">Tools Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../stroke_placement.html">Stroke Placement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../drawing_planes.html">Drawing Planes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../guides.html">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sculpting/index.html">Grease Pencil Sculpt Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../edit/index.html">Grease Pencil Edit Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../weight_paint/index.html">Grease Pencil Weight Paint Mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Grease Pencil</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Grease Pencil Draw Mode</a> &raquo;</li>
+        
+          <li><a href="../index.html">Tools Settings</a> &raquo;</li>
+        
+      <li>Draw Brush</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/grease_pencil/modes/draw/tool_settings/brushes/draw_brush.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="draw-brush">
+<h1>Draw Brush<a class="headerlink" href="#draw-brush" title="Permalink to this headline">¶</a></h1>
+<p>Draw brushes are the special type of brushes that uses <em>Grease Pencil</em> for drawing tools.
+The brush can be changed in the Tool Settings.</p>
+<p>The different draw brushes (pencil, Ink, marker, etc.) are settings variations of the same <em>Draw Brush</em>.
+you can create many brushes, each with unique settings
+to obtain different artistic result while drawing.</p>
+<div class="section" id="common-options">
+<h2>Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id1">
+<img alt="../../../../../_images/grease-pencil_modes_draw_brushes_draw-brush-data-block.png" src="../../../../../_images/grease-pencil_modes_draw_brushes_draw-brush-data-block.png" />
+<p class="caption"><span class="caption-text">Brush data-block panel.</span></p>
+</div>
+<dl class="docutils">
+<dt>Brush</dt>
+<dd><p class="first">The <a class="reference internal" href="../../../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> to select a preset brush type or a custom brush.</p>
+<dl class="last docutils">
+<dt>Add Brush</dt>
+<dd>When you add a brush, the new brush is a clone of the current one.</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">In order to save a custom brush, activate <em>Fake User</em>.</p>
+</div>
+<dl class="docutils">
+<dt>Radius</dt>
+<dd><p class="first">The radius of the brush in pixels.</p>
+<p><kbd class="kbd docutils literal notranslate">F</kbd> allows you to change the brush size interactively by dragging the mouse/pen or
+by typing a number then confirm.</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>Use Pressure (pressure sensitivity icon)</dt>
+<dd>Uses stylus pressure to control how strong the effect is.</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt>Strength</dt>
+<dd><p class="first">Control the stroke transparency (alpha).
+From totally transparent (0.0) to fully opaque (1.0).</p>
+<p>You can change the brush strength interactively by pressing <kbd class="kbd docutils literal notranslate">Shift-F</kbd>
+in the 3D View and then moving the mouse/pen and then <kbd class="kbd docutils literal notranslate">LMB</kbd>.
+You can also enter the size numerically.</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>Use Pressure (pressure sensitivity icon)</dt>
+<dd>Uses stylus pressure to control how strong the effect is.</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt>Input Samples</dt>
+<dd><p class="first">Controls how often the input device is read to generate points on the stroke.
+Higher values give a higher precision (more points) but produce an irregular stroke,
+while lower values give a lower precision (fewer points) but produce a soften stroke.
+(0 disabled extra input device samples.)</p>
+<p class="last">You have to set up this value according to your input device to obtain
+the right balance between accuracy and softness for your strokes.
+See <a class="reference internal" href="../../../../../getting_started/configuration/hardware.html"><span class="doc">Input Device</span></a> for more information.</p>
+</dd>
+<dt>Active Smooth</dt>
+<dd>The number of smoothing iterations to apply to the stroke while drawing.</dd>
+<dt>Angle</dt>
+<dd><p class="first">Direction of the input device that gives the maximum thickness to the stroke (0° for horizontal).</p>
+<dl class="last docutils">
+<dt>Factor</dt>
+<dd>Amount of thickness reduction when the stroke is perpendicular to the <em>Angle</em> value.</dd>
+</dl>
+</dd>
+<dt>Border Opacity Factor</dt>
+<dd><p class="first">Amount of transparency (alpha) to apply from the border of the point to the center.
+Works only when the brush is using stroke materials of <em>Dot</em> or <em>Box</em> style.</p>
+<dl class="last docutils">
+<dt>Aspect Ratio</dt>
+<dd><p class="first">Controls the width and height of the alpha gradient.</p>
+<p class="last">X, Y</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="section" id="post-processing">
+<h3>Post-Processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h3>
+<p>Post-processing methods that are executed on the strokes
+when you finished drawing, right after releasing the <kbd class="kbd docutils literal notranslate">LMB</kbd> or <kbd class="kbd docutils literal notranslate">Pen</kbd> tip.
+You can toggle the use of post-processing using the checkbox in the section panel header.</p>
+<dl class="docutils">
+<dt>Smooth</dt>
+<dd><p class="first">Strength of smoothing process on the points location along the stroke.</p>
+<dl class="last docutils">
+<dt>Iterations</dt>
+<dd>The number of smoothing iterations to apply to the stroke.</dd>
+</dl>
+</dd>
+<dt>Smooth Thickness</dt>
+<dd><p class="first">Strength of smoothing process on the points thickness along the stroke.</p>
+<dl class="last docutils">
+<dt>Iterations</dt>
+<dd>The number of smoothing iterations to apply to the stroke.</dd>
+</dl>
+</dd>
+<dt>Subdivision Steps</dt>
+<dd><p class="first">Number of subdivisions to apply to newly created strokes.</p>
+<dl class="last docutils">
+<dt>Randomness</dt>
+<dd>Amount of randomness to apply on the points location after subdivision.</dd>
+</dl>
+</dd>
+<dt>Simplify</dt>
+<dd>Reduces final points numbers in the stroke with an adaptive algorithm.</dd>
+<dt>Trim Strokes End</dt>
+<dd>Automatically trim intersection strokes ends.</dd>
+</dl>
+</div>
+<div class="section" id="stabilizer">
+<span id="bpy-types-brush-smooth-stroke"></span><span id="bpy-types-brushgpencilsettings-use-settings-stabilizer"></span><span id="grease-pencil-draw-brushes-stabilizer"></span><h3>Stabilizer<a class="headerlink" href="#stabilizer" title="Permalink to this headline">¶</a></h3>
+<p>Stabilizer helps to reduce jitter of the strokes while drawing by
+delaying and correcting the location of points.
+You can toggle the use of stabilizer using the checkbox in the section panel header.</p>
+<dl class="docutils">
+<dt>Radius</dt>
+<dd>Minimum distance from the last point before the stroke continues.</dd>
+<dt>Factor</dt>
+<dd>A smooth factor, where higher values result in smoother strokes but the drawing sensation
+feels like as if you were pulling the stroke.</dd>
+</dl>
+</div>
+<div class="section" id="randomize">
+<span id="bpy-types-brushgpencilsettings-use-jitter-pressure"></span><span id="bpy-types-brushgpencilsettings-pen-jitter"></span><span id="bpy-types-brushgpencilsettings-uv-random"></span><span id="bpy-types-brushgpencilsettings-random"></span><span id="bpy-types-brushgpencilsettings-use-settings-random"></span><h3>Randomize<a class="headerlink" href="#randomize" title="Permalink to this headline">¶</a></h3>
+<p>Adds randomness to the points' position along the stroke.
+You can toggle the use of Randomize using the checkbox in the section panel header.</p>
+<dl class="docutils">
+<dt>Pressure</dt>
+<dd>The amount of randomness to apply using the pressure of the input device.</dd>
+<dt>Strength</dt>
+<dd>The amount of randomness to apply to the stroke strength value (alpha).</dd>
+<dt>UV</dt>
+<dd>The amount of randomness to apply to the UV rotation.</dd>
+<dt>Jitter</dt>
+<dd><p class="first">The amount of jittering to add to the stroke.</p>
+<dl class="last docutils">
+<dt>Use Pressure (pressure sensitivity icon)</dt>
+<dd>Uses the stylus pressure to control how strong the effect is.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="curves">
+<h2>Curves<a class="headerlink" href="#curves" title="Permalink to this headline">¶</a></h2>
+<p>For more precise control on some strokes properties you can use
+a <a class="reference internal" href="../../../../../interface/controls/templates/curve.html"><span class="doc">curve widget</span></a>.</p>
+<dl class="docutils">
+<dt>Sensitivity</dt>
+<dd>Controls the sensitivity of the input device.</dd>
+<dt>Strength</dt>
+<dd>Controls the stroke strength (alpha).</dd>
+<dt>Jitter</dt>
+<dd>Controls the jitter amount on the stroke.</dd>
+</dl>
+</div>
+<div class="section" id="display">
+<h2>Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Icon</dt>
+<dd>Sets a predefined icon to use.</dd>
+<dt>Custom Icon</dt>
+<dd><p class="first">Allows definition of a custom brush icon.</p>
+<dl class="last docutils">
+<dt>Image Path</dt>
+<dd>Defines the path to the image to use as custom icon.</dd>
+</dl>
+</dd>
+<dt>Show Brush</dt>
+<dd>Shows the brush shape in the viewport.</dd>
+<dt>Show fill color while drawing</dt>
+<dd>Shows the brush linked material color in the viewport.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fill_brush.html" class="btn btn-neutral float-right" title="Fill Brush" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../circle.html" class="btn btn-neutral float-left" title="Circle Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/texture_node/types/color/combine_separate.rst">
+ <comment xml:space="preserve">
+  DO NOT EDIT FILE. This is simply a stub which copies everything from the link below.
+ </comment>
+ <target refid="bpy-types-compositornodesep">
+ </target>
+ <target ids="['bpy-types-compositornodecomb', 'bpy-types-compositornodesep']" names="['bpy.types.compositornodecomb', 'bpy.types.compositornodesep']">
+ </target>
+ <comment xml:space="preserve">
+  Editors Note: This page gets copied into :doc:`
+ </comment>
+</document>
+`
+<comment xml:space="preserve">
+ --- copy below this line ---
+</comment>
+<section ids="combine-separate-nodes" names="combine/separate\ nodes nút\ kết\ hợp/phân\ tách\ --\ combine/separate\ nodes">
+ <title>
+  Nút Kết Hợp/Phân Tách -- Combine/Separate Nodes
+ </title>
+ <paragraph>
+  Tất cả các nút này thực chất ra đều giống nhau:
+ </paragraph>
+ <bullet_list bullet="-">
+  <list_item>
+   <paragraph>
+    Tách Phân: Chia hình ảnh ra thành các kênh màu tổng hợp của nó.
+   </paragraph>
+  </list_item>
+  <list_item>
+   <paragraph>
+    Kết hợp: Tái/Kết hợp một hình ảnh từ các kênh màu tổng hợp của nó.
+   </paragraph>
+  </list_item>
+ </bullet_list>
+ <paragraph>
+  Các nút này có thể được sử dụng để thao tác từng kênh màu một, một cách độc lập. Mỗi thể loại sẽ được phân biệt trong
+  <reference internal="True" refuri="../../../../glossary/index.html#term-color-space">
+   <inline classes="xref std std-term">
+    color space
+   </inline>
+  </reference>
+  . áp dụng.
+ </paragraph>
+ <paragraph>
+  Trong bối cảnh tổng hợp và chất liệu, mỗi nút đều có hỗ trợ kênh Alpha, song trong bối cảnh chất liệu, chỉ có không gian màu RGB là có thể sử dụng được (không có Alpha). Trong bối cảnh tô bóng của Blender nội tại (Blender internal), bạn còn có thể làm việc với HSV (trong cách phân màu thành các thành phần về Sắc Thái (Hue), Độ Bão Hòa (Saturation), Giá Trị (Value), viết tắt là HSV), và trong tô bóng Cycles, làm việc với cặp nút HSV, XYZ để kết hợp/tách phân một véctơ (XYZ) (hai cách để biểu thị màu sắc khác nhau).
+ </paragraph>
+ <paragraph>
+  Các nút Kết Hợp (Combine) cũng có thể được sử dụng để nhập các đơn giá trị màu sắc. Đối với không gian màu RGBA và HSVA, bạn nên sử dụng
+  <reference internal="True" refuri="../../../../compositing/types/input/rgb.html">
+   <inline classes="doc">
+    Nút RGB -- RGB Node
+   </inline>
+  </reference>
+  . Một số thao tác phổ biến có thể dễ dàng được thi hành hơn với
+  <reference internal="True" refuri="../../../../compositing/types/color/index.html">
+   <inline classes="doc">
+    Nút Màu Sắc -- Color Nodes
+   </inline>
+  </reference>
+  .
+ </paragraph>
+ <section ids="separate-combine-rgba-nodes" names="separate/combine\ rgba\ nodes nút\ phân\ tách/kết\ hợp\ rgba\ --\ separate/combine\ rgba\ nodes">
+  <title>
+   Nút Phân Tách/Kết Hợp RGBA -- Separate/Combine RGBA Nodes
+  </title>
+  <figure align="right" ids="id8">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeCombRGBA.png'}" uri="images/compositing_node-types_CompositorNodeCombRGBA.png"/>
+   <caption>
+    Nút Kết Hợp RGBA.
+   </caption>
+  </figure>
+  <figure align="right" ids="id9">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeSepRGBA.png'}" uri="images/compositing_node-types_CompositorNodeSepRGBA.png"/>
+   <caption>
+    Nút Phân Tách RGBA.
+   </caption>
+  </figure>
+  <section dupnames="input/output" ids="input-output" names="đầu\ vào/ra\ --\ input/output">
+   <title>
+    Đầu Vào/Ra -- Input/Output
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào/ra hình ảnh chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      R (Đỏ) -- R (Red)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      G (Xanh Lục) -- G (Green)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      B (Blue)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      A (Alpha)
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section dupnames="properties" ids="properties" names="tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Nút này không có tính chất nào cả.
+   </paragraph>
+  </section>
+  <section dupnames="examples" ids="examples" names="ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id10">
+    <image candidates="{'*': 'images/compositing_types_converter_combine-separate_example-combine-rgba.png'}" uri="images/compositing_types_converter_combine-separate_example-combine-rgba.png" width="640px"/>
+    <caption>
+     Một ví dụ về làm nhòe mờ kênh alpha.
+    </caption>
+   </figure>
+   <paragraph>
+    Trong ví dụ đầu tiên này, chúng ta lấy kênh Alpha và làm mờ nó đi, sau đó kết hợp màu sắc trở lại. Khi được đặt trong một cảnh, các cạnh của nó sẽ hòa nhập vào, không còn là một cạnh cứng nữa. Điều này gần giống như phương pháp chống răng cưa nhưng theo nghĩa ba chiều. Hãy sử dụng thiết lập nút như thế này khi lồng phần tử Đồ Họa Máy Tính (Computer Graphics, viết tắt là CG) vào hành động trực tuyến (lồng phim và mô hình máy tính), để xóa mọi cạnh cứng đi. Hoạt hình hiệu ứng này trên phạm vi rộng hơn sẽ làm cho vật thể xuất hiện như được Chuyển Thờivào/ra (chuyển dần vào/ra : phase in and out), như trong hiệu ứng đồng bộ hóa du hành xuyên thời gian, Xuất Thời(out-of-phase)
+   </paragraph>
+  </section>
+ </section>
+ <section ids="separate-combine-hsva-nodes" names="separate/combine\ hsva\ nodes nút\ phân\ tách/kết\ hợp\ hsva\ --\ separate/combine\ hsva\ nodes">
+  <title>
+   Nút Phân Tách/Kết Hợp HSVA -- Separate/Combine HSVA Nodes
+  </title>
+  <figure align="right" ids="id11">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeCombHSVA.png'}" uri="images/compositing_node-types_CompositorNodeCombHSVA.png"/>
+   <caption>
+    Nút Kết Hợp HSVA.
+   </caption>
+  </figure>
+  <figure align="right" ids="id12">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeSepHSVA.png'}" uri="images/compositing_node-types_CompositorNodeSepHSVA.png"/>
+   <caption>
+    Nút Phân Tách HSVA.
+   </caption>
+  </figure>
+  <section dupnames="input/output" ids="id1" names="đầu\ vào/ra\ --\ input/output">
+   <title>
+    Đầu Vào/Ra -- Input/Output
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào/ra hình ảnh chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      H (Sắc) -- H (Hue)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      S (Độ Bão Hòa) -- S (Saturation)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      V (Giá Trị) -- V (Value)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      A (Alpha)
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section dupnames="properties" ids="id2" names="tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Nút này không có tính chất nào cả.
+   </paragraph>
+  </section>
+ </section>
+ <section ids="separate-combine-yuva-nodes" names="separate/combine\ yuva\ nodes nút\ phân\ tách/kết\ hợp\ yuva\ --\ separate/combine\ yuva\ nodes">
+  <title>
+   Nút Phân Tách/Kết Hợp YUVA -- Separate/Combine YUVA Nodes
+  </title>
+  <figure align="right" ids="id13">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeCombYUVA.png'}" uri="images/compositing_node-types_CompositorNodeCombYUVA.png"/>
+   <caption>
+    Nút Kết Hợp YUVA.
+   </caption>
+  </figure>
+  <figure align="right" ids="id14">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeSepYUVA.png'}" uri="images/compositing_node-types_CompositorNodeSepYUVA.png"/>
+   <caption>
+    Nút Phân Tách YUVA.
+   </caption>
+  </figure>
+  <section dupnames="input/output" ids="id3" names="đầu\ vào/ra\ --\ input/output">
+   <title>
+    Đầu Vào/Ra -- Input/Output
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào/ra hình ảnh chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Y (Độ Sáng) -- Y (Luminance)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      U (U độ màu) -- U (U chrominance)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      V (V Độ Màu) -- V (V chrominance)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      A (Alpha)
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section dupnames="properties" ids="id4" names="tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <paragraph>
+    Nút này không có tính chất nào cả.
+   </paragraph>
+  </section>
+ </section>
+ <section ids="separate-combine-ycbcra-node" names="separate/combine\ ycbcra\ node nút\ phân\ tách/kết\ hợp\ ycbcra\ --\ separate/combine\ ycbcra\ node">
+  <title>
+   Nút Phân Tách/Kết Hợp YCbCrA -- Separate/Combine YCbCrA Node
+  </title>
+  <figure align="right" ids="id15">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeCombYCCA.png'}" uri="images/compositing_node-types_CompositorNodeCombYCCA.png"/>
+   <caption>
+    Nút Kết Hợp YCbCrA.
+   </caption>
+  </figure>
+  <figure align="right" ids="id16">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeSepYCCA.png'}" uri="images/compositing_node-types_CompositorNodeSepYCCA.png"/>
+   <caption>
+    Nút Phân Tách YCbCrA.
+   </caption>
+  </figure>
+  <section dupnames="input/output" ids="id5" names="đầu\ vào/ra\ --\ input/output">
+   <title>
+    Đầu Vào/Ra -- Input/Output
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào/ra hình ảnh chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Y (Độ Sáng) -- Y (Luminance)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Màu Xanh Lam -- Cb (Chrominance Blue)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Màu Đỏ -- Cr (Chrominance Red)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      A (Alpha)
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section dupnames="properties" ids="id6" names="tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chế Độ -- Mode
+     </term>
+     <definition>
+      <paragraph>
+       ITU 601, ITU 709, Jpeg
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section dupnames="examples" ids="id7" names="ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id17">
+    <image candidates="{'*': 'images/compositing_types_converter_math_multiply.png'}" uri="images/compositing_types_converter_math_multiply.png"/>
+    <caption>
+     Một ví dụ về việc tỷ lệ hóa kênh về Độ Sáng (Luminance).
+    </caption>
+   </figure>
+   <paragraph>
+    Ví dụ này dùng nút
+    <emphasis>
+     Toán (Nhân)
+    </emphasis>
+    (Math (Multiply)) để tăng kênh độ sáng (Y) của hình ảnh, để làm cho nó sáng hơn.
+   </paragraph>
+   <tip>
+    <paragraph>
+     Nếu thông nối các kênh này qua nút
+     <emphasis>
+      Dốc Màu
+     </emphasis>
+     (Color Ramp) để điều chỉnh giá trị, thì hãy sử dụng thang đo Chính (Cardinal scale) để biểu đạt được chính xác. Sử dụng thang đo Lũy Thừa (Exponential scale) trên kênh độ sáng (luminance channel) để đạt được hiệu ứng tương phản cao.
+    </paragraph>
+   </tip>
+  </section>
+ </section>
+</section>

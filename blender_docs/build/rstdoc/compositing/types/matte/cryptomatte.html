@@ -1,0 +1,194 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/matte/cryptomatte.rst">
+ <section ids="cryptomatte" names="cryptomatte">
+  <title>
+   Cryptomatte
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeCryptomatte.png'}" uri="images/compositing_node-types_CompositorNodeCryptomatte.png"/>
+   <caption>
+    Cryptomatte Node.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Cryptomatte
+   </emphasis>
+   node uses the Cryptomatte standard to efficiently create mattes for compositing.
+Cycles outputs the required render passes, which can then be used in the compositor
+or another compositor with Cryptomatte support to create masks for specified objects.
+  </paragraph>
+  <paragraph>
+   Unlike the Material and Object Index passes, the objects to isolate are selected in compositing,
+and mattes will be anti-aliased and take into account effects like motion blur and transparency.
+  </paragraph>
+  <section ids="inputs" names="inputs">
+   <title>
+    Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Image
+     </term>
+     <definition>
+      <paragraph>
+       Standard image input.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Crypto Passes
+     </term>
+     <definition>
+      <paragraph>
+       Each crypto layer will be given its own render pass;
+each of these render passes must be connected to one of these crypto layer inputs.
+By default there are only four layers, see
+       <reference name="Adding/Removing Layers" refid="adding-removing-layers">
+        Adding/Removing Layers
+       </reference>
+       to add more.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties">
+   <title>
+    Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Add/Remove
+     </term>
+     <definition>
+      <paragraph>
+       Adds/Removes an object or material from matte, by picking a color from the
+       <emphasis>
+        Pick
+       </emphasis>
+       output.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Matte ID
+     </term>
+     <definition>
+      <paragraph>
+       List of object and material crypto IDs to include in matte.
+This can be used for example to quickly clear all mattes by deleting the text
+or used to copy-and-paste crypto IDs from other software.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs">
+   <title>
+    Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Image
+     </term>
+     <definition>
+      <paragraph>
+       A colored output of the input image with the matte applied to only include selected layers.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Matte
+     </term>
+     <definition>
+      <paragraph>
+       A black-and-white alpha mask of the all the selected crypto layers.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pick
+     </term>
+     <definition>
+      <paragraph>
+       A colored representation of the Cryptomatte pass which can be used
+with a viewer node to select which crypto passes are used to create the matte image.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="usage" names="usage">
+   <title>
+    Usage
+   </title>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Enable Cryptomatte Object render pass in the Passes panel, and render.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In the compositing nodes, create a Cryptomatte node and
+link the Render Layer matching Image and Cryptomatte passes to it.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Attach a Viewer node to the Pick output of the Cryptomatte node.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Use the Cryptomatte Add/Remove button to sample objects in the Pick Viewer node.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Use the Matte output of the Cryptomatte node to get the alpha mask.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <section ids="adding-removing-layers" names="adding/removing\ layers">
+    <title>
+     Adding/Removing Layers
+    </title>
+    <paragraph>
+     By default there are only four crypto layers available as inputs to the Cryptomatte node.
+You can add or remove layer inputs through
+     <inline classes="menuselection" rawtext=":menuselection:`Sidebar --&gt; Item --&gt; Properties --&gt; Add/Remove Crypto Layer`">
+      Sidebar ‣ Item ‣ Properties ‣ Add/Remove Crypto Layer
+     </inline>
+     .
+These operators will add/remove layers from the bottom of the pass inputs.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="example" names="example">
+   <title>
+    Example
+   </title>
+   <paragraph>
+    In the example below, you can see the pass output on the right side.
+On the left side you can see a couple of objects that were selected through the
+    <emphasis>
+     Cryptomatte
+    </emphasis>
+    node.
+Notice how the cube on the left has a sphere shaped cut-out from a sphere that was not selected in the node.
+   </paragraph>
+   <figure>
+    <image candidates="{'*': 'images/compositing_types_matte_cryptomatte_example.png'}" uri="images/compositing_types_matte_cryptomatte_example.png"/>
+   </figure>
+  </section>
+ </section>
+</document>

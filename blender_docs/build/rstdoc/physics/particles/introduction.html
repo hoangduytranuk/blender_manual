@@ -1,0 +1,141 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/particles/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Particles are lots of items emitted from mesh objects, typically in the thousands.
+Each particle can be a point of light or a mesh, and be joined or dynamic.
+They may react to many different influences and forces, and have the notion of a lifespan.
+Dynamic particles can represent fire, smoke, mist,
+and other things such as dust or magic spells.
+  </paragraph>
+  <paragraph>
+   <reference internal="True" refuri="hair/index.html">
+    <inline classes="doc">
+     Hair
+    </inline>
+   </reference>
+   type particles are a subset of regular particles.
+Hair systems form curves that can represent hair, fur, grass and bristles.
+  </paragraph>
+  <paragraph>
+   You see particles as a Particle Modifier,
+but all settings are done in the
+   <emphasis>
+    Particle tab
+   </emphasis>
+   .
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/physics_particles_introduction_fur-example.jpg'}" uri="images/physics_particles_introduction_fur-example.jpg" width="300px"/>
+   <caption>
+    Some fur made from particles.
+   </caption>
+  </figure>
+  <paragraph>
+   Particles generally flow out from their mesh into space.
+Their movement can be affected by many things, including:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     Initial velocity out from the mesh.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Movement of the emitter (vertex, face or object) itself.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Movement according to "gravity" or "air resistance".
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Influence of force fields like wind, vortexes or guided along a curve.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Interaction with other objects like collisions.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Partially intelligent members of a flock (herd, school, ...),
+that react to other members of their flock, while trying to reach a target or avoid predators.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Smooth motion with soft body physics (only
+     <emphasis>
+      Hair
+     </emphasis>
+     particle systems).
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Or even manual transformation with
+     <reference internal="True" refuri="../../modeling/modifiers/deform/lattice.html">
+      <inline classes="doc">
+       Lattices
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <paragraph>
+   Particles may be rendered as:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     <reference internal="True" refuri="emitter/render.html#particle-halo">
+      <inline classes="std std-ref">
+       Halos
+      </inline>
+     </reference>
+     (for Flames, Smoke, Clouds).
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Meshes which in turn may be animated (e.g. fish, bees, ...).
+In these cases, each particle "carries" another object.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <reference internal="True" refuri="hair/shape.html">
+      <inline classes="doc">
+       Hair curves
+      </inline>
+     </reference>
+     , following the path of the particle.
+These hair curves can be manipulated in the 3D View (combing, adding, cutting, moving, etc.).
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <paragraph>
+   Every object may carry many particle systems. Each particle system may contain up to
+10.000.000 particles. Certain particle types (
+   <emphasis>
+    Hair
+   </emphasis>
+   and
+   <emphasis>
+    Keyed
+   </emphasis>
+   )
+may have up to 10.000 children for each particle
+(children move and emit more or less like their respective parents).
+The size of your memory and your patience are your practical boundaries.
+  </paragraph>
+ </section>
+</document>

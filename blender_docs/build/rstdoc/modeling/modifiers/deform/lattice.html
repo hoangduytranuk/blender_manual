@@ -1,0 +1,155 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/deform/lattice.rst">
+ <target refid="bpy-types-latticemodifier">
+ </target>
+ <section ids="lattice-modifier bpy-types-latticemodifier" names="lattice\ modifier bộ\ điều\ chỉnh\ giàn\ lưới\ --\ lattice\ modifier bpy.types.latticemodifier">
+  <title>
+   Bộ Điều Chỉnh Giàn Lưới -- Lattice Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Lattice
+   </emphasis>
+   modifier deforms the base object according to
+the shape of a
+   <reference internal="True" refuri="../../../animation/lattice.html">
+    <inline classes="doc">
+     Lattice
+    </inline>
+   </reference>
+   object.
+Objects to be deformed can be meshes, curves,
+surfaces, text, lattices and even particles.
+  </paragraph>
+  <tip>
+   <paragraph>
+    A
+    <emphasis>
+     Lattice
+    </emphasis>
+    modifier can quickly be added to selected objects by
+    <reference internal="True" refuri="../../../scene_layout/object/properties/relations/parents.html#bpy-ops-object-parent-set">
+     <inline classes="std std-ref">
+      parenting
+     </inline>
+    </reference>
+    them using the
+    <emphasis>
+     Lattice Deform
+    </emphasis>
+    option.
+   </paragraph>
+  </tip>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_deform_lattice_panel.png'}" uri="images/modeling_modifiers_deform_lattice_panel.png"/>
+    <caption>
+     The Lattice modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vật Thể -- Object
+     </term>
+     <definition>
+      <paragraph>
+       The
+       <reference internal="True" refuri="../../../animation/lattice.html">
+        <inline classes="doc">
+         Lattice
+        </inline>
+       </reference>
+       object with which to deform the base object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhóm Điểm Đỉnh -- Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       An optional vertex group name which lets you limit the modifier's effect to a part of the base mesh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sức Mạnh/Cường Độ -- Strength
+     </term>
+     <definition>
+      <paragraph>
+       A factor to control blending between original and deformed vertex positions.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="hints" names="hints gợi\ ý\ --\ hints">
+   <title>
+    Gợi ý -- Hints
+   </title>
+   <paragraph>
+    Why would you use a lattice to deform a mesh instead of deforming the mesh itself in Edit Mode?
+There are a couple of reasons for that:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      If your object has a large number of vertices, it would be difficult to edit portions of it quickly in Edit Mode.
+Using a lattice will allow you to deform large portions efficiently.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The smooth deformation you get from a
+      <emphasis>
+       Lattice
+      </emphasis>
+      modifier can be hard to achieve manually.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Multiple objects can use the same lattice, thus allowing you to edit multiple objects at once.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Like all modifiers, it is non-destructive. Meaning all changes happen on top of the original geometry,
+which you can still go back to and edit without affecting the deformation.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      A lattice does not affect the texture coordinates of a mesh's surface.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <note>
+    <paragraph>
+     When using a lattice to deform particles, order in the
+     <reference internal="True" refuri="../introduction.html#modifier-stack">
+      <inline classes="std std-ref">
+       modifier stack
+      </inline>
+     </reference>
+     matters.
+You need to place the
+     <emphasis>
+      Lattice
+     </emphasis>
+     modifier after the
+     <emphasis>
+      Particle System
+     </emphasis>
+     one.
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

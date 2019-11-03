@@ -1,0 +1,188 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/cycles/object_settings/adaptive_subdiv.rst">
+ <target refid="render-cycles-settings-object-subdivision">
+ </target>
+ <target refid="bpy-types-cyclesobjectsettings-use-adaptive-subdivision">
+ </target>
+ <target refid="bpy-types-cyclesobjectsettings-dicing-rate">
+ </target>
+ <section ids="adaptive-subdivision bpy-types-cyclesobjectsettings-dicing-rate bpy-types-cyclesobjectsettings-use-adaptive-subdivision render-cycles-settings-object-subdivision" names="adaptive\ subdivision --\ adaptive\ subdivision bpy.types.cyclesobjectsettings.dicing_rate bpy.types.cyclesobjectsettings.use_adaptive_subdivision render-cycles-settings-object-subdivision">
+  <title>
+   -- Adaptive Subdivision
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Bộ Điều Chỉnh (Modifier) --&gt; Phân Hóa Bề Mặt (Subdivision Surface)`">
+        Bộ Điều Chỉnh (Modifier) ‣ Phân Hóa Bề Mặt (Subdivision Surface)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <note>
+   <paragraph>
+    Implementation not finished yet, marked as an
+    <reference internal="True" refuri="../features.html#cycles-experimental-features">
+     <inline classes="std std-ref">
+      Experimental Feature Set
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </note>
+  <paragraph>
+   When using the
+   <emphasis>
+    Experimental Feature Set
+   </emphasis>
+   the
+   <reference internal="True" refuri="../../../modeling/modifiers/generate/subdivision_surface.html">
+    <inline classes="doc">
+     Subdivision Surface Modifier
+    </inline>
+   </reference>
+   gets changed to control the subdivision of a mesh at the time of rendering.
+For this, all the other settings are the same except the
+   <emphasis>
+    View
+   </emphasis>
+   and
+   <emphasis>
+    Render
+   </emphasis>
+   settings.
+These previously mentioned settings get removed/renamed and the following settings are added:
+  </paragraph>
+  <rubric>
+   Duyệt Thảo -- Preview
+  </rubric>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Mức Độ -- Levels
+    </term>
+    <definition>
+     <paragraph>
+      The levels of subdivision to see in the 3D View,
+this works the same as the
+      <emphasis>
+       View
+      </emphasis>
+      setting on the original
+      <emphasis>
+       Subdivision Modifier
+      </emphasis>
+      .
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <rubric>
+   Kết Xuất -- Render
+  </rubric>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Tùy Ứng -- Adaptive
+    </term>
+    <definition>
+     <paragraph>
+      Use OpenSubdiv to give different subdivision levels to near and far objects automatically.
+This allows nearer objects to get more subdivisions and far objects to get less.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Tần Số Phân Hóa -- Dicing Rate
+       </term>
+       <definition>
+        <paragraph>
+         When using
+         <emphasis>
+          Adaptive
+         </emphasis>
+         the
+         <emphasis>
+          Render Levels
+         </emphasis>
+         property gets changed to
+         <emphasis>
+          Dicing Rate
+         </emphasis>
+         ,
+this property is used to multiply the
+         <reference internal="True" refuri="../render_settings/subdivision.html#cycles-subdivision-rate">
+          <inline classes="std std-ref">
+           scene dicing rate
+          </inline>
+         </reference>
+         .
+        </paragraph>
+        <figure ids="id1">
+         <image candidates="{'*': 'images/render_cycles_object-settings_adaptive-subdiv_displacement-dicing.png'}" uri="images/render_cycles_object-settings_adaptive-subdiv_displacement-dicing.png"/>
+         <caption>
+          Subdivision Off/On, Dicing Rate: 1.0 - 0.3 - 0.05 (monkeys look identical in viewport, no modifiers).
+         </caption>
+        </figure>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Mức Độ -- Levels
+    </term>
+    <definition>
+     <paragraph>
+      The levels of subdivision to see in the final render,
+this works the same as the
+      <emphasis>
+       Render
+      </emphasis>
+      setting on the original
+      <emphasis>
+       Subdivision Modifier
+      </emphasis>
+      .
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <section ids="known-limitations" names="known\ limitations những\ hạn\ chế\ từng\ biết\ đến\ --\ known\ limitations">
+   <title>
+    Những Hạn Chế Từng Biết Đến -- Known Limitations
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Multi-user object data are currently made single users, leading to increased memory usage.
+For those it is better to use non-adaptive subdivision still.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Multi-view renders can have some inconsistencies between views.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <warning>
+    <paragraph>
+     Instances are not tessellated individually.
+Instead, the original object is tessellated and then duplicated on all instances.
+To take advantage of both adaptive subdivision and instancing you should place
+the original object at the position of the instance that is closest from the camera.
+    </paragraph>
+   </warning>
+  </section>
+ </section>
+</document>

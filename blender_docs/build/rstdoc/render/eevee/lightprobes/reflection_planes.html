@@ -1,0 +1,171 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/eevee/lightprobes/reflection_planes.rst">
+ <section ids="reflection-planes" names="reflection\ planes mặt\ phẳng\ phản\ quang\ --\ reflection\ planes">
+  <title>
+   Mặt Phẳng Phản Quang -- Reflection Planes
+  </title>
+  <paragraph>
+   These special types of Probe object are suited to smooth planar surfaces.
+They basically capture the whole scene with a flipped camera.
+  </paragraph>
+  <paragraph>
+   Using reflection planes is really heavy on the render time
+because the scene needs to be rendered as many times as there is Reflection Planes in the view.
+  </paragraph>
+  <paragraph>
+   Unless Screen Space Reflection is enabled,
+Reflection Planes only work on specular surfaces that have their roughness around 0.
+  </paragraph>
+  <paragraph>
+   If Screen Space Reflection is enabled, Reflection Planes will serve as support buffers.
+This accelerates the tracing process and completes the missing data from the view space.
+This also make reflection more correct for the affected surface that have medium roughness and
+disturbed normals (i.e. normal maps).
+  </paragraph>
+  <note>
+   <paragraph>
+    Subsurface Scattering, Screen Space Reflections and
+Volumetrics are not supported inside Reflection Plane's reflection.
+   </paragraph>
+  </note>
+  <section ids="placement" names="placement định\ vị\ --\ placement">
+   <title>
+    Định Vị -- Placement
+   </title>
+   <paragraph>
+    If Backface Culling is not enabled, snapping the Reflection Plane to the planar surface
+will effectively capture the underside of the surface.
+   </paragraph>
+   <paragraph>
+    You can manually move the Reflection Plane above the surface enough for it to not appear in the capture.
+Alternatively you can put a floor object inside a collection and
+use this collection as a Visibility Collection (inverted) inside the Reflection Plane's probe settings.
+   </paragraph>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Dữ Liệu Vật Thể (Object Data) --&gt; Thăm Dò (Probe)`">
+         Dữ Liệu Vật Thể (Object Data) ‣ Thăm Dò (Probe)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Khoảng Cách -- Distance
+     </term>
+     <definition>
+      <paragraph>
+       A probe object only influences the lighting of nearby surfaces.
+This influence zone is defined by the Distance parameter and object scaling.
+The influence distance varies is a bit, depending on the probe type.
+      </paragraph>
+      <paragraph>
+       For Reflection Planes the influence distance is the distance from the plane.
+Only surfaces whose normals are aligned with the Reflection Plane will receive the captured reflection.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Suy Giảm Dần -- Falloff
+     </term>
+     <definition>
+      <paragraph>
+       Percentage of the influence distance during which the influence of a probe fades linearly.
+Also defines how much shading normals needs to be aligned with the plane to receive reflections.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển của vùng Cắt/Xén -- Clipping Offset
+     </term>
+     <definition>
+      <paragraph>
+       Xác định khoảng cách điểm cắt xén ở gần nằm bên dưới mặt phẳng là bao xa khi nắm bắt cảnh trí. Tăng lượng này lên có thể sửa được các vấn đề về sự tiếp xúc của ánh phản quang.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tầm Nhìn của Tổ Hợp -- Visibility Collection
+     </term>
+     <definition>
+      <paragraph>
+       In some cases, it is useful to limit which objects appear in the light probe's captured lighting.
+For instance, an object that is too close to a capture point might be better excluded.
+This is what the visibility collection does.
+Only objects that are in this collection will be visible when this probe will capture the scene.
+      </paragraph>
+      <paragraph>
+       Ngoài ra còn có một tùy chọn để đảo ngược hành vi này và ẩn các đối tượng bên trong bộ sưu tập này một cách hiệu quả.
+      </paragraph>
+      <note>
+       <paragraph>
+        This is only a filtering option.
+That means that if an object is not visible at render time it won't be visible during the probe render.
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="viewport-display" names="viewport\ display hiển\ thị\ của\ khung\ nhìn\ --\ viewport\ display">
+   <title>
+    Hiển Thị của Khung Nhìn -- Viewport Display
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Dữ Liệu Vật Thể (Object Data) --&gt; Hiển Thị của Khung Nhìn (Viewport Display)`">
+         Dữ Liệu Vật Thể (Object Data) ‣ Hiển Thị của Khung Nhìn (Viewport Display)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Kích Thước của Mũi Tên -- Arrow Size
+     </term>
+     <definition>
+      <paragraph>
+       Kích thước của mũi tên biểu thị pháp tuyến của mặt phẳng phản quang
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Show Preview Plane
+     </term>
+     <definition>
+      <paragraph>
+       Show the captured reflected image onto a fully reflective plane in the 3D View.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

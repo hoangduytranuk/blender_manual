@@ -1,0 +1,83 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/surfaces/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Curves are 2D objects, and surfaces are their 3D extension.
+Note however, that in Blender, you only have NURBS surfaces,
+no Bézier (you have the
+   <emphasis>
+    Bézier
+   </emphasis>
+   knot type, though; see below),
+nor polygonal (but for these, you have meshes!).
+Even though curves and surfaces share the same object type (with texts also...),
+they are not the same thing; for example,
+you cannot have in the same object both curves and surfaces.
+  </paragraph>
+  <target refid="fig-surface-intro-surface">
+  </target>
+  <figure ids="id1 fig-surface-intro-surface" names="fig-surface-intro-surface">
+   <image candidates="{'*': 'images/modeling_surfaces_introduction_nurbs-surface.png'}" uri="images/modeling_surfaces_introduction_nurbs-surface.png"/>
+   <caption>
+    NURBS surface in Edit Mode.
+   </caption>
+  </figure>
+  <paragraph>
+   As surfaces are 2D, they have two interpolation axes, U (as for curves) and V.
+It is important to understand that you can control the interpolation rules (knot, order, resolution)
+   <emphasis>
+    independently
+   </emphasis>
+   for each of these two dimensions
+(the U and V fields for all these settings, of course).
+  </paragraph>
+  <paragraph>
+   You may ask yourself "but the surface appears to be 3D, why is it only 2D?".
+In order to be 3D, the object needs to have "Volume", and a surface, even when it is closed,
+does not have volume; it is infinitely thin.
+If it had a volume the surface would have a thickness (its third dimension). Hence,
+it is only a 2D object, and has only two interpolation dimensions or axes or coordinates
+(if you know a bit of math, think of non-Euclidean geometry -- well,
+surfaces are just non-Euclidean 2D planes...). To take a more "real-world" example,
+you can roll a sheet of paper to create a cylinder; well, even if it becomes a "volume",
+the sheet itself will remain a (nearly...) 2D object!
+  </paragraph>
+  <paragraph>
+   In fact, surfaces are very similar to the results you get when
+   <reference internal="True" refuri="../curves/properties/geometry.html">
+    <inline classes="doc">
+     extruding a curve
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <section ids="visualization" names="visualization hình\ dung\ --\ visualization">
+   <title>
+    Hình Dung -- Visualization
+   </title>
+   <paragraph>
+    There is nearly no difference from NURBS curves,
+except that the U direction is indicated by yellow grid lines,
+and the V one is materialized by pink grid lines, as you can see in
+Fig.
+    <reference internal="True" refid="fig-surface-intro-surface">
+     <inline classes="std std-ref">
+      NURBS surface in Edit Mode.
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <paragraph>
+    You can
+    <reference internal="True" refuri="../curves/editing/curve.html#curves-show-hide">
+     <inline classes="std std-ref">
+      hide and reveal
+     </inline>
+    </reference>
+    control points just as with curves.
+   </paragraph>
+  </section>
+ </section>
+</document>

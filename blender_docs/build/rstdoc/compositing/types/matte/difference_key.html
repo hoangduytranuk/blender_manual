@@ -1,0 +1,99 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/matte/difference_key.rst">
+ <target refid="bpy-types-compositornodediffmatte">
+ </target>
+ <section ids="difference-key-node bpy-types-compositornodediffmatte" names="difference\ key\ node nút\ khóa\ chênh\ lệch\ --\ difference\ key\ node bpy.types.compositornodediffmatte">
+  <title>
+   Nút Khóa Chênh Lệch -- Difference Key Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeDiffMatte.png'}" uri="images/compositing_node-types_CompositorNodeDiffMatte.png"/>
+   <caption>
+    Nút Khóa Chênh Lệch.
+   </caption>
+  </figure>
+  <paragraph>
+   This node produces a matte that isolates foreground content by comparing it with a reference background image.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Contains foreground content against the background that is to be removed.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       The reference background image.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Sai Số -- Tolerance
+     </term>
+     <definition>
+      <paragraph>
+       Where pixels match the reference background to within the specified threshold, the matte is made transparent.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Suy Giảm Dần -- Falloff
+     </term>
+     <definition>
+      <paragraph>
+       Increase to make nearby pixels partially transparent producing a smoother blend along the edges.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh với kênh alpha của nó được điều chỉnh cho vùng khóa hóa lựa chọn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lớp Lồng -- Matte
+     </term>
+     <definition>
+      <paragraph>
+       Một bản màn chắn alpha trắng-đen của khóa.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

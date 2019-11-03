@@ -1,0 +1,291 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.81 Manual package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.81 Manual 2.81\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-23 22:52+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:4
+msgid "Solve"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:9
+msgid "Plane Track Panel"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:11
+msgid "The *Create Plane Track* operator creates a new plane track. Planar tracking takes advantage of the fact that there are often planar surfaces in footage, by attaching markers to points on these flat planes. It can be used to replace things like billboards and screens on the footage with another image or video. It also might be used for masking."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:17
+msgid "This button will create a plane object which is deforming in the same way as plane defined by all selected point tracks. At least four feature points tracked across the footage which belongs to the plane you want to replace are needed. More tracks will give better estimation of plane motion."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:22
+msgid "Feature points used to estimate plane motion could be used from any place on the plane, meaning it's not necessarily need to be corners. Corners are not always easy to be tracked, they might be occluded. In this case you can position tracked features that lay on the same plane far away from the actual plane which should be replaced."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:27
+msgid "This provides more information about the possible deformation of the marker in following frames, and such markers can be tracked even if partially occluded (appear and disappear during the time). It is only required that two neighbor frames have at least four common tracks."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:31
+msgid "An image can be projected onto the plane with the :doc:`/compositing/types/distort/plane_track_deform` compositing node."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:36
+msgid "Solve Panel"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:39
+msgid "Tripod"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:41
+msgid "Tripod Motion can be used for footage where the camera does not move and only rotates. Such footage can't be tracked with a generic solver approach, and it is impossible to determine the actual feature points in space due to a lack of information. So this solver will solve only the relative camera rotation and then reproject the feature points into a sphere, with the same distance between feature and camera for all feature points."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:49
+msgid "This is special type of camera solver and it behaves different from regular solver. It means using more tracks doesn't imply more accurate solution. Having 5-10 tracks on frame is likely what shall be commonly used for this kind of solver."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:55
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:59
+msgid "Keyframe"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:58
+msgid "Automatically select keyframes for initial reconstruction. This option enables complex algorithms which tries to find a keyframe pair with minimal reconstruction error and best scene scale guess."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:63
+msgid "Keyframe A, B :kbd:`Q`, :kbd:`E`"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:62
+msgid "Start (A) and End (B) frame of the range used for reconstruction."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:66
+msgid "Refine"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:68
+msgid "The *Refine* option specifies which parameters should be refined during solve. Such refining is useful when you are not sure about some camera intrinsics, and solver should try to find the best parameter for those intrinsics. But you still have to know approximate initial values -- it will fail to find correct values if they were set completely incorrectly initially."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:78
+msgid "Solve Camera/Object Motion"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:80
+msgid "The *Camera Motion* operator solves the motion of camera using all tracks placed on the footage and two keyframes specified on this panel. There are some requirements:"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:83
+msgid "There should be at least eight common tracks on the both of the selected keyframes."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:84
+msgid "There should be noticeable parallax effects between these two keyframes."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:86
+msgid "If everything goes smoothly during the solve, the average reprojection error is reported to the information space and to the Clip editor header. Reprojection error means the average distance between reconstructed 3D position of tracks projected back to footage and original position of tracks. Basically, reprojection error below 0.3 means accurate reprojection, (0.3 - 3.0) means quite nice solving which still can be used. Values above 3 means some tracks should be tracked more accurately, or that values for focal length or distortion coefficients were set incorrectly."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:98
+msgid "Cleanup Panel"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:100
+msgid "This panel contains operators and their settings which are needed to clean up bad tracks: tracks which are not tracked long enough or which failed to reconstruct accurately."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:103
+msgid "Frames"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:104
+msgid "Tracks or tracked segments shorter than this number of frames will be removed."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:105
+msgid "Error"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:106
+msgid "Tracks which has reprojection error higher than this value will be removed."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:115
+msgid "Action"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:108
+msgid "Several actions can be performed for bad tracks:"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:110
+msgid "Selected"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:111
+msgid "They can simply be selected."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:112
+msgid "Delete Track"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:113
+msgid "The whole track can be deleted."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:115
+msgid "Delete Segments"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:115
+msgid "Bad segments of tracked sequence can be removed."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:118
+msgid "Clean Tracks"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:118
+msgid "Identifies all tracks which matches settings from above and performs desired action on them."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:123
+msgid "Filter Tracks"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:121
+msgid "This operator deletes obviously bad tracks (for example, the ones which are too short). Additionally, it identifies tracks which has suspicious spikes in their motion and selects them."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:126
+msgid "Geometry Panel"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:131
+msgid "3D Markers to Mesh"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:129
+msgid "Creates a mesh which vertices matches positions of reconstructed tracks. It is required to have motion solved first before using this operator. Only tracks from the current tracking object will be used. The intention of this operator is to give a nice starting point for a manual mesh reconstruction."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:135
+msgid "Link Empty to Track"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:134
+msgid "Creates new empty in 3D viewport and appends contraint which parts it to the active track."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:138
+msgid "Orientation Panel"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:140
+msgid "Scene orientation tools can be used for orienting object to bundles."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:143
+msgid "Floor"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:143
+msgid "Use selected three markers to define a floor. Camera will be transformed in a way which makes the selected markers to be flat (have Z = 0)."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:145
+msgid "Wall"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:146
+msgid "Similar to the floor orientation, but defines a wall (selected tracks are placed onto OXZ plane)."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:148
+msgid "Set Origin"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:148
+msgid "Transform camera in a way which makes active track to be moved to a scene origin. Only translation is applied to the camera."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:151
+msgid "Set X, Y Axis"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:151
+msgid "Transform camera in a way which makes active track to become on X or Y axis. No translation is applied, meaning scene origin which was specified before will be preserved."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:154
+msgid "Set Scale"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:154
+msgid "Scale camera or tracking object in a way which makes distance between two selected tracks match the given value in Distance."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:156
+msgid "Apply Scale"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:157
+msgid "Similar to Set Scale, but actually modifies the tracking data."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:160
+msgid "Distance"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:159
+msgid "Distance in active scene units which is used by Set/Apply scale."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:163
+msgid "Scene Setup"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:166
+msgid "Set as Background"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:166
+msgid "Sets the clip currently being edited as the camera background for all visible 3D Views. If there is no visible 3D Views or the Clip Editor is open in full screen, nothing will happen."
+msgstr ""
+
+#: ../../<generated>:1
+msgid "Setup Tracking Scene"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:169
+msgid "Performs all usual steps to set up a VFX scene:"
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:171
+msgid "Create reference objects for floor and test object."
+msgstr ""
+
+#: ../../manual/movie_clip/tracking/clip/editing/solve.rst:172
+msgid "Create node set up for combining CG with an actual clip."
+msgstr ""
+

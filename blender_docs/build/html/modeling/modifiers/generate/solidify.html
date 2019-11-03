@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bộ Điều Chỉnh Tạo Độ Dày -- Solidify Modifier &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/solidify.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="-- Subdivision Surface Modifier" href="subdivision_surface.html" />
+    <link rel="prev" title="Bộ Điều Chỉnh Da -- Skin Modifier" href="skin.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">-- Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh -- Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Sửa Đổi -- Modify</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#generate">Sinh Tạo -- Generate</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html">Bộ Điều Chỉnh Mảng -- Array Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bevel.html">Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="booleans.html">Bộ Điều Chỉnh Bool -- Boolean Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build.html">Bộ Điều Chỉnh Xây Dựng -- Build Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decimate.html">Bộ Điều Chỉnh Tiêu Hao -- Decimate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edge_split.html">-- Edge Split Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mask.html">Bộ Điều Chỉnh Màn Chắn -- Mask Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mirror.html">Bộ Điều Chỉnh Đối Xứng -- Mirror Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multiresolution.html">-- Multiresolution Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="remesh.html">Bộ Điều Chỉnh Kiến Tạo Lại Khung Lưới -- Remesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="screw.html">Bộ Điều Chỉnh Xoáy Ốc -- Screw Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="skin.html">Bộ Điều Chỉnh Da -- Skin Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Tạo Độ Dày -- Solidify Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision_surface.html">-- Subdivision Surface Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangulate.html">Bộ Điều Chỉnh Tam Giác Hóa -- Triangulate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wireframe.html">Bộ Điều Chỉnh Khung Dây -- Wireframe Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#simulate">Mô Phỏng -- Simulate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
+        
+      <li>Bộ Điều Chỉnh Tạo Độ Dày -- Solidify Modifier</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/modeling/modifiers/generate/solidify.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="solidify-modifier">
+<span id="bpy-types-solidifymodifier"></span><h1>Bộ Điều Chỉnh Tạo Độ Dày -- Solidify Modifier<a class="headerlink" href="#solidify-modifier" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Solidify</em> modifier takes the surface of any mesh and adds depth, thickness to it.</p>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id1">
+<img alt="../../../_images/modeling_modifiers_generate_solidify_panel.png" src="../../../_images/modeling_modifiers_generate_solidify_panel.png" />
+<p class="caption"><span class="caption-text">The Solidify modifier.</span></p>
+</div>
+<dl class="docutils">
+<dt>Độ Dày -- Thickness</dt>
+<dd>The depth to be solidified.</dd>
+<dt>Dịch Chuyển -- Offset</dt>
+<dd>A value between (-1 to 1) to locate the solidified output inside or outside the original mesh.
+Set to 0.0, the solidified output will be centered on the original mesh.</dd>
+<dt>Hạn Định -- Clamp</dt>
+<dd><p class="first">A value between (0 to 2) to clamp offsets to avoid self-intersection.</p>
+<div class="last figure" id="id2">
+<img alt="../../../_images/modeling_modifiers_generate_solidify_clamp.png" src="../../../_images/modeling_modifiers_generate_solidify_clamp.png" />
+<p class="caption"><span class="caption-text">Clamp Offset.</span></p>
+</div>
+</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
+<dd><p class="first">Only vertices in this group are solidified. Their weights are multiplied by the thickness,
+so vertices with lower weights will be less thick.</p>
+<dl class="last docutils">
+<dt>Đảo Nghịch -- Invert</dt>
+<dd>Reverses the vertex group, so that only vertices which are <strong>not</strong> in the vertex group are solidified.</dd>
+<dt>Hệ Số -- Factor</dt>
+<dd><p class="first">How much the vertex weights are taken into account.</p>
+<ul class="last simple">
+<li>On 0.0 , vertices with zero weight will have no thickness at all.</li>
+<li>On 0.5 , vertices with zero weight will be half as thick as those with full weight.</li>
+<li>On 1.0 , the weights are ignored and the <em>Thickness</em> value is used for every vertex.</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Nếp Gập -- Crease</dt>
+<dd><p class="first">These options are intended for usage with
+the <a class="reference internal" href="subdivision_surface.html"><span class="doc">Subdivision Surface</span></a> modifier.</p>
+<div class="figure" id="id3">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_solidify_rims.png"><img alt="../../../_images/modeling_modifiers_generate_solidify_rims.png" src="../../../_images/modeling_modifiers_generate_solidify_rims.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-text">Rim and edges. In this example, the object was assigned a second material used to color the rim red.</span></p>
+</div>
+<dl class="last docutils">
+<dt>Bên Trong -- Inner</dt>
+<dd>Set a crease to the inner edges.</dd>
+<dt>Bên Ngoài -- Outer</dt>
+<dd>Set a crease to the outer edges.</dd>
+<dt>Vành Mép -- Rim</dt>
+<dd>Set a crease to the rim.</dd>
+</dl>
+</dd>
+<dt>Đảo Lật Pháp Tuyến -- Flip Normals</dt>
+<dd>Reverse the normals of all geometry (both the inner and outer surfaces).</dd>
+<dt>Chiều Dày Đều Đặn -- Even Thickness</dt>
+<dd>Maintain thickness by adjusting for sharp corners.
+Sometimes improves quality but also increases computation time.</dd>
+<dt>Pháp Tuyến Chất Lượng Cao -- High Quality Normals</dt>
+<dd>Normals are calculated to produce a more even thickness.
+Sometimes improves quality but also increases computation time.</dd>
+<dt>Phủ Kín Mép Viền -- Fill Rim</dt>
+<dd>Fills the gap between the inner and outer edges.</dd>
+<dt>Duy Mép Viền -- Only Rim</dt>
+<dd>Will not extrude surfaces parallel to the original one, but instead will only generate the perpendicular rim.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last"><em>Fill Rim</em> and <em>Only Rim</em> only make a difference on <a class="reference internal" href="../../../glossary/index.html#term-non-manifold"><span class="xref std std-term">non-manifold</span></a> objects,
+since the rims are generated from the borders of the original geometry.</p>
+</div>
+<dl class="docutils">
+<dt>-- Material Index Offset</dt>
+<dd><p class="first">Choose a different material to use for the new geometry.
+This is applied as an offset from the original material of the face from which it was solidified.</p>
+<ul class="simple">
+<li>A value of 0 means it will use the same material.</li>
+<li>A value of 1 means it will use the material immediately below the original material.</li>
+<li>A value of -2 means the material two positions above the original material will be used.</li>
+</ul>
+<p>These are clamped to the top-most and bottom-most material slots.</p>
+<dl class="last docutils">
+<dt>Vành Mép -- Rim</dt>
+<dd>Similarly, you can give another material to the rim faces.</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Quan trọng</p>
+<p>The modifier thickness is calculated using local vertex coordinates. If the object has non-uniform scale,
+the thickness will vary on different sides of the object.</p>
+<p class="last">To fix this, either <a class="reference internal" href="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-transform-apply"><span class="std std-ref">apply</span></a>
+or <a class="reference internal" href="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-clear"><span class="std std-ref">clear</span></a> the scale.</p>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Những Hạn Chế Từng Biết Đến -- Known Limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="even-thickness">
+<h3>Chiều Dày Đều Đặn -- Even Thickness<a class="headerlink" href="#even-thickness" title="Permalink to this headline">¶</a></h3>
+<p>Solidify thickness is an approximation.
+While <em>Even Thickness</em> and <em>High Quality Normals</em> should yield good results,
+the final wall thickness is not guaranteed and may vary depending on the mesh topology.</p>
+<p>In order to maintain precise wall thickness in every case, we would need to add/remove faces on the offset shell,
+something this modifier does not do since this would add a lot of complexity and slow it down.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="subdivision_surface.html" class="btn btn-neutral float-right" title="-- Subdivision Surface Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="skin.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Da -- Skin Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

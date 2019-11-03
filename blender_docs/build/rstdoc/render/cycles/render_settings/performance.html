@@ -1,0 +1,275 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/cycles/render_settings/performance.rst">
+ <section ids="performance" names="performance hiệu\ suất\ thi\ hành\ --\ performance">
+  <title>
+   Hiệu Suất Thi Hành -- Performance
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Kết Xuất (Render) --&gt; Hiệu Suất Thi Hành (Performance)`">
+        Kết Xuất (Render) ‣ Hiệu Suất Thi Hành (Performance)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <section ids="threads" names="threads số\ luồng\ --\ threads">
+   <title>
+    Số Luồng -- Threads
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chế Độ -- Mode
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tự Phát Hiện -- Auto-detect
+        </term>
+        <definition>
+         <paragraph>
+          Automatically chooses the amount of threads to match the number of logical processors on your computer.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Cố Định -- Fixed
+        </term>
+        <definition>
+         <paragraph>
+          Manually choose the amount of threads to use for rendering. This can be useful for example,
+if you want to use your computer while rendering, you can set the property
+to a thread count lower the amount of logical processors on your computer.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="tiles" names="tiles lát\ ngói\ --\ tiles">
+   <title>
+    Lát Ngói -- Tiles
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thứ Tự Ô -- Tile Order
+     </term>
+     <definition>
+      <paragraph>
+       Order of rendering tiles. This does not significantly affect the performance.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Tile size X/Y
+     </term>
+     <definition>
+      <paragraph>
+       The size of the tiles for rendering.
+      </paragraph>
+      <paragraph>
+       Depending on what device you are using for rendering, different tile sizes can give faster renders.
+For CPU rendering smaller tiles sizes (like 32 x 32) tend to be faster, while for
+       <reference internal="True" refuri="../gpu_rendering.html">
+        <inline classes="doc">
+         GPU rendering
+        </inline>
+       </reference>
+       larger tile sizes give a better performance (like 256 x 256).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tinh Chỉnh Lũy Tiến -- Progressive Refine
+     </term>
+     <definition>
+      <paragraph>
+       Instead of rendering each tile until it has finished every sample, refine the whole image progressively.
+Note that progressive rendering is slightly slower than tiled rendering,
+but time can be saved by manually stopping the render when the noise level is low enough.
+      </paragraph>
+      <paragraph>
+       For rendering animations it is best to disable this feature, as stopping a frame early is not possible.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="render-properties-save-buffers">
+   </target>
+   <definition_list ids="render-properties-save-buffers" names="render_properties_save-buffers">
+    <definition_list_item>
+     <term>
+      Lưu các Bộ Đệm -- Save Buffers
+     </term>
+     <definition>
+      <paragraph>
+       Saves all render layers and passes to the temp directory on a drive,
+and reads them back after rendering has finished. This saves memory (RAM) usage during rendering,
+particularly when using many render layers and passes. This can be read back in the Compositor
+and Image editor by using
+       <reference internal="True" refuri="../../../interface/controls/nodes/editing.html#bpy-ops-node-read-viewlayers">
+        <inline classes="std std-ref">
+         Tầng Lớp -- Layers
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="acceleration-structure" names="acceleration\ structure --\ acceleration\ structure">
+   <title>
+    -- Acceleration Structure
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Dùng Phân Tách Không Gian -- Use Spatial Splits
+     </term>
+     <definition>
+      <paragraph>
+       Spatial splits improve the rendering performance in scenes with a mix of large and small polygons.
+The downsides are longer BVH build times and slightly increased memory usage.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dùng BVH cho Tóc -- Use Hair BVH
+     </term>
+     <definition>
+      <paragraph>
+       Use a special type of
+       <reference internal="True" refuri="../../../glossary/index.html#term-bvh">
+        <inline classes="xref std std-term">
+         BVH
+        </inline>
+       </reference>
+       for rendering hair.
+The bounding boxes are not axis aligned allowing a spatially closer fit to the hair geometry.
+Disabling this option will reduce memory, at the cost of increasing hair render time.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bước Thời Gian của BVH -- BVH Time Steps
+     </term>
+     <definition>
+      <paragraph>
+       Split BVH primitives by this number of time steps to speed up render time in cost of memory.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="final-render" names="final\ render --\ final\ render">
+   <title>
+    -- Final Render
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Duy Trì Hình Ảnh -- Persistent Images
+     </term>
+     <definition>
+      <paragraph>
+       Keep image data in memory after rendering, for faster re-renders at the cost of extra memory usage when
+performing other tasks in Blender.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="viewport" names="viewport khung\ chiếu\ --\ viewport">
+   <title>
+    Khung Chiếu -- Viewport
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Loại Cổng Nhìn cho BVH -- Viewport BVH Type
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         BVH Năng Động -- Dynamic BVH
+        </term>
+        <definition>
+         <paragraph>
+          Objects can be transformed, added and deleted interactively, at the cost of slower renders.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         BVH Tĩnh Thái -- Static BVH
+        </term>
+        <definition>
+         <paragraph>
+          Object modifications require a complete
+          <reference internal="True" refuri="../../../glossary/index.html#term-bvh">
+           <inline classes="xref std std-term">
+            BVH
+           </inline>
+          </reference>
+          rebuild which reduces interactivity but renders faster.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Phân Giải Khởi Đầu -- Start Resolution
+     </term>
+     <definition>
+      <paragraph>
+       Resolution to start rendering preview at, progressively increase it to the full viewport size.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Viewport Resolution
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Kích Thước Điểm Ảnh -- Pixel Size
+        </term>
+        <definition>
+         <paragraph>
+          Option to control the resolution for viewport rendering.
+Allows you to speed up viewport rendering, which is especially useful for displays with high DPI.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

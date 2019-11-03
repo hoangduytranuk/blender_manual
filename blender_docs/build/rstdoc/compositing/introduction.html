@@ -1,0 +1,280 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Sự Tổng Hợp các Nút cho phép bạn lắp ráp và nâng cấp hình ảnh (hoặc phim). Bằng việc sử dụng sự tổng hợp các nút, bạn có thể nối hai đoạn phim lại với nhau và tô màu toàn bộ chuỗi phim cùng một lúc. Bạn có thể tăng cường màu sắc của một hình ảnh đơn lẻ hoặc toàn bộ một đoạn phim theo cách xử lý cố định, hoặc theo phương pháp năng động, thay đổi theo thời gian (theo sự tiến triển của đoạn phim). Bằng cách này, bạn sử dụng sự tổng hợp các nút để vừa lắp ráp các đoạn video lại với nhau, vừa nâng cấp chúng lên.
+  </paragraph>
+  <note>
+   <paragraph>
+    Thuật Ngữ: Hình Ảnh -- Image
+   </paragraph>
+   <paragraph>
+    Thuật ngữ
+    <emphasis>
+     Hình Ảnh
+    </emphasis>
+    có thể ám chỉ đơn cử một hình ảnh, một hình ảnh trong một trình tự của nhiều hình ảnh, hoặc một khung hình của một đoạn phim. Trình Tổng Hợp --
+    <title_reference>
+     Compositor
+    </title_reference>
+    -- sẽ xử lý lần lượt từng hình ảnh một, bất kể loại đầu vào bạn cung cấp là gì.
+   </paragraph>
+  </note>
+  <paragraph>
+   Để xử lý hình ảnh của bạn, bạn phải sử dụng các nút để nhập hình ảnh vào Blender, thay đổi nó, ngoài ra còn tùy thích hợp nhất nó với các hình ảnh khác, và cuối cùng, lưu nó lại.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/compositing_types_distort_map-uv_example-2.png'}" uri="images/compositing_types_distort_map-uv_example-2.png"/>
+   <caption>
+    Một ví dụ về một quá trình tổng hợp.
+   </caption>
+  </figure>
+  <figure ids="id2">
+   <image candidates="{'*': 'images/compositing_types_color_hue-saturation_example.jpg'}" uri="images/compositing_types_color_hue-saturation_example.jpg"/>
+   <caption>
+    Một ví dụ về sự chỉnh sửa màu sắc.
+   </caption>
+  </figure>
+  <section ids="getting-started" names="getting\ started khởi\ đầu\ --\ getting\ started">
+   <title>
+    Khởi Đầu -- Getting Started
+   </title>
+   <paragraph>
+    Để tiếp cận
+    <emphasis>
+     Trình Tổng Hợp
+    </emphasis>
+    (Compositor) và kích hoạt các nút tổng hợp thì hãy bấm vào hộp kiểm
+    <emphasis>
+     Sử Dụng Nút
+    </emphasis>
+    (Use Nodes) (xin xem thêm ở bài
+    <reference internal="True" refuri="properties.html">
+     <inline classes="doc">
+      Tính Chất -- Properties
+     </inline>
+    </reference>
+    ).
+   </paragraph>
+   <note>
+    <paragraph>
+     Sau khi bấm vào nút
+     <emphasis>
+      Sử Dụng Nút -- Use Nodes
+     </emphasis>
+     , trình Tổng Hợp sẽ được kích hoạt, song, nó cũng có thể bị giải hoạt (
+     <emphasis>
+      disabled : tắt đi
+     </emphasis>
+     ) trong
+     <reference internal="True" refuri="../render/output/settings.html#render-output-postprocess">
+      <inline classes="std std-ref">
+       Post Processing Panel
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </note>
+   <paragraph>
+    Bây giờ bạn đã thiết lập nút đầu tiên. Từ đây, bạn có thể cho thêm và kết nối nhiều loại
+    <reference internal="True" refuri="index.html">
+     <inline classes="doc">
+      Các Nút Tổng Hợp -- Compositing Nodes
+     </inline>
+    </reference>
+    , trong cách bố trí giống như bản đồ, cho đến khi mãn nguyện thì thôi (hoặc cho đến điểm tới hạn của bộ nhớ, cái nào xảy ra trước còn tùy hoàn cảnh).
+   </paragraph>
+   <note>
+    <paragraph>
+     Các nút và khái niệm về nút đã được giải thích chi tiết trong bài về
+     <reference internal="True" refuri="../interface/controls/nodes/index.html">
+      <inline classes="doc">
+       Nút -- Nodes
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </note>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <paragraph>
+    Bạn có thể làm bất cứ điều gì với các hình ảnh bằng cách sử dụng các nút.
+   </paragraph>
+   <paragraph>
+    Đoạn phim thô về một diễn viên nằm ở đằng trước màn hình màu xanh lam, hoặc một đối tượng được kết xuất đang làm gì đó, đều có thể được chồng tầng (
+    <emphasis>
+     layered
+    </emphasis>
+    ) trên nền. Tổng hợp cả hai lại với nhau và bạn có một đoạn phim tổng hợp.
+   </paragraph>
+   <paragraph>
+    Bạn có thể thay đổi cảm quan của một hình ảnh:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Để làm cho hình ảnh có 'cảm giác' lạnh hơn, một chuyển sắc màu xanh lam có thể được thêm vào.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Để truyền tải một hồi tưởng hoặc một kỷ niệm, hình ảnh có thể được làm nhòe đi một cách mềm mại.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Để truyền đạt lòng hận thù và sự khó chịu, hãy cho thêm màu đỏ hoặc tăng cường màu đỏ lên.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Một sự kiện đáng kinh ngạc có thể được tăng cường độ rõ nét và độ tương phản lên (để nêu bật).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Một cảm giác vui vẻ - chắc bạn đoán được rồi - thì thêm màu vàng vào (cho lượng màu đỏ và màu xanh lá cây non bằng nhau, không có màu lam vào) để làm sáng lên và tràn đầy ánh nắng.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Bụi bẩn và bụi bay trong không khí thường được thêm vào như một chất liệu mây mù che phủ hình ảnh để tạo cảm quan chân thực hơn.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="image-size" names="image\ size khổ\ ảnh\ --\ image\ size">
+   <title>
+    Khổ Ảnh -- Image Size
+   </title>
+   <paragraph>
+    Bạn nên chú ý đến độ phân giải hình ảnh và độ sâu màu (
+    <emphasis>
+     color depth
+    </emphasis>
+    ) khi pha trộn và ghép các hình ảnh với nhau. Nguyên nhân của sự gai góc (các cạnh thô thiển), màu sắc
+    <emphasis>
+     nhạt nhẽo
+    </emphasis>
+    (
+    <emphasis>
+     flatness
+    </emphasis>
+    ) hoặc hình ảnh bị méo mó đại đa số là do độ phân giải và độ sâu màu khi pha trộn không phù hợp.
+   </paragraph>
+   <paragraph>
+    Trình tổng hợp (
+    <emphasis>
+     Compositor
+    </emphasis>
+    ) có thể pha trộn các hình ảnh với bất kỳ kích thước nào và sẽ chỉ thực hiện các thao tác trên những điểm ảnh (
+    <emphasis>
+     pixel
+    </emphasis>
+    ) nơi hình ảnh bị chồng gối lên nhau. Khi các nút tiếp nhận sự cung cấp dữ liệu từ các đầu vào với các hình ảnh có kích thước khác nhau thì các quy tắc sau đây sẽ được áp dụng:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Ổ cắm đầu vào của Hình ảnh đầu tiên/trên cùng sẽ xác định kích thước ở đầu ra.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Bản tổng hợp sẽ được đặt ở trung tâm (
+      <emphasis>
+       centered
+      </emphasis>
+      ) theo mặc định, trừ khi có một sự dịch chuyển nào đó đã được gán cho bộ đệm (
+      <emphasis>
+       buffer
+      </emphasis>
+      ) bằng nút
+      <emphasis>
+       Dịch Chuyển
+      </emphasis>
+      (Translate).
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    Vì vậy, mỗi nút trong một tổng hợp có thể hoạt động trên các hình ảnh có kích thước khác nhau như được xác định bởi các nguồn đầu vào của nó. Chỉ nút đầu ra của
+    <emphasis>
+     Tổng Hợp
+    </emphasis>
+    (Composite) là có kích thước cố định, như được xác định bởi các thiết lập trong Trình Biên Soạn Tính Chất
+    <inline classes="menuselection" rawtext=":menuselection:`Kết Xuất (Render) --&gt; Kích Thước (Dimensions)`">
+     Kết Xuất (Render) ‣ Kích Thước (Dimensions)
+    </inline>
+    . Nút
+    <emphasis>
+     Xem Hình
+    </emphasis>
+    (Viewer) luôn luôn hiển thị kích thước từ nguồn đầu vào của nó, nhưng khi không được kết nối (hoặc được liên kết với một giá trị nào đó), nó sẽ hiển thị một hình ảnh nhỏ với cỡ 320×256 điểm ảnh (pixel).
+   </paragraph>
+  </section>
+  <section ids="saving-your-composite-image" names="saving\ your\ composite\ image lưu\ hình\ ảnh\ tổng\ hợp\ của\ bạn\ --\ saving\ your\ composite\ image">
+   <title>
+    Lưu Hình Ảnh Tổng Hợp của bạn -- Saving your Composite Image
+   </title>
+   <paragraph>
+    Nút
+    <emphasis>
+     Kết Xuất
+    </emphasis>
+    (Render) chỉ kết xuất một khung hình hoặc một hình ảnh duy nhất mà thôi. Lưu hình ảnh của bạn bằng cách sử dụng
+    <inline classes="menuselection" rawtext=":menuselection:`Hình Ảnh (Image) --&gt; Lưu Hình Ảnh (Save Image)`">
+     Hình Ảnh (Image) ‣ Lưu Hình Ảnh (Save Image)
+    </inline>
+    hoặc bấm phím
+    <literal classes="kbd">
+     Shift-S
+    </literal>
+    . Hình ảnh sẽ được lưu bằng những sắp đặt về định dạng hình ảnh trong bảng
+    <emphasis>
+     Kết Xuất
+    </emphasis>
+    (Render panel).
+   </paragraph>
+   <paragraph>
+    Để lưu một trình tự hình ảnh, ví dụ: nếu bạn nhập một đoạn phim (movie clip) hoặc sử dụng nút
+    <emphasis>
+     Thời Gian
+    </emphasis>
+    (Time node) với mỗi khung hình trong tập tin riêng của nó, thì hãy sử dụng nút
+    <emphasis>
+     Hoạt Họa
+    </emphasis>
+    (Animation) và các cài đặt của nó. Nếu như sau này bạn muốn phủ chồng (overlay) lên chúng, thì nên nhớ sử dụng định dạng hình ảnh nào có hỗ trợ kênh Alpha (chẳng hạn như
+    <literal>
+     PNG
+    </literal>
+    ). Nếu như sau này bạn muốn sắp xếp chúng từ trước đến sau hoặc muốn tạo độ sâu trường ảnh, thì hãy sử dụng định dạng hỗ trợ kênh chiều sâu Z (Z-depth channel) (chẳng hạn như định dạng
+    <literal>
+     EXR
+    </literal>
+    ).
+   </paragraph>
+   <paragraph>
+    Để lưu một tổng hợp thành một đoạn phim (movie clip) (tất cả các khung hình nằm trong một tập tin), thì xin sử dụng định dạng
+    <literal>
+     AVI
+    </literal>
+    hoặc
+    <literal>
+     Quicktime
+    </literal>
+    , và sử dụng nút
+    <emphasis>
+     Hoạt Họa
+    </emphasis>
+    (Animation) cùng các sắp đặt của nó.
+   </paragraph>
+  </section>
+ </section>
+</document>

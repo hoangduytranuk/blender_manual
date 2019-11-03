@@ -1,0 +1,101 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/troubleshooting/crash.rst">
+ <section ids="crashes" names="crashes --\ crashes">
+  <title>
+   -- Crashes
+  </title>
+  <paragraph>
+   The most common causes of Blender crashes:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     Running out of memory.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Issues with graphics hardware or drivers.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Bugs in Blender.
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <paragraph>
+   Firstly, you may be able to recover your work with
+   <inline classes="menuselection" rawtext=":menuselection:`File --&gt; Recover --&gt; Auto Save...`">
+    File ‣ Recover ‣ Auto Save...
+   </inline>
+   .
+  </paragraph>
+  <paragraph>
+   To prevent the problem from happening again, you can check that the graphics drivers are up to date, upgrade your
+machine's hardware (the RAM or graphics card), and disable some options that are more memory intensive:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     Reduce undo steps
+     <inline classes="menuselection" rawtext=":menuselection:`Preferences --&gt; System --&gt; Memory &amp; Limits --&gt; Undo Steps`">
+      Preferences ‣ System ‣ Memory &amp; Limits ‣ Undo Steps
+     </inline>
+     .
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Using multisample anti-aliasing also increases the memory usage and makes the display slower.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     On Linux, the Window Manager (KDE, Gnome, Unity) may be using hardware accelerated effects
+(e.g. window shadows and transparency) that are using up the memory that Blender needs.
+Try disabling the desktop effects or switch to a lightweight Window Manager.
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <section ids="crash-log" names="crash\ log --\ crash\ log">
+   <title>
+    -- Crash Log
+   </title>
+   <paragraph>
+    When Blender crashes, it writes out a text file
+which contains information that may help identify the cause of the crash.
+   </paragraph>
+   <paragraph>
+    On a crash, a file is written based on the name of the currently loaded blend-file,
+so
+    <literal>
+     test.blend
+    </literal>
+    will create a file called
+    <literal>
+     test.crash.txt
+    </literal>
+    .
+The crash log for unsaved files will be written into the
+    <reference internal="True" refuri="../advanced/blender_directory_layout.html#temp-dir">
+     <inline classes="std std-ref">
+      Thư Mục Tạm Thời -- Temporary Directory
+     </inline>
+    </reference>
+    directory.
+   </paragraph>
+   <paragraph>
+    This file contains a log of tools used up until the crash as well as some other debug information.
+   </paragraph>
+   <paragraph>
+    When reporting bugs on crashes it can be helpful to attach this file to your reports,
+especially when others are unable to reproduce the crash.
+   </paragraph>
+   <warning>
+    <paragraph>
+     This is currently disabled for Windows.
+    </paragraph>
+   </warning>
+  </section>
+ </section>
+</document>

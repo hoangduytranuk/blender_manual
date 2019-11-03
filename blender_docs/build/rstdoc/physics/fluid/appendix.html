@@ -1,0 +1,200 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/fluid/appendix.rst">
+ <comment xml:space="preserve">
+  TODO/Review: {{review|text=check see-also and external links}}.
+ </comment>
+ <section ids="fluid-appendix" names="fluid\ appendix --\ fluid\ appendix">
+  <title>
+   -- Fluid Appendix
+  </title>
+  <section ids="hints" names="hints gợi\ ý\ --\ hints">
+   <title>
+    Gợi ý -- Hints
+   </title>
+   <paragraph>
+    Some useful hints about fluid simulation in Blender:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Do not be surprised, but you will get whole bunch of mesh (.bobj.gz) files after a simulation.
+One set for preview, and another for final.
+Each set has a
+      <literal>
+       .gz
+      </literal>
+      file for each frame of the animation.
+Each file contains the simulation result -- so you will need them.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Currently these files will not be automatically deleted, so it is a good idea to e.g.
+create a dedicated directory to keep simulation results.
+Doing a fluid simulation is similar to clicking the
+      <emphasis>
+       animation
+      </emphasis>
+      button.
+Currently you have to take care of organizing the fluid surface meshes in some directory by yourself.
+If you want to stop using the fluid simulation, you can simply delete all the
+      <literal>
+       *fluid*.bobj.gz
+      </literal>
+      files.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Before running a high resolution simulation that might take hours,
+check the overall timing first by doing lower resolution runs.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Fluid objects must be completely inside the bounding box of the domain object.
+If not, baking may not work correctly or at all.
+Fluid and obstacle objects can be meshes with a complex geometry.
+Very thin objects might not appear in the simulation,
+if the chosen resolution is too coarse to resolve them (increasing it might solve this problem).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Do not try to do a complicated scene all at once.
+Blender has a powerful compositor that you can use to combine multiple animations.
+     </paragraph>
+     <paragraph>
+      For example, to produce an animation showing two separate fluid flows while keeping your domain small,
+render one
+      <literal>
+       .avi
+      </literal>
+      using the one flow. Then move the domain and render another
+      <literal>
+       .avi
+      </literal>
+      with the other flow using an alpha channel (in a separate B&amp;W .avi?).
+Then, composite both
+      <literal>
+       .avi
+      </literal>
+      's using the compositor's Add node.
+A third
+      <literal>
+       .avi
+      </literal>
+      is usually the smoke and mist and it is laid on top of everything as well.
+Add a rain sheet on top of the mist and spray and you will have quite a storm brewing! And then lightning flashes,
+trash blowing around, all as separate animations, compositing the total for a truly spectacular result.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="limitations-workarounds" names="limitations\ &amp;\ workarounds --\ limitations\ &amp;\ workarounds">
+   <title>
+    -- Limitations &amp; Workarounds
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      If the setup seems to go wrong, make sure all the normals are correct
+(hence, enter
+      <emphasis>
+       Edit Mode
+      </emphasis>
+      , select all, and recalculate normals once in a while).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Currently there is a problem with zero gravity simulation.
+It could be avoided by simply selecting a very small gravity until this is fixed.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      If an object is initialized as
+      <emphasis>
+       Volume
+      </emphasis>
+      , it has to be closed and have an inner side
+(a plane will not work). To use planes, switch to
+      <emphasis>
+       Shell
+      </emphasis>
+      , or extrude the plane.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Blender freezes after clicking
+      <emphasis>
+       bake
+      </emphasis>
+      .
+Pressing
+      <literal classes="kbd">
+       Esc
+      </literal>
+      makes it work again after a while --
+this can happen if the resolution is too high and memory is swapped to a drive,
+making everything horribly slow. Reducing the resolution should help in this case.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Blender crashes after clicking
+      <emphasis>
+       bake
+      </emphasis>
+      --
+this can happen if the resolution is really high and more than 2GB are allocated, causing Blender to crash.
+Reducing the resolution should help in this case.
+Many operating systems limit the total amount of memory that can be allocated by a
+      <emphasis>
+       process
+      </emphasis>
+      ,
+such as Blender, even if the
+      <emphasis>
+       machine
+      </emphasis>
+      has more memory installed.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The meshes should be closed, so if some parts of e.g.
+a fluid object are not initialized as fluid in the simulation,
+check that all parts of connected vertices are closed meshes. Unfortunately,
+the Suzanne (monkey) mesh in Blender is not a closed mesh (the eyes are separate).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      If the fluid simulation exits with an error message (stating e.g. that the "init has failed"),
+make sure you have valid settings for the domain object, e.g. by resetting them to the defaults.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Note that first frame may well take only a few hundred MBs of ram-memory,
+but latter ones go over one GB, which may be why your bake fails after awhile.
+If so, try to bake one frame at the middle or end at full res so you will see if it works.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Memory used doubles when you set surface subdivision from 1 to 2.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Using "generate particles" will also add memory requirements, as they increase surface area and complexity.
+Ordinary fluid simulations generated particles probably consume less memory.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,1161 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/physics/particles/mode.rst">
+ <target refid="bpy-types-particleedit">
+ </target>
+ <section ids="particle-edit-mode bpy-types-particleedit" names="particle\ edit\ mode --\ particle\ edit\ mode bpy.types.particleedit">
+  <title>
+   -- Particle Edit Mode
+  </title>
+  <paragraph>
+   Using
+   <emphasis>
+    Particle Edit Mode
+   </emphasis>
+   you can edit the keyed points (keyframes)
+and paths of
+   <emphasis>
+    Baked
+   </emphasis>
+   <reference internal="True" refuri="hair/index.html">
+    <inline classes="doc">
+     Hair
+    </inline>
+   </reference>
+   ,
+   <reference internal="True" refuri="index.html">
+    <inline classes="doc">
+     Particle
+    </inline>
+   </reference>
+   ,
+   <reference internal="True" refuri="../cloth/index.html">
+    <inline classes="doc">
+     Cloth
+    </inline>
+   </reference>
+   , and
+   <reference internal="True" refuri="../soft_body/index.html">
+    <inline classes="doc">
+     Soft Body
+    </inline>
+   </reference>
+   simulations.
+(You can also edit and style hair before baking.)
+  </paragraph>
+  <paragraph>
+   Since working in Particle Edit Mode is pretty easy and very similar
+to working with vertices in the 3D View, we will show how to set up
+a particle system and then give a reference of the various functions.
+  </paragraph>
+  <section ids="usage" names="usage sử\ dụng\ --\ usage">
+   <title>
+    Sử Dụng -- Usage
+   </title>
+   <tip>
+    <paragraph>
+     Only Frames Baked to Memory are Editable!
+    </paragraph>
+    <paragraph>
+     If you cannot edit the particles, check that you are not baking to
+a
+     <reference internal="True" refuri="emitter/cache.html">
+      <inline classes="doc">
+       Disk Cache
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </tip>
+   <section ids="setup-for-hair-particles" names="setup\ for\ hair\ particles --\ setup\ for\ hair\ particles">
+    <title>
+     -- Setup for Hair Particles
+    </title>
+    <enumerated_list enumtype="arabic" prefix="" suffix=".">
+     <list_item>
+      <paragraph>
+       Create a
+       <emphasis>
+        Hair
+       </emphasis>
+       particle system.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Give it an initial velocity in the
+       <emphasis>
+        Normal
+       </emphasis>
+       direction.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Create a simulation.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Check the
+       <emphasis>
+        Hair Dynamics
+       </emphasis>
+       box.
+      </paragraph>
+     </list_item>
+    </enumerated_list>
+    <figure ids="id1">
+     <image candidates="{'*': 'images/physics_particles_mode_example.png'}" uri="images/physics_particles_mode_example.png"/>
+     <caption>
+      Editing hair strands in Particle Edit Mode.
+     </caption>
+    </figure>
+   </section>
+   <section ids="setup-for-particle-cloth-and-soft-body-simulations" names="setup\ for\ particle,\ cloth,\ and\ soft\ body\ simulations --\ setup\ for\ particle,\ cloth,\ and\ soft\ body\ simulations">
+    <title>
+     -- Setup for Particle, Cloth, and Soft Body Simulations
+    </title>
+    <enumerated_list enumtype="arabic" prefix="" suffix=".">
+     <list_item>
+      <paragraph>
+       Use
+       <emphasis>
+        Emitter
+       </emphasis>
+       particles, or a cloth/soft body simulation.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Create a simulation by setting up objects and or emitters,
+set your time range (use a small range if you are just starting out and experimenting),
+set up the simulation how you want it, using
+       <literal classes="kbd">
+        Alt-A
+       </literal>
+       to preview it.
+      </paragraph>
+     </list_item>
+    </enumerated_list>
+   </section>
+   <section ids="bake-the-simulation" names="bake\ the\ simulation --\ bake\ the\ simulation">
+    <title>
+     -- Bake the Simulation
+    </title>
+    <paragraph>
+     Once you are happy with the general simulation,
+     <reference internal="True" refuri="emitter/cache.html">
+      <inline classes="doc">
+       bake
+      </inline>
+     </reference>
+     the simulation from object mode. The simulation must be baked to enable editing.
+    </paragraph>
+   </section>
+   <section ids="edit-the-simulation" names="edit\ the\ simulation --\ edit\ the\ simulation">
+    <title>
+     -- Edit the Simulation
+    </title>
+    <paragraph>
+     Switch to
+     <emphasis>
+      Particle Edit
+     </emphasis>
+     from the
+     <emphasis>
+      Mode select menu
+     </emphasis>
+     in the header of the
+     <emphasis>
+      3D View
+     </emphasis>
+     to edit the particle's paths/Keyframes. You may need to press
+     <literal classes="kbd">
+      T
+     </literal>
+     from within the 3D View
+to see the
+     <emphasis>
+      Particle Edit
+     </emphasis>
+     panel. Move to the frame you want to edit and use the various
+     <emphasis>
+      Particle Edit
+     </emphasis>
+     tools to edit your simulation. Work slowly, previewing your changes with
+     <literal classes="kbd">
+      Alt-A
+     </literal>
+     ,
+and save often so that you can go back to the previous version should something happen,
+or that you do not like the latest changes you have made.
+    </paragraph>
+    <tip>
+     <paragraph>
+      To be able to clearly see what you are working on:
+     </paragraph>
+     <enumerated_list enumtype="arabic" prefix="" suffix=".">
+      <list_item>
+       <paragraph>
+        Open the Options panel in the Toolbar.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Select
+        <emphasis>
+         Point select mode
+        </emphasis>
+        (see below) in the header of the 3D View.
+This will display key points along the particle path.
+       </paragraph>
+      </list_item>
+     </enumerated_list>
+    </tip>
+   </section>
+  </section>
+  <section ids="selecting" names="selecting lựa\ chọn\ --\ selecting">
+   <title>
+    Lựa Chọn -- Selecting
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Single:
+      <literal classes="kbd">
+       LMB
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      All:
+      <literal classes="kbd">
+       A
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Linked: Move the mouse over a keypoint and press
+      <literal classes="kbd">
+       L
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Box select:
+      <literal classes="kbd">
+       B
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Root/Tips:
+      <inline classes="menuselection" rawtext=":menuselection:`Select --&gt; Roots / Tips`">
+       Select ‣ Roots / Tips
+      </inline>
+      .
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    You may also use the
+    <emphasis>
+     Select
+    </emphasis>
+    Menu.
+   </paragraph>
+   <tip>
+    <paragraph>
+     Selections
+    </paragraph>
+    <paragraph>
+     Selections are extremely useful for modifying only the particles that you want.
+Hover over a particle path and press
+     <literal classes="kbd">
+      L
+     </literal>
+     to link-select it,
+hover over the next and press
+     <literal classes="kbd">
+      L
+     </literal>
+     to add that path to the selection.
+To remove a path, hold
+     <literal classes="kbd">
+      Shift
+     </literal>
+     and press
+     <literal classes="kbd">
+      L
+     </literal>
+     . To Deselect all press
+     <literal classes="kbd">
+      A
+     </literal>
+     .
+    </paragraph>
+    <paragraph>
+     The method to select individual points is the same as in edit mode.
+     <literal classes="kbd">
+      RMB
+     </literal>
+     to select,
+     <literal classes="kbd">
+      Shift-RMB
+     </literal>
+     to add/remove a point from the selection.
+    </paragraph>
+   </tip>
+   <section ids="select-random" names="select\ random chọn\ ngẫu\ nhiên\ --\ select\ random">
+    <title>
+     Chọn Ngẫu Nhiên -- Select Random
+    </title>
+    <paragraph>
+     Randomly selects particles.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Phần Trăm -- Percent
+      </term>
+      <definition>
+       <paragraph>
+        Percent of particles to randomly select.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Mầm Ngẫu Nhiên -- Random Seed
+      </term>
+      <definition>
+       <paragraph>
+        Seed value to use for the selection.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hành Động -- Action
+      </term>
+      <definition>
+       <paragraph>
+        Select random can be either used to select or deselect particles.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Thể Loại -- Type
+      </term>
+      <definition>
+       <paragraph>
+        Selects either hair or points. Here these terms can be confusing because
+hair/point does not refer to the particle type but the path/points of the hair/particle.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="select-modes" names="select\ modes chế\ độ\ chọn\ lựa\ --\ select\ modes">
+    <title>
+     Chế Độ Chọn Lựa -- Select Modes
+    </title>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/physics_particles_mode_select-modes.png'}" uri="images/physics_particles_mode_select-modes.png"/>
+     <caption>
+      Select Modes.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Đường/Đi/Dẫn -- Path
+      </term>
+      <definition>
+       <paragraph>
+        No keypoints are visible, you can select/deselect only all particles.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Điểm -- Point
+      </term>
+      <definition>
+       <paragraph>
+        You see all of the keypoints.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đỉnh -- Tip
+      </term>
+      <definition>
+       <paragraph>
+        You can see and edit (including the brushes) only the tip of the particles, i.e. the last keypoint.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="bpy-types-particlebrush">
+    </target>
+   </section>
+  </section>
+  <section ids="brush bpy-types-particlebrush" names="brush bút\ vẽ\ --\ brush bpy.types.particlebrush">
+   <title>
+    Bút Vẽ -- Brush
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        -- Particle Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    With the buttons you can select the type of "Comb" utility you want to use.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Không Có -- None
+     </term>
+     <definition>
+      <paragraph>
+       No special tool, just edit the keypoints as "normal" vertices.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chải -- Comb
+     </term>
+     <definition>
+      <paragraph>
+       Moves the keypoints (similar to the Proportional Editing tool).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Làm/Mịn Màng -- Smooth
+     </term>
+     <definition>
+      <paragraph>
+       Parallels visually adjacent segments.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cộng Thêm -- Add
+     </term>
+     <definition>
+      <paragraph>
+       Adds new particles.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Số Lượng -- Count
+        </term>
+        <definition>
+         <paragraph>
+          The number of new particles per step.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Nội Suy -- Interpolate
+        </term>
+        <definition>
+         <paragraph>
+          Interpolate the shape of new hairs from existing ones.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Số Bước -- Steps
+        </term>
+        <definition>
+         <paragraph>
+          Amount of brush steps.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Phím -- Keys
+        </term>
+        <definition>
+         <paragraph>
+          How many keys to make new particles with.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều Dài -- Length
+     </term>
+     <definition>
+      <paragraph>
+       Scales the segments, so it makes the hair longer with
+       <emphasis>
+        Grow
+       </emphasis>
+       or shorter with
+       <emphasis>
+        Shrink
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bồng Lên -- Puff
+     </term>
+     <definition>
+      <paragraph>
+       Rotates the hair around its first keypoint (root).
+So it makes the hair stand up with
+       <emphasis>
+        Add
+       </emphasis>
+       or lay down with
+       <emphasis>
+        Sub
+       </emphasis>
+       .
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Thể Tích Làm Bồng Lên -- Puff Volume
+        </term>
+        <definition>
+         <paragraph>
+          Apply puff to unselected end points, (Helps to maintain the hair volume when puffing the root.)
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cắt -- Cut
+     </term>
+     <definition>
+      <paragraph>
+       Scales the segments until the last keypoint reaches the brush.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trọng Lượng -- Weight
+     </term>
+     <definition>
+      <paragraph>
+       This is especially useful for soft body animations, because the weight defines the soft body
+       <emphasis>
+        Goal
+       </emphasis>
+       .
+A keypoint with a weight of 1 will not move at all,
+a keypoint with a weight of 0 subjects fully to soft body animation.
+This value is scaled by the Strength
+       <emphasis>
+        Min
+       </emphasis>
+       to
+       <emphasis>
+        Max
+       </emphasis>
+       range of soft body goals...
+      </paragraph>
+      <comment xml:space="preserve">
+       Not more true, I think: "Weight is only displayed for the complete hair (i.e. with the value of the tip),
+not for each keypoint, so it's a bit difficult to paint".
+      </comment>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="common-options" names="common\ options tùy\ chọn\ chung\ --\ common\ options">
+    <title>
+     Tùy Chọn Chung -- Common Options
+    </title>
+    <paragraph>
+     Below the brush types, their settings appear:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Bán Kính
+       <literal classes="kbd">
+        F
+       </literal>
+       -- Radius
+       <literal classes="kbd">
+        F
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Set the radius of the brush.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Sức Mạnh/Cường Độ
+       <literal classes="kbd">
+        Shift-F
+       </literal>
+       -- Strength
+       <literal classes="kbd">
+        Shift-F
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Set the strength of the brush effect (not for Add brush).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Add/Sub Grow/Shrink
+      </term>
+      <definition>
+       <paragraph>
+        Sets the brush to add the effect or reverse it.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        -- Particle Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Sidebar Region --&gt; Tool`">
+         Sidebar Region ‣ Tool
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Làm Lệch Hướng Vật Phát -- Deflect Emitter
+     </term>
+     <definition>
+      <paragraph>
+       Hair particles only -- Do not move keypoints through the emitting mesh.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Khoảng Cách -- Distance
+        </term>
+        <definition>
+         <paragraph>
+          The distance to keep from the Emitter.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Keep
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Chiều Dài -- Length
+        </term>
+        <definition>
+         <paragraph>
+          Keep the length of the segments between the keypoints when combing or smoothing the hair.
+This is done by moving all the other keypoints.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Phép Căn -- Root
+        </term>
+        <definition>
+         <paragraph>
+          Keep first key unmodified, so you cannot transplant hair.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Correct
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tốc Lực -- Velocity
+        </term>
+        <definition>
+         <paragraph>
+          Recalculate velocities of particles according to their edited paths.
+Otherwise, the original velocities values remains unchanged
+regardless of the actual distance that the particles moves.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đối Xứng X -- X Mirror
+     </term>
+     <definition>
+      <paragraph>
+       Enable mirror editing across the local X axis.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vật Thể Chỉnh Hình -- Shape Object
+     </term>
+     <definition>
+      <paragraph>
+       A mesh object which boundary is used by the
+       <emphasis>
+        Shape Cut
+       </emphasis>
+       tool.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Cắt Theo Hình Dạng -- Shape Cut
+        </term>
+        <definition>
+         <paragraph>
+          This grooming tool trims hairs to a shape defined by the
+          <emphasis>
+           Shape Object
+          </emphasis>
+          .
+This is a quicker way of avoiding protruding hair sections from lengthening than using the Cutting tool.
+It works especially well for characters with extensive fur,
+where working in a single plane with the Cutting tool becomes tedious.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <table ids="id3">
+    <title>
+     Shape Cut example.
+    </title>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/physics_particles_mode_shapecut-before.png'}" uri="images/physics_particles_mode_shapecut-before.png"/>
+         <caption>
+          Trước.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/physics_particles_mode_shapecut-after.png'}" uri="images/physics_particles_mode_shapecut-after.png"/>
+         <caption>
+          Sau.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <section ids="viewport-display" names="viewport\ display">
+    <title>
+     Viewport Display
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Bước Đường Dẫn -- Path Steps
+      </term>
+      <definition>
+       <paragraph>
+        The number of steps used to draw the path; improves the smoothness of the particle path.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hạt -- Particles
+      </term>
+      <definition>
+       <paragraph>
+        Displays the actual particles on top of the paths.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Thời Gian Phai Mờ -- Fade Time
+      </term>
+      <definition>
+       <paragraph>
+        Fade out paths and keys further away from current time.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Khung Hình -- Frames
+         </term>
+         <definition>
+          <paragraph>
+           How many frames to fade.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Show Children
+      </term>
+      <definition>
+       <paragraph>
+        Displays the children of the particles too.
+This allows to fine-tune the particles and see their effects on the result,
+but it may slow down your system if you have many children.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="editing" names="editing biên\ soạn\ --\ editing">
+   <title>
+    Biên Soạn -- Editing
+   </title>
+   <section ids="moving-keypoints-or-particles" names="moving\ keypoints\ or\ particles --\ moving\ keypoints\ or\ particles">
+    <title>
+     -- Moving Keypoints or Particles
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       To move selected keypoints press
+       <literal classes="kbd">
+        G
+       </literal>
+       , or use one of the various other methods to move vertices.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       To move a particle root you have to turn off Keep
+       <emphasis>
+        Root
+       </emphasis>
+       in the Toolbar.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       You can do many of the things like with vertices, including scaling,
+rotating and removing (complete particles or single keys).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       You may not duplicate or extrude keys or particles,
+but you can subdivide particles which adds new keypoints
+       <inline classes="menuselection" rawtext=":menuselection:`Particle --&gt; Subdivide`">
+        Particle ‣ Subdivide
+       </inline>
+       .
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Alternatively you can rekey a particle
+       <inline classes="menuselection" rawtext=":menuselection:`Particle --&gt; Rekey`">
+        Particle ‣ Rekey
+       </inline>
+       .
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     How smoothly the hair and particle paths are displayed depends on the
+     <emphasis>
+      Path Steps
+     </emphasis>
+     setting in the Toolbar. Low settings produce blocky interpolation between points,
+while high settings produce a smooth curve.
+    </paragraph>
+   </section>
+   <section ids="mirror" names="mirror đối\ xứng\ hóa/gương\ --\ mirror">
+    <title>
+     Đối Xứng Hóa/Gương -- Mirror
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         -- Particle Edit Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Hạt (Particle) --&gt; Đối Xứng Hóa/Gương (Mirror)`">
+          Hạt (Particle) ‣ Đối Xứng Hóa/Gương (Mirror)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     If you want to create an X axis symmetrical haircut you have to do following steps:
+    </paragraph>
+    <enumerated_list enumtype="arabic" prefix="" suffix=".">
+     <list_item>
+      <paragraph>
+       Select all particles with
+       <literal classes="kbd">
+        A
+       </literal>
+       .
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Mirror the particles with
+       <inline classes="menuselection" rawtext=":menuselection:`Particle --&gt; Mirror`">
+        Particle ‣ Mirror
+       </inline>
+       .
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Turn on
+       <emphasis>
+        X Mirror
+       </emphasis>
+       in
+       <inline classes="menuselection" rawtext=":menuselection:`Sidebar Region --&gt; Tool --&gt; Options`">
+        Sidebar Region ‣ Tool ‣ Options
+       </inline>
+       .
+      </paragraph>
+     </list_item>
+    </enumerated_list>
+    <paragraph>
+     It may happen that after mirroring two particles occupy nearly the same place.
+Since this would be a waste of memory and render time,
+you can use
+     <emphasis>
+      Merge by Distance
+     </emphasis>
+     either from the
+     <emphasis>
+      Specials
+     </emphasis>
+     <literal classes="kbd">
+      W
+     </literal>
+     or the
+     <emphasis>
+      Particle
+     </emphasis>
+     menu.
+    </paragraph>
+   </section>
+   <section ids="unify-length" names="unify\ length đồng\ bộ\ hóa\ độ\ dài\ --\ unify\ length">
+    <title>
+     Đồng Bộ Hóa Độ Dài -- Unify Length
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         -- Particle Edit Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Particle --&gt; Unify Length`">
+          Particle ‣ Unify Length
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     This tool is used to make all selected hair uniform length by finding the average length.
+    </paragraph>
+   </section>
+   <section ids="show-hide" names="show/hide hiện/ẩn\ --\ show/hide">
+    <title>
+     Hiện/Ẩn -- Show/Hide
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         -- Particle Edit Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Hạt (Particle) --&gt; Hiện/Ẩn (Show/Hide)`">
+          Hạt (Particle) ‣ Hiện/Ẩn (Show/Hide)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Hiding and unhiding of particles works similar as with vertices in the 3D View.
+Select one or more keypoints of the particle you want to hide and press
+     <literal classes="kbd">
+      H
+     </literal>
+     .
+The particle in fact does not vanish, only the key points.
+    </paragraph>
+    <paragraph>
+     Hidden particles (i.e. particles whose keypoints are hidden)
+do not react on the various brushes. But:
+    </paragraph>
+    <paragraph>
+     If you use
+     <emphasis>
+      Mirror Editing
+     </emphasis>
+     even particles with hidden keypoints may be moved,
+if their mirrored counterpart is moved.
+    </paragraph>
+    <paragraph>
+     To unhide all hidden particles press
+     <literal classes="kbd">
+      Alt-H
+     </literal>
+     .
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

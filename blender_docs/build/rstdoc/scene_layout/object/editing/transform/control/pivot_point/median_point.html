@@ -1,0 +1,109 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/transform/control/pivot_point/median_point.rst">
+ <section ids="median-point" names="median\ point trung\ điểm\ --\ median\ point">
+  <title>
+   Trung Điểm -- Median Point
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Vật Thể và Chế Độ Biên Soạn -- Object Mode and Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Tiêu Đề -- Header
+     </field_name>
+     <field_body>
+      <paragraph>
+       <image alt="pivot-icon" candidates="{'*': 'images/scene-layout_object_editing_transform_control_pivot-point_menu.png'}" uri="images/scene-layout_object_editing_transform_control_pivot-point_menu.png"/>
+       <inline classes="menuselection" rawtext=":menuselection:`Điểm Tựa (Pivot Point) --&gt; Trung Điểm (Median Point)`">
+        Điểm Tựa (Pivot Point) ‣ Trung Điểm (Median Point)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Ctrl-Comma
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The Median Point can be considered to be broadly similar to the concept of
+Center of Gravity (COG). If we assume that every element (object, face, vertex, etc.)
+of the selection has the same mass,
+the median point would sit at the point of equilibrium for the selection (the COG).
+  </paragraph>
+  <section ids="in-object-mode" names="in\ object\ mode trong\ chế\ độ\ vật\ thể\ --\ in\ object\ mode">
+   <title>
+    Trong Chế Độ Vật Thể -- In Object Mode
+   </title>
+   <paragraph>
+    In Object Mode, Blender only considers the Object origins when determining the median point.
+This can lead to some counter-intuitive results.
+In the Fig.
+    <reference internal="True" refid="fig-view3d-median-point-object-mode">
+     <inline classes="std std-ref">
+      Median points in Object Mode.
+     </inline>
+    </reference>
+    below,
+you can see that the median point is between the Object origins and
+can be nowhere near the Objects' mesh (geometric center).
+   </paragraph>
+   <target refid="fig-view3d-median-point-object-mode">
+   </target>
+   <figure ids="id1 fig-view3d-median-point-object-mode" names="fig-view3d-median-point-object-mode">
+    <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_pivot-point_median-point_object-mode.png'}" uri="images/scene-layout_object_editing_transform_control_pivot-point_median-point_object-mode.png"/>
+    <caption>
+     Median points in Object Mode.
+    </caption>
+   </figure>
+  </section>
+  <section ids="in-edit-mode" names="in\ edit\ mode trong\ chế\ độ\ biên\ soạn\ --\ in\ edit\ mode">
+   <title>
+    Trong Chế Độ Biên Soạn -- In Edit Mode
+   </title>
+   <paragraph>
+    In Edit Mode,
+the median point is determined via the part of the selection that has the most elements.
+For example, in the Fig.
+    <reference internal="True" refid="fig-view3d-median-point-edit-mode">
+     <inline classes="std std-ref">
+      Median points in Edit Mode.
+     </inline>
+    </reference>
+    ,
+when there are two cubes with an equal number of vertices,
+the median point lies directly between the two cubes. However,
+if we subdivide one cube multiple times so that it has many more vertices,
+you can see that the median point has shifted to the region with the most vertices.
+   </paragraph>
+   <target refid="fig-view3d-median-point-edit-mode">
+   </target>
+   <figure ids="id2 fig-view3d-median-point-edit-mode" names="fig-view3d-median-point-edit-mode">
+    <image candidates="{'*': 'images/scene-layout_object_editing_transform_control_pivot-point_median-point_edit-mode.png'}" uri="images/scene-layout_object_editing_transform_control_pivot-point_median-point_edit-mode.png"/>
+    <caption>
+     Median points in Edit Mode.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

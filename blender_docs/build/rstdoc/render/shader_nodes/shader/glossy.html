@@ -1,0 +1,213 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/shader/glossy.rst">
+ <target refid="bpy-types-shadernodebsdfglossy">
+ </target>
+ <section ids="glossy-bsdf bpy-types-shadernodebsdfglossy" names="glossy\ bsdf bsdf\ bóng\ bẩy\ --\ glossy\ bsdf bpy.types.shadernodebsdfglossy">
+  <title>
+   BSDF Bóng Bẩy -- Glossy BSDF
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_shader_glossy_node.png'}" uri="images/render_shader-nodes_shader_glossy_node.png"/>
+   <caption>
+    Glossy BSDF.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Glossy
+   </emphasis>
+   <abbreviation explanation="Bidirectional scattering distribution function">
+    BSDF
+   </abbreviation>
+   node is used to add reflection with microfacet distribution, used for materials such as metal or mirrors.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Về màu sắc của bề mặt, hoặc về thể chất mà nói, xác suất ánh sáng được phản xạ cho mỗi bước sóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Ráp -- Roughness
+     </term>
+     <definition>
+      <paragraph>
+       Input for the surface roughness resulting in sharp to blurry reflections.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pháp Tuyến -- Normal
+     </term>
+     <definition>
+      <paragraph>
+       Normal used for shading.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Phân Phối -- Distribution
+     </term>
+     <definition>
+      <paragraph>
+       Microfacet distribution to use.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sắc/Nhọn -- Sharp
+        </term>
+        <definition>
+         <paragraph>
+          Results in perfectly sharp reflections like a mirror. The
+          <emphasis>
+           Roughness
+          </emphasis>
+          value is not used.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         GGX
+        </term>
+        <definition>
+         <paragraph>
+          GGX microfacet distribution.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Multiple-scattering GGX
+         <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+          Cycles Only
+         </inline>
+        </term>
+        <definition>
+         <paragraph>
+          Takes multiple bounce (scattering) events between microfacets into account.
+This gives a more energy conserving results, which would otherwise be visible as excessive darkening.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Beckmann
+         <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+          Cycles Only
+         </inline>
+        </term>
+        <definition>
+         <paragraph>
+          Beckmann microfacet distribution.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Ashikhmin-Shirley
+         <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+          Cycles Only
+         </inline>
+        </term>
+        <definition>
+         <paragraph>
+          Ashikhmin-Shirley microfacet distribution.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      BSDF
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra chuẩn của bộ tô bóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <table classes="colwidths-auto">
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_glossy_example.jpg'}" uri="images/render_shader-nodes_shader_glossy_example.jpg"/>
+         <caption>
+          Sharp Glossy example.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_glossy_behavior-sharp.svg'}" uri="images/render_shader-nodes_shader_glossy_behavior-sharp.svg" width="308px"/>
+         <caption>
+          Sharp Glossy behavior.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+      <row>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_glossy_rough.jpg'}" uri="images/render_shader-nodes_shader_glossy_rough.jpg"/>
+         <caption>
+          Rough Glossy example.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/render_shader-nodes_shader_glossy_behavior.svg'}" uri="images/render_shader-nodes_shader_glossy_behavior.svg" width="308px"/>
+         <caption>
+          Rough Glossy behavior.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

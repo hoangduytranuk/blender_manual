@@ -1,0 +1,112 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/matte/chroma_key.rst">
+ <target refid="bpy-types-compositornodechromamatte">
+ </target>
+ <section ids="chroma-key-node bpy-types-compositornodechromamatte" names="chroma\ key\ node nút\ khóa\ lọc\ màu\ --\ chroma\ key\ node bpy.types.compositornodechromamatte">
+  <title>
+   Nút Khóa Lọc Màu -- Chroma Key Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeChromaMatte.png'}" uri="images/compositing_node-types_CompositorNodeChromaMatte.png"/>
+   <caption>
+    Nút Khóa Lọc Màu.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút Khóa Lọc Màu xác định xem một điểm ảnh được coi là nền đằng trước hoặc nền đằng sau (và do đó trở thành trong suốt hay không) dựa trên các giá trị màu sắc (chroma)
+  </paragraph>
+  <paragraph>
+   Sử dụng cái này, chẳng hạn, để tổng hợp các hình ảnh đã được chụp ở đằng trước một màn xanh lục hoặc một màn xanh lam.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Màu Khóa -- Key Color
+     </term>
+     <definition>
+      <paragraph>
+       Chọn màu nền bằng cách sử dụng ống hút màu (color picker) và hình ảnh gốc.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chấp Thuận -- Acceptance
+     </term>
+     <definition>
+      <paragraph>
+       Một góc độ trên vòng tròn màu sắc đại diện mức biến thiên (tolerance) cho phép của màu khóa (keying color). Góc độ lớn cho phép độ biến thiên màu khóa lớn hơn, hòng cho phép những điểm ảnh có màu nằm trong mức biến thiên cho phép được coi là các điểm ảnh của nền.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cắt Bỏ -- Cutoff
+     </term>
+     <definition>
+      <paragraph>
+       Điều khiển mức độ được coi là nền (pure background). Mức cắt bỏ lớn hơn có nghĩa là các điểm ảnh sẽ trở nên trong suốt 100% nếu chúng nằm trong góc độ cho phép (angle tolerance).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Suy Giảm Dần -- Falloff
+     </term>
+     <definition>
+      <paragraph>
+       Tăng giá trị này lên để làm cho các điểm ảnh kề cận có phần nào đó trở nên trong suốt (partially transparent), hòng tạo ra các cạnh mềm mại.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Hình ảnh với kênh alpha của nó được điều chỉnh cho vùng khóa hóa lựa chọn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lớp Lồng -- Matte
+     </term>
+     <definition>
+      <paragraph>
+       Một bản màn chắn alpha trắng-đen của khóa.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

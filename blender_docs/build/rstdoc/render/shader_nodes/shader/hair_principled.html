@@ -1,0 +1,668 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/shader/hair_principled.rst">
+ <target refid="bpy-types-shadernodebsdfhairprincipled">
+ </target>
+ <section ids="principled-hair-bsdf bpy-types-shadernodebsdfhairprincipled" names="principled\ hair\ bsdf --\ principled\ hair\ bsdf bpy.types.shadernodebsdfhairprincipled">
+  <title>
+   -- Principled Hair BSDF
+  </title>
+  <paragraph>
+   <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+    Cycles Only
+   </inline>
+  </paragraph>
+  <figure align="right" ids="id5" width="30%">
+   <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_node-melaninconcentration.png'}" uri="images/render_shader-nodes_shader_hair-principled_node-melaninconcentration.png"/>
+   <caption>
+    Principled Hair BSDF under Melanin concentration.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Principled Hair
+   </emphasis>
+   <abbreviation explanation="Bidirectional scattering distribution function">
+    BSDF
+   </abbreviation>
+   is a physically-based,
+easy-to-use shader for rendering hair and fur.
+  </paragraph>
+  <section ids="coloring-hair" names="coloring\ hair --\ coloring\ hair">
+   <title>
+    -- Coloring Hair
+   </title>
+   <paragraph>
+    The shader provides three different ways, or
+    <emphasis>
+     parametrizations
+    </emphasis>
+    , to color the hair strands.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Direct coloring
+     </term>
+     <definition>
+      <paragraph>
+       Choose the desired RGB color and the shader will approximate
+the necessary
+       <emphasis>
+        absorption coefficient
+       </emphasis>
+       (below).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Melanin concentration
+     </term>
+     <definition>
+      <paragraph>
+       This mode defines the color as the quantity and
+ratio of the pigments which are commonly found in hair and fur,
+       <emphasis>
+        eumelanin
+       </emphasis>
+       (prevalent in brown-black hair) and
+       <emphasis>
+        pheomelanin
+       </emphasis>
+       (red hair).
+The quantity is specified in the
+       <emphasis>
+        Melanin
+       </emphasis>
+       input, and the ratio between them in
+       <emphasis>
+        Melanin Redness
+       </emphasis>
+       .
+Increasing concentrations darken the hair (the following are with
+       <emphasis>
+        Melanin Redness
+       </emphasis>
+       <math>
+        1
+       </math>
+       ):
+      </paragraph>
+      <bullet_list bullet="-">
+       <list_item>
+        <paragraph>
+         White (Melanin
+         <math>
+          0
+         </math>
+         ),
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Blonde (Melanin
+         <math>
+          0.25
+         </math>
+         )
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Reddish (Melanin
+         <math>
+          0.5
+         </math>
+         )
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Brown (Melanin
+         <math>
+          0.75
+         </math>
+         )
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Black (Melanin
+         <math>
+          1
+         </math>
+         )
+        </paragraph>
+       </list_item>
+      </bullet_list>
+      <paragraph>
+       Additionally, the
+       <emphasis>
+        Tint
+       </emphasis>
+       inputs allows to dye the hair with the desired color.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Absorption coefficient
+     </term>
+     <definition>
+      <paragraph>
+       Specifies the attenuation coefficient
+       <math>
+        \sigma_{a}
+       </math>
+       , as applied by the
+       <reference name="Beer-Lambert law" refuri="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law#Expression_with_attenuation_coefficient">
+        Beer-Lambert law
+       </reference>
+       .
+This mode is intended mainly for technical users who want to use
+coefficients from the literature without any sort of conversion.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="randomizing-properties" names="randomizing\ properties --\ randomizing\ properties">
+   <title>
+    -- Randomizing Properties
+   </title>
+   <paragraph>
+    Realistic hair should have a minimum of variance between each strand.
+The shader allows for this by specifying two values,
+    <emphasis>
+     Random Color
+    </emphasis>
+    and
+    <emphasis>
+     Random Roughness
+    </emphasis>
+    , which remap the specified Melanin/Roughness
+values to the range
+    <math>
+     Color/Roughness \pm Randomization\%
+    </math>
+    .
+   </paragraph>
+  </section>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       The RGB color of the strand. Only used in Direct coloring.
+      </paragraph>
+      <hint>
+       <paragraph>
+        The chosen color is converted to an absorption coefficient with
+the following formula (section 4.2 of
+        <reference ids="id1" internal="True" refid="cbtb16">
+         [CBTB16]
+        </reference>
+        ):
+       </paragraph>
+       <math_block docname="render/shader_nodes/shader/hair_principled" label="True" nowrap="False" number="True" xml:space="preserve">
+        \sigma_{a} = \frac{\ln(Color)}
+{\left(5.969 - 0.215\beta_{N} + 2.532\beta_{N}^{2} -
+10.73\beta_{N}^{3} + 5.574\beta_{N}^{4} + 0.245\beta_{N}^{5}\right)^{2}}
+       </math_block>
+       <paragraph>
+        where
+        <math>
+         \beta_{N}
+        </math>
+        is the radial roughness of the hair after applying randomization (if specified).
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id6">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_demo-color.jpg'}" uri="images/render_shader-nodes_shader_hair-principled_demo-color.jpg"/>
+    <caption>
+     Coloring hair using the Direct coloring parametrization. (The numbers on top are the RGB values.)
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Melanin
+     </term>
+     <definition>
+      <paragraph>
+       Absolute quantity of pigment.
+Range
+       <math>
+        [0, 1]
+       </math>
+       equivalent to
+       <math>
+        [0\%, 100\%]
+       </math>
+       .
+      </paragraph>
+      <hint>
+       <paragraph>
+        This is a linear mapping to the underlying exponential function:
+       </paragraph>
+       <math_block docname="render/shader_nodes/shader/hair_principled" label="True" nowrap="False" number="True" xml:space="preserve">
+        melanin\_qty = -\ln(\max(1.0 - Melanin, 0.0001))
+       </math_block>
+      </hint>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id7">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_demo-melanin.jpg'}" uri="images/render_shader-nodes_shader_hair-principled_demo-melanin.jpg"/>
+    <caption>
+     Melanin.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Melanin Redness
+     </term>
+     <definition>
+      <paragraph>
+       Ratio of pheomelanin to eumelanin.
+Range
+       <math>
+        [0, 1]
+       </math>
+       equivalent to
+       <math>
+        [0\%, 100\%]
+       </math>
+       .
+      </paragraph>
+      <hint>
+       <paragraph>
+        The ratio formula is:
+        <math>
+         eumelanin = Melanin*(1.0-MelaninRedness)
+        </math>
+        ,
+        <math>
+         pheomelanin = Melanin*MelaninRedness
+        </math>
+        .
+       </paragraph>
+       <paragraph>
+        The resulting quantities are converted (after randomization, if specified)
+to absorption concentration via the following formula
+(section 6.1 of
+        <reference ids="id2" internal="True" refid="efhla11">
+         [EFHLA11]
+        </reference>
+        , adjusted for the range
+        <math>
+         [0, 1]
+        </math>
+        ):
+       </paragraph>
+       <math_block docname="render/shader_nodes/shader/hair_principled" label="True" nowrap="False" number="True" xml:space="preserve">
+        \sigma_{a} =
+eumelanin * \left[\begin{matrix}   0.506 \\ 0.841 \\ 1.653 \\ \end{matrix}\right] +
+pheomelanin * \left[\begin{matrix} 0.343 \\ 0.733 \\ 1.924 \\ \end{matrix}\right]
+       </math_block>
+      </hint>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id8">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_demo-melanin-redness.jpg'}" uri="images/render_shader-nodes_shader_hair-principled_demo-melanin-redness.jpg"/>
+    <caption>
+     Melanin Redness.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Sắc Thái -- Tint
+     </term>
+     <definition>
+      <paragraph>
+       Color used for dyeing the hair after applying the melanin pigment.
+It is not subject to randomization.
+It can be disabled by setting the color to white.
+      </paragraph>
+      <hint>
+       <paragraph>
+        This is converted via the Color mapping above and added to
+the absorption coefficient of the melanin concentration.
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id9">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_demo-tint.jpg'}" uri="images/render_shader-nodes_shader_hair-principled_demo-tint.jpg"/>
+    <caption>
+     Tint, using Melanin 0.1 and the corresponding RGB values.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Absorption coefficient
+     </term>
+     <definition>
+      <paragraph>
+       Attenuation coefficient
+       <math>
+        \sigma
+       </math>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Ráp -- Roughness
+     </term>
+     <definition>
+      <paragraph>
+       Specify how much the glints are smoothed in the direction of the hair shaft.
+Too low values will smoothen the hair to the point of looking almost metallic,
+making glints look like fireflies; while setting it too high will result in a Lambertian look.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id10">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_demo-roughness.jpg'}" uri="images/render_shader-nodes_shader_hair-principled_demo-roughness.jpg"/>
+    <caption>
+     Roughness.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Radial Roughness
+     </term>
+     <definition>
+      <paragraph>
+       Specify how much the glints are smoothed in the direction of the hair tangent.
+Too low values will concentrate the glint;
+while setting it too high will spread the light across the width of the strand.
+      </paragraph>
+      <hint>
+       <paragraph>
+        Mathematically, this parameter is mapped to the logistic distribution's
+scale factor
+        <math>
+         s
+        </math>
+        (section 4.1 of
+        <reference ids="id3" internal="True" refid="cbtb16">
+         [CBTB16]
+        </reference>
+        ).
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id11">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_demo-radial-roughness.jpg'}" uri="images/render_shader-nodes_shader_hair-principled_demo-radial-roughness.jpg"/>
+    <caption>
+     Radial Roughness.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Coat
+     </term>
+     <definition>
+      <paragraph>
+       Simulate a shiny coat of fur, by reducing the Roughness to the given factor
+only for the first light bounce (diffuse).
+Range
+       <math>
+        [0, 1]
+       </math>
+       equivalent to a reduction of
+       <math>
+        [0\%, 100\%]
+       </math>
+       of the original Roughness.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id12">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_demo-coat.jpg'}" uri="images/render_shader-nodes_shader_hair-principled_demo-coat.jpg"/>
+    <caption>
+     Coat.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chỉ Số Khúc Xạ (IOR) -- IOR
+     </term>
+     <definition>
+      <paragraph>
+       Index of refraction (
+       <reference internal="True" refuri="../../../glossary/index.html#term-ior">
+        <inline classes="xref std std-term">
+         IOR
+        </inline>
+       </reference>
+       ) defining how much the ray changes direction.
+At 1.0 rays pass straight through like in a transparent material;
+higher values give more refraction.
+Default value is
+       <math>
+        1.55
+       </math>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển -- Offset
+     </term>
+     <definition>
+      <paragraph>
+       Tilts the glint of the hair by increasing the angle of the scales of
+the hair's cuticle with respect to the hair shaft.
+Human hair usually has low values.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Random Color
+     </term>
+     <definition>
+      <paragraph>
+       For each strand, vary the melanin concentration by
+       <math>
+        RandomFactor
+       </math>
+       .
+Range
+       <math>
+        [0, 1]
+       </math>
+       equivalent to
+       <math>
+        [0\%, 100\%]
+       </math>
+       of
+the initial melanin concentration.
+      </paragraph>
+      <hint>
+       <paragraph>
+        The melanin concentration is multiplied by
+        <math>
+         randomFactor
+        </math>
+        ,
+where
+        <math>
+         randomFactor = 1.0 + 2.0*(Random - 0.5) * RandomColor
+        </math>
+        .
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id13">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_demo-random-color.jpg'}" uri="images/render_shader-nodes_shader_hair-principled_demo-random-color.jpg"/>
+    <caption>
+     Random Color.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Random Roughness
+     </term>
+     <definition>
+      <paragraph>
+       For each strand, vary both Roughness values by
+       <math>
+        RandomFactor
+       </math>
+       .
+Range
+       <math>
+        [0, 1]
+       </math>
+       equivalent to
+       <math>
+        [0\%, 100\%]
+       </math>
+       of
+the initial roughness values.
+      </paragraph>
+      <hint>
+       <paragraph>
+        The applied formula is the same one as for
+        <emphasis>
+         Random Color
+        </emphasis>
+        .
+       </paragraph>
+      </hint>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure align="center" ids="id14">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_hair-principled_demo-random-roughness.jpg'}" uri="images/render_shader-nodes_shader_hair-principled_demo-random-roughness.jpg"/>
+    <caption>
+     Random Roughness.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Ngẫu Nhiên -- Random
+     </term>
+     <definition>
+      <paragraph>
+       Random number source. If no node is connected here, it is automatically instanced with the value obtained from
+       <inline classes="menuselection" rawtext=":menuselection:`Thông Tin về Tóc (Hair Info) --&gt; Ngẫu Nhiên (Random)`">
+        Thông Tin về Tóc (Hair Info) ‣ Ngẫu Nhiên (Random)
+       </inline>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <comment xml:space="preserve">
+    Todo 2.79 move content from above here
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Parametrization
+     </term>
+     <definition>
+      <paragraph>
+       Choose one of the three coloring modes described above.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      BSDF
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra chuẩn của bộ tô bóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="references" names="references --\ references">
+   <title>
+    -- References
+   </title>
+   <paragraph>
+    This shader is an implementation of the paper by Chiang et al.
+    <reference ids="id4" internal="True" refid="cbtb16">
+     [CBTB16]
+    </reference>
+    ,
+which was used in the Disney film, "Zootopia"
+    <superscript>
+     ®
+    </superscript>
+    .
+   </paragraph>
+   <citation backrefs="id1 id3 id4" docname="render/shader_nodes/shader/hair_principled" ids="cbtb16" names="cbtb16">
+    <label support_smartquotes="False">
+     CBTB16
+    </label>
+    <paragraph>
+     Chiang, M. J. , Bitterli, B. , Tappan, C. and Burley, B. (2016),
+A Practical and Controllable Hair and Fur Model for Production Path Tracing. Computer Graphics Forum, 35: 275-283.
+     <reference name="doi:10.1111/cgf.12830" refuri="https://doi.org/10.1111/cgf.12830">
+      doi:10.1111/cgf.12830
+     </reference>
+    </paragraph>
+   </citation>
+   <citation backrefs="id2" docname="render/shader_nodes/shader/hair_principled" ids="efhla11" names="efhla11">
+    <label support_smartquotes="False">
+     EFHLA11
+    </label>
+    <paragraph>
+     d'Eon, E. , Francois, G. , Hill, M. , Letteri, J. and Aubry, J. (2011),
+An Energy‐Conserving Hair Reflectance Model. Computer Graphics Forum, 30: 1181-1187.
+     <reference name="doi:10.1111/j.1467-8659.2011.01976.x" refuri="https://doi.org/10.1111/j.1467-8659.2011.01976.x">
+      doi:10.1111/j.1467-8659.2011.01976.x
+     </reference>
+    </paragraph>
+   </citation>
+  </section>
+ </section>
+</document>

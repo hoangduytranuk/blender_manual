@@ -1,0 +1,334 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/common_options.rst">
+ <section ids="common-modifier-options" names="common\ modifier\ options">
+  <title>
+   Common Modifier Options
+  </title>
+  <paragraph>
+   Some options are commonly used by many modifiers, and share the same behavior across all of those.
+In particular, many offer ways to precisely mask and weight their effect on a vertex basis
+(using either vertex groups and/or textures).
+  </paragraph>
+  <target refid="modifiers-common-options-masking">
+  </target>
+  <section ids="vertex-group modifiers-common-options-masking" names="vertex\ group modifiers-common-options-masking">
+   <title>
+    Vertex Group
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_modifiers_generic_vertex-group.png'}" uri="images/modeling_modifiers_generic_vertex-group.png"/>
+    <caption>
+     Typical modifier Vertex Group options.
+    </caption>
+   </figure>
+   <paragraph>
+    <reference internal="True" refuri="../meshes/properties/vertex_groups/introduction.html">
+     <inline classes="doc">
+      Vertex Groups
+     </inline>
+    </reference>
+    are an easy way to control
+which vertices are affected by a modifier, and to which extent (using their weights).
+They are available when modifying meshes or lattices.
+   </paragraph>
+   <tip>
+    <paragraph>
+     Vertex groups can also be edited and even animated using
+the
+     <reference internal="True" refuri="modify/weight_edit.html#bpy-types-vertexweighteditmodifier">
+      <inline classes="std std-ref">
+       Vertex Weight modifiers
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </tip>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vertex Group
+     </term>
+     <definition>
+      <paragraph>
+       The vertex group name.
+      </paragraph>
+      <warning>
+       <paragraph>
+        The group is referenced by its name. That means that if you rename it, the link to the renamed vertex group
+will be lost by all modifiers using it (their field will turn red),
+and you'll have to select the proper group again in all of them.
+       </paragraph>
+      </warning>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Invert (double arrow icon)
+     </term>
+     <definition>
+      <paragraph>
+       Invert the influence of the vertex group. Only available in some modifiers.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="texture" names="texture">
+   <title>
+    Texture
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/modeling_modifiers_generic_texture.png'}" uri="images/modeling_modifiers_generic_texture.png"/>
+    <caption>
+     Typical modifier Texture options.
+    </caption>
+   </figure>
+   <paragraph>
+    Those options allow to use any kind of image (including parametric ones) to control the modifier's effect.
+Most of the time, only the value (grayscale) of the texture is used,
+but in some cases (like with some modes of the
+    <reference internal="True" refuri="deform/displace.html#bpy-types-displacemodifier">
+     <inline classes="std std-ref">
+      Displace modifier
+     </inline>
+    </reference>
+    ),
+the whole RGB color components might be exploited.
+   </paragraph>
+   <tip>
+    <paragraph>
+     Textures can be animated (either using videos, or by animating the mapping coordinates...).
+    </paragraph>
+   </tip>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Texture
+     </term>
+     <definition>
+      <paragraph>
+       The
+       <reference internal="True" refuri="../../render/materials/legacy_textures/introduction.html">
+        <inline classes="doc">
+         texture data-block
+        </inline>
+       </reference>
+       to use.
+      </paragraph>
+      <tip>
+       <paragraph>
+        By clicking on the right-most button of this field (with the settings icon),
+you can go directly to the selected texture's settings in the
+        <emphasis>
+         Texture Properties
+        </emphasis>
+        editor.
+       </paragraph>
+      </tip>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Texture Coordinates
+     </term>
+     <definition>
+      <paragraph>
+       The texture's coordinates to get each vertex' value:
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         UV
+        </term>
+        <definition>
+         <paragraph>
+          Take texture coordinates from face UV coordinates.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            UV Map
+           </term>
+           <definition>
+            <paragraph>
+             The
+             <reference internal="True" refuri="../../glossary/index.html#term-uv-map">
+              <inline classes="xref std std-term">
+               UV map
+              </inline>
+             </reference>
+             from which to take texture coordinates.
+If the object has no UV coordinates, it falls back to the
+             <emphasis>
+              Local
+             </emphasis>
+             coordinate system.
+If this field is blank, but there is a UV map available
+(e.g. just after adding the first UV map to the mesh), the currently active UV map will be used.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+         <note>
+          <paragraph>
+           Since UV coordinates are specified per face, the UV texture coordinate system currently determines the UV
+coordinate for each vertex from the first face encountered which uses that vertex.
+Any other faces using that vertex are ignored.
+          </paragraph>
+          <paragraph>
+           This may lead to artifacts if the mesh has non-contiguous UV coordinates.
+          </paragraph>
+         </note>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Object
+        </term>
+        <definition>
+         <paragraph>
+          Take the texture coordinates from another object's coordinate system.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Object
+           </term>
+           <definition>
+            <paragraph>
+             The object from which to take texture coordinates.
+Moving the object will therefore alter the coordinates of the texture mapping.
+            </paragraph>
+            <paragraph>
+             If this field is blank, it falls back to the
+             <emphasis>
+              Local
+             </emphasis>
+             coordinate system.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+         <note>
+          <paragraph>
+           Moving the original object will
+           <strong>
+            also
+           </strong>
+           result in a texture coordinate update.
+As such, if you need to maintain a displacement coordinate system while moving the modified object,
+consider
+           <reference internal="True" refuri="../../scene_layout/object/properties/relations/parents.html#bpy-ops-object-parent-set">
+            <inline classes="std std-ref">
+             parenting
+            </inline>
+           </reference>
+           the coordinate object to the modified object.
+          </paragraph>
+         </note>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Global
+        </term>
+        <definition>
+         <paragraph>
+          Take the texture coordinates from the global coordinate system.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Local
+        </term>
+        <definition>
+         <paragraph>
+          Take the texture coordinates from the object's local coordinate system.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Use Channel
+     </term>
+     <definition>
+      <paragraph>
+       Which channel to use as value source
+(only available with a few modifiers currently, others follow the
+       <emphasis>
+        Intensity
+       </emphasis>
+       behavior,
+unless otherwise specified).
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Intensity
+        </term>
+        <definition>
+         <paragraph>
+          The average of the RGB channels (if RGB(1.0, 0.0, 0.0) value is 0.33).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Red/Green/Blue/Alpha
+        </term>
+        <definition>
+         <paragraph>
+          One of the color channels' values.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hue
+        </term>
+        <definition>
+         <paragraph>
+          The hue from the HSV color space
+(i.e; the color in the standard wheel, e.g. blue has a higher hue value than yellow).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Saturation
+        </term>
+        <definition>
+         <paragraph>
+          The saturation from the HSV color space (e.g. the value for pure red is 1.0, for gray is 0.0).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Value
+        </term>
+        <definition>
+         <paragraph>
+          The value from the HSV color space.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <note>
+       <paragraph>
+        All of the channels above are gamma corrected, except for
+        <emphasis>
+         Intensity
+        </emphasis>
+        .
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

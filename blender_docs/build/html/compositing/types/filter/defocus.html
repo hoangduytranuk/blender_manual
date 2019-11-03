@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Nút Phi Hội Tụ -- Defocus Node &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/compositing/types/filter/defocus.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Nút Khử Chấm Lốm Đốm -- Despeckle Node" href="despeckle.html" />
+    <link rel="prev" title="Nút Nhòe Mờ Bokeh -- Bokeh Blur Node" href="bokeh_blur.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tổng Hợp -- Compositing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../properties.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#node-types">Thể Loại Nút -- Node Types</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Nút Đầu Vào -- Input Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Nút Đầu Ra -- Output Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Nút Màu Sắc -- Color Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Nút Chuyển Đổi -- Converter Nodes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Nút Bộ Lọc -- Filter Nodes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bilateral_blur.html">Nút Nhòe Mờ Song Phương -- Bilateral Blur Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blur_node.html">Nút Làm Nhòe -- Blur Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bokeh_blur.html">Nút Nhòe Mờ Bokeh -- Bokeh Blur Node</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Nút Phi Hội Tụ -- Defocus Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="despeckle.html">Nút Khử Chấm Lốm Đốm -- Despeckle Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dilate_erode.html">Nút Giãn Ra/Thu Vào -- Dilate/Erode Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="directional_blur.html">Nút Làm Nhòe Hữu Hướng -- Directional Blur Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="filter_node.html">Nút Bộ Lọc -- Filter Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glare.html">Nút Lóe Sáng -- Glare Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inpaint.html">Nút Sơn Nội -- Inpaint Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pixelate.html">Nút Điểm Ảnh Hóa -- Pixelate Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sun_beams.html">Nút Tia Nắng -- Sun Beams Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vector_blur.html">Nút Nhòe Mờ (Chuyển Động) Vectơ -- Vector (Motion) Blur Node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Nút Véctơ -- Vector Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../matte/index.html">Nút Lớp Lồng -- Matte Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../distort/index.html">Nút Biến Dạng -- Distort Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm Nút -- Node Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/index.html">Nút Bố Trí -- Layout Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../editors/index.html">Trình Biên Soạn -- Editors</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Tổng Hợp -- Compositing</a> &raquo;</li>
+        
+          <li><a href="index.html">Nút Bộ Lọc -- Filter Nodes</a> &raquo;</li>
+        
+      <li>Nút Phi Hội Tụ -- Defocus Node</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/compositing/types/filter/defocus.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="bpy-types-compositornodedefocus"></span><div class="section" id="defocus-node">
+<h1>Nút Phi Hội Tụ -- Defocus Node<a class="headerlink" href="#defocus-node" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-right" id="id1">
+<img alt="../../../_images/compositing_node-types_CompositorNodeDefocus.png" src="../../../_images/compositing_node-types_CompositorNodeDefocus.png" />
+<p class="caption"><span class="caption-text">Nút Phi Hội Tụ.</span></p>
+</div>
+<p><em>Nút Phi Hội Tụ</em> làm nhòe một số vùng của hình ảnh dựa trên ánh xạ/màn chắn cung cấp ở đầu vào.</p>
+<p>Nó thường được sử dụng để mô phỏng độ sâu trường ảnh (<a class="reference internal" href="../../../glossary/index.html#term-dof"><span class="xref std std-term">DOF</span></a>) sử dụng phương thức hậu xử lý với đầu vào bộ đệm Z (Z-buffer), song cũng cho phép làm nhòe các hình ảnh không dựa trên độ sâu Z (Z depth) nữa.</p>
+<div class="section" id="inputs">
+<h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Hình Ảnh -- Image</dt>
+<dd>Đầu vào hình ảnh tiêu chuẩn.</dd>
+<dt>Z</dt>
+<dd>Đầu vào bộ đệm Z (Z-buffer), song cũng có thể là một hình ảnh (thang độ xám) được sử dụng làm màn chắn hoặc cung cấp một đơn giá trị.</dd>
+</dl>
+</div>
+<div class="section" id="properties">
+<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Loại Bokeh -- Bokeh Type</dt>
+<dd><p class="first">Số lượng lá khẩu của màng chắn (bộ lá khẩu trong ống kính) của máy ảnh ảo.</p>
+<p class="last">Đĩa (Disk) (để mô phỏng một vòng tròn (circle) hoàn hảo) hoặc Hình Tam Giác (Triangle) (3 lá), Hình Vuông (Square) (4 lá), Hình Ngũ Giác (Pentagon) (5 lá), Hình Lục Giác (Hexagon) (6 lá), Hình Bảy Góc (Heptagon) (7 lá) hoặc hình Bát Giác (Octagon) (8 lá).</p>
+</dd>
+<dt>Góc Độ -- Angle</dt>
+<dd>Nút này sẽ bị tắt nếu thể loại nhòe Bokeh (Bokeh Type) được đặt là Đĩa (Disk). Nó có thể được sử dụng để thêm hiệu ứng xoay chiều cho hình Bokeh. Giá trị là độ góc.</dd>
+<dt>Chỉnh Sửa Gamma -- Gamma Correction</dt>
+<dd>Áp dụng hiệu chỉnh gamma trên hình ảnh trước và sau khi làm nhòe mờ nó.</dd>
+<dt>Khẩu Độ -- F-Stop</dt>
+<dd>Tùy chọn này kiểm soát mức độ nhòe mờ của tiêu điểm tương tự như phương pháp làm của một máy ảnh thực. Nó mô phỏng khẩu độ <em>f</em> của tròng mắt ống kính thật, mà không sửa đổi độ sáng của bức ảnh. Giá trị mặc định 128 được coi là vô cực: mọi thứ đều rõ nét hoàn hảo. Phân nửa giá trị đi thì sẽ làm tăng gấp đôi lượng nhòe mờ. Nút này sẽ bị vô hiệu hóa nếu tính năng <em>Không có bộ đệm Z</em> (No Z-buffer) được bật lên.</dd>
+<dt>Nhòe Tối Đa -- Max Blur</dt>
+<dd>Giá trị này giới hạn lượng nhòe mờ bằng cách định giá trị làm bán kính nhòe mờ tối đa. Cái này có thể được sử dụng để tối ưu hóa hiệu suất hoạt động. Giá trị mặc định bằng 0 có nghĩa là không có giới hạn.</dd>
+<dt>Giới Hạn -- Threshold</dt>
+<dd><p class="first">Một số giả tượng, như rò rỉ cạnh, có thể xảy ra, nếu sự chênh lệch nhòe mờ giữa các điểm đỉnh xảy ra là lớn. Giá trị này kiểm soát mức độ chênh lệch nhòe mờ lớn mức nào mà vẫn được coi là an toàn.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">Chỉ thay đổi giá trị này, nếu có vấn đề xảy ra đối với đối tượng đang lấy nét.</p>
+</div>
+</dd>
+<dt>Duyệt Thảo -- Preview</dt>
+<dd>Nếu được kích hoạt thì một lượng giới hạn mẫu vật (quasi-) ngẫu nhiên sẽ được sử dụng để kết xuất bản xem trước. Phương pháp lấy mẫu vật này sẽ gây nhiễu thêm, song mình sẽ không thấy nó trong bản kết xuất cuối cùng.</dd>
+<dt>Cảnh -- Scene</dt>
+<dd>Để chọn cảnh liên kết.</dd>
+<dt>Không Có Bộ Đệm Z -- No Z-buffer</dt>
+<dd>Nên được kích hoạt cho một đầu vào Z không có bộ đệm Z (Z-buffer). Tùy chọn <em>Không Có Bộ Đệm Z</em> (No Z-buffer) sẽ được kích hoạt tự động bất cứ khi nào một nút không có nền tảng là hình ảnh được kết nối với đầu vào Z (Z input).</dd>
+<dt>Tỷ Lệ Z -- Z Scale</dt>
+<dd>Only active when <em>No Z-buffer</em> is enabled. When <em>No Z-buffer</em> is used,
+the input is used directly to control the blur radius (similar to <em>F-Stop</em> when using the Z-buffer).
+This parameter can be used to scale the range of the Z input.</dd>
+</dl>
+</div>
+<div class="section" id="outputs">
+<h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Hình Ảnh -- Image</dt>
+<dd>Đầu ra tiêu chuẩn của hình ảnh.</dd>
+</dl>
+</div>
+<div class="section" id="examples">
+<h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="figure">
+<a class="reference internal image-reference" href="../../../_images/compositing_types_filter_defocus_example.jpg"><img alt="../../../_images/compositing_types_filter_defocus_example.jpg" src="../../../_images/compositing_types_filter_defocus_example.jpg" style="width: 300px;" /></a>
+</div>
+<p>In this <a class="reference external" href="https://wiki.blender.org/uploads/7/79/Doftest.blend">blend-file example</a>,
+the ball array image is blurred as if it was taken by a camera with an f-stop of 2.8 resulting
+in a fairly narrow depth of field centered on 7.5 units from the camera.
+As the balls recede into the distance, they get blurrier.</p>
+<div class="section" id="no-z-buffer-examples">
+<h3>Những Ví Dụ về Không Có Bộ Đệm Z -- No Z-Buffer Examples<a class="headerlink" href="#no-z-buffer-examples" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes might want to have more control to blur the image. For instance,
+you may want to only blur one object while leaving everything else alone (or the other way around),
+or you want to blur the whole image uniformly all at once.
+The node, therefore, allows you to use something other than an actual Z-buffer as the Z input.
+For instance, you could connect an image node and use a grayscale image where the color designates
+how much to blur the image at that point, where white is the maximum blur and black is no blur.
+Or, you could use a Time node to uniformly blur the image,
+where the time value controls the maximum blur for that frame.
+It may also be used to obtain a possibly slightly better DoF blur,
+by using a fake depth-shaded image instead of a Z-buffer.
+(A typical method to create the fake depth-shaded image is by using a linear blend texture
+for all objects in the scene or by using the &quot;fog/mist&quot; fake depth shading method.)
+This also has the advantage that the fake depth image can have anti-aliasing,
+which is not possible with a real Z-buffer.</p>
+<p>Tham số <em>Không có bộ đệm Z</em> (No Z-buffer), do đó trở thành một điều khiển chính về độ nhòe mờ. Đầu vào phải được tỷ lệ hóa, vì thông thường giá trị của chất liệu chỉ nằm trong phạm vi từ 0,0 đến 1,0 mà thôi.</p>
+</div>
+<div class="section" id="camera-settings">
+<h3>Sắp Đặt của Máy Quay Phim -- Camera Settings<a class="headerlink" href="#camera-settings" title="Permalink to this headline">¶</a></h3>
+<div class="figure" id="id2">
+<img alt="../../../_images/compositing_types_filter_defocus_depth-of-field-panel.png" src="../../../_images/compositing_types_filter_defocus_depth-of-field-panel.png" />
+<p class="caption"><span class="caption-text">Sắp đặt về khoảng cách trong Bảng Điều Khiển Độ Sâu Trường Ảnh.</span></p>
+</div>
+<p>Nút <em>Phi Hội Tụ</em> (Defocus) sử dụng dữ liệu máy quay phim thực tế trong cảnh của bạn nếu dữ liệu được cung cấp bởi nút <em>Tầng Kết Xuất</em> (Render Layer).</p>
+<p>Để đặt điểm lấy nét thì hiện giờ máy ảnh có thông số <em>Khoảng Cách</em> (Distance), tức cách vắn tắt biểu thị Khoảng Cách của Độ Sâu Trường Ảnh. Hãy sử dụng tham số này của máy quay phim để đặt trường diện (focal plane) của máy ảnh (các vật thể của Khoảng Cách Độ Sâu Trường Ảnh, cách xa máy quay phim, song nằm trong tầm nhìn (rõ nét)). Đặt <em>Khoảng Cách</em> trong bảng biên soạn <em>Máy Quay Phim</em> chính; nút ấy nằm ngay bên dưới <em>Độ Sâu Trường Ảnh</em>.</p>
+<p>Để làm cho tiêu điểm nhìn thấy được thì hãy bật tùy chọn <em>Giới Hạn</em> của máy quay phim lên. Tiêu điểm sẽ hiện ra trong hình chữ thập màu vàng nằm dọc trên trục định hướng của máy quay phim.</p>
+</div>
+<div class="section" id="hints">
+<h3>Gợi ý -- Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Duyệt Thảo -- Preview</dt>
+<dd>Nói chung, hãy sử dụng chế độ xem trước và điều chỉnh các tham số theo ý thích của mình. Sau đó tắt chế độ xem trước đi, trước khi thi hành kết xuất sau cùng. Nút này đòi hỏi nhiều công năng tính toán, vì vậy hãy quan sát cửa sổ bàn giao tiếp của mình vì nó sẽ cho bạn biết thông tin về từng dòng quét kết xuất được tính toán một.</dd>
+<dt>Giả Tượng Cạnh -- Edge Artifacts</dt>
+<dd>Để giảm thiểu giả tượng tới mức tối thiểu thì hãy thử thiết lập cảnh của bạn sao cho sự chênh lệch trong khoảng cách giữa hai đối tượng có khả năng chồng chéo lên nhau ở một điểm nào đó không quá lớn.</dd>
+<dt>Đổi Trường Nét -- &quot;Focus Pull&quot;</dt>
+<dd><p class="first">Nhớ là đây không phải là độ sâu trường ảnh (DoF) thật, song chỉ là sự mô phỏng của xử lý hậu kỳ (post-processing simulation) mà thôi. Điều này là điều bất khả thi, tuy nó là vấn đề rất dễ giải quyết đối với DoF thật. Một ví dụ điển hình là một cảnh với một đối tượng nào đó rất gần với máy quay phim và máy quay phim đang tập trung vào một vài điểm nằm xa ở phía sau vật thể ấy. Trong thực tế, sử dụng độ sâu trường ảnh mỏng làm biến mất các vật thể lân cận là một điều hoàn toàn khả thi, cho phép máy quay phim nhìn thấy phía sau chúng. Các nhà quay phim Hollywood sử dụng đặc tính trực quan này để đạt được hiệu ứng &quot;Đổi Trường Nét&quot; (Focus Pull) nổi tiếng, trong đó tiêu điểm được di chuyển từ một vật ở gần sang một vật thể khác ở xa, sao cho các đối tượng không liên quan &quot;khác&quot; hoàn toàn bị biến mất. Điều này đơn thuần là điều không thể thực hiện được với phương thức xử lý hậu kỳ đơn lượt (single pass) hiện tại. Nếu bạn thực sự muốn đạt được hiệu ứng này một cách thỏa đáng thì đây là cách làm:</p>
+<ul class="last simple">
+<li>Phân tách các vật thể trong cảnh của bạn thành các vật ở &quot;gần&quot; và các vật ở &quot;xa&quot;, và kết xuất chúng thành 2 lượt.</li>
+<li>Now, combine the two results, each with their own &quot;defocus&quot; nodes driven by the same Time node,
+but with one of them inverted (e.g. using a Map Value node with a Size of -1).
+As the defocus of one increases,
+the defocus on the other decreases at the same rate, creating a smooth transition.</li>
+</ul>
+</dd>
+<dt>Chống Răng Chưa tại các Giá Trị Khẩu Độ Thấp -- Aliasing at Low f-Stop Values</dt>
+<dd><p class="first">Ở các giá trị rất thấp, dưới 5, nút sẽ khởi công loại bỏ bất cứ sự lấy mẫu dư (oversampling) nào, và làm rõ nét vật thể trong Khoảng Cách Trường Ảnh (DoF Distance). Nếu vật thể nằm trên một nền tương phản thì việc làm này có thể dẫn đến tình trạng răng cưa (aliasing) nhìn thấy được, cái mà OSA (Lấy Mẫu Dư -- <span class="xref std std-term">Oversampling</span>) được thiết kế để tránh né. Nếu bạn gặp phải vấn đề này thì:</p>
+<ul class="last simple">
+<li>Tự mình Lấy Mẫu Dư (OSA) bằng cách kết xuất với kích thước gấp đôi cỡ dự định, rồi thu nhỏ lại, hầu cho các điểm ảnh kề cận hòa nhòe lại với nhau.</li>
+<li>Dùng <a class="reference internal" href="blur_node.html#bpy-types-compositornodeblur"><span class="std std-ref">Nút Làm Nhòe -- Blur Node</span></a>)</li>
+<li>Đặt Khoảng Cách Trường Ảnh (DoF Distance) lệch đi một chút, hầu cho vật thể rõ nét bị làm nhòe đi một chút xíu.</li>
+<li>Use a higher f-stop, which will start the blur,
+and then use the Z socket to a Map Value to a Blur node to enhance the blur effect.</li>
+<li>Bố trí lại các vật thể trong cảnh của mình để sử dụng một cái nền có độ tương phản thấp hơn.</li>
+</ul>
+</dd>
+<dt>Không Có Bộ Đệm Z -- No Z-Buffer</dt>
+<dd>Một lời cảnh báo cuối cùng, vì không có cách nào để phát hiện rằng bộ đệm Z có thực sự được kết nối với nút hay không, xin bạn hãy <strong>rất</strong> cẩn thận với nút bật <em>Không có bộ đệm Z</em>. Nếu giá trị <em>Tỷ Lệ Z</em> (Z scale) trở nên lớn và bạn quên đưa nó trở về một giá trị thấp thì các giá trị có thể đột nhiên được lý giải thành một giá trị bán kính làm nhòe lớn khủng khiếp, khiến cho thời gian xử lý bùng nổ.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="despeckle.html" class="btn btn-neutral float-right" title="Nút Khử Chấm Lốm Đốm -- Despeckle Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="bokeh_blur.html" class="btn btn-neutral float-left" title="Nút Nhòe Mờ Bokeh -- Bokeh Blur Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

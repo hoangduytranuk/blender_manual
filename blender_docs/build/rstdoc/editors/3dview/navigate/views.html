@@ -1,0 +1,387 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/3dview/navigate/views.rst">
+ <section ids="contextual-views" names="contextual\ views góc\ nhìn\ theo\ ngữ\ cảnh\ --\ contextual\ views">
+  <title>
+   Góc Nhìn theo Ngữ Cảnh -- Contextual Views
+  </title>
+  <paragraph>
+   The 3D View has several "contextual view" modes that can be set for a particular 3D View.
+These views can change how the overall 3D View looks or how you interact with objects.
+  </paragraph>
+  <target refid="bpy-ops-view3d-localview">
+  </target>
+  <target refid="editors-3dview-navigate-views-local">
+  </target>
+  <section ids="view-global-local editors-3dview-navigate-views-local bpy-ops-view3d-localview" names="view\ global/local góc\ nhìn\ toàn\ cầu/địa\ phương\ --\ view\ global/local editors-3dview-navigate-views-local bpy.ops.view3d.localview">
+   <title>
+    Góc Nhìn Toàn Cầu/Địa Phương -- View Global/Local
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Tổng Thể -- All modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`View --&gt; Local View --&gt; Toggle Local View`">
+         View ‣ Local View ‣ Toggle Local View
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         NumpadSlash
+        </literal>
+        ,
+        <literal classes="kbd">
+         Slash
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Global view shows all of the 3D objects in the scene. Local view isolates the selected object or
+objects, so that they are the only ones visible in the viewport. This is useful for working on
+objects that are obscured by other ones, or to speed up the viewport performance in heavy scenes.
+   </paragraph>
+   <paragraph>
+    You can toggle between
+    <emphasis>
+     Global
+    </emphasis>
+    and
+    <emphasis>
+     Local View
+    </emphasis>
+    by selecting the option
+from the
+    <emphasis>
+     View Menu
+    </emphasis>
+    or using the shortcut
+    <literal classes="kbd">
+     NumpadSlash
+    </literal>
+    .
+   </paragraph>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id1">
+         <image candidates="{'*': 'images/editors_3dview_navigate_views_local1.png'}" uri="images/editors_3dview_navigate_views_local1.png" width="320px"/>
+         <caption>
+          Global View.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/editors_3dview_navigate_views_local2.png'}" uri="images/editors_3dview_navigate_views_local2.png" width="320px"/>
+         <caption>
+          Local View.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <note>
+    <paragraph>
+     These notes cover changes in local view which are not immediately obvious.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Con Trỏ 3D -- 3D Cursor
+      </term>
+      <definition>
+       <paragraph>
+        In local view the 3D cursor is not locked to the scene.
+Instead, each view has an independent cursor location.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tầng Lớp -- Layers
+      </term>
+      <definition>
+       <paragraph>
+        Local view bypasses layers, using only the selected objects when entering local view.
+Although new objects may be added while in local view.
+       </paragraph>
+       <paragraph>
+        It's also possible to send objects out of local view, using
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Di Chuyển Vật Thể ra khỏi Góc Nhìn Địa Phương (Move Objects out of Local View)`">
+         Vật Thể (Object) ‣ Di Chuyển Vật Thể ra khỏi Góc Nhìn Địa Phương (Move Objects out of Local View)
+        </inline>
+        , which can be useful to further isolate a selection.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </note>
+   <tip>
+    <paragraph>
+     Accidentally pressing
+     <literal classes="kbd">
+      NumpadSlash
+     </literal>
+     can happen rather often if you are new to Blender,
+so if a bunch of the objects in your scene seem to have mysteriously vanished, try turning off local view.
+    </paragraph>
+   </tip>
+   <target refid="bpy-ops-view3d-localview-remove-from">
+   </target>
+   <section ids="remove-from-local-view bpy-ops-view3d-localview-remove-from" names="remove\ from\ local\ view bpy.ops.view3d.localview_remove_from">
+    <title>
+     Remove from Local View
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Tổng Thể -- All modes
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`View --&gt; Local View --&gt; Remove from Local View`">
+          View ‣ Local View ‣ Remove from Local View
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          M
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Objects can be removed from Local View by selecting them and using the
+     <emphasis>
+      Remove from Local View
+     </emphasis>
+     operator.
+This will move the selected object back to global view and all other objects will remain in local view.
+If the last remaining object is removed,
+the local view will be left empty and you will have to exit local view to see any objects.
+    </paragraph>
+    <target refid="bpy-ops-screen-region-quadview">
+    </target>
+   </section>
+  </section>
+  <section ids="quad-view bpy-ops-screen-region-quadview" names="quad\ view bốn\ góc\ nhìn\ --\ quad\ view bpy.ops.screen.region_quadview">
+   <title>
+    Bốn Góc Nhìn -- Quad View
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Tổng Thể -- All modes
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Góc Nhìn (View) --&gt; Bật/Tắt 4 Góc Nhìn (Toggle Quad View)`">
+         Góc Nhìn (View) ‣ Bật/Tắt 4 Góc Nhìn (Toggle Quad View)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; Display --&gt; Toggle Quad View`">
+         Sidebar region ‣ Display ‣ Toggle Quad View
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-Alt-Q
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Toggling Quad View will split the 3D View into four views:
+Three
+    <emphasis>
+     Orthographic
+    </emphasis>
+    "side views" and one
+    <emphasis>
+     Camera
+    </emphasis>
+    /
+    <emphasis>
+     User View
+    </emphasis>
+    .
+This view will allow you to instantly see your model from a number of view points.
+In this arrangement, you can zoom and pan each view independently but you cannot rotate the view.
+   </paragraph>
+   <rubric>
+    Shortcuts for all views at once: -- Shortcuts for all views at once:
+   </rubric>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      View All
+      <literal classes="kbd">
+       Ctrl-Home
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      View Selected
+      <literal classes="kbd">
+       Ctrl-NumpadPeriod
+      </literal>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <note>
+    <paragraph>
+     Quad View is different from
+     <reference internal="True" refuri="../../../interface/window_system/areas.html">
+      <inline classes="doc">
+       splitting the area
+      </inline>
+     </reference>
+     and aligning the view manually. In Quad View, the four views are still part of a single 3D View.
+So they share the same display options and layers.
+    </paragraph>
+   </note>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/editors_3dview_navigate_views_quad.png'}" uri="images/editors_3dview_navigate_views_quad.png"/>
+    <caption>
+     Quad View.
+    </caption>
+   </figure>
+   <section ids="options" names="options tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <paragraph>
+     These options can be found in
+     <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; Display`">
+      Sidebar region ‣ Display
+     </inline>
+     .
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Khóa -- Lock
+      </term>
+      <definition>
+       <paragraph>
+        If you want to be able to rotate each view, you can uncheck the
+        <emphasis>
+         Locked
+        </emphasis>
+        option.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hình Hộp -- Box
+      </term>
+      <definition>
+       <paragraph>
+        Syncs the view position between side views.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đoạn Phim -- Clip
+      </term>
+      <definition>
+       <paragraph>
+        Clip objects based on what is visible in other side views.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

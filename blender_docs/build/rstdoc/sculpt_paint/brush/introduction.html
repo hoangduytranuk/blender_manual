@@ -1,0 +1,380 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/sculpt_paint/brush/introduction.rst">
+ <section ids="introduction" names="introduction">
+  <title>
+   Introduction
+  </title>
+  <figure align="center" ids="id1">
+   <image candidates="{'*': 'images/sculpt-paint_sculpting_introduction_brush-circle.png'}" uri="images/sculpt-paint_sculpting_introduction_brush-circle.png"/>
+   <caption>
+    Brush cursor.
+   </caption>
+  </figure>
+  <section ids="brush-control" names="brush\ control">
+   <title>
+    Brush Control
+   </title>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Set brush size
+      <literal classes="kbd">
+       F
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Set brush strength
+      <literal classes="kbd">
+       Shift-F
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Rotate brush texture
+      <literal classes="kbd">
+       Ctrl-F
+      </literal>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    You can then either adjust the value interactively or by typing in numbers.
+After pressing the hotkey move the mouse to increase/reduce the value
+(additionally with precision and/or snapping activated).
+Finally confirm (
+    <literal classes="kbd">
+     LMB
+    </literal>
+    ,
+    <literal classes="kbd">
+     Return
+    </literal>
+    ) or cancel (
+    <literal classes="kbd">
+     RMB
+    </literal>
+    ,
+    <literal classes="kbd">
+     Esc
+    </literal>
+    ).
+   </paragraph>
+  </section>
+  <section ids="selection-masking" names="selection\ masking">
+   <title>
+    Selection Masking
+   </title>
+   <paragraph>
+    If you have a complex mesh, it is sometimes not easy to paint on all vertices.
+Suppose you only want to paint on a small area of the Mesh and keep the rest untouched.
+This is where "selection masking" comes into play. When this mode is enabled,
+a brush will only paint on the selected vertices or faces.
+The option is available from the header of the 3D View
+(see icons surrounded by the yellow frame):
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/sculpt-paint_weight-paint_hide-mask_select.png'}" uri="images/sculpt-paint_weight-paint_hide-mask_select.png"/>
+    <caption>
+     You can choose between
+     <emphasis>
+      Face Selection masking
+     </emphasis>
+     (left button)
+and
+     <emphasis>
+      Vertex selection masking
+     </emphasis>
+     (right button).
+    </caption>
+   </figure>
+   <paragraph>
+    Selection masking has some advantages over the default paint mode:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      The original mesh edges are shown, even when modifiers are active.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      You can select faces to restrict painting to the vertices of the selected faces.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <section ids="details-about-selecting" names="details\ about\ selecting">
+    <title>
+     Details About Selecting
+    </title>
+    <paragraph>
+     The following standard selection operations are supported:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        RMB
+       </literal>
+       -- Single faces. Use
+       <literal classes="kbd">
+        Shift-RMB
+       </literal>
+       to select multiple.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        A
+       </literal>
+       -- All faces, also to deselect.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        B
+       </literal>
+       -- Box selection.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        C
+       </literal>
+       -- Circle select with brush.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        L
+       </literal>
+       -- Pick linked (under the mouse cursor).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        Ctrl-L
+       </literal>
+       -- Select linked.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        Ctrl-I
+       </literal>
+       -- Invert selection
+       <emphasis>
+        Inverse
+       </emphasis>
+       .
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="vertex-selection-masking" names="vertex\ selection\ masking">
+    <title>
+     Vertex Selection Masking
+    </title>
+    <admonition classes="refbox">
+     <title>
+      Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Vertex and Weight Paint Modes
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Header
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Vertex Selection`">
+          Vertex Selection
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          V
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     In this mode you can select one or more vertices and then paint only on the selection.
+All unselected vertices are protected from unintentional changes.
+    </paragraph>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/sculpt-paint_weight-paint_hide-mask_vertex-select.png'}" uri="images/sculpt-paint_weight-paint_hide-mask_vertex-select.png"/>
+     <caption>
+      Vertex Selection masking.
+     </caption>
+    </figure>
+    <target refid="bpy-types-mesh-use-paint-mask">
+    </target>
+   </section>
+   <section ids="face-selection-masking bpy-types-mesh-use-paint-mask" names="face\ selection\ masking bpy.types.mesh.use_paint_mask">
+    <title>
+     Face Selection Masking
+    </title>
+    <admonition classes="refbox">
+     <title>
+      Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Texture, Vertex, and Weight Paint Modes
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Header
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Paint Mask`">
+          Paint Mask
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     The
+     <emphasis>
+      Face Selection masking
+     </emphasis>
+     allows you to select faces and limit the paint
+tool to those faces, very similar to Vertex selection masking.
+    </paragraph>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/sculpt-paint_weight-paint_hide-mask_face-select.png'}" uri="images/sculpt-paint_weight-paint_hide-mask_face-select.png"/>
+     <caption>
+      Face Selection masking.
+     </caption>
+    </figure>
+   </section>
+   <section ids="hide-unhide-faces" names="hide/unhide\ faces">
+    <title>
+     Hide/Unhide Faces
+    </title>
+    <figure ids="id5">
+     <image candidates="{'*': 'images/sculpt-paint_weight-paint_hide-mask_face-select-hidden.png'}" uri="images/sculpt-paint_weight-paint_hide-mask_face-select-hidden.png"/>
+     <caption>
+      Hidden faces.
+     </caption>
+    </figure>
+    <paragraph>
+     You also can hide selected faces as in Edit Mode with the keyboard Shortcut
+     <literal classes="kbd">
+      H
+     </literal>
+     ,
+then paint on the remaining visible faces and finally unhide the hidden faces again by using
+     <literal classes="kbd">
+      Alt-H
+     </literal>
+     .
+    </paragraph>
+   </section>
+   <section ids="hide-unhide-vertices" names="hide/unhide\ vertices">
+    <title>
+     Hide/Unhide Vertices
+    </title>
+    <paragraph>
+     You cannot directly hide selected faces in vertex mask selection mode.
+However, you can use a trick:
+    </paragraph>
+    <enumerated_list enumtype="arabic" prefix="" suffix=".">
+     <list_item>
+      <paragraph>
+       First go to Face selection mask mode.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Select the areas you want to hide and then hide the faces (as explained above).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Switch back to Vertex Selection mask mode.
+      </paragraph>
+     </list_item>
+    </enumerated_list>
+    <paragraph>
+     Now the vertices belonging to the hidden Faces will remain hidden.
+    </paragraph>
+   </section>
+   <section ids="the-clipping-region" names="the\ clipping\ region">
+    <title>
+     The Clipping Region
+    </title>
+    <paragraph>
+     To constrain the paint area further you can use the
+     <emphasis>
+      Clipping Region
+     </emphasis>
+     .
+Press
+     <literal classes="kbd">
+      Alt-B
+     </literal>
+     and
+     <literal classes="kbd">
+      LMB
+     </literal>
+     -drag a rectangular area.
+The selected area will be "cut out" as the area of interest.
+The rest of the 3D View gets hidden.
+    </paragraph>
+    <figure ids="id6">
+     <image candidates="{'*': 'images/sculpt-paint_weight-paint_hide-mask_border-select.png'}" uri="images/sculpt-paint_weight-paint_hide-mask_border-select.png"/>
+     <caption>
+      The Clipping Region is used to select interesting parts for local painting.
+     </caption>
+    </figure>
+    <paragraph>
+     You make the entire mesh visible again by pressing
+     <literal classes="kbd">
+      Alt-B
+     </literal>
+     a second time.
+    </paragraph>
+    <paragraph>
+     All paint tools that use the view respect this clipping, including box select, and of course brush strokes.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,128 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/shader/refraction.rst">
+ <target refid="bpy-types-shadernodebsdfrefraction">
+ </target>
+ <section ids="refraction-bsdf bpy-types-shadernodebsdfrefraction" names="refraction\ bsdf bsdf\ khúc\ xạ\ --\ refraction\ bsdf bpy.types.shadernodebsdfrefraction">
+  <title>
+   BSDF Khúc Xạ -- Refraction BSDF
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_shader_refraction_node.png'}" uri="images/render_shader-nodes_shader_refraction_node.png"/>
+   <caption>
+    Refraction BSDF.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Refraction
+   </emphasis>
+   <abbreviation explanation="Bidirectional scattering distribution function">
+    BSDF
+   </abbreviation>
+   is used to add glossy refraction with sharp or microfacet distribution,
+used for materials that transmit light. For best results this node should be considered as
+a building block and not be used on its own,
+but rather mixed with a glossy node using a Fresnel factor.
+Otherwise it will give quite dark results at the edges for glossy refraction.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Màu Sắc -- Color
+     </term>
+     <definition>
+      <paragraph>
+       Color of the surface, or physically speaking, the probability that light is refracted for each wavelength.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Độ Ráp -- Roughness
+     </term>
+     <definition>
+      <paragraph>
+       Influences sharpness of the refraction; perfectly sharp at 0.0 and smoother with higher values.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pháp Tuyến -- Normal
+     </term>
+     <definition>
+      <paragraph>
+       Pháp tuyến sử dụng cho việc tô bóng; nếu không có gì kết nối thì pháp tuyến tô bóng mặc định sẽ được sử dụng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Phân Phối -- Distribution
+     </term>
+     <definition>
+      <paragraph>
+       Microfacet distribution to use.
+       <emphasis>
+        Sharp
+       </emphasis>
+       results in perfectly sharp refractions,
+while
+       <emphasis>
+        Beckmann
+       </emphasis>
+       and
+       <emphasis>
+        GGX
+       </emphasis>
+       can use the
+       <emphasis>
+        Roughness
+       </emphasis>
+       input for blurry refractions.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      BSDF
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra chuẩn của bộ tô bóng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_shader-nodes_shader_refraction_example.jpg'}" uri="images/render_shader-nodes_shader_refraction_example.jpg"/>
+    <caption>
+     Refraction Shader.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

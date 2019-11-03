@@ -1,0 +1,40 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/guides/maintenance_guide.rst">
+ <section ids="maintenance" names="maintenance bảo\ quản\ --\ maintenance">
+  <title>
+   Bảo Quản -- Maintenance
+  </title>
+  <section ids="adding-removing-moving-files" names="adding/removing/moving\ files tạo\ thêm/xóa\ bỏ/di\ chuyển\ các\ tập\ tin\ --\ adding/removing/moving\ files">
+   <title>
+    Tạo Thêm/Xóa Bỏ/Di Chuyển các Tập Tin -- Adding/Removing/Moving Files
+   </title>
+   <paragraph>
+    Khi các tập tin RST được cho thêm vào hoặc bị loại bỏ đi thì các tập tin địa phương tương ứng cũng sẽ được thêm vào hoặc gỡ bỏ tự động bởi tập lệnh cập nhật. Tuy nhiên, nếu các tập tin cần được di chuyển thì xin vui lòng sử dụng tập lệnh Python này:
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    python tools_rst/rst_remap.py start
+   </literal_block>
+   <paragraph>
+    Các tập tin RST sau đó có thể được tự do di chuyển và tập lệnh
+    <literal>
+     remap
+    </literal>
+    sẽ di chuyển tập tin ở thư mục
+    <literal>
+     locale
+    </literal>
+    theo:
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    python tools_rst/rst_remap.py finish
+   </literal_block>
+   <paragraph>
+    Tốt nhất là nên tránh di chuyển/đổi tên các tập tin, vì điều này sẽ phá hỏng các địa chỉ URL và nếu không có tập lệnh này thì tất cả công việc của các phiên dịch viên trong các tập tin này sẽ bị mất đi. Xin vui lòng kiểm tra với quản trị viên nếu bạn cho rằng có một cái gì đó cần phải được đổi tên/di chuyển, trước khi làm.
+   </paragraph>
+   <note>
+    <paragraph>
+     Tập lệnh này cũng hoạt động với các tên tập tin hình ảnh nữa.
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

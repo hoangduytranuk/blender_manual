@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bộ Đường Nét -- Line Set &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/freestyle/parameter_editor/line_set.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Line Style" href="line_style/index.html" />
+    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cycles/index.html">Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Phong Cách Tự Do -- Freestyle</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render.html">Render Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../view_layer.html">View Layer Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../material.html">Material Properties</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#control-modes">Control Modes</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">-- Parameter Editor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../python.html">Chế Độ Tập Lệnh Python -- Python Scripting Mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">-- Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+        
+          <li><a href="../index.html">Phong Cách Tự Do -- Freestyle</a> &raquo;</li>
+        
+          <li><a href="index.html">-- Parameter Editor</a> &raquo;</li>
+        
+      <li>Bộ Đường Nét -- Line Set</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/render/freestyle/parameter_editor/line_set.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="line-set">
+<span id="bpy-types-freestylelineset"></span><span id="bpy-types-linesets"></span><h1>Bộ Đường Nét -- Line Set<a class="headerlink" href="#line-set" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ View Layer ‣ Freestyle Line Set</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A line set selects, among the lines (edges) detected by Freestyle,
+which ones will be rendered using its attached
+<a class="reference internal" href="line_style/introduction.html"><span class="doc">line style</span></a>, through various methods.</p>
+<div class="figure" id="id1">
+<img alt="../../../_images/render_freestyle_parameter-editor_line-set_panel.png" src="../../../_images/render_freestyle_parameter-editor_line-set_panel.png" />
+<p class="caption"><span class="caption-text">Freestyle Line Set panel.</span></p>
+</div>
+<div class="section" id="visibility">
+<h2>Ẩn/Hiện -- Visibility<a class="headerlink" href="#visibility" title="Permalink to this headline">¶</a></h2>
+<p>There are three choices for selecting edges by visibility.</p>
+<dl class="docutils">
+<dt>Hữu Hình -- Visible</dt>
+<dd>Only lines occluded by no surfaces are rendered.</dd>
+<dt>Ẩn -- Hidden</dt>
+<dd><p class="first">Lines occluded by at least one surface are rendered.</p>
+<div class="last figure align-center" id="id2">
+<a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_visibility-hidden-edges.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_visibility-hidden-edges.png" src="../../../_images/render_freestyle_parameter-editor_line-set_visibility-hidden-edges.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">Proof of concept of visible and hidden edges by LightBWK
+(<a class="reference external" href="https://wiki.blender.org/wiki/File:HiddenCreaseEdgeMark.zip">blend-file</a>)</span></p>
+</div>
+</dd>
+<dt>Phạm Vi ĐLVH -- QI Range</dt>
+<dd><p class="first">QI stands for <em>Quantitative Invisibility</em>. Lines occluded by a number of surfaces in the given range are rendered.</p>
+<dl class="docutils">
+<dt>-- Start and End</dt>
+<dd>Min/max number of occluding surfaces for a line to be rendered.</dd>
+</dl>
+<div class="last figure align-center" id="id3">
+<a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_visibility-qi-range.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_visibility-qi-range.png" src="../../../_images/render_freestyle_parameter-editor_line-set_visibility-qi-range.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">QI Range proof of concept demo, Start: 3, End: 7, by LightBWK
+(<a class="reference external" href="https://wiki.blender.org/wiki/File:QI-Range.zip">blend-file</a>)</span></p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="edge-types">
+<h2>Thể Loại Cạnh -- Edge Types<a class="headerlink" href="#edge-types" title="Permalink to this headline">¶</a></h2>
+<p>Edge types are basic algorithms for the selection of lines from geometry.
+When using the parameter editor you have to choose at least one edge type in order to get a render output,
+but several edge types can be combined in one line set.
+Edge types can also be excluded from calculation by pressing the <em>X</em> next to them.</p>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-basic.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-basic.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-basic.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">Examples of some basic edge types:
+Silhouette (green), Crease (black), Border (blue) and Edge Marks (red)
+(<a class="reference external" href="https://wiki.blender.org/wiki/File:EdgeType.zip">blend-file</a> by LightBWK).</span></p>
+</div>
+<dl class="docutils">
+<dt>Hình Bóng -- Silhouette</dt>
+<dd>Draws silhouettes around your closed objects by rendering lines where the surface normal transitions between
+pointing toward and away from the camera. It is often good for organic objects (like Suzanne &amp; Sphere),
+and bad for sharp edges, like a box. It cannot render open mesh objects like open cylinders and flat planes.</dd>
+<dt>Nếp Gập -- Crease</dt>
+<dd><p class="first">Shows only edges whose adjacent faces form an angle sharper than the defined view map's <em>Crease Angle</em>.</p>
+<div class="last figure align-center" id="id5">
+<a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-crease.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-crease.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-crease.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">Crease Angle proof of concept for 121° by LightBWK
+(<a class="reference external" href="https://wiki.blender.org/wiki/File:CreaseAngle.zip">blend-file</a>).</span></p>
+</div>
+</dd>
+<dt>Đường Ranh Giới -- Border</dt>
+<dd>Border shows open mesh edges, i.e. edges that belong to only one face. An open cylinder has open edges at
+the top and bottom, and a plane is open all around. Suzanne's eye socket is an open edge.</dd>
+<dt>Dấu Cạnh -- Edge Marks</dt>
+<dd>Renders marked edges. See <a class="reference internal" href="#edge-marks">Edge Marks</a> for details.</dd>
+<dt>Đường Công-Tua -- Contour</dt>
+<dd>Draws lines around each object, separating it from other objects behind it, or the scene background.</dd>
+<dt>Đường Công-Tua Ngoài -- External Contour</dt>
+<dd>Draws lines around all objects, separating them from the scene background, but not each other.</dd>
+</dl>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-contour.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-contour.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-contour.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">Left pair: Contour; Right pair: External Contour.</span></p>
+</div>
+<dl class="docutils">
+<dt>Đường Công-Tua Gợi Ý -- Suggestive Contour</dt>
+<dd>Draws some lines which would form the <em>Silhouette</em> of the mesh if the view point was shifted.
+Depends on your view map settings for <em>Kr Derivative Epsilon</em> and <em>Sphere Radius</em>
+(further information: <a class="reference external" href="https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf">File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf</a>).</dd>
+<dt>Ranh Giới Nguyên Liệu -- Material Boundary</dt>
+<dd>Draws lines where two materials meet on the same object.</dd>
+<dt>Lằn Gợn &amp; Thung Lũng -- Ridge &amp; Valley</dt>
+<dd>Draws lines marking crests of ridges and valleys, i.e. places where the surface curvature is at
+its minimum or maximum. Depends on your <em>Sphere Radius</em> view map settings.</dd>
+</dl>
+<div class="section" id="edge-marks">
+<h3>Dấu Cạnh -- Edge Marks<a class="headerlink" href="#edge-marks" title="Permalink to this headline">¶</a></h3>
+<p>In Edit Mode you can mark &quot;Freestyle Edges&quot; in the same manner
+you can mark &quot;Seams&quot; for UV unwrapping or &quot;Sharp&quot; for edge split.
+These marked edges are available to render when you select <em>Edge Mark</em>.</p>
+<p>This is done as follows:</p>
+<ol class="arabic simple">
+<li>Select the mesh object and enter <em>Edit Mode</em>.</li>
+<li>Select the edges you want to be marked.</li>
+<li>Press <kbd class="kbd docutils literal notranslate">Ctrl-E</kbd> and select <em>Mark Freestyle Edge</em>.</li>
+</ol>
+<p>Edge marks are useful when you want to draw lines along particular mesh edges.
+The examples below explain the use of edge marks.</p>
+<div class="figure align-center" id="id7">
+<a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-mark-freestyle-edge.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-mark-freestyle-edge.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-mark-freestyle-edge.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">Marking Freestyle Edges in Edit Mode; the edge marks are highlighted in green.</span></p>
+</div>
+<p>With <em>Edge Marks</em> enabled, the previously-marked lines are always rendered.
+You can see the black contour lines and the blue lines that are made with edge marks.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id8">
+<img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-example-1.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-example-1.png" />
+<p class="caption"><span class="caption-text">Render without Edge Marks.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id9">
+<img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-example-2.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-example-2.png" />
+<p class="caption"><span class="caption-text">Render with Edge Marks enabled.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>What are edge marks good for?</p>
+<ul class="simple">
+<li>When you need to render marks on an almost-flat plane, when other edge types cannot detect any line.</li>
+<li>When you want full control of edge rendering. Often used for edges of squarish shapes.</li>
+<li>Mark the whole base mesh to be rendered for base mesh preview.</li>
+</ul>
+<p>What are edge marks not good for?</p>
+<ul class="simple">
+<li>Round outer edges (use instead <em>Contour/External Contour/Silhouette</em>).</li>
+</ul>
+</div>
+</div>
+<div class="section" id="face-marks">
+<h2>Dấu Bề Mặt -- Face Marks<a class="headerlink" href="#face-marks" title="Permalink to this headline">¶</a></h2>
+<p>Face marks are useful for removing lines from certain areas of a mesh.</p>
+<p>To set a face mark:</p>
+<ol class="arabic simple">
+<li>Select a mesh object and enter <em>Edit Mode</em>.</li>
+<li>Select the faces you want to be marked.</li>
+<li>Press <kbd class="kbd docutils literal notranslate">Ctrl-F</kbd> and select <span class="menuselection">Face Data ‣ Mark Freestyle Face</span>.</li>
+</ol>
+<p>In this example, two faces of the default cube are marked like the image on the left.
+On the right is a render without face marks activated.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id10">
+<img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-1.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-1.png" />
+<p class="caption"><span class="caption-text">Marked faces (Edit Mode).</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id11">
+<img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-2.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-2.png" />
+<p class="caption"><span class="caption-text">Render output.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The line selection can be controlled via inclusion and faces options:</p>
+<dl class="docutils">
+<dt>-- Inclusive/Exclusive</dt>
+<dd>Whether to include or exclude edges matching defined face mark conditions from the line set.</dd>
+<dt>Một Mặt -- One Face</dt>
+<dd>(De)select all edges which have one or both neighbor faces marked.</dd>
+<dt>Cả Hai Mặt -- Both Faces</dt>
+<dd>(De)select all edges which have both of their neighbor faces marked.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id12">
+<img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-3.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-3.png" />
+<p class="caption"><span class="caption-text">Inclusive, One Face.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id13">
+<img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-4.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-4.png" />
+<p class="caption"><span class="caption-text">Inclusive, Both Faces.</span></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last figure" id="id14">
+<img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-5.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-5.png" />
+<p class="caption"><span class="caption-text">Exclusive, One face.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id15">
+<img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-6.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-6.png" />
+<p class="caption"><span class="caption-text">Exclusive, Both Faces.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="collection">
+<h2>Collection<a class="headerlink" href="#collection" title="Permalink to this headline">¶</a></h2>
+<p>Include or exclude objects for line calculation,
+based on their belonging to a <a class="reference internal" href="../../../scene_layout/collections/index.html"><span class="doc">Collection</span></a>.</p>
+<dl class="docutils">
+<dt>Collection</dt>
+<dd>The name of the object collection to use.</dd>
+<dt>-- Inclusive/Exclusive</dt>
+<dd>Whether to include or exclude lines from those objects in this line set.</dd>
+</dl>
+</div>
+<div class="section" id="image-border">
+<h2>Ranh Giới Hình Ảnh -- Image Border<a class="headerlink" href="#image-border" title="Permalink to this headline">¶</a></h2>
+<p>Causes Freestyle to only take geometry within the image border into consideration for line calculation.
+This reduces render times but increases continuity problems when geometry is moved out of and
+into camera view.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="line_style/index.html" class="btn btn-neutral float-right" title="Line Style" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

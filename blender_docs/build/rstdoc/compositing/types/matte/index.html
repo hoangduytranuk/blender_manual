@@ -1,0 +1,132 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/matte/index.rst">
+ <target refid="composite-nodes-matte-index">
+ </target>
+ <section ids="matte-nodes composite-nodes-matte-index" names="matte\ nodes nút\ lớp\ lồng\ --\ matte\ nodes composite-nodes-matte-index">
+  <title>
+   Nút Lớp Lồng -- Matte Nodes
+  </title>
+  <paragraph>
+   Các nút này cung cấp cho bạn các công cụ thiết yếu để kiến tạo một
+   <emphasis>
+    Lớp Lồng
+   </emphasis>
+   (
+   <reference internal="True" refuri="../../../glossary/index.html#term-matte">
+    <inline classes="xref std std-term">
+     Matte
+    </inline>
+   </reference>
+   ) cho các hình ảnh không có
+   <emphasis>
+    Kênh Alpha
+   </emphasis>
+   (
+   <reference internal="True" refuri="../../../glossary/index.html#term-alpha-channel">
+    <inline classes="xref std std-term">
+     Alpha Channel
+    </inline>
+   </reference>
+   ). Một trường hợp sử dụng là cảnh quay phông xanh lam hoặc phông xanh lục, trong đó cảnh người đóng được quay trước phông màu xanh lam hoặc xanh lục để có thể thay thế nền bằng một bức vẽ lồng hoặc bằng một phông ảo nào đó.
+  </paragraph>
+  <paragraph>
+   In general, hook up these nodes to a viewer, set your Image Editor to show the viewer node,
+and play with the sliders in real-time using a sample image from the footage,
+to get the settings right. In some cases,
+small adjustments can eliminate artifacts or foreground image degradation.
+Taking out too much green can result in foreground actors looking flat or blueish/purplish.
+  </paragraph>
+  <paragraph>
+   Bạn có thể, và rất nên nữa, xâu chuỗi các nút này lại với nhau để cải thiện màn chắn lọc và hiệu chỉnh màu của mình trong các tinh chỉnh nối tiếp, sử dụng điểm mạnh của từng nút để thao tác kết quả ở đầu ra của nút trước đó. Nút Khóa Hóa (
+   <reference internal="True" refuri="keying.html">
+    <inline classes="doc">
+     Keying Node
+    </inline>
+   </reference>
+   ) là một nút gần như "giải quyết mọi vấn đề" (does-it-all) đối với thao tác màn hình xanh, song kết quả tốt nhất đạt được sẽ xuất phát từ việc tổng kết hợp các kỹ thuật lại để giải quyết vấn đề.
+  </paragraph>
+  <note>
+   <paragraph>
+    <emphasis>
+     Lớp Lồng Thanh Lọc
+    </emphasis>
+    (Garbage Matte) không phải là một nút, song là tên một kỹ thuật lựa chọn cái gì để ngoại trừ khỏi một hình ảnh. Nó là một
+    <emphasis>
+     Màn Chắn
+    </emphasis>
+    (
+    <reference internal="True" refuri="../../../glossary/index.html#term-mask">
+     <inline classes="xref std std-term">
+      Mask
+     </inline>
+    </reference>
+    ) sử dụng để xác định nội dung loại bỏ khỏi một hình ảnh trong khi nội dung đó không thể loại bỏ được bằng một tiến trình xử lý tự động, như
+    <emphasis>
+     Khóa Lọc Màu
+    </emphasis>
+    (chroma keying). Nó được sử dụng để hoặc là lựa chọn một nội dung cụ thể nào đó để loại bỏ, hoặc là sự đảo ngược một chọn lọc sơ thảo của một vật thể nào đó; loại bỏ tất cả những cái khác.
+   </paragraph>
+   <paragraph>
+    Một số nút trực tiếp chấp nhận
+    <emphasis>
+     Lớp Lồng Thanh Lọc
+    </emphasis>
+    (Garbage Matte). Đối với những cái không chấp nhận, bạn vẫn có thể áp dụng
+    <emphasis>
+     Lớp Lồng Thanh Lọc
+    </emphasis>
+    vào bằng cách khấu trừ
+    <emphasis>
+     Lớp Lồng Thanh Lọc
+    </emphasis>
+    khỏi lớp lồng mà nút sinh tạo ra.
+   </paragraph>
+   <paragraph>
+    Các Lớp Lồng Thanh Lọc đơn giản có thể được tạo bằng
+    <emphasis>
+     Màn Chắn Hình Hộp
+    </emphasis>
+    (
+    <reference internal="True" refuri="box_mask.html">
+     <inline classes="doc">
+      Box Mask
+     </inline>
+    </reference>
+    ) hoặc với
+    <emphasis>
+     Màn Chắn hình Elip
+    </emphasis>
+    (
+    <reference internal="True" refuri="ellipse_mask.html">
+     <inline classes="doc">
+      Ellipse Mask
+     </inline>
+    </reference>
+    ). Các hình dạng phức tạp hơn có thể được tạo bằng cách sử dụng
+    <emphasis>
+     Nút Màn Chắn Đôi Cạnh
+    </emphasis>
+    (
+    <reference internal="True" refuri="double_edge_mask.html">
+     <inline classes="doc">
+      Double Edge Mask
+     </inline>
+    </reference>
+    ) hoặc dùng một
+    <emphasis>
+     Nút Màn Chắn
+    </emphasis>
+    (
+    <reference internal="True" refuri="../input/mask.html">
+     <inline classes="doc">
+      Mask
+     </inline>
+    </reference>
+    ).
+   </paragraph>
+  </note>
+  <compound classes="toctree-wrapper">
+   <toctree caption="None" entries="[(None, 'compositing/types/matte/box_mask'), (None, 'compositing/types/matte/channel_key'), (None, 'compositing/types/matte/chroma_key'), (None, 'compositing/types/matte/color_key'), (None, 'compositing/types/matte/color_spill'), (None, 'compositing/types/matte/cryptomatte'), (None, 'compositing/types/matte/difference_key'), (None, 'compositing/types/matte/distance_key'), (None, 'compositing/types/matte/double_edge_mask'), (None, 'compositing/types/matte/ellipse_mask'), (None, 'compositing/types/matte/keying'), (None, 'compositing/types/matte/keying_screen'), (None, 'compositing/types/matte/luminance_key')]" glob="False" hidden="False" includefiles="['compositing/types/matte/box_mask', 'compositing/types/matte/channel_key', 'compositing/types/matte/chroma_key', 'compositing/types/matte/color_key', 'compositing/types/matte/color_spill', 'compositing/types/matte/cryptomatte', 'compositing/types/matte/difference_key', 'compositing/types/matte/distance_key', 'compositing/types/matte/double_edge_mask', 'compositing/types/matte/ellipse_mask', 'compositing/types/matte/keying', 'compositing/types/matte/keying_screen', 'compositing/types/matte/luminance_key']" includehidden="False" maxdepth="1" numbered="0" parent="compositing/types/matte/index" titlesonly="False">
+   </toctree>
+  </compound>
+ </section>
+</document>

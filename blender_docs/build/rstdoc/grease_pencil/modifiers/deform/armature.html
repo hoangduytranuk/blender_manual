@@ -1,0 +1,155 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/grease_pencil/modifiers/deform/armature.rst">
+ <target refid="bpy-types-armaturegpencilmodifier">
+ </target>
+ <section ids="armature-modifier bpy-types-armaturegpencilmodifier" names="armature\ modifier bpy.types.armaturegpencilmodifier">
+  <title>
+   Armature Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Armature
+   </emphasis>
+   Modifier is used for building skeletal systems for animating
+the poses of characters and anything else which needs to be posed.
+  </paragraph>
+  <paragraph>
+   By adding an armature to an object,
+this object can be deformed accurately so that geometry does not have to be animated by hand.
+  </paragraph>
+  <seealso>
+   <paragraph>
+    For more details on armatures usage, see the
+    <reference internal="True" refuri="../../../animation/armatures/index.html">
+     <inline classes="doc">
+      armature section
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </seealso>
+  <section ids="options" names="options">
+   <title>
+    Options
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/grease-pencil_modifiers_deform_armature_panel.png'}" uri="images/grease-pencil_modifiers_deform_armature_panel.png"/>
+    <caption>
+     The Armature modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Object
+     </term>
+     <definition>
+      <paragraph>
+       The name of the armature object used by this modifier.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="bind-to" names="bind\ to">
+    <title>
+     Bind To
+    </title>
+    <paragraph>
+     Methods to bind the armature to the strokes.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Vertex Groups
+      </term>
+      <definition>
+       <paragraph>
+        When enabled, bones of a given name will deform points which belong to
+        <reference internal="True" refuri="../../../modeling/meshes/properties/vertex_groups/index.html">
+         <inline classes="doc">
+          vertex groups
+         </inline>
+        </reference>
+        of the same name.
+e.g. a bone named "forearm", will only affect the points in the "forearm" vertex group.
+       </paragraph>
+       <paragraph>
+        The influence of one bone on a given point is controlled by the weight of this point in the relevant group.
+A much more precise method than
+        <emphasis>
+         Bone Envelopes
+        </emphasis>
+        , but also generally longer to set up.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Bone Envelopes
+      </term>
+      <definition>
+       <paragraph>
+        When enabled, bones will deform points or control points near them,
+defined by each bone's envelope radius and distance.
+Enable/Disable bone
+        <reference internal="True" refuri="../../../animation/armatures/bones/properties/deform.html#armature-bones-envelope">
+         <inline classes="std std-ref">
+          envelopes
+         </inline>
+        </reference>
+        defining the deformation
+(i.e. bones deform points in their neighborhood).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="influence-filter" names="influence\ filter">
+    <title>
+     Influence Filter
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Vertex Group
+      </term>
+      <definition>
+       <paragraph>
+        The name of a vertex group of the object, the weights of which will be used to determine the influence of this
+Armature Modifier's result when mixing it with the results from other
+        <emphasis>
+         Armature
+        </emphasis>
+        ones.
+       </paragraph>
+       <paragraph>
+        Only meaningful when having at least two of these modifiers on the same object,
+with
+        <emphasis>
+         Multi Modifier
+        </emphasis>
+        activated.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Invert
+          <literal>
+           &lt;-&gt;
+          </literal>
+         </term>
+         <definition>
+          <paragraph>
+           Inverts the influence set by the vertex group defined in previous setting
+(i.e. reverses the weight values of this group).
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

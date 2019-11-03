@@ -1,0 +1,1233 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/editing/faces.rst">
+ <section ids="face-tools" names="face\ tools --\ face\ tools">
+  <title>
+   -- Face Tools
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Chế Độ -- Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Chế Độ Biên Soạn -- Edit Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Trình Đơn -- Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Face`">
+        Face
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Phím Tắt -- Hotkey
+     </field_name>
+     <field_body>
+      <paragraph>
+       <literal classes="kbd">
+        Ctrl-F
+       </literal>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   These are tools that manipulate faces.
+  </paragraph>
+  <target refid="modeling-meshes-editing-fill">
+  </target>
+  <section ids="fill modeling-meshes-editing-fill" names="fill phủ/tô/lấp\ kín\ --\ fill modeling-meshes-editing-fill">
+   <title>
+    Phủ/Tô/Lấp Kín -- Fill
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Fill`">
+         Face ‣ Fill
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Alt-F
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <emphasis>
+     Fill
+    </emphasis>
+    option will create
+    <emphasis>
+     triangular
+    </emphasis>
+    faces from any group of selected edges
+or vertices, as long as they form one or more complete perimeters.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Làm Đẹp -- Beauty
+     </term>
+     <definition>
+      <paragraph>
+       Arrange the new triangles nicely.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/modeling_meshes_editing_faces_fill.png'}" uri="images/modeling_meshes_editing_faces_fill.png" width="300px"/>
+    <caption>
+     Filled using fill.
+    </caption>
+   </figure>
+   <paragraph>
+    Note, unlike creating n-gons,
+    <emphasis>
+     Fill
+    </emphasis>
+    supports holes.
+   </paragraph>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/modeling_meshes_editing_faces_holes.png'}" uri="images/modeling_meshes_editing_faces_holes.png" width="320px"/>
+         <caption>
+          A closed perimeter of edges with holes.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/modeling_meshes_editing_faces_holes-filled.png'}" uri="images/modeling_meshes_editing_faces_holes-filled.png" width="320px"/>
+         <caption>
+          Filled using fill.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <section ids="beautify-faces" names="beautify\ faces mỹ\ hóa\ bề\ mặt\ --\ beautify\ faces">
+    <title>
+     Mỹ Hóa Bề Mặt -- Beautify Faces
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Biên Soạn -- Edit Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Beautify Faces`">
+          Face ‣ Beautify Faces
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     <emphasis>
+      Beautify Faces
+     </emphasis>
+     works only on selected existing faces.
+It rearrange selected triangles to obtain more "balanced" ones (i.e. less long thin triangles).
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Góc Lớn Nhất -- Max Angle
+      </term>
+      <definition>
+       <paragraph>
+        An angle delimiter option to limit edge rotation to flat surfaces.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <table>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id4">
+          <image candidates="{'*': 'images/modeling_meshes_editing_faces_beauty-fill-before.png'}" uri="images/modeling_meshes_editing_faces_beauty-fill-before.png" width="320px"/>
+          <caption>
+           Text converted to a mesh.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id5">
+          <image candidates="{'*': 'images/modeling_meshes_editing_faces_beauty-fill-after.png'}" uri="images/modeling_meshes_editing_faces_beauty-fill-after.png" width="320px"/>
+          <caption>
+           Result of Beautify Faces.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <target refid="modeling-meshes-editing-grid-fill">
+    </target>
+   </section>
+   <section ids="grid-fill modeling-meshes-editing-grid-fill" names="grid\ fill lấp\ kín\ đồ\ thị\ --\ grid\ fill modeling-meshes-editing-grid-fill">
+    <title>
+     Lấp Kín Đồ Thị -- Grid Fill
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Biên Soạn -- Edit Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Grid Fill`">
+          Face ‣ Grid Fill
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     <emphasis>
+      Grid Fill
+     </emphasis>
+     uses a pair of connected edge loops or a single, closed edge loop to fill in a grid
+that follows the surrounding geometry.
+    </paragraph>
+    <paragraph>
+     The best predictable result can be achieved if you select two opposite edge loops
+with an equal number of vertices. When a single, closed edge loop is selected,
+the Span/Offset options allows you to adjust the way two opposite edge loops
+are detected from one closed edge loop.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Số Nhịp Nối -- Span
+      </term>
+      <definition>
+       <paragraph>
+        Specifies the number of columns in the grid.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Dịch Chuyển -- Offset
+      </term>
+      <definition>
+       <paragraph>
+        Defines the vertex that is considered to be the corner of the grid,
+by default, it's the active vertex. The Offset allows you to rotate the grid lines.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Hòa Trộn Đơn Giản -- Simple Blending
+      </term>
+      <definition>
+       <paragraph>
+        Use a simple interpolation algorithm to generate grid vertices from boundary loops,
+which doesn't attempt to maintain the shape,
+useful for flat surfaces or times when keeping the shape gives odd results.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <table>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id6">
+          <image candidates="{'*': 'images/modeling_meshes_editing_faces_grid-fill-surface-before.png'}" uri="images/modeling_meshes_editing_faces_grid-fill-surface-before.png" width="320px"/>
+          <caption>
+           Input.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id7">
+          <image candidates="{'*': 'images/modeling_meshes_editing_faces_grid-fill-surface-after.png'}" uri="images/modeling_meshes_editing_faces_grid-fill-surface-after.png" width="320px"/>
+          <caption>
+           Grid Fill result.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+   </section>
+  </section>
+  <section ids="solidify" names="solidify tạo\ độ\ dày\ --\ solidify">
+   <title>
+    Tạo Độ Dày -- Solidify
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Solidify Faces`">
+         Face ‣ Solidify Faces
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This takes a selection of faces and solidifies them by extruding them
+uniformly to give volume to a
+    <reference internal="True" refuri="../../../glossary/index.html#term-non-manifold">
+     <inline classes="xref std std-term">
+      non-manifold
+     </inline>
+    </reference>
+    surface.
+This is also available as a
+    <reference internal="True" refuri="../../modifiers/generate/solidify.html">
+     <inline classes="doc">
+      Modifier
+     </inline>
+    </reference>
+    .
+After using the tool, you can set the offset distance in the
+    <reference internal="True" refuri="../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+     <inline classes="std std-ref">
+      Adjust Last Operation
+     </inline>
+    </reference>
+    panel.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Độ Dày -- Thickness
+     </term>
+     <definition>
+      <paragraph>
+       Amount to offset the newly created surface.
+Positive values offset the surface inward relative to the normals direction.
+Negative values offset outward.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <table>
+    <tgroup cols="3">
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <colspec colwidth="33">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id8">
+         <image candidates="{'*': 'images/modeling_meshes_editing_faces_solidify-before.png'}" uri="images/modeling_meshes_editing_faces_solidify-before.png" width="200px"/>
+         <caption>
+          Mesh before solidify operation.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id9">
+         <image candidates="{'*': 'images/modeling_meshes_editing_faces_solidify-after.png'}" uri="images/modeling_meshes_editing_faces_solidify-after.png" width="200px"/>
+         <caption>
+          Solidify with a positive thickness.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id10">
+         <image candidates="{'*': 'images/modeling_meshes_editing_faces_solidify-after2.png'}" uri="images/modeling_meshes_editing_faces_solidify-after2.png" width="200px"/>
+         <caption>
+          Solidify with a negative thickness.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+  <section ids="intersect" names="intersect giao\ cắt\ nhau\ --\ intersect">
+   <title>
+    Giao Cắt Nhau -- Intersect
+   </title>
+   <section ids="intersect-knife" names="intersect\ (knife) giao\ cắt\ (dao)\ --\ intersect\ (knife)">
+    <title>
+     Giao Cắt (Dao) -- Intersect (Knife)
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Biên Soạn -- Edit Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Intersect (Knife)`">
+          Face ‣ Intersect (Knife)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     The Intersect tool lets you cut intersections into geometry.
+It is a bit like Boolean Tool, but, does not calculate interior/exterior.
+Faces are split along the intersections, leaving new edges selected.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Nguồn -- Source
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Được Chọn/Chưa Chọn -- Selected/Unselected
+         </term>
+         <definition>
+          <paragraph>
+           Operate between the selected and unselected geometry.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Tự Giao Cắt -- Self Intersect
+         </term>
+         <definition>
+          <paragraph>
+           Operate on the overlapping geometry of the mesh.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chế Độ Tách Phân -- Separate Mode
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Toàn Bộ -- All
+         </term>
+         <definition>
+          <paragraph>
+           Splits the geometry at the new edge.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Cắt -- Cut
+         </term>
+         <definition>
+          <paragraph>
+           Keep each side of the intersection separate without splitting the faces in half.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Hội Nhập -- Merge
+         </term>
+         <definition>
+          <paragraph>
+           Merge all the geometry from the intersection.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Merge Threshold
+      </term>
+      <definition>
+       <paragraph>
+        See Intersect (Boolean).
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="intersect-boolean" names="intersect\ (boolean) giao\ cắt\ (bool)\ --\ intersect\ (boolean)">
+    <title>
+     Giao Cắt (Bool) -- Intersect (Boolean)
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Biên Soạn -- Edit Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Intersect (Boolean)`">
+          Face ‣ Intersect (Boolean)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Performs boolean operations with the selection on the unselected geometry.
+While the
+     <reference internal="True" refuri="../../modifiers/generate/booleans.html">
+      <inline classes="doc">
+       Bộ Điều Chỉnh Bool -- Boolean Modifier
+      </inline>
+     </reference>
+     is useful for non-destructive edits,
+access to booleans with a tool in Edit Mode can be useful to quickly perform edits.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Boolean
+      </term>
+      <definition>
+       <paragraph>
+        Difference, Union, Intersect
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tráo Đổi -- Swap
+      </term>
+      <definition>
+       <paragraph>
+        Changes the order of the operation.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Merge Threshold
+      </term>
+      <definition>
+       <paragraph>
+        Tolerance for close faces to be considered touching,
+It may be useful to increase this when some intersections aren't detected that should be and
+when extra geometry is being created because edges aren't detected as overlapping.
+       </paragraph>
+       <warning>
+        <paragraph>
+         A threshold approaching size of faces may cause very slow calculation,
+in general keep this value small.
+        </paragraph>
+       </warning>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="wireframe" names="wireframe khung\ dây\ --\ wireframe">
+   <title>
+    Khung Dây -- Wireframe
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Wire frame`">
+         Face ‣ Wire frame
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The Wireframe tool makes a wireframe from faces by turning edges into wireframe tubes,
+similar to the
+    <reference internal="True" refuri="../../modifiers/generate/wireframe.html">
+     <inline classes="doc">
+      Bộ Điều Chỉnh Khung Dây -- Wireframe Modifier
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </section>
+  <section ids="poke-faces" names="poke\ faces đẩy\ các\ bề\ mặt\ ra\ --\ poke\ faces">
+   <title>
+    Đẩy các Bề Mặt Ra -- Poke Faces
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Faces --&gt; Poke Face`">
+         Faces ‣ Poke Face
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Splits each selected faces into a triangle fan,
+creating a new center vertex and triangles between the original face edges
+and new center vertex. The
+    <emphasis>
+     Offset
+    </emphasis>
+    can be used to make spikes or depressions.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vị Trí Tâm Đẩy -- Poke Offset
+     </term>
+     <definition>
+      <paragraph>
+       Offset the new center vertex along the face normal.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển Tương Đối -- Offset Relative
+     </term>
+     <definition>
+      <paragraph>
+       Multiply the Offset by the average length from the center to the face vertices.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tâm Đẩy -- Poke Center
+     </term>
+     <definition>
+      <paragraph>
+       Computes the center of a face.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Trung Bình Trọng -- Weighted Mean
+        </term>
+        <definition>
+         <paragraph>
+          Using the mean average weighted by edge length.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Trung Bình -- Mean
+        </term>
+        <definition>
+         <paragraph>
+          Using the mean average.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Ranh Giới -- Bounds
+        </term>
+        <definition>
+         <paragraph>
+          Uses center of bounding box.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-ops-mesh-quads-convert-to-tris">
+   </target>
+  </section>
+  <section ids="triangulate-faces bpy-ops-mesh-quads-convert-to-tris" names="triangulate\ faces tam\ giác\ hóa\ các\ bề\ mặt\ --\ triangulate\ faces bpy.ops.mesh.quads_convert_to_tris">
+   <title>
+    Tam Giác Hóa các Bề Mặt -- Triangulate Faces
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Triangulate Faces`">
+         Face ‣ Triangulate Faces
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-T
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool converts each of the selected faces (whether it be quads or n-gons) to triangular faces.
+See the
+    <reference internal="True" refuri="../../modifiers/generate/triangulate.html">
+     <inline classes="doc">
+      Bộ Điều Chỉnh Tam Giác Hóa -- Triangulate Modifier
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <target refid="mesh-faces-tristoquads">
+   </target>
+  </section>
+  <section ids="triangles-to-quads mesh-faces-tristoquads" names="triangles\ to\ quads tam\ giác\ thành\ tứ\ giác\ --\ triangles\ to\ quads mesh-faces-tristoquads">
+   <title>
+    Tam Giác thành Tứ Giác -- Triangles to Quads
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Triangles to Quads`">
+         Face ‣ Triangles to Quads
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Alt-J
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool converts the selected triangles into quads by taking adjacent triangles and
+removing the shared edge to create a quad, based on a threshold.
+This tool can be applied on a selection of multiple triangles.
+   </paragraph>
+   <paragraph>
+    This means you can select the entire mesh and convert triangles that already
+form square shapes -- to be converted into quads, without having to concern yourself with individual faces.
+   </paragraph>
+   <paragraph>
+    Alternatively you can force this operation selecting a pairs of faces (see hint below for other ways of joining).
+   </paragraph>
+   <paragraph>
+    To create a quad, this tool needs at least two adjacent triangles.
+If you have an even number of selected triangles,
+it is also possible not to obtain only quads. In fact,
+this tool tries to create most even rectangular quads from the given triangles,
+which means some triangles could remain.
+   </paragraph>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id11">
+         <image candidates="{'*': 'images/modeling_meshes_editing_faces_tris-to-quad-before.png'}" uri="images/modeling_meshes_editing_faces_tris-to-quad-before.png" width="320px"/>
+         <caption>
+          Before converting tris to quads.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id12">
+         <image candidates="{'*': 'images/modeling_meshes_editing_faces_tris-to-quad-after.png'}" uri="images/modeling_meshes_editing_faces_tris-to-quad-after.png" width="320px"/>
+         <caption>
+          After converting tris to quads.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <paragraph>
+    All the menu entries and hotkeys use the settings defined in the
+    <emphasis>
+     Operator
+    </emphasis>
+    panel:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Góc Lớn Nhất -- Max Angle
+     </term>
+     <definition>
+      <paragraph>
+       This value, between (0 to 180), controls the threshold for this tool to work on adjacent triangles.
+With a threshold of 0.0,
+it will only join adjacent triangles that form a perfect rectangle
+(i.e. right-angled triangles sharing their hypotenuses).
+Larger values are required for triangles with a shared edge that is small,
+relative to the size of the other edges of the triangles.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      So Sánh các UV -- Compare UVs
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, it will prevent the union of triangles that are not also adjacent in the active UV map.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Compare Vertex Color
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, it will prevent the union of triangles that have no matching vertex color.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      So Sánh Độ Sắc/Nhọn -- Compare Sharp
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, it will prevent the union of triangles that share an edge marked as sharp.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      So Sánh Nguyên Liệu -- Compare Materials
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, it will prevent the union of triangles that do not have the same material assigned.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <hint>
+    <paragraph>
+     When isolated groups of faces are selected, they can be combined
+with
+     <reference internal="True" refuri="basics/make_face_edge.html#modeling-mesh-make-face-edge-dissolve">
+      <inline classes="std std-ref">
+       Create Face
+      </inline>
+     </reference>
+     or
+     <reference internal="True" refuri="basics/deleting.html#modeling-mesh-deleting-dissolve-faces">
+      <inline classes="std std-ref">
+       Hòa Tan Bề Mặt -- Dissolve Faces
+      </inline>
+     </reference>
+     ;
+this is not limited to quads.
+    </paragraph>
+   </hint>
+  </section>
+  <section ids="weld-edges-into-faces" names="weld\ edges\ into\ faces hàn\ các\ cạnh\ lại\ thành\ các\ bề\ mặt\ --\ weld\ edges\ into\ faces">
+   <title>
+    Hàn các Cạnh lại thành các Bề Mặt -- Weld Edges into Faces
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Weld Edges into Faces`">
+         Face ‣ Weld Edges into Faces
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    A tool to split selected faces by loose wire edges.
+This can be used in a similar way to the Knife tool, but the edges are manually setup first.
+   </paragraph>
+  </section>
+  <section ids="rotate-edges" names="rotate\ edges --\ rotate\ edges">
+   <title>
+    -- Rotate Edges
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Biên Soạn -- Edit Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Face --&gt; Rotate Edge CW`">
+         Face ‣ Rotate Edge CW
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This tool functions the same edge rotation in edge mode.
+It works on the shared edge between two faces and rotates that edge if the edge was selected.
+   </paragraph>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id13">
+         <image candidates="{'*': 'images/modeling_meshes_editing_faces_rotate-edge-face-mode1.png'}" uri="images/modeling_meshes_editing_faces_rotate-edge-face-mode1.png" width="320px"/>
+         <caption>
+          Two adjacent faces selected.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id14">
+         <image candidates="{'*': 'images/modeling_meshes_editing_faces_rotate-edge-face-mode2.png'}" uri="images/modeling_meshes_editing_faces_rotate-edge-face-mode2.png" width="320px"/>
+         <caption>
+          Selected edge rotated.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <paragraph>
+    See
+    <reference internal="True" refuri="edges.html#modeling-meshes-editing-edges-rotate">
+     <inline classes="std std-ref">
+      Rotate Edge
+     </inline>
+    </reference>
+    for more information.
+   </paragraph>
+  </section>
+  <section ids="rotate-reverse" names="rotate\ &amp;\ reverse --\ rotate\ &amp;\ reverse">
+   <title>
+    -- Rotate &amp; Reverse
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Rotate/Reverse UVs
+     </term>
+     <definition>
+      <paragraph>
+       See
+       <reference internal="True" refuri="uv/layout.html#uv-image-rotate-reverse-uvs">
+        <inline classes="std std-ref">
+         -- Face Mirror and Rotate UVs
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xoay Chiều Màu Sắc -- Rotate Colors
+     </term>
+     <definition>
+      <paragraph>
+       Rotates the Vertex Colors inside faces either clockwise or counterclockwise.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đảo Nghịch Màu Sắc -- Reverse Colors
+     </term>
+     <definition>
+      <paragraph>
+       Flips the direction of Vertex Colors inside the selected faces.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="normals" names="normals pháp\ tuyến\ --\ normals">
+    <title>
+     Pháp Tuyến -- Normals
+    </title>
+    <paragraph>
+     See
+     <reference internal="True" refuri="normals.html#modeling-meshes-editing-normals-editing">
+      <inline classes="std std-ref">
+       Editing Normals
+      </inline>
+     </reference>
+     for more information.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

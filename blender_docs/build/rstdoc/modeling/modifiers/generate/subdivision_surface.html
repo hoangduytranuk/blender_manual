@@ -1,0 +1,459 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/generate/subdivision_surface.rst">
+ <target refid="bpy-types-subsurfmodifier">
+ </target>
+ <section ids="subdivision-surface-modifier bpy-types-subsurfmodifier" names="subdivision\ surface\ modifier --\ subdivision\ surface\ modifier bpy.types.subsurfmodifier">
+  <title>
+   -- Subdivision Surface Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Subdivision Surface
+   </emphasis>
+   modifier (often shorten to "Subdiv")
+is used to split the faces of a mesh into smaller faces, giving it a smooth appearance.
+It enables you to create complex smooth surfaces while modeling simple, low-vertex meshes.
+It avoids the need to save and maintain huge amounts of data,
+and gives a smooth "organic" look to the object.
+  </paragraph>
+  <paragraph>
+   As with any modifier, order of execution (position in the
+   <reference internal="True" refuri="../introduction.html#modifier-stack">
+    <inline classes="std std-ref">
+     modifier stack
+    </inline>
+   </reference>
+   )
+has an important bearing on the results.
+  </paragraph>
+  <paragraph>
+   Keep in mind that this is a different operation than its companion,
+   <reference internal="True" refuri="../../meshes/editing/normals.html#modeling-meshes-editing-normals-shading">
+    <inline classes="std std-ref">
+     Smooth Shading
+    </inline>
+   </reference>
+   .
+You can see the difference between the two in the grid image below.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/modeling_modifiers_generate_subdivision-surface_grid.png'}" uri="images/modeling_modifiers_generate_subdivision-surface_grid.png"/>
+   <caption>
+    Subdivision levels 0 to 3, without and with Smooth Shading.
+   </caption>
+  </figure>
+  <tip>
+   <paragraph>
+    The
+    <emphasis>
+     Subdivision Surface
+    </emphasis>
+    modifier does not allow you to edit the new subdivided geometry without applying it,
+but the
+    <reference internal="True" refuri="multiresolution.html">
+     <inline classes="doc">
+      Multiresolution
+     </inline>
+    </reference>
+    modifier does (in Sculpt Mode).
+   </paragraph>
+  </tip>
+  <note>
+   <paragraph>
+    This modifier now uses
+the
+    <reference name="OpenSubdiv library" refuri="http://graphics.pixar.com/opensubdiv/docs/intro.html">
+     OpenSubdiv library
+    </reference>
+    as a backend.
+   </paragraph>
+  </note>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id2">
+    <image candidates="{'*': 'images/modeling_modifiers_generate_subdivision-surface_panel.png'}" uri="images/modeling_modifiers_generate_subdivision-surface_panel.png"/>
+    <caption>
+     The Subdivision Surface modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Thể Loại -- Type
+     </term>
+     <definition>
+      <paragraph>
+       This toggle button allows you to choose the subdivision algorithm:
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Catmull-Clark
+        </term>
+        <definition>
+         <paragraph>
+          The default option, subdivides and smooths the surfaces. According to its
+          <reference name="Wikipedia page" refuri="https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface">
+           Wikipedia page
+          </reference>
+          , the "arbitrary-looking formula was chosen by Catmull and Clark based on the aesthetic appearance of the resulting surfaces rather than on a mathematical derivation.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đơn Giản -- Simple
+        </term>
+        <definition>
+         <paragraph>
+          Only subdivides the surfaces, without any smoothing
+(the same as the
+          <reference internal="True" refuri="../../meshes/editing/subdividing/subdivide.html#bpy-ops-mesh-subdivide">
+           <inline classes="std std-ref">
+            Subdivide
+           </inline>
+          </reference>
+          operator, in Edit Mode).
+Can be used, for example, to increase base mesh resolution when using displacement maps.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lượng Phân Hóa -- Subdivisions
+     </term>
+     <definition>
+      <paragraph>
+       Recursively adds more geometry.
+      </paragraph>
+      <paragraph>
+       The right combination of these settings will allow you to keep a fast and lightweight approximation of your model
+when interacting with it in the 3D Viewport, but use a higher quality version when rendering.
+      </paragraph>
+      <warning>
+       <paragraph>
+        Higher levels of subdivisions results in more vertices, which means more memory will be occupied
+(both system RAM, and video memory for display).
+Blender could potentially crash or hang if you do not have enough available memory.
+       </paragraph>
+      </warning>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Kết Xuất -- Render
+        </term>
+        <definition>
+         <paragraph>
+          The number of subdivision levels shown in renders.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Viewport
+        </term>
+        <definition>
+         <paragraph>
+          The number of subdivision levels shown in the 3D View.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Quality
+        </term>
+        <definition>
+         <paragraph>
+          How precisely the vertices are positioned
+(relatively to their theoretical position of an infinitely subdivided mesh),
+can be lowered to get a better performance.
+         </paragraph>
+         <paragraph>
+          Using higher values does not necessarily mean real improvement in quality,
+ideal results might be reached well before the maximum
+          <emphasis>
+           Quality
+          </emphasis>
+          value.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <tip>
+       <paragraph>
+        Be careful not to set the
+        <emphasis>
+         Viewport
+        </emphasis>
+        subdivisions higher than the
+        <emphasis>
+         Render
+        </emphasis>
+        subdivisions,
+this would mean that in the 3D View the quality will be higher than the rendered.
+       </paragraph>
+      </tip>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tùy Chọn -- Options
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         UV Smooth
+        </term>
+        <definition>
+         <paragraph>
+          How to handle UVs during subdivision.
+         </paragraph>
+         <definition_list>
+          <definition_list_item>
+           <term>
+            Smooth, keep corners
+           </term>
+           <definition>
+            <paragraph>
+             UV islands are smoothed, but their boundary remain sharp.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Sharp
+           </term>
+           <definition>
+            <paragraph>
+             UV remain unchanged.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+         </definition_list>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Hiển Thị Tối Ưu -- Optimal Display
+        </term>
+        <definition>
+         <paragraph>
+          When rendering the wireframe of this object, the wires of the new subdivided edges will be skipped
+(only displays the edges of the original geometry).
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Use Creases
+        </term>
+        <definition>
+         <paragraph>
+          Use the
+          <reference name="Weighted Edge Creases" refid="weighted-edge-creases">
+           Weighted Edge Creases
+          </reference>
+          values stored in edges to control how smooth they are made.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="keyboard-shortcuts" names="keyboard\ shortcuts đường\ phím\ tắt\ --\ keyboard\ shortcuts">
+   <title>
+    Đường Phím Tắt -- Keyboard Shortcuts
+   </title>
+   <paragraph>
+    To quickly add a
+    <emphasis>
+     Subdivision Surface
+    </emphasis>
+    modifier to one or more objects, select the object(s) and press
+    <literal classes="kbd">
+     Ctrl-1
+    </literal>
+    .
+That will add a Subdivision Surface modifier with
+    <emphasis>
+     Viewport
+    </emphasis>
+    subdivisions set to 1.
+You can use other numbers too, such as
+    <literal classes="kbd">
+     Ctrl-2
+    </literal>
+    ,
+    <literal classes="kbd">
+     Ctrl-3
+    </literal>
+    , etc,
+to add a modifier with that number of subdivisions.
+Adding a
+    <emphasis>
+     Subdivision Surface
+    </emphasis>
+    modifier in this fashion will not modify the
+    <emphasis>
+     Render
+    </emphasis>
+    subdivisions.
+   </paragraph>
+   <paragraph>
+    If an object already has a
+    <emphasis>
+     Subdivision Surface
+    </emphasis>
+    modifier,
+doing this will simply change its subdivision level instead of adding another modifier.
+   </paragraph>
+  </section>
+  <section ids="control" names="control điều\ khiển\ --\ control">
+   <title>
+    Điều Khiển -- Control
+   </title>
+   <paragraph>
+    Catmull-Clark subdivision rounds off edges, and often this is not what you want.
+There are several solutions that allow you to control the subdivision.
+   </paragraph>
+   <target refid="modifiers-generate-subsurf-creases">
+   </target>
+   <section ids="weighted-edge-creases modifiers-generate-subsurf-creases" names="weighted\ edge\ creases --\ weighted\ edge\ creases modifiers-generate-subsurf-creases">
+    <title>
+     -- Weighted Edge Creases
+    </title>
+    <paragraph>
+     Weighted edge creases for subdivision surfaces allows you to change the way
+the
+     <emphasis>
+      Subdivision Surface
+     </emphasis>
+     modifier subdivides the geometry to give the edges a smooth or sharp appearance.
+    </paragraph>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/modeling_modifiers_generate_subdivision-surface_withcrease.png'}" uri="images/modeling_modifiers_generate_subdivision-surface_withcrease.png"/>
+     <caption>
+      A subdivided cube with creased edges.
+     </caption>
+    </figure>
+    <paragraph>
+     The crease weight of selected edges can be changed in the
+     <emphasis>
+      Transform
+     </emphasis>
+     panel, Sidebar of the 3D View.
+The scale-like dedicated tool
+     <literal classes="kbd">
+      Shift-E
+     </literal>
+     can also be used to adjust the crease weight.
+A higher value makes the edge "stronger" and more resistant to the smoothing effect of subdivision surfaces.
+    </paragraph>
+   </section>
+   <section ids="edge-loops" names="edge\ loops theo\ vòng\ mạch\ --\ edge\ loops">
+    <title>
+     Theo Vòng Mạch -- Edge Loops
+    </title>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/modeling_modifiers_generate_subdivision-surface_cube-with-edge-loops.png'}" uri="images/modeling_modifiers_generate_subdivision-surface_cube-with-edge-loops.png"/>
+     <caption>
+      Subdivision Level 2 cube, the same with an extra Edge Loop, and the same with six extra Edge Loops.
+     </caption>
+    </figure>
+    <paragraph>
+     The
+     <emphasis>
+      Subdivision Surface
+     </emphasis>
+     modifier demonstrates why good, clean topology is so important.
+As you can see in the figure, the it has a drastic effect on a default cube.
+Until you add in additional loops (with e.g.
+     <reference internal="True" refuri="../../meshes/editing/subdividing/loop.html#bpy-ops-mesh-loopcut-slide">
+      <inline classes="std std-ref">
+       Loop Cut and Slide
+      </inline>
+     </reference>
+     ),
+the shape is almost unrecognizable as a cube.
+    </paragraph>
+    <paragraph>
+     A mesh with deliberate topology has good placement of edge loops, which allow the placement of more loops
+(or their removal) to control the sharpness/smoothness of the resultant mesh.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="known-limitations" names="known\ limitations những\ hạn\ chế\ từng\ biết\ đến\ --\ known\ limitations">
+   <title>
+    Những Hạn Chế Từng Biết Đến -- Known Limitations
+   </title>
+   <section ids="non-contiguous-normals" names="non-contiguous\ normals --\ non-contiguous\ normals">
+    <title>
+     -- Non-Contiguous Normals
+    </title>
+    <paragraph>
+     Blender's subdivision system produces nice smooth subdivided meshes, but any subdivided face
+(that is, any small face created by the algorithm from a single face of the original mesh),
+shares the overall normal orientation of that original face.
+    </paragraph>
+    <table>
+     <tgroup cols="2">
+      <colspec colwidth="50">
+      </colspec>
+      <colspec colwidth="50">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id5">
+          <image candidates="{'*': 'images/modeling_modifiers_generate_subdivision-surface_normal-orientation-1.png'}" uri="images/modeling_modifiers_generate_subdivision-surface_normal-orientation-1.png" width="320px"/>
+          <caption>
+           Comparison of good normals and bad normals.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id6">
+          <image candidates="{'*': 'images/modeling_modifiers_generate_subdivision-surface_normal-orientation-2.png'}" uri="images/modeling_modifiers_generate_subdivision-surface_normal-orientation-2.png" width="320px"/>
+          <caption>
+           Side view of image on the left.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <paragraph>
+     Abrupt normal changes can produce ugly black gouges even though
+these flipped normals are not an issue for the shape itself.
+    </paragraph>
+    <paragraph>
+     A quick way to fix this is to use Blender's
+     <reference internal="True" refuri="../../meshes/editing/normals.html">
+      <inline classes="doc">
+       Recalculate Normals
+      </inline>
+     </reference>
+     operation in Edit Mode.
+    </paragraph>
+    <paragraph>
+     If you still have some ugly black gouges you will have to
+     <reference internal="True" refuri="../../meshes/editing/normals.html">
+      <inline classes="doc">
+       manually flip the normals
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

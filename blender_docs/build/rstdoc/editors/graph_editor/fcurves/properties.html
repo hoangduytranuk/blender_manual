@@ -1,0 +1,455 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/graph_editor/fcurves/properties.rst">
+ <section ids="properties" names="properties tính\ chất\ --\ properties">
+  <title>
+   Tính Chất -- Properties
+  </title>
+  <section ids="active-f-curve-panel" names="active\ f-curve\ panel bảng\ đường\ cong-f\ đang\ hoạt\ động\ --\ active\ f-curve\ panel">
+   <title>
+    Bảng Đường Cong-F Đang Hoạt Động -- Active F-Curve Panel
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; F-Curve --&gt; Active F-Curve`">
+         Sidebar region ‣ F-Curve ‣ Active F-Curve
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/editors_graph-editor_fcurves_properties_active-fcurve-panel.png'}" uri="images/editors_graph-editor_fcurves_properties_active-fcurve-panel.png"/>
+    <caption>
+     Bảng Đường Cong-F đang hoạt động.
+    </caption>
+   </figure>
+   <paragraph>
+    This panel displays properties for the active F-curve.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tên Kênh -- Channel Name
+     </term>
+     <definition>
+      <paragraph>
+       Kiểu ID + Tên kênh (Địa điểm X).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Đường Dẫn RNA -- RNA Path
+     </term>
+     <definition>
+      <paragraph>
+       Đường dẫn tới tính chất RNA + chỉ số mảng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chế Độ Màu -- Color Mode
+     </term>
+     <definition>
+      <paragraph>
+       Color Mode for the active F-curve.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Tự Động Cầu Vồng Hóa -- Auto Rainbow
+        </term>
+        <definition>
+         <paragraph>
+          Increment the hue of the F-curve color based on the channel index.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Tự Động XYZ Sang RGB -- Auto XYZ to RGB
+        </term>
+        <definition>
+         <paragraph>
+          Đối với những bộ tính chất giống như vị trí của XYZ thì tự động đặt bộ màu thành đỏ, lục, lam.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Người Dùng Định Nghĩa -- User Defined
+        </term>
+        <definition>
+         <paragraph>
+          Define a custom color for the active F-curve.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="graph-editor-auto-handle-smoothing">
+   </target>
+   <definition_list ids="graph-editor-auto-handle-smoothing" names="graph_editor-auto-handle-smoothing">
+    <definition_list_item>
+     <term>
+      -- Auto Handle Smoothing
+     </term>
+     <definition>
+      <paragraph>
+       Selects the method used to compute automatic Bézier handles (
+       <emphasis>
+        Automatic
+       </emphasis>
+       ,
+       <emphasis>
+        Auto Clamped
+       </emphasis>
+       ,
+       <emphasis>
+        Vector
+       </emphasis>
+       ).
+      </paragraph>
+      <figure align="center" ids="id2">
+       <image candidates="{'*': 'images/editors_graph-editor_fcurves_properties_auto_smoothing.png'}" uri="images/editors_graph-editor_fcurves_properties_auto_smoothing.png"/>
+       <caption>
+        Handle smoothing mode comparison. Yellow:
+        <emphasis>
+         None
+        </emphasis>
+        , Cyan:
+        <emphasis>
+         Continuous Acceleration
+        </emphasis>
+        .
+       </caption>
+       <legend>
+        <paragraph>
+         From left to right, four
+         <emphasis>
+          Auto Clamped
+         </emphasis>
+         keys, one
+         <emphasis>
+          Vector
+         </emphasis>
+         , and the rest are
+         <emphasis>
+          Automatic
+         </emphasis>
+         .
+        </paragraph>
+       </legend>
+      </figure>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Không Có -- None
+        </term>
+        <definition>
+         <paragraph>
+          Only directly adjacent key values are considered when computing the handles.
+Vector handles are pointed directly at the adjacent keyframes.
+         </paragraph>
+         <paragraph>
+          This older method is very simple and predictable, but it can only produce
+truly smooth curves in the most trivial cases. Note the kinks in the yellow curve
+around the keys located between the extremes, and near the Vector handles.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         -- Continuous Acceleration
+        </term>
+        <definition>
+         <paragraph>
+          A system of equations is solved in order to avoid or minimize jumps in acceleration
+at every keyframe. Vector handles are integrated into the curves as smooth transitions
+to imaginary straight lines beyond the keyframe.
+         </paragraph>
+         <paragraph>
+          This produces much smoother curves out of the box, but necessarily means that
+any changes in the key values may affect interpolation over a significant stretch
+of the curve; although the amount of change decays exponentially with distance.
+This change propagation is stopped by any key with
+          <emphasis>
+           Free
+          </emphasis>
+          ,
+          <emphasis>
+           Aligned
+          </emphasis>
+          , or
+          <emphasis>
+           Vector
+          </emphasis>
+          handles, as well as by extremes with
+          <emphasis>
+           Auto Clamped
+          </emphasis>
+          handles.
+         </paragraph>
+         <paragraph>
+          This mode also tends to overshoot and oscillate more with fully
+          <emphasis>
+           Automatic
+          </emphasis>
+          handles
+in some cases (see the right end of the image above), so it is recommended to use
+          <emphasis>
+           Auto Clamped
+          </emphasis>
+          by default, and only switch to
+          <emphasis>
+           Automatic
+          </emphasis>
+          handles in places where this
+is desired behavior. This effect can also be reduced by adding in-between keys.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <paragraph>
+       Considering the upsides and downsides of each mode,
+       <emphasis>
+        Continuous Acceleration
+       </emphasis>
+       should be
+better suited for limited animation, which uses a small number of interpolated keys with
+minimal manual polish. In case of highly polished high key rate animation, the benefits of
+smoothing may not outweigh the workflow disruption from more extensive change propagation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="active-keyframe-panel" names="active\ keyframe\ panel bảng\ khung\ khóa\ đang\ hoạt\ động\ --\ active\ keyframe\ panel">
+   <title>
+    Bảng Khung Khóa Đang Hoạt Động -- Active Keyframe Panel
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; F-Curve --&gt; Active Keyframe`">
+         Sidebar region ‣ F-Curve ‣ Active Keyframe
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/editors_graph-editor_fcurves_properties_active-keyframe-panel.png'}" uri="images/editors_graph-editor_fcurves_properties_active-keyframe-panel.png"/>
+    <caption>
+     Bảng Khung Khóa đang hoạt động.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Nội Suy -- Interpolation
+     </term>
+     <definition>
+      <paragraph>
+       Set the forward
+       <reference internal="True" refuri="introduction.html#editors-graph-fcurves-settings-interpolation">
+        <inline classes="std std-ref">
+         Chế Độ Nội Suy -- Interpolation Mode
+        </inline>
+       </reference>
+       for the active keyframe.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chậm Rãi -- Easing
+     </term>
+     <definition>
+      <paragraph>
+       Xin xem mục
+       <reference internal="True" refuri="introduction.html#editors-graph-fcurves-settings-easing">
+        <inline classes="std std-ref">
+         Thể Loại Chậm Rãi -- Easing Type
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khóa -- Key
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Khung Hình -- Frame
+        </term>
+        <definition>
+         <paragraph>
+          Đặt khung hình cho khung khóa đang hoạt động.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Giá Trị -- Value
+        </term>
+        <definition>
+         <paragraph>
+          Đặt giá trị cho khung khóa đang hoạt động.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tay Cầm Trái/Phải -- Left/Right Handle
+     </term>
+     <definition>
+      <paragraph>
+       Đặt vị trí của tay cầm nội suy trái/phải cho khung khóa đang hoạt động.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Loại Tay Cầm -- Handle Type
+        </term>
+        <definition>
+         <paragraph>
+          Xin xem mục
+          <reference internal="True" refuri="introduction.html#editors-graph-fcurves-settings-handles">
+           <inline classes="std std-ref">
+            Loại Tay Cầm -- Handle Types
+           </inline>
+          </reference>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="bpy-types-spacegrapheditor-show-cursor">
+   </target>
+   <target refid="bpy-ops-graph-frame-jump">
+   </target>
+   <target refid="graph-editor-view-properties">
+   </target>
+  </section>
+  <section ids="view-properties graph-editor-view-properties bpy-ops-graph-frame-jump bpy-types-spacegrapheditor-show-cursor" names="view\ properties tính\ chất\ của\ góc\ nhìn\ --\ view\ properties graph_editor-view-properties bpy.ops.graph.frame_jump bpy.types.spacegrapheditor.show_cursor">
+   <title>
+    Tính Chất của Góc Nhìn -- View Properties
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Sidebar region --&gt; View --&gt; View Properties`">
+         Sidebar region ‣ View ‣ View Properties
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <figure align="right" ids="id4">
+    <image candidates="{'*': 'images/editors_graph-editor_fcurves_properties_view-panel.png'}" uri="images/editors_graph-editor_fcurves_properties_view-panel.png"/>
+    <caption>
+     Các tính chất của góc nhìn.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hiển Thị Con Trỏ -- Show Cursor
+     </term>
+     <definition>
+      <paragraph>
+       Bật/Tắt tầm nhìn của
+       <reference internal="True" refuri="../introduction.html#graph-editor-2d-cursor">
+        <inline classes="std std-ref">
+         Con Trỏ 2D
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Con Trỏ từ Lựa Chọn -- Cursor from Selection
+     </term>
+     <definition>
+      <paragraph>
+       Đặt con trỏ 2D tại trung điểm của các khung hình được chọn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vị Trí Con Trỏ -- Cursor Location
+     </term>
+     <definition>
+      <paragraph>
+       Di chuyển con trỏ tới khung hình (giá trị X) và giá trị chỉ định (giá trị Y).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vào Khóa -- To Keys
+     </term>
+     <definition>
+      <paragraph>
+       Áp dụng vị trí hiện tại của con trỏ 2D vào các khung khóa đã được chọn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     <reference internal="True" refuri="../introduction.html#graph-view-menu">
+      <inline classes="std std-ref">
+       Trình Đơn Góc Nhìn -- View Menu
+      </inline>
+     </reference>
+     của trình biên soạn đồ thị.
+    </paragraph>
+   </seealso>
+  </section>
+ </section>
+</document>

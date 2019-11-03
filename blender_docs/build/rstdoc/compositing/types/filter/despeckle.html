@@ -1,0 +1,95 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/filter/despeckle.rst">
+ <target refid="bpy-types-compositornodedespeckle">
+ </target>
+ <section ids="despeckle-node bpy-types-compositornodedespeckle" names="despeckle\ node nút\ khử\ chấm\ lốm\ đốm\ --\ despeckle\ node bpy.types.compositornodedespeckle">
+  <title>
+   Nút Khử Chấm Lốm Đốm -- Despeckle Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeDespeckle.png'}" uri="images/compositing_node-types_CompositorNodeDespeckle.png"/>
+   <caption>
+    Nút Khử Chấm Lốm Đốm.
+   </caption>
+  </figure>
+  <paragraph>
+   <emphasis>
+    Nút Khử Chấm Lốm Đốm
+   </emphasis>
+   được sử dụng để làm mịn các khu vực của một hình ảnh bị nhiễu đáng kể, trong khi giữ nguyên các vùng phức tạp khác không động chạm đến.
+  </paragraph>
+  <paragraph>
+   Xử lý này hoạt động theo độ lệch chuẩn (standard deviation) của từng điểm ảnh và các điểm ảnh lân cận của nó được tính toán để xác định xem khu vực đó có độ phức tạp cao hay thấp. Nếu độ phức tạp thấp hơn ngưỡng thì khu vực được làm mịn bằng bộ lọc trung bình đơn giản (simple mean filter).
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Điều chế lượng tác động của bộ lọc vào hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Giới Hạn -- Threshold
+     </term>
+     <definition>
+      <paragraph>
+       Ngưỡng điều khiển độ phức tạp cao/thấp.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Kề Cạnh -- Neighbor
+     </term>
+     <definition>
+      <paragraph>
+       Ngưỡng điều chế số điểm ảnh cần phải xứng hợp.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

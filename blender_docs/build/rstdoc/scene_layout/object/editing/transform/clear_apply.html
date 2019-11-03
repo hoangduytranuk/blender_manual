@@ -1,0 +1,659 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/editing/transform/clear_apply.rst">
+ <section ids="clear-apply" names="clear\ &amp;\ apply xóa\ và\ áp\ dụng\ --\ clear\ &amp;\ apply">
+  <title>
+   Xóa và Áp Dụng -- Clear &amp; Apply
+  </title>
+  <target refid="bpy-ops-object-clear">
+  </target>
+  <section ids="clear bpy-ops-object-clear" names="clear xóa\ sạch\ --\ clear bpy.ops.object.*clear">
+   <title>
+    Xóa Sạch -- Clear
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể -- Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Xóa Sạch (Clear) --&gt; Xóa Sạch Vị Trí/Xóa Sạch Tỷ Lệ/Xóa Sạch Xoay Chiều/Xóa Sạch Tọa Độ Gốc (Clear Location / Clear Scale / Clear Rotation / Clear Origin)`">
+         Vật Thể (Object) ‣ Xóa Sạch (Clear) ‣ Xóa Sạch Vị Trí/Xóa Sạch Tỷ Lệ/Xóa Sạch Xoay Chiều/Xóa Sạch Tọa Độ Gốc (Clear Location / Clear Scale / Clear Rotation / Clear Origin)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Alt-G
+        </literal>
+        ,
+        <literal classes="kbd">
+         Alt-S
+        </literal>
+        ,
+        <literal classes="kbd">
+         Alt-R
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Clearing transforms simply resets the transform values.
+The objects location and rotation values return to 0, and the scale returns to 1.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Xóa Vị Trí -- Clear Location
+      <literal classes="kbd">
+       Alt-G
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Clear (reset) the location of the selection.
+This will move the selection back to the coordinates (0, 0, 0).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa Tỷ Lệ -- Clear Scale
+      <literal classes="kbd">
+       Alt-S
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Clear (reset) the scale of the selection.
+This will resize the selection back to the size it was when created.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xóa Sự Xoay Chiều -- Clear Rotation
+      <literal classes="kbd">
+       Alt-R
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Clear (reset) the rotation of the selection.
+This will set the rotation of the selection to 0 degrees in each plane.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Clear Origin
+     </term>
+     <definition>
+      <paragraph>
+       Clears (resets) the offset of the child objects origin.
+This will cause child objects to move to the origin of the parent.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section dupnames="options" ids="options" names="tùy\ chọn\ --\ options">
+    <title>
+     Tùy Chọn -- Options
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Xóa Delta -- Clear Delta
+      </term>
+      <definition>
+       <paragraph>
+        Clear the
+        <reference internal="True" refuri="../../properties/transforms.html#transform-delta">
+         <inline classes="std std-ref">
+          delta transform
+         </inline>
+        </reference>
+        in addition to clearing the primary transforms.
+(Appears in the
+        <reference internal="True" refuri="../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+         <inline classes="std std-ref">
+          Adjust Last Operation
+         </inline>
+        </reference>
+        panel.)
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="apply" names="apply áp\ dụng\ --\ apply">
+   <title>
+    Áp Dụng -- Apply
+   </title>
+   <paragraph>
+    These operations lets you apply several transformations to the selected objects.
+The object transformation coordinates are transferred to the object data.
+If the objects have hierarchical descendants, it also applies those transformations to their children.
+   </paragraph>
+   <target refid="bpy-ops-object-transform-apply">
+   </target>
+   <section ids="apply-object-transformations bpy-ops-object-transform-apply" names="apply\ object\ transformations áp\ dụng\ các\ biến\ hóa\ của\ vật\ thể\ --\ apply\ object\ transformations bpy.ops.object.transform_apply">
+    <title>
+     Áp Dụng các Biến Hóa của Vật Thể -- Apply Object Transformations
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Vật Thể -- Object Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Áp Dụng (Apply) --&gt; Vị Trí / Xoay Chiều / Tỷ Lệ / Xoay Chiều &amp; Tỷ Lệ (Location / Rotation / Scale / Rotation &amp; Scale)`">
+          Vật Thể (Object) ‣ Áp Dụng (Apply) ‣ Vị Trí / Xoay Chiều / Tỷ Lệ / Xoay Chiều &amp; Tỷ Lệ (Location / Rotation / Scale / Rotation &amp; Scale)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Ctrl-A
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Applying transform values essentially resets the values of object's location, rotation or scale,
+while visually keeping the object data in-place.
+The object origin point is moved to the global origin, the rotation is cleared and scale values are set to 1.
+    </paragraph>
+    <paragraph>
+     For simple cases you won't notice any difference the 3D View or rendered output,
+however modifiers and constraints may depend on object transformation.
+    </paragraph>
+    <warning>
+     <paragraph>
+      Armature Objects
+     </paragraph>
+     <paragraph>
+      While applying transformations to armatures is supported,
+this does
+      <strong>
+       not
+      </strong>
+      apply to their pose location, animation curves or constraints.
+This tool should be used before rigging and animation.
+     </paragraph>
+    </warning>
+    <paragraph>
+     When running
+     <emphasis>
+      Apply Transform
+     </emphasis>
+     , the
+     <reference internal="True" refuri="../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+      <inline classes="std std-ref">
+       Adjust Last Operation
+      </inline>
+     </reference>
+     panel lets you choose
+the combination of transformations to apply.
+    </paragraph>
+    <section dupnames="options" ids="id1" names="tùy\ chọn\ --\ options">
+     <title>
+      Tùy Chọn -- Options
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Vị Trí -- Location
+       </term>
+       <definition>
+        <paragraph>
+         Apply (set) the location of the selection.
+This will make Blender consider the current location to be equivalent to 0 in each plane
+i.e. the selection will not move, the current location will be considered to be the "default location".
+The Object origin will be set to actual (0, 0, 0) (where the colored axis lines intersect in each view).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Xoay Chiều -- Rotation
+       </term>
+       <definition>
+        <paragraph>
+         Apply (set) the rotation of the selection.
+This will make Blender consider the current rotation to be equivalent to 0 degrees in each plane
+i.e. the selection will not rotated, the current rotation will be considered to be the "default rotation".
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Tỷ Lệ -- Scale
+       </term>
+       <definition>
+        <paragraph>
+         Apply (set) the scale of the selection.
+This will make Blender consider the current scale to be equivalent to 0 in each plane
+i.e. the selection will not scaled, the current scale will be considered to be the "default scale".
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Xoay Chiều và Tỷ Lệ -- Rotation and Scale
+       </term>
+       <definition>
+        <paragraph>
+         Apply (set) the rotation and scale of the selection. Do the above two applications simultaneously.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Áp Dụng các Tính Chất -- Apply Properties
+       </term>
+       <definition>
+        <paragraph>
+         Modify properties such as curve vertex radius, font size and bone envelope
+according to the applied transformation.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <target refid="bpy-ops-object-transforms-to-deltas">
+     </target>
+     <target refid="bpy-ops-object-anim-transforms-to-deltas">
+     </target>
+    </section>
+   </section>
+   <section ids="transforms-to-deltas bpy-ops-object-anim-transforms-to-deltas bpy-ops-object-transforms-to-deltas" names="transforms\ to\ deltas biến\ hóa\ sang\ delta\ --\ transforms\ to\ deltas bpy.ops.object.anim_transforms_to_deltas bpy.ops.object.transforms_to_deltas">
+    <title>
+     Biến Hóa sang Delta -- Transforms to Deltas
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Vật Thể -- Object Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         :menuselection:
+         <problematic ids="id2" refid="id1">
+          `
+         </problematic>
+         Vật Thể (Object) --&gt; Áp Dụng (Apply) --&gt; `
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Converts primary object transformations to
+     <reference internal="True" refuri="../../properties/transforms.html#transform-delta">
+      <inline classes="std std-ref">
+       delta transforms
+      </inline>
+     </reference>
+     ,
+any existing delta transforms will be included as well.
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Location to Deltas
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Rotation to Deltas
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Scale to Deltas
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Tất Cả các Biến Hóa sang Delta -- All Transforms to Deltas
+      </term>
+      <definition>
+       <paragraph>
+        Converts all primary transformations to delta transforms.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Biến Hóa đã Hoạt Họa thành Deltas -- Animated Transform to Deltas
+      </term>
+      <definition>
+       <paragraph>
+        Converts the primary transformation animations
+(animations done to the translation, scale, and, rotation values) to delta transforms.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <section dupnames="options" ids="id2" names="tùy\ chọn\ --\ options">
+     <title>
+      Tùy Chọn -- Options
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Hoàn Lại các Giá Trị -- Reset Values
+       </term>
+       <definition>
+        <paragraph>
+         Clear primary transform values after transferring to deltas.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <target refid="bpy-ops-object-visual-transform-apply">
+     </target>
+    </section>
+   </section>
+   <section ids="visual-transform bpy-ops-object-visual-transform-apply" names="visual\ transform trực\ quan\ hóa\ sự\ biến\ hóa\ --\ visual\ transform bpy.ops.object.visual_transform_apply">
+    <title>
+     Trực Quan Hóa sự Biến Hóa -- Visual Transform
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Vật Thể -- Object Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Áp Dụng (Apply) --&gt; Trực Quan Hóa sự Biến Hóa (Visual Transform)`">
+          Vật Thể (Object) ‣ Áp Dụng (Apply) ‣ Trực Quan Hóa sự Biến Hóa (Visual Transform)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Ctrl-A
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Apply (set) the result of a constraint and apply this back to the Object's location, rotation and scale.
+    </paragraph>
+   </section>
+   <section ids="visual-geometry-as-mesh" names="visual\ geometry\ as\ mesh trực\ quan\ hóa\ hình\ học\ như\ khung\ lưới\ --\ visual\ geometry\ as\ mesh">
+    <title>
+     Trực Quan Hóa Hình Học như Khung Lưới -- Visual Geometry as Mesh
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Vật Thể -- Object Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Apply --&gt; Visual Geometry to Mesh`">
+          Object ‣ Apply ‣ Visual Geometry to Mesh
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Ctrl-A
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Apply the visual state of all selected objects (modifiers, shape keys, hooks, etc.) to object data.
+This is a way to freeze all object data into static meshes, as well as converts non-mesh types to mesh.
+    </paragraph>
+    <paragraph>
+     For details, see the
+     <reference internal="True" refuri="../introduction.html#object-convert-to">
+      <inline classes="std std-ref">
+       Chuyển Đổi Sang -- Convert To
+      </inline>
+     </reference>
+     mesh.
+    </paragraph>
+    <target refid="bpy-ops-object-duplicates-make-real">
+    </target>
+   </section>
+   <section ids="make-instances-real bpy-ops-object-duplicates-make-real" names="make\ instances\ real bpy.ops.object.duplicates_make_real">
+    <title>
+     Make Instances Real
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Vật Thể -- Object Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Apply --&gt; Make Instances Real`">
+          Object ‣ Apply ‣ Make Instances Real
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Shift-Ctrl-A
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     <emphasis>
+      Make Instances Real
+     </emphasis>
+     creates a new object for each
+     <reference internal="True" refuri="../../properties/instancing/index.html">
+      <inline classes="doc">
+       instance
+      </inline>
+     </reference>
+     generated by the selected ones,
+and removes any direct instancing from those.
+    </paragraph>
+    <paragraph>
+     In the end, each instance becomes a real object.
+    </paragraph>
+    <warning>
+     <paragraph>
+      This applies to both direct (from verts or faces...) and indirect (from particle system...) instancing.
+In case you have tens of thousands of instances (from particles for example),
+this can significantly slow down Blender, which does not always deal well with that many objects in a scene.
+     </paragraph>
+    </warning>
+    <section dupnames="options" ids="id3" names="tùy\ chọn\ --\ options">
+     <title>
+      Tùy Chọn -- Options
+     </title>
+     <paragraph>
+      By default, new objects will be added to the same collection as the one containing their instancer,
+without keeping any hierarchy relationships. This behavior can be altered with the following options.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Phụ Huynh -- Parent
+       </term>
+       <definition>
+        <paragraph>
+         If
+         <emphasis>
+          Keep Hierarchy
+         </emphasis>
+         is not set, parents all the generated objects to the former instancer.
+        </paragraph>
+        <paragraph>
+         Otherwise, parents all the generated objects
+         <emphasis>
+          which are not already parented
+         </emphasis>
+         to their respective instancer,
+or its matching new copy (this is important in case of recursive instancing, see the note below).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Duy Trì Thứ Bậc -- Keep Hierarchy
+       </term>
+       <definition>
+        <paragraph>
+         Preserves internal hierarchies (i.e. parent relationships) in the newly generated objects.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <tip>
+      <paragraph>
+       Usually, to get a new hierarchy as close as possible from the instancing one,
+you'll want to enable both of these options.
+      </paragraph>
+     </tip>
+     <note>
+      <paragraph>
+       Preserving relationships in recursive instancing cases (instancers instancing other instancer objects, etc.)
+is only supported to some extent currently.
+      </paragraph>
+      <paragraph>
+       Simple cases (like an empty instancing a collection containing instances of some other collections)
+will usually work, but more complex cases will fail to fully reproduce the whole instancing hierarchy.
+      </paragraph>
+     </note>
+    </section>
+   </section>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Command Line Rendering &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/advanced/command_line/render.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="-- Scripting &amp; Extending Blender" href="../scripting/index.html" />
+    <link rel="prev" title="Những Tham Số Dòng Lệnh -- Command Line Arguments" href="arguments.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cao Cấp -- Advanced</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Dòng Lệnh -- Command Line</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launch/index.html">Launching from the Command Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arguments.html">Những Tham Số Dòng Lệnh -- Command Line Arguments</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Command Line Rendering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#single-image">Đơn Hình Ảnh -- Single Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#animation">Hoạt Họa -- Animation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripting/index.html">-- Scripting &amp; Extending Blender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app_templates.html">Khuôn Mẫu của Trình Ứng Dụng -- Application Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keymap_editing.html">Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../limits.html">Giới Hạn Làm Việc -- Working Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators.html">Thao Tác/Toán Tử -- Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blender_directory_layout.html">Blender's Directory Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Cao Cấp -- Advanced</a> &raquo;</li>
+        
+          <li><a href="index.html">Dòng Lệnh -- Command Line</a> &raquo;</li>
+        
+      <li>Command Line Rendering</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/advanced/command_line/render.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="command-line-rendering">
+<span id="command-line-render"></span><h1>Command Line Rendering<a class="headerlink" href="#command-line-rendering" title="Permalink to this headline">¶</a></h1>
+<p>In some situations we want to increase the render speed,
+access Blender remotely to render something or build scripts that use the command line.</p>
+<p>One advantage of using the command line is that we do not need a graphical display
+(no need for X server on Linux for example)
+and consequently we can render via a remote shell (typically SSH).</p>
+<ul class="simple">
+<li>See <a class="reference internal" href="arguments.html"><span class="doc">Command Line Arguments</span></a>
+for a full list of arguments
+(for example to specify which scene to render, the end frame number, etc.), or simply run:</li>
+<li>See <a class="reference internal" href="launch/index.html#command-line-launch-index"><span class="std std-ref">Command Line Launching</span></a>
+for specific instructions on launching Blender from the command line.</li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender --help
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>Arguments are executed in the order they are given!</p>
+<p>The following command will not work, since the output and extension are set after Blender is told to render:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -a -x <span class="m">1</span> -o //render
+</pre></div>
+</div>
+<p>The following command will behave as expected:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -x <span class="m">1</span> -o //render -a
+</pre></div>
+</div>
+<p class="last"><strong>Always</strong> position <code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">-a</span></code> as the last arguments.</p>
+</div>
+<div class="section" id="single-image">
+<h2>Đơn Hình Ảnh -- Single Image<a class="headerlink" href="#single-image" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -f <span class="m">10</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-b</span></code></dt>
+<dd>Render in the background (without UI).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">file.blend</span></code></dt>
+<dd>Path to the blend-file to render.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">10</span></code></dt>
+<dd>Render only the 10th frame.</dd>
+</dl>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -o /project/renders/frame_##### -F OPEN_EXR -f -2
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">/project/renders/frame_#####</span></code></dt>
+<dd>Path of where to save the rendered image, using five padded zeros for the frame number.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-F</span> <span class="pre">OPEN_EXR</span></code></dt>
+<dd>Override the image format specified in the blend-file and save to an OpenEXR image.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">-2</span></code></dt>
+<dd>Render only the second last frame.</dd>
+</dl>
+<div class="admonition warning">
+<p class="first admonition-title">Cảnh báo</p>
+<p class="last">Arguments are case sensitive! <code class="docutils literal notranslate"><span class="pre">-F</span></code> and <code class="docutils literal notranslate"><span class="pre">-f</span></code> are not the same.</p>
+</div>
+</div>
+<div class="section" id="animation">
+<h2>Hoạt Họa -- Animation<a class="headerlink" href="#animation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -a
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-a</span></code></dt>
+<dd>Render the whole animation using all the settings saved in the blend-file.</dd>
+</dl>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -E CYCLES -s <span class="m">10</span> -e <span class="m">500</span> -t <span class="m">2</span> -a
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-E</span> <span class="pre">CYCLES</span></code></dt>
+<dd>Use the &quot;Cycles Render&quot; engine.
+For a list of available render engines, run <code class="docutils literal notranslate"><span class="pre">blender</span> <span class="pre">-E</span> <span class="pre">help</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">10</span> <span class="pre">-e</span> <span class="pre">500</span></code></dt>
+<dd>Set the start frame to <code class="docutils literal notranslate"><span class="pre">10</span></code> and the end frame to <code class="docutils literal notranslate"><span class="pre">500</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">2</span></code></dt>
+<dd>Use only two threads.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../scripting/index.html" class="btn btn-neutral float-right" title="-- Scripting &amp; Extending Blender" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="arguments.html" class="btn btn-neutral float-left" title="Những Tham Số Dòng Lệnh -- Command Line Arguments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

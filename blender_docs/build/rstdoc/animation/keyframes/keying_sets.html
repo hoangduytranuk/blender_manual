@@ -1,0 +1,490 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/keyframes/keying_sets.rst">
+ <target refid="bpy-ops-anim-keying-set">
+ </target>
+ <section ids="keying-sets bpy-ops-anim-keying-set" names="keying\ sets bộ\ khóa\ --\ keying\ sets bpy.ops.anim.keying_set">
+  <title>
+   Bộ Khóa -- Keying Sets
+  </title>
+  <figure align="right" ids="id2">
+   <image candidates="{'*': 'images/editors_timeline_keying-sets.png'}" uri="images/editors_timeline_keying-sets.png"/>
+   <caption>
+    The Active Keying Sets data ID in the Timeline.
+   </caption>
+  </figure>
+  <comment xml:space="preserve">
+   (alt) Keying Sets are a set of keyframe channels.
+  </comment>
+  <paragraph>
+   Keying Sets are a collection of properties.
+They are used to record multiple properties at the same time.
+  </paragraph>
+  <paragraph>
+   Now when you press
+   <literal classes="kbd">
+    I
+   </literal>
+   in the 3D View,
+Blender will add keyframes for all the properties in the active keying set.
+  </paragraph>
+  <paragraph>
+   There are some built-in Keying Sets and,
+also custom Keying Sets called
+   <emphasis>
+    Absolute Keying Sets
+   </emphasis>
+   .
+  </paragraph>
+  <paragraph>
+   To select and use a Keying Set, set the
+   <emphasis>
+    Active Keying Set
+   </emphasis>
+   in the
+   <reference internal="True" refuri="../../editors/timeline.html#timeline-keying">
+    <inline classes="std std-ref">
+     Keying popover
+    </inline>
+   </reference>
+   in the Timeline Header,
+or the Keying Set panel, or press
+   <literal classes="kbd">
+    Shift-Ctrl-Alt-I
+   </literal>
+   in the 3D View.
+  </paragraph>
+  <section ids="keying-set-panel" names="keying\ set\ panel bảng\ bộ\ khóa\ --\ keying\ set\ panel">
+   <title>
+    Bảng Bộ Khóa -- Keying Set Panel
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Biên Soạn -- Editor
+      </field_name>
+      <field_body>
+       <paragraph>
+        Trình Biên Soạn Tính Chất -- Properties editor
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Cảnh (Scene) --&gt; Bộ Khóa (Keying Set)`">
+         Cảnh (Scene) ‣ Bộ Khóa (Keying Set)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This panel is used to add, select, manage
+    <emphasis>
+     Absolute Keying Sets
+    </emphasis>
+    .
+   </paragraph>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/animation_keyframes_keying-sets_scene-keying-set-panel.png'}" uri="images/animation_keyframes_keying-sets_scene-keying-set-panel.png"/>
+    <caption>
+     The Keying Set panel.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Bộ Khóa Đang Hoạt Động -- Active Keying Set
+     </term>
+     <definition>
+      <paragraph>
+       The
+       <reference internal="True" refuri="../../interface/controls/templates/list_presets.html#ui-list-view">
+        <inline classes="std std-ref">
+         List View
+        </inline>
+       </reference>
+       of Keying Sets in the active Scene.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Cộng Thêm
+         <literal>
+          +
+         </literal>
+         -- Add
+         <literal>
+          +
+         </literal>
+        </term>
+        <definition>
+         <paragraph>
+          Adds an empty Keying Set.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section dupnames="properties" ids="properties" names="tính\ chất\ --\ properties">
+    <title>
+     Tính Chất -- Properties
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Miêu Tả -- Description
+      </term>
+      <definition>
+       <paragraph>
+        A short description of the keying set.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xuất Ra Tập Tin -- Export to File
+      </term>
+      <definition>
+       <paragraph>
+        Export Keying Set to a Python script
+        <literal>
+         File.py
+        </literal>
+        .
+To re-add the keying set from the
+        <literal>
+         File.py
+        </literal>
+        , open then run the
+        <literal>
+         File.py
+        </literal>
+        from the Text Editor.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Keyframing Settings (General Override)
+      </term>
+      <definition>
+       <paragraph>
+        These options control all properties in the Keying Set.
+Note that the same settings in
+        <emphasis>
+         Preferences
+        </emphasis>
+        override these settings if enabled.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Duy Cần Thiết -- Only Needed
+         </term>
+         <definition>
+          <paragraph>
+           Only insert keyframes where they are needed in the relevant F-curves.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Tạo Khung Khóa Trực Quan -- Visual Keying
+         </term>
+         <definition>
+          <paragraph>
+           Insert keyframes based on the visual transformation.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          XYZ sang RGB -- XYZ to RGB
+         </term>
+         <definition>
+          <paragraph>
+           For new F-curves, set the colors to RGB for the property set, Location XYZ for example.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="active-keying-set-panel" names="active\ keying\ set\ panel bảng\ bộ\ khóa\ đang\ hoạt\ động\ --\ active\ keying\ set\ panel">
+   <title>
+    Bảng Bộ Khóa Đang Hoạt Động -- Active Keying Set Panel
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Biên Soạn -- Editor
+      </field_name>
+      <field_body>
+       <paragraph>
+        Trình Biên Soạn Tính Chất -- Properties editor
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Bảng -- Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Cảnh (Scene) --&gt; Bộ Khóa Đang Hoạt Động (Active Keying Set)`">
+         Cảnh (Scene) ‣ Bộ Khóa Đang Hoạt Động (Active Keying Set)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This panel is used to add properties to the active Keying Set.
+   </paragraph>
+   <figure ids="id4">
+    <image candidates="{'*': 'images/animation_keyframes_keying-sets_scene-active-keying-set-panel.png'}" uri="images/animation_keyframes_keying-sets_scene-active-keying-set-panel.png"/>
+    <caption>
+     The Active Keying Set panel.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Đường Dẫn của Bộ Khóa Đang Hoạt Động -- Active Keying Set Paths
+     </term>
+     <definition>
+      <paragraph>
+       A collection of paths in a
+       <reference internal="True" refuri="../../interface/controls/templates/list_presets.html#ui-list-view">
+        <inline classes="std std-ref">
+         List View
+        </inline>
+       </reference>
+       each with a
+       <emphasis>
+        Data Path
+       </emphasis>
+       to a property
+to add to the active Keying Set.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Cộng Thêm
+         <literal>
+          +
+         </literal>
+         -- Add
+         <literal>
+          +
+         </literal>
+        </term>
+        <definition>
+         <paragraph>
+          Adds an empty path.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section dupnames="properties" ids="id1" names="tính\ chất\ --\ properties">
+    <title>
+     Tính Chất -- Properties
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Mục Tiêu -- Target
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Khối-ID -- ID-Block
+         </term>
+         <definition>
+          <paragraph>
+           Set the ID Type and the
+           <emphasis>
+            Object IDs
+           </emphasis>
+           Data Path for the property.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Đường Dẫn Dữ Liệu -- Data Path
+         </term>
+         <definition>
+          <paragraph>
+           Set the rest of the Data Path for the property.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Array All Items
+         </term>
+         <definition>
+          <paragraph>
+           Use
+           <emphasis>
+            All Items
+           </emphasis>
+           from the Data Path or select the array index for a specific property.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Tập Hợp Đường Cong-F -- F-Curve Grouping
+      </term>
+      <definition>
+       <paragraph>
+        This controls what group to add the channels to.
+       </paragraph>
+       <paragraph>
+        Keying Set Name, None, Named Group
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Keyframing Settings (Active Set Override)
+      </term>
+      <definition>
+       <paragraph>
+        These options control individual properties in the Keying Set.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Duy Cần Thiết -- Only Needed
+         </term>
+         <definition>
+          <paragraph>
+           Only insert keyframes where they are needed in the relevant F-curves.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Tạo Khung Khóa Trực Quan -- Visual Keying
+         </term>
+         <definition>
+          <paragraph>
+           Insert keyframes based on the visual transformation.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          XYZ sang RGB -- XYZ to RGB
+         </term>
+         <definition>
+          <paragraph>
+           For new F-curves, set the colors to RGB for the property set, Location XYZ for example.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="adding-properties" names="adding\ properties cộng\ thêm\ tính\ chất\ --\ adding\ properties">
+   <title>
+    Cộng Thêm Tính Chất -- Adding Properties
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Trình Đơn Ngữ Cảnh (Context menu) --&gt; Cộng Thêm Toàn Bộ/Đơn Thực Thể Vào Bộ Khóa (Add All/Single to Keying Set)`">
+         Trình Đơn Ngữ Cảnh (Context menu) ‣ Cộng Thêm Toàn Bộ/Đơn Thực Thể Vào Bộ Khóa (Add All/Single to Keying Set)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         K
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Some ways to add properties to keying sets.
+   </paragraph>
+   <paragraph>
+    <literal classes="kbd">
+     RMB
+    </literal>
+    the property in the
+    <emphasis>
+     User Interface
+    </emphasis>
+    , then select
+    <emphasis>
+     Add Single to Keying Set
+    </emphasis>
+    or
+    <emphasis>
+     Add All to Keying Set
+    </emphasis>
+    .
+This will add the properties to the active keying set, or to a new keying set if none exist.
+   </paragraph>
+   <paragraph>
+    Hover the mouse over the properties, then press
+    <literal classes="kbd">
+     K
+    </literal>
+    , to add
+    <emphasis>
+     Add All to Keying Set
+    </emphasis>
+    .
+   </paragraph>
+  </section>
+ </section>
+</document>

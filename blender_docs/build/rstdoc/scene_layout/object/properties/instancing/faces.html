@@ -1,0 +1,280 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/properties/instancing/faces.rst">
+ <section ids="faces" names="faces">
+  <title>
+   Faces
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Mode
+     </field_name>
+     <field_body>
+      <paragraph>
+       Object Mode
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Object --&gt; Instancing`">
+        Properties ‣ Object ‣ Instancing
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   <emphasis>
+    Instancing Faces
+   </emphasis>
+   is the capability to replicate an object on each face of a parent object.
+One of the best ways to explain this is through an example illustration.
+  </paragraph>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Scale
+    </term>
+    <definition>
+     <paragraph>
+      Scales each instance according to the size of its corresponding face.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Inherit Scale
+       </term>
+       <definition>
+        <paragraph>
+         Scale the instance faces objects.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <paragraph>
+   <emphasis>
+    Make Instance Face
+   </emphasis>
+   tool converts linked objects (that share mesh data) into instanced faces.
+This tool creates the parent object (instancer) with faces where the objects were,
+then it uses
+   <emphasis>
+    Instancing Faces
+   </emphasis>
+   to put instances at the location of every created face.
+  </paragraph>
+  <paragraph>
+   You can go back from
+   <emphasis>
+    Instancing Faces
+   </emphasis>
+   to multiple linked objects using
+   <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Apply --&gt; Make Instances Real`">
+    Object ‣ Apply ‣ Make Instances Real
+   </inline>
+   ,
+   <literal classes="kbd">
+    Shift-Ctrl-A
+   </literal>
+   .
+  </paragraph>
+  <seealso>
+   <paragraph>
+    Example blend-file
+   </paragraph>
+   <paragraph>
+    Download the blend-file used for the examples on this page
+    <reference name="here" refuri="https://wiki.blender.org/wiki/File:Manual-2.5-Duplifaces-Example01.blend">
+     here
+    </reference>
+    .
+   </paragraph>
+  </seealso>
+  <section ids="basic-usage" names="basic\ usage">
+   <title>
+    Basic Usage
+   </title>
+   <paragraph>
+    In this example we will use a UV sphere with an extruded "north pole" as our base object and
+a cube as our parent mesh. To parent the sphere to the cube, in
+    <emphasis>
+     Object Mode
+    </emphasis>
+    ,
+first
+    <literal classes="kbd">
+     RMB
+    </literal>
+    select the sphere, then
+    <literal classes="kbd">
+     Shift-RMB
+    </literal>
+    select the cube
+(order is very important here), and finally
+    <literal classes="kbd">
+     Ctrl-P
+    </literal>
+    to parent.
+   </paragraph>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id1">
+         <image candidates="{'*': 'images/scene-layout_object_properties_instancing_faces_cube-before.png'}" uri="images/scene-layout_object_properties_instancing_faces_cube-before.png" width="320px"/>
+         <caption>
+          A cube and a sphere.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/scene-layout_object_properties_instancing_faces_cube-after.png'}" uri="images/scene-layout_object_properties_instancing_faces_cube-after.png" width="320px"/>
+         <caption>
+          Instancing Faces applied to the cube.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <paragraph>
+    Next, in the
+    <inline classes="menuselection" rawtext=":menuselection:`Properties --&gt; Object --&gt; Instancing`">
+     Properties ‣ Object ‣ Instancing
+    </inline>
+    ,
+select
+    <emphasis>
+     Faces
+    </emphasis>
+    . The sphere is instanced, one for each face of the cube.
+   </paragraph>
+   <note>
+    <paragraph>
+     Inherited properties
+    </paragraph>
+    <paragraph>
+     The location, orientation, and scale of the instanced child(ren) matches that of the faces of the parent.
+So, if several objects are parented to the cube, they will all be instanced once for each face on the cube.
+If the cube is subdivided, every child will be instanced for each face on the cube.
+    </paragraph>
+   </note>
+   <paragraph>
+    Both the parent object and original are displayed as editable "templates" in 3D View,
+but neither is rendered.
+   </paragraph>
+  </section>
+  <section ids="scale" names="scale">
+   <title>
+    Scale
+   </title>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/scene-layout_object_properties_instancing_faces_scale-enabled.png'}" uri="images/scene-layout_object_properties_instancing_faces_scale-enabled.png" width="320px"/>
+         <caption>
+          Scale enabled.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/scene-layout_object_properties_instancing_faces_scale-changed.png'}" uri="images/scene-layout_object_properties_instancing_faces_scale-changed.png" width="320px"/>
+         <caption>
+          Top face of cube scaled down.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   <paragraph>
+    By enabling
+    <emphasis>
+     Scale
+    </emphasis>
+    for the parent object,
+the scale of the child objects will be adapted to the size of each face in the parent object.
+   </paragraph>
+   <paragraph>
+    Thus, by rescaling the face of the parent object,
+the size of the instanced object will change accordingly.
+   </paragraph>
+  </section>
+  <section ids="limitations-considerations" names="limitations/considerations">
+   <title>
+    Limitations/Considerations
+   </title>
+   <paragraph>
+    The positioning of the instanced geometry relative to the face is dependent upon the position
+of the child objects relative to the instancer's origin. This can lead to some visual artifacts
+in the 3D Viewport as the geometry of the original objects overlaps or intersects with
+the instanced geometry.
+One workaround is to move the origin of the instancer mesh off of the plane of the faces.
+   </paragraph>
+   <paragraph>
+    If the geometry of the children is not symmetrical then the orientation of the face
+(as determined by the order of its vertices) could matter. As of 2.70 Blender does not have
+tools which allow you to adjust the ordering of the vertices on a face.
+   </paragraph>
+   <paragraph>
+    However, there is a workflow that lets you control for this. Make a single square and
+enable the
+    <emphasis>
+     Instancing Faces
+    </emphasis>
+    so you can see the instanced geometry in the 3D Viewport.
+If the orientation is not what you want, rotate the face until it is how you want.
+Typically you want to do the rotation in Edit Mode, not Object Mode,
+but this is not a hard rule.
+   </paragraph>
+   <paragraph>
+    Once you have the orientation correct,
+Duplicate the face and move the duplicate where you want it.
+Repeat this process until you have enough faces.
+Since it is common for these faces to butt up against one another,
+your geometry will have lots of duplicate vertices.
+Use the
+    <emphasis>
+     Merge by Distance
+    </emphasis>
+    button in the Tools panel.
+   </paragraph>
+   <rubric>
+    Demo Video
+   </rubric>
+   <paragraph>
+    A short video illustrating this workflow:
+   </paragraph>
+   <youtube aspect="None" height="None" id="diI8xJ9oo_8" width="None">
+   </youtube>
+  </section>
+ </section>
+</document>

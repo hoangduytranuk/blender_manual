@@ -1,0 +1,294 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/preferences/addons.rst">
+ <target refid="bpy-types-addon">
+ </target>
+ <target refid="bpy-ops-wm-addon">
+ </target>
+ <target refid="bpy-types-windowmanager-addon">
+ </target>
+ <target refid="bpy-ops-preferences-addon">
+ </target>
+ <section ids="add-ons bpy-ops-preferences-addon bpy-types-windowmanager-addon bpy-ops-wm-addon bpy-types-addon" names="add-ons trình\ bổ\ sung\ --\ add-ons bpy.ops.preferences.addon bpy.types.windowmanager.addon bpy.ops.wm.addon bpy.types.addon">
+  <title>
+   Trình Bổ Sung -- Add-ons
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Add-ons
+   </emphasis>
+   section lets you manage secondary scripts, called "Add-ons" that extends Blender's functionality.
+In this section you can search, install, enable and disable Add-ons.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/editors_preferences_section_addons.png'}" uri="images/editors_preferences_section_addons.png"/>
+   <caption>
+    Blender Preferences Add-ons section.
+   </caption>
+  </figure>
+  <section ids="finding-add-ons" names="finding\ add-ons">
+   <title>
+    Finding Add-ons
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tìm Kiếm -- Searching
+     </term>
+     <definition>
+      <paragraph>
+       Blender comes with some pre-installed Add-ons already, ready to be enabled.
+But you can also add your own, or any interesting ones you find on the web.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mức Hỗ Trợ -- Supported Level
+     </term>
+     <definition>
+      <paragraph>
+       Blender's add-ons are split into two groups depending on who writes/supports them:
+      </paragraph>
+      <bullet_list bullet="-">
+       <list_item>
+        <paragraph>
+         Official: Add-ons that are written by Blender developers.
+        </paragraph>
+       </list_item>
+       <list_item>
+        <paragraph>
+         Community: Add-ons that are written by people in the Blender community.
+        </paragraph>
+       </list_item>
+      </bullet_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Enabled Add-ons Only
+     </term>
+     <definition>
+      <paragraph>
+       Shows only enabled add-ons for the current
+       <emphasis>
+        Category
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Category
+     </term>
+     <definition>
+      <paragraph>
+       Add-ons are divided into categories by what areas of Blender they affect.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="enabling-and-disabling" names="enabling\ and\ disabling --\ enabling\ and\ disabling">
+   <title>
+    -- Enabling and Disabling
+   </title>
+   <paragraph>
+    Enable and disable an add-on by checking or unchecking the box to the right
+of the add-on you chose, as shown in the figure below.
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/editors_preferences_addons_enable.png'}" uri="images/editors_preferences_addons_enable.png"/>
+    <caption>
+     Enabling an add-on.
+    </caption>
+   </figure>
+   <paragraph>
+    The add-on functionality should be immediately available.
+   </paragraph>
+   <note>
+    <paragraph>
+     Add-ons that activate or change multiple hotkeys have a special system of activation.
+For example, with the "UI: Pie Menu Official" add-on
+for each menu there's a selection box to activate the menu and its hotkey.
+    </paragraph>
+   </note>
+   <tip>
+    <paragraph>
+     If the Add-on does not activate when enabled,
+check the
+     <reference internal="True" refuri="../../advanced/command_line/introduction.html">
+      <inline classes="doc">
+       Console window
+      </inline>
+     </reference>
+     for any errors that may have occurred.
+    </paragraph>
+   </tip>
+   <section ids="rd-party-add-ons" names="3rd\ party\ add-ons">
+    <title>
+     3rd Party Add-ons
+    </title>
+    <paragraph>
+     There are hundreds of add-ons that are not distributed with Blender and are developed by others.
+To add them to the list of other add-ons, they must be installed into Blender.
+    </paragraph>
+    <paragraph>
+     To install these, use the
+     <emphasis>
+      Install...
+     </emphasis>
+     button and
+use the File Browser to select the
+     <literal>
+      .zip
+     </literal>
+     or
+     <literal>
+      .py
+     </literal>
+     add-on file.
+    </paragraph>
+    <paragraph>
+     Now the add-on will be installed, however not automatically enabled.
+The search field will be set to the add-on's name (to avoid having to look for it),
+Enable the add-on by checking the enable checkbox.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Làm Tươi Lại -- Refresh
+      </term>
+      <definition>
+       <paragraph>
+        Scans the
+        <reference internal="True" refuri="../../advanced/blender_directory_layout.html">
+         <inline classes="doc">
+          Add-on Directory
+         </inline>
+        </reference>
+        for new add-ons.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <tip>
+     <paragraph>
+      User-Defined Add-on Path
+     </paragraph>
+     <paragraph>
+      You can also create a personal directory containing new add-ons and configure your files path in
+the
+      <emphasis>
+       File Paths
+      </emphasis>
+      section of the
+      <emphasis>
+       Preferences
+      </emphasis>
+      . To create a personal script directory:
+     </paragraph>
+     <enumerated_list enumtype="arabic" prefix="" suffix=".">
+      <list_item>
+       <paragraph>
+        Create an empty directory in a location of your choice (e.g.
+        <literal>
+         my_scripts
+        </literal>
+        ).
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Add a subdirectory under
+        <literal>
+         my_scripts
+        </literal>
+        called
+        <literal>
+         addons
+        </literal>
+        (it
+        <emphasis>
+         must
+        </emphasis>
+        have this name for Blender to recognize it).
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Open the
+        <emphasis>
+         File Paths
+        </emphasis>
+        section of the
+        <emphasis>
+         Preferences
+        </emphasis>
+        .
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Set the
+        <emphasis>
+         Scripts
+        </emphasis>
+        file path to point to your script directory (e.g.
+        <literal>
+         my_scripts
+        </literal>
+        ).
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Save the preferences and restart Blender for it to recognize the new add-on location.
+       </paragraph>
+      </list_item>
+     </enumerated_list>
+     <paragraph>
+      Now when you install add-ons you can select the
+      <emphasis>
+       Target Path
+      </emphasis>
+      when installing 3rd party scripts.
+Blender will copy newly installed add-ons under the directory selected in your Preferences.
+     </paragraph>
+    </tip>
+   </section>
+  </section>
+  <section ids="add-on-information" names="add-on\ information --\ add-on\ information">
+   <title>
+    -- Add-on Information
+   </title>
+   <paragraph>
+    You can click the arrow at the left of the add-on box to see more information, such as
+its location, a description and a link to the documentation.
+Here you can also find a button to report a bug specific of this add-on.
+   </paragraph>
+   <target refid="prefs-addons-prefs">
+   </target>
+   <target refid="bpy-types-addonpreferences">
+   </target>
+   <section ids="add-on-preferences bpy-types-addonpreferences prefs-addons-prefs" names="add-on\ preferences tùy\ chọn\ về\ trình\ bổ\ sung\ --\ add-on\ preferences bpy.types.addonpreferences prefs-addons-prefs">
+    <title>
+     Tùy chọn về Trình Bổ Sung -- Add-on Preferences
+    </title>
+    <paragraph>
+     Some add-ons may have their own preferences which can be found
+in the
+     <emphasis>
+      Preferences
+     </emphasis>
+     section of the add-on information box.
+    </paragraph>
+    <paragraph>
+     Some add-ons use this section for example to enable/disable
+certain functions of the add-on. Sometimes these might even all default to off.
+So it is important to check if the enabled add-on has any particular preferences.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

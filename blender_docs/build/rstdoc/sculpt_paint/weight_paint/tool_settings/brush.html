@@ -1,0 +1,303 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/sculpt_paint/weight_paint/tool_settings/brush.rst">
+ <section ids="brush" names="brush">
+  <title>
+   Brush
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/sculpt-paint_weight-paint_tools_brush-panel.png'}" uri="images/sculpt-paint_weight-paint_tools_brush-panel.png" width="200"/>
+   <caption>
+    Brush panel.
+   </caption>
+  </figure>
+  <paragraph>
+   Painting needs paint brushes and Blender provides a Brush Panel within the Toolbar
+when it operates in
+   <emphasis>
+    Weight Paint Mode
+   </emphasis>
+   .
+  </paragraph>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Brush
+    </term>
+    <definition>
+     <paragraph>
+      In the
+      <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-block">
+       <inline classes="std std-ref">
+        Data-Block menu
+       </inline>
+      </reference>
+      you find predefined Brush Presets.
+And you can create your own custom presets as needed.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Weight
+     <literal classes="kbd">
+      W
+     </literal>
+    </term>
+    <definition>
+     <paragraph>
+      The weight (color) to be used by the brush.
+However, the weight value is applied to the Vertex Group
+in different ways depending on the selected Brush Blending mode (see below).
+     </paragraph>
+     <paragraph>
+      Use
+      <literal classes="kbd">
+       Ctrl-LMB
+      </literal>
+      to sample the weight value of clicked vertex.
+      <literal classes="kbd">
+       Shift-LMB
+      </literal>
+      lets you select the group from which to sample from.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Radius
+    </term>
+    <definition>
+     <paragraph>
+      The radius defines the area of influence of the brush.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Strength
+    </term>
+    <definition>
+     <paragraph>
+      This is the amount of paint to be applied per brush stroke.
+What that means exactly also depends on the Brush Blending mode.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Blend
+    </term>
+    <definition>
+     <paragraph>
+      The brush
+      <reference internal="True" refuri="../../../glossary/index.html#term-blend-modes">
+       <inline classes="xref std std-term">
+        Blend Modes
+       </inline>
+      </reference>
+      defines in which way the weight value is
+applied to the Vertex Group while painting.
+     </paragraph>
+     <tip>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Mix
+        </term>
+        <definition>
+         <paragraph>
+          In this Blending mode the Weight value defines the
+          <emphasis>
+           target weight
+          </emphasis>
+          that will eventually be reached when you paint long enough on the same
+location of the mesh. And the strength determines how many strokes
+you need to place at the target weight. Note that for strength = 1.0
+the target weight is painted immediately and for Weight = 0.0 the brush just does nothing.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Add
+        </term>
+        <definition>
+         <paragraph>
+          In this Blending mode the specified weight value is
+          <emphasis>
+           added
+          </emphasis>
+          to the vertex weights.
+The strength determines which fraction of the weight gets added per stroke.
+However, the brush will not paint weight values above 1.0.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Subtract
+        </term>
+        <definition>
+         <paragraph>
+          In this Blending mode the specified weight value is
+          <emphasis>
+           subtracted
+          </emphasis>
+          from the vertex weights.
+The strength determines which fraction of the weight gets removed per stroke.
+However, the brush will not paint weight values below 0.0.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Lighten
+        </term>
+        <definition>
+         <paragraph>
+          In this Blending mode the specified weight value is interpreted as the target weight.
+Very similar to the Mix Blending mode, but only weights below the target weight are affected.
+Weights above the target weight remain unchanged.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Darken
+        </term>
+        <definition>
+         <paragraph>
+          This Blending mode is very similar to the Lighten Blending mode.
+But only weights above the target weight are affected.
+Weights below the target weight remain unchanged.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Multiply
+        </term>
+        <definition>
+         <paragraph>
+          Multiplies the vertex weights with the specified weight value.
+This is somewhat like subtract, but the amount of removed weight is now
+dependent on the Weight value itself.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Blur
+        </term>
+        <definition>
+         <paragraph>
+          Smooths out the weighting of adjacent vertices. In this mode the Weight
+Value is ignored. The strength defines how much the smoothing is applied.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </tip>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Accumulate
+    </term>
+    <definition>
+     <paragraph>
+      This will allow a stroke to accumulate on itself, just like an airbrush would do.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Front Faces Only
+    </term>
+    <definition>
+     <paragraph>
+      Only paint on the front side of faces.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     2D Falloff
+    </term>
+    <definition>
+     <paragraph>
+      This turns the brush influence into a cylinder (the depth along the view is ignored)
+instead of a sphere.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Auto Normalize
+    </term>
+    <definition>
+     <paragraph>
+      Ensures that all deforming vertex groups add up to one while painting.
+When this option is turned off, then all weights of a vertex can have any value between 0.0 and 1.0.
+However, when Vertex Groups are used as Deform Groups for character animation
+then Blender always interprets the weight values relative to each other.
+That is, Blender always does a normalization over all deform bones.
+Hence in practice it is not necessary to maintain a strict normalization and
+further normalizing weights should not affect animation at all.
+     </paragraph>
+     <paragraph>
+      This option works most intuitively when used to maintain normalization while
+painting on top of weights that are already normalized with some other tool.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Multi-Paint
+    </term>
+    <definition>
+     <paragraph>
+      Paint on all selected Vertex Groups simultaneously, in a way that preserves their relative influence.
+This can be useful when tweaking weights in an area that is affected by more than three bones at once,
+e.g. certain areas on a character's face.
+     </paragraph>
+     <paragraph>
+      This option is only useful in the Armature tab, where you can select multiple
+Vertex Groups by selecting multiple Pose bones. Once at least two Vertex
+Groups are selected, viewport colors and paint logic switch to Multi-Paint Mode,
+using the sum of the selected groups' weights if Auto Normalize is enabled,
+and the average otherwise. Any paint operations aimed at this collective weight are applied to
+individual Vertex Group weights in such way that their ratio stays the same.
+     </paragraph>
+     <paragraph>
+      Since the ratio is undefined if all weights are zero, Multi-Paint cannot operate on
+vertices that do not have any weight assigned to the relevant Vertex Groups.
+For this reason it also does not allow reducing the weight all the way to zero.
+When used with X Mirror, it only guarantees completely a symmetrical result
+if weights are initially symmetrical.
+     </paragraph>
+     <tip>
+      <paragraph>
+       While Multi-Paint cannot directly paint on zero-weight vertices,
+it is possible to use the
+       <emphasis>
+        Smooth Weight
+       </emphasis>
+       tool to copy a reasonable non-zero
+weight distribution from adjacent vertices without leaving Multi-Paint Mode
+or changing bone selection.
+      </paragraph>
+      <paragraph>
+       To do that, enable vertex selection, select target vertices, and apply one
+iteration of the tool using vertex groups from
+       <emphasis>
+        Selected Pose Bones
+       </emphasis>
+       with low Factor.
+After that simply paint on top to set the desired collective weight.
+      </paragraph>
+     </tip>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+ </section>
+</document>

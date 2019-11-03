@@ -1,0 +1,887 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Node Wrangler &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/node/node_wrangler.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Object" href="../object/index.html" />
+    <link rel="prev" title="Node Arrange" href="node_arrange.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../import_export/index.html">Import-Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Node</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="node_arrange.html">Node Arrange</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Node Wrangler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Rigging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Trình Bổ Sung -- Add-ons</a> &raquo;</li>
+        
+          <li><a href="index.html">Node</a> &raquo;</li>
+        
+      <li>Node Wrangler</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/addons/node/node_wrangler.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="node-wrangler">
+<h1>Node Wrangler<a class="headerlink" href="#node-wrangler" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This add-on gives you several tools that help you work with nodes quickly and efficiently.
+Many functions work for both the Compositor and shader nodes, and some functions bring features
+already in the Compositor to the shader nodes as well. Some tools are made for a specific function,
+however we have made it our goal to allow complete flexibility for you to use the tools in every situation,
+even where we did not intend.</p>
+</div>
+<div class="section" id="activation">
+<h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Open Blender and go to Preferences then the Add-ons tab.</li>
+<li>Click Node then Node Wrangler to enable the script.</li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Use panel in Sidebar of node editor or <kbd class="kbd docutils literal notranslate">Ctrl-Spacebar</kbd> keyboard shortcut or individual shortcuts for tools.</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="lazy-connect">
+<h3>Lazy Connect<a class="headerlink" href="#lazy-connect" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd>-drag, <kbd class="kbd docutils literal notranslate">Shift-Ctrl-RMB</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Make links between the nodes without having to precisely select the sockets.
+Just drag from one node to another while holding <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd>.
+The nodes nearest the mouse are used, so you don't even have to click on one precisely.</p>
+<p>Also, use <kbd class="kbd docutils literal notranslate">Shift-Ctrl-RMB</kbd> to show a menu of inputs and outputs to make a more accurate connection.
+This is useful when working with a large node tree,
+since you can easily make connections without having to zoom in and out a lot.</p>
+</div>
+<div class="section" id="lazy-mix">
+<h3>Lazy Mix<a class="headerlink" href="#lazy-mix" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-RMB</kbd>-drag</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Merge outputs of two nodes using Mix Node or Mix Shader by dragging from one node to another
+while holding down <kbd class="kbd docutils literal notranslate">Alt-RMB</kbd>. Mix node or Mix Shader node will be added and
+outputs of the nodes will be connected to it.</p>
+</div>
+<div class="section" id="merge">
+<h3>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h3>
+<p>Quickly add Mix, Math, Z-Combine, Alpha Over, Mix Shader or Add Shader nodes
+that will merge outputs of selected nodes.</p>
+<div class="section" id="merge-with-automatic-type-detection">
+<h4>Merge with Automatic Type Detection<a class="headerlink" href="#merge-with-automatic-type-detection" title="Permalink to this headline">¶</a></h4>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-0</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Plus</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Minus</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Asterix</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Slash</kbd>,
+<kbd class="kbd docutils literal notranslate">Shift-Ctrl-Comma</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Ctrl-Period</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Selected nodes‘ outputs will be merged using Mix, Math, Mix Shader or Add Shader nodes,
+depending on types of selected nodes.</p>
+<dl class="docutils">
+<dt>Add <kbd class="kbd docutils literal notranslate">Ctrl-Plus</kbd></dt>
+<dd>Sets blend type or math operation to Add. When shaders are selected an Add Shader will be used.</dd>
+<dt>Multiply <kbd class="kbd docutils literal notranslate">Ctrl-Asterix</kbd></dt>
+<dd>Multiply blend type or math operation.</dd>
+<dt>Subtract <kbd class="kbd docutils literal notranslate">Ctrl-Minus</kbd></dt>
+<dd>Subtract blend type or math operation.</dd>
+<dt>Divide <kbd class="kbd docutils literal notranslate">Ctrl-/</kbd></dt>
+<dd>Divide blend type or math operation.</dd>
+<dt>Mix <kbd class="kbd docutils literal notranslate">Ctrl-0</kbd></dt>
+<dd>Mix blend type or when shaders are selected a Mix Shader node will be used.</dd>
+<dt>Greater than <kbd class="kbd docutils literal notranslate">Shift-Ctrl-Comma</kbd></dt>
+<dd>Greater than math operation.</dd>
+<dt>Less than <kbd class="kbd docutils literal notranslate">Shift-Ctrl-Period</kbd></dt>
+<dd>Less than math operation.</dd>
+</dl>
+</div>
+<div class="section" id="merge-using-mix-node">
+<h4>Merge Using Mix Node<a class="headerlink" href="#merge-using-mix-node" title="Permalink to this headline">¶</a></h4>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-Alt-Plus</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Alt-Minus</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Alt-Asterix</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Alt-Slash</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Using <kbd class="kbd docutils literal notranslate">Ctrl-Alt</kbd> with proper keys will force to use Mix node for merging
+no matter what types of nodes are selected.</p>
+</div>
+<div class="section" id="merge-using-z-combine-node">
+<h4>Merge Using Z-Combine Node<a class="headerlink" href="#merge-using-z-combine-node" title="Permalink to this headline">¶</a></h4>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-NumpadPeriod</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Z-Combine nodes will be used for merging. If possible -- image and Z-Depth outputs will be linked.</p>
+</div>
+<div class="section" id="merge-using-alpha-over-node">
+<h4>Merge Using Alpha Over Node<a class="headerlink" href="#merge-using-alpha-over-node" title="Permalink to this headline">¶</a></h4>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-Alt-0</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Alpha Over nodes will be used for merging.</p>
+</div>
+<div class="section" id="merge-using-math-node">
+<h4>Merge Using Math Node<a class="headerlink" href="#merge-using-math-node" title="Permalink to this headline">¶</a></h4>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-Shift-Plus</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Shift-Minus</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Shift-Asterix</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Shift-Slash</kbd>,
+<kbd class="kbd docutils literal notranslate">Ctrl-Shift-Comma</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Shift-Period</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Using <kbd class="kbd docutils literal notranslate">Ctrl-Shift</kbd> with proper keys will force to use Math node for merging
+no matter what types of nodes are selected.</p>
+</div>
+</div>
+<div class="section" id="batch-change-blend-type-math-operation">
+<h3>Batch Change Blend Type / Math Operation<a class="headerlink" href="#batch-change-blend-type-math-operation" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-Up</kbd>, <kbd class="kbd docutils literal notranslate">Alt-Down</kbd>, <kbd class="kbd docutils literal notranslate">Alt-0</kbd>, <kbd class="kbd docutils literal notranslate">Alt-Plus</kbd>, <kbd class="kbd docutils literal notranslate">Alt-Minus</kbd>, <kbd class="kbd docutils literal notranslate">Alt-Asterix</kbd>,
+<kbd class="kbd docutils literal notranslate">Alt-Slash</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Alt-Comma</kbd>,  <kbd class="kbd docutils literal notranslate">Shift-Alt-Period</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Select mix nodes or math nodes and change their blend type or math operation at the same time.
+Use keys specified above. They will change blend type or operation accordingly to:
+Mix, Add, Subtract, Divide, Less than, Greater than.
+Use <kbd class="kbd docutils literal notranslate">Alt-Up</kbd> or  <kbd class="kbd docutils literal notranslate">Alt-Down</kbd> to go through all available blend types or math operations.</p>
+</div>
+<div class="section" id="change-mix-factor">
+<h3>Change Mix Factor<a class="headerlink" href="#change-mix-factor" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-Left</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Alt-Left</kbd>, <kbd class="kbd docutils literal notranslate">Alt-Right</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Alt-Right</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Change Factor of selected Mix nodes or Mix Shader nodes.</p>
+<ul class="simple">
+<li>Use <kbd class="kbd docutils literal notranslate">Alt-Right</kbd> to increase it by 0.1.</li>
+<li>Use <kbd class="kbd docutils literal notranslate">Alt-Left</kbd> to decrease it by 0.1.</li>
+<li>Use <kbd class="kbd docutils literal notranslate">Shift-Alt-Right</kbd> to increase it by 0.01.</li>
+<li>Use <kbd class="kbd docutils literal notranslate">Shift-Alt-Left</kbd> to decrease it by 0.01.</li>
+<li>Use <kbd class="kbd docutils literal notranslate">Shift-Ctrl-Alt-Left</kbd> to set factor to 0.0. Additional shortcut is <kbd class="kbd docutils literal notranslate">Shift-Ctrl-Alt-0</kbd>.</li>
+<li>Use <kbd class="kbd docutils literal notranslate">Shift-Ctrl-Alt-Right</kbd> to set factor to 1.0. Additional shortcut is <kbd class="kbd docutils literal notranslate">Shift-Ctrl-Alt-1</kbd>.</li>
+</ul>
+</div>
+<div class="section" id="delete-unused-nodes">
+<h3>Delete Unused Nodes<a class="headerlink" href="#delete-unused-nodes" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-X</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Clean your node tree. Delete all of the nodes that don’t contribute to the final result.</p>
+</div>
+<div class="section" id="swap-links">
+<h3>Swap Links<a class="headerlink" href="#swap-links" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-S</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Select two nodes that have something linked to their outputs. <kbd class="kbd docutils literal notranslate">Alt-S</kbd> will swap the outputs.
+What originally was linked to output of the first node will now be linked to
+output of the second node and vice versa.</p>
+<p>Or, select one node with a single linked input --
+<kbd class="kbd docutils literal notranslate">Alt-S</kbd> will cycle the link through the available input sockets.
+Or, select one node with two linked inputs -- <kbd class="kbd docutils literal notranslate">Alt-S</kbd> will swap the two links.
+If more then two inputs are linked, the two with matching types will be swapped
+(such as a Mix node's two color inputs).</p>
+</div>
+<div class="section" id="reset-backdrop">
+<h3>Reset Backdrop<a class="headerlink" href="#reset-backdrop" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Z</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Reset position and scale of the backdrop.</p>
+</div>
+<div class="section" id="add-uv-layout-attribute-node">
+<h3>Add UV Layout Attribute Node<a class="headerlink" href="#add-uv-layout-attribute-node" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Header ‣ Add menu</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Add Attribute node with the attribute automatically set to UV Layout.</p>
+</div>
+<div class="section" id="add-vertex-color-attribute-node">
+<h3>Add Vertex Color Attribute Node<a class="headerlink" href="#add-vertex-color-attribute-node" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Header ‣ Add menu</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Add attribute node with the attribute automatically set to vertex color.</p>
+</div>
+<div class="section" id="shader-viewer">
+<h3>Shader Viewer<a class="headerlink" href="#shader-viewer" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Viewer Node for shaders. <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd> and the output of the node will be linked to
+newly created Emission Shader and Material Output. This is an easy way of previewing textures.</p>
+</div>
+<div class="section" id="frame-selected">
+<h3>Frame Selected<a class="headerlink" href="#frame-selected" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-P</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Select nodes and „wrap“ them in Frame node by hitting <kbd class="kbd docutils literal notranslate">Shift-P</kbd>.
+Immediately after that hit <kbd class="kbd docutils literal notranslate">F6</kbd> to set the color and label of the Frame.</p>
+</div>
+<div class="section" id="reload-images">
+<h3>Reload Images<a class="headerlink" href="#reload-images" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-R</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>All of the images used in the node tree (Image inputs, textures) can be reloaded by hitting <kbd class="kbd docutils literal notranslate">Alt-R</kbd>.</p>
+</div>
+<div class="section" id="switch-node-type">
+<h3>Switch Node Type<a class="headerlink" href="#switch-node-type" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-S</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Change the type of selected node(s) to any other type. Hit <kbd class="kbd docutils literal notranslate">Shift-S</kbd> and
+you'll get the menu ordered exactly the same as <span class="menuselection">Add ‣ Node</span> menu. Choose the new type.</p>
+</div>
+<div class="section" id="copy-settings">
+<h3>Copy Settings<a class="headerlink" href="#copy-settings" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-C</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Copy settings of active node to all selected nodes of the same type.</p>
+</div>
+<div class="section" id="copy-label">
+<h3>Copy Label<a class="headerlink" href="#copy-label" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-C</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Copy labels all selected nodes based on various criteria.
+Labels can be copied from labels (names) of active node <kbd class="kbd docutils literal notranslate">Shift-V</kbd>,
+or from names (labels) of nodes that are linked to selected ones or
+from the names of sockets that the selected nodes are linked to.
+All options will be revealed in sub-menu after hitting <kbd class="kbd docutils literal notranslate">Shift-C</kbd>.</p>
+</div>
+<div class="section" id="clear-label">
+<h3>Clear Label<a class="headerlink" href="#clear-label" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-L</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Clear labels of selected nodes.</p>
+</div>
+<div class="section" id="modify-label">
+<h3>Modify Label<a class="headerlink" href="#modify-label" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-Alt-L</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Batch change labels of selected nodes.
+Add text to beginning, to end, replace parts of text.</p>
+</div>
+<div class="section" id="add-texture-setup">
+<h3>Add Texture Setup<a class="headerlink" href="#add-texture-setup" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-T</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Select any shader node, <kbd class="kbd docutils literal notranslate">Ctrl-T</kbd> and an image texture with nodes controlling coordinates will be added.
+If you select any texture node, only the coordinate and mapping nodes will be added.
+A background shader will get an Environment texture with generated mapping.</p>
+</div>
+<div class="section" id="add-reroutes-to-outputs">
+<h3>Add Reroutes to Outputs<a class="headerlink" href="#add-reroutes-to-outputs" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">/</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Reroute nodes will be added and linked to each output of each selected node.</p>
+</div>
+<div class="section" id="link-active-to-selected">
+<h3>Link Active to Selected<a class="headerlink" href="#link-active-to-selected" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">\</kbd>,  <kbd class="kbd docutils literal notranslate">K</kbd>,  <kbd class="kbd docutils literal notranslate">Shift-K</kbd>,  <kbd class="kbd docutils literal notranslate">&quot;</kbd>,  <kbd class="kbd docutils literal notranslate">Shift-&quot;</kbd>,  <kbd class="kbd docutils literal notranslate">;</kbd>,  <kbd class="kbd docutils literal notranslate">Shift-;</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Link active node to selected nodes basing on various criteria.</p>
+<ul class="simple">
+<li><kbd class="kbd docutils literal notranslate">\</kbd> -- Call main <em>Link Active to Selected</em> menu.</li>
+<li><kbd class="kbd docutils literal notranslate">K</kbd> -- Link active to all selected. Use <kbd class="kbd docutils literal notranslate">Shift-K</kbd> to force to replace existing links.</li>
+<li><kbd class="kbd docutils literal notranslate">&quot;</kbd> -- Link only to selected nodes that have the same name/label as active node
+(<kbd class="kbd docutils literal notranslate">Shift-&quot;</kbd> to replace existing links).</li>
+<li><kbd class="kbd docutils literal notranslate">;</kbd> -- Link selected when name of output matches the name or label of selected node.
+Handy for replacing sources. For example Render Layer to image (multi-layer EXR).</li>
+</ul>
+</div>
+<div class="section" id="align-nodes">
+<h3>Align Nodes<a class="headerlink" href="#align-nodes" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-=</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Align nodes horizontally or vertically. Same as <kbd class="kbd docutils literal notranslate">S X 0</kbd> or <kbd class="kbd docutils literal notranslate">S Y 0</kbd>,
+but with even spacing between the nodes.</p>
+</div>
+<div class="section" id="select-within-frame-parent-children">
+<h3>Select within Frame (Parent/Children)<a class="headerlink" href="#select-within-frame-parent-children" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><kbd class="kbd docutils literal notranslate">]</kbd> -- Select all nodes wrapped in selected Frame node.</li>
+<li><kbd class="kbd docutils literal notranslate">[</kbd> -- Select frame node that selected nodes are wrapped in.</li>
+</ul>
+</div>
+<div class="section" id="detach-outputs">
+<h3>Detach Outputs<a class="headerlink" href="#detach-outputs" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-Alt-D</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Detach output of selected node leaving linked inputs.</p>
+</div>
+<div class="section" id="link-to-output-node">
+<h3>Link to Output Node<a class="headerlink" href="#link-to-output-node" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">O</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In compositing -- link to Composite output.
+In materials -- link to Material Output node.</p>
+</div>
+<div class="section" id="add-image-sequence">
+<h3>Add Image Sequence<a class="headerlink" href="#add-image-sequence" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Add ‣ Input</span> menu for composite nodes,
+or <span class="menuselection">Add ‣ Texture</span> menu for shader nodes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Select just one image from a sequence in the File Browser and
+it will automatically detect the length of the sequence and set the node appropriately.</p>
+</div>
+<div class="section" id="add-multiple-images">
+<h3>Add Multiple Images<a class="headerlink" href="#add-multiple-images" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Add ‣ Input</span> menu for composite nodes,
+or <span class="menuselection">Add ‣ Texture</span> menu for shader nodes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Simply allows you to select more than one image and adds a node for each.
+(Useful for importing multiple render passes or renders for image stacking.)</p>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Category:</th><td class="field-body">Node</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Various tools to enhance and speed up node-based workflow.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Location:</th><td class="field-body"><span class="menuselection">node editor ‣ Sidebar</span> or see the hotkeys of individual tools.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">File:</th><td class="field-body">node_wrangler.py</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Bartek Skorupa, Greg Zaal, Sebastian Koenig, Christian Brinkmann, Florian Meyer</td>
+</tr>
+<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">GPL</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">This add-on is bundled with Blender.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../object/index.html" class="btn btn-neutral float-right" title="Object" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="node_arrange.html" class="btn btn-neutral float-left" title="Node Arrange" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

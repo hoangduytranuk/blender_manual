@@ -1,0 +1,243 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/advanced/limits.rst">
+ <section ids="working-limits" names="working\ limits giới\ hạn\ làm\ việc\ --\ working\ limits">
+  <title>
+   Giới Hạn Làm Việc -- Working Limits
+  </title>
+  <comment xml:space="preserve">
+   Note to editors:
+Please excuse the complicated Python scripts on this page,
+this is not something we do frequently in this manual,
+Its just for such explicit technical details,
+its useful to be able to validate its correct (or adjust the information shown).
+-- ideasman42
+  </comment>
+  <section ids="space" names="space không\ gian\ --\ space">
+   <title>
+    Không Gian -- Space
+   </title>
+   <paragraph>
+    While object positions, vertex locations are not clamped, larger values become increasingly imprecise.
+   </paragraph>
+   <paragraph>
+    To get an idea of the precision you can work with using different scales.
+   </paragraph>
+   <paragraph>
+    Đây là bảng tỷ lệ và độ chính xác liên quan của chúng.
+   </paragraph>
+   <comment xml:space="preserve">
+    # Python script used to generate the values below
+import ctypes
+from sys import platform as _platform
+_libm = ctypes.cdll.LoadLibrary('libm.so.6')
+_funcname_f = 'nextafterf'
+_nextafterf = getattr(_libm, _funcname_f)
+_nextafterf.restype = ctypes.c_float
+_nextafterf.argtypes = [ctypes.c_float, ctypes.c_float]
+i = 10
+while i &lt; 10000000:
+   delta = _nextafterf(i, i + 1) - i
+   print(":{scale:,}: 1/{div:,}\\ :sup:`th`".format(scale=i, div=int(1 / delta)))
+   i = i * 10
+   </comment>
+   <field_list>
+    <field>
+     <field_name>
+      10
+     </field_name>
+     <field_body>
+      <paragraph>
+       1/1.048.576
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      100
+     </field_name>
+     <field_body>
+      <paragraph>
+       1/131.072
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      1.000
+     </field_name>
+     <field_body>
+      <paragraph>
+       1/16.384
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      10.000
+     </field_name>
+     <field_body>
+      <paragraph>
+       1/1.024
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      100.000
+     </field_name>
+     <field_body>
+      <paragraph>
+       1/128
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      1,000,000
+     </field_name>
+     <field_body>
+      <paragraph>
+       1/16
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+   <hint>
+    <paragraph>
+     For a rough rule of thumb, values within -5,000/+5,000 are typically reliable (range of 10,000).
+    </paragraph>
+    <paragraph>
+     Internally
+     <emphasis>
+      single precision
+     </emphasis>
+     floating point calculations are used.
+    </paragraph>
+   </hint>
+  </section>
+  <section ids="time" names="time thời\ gian\ --\ time">
+   <title>
+    Thời Gian -- Time
+   </title>
+   <comment xml:space="preserve">
+    # Python script used to generate the values below
+from datetime import timedelta
+maxframe = 1048574
+for fps in (24, 25, 30, 60):
+   seconds = maxframe / fps
+   print(":%d fps: %d hours, %d minutes." %
+         (fps, seconds // 3600, seconds % 3600 // 60))
+   </comment>
+   <paragraph>
+    The maximum number of frames for each scene is currently 1,048,574, and allows for continuous shots for durations of:
+   </paragraph>
+   <field_list>
+    <field>
+     <field_name>
+      24 fps
+     </field_name>
+     <field_body>
+      <paragraph>
+       12 hours, 8 minutes.
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      25 fps
+     </field_name>
+     <field_body>
+      <paragraph>
+       11 hours, 39 minutes.
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      30 fps
+     </field_name>
+     <field_body>
+      <paragraph>
+       9 hours, 42 minutes.
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      60 fps
+     </field_name>
+     <field_body>
+      <paragraph>
+       4 hours, 51 minutes.
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+   <note>
+    <paragraph>
+     In practice, a finished work is typically composed of output from many scenes.
+So this limit does not prevent you from creating longer works.
+    </paragraph>
+   </note>
+  </section>
+  <section ids="text-fields" names="text\ fields trường\ văn\ bản\ --\ text\ fields">
+   <title>
+    Trường Văn Bản -- Text Fields
+   </title>
+   <paragraph>
+    Fixed strings are used internally, and while it is not useful to list all limits, here are some common limits.
+   </paragraph>
+   <field_list>
+    <field>
+     <field_name>
+      thư mục -- directory
+     </field_name>
+     <field_body>
+      <paragraph>
+       767
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      tên tập tin -- file-name
+     </field_name>
+     <field_body>
+      <paragraph>
+       255
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      đường dẫn tập tin -- file-path
+     </field_name>
+     <field_body>
+      <paragraph>
+       1023
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      định danh -- identifier
+     </field_name>
+     <field_body>
+      <paragraph>
+       63
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+   <paragraph>
+    <emphasis>
+     Used for data-block names, modifiers, vertex groups, UV layers...
+    </emphasis>
+   </paragraph>
+   <note>
+    <paragraph>
+     Multi-byte encoding means some Unicode characters use more than a single ASCII character.
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,172 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/matte/color_spill.rst">
+ <target refid="bpy-types-compositornodecolorspill">
+ </target>
+ <section ids="color-spill-node bpy-types-compositornodecolorspill" names="color\ spill\ node nút\ màu\ tràn/vãi\ --\ color\ spill\ node bpy.types.compositornodecolorspill">
+  <title>
+   Nút Màu Tràn/Vãi -- Color Spill Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeColorSpill.png'}" uri="images/compositing_node-types_CompositorNodeColorSpill.png"/>
+   <caption>
+    Nút Màu Tràn/Vãi.
+   </caption>
+  </figure>
+  <paragraph>
+   Nút
+   <emphasis>
+    Nút Màu Tràn/Vãi
+   </emphasis>
+   làm giảm một trong các kênh Đỏ, Lục, Lam (RGB) hầu cho giá trị của nó không lớn hơn những cái khác.
+  </paragraph>
+  <paragraph>
+   Điều này là điều thường làm khi tổng hợp các hình ảnh được chụp trước màn hình màu xanh lục hoặc màu xanh lam. Có một số trường hợp, nếu vật thể ở tiền cảnh có tính phản quang cao, nó sẽ hiển thị màu xanh lục hoặc xanh lam; đây là trường hợp màu đó bị "tràn/vãi" ra trên vật thể ở nền đằng trước. Nếu có ánh sáng chiếu từ phía bên hoặc phía sau vào và diễn viên tiền cảnh mặc màu trắng, thì rất có thẻ màu màu xanh lục (hoặc màu lam) từ nền sẽ "tràn/vãi" lên các vật thể nằm ở phía trước, làm cho màu của chúng có ánh lục hoặc  lam. Bạn có thể sử dụng nút lạ lùng này để loại bỏ ánh sáng màu lục (hoặc màu lam) ra khỏi vật thể
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hệ Số -- Factor
+     </term>
+     <definition>
+      <paragraph>
+       Standard Factor.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Kênh Ngăn Tràn/Vãi -- Despill Channel
+     </term>
+     <definition>
+      <paragraph>
+       Đỏ, Lục, Lam -- R, G, B
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thuật Toán -- Algorithm
+     </term>
+     <definition>
+      <paragraph>
+       Simple, Average
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giới Hạn Kênh -- Limiting Channel
+     </term>
+     <definition>
+      <paragraph>
+       Đỏ, Lục, Lam -- R, G, B
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tỷ Số -- Ratio
+     </term>
+     <definition>
+      <paragraph>
+       Giới hạn tỷ lệ bằng giá trị.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chống Tràn Vãi -- Unspill
+     </term>
+     <definition>
+      <paragraph>
+       Allows you to reduce the selected channel's input to the image
+greater than the color spill algorithm normally allows.
+This is useful for exceptionally high amounts of the color spill.
+      </paragraph>
+      <paragraph>
+       Đỏ, Lục, Lam -- R, G, B
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       The image with the corrected channels.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="example" names="example ví\ dụ\ --\ example">
+   <title>
+    Ví Dụ -- Example
+   </title>
+   <paragraph>
+    Results with the nodes applied to an image from
+the
+    <reference name="Mango Open Movie" refuri="https://mango.blender.org/">
+     Mango Open Movie
+    </reference>
+    .
+   </paragraph>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id2">
+         <image candidates="{'*': 'images/compositing_types_matte_color-spill_example-before.jpg'}" uri="images/compositing_types_matte_color-spill_example-before.jpg"/>
+         <caption>
+          Before: green border and green reflections.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id3">
+         <image candidates="{'*': 'images/compositing_types_matte_color-spill_example-after.jpg'}" uri="images/compositing_types_matte_color-spill_example-after.jpg"/>
+         <caption>
+          After: no unwanted green.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+</document>

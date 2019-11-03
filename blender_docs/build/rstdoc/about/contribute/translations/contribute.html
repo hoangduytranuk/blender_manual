@@ -1,0 +1,282 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/translations/contribute.rst">
+ <section ids="contribute" names="contribute đóng\ góp\ --\ contribute">
+  <title>
+   Đóng Góp -- Contribute
+  </title>
+  <paragraph>
+   Trên trang này, tiếng Pháp (
+   <literal>
+    fr
+   </literal>
+   : French) được sử dụng làm các ví dụ. Đương nhiên, nó có thể được thay thế bằng các
+   <reference name="mã ngôn ngữ" refuri="https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html">
+    mã ngôn ngữ
+   </reference>
+   khác. Do đó, hãy đổi hậu tố
+   <literal>
+    /fr
+   </literal>
+   trong hướng dẫn này sang ngôn ngữ mà bạn đang dịch!
+  </paragraph>
+  <paragraph>
+   Để xem ngôn ngữ nào hiện đã có sẵn, bạn có thể duyệt qua kho lưu trữ:
+   <reference refuri="https://developer.blender.org/diffusion/BMT/browse/trunk/blender_docs/locale">
+    https://developer.blender.org/diffusion/BMT/browse/trunk/blender_docs/locale
+   </reference>
+  </paragraph>
+  <note>
+   <paragraph>
+    Trước hết, chúng tôi giả định là bạn đã biên tập và kiến dựng bản hướng dẫn rồi. Nếu bạn chưa làm điều này, thì hãy quay lại phần
+    <strong>
+     Bắt Đầu
+    </strong>
+    --
+    <reference internal="True" refuri="../index.html#about-getting-started">
+     <inline classes="std std-ref">
+      Getting Started
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </note>
+  <section ids="installing" names="installing cài\ đặt\ --\ installing">
+   <title>
+    Cài Đặt -- Installing
+   </title>
+   <section ids="language-files" names="language\ files tập\ tin\ về\ ngôn\ ngữ\ --\ language\ files">
+    <title>
+     Tập Tin về Ngôn Ngữ -- Language Files
+    </title>
+    <paragraph>
+     Từ thư mục có chứa phiên bản trích xuất của bạn về bản hướng dẫn sử dụng, thi hành:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale/fr locale/fr
+    </literal_block>
+    <paragraph>
+     Việc này sẽ kiến tạo thư mục nhánh
+     <literal>
+      locale/fr
+     </literal>
+     .
+    </paragraph>
+    <paragraph>
+     Bạn sẽ có một bố trí thư mục trông giống thế này:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     blender_docs
+   |- locale/
+   |  |- fr/
+   |  |  |- LC_MESSAGES/
+   |- manual/
+    </literal_block>
+    <note>
+     <paragraph>
+      Khi thi hành subversion trong dòng lệnh (chẳng hạn như cập nhật hoặc chuyển giao thay đổi), bạn cần phải chuyển sang thư mục
+      <literal>
+       locale/fr
+      </literal>
+      trước đã.
+     </paragraph>
+     <paragraph>
+      Nếu không, bạn sẽ nhận được cảnh báo:
+      <literal>
+       'locale' is not under version control -- 'locale' chưa được đặt dưới sự quản lý về thay đổi trong các phiên bản
+      </literal>
+     </paragraph>
+    </note>
+   </section>
+   <section ids="a-po-editor" names="a\ po\ editor trình\ soạn\ thảo\ định\ dạng\ po\ --\ a\ po\ editor">
+    <title>
+     Trình Soạn Thảo Định Dạng PO -- A PO Editor
+    </title>
+    <paragraph>
+     Để chỉnh sửa các tập tin PO, bạn cần phải cài đặt Trình Soạn Thảo PO --
+     <title_reference>
+      PO editor
+     </title_reference>
+     . Chúng tôi đề cử là bạn nên sử dụng
+     <reference name="Poedit" refuri="https://poedit.net/">
+      Poedit
+     </reference>
+     song, bất kỳ trình soạn thảo PO nào cũng được.
+    </paragraph>
+    <note>
+     <paragraph>
+      For Linux users, you will have to check with
+your distribution's software center for a version of Poedit.
+This editor is only a recommendation. There are others, such as Kate and Kwrite, that
+could offer syntax highlighting and basic tools for text editing, e.g. letter case transposes.
+Other platforms can use some text editors supporting the syntax highlighting for PO files,
+or allowing you to create a custom one (such as Notepad++ on Windows).
+     </paragraph>
+    </note>
+   </section>
+  </section>
+  <section ids="building-with-translations" names="building\ with\ translations biên\ tập\ các\ bản\ dịch\ --\ building\ with\ translations">
+   <title>
+    Biên Tập các Bản Dịch -- Building with Translations
+   </title>
+   <note>
+    <paragraph>
+     Cái này chỉ là tùy chọn mà thôi, bản dịch sẽ được tự động kiến tạo trực tuyến, ví dụ:
+     <reference refuri="https://docs.blender.org/manual/fr/dev/">
+      https://docs.blender.org/manual/fr/dev/
+     </reference>
+    </paragraph>
+   </note>
+   <paragraph>
+    Bây giờ, bạn có thể xây dựng bản hướng dẫn sử dụng với phần phiên dịch được áp dụng vào đó:
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    make -e SPHINXOPTS="-D language='fr'"
+   </literal_block>
+   <paragraph>
+    If you are on Windows and do not have
+    <literal>
+     make
+    </literal>
+    , run:
+   </paragraph>
+   <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+    sphinx-build -b html -D language=fr ./manual ./build/html
+   </literal_block>
+   <paragraph>
+    Bây giờ bạn sẽ có một bản xây dựng của hướng dẫn sử dụng trong máy, với các phần phiên dịch được lồng vào.
+   </paragraph>
+  </section>
+  <section ids="editing-translation-files" names="editing\ translation\ files biên\ soạn\ các\ tập\ tin\ phiên\ dịch\ --\ editing\ translation\ files">
+   <title>
+    Biên Soạn các Tập Tin Phiên Dịch -- Editing Translation Files
+   </title>
+   <paragraph>
+    Giờ đây, bạn có thể chỉnh sửa các tập tin phiên dịch PO, ví dụ:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Bản Tập Tin RST Gốc -- Original RST File
+     </term>
+     <definition>
+      <paragraph>
+       <literal>
+        manual/getting_started/about_blender/introduction.rst
+       </literal>
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tập Tin РО Sinh Tạo -- Generated PO File
+     </term>
+     <definition>
+      <paragraph>
+       <literal>
+        locale/fr/LC_MESSAGES/getting_started/about_blender/introduction.po
+       </literal>
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    Các tập tin
+    <literal>
+     .po
+    </literal>
+    đã soạn có thể được chỉnh sửa và chuyển giao trở lại nguồn svn.
+   </paragraph>
+  </section>
+  <section ids="commit-translation-files" names="commit\ translation\ files">
+   <title>
+    Commit Translation Files
+   </title>
+   <paragraph>
+    See
+    <reference internal="True" refuri="../patch_commit.html#contribute-patch-submit">
+     <inline classes="std std-ref">
+      Submit Patches
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </section>
+  <section ids="maintenance" names="maintenance bảo\ quản\ --\ maintenance">
+   <title>
+    Bảo Quản -- Maintenance
+   </title>
+   <target refid="translations-fuzzy-strings">
+   </target>
+   <section ids="keeping-track-of-fuzzy-strings translations-fuzzy-strings" names="keeping\ track\ of\ fuzzy\ strings theo\ dõi\ các\ đoạn\ văn\ được\ đánh\ dấu\ là\ fuzzy\ :\ mơ\ hồ\ --\ keeping\ track\ of\ fuzzy\ strings translations-fuzzy-strings">
+    <title>
+     Theo Dõi các Đoạn Văn được Đánh Dấu là
+     <strong>
+      Fuzzy : Mơ Hồ
+     </strong>
+     -- Keeping Track of Fuzzy Strings
+    </title>
+    <paragraph>
+     Khi bản hướng dẫn sử dụng được cập nhật, những phiên dịch lỗi thời sẽ được đánh dấu là
+     <literal>
+      fuzzy
+     </literal>
+     (mờ ám). Để theo dõi cái này, bạn có thể sử dụng công cụ mà chúng tôi đã tạo cho nhiệm vụ đó.
+    </paragraph>
+    <paragraph>
+     Bạn có thể làm điều này bằng cách thi hành:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     make report_po_progress
+    </literal_block>
+    <paragraph>
+     Lệnh này sẽ chỉ cung cấp cho bạn một báo cáo vắn tắt mà thôi, dĩ nhiên, bạn có thể lấy thêm thông tin bằng cách thi hành:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     python tools_report/report_translation_progress.py locale/fr/
+    </literal_block>
+    <paragraph>
+     Bạn sẽ nhận được một danh sách tất cả các tập tin với thông tin về số lượng các dòng trống rỗng (chưa phiên dịch) và các dòng được đánh dấu là
+     <literal>
+      fuzzy
+     </literal>
+     -- mờ ám. Để biết thêm các tùy chọn khác, hãy xem:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     python tools_report/report_translation_progress.py --help
+    </literal_block>
+    <seealso>
+     <paragraph>
+      Hướng dẫn trên trang này dựa trên bản
+      <reference name="Tài Liệu về Sphinx Intl" refuri="http://www.sphinx-doc.org/en/stable/intl.html">
+       Tài Liệu về Sphinx Intl
+      </reference>
+     </paragraph>
+    </seealso>
+   </section>
+   <section ids="updating-po-files" names="updating\ po\ files cập\ nhật\ các\ tập\ tin\ po\ --\ updating\ po\ files">
+    <title>
+     Cập Nhật các Tập Tin PO -- Updating PO Files
+    </title>
+    <paragraph>
+     Khi các bản hướng dẫn sử dụng gốc thay đổi, các bản mẫu cũng sẽ cần phải được cập nhật. Lưu ý, điều này không cần thiết, vì quản trị viên thường cập nhật các tập tin cho tất cả các ngôn ngữ cùng một lúc. Việc này cho phép tất cả các ngôn ngữ được tồn tại trên cùng một phiên bản của bản hướng dẫn sử dụng. Đương nhiên, nếu bạn cần phải tự cập nhật các tập tin thì việc đó có thể được thực hiện như sau:
+    </paragraph>
+    <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+     make update_po
+    </literal_block>
+    <paragraph>
+     Các bản mẫu được cập nhật sau đó có thể được chuyển giao vào kho svn.
+    </paragraph>
+    <seealso>
+     <paragraph>
+      A guide how to add a new language can be found in the
+      <reference internal="True" refuri="add_language.html">
+       <inline classes="doc">
+        Thêm Một Ngôn Ngữ Mới -- Adding a Language
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </seealso>
+   </section>
+  </section>
+ </section>
+</document>

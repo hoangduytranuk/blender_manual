@@ -1,0 +1,111 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/sculpt_paint/weight_paint/introduction.rst">
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   Vertex Groups can potentially have a very large number of associated vertices
+and thus a large number of weights (one weight per assigned vertex).
+   <emphasis>
+    Weight Painting
+   </emphasis>
+   is a method to maintain large amounts of weight information
+in a very intuitive way.
+  </paragraph>
+  <paragraph>
+   It is primarily used for rigging meshes, where the vertex groups are used to
+define the relative bone influences on the mesh. But we use it also for
+controlling particle emission, hair density, many modifiers, shape keys, etc.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/sculpt-paint_weight-paint_introduction_example.jpg'}" uri="images/sculpt-paint_weight-paint_introduction_example.jpg"/>
+   <caption>
+    Vertex Group in Weight Paint Mode.
+   </caption>
+  </figure>
+  <paragraph>
+   You enter
+   <emphasis>
+    Weight Paint Mode
+   </emphasis>
+   from the Mode Menu
+   <literal classes="kbd">
+    Ctrl-Tab
+   </literal>
+   .
+The selected Mesh Object is displayed slightly shaded with a rainbow color spectrum.
+The color visualizes the weights associated to each vertex in the active Vertex Group.
+By default
+   <emphasis>
+    blue
+   </emphasis>
+   means unweighted and
+   <emphasis>
+    red
+   </emphasis>
+   means fully weighted.
+  </paragraph>
+  <paragraph>
+   You assign weights to the vertices of the Object by painting on it with weight brushes.
+Starting to paint on a mesh automatically adds weights to the active Vertex Group
+(a new Vertex Group is created if needed).
+  </paragraph>
+  <section ids="the-weighting-color-code" names="the\ weighting\ color\ code --\ the\ weighting\ color\ code">
+   <title>
+    -- The Weighting Color Code
+   </title>
+   <paragraph>
+    Weights are visualized by a gradient using a cold/hot color system,
+such that areas of low value (with weights close to 0.0) are displayed as blue (cold)
+and areas of high value (with weights close to 1.0) are displayed as red (hot).
+And all in-between values are displayed as rainbow colors (blue, green, yellow, orange, red).
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/sculpt-paint_weight-paint_introduction_color-code.png'}" uri="images/sculpt-paint_weight-paint_introduction_color-code.png"/>
+    <caption>
+     The color spectrum and their respective weights.
+    </caption>
+   </figure>
+   <paragraph>
+    In addition to the above described color code, Blender has a special visual notation
+(as an option) for unreferenced vertices: They are displayed as black.
+Thus you can see the referenced areas (displayed as cold/hot colors) and
+the unreferenced areas (in black) at the same time.
+This is most practicable when you look for weighting errors.
+See
+    <reference internal="True" refuri="tool_settings/options.html">
+     <inline classes="doc">
+      Options
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <figure ids="id3">
+    <image candidates="{'*': 'images/sculpt-paint_weight-paint_introduction_color-code-black.png'}" uri="images/sculpt-paint_weight-paint_introduction_color-code-black.png"/>
+    <caption>
+     Unreferenced vertices example.
+    </caption>
+   </figure>
+   <note>
+    <paragraph>
+     You can customize the colors in the weight gradient by enabling
+     <reference internal="True" refuri="../../editors/preferences/editing.html#prefs-system-weight">
+      <inline classes="std std-ref">
+       Custom Weight Paint Range
+      </inline>
+     </reference>
+     in the
+     <emphasis>
+      System
+     </emphasis>
+     tab
+of the
+     <emphasis>
+      Preferences
+     </emphasis>
+     .
+    </paragraph>
+   </note>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,1031 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Selecting &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/selecting.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Biên Soạn -- Editing" href="editing/index.html" />
+    <link rel="prev" title="Hình Cơ Bản -- Primitives" href="primitives.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Khung Lưới -- Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toolbar/index.html">Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primitives.html">Hình Cơ Bản -- Primitives</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Selecting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#selection-modes">Selection Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#x-ray">X-Ray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#select-menu">Select Menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#selection-tools">Selection Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="editing/index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mesh_analysis.html">Phân Tích Khung Lưới -- Mesh Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../empties.html">-- Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="index.html">Khung Lưới -- Meshes</a> &raquo;</li>
+        
+      <li>Selecting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/modeling/meshes/selecting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="selecting">
+<h1>Selecting<a class="headerlink" href="#selecting" title="Permalink to this headline">¶</a></h1>
+<p>There are many ways to select elements, and it depends on what <em>Mesh Select Mode</em>
+you are in as to what selection tools are available.
+First we will go through these modes and after that a look is taken at basic selection tools.</p>
+<div class="section" id="selection-modes">
+<h2>Selection Modes<a class="headerlink" href="#selection-modes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="select-mode-header-buttons">
+<h3>Select Mode Header Buttons<a class="headerlink" href="#select-mode-header-buttons" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">3D View Header ‣ Select Mode</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">1</kbd>, <kbd class="kbd docutils literal notranslate">2</kbd>, <kbd class="kbd docutils literal notranslate">3</kbd>
+(<kbd class="kbd docutils literal notranslate">Shift</kbd>
+<a class="reference internal" href="#multiple-selection-modes">Multiple Selection Modes</a>,
+<kbd class="kbd docutils literal notranslate">Ctrl</kbd> <a class="reference internal" href="#expand-contract-selection">Expand/Contract Selection</a>).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="figure align-right" id="id1">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_mode-buttons.png"><img alt="../../_images/modeling_meshes_selecting_mode-buttons.png" src="../../_images/modeling_meshes_selecting_mode-buttons.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Edit Mode selection buttons.</span></p>
+</div>
+<p>In <em>Edit Mode</em> there are three different selection modes.
+You can enter the different modes by selecting one of the three buttons in the header.</p>
+<dl class="docutils">
+<dt>Vertices</dt>
+<dd><p class="first">In this mode vertices are shown as points.</p>
+<p class="last">Selected vertices are displayed in orange, unselected vertices in black,
+and the active or last selected vertex in white.</p>
+</dd>
+<dt>Edges</dt>
+<dd><p class="first">In this mode the vertices are not shown.</p>
+<p class="last">Instead the selected edges are displayed in orange,
+unselected edges black, and the active or last selected edge in white.</p>
+</dd>
+<dt>Faces</dt>
+<dd><p class="first">In this mode the faces are displayed with a selection point in the middle which is used for selecting a face.</p>
+<p class="last">Selected faces and their selection point are displayed in orange,
+unselected faces are displayed in black, and the active or last selected face is highlighted in white.</p>
+</dd>
+</dl>
+<p>When using these buttons, you can make use of modifier keys, see: <a class="reference internal" href="#switching-select-mode">Switching Select Mode</a>.</p>
+<p>Almost all tools are available in all three mesh selection modes.
+So you can <em>Rotate</em>, <em>Scale</em>, <em>Extrude</em>, etc. in all modes.
+Of course rotating and scaling a <em>single</em> vertex will not do anything useful
+(<em>without</em> setting the pivot point to another location),
+so some tools are more or less applicable in some modes.</p>
+<p>See Fig. <a class="reference internal" href="#fig-mesh-select-intro-selection-modes"><span class="std std-ref">Selection modes.</span></a> for examples of the different modes.</p>
+<div class="section" id="multiple-selection-modes">
+<h4>Multiple Selection Modes<a class="headerlink" href="#multiple-selection-modes" title="Permalink to this headline">¶</a></h4>
+<p>By holding <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> when selecting a selection mode,
+you can enable multiple <em>Selection Modes</em> at once.
+This allows you to quickly select Vertices/Edges/Faces,
+without first having to switch modes.</p>
+<span id="fig-mesh-select-intro-selection-modes"></span><table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Selection modes.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id3">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_vertex-mode-example.png"><img alt="../../_images/modeling_meshes_selecting_vertex-mode-example.png" src="../../_images/modeling_meshes_selecting_vertex-mode-example.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">Vertex mode example.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id4">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_edge-mode-example.png"><img alt="../../_images/modeling_meshes_selecting_edge-mode-example.png" src="../../_images/modeling_meshes_selecting_edge-mode-example.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">Edge mode example.</span></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last figure" id="id5">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_face-mode-example.png"><img alt="../../_images/modeling_meshes_selecting_face-mode-example.png" src="../../_images/modeling_meshes_selecting_face-mode-example.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">Face mode example.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id6">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_mixed-mode-example.png"><img alt="../../_images/modeling_meshes_selecting_mixed-mode-example.png" src="../../_images/modeling_meshes_selecting_mixed-mode-example.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">Mixed mode example.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="switching-select-mode">
+<h3>Switching Select Mode<a class="headerlink" href="#switching-select-mode" title="Permalink to this headline">¶</a></h3>
+<p>When switching modes in an &quot;ascendant&quot; way (i.e. from simpler to more complex), from
+<em>Vertices</em> to <em>Edges</em> and from <em>Edges</em> to <em>Faces</em>,
+the selected parts will still be selected if they form a complete element in the new mode.</p>
+<p>For example, if all four edges in a face are selected,
+switching from <em>Edges</em> mode to <em>Faces</em> mode will keep the face selected.
+All selected parts that do not form a complete set in the new mode will be unselected.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id7">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_edge-mode-example.png"><img alt="../../_images/modeling_meshes_selecting_edge-mode-example.png" src="../../_images/modeling_meshes_selecting_edge-mode-example.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">Edge mode, the initial selection.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id8">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_face-mode-switched-from-edge.png"><img alt="../../_images/modeling_meshes_selecting_face-mode-switched-from-edge.png" src="../../_images/modeling_meshes_selecting_face-mode-switched-from-edge.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">Switching to Face mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Hence, switching in a &quot;descendant&quot; way (i.e. from more complex to simpler),
+all elements defining the &quot;high-level&quot; element (like a face) will be selected
+(the four vertices or edges of a quadrangle, for example).</p>
+<div class="section" id="expand-contract-selection">
+<h4>Expand/Contract Selection<a class="headerlink" href="#expand-contract-selection" title="Permalink to this headline">¶</a></h4>
+<p>By holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> when selecting a higher selection mode,
+all elements touching the current selection will be added,
+even if the selection does not form a complete higher element.</p>
+<p>Or contracting the selection when switching to a lower mode.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id9">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_vertex-mode-example.png"><img alt="../../_images/modeling_meshes_selecting_vertex-mode-example.png" src="../../_images/modeling_meshes_selecting_vertex-mode-example.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">Vertex mode, the initial selection.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id10">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_edge-mode-expanding-from-vertex.png"><img alt="../../_images/modeling_meshes_selecting_edge-mode-expanding-from-vertex.png" src="../../_images/modeling_meshes_selecting_edge-mode-expanding-from-vertex.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">Expanding to Edge mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="x-ray">
+<h2>X-Ray<a class="headerlink" href="#x-ray" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../../editors/3dview/controls/shading.html#dview-shading-xray"><span class="std std-ref">x-ray</span></a> setting is not just for shading, it impacts selection too.</p>
+<p>When enabled, selection isn't occluded by the objects geometry
+(as if the object was solid).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id11">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_limit-selection-to-visible-off.png"><img alt="../../_images/modeling_meshes_selecting_limit-selection-to-visible-off.png" src="../../_images/modeling_meshes_selecting_limit-selection-to-visible-off.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">X-ray enabled.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id12">
+<a class="reference internal image-reference" href="../../_images/modeling_meshes_selecting_limit-selection-to-visible-on.png"><img alt="../../_images/modeling_meshes_selecting_limit-selection-to-visible-on.png" src="../../_images/modeling_meshes_selecting_limit-selection-to-visible-on.png" style="width: 310px;" /></a>
+<p class="caption"><span class="caption-text">X-ray disabled.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="select-menu">
+<h2>Select Menu<a class="headerlink" href="#select-menu" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>All <kbd class="kbd docutils literal notranslate">A</kbd></dt>
+<dd>Select all.</dd>
+<dt>None <kbd class="kbd docutils literal notranslate">Alt-A</kbd></dt>
+<dd>Select none.</dd>
+<dt>Inverse <kbd class="kbd docutils literal notranslate">Ctrl-I</kbd></dt>
+<dd>Selects all the geometry that is not selected, and deselect currently selected components.</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt><a class="reference internal" href="../../interface/selecting.html#tool-select-box"><span class="std std-ref">Box Select</span></a> <kbd class="kbd docutils literal notranslate">B</kbd></dt>
+<dd>Interactive box selection.</dd>
+<dt><a class="reference internal" href="../../interface/selecting.html#tool-select-circle"><span class="std std-ref">Circle Select</span></a> <kbd class="kbd docutils literal notranslate">C</kbd></dt>
+<dd>Interactive circle selection.</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>Select Random</dt>
+<dd>Selects a random group of vertices, edges, or faces, based on a percentage value.</dd>
+<dt><a class="reference internal" href="#modeling-selecting-checker-deselect"><span class="std std-ref">Checker Deselect</span></a></dt>
+<dd>Deselect alternate elements relative to the active item.</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>Select Sharp Edges</dt>
+<dd>This tool selects all edges between two faces forming an angle greater than the angle value,
+where an increasing angle selects sharper edges.</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt><a class="reference internal" href="#select-similar">Select Similar</a> <kbd class="kbd docutils literal notranslate">Shift-G</kbd></dt>
+<dd>Select elements similar to the current selection.</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt><a class="reference internal" href="#select-all-by-trait">Select All by Trait</a></dt>
+<dd>Select geometry by querying its characteristics.</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>Select More/Less</dt>
+<dd><dl class="first last docutils">
+<dt>More <kbd class="kbd docutils literal notranslate">Ctrl-NumpadPlus</kbd></dt>
+<dd>Expands the selection to the adjacent elements of the selection type.</dd>
+<dt>Less <kbd class="kbd docutils literal notranslate">Ctrl-NumpadMinus</kbd></dt>
+<dd>Contracts the selection from the adjacent elements of the selection type.</dd>
+<dt>Next Active <kbd class="kbd docutils literal notranslate">Shift-Ctrl-NumpadPlus</kbd></dt>
+<dd>This uses selection history to select the next vertex/edge/face based on surrounding topology.</dd>
+<dt>Previous Active <kbd class="kbd docutils literal notranslate">Shift-Ctrl-NumpadMinus</kbd></dt>
+<dd>Select previous just removes the last selected element.</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>Select Loops</dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="#edge-loops">Edge Loops</a></dt>
+<dd>Select connected edges.</dd>
+<dt><a class="reference internal" href="#face-loops">Face Loops</a></dt>
+<dd>Select connected faces.</dd>
+<dt><a class="reference internal" href="#edge-boundary">Edge Boundary</a></dt>
+<dd>Select boundary edges.</dd>
+<dt><a class="reference internal" href="#edge-ring">Edge Ring</a></dt>
+<dd>Select connected edge ring.</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>Select Linked</dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="#select-linked">Select Linked</a></dt>
+<dd>Selects all components that are connected to the current selection (see <a class="reference internal" href="#select-linked">Select Linked</a>).</dd>
+<dt><a class="reference internal" href="#shortest-path">Shortest Path</a></dt>
+<dd>Path between two selected elements.</dd>
+<dt>Linked Flat Faces</dt>
+<dd>Select connected faces based on a threshold of the angle between them.
+This is useful for selecting faces that are planar.</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>Select Side of Active</dt>
+<dd>Selects all vertices on the mesh in a single axis relative to the active vertex.
+In Vertex selection mode only.</dd>
+<dt>Mirror Selection <kbd class="kbd docutils literal notranslate">Shift-Ctrl-M</kbd></dt>
+<dd>Select mesh items at the mirrored location across the chosen axis.</dd>
+</dl>
+</div>
+<div class="section" id="selection-tools">
+<h2>Selection Tools<a class="headerlink" href="#selection-tools" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="checker-deselect">
+<span id="modeling-selecting-checker-deselect"></span><h3>Checker Deselect<a class="headerlink" href="#checker-deselect" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Select ‣ Checker Deselect</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This tool applies an alternating selected/deselected checker pattern.
+This only works if you already have more than one mesh element selected.</p>
+<p>Changes the current selection so that only every Nth elements (vertices, edges or faces,
+depending on the active selection mode) will remain selected, starting from the active one.</p>
+<p>In case of islands of selected elements, this tool will affect
+only the island of the active element (if there is one), or the island of the first element
+in the order of internal storage (if there is no active element).</p>
+<dl class="docutils">
+<dt>Deselected</dt>
+<dd>The number of deselected elements in each pattern repetition.</dd>
+<dt>Selected</dt>
+<dd>The number of selected elements in each pattern repetition.</dd>
+<dt>Offset</dt>
+<dd>Offset from the starting point.</dd>
+</dl>
+</div>
+<div class="section" id="select-all-by-trait">
+<h3>Select All by Trait<a class="headerlink" href="#select-all-by-trait" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils" id="mesh-select-non-manifold">
+<dt>Non Manifold</dt>
+<dd><p class="first">Selects the <a class="reference internal" href="../../glossary/index.html#term-non-manifold"><span class="xref std std-term">non-manifold</span></a> geometry of a mesh.
+This entry is available when editing a mesh, in Vertex and Edge selection modes only.</p>
+<dl class="last docutils">
+<dt>Extend</dt>
+<dd>Lets you extend the current selection.</dd>
+<dt>Wire</dt>
+<dd>Selects all the edges that do not belong to any face.</dd>
+<dt>Boundaries</dt>
+<dd>Selects edges in boundaries and holes.</dd>
+<dt>Multiple Faces</dt>
+<dd>Selects edges that belong to three or more faces.</dd>
+<dt>Non Contiguous</dt>
+<dd>Selects edges that belong to exactly two faces with opposite normals.</dd>
+<dt>Vertices</dt>
+<dd>Selects vertices that belong to <em>wire</em> and <em>multiple face</em> edges, isolated vertices,
+and vertices that belong to non-adjoining faces.</dd>
+</dl>
+</dd>
+<dt>Loose Geometry</dt>
+<dd>Selects all vertices or edges that do not form part of a face.</dd>
+<dt>Interior Faces</dt>
+<dd>Selects faces where all edges have more than two faces.</dd>
+<dt>Faces by Sides</dt>
+<dd>Selects all faces that have a specified number of edges.</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>Ungrouped Vertices</dt>
+<dd>Selects all vertices which are not part of
+a <a class="reference internal" href="properties/vertex_groups/index.html"><span class="doc">vertex group</span></a>.</dd>
+</dl>
+</div>
+<div class="section" id="select-linked">
+<h3>Select Linked<a class="headerlink" href="#select-linked" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Select ‣ Linked</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-L</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Select geometry connected to already selected elements.
+This is often useful when a mesh has disconnected, overlapping parts,
+where isolating it any other way would be tedious.</p>
+<p>To give more control, you can also enable delimiters in the <a class="reference internal" href="../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel,
+so the selection is constrained by seams, sharp edges, materials or UV islands.</p>
+<p>With <em>Pick Linked</em> you can also select connected geometry directly under the cursor,
+using the <kbd class="kbd docutils literal notranslate">L</kbd> shortcut to select or <kbd class="kbd docutils literal notranslate">Shift-L</kbd> to deselect linked.</p>
+<p>This works differently in that it uses the geometry under the cursor instead of the existing selection.</p>
+</div>
+<div class="section" id="select-similar">
+<h3>Select Similar<a class="headerlink" href="#select-similar" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Select ‣ Similar...</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-G</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Select geometry that has similar certain properties to the ones selected,
+based on a threshold that can be set in tool properties after activating the tool.
+Tool options change depending on the selection mode:</p>
+<dl class="docutils">
+<dt>Vertex Selection Mode:</dt>
+<dd><dl class="first last docutils">
+<dt>Normal</dt>
+<dd>Selects all vertices that have normals pointing in similar directions to those currently selected.</dd>
+<dt>Amount of Adjacent Faces</dt>
+<dd>Selects all vertices that have the same number of faces connected to them.</dd>
+<dt>Vertex Groups</dt>
+<dd>Selects all vertices in the same <a class="reference internal" href="properties/vertex_groups/index.html"><span class="doc">vertex group</span></a>.</dd>
+<dt>Amount of Connecting Edges</dt>
+<dd>Selects all vertices that have the same number of edges connected to them.</dd>
+<dt>Face Regions</dt>
+<dd>Select matching features on a mesh that has multiple similar areas based on the topology.</dd>
+</dl>
+</dd>
+<dt>Edge Selection Mode:</dt>
+<dd><dl class="first last docutils">
+<dt>Length</dt>
+<dd>Selects all edges that have a similar length as those already selected.</dd>
+<dt>Direction</dt>
+<dd>Selects all edges that have a similar direction (angle) as those already selected.</dd>
+<dt>Amount of Faces Around an Edge</dt>
+<dd>Selects all edges that belong to the same number of faces.</dd>
+<dt>Face Angles</dt>
+<dd>Selects all edges that are between two faces forming a similar angle, as with those already selected.</dd>
+<dt>Crease</dt>
+<dd>Selects all edges that have a similar <a class="reference internal" href="editing/edges.html#modeling-edges-crease-subdivision"><span class="std std-ref">Crease</span></a>
+value as those already selected.</dd>
+<dt>Bevel</dt>
+<dd>Selects all edges that have the same <em>Bevel Weight</em> as those already selected.</dd>
+<dt>Seam</dt>
+<dd>Selects all edges that have the same <em>Seam</em> state as those already selected.
+<em>Seam</em> is a true/false setting used in <a class="reference internal" href="../../editors/uv/index.html#editors-uv-index"><span class="std std-ref">UV texturing</span></a>.</dd>
+<dt>Sharpness</dt>
+<dd>Selects all edges that have the same <em>Sharp</em> state as those already selected.
+<em>Sharp</em> is a true/false setting (a flag) used by
+the <a class="reference internal" href="../modifiers/generate/edge_split.html"><span class="doc">Edge Split Modifier</span></a>.</dd>
+</dl>
+</dd>
+<dt>Face Selection Mode:</dt>
+<dd><dl class="first last docutils">
+<dt>Material</dt>
+<dd>Selects all faces that use the same material as those already selected.</dd>
+<dt>Image</dt>
+<dd>Selects all faces that use the same UV texture as those already selected
+(see <a class="reference internal" href="../../editors/uv/index.html#editors-uv-index"><span class="std std-ref">UV texturing</span></a> pages).</dd>
+<dt>Area</dt>
+<dd>Selects all faces that have a similar area as those already selected.</dd>
+<dt>Polygon Sides</dt>
+<dd>Selects all faces that have the same number of edges.</dd>
+<dt>Perimeter</dt>
+<dd>Selects all faces that have a similar perimeter (added values of its edge lengths).</dd>
+<dt>Normal</dt>
+<dd>Selects all faces that have a similar normal as those selected.
+This is a way to select faces that have the same orientation (angle).</dd>
+<dt>Co-planar</dt>
+<dd>Selects all faces that are (nearly) in the same plane as those selected.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="edge-loops">
+<span id="modeling-meshes-selecting-edge-loops"></span><h3>Edge Loops<a class="headerlink" href="#edge-loops" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode (Vertex or Edge select mode)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Select ‣ Select Loops ‣ Edge Loops</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-LMB</kbd>, or <kbd class="kbd docutils literal notranslate">Shift-Alt-LMB</kbd> for modifying existing selection.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Holding <kbd class="kbd docutils literal notranslate">Alt</kbd> while selecting an edge selects a loop of edges that are connected in
+a line end-to-end, passing through the edge under the mouse pointer.
+Holding <kbd class="kbd docutils literal notranslate">Shift-Alt</kbd> while clicking adds to the current selection.</p>
+<p>Edge loops can also be selected based on an existing edge selection,
+using either <span class="menuselection">Select ‣ Edge Loop</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p><em>Vertex</em> mode</p>
+<p class="last">In <em>Vertex</em> select mode, you can also select edge loops, by using the same hotkeys,
+and clicking on the <em>edges</em> (not on the vertices).</p>
+</div>
+<div class="figure" id="id13">
+<img alt="../../_images/modeling_meshes_selecting_edge-loops.png" src="../../_images/modeling_meshes_selecting_edge-loops.png" />
+<p class="caption"><span class="caption-text">Longitudinal and latitudinal edge loops.</span></p>
+</div>
+<p>The left sphere shows an edge that was selected longitudinally. Notice how the loop is open.
+This is because the algorithm hit the vertices at the poles and is terminated
+because the vertices at the pole connect to more than four edges. However,
+the right sphere shows an edge that was selected latitudinally and has formed a closed loop.
+This is because the algorithm hit the first edge that it started with.</p>
+</div>
+<div class="section" id="face-loops">
+<span id="modeling-meshes-selecting-face-loops"></span><h3>Face Loops<a class="headerlink" href="#face-loops" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode (Face or Vertex select modes)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> or <kbd class="kbd docutils literal notranslate">Shift-Alt-LMB</kbd> for modifying existing selection.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In face select mode, holding <kbd class="kbd docutils literal notranslate">Alt</kbd> while selecting an <em>edge</em> selects a loop of
+faces that are connected in a line end-to-end, along their opposite edges.</p>
+<p>In vertex select mode,
+the same can be accomplished by using <kbd class="kbd docutils literal notranslate">Ctrl-Alt</kbd> to select an edge,
+which selects the face loop implicitly.</p>
+<div class="figure" id="id14">
+<img alt="../../_images/modeling_meshes_selecting_face-loops.png" src="../../_images/modeling_meshes_selecting_face-loops.png" />
+<p class="caption"><span class="caption-text">Face loop selection.</span></p>
+</div>
+<p>This face loop was selected by clicking with <kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> on an edge,
+in <em>face</em> select mode.
+The loop extends perpendicular from the edge that was selected.</p>
+<div class="figure" id="id15">
+<img alt="../../_images/modeling_meshes_selecting_face-loops-vertex.png" src="../../_images/modeling_meshes_selecting_face-loops-vertex.png" />
+<p class="caption"><span class="caption-text"><kbd class="kbd docutils literal notranslate">Alt</kbd> versus <kbd class="kbd docutils literal notranslate">Ctrl-Alt</kbd> in vertex select mode.</span></p>
+</div>
+<p>A face loop can also be selected in <em>Vertex</em> select mode.
+Technically <kbd class="kbd docutils literal notranslate">Ctrl-Alt-LMB</kbd> will select an <em>Edge Ring</em>,
+however, in <em>Vertex</em> select mode, selecting an <em>Edge Ring</em> implicitly
+selects a <em>Face Loop</em> since selecting opposite edges of a face implicitly selects
+the entire face.</p>
+</div>
+<div class="section" id="edge-boundary">
+<h3>Edge Boundary<a class="headerlink" href="#edge-boundary" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode (Vertex or Edge select modes)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-LMB</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Loop selection on edge boundaries.
+To extend the selection to all boundaries if the current boundary is already selected
+use <kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> again.</p>
+</div>
+<div class="section" id="edge-ring">
+<h3>Edge Ring<a class="headerlink" href="#edge-ring" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Select ‣ Select Loops ‣ Edge Rings</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-Alt-LMB</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In <em>Edge</em> select mode, holding <kbd class="kbd docutils literal notranslate">Ctrl-Alt</kbd>
+while selecting an edge (or two vertices) selects a sequence of edges that are not connected,
+but on opposite sides to each other continuing along a <a class="reference internal" href="structure.html"><span class="doc">face loop</span></a>.</p>
+<p>As with edge loops, you can also select edge rings based on current selection,
+using either <span class="menuselection">Select ‣ Select Loops ‣ Edge Rings</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p><em>Vertex</em> mode</p>
+<p class="last">In <em>Vertex</em> select mode, you can use the same hotkeys when <em>clicking on the edges</em> (not on the vertices),
+but this will directly select the corresponding face loop...</p>
+</div>
+<div class="figure" id="id16">
+<span id="fig-mesh-select-advanced-loop-ring"></span><img alt="../../_images/modeling_meshes_selecting_edge-ring.png" src="../../_images/modeling_meshes_selecting_edge-ring.png" />
+<p class="caption"><span class="caption-text">A selected edge loop, and a selected edge ring.</span></p>
+</div>
+<p>In Fig. <a class="reference internal" href="#fig-mesh-select-advanced-loop-ring"><span class="std std-ref">A selected edge loop, and a selected edge ring.</span></a> the same edge was clicked on,
+but two different &quot;groups of edges&quot; were selected, based on the different tools.
+One is based on edges during computation and the other is based on faces.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>Convert Selection to Whole Faces</p>
+<p>If the edge ring selection happened in Edge Select Mode, switching to Face Select Mode will erase the selection.</p>
+<p>This is because none of those faces had all its (four) edges selected,
+just two of them.</p>
+<p class="last">Instead of selecting the missing edges manually or by using <kbd class="kbd docutils literal notranslate">Shift-Alt-</kbd> twice,
+it is easier to first switch to Vertex Select Mode, which will kind of &quot;flood&quot; the selection.
+A subsequent switch to Face Select Mode will then properly select the faces.</p>
+</div>
+</div>
+<div class="section" id="shortest-path">
+<h3>Shortest Path<a class="headerlink" href="#shortest-path" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Select ‣ Select Linked ‣ Shortest Path</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="figure" id="id17">
+<img alt="../../_images/modeling_meshes_selecting_shortest-path.png" src="../../_images/modeling_meshes_selecting_shortest-path.png" />
+<p class="caption"><span class="caption-text">Select a face or vertex path with <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>.</span></p>
+</div>
+<p>Selects all geometry along the shortest path from
+the active vertex/edge/face to the one which was selected.</p>
+<dl class="docutils">
+<dt>Edge Tag (in Edge select mode only)</dt>
+<dd><p class="first">This select button indicates what should be done when selecting a vertex path with <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>Select</dt>
+<dd>Just selects all the edges in the path.</dd>
+<dt>Tag Seam</dt>
+<dd>Marks all edges in the path as seams for UV unwrapping.</dd>
+<dt>Tag Sharp</dt>
+<dd>Marks all edges in the path as sharp for the Edge Split Modifier.</dd>
+<dt>Tag Crease</dt>
+<dd>Marks all edges in the path as creases for the Subdivision Surface Modifier, with weight 1.0.</dd>
+<dt>Tag Bevel</dt>
+<dd>Gives bevel weight 1.0 (for the Bevel Modifier) to all edges in the path.</dd>
+<dt>Tag Freestyle Edge Mark</dt>
+<dd>Marks all edges in the path Freestyle feature edges.</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt>Face Stepping</dt>
+<dd>Supports diagonal paths for vertices and faces, and
+selects edge rings with edges.</dd>
+<dt>Topological Distance</dt>
+<dd>Only takes into account the number of edges of the path and
+not the length of the edges to calculate the distances.</dd>
+<dt>Fill Region <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd></dt>
+<dd>Selects all elements in the shortest paths from the active selection to the clicked area.</dd>
+<dt>Checker Deselect Options</dt>
+<dd><p class="first">Allows to quickly select alternate elements in a path.
+See also <a class="reference internal" href="#checker-deselect">Checker Deselect</a> tool.</p>
+<dl class="last docutils">
+<dt>Deselected</dt>
+<dd>The number of deselected elements in the repetitive sequence.</dd>
+<dt>Selected</dt>
+<dd>The number of selected elements in the repetitive sequence.</dd>
+<dt>Offset</dt>
+<dd>Offset from the starting point.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="loop-inner-region">
+<h3>Loop Inner-Region<a class="headerlink" href="#loop-inner-region" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode (Edge select mode)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Select ‣ Select Loops ‣ Select Loop Inner-Region</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Select Loop Inner-Region</em> selects all faces that are inside a closed loop of edges.
+While it is possible to use this operator in <em>Vertex</em> and <em>Face</em> selection modes, results may be unexpected.
+Note that if the selected loop of edges is not closed,
+then all connected edges on the mesh will be considered inside the loop.</p>
+<div class="figure" id="id18">
+<img alt="../../_images/modeling_meshes_selecting_inner-region1.png" src="../../_images/modeling_meshes_selecting_inner-region1.png" />
+<p class="caption"><span class="caption-text">Loop to Region.</span></p>
+</div>
+<div class="figure" id="id19">
+<img alt="../../_images/modeling_meshes_selecting_inner-region2.png" src="../../_images/modeling_meshes_selecting_inner-region2.png" />
+<p class="caption"><span class="caption-text">This tool handles multiple loops fine, as you can see.</span></p>
+</div>
+<div class="figure" id="id20">
+<img alt="../../_images/modeling_meshes_selecting_inner-region3.png" src="../../_images/modeling_meshes_selecting_inner-region3.png" />
+<p class="caption"><span class="caption-text">This tool handles &quot;holes&quot; just fine as well.</span></p>
+</div>
+</div>
+<div class="section" id="boundary-loop">
+<h3>Boundary Loop<a class="headerlink" href="#boundary-loop" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode (Edge select mode)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Select ‣ Select Loops ‣ Select Boundary Loop</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Select Boundary Loop</em> does the opposite of <em>Select Loop Inner-Region</em>,
+based on all regions currently selected, it selects only the edges at the border(contour) of these islands.
+It can operate in any select mode, but when in <em>Face</em> mode it will switch to <em>Edge</em> select mode after running.</p>
+<p>All this is much more simple to illustrate with examples:</p>
+<div class="figure" id="id21">
+<img alt="../../_images/modeling_meshes_selecting_boundary-loop.png" src="../../_images/modeling_meshes_selecting_boundary-loop.png" />
+<p class="caption"><span class="caption-text">Select Boundary Loop does the opposite and forces into Edge Select Mode.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="known-issues">
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="n-gons-in-face-select-mode">
+<h3>N-Gons in Face Select Mode<a class="headerlink" href="#n-gons-in-face-select-mode" title="Permalink to this headline">¶</a></h3>
+<div class="figure" id="id22">
+<img alt="../../_images/modeling_meshes_selecting_face-mode-ngon-visual-problem.png" src="../../_images/modeling_meshes_selecting_face-mode-ngon-visual-problem.png" />
+<p class="caption"><span class="caption-text">N-gon face having its center dot inside another face.</span></p>
+</div>
+<p>As already known, faces are marked with a little square dot in the middle of the face.
+With n-gons that can lead in certain cases to a confusing display.
+The example shows the center dot of the U-shaped n-gon being inside of the oblong face inside the &quot;U&quot;.
+It is not easy to say which dot belongs to which face (the orange dot in the image is the object origin).
+Luckily, you do not need to care much, because to select a face, you do not have to click the center dot,
+but the face itself.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="editing/index.html" class="btn btn-neutral float-right" title="Biên Soạn -- Editing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="primitives.html" class="btn btn-neutral float-left" title="Hình Cơ Bản -- Primitives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

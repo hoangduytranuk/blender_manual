@@ -1,0 +1,547 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/drivers_editor.rst">
+ <section ids="drivers-editor" names="drivers\ editor">
+  <title>
+   Drivers Editor
+  </title>
+  <paragraph>
+   The Drivers Editor allows users to drive one property with another.
+See
+   <reference internal="True" refuri="../animation/drivers/index.html">
+    <inline classes="doc">
+     Drivers
+    </inline>
+   </reference>
+   and
+   <reference internal="True" refuri="graph_editor/fcurves/introduction.html">
+    <inline classes="doc">
+     F-Curves
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/editors_graph-editor_introduction_example.png'}" uri="images/editors_graph-editor_introduction_example.png"/>
+   <caption>
+    The Drivers Editor.
+   </caption>
+  </figure>
+  <section ids="main-region" names="main\ region">
+   <title>
+    Main Region
+   </title>
+   <paragraph>
+    The main view allows you to view and edit Driver F-curves.
+An F-curve has several key parts:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Axes
+     </term>
+     <definition>
+      <paragraph>
+       The curve defines the relationship between two properties:
+The current (driven) property (Y axis) and the driver (X axis).
+      </paragraph>
+      <paragraph>
+       See
+       <reference internal="True" refuri="graph_editor/fcurves/index.html">
+        <inline classes="doc">
+         F-Curves
+        </inline>
+       </reference>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Handles
+     </term>
+     <definition>
+      <paragraph>
+       Each point on the driver curve has a handle that helps determine the relationship between the two values.
+They can be selected and modified to change the shape of the curve.
+      </paragraph>
+      <paragraph>
+       See
+       <reference internal="True" refuri="graph_editor/fcurves/introduction.html#editors-graph-fcurves-settings-handles">
+        <inline classes="std std-ref">
+         Loại Tay Cầm -- Handle Types
+        </inline>
+       </reference>
+       for more information.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/editors_graph-editor_introduction_f-curve-example.png'}" uri="images/editors_graph-editor_introduction_f-curve-example.png"/>
+    <caption>
+     A simple driver.
+    </caption>
+   </figure>
+   <seealso>
+    <paragraph>
+     See
+     <reference internal="True" refuri="graph_editor/fcurves/introduction.html">
+      <inline classes="doc">
+       F-Curves
+      </inline>
+     </reference>
+     for more info.
+    </paragraph>
+   </seealso>
+   <section ids="navigation" names="navigation">
+    <title>
+     Navigation
+    </title>
+    <paragraph>
+     As with most editors, you can:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Pan
+       <literal classes="kbd">
+        MMB
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Pan the view vertically (values) or horizontally (time) with click and drag
+        <literal classes="kbd">
+         MMB
+        </literal>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Zoom
+       <literal classes="kbd">
+        Wheel
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Zoom in and out with the mouse wheel.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Scale View
+       <literal classes="kbd">
+        Ctrl-MMB
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Scale the view vertically or horizontally.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       View All (Frame)
+       <literal classes="kbd">
+        Home
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        Fit the curve in the available space.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <paragraph>
+     In addition, you can also use the scrollbars to pan and zoom the view.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="header" names="header">
+   <title>
+    Header
+   </title>
+   <section ids="view-controls" names="view\ controls">
+    <title>
+     View Controls
+    </title>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/editors_graph-editor_introduction_header-view.png'}" uri="images/editors_graph-editor_introduction_header-view.png" width="350px"/>
+     <caption>
+      View controls.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Normalize
+      </term>
+      <definition>
+       <paragraph>
+        Normalize curves so the maximum and minimum points equal 1.0 and -1.0 respectively.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Auto
+         </term>
+         <definition>
+          <paragraph>
+           Automatically recalculate curve normalization on every curve edit.
+Disabling this setting may be useful to prevent curves from jumping after tweaking.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Show Only Selected (mouse cursor icon)
+      </term>
+      <definition>
+       <paragraph>
+        Only include curves related to the selected objects and data.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Show Hidden (dashed object icon)
+      </term>
+      <definition>
+       <paragraph>
+        Include curves from objects/bones that are not visible.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Show Only Errors (warning triangle icon)
+      </term>
+      <definition>
+       <paragraph>
+        Only include curves and drivers that are disabled or have errors.
+Useful for debugging.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Create Ghost Curves (square with curve icon)
+      </term>
+      <definition>
+       <paragraph>
+        Makes a visual indication in the background of the editor
+with a snapshot of the current state of the selected curves.
+This is useful to have a base for comparison on top of which to make edits.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Filter (funnel icon)
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Type Filter
+         </term>
+         <definition>
+          <paragraph>
+           Filter curves by property type.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Sort Data-Blocks (az icon)
+         </term>
+         <definition>
+          <paragraph>
+           Object data-blocks appear in alphabetical order, so that it is easier to find where they occur
+(as well as helping to keep the animation of related objects together).
+          </paragraph>
+          <paragraph>
+           This option may affect the playback speed for heavy scenes.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="curve-controls" names="curve\ controls">
+    <title>
+     Curve Controls
+    </title>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/editors_graph-editor_introduction_header-edit.png'}" uri="images/editors_graph-editor_introduction_header-edit.png" width="250px"/>
+     <caption>
+      Curve controls.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Pivot Point
+      </term>
+      <definition>
+       <paragraph>
+        Pivot point for rotation.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Bounding Box Center
+         </term>
+         <definition>
+          <paragraph>
+           Center of the selected curve handles.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          2D Cursor
+         </term>
+         <definition>
+          <paragraph>
+           Center of the
+           <emphasis>
+            2D Cursor
+           </emphasis>
+           .
+           <emphasis>
+            Playhead
+           </emphasis>
+           +
+           <emphasis>
+            Cursor
+           </emphasis>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Individual Centers
+         </term>
+         <definition>
+          <paragraph>
+           Rotate the selected curve handles.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Auto Snap
+      </term>
+      <definition>
+       <paragraph>
+        Auto snap the curve handles when editing.
+       </paragraph>
+       <bullet_list bullet="-">
+        <list_item>
+         <paragraph>
+          No Auto-Snap
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Frame Step
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Second Step
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Nearest Frame
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Nearest Second
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Nearest Marker
+         </paragraph>
+        </list_item>
+       </bullet_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Proportional Editing
+       <literal classes="kbd">
+        O
+       </literal>
+      </term>
+      <definition>
+       <paragraph>
+        See
+        <reference internal="True" refuri="../scene_layout/object/editing/transform/control/proportional_edit.html">
+         <inline classes="doc">
+          Proportional Editing
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="sidebar-region" names="sidebar\ region">
+   <title>
+    Sidebar Region
+   </title>
+   <section ids="drivers-tab" names="drivers\ tab">
+    <title>
+     Drivers Tab
+    </title>
+    <paragraph>
+     See
+     <reference internal="True" refuri="../animation/drivers/drivers_panel.html">
+      <inline classes="doc">
+       Bảng các Bộ Điều Vận -- Drivers Panel
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+   <section ids="modifiers-tab" names="modifiers\ tab">
+    <title>
+     Modifiers Tab
+    </title>
+    <paragraph>
+     See
+     <reference internal="True" refuri="graph_editor/fcurves/modifiers.html">
+      <inline classes="doc">
+       F-Curve Modifiers
+      </inline>
+     </reference>
+     .
+    </paragraph>
+    <comment xml:space="preserve">
+     (Todo) duplicated here: \editors\graph_editor\fcurves\properties.rst
+    </comment>
+   </section>
+   <section ids="view-properties-panel" names="view\ properties\ panel">
+    <title>
+     View Properties Panel
+    </title>
+    <figure ids="id5">
+     <image candidates="{'*': 'images/editors_graph-editor_fcurves_properties_view-panel.png'}" uri="images/editors_graph-editor_fcurves_properties_view-panel.png"/>
+     <caption>
+      View Properties panel.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Show Cursor
+      </term>
+      <definition>
+       <paragraph>
+        Show the vertical
+        <emphasis>
+         Cursor
+        </emphasis>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Cursor from Selection
+      </term>
+      <definition>
+       <paragraph>
+        Set the
+        <emphasis>
+         2D cursor
+        </emphasis>
+        to the center of the selected curve handles.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Cursor X
+      </term>
+      <definition>
+       <paragraph>
+        <emphasis>
+         Time Cursor
+        </emphasis>
+        X position.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          To Keys
+         </term>
+         <definition>
+          <paragraph>
+           Snap selected curve handles to the
+           <emphasis>
+            Time Cursor
+           </emphasis>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Cursor Y
+      </term>
+      <definition>
+       <paragraph>
+        Vertical
+        <emphasis>
+         Cursor
+        </emphasis>
+        Y position.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          To Keys
+         </term>
+         <definition>
+          <paragraph>
+           Snap selected curve handles to the
+           <emphasis>
+            Cursor
+           </emphasis>
+           .
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

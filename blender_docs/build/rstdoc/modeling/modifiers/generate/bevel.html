@@ -1,0 +1,608 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/modifiers/generate/bevel.rst">
+ <target refid="bpy-types-bevelmodifier">
+ </target>
+ <section ids="bevel-modifier bpy-types-bevelmodifier" names="bevel\ modifier bộ\ điều\ chỉnh\ bo\ tròn\ --\ bevel\ modifier bpy.types.bevelmodifier">
+  <title>
+   Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Bevel
+   </emphasis>
+   modifier bevels the edges of the mesh it is applied to,
+with some control of how and where the bevel is applied to the mesh.
+  </paragraph>
+  <paragraph>
+   It is a non-destructive alternative to
+the
+   <reference internal="True" refuri="../../meshes/editing/subdividing/bevel.html">
+    <inline classes="doc">
+     Bevel Operation
+    </inline>
+   </reference>
+   in Edit Mode.
+  </paragraph>
+  <table align="center" ids="id1">
+   <title>
+    Side views of a cube.
+   </title>
+   <tgroup cols="2">
+    <colspec colwidth="50">
+    </colspec>
+    <colspec colwidth="50">
+    </colspec>
+    <tbody>
+     <row>
+      <entry>
+       <figure ids="id2">
+        <image candidates="{'*': 'images/modeling_modifiers_generate_bevel_square-not.png'}" uri="images/modeling_modifiers_generate_bevel_square-not.png" width="150px"/>
+        <caption>
+         Not beveled.
+        </caption>
+       </figure>
+      </entry>
+      <entry>
+       <figure ids="id3">
+        <image candidates="{'*': 'images/modeling_modifiers_generate_bevel_square.png'}" uri="images/modeling_modifiers_generate_bevel_square.png" width="150px"/>
+        <caption>
+         Beveled.
+        </caption>
+       </figure>
+      </entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <figure align="right" ids="id4">
+    <image candidates="{'*': 'images/modeling_modifiers_generate_bevel_panel.png'}" uri="images/modeling_modifiers_generate_bevel_panel.png"/>
+    <caption>
+     The Bevel modifier.
+    </caption>
+   </figure>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Chiều Rộng -- Width
+     </term>
+     <definition>
+      <paragraph>
+       The size of the bevel effect. See
+       <emphasis>
+        Width Method
+       </emphasis>
+       below.
+      </paragraph>
+      <figure ids="id5">
+       <image candidates="{'*': 'images/modeling_modifiers_generate_bevel_cubes.png'}" uri="images/modeling_modifiers_generate_bevel_cubes.png" width="350px"/>
+       <caption>
+        Three Cubes with 0.1, 0.3 and 0.5 bevel widths.
+       </caption>
+      </figure>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phân Đoạn -- Segments
+     </term>
+     <definition>
+      <paragraph>
+       The number of edge loops added along the bevel's face.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mặt Cắt -- Profile
+     </term>
+     <definition>
+      <paragraph>
+       The shape of the bevel, from concave to convex. It has no effect if
+       <emphasis>
+        Segments
+       </emphasis>
+       is less than 2.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nguyên Liệu -- Material
+     </term>
+     <definition>
+      <paragraph>
+       The index of the material slot to use for the bevel.
+When set to -1, the material of the nearest original face will be used.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chỉ các Điểm Đỉnh Thôi -- Only Vertices
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, only the areas near vertices are beveled, the edges remain unchanged.
+      </paragraph>
+      <figure ids="id6">
+       <image candidates="{'*': 'images/modeling_modifiers_generate_bevel_cubes-vertices-only.png'}" uri="images/modeling_modifiers_generate_bevel_cubes-vertices-only.png" width="350px"/>
+       <caption>
+        Three cubes with 0.1, 0.3 and 0.5 bevel widths, with
+        <emphasis>
+         Only Vertices
+        </emphasis>
+        option enabled.
+       </caption>
+      </figure>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chống Đè Gối Lên Nhau -- Clamp Overlap
+     </term>
+     <definition>
+      <paragraph>
+       Limits the width of each beveled edge so that edges cannot cause
+overlapping intersections with other geometry.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lướt Theo Mạch Lưới -- Loop Slide
+     </term>
+     <definition>
+      <paragraph>
+       If there are unbeveled edges along with beveled edges into a vertex,
+the bevel tries to slide along those edges when possible.
+Turning the option off can lead to more even bevel widths.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mark Seams
+     </term>
+     <definition>
+      <paragraph>
+       If a seam edge crosses a non-seam one and you bevel all of them,
+this option will maintain the expected propagation of seams.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mark Sharp
+     </term>
+     <definition>
+      <paragraph>
+       Similar to Mark Seams, but for sharp edges.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Harden Normals
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, the per-vertex face normals of the bevel faces are adjusted to
+match the surrounding faces, and the normals of the surrounding faces are not affected.
+This will keep the surrounding faces flat (if they were before),
+with the bevel faces shading smoothly into them. For this effect to work,
+you need custom normals data, which requires
+       <emphasis>
+        Auto Smooth
+       </emphasis>
+       option to be enabled
+(see
+       <reference internal="True" refuri="../../meshes/editing/normals.html">
+        <inline classes="doc">
+         Normals
+        </inline>
+       </reference>
+       ).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Phương Pháp Hạn Chế -- Limit Method
+     </term>
+     <definition>
+      <paragraph>
+       Used to control where a bevel is applied to the mesh.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Không Có -- None
+        </term>
+        <definition>
+         <paragraph>
+          No limit, all edges will be beveled.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Góc Độ -- Angle
+        </term>
+        <definition>
+         <paragraph>
+          Only edges where the adjacent faces form an angle smaller than the defined threshold will be beveled.
+Intended to allow you to bevel only the sharp edges of an object without affecting its smooth surfaces.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Trọng Lượng -- Weight
+        </term>
+        <definition>
+         <paragraph>
+          Use each edge's bevel weight to determine the width of the bevel.
+When the bevel weight is 0.0, no bevel is applied.
+See
+          <reference internal="True" refuri="../../meshes/editing/edges.html">
+           <inline classes="doc">
+            here
+           </inline>
+          </reference>
+          about adjusting bevel weights.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Nhóm Điểm Đỉnh -- Vertex Group
+        </term>
+        <definition>
+         <paragraph>
+          Use weights from a vertex group to determine the width of the bevel.
+When the vertex weight is 0.0, no bevel is applied.
+An edge is only beveled if both of its vertices are in the vertex group.
+See
+          <reference internal="True" refuri="../../meshes/properties/vertex_groups/vertex_groups.html">
+           <inline classes="doc">
+            here
+           </inline>
+          </reference>
+          about adjusting vertex group weights.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      -- Width Method
+     </term>
+     <definition>
+      <paragraph>
+       Declares how
+       <emphasis>
+        Width
+       </emphasis>
+       will be interpreted to determine the amount of bevel.
+      </paragraph>
+      <figure align="right" ids="id7">
+       <image candidates="{'*': 'images/modeling_modifiers_generate_bevel_width-methods.png'}" uri="images/modeling_modifiers_generate_bevel_width-methods.png" width="240"/>
+       <caption>
+        Width methods.
+       </caption>
+      </figure>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Dịch Chuyển -- Offset
+        </term>
+        <definition>
+         <paragraph>
+          Value is interpreted as the distance from the original edge to the edge of the beveled face.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Chiều Rộng -- Width
+        </term>
+        <definition>
+         <paragraph>
+          Value is interpreted as the distance between the two new edges formed by the bevel.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Chiều/Độ Sâu -- Depth
+        </term>
+        <definition>
+         <paragraph>
+          Value is the perpendicular distance from the new bevel face to original edge.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Phần Trăm -- Percent
+        </term>
+        <definition>
+         <paragraph>
+          Similar to
+          <emphasis>
+           Offset
+          </emphasis>
+          but the value is interpreted as a percentage of the adjacent edge length.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Set Face Strength Mode
+     </term>
+     <definition>
+      <paragraph>
+       Set
+       <emphasis>
+        Face Strength
+       </emphasis>
+       on the faces involved in the bevel, according to the mode specified here.
+This can be used in conjunction with a following
+       <reference internal="True" refuri="../modify/weighted_normal.html">
+        <inline classes="doc">
+         Weighted Normals
+        </inline>
+       </reference>
+       modifier
+(with the
+       <emphasis>
+        Face Influence
+       </emphasis>
+       option checked).
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Không Có -- None
+        </term>
+        <definition>
+         <paragraph>
+          Do not set face strength.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         New
+        </term>
+        <definition>
+         <paragraph>
+          Set the face strength of new faces along edges to
+          <emphasis>
+           Medium
+          </emphasis>
+          ,
+and the face strength of new faces at vertices to
+          <emphasis>
+           Weak
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Affected
+        </term>
+        <definition>
+         <paragraph>
+          In addition to those set for the
+          <emphasis>
+           New
+          </emphasis>
+          case,
+also set the faces adjacent to new faces to have strength
+          <emphasis>
+           Strong
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         All
+        </term>
+        <definition>
+         <paragraph>
+          In addition to those set for the
+          <emphasis>
+           Affected
+          </emphasis>
+          case,
+also set all the rest of the faces of the model to have strength
+          <emphasis>
+           Strong
+          </emphasis>
+          .
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Miter Patterns
+     </term>
+     <definition>
+      <paragraph>
+       A
+       <emphasis>
+        miter
+       </emphasis>
+       is formed when two beveled edges meet at an angle.
+On the side where the angle is greater than 180 degrees, if any, it is called an
+       <emphasis>
+        outer miter
+       </emphasis>
+       .
+If it is less than 180 degrees, then it is called an
+       <emphasis>
+        inner miter
+       </emphasis>
+       .
+The outer and inner miters can each be set to one of these patterns:
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sharp
+        </term>
+        <definition>
+         <paragraph>
+          Edges meet at a sharp point, with no extra vertices introduced on the edges.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Patch
+        </term>
+        <definition>
+         <paragraph>
+          Edges meet at a sharp point but in addition, two extra vertices are introduced near the point
+so that the edges and faces at the vertex may be less pinched together than
+what occurs in the
+          <emphasis>
+           Sharp
+          </emphasis>
+          case.
+This pattern does makes no sense for inner miters, so it behaves like
+          <emphasis>
+           Arc
+          </emphasis>
+          for them.
+         </paragraph>
+         <paragraph>
+          The
+          <emphasis>
+           Spread
+          </emphasis>
+          slider controls how far the new vertices are from the meeting point.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Arc
+        </term>
+        <definition>
+         <paragraph>
+          Two vertices are introduced near the meeting point, and a curved arc joins them together.
+         </paragraph>
+         <paragraph>
+          The
+          <emphasis>
+           Spread
+          </emphasis>
+          slider controls how far the new vertices are from the meeting point.
+         </paragraph>
+         <paragraph>
+          The
+          <emphasis>
+           Profile
+          </emphasis>
+          slider controls the shape of the arc.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <table ids="id8">
+       <title>
+        Diagrams of the miter patterns.
+       </title>
+       <tgroup cols="3">
+        <colspec colwidth="33">
+        </colspec>
+        <colspec colwidth="33">
+        </colspec>
+        <colspec colwidth="33">
+        </colspec>
+        <tbody>
+         <row>
+          <entry>
+           <figure ids="id9">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-2.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-2.png"/>
+            <caption>
+             Sharp outer miter.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id10">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-3.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-3.png"/>
+            <caption>
+             Patch outer miter.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id11">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-4.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-4.png"/>
+            <caption>
+             Arc outer miter.
+            </caption>
+           </figure>
+          </entry>
+         </row>
+         <row>
+          <entry>
+           <figure ids="id12">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-5.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-5.png"/>
+            <caption>
+             Sharp inner miter.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id13">
+            <image candidates="{'*': 'images/modeling_meshes_editing_subdividing_bevel_miter-6.png'}" uri="images/modeling_meshes_editing_subdividing_bevel_miter-6.png"/>
+            <caption>
+             Arc inner miter.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <comment xml:space="preserve">
+           </comment>
+          </entry>
+         </row>
+        </tbody>
+       </tgroup>
+      </table>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Spread
+     </term>
+     <definition>
+      <paragraph>
+       The value used to spread extra vertices apart for non-sharp miters.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

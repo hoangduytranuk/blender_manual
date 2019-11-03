@@ -1,0 +1,337 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/collections/collections.rst">
+ <target refid="bpy-types-collection">
+ </target>
+ <target refid="bpy-ops-collection">
+ </target>
+ <section ids="collections bpy-ops-collection bpy-types-collection" names="collections bpy.ops.collection bpy.types.collection">
+  <title>
+   Collections
+  </title>
+  <paragraph>
+   There can be many objects in a scene: A typical stage scene consists of furniture, props,
+lights, and backdrops.
+Blender helps you keep everything organized by allowing you to group like objects together.
+Objects can be grouped together without any kind of transformation relationship (unlike parenting).
+Collections are used to just logically organize your scene,
+or to facilitate one-step appending or linking between files or across scenes.
+  </paragraph>
+  <section ids="collections-menu" names="collections\ menu">
+   <title>
+    Collections Menu
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Collection`">
+         Object ‣ Collection
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         M
+        </literal>
+        ,
+        <literal classes="kbd">
+         Shift-M
+        </literal>
+        ,
+        <literal classes="kbd">
+         Ctrl-G
+        </literal>
+        , etc.
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Move to Collection
+      <literal classes="kbd">
+       M
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Move selected objects to a collection.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Link to Collection
+      <literal classes="kbd">
+       Shift-M
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Link selected objects to a collection.
+A new collection can be created in the pop-up.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Create New Collection
+      <literal classes="kbd">
+       Ctrl-G
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Creates a new collection and adds the selected object(s) to it.
+The name of the new collection can be specified in
+the
+       <emphasis>
+        Create New Collection
+       </emphasis>
+       <reference internal="True" refuri="../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation">
+        <inline classes="std std-ref">
+         Adjust Last Operation
+        </inline>
+       </reference>
+       panel.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Remove from Collection
+      <literal classes="kbd">
+       Ctrl-Alt-G
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Remove the selected objects from a collection.
+If the object belongs to more one collection a pop-up lets you select the collection and
+an option to remove it from all collections.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Remove from All Unlinked Collections
+      <literal classes="kbd">
+       Shift-Ctrl-Alt-G
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Remove the selected objects from all collection not used in a scene.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Add Selected to Active Collection
+      <literal classes="kbd">
+       Shift-Ctrl-G
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Adds the selected objects to the collections to which the active object belongs.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Remove Selected from Active Collection
+      <literal classes="kbd">
+       Shift-Alt-G
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Causes the selected objects to be removed from the collections to which the active object belongs.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="collections-panel" names="collections\ panel">
+   <title>
+    Collections Panel
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Object tab --&gt; Collections`">
+         Object tab ‣ Collections
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <figure ids="id1">
+    <image candidates="{'*': 'images/scene-layout_collections_collections_panel.png'}" uri="images/scene-layout_collections_collections_panel.png"/>
+    <caption>
+     Collections panel.
+    </caption>
+   </figure>
+   <paragraph>
+    All collections that an object has been assigned to are listed in the Properties editor
+    <inline classes="menuselection" rawtext=":menuselection:`Object tab --&gt; Collections panel`">
+     Object tab ‣ Collections panel
+    </inline>
+    .
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Add to Collection
+     </term>
+     <definition>
+      <paragraph>
+       Adds the selected objects from a collection.
+A pop-up lets you specify the collection to add to.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      New
+      <literal>
+       +
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Creates a new collection and adds the selected object(s) to it.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Name
+     </term>
+     <definition>
+      <paragraph>
+       To rename a collection, simply click in the collections name field.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Remove
+      <literal>
+       X
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       To remove an object from a collection,
+find the name of the collection from which you wish to remove the object,
+and click the
+       <literal>
+        X
+       </literal>
+       button to the right of the collection name.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Specials
+     </term>
+     <definition>
+      <paragraph>
+       Unlink Collection, Select Collection, Set Offset From Cursor
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Offset
+     </term>
+     <definition>
+      <paragraph>
+       Applies a spatial offset of the instanced collections from the original object's origin.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <seealso>
+    <paragraph>
+     Appending or Linking Collections
+    </paragraph>
+    <paragraph>
+     To append a collection from another blend-file,
+consult
+     <reference internal="True" refuri="../../files/linked_libraries.html">
+      <inline classes="doc">
+       this page
+      </inline>
+     </reference>
+     .
+In summary,
+     <inline classes="menuselection" rawtext=":menuselection:`File --&gt; Link/Append Link`">
+      File ‣ Link/Append Link
+     </inline>
+     Select a blend-file and then the collection.
+    </paragraph>
+   </seealso>
+   <tip>
+    <paragraph>
+     Selecting Collections
+    </paragraph>
+    <paragraph>
+     Collections can be selected, see
+     <reference internal="True" refuri="../object/selecting.html#bpy-ops-object-select-grouped">
+      <inline classes="std std-ref">
+       Select Grouped
+      </inline>
+     </reference>
+     for more information.
+    </paragraph>
+   </tip>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,414 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/about/contribute/translations/add_language.rst">
+ <section ids="adding-a-language" names="adding\ a\ language thêm\ một\ ngôn\ ngữ\ mới\ --\ adding\ a\ language">
+  <title>
+   Thêm Một Ngôn Ngữ Mới -- Adding a Language
+  </title>
+  <section ids="preparations" names="preparations chuẩn\ bị\ --\ preparations">
+   <title>
+    Chuẩn Bị -- Preparations
+   </title>
+   <paragraph>
+    Nếu ngôn ngữ bạn muốn dịch chưa được bắt đầu bởi người khác và bạn muốn tạo một tập hợp các tập tin mới cho ngôn ngữ mong muốn, chẳng hạn 'fr' (tiếng Pháp), thì trước tiên bạn phải sử dụng môi trường bạn đã tạo, như được hướng dẫn trong bản
+    <reference internal="True" refuri="../index.html#about-getting-started">
+     <inline classes="std std-ref">
+      Bắt đầu -- Getting Started
+     </inline>
+    </reference>
+    , với cụ thể là các phần về
+    <reference internal="True" refuri="../install/index.html">
+     <inline classes="doc">
+      Cài Đặt -- Install
+     </inline>
+    </reference>
+    và
+    <reference internal="True" refuri="../build/index.html">
+     <inline classes="doc">
+      Xây Dựng -- Build
+     </inline>
+    </reference>
+    .
+   </paragraph>
+   <paragraph>
+    Việc làm này sẽ cung cấp cho bạn một môi trường cơ bản cho việc:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Tạo một bộ phiên dịch mới từ nguồn tiếng Anh.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Perform
+      <literal>
+       make
+      </literal>
+      command to turn translated texts in po files into html files for testing locally.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Cập nhật các thay đổi trong văn bản tiếng Anh đã được các cộng tác viên khác thêm vào.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    Below examples show the process to create a new set of files for French, language code
+    <literal>
+     fr
+    </literal>
+    , on Linux platform.
+Other platforms might vary slightly but should be mainly the same.
+   </paragraph>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Vào trang
+      <literal>
+       https://developer.blender.org
+      </literal>
+      để tạo tài khoản cho chính bản thân và trở thành nhà phát triển/dịch giả cho tổ chức Blender.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Đăng nhập vào tài khoản và tạo một tác vụ với thể loại
+      <literal>
+       todo
+      </literal>
+      , liên lạc với một quản trị viên trong trường
+      <emphasis>
+       Người đăng ký -- Subscribers
+      </emphasis>
+      , xin có quyền nhập kho (committer right) để chuyển các thay đổi sang kho lưu trữ trung tâm của nhóm dịch thuật.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Mở một cửa sổ dòng lệnh, chẳng hạn như trình giả lập Đầu Cuối Gnome (Gnome-Terminal).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Chuyển thư mục từ thư mục làm việc hiện tại vào thư mục
+      <literal>
+       blender_docs
+      </literal>
+      , nơi có bản
+      <literal>
+       Makefile
+      </literal>
+      nằm ở đó.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+  </section>
+  <section ids="trying-the-make-process-to-create-html-files-in-english" names="trying\ the\ make\ process\ to\ create\ html\ files\ in\ english thử\ nghiệm\ quá\ trình\ biên\ dịch\ để\ tạo\ các\ tập\ tin\ html\ trong\ tiếng\ anh\ --\ trying\ the\ make\ process\ to\ create\ html\ files\ in\ english">
+   <title>
+    Thử Nghiệm Quá Trình Biên Dịch để Tạo các Tập Tin HTML trong Tiếng Anh -- Trying the Make Process to Create HTML Files In English
+   </title>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Hãy đảm bảo rằng cá thể trước đây của thư mục
+      <literal>
+       build
+      </literal>
+      được xóa đi, nếu nó tồn tại:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      make clean
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Chuyển đổi tất cả các tập tin
+      <literal>
+       rst
+      </literal>
+      thành tập tin phiên dịch
+      <literal>
+       pot
+      </literal>
+      :
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      make gettext
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Tạo các tập tin
+      <literal>
+       html
+      </literal>
+      :
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      make html
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      After this, you can actually view the created html files locally following the prompted instruction, such as:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      xdg-open
+      <path english="" manual="" to="" your="">
+       /blender_docs/build/html/index.html
+      </path>
+     </literal_block>
+    </list_item>
+   </enumerated_list>
+  </section>
+  <section ids="creating-the-language-entry-in-the-html-menu" names="creating\ the\ language\ entry\ in\ the\ html\ menu tạo\ trình\ mục\ cho\ ngôn\ ngữ\ trong\ trình\ đơn\ html\ --\ creating\ the\ language\ entry\ in\ the\ html\ menu">
+   <title>
+    Tạo Trình Mục cho Ngôn Ngữ trong Trình Đơn HTML -- Creating the Language Entry in the HTML Menu
+   </title>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Tạo một trình mục cho ngôn ngữ trong trình đơn
+      <literal>
+       html
+      </literal>
+      bằng cách mở tập tin
+      <literal>
+       ./resources/theme/js/version_switch.js
+      </literal>
+      (giả định là bạn đang ở thư mục nhánh
+      <literal>
+       blender_docs
+      </literal>
+      ).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Tìm bảng về các ngôn ngữ trong biến số
+      <literal>
+       var all_langs = {..};
+      </literal>
+      .
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Enter the entry:
+      <literal>
+       "fr": "Français",
+      </literal>
+      , (
+      <literal>
+       "fr": "Français"
+      </literal>
+      ).
+(Notice the Unicode characters.)
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Để tìm xem những thay đổi trong kho lưu trữ địa phương:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      svn status
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Điền mật mã của bạn
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      svn commit --username
+      <your username="">
+       -m "your comment"
+      </your>
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Nâng cấp kho lưu trữ cục bộ của bạn lên phiên bản thay đổi gần đây nhất, bao gồm cả thay đổi bạn vừa thực hiện xong:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      svn update .
+     </literal_block>
+    </list_item>
+   </enumerated_list>
+  </section>
+  <section ids="setting-the-local-configuration-file" names="setting\ the\ local\ configuration\ file tạo\ tập\ tin\ cấu\ hình\ cục\ bộ\ --\ setting\ the\ local\ configuration\ file">
+   <title>
+    Tạo tập tin cấu hình cục bộ -- Setting the Local Configuration File
+   </title>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Mở trình soạn thảo văn bản để nhập các văn bản sau, thay đổi mã ngôn ngữ thành mã ngôn ngữ nào mà bạn sẽ phiên dịch:
+     </paragraph>
+     <literal_block force_highlighting="True" highlight_args="{}" language="python" linenos="True" xml:space="preserve">
+      language = 'fr'
+locale_dirs = ['locale/']
+gettext_compact = True
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Lưu tập tin này thành
+      <literal>
+       conf.py
+      </literal>
+      trong thư mục
+      <literal>
+       blender_docs
+      </literal>
+      , nơi tập tin
+      <literal>
+       Makefile
+      </literal>
+      nằm.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Yêu cầu
+      <literal>
+       svn
+      </literal>
+      bỏ qua tập tin này khi thực hiện các thao tác bằng cách thi hành lệnh này:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      svn propset svn:ignore conf.py .
+     </literal_block>
+    </list_item>
+   </enumerated_list>
+  </section>
+  <section ids="generating-the-set-of-files-for-the-target-language" names="generating\ the\ set\ of\ files\ for\ the\ target\ language sinh\ tạo\ bộ\ tập\ tin\ cho\ ngôn\ ngữ\ dự\ định\ --\ generating\ the\ set\ of\ files\ for\ the\ target\ language">
+   <title>
+    Sinh Tạo Bộ Tập Tin cho Ngôn Ngữ Dự Định -- Generating the Set of Files for the Target Language
+   </title>
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
+    <list_item>
+     <paragraph>
+      Xuất kho bản dịch hiện tại bằng cách sử dụng lệnh:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale
+     </literal_block>
+     <paragraph>
+      Việc làm này sẽ tải tất cả các bộ ngôn ngữ có sẵn trong kho lưu trữ xuống thư mục
+      <literal>
+       locale
+      </literal>
+      của ổ đĩa của bạn. Bạn có thể vào thư mục
+      <literal>
+       locale
+      </literal>
+      để xem thư mục con ẩn
+      <literal>
+       .svn
+      </literal>
+      nằm bên trong đó cùng với các thư mục ngôn ngữ. Bạn sẽ cần cho thêm tập hợp tập tin của riêng mình cho ngôn ngữ bạn đang định phiên dịch sang.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      từ thư mục
+      <literal>
+       blender_docs
+      </literal>
+      để tạo bộ các tập tin cho ngôn ngữ
+      <literal>
+       fr
+      </literal>
+      :
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      make gettext
+sphinx-intl update -p build/locale -l fr
+     </literal_block>
+     <paragraph>
+      These files are still in English only, with all
+      <literal>
+       msgstr
+      </literal>
+      entries blank.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Nhập kho bộ tập tin mới vào kho lưu trữ trung tâm:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      cd locale
+svn add fr
+svn commit --username
+      <your username="">
+       -m "Initial commit language set of files for French"
+      </your>
+     </literal_block>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Bạn không cần tất cả các ngôn ngữ khác nằm ở đó, vì vậy hãy tạm thời xóa thư mục
+      <literal>
+       locale
+      </literal>
+      đi:
+     </paragraph>
+     <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+      rm -fr locale
+     </literal_block>
+     <paragraph>
+      Chúng ta sẽ tải xuống bộ ngôn ngữ mới này như được hướng dẫn trong phần tiếp theo.
+     </paragraph>
+    </list_item>
+   </enumerated_list>
+   <note>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       It is recommended you make two environment variables for these directories, in the
+       <literal>
+        .bashrc
+       </literal>
+       to make it more convenient for changing or scripting batch/shell commands
+for the process of translation and reviewing results:
+      </paragraph>
+      <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+       export BLENDER_MAN_EN=$HOME/
+       <directory above="" directory="" file="" make="" to="">
+        /blender_docs
+export BLENDER_MAN_FR=$BLENDER_MAN_EN/locale
+       </directory>
+      </literal_block>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Newly generated files will contain some placeholders for authors and revision dates etc.
+If you find the job of replacing them repetitive, make use of the script
+       <literal>
+        change_placeholders.sh
+       </literal>
+       in the subdirectory
+       <literal>
+        ~/blender_docs/toos_maintenance
+       </literal>
+       , make a copy of that to your local
+       <literal>
+        bin
+       </literal>
+       directory and
+replace all values that were mentioned in the file with your specific details,
+then after each change to a file, you would do following commands
+to update the file with your personal details, revision date and time,
+plus generating the html files for your language, which you can view using your Internet browser:
+      </paragraph>
+      <literal_block force_highlighting="False" language="sh" linenos="False" xml:space="preserve">
+       $HOME/bin/change_placeholders.sh $BLENDER_MAN_FR
+make -d --trace -w -B -e SPHINXOPTS="-D language='fr'" 2&gt;&amp;1
+      </literal_block>
+     </list_item>
+    </bullet_list>
+   </note>
+  </section>
+ </section>
+</document>

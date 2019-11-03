@@ -1,0 +1,256 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/shader_nodes/vector/mapping.rst">
+ <target refid="bpy-types-shadernodemapping">
+ </target>
+ <section ids="mapping-node bpy-types-shadernodemapping" names="mapping\ node nút\ ánh\ xạ\ --\ mapping\ node bpy.types.shadernodemapping">
+  <title>
+   Nút Ánh Xạ -- Mapping Node
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Mapping
+   </emphasis>
+   node transforms the input vector by applying translation, rotation, and scaling.
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/render_shader-nodes_vector_mapping_node.png'}" uri="images/render_shader-nodes_vector_mapping_node.png"/>
+   <caption>
+    Mapping node.
+   </caption>
+  </figure>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <paragraph>
+    The inputs of the node are dynamic. In particular, the
+    <emphasis>
+     Location
+    </emphasis>
+    input is only available in
+the
+    <emphasis>
+     Texture
+    </emphasis>
+    and
+    <emphasis>
+     Point
+    </emphasis>
+    vector types.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       The vector to be transformed.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vị Trí -- Location
+     </term>
+     <definition>
+      <paragraph>
+       The amount of translation along each axis.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xoay Chiều -- Rotation
+     </term>
+     <definition>
+      <paragraph>
+       The amount of rotation along each axis. XYZ order.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tỷ Lệ -- Scale
+     </term>
+     <definition>
+      <paragraph>
+       The amount of scaling along each axis.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      -- Vector type
+     </term>
+     <definition>
+      <paragraph>
+       The node applies the transformation differently depending on the semantic type of the input vector.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Điểm -- Point
+        </term>
+        <definition>
+         <paragraph>
+          For this vector type, the node performs a straightforward transformation.
+         </paragraph>
+         <paragraph>
+          Transforming a texture coordinates is analogous to transforming a UV map.
+For instance, translating the texture coordinates along the
+          <strong>
+           positive
+          </strong>
+          X axis would result
+in the evaluated texture to move in the
+          <strong>
+           negative
+          </strong>
+          X axis, much like if one translated a UV map.
+Similarly, scaling the texture coordinates
+          <strong>
+           up
+          </strong>
+          would result in the evaluated texture to scale
+          <strong>
+           down
+          </strong>
+          .
+So transforming the texture coordinates would appear to have the opposite effect on the evaluated texture.
+         </paragraph>
+         <paragraph>
+          The order of transformation is: Scale --&gt; Rotate --&gt; Translate, which means:
+         </paragraph>
+         <block_quote>
+          <bullet_list bullet="-">
+           <list_item>
+            <paragraph>
+             Translation moves the input along the local rotation axis.
+            </paragraph>
+           </list_item>
+           <list_item>
+            <paragraph>
+             Rotation rotates the input around the origin of the space.
+            </paragraph>
+           </list_item>
+           <list_item>
+            <paragraph>
+             Scaling scales the input along the global axis.
+            </paragraph>
+           </list_item>
+          </bullet_list>
+         </block_quote>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Chất Liệu -- Texture
+        </term>
+        <definition>
+         <paragraph>
+          For this vector type, the node performs an inverse transformation.
+         </paragraph>
+         <paragraph>
+          Inverse transforming a texture coordinates would, as opposed to the
+          <emphasis>
+           Point
+          </emphasis>
+          type,
+transform the evaluated texture itself. For instance, translating the texture coordinates along
+the positive X axis would result in the evaluated texture to move in the positive X axis,
+as one would expected. Similarly, scaling the texture coordinates up would result in
+the evaluated texture to scale up, as one would expect.
+         </paragraph>
+         <paragraph>
+          The order of transformation is: Translate --&gt; Rotate --&gt; Scale, which means:
+         </paragraph>
+         <block_quote>
+          <bullet_list bullet="-">
+           <list_item>
+            <paragraph>
+             Translation moves the input along the global axis.
+            </paragraph>
+           </list_item>
+           <list_item>
+            <paragraph>
+             Rotation rotates the input around the translation vector.
+            </paragraph>
+           </list_item>
+           <list_item>
+            <paragraph>
+             Scaling scales the input along the local rotation axis.
+            </paragraph>
+           </list_item>
+          </bullet_list>
+         </block_quote>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Vectơ -- Vector
+        </term>
+        <definition>
+         <paragraph>
+          For this vector type, a
+          <emphasis>
+           Point
+          </emphasis>
+          transformation is performed, but with zero translation.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Pháp Tuyến -- Normal
+        </term>
+        <definition>
+         <paragraph>
+          For this vector type, the node performs the inverse transpose of the transformation and normalize the result.
+Such transformation ensures correct normals after non-uniform scaling.
+So this type should be used when transforming normals.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Vectơ -- Vector
+     </term>
+     <definition>
+      <paragraph>
+       The input vector after transformation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/render_shader-nodes_vector_mapping_example.png'}" uri="images/render_shader-nodes_vector_mapping_example.png"/>
+    <caption>
+     Mapping node example.
+    </caption>
+   </figure>
+  </section>
+ </section>
+</document>

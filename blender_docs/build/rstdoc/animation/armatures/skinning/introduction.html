@@ -1,0 +1,81 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/armatures/skinning/introduction.rst">
+ <comment xml:space="preserve">
+  TODO/Review: {{review|copy=X}}.
+ </comment>
+ <section ids="introduction" names="introduction giới\ thiệu\ --\ introduction">
+  <title>
+   Giới Thiệu -- Introduction
+  </title>
+  <paragraph>
+   We have seen in
+   <reference internal="True" refuri="../index.html">
+    <inline classes="doc">
+     previous pages
+    </inline>
+   </reference>
+   how to design an armature,
+create chains of bones, etc.
+Now, having a good rig is not the final goal, unless you want to produce a "Dance Macabre" animation,
+you will likely want to put some flesh on your skeletons!
+Surprisingly, "linking" an armature to the object(s)
+it should transform and/or deform is called the "skinning" process...
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/animation_armatures_skinning_introduction_example.png'}" uri="images/animation_armatures_skinning_introduction_example.png"/>
+   <caption>
+    The human mesh skinned on its armature.
+   </caption>
+  </figure>
+  <paragraph>
+   In Blender, you have two main skinning types:
+  </paragraph>
+  <enumerated_list enumtype="arabic" prefix="" suffix=".">
+   <list_item>
+    <paragraph>
+     You can
+     <reference internal="True" refuri="../../../scene_layout/object/properties/relations/parents.html">
+      <inline classes="doc">
+       Parent/Constrain Objects to Bones
+      </inline>
+     </reference>
+     --
+then, when you transform the bones in
+     <emphasis>
+      Pose Mode
+     </emphasis>
+     , their "children" objects are also transformed,
+exactly as with a standard parent/children relationship...
+The "children" are
+     <strong>
+      never
+     </strong>
+     deformed when using this method.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     You can
+     <reference internal="True" refuri="parenting.html">
+      <inline classes="doc">
+       Use the Armature Modifier on entire Mesh
+      </inline>
+     </reference>
+     ,
+and then, some parts of this object to some bones inside this armature.
+This is the more complex and powerful method,
+and the only way to really deform the geometry of the object,
+i.e. to modify its vertices/control points relative positions.
+    </paragraph>
+   </list_item>
+  </enumerated_list>
+  <hint>
+   <paragraph>
+    Retargeting
+   </paragraph>
+   <paragraph>
+    Retargeting, which is a way to apply motion-capture data (acquired from real world) to a rig, is available through
+add-ons and importers.
+   </paragraph>
+  </hint>
+ </section>
+</document>

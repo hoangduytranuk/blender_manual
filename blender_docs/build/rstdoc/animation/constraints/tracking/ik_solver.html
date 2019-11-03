@@ -1,0 +1,347 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/tracking/ik_solver.rst">
+ <target refid="bpy-types-kinematicconstraint">
+ </target>
+ <section ids="ik-solver-constraint bpy-types-kinematicconstraint" names="ik\ solver\ constraint --\ ik\ solver\ constraint bpy.types.kinematicconstraint">
+  <title>
+   -- IK Solver Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Inverse Kinematics
+   </emphasis>
+   constraint implements the
+   <emphasis>
+    inverse kinematics
+   </emphasis>
+   armature
+posing technique. Hence, it is only available for bones.
+To quickly create an IK constraint with a target, select a bone in pose mode,
+and press
+   <literal classes="kbd">
+    Shift-I
+   </literal>
+   .
+  </paragraph>
+  <paragraph>
+   This constraint is fully documented in
+the
+   <reference internal="True" refuri="../../armatures/posing/bone_constraints/index.html#bone-constraints-inverse-kinematics">
+    <inline classes="std std-ref">
+     Inverse Kinematics
+    </inline>
+   </reference>
+   page, part of the rigging chapter.
+  </paragraph>
+  <note>
+   <paragraph>
+    The IK constraints are special in that they modify multiple bones.
+For this reason, they ignore their position in the stack and
+always run after all other constraints on the affected bones. To apply constraints after IK,
+it is necessary to first copy the final transformation to a new bone chain,
+e.g. using
+    <reference internal="True" refuri="../transform/copy_transforms.html">
+     <inline classes="doc">
+      Copy Transforms
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </note>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_tracking_ik-solver_panel.png
+
+   Inverse Kinematics panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+        <inline classes="std std-ref">
+         Chỉ Danh của Dữ Liệu -- Data ID
+        </inline>
+       </reference>
+       used to select the an armature.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mục Tiêu của Trục Đứng -- Pole Target
+     </term>
+     <definition>
+      <paragraph>
+       Object for pole rotation.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Số Lần Lặp Lại -- Iterations
+     </term>
+     <definition>
+      <paragraph>
+       Maximum number of solving iterations.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chiều Dài của Dây Chuyền -- Chain Length
+     </term>
+     <definition>
+      <paragraph>
+       How many bones are included in the IK effect. Set to 0 to include all bones.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Dùng Đuôi -- Use Tail
+        </term>
+        <definition>
+         <paragraph>
+          Include bone's tail as last element in chain.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Kéo Giãn -- Stretch
+        </term>
+        <definition>
+         <paragraph>
+          Enable IK stretching.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trọng Lượng -- Weight
+     </term>
+     <definition>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Vị Trí -- Position
+        </term>
+        <definition>
+         <paragraph>
+          For Tree-IK: Weight of position control for this target.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Rotations
+        </term>
+        <definition>
+         <paragraph>
+          Chain follows rotation of target.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       Disable for targetless IK.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Xoay Chiều -- Rotation
+     </term>
+     <definition>
+      <paragraph>
+       Chain follows rotation of target.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="itasc-solver" names="itasc\ solver bộ\ giải\ nhiệm\ itasc\ --\ itasc\ solver">
+    <title>
+     Bộ Giải Nhiệm iTaSC -- iTaSC Solver
+    </title>
+    <paragraph>
+     If the
+     <reference internal="True" refuri="../../armatures/posing/bone_constraints/inverse_kinematics/introduction.html#rigging-armatures-posing-bone-constraints-ik-model-itasc">
+      <inline classes="std std-ref">
+       iTaSC IK Solver
+      </inline>
+     </reference>
+     is used, the IK Solver Constraint changes to add these addition parameters.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Loại IK -- IK Type
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Sao Chép Tư Thế -- Copy Pose
+         </term>
+         <definition>
+          <paragraph>
+           Equivalent to the traditional end effector position and orientation constraint:
+the end effector is constrained to take the position, and optionally the orientation,
+of a given target, which is set in the target field.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             -- Position/Rotation Locking
+            </term>
+            <definition>
+             <paragraph>
+              Allows to obtain various effect by not constraining the coordinates along certain axis.
+             </paragraph>
+             <block_quote>
+              <definition_list>
+               <definition_list_item>
+                <term>
+                 Trục Quy Chiếu -- Axis Reference
+                </term>
+                <definition>
+                 <paragraph>
+                  Specifies how to compute the axis coordinates.
+                 </paragraph>
+                 <definition_list>
+                  <definition_list_item>
+                   <term>
+                    Xương -- Bone
+                   </term>
+                   <definition>
+                    <paragraph>
+                     The coordinates are the position and orientation of the target relative to the bone.
+                    </paragraph>
+                   </definition>
+                  </definition_list_item>
+                  <definition_list_item>
+                   <term>
+                    Mục Tiêu -- Target
+                   </term>
+                   <definition>
+                    <paragraph>
+                     The opposite of
+                     <emphasis>
+                      Bone
+                     </emphasis>
+                     , the coordinates are the position and
+orientation of the tip of the bone relative to the target.
+                    </paragraph>
+                   </definition>
+                  </definition_list_item>
+                 </definition_list>
+                </definition>
+               </definition_list_item>
+              </definition_list>
+             </block_quote>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Khoảng Cách -- Distance
+         </term>
+         <definition>
+          <paragraph>
+           Specify that the end effector will stay inside, at, or outside a sphere centered on the target object.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Chế Độ Giới Hạn -- Limit Mode
+            </term>
+            <definition>
+             <definition_list>
+              <definition_list_item>
+               <term>
+                Bên Trong -- Inside
+               </term>
+               <definition>
+                <paragraph>
+                 The end effector will stay inside of the distance from the target object.
+                </paragraph>
+               </definition>
+              </definition_list_item>
+              <definition_list_item>
+               <term>
+                Bên Ngoài -- Outside
+               </term>
+               <definition>
+                <paragraph>
+                 The end effector will stay outside of the distance from the target object.
+                </paragraph>
+               </definition>
+              </definition_list_item>
+              <definition_list_item>
+               <term>
+                Trên Mặt -- On Surface
+               </term>
+               <definition>
+                <paragraph>
+                 The end effector will stay exactly at the distance from the target object.
+                </paragraph>
+               </definition>
+              </definition_list_item>
+             </definition_list>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Khoảng Cách -- Distance
+            </term>
+            <definition>
+             <paragraph>
+              The radius from the target object.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <note>
+     <paragraph>
+      The
+      <emphasis>
+       Influence
+      </emphasis>
+      parameter is not implemented if
+      <emphasis>
+       Pole Target
+      </emphasis>
+      is used.
+     </paragraph>
+    </note>
+    <vimeo aspect="None" height="None" id="171279647" width="None">
+    </vimeo>
+   </section>
+  </section>
+ </section>
+</document>

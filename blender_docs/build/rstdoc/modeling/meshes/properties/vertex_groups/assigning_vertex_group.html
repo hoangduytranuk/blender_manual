@@ -1,0 +1,397 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/modeling/meshes/properties/vertex_groups/assigning_vertex_group.rst">
+ <section ids="assigning-a-vertex-group" names="assigning\ a\ vertex\ group --\ assigning\ a\ vertex\ group">
+  <title>
+   -- Assigning a Vertex Group
+  </title>
+  <section ids="creating-vertex-groups" names="creating\ vertex\ groups --\ creating\ vertex\ groups">
+   <title>
+    -- Creating Vertex Groups
+   </title>
+   <figure align="right" ids="id1">
+    <image candidates="{'*': 'images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_empty.png'}" uri="images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_empty.png"/>
+    <caption>
+     Empty Vertex Group panel.
+    </caption>
+   </figure>
+   <paragraph>
+    Vertex Groups are maintained within the
+    <emphasis>
+     Mesh
+    </emphasis>
+    tab (1) in the Properties Editor.
+As long as no Vertex groups are defined (the default for new Mesh Objects),
+the Panel is empty (2).
+   </paragraph>
+   <paragraph>
+    You create a vertex group by
+    <literal classes="kbd">
+     LMB
+    </literal>
+    on the
+    <emphasis>
+     Add
+    </emphasis>
+    button (+) on the right Panel border (3).
+Initially the group is named "Group" (or "Group.nnn" when the name already exists) and
+gets displayed in the Panel (2) (see next image).
+   </paragraph>
+   <container classes="lead">
+    <comment xml:space="preserve">
+     clear
+    </comment>
+   </container>
+   <section ids="vertex-groups-panel-controls" names="vertex\ groups\ panel\ controls --\ vertex\ groups\ panel\ controls">
+    <title>
+     -- Vertex Groups Panel Controls
+    </title>
+    <figure align="right" ids="id2">
+     <image candidates="{'*': 'images/modeling_meshes_properties_vertex-groups_vertex-groups_panel-edit.png'}" uri="images/modeling_meshes_properties_vertex-groups_vertex-groups_panel-edit.png"/>
+     <caption>
+      One Vertex Group.
+     </caption>
+    </figure>
+    <paragraph>
+     Once a new Vertex Group has been added, the new Group appears
+in the Vertex Groups panel. There you find three clickable elements:
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Tên Nhóm -- Group Name
+      </term>
+      <definition>
+       <paragraph>
+        The group name can be changed by double-clicking
+        <literal classes="kbd">
+         LMB
+        </literal>
+        on the name itself.
+Then you can edit the name as you like.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Plus Icon
+      </term>
+      <definition>
+       <paragraph>
+        When the little icon in the left lower corner can be clicked, a new
+row opens up where you can enter a search term. This becomes handy when
+the number of vertex groups gets big.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Drag Handle
+      </term>
+      <definition>
+       <paragraph>
+        If you have a large number of vertex groups and you want to see more
+than a few Groups, you can
+        <literal classes="kbd">
+         LMB
+        </literal>
+        on the small drag handle to tear
+the vertex groups list larger or smaller.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       -- Active Group
+      </term>
+      <definition>
+       <paragraph>
+        When a Vertex Group is created,
+then it is also automatically marked as the
+        <emphasis>
+         Active Group
+        </emphasis>
+        .
+This is indicated by setting the background of the panel entry
+to a light blue color. If you have two or more groups in the list,
+then you can change the active group by
+        <literal classes="kbd">
+         LMB
+        </literal>
+        on
+the corresponding entry in the Vertex Group panel.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="deleting-vertex-groups" names="deleting\ vertex\ groups --\ deleting\ vertex\ groups">
+   <title>
+    -- Deleting Vertex Groups
+   </title>
+   <figure align="right" ids="id3">
+    <image candidates="{'*': 'images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_delete.png'}" uri="images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_delete.png"/>
+    <caption>
+     Delete a Vertex Group.
+    </caption>
+   </figure>
+   <paragraph>
+    You delete a Vertex Group by first making it the active group
+(select it in the panel) and then
+    <literal classes="kbd">
+     LMB
+    </literal>
+    the
+    <emphasis>
+     Remove
+    </emphasis>
+    button (-) at the right Panel border.
+   </paragraph>
+   <paragraph>
+    Deleting a Vertex Group only deletes the vertex assignments to the Group.
+The vertices themselves are not deleted.
+   </paragraph>
+  </section>
+  <section ids="locking-vertex-groups" names="locking\ vertex\ groups --\ locking\ vertex\ groups">
+   <title>
+    -- Locking Vertex Groups
+   </title>
+   <figure align="right" ids="id4">
+    <image candidates="{'*': 'images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_lock.png'}" uri="images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_lock.png"/>
+    <caption>
+     Lock a Vertex Group.
+    </caption>
+   </figure>
+   <paragraph>
+    Right after creation of a Vertex Group,
+an open padlock icon shows up on the right side of the Vertex Group List entry.
+This icon indicates that the Vertex Group can be edited.
+You can add vertex assignments to the group or remove assignments from the group.
+And you can change it with the weight paint brushes, etc.
+   </paragraph>
+   <paragraph>
+    When you click on the icon,
+it changes to a closed padlock icon and all vertex group modifications get disabled.
+You can only rename or delete the group, and unlock it again.
+No other operations are allowed on locked Vertex Groups,
+thus all corresponding buttons become disabled for locked Vertex Groups.
+   </paragraph>
+  </section>
+  <section ids="working-with-content-of-vertex-groups" names="working\ with\ content\ of\ vertex\ groups --\ working\ with\ content\ of\ vertex\ groups">
+   <title>
+    -- Working with Content of Vertex Groups
+   </title>
+   <section ids="assigning-vertices-to-a-group" names="assigning\ vertices\ to\ a\ group --\ assigning\ vertices\ to\ a\ group">
+    <title>
+     -- Assigning Vertices to a Group
+    </title>
+    <figure align="right" ids="id5">
+     <image candidates="{'*': 'images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_assign.png'}" uri="images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_assign.png"/>
+     <caption>
+      Assign weights to active group.
+     </caption>
+    </figure>
+    <paragraph>
+     You add vertices to a group as follows:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Select the group from the group list, thus make it the Active Group (1).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       From the 3D View select
+       <literal classes="kbd">
+        Shift-RMB
+       </literal>
+       all vertices that you want to add to the group.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Set the weight value that shall be assigned to all selected vertices (2).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <literal classes="kbd">
+        LMB
+       </literal>
+       the
+       <emphasis>
+        Assign
+       </emphasis>
+       button to assign the selected vertices to the active group using the given weight (3).
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     Note that weight Assignment is not available for locked Vertex Groups.
+The Assign button is grayed out in that case.
+    </paragraph>
+    <note>
+     <paragraph>
+      Assign is additive
+     </paragraph>
+     <paragraph>
+      The
+      <emphasis>
+       Assign
+      </emphasis>
+      button only adds the currently
+selected vertices to the active group. Vertices already
+assigned to the group are not removed from the group.
+     </paragraph>
+     <paragraph>
+      Also keep in mind that a vertex can be assigned to multiple groups.
+     </paragraph>
+    </note>
+   </section>
+   <section ids="checking-assignments" names="checking\ assignments --\ checking\ assignments">
+    <title>
+     -- Checking Assignments
+    </title>
+    <paragraph>
+     To be sure the selected vertices are in the desired Vertex Group,
+you can try press the deselect button.
+If the vertices remain selected then they are not yet in the current Vertex Group.
+    </paragraph>
+    <paragraph>
+     At this point you may assign then, but take care since all selected vertices
+will have their weight set to the value in the
+     <emphasis>
+      Weight:
+     </emphasis>
+     field.
+    </paragraph>
+   </section>
+   <section ids="removing-assignments-from-a-group" names="removing\ assignments\ from\ a\ group --\ removing\ assignments\ from\ a\ group">
+    <title>
+     -- Removing Assignments from a Group
+    </title>
+    <paragraph>
+     You remove vertices from a group as follows:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Select the group from the group list (make it the active group).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Select all vertices that you want to remove from the group.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Press the
+       <emphasis>
+        Remove
+       </emphasis>
+       button.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <paragraph>
+     Note that Removing weight Assignments is not available for locked Vertex Groups.
+The Remove button is grayed out in that case.
+    </paragraph>
+   </section>
+   <section ids="using-groups-for-selecting-deselecting" names="using\ groups\ for\ selecting/deselecting --\ using\ groups\ for\ selecting/deselecting">
+    <title>
+     -- Using Groups for Selecting/Deselecting
+    </title>
+    <paragraph>
+     You can quickly select all assigned vertices of a group:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       (optionally) press
+       <literal classes="kbd">
+        A
+       </literal>
+       once or twice to unselect all vertices.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Select the group from the group list (make it the active group).
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       When you now
+       <literal classes="kbd">
+        LMB
+       </literal>
+       click the
+       <emphasis>
+        Select
+       </emphasis>
+       button,
+then the vertices assigned to the active group will be selected and highlighted in the 3D View.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       When you
+       <literal classes="kbd">
+        LMB
+       </literal>
+       click the
+       <emphasis>
+        Deselect
+       </emphasis>
+       button instead,
+then the vertices assigned to the active group will be deselected in the 3D View.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <note>
+     <paragraph>
+      Selecting/Deselecting is additive
+     </paragraph>
+     <paragraph>
+      If you already have vertices selected in the 3D View,
+then selecting the vertices of a group will add the vertices
+but also keep the already selected vertices selected.
+Vice versa, deselecting the vertices of a vertex group
+will only deselect the vertices assigned to the group
+and keep all other vertices selected.
+     </paragraph>
+    </note>
+   </section>
+   <section ids="finding-ungrouped-vertices" names="finding\ ungrouped\ vertices --\ finding\ ungrouped\ vertices">
+    <title>
+     -- Finding Ungrouped Vertices
+    </title>
+    <paragraph>
+     You can find ungrouped vertices as follows:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Press
+       <literal classes="kbd">
+        A
+       </literal>
+       once or twice to unselect all vertices.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       In the header of the 3D View: Navigate to
+       <inline classes="menuselection" rawtext=":menuselection:`Chọn (Select) --&gt; Điểm Đỉnh Chưa Nhóm (Ungrouped Vertices)`">
+        Chọn (Select) ‣ Điểm Đỉnh Chưa Nhóm (Ungrouped Vertices)
+       </inline>
+       .
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+ </section>
+</document>

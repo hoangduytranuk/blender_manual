@@ -1,0 +1,434 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/filter/defocus.rst">
+ <target ids="['bpy-types-compositornodedefocus']" names="['bpy.types.compositornodedefocus']">
+ </target>
+ <comment xml:space="preserve">
+  Todo: review examples section
+ </comment>
+ <section ids="defocus-node" names="defocus\ node nút\ phi\ hội\ tụ\ --\ defocus\ node">
+  <title>
+   Nút Phi Hội Tụ -- Defocus Node
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/compositing_node-types_CompositorNodeDefocus.png'}" uri="images/compositing_node-types_CompositorNodeDefocus.png"/>
+   <caption>
+    Nút Phi Hội Tụ.
+   </caption>
+  </figure>
+  <paragraph>
+   <emphasis>
+    Nút Phi Hội Tụ
+   </emphasis>
+   làm nhòe một số vùng của hình ảnh dựa trên ánh xạ/màn chắn cung cấp ở đầu vào.
+  </paragraph>
+  <paragraph>
+   Nó thường được sử dụng để mô phỏng độ sâu trường ảnh (
+   <reference internal="True" refuri="../../../glossary/index.html#term-dof">
+    <inline classes="xref std std-term">
+     DOF
+    </inline>
+   </reference>
+   ) sử dụng phương thức hậu xử lý với đầu vào bộ đệm Z (Z-buffer), song cũng cho phép làm nhòe các hình ảnh không dựa trên độ sâu Z (Z depth) nữa.
+  </paragraph>
+  <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+   <title>
+    Đầu Vào -- Inputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào hình ảnh tiêu chuẩn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Z
+     </term>
+     <definition>
+      <paragraph>
+       Đầu vào bộ đệm Z (Z-buffer), song cũng có thể là một hình ảnh (thang độ xám) được sử dụng làm màn chắn hoặc cung cấp một đơn giá trị.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="properties" names="properties tính\ chất\ --\ properties">
+   <title>
+    Tính Chất -- Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Loại Bokeh -- Bokeh Type
+     </term>
+     <definition>
+      <paragraph>
+       Số lượng lá khẩu của màng chắn (bộ lá khẩu trong ống kính) của máy ảnh ảo.
+      </paragraph>
+      <paragraph>
+       Đĩa (Disk) (để mô phỏng một vòng tròn (circle) hoàn hảo) hoặc Hình Tam Giác (Triangle) (3 lá), Hình Vuông (Square) (4 lá), Hình Ngũ Giác (Pentagon) (5 lá), Hình Lục Giác (Hexagon) (6 lá), Hình Bảy Góc (Heptagon) (7 lá) hoặc hình Bát Giác (Octagon) (8 lá).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Góc Độ -- Angle
+     </term>
+     <definition>
+      <paragraph>
+       Nút này sẽ bị tắt nếu thể loại nhòe Bokeh (Bokeh Type) được đặt là Đĩa (Disk). Nó có thể được sử dụng để thêm hiệu ứng xoay chiều cho hình Bokeh. Giá trị là độ góc.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chỉnh Sửa Gamma -- Gamma Correction
+     </term>
+     <definition>
+      <paragraph>
+       Áp dụng hiệu chỉnh gamma trên hình ảnh trước và sau khi làm nhòe mờ nó.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Khẩu Độ -- F-Stop
+     </term>
+     <definition>
+      <paragraph>
+       Tùy chọn này kiểm soát mức độ nhòe mờ của tiêu điểm tương tự như phương pháp làm của một máy ảnh thực. Nó mô phỏng khẩu độ
+       <emphasis>
+        f
+       </emphasis>
+       của tròng mắt ống kính thật, mà không sửa đổi độ sáng của bức ảnh. Giá trị mặc định 128 được coi là vô cực: mọi thứ đều rõ nét hoàn hảo. Phân nửa giá trị đi thì sẽ làm tăng gấp đôi lượng nhòe mờ. Nút này sẽ bị vô hiệu hóa nếu tính năng
+       <emphasis>
+        Không có bộ đệm Z
+       </emphasis>
+       (No Z-buffer) được bật lên.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nhòe Tối Đa -- Max Blur
+     </term>
+     <definition>
+      <paragraph>
+       Giá trị này giới hạn lượng nhòe mờ bằng cách định giá trị làm bán kính nhòe mờ tối đa. Cái này có thể được sử dụng để tối ưu hóa hiệu suất hoạt động. Giá trị mặc định bằng 0 có nghĩa là không có giới hạn.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giới Hạn -- Threshold
+     </term>
+     <definition>
+      <paragraph>
+       Một số giả tượng, như rò rỉ cạnh, có thể xảy ra, nếu sự chênh lệch nhòe mờ giữa các điểm đỉnh xảy ra là lớn. Giá trị này kiểm soát mức độ chênh lệch nhòe mờ lớn mức nào mà vẫn được coi là an toàn.
+      </paragraph>
+      <tip>
+       <paragraph>
+        Chỉ thay đổi giá trị này, nếu có vấn đề xảy ra đối với đối tượng đang lấy nét.
+       </paragraph>
+      </tip>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Duyệt Thảo -- Preview
+     </term>
+     <definition>
+      <paragraph>
+       Nếu được kích hoạt thì một lượng giới hạn mẫu vật (quasi-) ngẫu nhiên sẽ được sử dụng để kết xuất bản xem trước. Phương pháp lấy mẫu vật này sẽ gây nhiễu thêm, song mình sẽ không thấy nó trong bản kết xuất cuối cùng.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Cảnh -- Scene
+     </term>
+     <definition>
+      <paragraph>
+       Để chọn cảnh liên kết.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Không Có Bộ Đệm Z -- No Z-buffer
+     </term>
+     <definition>
+      <paragraph>
+       Nên được kích hoạt cho một đầu vào Z không có bộ đệm Z (Z-buffer). Tùy chọn
+       <emphasis>
+        Không Có Bộ Đệm Z
+       </emphasis>
+       (No Z-buffer) sẽ được kích hoạt tự động bất cứ khi nào một nút không có nền tảng là hình ảnh được kết nối với đầu vào Z (Z input).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tỷ Lệ Z -- Z Scale
+     </term>
+     <definition>
+      <paragraph>
+       Only active when
+       <emphasis>
+        No Z-buffer
+       </emphasis>
+       is enabled. When
+       <emphasis>
+        No Z-buffer
+       </emphasis>
+       is used,
+the input is used directly to control the blur radius (similar to
+       <emphasis>
+        F-Stop
+       </emphasis>
+       when using the Z-buffer).
+This parameter can be used to scale the range of the Z input.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+   <title>
+    Đầu Ra -- Outputs
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hình Ảnh -- Image
+     </term>
+     <definition>
+      <paragraph>
+       Đầu ra tiêu chuẩn của hình ảnh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="examples" names="examples ví\ dụ\ --\ examples">
+   <title>
+    Ví Dụ -- Examples
+   </title>
+   <figure>
+    <image candidates="{'*': 'images/compositing_types_filter_defocus_example.jpg'}" uri="images/compositing_types_filter_defocus_example.jpg" width="300px"/>
+   </figure>
+   <paragraph>
+    In this
+    <reference name="blend-file example" refuri="https://wiki.blender.org/uploads/7/79/Doftest.blend">
+     blend-file example
+    </reference>
+    ,
+the ball array image is blurred as if it was taken by a camera with an f-stop of 2.8 resulting
+in a fairly narrow depth of field centered on 7.5 units from the camera.
+As the balls recede into the distance, they get blurrier.
+   </paragraph>
+   <section ids="no-z-buffer-examples" names="no\ z-buffer\ examples những\ ví\ dụ\ về\ không\ có\ bộ\ đệm\ z\ --\ no\ z-buffer\ examples">
+    <title>
+     Những Ví Dụ về Không Có Bộ Đệm Z -- No Z-Buffer Examples
+    </title>
+    <paragraph>
+     Sometimes might want to have more control to blur the image. For instance,
+you may want to only blur one object while leaving everything else alone (or the other way around),
+or you want to blur the whole image uniformly all at once.
+The node, therefore, allows you to use something other than an actual Z-buffer as the Z input.
+For instance, you could connect an image node and use a grayscale image where the color designates
+how much to blur the image at that point, where white is the maximum blur and black is no blur.
+Or, you could use a Time node to uniformly blur the image,
+where the time value controls the maximum blur for that frame.
+It may also be used to obtain a possibly slightly better DoF blur,
+by using a fake depth-shaded image instead of a Z-buffer.
+(A typical method to create the fake depth-shaded image is by using a linear blend texture
+for all objects in the scene or by using the "fog/mist" fake depth shading method.)
+This also has the advantage that the fake depth image can have anti-aliasing,
+which is not possible with a real Z-buffer.
+    </paragraph>
+    <paragraph>
+     Tham số
+     <emphasis>
+      Không có bộ đệm Z
+     </emphasis>
+     (No Z-buffer), do đó trở thành một điều khiển chính về độ nhòe mờ. Đầu vào phải được tỷ lệ hóa, vì thông thường giá trị của chất liệu chỉ nằm trong phạm vi từ 0,0 đến 1,0 mà thôi.
+    </paragraph>
+   </section>
+   <section ids="camera-settings" names="camera\ settings sắp\ đặt\ của\ máy\ quay\ phim\ --\ camera\ settings">
+    <title>
+     Sắp Đặt của Máy Quay Phim -- Camera Settings
+    </title>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/compositing_types_filter_defocus_depth-of-field-panel.png'}" uri="images/compositing_types_filter_defocus_depth-of-field-panel.png"/>
+     <caption>
+      Sắp đặt về khoảng cách trong Bảng Điều Khiển Độ Sâu Trường Ảnh.
+     </caption>
+    </figure>
+    <paragraph>
+     Nút
+     <emphasis>
+      Phi Hội Tụ
+     </emphasis>
+     (Defocus) sử dụng dữ liệu máy quay phim thực tế trong cảnh của bạn nếu dữ liệu được cung cấp bởi nút
+     <emphasis>
+      Tầng Kết Xuất
+     </emphasis>
+     (Render Layer).
+    </paragraph>
+    <paragraph>
+     Để đặt điểm lấy nét thì hiện giờ máy ảnh có thông số
+     <emphasis>
+      Khoảng Cách
+     </emphasis>
+     (Distance), tức cách vắn tắt biểu thị Khoảng Cách của Độ Sâu Trường Ảnh. Hãy sử dụng tham số này của máy quay phim để đặt trường diện (focal plane) của máy ảnh (các vật thể của Khoảng Cách Độ Sâu Trường Ảnh, cách xa máy quay phim, song nằm trong tầm nhìn (rõ nét)). Đặt
+     <emphasis>
+      Khoảng Cách
+     </emphasis>
+     trong bảng biên soạn
+     <emphasis>
+      Máy Quay Phim
+     </emphasis>
+     chính; nút ấy nằm ngay bên dưới
+     <emphasis>
+      Độ Sâu Trường Ảnh
+     </emphasis>
+     .
+    </paragraph>
+    <paragraph>
+     Để làm cho tiêu điểm nhìn thấy được thì hãy bật tùy chọn
+     <emphasis>
+      Giới Hạn
+     </emphasis>
+     của máy quay phim lên. Tiêu điểm sẽ hiện ra trong hình chữ thập màu vàng nằm dọc trên trục định hướng của máy quay phim.
+    </paragraph>
+   </section>
+   <section ids="hints" names="hints gợi\ ý\ --\ hints">
+    <title>
+     Gợi ý -- Hints
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Duyệt Thảo -- Preview
+      </term>
+      <definition>
+       <paragraph>
+        Nói chung, hãy sử dụng chế độ xem trước và điều chỉnh các tham số theo ý thích của mình. Sau đó tắt chế độ xem trước đi, trước khi thi hành kết xuất sau cùng. Nút này đòi hỏi nhiều công năng tính toán, vì vậy hãy quan sát cửa sổ bàn giao tiếp của mình vì nó sẽ cho bạn biết thông tin về từng dòng quét kết xuất được tính toán một.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Giả Tượng Cạnh -- Edge Artifacts
+      </term>
+      <definition>
+       <paragraph>
+        Để giảm thiểu giả tượng tới mức tối thiểu thì hãy thử thiết lập cảnh của bạn sao cho sự chênh lệch trong khoảng cách giữa hai đối tượng có khả năng chồng chéo lên nhau ở một điểm nào đó không quá lớn.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đổi Trường Nét -- "Focus Pull"
+      </term>
+      <definition>
+       <paragraph>
+        Nhớ là đây không phải là độ sâu trường ảnh (DoF) thật, song chỉ là sự mô phỏng của xử lý hậu kỳ (post-processing simulation) mà thôi. Điều này là điều bất khả thi, tuy nó là vấn đề rất dễ giải quyết đối với DoF thật. Một ví dụ điển hình là một cảnh với một đối tượng nào đó rất gần với máy quay phim và máy quay phim đang tập trung vào một vài điểm nằm xa ở phía sau vật thể ấy. Trong thực tế, sử dụng độ sâu trường ảnh mỏng làm biến mất các vật thể lân cận là một điều hoàn toàn khả thi, cho phép máy quay phim nhìn thấy phía sau chúng. Các nhà quay phim Hollywood sử dụng đặc tính trực quan này để đạt được hiệu ứng "Đổi Trường Nét" (Focus Pull) nổi tiếng, trong đó tiêu điểm được di chuyển từ một vật ở gần sang một vật thể khác ở xa, sao cho các đối tượng không liên quan "khác" hoàn toàn bị biến mất. Điều này đơn thuần là điều không thể thực hiện được với phương thức xử lý hậu kỳ đơn lượt (single pass) hiện tại. Nếu bạn thực sự muốn đạt được hiệu ứng này một cách thỏa đáng thì đây là cách làm:
+       </paragraph>
+       <bullet_list bullet="-">
+        <list_item>
+         <paragraph>
+          Phân tách các vật thể trong cảnh của bạn thành các vật ở "gần" và các vật ở "xa", và kết xuất chúng thành 2 lượt.
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Now, combine the two results, each with their own "defocus" nodes driven by the same Time node,
+but with one of them inverted (e.g. using a Map Value node with a Size of -1).
+As the defocus of one increases,
+the defocus on the other decreases at the same rate, creating a smooth transition.
+         </paragraph>
+        </list_item>
+       </bullet_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Chống Răng Chưa tại các Giá Trị Khẩu Độ Thấp -- Aliasing at Low f-Stop Values
+      </term>
+      <definition>
+       <paragraph>
+        Ở các giá trị rất thấp, dưới 5, nút sẽ khởi công loại bỏ bất cứ sự lấy mẫu dư (oversampling) nào, và làm rõ nét vật thể trong Khoảng Cách Trường Ảnh (DoF Distance). Nếu vật thể nằm trên một nền tương phản thì việc làm này có thể dẫn đến tình trạng răng cưa (aliasing) nhìn thấy được, cái mà OSA (Lấy Mẫu Dư --
+        <inline classes="xref std std-term">
+         Oversampling
+        </inline>
+        ) được thiết kế để tránh né. Nếu bạn gặp phải vấn đề này thì:
+       </paragraph>
+       <bullet_list bullet="-">
+        <list_item>
+         <paragraph>
+          Tự mình Lấy Mẫu Dư (OSA) bằng cách kết xuất với kích thước gấp đôi cỡ dự định, rồi thu nhỏ lại, hầu cho các điểm ảnh kề cận hòa nhòe lại với nhau.
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Dùng
+          <reference internal="True" refuri="blur_node.html#bpy-types-compositornodeblur">
+           <inline classes="std std-ref">
+            Nút Làm Nhòe -- Blur Node
+           </inline>
+          </reference>
+          )
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Đặt Khoảng Cách Trường Ảnh (DoF Distance) lệch đi một chút, hầu cho vật thể rõ nét bị làm nhòe đi một chút xíu.
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Use a higher f-stop, which will start the blur,
+and then use the Z socket to a Map Value to a Blur node to enhance the blur effect.
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          Bố trí lại các vật thể trong cảnh của mình để sử dụng một cái nền có độ tương phản thấp hơn.
+         </paragraph>
+        </list_item>
+       </bullet_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Không Có Bộ Đệm Z -- No Z-Buffer
+      </term>
+      <definition>
+       <paragraph>
+        Một lời cảnh báo cuối cùng, vì không có cách nào để phát hiện rằng bộ đệm Z có thực sự được kết nối với nút hay không, xin bạn hãy
+        <strong>
+         rất
+        </strong>
+        cẩn thận với nút bật
+        <emphasis>
+         Không có bộ đệm Z
+        </emphasis>
+        . Nếu giá trị
+        <emphasis>
+         Tỷ Lệ Z
+        </emphasis>
+        (Z scale) trở nên lớn và bạn quên đưa nó trở về một giá trị thấp thì các giá trị có thể đột nhiên được lý giải thành một giá trị bán kính làm nhòe lớn khủng khiếp, khiến cho thời gian xử lý bùng nổ.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+ </section>
+</document>

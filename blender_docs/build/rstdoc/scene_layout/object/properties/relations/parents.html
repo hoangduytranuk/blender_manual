@@ -1,0 +1,923 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/scene_layout/object/properties/relations/parents.rst">
+ <target refid="bpy-types-object-parent">
+ </target>
+ <section ids="parenting-objects bpy-types-object-parent" names="parenting\ objects vật\ thể\ phụ\ huynh\ --\ parenting\ objects bpy.types.object.parent">
+  <title>
+   Vật Thể Phụ Huynh -- Parenting Objects
+  </title>
+  <target refid="bpy-ops-object-parent-set">
+  </target>
+  <section ids="make-parent bpy-ops-object-parent-set" names="make\ parent đặt\ phụ\ huynh\ --\ make\ parent bpy.ops.object.parent_set">
+   <title>
+    Đặt Phụ Huynh -- Make Parent
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Chế Độ -- Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Chế Độ Vật Thể -- Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Phụ Huynh (Parent)`">
+         Vật Thể (Object) ‣ Phụ Huynh (Parent)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-P
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    When modeling a complex object, such as a watch,
+you may choose to model the different parts as separate objects. However,
+all of the parts may be attached to each other. In these cases,
+you want to designate one object as the parent of all the children. Movement,
+rotation or scaling of the parent also affects the children.
+   </paragraph>
+   <paragraph>
+    To parent objects, select at least two objects (select the
+    <emphasis>
+     Child Objects
+    </emphasis>
+    first,
+and select the
+    <emphasis>
+     Parent Object
+    </emphasis>
+    last), and press
+    <literal classes="kbd">
+     Ctrl-P
+    </literal>
+    .
+The
+    <emphasis>
+     Set Parent To
+    </emphasis>
+    menu will pop up allowing you to select from one of several
+possible different parenting types.
+Selecting one of the entries in
+    <emphasis>
+     Set Parent To
+    </emphasis>
+    confirms,
+and the child/children to parent relationship is created.
+   </paragraph>
+   <paragraph>
+    The last object selected will be the
+    <emphasis>
+     Active Object
+    </emphasis>
+    (outlined in light orange),
+and will also be the
+    <emphasis>
+     Parent Object
+    </emphasis>
+    .
+If you selected multiple objects before selecting the parent,
+they will all be children of the parent and will be at the same level of the hierarchy
+(they are "siblings").
+   </paragraph>
+   <paragraph>
+    The
+    <emphasis>
+     Set Parent To
+    </emphasis>
+    pop-up menu is context-sensitive, which means
+the number of entries it displays can change depending on what objects are selected
+when the
+    <literal classes="kbd">
+     Ctrl-P
+    </literal>
+    shortcut is used.
+   </paragraph>
+   <paragraph>
+    For parenting without
+    <reference name="Parent Inverse" refid="parent-inverse">
+     Parent Inverse
+    </reference>
+    , use the
+    <literal classes="kbd">
+     Shift-Ctrl-P
+    </literal>
+    shortcut instead.
+   </paragraph>
+   <paragraph>
+    Moving, rotating or scaling the parent will also usually move/rotate/scale the child/children.
+However, moving/rotating/scaling the child/children of the parent will not result in the parent
+moving/rotating/scaling. In other words,
+the direction of influence is from parent to child and not child to parent.
+   </paragraph>
+   <paragraph>
+    In general when using
+    <literal classes="kbd">
+     Ctrl-P
+    </literal>
+    or
+    <inline classes="menuselection" rawtext=":menuselection:`Thanh Tiêu Đề Góc Nhìn 3D (3D View Header) --&gt; Vật Thể (Object) --&gt; Phụ Huynh (Parent)`">
+     Thanh Tiêu Đề Góc Nhìn 3D (3D View Header) ‣ Vật Thể (Object) ‣ Phụ Huynh (Parent)
+    </inline>
+    to parent objects, the
+    <emphasis>
+     Child Objects
+    </emphasis>
+    can only have one
+    <emphasis>
+     Parent Object
+    </emphasis>
+    . If a
+    <emphasis>
+     Child Object
+    </emphasis>
+    already has a
+    <emphasis>
+     Parent Object
+    </emphasis>
+    and you give it another parent then Blender will remove the previous parent relationship.
+   </paragraph>
+   <section ids="parent-inverse" names="parent\ inverse">
+    <title>
+     Parent Inverse
+    </title>
+    <paragraph>
+     When objects are parented with
+     <literal classes="kbd">
+      Ctrl-P
+     </literal>
+     , the current transformation of the parent
+is stored in a hidden
+     <emphasis>
+      Parent Inverse
+     </emphasis>
+     matrix. By using that, the location, rotation and
+scale properties of the child can continue to be effectively interpreted in world space,
+as long as the parent doesn't move.
+    </paragraph>
+    <paragraph>
+     For parenting without assigning the matrix, use the
+     <literal classes="kbd">
+      Shift-Ctrl-P
+     </literal>
+     shortcut instead.
+This creates an alternative parent-child-relationship where child object's properties are
+evaluated in the parent's coordinate system. This is the better choice for CAD purposes,
+for example.
+    </paragraph>
+    <paragraph>
+     The matrix can also be cleared after parenting by using
+     <reference internal="True" refid="bpy-ops-object-parent-clear">
+      <inline classes="std std-ref">
+       Clear Parent Inverse
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+   <section ids="parent-types" names="parent\ types">
+    <title>
+     Parent Types
+    </title>
+    <paragraph>
+     Blender supports many different types of parenting, listed below:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Vật Thể -- Object
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Xương -- Bone
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Điểm Đỉnh -- Vertex
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Điểm Đỉnh (Tam Giác) -- Vertex (Triangle)
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <rubric>
+     -- Setups
+    </rubric>
+    <paragraph>
+     Besides parenting the selected objects,
+it adds a Modifier or Constraint to the child objects, with the parent as target object
+or activates a parent property i.e.
+     <emphasis>
+      Follow Path
+     </emphasis>
+     .
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../../../../animation/armatures/skinning/parenting.html">
+        <inline classes="doc">
+         Armature Deform
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../../../../modeling/modifiers/deform/curve.html">
+        <inline classes="doc">
+         Curve Deform
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../../../../modeling/curves/properties/path_animation.html#curve-path-animation">
+        <inline classes="std std-ref">
+         Follow Path
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../../../../animation/constraints/relationship/follow_path.html">
+        <inline classes="doc">
+         Path Constraint
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <reference internal="True" refuri="../../../../modeling/modifiers/deform/lattice.html">
+        <inline classes="doc">
+         Lattice Deform
+        </inline>
+       </reference>
+      </paragraph>
+     </list_item>
+    </bullet_list>
+    <target refid="object-parenting">
+    </target>
+   </section>
+  </section>
+  <section ids="object-parent object-parenting" names="object\ parent phụ\ huynh\ của\ vật\ thể\ --\ object\ parent object-parenting">
+   <title>
+    Phụ Huynh của Vật Thể -- Object Parent
+   </title>
+   <paragraph>
+    <emphasis>
+     Object Parent
+    </emphasis>
+    is the most general form of parenting that Blender supports.
+If will take selected objects and make the last selected object the
+    <emphasis>
+     Parent Object
+    </emphasis>
+    ,
+while all other selected objects will be
+    <emphasis>
+     Child Objects
+    </emphasis>
+    .
+The child objects will inherit the transformations of the parent. The parent object can be of any type.
+   </paragraph>
+   <section ids="object-keep-transform-parent" names="object\ (keep\ transform)\ parent phụ\ huynh\ của\ vật\ thể\ (duy\ trì\ biến\ hóa)\ --\ object\ (keep\ transform)\ parent">
+    <title>
+     Phụ Huynh của Vật Thể (Duy Trì Biến Hóa) -- Object (Keep Transform) Parent
+    </title>
+    <paragraph>
+     <emphasis>
+      Object (Keep Transform) Parent
+     </emphasis>
+     works in a very similar way to
+     <emphasis>
+      Object Parent
+     </emphasis>
+     . The major difference is in whether
+the
+     <emphasis>
+      Child Objects
+     </emphasis>
+     will remember any previous transformations applied to them from the previous
+     <emphasis>
+      Parent Object
+     </emphasis>
+     .
+    </paragraph>
+    <paragraph>
+     Since explaining this in an easy to understand technical way is hard,
+let's instead use an example to demonstrate.
+    </paragraph>
+    <paragraph>
+     Assume that we have a scene consisting of three objects,
+those being two Empty Objects named "EmptyA" and "EmptyB", and a Monkey object.
+Fig.
+     <reference internal="True" refid="fig-view3d-parent-scene-no">
+      <inline classes="std std-ref">
+       Scene with no parenting.
+      </inline>
+     </reference>
+     shows the three objects with no parenting relationships active on them.
+    </paragraph>
+    <target refid="fig-view3d-parent-scene-no">
+    </target>
+    <figure ids="id1 fig-view3d-parent-scene-no" names="fig-view3d-parent-scene-no">
+     <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_keep-transform-a.png'}" uri="images/scene-layout_object_properties_relations_parents_keep-transform-a.png"/>
+     <caption>
+      Scene with no parenting.
+     </caption>
+    </figure>
+    <paragraph>
+     If you select the Monkey object by
+     <literal classes="kbd">
+      RMB
+     </literal>
+     click and then
+     <literal classes="kbd">
+      Shift-RMB
+     </literal>
+     click "EmptyA" object and press
+     <literal classes="kbd">
+      Ctrl-P
+     </literal>
+     and finally select
+     <emphasis>
+      Object
+     </emphasis>
+     from the
+     <emphasis>
+      Set Parent To
+     </emphasis>
+     pop-up menu.
+This will result in "EmptyA" object being the
+     <emphasis>
+      Parent Object
+     </emphasis>
+     of the Monkey object.
+With only "EmptyA" selected rotating/scaling/moving it will result in
+the Monkey object being altered respectively.
+    </paragraph>
+    <paragraph>
+     Scale the "EmptyA" object, so that the Monkey becomes smaller and moves to the left a little.
+    </paragraph>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_keep-transform-b.png'}" uri="images/scene-layout_object_properties_relations_parents_keep-transform-b.png"/>
+     <caption>
+      The monkey is the child object of "EmptyA".
+     </caption>
+    </figure>
+    <paragraph>
+     If you select only the Monkey object by
+     <literal classes="kbd">
+      RMB
+     </literal>
+     click and then
+     <literal classes="kbd">
+      Shift-RMB
+     </literal>
+     click "EmptyB" object and press
+     <literal classes="kbd">
+      Ctrl-P
+     </literal>
+     and select
+     <emphasis>
+      Object
+     </emphasis>
+     from
+the
+     <emphasis>
+      Set Parent To
+     </emphasis>
+     pop-up menu.
+This will result in "EmptyB" object being the
+     <emphasis>
+      Parent Object
+     </emphasis>
+     of the Monkey object.
+Notice that when you change the parent of the Monkey the scale of the Monkey changed.
+    </paragraph>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_keep-transform-c.png'}" uri="images/scene-layout_object_properties_relations_parents_keep-transform-c.png"/>
+     <caption>
+      The monkey is the child object of "EmptyB".
+     </caption>
+    </figure>
+    <paragraph>
+     This happens because the Monkey object never had its scale altered directly,
+the change came about because it was the child of "EmptyA" which had its scale altered.
+Changing the Monkey's parent to "EmptyB" resulted in those indirect changes in scale being
+removed, because "EmptyB" has not had its scale altered.
+    </paragraph>
+    <paragraph>
+     This is often the required behavior, but it is also sometimes useful that if you change your
+     <emphasis>
+      Parent Object
+     </emphasis>
+     that the
+     <emphasis>
+      Child Object
+     </emphasis>
+     keep any previous transformations
+it got from the old
+     <emphasis>
+      Parent Object
+     </emphasis>
+     ; If instead when changing the
+     <emphasis>
+      Parent Object
+     </emphasis>
+     of the Monkey
+from "EmptyA" to "EmptyB" we had chosen parenting type
+     <emphasis>
+      Object (Keep Transform)
+     </emphasis>
+     ,
+the Monkey would keep its scale information it obtained from the old parent "EmptyA"
+when it is assigned to the new parent "EmptyB";
+    </paragraph>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_keep-transform-d.png'}" uri="images/scene-layout_object_properties_relations_parents_keep-transform-d.png"/>
+     <caption>
+      The Object (Keep Transform) parent method.
+     </caption>
+    </figure>
+    <paragraph>
+     If you want to follow along with the above description here is the blend-file used to describe
+     <emphasis>
+      Object (Keep Transform)
+     </emphasis>
+     parenting method:
+    </paragraph>
+    <paragraph>
+     <reference name="File:Parent_-_Object_(Keep_Transform)_(Demo_File).blend" refuri="https://wiki.blender.org/wiki/File:Parent_-_Object_(Keep_Transform)_(Demo_File).blend">
+      File:Parent_-_Object_(Keep_Transform)_(Demo_File).blend
+     </reference>
+     .
+    </paragraph>
+   </section>
+  </section>
+  <section ids="bone-parent" names="bone\ parent phụ\ huynh\ của\ xương\ --\ bone\ parent">
+   <title>
+    Phụ huynh của xương -- Bone Parent
+   </title>
+   <paragraph>
+    Bone parenting allows you to make a certain bone in an armature the Parent Object of another object.
+This means that when transforming an armature the Child Object will only move
+if the specific bone is the Child Object of moves.
+   </paragraph>
+   <target refid="fig-view3d-parent-bone-parent">
+   </target>
+   <figure ids="id5 fig-view3d-parent-bone-parent" names="fig-view3d-parent-bone-parent">
+    <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_bone1.png'}" uri="images/scene-layout_object_properties_relations_parents_bone1.png"/>
+    <caption>
+     Three pictures of armatures with four bones.
+    </caption>
+   </figure>
+   <paragraph>
+    In Fig.
+    <reference internal="True" refid="fig-view3d-parent-bone-parent">
+     <inline classes="std std-ref">
+      Three pictures of armatures with four bones.
+     </inline>
+    </reference>
+    with the 2nd bone being the Bone Parent of the Child Object Cube.
+The Cube is only transformed if the 1st or 2nd bones are.
+Notice altering the 3rd and 4th bones has no effect on the Cone.
+   </paragraph>
+   <paragraph>
+    To use Bone Parenting, you must first select all the Child Objects you wish to parent to a specific Armature Bone,
+then
+    <literal classes="kbd">
+     Shift-RMB
+    </literal>
+    select the Armature Object and switch it into Pose Mode and
+then select the specific bone you wish to be the Parent Bone by
+    <literal classes="kbd">
+     RMB
+    </literal>
+    selecting it.
+Once done press
+    <literal classes="kbd">
+     Ctrl-P
+    </literal>
+    and select Bone from the Set Parent To pop-up menu.
+   </paragraph>
+   <paragraph>
+    Now transforming that bone in Pose Mode will result in the Child Objects also transforming.
+   </paragraph>
+   <section ids="relative-parenting" names="relative\ parenting phụ\ huynh\ hóa\ tương\ đối\ --\ relative\ parenting">
+    <title>
+     Phụ Huynh Hóa Tương Đối -- Relative Parenting
+    </title>
+    <paragraph>
+     Bone Relative parenting is an option you can toggle for each bone.
+This works in the same way as Bone parenting with one difference.
+    </paragraph>
+    <paragraph>
+     With Bone parenting if you have parented a bone to some Child Objects and
+you select that bone and switch it into Edit Mode and then move that bone;
+When you switch back into Pose Mode on that bone,
+the Child Object which is parented to that bone will snap back to the location of the bone in Pose Mode.
+    </paragraph>
+    <target refid="fig-view3d-parent-bone-parent-child">
+    </target>
+    <figure ids="id6 fig-view3d-parent-bone-parent-child" names="fig-view3d-parent-bone-parent-child">
+     <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_bone2.png'}" uri="images/scene-layout_object_properties_relations_parents_bone2.png"/>
+     <caption>
+      Single armature bone which has a child object cube parented to it using bone parenting.
+     </caption>
+    </figure>
+    <paragraph>
+     In Fig.
+     <reference internal="True" refid="fig-view3d-parent-bone-parent-child">
+      <inline classes="std std-ref">
+       Single armature bone which has a child object cube parented to it using bone parenting.
+      </inline>
+     </reference>
+     the 1st picture shows the position of the cube and
+armature before the bone is moved in Edit Mode.
+2nd picture shows the position of the cube and armature after the bone was selected in Edit Mode,
+moved and switched back into Pose Mode. Notice that the Child Object moves to the new location of the Pose Bone.
+    </paragraph>
+    <paragraph>
+     Bone Relative parenting works differently;
+If you move a Parent Bone in Edit Mode, when you switch back to Pose Mode,
+the Child Objects will not move to the new location of the Pose Bone.
+    </paragraph>
+    <target refid="fig-view3d-parent-bone-parent-relative">
+    </target>
+    <figure ids="id7 fig-view3d-parent-bone-parent-relative" names="fig-view3d-parent-bone-parent-relative">
+     <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_bone3.png'}" uri="images/scene-layout_object_properties_relations_parents_bone3.png"/>
+     <caption>
+      Single bone with bone relative parent to a cube.
+     </caption>
+    </figure>
+    <paragraph>
+     In Fig.
+     <reference internal="True" refid="fig-view3d-parent-bone-parent-relative">
+      <inline classes="std std-ref">
+       Single bone with bone relative parent to a cube.
+      </inline>
+     </reference>
+     the 1st picture
+shows the position of the cube and armature before the bone is moved in Edit Mode.
+2nd picture shows the position of the cube and armature after the bone was selected in Edit Mode,
+moved and switched back into Pose Mode.
+Notice that the Child Object does not move to the new location of the Pose Bone.
+    </paragraph>
+   </section>
+  </section>
+  <section ids="vertex-parent" names="vertex\ parent phụ\ huynh\ của\ điểm\ đỉnh\ --\ vertex\ parent">
+   <title>
+    Phụ Huynh của Điểm Đỉnh -- Vertex Parent
+   </title>
+   <paragraph>
+    For objects of type curve, surface, mesh and lattice,
+there is the possibility to use one of its vertices or points as the parent of other objects.
+You can parent an object to a single vertex or a group of three vertices as well;
+that way the child/children will move when the parent mesh is deformed.
+   </paragraph>
+   <section ids="vertex-parent-from-edit-mode" names="vertex\ parent\ from\ edit\ mode phụ\ huynh\ của\ điểm\ đỉnh\ trong\ chế\ độ\ biên\ soạn\ --\ vertex\ parent\ from\ edit\ mode">
+    <title>
+     Phụ Huynh của Điểm Đỉnh trong Chế Độ Biên Soạn -- Vertex Parent from Edit Mode
+    </title>
+    <paragraph>
+     In
+     <emphasis>
+      Object Mode
+     </emphasis>
+     , select the child/children and then the parent object.
+     <literal classes="kbd">
+      Tab
+     </literal>
+     into
+     <emphasis>
+      Edit Mode
+     </emphasis>
+     and on the parent object select either one vertex
+that defines a single point, or select three vertices that define an area
+(the three vertices do not have to form a complete face;
+they can be any three vertices of the parent object),
+and then press
+     <literal classes="kbd">
+      Ctrl-P
+     </literal>
+     and confirm.
+    </paragraph>
+    <paragraph>
+     At this point, if a single vertex was selected,
+a relationship/parenting line will be drawn from the vertex to the child/children. If three
+vertices were selected then a relationship/parenting line is drawn from the averaged center of
+the three points (of the parent object) to the child/children. Now,
+as the parent mesh deforms and the chosen parent vertex/vertices move,
+the child/children will move as well.
+    </paragraph>
+   </section>
+   <section ids="vertex-parent-from-object-mode" names="vertex\ parent\ from\ object\ mode phụ\ huynh\ của\ điểm\ đỉnh\ trong\ chế\ độ\ vật\ thể\ --\ vertex\ parent\ from\ object\ mode">
+    <title>
+     Phụ Huynh của Điểm Đỉnh trong Chế Độ Vật Thể -- Vertex Parent from Object Mode
+    </title>
+    <paragraph>
+     Vertex parenting can be performed from object mode,
+this is done like regular object parenting,
+press
+     <literal classes="kbd">
+      Ctrl-P
+     </literal>
+     in object mode and select
+     <emphasis>
+      Vertex
+     </emphasis>
+     or
+     <emphasis>
+      Vertex (Triangle)
+     </emphasis>
+     .
+    </paragraph>
+    <paragraph>
+     The nearest vertices will be used from each object which is typically what you would want.
+    </paragraph>
+    <table ids="id8">
+     <title>
+      Vertex Parent example.
+     </title>
+     <tgroup cols="3">
+      <colspec colwidth="33">
+      </colspec>
+      <colspec colwidth="33">
+      </colspec>
+      <colspec colwidth="33">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id9">
+          <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_object-mode-example-1.png'}" uri="images/scene-layout_object_properties_relations_parents_object-mode-example-1.png" width="320px"/>
+          <caption>
+           The small cubes can each be automatically parented to a triad of nearby vertices on the icosphere using
+the "Vertex (Triangle)" in the set parent context menu.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id10">
+          <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_object-mode-example-2.png'}" uri="images/scene-layout_object_properties_relations_parents_object-mode-example-2.png" width="320px"/>
+          <caption>
+           Reshaping the object in edit mode then means each of the cubes follows their vertex parent separately.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id11">
+          <image candidates="{'*': 'images/scene-layout_object_properties_relations_parents_object-mode-example-3.png'}" uri="images/scene-layout_object_properties_relations_parents_object-mode-example-3.png" width="320px"/>
+          <caption>
+           Re-scaling the parent icosphere in object mode means the child cubes are also rescaled as expected.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <paragraph>
+     The parent context menu item means users can rapidly set up a large number of vertex parent
+relationships,
+and avoid the tedious effort of establishing each parent-child vertex relationship separately.
+    </paragraph>
+    <note>
+     <paragraph>
+      It is in fact a sort of "reversed"
+      <reference internal="True" refuri="../../../../modeling/modifiers/deform/hooks.html">
+       <inline classes="doc">
+        hook
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </note>
+   </section>
+  </section>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <section ids="move-child" names="move\ child di\ chuyển\ con\ cái\ --\ move\ child">
+    <title>
+     Di Chuyển Con Cái -- Move Child
+    </title>
+    <paragraph>
+     You can
+     <emphasis>
+      move
+     </emphasis>
+     a child object to its parent by clearing its origin.
+The relationship between the parent and child is not affected.
+Select the child object and press
+     <literal classes="kbd">
+      Alt-O
+     </literal>
+     .
+By confirming the child object will snap to the parent's location.
+Use the
+     <emphasis>
+      Outliner
+     </emphasis>
+     view to verify that the child object is still parented.
+    </paragraph>
+    <target refid="bpy-ops-object-parent-clear">
+    </target>
+   </section>
+   <section ids="clear-parent bpy-ops-object-parent-clear" names="clear\ parent xóa\ phụ\ huynh\ --\ clear\ parent bpy.ops.object.parent_clear">
+    <title>
+     Xóa Phụ Huynh -- Clear Parent
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Chế Độ -- Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Chế Độ Vật Thể -- Object Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Vật Thể (Object) --&gt; Phụ Huynh (Parent)`">
+          Vật Thể (Object) ‣ Phụ Huynh (Parent)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Alt-P
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     You can
+     <emphasis>
+      remove
+     </emphasis>
+     a parent-child relationship via
+     <literal classes="kbd">
+      Alt-P
+     </literal>
+     .
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Xóa Phụ Huynh -- Clear Parent
+      </term>
+      <definition>
+       <paragraph>
+        If the parent in the group is selected, nothing is done.
+If a child or children are selected, they are disassociated from the parent,
+or freed, and they return to their
+        <emphasis>
+         original
+        </emphasis>
+        location, rotation, and size.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Xóa nhưng Duy Trì Biến Hóa -- Clear and Keep Transformation
+      </term>
+      <definition>
+       <paragraph>
+        Frees the children from the parent, and
+        <emphasis>
+         keeps
+        </emphasis>
+        the location, rotation, and size given to them by the parent.
+       </paragraph>
+       <paragraph>
+        See
+        <reference name="Non-Uniform Scale" refid="non-uniform-scale">
+         Non-Uniform Scale
+        </reference>
+        which may apply here.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Đảo Nghịch Xóa Phụ Huynh -- Clear Parent Inverse
+      </term>
+      <definition>
+       <paragraph>
+        Instead of removing the hierarchical parent-child relationship, this clears
+the
+        <reference name="Parent Inverse" refid="parent-inverse">
+         Parent Inverse
+        </reference>
+        matrix from the selected objects. With an empty matrix,
+the location, rotation and scale properties of the children are interpreted
+in the coordinate space of the parent.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <hint>
+     <paragraph>
+      <strong>
+       Use the Outliner
+      </strong>
+     </paragraph>
+     <paragraph>
+      There is another way to see the parent-child relationship in groups and that is to use the
+      <emphasis>
+       Outliner
+      </emphasis>
+      view
+of the
+      <reference internal="True" refuri="../../../../editors/outliner.html">
+       <inline classes="doc">
+        Outliner editor
+       </inline>
+      </reference>
+      .
+     </paragraph>
+    </hint>
+   </section>
+  </section>
+  <section ids="known-limitations" names="known\ limitations những\ hạn\ chế\ từng\ biết\ đến\ --\ known\ limitations">
+   <title>
+    Những Hạn Chế Từng Biết Đến -- Known Limitations
+   </title>
+   <section ids="non-uniform-scale" names="non-uniform\ scale đổi\ tỷ\ lệ\ đồng\ đều\ --\ non-uniform\ scale">
+    <title>
+     Đổi Tỷ Lệ Đồng Đều -- Non-Uniform Scale
+    </title>
+    <paragraph>
+     A parent with non-uniform scale and rotation in relation to its child may cause a
+     <emphasis>
+      shear
+     </emphasis>
+     effect.
+    </paragraph>
+    <paragraph>
+     While this is supported by parenting, the shear will be lost when the parent is cleared since it
+can't be represented by location, scale and rotation.
+    </paragraph>
+    <paragraph>
+     If
+     <emphasis>
+      Clear and Keep Transformation
+     </emphasis>
+     moves the object, non-uniform scale is the most likely cause.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

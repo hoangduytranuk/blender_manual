@@ -1,0 +1,167 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/transform/copy_scale.rst">
+ <target refid="bpy-types-copyscaleconstraint">
+ </target>
+ <section ids="copy-scale-constraint bpy-types-copyscaleconstraint" names="copy\ scale\ constraint sao\ chép\ ràng\ buộc\ về\ tỷ\ lệ\ --\ copy\ scale\ constraint bpy.types.copyscaleconstraint">
+  <title>
+   Sao Chép Ràng Buộc Về Tỷ Lệ -- Copy Scale Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Copy Scale
+   </emphasis>
+   constraint forces its owner to have the same scale as its target.
+  </paragraph>
+  <note>
+   <paragraph>
+    Here we talk of
+    <emphasis>
+     scale
+    </emphasis>
+    , not of
+    <emphasis>
+     size
+    </emphasis>
+    ! Indeed, you can have two objects,
+one much bigger than the other, and yet both of them have the same scale.
+This is also true with bones: in
+    <emphasis>
+     Pose Mode
+    </emphasis>
+    ,
+they all have a unitary scale when they are in rest position,
+represented by their visible length.
+   </paragraph>
+  </note>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_transform_copy-scale_panel.png
+
+   Copy Scale panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+        <inline classes="std std-ref">
+         Chỉ Danh của Dữ Liệu -- Data ID
+        </inline>
+       </reference>
+       sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      X, Y, Z
+     </term>
+     <definition>
+      <paragraph>
+       These buttons control which axes of the target scale are copied.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Power
+     </term>
+     <definition>
+      <paragraph>
+       Allows raising the copied scale to the specified arbitrary power.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Make Uniform
+     </term>
+     <definition>
+      <paragraph>
+       Instead of copying scale for individual axes, apply a uniform scaling factor
+to all axes of the owner that achieves the same overall change in volume.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Dịch Chuyển -- Offset
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, the constraint combines the copied scale with the owner's scale,
+instead of overwriting it.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bổ Sung -- Additive
+     </term>
+     <definition>
+      <paragraph>
+       Uses addition instead of multiplication in the implementation of the
+       <emphasis>
+        Offset
+       </emphasis>
+       option.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Không Gian -- Space
+     </term>
+     <definition>
+      <paragraph>
+       Sự chuyển đổi tiêu chuẩn giữa các không gian.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <note>
+    <paragraph>
+     Since scale is a multiplicative quantity, it should be combined using multiplication,
+and split into fractions or inverted via power. Thus the use of
+     <emphasis>
+      Power
+     </emphasis>
+     is
+more mathematically correct than
+     <emphasis>
+      Influence
+     </emphasis>
+     , which uses linear interpolation.
+The use of the
+     <emphasis>
+      Additive
+     </emphasis>
+     option is also not recommended.
+    </paragraph>
+   </note>
+   <tip>
+    <paragraph>
+     To copy scale from one axis of the target to all axes of the owner,
+disable other axes, enable
+     <emphasis>
+      Make Uniform
+     </emphasis>
+     , and set
+     <emphasis>
+      Power
+     </emphasis>
+     to 3.
+    </paragraph>
+   </tip>
+   <vimeo aspect="None" height="None" id="171077617" width="None">
+   </vimeo>
+  </section>
+ </section>
+</document>

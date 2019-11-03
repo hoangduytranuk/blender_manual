@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>-- Particle Edit Mode &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/particles/mode.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Mô Phỏng Chất Lỏng -- Fluid Simulation" href="../fluid/index.html" />
+    <link rel="prev" title="-- Texture Influence" href="texture_influence.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">-- Particles System</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particle_system_panel.html">-- Particle System Panel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="emitter/index.html">Vật Phát Sinh -- Emitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hair/index.html">Tóc -- Hair</a></li>
+<li class="toctree-l3"><a class="reference internal" href="texture_influence.html">-- Texture Influence</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">-- Particle Edit Mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Sử Dụng -- Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#selecting">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#brush">Bút Vẽ -- Brush</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options">Tùy Chọn -- Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#editing">Biên Soạn -- Editing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="index.html">-- Particles System</a> &raquo;</li>
+        
+      <li>-- Particle Edit Mode</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/physics/particles/mode.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="particle-edit-mode">
+<span id="bpy-types-particleedit"></span><h1>-- Particle Edit Mode<a class="headerlink" href="#particle-edit-mode" title="Permalink to this headline">¶</a></h1>
+<p>Using <em>Particle Edit Mode</em> you can edit the keyed points (keyframes)
+and paths of <em>Baked</em>
+<a class="reference internal" href="hair/index.html"><span class="doc">Hair</span></a>,
+<a class="reference internal" href="index.html"><span class="doc">Particle</span></a>,
+<a class="reference internal" href="../cloth/index.html"><span class="doc">Cloth</span></a>, and
+<a class="reference internal" href="../soft_body/index.html"><span class="doc">Soft Body</span></a> simulations.
+(You can also edit and style hair before baking.)</p>
+<p>Since working in Particle Edit Mode is pretty easy and very similar
+to working with vertices in the 3D View, we will show how to set up
+a particle system and then give a reference of the various functions.</p>
+<div class="section" id="usage">
+<h2>Sử Dụng -- Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Only Frames Baked to Memory are Editable!</p>
+<p class="last">If you cannot edit the particles, check that you are not baking to
+a <a class="reference internal" href="emitter/cache.html"><span class="doc">Disk Cache</span></a>.</p>
+</div>
+<div class="section" id="setup-for-hair-particles">
+<h3>-- Setup for Hair Particles<a class="headerlink" href="#setup-for-hair-particles" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Create a <em>Hair</em> particle system.</li>
+<li>Give it an initial velocity in the <em>Normal</em> direction.</li>
+<li>Create a simulation.</li>
+<li>Check the <em>Hair Dynamics</em> box.</li>
+</ol>
+<div class="figure" id="id1">
+<img alt="../../_images/physics_particles_mode_example.png" src="../../_images/physics_particles_mode_example.png" />
+<p class="caption"><span class="caption-text">Editing hair strands in Particle Edit Mode.</span></p>
+</div>
+</div>
+<div class="section" id="setup-for-particle-cloth-and-soft-body-simulations">
+<h3>-- Setup for Particle, Cloth, and Soft Body Simulations<a class="headerlink" href="#setup-for-particle-cloth-and-soft-body-simulations" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Use <em>Emitter</em> particles, or a cloth/soft body simulation.</li>
+<li>Create a simulation by setting up objects and or emitters,
+set your time range (use a small range if you are just starting out and experimenting),
+set up the simulation how you want it, using <kbd class="kbd docutils literal notranslate">Alt-A</kbd> to preview it.</li>
+</ol>
+</div>
+<div class="section" id="bake-the-simulation">
+<h3>-- Bake the Simulation<a class="headerlink" href="#bake-the-simulation" title="Permalink to this headline">¶</a></h3>
+<p>Once you are happy with the general simulation, <a class="reference internal" href="emitter/cache.html"><span class="doc">bake</span></a>
+the simulation from object mode. The simulation must be baked to enable editing.</p>
+</div>
+<div class="section" id="edit-the-simulation">
+<h3>-- Edit the Simulation<a class="headerlink" href="#edit-the-simulation" title="Permalink to this headline">¶</a></h3>
+<p>Switch to <em>Particle Edit</em> from the <em>Mode select menu</em> in the header of the <em>3D View</em>
+to edit the particle's paths/Keyframes. You may need to press <kbd class="kbd docutils literal notranslate">T</kbd> from within the 3D View
+to see the <em>Particle Edit</em> panel. Move to the frame you want to edit and use the various <em>Particle Edit</em>
+tools to edit your simulation. Work slowly, previewing your changes with <kbd class="kbd docutils literal notranslate">Alt-A</kbd>,
+and save often so that you can go back to the previous version should something happen,
+or that you do not like the latest changes you have made.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>To be able to clearly see what you are working on:</p>
+<ol class="last arabic simple">
+<li>Open the Options panel in the Toolbar.</li>
+<li>Select <em>Point select mode</em> (see below) in the header of the 3D View.
+This will display key points along the particle path.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="selecting">
+<h2>Lựa Chọn -- Selecting<a class="headerlink" href="#selecting" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Single: <kbd class="kbd docutils literal notranslate">LMB</kbd>.</li>
+<li>All: <kbd class="kbd docutils literal notranslate">A</kbd>.</li>
+<li>Linked: Move the mouse over a keypoint and press <kbd class="kbd docutils literal notranslate">L</kbd>.</li>
+<li>Box select: <kbd class="kbd docutils literal notranslate">B</kbd>.</li>
+<li>Root/Tips: <span class="menuselection">Select ‣ Roots / Tips</span>.</li>
+</ul>
+<p>You may also use the <em>Select</em> Menu.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>Selections</p>
+<p>Selections are extremely useful for modifying only the particles that you want.
+Hover over a particle path and press <kbd class="kbd docutils literal notranslate">L</kbd> to link-select it,
+hover over the next and press <kbd class="kbd docutils literal notranslate">L</kbd> to add that path to the selection.
+To remove a path, hold <kbd class="kbd docutils literal notranslate">Shift</kbd> and press <kbd class="kbd docutils literal notranslate">L</kbd>. To Deselect all press <kbd class="kbd docutils literal notranslate">A</kbd>.</p>
+<p class="last">The method to select individual points is the same as in edit mode.
+<kbd class="kbd docutils literal notranslate">RMB</kbd> to select, <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd> to add/remove a point from the selection.</p>
+</div>
+<div class="section" id="select-random">
+<h3>Chọn Ngẫu Nhiên -- Select Random<a class="headerlink" href="#select-random" title="Permalink to this headline">¶</a></h3>
+<p>Randomly selects particles.</p>
+<dl class="docutils">
+<dt>Phần Trăm -- Percent</dt>
+<dd>Percent of particles to randomly select.</dd>
+<dt>Mầm Ngẫu Nhiên -- Random Seed</dt>
+<dd>Seed value to use for the selection.</dd>
+<dt>Hành Động -- Action</dt>
+<dd>Select random can be either used to select or deselect particles.</dd>
+<dt>Thể Loại -- Type</dt>
+<dd>Selects either hair or points. Here these terms can be confusing because
+hair/point does not refer to the particle type but the path/points of the hair/particle.</dd>
+</dl>
+</div>
+<div class="section" id="select-modes">
+<h3>Chế Độ Chọn Lựa -- Select Modes<a class="headerlink" href="#select-modes" title="Permalink to this headline">¶</a></h3>
+<div class="figure" id="id2">
+<img alt="../../_images/physics_particles_mode_select-modes.png" src="../../_images/physics_particles_mode_select-modes.png" />
+<p class="caption"><span class="caption-text">Select Modes.</span></p>
+</div>
+<dl class="docutils">
+<dt>Đường/Đi/Dẫn -- Path</dt>
+<dd>No keypoints are visible, you can select/deselect only all particles.</dd>
+<dt>Điểm -- Point</dt>
+<dd>You see all of the keypoints.</dd>
+<dt>Đỉnh -- Tip</dt>
+<dd>You can see and edit (including the brushes) only the tip of the particles, i.e. the last keypoint.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="brush">
+<span id="bpy-types-particlebrush"></span><h2>Bút Vẽ -- Brush<a class="headerlink" href="#brush" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">-- Particle Edit Mode</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>With the buttons you can select the type of &quot;Comb&quot; utility you want to use.</p>
+<dl class="docutils">
+<dt>Không Có -- None</dt>
+<dd>No special tool, just edit the keypoints as &quot;normal&quot; vertices.</dd>
+<dt>Chải -- Comb</dt>
+<dd>Moves the keypoints (similar to the Proportional Editing tool).</dd>
+<dt>Làm/Mịn Màng -- Smooth</dt>
+<dd>Parallels visually adjacent segments.</dd>
+<dt>Cộng Thêm -- Add</dt>
+<dd><p class="first">Adds new particles.</p>
+<dl class="last docutils">
+<dt>Số Lượng -- Count</dt>
+<dd>The number of new particles per step.</dd>
+<dt>Nội Suy -- Interpolate</dt>
+<dd>Interpolate the shape of new hairs from existing ones.</dd>
+<dt>Số Bước -- Steps</dt>
+<dd>Amount of brush steps.</dd>
+<dt>Phím -- Keys</dt>
+<dd>How many keys to make new particles with.</dd>
+</dl>
+</dd>
+<dt>Chiều Dài -- Length</dt>
+<dd>Scales the segments, so it makes the hair longer with <em>Grow</em> or shorter with <em>Shrink</em>.</dd>
+<dt>Bồng Lên -- Puff</dt>
+<dd><p class="first">Rotates the hair around its first keypoint (root).
+So it makes the hair stand up with <em>Add</em> or lay down with <em>Sub</em>.</p>
+<dl class="last docutils">
+<dt>Thể Tích Làm Bồng Lên -- Puff Volume</dt>
+<dd>Apply puff to unselected end points, (Helps to maintain the hair volume when puffing the root.)</dd>
+</dl>
+</dd>
+<dt>Cắt -- Cut</dt>
+<dd>Scales the segments until the last keypoint reaches the brush.</dd>
+<dt>Trọng Lượng -- Weight</dt>
+<dd>This is especially useful for soft body animations, because the weight defines the soft body <em>Goal</em>.
+A keypoint with a weight of 1 will not move at all,
+a keypoint with a weight of 0 subjects fully to soft body animation.
+This value is scaled by the Strength <em>Min</em> to <em>Max</em> range of soft body goals...</dd>
+</dl>
+<div class="section" id="common-options">
+<h3>Tùy Chọn Chung -- Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h3>
+<p>Below the brush types, their settings appear:</p>
+<dl class="docutils">
+<dt>Bán Kính <kbd class="kbd docutils literal notranslate">F</kbd> -- Radius <kbd class="kbd docutils literal notranslate">F</kbd></dt>
+<dd>Set the radius of the brush.</dd>
+<dt>Sức Mạnh/Cường Độ <kbd class="kbd docutils literal notranslate">Shift-F</kbd> -- Strength <kbd class="kbd docutils literal notranslate">Shift-F</kbd></dt>
+<dd>Set the strength of the brush effect (not for Add brush).</dd>
+<dt>-- Add/Sub Grow/Shrink</dt>
+<dd>Sets the brush to add the effect or reverse it.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">-- Particle Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar Region ‣ Tool</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Làm Lệch Hướng Vật Phát -- Deflect Emitter</dt>
+<dd><p class="first">Hair particles only -- Do not move keypoints through the emitting mesh.</p>
+<dl class="last docutils">
+<dt>Khoảng Cách -- Distance</dt>
+<dd>The distance to keep from the Emitter.</dd>
+</dl>
+</dd>
+<dt>-- Keep</dt>
+<dd><dl class="first last docutils">
+<dt>Chiều Dài -- Length</dt>
+<dd>Keep the length of the segments between the keypoints when combing or smoothing the hair.
+This is done by moving all the other keypoints.</dd>
+<dt>Phép Căn -- Root</dt>
+<dd>Keep first key unmodified, so you cannot transplant hair.</dd>
+</dl>
+</dd>
+<dt>-- Correct</dt>
+<dd><dl class="first last docutils">
+<dt>Tốc Lực -- Velocity</dt>
+<dd>Recalculate velocities of particles according to their edited paths.
+Otherwise, the original velocities values remains unchanged
+regardless of the actual distance that the particles moves.</dd>
+</dl>
+</dd>
+<dt>Đối Xứng X -- X Mirror</dt>
+<dd>Enable mirror editing across the local X axis.</dd>
+<dt>Vật Thể Chỉnh Hình -- Shape Object</dt>
+<dd><p class="first">A mesh object which boundary is used by the <em>Shape Cut</em> tool.</p>
+<dl class="last docutils">
+<dt>Cắt Theo Hình Dạng -- Shape Cut</dt>
+<dd>This grooming tool trims hairs to a shape defined by the <em>Shape Object</em>.
+This is a quicker way of avoiding protruding hair sections from lengthening than using the Cutting tool.
+It works especially well for characters with extensive fur,
+where working in a single plane with the Cutting tool becomes tedious.</dd>
+</dl>
+</dd>
+</dl>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">Shape Cut example.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id4">
+<img alt="../../_images/physics_particles_mode_shapecut-before.png" src="../../_images/physics_particles_mode_shapecut-before.png" />
+<p class="caption"><span class="caption-text">Trước.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id5">
+<img alt="../../_images/physics_particles_mode_shapecut-after.png" src="../../_images/physics_particles_mode_shapecut-after.png" />
+<p class="caption"><span class="caption-text">Sau.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="viewport-display">
+<h3>Viewport Display<a class="headerlink" href="#viewport-display" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Bước Đường Dẫn -- Path Steps</dt>
+<dd>The number of steps used to draw the path; improves the smoothness of the particle path.</dd>
+<dt>Hạt -- Particles</dt>
+<dd>Displays the actual particles on top of the paths.</dd>
+<dt>Thời Gian Phai Mờ -- Fade Time</dt>
+<dd><p class="first">Fade out paths and keys further away from current time.</p>
+<dl class="last docutils">
+<dt>Khung Hình -- Frames</dt>
+<dd>How many frames to fade.</dd>
+</dl>
+</dd>
+<dt>-- Show Children</dt>
+<dd>Displays the children of the particles too.
+This allows to fine-tune the particles and see their effects on the result,
+but it may slow down your system if you have many children.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="editing">
+<h2>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="moving-keypoints-or-particles">
+<h3>-- Moving Keypoints or Particles<a class="headerlink" href="#moving-keypoints-or-particles" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>To move selected keypoints press <kbd class="kbd docutils literal notranslate">G</kbd>, or use one of the various other methods to move vertices.</li>
+<li>To move a particle root you have to turn off Keep <em>Root</em> in the Toolbar.</li>
+<li>You can do many of the things like with vertices, including scaling,
+rotating and removing (complete particles or single keys).</li>
+<li>You may not duplicate or extrude keys or particles,
+but you can subdivide particles which adds new keypoints
+<span class="menuselection">Particle ‣ Subdivide</span>.</li>
+<li>Alternatively you can rekey a particle
+<span class="menuselection">Particle ‣ Rekey</span>.</li>
+</ul>
+<p>How smoothly the hair and particle paths are displayed depends on the <em>Path Steps</em>
+setting in the Toolbar. Low settings produce blocky interpolation between points,
+while high settings produce a smooth curve.</p>
+</div>
+<div class="section" id="mirror">
+<h3>Đối Xứng Hóa/Gương -- Mirror<a class="headerlink" href="#mirror" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">-- Particle Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Hạt (Particle) ‣ Đối Xứng Hóa/Gương (Mirror)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If you want to create an X axis symmetrical haircut you have to do following steps:</p>
+<ol class="arabic simple">
+<li>Select all particles with <kbd class="kbd docutils literal notranslate">A</kbd>.</li>
+<li>Mirror the particles with <span class="menuselection">Particle ‣ Mirror</span>.</li>
+<li>Turn on <em>X Mirror</em> in <span class="menuselection">Sidebar Region ‣ Tool ‣ Options</span>.</li>
+</ol>
+<p>It may happen that after mirroring two particles occupy nearly the same place.
+Since this would be a waste of memory and render time,
+you can use <em>Merge by Distance</em> from the <em>Particle</em> menu.</p>
+</div>
+<div class="section" id="unify-length">
+<h3>Đồng Bộ Hóa Độ Dài -- Unify Length<a class="headerlink" href="#unify-length" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">-- Particle Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Particle ‣ Unify Length</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This tool is used to make all selected hair uniform length by finding the average length.</p>
+</div>
+<div class="section" id="show-hide">
+<h3>Hiện/Ẩn -- Show/Hide<a class="headerlink" href="#show-hide" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">-- Particle Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Hạt (Particle) ‣ Hiện/Ẩn (Show/Hide)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hiding and unhiding of particles works similar as with vertices in the 3D View.
+Select one or more keypoints of the particle you want to hide and press <kbd class="kbd docutils literal notranslate">H</kbd>.
+The particle in fact does not vanish, only the key points.</p>
+<p>Hidden particles (i.e. particles whose keypoints are hidden)
+do not react on the various brushes. But:</p>
+<p>If you use <em>Mirror Editing</em> even particles with hidden keypoints may be moved,
+if their mirrored counterpart is moved.</p>
+<p>To unhide all hidden particles press <kbd class="kbd docutils literal notranslate">Alt-H</kbd>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../fluid/index.html" class="btn btn-neutral float-right" title="Mô Phỏng Chất Lỏng -- Fluid Simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="texture_influence.html" class="btn btn-neutral float-left" title="-- Texture Influence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

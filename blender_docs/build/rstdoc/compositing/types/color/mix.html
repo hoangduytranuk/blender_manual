@@ -1,0 +1,432 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/compositing/types/color/mix.rst">
+ <target ids="['bpy-types-compositornodemixrgb']" names="['bpy.types.compositornodemixrgb']">
+ </target>
+ <comment xml:space="preserve">
+  Editors Note: This page gets copied into :doc:`
+ </comment>
+</document>
+`
+<comment xml:space="preserve">
+ --- copy below this line ---
+</comment>
+<section ids="mix-node" names="mix\ node nút\ hòa\ trộn\ --\ mix\ node">
+ <title>
+  Nút Hòa Trộn -- Mix Node
+ </title>
+ <figure align="right" ids="id1">
+  <image candidates="{'*': 'images/compositing_node-types_CompositorNodeMixRGB.png'}" uri="images/compositing_node-types_CompositorNodeMixRGB.png"/>
+  <caption>
+   Nút Hòa Trộn.
+  </caption>
+ </figure>
+ <paragraph>
+  <emphasis>
+   Nút Hòa Trộn
+  </emphasis>
+  hòa nhập các hình ảnh bằng cách hoạt động trên các điểm ảnh riêng biệt và tương đồng của hai hình ảnh đầu vào. Được gọi là "Hòa Trộn RGB -- MixRGB" trong ngữ cảnh của bộ tô bóng và chất liệu.
+ </paragraph>
+ <section ids="inputs" names="inputs đầu\ vào\ --\ inputs">
+  <title>
+   Đầu Vào -- Inputs
+  </title>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Hệ Số -- Factor
+    </term>
+    <definition>
+     <paragraph>
+      Điều chế lượng ảnh hưởng mà nút tác động đến hình ảnh xuất ra.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Hình Ảnh -- Image
+    </term>
+    <definition>
+     <paragraph>
+      Hình nền. Kích thước và độ phân giải của hình ảnh thiết lập kích thước của hình ảnh ở đầu ra.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Hình Ảnh -- Image
+    </term>
+    <definition>
+     <paragraph>
+      Hình ảnh nền trước.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+ </section>
+ <section ids="properties" names="properties tính\ chất\ --\ properties">
+  <title>
+   Tính Chất -- Properties
+  </title>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Hòa Trộn -- Mix
+    </term>
+    <definition>
+     <paragraph>
+      Các kiểu hòa trộn (
+      <emphasis>
+       Blend types
+      </emphasis>
+      ) có thể được chọn trong trình đơn chọn lựa. Xin xem thêm về
+      <reference internal="True" refuri="../../../glossary/index.html#term-color-blend-modes">
+       <inline classes="xref std std-term">
+        Color Blend Modes
+       </inline>
+      </reference>
+      để biết thêm chi tiết về từng chế độ hoà trộn.
+     </paragraph>
+     <paragraph>
+      Add, Subtract, Multiply, Screen, Divide, Difference,
+Darken, Lighten, Overlay, Dodge, Color Burn,
+Hue, Saturation, Value, Color, Soft Light, Linear Light
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Dùng Alpha -- Use Alpha
+    </term>
+    <definition>
+     <paragraph>
+      Nếu được kích hoạt, bằng cách bấm vào biểu tượng
+      <emphasis>
+       Màu và Alpha
+      </emphasis>
+      , kênh Alpha của hình ảnh thứ hai sẽ được sử dụng để hòa trộn. Khi bị giải hoạt (tắt), bản mặc định, nền biểu tượng sẽ có màu xám nhạt. Kênh alpha của hình ảnh nền (
+      <emphasis>
+       base image
+      </emphasis>
+      ) sẽ luôn luôn được sử dụng.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Hạn Định -- Clamp
+    </term>
+    <definition>
+     <paragraph>
+      Giới hạn giá trị màu cao nhất không vượt quá 1.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+ </section>
+ <section ids="outputs" names="outputs đầu\ ra\ --\ outputs">
+  <title>
+   Đầu Ra -- Outputs
+  </title>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Hình Ảnh -- Image
+    </term>
+    <definition>
+     <paragraph>
+      Đầu ra tiêu chuẩn của hình ảnh.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+ </section>
+ <section ids="examples" names="examples ví\ dụ\ --\ examples">
+  <title>
+   Ví Dụ -- Examples
+  </title>
+  <paragraph>
+   Dưới đây là các mẫu vật của các chế độ hòa trộn phổ biến và công dụng của chúng, trộn màu hoặc hình ô cờ với màn chắn lọc.
+  </paragraph>
+  <figure>
+   <image candidates="{'*': 'images/compositing_types_color_mix_blend-modes.png'}" uri="images/compositing_types_color_mix_blend-modes.png" width="700px"/>
+  </figure>
+  <paragraph>
+   Một số giải thích về các phương pháp trộn ở trên có thể giúp bạn sử dụng nút Hòa Trộn một cách hiệu quả:
+  </paragraph>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Cộng Thêm -- Add
+    </term>
+    <definition>
+     <paragraph>
+      Việc cộng thêm màu xanh lam vào xanh lam sẽ giữ cho màu là xanh lam, nhưng việc thêm màu xanh lam vào màu đỏ sẽ tạo ra màu tím. Màu trắng vốn dĩ đã có màu xanh lam ở mức cao nhất, nên nó vẫn trắng. Sử dụng điều này để dịch chuyển màu của hình ảnh. Thêm sắc lam vào sẽ làm cho hình ảnh cảm thấy lạnh hơn.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Trừ Khấu -- Subtract
+    </term>
+    <definition>
+     <paragraph>
+      Lấy màu lam ra khỏi màu trắng sẽ để lại màu đỏ và xanh lục, tức khi kết hợp lại trở nên màu vàng. Lấy xanh lam ra khỏi màu tím sẽ để lại màu đỏ. Sử dụng điều này để giảm độ bão hòa của một hình ảnh. Lấy màu vàng đi để làm cho một hình ảnh xanh hơn và cảm giác buồn hơn.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Nhân -- Multiply
+    </term>
+    <definition>
+     <paragraph>
+      Màu đen (0,00) nhân với bất cứ cái gì cũng sẽ thành màu đen mà thôi. Bất cứ màu nhân với trắng (1.00) sẽ cho chính màu ấy. Sử dụng tính năng này để loại bỏ những bẩn thỉu (
+      <emphasis>
+       garbage
+      </emphasis>
+      ) hoặc để tô màu một hình ảnh đen trắng.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Sắc Thái -- Hue
+    </term>
+    <definition>
+     <paragraph>
+      Hiển thị cho bạn thấy lượng một màu có trong hình ảnh, bỏ qua tất cả các màu trừ những gì đã được chọn: tạo một ảnh đơn sắc (kiểu 'Đen &amp; Sắc Thái').
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Hòa Trộn -- Mix
+    </term>
+    <definition>
+     <paragraph>
+      Kết hợp hai hình ảnh lại với nhau, lấy trung bình của cả hai cái.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Làm Sáng -- Lighten
+    </term>
+    <definition>
+     <paragraph>
+      Tương tự như thuốc tẩy làm những áo trắng của bạn trắng hơn. Sử dụng với một màn chắn để làm sáng lên một chút.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Hiệu -- Difference
+    </term>
+    <definition>
+     <paragraph>
+      Cái này sẽ tước bỏ một màu sắc nào đó ra khỏi hình ảnh. Màu sắc cần thiết để biến màu vàng thành trắng là màu lam. Sử dụng điều này để so sánh hai hình ảnh khá tương đồng để xem những gì đã được thực hiện cho bản này để làm cho nó trở thành bản khác; tương tự như một bản nhật ký về những thay đổi cho hình ảnh. Bạn có thể sử dụng chức năng này để xem hình thủy ấn (xin xem
+      <reference name="Watermark images" refid="watermark-images">
+       Watermark images
+      </reference>
+      ) mà bạn đã đặt trong một hình ảnh để phát hiện hành vi trộm cắp.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Làm Tối -- Darken
+    </term>
+    <definition>
+     <paragraph>
+      Với những màu sắc thiết lập ở đây, nó giống như nhìn thế giới qua những chiếc kính màu hoa hồng.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <section ids="contrast-enhancement" names="contrast\ enhancement nâng\ cao\ độ\ tương\ phản\ --\ contrast\ enhancement">
+   <title>
+    Nâng Cao Độ Tương Phản -- Contrast Enhancement
+   </title>
+   <paragraph>
+    Đây là một bản đồ nhỏ cho thấy hiệu ứng của hai cách sử dụng phổ biến khác cho đường cong RGB:
+    <emphasis>
+     Làm Tối
+    </emphasis>
+    (
+    <emphasis>
+     Darken
+    </emphasis>
+    ) và
+    <emphasis>
+     Tăng Cường Độ Tương Phản
+    </emphasis>
+    (
+    <emphasis>
+     Contrast Enhancement
+    </emphasis>
+    ). Bạn có thể thấy hiệu ứng của mỗi đường cong một cách độc lập và hiệu ứng kết hợp khi chúng được trộn lẫn với lượng
+    <emphasis>
+     bằng nhau
+    </emphasis>
+    .
+   </paragraph>
+   <figure ids="id2">
+    <image candidates="{'*': 'images/compositing_types_color_mix_contrast-enhancement.png'}" uri="images/compositing_types_color_mix_contrast-enhancement.png" width="700px"/>
+    <caption>
+     Thiết lập của nút ví dụ cho thấy các nút "Làm Tối" (
+     <emphasis>
+      Darken
+     </emphasis>
+     ), "Tăng cường độ tương phản" (
+     <emphasis>
+      Enhance Contrast
+     </emphasis>
+     ) và "Hòa Trộn" (
+     <emphasis>
+      Mix
+     </emphasis>
+     ) cho bố cục.
+    </caption>
+   </figure>
+   <paragraph>
+    Như bạn có thể thấy, hình đầu khỉ ban đầu bị quá sáng, do quá nhiều ánh sáng chiếu vào. Để chữa sự phơi sáng quá mức, bạn phải vừa làm tối cả hình ảnh và vừa phải tăng độ tương phản.
+   </paragraph>
+   <paragraph>
+    Trong đường cong RGB (
+    <emphasis>
+     RGB curve
+    </emphasis>
+    ) trên cùng,
+    <emphasis>
+     Làm Tối
+    </emphasis>
+    (
+    <emphasis>
+     Darken
+    </emphasis>
+    ), thì chỉ phía bên phải của đường cong là được hạ xuống; do đó, bất kỳ đầu vào X nào dọc theo phía dưới sẽ cho kết quả đầu ra Y ít tính hình học hơn. Đường cong
+    <emphasis>
+     Tăng Cường Độ Tương Phản
+    </emphasis>
+    RGB (hình chữ S) tỷ lệ hóa đầu ra sao cho các giá trị trung gian của X thay đổi một cách đáng kể; cụ thể là, các giá trị trung gian được mở rộng, và do đó, làm cho các màu trắng trắng hơn và các màu đen đen hơn là đầu ra. Để làm đường cong này, chỉ cần bấm vào đường cong và một điểm điều khiển mới sẽ được thêm vào. Kéo điểm ở xung quanh nó để uốn cong đường cong theo như bạn muốn. Nút Hòa Trộn (
+    <emphasis>
+     Mix
+    </emphasis>
+    ) kết hợp hai hiệu ứng này với lượng bằng nhau, và hình Suzanne (
+    <emphasis>
+     Đầu Khỉ
+    </emphasis>
+    ) dễ nhìn hơn nhiều.
+   </paragraph>
+  </section>
+  <section ids="watermark-images" names="watermark\ images hình\ ảnh\ thủy\ ấn\ --\ watermark\ images">
+   <title>
+    Hình Ảnh Thủy Ấn -- Watermark Images
+   </title>
+   <paragraph>
+    Trước đây, khuôn mẫu được ép vào hồ giấy khi nó đang khô, tạo ra một dấu hiệu, xác định ai đã làm giấy và nó đến từ đâu. Dấu ấn hầu như không thể nhận thấy ngoại trừ dưới nguồn ánh sáng vừa đủ. Có lẽ đây là hình thức quảng cáo ngầm đầu tiên. Ngày nay, mọi người thủy ấn hình ảnh của họ để xác định chúng là tài sản trí tuệ cá nhân, để tác giả hoặc dịch vụ tồn tại quảng cáo ngầm, hoặc chỉ đơn giản là để theo dõi mức xâm nhập hình ảnh của họ trên toàn bộ mạng web. Blender cung cấp một bộ công cụ hoàn chỉnh để bạn có thể mã hóa thủy ấn của mình và cho biết hình ảnh có thủy ấn của bạn hay không.
+   </paragraph>
+   <section ids="encoding-your-watermark-in-an-image" names="encoding\ your\ watermark\ in\ an\ image mã\ hóa\ thủy\ ấn\ của\ bạn\ trong\ một\ hình\ ảnh\ --\ encoding\ your\ watermark\ in\ an\ image">
+    <title>
+     Mã hóa Thủy Ấn của bạn trong một Hình Ảnh -- Encoding your Watermark in an Image
+    </title>
+    <paragraph>
+     Trước tiên, hãy kiến tạo thủy ấn cá nhân của riêng mình. Bạn có thể sử dụng tên của mình, một từ, hoặc một hình dạng hoặc hình ảnh không dễ dàng sao chép. Trong khi màu xám trung tính hoạt động tốt nhất khi sử dụng phương pháp mã hóa đề xuất, bạn cũng có thể tùy ý sử dụng các màu hoặc mẫu khác nữa. Nó có thể chỉ là một điểm ảnh đơn lẻ, hoặc là toàn bộ dốc màu (
+     <emphasis>
+      gradient
+     </emphasis>
+     ); tùy bạn chọn lựa. Trong ví dụ dưới đây, chúng ta sẽ mã hóa một thủy ấn tại một vị trí xác định trong hình ảnh bằng nút
+     <emphasis>
+      Dịch Chuyển
+     </emphasis>
+     (
+     <emphasis>
+      Translate
+     </emphasis>
+     ); làm thế này thì trong tương lai sẽ có lợi sau hơn, bởi vì chúng ta chỉ cần nhìn vào một vị trí cụ thể để tìm dấu hiệu. Sau đó, chúng ta sử dụng nút
+     <emphasis>
+      RGB Sang Trắng/Đen
+     </emphasis>
+     (
+     <emphasis>
+      RGB to BW
+     </emphasis>
+     ) để chuyển đổi hình ảnh thành các con số mà nút
+     <emphasis>
+      Ánh Xạ Giá Trị
+     </emphasis>
+     (
+     <emphasis>
+      Map Value
+     </emphasis>
+     ) có thể sử dụng để làm cho hình ảnh trở nên trầm ẩn. Trong trường hợp này, nó giảm dấu ấn xuống một phần mười (1/10) cường độ ban đầu. Nút
+     <emphasis>
+      Cộng
+     </emphasis>
+     (
+     <emphasis>
+      Add
+     </emphasis>
+     ) bổ sung thêm các điểm ảnh tương ứng, làm cho các điểm ảnh trong vùng của dấu hiệu nhỉnh sáng hơn một chút.
+    </paragraph>
+    <figure ids="id3">
+     <image candidates="{'*': 'images/compositing_types_color_mix_watermark-encode.png'}" uri="images/compositing_types_color_mix_watermark-encode.png" width="700px"/>
+     <caption>
+      Gắn dấu hiệu của bạn vào một hình ảnh bằng cách sử dụng một nhãn hiệu và một vị trí cụ thể.
+     </caption>
+    </figure>
+    <paragraph>
+     Tất nhiên, nếu bạn
+     <emphasis>
+      muốn
+     </emphasis>
+     mọi người chú ý đến nhãn hiệu của bạn, thì đừng phóng to nó quá nhiều, hoặc làm cho nó có màu tương phản. Còn có rất nhiều cách nữa, bằng cách sử dụng các bố trí hòa trộn khác nhau và dùng những dàn dựng bạo dạn hơn. Hãy tùy ý thử nghiệm!
+    </paragraph>
+    <hint>
+     <paragraph>
+      Những sử dụng khác -- Additional uses
+     </paragraph>
+     <paragraph>
+      Bạn cũng có thể sử dụng kỹ thuật này, dùng các sắp đặt đưa đến hiệu ứng nhìn thấy được, trong các đoạn phim tiêu đề để làm cho các từ xuất hiện như được chiếu trên bề mặt của mặt nước, hoặc một hiệu ứng đặc biệt để làm cho các từ xuất hiện trên cánh tay của cô gái bị ma ám.
+     </paragraph>
+    </hint>
+   </section>
+   <section ids="decoding-an-image-for-your-watermark" names="decoding\ an\ image\ for\ your\ watermark giải\ mã\ một\ hình\ ảnh\ để\ tìm\ thủy\ ấn\ của\ bạn\ --\ decoding\ an\ image\ for\ your\ watermark">
+    <title>
+     Giải mã một Hình Ảnh để tìm Thủy Ấn của bạn -- Decoding an Image for your Watermark
+    </title>
+    <paragraph>
+     Khi bạn nhìn thấy một hình ảnh mà bạn nghĩ có thể là của bạn, hãy sử dụng sơ đồ sắp xếp nút dưới đây để so sánh nó với hình ảnh trong kho của bạn (bản gốc chưa được đánh dấu với thủy ấn). Trong sơ đồ này, nút Hòa Trộn (
+     <emphasis>
+      Mix
+     </emphasis>
+     ) được nối với nút Hiệu (
+     <emphasis>
+      Difference
+     </emphasis>
+     ) và nút Ánh Xạ Giá Trị (
+     <emphasis>
+      Map Value
+     </emphasis>
+     ) để khuếch đại bất kỳ sự khác biệt nào. Kết quả được chuyển đến nút Xem Hình (
+     <emphasis>
+      Viewer
+     </emphasis>
+     ) và bạn có thể thấy dấu hiệu ban đầu rõ ràng nổi bật lên như thế nào.
+    </paragraph>
+    <figure ids="id4">
+     <image candidates="{'*': 'images/compositing_types_color_mix_watermark-decode.png'}" uri="images/compositing_types_color_mix_watermark-decode.png" width="700px"/>
+     <caption>
+      Kiểm tra thủy ấn trong hình ảnh của bạn.
+     </caption>
+    </figure>
+    <paragraph>
+     Nhiều thuật toán nén hình ảnh gây mất dữ liệu của bản gốc; sự khác biệt thường được hiển thị thành dữ liệu nhiễu. Việc thử nghiệm với các cài đặt trong chu trình nén và các dấu hiệu (dùng làm thủy ấn) khác nhau để tìm xem cái nào hoạt động tốt nhất cho bạn, bằng cách để sơ đồ mã hóa trong một cảnh, và sơ đồ giải mã trong một cảnh khác, là một việc nên làm. Hãy sử dụng chúng trong khi thay đổi cài đặt định dạng hình ảnh trong Blender, tải lại hình ảnh đã được thủy ấn sau khi đã lưu, để đạt được kết quả khả dĩ, có thể chấp nhận được. Trong ví dụ trên đây, dấu hiệu được hiển thị rõ ràng trong toàn bô quá trình, cho mãi đến khi được nén thành
+     <literal>
+      JPEG
+     </literal>
+     với độ nén 50%.
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</section>

@@ -1,0 +1,433 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/cycles/render_settings/sampling.rst">
+ <section ids="sampling" names="sampling lấy\ mẫu\ vật\ --\ sampling">
+  <title>
+   Lấy Mẫu Vật -- Sampling
+  </title>
+  <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+   <title>
+    Tham Chiếu -- Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Bảng -- Panel
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`Kết Xuất (Render) --&gt; Lấy Mẫu Vật (Sampling)`">
+        Kết Xuất (Render) ‣ Lấy Mẫu Vật (Sampling)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   The integrator is the rendering algorithm used to compute the lighting.
+Cycles currently supports a path tracing integrator with direct light sampling.
+It works well for various lighting setups,
+but is not as suitable for caustics and some other complex lighting situations.
+  </paragraph>
+  <paragraph>
+   Rays are traced from the camera into the scene,
+bouncing around until they find a light source such as a light, an object emitting light,
+or the world background. To find lights and surfaces emitting light,
+both indirect light sampling (letting the ray follow the surface BSDF)
+and direct light sampling (picking a light source and tracing a ray towards it) are used.
+  </paragraph>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Integrator
+    </term>
+    <definition>
+     <paragraph>
+      There are two sample methods that can be used:
+      <emphasis>
+       Path Tracing
+      </emphasis>
+      and
+      <emphasis>
+       Branched Path Tracing
+      </emphasis>
+      .
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Dò Đường Đi -- Path Tracing
+       </term>
+       <definition>
+        <paragraph>
+         The
+         <emphasis>
+          Path Tracing
+         </emphasis>
+         integrator is a pure path tracer;
+at each hit it will bounce light in one direction and pick one light to receive lighting from.
+This makes each individual sample faster to compute,
+but will typically require more samples to clean up the noise.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Dò Đường Đi Phân Nhánh -- Branched Path Tracing
+       </term>
+       <definition>
+        <paragraph>
+         The non-progressive Branched Path Tracing integrator offers finer control over sampling.
+It is similar to
+         <emphasis>
+          Path Tracing
+         </emphasis>
+         , but at the first hit it will split the path for
+different surface components and will take all lights into account for shading instead of just one.
+        </paragraph>
+        <paragraph>
+         This makes each sample slower, but will reduce noise,
+especially in scenes dominated by direct or one-bounce lighting.
+To get the same number of diffuse samples as in the path tracing integrator,
+note that e.g. 250 path tracing samples = 10 AA Samples x 25 diffuse samples.
+The Sampling panel shows this total number of samples.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Render
+    </term>
+    <definition>
+     <paragraph>
+      Number of paths to trace for each pixel in the final render. As more samples are taken,
+the solution becomes less noisy and more accurate.
+     </paragraph>
+     <paragraph>
+      When using
+      <emphasis>
+       Branched Path Tracing
+      </emphasis>
+      , this changes the
+      <emphasis>
+       AA Samples
+      </emphasis>
+      which are multiplied by the
+      <reference name="Sub Samples" refid="sub-samples">
+       Sub Samples
+      </reference>
+      and improve anti-aliasing.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Viewport
+    </term>
+    <definition>
+     <paragraph>
+      Number of samples for viewport rendering.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <section ids="sub-samples" names="sub\ samples">
+   <title>
+    Sub Samples
+   </title>
+   <paragraph>
+    The panel is visible only when using
+    <emphasis>
+     Branched Path Tracing
+    </emphasis>
+    .
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Diffuse
+     </term>
+     <definition>
+      <paragraph>
+       Number of diffuse bounce samples to take for each AA sample.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Glossy
+     </term>
+     <definition>
+      <paragraph>
+       Number of glossy bounce samples to take for each AA sample.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Transmission
+     </term>
+     <definition>
+      <paragraph>
+       Number of transmission bounce samples to take for each AA sample.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      AO
+     </term>
+     <definition>
+      <paragraph>
+       Number of ambient occlusion samples to take for each AA sample.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mesh Light
+     </term>
+     <definition>
+      <paragraph>
+       Number of mesh light samples to take for each AA sample.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Subsurface
+     </term>
+     <definition>
+      <paragraph>
+       Number of subsurface scattering samples to take for each AA sample.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Volume
+     </term>
+     <definition>
+      <paragraph>
+       Number of volume scattering samples to take for each AA sample.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="advanced" names="advanced">
+   <title>
+    Advanced
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mầm -- Seed
+     </term>
+     <definition>
+      <paragraph>
+       Seed value for integrator to get different noise patterns.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         -- Animate Seed (clock icon)
+        </term>
+        <definition>
+         <paragraph>
+          This button, which can be found on the right side of the
+          <emphasis>
+           Seed
+          </emphasis>
+          value,
+can be used to give different seed values. It is a good idea to enable this
+when making animation because in the real world each frame has a different noise pattern.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hoa Văn/Mẫu -- Pattern
+     </term>
+     <definition>
+      <paragraph>
+       Random sampling pattern used by the integrator.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sobol
+        </term>
+        <definition>
+         <paragraph>
+          Uses a Sobol pattern to decide the random sampling pattern used by the integrator.
+See
+          <reference name="Sobol sequence" refuri="https://en.wikipedia.org/wiki/Sobol_sequence">
+           Sobol sequence
+          </reference>
+          on Wikipedia for more information.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Đa Biến Động Tương Quan -- Correlated Multi-Jitter
+        </term>
+        <definition>
+         <paragraph>
+          Uses a Correlated Multi-Jitter pattern to decide the random sampling pattern used by the integrator.
+See
+          <reference name="this Pixar paper" refuri="http://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf">
+           this Pixar paper
+          </reference>
+          for more information.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bình Phương Mẫu Vật -- Square Samples
+     </term>
+     <definition>
+      <paragraph>
+       Square the amount of samples.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Min Light Bounces
+     </term>
+     <definition>
+      <paragraph>
+       Minimum number of light bounces for each path,
+after which the integrator uses Russian Roulette to terminate paths that contribute less to the image.
+Setting this higher gives less noise, but may also increase render time considerably. For a low number of bounces,
+it is strongly recommended to set this equal to the maximum number of bounces.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Min Transparent Bounces
+     </term>
+     <definition>
+      <paragraph>
+       Minimum number of transparent bounces. Setting this higher reduces noise in the first bounces,
+but can also be less efficient for more complex geometry like hair and volumes.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Light Threshold
+     </term>
+     <definition>
+      <paragraph>
+       Probabilistically terminates light samples when the light contribution
+is below this threshold (more noise but faster rendering).
+Zero disables the test and never ignores lights.
+This is useful because in large scenes with many light sources,
+some might only contribute a small amount to the final image, and increase render times.
+Using this setting can decrease the render times needed to calculate
+the rays which in the end have very little affect on the image.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lấy Mẫu Toàn Bộ Nguồn Sáng Trực Tiếp -- Sample All Direct Lights
+     </term>
+     <definition>
+      <paragraph>
+       When enabled, Cycles will sample all lights in the scene for direct bounces, instead of randomly picking one.
+Disabling this can improve the performance, but will need a lot of
+       <emphasis>
+        Samples
+       </emphasis>
+       , to clear up the render.
+      </paragraph>
+      <paragraph>
+       Visible only when using
+       <emphasis>
+        Branched Path Tracing
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lấy Mẫu Toàn Bộ Nguồn Sáng Gián Tiếp -- Sample All Indirect Lights
+     </term>
+     <definition>
+      <paragraph>
+       Similar to direct light, but for indirect lights. This can reduce noise in scenes with many lights.
+      </paragraph>
+      <paragraph>
+       Visible only when using
+       <emphasis>
+        Branched Path Tracing
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <target refid="render-cycles-integrator-layer-samples">
+   </target>
+   <definition_list ids="render-cycles-integrator-layer-samples" names="render-cycles-integrator-layer-samples">
+    <definition_list_item>
+     <term>
+      Mẫu Vật của Tầng -- Layer Samples
+     </term>
+     <definition>
+      <paragraph>
+       When render layers have per layer number of samples set, this option specifies how to use them.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Sử Dụng -- Use
+        </term>
+        <definition>
+         <paragraph>
+          The render layer samples will override the set scene samples.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Giới Hạn -- Bounded
+        </term>
+        <definition>
+         <paragraph>
+          Bound render layer samples by scene samples.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Bỏ Qua -- Ignore
+        </term>
+        <definition>
+         <paragraph>
+          Ignore render layer sample settings.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

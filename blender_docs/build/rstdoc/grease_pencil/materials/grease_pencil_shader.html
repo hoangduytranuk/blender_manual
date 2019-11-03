@@ -1,0 +1,805 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/grease_pencil/materials/grease_pencil_shader.rst">
+ <section ids="grease-pencil-shader" names="grease\ pencil\ shader">
+  <title>
+   Grease Pencil Shader
+  </title>
+  <figure align="right" ids="id1">
+   <image candidates="{'*': 'images/grease-pencil_materials_grease_pencil_shader_panel.png'}" uri="images/grease-pencil_materials_grease_pencil_shader_panel.png"/>
+   <caption>
+    Shader panel with only Stroke component activated.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Grease Pencil
+   </emphasis>
+   Shader create a material that can work
+with strokes and/or filled areas of a
+   <emphasis>
+    Grease Pencil
+   </emphasis>
+   Object.
+  </paragraph>
+  <paragraph>
+   Stroke and fill components has it own section panel and
+they can be enabled with a checkbox on the panel header.
+  </paragraph>
+  <paragraph>
+   <emphasis>
+    Stroke
+   </emphasis>
+   only has effect on the lines and
+   <emphasis>
+    Fill
+   </emphasis>
+   only on the areas
+determined by closed lines (by connecting the lines start and end points).
+  </paragraph>
+  <note>
+   <paragraph>
+    The shader is not yet a BSDF capable shader to interact with Blender lights
+and can only be setting up on the Material Properties panel (it is not a shader node).
+   </paragraph>
+  </note>
+  <section ids="properties" names="properties">
+   <title>
+    Properties
+   </title>
+   <target refid="bpy-types-materialgpencilstyle-show-stroke">
+   </target>
+   <target refid="bpy-types-materialgpencilstyle-mode">
+   </target>
+   <target refid="bpy-types-materialgpencilstyle-stroke-style">
+   </target>
+   <target refid="bpy-types-materialgpencilstyle-color">
+   </target>
+   <target refid="bpy-types-materialgpencilstyle-use-overlap-strokes">
+   </target>
+   <target refid="bpy-types-materialgpencilstyle-alignment-mode">
+   </target>
+   <section ids="stroke bpy-types-materialgpencilstyle-alignment-mode bpy-types-materialgpencilstyle-use-overlap-strokes bpy-types-materialgpencilstyle-color bpy-types-materialgpencilstyle-stroke-style bpy-types-materialgpencilstyle-mode bpy-types-materialgpencilstyle-show-stroke" names="stroke bpy.types.materialgpencilstyle.alignment_mode bpy.types.materialgpencilstyle.use_overlap_strokes bpy.types.materialgpencilstyle.color bpy.types.materialgpencilstyle.stroke_style bpy.types.materialgpencilstyle.mode bpy.types.materialgpencilstyle.show_stroke">
+    <title>
+     Stroke
+    </title>
+    <paragraph>
+     When enabled, the shader use the stroke component.
+The
+     <emphasis>
+      Stroke
+     </emphasis>
+     component controls how to render the edit lines.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Mode Type
+      </term>
+      <definition>
+       <paragraph>
+        Defines how to display or distribute the output material over the stroke.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Line
+         </term>
+         <definition>
+          <paragraph>
+           Connects every points in the strokes showing a continuous line.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Dots
+         </term>
+         <definition>
+          <paragraph>
+           Use a disk shape at each point in the stroke.
+The dots are not connected.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Boxes
+         </term>
+         <definition>
+          <paragraph>
+           Use a box shape at each point in the stroke.
+The boxes are not connected.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Style
+      </term>
+      <definition>
+       <paragraph>
+        The type of the material.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Solid
+         </term>
+         <definition>
+          <paragraph>
+           Use a solid color.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Color
+            </term>
+            <definition>
+             <paragraph>
+              The color of the stroke.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Texture
+         </term>
+         <definition>
+          <paragraph>
+           Use an image texture.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Image
+            </term>
+            <definition>
+             <paragraph>
+              The image data-block used as an image source.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             UV Factor
+            </term>
+            <definition>
+             <paragraph>
+              The image size along the stroke.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Use As Stencil Mask
+            </term>
+            <definition>
+             <paragraph>
+              When enabled, use the image alpha as a stencil mask.
+             </paragraph>
+             <definition_list>
+              <definition_list_item>
+               <term>
+                Color
+               </term>
+               <definition>
+                <paragraph>
+                 Color to use on not transparent areas of the image.
+                </paragraph>
+               </definition>
+              </definition_list_item>
+             </definition_list>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Mix Color
+            </term>
+            <definition>
+             <paragraph>
+              When enabled, mix the image with a certain color.
+             </paragraph>
+             <definition_list>
+              <definition_list_item>
+               <term>
+                Factor
+               </term>
+               <definition>
+                <paragraph>
+                 Mixing amount.
+                </paragraph>
+               </definition>
+              </definition_list_item>
+              <definition_list_item>
+               <term>
+                Color
+               </term>
+               <definition>
+                <paragraph>
+                 The color to mix.
+                </paragraph>
+               </definition>
+              </definition_list_item>
+             </definition_list>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Alignment
+      </term>
+      <definition>
+       <paragraph>
+        Defines how to align the
+        <emphasis>
+         Dots
+        </emphasis>
+        and
+        <emphasis>
+         Boxes
+        </emphasis>
+        along the drawing path and with the object's rotation.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Path
+         </term>
+         <definition>
+          <paragraph>
+           Aligns to the drawing path and the object's rotation.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Object
+         </term>
+         <definition>
+          <paragraph>
+           Aligns to the object's rotation; ignoring the drawing path.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Fixed
+         </term>
+         <definition>
+          <paragraph>
+           Aligns to the screen space; ignoring the drawing path and the object's rotation.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <table ids="id2">
+     <title>
+      Samples of different material strokes mode types and styles.
+     </title>
+     <tgroup cols="4">
+      <colspec colwidth="25">
+      </colspec>
+      <colspec colwidth="25">
+      </colspec>
+      <colspec colwidth="25">
+      </colspec>
+      <colspec colwidth="25">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id3">
+          <image candidates="{'*': 'images/grease-pencil_shader_stroke-solid-line.png'}" uri="images/grease-pencil_shader_stroke-solid-line.png" width="130px"/>
+          <caption>
+           Mode Type: Line, Style: Solid.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id4">
+          <image candidates="{'*': 'images/grease-pencil_shader_stroke-texture-line.png'}" uri="images/grease-pencil_shader_stroke-texture-line.png" width="130px"/>
+          <caption>
+           Mode Type: Line, Style: Texture.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id5">
+          <image candidates="{'*': 'images/grease-pencil_shader_stroke-solid-dot.png'}" uri="images/grease-pencil_shader_stroke-solid-dot.png" width="130px"/>
+          <caption>
+           Mode Type: Dot, Style: Solid.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id6">
+          <image candidates="{'*': 'images/grease-pencil_shader_stroke-texture-dot.png'}" uri="images/grease-pencil_shader_stroke-texture-dot.png" width="130px"/>
+          <caption>
+           Mode Type: Dot, Style: Texture.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Self Overlap
+      </term>
+      <definition>
+       <paragraph>
+        Disables stencil and overlap self-intersections with alpha materials.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="bpy-types-materialgpencilstyle-show-fill">
+    </target>
+    <target refid="bpy-types-materialgpencilstyle-fill-style">
+    </target>
+    <target refid="bpy-types-materialgpencilstyle-fill-color">
+    </target>
+    <target refid="bpy-types-materialgpencilstyle-mix-color">
+    </target>
+    <target refid="bpy-types-materialgpencilstyle-mix-factor">
+    </target>
+    <target refid="bpy-types-materialgpencilstyle-flip">
+    </target>
+    <target refid="bpy-types-materialgpencilstyle-pattern">
+    </target>
+    <target refid="bpy-types-materialgpencilstyle-texture">
+    </target>
+    <target refid="bpy-types-materialgpencilstyle-use-fill-texture-mix">
+    </target>
+   </section>
+   <section ids="fill bpy-types-materialgpencilstyle-use-fill-texture-mix bpy-types-materialgpencilstyle-texture bpy-types-materialgpencilstyle-pattern bpy-types-materialgpencilstyle-flip bpy-types-materialgpencilstyle-mix-factor bpy-types-materialgpencilstyle-mix-color bpy-types-materialgpencilstyle-fill-color bpy-types-materialgpencilstyle-fill-style bpy-types-materialgpencilstyle-show-fill" names="fill bpy.types.materialgpencilstyle.use_fill_texture_mix bpy.types.materialgpencilstyle.texture bpy.types.materialgpencilstyle.pattern bpy.types.materialgpencilstyle.flip bpy.types.materialgpencilstyle.mix_factor bpy.types.materialgpencilstyle.mix_color bpy.types.materialgpencilstyle.fill_color bpy.types.materialgpencilstyle.fill_style bpy.types.materialgpencilstyle.show_fill">
+    <title>
+     Fill
+    </title>
+    <paragraph>
+     When enabled, the shader use the fill component.
+The
+     <emphasis>
+      Fill
+     </emphasis>
+     component control how to render the filled areas determined by closed edit lines.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Style
+      </term>
+      <definition>
+       <paragraph>
+        The type of material.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Solid
+         </term>
+         <definition>
+          <paragraph>
+           Use solid color.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Color
+            </term>
+            <definition>
+             <paragraph>
+              The color of the fill.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Gradient
+         </term>
+         <definition>
+          <paragraph>
+           Use a color gradient.
+          </paragraph>
+          <paragraph>
+           Gradient Type
+          </paragraph>
+          <block_quote>
+           <definition_list>
+            <definition_list_item>
+             <term>
+              Linear
+             </term>
+             <definition>
+              <paragraph>
+               Mix the colors along a single axis.
+              </paragraph>
+             </definition>
+            </definition_list_item>
+            <definition_list_item>
+             <term>
+              Radial
+             </term>
+             <definition>
+              <paragraph>
+               Mix the colors radiating from a center point.
+              </paragraph>
+             </definition>
+            </definition_list_item>
+           </definition_list>
+          </block_quote>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Color.
+            </term>
+            <definition>
+             <paragraph>
+              The primary color.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Secondary color.
+            </term>
+            <definition>
+             <paragraph>
+              The secondary color.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Mix Factor
+            </term>
+            <definition>
+             <paragraph>
+              Primary and secondary colors mixing amount.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Flip colors
+            </term>
+            <definition>
+             <paragraph>
+              Flips the gradient, inverting the primary and secondary colors.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Location
+            </term>
+            <definition>
+             <paragraph>
+              Shifts the gradient position.
+             </paragraph>
+             <paragraph>
+              X, Y
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Scale
+            </term>
+            <definition>
+             <paragraph>
+              Scales the gradient.
+             </paragraph>
+             <paragraph>
+              X, Y
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Angle
+            </term>
+            <definition>
+             <paragraph>
+              Rotates the gradient.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Checkerboard
+         </term>
+         <definition>
+          <paragraph>
+           Use a checkered pattern.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Color.
+            </term>
+            <definition>
+             <paragraph>
+              The primary color.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Secondary color.
+            </term>
+            <definition>
+             <paragraph>
+              The secondary color.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Flip colors
+            </term>
+            <definition>
+             <paragraph>
+              Invert the primary and secondary colors.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Location
+            </term>
+            <definition>
+             <paragraph>
+              Shift the checkered pattern position.
+             </paragraph>
+             <paragraph>
+              X, Y
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Scale
+            </term>
+            <definition>
+             <paragraph>
+              Overall checkered pattern scale.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Angle
+            </term>
+            <definition>
+             <paragraph>
+              Rotate the checkered pattern.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Box Size
+            </term>
+            <definition>
+             <paragraph>
+              Sets the box size of the checkered pattern.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Texture
+         </term>
+         <definition>
+          <paragraph>
+           Use an image texture.
+          </paragraph>
+          <definition_list>
+           <definition_list_item>
+            <term>
+             Image
+            </term>
+            <definition>
+             <paragraph>
+              The image data-block used as an image source.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Use As Stencil Mask
+            </term>
+            <definition>
+             <paragraph>
+              When enabled, use the image's alpha as a stencil mask.
+             </paragraph>
+             <definition_list>
+              <definition_list_item>
+               <term>
+                Color
+               </term>
+               <definition>
+                <paragraph>
+                 Color to use on not transparent areas of the image.
+                </paragraph>
+               </definition>
+              </definition_list_item>
+             </definition_list>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Offset
+            </term>
+            <definition>
+             <paragraph>
+              Shifts the image position.
+             </paragraph>
+             <paragraph>
+              X, Y
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Scale
+            </term>
+            <definition>
+             <paragraph>
+              Scales the image.
+             </paragraph>
+             <paragraph>
+              X, Y
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Angle
+            </term>
+            <definition>
+             <paragraph>
+              Rotates the image.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Opacity
+            </term>
+            <definition>
+             <paragraph>
+              The texture's transparency.
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Clip Image
+            </term>
+            <definition>
+             <paragraph>
+              When enabled, show one image instance only (do not repeat).
+             </paragraph>
+            </definition>
+           </definition_list_item>
+           <definition_list_item>
+            <term>
+             Mix With Color
+            </term>
+            <definition>
+             <paragraph>
+              When enabled, mix the image with a certain color.
+             </paragraph>
+             <definition_list>
+              <definition_list_item>
+               <term>
+                Factor
+               </term>
+               <definition>
+                <paragraph>
+                 Mixing amount.
+                </paragraph>
+               </definition>
+              </definition_list_item>
+              <definition_list_item>
+               <term>
+                Color
+               </term>
+               <definition>
+                <paragraph>
+                 Color to mix.
+                </paragraph>
+               </definition>
+              </definition_list_item>
+             </definition_list>
+            </definition>
+           </definition_list_item>
+          </definition_list>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <table ids="id7">
+     <title>
+      Samples of different material fill styles.
+     </title>
+     <tgroup cols="4">
+      <colspec colwidth="25">
+      </colspec>
+      <colspec colwidth="25">
+      </colspec>
+      <colspec colwidth="25">
+      </colspec>
+      <colspec colwidth="25">
+      </colspec>
+      <tbody>
+       <row>
+        <entry>
+         <figure ids="id8">
+          <image candidates="{'*': 'images/grease-pencil_shader_fill-solid.png'}" uri="images/grease-pencil_shader_fill-solid.png" width="130px"/>
+          <caption>
+           Style: Solid.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id9">
+          <image candidates="{'*': 'images/grease-pencil_shader_fill-gradient.png'}" uri="images/grease-pencil_shader_fill-gradient.png" width="130px"/>
+          <caption>
+           Style: Gradient.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id10">
+          <image candidates="{'*': 'images/grease-pencil_shader_fill-checkerboard.png'}" uri="images/grease-pencil_shader_fill-checkerboard.png" width="130px"/>
+          <caption>
+           Style: Checkerboard.
+          </caption>
+         </figure>
+        </entry>
+        <entry>
+         <figure ids="id11">
+          <image candidates="{'*': 'images/grease-pencil_shader_fill-texture.png'}" uri="images/grease-pencil_shader_fill-texture.png" width="130px"/>
+          <caption>
+           Style: Texture.
+          </caption>
+         </figure>
+        </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+   </section>
+  </section>
+ </section>
+</document>

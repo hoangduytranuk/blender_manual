@@ -1,0 +1,180 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/animation/constraints/tracking/clamp_to.rst">
+ <target refid="bpy-types-clamptoconstraint">
+ </target>
+ <section ids="clamp-to-constraint bpy-types-clamptoconstraint" names="clamp\ to\ constraint ràng\ buộc\ siết\ vào\ --\ clamp\ to\ constraint bpy.types.clamptoconstraint">
+  <title>
+   Ràng Buộc Siết Vào -- Clamp To Constraint
+  </title>
+  <paragraph>
+   The
+   <emphasis>
+    Clamp To
+   </emphasis>
+   constraint clamps an object to a curve. The
+   <emphasis>
+    Clamp To
+   </emphasis>
+   constraint is very similar
+to the
+   <reference internal="True" refuri="../relationship/follow_path.html">
+    <inline classes="doc">
+     Follow Path
+    </inline>
+   </reference>
+   constraint,
+but instead of using the evaluation time of the target curve,
+   <emphasis>
+    Clamp To
+   </emphasis>
+   will get the actual location properties of its owner
+(those shown in the
+   <emphasis>
+    Transform
+   </emphasis>
+   panel),
+and judge where to put it by "mapping" this location along the target curve.
+  </paragraph>
+  <paragraph>
+   One benefit is that when you are working with
+   <emphasis>
+    Clamp To
+   </emphasis>
+   ,
+it is easier to see what your owner will be doing; since you are working in the 3D View,
+it will just be a lot more precise than sliding keys around on an F-curve and
+playing the animation over and over.
+  </paragraph>
+  <paragraph>
+   A downside is that unlike in the
+   <reference internal="True" refuri="../relationship/follow_path.html">
+    <inline classes="doc">
+     Follow Path constraint
+    </inline>
+   </reference>
+   ,
+   <emphasis>
+    Clamp To
+   </emphasis>
+   does not have any option to track your owner's rotation (pitch, roll, yaw)
+to the banking of the targeted curve, but you do not always need rotation on,
+so in cases like this it's usually a lot handier to fire up a
+   <emphasis>
+    Clamp To
+   </emphasis>
+   ,
+and get the bits of rotation you do need some other way.
+  </paragraph>
+  <paragraph>
+   The mapping from the object's original position to its position on the curve is not perfect,
+but uses the following simplified algorithm:
+  </paragraph>
+  <comment xml:space="preserve">
+   Note, this may not be 100% accurate
+  </comment>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     A "main axis" is chosen, either by the user, or as the longest axis of the curve's bounding box (the default).
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     The position of the object is compared to the bounding box of the curve in the direction of the main axis.
+So for example if X is the main axis, and the object is aligned with the curve bounding box's left side,
+the result is 0; if it is aligned with the right side, the result is 1.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     If the cyclic option is unchecked, this value is clamped in the range 0-1.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     This number is used as the curve time, to find the final position along the curve that the object is clamped to.
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <paragraph>
+   This algorithm does not produce exactly the desired result because curve time does not map
+exactly to the main axis position. For example an object directly in the center of a curve
+will be clamped to a curve time of 0.5 regardless of the shape of the curve,
+because it is halfway along the curve's bounding box.
+However, the 0.5 curve time position can actually be anywhere within the bounding box!
+  </paragraph>
+  <section ids="options" names="options tùy\ chọn\ --\ options">
+   <title>
+    Tùy Chọn -- Options
+   </title>
+   <comment xml:space="preserve">
+    TODO2.8
+.. figure:: /images/animation_constraints_tracking_clamp-to_panel.png
+
+   Clamp To panel.
+   </comment>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Mục Tiêu -- Target
+     </term>
+     <definition>
+      <paragraph>
+       The Target: field indicates which curve object the Clamp To constraint will track along.
+The Target: field must be a curve object type. If this
+       <reference internal="True" refuri="../../../interface/controls/templates/data_block.html#ui-data-id">
+        <inline classes="std std-ref">
+         Chỉ Danh của Dữ Liệu -- Data ID
+        </inline>
+       </reference>
+       field is not filled in
+then it will be highlighted in red indicating that this constraint does not have all the information
+it needs to carry out its task and will therefore be ignored on the constraint stack.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Trục Chính -- Main Axis
+     </term>
+     <definition>
+      <paragraph>
+       This button group controls which global axis (X, Y or Z) is the main direction of the path.
+When clamping the object to the target curve, it will not be moved significantly on this axis.
+It may move a small amount on that axis because of the inexact way this constraint functions.
+      </paragraph>
+      <paragraph>
+       For example if you are animating a rocket launch,
+it will be the Z axis because the main direction of the launch path is up.
+The default
+       <emphasis>
+        Auto
+       </emphasis>
+       option chooses the axis which the curve is longest in (or X if they are equal).
+This is usually the best option.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tuần Hoàn -- Cyclic
+     </term>
+     <definition>
+      <paragraph>
+       By default, once the object has reached one end of its target curve, it will be constrained there.
+When the
+       <emphasis>
+        Cyclic
+       </emphasis>
+       option is enabled, as soon as it reaches one end of the curve,
+it is instantaneously moved to its other end.
+This is of course primarily designed for closed curves (circles &amp; co),
+as this allows your owner to go around it over and over.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <vimeo aspect="None" height="None" id="171276763" width="None">
+   </vimeo>
+  </section>
+ </section>
+</document>

@@ -1,0 +1,861 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/editors/graph_editor/fcurves/editing.rst">
+ <section ids="editing" names="editing biên\ soạn\ --\ editing">
+  <title>
+   Biên Soạn -- Editing
+  </title>
+  <paragraph>
+   By default, when new channels are added, the
+   <emphasis>
+    Graph Editor
+   </emphasis>
+   sets them to
+   <emphasis>
+    Edit Mode
+   </emphasis>
+   .
+  </paragraph>
+  <paragraph>
+   Many of the hotkeys are the same as the
+   <reference internal="True" refuri="../../../scene_layout/object/index.html">
+    <inline classes="doc">
+     3D View ones
+    </inline>
+   </reference>
+   ,
+for example:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     <literal classes="kbd">
+      G
+     </literal>
+     to move
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <literal classes="kbd">
+      R
+     </literal>
+     to rotate
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <literal classes="kbd">
+      S
+     </literal>
+     to scale
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     <literal classes="kbd">
+      B
+     </literal>
+     for box select/deselect
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <paragraph>
+   And of course you can lock the transformation along the X axis (time frame) or
+Y axis (value) by pressing
+   <literal classes="kbd">
+    X
+   </literal>
+   or
+   <literal classes="kbd">
+    Y
+   </literal>
+   during transformation.
+  </paragraph>
+  <paragraph>
+   For precise control of the keyframe position and value,
+you can set values in the
+   <emphasis>
+    Active Keyframe
+   </emphasis>
+   of the Sidebar region.
+  </paragraph>
+  <section ids="insert-keyframe" names="insert\ keyframe chèn\ thêm\ khung\ khóa\ --\ insert\ keyframe">
+   <title>
+    Chèn Thêm Khung Khóa -- Insert Keyframe
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Ctrl-LMB
+        </literal>
+        ,
+        <literal classes="kbd">
+         Shift-Ctrl-LMB
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    <literal classes="kbd">
+     Ctrl-LMB
+    </literal>
+    inserts a keyframe to the active F-curve at the mouse position.
+The newly added keyframes will be selected, making it easier to quickly tweak the newly added keyframes.
+All previously selected keyframes are kept selected by using
+    <literal classes="kbd">
+     Shift-Ctrl-LMB
+    </literal>
+    .
+   </paragraph>
+  </section>
+  <section ids="transform-snapping" names="transform\ snapping bám\ dính\ biến\ hóa\ --\ transform\ snapping">
+   <title>
+    Bám Dính Biến Hóa -- Transform Snapping
+   </title>
+   <paragraph>
+    When transforming keyframes with
+    <literal classes="kbd">
+     G
+    </literal>
+    ,
+    <literal classes="kbd">
+     R
+    </literal>
+    ,
+    <literal classes="kbd">
+     S
+    </literal>
+    ,
+the transformation can be snapped to increments.
+   </paragraph>
+   <paragraph>
+    Snap Transformation to 1.0
+    <literal classes="kbd">
+     Ctrl
+    </literal>
+    .
+   </paragraph>
+   <paragraph>
+    Divide Transformation by 10.0
+    <literal classes="kbd">
+     Shift
+    </literal>
+    .
+   </paragraph>
+   <section ids="snap" names="snap bám\ dính\ --\ snap">
+    <title>
+     Bám Dính -- Snap
+    </title>
+    <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+     <title>
+      Tham Chiếu -- Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Trình Đơn -- Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Khóa (Key) --&gt; Bám Dính (Snap)`">
+          Khóa (Key) ‣ Bám Dính (Snap)
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Phím Tắt -- Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Shift-S
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Keyframes can be snapped to different properties by using the
+     <emphasis>
+      Snap Keys
+     </emphasis>
+     tool.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Khung Hình Hiện Tại -- Current Frame
+      </term>
+      <definition>
+       <paragraph>
+        Snap the selected keyframes to the
+        <emphasis>
+         Playhead
+        </emphasis>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Giá Trị Con Trỏ -- Cursor Value
+      </term>
+      <definition>
+       <paragraph>
+        Snap the selected keyframes to the
+        <emphasis>
+         2D Cursor
+        </emphasis>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Khung Hình Gần Nhất -- Nearest Frame
+      </term>
+      <definition>
+       <paragraph>
+        Snap the selected keyframes to their nearest frame individually.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Giây Gần Nhất -- Nearest Second
+      </term>
+      <definition>
+       <paragraph>
+        Snap the selected keyframes to their nearest second individually, based on the
+        <emphasis>
+         FPS
+        </emphasis>
+        of the scene.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Dấu Mốc Gần Nhất -- Nearest Marker
+      </term>
+      <definition>
+       <paragraph>
+        Snap the selected keyframes to their nearest marker individually.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Căn Thẳng Tay Cầm -- Flatten Handles
+      </term>
+      <definition>
+       <paragraph>
+        Flatten the
+        <emphasis>
+         Bézier
+        </emphasis>
+        handles for the selected keyframes.
+       </paragraph>
+       <table ids="id1">
+        <title>
+         Flatten Handles snapping example.
+        </title>
+        <tgroup cols="2">
+         <colspec colwidth="50">
+         </colspec>
+         <colspec colwidth="50">
+         </colspec>
+         <tbody>
+          <row>
+           <entry>
+            <figure ids="id2">
+             <image candidates="{'*': 'images/editors_graph-editor_fcurves_editing_flatten-handles-1.png'}" uri="images/editors_graph-editor_fcurves_editing_flatten-handles-1.png" width="204px"/>
+             <caption>
+              Before Flatten Handles.
+             </caption>
+            </figure>
+           </entry>
+           <entry>
+            <figure ids="id3">
+             <image candidates="{'*': 'images/editors_graph-editor_fcurves_editing_flatten-handles-2.png'}" uri="images/editors_graph-editor_fcurves_editing_flatten-handles-2.png" width="204px"/>
+             <caption>
+              After Flatten Handles.
+             </caption>
+            </figure>
+           </entry>
+          </row>
+         </tbody>
+        </tgroup>
+       </table>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
+  <section ids="mirror" names="mirror đối\ xứng\ hóa/gương\ --\ mirror">
+   <title>
+    Đối Xứng Hóa/Gương -- Mirror
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khóa (Key) --&gt; Đối Xứng Hóa/Gương (Mirror)`">
+         Khóa (Key) ‣ Đối Xứng Hóa/Gương (Mirror)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Shift-M
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Selected keyframes can be mirrored over different properties using the
+    <emphasis>
+     Mirror Keys
+    </emphasis>
+    tool.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Theo Thời Gian qua Khung Hình Hiện Tại -- By Times Over Current Frame
+     </term>
+     <definition>
+      <paragraph>
+       Mirror horizontally over the
+       <emphasis>
+        Playhead
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Theo Giá Trị dùng Giá Trị của Con Trỏ -- By Values over Cursor Value
+     </term>
+     <definition>
+      <paragraph>
+       Mirror vertically over the
+       <emphasis>
+        2D Cursor
+       </emphasis>
+       .
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Theo Thời Gian qua Mốc Thời Gian 0 -- By Times over Time 0
+     </term>
+     <definition>
+      <paragraph>
+       Mirror horizontally over frame 0.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Theo Giá Trị qua Mốc Giá Trị 0 -- By Values over Value 0
+     </term>
+     <definition>
+      <paragraph>
+       Mirror vertically over value 0.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Theo Thời Gian dùng Dấu Mốc Được Chọn Đầu Tiên -- By Times over First Selected Marker
+     </term>
+     <definition>
+      <paragraph>
+       Đối xứng theo chiều ngang qua
+       <emphasis>
+        Dấu Mốc
+       </emphasis>
+       đầu tiên
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="clean-keyframes" names="clean\ keyframes làm\ sạch\ khung\ khóa\ --\ clean\ keyframes">
+   <title>
+    Làm Sạch Khung Khóa -- Clean Keyframes
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khóa (Key) --&gt; Làm Sạch Khung Khóa (Clean Keyframes)`">
+         Khóa (Key) ‣ Làm Sạch Khung Khóa (Clean Keyframes)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         X
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    <emphasis>
+     Clean Keyframes
+    </emphasis>
+    resets the keyframe tangents on selected keyframes to their auto-clamped shape,
+if they have been modified.
+   </paragraph>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id4">
+         <image candidates="{'*': 'images/editors_graph-editor_fcurves_editing_clean1.png'}" uri="images/editors_graph-editor_fcurves_editing_clean1.png" width="320px"/>
+         <caption>
+          F-Curve before cleaning.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id5">
+         <image candidates="{'*': 'images/editors_graph-editor_fcurves_editing_clean2.png'}" uri="images/editors_graph-editor_fcurves_editing_clean2.png" width="320px"/>
+         <caption>
+          F-Curve after cleaning.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+  <section ids="clean-channels" names="clean\ channels dọn\ dẹp\ các\ kênh\ --\ clean\ channels">
+   <title>
+    Dọn Dẹp các Kênh -- Clean Channels
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khóa (Key) --&gt; Kênh (Channels)`">
+         Khóa (Key) ‣ Kênh (Channels)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         X
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    Acts like the
+    <emphasis>
+     Clean Keyframes
+    </emphasis>
+    tool but will also delete the channel itself if it is only left with
+a single keyframe containing the default property value and
+it's not being used by any generative f-curve modifiers or drivers.
+   </paragraph>
+   <note>
+    <paragraph>
+     The modified curve left after the
+     <emphasis>
+      Clean
+     </emphasis>
+     tool is run is not the same as the original,
+so this tool is better used before doing custom editing of f-curves and after initial keyframe insertion,
+to get rid of any unwanted keyframes inserted while doing mass keyframe insertion
+(by selecting all bones and pressing
+     <literal classes="kbd">
+      I
+     </literal>
+     for instance).
+    </paragraph>
+   </note>
+  </section>
+  <section ids="smoothing" names="smoothing làm\ mịn\ --\ smoothing">
+   <title>
+    Làm Mịn -- Smoothing
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khóa (Key) --&gt; Làm Mịn Khung Khóa (Smooth Keys)`">
+         Khóa (Key) ‣ Làm Mịn Khung Khóa (Smooth Keys)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Phím Tắt -- Hotkey
+      </field_name>
+      <field_body>
+       <paragraph>
+        <literal classes="kbd">
+         Alt-O
+        </literal>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    There is also an option to smooth the selected curves, but beware: its algorithm seems to be
+to divide by two the distance between each keyframe and the average linear value of the curve,
+without any setting, which gives quite a strong smoothing! Note that the first and last keys
+seem to be never modified by this tool.
+   </paragraph>
+   <table>
+    <tgroup cols="2">
+     <colspec colwidth="50">
+     </colspec>
+     <colspec colwidth="50">
+     </colspec>
+     <tbody>
+      <row>
+       <entry>
+        <figure ids="id6">
+         <image candidates="{'*': 'images/editors_graph-editor_fcurves_editing_clean1.png'}" uri="images/editors_graph-editor_fcurves_editing_clean1.png" width="320px"/>
+         <caption>
+          Đường cong-F trước khi làm mịn.
+         </caption>
+        </figure>
+       </entry>
+       <entry>
+        <figure ids="id7">
+         <image candidates="{'*': 'images/editors_graph-editor_fcurves_editing_smooth.png'}" uri="images/editors_graph-editor_fcurves_editing_smooth.png" width="320px"/>
+         <caption>
+          Đường cong-F sau khi làm mịn.
+         </caption>
+        </figure>
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+  <section ids="sampling-and-baking-keyframes" names="sampling\ and\ baking\ keyframes lấy\ mẫu\ vật\ và\ nướng\ khung\ hình\ --\ sampling\ and\ baking\ keyframes">
+   <title>
+    Lấy Mẫu Vật và Nướng Khung Hình -- Sampling and Baking Keyframes
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Lấy Mẫu Vật các Khung Hình
+      <literal classes="kbd">
+       Shift-O
+      </literal>
+      -- Sample Keyframes
+      <literal classes="kbd">
+       Shift-O
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Việc lấy mẫu vật của một bộ các khung hình sẽ thay thế các giá trị nội suy với một khung khóa mới cho mỗi khung hình
+      </paragraph>
+      <table>
+       <tgroup cols="2">
+        <colspec colwidth="50">
+        </colspec>
+        <colspec colwidth="50">
+        </colspec>
+        <tbody>
+         <row>
+          <entry>
+           <figure ids="id8">
+            <image candidates="{'*': 'images/editors_graph-editor_fcurves_editing_sample.png'}" uri="images/editors_graph-editor_fcurves_editing_sample.png" width="320px"/>
+            <caption>
+             Đường cong-F trước khi lấy mẫu vật.
+            </caption>
+           </figure>
+          </entry>
+          <entry>
+           <figure ids="id9">
+            <image candidates="{'*': 'images/editors_graph-editor_fcurves_editing_sample2.png'}" uri="images/editors_graph-editor_fcurves_editing_sample2.png" width="320px"/>
+            <caption>
+             Đường cong-F sau khi lấy mẫu.
+            </caption>
+           </figure>
+          </entry>
+         </row>
+        </tbody>
+       </tgroup>
+      </table>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Nướng Đường Cong -- Bake Curves
+      <literal classes="kbd">
+       Alt-C
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Baking a curve replaces it with a set of sampled points, and removes the ability to edit the curve.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="bake-sound-to-f-curves" names="bake\ sound\ to\ f-curves nướng\ âm\ thanh\ thành\ đường\ cong-f\ --\ bake\ sound\ to\ f-curves">
+   <title>
+    Nướng Âm Thanh thành Đường Cong-F -- Bake Sound to F-Curves
+   </title>
+   <admonition classes="refbox" names="tham\ chiếu\ --\ reference">
+    <title>
+     Tham Chiếu -- Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Trình Đơn -- Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Khóa (Key) --&gt; Nướng Âm Thanh thành Đường Cong-F (Bake Sound to F-Curves)`">
+         Khóa (Key) ‣ Nướng Âm Thanh thành Đường Cong-F (Bake Sound to F-Curves)
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    The
+    <emphasis>
+     Bake Sound to F-Curves
+    </emphasis>
+    tool takes a sound file and uses its sound wave to create the animation data.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Tần số thấp nhất -- Lowest frequency
+     </term>
+     <definition>
+      <paragraph>
+       Cutoff frequency of a high-pass filter that is applied to the audio data.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Tần số cao nhất -- Highest frequency
+     </term>
+     <definition>
+      <paragraph>
+       Cutoff frequency of a low-pass filter that is applied to the audio data.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thời gian công -- Attack time
+     </term>
+     <definition>
+      <paragraph>
+       Value for the hull curve calculation that tells how fast the hull curve can rise.
+The lower the value the steeper it can rise.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Thời gian thả -- Release time
+     </term>
+     <definition>
+      <paragraph>
+       Value for the hull curve calculation that tells how fast the hull curve can fall.
+The lower the value the steeper it can fall.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Giới Hạn -- Threshold
+     </term>
+     <definition>
+      <paragraph>
+       Minimum amplitude value needed to influence the hull curve.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Chồng Chất/Tích Tụ -- Accumulate
+     </term>
+     <definition>
+      <paragraph>
+       Only the positive differences of the hull curve amplitudes are summarized to produce the output.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Bổ Sung -- Additive
+     </term>
+     <definition>
+      <paragraph>
+       The amplitudes of the hull curve are summarized. If
+       <emphasis>
+        Accumulate
+       </emphasis>
+       is enabled,
+both positive and negative differences are accumulated.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hình Vuông -- Square
+     </term>
+     <definition>
+      <paragraph>
+       Cho kết quả là một đường cong hình vuông. Các giá trị âm luôn luôn có kết quả là -1 và những giá trị dương là 1
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Giới Hạn Hình Vuông -- Square Threshold
+        </term>
+        <definition>
+         <paragraph>
+          Tất cả các giá trị thấp hơn ngưỡng này sẽ cho kết quả là 0.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="show-hide" names="show/hide hiện/ẩn\ --\ show/hide">
+   <title>
+    Hiện/Ẩn -- Show/Hide
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Hide Selected Curves
+      <literal classes="kbd">
+       H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Hides the selected curves.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Ẩn Giấu Cái Không Được Chọn -- Hide Unselected
+      <literal classes="kbd">
+       Shift-H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Chỉ hiển thị các đường cong được chọn (ẩn giấu tất cả mọi thứ khác)
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Reveal Curves
+      <literal classes="kbd">
+       Alt-H
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Hiển thị toàn bộ các  đường cong bị ẩn giấu trước đây.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>

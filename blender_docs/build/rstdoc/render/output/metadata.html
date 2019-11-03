@@ -1,0 +1,277 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/render/output/metadata.rst">
+ <section ids="metadata" names="metadata siêu\ dữ\ liệu\ --\ metadata">
+  <title>
+   Siêu Dữ Liệu -- Metadata
+  </title>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/render_output_metadata_panel.png'}" uri="images/render_output_metadata_panel.png"/>
+   <caption>
+    Metadata panel.
+   </caption>
+  </figure>
+  <paragraph>
+   The
+   <emphasis>
+    Metadata
+   </emphasis>
+   panel includes options for writing metadata into render output.
+  </paragraph>
+  <note>
+   <paragraph>
+    Only some image formats support metadata:
+See
+    <reference internal="True" refuri="../../files/media/image_formats.html">
+     <inline classes="doc">
+      image formats
+     </inline>
+    </reference>
+    .
+   </paragraph>
+  </note>
+  <rubric>
+   Siêu Dữ Liệu Sử Dụng -- Enabled Metadata
+  </rubric>
+  <paragraph>
+   Stamping can include the following data:
+  </paragraph>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Ngày -- Date
+    </term>
+    <definition>
+     <paragraph>
+      Includes the current date and time.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Thời Gian -- Time
+    </term>
+    <definition>
+     <paragraph>
+      Includes the current scene time and render frame at
+      <literal>
+       HH:MM:SS.FF
+      </literal>
+      .
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     -- Render Time
+    </term>
+    <definition>
+     <paragraph>
+      Includes the render time.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Khung Hình -- Frame
+    </term>
+    <definition>
+     <paragraph>
+      Includes the frame number.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Frame Range
+    </term>
+    <definition>
+     <paragraph>
+      Includes the start and end frame numbers.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Bộ Nhớ -- Memory
+    </term>
+    <definition>
+     <paragraph>
+      Includes the peak memory usage.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Hostname
+    </term>
+    <definition>
+     <paragraph>
+      Includes the rendering machine's
+      <reference name="hostname" refuri="https://en.wikipedia.org/wiki/Hostname">
+       hostname
+      </reference>
+      .
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Máy Quay Phim -- Camera
+    </term>
+    <definition>
+     <paragraph>
+      Includes the name of the active camera.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Lăng Kính -- Lens
+    </term>
+    <definition>
+     <paragraph>
+      Includes the name of the active camera's lens value.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Cảnh -- Scene
+    </term>
+    <definition>
+     <paragraph>
+      Includes the name of the active scene.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Dấu Mốc -- Marker
+    </term>
+    <definition>
+     <paragraph>
+      Includes the name of the last marker.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Tên Tập Tin -- Filename
+    </term>
+    <definition>
+     <paragraph>
+      Includes the filename of the blend-file.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Strip Name
+    </term>
+    <definition>
+     <paragraph>
+      Includes the name of the foreground sequence strip.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+  <rubric>
+   Bộ Phối Hình -- Sequencer
+  </rubric>
+  <definition_list>
+   <definition_list_item>
+    <term>
+     Siêu Dữ Liệu của Dải -- Strip Metadata
+    </term>
+    <definition>
+     <paragraph>
+      Use metadata from the strips in the Sequencer.
+     </paragraph>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Ghi Chú -- Note
+    </term>
+    <definition>
+     <paragraph>
+      Includes a custom note.
+     </paragraph>
+     <hint>
+      <paragraph>
+       It can be useful to use the
+       <emphasis>
+        Note
+       </emphasis>
+       field if you are setting up a render farm.
+      </paragraph>
+      <paragraph>
+       Since you can script any information you like into it,
+such as an identifier for the render node or the job number.
+      </paragraph>
+      <paragraph>
+       For details on stamping arbitrary values,
+see:
+       <reference name="this page" refuri="https://blender.stackexchange.com/questions/26643">
+        this page
+       </reference>
+       .
+      </paragraph>
+     </hint>
+    </definition>
+   </definition_list_item>
+   <definition_list_item>
+    <term>
+     Burn into Image
+    </term>
+    <definition>
+     <paragraph>
+      Add metadata as text to the render.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Kích Thước Phông -- Font Size
+       </term>
+       <definition>
+        <paragraph>
+         Set the size of the text.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Text Color
+       </term>
+       <definition>
+        <paragraph>
+         Set the color and alpha of the stamp text.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Background
+       </term>
+       <definition>
+        <paragraph>
+         Set the color and alpha of the color behind the text.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Include Labels
+       </term>
+       <definition>
+        <paragraph>
+         Displays the labels before the metadata text. For example,
+"Camera" in front of the camera name, etc.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </definition>
+   </definition_list_item>
+  </definition_list>
+ </section>
+</document>

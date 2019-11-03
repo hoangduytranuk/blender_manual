@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bộ Điều Chỉnh -- Modifiers &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/index.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Giới Thiệu -- Introduction" href="introduction.html" />
+    <link rel="prev" title="-- Empties" href="../empties.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../empties.html">-- Empties</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh -- Modifiers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modify">Sửa Đổi -- Modify</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modify/data_transfer.html">Bộ Điều Chỉnh Thuyên Chuyển  Dữ Liệu -- Data Transfer Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modify/mesh_cache.html">-- Mesh Cache Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modify/mesh_sequence_cache.html">-- Mesh Sequence Cache Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modify/normal_edit.html">Bộ Điều Chỉnh Pháp Tuyến -- Normal Edit Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modify/uv_project.html">Bộ Điều Chỉnh Phóng Chiếu UV -- UV Project Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modify/uv_warp.html">-- UV Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modify/weight_edit.html">-- Vertex Weight Edit Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modify/weight_mix.html">-- Vertex Weight Mix Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modify/weight_proximity.html">-- Vertex Weight Proximity Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modify/weighted_normal.html">Weighted Normal Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generate">Sinh Tạo -- Generate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generate/array.html">Bộ Điều Chỉnh Mảng -- Array Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/bevel.html">Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/booleans.html">Bộ Điều Chỉnh Bool -- Boolean Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/build.html">Bộ Điều Chỉnh Xây Dựng -- Build Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/decimate.html">Bộ Điều Chỉnh Tiêu Hao -- Decimate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/edge_split.html">-- Edge Split Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/mask.html">Bộ Điều Chỉnh Màn Chắn -- Mask Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/mirror.html">Bộ Điều Chỉnh Đối Xứng -- Mirror Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/multiresolution.html">-- Multiresolution Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/remesh.html">Bộ Điều Chỉnh Kiến Tạo Lại Khung Lưới -- Remesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/screw.html">Bộ Điều Chỉnh Xoáy Ốc -- Screw Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/skin.html">Bộ Điều Chỉnh Da -- Skin Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/solidify.html">Bộ Điều Chỉnh Tạo Độ Dày -- Solidify Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/subdivision_surface.html">-- Subdivision Surface Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/triangulate.html">Bộ Điều Chỉnh Tam Giác Hóa -- Triangulate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate/wireframe.html">Bộ Điều Chỉnh Khung Dây -- Wireframe Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#deform">Biến Dạng -- Deform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deform/armature.html">Bộ Điều Chỉnh Cốt -- Armature Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/cast.html">Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/corrective_smooth.html">Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/curve.html">Bộ Điều Chỉnh Đường Cong -- Curve Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/displace.html">Bộ Điều Chỉnh Dời Hình -- Displace Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/hooks.html">Bộ Điều Chỉnh Móc -- Hook Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/laplacian_smooth.html">Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/laplacian_deform.html">Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/lattice.html">Bộ Điều Chỉnh Giàn Lưới -- Lattice Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/mesh_deform.html">-- Mesh Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/shrinkwrap.html">Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/simple_deform.html">-- Simple Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/smooth.html">Bộ Điều Chỉnh Làm Mịn -- Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/surface_deform.html">-- Surface Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/warp.html">Bộ Điều Chỉnh Làm Cong -- Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deform/wave.html">Bộ Điều Chỉnh Tạo Sóng -- Wave Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#simulate">Mô Phỏng -- Simulate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="simulate/explode.html">Bộ Điều Chỉnh Nổ Tung -- Explode Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulate/ocean.html">Bộ Điều Chỉnh Đại Dương -- Ocean Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulate/particle_instance.html">-- Particle Instance Modifier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+      <li>Bộ Điều Chỉnh -- Modifiers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/modeling/modifiers/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modifiers">
+<span id="bpy-types-modifier"></span><span id="modifiers-index"></span><h1>Bộ Điều Chỉnh -- Modifiers<a class="headerlink" href="#modifiers" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#interface">Giao Diện -- Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="common_options.html">Common Modifier Options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="common_options.html#vertex-group">Vertex Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_options.html#texture">Texture</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="modify">
+<h2>Sửa Đổi -- Modify<a class="headerlink" href="#modify" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modify/data_transfer.html">Bộ Điều Chỉnh Thuyên Chuyển  Dữ Liệu -- Data Transfer Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify/mesh_cache.html">-- Mesh Cache Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify/mesh_sequence_cache.html">-- Mesh Sequence Cache Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify/normal_edit.html">Bộ Điều Chỉnh Pháp Tuyến -- Normal Edit Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify/uv_project.html">Bộ Điều Chỉnh Phóng Chiếu UV -- UV Project Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify/uv_warp.html">-- UV Warp Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify/weight_edit.html">-- Vertex Weight Edit Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify/weight_mix.html">-- Vertex Weight Mix Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify/weight_proximity.html">-- Vertex Weight Proximity Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify/weighted_normal.html">Weighted Normal Modifier</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="generate">
+<h2>Sinh Tạo -- Generate<a class="headerlink" href="#generate" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generate/array.html">Bộ Điều Chỉnh Mảng -- Array Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/bevel.html">Bộ Điều Chỉnh Bo Tròn -- Bevel Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/booleans.html">Bộ Điều Chỉnh Bool -- Boolean Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/build.html">Bộ Điều Chỉnh Xây Dựng -- Build Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/decimate.html">Bộ Điều Chỉnh Tiêu Hao -- Decimate Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/edge_split.html">-- Edge Split Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/mask.html">Bộ Điều Chỉnh Màn Chắn -- Mask Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/mirror.html">Bộ Điều Chỉnh Đối Xứng -- Mirror Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/multiresolution.html">-- Multiresolution Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/remesh.html">Bộ Điều Chỉnh Kiến Tạo Lại Khung Lưới -- Remesh Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/screw.html">Bộ Điều Chỉnh Xoáy Ốc -- Screw Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/skin.html">Bộ Điều Chỉnh Da -- Skin Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/solidify.html">Bộ Điều Chỉnh Tạo Độ Dày -- Solidify Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/subdivision_surface.html">-- Subdivision Surface Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/triangulate.html">Bộ Điều Chỉnh Tam Giác Hóa -- Triangulate Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate/wireframe.html">Bộ Điều Chỉnh Khung Dây -- Wireframe Modifier</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="deform">
+<h2>Biến Dạng -- Deform<a class="headerlink" href="#deform" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="deform/armature.html">Bộ Điều Chỉnh Cốt -- Armature Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/cast.html">Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/corrective_smooth.html">Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/curve.html">Bộ Điều Chỉnh Đường Cong -- Curve Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/displace.html">Bộ Điều Chỉnh Dời Hình -- Displace Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/hooks.html">Bộ Điều Chỉnh Móc -- Hook Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/laplacian_smooth.html">Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/laplacian_deform.html">Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/lattice.html">Bộ Điều Chỉnh Giàn Lưới -- Lattice Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/mesh_deform.html">-- Mesh Deform Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/shrinkwrap.html">Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/simple_deform.html">-- Simple Deform Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/smooth.html">Bộ Điều Chỉnh Làm Mịn -- Smooth Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/surface_deform.html">-- Surface Deform Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/warp.html">Bộ Điều Chỉnh Làm Cong -- Warp Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deform/wave.html">Bộ Điều Chỉnh Tạo Sóng -- Wave Modifier</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="simulate">
+<h2>Mô Phỏng -- Simulate<a class="headerlink" href="#simulate" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="simulate/explode.html">Bộ Điều Chỉnh Nổ Tung -- Explode Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulate/ocean.html">Bộ Điều Chỉnh Đại Dương -- Ocean Modifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulate/particle_instance.html">-- Particle Instance Modifier</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Giới Thiệu -- Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../empties.html" class="btn btn-neutral float-left" title="-- Empties" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>
