@@ -44,7 +44,8 @@ Protrusions Settings
 --------------------
 
 Make Protrusions
-   This checkbox turns on the functions for protrusions. If you turn it off, nothing will happen when you run the script.
+   This checkbox turns on the functions for protrusions.
+   If you turn it off, nothing will happen when you run the script.
    You may want to turn Protrusions off if you are using only the Doodads function described further below.
 
 Min/Max Height
@@ -54,7 +55,7 @@ Min/Max Height
 Min/Max Taper
    Adjust the taper of the protrusions. This will affect the pointiness of the protrusions.
 
-1, 2, 3, 4 
+1, 2, 3, 4
    These checkboxes provide options for the subdivision of the faces or the amount of protrusions per face.
    Based on random, if you have all selected, each face will have either 1, 2, 3 or 4 protrusions.
    Use only one or any combination and the faces will only have your selected value(s).

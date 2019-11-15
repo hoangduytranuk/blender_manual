@@ -1,0 +1,415 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-11-10 01:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Editing"
+msgstr "Biên Soạn -- Editing"
+
+msgid "In *Pose Mode*, bones behave like objects. So the transform actions (move/rotate/scale, etc.) are very similar to the same ones in Object Mode (all available ones are regrouped in the :menuselection:`Pose --> Transform` submenu). However, there are some important specificities:"
+msgstr "In *Pose Mode*, bones behave like objects. So the transform actions (grab/rotate/scale, etc.) are very similar to the same ones in *Object* mode (all available ones are regrouped in the :menuselection:`Tư Thế (Pose) --> Biến Hóa (Transform)` submenu). However, there are some important specificities:"
+
+msgid "Bones' relationships are crucial (see :ref:`bone-relations-parenting`)."
+msgstr "Xương' relationships are crucial (see :ref:`bone-relations-parenting`)."
+
+msgid "The \"transform center\" of a given bone (i.e. its default pivot point, when it is the only selected one) is *its root*. Note by the way that some pivot point options seem to not work properly. In fact, except for the *3D Cursor* one, all others appear to always use the median point of the selection (and not e.g. the active bone's root when *Active Object* is selected, etc.)."
+msgstr "The \"Biến Hóa Trung Tâm\" of a given Xương (i.e. its Mặc Định Điểm Tựa Điểm/Chấm, when it is the only Cái được Chọn một) is *its Gốc/Phép Căn*. Ghi Chú by the way that some Điểm Tựa Điểm/Chấm Tùy Chọn seem Tới Đảo Nghịch work properly. Vào fact, except for the *3D Con Trỏ* một, Toàn Bộ Những cái Khác appear Tới Luôn Luôn Sử Dụng the Trung Bình/Điểm Điểm/Chấm of the Lựa Chọn (và Đảo Nghịch e.g. the Đang/Hoạt Động Xương's Gốc/Phép Căn when *Đang/Hoạt Động Vật Thể* is Cái được Chọn, etc.)."
+
+msgid "Basic Posing"
+msgstr "-- Basic Posing"
+
+msgid "As previously noted, bones' transformations are performed based on the *Rest Position* of the armature, which is its state as defined in *Edit Mode*. This means that in rest position, in *Pose Mode*, each bone has a scale of 1.0, and null rotation and position (as you can see it in the *Transform* panel, in the 3D Views)."
+msgstr "As previously noted, Xương' -- Transformations are performed based BẬT the *Rest Vị Trí* of the Cốt, cái mà/tức is its Trạng Thái as defined Vào *Biên Soạn Chế Độ*. cái/điều này means that Vào rest Vị Trí, Vào *Tư Thế Chế Độ*, each Xương has a Tỷ Lệ of 1.0, và null Xoay Chiều và Vị Trí (as you có thể see it Vào the *Biến Hóa* Bảng, Vào the 3D Đa Góc Nhìn)."
+
+msgid "An example of locally-Y-axis locked rotation, with two bones selected."
+msgstr "An Ví Dụ -- Example of locally-Y-axis Bị Khóa Xoay Chiều, với hai Xương Cái được Chọn."
+
+msgid "Note that the two green lines materializing the axes are centered on the armature's center, and not each bone's root..."
+msgstr "Ghi Chú that the hai Lục (Số) Đường Kẻ/Thẳng/Dòng materializing the Trục are centered BẬT the Cốt's Trung Tâm, và Đảo Nghịch each Xương's Gốc/Phép Căn..."
+
+msgid "Moreover, the local space for these actions is the bone's own one (visible when you enable the *Axes* option of the *Armature* panel). This is especially important when using axis locking, for example, there is no specific \"bone roll\" tool in *Pose Mode*, as you can rotate around the bone's main axis just by locking on the local Y axis :kbd:`R Y Y`... This also works with several bones selected; each one is locked to its own local axis!"
+msgstr "Moreover, the địa phương Cách/Khoảng Trống/Không Gian for these Hành Động is the Xương's own một (Hữu Hình when you Bật the *Trục* Tùy Chọn of the *Cốt* Bảng). cái/điều này is especially important when using Trục -- Locking, for Ví Dụ -- Example, there is no specific \"Xương Xoáy\" Công Cụ Vào *Tư Thế Chế Độ*, as you có thể Xoay Chiều around the Xương's Chủ Yếu Trục just by -- Locking BẬT the địa phương Y Trục :kbd:`R Y Y`... cái/điều này also works với several Xương Cái được Chọn; each một is Bị Khóa Tới its own địa phương Trục!"
+
+msgid "When you pose your armature, you are supposed to have one or more objects skinned on it! And obviously, when you transform a bone in *Pose Mode*, its related objects or object's shape is moved/deformed accordingly, in real-time. Unfortunately, if you have a complex rig set-up and/or a heavy skin object, this might produce lag, and make interactive editing very painful. If you experience such troubles, try enabling the *Delay Deform* button of the *Armature* panel the skin objects will only be updated once you validate the transform operation."
+msgstr "When you Tư Thế your Cốt, you are supposed Tới have một hoặc Nhiều/Lớn Hơn Vật Thể skinned BẬT it! và obviously, when you Biến Hóa a Xương Vào *Tư Thế Chế Độ*, its related Vật Thể hoặc Vật Thể's Hình Dạng is moved/deformed accordingly, Vào real-time. Unfortunately, if you have a complex Dàn Dựng -- Rig set-up và/hoặc a Nặng Da Vật Thể, cái/điều này might produce lag, và Tạo interactive Biên Soạn very painful. If you experience such troubles, try enabling the *Trì Hoãn Biến Dạng* button of the *Cốt* Bảng the Da Vật Thể will only be updated once you Kiểm Tra Tính Hợp Lệ the Biến Hóa Thao Tác."
+
+msgid "Auto IK"
+msgstr "IK Tự Động -- Auto IK"
+
+msgid "Reference"
+msgstr "Tham Chiếu -- Reference"
+
+msgid "Mode"
+msgstr "Chế Độ -- Mode"
+
+msgid "Pose Mode"
+msgstr "Chế Độ Tư Thế"
+
+msgid "Panel"
+msgstr "Bảng -- Panel"
+
+msgid ":menuselection:`Sidebar region --> Tool --> Pose Options`"
+msgstr ":menuselection:`Giá Công Cụ (Tool Shelf) --> Tùy Chọn (Options) --> Tùy Chọn về Tư Thế (Pose Options)`"
+
+msgid "The auto IK option in the Sidebar enables a temporary IK constraint when posing bones. The chain acts from the tip of the selected bone to root of the upper-most parent bone. Note that this mode lacks options, and only works by applying the resulting transform to the bones in the chain."
+msgstr "The Tự Động IK Tùy Chọn Vào the Bật/Thanh Bên enables a Tạm Thời IK Ràng Buộc when Tạo Tư Thế -- Posing Xương. The chain acts Từ the Đỉnh of the Cái được Chọn Xương Tới Gốc/Phép Căn of the upper-most Phụ Huynh Xương. Ghi Chú that cái/điều này Chế Độ lacks Tùy Chọn, và only works by applying the resulting Biến Hóa Tới the Xương Vào the chain."
+
+msgid "Clear Transform"
+msgstr "Xóa Biến Hóa -- Clear Transform"
+
+msgid "Menu"
+msgstr "Trình Đơn -- Menu"
+
+msgid ":menuselection:`Pose --> Clear Transform`"
+msgstr ":menuselection:`Tư Thế (Pose) --> Xóa Biến Hóa (Clear Transform)`"
+
+msgid "Hotkey"
+msgstr "Phím Tắt -- Hotkey"
+
+msgid ":kbd:`Alt-G`, :kbd:`Alt-R`, :kbd:`Alt-S`"
+msgstr ""
+
+msgid "Once you have transformed some bones, if you want to return to their rest position, just clear their transformations."
+msgstr "Once you have transformed some Xương, if you want Tới return Tới their rest Vị Trí, just Xóa their -- Transformations."
+
+msgid "Location, Rotation, Scale :kbd:`Alt-G`, :kbd:`Alt-R`, :kbd:`Alt-S`"
+msgstr "-- Location, Rotation, Scale :kbd:`Alt-G`, :kbd:`Alt-R`, :kbd:`Alt-S`"
+
+msgid "Clears individual transforms."
+msgstr "Clears Cá Nhân Biến Hóa."
+
+msgid "All"
+msgstr "Toàn Bộ -- All"
+
+msgid "To clear everything at once."
+msgstr "Tới Xóa everything Tại once."
+
+msgid "Reset Unkeyed"
+msgstr "Hoàn Lại về trạng thái Chưa Khóa Hóa -- Reset Unkeyed"
+
+msgid "Clears the transforms to their keyframe state."
+msgstr "Clears the Biến Hóa Tới their Khung Khóa Trạng Thái."
+
+msgid "Only Selected"
+msgstr "Duy Đã được Chọn -- Only Selected"
+
+msgid "Operate on just the selected or all bones."
+msgstr "Operate BẬT just the Cái được Chọn hoặc Toàn Bộ Xương."
+
+msgid "Note that in *Envelope* visualization, :kbd:`Alt-S` does not clear the scale, but rather scales the *Distance* influence area of the selected bones (also available through the :menuselection:`Pose --> Scale Envelope Distance` menu entry, which is only effective in *Envelope* visualization, even though it is always available...)."
+msgstr "Note that in *Envelope* visualization, :kbd:`Alt-S` does not clear the scale, but rather scales the *Distance* influence area of the selected bones (also available through the :menuselection:`Tư Thế (Pose) --> Đổi Tỷ Lệ Khoảng Cách Bao Bì (Scale Envelope Distance)` menu entry, which is only effective in *Envelope* visualization, even though it is always available...)."
+
+msgid "Apply"
+msgstr "Áp Dụng -- Apply"
+
+msgid ":menuselection:`Pose --> Apply`"
+msgstr ":menuselection:`Tư Thế (Pose) --> Áp Dụng (Apply)`"
+
+msgid ":kbd:`Ctrl-A`"
+msgstr ""
+
+msgid "Pose as Rest Pose"
+msgstr "Tư Thế as Rest Tư Thế -- Pose as Rest Pose"
+
+msgid "Conversely, you may define the current pose as the new rest pose (i.e. \"apply\" current transformations to the *Edit Mode*), When you do so, the skinned objects/geometry is **also** reset to its default, undeformed state, which generally means you will have to skin it again."
+msgstr "Conversely, you may define the current pose as the new rest position (i.e. \"apply\" current transformations to the *Edit Mode*), using the :menuselection:`Tư Thế (Pose) --> Áp Dụng Tư Thế làm Tư Thế Nghỉ (Apply Pose as Restpose)` menu entry (or :kbd:`Ctrl-A` and confirm the pop-up menu). When you do so, the skinned objects/geometry is **also** reset to its default, undeformed state, which generally means you will have to skin it again."
+
+msgid "Pose Selected as Rest Pose"
+msgstr "Tư Thế Cái được Chọn as Rest Tư Thế -- Pose Selected as Rest Pose"
+
+msgid "Same as *Pose as Rest Pose* but only applies to selected bones."
+msgstr "Same as *Tư Thế as Rest Tư Thế* but only applies Tới Cái được Chọn Xương."
+
+msgid "Visual Transform to Pose"
+msgstr "Visual Biến Hóa Tới Tư Thế -- Visual Transform to Pose"
+
+msgid "TODO."
+msgstr "Nội dung cần viết thêm."
+
+msgid "Assign Custom Property Values as Default"
+msgstr "Ấn Định các Giá Trị Tính Chất Tùy Chỉnh làm Mặc Định -- Assign Custom Property Values as Default"
+
+msgid "In-Betweens"
+msgstr "Trung Gian -- In-Betweens"
+
+msgid "In-Betweens Tools."
+msgstr "Trung Gian -- In-Betweens"
+
+msgid "There are several tools for editing poses in an animation."
+msgstr "There are several Công Cụ for Biên Soạn poses Vào an Hoạt Họa."
+
+msgid "There are also in *Pose Mode* a bunch of armature-specific editing options/tools, like :ref:`auto-bones naming <armature-editing-naming-bones>`, :ref:`properties switching/enabling/disabling <armature-bone-properties>`, etc., that we already described in the armature editing pages. See the links above..."
+msgstr "There are also Vào *Tư Thế Chế Độ* a bunch of Cốt-specific Biên Soạn Tùy Chọn/Công Cụ, like :ref:`auto-bones Đặt Tên -- Naming <Cốt-Biên Soạn-Đặt Tên -- Naming-bones>`, :ref:`Tính Chất switching/enabling/disabling <Cốt-bone-Tính Chất>`, etc., that we already described Vào the Cốt Biên Soạn pages. See the Kết Nối above..."
+
+msgid "Push Pose from Breakdown"
+msgstr "Tư Thế Cường Điệu từ Dáng Phân Tích -- Push Pose from Breakdown"
+
+msgid "Tool"
+msgstr "Công Cụ -- Tool"
+
+msgid ":menuselection:`Toolbar --> In-Betweens Tools --> Push`"
+msgstr ":menuselection:`Giá Công Cụ (Tool Shelf) --> Tùy Chọn (Options) --> Tùy Chọn về Tư Thế (Pose Options)`"
+
+msgid ":menuselection:`Pose --> In-Betweens --> Push Pose from Breakdown`"
+msgstr ":menuselection:`Tư Thế (Pose) --> Trung Gian (In-Betweens) --> Máy Phân Tích Tư Thế (Pose Breakdowner)`"
+
+msgid ":kbd:`Ctrl-E`"
+msgstr ""
+
+msgid "*Push Pose* interpolates the current pose by making it closer to the next keyframed position."
+msgstr "*Đẩy Tư Thế* interpolates the Hiện Tại Tư Thế by making it closer Tới the Tiếp Theo Khung Khóa Hóa Vị Trí."
+
+msgid "Push Pose from Rest"
+msgstr "Đẩy Tư Thế Từ Rest -- Push Pose from Rest"
+
+msgid ":menuselection:`Pose --> In-Betweens --> Push Pose from Rest`"
+msgstr ":menuselection:`Tư Thế (Pose) --> Trung Gian (In-Betweens) --> Máy Phân Tích Tư Thế (Pose Breakdowner)`"
+
+msgid "Similar to *Push Pose from Breakdown* but interpolates the pose to the rest position instead. Only one keyframe is needed for this tool unlike two for the other."
+msgstr "Tương Đồng Tới *Đẩy Tư Thế Từ Phân Tích* but interpolates the Tư Thế Tới the rest Vị Trí instead. Only một Khung Khóa is needed for cái/điều này Công Cụ unlike hai for the Cái/Sắp Đặt Khác."
+
+msgid "Relax Pose to Breakdown"
+msgstr "Thả Lỏng về Tư Thế Phân Tích -- Relax Pose to Breakdown"
+
+msgid ":menuselection:`Toolbar --> In-Betweens Tools --> Relax`"
+msgstr ":menuselection:`Giá Công Cụ (Tool Shelf) --> Công Cụ (Tool) --> Công Cụ Tư Thế (Pose Tools) --> Trung Gian: Nới Lỏng (In-Betweens: Relax)`"
+
+msgid ":menuselection:`Pose --> In-Betweens --> Relax Pose to Breakdown`"
+msgstr ":menuselection:`Tư Thế (Pose) --> Trung Gian (In-Betweens) --> Máy Phân Tích Tư Thế (Pose Breakdowner)`"
+
+msgid ":kbd:`Alt-E`"
+msgstr ""
+
+msgid "Relax pose is somewhat related to the above topic, but it is only useful with keyframed bones. When you edit such a bone (and hence take it \"away\" from its \"keyed position\"), using this tool will progressively \"bring it back\" to its \"keyed position\", with smaller and smaller steps as it comes near it."
+msgstr "Thả Lỏng Tư Thế is somewhat related Tới the above topic, but it is only useful với Khung Khóa Hóa Xương. When you Biên Soạn such a Xương (và hence take it \"away\" Từ its \"Khóa Hóa Vị Trí\"), using cái/điều này Công Cụ will progressively \"bring it Quay Lại/Đằng Sau/Lưng\" Tới its \"Khóa Hóa Vị Trí\", với smaller và smaller Số Bước as it comes Gần it."
+
+msgid "Relax Pose to Rest"
+msgstr "Thả Lỏng Tư Thế Tới Rest -- Relax Pose to Rest"
+
+msgid ":menuselection:`Pose --> In-Betweens --> Relax Pose to Rest`"
+msgstr ":menuselection:`Tư Thế (Pose) --> Trung Gian (In-Betweens) --> Máy Phân Tích Tư Thế (Pose Breakdowner)`"
+
+msgid "Similar to *Relax Pose to Breakdown* but works to bring the pose back to the rest position instead. Only one keyframe is needed for this tool unlike two for the other."
+msgstr "Tương Đồng Tới *Thả Lỏng Tư Thế Tới Phân Tích* but works Tới bring the Tư Thế Quay Lại/Đằng Sau/Lưng Tới the rest Vị Trí instead. Only một Khung Khóa is needed for cái/điều này Công Cụ unlike hai for the Cái/Sắp Đặt Khác."
+
+msgid "Breakdowner"
+msgstr "Trình Phân Tích -- Breakdowner"
+
+msgid ":menuselection:`Toolbar region --> In-Betweens Tools --> Breakdowner`"
+msgstr ":menuselection:`Giá Công Cụ (Tool Shelf) --> Công Cụ (Tool) --> Công Cụ Tư Thế (Pose Tools) --> Trung Gian: Máy Phân Tích (In-Betweens: Breakdowner)`"
+
+msgid ":menuselection:`Pose --> In-Betweens --> Pose Breakdowner`"
+msgstr ":menuselection:`Tư Thế (Pose) --> Trung Gian (In-Betweens) --> Máy Phân Tích Tư Thế (Pose Breakdowner)`"
+
+msgid ":kbd:`LMB`-drag"
+msgstr ":kbd:`NChT`-Lực Cản/Kéo Rê"
+
+msgid "Creates a suitable breakdown pose on the current frame."
+msgstr "Creates a suitable Phân Tích Tư Thế BẬT the Hiện Tại Khung Hình."
+
+msgid "The Breakdowner tool can be constrained to work on specific transforms and axes, by pressing the following keys while the tool is active:"
+msgstr "The Trình Phân Tích Công Cụ có thể be constrained Tới work BẬT specific Biến Hóa và Trục, by pressing the following Số Điểm Điều Khiển while the Công Cụ is Đang/Hoạt Động:"
+
+msgid ":kbd:`G`, :kbd:`R`, :kbd:`S`: move, rotate, scale"
+msgstr ":kbd:`G`, :kbd:`R`, :kbd:`S`: translate, rotate, scale"
+
+msgid ":kbd:`B`: Bendy bones"
+msgstr ":kbd:`B`: Bendy Xương"
+
+msgid ":kbd:`C`: custom properties"
+msgstr ":kbd:`T`: tùy chọn Tính Chất"
+
+msgid ":kbd:`X`, :kbd:`Y`, :kbd:`Z`: to the corresponding axes"
+msgstr ":kbd:`X`, :kbd:`Y`, :kbd:`Z`: Tới the corresponding Trục"
+
+msgid "Copy/Paste Pose"
+msgstr "-- Copy/Paste Pose"
+
+msgid ":menuselection:`Pose --> Copy Pose`, :menuselection:`Pose --> Paste Pose`, :menuselection:`Pose --> Paste Pose Flipped`"
+msgstr ":menuselection:`Tư Thế (Pose) --> Sao Chép Tư Thế Hiện Tại (Copy Current Pose)`, :menuselection:`Tư Thế (Pose) --> Dán Tư Thế (Paste Pose)`, :menuselection:`Tư Thế (Pose) --> Dán Tư Thế Đảo-Lật theo Trục X (Paste X-Flipped Pose)`"
+
+msgid ":kbd:`Ctrl-C` :kbd:`Ctrl-V` :kbd:`Shift-Ctrl-V`"
+msgstr ":kbd:`Alt-G`, :kbd:`Alt-R`, :kbd:`Alt-S`"
+
+msgid "Blender allows you to copy and paste a pose, either through the *Pose* menu, or by using hotkeys."
+msgstr "Blender allows you to copy and paste a pose, either through the *Pose* menu, or directly using the three copy/paste buttons found at the right part of the 3D View's header:"
+
+msgid "Copy Pose"
+msgstr "Sao Chép Tư Thế -- Copy Pose"
+
+msgid "Copy the current pose of selected bones into the pose buffer."
+msgstr "Sao Chép the Hiện Tại Tư Thế of Cái được Chọn Xương into the Tư Thế Bộ Đệm."
+
+msgid "Paste Pose"
+msgstr "Dán Tư Thế -- Paste Pose"
+
+msgid "Paste the buffered pose to the currently posed armature."
+msgstr "Dán the buffered Tư Thế Tới the currently posed Cốt."
+
+msgid "Paste Pose Flipped"
+msgstr "Dán Thư Thế Đảo Ngược -- Paste Pose Flipped"
+
+msgid "Paste the *X axis mirrored* buffered pose to the currently posed armature."
+msgstr "Dán the *X Trục mirrored* buffered Tư Thế Tới the currently posed Cốt."
+
+msgid "Here are important points:"
+msgstr "Here are important Số Điểm:"
+
+msgid "This tool works at the Blender session level, which means you can use it across armatures, scenes, and even files. However, the pose buffer is not saved, so you lose it when you close Blender."
+msgstr "cái/điều này Công Cụ works Tại the Blender session Mức/Tầm, cái mà/tức means you có thể Sử Dụng it across Cốt, Cảnh, và Đều Đặn Tập Tin. However, the Tư Thế Bộ Đệm is Đảo Nghịch saved, so you lose it when you Đóng/Kín Blender."
+
+msgid "There is only one pose buffer."
+msgstr "There is only một Tư Thế Bộ Đệm."
+
+msgid "Only the selected bones are taken into account during copying (i.e. you copy only selected bones' pose)."
+msgstr "Only the Cái được Chọn Xương are taken into account during copying (i.e. you Sao Chép only Cái được Chọn Xương' Tư Thế)."
+
+msgid "During pasting, on the other hand, bone selection has no importance. The copied pose is applied on a per-name basis (i.e. if you had a ``forearm`` bone selected when you copied the pose, the ``forearm`` bone of the current posed armature will get its pose when you paste it -- and if there is no such named bone, nothing will happen...)."
+msgstr "During -- Pasting, BẬT the Cái/Sắp Đặt Khác hand, Xương Lựa Chọn has no importance. The copied Tư Thế is applied BẬT a per-name Cơ Sở (i.e. if you had a ``forearm`` Xương Cái được Chọn when you copied the Tư Thế, the ``forearm`` Xương of the Hiện Tại posed Cốt will get its Tư Thế when you Dán it -- và if there is no such named Xương, Không will happen...)."
+
+msgid "What is copied and pasted is in fact the position/rotation/scale of each bone, in its own space. This means that the resulting pasted pose might be very different from the originally copied one, depending on:"
+msgstr "What is copied and pasted is in fact the position/rotation/scale of each bone, in its own space. This means that the resulting pasted pose might be very different from the originally copied one, depending on: - The rest position of the bones, - and the current pose of their parents."
+
+msgid "The rest position of the bones,"
+msgstr "The rest Vị Trí of the Xương,"
+
+msgid "and the current pose of their parents."
+msgstr "và the Hiện Tại Tư Thế of their Phụ Huynh."
+
+msgid "The rest position of our original armature."
+msgstr "The rest Vị Trí of our Gốc/Nguyên Bản Cốt."
+
+msgid "The rest position of our destination armature."
+msgstr "The rest Vị Trí of our -- Destination Cốt."
+
+msgid "Examples of pose copy/paste."
+msgstr "Ví Dụ -- Examples of Tư Thế Sao Chép/Dán. -- Examples of pose copy/paste."
+
+msgid "The first copied pose (note that only two bones are selected and hence copied)."
+msgstr "The Đầu Tiên/Thứ Nhất copied Tư Thế (Ghi Chú that only hai Xương are Cái được Chọn và hence copied)."
+
+msgid "...pasted on the destination armature..."
+msgstr "...pasted BẬT the -- Destination Cốt..."
+
+msgid "...and mirror-pasted on the destination armature."
+msgstr "...và mirror-pasted BẬT the -- Destination Cốt."
+
+msgid "The same pose as above is copied, but this time with all bones selected, ..."
+msgstr "The same Tư Thế as above is copied, but cái/điều này Thời Gian với Toàn Bộ Xương Cái được Chọn, ..."
+
+msgid "... pasted on the destination armature..."
+msgstr "... pasted BẬT the -- Destination Cốt..."
+
+msgid "Propagate"
+msgstr "Lan Truyền -- Propagate"
+
+msgid ":menuselection:`Pose --> Propagate`"
+msgstr ":menuselection:`Tư Thế (Pose) --> Lan Truyền (Propagate)`"
+
+msgid ":kbd:`Alt-P`"
+msgstr ""
+
+msgid "The Propagate tool copies the pose of the selected bones on the current frame over to the keyframes delimited by the *Termination Mode*. It automates the process of copying and pasting."
+msgstr "The Lan Truyền Công Cụ copies the Tư Thế of the Cái được Chọn Xương BẬT the Hiện Tại Khung Hình over Tới the Số/Khung Khóa delimited by the *Termination Chế Độ*. It automates the process of copying và -- Pasting."
+
+msgid "Options"
+msgstr "Tùy Chọn -- Options"
+
+msgid "Termination Mode"
+msgstr "-- Termination Mode"
+
+msgid "Modes which determine how it decides when to stop overwriting keyframes."
+msgstr "Chế Độ -- Modes cái mà/tức determine how it decides when Tới Ngừng overwriting Số/Khung Khóa."
+
+msgid "While Held"
+msgstr "Trong Khi Có Cùng Giá Trị -- While Held"
+
+msgid "The most complicated of the modes available, as it tries to guess when to stop propagating by examining the pauses in the animation curves per control (i.e. all F-curves for a bone, instead of per F-curve)."
+msgstr "The most complicated of the Chế Độ -- Modes Khả Dụng, as it tries Tới guess when Tới Ngừng propagating by examining the pauses Vào the Hoạt Họa Đường Cong per Điều Khiển (i.e. Toàn Bộ F-Đường Cong for a Xương, instead of per Đường Cong-F)."
+
+msgid "To Next Keyframe"
+msgstr "Sang Khung Khóa Tiếp Tới -- To Next Keyframe"
+
+msgid "Simply copies the pose to the first keyframe after (but not including any keyframe on) the current frame."
+msgstr "Simply copies the Tư Thế Tới the Đầu Tiên/Thứ Nhất Khung Khóa Sau (but Đảo Nghịch including Bất Cứ Khung Khóa BẬT) the Hiện Tại Khung Hình."
+
+msgid "To Last Keyframe"
+msgstr "Đến Khung Khóa Cuối Cùng -- To Last Keyframe"
+
+msgid "Will simply replace the last keyframe (i.e. making action cyclic)."
+msgstr "Will simply Thay Thế the Cuối Khung Khóa (i.e. making Hành Động Tuần Hoàn)."
+
+msgid "Before Frame"
+msgstr "Trước Khung Hình -- Before Frame"
+
+msgid "To all keyframes between current frame and the *End frame* option. This option is best suited for use from scripts due to the difficulties in setting this frame value, though it is possible to set this manually via the :ref:`ui-undo-redo-adjust-last-operation` panel if necessary."
+msgstr "Tới Toàn Bộ Số/Khung Khóa between Hiện Tại Khung Hình và the *Kết Thúc -- End Khung Hình* Tùy Chọn. cái/điều này Tùy Chọn is best suited for Sử Dụng Từ Tập Lệnh due Tới the difficulties Vào setting cái/điều này Khung Hình Giá Trị, though it is possible Tới Đặt cái/điều này thủ công via the :ref:`ui-undo-redo-adjust-last-operation` Bảng if necessary."
+
+msgid "Before Last Keyframe"
+msgstr "Trước Khung Khóa Cuối Cùng -- Before Last Keyframe"
+
+msgid "To all keyframes from current frame until no more are found."
+msgstr "Tới Toàn Bộ Số/Khung Khóa Từ Hiện Tại Khung Hình until no Nhiều/Lớn Hơn are found."
+
+msgid "On Selected Keyframes"
+msgstr "Tại các Khung Khóa đã Chọn -- On Selected Keyframes"
+
+msgid "Will apply the pose of the selected bones to all selected keyframes."
+msgstr "Will Áp Dụng the Tư Thế of the Cái được Chọn Xương Tới Toàn Bộ Cái được Chọn Số/Khung Khóa."
+
+msgid "On Selected Markers"
+msgstr "Tại các Dấu Mốc đã Chọn -- On Selected Markers"
+
+msgid "To all keyframes occurring on frames with Scene Markers after the current frame."
+msgstr "Tới Toàn Bộ Số/Khung Khóa occurring BẬT Khung Hình với Cảnh Các Dấu Mốc Sau the Hiện Tại Khung Hình."
+
+msgid "End Frame"
+msgstr "Khung Hình Cuối -- End Frame"
+
+msgid "Defines the upper-bound for the frame range within which keyframes will be affected (with the lower bound being the current frame)."
+msgstr "Defines the upper-Liên Kết for the Khung Hình Phạm Vi within cái mà/tức Số/Khung Khóa will be Bị Ảnh Hưởng (với the Thường/Dưới Liên Kết being the Hiện Tại Khung Hình)."
+
+msgid "Show/Hide"
+msgstr "Hiện/Ẩn -- Show/Hide"
+
+msgid "All Modes"
+msgstr "Toàn Bộ các Chế Độ -- All Modes"
+
+msgid ":menuselection:`Properties editor --> Bone --> Viewport Display`"
+msgstr ":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --> Xương (Bone) --> Hiển Thị (Display)`"
+
+msgid ":menuselection:`... --> Show/Hide`"
+msgstr ":menuselection:`... --> Hiện/Ẩn (Show/Hide)`"
+
+msgid "You do not have to use bone layers to show/hide some bones. As with objects, vertices or control points, you can use :kbd:`H`:"
+msgstr "You làm Đảo Nghịch have Tới Sử Dụng Xương Các Tầng Lớp Tới Hiển Thị/Ẩn some Xương. As với Vật Thể, Điểm Đỉnh hoặc Điều Khiển Số Điểm, you có thể Sử Dụng :kbd:`H`:"
+
+msgid ":kbd:`H` will hide the selected bone(s)."
+msgstr ":kbd:`H` will Ẩn the Cái được Chọn Xương(s)."
+
+msgid ":kbd:`Shift-H` will hide all bones *but the selected one(s)*."
+msgstr ":kbd:`Shift-H` will Ẩn Toàn Bộ Xương *but the Cái được Chọn một(s)*."
+
+msgid ":kbd:`Alt-H` will show all hidden bones."
+msgstr ":kbd:`Alt-H` will Hiển Thị Toàn Bộ Ẩn Xương."
+
+msgid "You can also use the *Hide* checkbox of the :menuselection:`Bone tab --> Viewport Display panel`."
+msgstr "You can also use the *Hide* checkbox of the :menuselection:`Thẻ Xương (Bone tab) --> Bảng Hiển Thị (Display panel)`."
+
+msgid "Note that hidden bones are specific to a mode, i.e. you can hide some bones in *Edit Mode*, they will still be visible in *Pose Mode*, and vice versa. Hidden bones in *Pose Mode* are also invisible in *Object Mode*. And in *Edit Mode*, the bone to hide must be fully selected, not just his root or tip."
+msgstr "Ghi Chú that Ẩn Xương are specific Tới a Chế Độ, i.e. you có thể Ẩn some Xương Vào *Biên Soạn Chế Độ*, they will still be Hữu Hình Vào *Tư Thế Chế Độ*, và vice versa. Ẩn Xương Vào *Tư Thế Chế Độ* are also invisible Vào *Vật Thể Chế Độ*. và Vào *Biên Soạn Chế Độ*, the Xương Tới Ẩn must be fully Cái được Chọn, Đảo Nghịch just his Gốc/Phép Căn hoặc Đỉnh."
+

@@ -1,4 +1,4 @@
-.. _bpy.types.UserPreferencesSystem:
+.. _bpy.types.PreferencesSystem:
 
 ******
 System

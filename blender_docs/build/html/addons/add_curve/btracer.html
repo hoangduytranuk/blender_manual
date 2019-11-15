@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>BTracer &mdash; Blender Manual</title>
+  <title>Trình Truy Nguyên -- BTracer &mdash; Blender Manual</title>
   
 
   
@@ -65,8 +65,8 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
-    <link rel="next" title="Curve Tools" href="curve_tools.html" />
-    <link rel="prev" title="Assign Shape Keys" href="assign_shape_keys.html" /> 
+    <link rel="next" title="Công Cụ Đường Cong -- Curve Tools" href="curve_tools.html" />
+    <link rel="prev" title="Chỉ Định Hình Mẫu -- Assign Shape Keys" href="assign_shape_keys.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -127,11 +127,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">Góc Nhìn 3D -- 3D View</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Add Curve</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="assign_shape_keys.html">Assign Shape Keys</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">BTracer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="curve_tools.html">Curve Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_shape_keys.html">Chỉ Định Hình Mẫu -- Assign Shape Keys</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Trình Truy Nguyên -- BTracer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve_tools.html">Công Cụ Đường Cong -- Curve Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="extra_objects.html">Add Curve Extra Objects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ivy_gen.html">Ivy Gen</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sapling.html">Sapling Tree Gen</a></li>
@@ -215,7 +215,7 @@
         
           <li><a href="index.html">Add Curve</a> &raquo;</li>
         
-      <li>BTracer</li>
+      <li>Trình Truy Nguyên -- BTracer</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -235,81 +235,84 @@
            <div itemprop="articleBody">
             
   <div class="section" id="btracer">
-<h1>BTracer<a class="headerlink" href="#btracer" title="Permalink to this headline">¶</a></h1>
+<h1>Trình Truy Nguyên -- BTracer<a class="headerlink" href="#btracer" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>The purpose of this script is to add tools that are similar to C4D Tracer.
-Btrace provides several ways to trace objects and particles and animate the resulting curve.</p>
+<h2>Giới Thiệu -- Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Mục đích của tập lệnh này là cho thêm các công cụ tương tự như <em>Trình Truy Nguyên của Cinema 4D</em> (C4D Tracer). Btrace cung cấp nhiều phương pháp để truy nguyên (dò dấu vết) các vật thể và các hạt, đồng thời hoạt họa đường cong mà kết quả thu được tạo thành.</p>
 </div>
 <div class="section" id="activation">
-<h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
+<h2>Kích Hoạt -- Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Open Blender and go to Preferences then the Add-ons tab.</li>
-<li>Click Add Curve then BTracer to enable the script.</li>
+<li>Mở Blender và chuyển đến Cấu Hình (Preferences), sau đó đến thẻ Trình Bổ Sung (Add-ons).</li>
+<li>Bấm vào Thêm Đường Cong (Add Curve) và BTracer để cho phép tập lệnh hoạt động.</li>
 </ul>
 </div>
 <div class="section" id="interface">
-<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
-<p>Located in the <span class="menuselection">3D View ‣ Sidebar ‣ Edit tab</span>.</p>
-<p>The default setting in the interface is Choose Tool, here you pick what trace methods and functions.</p>
+<h2>Giao Diện -- Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
+<p>Located Vào the <span class="menuselection">3D Góc Nhìn (3D View) ‣ Thanh Bên (Sidebar) ‣ thẻ Biên Soạn (Edit tab)</span>.</p>
+<p>Cài đặt mặc định trong giao diện là Chọn Công Cụ (Choose Tool), ở đây sẽ bạn chọn lựa phương pháp truy nguyên và các chức năng.</p>
 <div class="figure align-right">
 <a class="reference internal image-reference" href="../../_images/addons_add_curve_btrace_ui.jpg"><img alt="../../_images/addons_add_curve_btrace_ui.jpg" src="../../_images/addons_add_curve_btrace_ui.jpg" style="width: 220px;" /></a>
 </div>
 </div>
 <div class="section" id="information">
-<h2>Information<a class="headerlink" href="#information" title="Permalink to this headline">¶</a></h2>
-<p>The five main tools (Object Trace, Object Connect, Mesh Follow, Particle Trace, Particle Connect)
-all share common settings for the most part. Each tool creates a curve as the end result.
-The settings for the curve created can be setup under the <em>Curves Settings</em> button.</p>
-<p>The tools have access to a few other features. All of them have access to
-the grow curve animation tool which animates the curve radius.
-As well as the Color Blender tool.</p>
+<h2>Thông Tin -- Information<a class="headerlink" href="#information" title="Permalink to this headline">¶</a></h2>
+<p>Toàn bộ năm công cụ chính (Truy Nguyên Vật Thể (Object Trace), Kết Nối Vật Thể (Object Connect), Đi Theo Khung Lưới (Mesh Follow), Truy Nguyên Hạt (Particle Trace), Kết Nối Hạt (Particle Connect)) đều sử dụng chung đại đa số các cài đặt phổ biến. Mỗi công cụ sẽ tạo ra một đường cong làm kết quả cuối cùng của mình. Các cài đặt cho đường cong tạo ra có thể được thiết lập bằng nút <em>Sắp Đặt của Đường Cong</em> (Curves Settings).</p>
+<p>Các công cụ còn được tiếp cận tới một vài tính năng khác nữa. Toàn bộ chúng đều có quyền truy cập vào công cụ hoạt họa sinh trưởng đường cong (grow curve animation tool), chức năng hoạt họa bán kính của đường cong. Đồng thời nó cũng được truy cập công cụ Màu Sắc của Blender.</p>
 <dl class="docutils">
-<dt>Object Trace</dt>
-<dd>Creates a curve by joining points of a mesh in a continuous manner or by all edges.
-Options to modulate the curves radius or add distortion to mesh before converting.</dd>
-<dt>Objects Connect</dt>
-<dd>Join selected objects with a curve and add hooks to each node.</dd>
-<dt>Particle Trace</dt>
-<dd>Creates a curve from each particle of a system. Keeping particle amount under 250 will make this run faster.</dd>
-<dt>Particle Connect</dt>
-<dd>Connects each particle of a system with a continuous curve.</dd>
-<dt>Mesh Follow</dt>
-<dd>Creates curve from animated mesh object. Following the path of
-either the vertices, edges or faces, and also the option to follow the object's origin.</dd>
-<dt>Grow Curve Animation</dt>
-<dd>Animate the radius of a curve over time. Can be run alone on a curve object, or run with the tools above.</dd>
-<dt>F-Curve Noise</dt>
-<dd>Quick link to add an F-curve modifier to an object.</dd>
-<dt>Color Blender</dt>
-<dd>Assign colors, create color palettes and randomize colors.</dd>
+<dt>Truy Nguyên Vật Thể -- Object Trace</dt>
+<dd>Tạo một đường cong bằng cách nối các điểm của một khung lưới hoặc toàn bộ các cạnh lại một cách liên tục. Bên cạnh đó còn có các tùy chọn để điều chỉnh bán kính của các đường cong hoặc cho thêm sự biến dạng vào khung lưới trước khi chuyển đổi.</dd>
+<dt>Kết Nối Vật Thể -- Objects Connect</dt>
+<dd>Kết nối các vật thể được chọn với một đường cong và cho thêm các móc (nối) vào mỗi nút.</dd>
+<dt>Truy Nguyên Hạt -- Particle Trace</dt>
+<dd>Tạo một đường cong từ mỗi hạt của hệ thống. Nếu giữ lượng hạt dưới 250 thì chúng ta sẽ làm cho cái này thi hành nhanh hơn.</dd>
+<dt>Kết Nối Hạt -- Particle Connect</dt>
+<dd>Kết nối mỗi hạt của hệ thống với một đường cong liên tục.</dd>
+<dt>Đi Theo Khung Lưới -- Mesh Follow</dt>
+<dd>Tạo đường cong từ vật thể khung lưới hoạt hình. Đi theo con đường của một trong hai điểm đỉnh, cạnh hay bề mặt. Đồng thời còn có tùy chọn để đi theo tọa độ gốc của vật thể.</dd>
+<dt>Hoạt Họa Sinh Trưởng Đường Cong -- Grow Curve Animation</dt>
+<dd>Hoạt họa bán kính của một đường cong theo thời gian. Có thể thi hành đơn chiếc trên một vật thể đường cong, hoặc thi hành với các công cụ trên.</dd>
+<dt>Đường Cong-F Nhiễu -- F-Curve Noise</dt>
+<dd>Đường tắt nhanh để cho thêm một bộ điều chỉnh Đường Cong-F vào một vật thể.</dd>
+<dt>Màu Sắc Blender -- Color Blender</dt>
+<dd>Ấn định màu sắc, kiến tạo bảng màu và ngẫu nhiên hóa màu sắc.</dd>
 </dl>
-<p>Each script has a number of different options which can be used to create some very interesting effects.</p>
+<p>Mỗi tập lệnh có một số tùy chọn khác nhau và chúng có thể được sử dụng để tạo ra một số hiệu ứng khá thú vị.</p>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
 <table class="last docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Category:</th><td class="field-body">Add Curve</td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Hạng Mục -- Category:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Cộng Thêm Đường Cong</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Tools for converting/animating objects/particles into curves.</td>
+<tr class="field-even field"><th class="field-name" colspan="2">Miêu Tả -- Description:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Công cụ để chuyển đổi/hoạt họa các vật thể/hạt thành những đường cong.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Location:</th><td class="field-body"><span class="menuselection">Sidebar ‣ Create tab</span></td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Vị Trí -- Location:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Thanh bên (Sidebar) -&gt; thẻ Kiến Tạo (Create tab)</span></td>
 </tr>
-<tr class="field-even field"><th class="field-name">File:</th><td class="field-body">btrace folder</td>
+<tr class="field-even field"><th class="field-name" colspan="2">Tập Tin -- File:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">thư mục btrace</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">liero, crazycourier</td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tác Giả -- Author:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">liero, crazycourier</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Contributors:</th><td class="field-body">Atom, MacKracken, meta-androcto</td>
+<tr class="field-even field"><th class="field-name" colspan="2">Thành Viên Đóng Góp -- Contributors:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Atom, MacKracken, meta-androcto</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Maintainer:</th><td class="field-body">Brendon Murphy (meta-androcto)</td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Người Bảo Trì -- Maintainer:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Brendon Murphy (meta-androcto)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">GPL</td>
+<tr class="field-even field"><th class="field-name" colspan="2">Giấy Phép -- License:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">GPL</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Support Level:</th><td class="field-body">Community</td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Mức Hỗ Trợ -- Support Level:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Cộng Đồng</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">This add-on is bundled with Blender.</td>
+<tr class="field-even field"><th class="field-name" colspan="2">Ghi Chú -- Note:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Trình bổ sung này được gói cùng (kèm theo) với Blender.</td>
 </tr>
 </tbody>
 </table>
@@ -325,10 +328,10 @@ either the vertices, edges or faces, and also the option to follow the object's 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="curve_tools.html" class="btn btn-neutral float-right" title="Curve Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="curve_tools.html" class="btn btn-neutral float-right" title="Công Cụ Đường Cong -- Curve Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="assign_shape_keys.html" class="btn btn-neutral float-left" title="Assign Shape Keys" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="assign_shape_keys.html" class="btn btn-neutral float-left" title="Chỉ Định Hình Mẫu -- Assign Shape Keys" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

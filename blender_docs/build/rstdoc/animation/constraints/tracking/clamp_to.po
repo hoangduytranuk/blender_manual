@@ -1,0 +1,73 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-11-13 01:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Clamp To Constraint"
+msgstr "Ràng Buộc Siết Vào -- Clamp To Constraint"
+
+msgid "The *Clamp To* constraint clamps an object to a curve. The *Clamp To* constraint is very similar to the :doc:`Follow Path </animation/constraints/relationship/follow_path>` constraint, but instead of using the evaluation time of the target curve, *Clamp To* will get the actual location properties of its owner (those shown in the *Transform* panel), and judge where to put it by \"mapping\" this location along the target curve."
+msgstr "The *Clamp To* constraint clamps an object to a curve. The *Clamp To* constraint is very similar to the :doc:`Follow Path </rigging/constraints/relationship/follow_path>` constraint, but instead of using the evaluation time of the target curve, *Clamp To* will get the actual location properties of its owner (those shown in the *Transform* panel), and judge where to put it by \"mapping\" this location along the target curve."
+
+msgid "One benefit is that when you are working with *Clamp To*, it is easier to see what your owner will be doing; since you are working in the 3D View, it will just be a lot more precise than sliding keys around on an F-curve and playing the animation over and over."
+msgstr "Một benefit is that when bạn are working với *Hạn Định Tới*, it is easier tới xin xem thêm cái gì của bạn chủ sở hữu sẽ be doing; since bạn are working vào the 3D Góc Nhìn, it sẽ just be một lot nhiều/lớn hơn precise than sliding số điểm điều khiển around bật một Đường Cong-F và playing the hoạt họa over và over."
+
+msgid "A downside is that unlike in the :doc:`Follow Path constraint </animation/constraints/relationship/follow_path>`, *Clamp To* does not have any option to track your owner's rotation (pitch, roll, yaw) to the banking of the targeted curve, but you do not always need rotation on, so in cases like this it's usually a lot handier to fire up a *Clamp To*, and get the bits of rotation you do need some other way."
+msgstr "A downside is that unlike in the :doc:`Follow Path constraint </rigging/constraints/relationship/follow_path>`, *Clamp To* does not have any option to track your owner's rotation (pitch, roll, yaw) to the banking of the targeted curve, but you do not always need rotation on, so in cases like this it's usually a lot handier to fire up a *Clamp To*, and get the bits of rotation you do need some other way."
+
+msgid "The mapping from the object's original position to its position on the curve is not perfect, but uses the following simplified algorithm:"
+msgstr "The ánh xạ từ the vật thể's gốc/nguyên bản vị trí tới của nó vị trí bật the đường cong is đảo nghịch perfect, but uses the following simplified thuật toán:"
+
+msgid "A \"main axis\" is chosen, either by the user, or as the longest axis of the curve's bounding box (the default)."
+msgstr "Một \"chủ yếu trục\" is chosen, hoặc là by the người dùng, hoặc tựa như the dài nhất trục của the đường cong's bounding hình hộp (the mặc định)."
+
+msgid "The position of the object is compared to the bounding box of the curve in the direction of the main axis. So for example if X is the main axis, and the object is aligned with the curve bounding box's left side, the result is 0; if it is aligned with the right side, the result is 1."
+msgstr "The vị trí của the vật thể is compared tới the bounding hình hộp của the đường cong vào the chiều hướng của the chủ yếu trục. So for ví dụ -- example if X is the chủ yếu trục, và the vật thể is thẳng hàng với the đường cong bounding hình hộp's trái bên/mặt, the kết quả is 0; if it is thẳng hàng với the phải bên/mặt, the kết quả is 1."
+
+msgid "If the cyclic option is unchecked, this value is clamped in the range 0-1."
+msgstr "If the tuần hoàn tùy chọn is unchecked, cái/điều này giá trị is clamped vào the phạm vi 0-1."
+
+msgid "This number is used as the curve time, to find the final position along the curve that the object is clamped to."
+msgstr "Cái/Điều Này số is sử dụng tựa như the đường cong thời gian, tới lùng tìm the kết thúc/kết cục/cuối cùng vị trí along the đường cong that the vật thể is clamped tới."
+
+msgid "This algorithm does not produce exactly the desired result because curve time does not map exactly to the main axis position. For example an object directly in the center of a curve will be clamped to a curve time of 0.5 regardless of the shape of the curve, because it is halfway along the curve's bounding box. However, the 0.5 curve time position can actually be anywhere within the bounding box!"
+msgstr "Cái/Điều Này thuật toán does đảo nghịch produce exactly the desired kết quả because đường cong thời gian does đảo nghịch ánh xạ exactly tới the chủ yếu trục vị trí. For ví dụ -- example một vật thể directly vào the trung tâm của một đường cong sẽ be clamped tới một đường cong thời gian của 0.5 regardless của the hình dạng của the đường cong, because it is halfway along the đường cong's bounding hình hộp. However, the 0.5 đường cong thời gian vị trí có thể actually be anywhere within the bounding hình hộp!"
+
+msgid "Options"
+msgstr "Tùy Chọn -- Options"
+
+msgid "Target"
+msgstr "Mục Tiêu -- Target"
+
+msgid "The Target: field indicates which curve object the Clamp To constraint will track along. The Target: field must be a curve object type. If this :ref:`ui-data-id` field is not filled in then it will be highlighted in red indicating that this constraint does not have all the information it needs to carry out its task and will therefore be ignored on the constraint stack."
+msgstr "The Mục Tiêu: trường indicates cái mà/tức đường cong vật thể the Hạn Định Tới ràng buộc sẽ giám sát/rãnh along. The Mục Tiêu: trường must be một đường cong vật thể thể loại. If cái/điều này  trường is đảo nghịch filled vào then it sẽ be highlighted vào đỏ chỉ ra/báo hiệu that cái/điều này ràng buộc does đảo nghịch have toàn bộ the thông tin it needs tới carry ra của nó task và sẽ therefore be ignored bật the ràng buộc -- stack."
+
+msgid "Main Axis"
+msgstr "Trục Chính -- Main Axis"
+
+msgid "This button group controls which global axis (X, Y or Z) is the main direction of the path. When clamping the object to the target curve, it will not be moved significantly on this axis. It may move a small amount on that axis because of the inexact way this constraint functions."
+msgstr "Cái/Điều Này nút bấm nhóm điều khiển -- controls cái mà/tức toàn cầu trục (X, Y hoặc Z) is the chủ yếu chiều hướng của the đường/đi/dẫn. When hạn định the vật thể tới the mục tiêu đường cong, it sẽ đảo nghịch be được chuyển significantly bật cái/điều này trục. It may di chuyển một nhỏ số/lượng bật that trục because của the inexact đường lối/phương pháp/cách cái/điều này ràng buộc -- functions."
+
+msgid "For example if you are animating a rocket launch, it will be the Z axis because the main direction of the launch path is up. The default *Auto* option chooses the axis which the curve is longest in (or X if they are equal). This is usually the best option."
+msgstr "For ví dụ -- example if bạn are -- animating một rocket launch, it sẽ be the Z trục because the chủ yếu chiều hướng của the launch đường/đi/dẫn is lên/trên. The mặc định *Tự Động* tùy chọn chooses the trục cái mà/tức the đường cong is dài nhất vào (hoặc X if they are bằng nhau). Cái/Điều Này is usually the best tùy chọn."
+
+msgid "Cyclic"
+msgstr "Tuần Hoàn -- Cyclic"
+
+msgid "By default, once the object has reached one end of its target curve, it will be constrained there. When the *Cyclic* option is enabled, as soon as it reaches one end of the curve, it is instantaneously moved to its other end. This is of course primarily designed for closed curves (circles & co), as this allows your owner to go around it over and over."
+msgstr "By mặc định, once the vật thể has reached một kết thúc -- kết thúc -- kết thúc -- end của của nó mục tiêu đường cong, it sẽ be constrained kia/có. When the *Tuần Hoàn* tùy chọn is bật, tựa như soon tựa như it reaches một kết thúc -- kết thúc -- kết thúc -- end của the đường cong, it is instantaneously được chuyển tới của nó cái/sắp đặt khác kết thúc -- kết thúc -- kết thúc -- end. Cái/Điều Này is của course primarily designed for đóng/kín/gần đường cong (vòng tròn & co), tựa như cái/điều này cho phép của bạn chủ sở hữu tới go around it over và over."
+

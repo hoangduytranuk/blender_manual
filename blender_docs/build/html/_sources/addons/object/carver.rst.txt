@@ -31,7 +31,7 @@ It works on all selected objects, so you can cut two objects or apply a "brush" 
 The add-on is more accurate on orthographic view for basic Boolean operations.
 For others operations you can use the view if you wish.
 
-- :kbd:`Ctrl-Shift-X` to call the add-on.
+- :kbd:`Shift-Ctrl-X` to call the add-on.
 - :kbd:`RMB` to exit.
 - :kbd:`Ctrl-Z` to Undo (there are no limits, so be careful to doesn't overload).
 - :kbd:`H` to have the help when the screen is large enough to display.

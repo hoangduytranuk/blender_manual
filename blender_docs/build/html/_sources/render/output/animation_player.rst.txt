@@ -73,9 +73,9 @@ The following table shows the available hotkeys for the animation player.
    * - Forward playback
      - :kbd:`Shift-Up`
    * - Slow down playback:
-     - :kbd:`Minus`
+     - :kbd:`NumpadMinus`
    * - Speed up playback:
-     - :kbd:`Plus`
+     - :kbd:`NumpadPlus`
    * - Toggle looping:
      - :kbd:`Numpad0`
    * - Toggle frame skipping:
@@ -100,9 +100,9 @@ The following table shows the available hotkeys for the animation player.
    * - Hold to show frame numbers:
      - :kbd:`Shift`
    * - Zoom in:
-     - :kbd:`Ctrl-Plus`
+     - :kbd:`Ctrl-NumpadPlus`
    * - Zoom out:
-     - :kbd:`Ctrl-Minus`
+     - :kbd:`Ctrl-NumpadMinus`
 
 
 .. rubric:: Frame rate

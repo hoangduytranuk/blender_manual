@@ -6,6 +6,10 @@ Add Camera Rigs
 Introduction
 ============
 
+.. figure:: /images/addons_camera_rigs.jpg
+   :align: right
+   :width: 465px
+
 This script was designed to add some extended functionality to a camera by creating control rig
 with custom shapes and UI to easily access the cameras settings from the 3D View.
 
@@ -121,5 +125,7 @@ But an object called "A" will fail.
    :Location: :menuselection:`3D View --> Add --> Camera`
    :File: camera_dolly_crane_rigs.py
    :Author: Wayne Dixon, Kris Wittig
+   :Maintainer: to do
    :License: GPL
+   :Support Level: Community
    :Note: This add-on is bundled with Blender.

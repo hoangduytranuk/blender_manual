@@ -9,6 +9,8 @@ Introduction
 This add-on creates an animated camera turn around an object,
 suitable for product visuals and character turnarounds.
 
+.. youtube:: sgjx0ycmTAo
+
 
 Activation
 ==========
@@ -40,5 +42,7 @@ The rotation can be defined by revolutions in X/Y/Z axis.
    :Location: :menuselection:`Sidebar --> View tab --> Turnaround Camera`
    :File: camera_turnaround.py
    :Author: Antonio Vazquez (antonioya)
+   :Maintainer: to do
    :License: GPL 2+
+   :Support Level: Community
    :Note: This add-on is bundled with Blender.

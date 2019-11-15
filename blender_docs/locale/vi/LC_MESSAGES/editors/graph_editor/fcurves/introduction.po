@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-26 00:56+1100\n"
+"POT-Creation-Date: 2019-11-15 17:57+0000\n"
 "PO-Revision-Date: 2019-04-22 13:17+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@googlemail.com>\n"
 "Language: vi\n"
@@ -222,7 +222,7 @@ msgstr ""
 
 #: ../../manual/editors/graph_editor/fcurves/introduction.rst:110
 #: ../../manual/editors/graph_editor/fcurves/introduction.rst:135
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:235
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:234
 msgid "Linear"
 msgstr "Tuyến Tính -- Linear"
 
@@ -471,15 +471,15 @@ msgstr ""
 
 #: ../../manual/editors/graph_editor/fcurves/introduction.rst:229
 msgid ""
-"Curves ends are straight lines (linear), as defined by their first two "
-"keyframes (respectively their last two keyframes)."
+"Curves ends are straight lines (linear), as defined by the slope of their"
+" first and last keyframes."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:235
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:234
 msgid "Linear extrapolation."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:237
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:236
 #, fuzzy
 msgid ""
 "Additional extrapolation methods (e.g. the *Cycles* modifier) are located"
@@ -490,72 +490,89 @@ msgstr ""
 "located in the :doc:`F-Curve Modifiers "
 "</editors/graph_editor/fcurves/modifiers>`."
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:244
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:243
 msgid "Handle Types"
 msgstr "Loại Tay Cầm -- Handle Types"
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:246
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:245
 msgid ""
-"There is another curve option quite useful for Bézier-interpolated "
-"curves. You can set the type of handle to use for the curve points "
-":kbd:`V`."
+"When using Bézier-interpolated curves it is possible to control the slope"
+" of the curve at the control points. This is done via the curve point "
+"*handles*; you can set the type of handle to use for the curve points by "
+"pressing :kbd:`V` or choosing Key, Handle Type in the graph editor menu. "
+"Each curve point can have a different handle type, even within the same "
+"curve."
 msgstr ""
-"There is another curve option quite useful for Bézier-interpolated "
-"curves. You can set the type of handle to use for the curve points "
-":kbd:`V`."
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:255
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:250
+msgid ""
+"There are three automatic modes, '*Automatic*', '*Auto Clamped*', and "
+"'*Vector*', where Blender automatically determines the curve's slope at "
+"each control point. The neighbouring control points have the most "
+"influence of the slope, and points further away have a smaller influence."
+" This can be controlled per F-Curve with the :ref:`Auto Handle Smoothing "
+"<graph_editor-auto-handle-smoothing>` properties."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:256
+msgid ""
+"By using the other, non-automatic modes, you have full manual control "
+"over the slope."
+msgstr ""
+
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:265
 msgid "Automatic"
 msgstr "Tự Động -- Automatic"
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:250
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:260
 msgid "Handle positions are automatically chosen to produce smooth curves."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:255
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:265
 msgid "Auto handles."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:264
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:274
 msgid "Auto Clamped"
 msgstr "Tự Động Hạn Định -- Auto Clamped"
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:258
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:268
 msgid ""
 "Automatic handles clamped to prevent overshoots and changes in the curve "
 "direction between keyframes (S-shapes)."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:264
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:274
 msgid "Auto clamped handles."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:273
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:284
 msgid "Vector"
 msgstr "Vectơ -- Vector"
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:267
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:277
 msgid ""
-"Creates linear interpolation between keyframes. The linear segments "
-"remain if keyframe centers are moved. If handles are moved, the handle "
-"becomes Free."
+"Creates automatic linear interpolation between keyframes. The segments "
+"remain linear when keyframe centers are moved. However, when the handles "
+"are moved, the handle type switches to *Free*."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:273
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:284
 msgid "Vector handles."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:281
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:293
 msgid "Aligned"
 msgstr "Thẳng Hàng -- Aligned"
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:276
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:287
 msgid ""
 "The two handles of the curve point are locked together to always point in"
-" exactly opposite directions."
+" exactly opposite directions. This results in a curve that is always "
+"smooth at the control point."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:281
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:293
 msgid "Aligned handles."
 msgstr ""
 
@@ -563,11 +580,13 @@ msgstr ""
 msgid "Free"
 msgstr "Tự Do -- Free"
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:284
-msgid "The handles can be moved completely independently."
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:296
+msgid ""
+"The handles can be moved completely independently, and thus can result in"
+" a sharp change of direction."
 msgstr ""
 
-#: ../../manual/editors/graph_editor/fcurves/introduction.rst:289
+#: ../../manual/editors/graph_editor/fcurves/introduction.rst:302
 msgid "Free handles."
 msgstr ""
 
@@ -615,5 +634,42 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Auto handles clamped to not overshoot."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Curves ends are straight lines (linear),"
+#~ " as defined by their first two "
+#~ "keyframes (respectively their last two "
+#~ "keyframes)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "There is another curve option quite "
+#~ "useful for Bézier-interpolated curves. "
+#~ "You can set the type of handle "
+#~ "to use for the curve points "
+#~ ":kbd:`V`."
+#~ msgstr ""
+#~ "There is another curve option quite "
+#~ "useful for Bézier-interpolated curves. "
+#~ "You can set the type of handle "
+#~ "to use for the curve points "
+#~ ":kbd:`V`."
+
+#~ msgid ""
+#~ "Creates linear interpolation between "
+#~ "keyframes. The linear segments remain if"
+#~ " keyframe centers are moved. If "
+#~ "handles are moved, the handle becomes"
+#~ " Free."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The two handles of the curve point"
+#~ " are locked together to always point"
+#~ " in exactly opposite directions."
+#~ msgstr ""
+
+#~ msgid "The handles can be moved completely independently."
 #~ msgstr ""
 

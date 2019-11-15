@@ -138,7 +138,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../data_blocks.html">Khối Dữ Liệu -- Data-Blocks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linked_libraries.html">Thư Viện Kết Nối -- Linked Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linked_libraries/index.html">Linked Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../media/index.html">-- Media Formats</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../import_export.html">Nhập &amp; Xuất Tập Tin -- Importing &amp; Exporting Files</a></li>
 </ul>
@@ -235,9 +235,12 @@
 </tbody>
 </table>
 </div>
-<p>The <em>Rename Active Item</em> operator renames the active <a class="reference internal" href="../../scene_layout/object/index.html"><span class="doc">Object</span></a>
-or <a class="reference internal" href="../../interface/controls/nodes/index.html"><span class="doc">Node</span></a>.
-When the operator is executed, a pop-up menu appears.
+<p>The <em>Rename Active Item</em> operator renames the active
+<a class="reference internal" href="../../animation/armatures/bones/index.html"><span class="doc">Bone</span></a>,
+<a class="reference internal" href="../../interface/controls/nodes/index.html"><span class="doc">Node</span></a>,
+<a class="reference internal" href="../../scene_layout/object/index.html"><span class="doc">Object</span></a> and
+<a class="reference internal" href="../../video_editing/sequencer/strips/index.html"><span class="doc">Sequence Strip</span></a>.</p>
+<p>When the operator is executed, a pop-up dialog appears.
 The text field shows the name of the current item and can be overwritten to rename the item.
 <kbd class="kbd docutils literal notranslate">Return</kbd> confirms the name while <kbd class="kbd docutils literal notranslate">Esc</kbd> cancels the operator.</p>
 </div>
@@ -251,25 +254,31 @@ The text field shows the name of the current item and can be overwritten to rena
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Edit ‣ Batch Rename</span></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-F2</kbd></td>
+<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-F2</kbd></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The <em>Batch Rename</em> operator can rename many data-block names at once.
-When the operator is executed, a popup menu appears with some options and operations to modify the name.</p>
+<p>The <em>Batch Rename</em> operator can rename many data-block names at once.</p>
+<p>This uses a pop-up dialog with operations and their options to change the name.</p>
+<p>These actions are applied in order, from first to last.</p>
 <dl class="docutils">
 <dt>Data Type</dt>
 <dd>The <a class="reference internal" href="../data_blocks.html#data-system-datablock-types"><span class="std std-ref">data-block type</span></a> to perform the batch rename operations on.</dd>
 <dt>Data Source</dt>
-<dd>Where to look for the data-blocks that are intended to be renamed.
-<em>Selected</em> looks within the currently selected objects.
-While, <em>All</em> looks within the entire <a class="reference internal" href="../../scene_layout/view_layers/index.html"><span class="doc">View Layer</span></a>.
-To the left of this option gives a readout on how many data-blocks are able to be renamed.</dd>
+<dd><p class="first">Where to look for the data-blocks that are intended to be renamed.</p>
+<dl class="docutils">
+<dt>Selected</dt>
+<dd>Operates on the currently selected objects.</dd>
+<dt>All</dt>
+<dd>Operates on all data in the blend file.</dd>
+</dl>
+<p class="last">To the left of this option gives a readout on how many data-blocks are able to be renamed.</p>
+</dd>
 </dl>
 <div class="section" id="operations">
 <h3>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h3>
-<p>The <em>Batch Rename</em> has several sub Operations that to modify the data names.
+<p>The <em>Batch Rename</em> has several sub Operations to change the data names.
 The default operation is <em>Find/Replace</em> however, other operations can be added
 to modify the data names farther.</p>
 <div class="section" id="find-replace">
@@ -301,7 +310,7 @@ by renaming the current data-block without having to do a find and replace opera
 This is useful for tools that look for special text in the prefix of a data-block name.</dd>
 <dt>Suffix</dt>
 <dd>Adds text to the end of the current name.
-This is useful for tools that look for special text in the Suffix of a data-block name.</dd>
+This is useful for tools that look for special text in the suffix of a data-block name.</dd>
 </dl>
 </dd>
 <dt>Name</dt>
@@ -316,9 +325,9 @@ character types from either the beginning or the end of the name.</p>
 <dt>Spaces</dt>
 <dd>Strips any space characters from the name, e.g. &quot;Living Room   &quot; becomes &quot;Living Room&quot;.</dd>
 <dt>Digits</dt>
-<dd>Strips any numerical characters from the name, e.g. &quot;cube.001&quot; becomes &quot;cube.&quot;.</dd>
+<dd>Strips any numerical characters from the name, e.g. <code class="docutils literal notranslate"><span class="pre">cube.001</span></code> becomes <code class="docutils literal notranslate"><span class="pre">cube.</span></code>.</dd>
 <dt>Punctuation</dt>
-<dd>Strips any punctuation characters (<code class="docutils literal notranslate"><span class="pre">,.?!:;</span> <span class="pre">etc...</span></code>) from the name, e.g. &quot;cube?&quot; becomes &quot;cube&quot;.</dd>
+<dd>Strips any punctuation characters (<code class="docutils literal notranslate"><span class="pre">,.?!:;</span></code> etc.) from the name, e.g. <code class="docutils literal notranslate"><span class="pre">cube?</span></code> becomes <code class="docutils literal notranslate"><span class="pre">cube</span></code>.</dd>
 </dl>
 <div class="admonition tip">
 <p class="first admonition-title">Mẹo</p>
@@ -336,11 +345,11 @@ character types from either the beginning or the end of the name.</p>
 <p><em>Change Case</em> modifies the case of names to be on of the following:</p>
 <dl class="docutils">
 <dt>Upper Case</dt>
-<dd>Changes all text to be in upper case, e.g. &quot;cube.001&quot; becomes &quot;CUBE.001&quot;.</dd>
+<dd>Changes all text to be in upper case, e.g. <code class="docutils literal notranslate"><span class="pre">cube.001</span></code> becomes <code class="docutils literal notranslate"><span class="pre">CUBE.001</span></code>.</dd>
 <dt>Lower Case</dt>
-<dd>Changes all text to be in lower case, e.g. &quot;CUBE.001&quot; becomes &quot;cube.001&quot;.</dd>
+<dd>Changes all text to be in lower case, e.g. <code class="docutils literal notranslate"><span class="pre">CUBE.001</span></code> becomes <code class="docutils literal notranslate"><span class="pre">cube.001</span></code>.</dd>
 <dt>Title Caps</dt>
-<dd>Changes all text to be in title case, e.g. &quot;living room&quot; becomes &quot;Living Room&quot;.</dd>
+<dd>Changes all text to be in title case, e.g. <code class="docutils literal notranslate"><span class="pre">living</span> <span class="pre">room</span></code> becomes <code class="docutils literal notranslate"><span class="pre">Living</span> <span class="pre">Room</span></code>.</dd>
 </dl>
 </div>
 </div>

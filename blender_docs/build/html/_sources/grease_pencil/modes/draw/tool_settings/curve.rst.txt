@@ -61,7 +61,7 @@ Creating Curves
 While dragging you can hold :kbd:`Shift` to use only one manipulator to tweak the curve (like the Arc tool),
 use :kbd:`Alt` to create the arc from a center point or :kbd:`M` to flip.
 
-:kbd:`Plus` and :kbd:`Minus` or using the mouse :kbd:`Wheel` will increase or decrease
+:kbd:`NumpadPlus` and :kbd:`NumpadMinus` or using the mouse :kbd:`Wheel` will increase or decrease
 the amount of points in the final curve.
 
 .. list-table::

@@ -76,5 +76,5 @@ It features:
 - Basic operations from Python/BKE_unit (``+``, ``*``, ``**``, etc.), and math constants
   and functions (``pi``, ``sin``, etc.).
 
-You can still use the negate and inverse shortcuts (:kbd:`Minus`, :kbd:`/`),
+You can still use the negate and inverse shortcuts (:kbd:`Minus`, :kbd:`Slash`),
 as well as non-number inputs, but you have to hold :kbd:`Ctrl` to activate them.

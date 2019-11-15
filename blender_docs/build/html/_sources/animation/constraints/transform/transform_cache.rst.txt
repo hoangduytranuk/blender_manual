@@ -4,8 +4,15 @@
 Transform Cache Constraint
 **************************
 
-The *Transform Cache Constraint* is used to stream animations made
-at the transformation matrix level (for example rigid bodies, or camera movements).
+The *Transform Cache Constraint* is used to stream animations from
+:doc:`Alembic </files/import_export/alembic>` made at the transformation matrix level (for example
+rigid bodies, or camera movements).
+
+When :doc:`importing an Alembic file </files/import_export/alembic>`,
+Transform Cache constraints are automatically added to objects with animated transforms. For
+time-varying meshes (so deforming animations), the
+:doc:`Mesh Sequence Cache modifier </modeling/modifiers/modify/mesh_sequence_cache>` is used.
+
 
 
 Options

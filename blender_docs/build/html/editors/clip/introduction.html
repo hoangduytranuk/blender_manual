@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
-    <link rel="next" title="Header" href="header.html" />
+    <link rel="next" title="Sidebar Region" href="sidebar.html" />
     <link rel="prev" title="Movie Clip Editor" href="index.html" /> 
 </head>
 
@@ -126,8 +126,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../movie_clip/tracking/index.html">Giám Sát Chuyển Động -- Motion Tracking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../movie_clip/masking/index.html">-- Masking</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Movie Clip Editor</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="header.html">Header</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#header">Header</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="sidebar.html">Sidebar Region</a></li>
 <li class="toctree-l3"><a class="reference internal" href="main_view.html">Main View</a></li>
 </ul>
@@ -220,6 +222,92 @@ The empty editor looks like the image below.</p>
 <img alt="../../_images/editors_clip_introduction_interface.png" src="../../_images/editors_clip_introduction_interface.png" />
 <p class="caption"><span class="caption-text">Movie Clip Editor interface.</span></p>
 </div>
+<div class="section" id="header">
+<h2>Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="menus">
+<h3>Menus<a class="headerlink" href="#menus" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>View</dt>
+<dd>Tools for controlling how the content is displayed in the editor.</dd>
+<dt>Select</dt>
+<dd>TODO.</dd>
+<dt>Clip</dt>
+<dd><dl class="first last docutils">
+<dt>Open Clip <kbd class="kbd docutils literal notranslate">Alt-O</kbd></dt>
+<dd>Open a new clip from an image file sequence.</dd>
+<dt>Prefetch Frames</dt>
+<dd>TODO.</dd>
+<dt>Reload Clip</dt>
+<dd>TODO.</dd>
+<dt>Proxy</dt>
+<dd>TODO.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="controls">
+<h3>Controls<a class="headerlink" href="#controls" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Clip</dt>
+<dd>A <a class="reference internal" href="../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">data-block menu</span></a> used for add a movie file.
+Both movie files and image sequences can be used in the Clip editor.
+When a movie clip is loaded into the Clip editor, extra panels are displayed in the interface.</dd>
+</dl>
+<div class="figure" id="id2">
+<img alt="../../_images/editors_clip_header_example.png" src="../../_images/editors_clip_header_example.png" />
+<p class="caption"><span class="caption-text">Movie Clip Editor with an opened clip.</span></p>
+</div>
+<dl class="docutils">
+<dt>Modes</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="../../movie_clip/tracking/index.html"><span class="doc">Motion Tracking</span></a></li>
+<li><a class="reference internal" href="../../movie_clip/masking/index.html"><span class="doc">Masking</span></a></li>
+</ul>
+</dd>
+<dt>Pivot Point</dt>
+<dd>See <a class="reference internal" href="../../scene_layout/object/editing/transform/control/pivot_point/index.html"><span class="doc">Pivot Points</span></a>.</dd>
+</dl>
+<dl class="docutils" id="clip-editor-clip-display-label">
+<dt>Clip Display</dt>
+<dd><p class="first">This pop-over contains display settings related to editor itself.</p>
+<dl class="last docutils">
+<dt>Channels</dt>
+<dd>The R, G, B toggles control the color channels used for frame preview.
+It is needed because the tracking algorithm works with grayscale images and it is not
+always obvious to see which channels disabled will increase contrast of feature points and reduce noise.</dd>
+<dt>Grayscale Preview (B/W)</dt>
+<dd>Shows the whole frame gray-scale.</dd>
+<dt>Mute (eye icon) <kbd class="kbd docutils literal notranslate">M</kbd></dt>
+<dd>Changes displaying on movie frame itself with black square,
+It helps to find tracks which are tracked inaccurately or which were not tracked at all.</dd>
+<dt>Render Undistorted</dt>
+<dd>Applies the <em>Lens Distortion</em> settings to the viewport image in order to display the footage undistorted.
+It is only a preview option, which does not actually change the footage itself.</dd>
+<dt>Lock to Selection <kbd class="kbd docutils literal notranslate">L</kbd></dt>
+<dd>Makes the editor display selected tracks at the same screen position
+along the whole footage during playback or tracking.
+This option helps to control the tracking process and
+stop it when the track is starting to slide off or when it jumped.</dd>
+<dt>Show Stable</dt>
+<dd>This option makes the displayed frame be affected by the 2D stabilization settings
+(available in reconstruction mode only).
+It is only a preview option, which does not actually change the footage itself.</dd>
+<dt>Grid</dt>
+<dd>Displays a grid which is originally orthographic,
+but is affected by the distortion model (available in distortion mode only).
+This grid can be used for manual calibration --
+distorted lines of grids are equal to straight lines in the footage.</dd>
+<dt>Calibration</dt>
+<dd>Applies the distortion model for annotation strokes (available in distortion mode only).
+This option also helps to perform manual calibration.
+A more detailed description of this process will be added later.</dd>
+<dt>Display Aspect Ratio</dt>
+<dd>Changes the aspect ratio for displaying only. It does not affect the tracking or solving process.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 
 
@@ -230,7 +318,7 @@ The empty editor looks like the image below.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="header.html" class="btn btn-neutral float-right" title="Header" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sidebar.html" class="btn btn-neutral float-right" title="Sidebar Region" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Movie Clip Editor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -61,7 +61,7 @@ Creating Lines
 While dragging you can use :kbd:`Shift` to snapping the line to horizontal, vertical or 45° angle
 or use :kbd:`Alt` to create the line from a center point.
 
-:kbd:`Plus` and :kbd:`Minus` or using the mouse :kbd:`Wheel`
+:kbd:`NumpadPlus` and :kbd:`NumpadMinus` or using the mouse :kbd:`Wheel`
 will increase or decrease the amount of points in the final line.
 
 .. list-table::

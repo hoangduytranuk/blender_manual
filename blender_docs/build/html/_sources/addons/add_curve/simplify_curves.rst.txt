@@ -36,7 +36,6 @@ The *Simplify F-Curves* buttons are located in
 the :menuselection:`Dope Sheet --> Action --> Graph Editors --> Channel menu`.
 
 
-
 .. admonition:: Reference
    :class: refbox
 

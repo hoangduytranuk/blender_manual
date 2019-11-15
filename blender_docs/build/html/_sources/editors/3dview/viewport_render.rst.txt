@@ -26,7 +26,7 @@ the Cycles Renderer.
      - .. figure:: /images/editors_3dview_viewport-render_example-eevee-render.jpg
           :width: 320px
 
-          Viewport render using Look Dev Mode.
+          Viewport render using Material Preview Mode.
 
      - .. figure:: /images/editors_3dview_viewport-render_example-cycles-render.jpg
           :width: 320px
@@ -55,7 +55,7 @@ Some settings are located in the render panel of the render engine
 that is used to render the view.
 
 Solid mode uses the render settings of Workbench;
-LookDev mode uses the render settings of Eevee.
+Material Preview mode uses the render settings of Eevee.
 
 Sampling and Alpha Transparency Mode options can be set in :menuselection:`Properties --> Render --> Sampling`.
 Make sure the Workbench or Eevee render engine is selected to see the appropriate values.

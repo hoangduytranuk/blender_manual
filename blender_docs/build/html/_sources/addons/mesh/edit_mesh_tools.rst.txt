@@ -13,7 +13,7 @@ by default in the :menuselection:`Sidebar --> Edit tab`.
 The Icons in the closed panel headers contain some new/different selection tools and
 Edit Mode vertex/edge/face selection modes for quick access to some tools, before opening the sub panels.
 
-In the UI there's a variety of tools in each category, most tools have a small box to the right to provide
+In the UI there's a variety of tools in each category, most tools have a tooltip to provide
 some usage information to help users understand each tools basic requirements.
 'Most significant hotkeys is in edit mode double :kbd:`RMB`-click brings up the Vertex/Edge/Face menus
 depending on vertex/edge/face selection mode.

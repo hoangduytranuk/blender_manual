@@ -1,0 +1,328 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-11-10 01:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Introduction"
+msgstr "Giới Thiệu -- Introduction"
+
+msgid "After animating some property in Blender using keyframes you can edit their corresponding curves. When something is \"animated\", it changes over time. This curve is shown as something called an F-curve. Basically what an F-curve does is an interpolation between two animated properties. In Blender, animating an object means changing one of its properties, such as the object's location, or its scale."
+msgstr "Sau -- Animating some Tính Chất Vào Blender using Số/Khung Khóa you có thể Biên Soạn their corresponding Đường Cong. When something is \"Hoạt Họa\", it changes over Thời Gian. cái/điều này Đường Cong is shown as something called an F-Đường Cong. Basically cái gì an F-Đường Cong does is an Nội Suy between hai Hoạt Họa Tính Chất. Vào Blender, -- Animating an Vật Thể means changing một of its Tính Chất, such as the Vật Thể's vị trí, hoặc its Tỷ Lệ."
+
+msgid "As mentioned, Blender's fundamental unit of time is the \"frame\", which usually lasts just a fraction of a second, depending on the *frame rate* of the scene. As animation is composed of incremental changes spanning multiple frames, usually these properties are **not** manually modified *frame-by-frame*, because:"
+msgstr "As mentioned, Blender's fundamental unit of Thời Gian is the \"Khung Hình\", cái mà/tức usually lasts just a Phân Số of a Thứ Hai, depending BẬT the *Khung Hình Tốc Độ* of the Cảnh. As Hoạt Họa is composed of Tăng Dần changes spanning multiple Khung Hình, usually these Tính Chất are **Đảo Nghịch** thủ công Đã bị Sửa Đổi *Khung Hình-by-Khung Hình*, because:"
+
+msgid "It would take ages!"
+msgstr ""
+
+msgid "It would be very difficult to get smooth variations of the property (unless you compute mathematical functions and type a precise value for each frame, which would be crazy)."
+msgstr "It would be very difficult Tới get Làm Mịn/Trơn Tru variations of the Tính Chất (unless you compute mathematical -- Functions và Thể Loại a precise Giá Trị for each Khung Hình, cái mà/tức would be crazy)."
+
+msgid "This is why nearly all direct animation is done using *interpolation*."
+msgstr "cái/điều này is why nearly Toàn Bộ Trực Tiếp Hoạt Họa is done using *Nội Suy*."
+
+msgid "The idea is simple: you define a few Keyframes, which are multiple frames apart. Between these keyframes, the properties' values are computed (interpolated) by Blender and filled in. Thus, the animators' workload is significantly reduced."
+msgstr "The idea is Đơn Giản: you define a few Số/Khung Khóa, cái mà/tức are multiple Khung Hình apart. Between these Số/Khung Khóa, the Tính Chất' Giá Trị are computed (Nội Suy) by Blender và filled Vào. Thus, the animators' workload is significantly reduced."
+
+msgid "Example of an interpolation."
+msgstr "Ví Dụ -- Example of an Nội Suy."
+
+msgid "For example, if you have:"
+msgstr "For Ví Dụ -- Example, if you have:"
+
+msgid "A control point of value 0 at frame 0,"
+msgstr "A Điều Khiển Điểm/Chấm of Giá Trị 0 Tại Khung Hình 0,"
+
+msgid "another one of value 10 at frame 25,"
+msgstr "another một of Giá Trị 10 Tại Khung Hình 25,"
+
+msgid "and you use linear interpolation, then, at frame 5 we get a value of 2."
+msgstr "và you Sử Dụng Tuyến Tính Nội Suy, then, Tại Khung Hình 5 we get a Giá Trị of 2."
+
+msgid "The same goes for all intermediate frames: with just two points, you get a smooth increase from (0 to 10) along the 25 frames. Obviously, if you would like the frame 15 to have a value of 9, you would have to add another control point (or keyframe)..."
+msgstr "The same goes for Toàn Bộ intermediate Khung Hình: với just hai Số Điểm, you get a Làm Mịn/Trơn Tru increase Từ (0 Tới 10) along the 25 Khung Hình. Obviously, if you would like the Khung Hình 15 Tới have a Giá Trị of 9, you would have Tới Cộng Thêm another Điều Khiển Điểm/Chấm (hoặc Khung Khóa)..."
+
+msgid "Direction of Time"
+msgstr "Chiều Hướng của Thời Gian -- Direction of Time"
+
+msgid "Although F-curves are very similar to :ref:`curve-bezier`, there are some important differences."
+msgstr "Although F-Curves are very similar to :ref:`curve-bezier`, there are some important differences."
+
+msgid "For obvious reasons, a property represented by a curve cannot have more than **one** value at a given time, hence:"
+msgstr "For obvious reasons, a property represented by a Curve cannot have more than **one** value at a given time, hence:"
+
+msgid "When you move a control point ahead of a control point that was previously ahead of the point that you are moving, the two control points switch their order in the edited curve, to avoid that the curve goes back in time."
+msgstr "When you Di Chuyển a Điều Khiển Điểm/Chấm ahead of a Điều Khiển Điểm/Chấm that was previously ahead of the Điểm/Chấm that you are moving, the hai Điều Khiển Số Điểm Chuyển Mạch their Theo Thứ Tự Vào the Đã Chỉnh Sửa Đường Cong, Tới Tránh that the Đường Cong goes Quay Lại/Đằng Sau/Lưng Vào Thời Gian."
+
+msgid "For the above reason, it is impossible to have a closed F-curve."
+msgstr "Vì nguyên nhân trên, một đường cong-F khép kín là một việc không thể."
+
+msgid "Two control points switching: the curve cannot go back in time!"
+msgstr "Chuyển đổi giữa 2 điểm điều khiển: đường cong không thể quay trở ngược dòng thời gian! -- Two control points switching: the curve cannot go back in time!"
+
+msgid "Before moving the second keyframe."
+msgstr "Trước khi di chuyển khung khóa thứ hai."
+
+msgid "After moving the second keyframe."
+msgstr "Sau khi di chuyển khung khóa thứ hai."
+
+msgid "Settings"
+msgstr "Sắp Đặt -- Settings"
+
+msgid "F-Curves have three additional properties, which control the interpolation between points, extension behavior, and the type of handles."
+msgstr "Đường cong có 3 tính chất bổ sung điều khiển quá trình nội suy giữa các điểm, hành xử của sự nới rộng và thể loại của các tay cầm."
+
+msgid "Interpolation Mode"
+msgstr "Chế Độ Nội Suy -- Interpolation Mode"
+
+msgid "Reference"
+msgstr "Tham Chiếu -- Reference"
+
+msgid "Menu"
+msgstr "Trình Đơn -- Menu"
+
+msgid ":menuselection:`Key --> Interpolation Mode`"
+msgstr ":menuselection:`Khóa (Key) --> Chế Độ Nội Suy (Interpolation Mode)`"
+
+msgid "Hotkey"
+msgstr "Phím Tắt -- Hotkey"
+
+msgid ":kbd:`T`"
+msgstr ""
+
+msgid "Mode for the :term:`Interpolation` between the current and next keyframe."
+msgstr "Chế Độ for the :term:`Nội Suy` between the Hiện Tại và Tiếp Theo Khung Khóa."
+
+msgid "Interpolation"
+msgstr "Nội Suy -- Interpolation"
+
+msgid "Constant"
+msgstr "Hằng Số/Đồng Đều/Bất Biến -- Constant"
+
+msgid "There is no interpolation at all. The curve holds the value of its last keyframe, giving a discrete (stairway) \"curve\". Usually only used during the initial \"blocking\" stage in pose-to-pose animation workflows."
+msgstr "There is no Nội Suy Tại Toàn Bộ. The Đường Cong holds the Giá Trị of its Cuối Khung Khóa, giving a discrete (stairway) \"Đường Cong\". Usually only sử dụng during the Khởi Đầu \"blocking\" stage Vào pose-to-pose Hoạt Họa Quy Trình Làm Việc."
+
+msgid "Constant."
+msgstr "Hằng Số/Đồng Đều/Bất Biến."
+
+msgid "Linear"
+msgstr "Tuyến Tính -- Linear"
+
+msgid "This simple interpolation creates a straight segment, giving a non-continuous line. It can be useful when using only two keyframes and the *Extrapolation* extend mode, to easily get an infinite straight line (i.e. a linear curve)."
+msgstr "cái/điều này Đơn Giản Nội Suy creates a Thẳng Phân Đoạn, giving a non-continuous Đường Thẳng/Dòng. It có thể be useful when using only hai Số/Khung Khóa và the *Ngoại Suy* Nới/Mở Rộng Chế Độ, Tới easily get an infinite Thẳng Đường Thẳng/Dòng (i.e. a Tuyến Tính Đường Cong)."
+
+msgid "Linear."
+msgstr "Tuyến Tính."
+
+msgid "Bézier"
+msgstr "Đường Cong Bézier -- Bézier"
+
+msgid "The more powerful and useful interpolation, and the default one. It gives nicely smoothed curves, i.e. smooth animations!"
+msgstr "The Nhiều/Lớn Hơn powerful và useful Nội Suy, và the Mặc Định một. It gives nicely smoothed Đường Cong, i.e. Làm Mịn/Trơn Tru Hoạt Họa!"
+
+msgid "Bézier."
+msgstr "Đường Cong Bézier -- Bézier."
+
+msgid "Remember that some F-curves can only take discrete values, in which case they are always shown as if constant interpolated, whatever option you chose."
+msgstr "Remember that some Đường Cong-F có thể only take discrete Giá Trị, Vào cái mà/tức Kiểu Chữ they are Luôn Luôn shown as if Hằng Số/Đồng Đều/Bất Biến Nội Suy, whatever Tùy Chọn you chose."
+
+msgid "Easing (by strength)"
+msgstr "Nới Lỏng (theo mức độ) -- Easing (by strength)"
+
+msgid "Different methods of easing interpolations for F-curve segment. The \"Robert Penner easing equations\" (basically, equations which define some preset ways that one keyframe transitions to another) which reduce the amount of manual work (inserting and tweaking keyframes) to achieve certain common effects. For example, snappy movements."
+msgstr "khác -- Methods of Nới Lỏng/Chậm Rãi interpolations for Đường Cong-F Phân Đoạn. The \"Robert Penner Nới Lỏng/Chậm Rãi equations\" (basically, equations cái mà/tức define some Sắp Đặt Sẵn ways that một Khung Khóa Chuyển Cảnh Tới another) cái mà/tức reduce the Số/Lượng of Thủ Công work (inserting và tweaking Số/Khung Khóa) Tới achieve certain Sắp Đặt Chung -- Common Hiệu Ứng. For Ví Dụ -- Example, snappy movements."
+
+msgid "Sinusoidal"
+msgstr "Sin"
+
+msgid "Quadratic"
+msgstr "Bình Phương"
+
+msgid "Cubic"
+msgstr "Lập Phương"
+
+msgid "Quartic"
+msgstr "Bậc Bốn"
+
+msgid "Quintic"
+msgstr "Bậc Năm"
+
+msgid "Exponential"
+msgstr "Lũy Thừa"
+
+msgid "Circular"
+msgstr "Vòng Tròn"
+
+msgid "For more info and a few live demos, see http://easings.net and http://www.robertpenner.com/easing/"
+msgstr "For Nhiều/Lớn Hơn Thông Tin và a few live demos, see http://easings.net và http://www.robertpenner.com/Nới Lỏng/Chậm Rãi/"
+
+msgid "Dynamic Effects"
+msgstr "Hiệu Ứng Năng Động -- Dynamic Effects"
+
+msgid "These additional easing types imitate (fake) physics-based effects like bouncing/springing effects. The corresponding settings can be found in the :menuselection:`Sidebar region --> Active Keyframe panel`."
+msgstr "These additional easing types imitate (fake) physics-based effects like bouncing/springing effects. The corresponding settings can be found in the :menuselection:`Vùng Tính Chất (Properties region) --> Bảng Khung Khóa Đang Hoạt Động (Active Keyframe panel)`."
+
+msgid "Elastic"
+msgstr "Đàn Hồi -- Elastic"
+
+msgid "Exponentially decaying sine wave, like an elastic band. This is like bending a stiff pole stuck to some surface, and watching it rebound and settle back to its original state."
+msgstr "Exponentially decaying Sin Sóng, like an Đàn Hồi band. cái/điều này is like Bẻ Cong a stiff Cực (điểm cực) -- Pole stuck Tới some Bề Mặt, và watching it rebound và settle Quay Lại/Đằng Sau/Lưng Tới its Gốc/Nguyên Bản Trạng Thái."
+
+msgid "Amplitude"
+msgstr "Biên Độ -- Amplitude"
+
+msgid "The amplitude property controls how strongly the oscillation diverges from the basic curve. At 0.0, there is no oscillation (i.e. it just snaps to the B-value like an extreme exponential transition), and at 1.0 a profile similar to the one shown in the icon occurs."
+msgstr "The Biên Độ Tính Chất Điều Khiển -- Controls how strongly the oscillation diverges Từ the Đơn Giản Đường Cong. Tại 0.0, there is no oscillation (i.e. it just snaps Tới the B-value like an Cường Điệu Lũy Thừa Chuyển Cảnh/Tiếp), và Tại 1.0 a Mặt Cắt Tương Đồng Tới the một shown Vào the Biểu Tượng occurs."
+
+msgid "Period"
+msgstr "Chu Kỳ -- Period"
+
+msgid "The period property controls the frequency with which oscillations occur. Higher values result in denser oscillations."
+msgstr "The Chu Kỳ Tính Chất Điều Khiển -- Controls the Tần Số với cái mà/tức oscillations occur. Higher Giá Trị Kết Quả Vào denser oscillations."
+
+msgid "Bounce"
+msgstr "Nẩy -- Bounce"
+
+msgid "Exponentially decaying parabolic bounce, like when objects collide. e.g. for Bouncing balls, etc."
+msgstr "Exponentially decaying parabolic Nẩy, like when Vật Thể collide. e.g. for Bouncing balls, etc."
+
+msgid "Back"
+msgstr "Quay Lại/Đằng Sau/Lưng -- Back"
+
+msgid "Cubic easing with overshoot and settle. Use this one when you want a bit of an overshoot coming into the next keyframe, or perhaps for some wind-up anticipation."
+msgstr "Lập Phương Nới Lỏng/Chậm Rãi với overshoot và settle. Sử Dụng cái/điều này một when you want a bit of an overshoot coming into the Tiếp Theo Khung Khóa, hoặc perhaps for some wind-up anticipation."
+
+msgid "The back property controls the size and direction (i.e. above/below the curve) of the overshoot."
+msgstr "The Quay Lại/Đằng Sau/Lưng Tính Chất Điều Khiển -- Controls the Kích Thước và Chiều Hướng (i.e. above/below the Đường Cong) of the overshoot."
+
+msgid "Easing Type"
+msgstr "Thể Loại Chậm Rãi -- Easing Type"
+
+msgid ":menuselection:`Key --> Easing Type`"
+msgstr ":menuselection:`Khóa (Key) --> Thể Loại Chậm Rãi (Easing Type)`"
+
+msgid ":kbd:`Ctrl-E`"
+msgstr ""
+
+msgid "The Easing Type controls which end of the segment between the two keyframes that the easing effects apply to."
+msgstr "The Nới Lỏng/Chậm Rãi Thể Loại Điều Khiển -- Controls cái mà/tức Kết Thúc -- End of the Phân Đoạn between the hai Số/Khung Khóa that the Nới Lỏng/Chậm Rãi Hiệu Ứng Áp Dụng Tới."
+
+msgid "Automatic Easing"
+msgstr "Tự Động Nới Lỏng/Chậm Rãi -- Automatic Easing"
+
+msgid "The most commonly expected of the below behaviors is used. For the transitional effects, this is basically *ease in*, while for the physics effects it is *ease out*."
+msgstr "The most commonly expected of the below behaviors is sử dụng. For the transitional Hiệu Ứng, cái/điều này is basically *Làm Dịu/Mềm Mại Vào*, while for the Vật Lý Hiệu Ứng it is *Làm Dịu/Mềm Mại Ra*."
+
+msgid "Ease In"
+msgstr "Nới Vào -- Ease In"
+
+msgid "Effect builds up to the second keyframe."
+msgstr "Hiệu Ứng builds Lên/Trên Tới the Thứ Hai Khung Khóa."
+
+msgid "Ease Out"
+msgstr "Nới Ra -- Ease Out"
+
+msgid "Effect fades out from the first keyframe."
+msgstr "Hiệu ứng mờ dần ra khỏi khung khóa đầu tiên"
+
+msgid "Ease In Out"
+msgstr "Nới Vào và Ra -- Ease In Out"
+
+msgid "Effect occurs on both ends of the segment."
+msgstr "Ảnh hưởng xảy ra ở hai đầu của phân đoạn."
+
+msgid "Extrapolation"
+msgstr "Ngoại Suy -- Extrapolation"
+
+msgid ":menuselection:`Channel --> Extrapolation Mode`"
+msgstr ":menuselection:`Kênh (Channel) --> Chế Độ Ngoại Suy (Extrapolation Mode)`"
+
+msgid ":kbd:`Shift-E`"
+msgstr ""
+
+msgid "Extrapolation defines the behavior of a curve before the first and after the last keyframes."
+msgstr "Ngoại Suy defines the Tính Chất Hoạt Động of a Đường Cong Trước the Đầu Tiên/Thứ Nhất và Sau the Cuối Số/Khung Khóa."
+
+msgid "There are two basic extrapolation modes:"
+msgstr "There are hai Đơn Giản Ngoại Suy Chế Độ -- Modes:"
+
+msgid "The default one, curves before their first keyframe and after their last one have a constant value (the one of these first and last keyframes)."
+msgstr "The Mặc Định một, Đường Cong Trước their Đầu Tiên/Thứ Nhất Khung Khóa và Sau their Cuối một have a Hằng Số/Đồng Đều/Bất Biến Giá Trị (the một of these Đầu Tiên/Thứ Nhất và Cuối Số/Khung Khóa)."
+
+msgid "Constant extrapolation."
+msgstr "Hằng Số/Đồng Đều/Bất Biến Ngoại Suy."
+
+msgid "Curves ends are straight lines (linear), as defined by their first two keyframes (respectively their last two keyframes)."
+msgstr "Đường Cong ends are Thẳng (Số) Đường Kẻ/Thẳng/Dòng (Tuyến Tính), as defined by their Đầu Tiên/Thứ Nhất hai Số/Khung Khóa (respectively their Cuối hai Số/Khung Khóa)."
+
+msgid "Linear extrapolation."
+msgstr "Tuyến Tính Ngoại Suy."
+
+msgid "Additional extrapolation methods (e.g. the *Cycles* modifier) are located in the :doc:`F-Curve Modifiers </editors/graph_editor/fcurves/modifiers>`."
+msgstr "Additional extrapolation tools (e.g. the \"Cycles\" F-Modifier) are located in the :doc:`F-Curve Modifiers </editors/graph_editor/fcurves/modifiers>`."
+
+msgid "Handle Types"
+msgstr "Kiểu tay cầm -- Handle Types"
+
+msgid "There is another curve option quite useful for Bézier-interpolated curves. You can set the type of handle to use for the curve points :kbd:`V`."
+msgstr "There is another Đường Cong Tùy Chọn quite useful for Bézier-interpolated Đường Cong. You có thể Đặt the Thể Loại of Tay Cầm Tới Sử Dụng for the Đường Cong Số Điểm :kbd:`V`."
+
+msgid "Automatic"
+msgstr "Tự Động -- Automatic"
+
+msgid "Handle positions are automatically chosen to produce smooth curves."
+msgstr "Tay Cầm positions are tự động chosen Tới produce Làm Mịn/Trơn Tru Đường Cong."
+
+msgid "Auto handles."
+msgstr "Tay Cầm Tự Động -- Auto Handle"
+
+msgid "Auto Clamped"
+msgstr "Tự Động Hạn Định -- Auto Clamped"
+
+msgid "Automatic handles clamped to prevent overshoots and changes in the curve direction between keyframes (S-shapes)."
+msgstr "Tự Động Tay Cầm clamped Tới prevent overshoots và changes Vào the Đường Cong Chiều Hướng between Số/Khung Khóa (S-shapes)."
+
+msgid "Auto clamped handles."
+msgstr "Tay Cầm Tự Động -- Auto Handle"
+
+msgid "Vector"
+msgstr "Véctơ -- Vector"
+
+msgid "Creates linear interpolation between keyframes. The linear segments remain if keyframe centers are moved. If handles are moved, the handle becomes Free."
+msgstr "Creates Tuyến Tính Nội Suy between Số/Khung Khóa. The Tuyến Tính Phân Đoạn remain if Khung Khóa Trung Tâm are moved. If Tay Cầm are moved, the Tay Cầm becomes Tự Do."
+
+msgid "Vector handles."
+msgstr "Tay Cầm Vectơ -- Vector Handle"
+
+msgid "Aligned"
+msgstr "Thẳng Hàng -- Aligned"
+
+msgid "The two handles of the curve point are locked together to always point in exactly opposite directions."
+msgstr "The hai Tay Cầm of the Đường Cong Điểm/Chấm are Bị Khóa together Tới Luôn Luôn Điểm/Chấm Vào exactly opposite directions."
+
+msgid "Aligned handles."
+msgstr "Thẳng Hàng Tay Cầm."
+
+msgid "Free"
+msgstr "Tự Do -- Free"
+
+msgid "The handles can be moved completely independently."
+msgstr "The Tay Cầm có thể be moved completely independently."
+
+msgid "Free handles."
+msgstr "Tự Do Tay Cầm."
+

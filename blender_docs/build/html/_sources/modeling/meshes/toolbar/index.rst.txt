@@ -65,7 +65,7 @@ Poly Build
 :ref:`Edge Slide <tool-mesh-edge_slide>`
    Slide edge along a faces.
 
-   :ref:`Vertex Slide <tool-mesh-vertex_slide>`
+   :ref:`Vertex Slide <tool-mesh-vertex-slide>`
       Slide vertex along an edge.
 
 :ref:`Shrink/Flatten <tool-mesh-shrink-fatten>`

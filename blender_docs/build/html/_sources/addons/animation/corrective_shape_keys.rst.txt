@@ -6,10 +6,10 @@ Corrective Shape Keys
 Introduction
 ============
 
-Todo.
+From the Author/s:
 
 I merged and converted two old scripts, to let you make corrective shape keys.
-The first `script <http://www.apexbow.com/randd.html>`__ was created by Tal Trachtman and
+The first `script <http://www.apexbow.com/randd.html>`__ was created by Tal Trachtman in 2007 and
 the second one I believe was done by Brecht. That one works with any combination of modifiers,
 but it is very slow (like three minutes for a mesh with 4,000 points).
 The other one works only with objects that have no more than one armature.
@@ -20,6 +20,12 @@ Activation
 
 - Open Blender and go to Preferences then the Add-ons tab.
 - Click Animation then Corrective Shape Keys to enable the script.
+
+
+Interface
+=========
+
+Located in the :menuselection:`Properties --> Object Data --> Shape Keys Specials`.
 
 
 Usage
@@ -50,8 +56,10 @@ Known Limitations
 
    :Category:  Animation
    :Description: Creates a corrective shape key for the current pose.
-   :Location: :menuselection:`Object Data --> Shape Keys Specials`
+   :Location: :menuselection:`Properties --> Object Data --> Shape Keys Specials`
    :File: animation_corrective_shape_key.py
    :Author: Ivo Grigull (loolarge), Tal Trachtman, Tokikake
+   :Maintainer: to do
    :License: GPL
+   :Support Level: Community
    :Note: This add-on is bundled with Blender.

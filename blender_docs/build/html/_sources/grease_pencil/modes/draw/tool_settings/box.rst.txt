@@ -50,7 +50,7 @@ Creating Boxes
 While dragging you can use :kbd:`Shift` to make a perfect square
 or use :kbd:`Alt` to create the box from a center point.
 
-:kbd:`Plus` and :kbd:`Minus` or using the mouse :kbd:`Wheel`
+:kbd:`NumpadPlus` and :kbd:`NumpadMinus` or using the mouse :kbd:`Wheel`
 will increase or decrease the amount of points in the final box.
 
 .. list-table::

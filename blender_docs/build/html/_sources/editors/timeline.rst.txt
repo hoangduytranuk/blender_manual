@@ -330,8 +330,6 @@ End Frame
    The end frame of the animation/playback range.
 
 
-
-
 .. Move to animation?
 .. _animation-editors-timeline-autokeyframe:
 

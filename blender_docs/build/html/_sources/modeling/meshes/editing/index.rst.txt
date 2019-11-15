@@ -20,3 +20,4 @@
    misc.rst
    data_transfer.rst
    mesh_options.rst
+   retopology.rst

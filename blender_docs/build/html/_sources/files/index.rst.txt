@@ -9,6 +9,6 @@
    introduction.rst
    blend/index.rst
    data_blocks.rst
-   linked_libraries.rst
+   linked_libraries/index.rst
    media/index.rst
    import_export.rst

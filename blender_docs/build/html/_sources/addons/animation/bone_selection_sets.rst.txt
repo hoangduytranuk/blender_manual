@@ -19,6 +19,12 @@ Activation
 - Click Animation then Bone Selection Sets to enable the script.
 
 
+Interface
+=========
+
+Located in the :menuselection:`Properties --> Object Data (Armature) --> Selection Sets`.
+
+
 Description
 ===========
 
@@ -40,5 +46,7 @@ A bone can belong to more than one selection set.
    :Location: :menuselection:`Properties --> Object Data (Armature) --> Selection Sets`
    :File: bone_selection_sets.py
    :Author: Inês Almeida, Sybren A. Stüvel, Antony Riakiotakis, Dan Eicher
+   :Maintainer: to do
    :License: GPL 2+
+   :Support Level: Community
    :Note: This add-on is bundled with Blender.

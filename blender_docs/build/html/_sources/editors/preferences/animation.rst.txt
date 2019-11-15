@@ -75,7 +75,9 @@ look and their default behavior.
 F-Curve Visibility
    Opacity that unselected :doc:`F-Curves </editors/graph_editor/fcurves/index>`
    stand out from the *Graph Editor*.
-Interpolation
+Default Smoothing Mode
+   Controls the behaviour of :ref:`automatic keyframe handles <editors-graph-fcurves-settings-handles>` for newly created F-curves.
+Default Interpolation
    Controls the default :ref:`Interpolation <editors-graph-fcurves-settings-interpolation>`
    for newly created keyframes.
 Default Handles

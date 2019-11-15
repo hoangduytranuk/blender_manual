@@ -237,7 +237,6 @@ By loose parts
 
 .. _bpy.ops.transform.vert_slide:
 .. _tool-mesh-vertex-slide:
-.. _tool-mesh-vertex_slide:
 
 Vertex Slide
 ============

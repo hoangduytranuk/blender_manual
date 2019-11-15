@@ -26,7 +26,7 @@ When the current frame is a keyframe for the current active object, the name of 
 .. figure:: /images/animation_keyframes_introduction_visualization.png
    :align: center
 
-   Top: Current frame is a keyframe for Cube. Bottom: Current frame isn't a keyframe. 
+   Top: Current frame is a keyframe for Cube. Bottom: Current frame isn't a keyframe.
 
 
 Interpolation

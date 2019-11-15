@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.81 Manual 2.81\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-23 22:52+0100\n"
+"POT-Creation-Date: 2019-11-15 17:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,5 +230,73 @@ msgstr ""
 
 #: ../../manual/files/import_export/alembic.rst:137
 msgid "Alembic has no support for Particle Systems, in the same way that it does not support armatures. Hair is exported as animated zero-width curves. Particles are exported as animated points."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:142
+msgid "Importing Alembic Files"
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:144
+msgid "When importing an Alembic file, :doc:`Mesh Sequence Cache modifiers </modeling/modifiers/modify/mesh_sequence_cache>` are automatically added to time-varying meshes. For time-varying object transforms (so animation of rotation, location, or scale), the :ref:`Transform Cache Constraint <bpy.types.TransformCacheConstraint>` is used."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:151
+msgid "Custom Split Normals of Meshes"
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:153
+msgid "Blender supports the import and export of :ref:`custom normals <modeling_meshes_normals_custom>` to Alembic files. As a basic rule of thumb, a completely smooth mesh will be exported without normals and thus produce the smallest Alembic file. This is reflected in the importer; an Alembic mesh without normals is loaded as a smooth mesh."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:158
+msgid "On export, for every mesh:"
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:160
+msgid "If it has *Custom Loop Normals* → loop normals are exported."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:161
+msgid "If one or more polys are marked flat → loop normals are exported."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:162
+msgid "Otherwise, no normals are exported."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:164
+msgid "On import, when the Alembic mesh contains:"
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:166
+msgid "loop normals (kFacevaryingScope) → use as custom loop normals, and enble Auto Smooth to have Blender actually use them."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:168
+msgid "vertex normals (kVertexScope or kVaryingScope) → convert to loop normals, and handle as above."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:169
+msgid "no normals → mark mesh as smooth."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:170
+msgid "unsupported normal types (kConstantScope, kUniformScope, kUnknownScope) → handle as 'no normals'."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:172
+msgid "When an imported mesh does not contain normals, the final look can be controlled by enabling the :ref:`Auto Smooth <auto-smooth>` checkbox and altering the threshold angle."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:177
+msgid "Handling Time"
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:179
+msgid "Unlike Blender and many other applications and file formats, Alembic files don't have any concept of frames. Alembic works purely with time, and values that are sampled over time. For example, there is no way to distinguish 30 FPS with 2 samples per frame, and 60 FPS with 1 sample per frame. This has caused numerous developers to just `hard-code 24 FPS <https://developer.blender.org/T55288#754358>`__ when reading Alembic files."
+msgstr ""
+
+#: ../../manual/files/import_export/alembic.rst:185
+msgid "Blender uies the current scene frame rate to convert a frame number (in Blender) to a time in seconds (in Alembic). As a result, you can import an Alembic file that was produced at 120 FPS into a Blender scene that is 30 FPS and still not see any time stretching."
 msgstr ""
 

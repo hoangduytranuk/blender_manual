@@ -223,8 +223,6 @@ Select Loops
       Select connected edges.
    `Face Loops`_
       Select connected faces.
-   `Edge Boundary`_
-      Select boundary edges.
    `Edge Ring`_
       Select connected edge ring.
 
@@ -444,6 +442,19 @@ the right sphere shows an edge that was selected latitudinally and has formed a 
 This is because the algorithm hit the first edge that it started with.
 
 
+Edge Loops (All Boundaries)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All boundary edges can be selected by performing a second loop select action on a boundary edge.
+
+This can be useful for selecting boundaries for meshes that include triangles & n-gons,
+where loop-select wouldn't otherwise select the full boundary.
+
+.. figure:: /images/modeling_meshes_selecting_edge-boundary_loops.png
+
+   The second select loop select action is shown on the right.
+
+
 .. _modeling-meshes-selecting-face-loops:
 
 Face Loops
@@ -479,20 +490,6 @@ Technically :kbd:`Ctrl-Alt-LMB` will select an *Edge Ring*,
 however, in *Vertex* select mode, selecting an *Edge Ring* implicitly
 selects a *Face Loop* since selecting opposite edges of a face implicitly selects
 the entire face.
-
-
-Edge Boundary
--------------
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Mode:      Edit Mode (Vertex or Edge select modes)
-   :Hotkey:    :kbd:`Alt-LMB`
-
-Loop selection on edge boundaries.
-To extend the selection to all boundaries if the current boundary is already selected
-use :kbd:`Alt-LMB` again.
 
 
 Edge Ring

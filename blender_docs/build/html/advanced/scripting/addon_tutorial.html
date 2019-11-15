@@ -254,9 +254,9 @@ See <a class="reference external" href="https://docs.blender.org/api/blender_pyt
 <ul class="simple">
 <li><a class="reference external" href="https://docs.blender.org/api/blender_python_api_current/info_overview.html">Blender API Overview</a>:
 This document is rather detailed but helpful if you want to know more on a topic.</li>
-<li><a class="reference external" href="https://docs.blender.org/api/2.81/bpy.context.html#module-bpy.context" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy.context</span></code></a> API reference --
+<li><a class="reference external" href="https://docs.blender.org/api/2.81/bpy.context.html#module-bpy.context" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy.context</span></code></a> API reference --
 Handy to have a list of available items your script may operate on.</li>
-<li><a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.Operator.html#bpy.types.Operator" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.Operator</span></code></a> --
+<li><a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.Operator.html#bpy.types.Operator" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy.types.Operator</span></code></a> --
 The following add-ons define operators, these docs give details and more examples of operators.</li>
 </ul>
 </div>
@@ -290,14 +290,14 @@ this means the module can be loaded without activating the add-on.</dd>
 this is called when the add-on is disabled.</dd>
 </dl>
 <p>Notice this add-on does not do anything related to Blender
-(the <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.data.html#module-bpy" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy</span></code></a> module is not imported for example).</p>
+(the <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.data.html#module-bpy" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy</span></code></a> module is not imported for example).</p>
 <p>This is a contrived example of an add-on that serves to illustrate the point
 that the base requirements of an add-on are simple.</p>
 <p>An add-on will typically register operators, panels, menu items, etc,
 but it's worth noting that <em>any</em> script can do this,
 when executed from the Text editor or even the interactive console --
 there is nothing inherently different about an add-on that allows it to integrate with Blender,
-such functionality is just provided by the <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.data.html#module-bpy" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy</span></code></a> module for any script to access.</p>
+such functionality is just provided by the <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.data.html#module-bpy" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy</span></code></a> module for any script to access.</p>
 <p>So an add-on is just a way to encapsulate a Python module in a way a user can easily utilize.</p>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
@@ -470,12 +470,12 @@ In Blender, this is known as <em>Linked Duplicates</em>.</p>
 </div>
 <p>Try running this script with the active object and the cursor spaced apart to see the result.</p>
 <p>With this script you'll notice we're doing some math with the object location and cursor,
-this works because both are 3D <a class="reference external" href="https://docs.blender.org/api/2.81/mathutils.html#mathutils.Vector" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">mathutils.Vector</span></code></a> instances,
-a convenient class provided by the <a class="reference external" href="https://docs.blender.org/api/2.81/mathutils.html#module-mathutils" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">mathutils</span></code></a> module which
+this works because both are 3D <a class="reference external" href="https://docs.blender.org/api/2.81/mathutils.html#mathutils.Vector" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">mathutils.Vector</span></code></a> instances,
+a convenient class provided by the <a class="reference external" href="https://docs.blender.org/api/2.81/mathutils.html#module-mathutils" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">mathutils</span></code></a> module which
 allows vectors to be multiplied by numbers and matrices.</p>
-<p>If you are interested in this area, read into <a class="reference external" href="https://docs.blender.org/api/2.81/mathutils.html#mathutils.Vector" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">mathutils.Vector</span></code></a>
+<p>If you are interested in this area, read into <a class="reference external" href="https://docs.blender.org/api/2.81/mathutils.html#mathutils.Vector" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">mathutils.Vector</span></code></a>
 -- there are many handy utility functions such as getting the angle between vectors,
-cross product, dot products as well as more advanced functions in <a class="reference external" href="https://docs.blender.org/api/2.81/mathutils.geometry.html#module-mathutils.geometry" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">mathutils.geometry</span></code></a>
+cross product, dot products as well as more advanced functions in <a class="reference external" href="https://docs.blender.org/api/2.81/mathutils.geometry.html#module-mathutils.geometry" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">mathutils.geometry</span></code></a>
 such as Bézier spline interpolation and ray-triangle intersection.</p>
 <p>For now we will focus on making this script an add-on, but it's good to know that this
 3D math module is available and can help you with more advanced functionality later on.</p>
@@ -550,7 +550,7 @@ Operator properties are defined via bpy.props module, this is added to the class
 <span class="bp">self</span><span class="o">.</span><span class="n">total</span>
 </pre></div>
 </div>
-<p>These properties from <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.props.html#module-bpy.props" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy.props</span></code></a> are handled specially by Blender
+<p>These properties from <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.props.html#module-bpy.props" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy.props</span></code></a> are handled specially by Blender
 when the class is registered so they display as buttons in the user interface.
 There are many arguments you can pass to properties to set limits,
 change the default and display a tooltip.</p>
@@ -579,13 +579,13 @@ Then you can hover your mouse over the menu item and the identifier is displayed
     <span class="n">bpy</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">VIEW3D_MT_object</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">menu_func</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>For docs on extending menus, see: <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.Menu.html#bpy.types.Menu" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.Menu</span></code></a>.</p>
+<p>For docs on extending menus, see: <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.Menu.html#bpy.types.Menu" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy.types.Menu</span></code></a>.</p>
 </div>
 <div class="section" id="keymap">
 <h4>Bố Trí Bàn Phím -- Keymap<a class="headerlink" href="#keymap" title="Permalink to this headline">¶</a></h4>
 <p>In Blender, add-ons have their own keymaps so as not to interfere with Blender's built-in keymaps.</p>
-<p>In the example below, a new object mode <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.KeyMap.html#bpy.types.KeyMap" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMap</span></code></a> is added,
-then a <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMapItem</span></code></a> is added to the keymap which references
+<p>In the example below, a new object mode <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.KeyMap.html#bpy.types.KeyMap" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMap</span></code></a> is added,
+then a <a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMapItem</span></code></a> is added to the keymap which references
 our newly added operator, using <kbd class="kbd docutils literal notranslate">Shift-Ctrl-T</kbd> as the key shortcut to activate it.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># store keymaps here to access after registration</span>
 <span class="n">addon_keymaps</span> <span class="o">=</span> <span class="p">[]</span>
@@ -622,9 +622,9 @@ conflict with important functionality within Blender.</p>
 <p>For API documentation on the functions listed above, see:</p>
 <ul class="simple">
 <li><code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.KeyMaps.new</span></code>,</li>
-<li><a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.KeyMap.html#bpy.types.KeyMap" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMap</span></code></a>,</li>
+<li><a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.KeyMap.html#bpy.types.KeyMap" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMap</span></code></a>,</li>
 <li><code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.KeyMapItems.new</span></code>,</li>
-<li><a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem" title="(in Blender 2.81.16 Python API vbcac0ed977c9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMapItem</span></code></a>.</li>
+<li><a class="reference external" href="https://docs.blender.org/api/2.81/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem" title="(in Blender 2.81.16 Python API v8dfe2801ace5)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMapItem</span></code></a>.</li>
 </ul>
 </div>
 <div class="section" id="bringing-it-all-together">

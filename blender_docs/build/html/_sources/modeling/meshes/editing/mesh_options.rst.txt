@@ -89,5 +89,8 @@ then the merge will be performed between the moved vertex and one of those.
 Auto Merge
    Enables the Auto Merge feature.
 
-   Double Threshold
+   Split Edges & Faces
+      Detects the intersection of each transformed edge, creating a new vertex in place and sectioning the edge.
+
+   Threshold
       Defines the maximum distance between vertices that are merged by the *Auto Merge*.

@@ -50,7 +50,7 @@ Creating Circles
 While dragging you can use :kbd:`Shift` to make a perfect circle
 or use :kbd:`Alt` to create the circle from a center point.
 
-:kbd:`Plus` and :kbd:`Minus` or using the mouse :kbd:`Wheel`
+:kbd:`NumpadPlus` and :kbd:`NumpadMinus` or using the mouse :kbd:`Wheel`
 will increase or decrease the amount of points in the final circle.
 
 .. list-table::

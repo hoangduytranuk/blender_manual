@@ -54,13 +54,13 @@ Auto Boolean
       but with that you will free the process and will get it as a simple mesh.)
 
 Brush Boolean
-   Union :kbd:`Ctrl-Shift-NumpadPlus`
+   Union :kbd:`Shift-Ctrl-NumpadPlus`
       Apply direct Union to an object.
-   Difference :kbd:`Ctrl-Shift-NumpadMinus`
+   Difference :kbd:`Shift-Ctrl-NumpadMinus`
       Apply direct Difference to an object.
-   Intersection :kbd:`Ctrl-Shift-NumpadAsterix`
+   Intersection :kbd:`Shift-Ctrl-NumpadAsterix`
       Apply direct Intersection to an object.
-   Slice :kbd:`Ctrl-Shift-NumpadSlash`
+   Slice :kbd:`Shift-Ctrl-NumpadSlash`
       Todo.
 
 

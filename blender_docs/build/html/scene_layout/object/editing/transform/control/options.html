@@ -236,7 +236,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Object Mode and Pose Mode</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Header:</th><td class="field-body"><span class="menuselection">Sidebar ‣ Tool ‣ ‣ Options ‣ Transform</span></td>
+<tr class="field-even field"><th class="field-name">Header:</th><td class="field-body"><span class="menuselection">Sidebar ‣ Tool ‣ Options ‣ Transform</span></td>
 </tr>
 </tbody>
 </table>
@@ -244,10 +244,21 @@
 <div class="section" id="affect-only">
 <span id="bpy-types-toolsettings-use-transform-pivot-point-align"></span><span id="bpy-types-toolsettings-use-transform-data-origin"></span><h2>Affect Only<a class="headerlink" href="#affect-only" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt>Origins</dt>
-<dd>Directly transforms the object's <a class="reference internal" href="../../../origin.html"><span class="doc">origin</span></a>.
+<dt>Origins <kbd class="kbd docutils literal notranslate">Ctrl-Period</kbd></dt>
+<dd><p class="first">Directly transforms the object's <a class="reference internal" href="../../../origin.html"><span class="doc">origin</span></a>.
 This only works for objects with data which can be transformed;
-i.e. it will not work on text objects.</dd>
+i.e. it will not work on lamp objects.</p>
+<p>When enabled, the object axes are displayed.</p>
+<p>Take care using this option since it transforms the object-data which may cause linked
+duplicates to be moved unintentionally.</p>
+<div class="last admonition hint">
+<p class="first admonition-title">Gợi ý</p>
+<p>Changing the object location and the object-data may impact
+modifiers, constraints and keyframe animation.</p>
+<p class="last">If you're only temporarily setting the pivot point,
+use the <a class="reference internal" href="../../../../../editors/3dview/3d_cursor.html#editors-3dview-3d-cursor"><span class="std std-ref">3D cursor</span></a> instead.</p>
+</div>
+</dd>
 <dt>Locations</dt>
 <dd><p class="first">Changes the position of the object's origin relative to another point during transformation.
 In other words, the pivot point and the origin cannot share the same location.

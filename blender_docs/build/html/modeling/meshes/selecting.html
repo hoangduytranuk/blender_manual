@@ -469,8 +469,6 @@ where an increasing angle selects sharper edges.</dd>
 <dd>Select connected edges.</dd>
 <dt><a class="reference internal" href="#face-loops">Face Loops</a></dt>
 <dd>Select connected faces.</dd>
-<dt><a class="reference internal" href="#edge-boundary">Edge Boundary</a></dt>
-<dd>Select boundary edges.</dd>
 <dt><a class="reference internal" href="#edge-ring">Edge Ring</a></dt>
 <dd>Select connected edge ring.</dd>
 </dl>
@@ -712,6 +710,16 @@ This is because the algorithm hit the vertices at the poles and is terminated
 because the vertices at the pole connect to more than four edges. However,
 the right sphere shows an edge that was selected latitudinally and has formed a closed loop.
 This is because the algorithm hit the first edge that it started with.</p>
+<div class="section" id="edge-loops-all-boundaries">
+<h4>Edge Loops (All Boundaries)<a class="headerlink" href="#edge-loops-all-boundaries" title="Permalink to this headline">¶</a></h4>
+<p>All boundary edges can be selected by performing a second loop select action on a boundary edge.</p>
+<p>This can be useful for selecting boundaries for meshes that include triangles &amp; n-gons,
+where loop-select wouldn't otherwise select the full boundary.</p>
+<div class="figure" id="id14">
+<img alt="../../_images/modeling_meshes_selecting_edge-boundary_loops.png" src="../../_images/modeling_meshes_selecting_edge-boundary_loops.png" />
+<p class="caption"><span class="caption-text">The second select loop select action is shown on the right.</span></p>
+</div>
+</div>
 </div>
 <div class="section" id="face-loops">
 <span id="modeling-meshes-selecting-face-loops"></span><h3>Face Loops<a class="headerlink" href="#face-loops" title="Permalink to this headline">¶</a></h3>
@@ -733,14 +741,14 @@ faces that are connected in a line end-to-end, along their opposite edges.</p>
 <p>In vertex select mode,
 the same can be accomplished by using <kbd class="kbd docutils literal notranslate">Ctrl-Alt</kbd> to select an edge,
 which selects the face loop implicitly.</p>
-<div class="figure" id="id14">
+<div class="figure" id="id15">
 <img alt="../../_images/modeling_meshes_selecting_face-loops.png" src="../../_images/modeling_meshes_selecting_face-loops.png" />
 <p class="caption"><span class="caption-text">Face loop selection.</span></p>
 </div>
 <p>This face loop was selected by clicking with <kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> on an edge,
 in <em>face</em> select mode.
 The loop extends perpendicular from the edge that was selected.</p>
-<div class="figure" id="id15">
+<div class="figure" id="id16">
 <img alt="../../_images/modeling_meshes_selecting_face-loops-vertex.png" src="../../_images/modeling_meshes_selecting_face-loops-vertex.png" />
 <p class="caption"><span class="caption-text"><kbd class="kbd docutils literal notranslate">Alt</kbd> versus <kbd class="kbd docutils literal notranslate">Ctrl-Alt</kbd> in vertex select mode.</span></p>
 </div>
@@ -749,25 +757,6 @@ Technically <kbd class="kbd docutils literal notranslate">Ctrl-Alt-LMB</kbd> wil
 however, in <em>Vertex</em> select mode, selecting an <em>Edge Ring</em> implicitly
 selects a <em>Face Loop</em> since selecting opposite edges of a face implicitly selects
 the entire face.</p>
-</div>
-<div class="section" id="edge-boundary">
-<h3>Edge Boundary<a class="headerlink" href="#edge-boundary" title="Permalink to this headline">¶</a></h3>
-<div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode (Vertex or Edge select modes)</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-LMB</kbd></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Loop selection on edge boundaries.
-To extend the selection to all boundaries if the current boundary is already selected
-use <kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> again.</p>
 </div>
 <div class="section" id="edge-ring">
 <h3>Edge Ring<a class="headerlink" href="#edge-ring" title="Permalink to this headline">¶</a></h3>
@@ -797,7 +786,7 @@ using either <span class="menuselection">Select ‣ Select Loops ‣ Edge Rings<
 <p class="last">In <em>Vertex</em> select mode, you can use the same hotkeys when <em>clicking on the edges</em> (not on the vertices),
 but this will directly select the corresponding face loop...</p>
 </div>
-<div class="figure" id="id16">
+<div class="figure" id="id17">
 <span id="fig-mesh-select-advanced-loop-ring"></span><img alt="../../_images/modeling_meshes_selecting_edge-ring.png" src="../../_images/modeling_meshes_selecting_edge-ring.png" />
 <p class="caption"><span class="caption-text">A selected edge loop, and a selected edge ring.</span></p>
 </div>
@@ -832,7 +821,7 @@ A subsequent switch to Face Select Mode will then properly select the faces.</p>
 </tbody>
 </table>
 </div>
-<div class="figure" id="id17">
+<div class="figure" id="id18">
 <img alt="../../_images/modeling_meshes_selecting_shortest-path.png" src="../../_images/modeling_meshes_selecting_shortest-path.png" />
 <p class="caption"><span class="caption-text">Select a face or vertex path with <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>.</span></p>
 </div>
@@ -899,15 +888,15 @@ See also <a class="reference internal" href="#checker-deselect">Checker Deselect
 While it is possible to use this operator in <em>Vertex</em> and <em>Face</em> selection modes, results may be unexpected.
 Note that if the selected loop of edges is not closed,
 then all connected edges on the mesh will be considered inside the loop.</p>
-<div class="figure" id="id18">
+<div class="figure" id="id19">
 <img alt="../../_images/modeling_meshes_selecting_inner-region1.png" src="../../_images/modeling_meshes_selecting_inner-region1.png" />
 <p class="caption"><span class="caption-text">Loop to Region.</span></p>
 </div>
-<div class="figure" id="id19">
+<div class="figure" id="id20">
 <img alt="../../_images/modeling_meshes_selecting_inner-region2.png" src="../../_images/modeling_meshes_selecting_inner-region2.png" />
 <p class="caption"><span class="caption-text">This tool handles multiple loops fine, as you can see.</span></p>
 </div>
-<div class="figure" id="id20">
+<div class="figure" id="id21">
 <img alt="../../_images/modeling_meshes_selecting_inner-region3.png" src="../../_images/modeling_meshes_selecting_inner-region3.png" />
 <p class="caption"><span class="caption-text">This tool handles &quot;holes&quot; just fine as well.</span></p>
 </div>
@@ -931,7 +920,7 @@ then all connected edges on the mesh will be considered inside the loop.</p>
 based on all regions currently selected, it selects only the edges at the border(contour) of these islands.
 It can operate in any select mode, but when in <em>Face</em> mode it will switch to <em>Edge</em> select mode after running.</p>
 <p>All this is much more simple to illustrate with examples:</p>
-<div class="figure" id="id21">
+<div class="figure" id="id22">
 <img alt="../../_images/modeling_meshes_selecting_boundary-loop.png" src="../../_images/modeling_meshes_selecting_boundary-loop.png" />
 <p class="caption"><span class="caption-text">Select Boundary Loop does the opposite and forces into Edge Select Mode.</span></p>
 </div>
@@ -941,7 +930,7 @@ It can operate in any select mode, but when in <em>Face</em> mode it will switch
 <h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="n-gons-in-face-select-mode">
 <h3>N-Gons in Face Select Mode<a class="headerlink" href="#n-gons-in-face-select-mode" title="Permalink to this headline">¶</a></h3>
-<div class="figure" id="id22">
+<div class="figure" id="id23">
 <img alt="../../_images/modeling_meshes_selecting_face-mode-ngon-visual-problem.png" src="../../_images/modeling_meshes_selecting_face-mode-ngon-visual-problem.png" />
 <p class="caption"><span class="caption-text">N-gon face having its center dot inside another face.</span></p>
 </div>

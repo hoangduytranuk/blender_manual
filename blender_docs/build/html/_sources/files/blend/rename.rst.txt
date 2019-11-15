@@ -14,9 +14,13 @@ Rename Active Item
    :Menu:      :menuselection:`Edit --> Rename Active Item`
    :Hotkey:    :kbd:`F2`
 
-The *Rename Active Item* operator renames the active :doc:`Object </scene_layout/object/index>`
-or :doc:`Node </interface/controls/nodes/index>`.
-When the operator is executed, a pop-up menu appears.
+The *Rename Active Item* operator renames the active
+:doc:`Bone </animation/armatures/bones/index>`,
+:doc:`Node </interface/controls/nodes/index>`,
+:doc:`Object </scene_layout/object/index>` and
+:doc:`Sequence Strip </video_editing/sequencer/strips/index>`.
+
+When the operator is executed, a pop-up dialog appears.
 The text field shows the name of the current item and can be overwritten to rename the item.
 :kbd:`Return` confirms the name while :kbd:`Esc` cancels the operator.
 
@@ -30,24 +34,31 @@ Batch Rename
    :class: refbox
 
    :Menu:      :menuselection:`Edit --> Batch Rename`
-   :Hotkey:    :kbd:`Alt-F2`
+   :Hotkey:    :kbd:`Ctrl-F2`
 
 The *Batch Rename* operator can rename many data-block names at once.
-When the operator is executed, a popup menu appears with some options and operations to modify the name.
+
+This uses a pop-up dialog with operations and their options to change the name.
+
+These actions are applied in order, from first to last.
 
 Data Type
    The :ref:`data-block type <data-system-datablock-types>` to perform the batch rename operations on.
 Data Source
    Where to look for the data-blocks that are intended to be renamed.
-   *Selected* looks within the currently selected objects.
-   While, *All* looks within the entire :doc:`View Layer </scene_layout/view_layers/index>`.
+
+   Selected
+      Operates on the currently selected objects.
+   All
+      Operates on all data in the blend file.
+
    To the left of this option gives a readout on how many data-blocks are able to be renamed.
 
 
 Operations
 ----------
 
-The *Batch Rename* has several sub Operations that to modify the data names.
+The *Batch Rename* has several sub Operations to change the data names.
 The default operation is *Find/Replace* however, other operations can be added
 to modify the data names farther.
 
@@ -82,7 +93,7 @@ Method
       This is useful for tools that look for special text in the prefix of a data-block name.
    Suffix
       Adds text to the end of the current name.
-      This is useful for tools that look for special text in the Suffix of a data-block name.
+      This is useful for tools that look for special text in the suffix of a data-block name.
 Name
    Defines the new name or the text to add as a prefix/suffix,
 
@@ -96,9 +107,9 @@ character types from either the beginning or the end of the name.
 Spaces
    Strips any space characters from the name, e.g. "Living Room   " becomes "Living Room".
 Digits
-   Strips any numerical characters from the name, e.g. "cube.001" becomes "cube.".
+   Strips any numerical characters from the name, e.g. ``cube.001`` becomes ``cube.``.
 Punctuation
-   Strips any punctuation characters (``,.?!:; etc...``) from the name, e.g. "cube?" becomes "cube".
+   Strips any punctuation characters (``,.?!:;`` etc.) from the name, e.g. ``cube?`` becomes ``cube``.
 
 .. tip::
 
@@ -116,8 +127,8 @@ Change Case
 *Change Case* modifies the case of names to be on of the following:
 
 Upper Case
-   Changes all text to be in upper case, e.g. "cube.001" becomes "CUBE.001".
+   Changes all text to be in upper case, e.g. ``cube.001`` becomes ``CUBE.001``.
 Lower Case
-   Changes all text to be in lower case, e.g. "CUBE.001" becomes "cube.001".
+   Changes all text to be in lower case, e.g. ``CUBE.001`` becomes ``cube.001``.
 Title Caps
-   Changes all text to be in title case, e.g. "living room" becomes "Living Room".
+   Changes all text to be in title case, e.g. ``living room`` becomes ``Living Room``.

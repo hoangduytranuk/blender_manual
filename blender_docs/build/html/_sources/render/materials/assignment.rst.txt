@@ -170,12 +170,13 @@ a base material is as follows:
 
 #. In Object Mode, apply the base material to the whole object.
 #. Create/select the second material (the whole object will change to this new material).
-#. In the Active Material box, reselect the base material.
-#. Go to Edit Mode and Face Select (a new box appears above the Active Material box with Assign/Select/Deselect).
+#. In the Active Material list, reselect the base material.
+#. Go into Edit Mode and Face Select (a new list appears above
+   the Active Material list with *Assign*/*Select*/*Deselect* buttons).
 #. Select the face/faces to be colored with the second material.
-#. In the Object Material Slots box, click the :kbd:`Plus` to create a new slot, and while this is still active,
+#. In the Object Material Slots list, click the ``+`` button to create a new slot, and while this is still active,
    click on the second material in the Available Materials list.
-#. Click the Assign button, and the second material will appear on the selected object faces.
+#. Click the *Assign* button, and the second material will appear on the selected object faces.
 
 You can also make this new material a copy of an existing material by adding the data-block:
 

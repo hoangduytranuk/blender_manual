@@ -57,6 +57,8 @@ Properties have different colors and menu items for different states.
 The changed value highlight currently doesn't work with :doc:`NLA </editors/nla/introduction>`.
 
 
+.. _animation-rigging:
+
 Rigging
 =======
 

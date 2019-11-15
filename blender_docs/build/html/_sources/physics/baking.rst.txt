@@ -38,9 +38,6 @@ Caches List
    Blender allows for storing and managing multiple caches at once for the same physics object.
    You can manage the caches with this :ref:`list view <ui-list-view>`.
 
-   Caches can be added and removed with the :kbd:`Plus` and :kbd:`Minus` buttons.
-   Renaming a cache can be done by either double-clicking or pressing :kbd:`Ctrl-LMB` on the desired cache.
-
 
 Options
 =======

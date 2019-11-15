@@ -1,0 +1,217 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-11-10 01:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Sampling"
+msgstr "Lấy Mẫu Vật -- Sampling"
+
+msgid "Reference"
+msgstr "Tham Chiếu -- Reference"
+
+msgid "Panel"
+msgstr "Bảng -- Panel"
+
+msgid ":menuselection:`Render --> Sampling`"
+msgstr ":menuselection:`Kết Xuất (Render) --> Lấy Mẫu Vật (Sampling)`"
+
+msgid "The integrator is the rendering algorithm used to compute the lighting. Cycles currently supports a path tracing integrator with direct light sampling. It works well for various lighting setups, but is not as suitable for caustics and some other complex lighting situations."
+msgstr "The Tích Phân is the Kết Xuất -- Render Thuật Toán sử dụng Tới compute the Bố Trí Ánh Sáng. Tuần Hoàn -- Cycles currently supports a Đường/Đi/Dẫn tracing Tích Phân với Trực Tiếp Nguồn/Ánh Sáng Lấy Mẫu Vật. It works well for various Bố Trí Ánh Sáng -- Setups, but is Đảo Nghịch as suitable for Tụ Quang và some Cái/Sắp Đặt Khác complex Bố Trí Ánh Sáng situations."
+
+msgid "Rays are traced from the camera into the scene, bouncing around until they find a light source such as a light, an object emitting light, or the world background. To find lights and surfaces emitting light, both indirect light sampling (letting the ray follow the surface BSDF) and direct light sampling (picking a light source and tracing a ray towards it) are used."
+msgstr "Rays are traced Từ the Máy Quay Phim into the Cảnh, bouncing around until they Lùng Tìm a Nguồn/Ánh Sáng Nguồn such as a Nguồn/Ánh Sáng, an Vật Thể emitting Nguồn/Ánh Sáng, hoặc the Thế Giới Màu/Ảnh/Nền. Tới Lùng Tìm Nguồn/Ánh Sáng và Bề Mặt emitting Nguồn/Ánh Sáng, Cả Hai Gián Tiếp Nguồn/Ánh Sáng Lấy Mẫu Vật (letting the ray Đi Theo the Bề Mặt BSDF) và Trực Tiếp Nguồn/Ánh Sáng Lấy Mẫu Vật (picking a Nguồn/Ánh Sáng Nguồn và tracing a ray towards it) are sử dụng."
+
+msgid "Integrator"
+msgstr "Tích Phân -- Integrator"
+
+msgid "There are two sample methods that can be used: *Path Tracing* and *Branched Path Tracing*."
+msgstr "There are two integrator modes that can be used: *Path Tracing* and *Branched Path Tracing*."
+
+msgid "Path Tracing"
+msgstr "Dò Đường Đi -- Path Tracing"
+
+msgid "The *Path Tracing* integrator is a pure path tracer; at each hit it will bounce light in one direction and pick one light to receive lighting from. This makes each individual sample faster to compute, but will typically require more samples to clean up the noise."
+msgstr "The *Đường/Đi/Dẫn Tracing* Tích Phân is a pure Đường/Đi/Dẫn Đánh Dấu Dòng Chảy; Tại each hit it will Nẩy Nguồn/Ánh Sáng Vào một Chiều Hướng và Chọn một Nguồn/Ánh Sáng Tới receive Bố Trí Ánh Sáng Từ. cái/điều này makes each Cá Nhân Lấy Mẫu Vật faster Tới compute, but will typically require Nhiều/Lớn Hơn Lượng Mẫu Vật Tới Dọn Dẹp Lên/Trên the Nhiễu."
+
+msgid "Branched Path Tracing"
+msgstr "Dò Đường Đi Phân Nhánh -- Branched Path Tracing"
+
+msgid "The non-progressive Branched Path Tracing integrator offers finer control over sampling. It is similar to *Path Tracing*, but at the first hit it will split the path for different surface components and will take all lights into account for shading instead of just one."
+msgstr "The non-progressive Branched Đường/Đi/Dẫn Tracing Tích Phân offers finer Điều Khiển over Lấy Mẫu Vật. It is Tương Đồng Tới *Đường/Đi/Dẫn Tracing*, but Tại the Đầu Tiên/Thứ Nhất hit it will Tách Phân the Đường/Đi/Dẫn for khác Bề Mặt components và will take Toàn Bộ Nguồn/Ánh Sáng into account for Tô Bóng instead of just một."
+
+msgid "This makes each sample slower, but will reduce noise, especially in scenes dominated by direct or one-bounce lighting. To get the same number of diffuse samples as in the path tracing integrator, note that e.g. 250 path tracing samples = 10 AA Samples x 25 diffuse samples. The Sampling panel shows this total number of samples."
+msgstr "cái/điều này makes each Lấy Mẫu Vật slower, but will reduce Nhiễu, especially Vào Cảnh dominated by Trực Tiếp hoặc one-bounce Bố Trí Ánh Sáng. Tới get the same Số of Khuếch Tán Lượng Mẫu Vật as Vào the Đường/Đi/Dẫn tracing Tích Phân, Ghi Chú that e.g. 250 Đường/Đi/Dẫn tracing Lượng Mẫu Vật = 10 AA Lượng Mẫu Vật x 25 Khuếch Tán Lượng Mẫu Vật. The Lấy Mẫu Vật Bảng shows cái/điều này Tổng Cộng Số of Lượng Mẫu Vật."
+
+msgid "Render"
+msgstr "Kết Xuất -- Render"
+
+msgid "Number of paths to trace for each pixel in the final render. As more samples are taken, the solution becomes less noisy and more accurate."
+msgstr "Số of Đường Dẫn Tới -- Trace for each Điểm Ảnh Vào the Kết Thúc/Kết Cục/Cuối Cùng Kết Xuất. As Nhiều/Lớn Hơn Lượng Mẫu Vật are taken, the solution becomes Ít/Nhỏ Hơn noisy và Nhiều/Lớn Hơn Chính Xác."
+
+msgid "When using *Branched Path Tracing*, this changes the *AA Samples* which are multiplied by the `Sub Samples`_ and improve anti-aliasing."
+msgstr "When using *Branched Đường/Đi/Dẫn Tracing*, cái/điều này changes the *AA Lượng Mẫu Vật* cái mà/tức are multiplied by the `Trừ Lượng Mẫu Vật`_ và improve Khử Răng Cưa."
+
+msgid "Viewport"
+msgstr "Cổng Nhìn -- Viewport"
+
+msgid "Number of samples for viewport rendering."
+msgstr "Số of Lượng Mẫu Vật for Cổng Nhìn Kết Xuất -- Render."
+
+msgid "Sub Samples"
+msgstr "Phân Lượng Mẫu Vật -- Sub Samples"
+
+msgid "The panel is visible only when using *Branched Path Tracing*."
+msgstr "The Bảng is Hữu Hình only when using *Branched Đường/Đi/Dẫn Tracing*."
+
+msgid "Diffuse"
+msgstr "Khuếch Tán -- Diffuse"
+
+msgid "Number of diffuse bounce samples to take for each AA sample."
+msgstr "Số of Khuếch Tán Nẩy Lượng Mẫu Vật Tới take for each AA Lấy Mẫu Vật."
+
+msgid "Glossy"
+msgstr "Bóng Bẩy -- Glossy"
+
+msgid "Number of glossy bounce samples to take for each AA sample."
+msgstr "Số of Bóng Bẩy Nẩy Lượng Mẫu Vật Tới take for each AA Lấy Mẫu Vật."
+
+msgid "Transmission"
+msgstr "Truyền Xạ -- Transmission"
+
+msgid "Number of transmission bounce samples to take for each AA sample."
+msgstr "Số of Truyền Xạ Nẩy Lượng Mẫu Vật Tới take for each AA Lấy Mẫu Vật."
+
+msgid "AO"
+msgstr "THTQXMT -- AO"
+
+msgid "Number of ambient occlusion samples to take for each AA sample."
+msgstr "Số of Môi Trường occlusion Lượng Mẫu Vật Tới take for each AA Lấy Mẫu Vật."
+
+msgid "Mesh Light"
+msgstr "Ánh Sáng của Khung Lưới -- Mesh Light"
+
+msgid "Number of mesh light samples to take for each AA sample."
+msgstr "Số of Khung Lưới Nguồn/Ánh Sáng Lượng Mẫu Vật Tới take for each AA Lấy Mẫu Vật."
+
+msgid "Subsurface"
+msgstr "Dưới Bề Mặt -- Subsurface"
+
+msgid "Number of subsurface scattering samples to take for each AA sample."
+msgstr "Số of Dưới Bề Mặt scattering Lượng Mẫu Vật Tới take for each AA Lấy Mẫu Vật."
+
+msgid "Volume"
+msgstr "Âm Lượng -- Volume"
+
+msgid "Number of volume scattering samples to take for each AA sample."
+msgstr "Số of Âm Lượng scattering Lượng Mẫu Vật Tới take for each AA Lấy Mẫu Vật."
+
+msgid "Advanced"
+msgstr "Cao Cấp -- Advanced"
+
+msgid "Seed"
+msgstr "Mầm -- Seed"
+
+msgid "Seed value for integrator to get different noise patterns."
+msgstr "Mầm Giá Trị for Tích Phân Tới get khác Nhiễu Hoa Văn."
+
+msgid "Animate Seed (clock icon)"
+msgstr "-- Animate Seed (clock icon)"
+
+msgid "This button, which can be found on the right side of the *Seed* value, can be used to give different seed values. It is a good idea to enable this when making animation because in the real world each frame has a different noise pattern."
+msgstr "cái/điều này button, cái mà/tức có thể be found BẬT the phải Bên/Mặt of the *Mầm* Giá Trị, có thể be sử dụng Tới give khác Mầm Giá Trị. It is a Tốt idea Tới Bật cái/điều này when making Hoạt Họa because Vào the real Thế Giới each Khung Hình has a khác Nhiễu Hoa Văn/Mẫu."
+
+msgid "Pattern"
+msgstr "Hoa Văn/Mẫu -- Pattern"
+
+msgid "Random sampling pattern used by the integrator."
+msgstr "Ngẫu Nhiên Lấy Mẫu Vật Hoa Văn/Mẫu sử dụng by the Tích Phân."
+
+msgid "Sobol"
+msgstr "-- Sobol"
+
+msgid "Uses a Sobol pattern to decide the random sampling pattern used by the integrator. See `Sobol sequence <https://en.wikipedia.org/wiki/Sobol_sequence>`__ on Wikipedia for more information."
+msgstr "Uses a Sobol Hoa Văn/Mẫu Tới decide the Ngẫu Nhiên Lấy Mẫu Vật Hoa Văn/Mẫu sử dụng by the Tích Phân. See `Sobol Trình Tự <https://en.wikipedia.org/wiki/Sobol_sequence>`__ BẬT Wikipedia for Nhiều/Lớn Hơn Thông Tin."
+
+msgid "Correlated Multi-Jitter"
+msgstr "Đa Biến Động Tương Quan -- Correlated Multi-Jitter"
+
+msgid "Uses a Correlated Multi-Jitter pattern to decide the random sampling pattern used by the integrator. See `this Pixar paper <http://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__ for more information."
+msgstr "Uses a Correlated Multi-Jitter Hoa Văn/Mẫu Tới decide the Ngẫu Nhiên Lấy Mẫu Vật Hoa Văn/Mẫu sử dụng by the Tích Phân. See `cái/điều này Pixar Giấy <http://graphics.pixar.com/Thư Viện/MultiJitteredSampling/Giấy.pdf>`__ for Nhiều/Lớn Hơn Thông Tin."
+
+msgid "Square Samples"
+msgstr "Bình Phương Mẫu Vật -- Square Samples"
+
+msgid "Square the amount of samples."
+msgstr "Vuông/Hình Vuông the Số/Lượng of Lượng Mẫu Vật."
+
+msgid "Min Light Bounces"
+msgstr "Lượng Bật Nẩy Tối Thiểu của Ánh Sáng -- Min Light Bounces"
+
+msgid "Minimum number of light bounces for each path, after which the integrator uses Russian Roulette to terminate paths that contribute less to the image. Setting this higher gives less noise, but may also increase render time considerably. For a low number of bounces, it is strongly recommended to set this equal to the maximum number of bounces."
+msgstr "Tối Thiểu Số of Nguồn/Ánh Sáng Lượng Bật Nảy -- Bounces for each Đường/Đi/Dẫn, Sau cái mà/tức the Tích Phân uses Russian Roulette Tới terminate Đường Dẫn that Đóng Góp -- Contribute Ít/Nhỏ Hơn Tới the Hình Ảnh. Setting cái/điều này higher gives Ít/Nhỏ Hơn Nhiễu, but may also increase Kết Xuất Thời Gian considerably. For a Thấp Số of Lượng Bật Nảy -- Bounces, it is strongly recommended Tới Đặt cái/điều này Bằng Nhau Tới the Tối Đa Số of Lượng Bật Nảy -- Bounces."
+
+msgid "Min Transparent Bounces"
+msgstr "Lượng Bật Nẩy Tối Thiểu của Tia Trong Suốt -- Min Transparent Bounces"
+
+msgid "Minimum number of transparent bounces. Setting this higher reduces noise in the first bounces, but can also be less efficient for more complex geometry like hair and volumes."
+msgstr "Tối Thiểu Số of Trong Suốt Lượng Bật Nảy -- Bounces. Setting cái/điều này higher reduces Nhiễu Vào the Đầu Tiên/Thứ Nhất Lượng Bật Nảy -- Bounces, but có thể also be Ít/Nhỏ Hơn efficient for Nhiều/Lớn Hơn complex Hình Học like Tóc và Thể Tích/Vùng Lưu Trữ."
+
+msgid "Light Threshold"
+msgstr "Ngưỡng Ánh Sáng -- Light Threshold"
+
+msgid "Probabilistically terminates light samples when the light contribution is below this threshold (more noise but faster rendering). Zero disables the test and never ignores lights. This is useful because in large scenes with many light sources, some might only contribute a small amount to the final image, and increase render times. Using this setting can decrease the render times needed to calculate the rays which in the end have very little affect on the image."
+msgstr "Probabilistically terminates Nguồn/Ánh Sáng Lượng Mẫu Vật when the Nguồn/Ánh Sáng contribution is below cái/điều này Ngưỡng (Nhiều/Lớn Hơn Nhiễu but faster Kết Xuất -- Render). Zero disables the test và Không Bao Giờ ignores Nguồn/Ánh Sáng. cái/điều này is useful because Vào Lớn Cảnh với many Nguồn/Ánh Sáng sources, some might only Đóng Góp -- Contribute a Nhỏ Số/Lượng Tới the Kết Thúc/Kết Cục/Cuối Cùng Hình Ảnh, và increase Kết Xuất times. Using cái/điều này setting có thể decrease the Kết Xuất times needed Tới Tính Toán the rays cái mà/tức Vào the Kết Thúc -- End have very little Tác Động BẬT the Hình Ảnh."
+
+msgid "Sample All Direct Lights"
+msgstr "Lấy Mẫu Toàn Bộ Nguồn Sáng Trực Tiếp -- Sample All Direct Lights"
+
+msgid "When enabled, Cycles will sample all lights in the scene for direct bounces, instead of randomly picking one. Disabling this can improve the performance, but will need a lot of *Samples*, to clear up the render."
+msgstr "When Bật, Tuần Hoàn -- Cycles will Lấy Mẫu Vật Toàn Bộ Nguồn/Ánh Sáng Vào the Cảnh for Trực Tiếp Lượng Bật Nảy -- Bounces, instead of randomly picking một. Disabling cái/điều này có thể improve the Hiệu Suất Thi Hành, but will need a lot of *Lượng Mẫu Vật*, Tới Xóa Lên/Trên the Kết Xuất."
+
+msgid "Visible only when using *Branched Path Tracing*."
+msgstr "Hữu Hình only when using *Branched Đường/Đi/Dẫn Tracing*."
+
+msgid "Sample All Indirect Lights"
+msgstr "Lấy Mẫu Toàn Bộ Nguồn Sáng Gián Tiếp -- Sample All Indirect Lights"
+
+msgid "Similar to direct light, but for indirect lights. This can reduce noise in scenes with many lights."
+msgstr "Tương Đồng Tới Trực Tiếp Nguồn/Ánh Sáng, but for Gián Tiếp Nguồn/Ánh Sáng. cái/điều này có thể reduce Nhiễu Vào Cảnh với many Nguồn/Ánh Sáng."
+
+msgid "Layer Samples"
+msgstr "Mẫu Vật của Tầng -- Layer Samples"
+
+msgid "When render layers have per layer number of samples set, this option specifies how to use them."
+msgstr "When Kết Xuất Các Tầng Lớp have per Tầng Lớp Số of Lượng Mẫu Vật Đặt, cái/điều này Tùy Chọn specifies how Tới Sử Dụng them."
+
+msgid "Use"
+msgstr "Sử Dụng -- Use"
+
+msgid "The render layer samples will override the set scene samples."
+msgstr "The Kết Xuất Tầng Lớp Lượng Mẫu Vật will Vượt Quyền the Đặt Cảnh Lượng Mẫu Vật."
+
+msgid "Bounded"
+msgstr "Giới Hạn -- Bounded"
+
+msgid "Bound render layer samples by scene samples."
+msgstr "Liên Kết Kết Xuất Tầng Lớp Lượng Mẫu Vật by Cảnh Lượng Mẫu Vật."
+
+msgid "Ignore"
+msgstr "Bỏ Qua -- Ignore"
+
+msgid "Ignore render layer sample settings."
+msgstr "Bỏ Qua Kết Xuất Tầng Lớp Lấy Mẫu Vật Sắp Đặt."
+

@@ -11,5 +11,4 @@
    introduction.rst
    scurve.rst
    selecting_editing.rst
-   header.rst
    properties.rst

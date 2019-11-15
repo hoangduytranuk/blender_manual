@@ -249,8 +249,8 @@
 There are several modes to choose from.</p>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
-<p class="last">The Look Dev option is not available when the render engine of the scene is
-set to Workbench.</p>
+<p class="last">The Material Preview option is not available when the render engine of
+the scene is set to Workbench.</p>
 </div>
 <div class="section" id="wireframe">
 <h2>Wireframe<a class="headerlink" href="#wireframe" title="Permalink to this headline">¶</a></h2>
@@ -310,10 +310,10 @@ can be found at Workbench render engine section.</p>
 </dd>
 </dl>
 </div>
-<div class="section" id="look-dev">
-<span id="dview-lookdev"></span><h2>Look Dev<a class="headerlink" href="#look-dev" title="Permalink to this headline">¶</a></h2>
-<p>Show the scene in the 3D View in LookDev mode.
-This mode is specialized for visualizing materials.
+<div class="section" id="material-preview">
+<span id="dview-material-preview"></span><h2>Material Preview<a class="headerlink" href="#material-preview" title="Permalink to this headline">¶</a></h2>
+<p>Render the 3D Viewport with <a class="reference internal" href="../../../render/eevee/index.html"><span class="doc">Eevee</span></a> and a HDRI environment.
+This mode is particularly suited for previewing materials and texture painting.
 You can select different lighting conditions to test your materials.</p>
 <dl class="docutils">
 <dt>Lighting</dt>
@@ -325,9 +325,11 @@ You can select different lighting conditions to test your materials.</p>
 When turned off a world will be constructed with the next options.</p>
 <dl class="last docutils">
 <dt>HDRI Environment</dt>
-<dd>The environment map used to render the scene in Look Dev mode.</dd>
+<dd>The environment map used to light the scene.</dd>
 <dt>Rotation</dt>
 <dd>The rotation of the environment on the Z axis.</dd>
+<dt>Strength</dt>
+<dd>Light intensity of the environment.</dd>
 <dt>Background</dt>
 <dd>The opacity level of a very blurred version of the HDRI will be rendered as
 background in the 3D View.</dd>
@@ -337,9 +339,16 @@ background in the 3D View.</dd>
 </dd>
 </dl>
 </div>
-<div class="section" id="render">
-<h2>Render<a class="headerlink" href="#render" title="Permalink to this headline">¶</a></h2>
-<p>An accurate representation using the selected <em>Render Engine</em> and lit with the visible scene lights.</p>
+<div class="section" id="rendered">
+<span id="dview-rendered"></span><h2>Rendered<a class="headerlink" href="#rendered" title="Permalink to this headline">¶</a></h2>
+<p>Render the 3D Viewport with the scene <em>Render Engine</em>, for interactive rendering.
+By default the scene lights are used for lighting.
+A HDRI environment can be used as well, with the same options as Material Preview mode.</p>
+<dl class="docutils">
+<dt>Render Pass <span class="guilabel">Cycles Only</span></dt>
+<dd>Instead of the combined render, show another render pass.
+Useful to analyze and debug geometry, materials and lighting.</dd>
+</dl>
 </div>
 </div>
 

@@ -128,12 +128,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../blend/index.html">Blender File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../data_blocks.html">Khối Dữ Liệu -- Data-Blocks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linked_libraries.html">Thư Viện Kết Nối -- Linked Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linked_libraries/index.html">Linked Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../media/index.html">-- Media Formats</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../import_export.html">Nhập &amp; Xuất Tập Tin -- Importing &amp; Exporting Files</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Alembic</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#exporting-to-alembic-files">-- Exporting to Alembic Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#importing-alembic-files">Importing Alembic Files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#custom-split-normals-of-meshes">Custom Split Normals of Meshes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#handling-time">Handling Time</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="collada.html">Collada</a></li>
@@ -343,11 +345,46 @@ For more detail on the specific option see the
 Hair is exported as animated zero-width curves. Particles are exported as animated points.</p>
 </div>
 </div>
+<div class="section" id="importing-alembic-files">
+<h2>Importing Alembic Files<a class="headerlink" href="#importing-alembic-files" title="Permalink to this headline">¶</a></h2>
+<p>When importing an Alembic file, <a class="reference internal" href="../../modeling/modifiers/modify/mesh_sequence_cache.html"><span class="doc">Mesh Sequence Cache modifiers</span></a>
+are automatically added to time-varying meshes. For time-varying object transforms (so animation of
+rotation, location, or scale), the
+<a class="reference internal" href="../../animation/constraints/transform/transform_cache.html#bpy-types-transformcacheconstraint"><span class="std std-ref">Transform Cache Constraint</span></a> is used.</p>
+</div>
 <div class="section" id="custom-split-normals-of-meshes">
 <h2>Custom Split Normals of Meshes<a class="headerlink" href="#custom-split-normals-of-meshes" title="Permalink to this headline">¶</a></h2>
-<p>Blender supports the export of <a class="reference internal" href="../../modeling/meshes/structure.html#modeling-meshes-normals-custom"><span class="std std-ref">custom normals</span></a> to Alembic
-files. This can be controlled on a mesh-by-mesh basis by enabling <a class="reference internal" href="../../modeling/meshes/structure.html#auto-smooth"><span class="std std-ref">Auto Smooth</span></a>
-checkbox. Custom Split Normals are exported only when this checkbox is enabled.</p>
+<p>Blender supports the import and export of <a class="reference internal" href="../../modeling/meshes/structure.html#modeling-meshes-normals-custom"><span class="std std-ref">custom normals</span></a> to
+Alembic files. As a basic rule of thumb, a completely smooth mesh will be exported without normals
+and thus produce the smallest Alembic file. This is reflected in the importer; an Alembic mesh
+without normals is loaded as a smooth mesh.</p>
+<p>On export, for every mesh:</p>
+<ul class="simple">
+<li>If it has <em>Custom Loop Normals</em> → loop normals are exported.</li>
+<li>If one or more polys are marked flat → loop normals are exported.</li>
+<li>Otherwise, no normals are exported.</li>
+</ul>
+<p>On import, when the Alembic mesh contains:</p>
+<ul class="simple">
+<li>loop normals (kFacevaryingScope) → use as custom loop normals, and enble Auto Smooth to have
+Blender actually use them.</li>
+<li>vertex normals (kVertexScope or kVaryingScope) → convert to loop normals, and handle as above.</li>
+<li>no normals → mark mesh as smooth.</li>
+<li>unsupported normal types (kConstantScope, kUniformScope, kUnknownScope) → handle as 'no normals'.</li>
+</ul>
+<p>When an imported mesh does not contain normals, the final look can be controlled by enabling the
+<a class="reference internal" href="../../modeling/meshes/structure.html#auto-smooth"><span class="std std-ref">Auto Smooth</span></a> checkbox and altering the threshold angle.</p>
+</div>
+<div class="section" id="handling-time">
+<h2>Handling Time<a class="headerlink" href="#handling-time" title="Permalink to this headline">¶</a></h2>
+<p>Unlike Blender and many other applications and file formats, Alembic files don't have any concept of
+frames. Alembic works purely with time, and values that are sampled over time. For example, there is
+no way to distinguish 30 FPS with 2 samples per frame, and 60 FPS with 1 sample per frame. This has
+caused numerous developers to just <a class="reference external" href="https://developer.blender.org/T55288#754358">hard-code 24 FPS</a>
+when reading Alembic files.</p>
+<p>Blender uies the current scene frame rate to convert a frame number (in Blender) to a time in
+seconds (in Alembic). As a result, you can import an Alembic file that was produced at 120 FPS into
+a Blender scene that is 30 FPS and still not see any time stretching.</p>
 </div>
 </div>
 

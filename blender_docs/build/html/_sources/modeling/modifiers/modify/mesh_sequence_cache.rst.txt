@@ -3,12 +3,18 @@
 Mesh Sequence Cache Modifier
 ****************************
 
-.. (TODO2.78) wip: The *Mesh Sequence Cache Modifier* is used to.
+The Mesh Sequence Cache modifier loads data from :doc:`Alembic </files/import_export/alembic>`
+files. It supports static meshes, but is mostly used to load animated meshes. Despite its name, this
+modifier also supports curves. It also handles file sequences, as well as meshes and curves with
+varying topology (like the result of fluid simulations).
 
-Despite its name, this modifier supports meshes and curves.
-It also handles file sequences, as well as meshes and curves with varying number of vertices/control points.
+When :doc:`importing an Alembic file </files/import_export/alembic>`, Mesh Sequence Cache modifiers
+are automatically added to time-varying meshes. For time-varying object transforms (so animation of
+rotation, location, or scale), the
+:ref:`Transform Cache Constraint <bpy.types.TransformCacheConstraint>` is used.
 
-Unlike the :doc:`Mesh Cache modifier </modeling/modifiers/modify/mesh_cache>`, it uses Alembic files as source.
+Non-Alembic files, like MDD and PC2 files, can be loaded using the
+:doc:`Mesh Cache modifier </modeling/modifiers/modify/mesh_cache>`.
 
 
 Options

@@ -1,4 +1,4 @@
-.. _bpy.types.UserPreferencesFilePaths:
+.. _bpy.types.PreferencesFilePaths:
 .. _prefs-file-paths:
 
 **********
@@ -95,7 +95,8 @@ Animation Player
 Development
 ===========
 
-Only Visible when *Developer Extras* is enabled.
+Only visible when :ref:`Developer Extras <prefs-interface-dev-extras>` are enabled.
+
 
 I18n Branches
    The path to the ``/branches`` directory of your local svn-translation copy, to allow translating from the UI.

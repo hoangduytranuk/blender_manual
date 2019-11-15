@@ -1,0 +1,364 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-11-13 01:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Add-on Tutorial"
+msgstr "Hướng Dẫn về Trình Bổ Sung -- Add-on Tutorial"
+
+msgid "Intended Audience"
+msgstr "Đối Tượng Dự Định -- Intended Audience"
+
+msgid "This tutorial is designed to help technical artists or developers learn to extend Blender. An understanding of the basics of Python is expected for those working through this tutorial."
+msgstr "Cái/Điều Này tutorial is designed tới giúp đỡ technical artists hoặc developers learn tới nới/mở rộng Blender. Một understanding của the -- basics của Python is expected for those working through cái/điều này tutorial."
+
+msgid "Prerequisites"
+msgstr "Điều Kiện Tiên Quyết (Đòi Hỏi) -- Prerequisites"
+
+msgid "Before going through the tutorial you should..."
+msgstr "Trước going through the tutorial bạn should..."
+
+msgid "Be familiar with the basics of working in Blender."
+msgstr "Be familiar với the -- basics của working vào Blender."
+
+msgid "Know how to run a script in Blender's Text editor."
+msgstr "Know thế nào tới run một tập lệnh vào Blender's Văn Bản trình biên soạn."
+
+msgid "Have an understanding of Python primitive types (int, boolean, string, list, tuple, dictionary, and set)."
+msgstr "Have một understanding của Python hình cơ bản thể loại -- types (số nguyên (int), lôgic bool (boolean), chuỗi ký tự (string), liệt kê -- list, tuple, dictionary, và đặt)."
+
+msgid "Be familiar with the concept of Python modules."
+msgstr "Be familiar với the concept của Python modules."
+
+msgid "Have a basic understanding of classes (object orientation) in Python."
+msgstr "Have một đơn giản understanding của classes (vật thể định hướng) vào Python."
+
+msgid "Suggested reading before starting this tutorial."
+msgstr "Suggested reading trước khởi đầu cái/điều này tutorial."
+
+msgid "`Dive Into Python <http://getpython3.com/diveintopython3/index.html>`__ sections (1, 2, 3, 4, and 7)."
+msgstr "`Dive Thành Python <http://getpython3.com/diveintopython3/chỉ số.html>`__ phần chính -- sections (1, 2, 3, 4, và 7)."
+
+msgid "`Blender API Quickstart <https://docs.blender.org/api/blender_python_api_current/info_quickstart.html>`__ to help become familiar with Blender/Python basics."
+msgstr ":ref:`Blender API Quickstart <blender_api:info_quickstart>` to help become familiar with Blender/Python basics."
+
+msgid "To best troubleshoot any error message Python prints while writing scripts, you run Blender from a terminal. See `Use The Terminal <https://docs.blender.org/api/blender_python_api_current/info_tips_and_tricks.html#use-the-terminal>`__."
+msgstr "To best troubleshoot any error message Python prints while writing scripts, you run Blender from a terminal. See :ref:`Use The Terminal <use_the_terminal>`."
+
+msgid "Documentation Links"
+msgstr "Những Đường Kết Nối Đến Tài Liệu -- Documentation Links"
+
+msgid "While going through the tutorial, you may want to look into our reference documentation."
+msgstr "While going through the tutorial, bạn may want tới nhìn/dáng vẻ thành our tham chiếu tài liệu."
+
+msgid "`Blender API Overview <https://docs.blender.org/api/blender_python_api_current/info_overview.html>`__: This document is rather detailed but helpful if you want to know more on a topic."
+msgstr ":ref:`blender_api:Blender API Overview <info_overview>` -- *This document is rather detailed but helpful if you want to know more on a topic.*"
+
+msgid ":mod:`blender_api:bpy.context` API reference -- Handy to have a list of available items your script may operate on."
+msgstr ":mod:`blender_api:bpy.context` API reference -- *Handy to have a list of available items your script may operate on.*"
+
+msgid ":class:`blender_api:bpy.types.Operator` -- The following add-ons define operators, these docs give details and more examples of operators."
+msgstr ":class:`blender_api:bpy.types.Operator` -- *The following add-ons define operators, these docs give details and more examples of operators.*"
+
+msgid "What is an Add-on?"
+msgstr "Trình Bổ Sung là gì? -- What is an Add-on?"
+
+msgid "An add-on is simply a Python module with some additional requirements so Blender can display it in a list with useful information."
+msgstr "Một trình bổ sung is simply một Python mô-đun với some gia lượng requirements so Blender có thể hiển thị it vào một liệt kê -- list với useful thông tin."
+
+msgid "To give an example, here is the simplest possible add-on::"
+msgstr "Tới give một ví dụ -- example, here is the simplest possible trình bổ sung::"
+
+msgid "``bl_info``"
+msgstr "-- ``bl_info``"
+
+msgid "is a dictionary containing add-on metadata such as the title, version and author to be displayed in the Preferences add-on list. It also specifies the minimum Blender version required to run the script; older versions won't display the addon in the list."
+msgstr "is một dictionary containing trình bổ sung siêu dữ liệu such tựa như the đầu đề, phiên bản và tác giả tới be displayed vào the Cấu Hình trình bổ sung liệt kê -- liệt kê -- list. It also specifies the tối thiểu Blender phiên bản required tới run the tập lệnh; older versions won't hiển thị the addon vào the liệt kê -- liệt kê -- list."
+
+msgid "``register``"
+msgstr "-- ``register``"
+
+msgid "is a function which only runs when enabling the add-on, this means the module can be loaded without activating the add-on."
+msgstr "is một function cái mà/tức only runs when enabling the trình bổ sung, cái/điều này means the mô-đun có thể be loaded without activating the trình bổ sung."
+
+msgid "``unregister``"
+msgstr "-- ``unregister``"
+
+msgid "is a function to unload anything setup by ``register``, this is called when the add-on is disabled."
+msgstr "is một function tới unload anything sắp đặt -- setup by , cái/điều này is called when the trình bổ sung is tắt."
+
+msgid "Notice this add-on does not do anything related to Blender (the :mod:`blender_api:bpy` module is not imported for example)."
+msgstr "Notice cái/điều này trình bổ sung does đảo nghịch làm anything related tới Blender (the :mod:`blender_api:bpy` mô-đun is đảo nghịch imported for ví dụ -- example)."
+
+msgid "This is a contrived example of an add-on that serves to illustrate the point that the base requirements of an add-on are simple."
+msgstr "Cái/Điều Này is một contrived ví dụ -- example của một trình bổ sung that serves tới illustrate the điểm/chấm that the cơ sở requirements của một trình bổ sung are đơn giản."
+
+msgid "An add-on will typically register operators, panels, menu items, etc, but it's worth noting that *any* script can do this, when executed from the Text editor or even the interactive console -- there is nothing inherently different about an add-on that allows it to integrate with Blender, such functionality is just provided by the :mod:`blender_api:bpy` module for any script to access."
+msgstr "Một trình bổ sung sẽ typically đăng ký thao tác, bảng -- panels, trình đơn chỉ mục/phần tử, etc, but it's worth noting that *bất cứ* tập lệnh có thể làm cái/điều này, when executed từ the Văn Bản trình biên soạn hoặc đều đặn the interactive bàn giao tiếp -- kia/có is không inherently khác giới thiệu một trình bổ sung that cho phép it tới tích hợp với Blender, such functionality is just provided by the :mod:`blender_api:bpy` mô-đun for bất cứ tập lệnh tới access."
+
+msgid "So an add-on is just a way to encapsulate a Python module in a way a user can easily utilize."
+msgstr "So một trình bổ sung is just một đường lối/phương pháp/cách tới encapsulate một Python mô-đun vào một đường lối/phương pháp/cách một người dùng có thể easily utilize."
+
+msgid "Running this script within the Text editor won't print anything, to see the output it must be installed through the Preferences. Messages will be printed when enabling and disabling."
+msgstr "Running cái/điều này tập lệnh within the Văn Bản trình biên soạn won't print anything, tới xin xem thêm the đầu ra it must be installed through the Cấu Hình. Messages sẽ be printed when enabling và disabling."
+
+msgid "Your First Add-on"
+msgstr "Trình Bổ Sung Đầu Tiên của Bạn -- Your First Add-on"
+
+msgid "The simplest possible add-on above is useful as an example but not much else. This next add-on is simple but shows how to integrate a script into Blender using an ``Operator`` which is the typical way to define a tool accessed from menus, buttons and keyboard shortcuts."
+msgstr "The simplest possible trình bổ sung above is useful tựa như một ví dụ -- example but đảo nghịch much else. Cái/Điều Này tiếp theo trình bổ sung is đơn giản but hiển thị/biểu hiện thế nào tới tích hợp một tập lệnh thành Blender sử dụng/dùng một  cái mà/tức is the typical đường lối/phương pháp/cách tới define một công cụ accessed từ trình đơn, nút bấm -- buttons và bàn phím đường cắt ngắn -- shortcuts."
+
+msgid "For the first example we will make a script that simply moves all objects in a scene."
+msgstr "For the đầu tiên/thứ nhất ví dụ -- example we sẽ tạo một tập lệnh that simply di chuyển toàn bộ vật thể vào một cảnh."
+
+msgid "Write the Script"
+msgstr "Viết Tập Lệnh -- Write the Script"
+
+msgid "Add the following script to the Text editor in Blender::"
+msgstr "Cộng Thêm the following tập lệnh tới the Văn Bản trình biên soạn vào Blender::"
+
+msgid "Click the :ref:`Run Script button <editors-text-run-script>`, all objects in the active scene are moved by 1.0 unit."
+msgstr "Click the :ref:`Run Script button <editors-text-run-script>`, all objects in the active scene are moved by 1.0 Blender unit."
+
+msgid "Write the Add-on (Simple)"
+msgstr "Viết Trình Bổ Sung (Đơn Giản) -- Write the Add-on (Simple)"
+
+msgid "This add-on takes the body of the script above, and adds it to an operator's ``execute()`` function. ::"
+msgstr "Cái/Điều Này trình bổ sung takes the body của the tập lệnh above, và adds it tới một thao tác's  function. ::"
+
+msgid "``bl_info`` is split across multiple lines, this is just a style convention used to more easily add items."
+msgstr " is tách phân across multiple (số) đường kẻ/thẳng/dòng, cái/điều này is just một kiểu convention sử dụng tới nhiều/lớn hơn easily cộng thêm chỉ mục/phần tử."
+
+msgid "Rather than using ``bpy.context.scene``, we use the ``context.scene`` argument passed to ``execute()``. In most cases these will be the same. However in some cases, operators will be passed a custom context so script authors should prefer the ``context`` argument passed to operators."
+msgstr "Rather than sử dụng/dùng , we sử dụng the  argument passed tới . Vào most cases these sẽ be the same. However vào some cases, thao tác sẽ be passed một tùy chọn ngữ cảnh so tập lệnh tác giả -- authors should prefer the  argument passed tới thao tác."
+
+msgid "To test the script, you can copy and paste it into Blender's Text editor and run it. This will execute the script directly and call register immediately."
+msgstr "Tới test the tập lệnh, bạn có thể sao chép và dán it thành Blender's Văn Bản trình biên soạn và run it. Cái/Điều Này sẽ execute the tập lệnh directly và call đăng ký immediately."
+
+msgid "However running the script won't move any objects. For this, you need to execute the newly registered operator."
+msgstr "However running the tập lệnh won't di chuyển bất cứ vật thể. For cái/điều này, bạn need tới execute the newly registered thao tác."
+
+msgid "Operator Search menu."
+msgstr "Thao Tác Tìm Kiếm trình đơn."
+
+msgid "Do this by pressing :kbd:`F3` to bring up the operator search menu and type in \"Move X by One\" (the ``bl_label``), then :kbd:`Return`."
+msgstr "Do this by pressing :kbd:`Spacebar` to bring up the operator search menu and type in \"Move X by One\" (the ``bl_label``), then :kbd:`Return`."
+
+msgid "The objects should move as before."
+msgstr "The vật thể should di chuyển tựa như trước."
+
+msgid "*Keep this add-on open in Blender for the next step - Installing.*"
+msgstr "*-- Keep cái/điều này trình bổ sung mở vào Blender for the tiếp theo bước - Cài Đặt -- Installing.*"
+
+msgid "Install the Add-on"
+msgstr "Cài Đặt Trình Bổ Sung -- Install the Add-on"
+
+msgid "Once you have your add-on within in Blender's Text editor, you will want to be able to install it so it can be enabled in the Preferences to load on startup."
+msgstr "Once bạn have của bạn trình bổ sung within vào Blender's Văn Bản trình biên soạn, bạn sẽ want tới be able tới lắp đặt it so it có thể be bật vào the Cấu Hình tới nạp bật -- startup."
+
+msgid "Even though the add-on above is a test, let's go through the steps anyway so you know how to do it for later."
+msgstr "Đều Đặn though the trình bổ sung above is một test, let's go through the số bước anyway so bạn know thế nào tới làm it for later."
+
+msgid "To install the Blender text as an add-on, you will first have to save it to disk. Take care to obey the naming restrictions that apply to Python modules and end with a ``.py`` extension."
+msgstr "Tới lắp đặt the Blender văn bản tựa như một trình bổ sung, bạn sẽ đầu tiên/thứ nhất have tới lưu it tới hình đĩa. Take care tới obey the đặt tên -- naming restrictions that áp dụng tới Python modules và kết thúc -- end với một  nới rộng/đuôi."
+
+msgid "Once the file is on disk, you can install it as you would for an add-on downloaded online."
+msgstr "Once the tập tin is bật hình đĩa, bạn có thể lắp đặt it tựa như bạn would for một add-bật downloaded online."
+
+msgid "Open the :menuselection:`Preferences --> Add-ons --> Install...` and select the file."
+msgstr "Open the user :menuselection:`Tập Tin (File) --> Sở Thích Người Dùng (User Preferences)`, select the *Add-on* tab, press *Install Add-on...* and select the file."
+
+msgid "Now the add-on will be listed and you can enable it by pressing the checkbox, if you want it to be enabled on restart, press *Save as Default*."
+msgstr "Ngay Bây Giờ the trình bổ sung sẽ be listed và bạn có thể bật it by pressing the checkbox, if bạn want it tới be bật bật restart, bấm *Lưu tựa như Mặc Định*."
+
+msgid "The destination of the add-on depends on your Blender configuration. When installing an add-on the source and destination paths are printed in the console. You can also find add-on path locations by running this in the Python Console."
+msgstr "The -- -- destination của the trình bổ sung depends bật của bạn Blender configuration. When cài đặt -- installing một trình bổ sung the nguồn và -- -- destination đường dẫn are printed vào the bàn giao tiếp. Bạn có thể also lùng tìm trình bổ sung đường/đi/dẫn vị trí by running cái/điều này vào the Python Bàn Giao Tiếp."
+
+msgid "More is written on this topic here: :ref:`Directory Layout <blender-directory-layout>`."
+msgstr "More is written on this topic here: :ref:`Directory Layout <getting-started-installing-config-directories>`."
+
+msgid "Your Second Add-on"
+msgstr "Trình Bổ Sung Thứ Hai của Bạn -- Your Second Add-on"
+
+msgid "For our second add-on, we will focus on object instancing -- this is -- to make linked copies of an object in a similar way to what you may have seen with the array modifier."
+msgstr "For our thứ hai trình bổ sung, we sẽ focus bật vật thể thực thể hóa -- cái/điều này is -- tới tạo kết nối copies của một vật thể vào một tương đồng đường lối/phương pháp/cách tới cái gì bạn may have seen với the mảng bộ điều chỉnh."
+
+msgid "As before, first we will start with a script, develop it, then convert it into an add-on. ::"
+msgstr "Tựa Như trước, đầu tiên/thứ nhất we sẽ khởi đầu với một tập lệnh, develop it, then chuyển đổi it thành một trình bổ sung. ::"
+
+msgid "Now try copying this script into Blender and run it on the default Cube. Make sure you click to move the 3D cursor before running as the duplicate will appear at the cursor's location."
+msgstr "Ngay Bây Giờ try copying cái/điều này tập lệnh thành Blender và run it bật the mặc định Lập Thể. Tạo sure bạn bấm chuột tới di chuyển the 3D con trỏ trước running tựa như the sao chép sẽ appear tại the con trỏ's vị trí."
+
+msgid "After running, notice that when you go into *Edit Mode* to change the Cube -- all of the copies change. In Blender, this is known as *Linked Duplicates*."
+msgstr "Sau running, notice that when bạn go thành *Biên Soạn Chế Độ* tới thay/chuyển/biến/đổi the Lập Thể -- toàn bộ của the copies thay/chuyển/biến/đổi. Vào Blender, cái/điều này is known tựa như *Kết Nối Duplicates*."
+
+msgid "Next, we're going to do this in a loop, to make an array of objects between the active object and the cursor. ::"
+msgstr "Tiếp Theo, we're going tới làm cái/điều này vào một tuần hoàn, tới tạo một mảng của vật thể between the đang/hoạt động vật thể và the con trỏ. ::"
+
+msgid "Try running this script with the active object and the cursor spaced apart to see the result."
+msgstr "Try running cái/điều này tập lệnh với the đang/hoạt động vật thể và the con trỏ spaced apart tới xin xem thêm the kết quả."
+
+msgid "With this script you'll notice we're doing some math with the object location and cursor, this works because both are 3D :class:`blender_api:mathutils.Vector` instances, a convenient class provided by the :mod:`blender_api:mathutils` module which allows vectors to be multiplied by numbers and matrices."
+msgstr "With this script you'll notice we're doing some math with the object location and cursor, this works because both are 3D :class:`blender_api:mathutils. Vector` instances, a convenient class provided by the :mod:`blender_api:mathutils` module which allows vectors to be multiplied by numbers and matrices."
+
+msgid "If you are interested in this area, read into :class:`blender_api:mathutils.Vector` -- there are many handy utility functions such as getting the angle between vectors, cross product, dot products as well as more advanced functions in :mod:`blender_api:mathutils.geometry` such as Bézier spline interpolation and ray-triangle intersection."
+msgstr "If bạn are interested vào cái/điều này diện tích, read thành :class:`blender_api:mathutils.Véctơ` -- kia/có are many handy utility -- -- functions such tựa như getting the góc độ between vectors, giao hòa/hình thập tự product, tích vô hướng products tựa như well tựa như nhiều/lớn hơn cao cấp -- -- functions vào :mod:`blender_api:mathutils.hình học` such tựa như Đường Cong Bézier -- Bézier đường cong spline nội suy và ray-triangle intersection."
+
+msgid "For now we will focus on making this script an add-on, but it's good to know that this 3D math module is available and can help you with more advanced functionality later on."
+msgstr "For ngay bây giờ we sẽ focus bật making cái/điều này tập lệnh một add-bật, but it's tốt tới know that cái/điều này 3D toán mô-đun is khả dụng và có thể giúp đỡ bạn với nhiều/lớn hơn cao cấp functionality later bật."
+
+msgid "Write the Add-on"
+msgstr "Viết Trình Bổ Sung -- Write the Add-on"
+
+msgid "The first step is to convert the script as-is into an add-on::"
+msgstr "The đầu tiên/thứ nhất bước is tới chuyển đổi the tập lệnh as-is thành một trình bổ sung::"
+
+msgid "Everything here has been covered in the previous steps, you may want to try run the add-on still and consider what could be done to make it more useful."
+msgstr "Everything here has been covered vào the trước số bước, bạn may want tới try run the trình bổ sung still và consider cái gì could be done tới tạo it nhiều/lớn hơn useful."
+
+msgid "The two of the most obvious missing things are -- having the total fixed at 10, and having to access the operator from space-bar is not very convenient."
+msgstr "The hai của the most obvious còn thiếu things are -- having the tổng cộng cố định/bất biến/định trước tại 10, và having tới access the thao tác từ space-bar is đảo nghịch very convenient."
+
+msgid "Both these additions are explained next, with the final script afterwards."
+msgstr "Cả Hai these additions are explained tiếp theo, với the kết thúc/kết cục/cuối cùng tập lệnh afterwards."
+
+msgid "Operator Property"
+msgstr "Tính Chất Của Operator -- Operator Property"
+
+msgid "There are a variety of property types that are used for tool settings, common property types include: int, float, vector, color, boolean and string."
+msgstr "Kia/Có are một variety của tính chất thể loại -- thể loại -- types that are sử dụng for công cụ sắp đặt, sắp đặt chung -- common tính chất thể loại -- thể loại -- types include/bao gồm: số nguyên (int), trôi nổi/float, véctơ, màu sắc, lôgic bool (boolean) và chuỗi ký tự (string)."
+
+msgid "These properties are handled differently to typical Python class attributes because Blender needs to display them in the interface, store their settings in keymaps and keep settings for reuse."
+msgstr "These tính chất are handled differently tới typical Python class thuộc tính because Blender needs tới hiển thị them vào the giao diện, store their sắp đặt vào keymaps và -- keep sắp đặt for reuse."
+
+msgid "While this is handled in a fairly Pythonic way, be mindful that you are in fact defining tool settings that are loaded into Blender and accessed by other parts of Blender, outside of Python."
+msgstr "While cái/điều này is handled vào một fairly Pythonic đường lối/phương pháp/cách, be mindful that bạn are vào fact defining công cụ sắp đặt that are loaded thành Blender và accessed by cái/sắp đặt khác các phần của Blender, bên ngoài của Python."
+
+msgid "To get rid of the literal 10 for ``total``, we'll use an operator property. Operator properties are defined via bpy.props module, this is added to the class body::"
+msgstr "Tới get rid của the literal 10 for , we'll sử dụng một thao tác tính chất. Thao Tác tính chất are defined via bpy.props mô-đun, cái/điều này is cộng thêm tới the class body::"
+
+msgid "These properties from :mod:`blender_api:bpy.props` are handled specially by Blender when the class is registered so they display as buttons in the user interface. There are many arguments you can pass to properties to set limits, change the default and display a tooltip."
+msgstr "These tính chất từ :mod:`blender_api:bpy.props` are handled specially by Blender when the class is registered so they hiển thị tựa như nút bấm -- buttons vào the người dùng giao diện. Kia/Có are many -- arguments bạn có thể lượt tới tính chất tới đặt giới hạn, thay/chuyển/biến/đổi the mặc định và hiển thị một chú thích."
+
+msgid ":mod:`blender_api:bpy.props.IntProperty`"
+msgstr ""
+
+msgid "This document doesn't go into details about using other property types. However, the link above includes examples of more advanced property usage."
+msgstr "Cái/Điều Này document doesn't go thành chi tiết -- details giới thiệu sử dụng/dùng cái/sắp đặt khác tính chất thể loại -- types. However, the kết nối above includes ví dụ -- examples của nhiều/lớn hơn cao cấp tính chất sử dụng -- usage."
+
+msgid "Menu Item"
+msgstr "Trình Mục -- Menu Item"
+
+msgid "Add-ons can add to the user interface of existing panels, headers and menus defined in Python."
+msgstr "Trình Bổ Sung có thể cộng thêm tới the người dùng giao diện của existing bảng -- panels, headers và trình đơn defined vào Python."
+
+msgid "For this example we'll add to an existing menu."
+msgstr "For cái/điều này ví dụ -- example we'll cộng thêm tới một existing trình đơn."
+
+msgid "Menu Identifier."
+msgstr "Trình Đơn Định Danh."
+
+msgid "To find the identifier of a menu, first enable *Python Tooltips* in the preferences. Then you can hover your mouse over the menu item and the identifier is displayed."
+msgstr "Tới lùng tìm the định danh của một trình đơn, đầu tiên/thứ nhất bật *Python Chú Thích Về Công Cụ* vào the cấu hình. Then bạn có thể hover của bạn chuột over the trình đơn phần tử và the định danh is displayed."
+
+msgid "The method used for adding a menu item is to append a draw function into an existing class::"
+msgstr "The phương pháp sử dụng for thêm một trình đơn phần tử is tới bổ sung một vẽ function thành một existing class::"
+
+msgid "For docs on extending menus, see: :class:`blender_api:bpy.types.Menu`."
+msgstr "For docs on extending menus, see: :doc:`blender_api:bpy.types.Menu`."
+
+msgid "Keymap"
+msgstr "Bố Trí Phím -- Keymap"
+
+msgid "In Blender, add-ons have their own keymaps so as not to interfere with Blender's built-in keymaps."
+msgstr "Vào Blender, trình bổ sung have their của bản thân/sở hữu keymaps so tựa như đảo nghịch tới interfere với Blender's built-in keymaps."
+
+msgid "In the example below, a new object mode :class:`blender_api:bpy.types.KeyMap` is added, then a :class:`blender_api:bpy.types.KeyMapItem` is added to the keymap which references our newly added operator, using :kbd:`Shift-Ctrl-T` as the key shortcut to activate it. ::"
+msgstr "Vào the ví dụ -- example below, một tạo mới vật thể chế độ :class:`blender_api:bpy.thể loại -- thể loại -- types.Bố Trí Phím` is cộng thêm, then một :class:`blender_api:bpy.thể loại -- thể loại -- types.KeyMapItem` is cộng thêm tới the bố trí phím cái mà/tức -- references our newly cộng thêm thao tác, sử dụng/dùng  tựa như the khóa tổ hợp phím đường tắt -- shortcut tới activate it. ::"
+
+msgid "Notice how the keymap item can have a ``total`` setting different than the default set by the operator, this allows you to have multiple keys accessing the same operator with different settings."
+msgstr "Notice thế nào the bố trí phím phần tử có thể have một  setting khác than the mặc định đặt by the thao tác, cái/điều này cho phép bạn tới have multiple số điểm điều khiển truy cập -- accessing the same thao tác với khác sắp đặt."
+
+msgid "While :kbd:`Shift-Ctrl-T` is not a default Blender key shortcut, it is hard to make sure add-ons will not overwrite each other's keymaps, At least take care when assigning keys that they do not conflict with important functionality within Blender."
+msgstr "While  is đảo nghịch một mặc định Blender khóa tổ hợp phím đường tắt -- shortcut, it is cứng tới tạo sure trình bổ sung sẽ đảo nghịch viết đè lên each cái/sắp đặt khác's keymaps, Tại least take care when assigning số điểm điều khiển that they làm đảo nghịch conflict với important functionality within Blender."
+
+msgid "For API documentation on the functions listed above, see:"
+msgstr "For API tài liệu bật the -- functions listed above, xin xem thêm:"
+
+msgid ":class:`blender_api:bpy.types.KeyMaps.new`,"
+msgstr ":class:`blender_api:bpy.thể loại -- types.KeyMaps.tạo mới`,"
+
+msgid ":class:`blender_api:bpy.types.KeyMap`,"
+msgstr ":class:`blender_api:bpy.thể loại -- types.Bố Trí Phím`,"
+
+msgid ":class:`blender_api:bpy.types.KeyMapItems.new`,"
+msgstr ":class:`blender_api:bpy.thể loại -- types.KeyMapItems.tạo mới`,"
+
+msgid ":class:`blender_api:bpy.types.KeyMapItem`."
+msgstr ":class:`blender_api:bpy.thể loại -- types.KeyMapItem`."
+
+msgid "Bringing It All Together"
+msgstr "Tổng Hợp Toàn Bộ -- Bringing It All Together"
+
+msgid "In the menu."
+msgstr "Vào the trình đơn."
+
+msgid "Run the script (or save it and add it through the Preferences like before) and it will appear in the *Object* menu."
+msgstr "Run the tập lệnh (hoặc lưu it và cộng thêm it through the Cấu Hình like trước) và it sẽ appear vào the *Vật Thể* trình đơn."
+
+msgid "Operator Property."
+msgstr "Thao Tác Tính Chất."
+
+msgid "After selecting it from the menu, you can choose how many instances of the cube you want create."
+msgstr "Sau lựa chọn -- selecting it từ the trình đơn, bạn có thể choose thế nào many instances của the lập thể bạn want tạo."
+
+msgid "Directly executing the script multiple times will add the menu each time too. While not useful behavior, there's nothing to worry about since add-ons will not register themselves multiple times when enabled through the Preferences."
+msgstr "Directly executing the tập lệnh multiple times sẽ cộng thêm the trình đơn each thời gian too. While đảo nghịch useful tính chất hoạt động, kia/có's không tới worry giới thiệu since cộng thêm-ons sẽ đảo nghịch đăng ký themselves multiple times when bật through the Cấu Hình."
+
+msgid "Conclusions"
+msgstr "Kết Luận -- Conclusions"
+
+msgid "Add-ons can encapsulate certain functionality neatly for writing tools to improve your workflow or for writing utilities for others to use."
+msgstr "Trình Bổ Sung có thể encapsulate certain functionality neatly for viết/ghi -- viết/ghi -- writing công cụ tới improve của bạn quy trình làm việc hoặc for viết/ghi -- viết/ghi -- writing tiện ích for những cái khác tới sử dụng."
+
+msgid "While there are limits to what Python can do within Blender, there is certainly a lot that can be achieved without having to dive into Blender's C/C++ code."
+msgstr "While kia/có are giới hạn tới cái gì Python có thể làm within Blender, kia/có is certainly một lot that có thể be achieved without having tới dive thành Blender's T/T++ code."
+
+msgid "The example given in the tutorial is limited, but shows the Blender API used for common tasks that you can expand on to write your own tools."
+msgstr "The ví dụ -- example given vào the tutorial is limited, but hiển thị/biểu hiện the Blender API sử dụng for sắp đặt chung -- common tasks that bạn có thể mở rộng bật tới write của bạn của bản thân/sở hữu công cụ."
+
+msgid "Further Reading"
+msgstr "Đọc Thêm -- Further Reading"
+
+msgid "Blender comes with commented templates which are accessible from the Text editor's header. If you have specific areas you want to see example code for, this is a good place to start."
+msgstr "Blender comes với commented khuôn mẫu cái mà/tức are accessible từ the Văn Bản trình biên soạn's tiêu đề. If bạn have specific vùng bạn want tới xin xem thêm ví dụ -- example code for, cái/điều này is một tốt place tới khởi đầu."
+
+msgid "Here are some sites you might like to check on after completing this tutorial."
+msgstr "Here are some sites bạn might like tới check bật sau completing cái/điều này tutorial."
+
+msgid "`Blender/Python API Overview <https://docs.blender.org/api/blender_python_api_current/info_overview.html>`__ -- *For more background details on Blender/Python integration.*"
+msgstr ":ref:`Blender/Python API Overview <blender_api:info_overview>` -- *For more background details on Blender/Python integration.*"
+
+msgid "`How to Think Like a Computer Scientist <http://interactivepython.org/courselib/static/thinkcspy/index.html>`__ -- *Great info for those who are still learning Python.*"
+msgstr "`Thế Nào tới Think Like một Computer Scientist <http://interactivepython.org/courselib/tĩnh tại/thinkcspy/chỉ số.html>`__ -- *Great thông tin for those who are still learning Python.*"
+
+msgid "`Blender Development (Wiki) <https://wiki.blender.org>`__ -- *Blender Development, general information and helpful links.*"
+msgstr "`Blender Đang Phát Triển (Thử Nghiệm) (Wiki) <https://wiki.blender.org>`__ -- *Blender Đang Phát Triển (Thử Nghiệm), chung chung thông tin và helpful kết nối.*"
+
+msgid "`DevTalk <https://devtalk.blender.org/c/python>`__ -- *Forum where people ask Python development questions.*"
+msgstr "`Blender Artists (Coding Section) <https://blenderartists.org/forum/forumdisplay.php?47-Coding>`__ -- *forum where people ask Python development questions.*"
+

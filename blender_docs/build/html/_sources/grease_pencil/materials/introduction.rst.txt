@@ -24,7 +24,7 @@ Setting up Materials
 as any other materials in Blender.
 See :doc:`Material assignment </render/materials/assignment>` for more information.
 
-The 3D Viewport can be set to LookDev or Rendered shading,
+The 3D Viewport can be set to Material Preview or Rendered shading,
 to interactively preview how the material looks in the scene.
 
 *Grease Pencil* Materials are data-blocks that can be :doc:`assigned </render/materials/assignment>`

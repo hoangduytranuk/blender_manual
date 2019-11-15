@@ -1,4 +1,4 @@
-.. _bpy.types.UserPreferencesEdit:
+.. _bpy.types.PreferencesEdit:
 
 *******
 Editing

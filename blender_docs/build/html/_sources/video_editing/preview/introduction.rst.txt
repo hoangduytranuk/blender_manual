@@ -5,7 +5,7 @@ Introduction
 
 Sequencer preview is used to display result of rendering Sequencer timeline.
 This can be further configured to display output from certain channel, overlay or image analyzer (scope).
-You can adjust the view by zooming in with :kbd:`Plus` and zoom out with :kbd:`Minus`.
+You can adjust the view by zooming in with :kbd:`NumpadPlus` and zoom out with :kbd:`NumpadMinus`.
 
 
 Header

@@ -1,0 +1,622 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-11-13 01:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Data-Blocks"
+msgstr "Khối Dữ Liệu -- Data-Blocks"
+
+msgid "The base unit for any Blender project is the data-block. Examples of data-blocks include: meshes, objects, materials, textures, node trees, scenes, texts, brushes, and even Workspaces."
+msgstr "The base unit for any Blender project is the data-block. Examples of data-blocks include: meshes, objects, materials, textures, node trees, scenes, texts, brushes, and even screens."
+
+msgid "Blender File view of the Outliner."
+msgstr "Blender Tập Tin góc nhìn của the Mục Lục."
+
+msgid "A data-block is a generic abstraction of very different kinds of data, which features a common set of basic features, properties and behaviors."
+msgstr "Một khối dữ liệu -- dữ liệu-blocks is một phổ thông abstraction của very khác kinds của dữ liệu, cái mà/tức features một sắp đặt chung -- common đặt của đơn giản features, tính chất và behaviors."
+
+msgid "Some common characteristics:"
+msgstr "Some sắp đặt chung -- common characteristics:"
+
+msgid "They are the primary contents of the blend-file."
+msgstr "They are the chính contents của the blend-file."
+
+msgid "They can reference to each other, for reuse and instancing. (Child/parent, object/object-data, materials/images, in modifiers or constraints too...)"
+msgstr "They có thể tham chiếu tới each cái/sắp đặt khác, for reuse và thực thể hóa. (Con Em/phụ huynh, vật thể/vật thể-data, nguyên vật liệu/hình ảnh, vào bộ điều chỉnh hoặc ràng buộc too...)"
+
+msgid "Their names are unique within a blend-file, for a given type."
+msgstr "Their tên are unique within một blend-file, for một given thể loại."
+
+msgid "They can be added/removed/edited/duplicated."
+msgstr "They có thể be cộng thêm/removed/đã chỉnh sửa/duplicated."
+
+msgid "They can be linked between files (only enabled for a limited set of data-blocks)."
+msgstr "They có thể be kết nối between tập tin (only bật for một limited đặt của khối dữ liệu -- data-blocks)."
+
+msgid "They can have their own animation data."
+msgstr "They có thể have their của bản thân/sở hữu hoạt họa dữ liệu."
+
+msgid "They can have :ref:`Custom Properties <files-data_blocks-custom-properties>`."
+msgstr "They can have :doc:`Custom Properties </data_system/custom_properties>`."
+
+msgid "User will typically interact with the higher level data types (objects, meshes, etc.). When doing more complex projects, managing data-blocks becomes more important, especially when inter-linking blend-files. The main editor for that is the :doc:`Outliner </editors/outliner>`."
+msgstr "Người Dùng sẽ typically interact với the cao hơn mức/tầm dữ liệu thể loại -- types (vật thể, khung lưới, etc.). When doing nhiều/lớn hơn complex projects, managing dữ liệu-blocks becomes nhiều/lớn hơn important, especially when inter-linking blend-files. The chủ yếu trình biên soạn for that is the ."
+
+msgid "Not every data in Blender is a data-block, bones, sequence strips or vertex groups e.g. are not, they belong to armature, scene and mesh types respectively."
+msgstr "Đảo Nghịch every dữ liệu vào Blender is một dữ liệu-block, xương, trình tự dải phim hoặc điểm đỉnh nhóm e.g. are đảo nghịch, they belong tới cốt, cảnh và khung lưới thể loại -- types respectively."
+
+msgid "Life Time"
+msgstr "Tuổi Thọ -- Life Time"
+
+msgid "Every data-block has its usage counted (reference count), when there is more than one, you can see the number of current users of a data-block to the right of its name in the UI."
+msgstr "Every khối dữ liệu -- data-blocks has của nó sử dụng -- usage counted (tham chiếu số lượng), when kia/có is nhiều/lớn hơn than một, bạn có thể xin xem thêm the số của hiện tại số người dùng của một khối dữ liệu -- data-blocks tới the phải của của nó tên vào the GIAO DIỆN NGƯỜI DÙNG."
+
+msgid "Blender follows the general rule that unused data is eventually removed."
+msgstr "Blender follows the chung chung rule that unused dữ liệu is eventually removed."
+
+msgid "Since it is common to add and remove a lot of data while working, this has the advantage of not having to manually manage every single data-block."
+msgstr "Since it is sắp đặt chung -- common tới cộng thêm và xóa một lot của dữ liệu while working, cái/điều này has the advantage của đảo nghịch having tới thủ công manage every đơn/một cánh dữ liệu-block."
+
+msgid "This works by skipping zero user data-blocks when writing blend-files."
+msgstr "Cái/Điều Này works by skipping không người dùng khối dữ liệu -- data-blocks when viết/ghi -- writing blend-files."
+
+msgid "Protected"
+msgstr "-- Protected"
+
+msgid "Since zero user data-blocks are not saved, there are times when you want to force the data to be kept irrespective of its users."
+msgstr "Since không người dùng khối dữ liệu -- dữ liệu-blocks are đảo nghịch được lưu, kia/có are times when bạn want tới lực the dữ liệu tới be kept irrespective của của nó số người dùng."
+
+msgid "If you are building a blend-file to serve as a library of things that you intend to link to and from other files, you will need to make sure that they do not accidentally get deleted from the library file."
+msgstr "If bạn are building một blend-tập tin tới serve tựa như một thư viện của things that bạn intend tới kết nối tới và từ cái/sắp đặt khác tập tin, bạn sẽ need tới tạo sure that they làm đảo nghịch accidentally get deleted từ the thư viện tập tin."
+
+msgid "To protect a data-block, use the button with the shield icon next to its name. The data-block will then never be silently deleted by Blender, but you can still do it manually if needed."
+msgstr "Tới bảo vệ một khối dữ liệu -- data-blocks, sử dụng the nút bấm với the shield biểu tượng tiếp theo tới của nó tên. The khối dữ liệu -- data-blocks sẽ then không bao giờ be silently deleted by Blender, but bạn có thể still làm it thủ công if needed."
+
+msgid "Sharing"
+msgstr "Người Dùng (Dùng Chung) -- Users (Sharing)"
+
+msgid "Data-blocks can be shared among other data-blocks."
+msgstr "Nhiều khối dữ liệu có thể được dùng chung trong các khối dữ liệu khác."
+
+msgid "Examples where sharing data is common:"
+msgstr "Ví Dụ -- Examples where người dùng (dùng chung) -- users (sharing) dữ liệu is sắp đặt chung -- common:"
+
+msgid "Sharing textures among materials."
+msgstr "Người Dùng (Dùng Chung) -- Users (Sharing) chất liệu among nguyên vật liệu."
+
+msgid "Sharing meshes between objects (instances)."
+msgstr "Người Dùng (Dùng Chung) -- Users (Sharing) khung lưới between vật thể (instances)."
+
+msgid "Sharing animated actions between objects, for example to make all the lights dim together."
+msgstr "Người Dùng (Dùng Chung) -- Users (Sharing) hoạt họa hành động between vật thể, for ví dụ -- example tới tạo toàn bộ the nguồn/ánh sáng dim cùng nhau/lại."
+
+msgid "You can also share data-blocks between files, see:"
+msgstr "Bạn có thể also share khối dữ liệu -- data-blocks between tập tin, xin xem thêm:"
+
+msgid ":doc:`linked libraries </files/linked_libraries>`."
+msgstr ":doc:`linked libraries </data_system/linked_libraries>`."
+
+msgid "Making Single User"
+msgstr "Biến Thành Đơn Người Dùng -- Make Single User -- Making Single User"
+
+msgid "When a data-block is shared between several users, you can make a copy of it for a given user. To do so, click on the user-count button to the right of its name. This will duplicate that data-block and assign the newly created copy to that usage only."
+msgstr "When một khối dữ liệu -- data-blocks is shared between several số người dùng, bạn có thể tạo một sao chép của it for một given người dùng. Tới làm so, bấm chuột bật the người dùng-count nút bấm tới the phải của của nó tên. Cái/Điều Này sẽ sao chép that khối dữ liệu -- data-blocks và chỉ định the newly tạo sao chép tới that sử dụng -- usage only."
+
+msgid "Objects have a set of more advanced actions to become single-user, see :doc:`their documentation </scene_layout/object/editing/duplication>`."
+msgstr "Vật Thể have một đặt của nhiều/lớn hơn cao cấp hành động tới become single-user, xin xem thêm ."
+
+msgid "Removing Data-Blocks"
+msgstr "Xóa Bỏ Khối Dữ Liệu -- Removing Data-Blocks"
+
+msgid "As covered in `Life Time`_, data-blocks are typically removed when they are no longer used."
+msgstr "Tựa Như covered vào `Tuổi Thọ Thời Gian`_, khối dữ liệu -- data-blocks are typically removed when they are no longer sử dụng."
+
+msgid "They can also be manually *unlinked* or *deleted*."
+msgstr "They có thể also be thủ công *unlinked* hoặc *deleted*."
+
+msgid "Unlinking a data-block means that its user won't use it anymore. This can be achieved by clicking on the \"X\" icon next to a data-block's name."
+msgstr "Unlinking một khối dữ liệu -- data-blocks means that của nó người dùng won't sử dụng it anymore. Cái/Điều Này có thể be achieved by clicking bật the \"X\" biểu tượng tiếp theo tới một khối dữ liệu -- data-blocks's tên."
+
+msgid "If you unlink a data-block from all of its users, it will eventually be deleted by Blender as described above (unless it is a protected one)."
+msgstr "If bạn ngắt kết nối một khối dữ liệu -- data-blocks từ toàn bộ của của nó số người dùng, it sẽ eventually be deleted by Blender tựa như described above (unless it is một protected một)."
+
+msgid "Deleting a data-block directly erases it from the blend-file, automatically unlinking it from all of its users. This can be achieved by :kbd:`Shift-LMB` on the \"X\" icon next to its name."
+msgstr "-- Deleting một khối dữ liệu -- data-blocks directly erases it từ the blend-file, tự động unlinking it từ toàn bộ của của nó số người dùng. Cái/Điều Này có thể be achieved by  bật the \"X\" biểu tượng tiếp theo tới của nó tên."
+
+msgid "Deleting some data-blocks can lead to deletion of some of its users, which would become invalid without it. The main example is that object-data deletion (like mesh, curve, camera...) will also delete all objects using it."
+msgstr "-- Deleting some khối dữ liệu -- data-blocks có thể chì tới deletion của some của của nó số người dùng, cái mà/tức would become không hợp lệ without it. The chủ yếu ví dụ -- example is that object-data deletion (like khung lưới, đường cong, máy quay phim...) sẽ also xóa toàn bộ vật thể sử dụng/dùng it."
+
+msgid "Those two operations are also available in the context menu when :kbd:`RMB`-clicking on a data-block in the *Outliner*."
+msgstr "Those hai các thao tác are also khả dụng vào the ngữ cảnh trình đơn when -clicking bật một khối dữ liệu -- data-blocks vào the *Mục Lục*."
+
+msgid "Data-Block Types"
+msgstr "Thể Loại Của Khối Dữ Liệu -- Data-Block Types"
+
+msgid "Data-blocks types with their icon."
+msgstr "Khối Dữ Liệu -- Data-Blocks thể loại -- types với their biểu tượng."
+
+msgid "For reference, here is a table of data-blocks types stored in blend-files."
+msgstr "For tham chiếu, here is một table của khối dữ liệu -- data-blocks thể loại -- types stored vào blend-files."
+
+msgid "Link"
+msgstr "Kết Nối -- Link"
+
+msgid "Library Linking, supports being linked into other blend-files."
+msgstr "Thư Viện Linking, supports being kết nối thành cái/sắp đặt khác blend-files."
+
+msgid "Pack"
+msgstr "Đóng Gói -- Pack"
+
+msgid "File Packing, supports file contents being packed into the blend-file *(not applicable for most data-blocks which have no file reference)*."
+msgstr "Tập Tin Packing, supports tập tin contents being packed thành the blend-tập tin *(đảo nghịch applicable for most khối dữ liệu -- data-blocks cái mà/tức have no tập tin tham chiếu)*."
+
+msgid "Type"
+msgstr "Thể Loại"
+
+msgid "Description"
+msgstr "Miêu Tả"
+
+msgid ":doc:`Action </animation/actions>`"
+msgstr ""
+
+msgid "|tick|"
+msgstr ""
+
+msgid "|none|"
+msgstr "|không/có/làm|"
+
+msgid "Stores animation F-curves."
+msgstr "Stores hoạt họa Đường Cong-F."
+
+msgid "Used as data-block animation data,"
+msgstr "Sử Dụng tựa như khối dữ liệu -- dữ liệu-blocks hoạt họa dữ liệu,"
+
+msgid "and the Nonlinear Animation editor."
+msgstr "và the Nonlinear Hoạt Họa trình biên soạn."
+
+msgid ":doc:`Armature </animation/armatures/introduction>`"
+msgstr ""
+
+msgid "Skeleton used to deform meshes."
+msgstr "Bộ Xương sử dụng tới biến dạng khung lưới."
+
+msgid "Used as data of armature objects, and by the Armature Modifier."
+msgstr "Sử Dụng tựa như dữ liệu của cốt vật thể, và by the Cốt Bộ Điều Chỉnh."
+
+msgid ":doc:`Brush </sculpt_paint/brush/brush>`"
+msgstr ""
+
+msgid "Used by paint tools."
+msgstr "Sử Dụng by sơn vẽ công cụ."
+
+msgid ":doc:`Camera </render/cameras>`"
+msgstr ":doc:`/render/post_process/layers`"
+
+msgid "Used as data by camera objects."
+msgstr "Sử Dụng tựa như dữ liệu by máy quay phim vật thể."
+
+msgid ":doc:`Cache File </modeling/modifiers/modify/mesh_sequence_cache>`"
+msgstr ""
+
+msgid "Used by Mesh Cache modifiers."
+msgstr "Sử Dụng by Khung Lưới Bộ Nhớ Đệm bộ điều chỉnh."
+
+msgid ":doc:`Curve </modeling/curves/introduction>`"
+msgstr ""
+
+msgid "Used as data by curve, font & surface objects."
+msgstr "Sử Dụng tựa như dữ liệu by đường cong, phông & bề mặt vật thể."
+
+msgid ":doc:`Font </modeling/texts/introduction>`"
+msgstr ""
+
+msgid "References font files."
+msgstr "-- References phông tập tin."
+
+msgid "Used by curve object-data of text objects."
+msgstr "Sử Dụng by đường cong object-data của văn bản vật thể."
+
+msgid ":doc:`Grease Pencil </grease_pencil/introduction>`"
+msgstr ""
+
+msgid "2D/3D sketch data used by Grease Pencil objects."
+msgstr "2 Chiều -- 2D/3D sketch dữ liệu sử dụng by Grease Bút Chì vật thể."
+
+msgid "Used as overlay *helper* info, by the"
+msgstr "Sử Dụng tựa như hình/vẽ/lồng *helper* thông tin, by the"
+
+msgid "3D View, Image, Sequencer & Movie Clip editors."
+msgstr "3D Góc Nhìn, Hình Ảnh, Bộ Phối Hình & Phim Cắt/Xén trình biên soạn."
+
+msgid ":doc:`Collection </scene_layout/collections/introduction>`"
+msgstr ""
+
+msgid "Group and organize objects in scenes."
+msgstr "Nhóm và organize vật thể vào cảnh."
+
+msgid "Used to instance objects, and in library linking."
+msgstr "Sử Dụng tới instance vật thể, và vào thư viện linking."
+
+msgid ":doc:`Image </editors/image/introduction>`"
+msgstr ""
+
+msgid "Image files."
+msgstr "Hình Ảnh tập tin."
+
+msgid "Used by shader nodes and textures."
+msgstr "Sử Dụng by bộ tô bóng nút và chất liệu."
+
+msgid ":doc:`Keys (Shape Keys) </animation/shape_keys/introduction>`"
+msgstr ""
+
+msgid "|cross|"
+msgstr "|giao hòa/hình thập tự|"
+
+msgid "Geometry shape storage, which can be animated."
+msgstr "Hình Học hình dạng lưu giữ, cái mà/tức có thể be hoạt họa."
+
+msgid "Used by mesh, curve, and lattice objects."
+msgstr "Sử Dụng by khung lưới, đường cong, và lưới rào vật thể."
+
+msgid ":doc:`Light </render/lights/light_object>`"
+msgstr ":doc:`/render/post_process/layers`"
+
+msgid "Used as object data by light objects."
+msgstr "Sử Dụng tựa như vật thể dữ liệu by nguồn/ánh sáng vật thể."
+
+msgid ":doc:`Library </files/linked_libraries>`"
+msgstr ":doc:`linked libraries </data_system/linked_libraries>`."
+
+msgid "References to an external blend-file."
+msgstr "-- References tới một bên ngoài blend-file."
+
+msgid "Access from the Outliner's *Blender File* view."
+msgstr "Access từ the Mục Lục's *Blender Tập Tin* góc nhìn."
+
+msgid ":doc:`Line Style </render/freestyle/introduction>`"
+msgstr ""
+
+msgid "Used by the Freestyle renderer."
+msgstr "Sử Dụng by the Phong Cách Tự Do renderer."
+
+msgid ":doc:`Lattice </animation/lattice>`"
+msgstr ":doc:`Lattice </rigging/lattice>`"
+
+msgid "Grid based lattice deformation."
+msgstr "Khung Lưới/Đồ Thị based lưới rào biến dạng."
+
+msgid "Used as data of lattice objects, and by the Lattice Modifier."
+msgstr "Sử Dụng tựa như dữ liệu của lưới rào vật thể, và by the Lưới Rào Bộ Điều Chỉnh."
+
+msgid ":doc:`Mask </movie_clip/masking/introduction>`"
+msgstr ""
+
+msgid "2D animated mask curves."
+msgstr "2 Chiều -- 2D hoạt họa màn chắn đường cong."
+
+msgid "Used by compositing nodes & sequencer strip."
+msgstr "Sử Dụng by tổng hợp nút & bộ phối hình dải."
+
+msgid ":doc:`Material </render/materials/introduction>`"
+msgstr ""
+
+msgid "Set shading and texturing render properties."
+msgstr "Đặt tô bóng và texturing kết xuất tính chất."
+
+msgid "Used by objects, meshes & curves."
+msgstr "Sử Dụng by vật thể, khung lưới & đường cong."
+
+msgid ":doc:`Metaball </modeling/metas/introduction>`"
+msgstr ""
+
+msgid "An isosurface in 3D space."
+msgstr "Một isosurface vào 3D cách/khoảng trống/không gian."
+
+msgid "Used as data of metaball objects."
+msgstr "Sử Dụng tựa như dữ liệu của siêu cầu vật thể."
+
+msgid ":doc:`Mesh </modeling/meshes/introduction>`"
+msgstr ""
+
+msgid "Geometry made of vertices/edges/faces."
+msgstr "Hình Học made của điểm đỉnh/cạnh/bề mặt."
+
+msgid "Used as data of mesh objects."
+msgstr "Sử Dụng tựa như dữ liệu của khung lưới vật thể."
+
+msgid ":doc:`Movie Clip </editors/clip/introduction>`"
+msgstr ""
+
+msgid "Reference to an image sequence or video file."
+msgstr "Tham Chiếu tới một hình ảnh trình tự hoặc phim video tập tin."
+
+msgid "Used in the *Movie Clip* editor."
+msgstr "Sử Dụng vào the *Phim Cắt/Xén* trình biên soạn."
+
+msgid ":doc:`Node Tree </render/shader_nodes/groups>`"
+msgstr ""
+
+msgid "Groups of re-usable nodes."
+msgstr "Nhóm của re-usable nút."
+
+msgid "Used in the node editors."
+msgstr "Sử Dụng vào the nút trình biên soạn."
+
+msgid ":doc:`Object </scene_layout/object/introduction>`"
+msgstr ""
+
+msgid "An entity in the scene with location,"
+msgstr "Một entity vào the cảnh với vị trí,"
+
+msgid "scale, rotation."
+msgstr "tỷ lệ, xoay chiều."
+
+msgid "Used by scenes & collections."
+msgstr "Sử Dụng by cảnh & tập hợp."
+
+msgid ":doc:`Paint Curve </sculpt_paint/brush/stroke>`"
+msgstr ""
+
+msgid "Stores a paint or sculpt stroke."
+msgstr "Stores một sơn vẽ hoặc điêu khắc nét vẽ."
+
+msgid "Access from the paint tools."
+msgstr "Access từ the sơn vẽ công cụ."
+
+msgid ":doc:`Palette </sculpt_paint/index>`"
+msgstr ""
+
+msgid "Store color presets."
+msgstr "Store màu sắc sắp đặt sẵn."
+
+msgid ":doc:`Particle </physics/particles/introduction>`"
+msgstr ""
+
+msgid "Particle settings."
+msgstr "Hạt sắp đặt."
+
+msgid "Used by particle systems."
+msgstr "Sử Dụng by hạt systems."
+
+msgid ":doc:`Light Probe </render/eevee/lightprobes/introduction>`"
+msgstr ""
+
+msgid "Help achieve complex real-time lighting in Eevee."
+msgstr "Giúp Đỡ achieve complex real-time bố trí ánh sáng vào Eevee."
+
+msgid ":doc:`Scene </scene_layout/scene/introduction>`"
+msgstr ""
+
+msgid "Primary store of all data displayed and animated."
+msgstr "Chính store của toàn bộ dữ liệu displayed và hoạt họa."
+
+msgid "Used as top-level storage for objects & animation."
+msgstr "Sử Dụng tựa như top-level lưu giữ for vật thể & hoạt họa."
+
+msgid ":doc:`Sounds </render/output/audio/speaker>`"
+msgstr ""
+
+msgid "Reference to sound files."
+msgstr "Tham Chiếu tới âm thanh tập tin."
+
+msgid "Used as data of speaker objects."
+msgstr "Sử Dụng tựa như dữ liệu của loa vật thể."
+
+msgid ":doc:`Speaker </render/output/audio/speaker>`"
+msgstr ":doc:`Speaker </render/audio/speaker>`"
+
+msgid "Sound sources for a 3D scene."
+msgstr "Âm Thanh sources for một 3D cảnh."
+
+msgid "Used as data of speaker object."
+msgstr "Sử Dụng tựa như dữ liệu của loa vật thể."
+
+msgid ":doc:`Text </editors/text_editor>`"
+msgstr ""
+
+msgid "Text data."
+msgstr "Văn Bản dữ liệu."
+
+msgid "Used by Python scripts and OSL shaders."
+msgstr "Sử Dụng by Python tập lệnh và OSL bộ tô bóng -- shaders."
+
+msgid ":doc:`Texture </render/materials/legacy_textures/introduction>`"
+msgstr ""
+
+msgid "2D/3D textures."
+msgstr "2 Chiều -- 2D/3D chất liệu."
+
+msgid "Used by brushes and modifiers."
+msgstr "Sử Dụng by đầu bút vẽ và bộ điều chỉnh."
+
+msgid ":doc:`Window Manager </interface/window_system/introduction>`"
+msgstr ""
+
+msgid "The overarching manager for all of Blender's UI."
+msgstr "The overarching manager for toàn bộ của Blender's GIAO DIỆN NGƯỜI DÙNG."
+
+msgid "Includes Workspaces, notification system, operators, and keymaps."
+msgstr "Includes Không Gian Làm Việc, notification hệ thống, thao tác, và keymaps."
+
+msgid ":doc:`World </render/lights/world>`"
+msgstr ":doc:`/render/post_process/layers`"
+
+msgid "Define global render environment settings."
+msgstr "Define toàn cầu kết xuất môi trường sắp đặt."
+
+msgid ":doc:`Workspace </interface/window_system/workspaces>`"
+msgstr ""
+
+msgid "UI layout."
+msgstr "GIAO DIỆN NGƯỜI DÙNG bố trí."
+
+msgid "Used by each window, which has its own workspace."
+msgstr "Sử Dụng by each cửa sổ, cái mà/tức has của nó của bản thân/sở hữu không gian làm việc."
+
+msgid "Custom Properties"
+msgstr "Tính Chất Tùy Chỉnh -- Custom Properties"
+
+msgid "Custom Properties panel."
+msgstr "Tùy Chỉnh Tính Chất bảng."
+
+msgid "Custom properties are a way to store your own data in Blender's data-blocks. It can be used for rigging (where bones and objects can have custom properties driving other properties), and Python scripts, where it's common to define new settings not available in Blender."
+msgstr "Tùy Chỉnh tính chất are một đường lối/phương pháp/cách tới store của bạn của bản thân/sở hữu dữ liệu vào Blender's dữ liệu-blocks. It có thể be sử dụng for dàn dựng (where xương và vật thể có thể have tùy chọn tính chất driving cái/sắp đặt khác tính chất), và Python tập lệnh, where it's sắp đặt chung -- common tới define tạo mới sắp đặt đảo nghịch khả dụng vào Blender."
+
+msgid "Only certain data supports custom properties:"
+msgstr "Only certain dữ liệu supports tùy chọn tính chất:"
+
+msgid "All :ref:`data-blocks types <data-system-datablock-types>`."
+msgstr "Toàn Bộ ."
+
+msgid "Bones and pose bones."
+msgstr "Xương và tư thế xương."
+
+msgid "Sequence strips."
+msgstr "Trình Tự dải phim."
+
+msgid "To add a custom property, search for the *Custom Properties* panel, found at the bottom of most :doc:`Properties Editor </editors/properties_editor>` or Sidebar region, and hit *Add*."
+msgstr "Tới cộng thêm một tùy chọn tính chất, tìm kiếm for the *Tùy Chỉnh Tính Chất* bảng, found tại the dưới/đáy của most  hoặc Bật/Thanh Bên region, và hit *Cộng Thêm*."
+
+msgid "Editing Properties"
+msgstr "Biên Soạn Các Tính Chất -- Editing Properties"
+
+msgid "User Interface"
+msgstr "Giao Diện Người Dùng -- User Interface"
+
+msgid "Custom properties can be edited using the panel available for data types that support it."
+msgstr "Tùy Chỉnh tính chất có thể be đã chỉnh sửa sử dụng/dùng the bảng khả dụng for dữ liệu thể loại -- types that hỗ trợ it."
+
+msgid "Custom Properties edit pop-up."
+msgstr "Tùy Chỉnh Tính Chất biên soạn pop-up."
+
+msgid "Property Name"
+msgstr "Tên Tính Chất -- Property Name"
+
+msgid "The name of the custom property."
+msgstr "The tên của the tùy chọn tính chất."
+
+msgid "Property Value"
+msgstr "Giá Trị Tính Chất -- Property Value"
+
+msgid "This does two things: first it sets the current value of the custom property, and second, it defines the data type of the property."
+msgstr "Cái/Điều Này does hai things: đầu tiên/thứ nhất it sets the hiện tại giá trị của the tùy chọn tính chất, và thứ hai, it defines the dữ liệu thể loại của the tính chất."
+
+msgid "Custom properties can be of the following types: Integers, Floats, Strings, Booleans, or short vectors of Integers or Floats."
+msgstr "Tùy Chỉnh tính chất có thể be của the following thể loại -- types: Integers, Bọt Trôi Nổi, Strings, Booleans, hoặc short vectors của Integers hoặc Bọt Trôi Nổi."
+
+msgid "See the table below for a list of examples for each:"
+msgstr "Xin Xem Thêm the table below for một liệt kê -- list của ví dụ -- examples for each:"
+
+msgid "Integers"
+msgstr "-- Integers"
+
+msgid "1, 2, 3, 4,"
+msgstr ""
+
+msgid "Floats"
+msgstr "Bọt Trôi Nổi -- Floats"
+
+msgid "3.141, 5.0, 6.125,"
+msgstr ""
+
+msgid "Strings"
+msgstr "-- Strings"
+
+msgid "any text,"
+msgstr "bất cứ văn bản,"
+
+msgid "Booleans"
+msgstr "-- Booleans"
+
+msgid "``True``, ``False``"
+msgstr ""
+
+msgid "Vectors"
+msgstr "-- Vectors"
+
+msgid "``[1, 2, 3]``, ``[1.0, 2.0, 3.0]``"
+msgstr ""
+
+msgid "Booleans are handled very similar to integers and only work when using Min/Max values that are integers and that are no more than 1 apart."
+msgstr "Booleans are handled very tương đồng tới integers và only work when sử dụng/dùng Tối Thiểu/Tối Đa giá trị that are integers và that are no nhiều/lớn hơn than 1 apart."
+
+msgid "At this point, the booleans will still look like integers but behave like booleans having one lower, off, value and a higher, on, value."
+msgstr "Tại cái/điều này điểm/chấm, the booleans sẽ still nhìn/dáng vẻ like integers but behave like booleans having một thường/dưới, tắt, giá trị và một cao hơn, bật, giá trị."
+
+msgid "Default Value"
+msgstr "Giá Trị Mặc Định -- Default Value"
+
+msgid "This sets the default value of the property used by the Reset to Default Value operator."
+msgstr "Cái/Điều Này sets the mặc định giá trị của the tính chất sử dụng by the Hoàn Lại tới Mặc Định Giá Trị thao tác."
+
+msgid "Default values are used as the basis of :ref:`NLA blending <nla-blend-modes>`, and a nonsensical default (e.g. 0 for a property used for scaling) on a property intended for being keyframed is likely to cause issues."
+msgstr "Mặc Định giá trị are sử dụng tựa như the cơ sở của , và một nonsensical mặc định (e.g. 0 for một tính chất sử dụng for tỷ lệ) bật một tính chất intended for being khung khóa hóa is likely tới cause issues."
+
+msgid "Min"
+msgstr "Tối Thiểu -- Min"
+
+msgid "The minimum value the custom property can take."
+msgstr "The tối thiểu giá trị the tùy chọn tính chất có thể take."
+
+msgid "Max"
+msgstr "Tối Đa -- Max"
+
+msgid "The maximum value the custom property can take."
+msgstr "The tối đa giá trị the tùy chọn tính chất có thể take."
+
+msgid "Custom Property settings for a color with alpha."
+msgstr "Tùy Chỉnh Tính Chất sắp đặt for một màu sắc với alpha."
+
+msgid "Use Soft Limits"
+msgstr "Dùng Giới Hạn Mềm -- Use Soft Limits"
+
+msgid "Enables limits that the *Property Value* slider can be adjusted to without having to input the value numerically."
+msgstr "Enables giới hạn that the *Tính Chất Giá Trị* trượt đẩy có thể be điều chỉnh tới without having tới đầu vào the giá trị numerically."
+
+msgid "Soft Min"
+msgstr "Tối Thiểu Mềm -- Soft Min"
+
+msgid "The minimum value for the soft limit."
+msgstr "The tối thiểu giá trị for the mềm giới hạn."
+
+msgid "Soft Max"
+msgstr "Tối Đa Mềm -- Soft Max"
+
+msgid "The maximum value for the soft limit."
+msgstr "The tối đa giá trị for the mềm giới hạn."
+
+msgid "Tooltip"
+msgstr "Chú Thích -- Tooltip"
+
+msgid "Allows you to write a custom :doc:`Tooltip </getting_started/help>` for your property."
+msgstr "Cho Phép bạn tới write một tùy chọn  for của bạn tính chất."
+
+msgid "Subtype"
+msgstr "Kiểu Thứ -- Subtype"
+
+msgid "For vector properties, specifies the kind of data the property contains, which affects how it appears in the :abbr:`UI (User Interface)`. Most useful for color properties."
+msgstr "For véctơ tính chất, specifies the kind của dữ liệu the tính chất contains, cái mà/tức affects thế nào it appears vào the :abbr:`GIAO DIỆN NGƯỜI DÙNG (Người Dùng Giao Diện)`. Most useful for màu sắc tính chất."
+
+msgid "Python Access"
+msgstr "Truy Cập Python -- Python Access"
+
+msgid "Custom properties can be accessed in a similar way to `dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>`__, with the constraints that keys can only be strings, and values can only be strings, numbers, arrays of such, or nested properties."
+msgstr "Tùy Chỉnh tính chất có thể be accessed vào một tương đồng đường lối/phương pháp/cách tới `dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>`__, với the ràng buộc that số điểm điều khiển có thể only be strings, và giá trị có thể only be strings, numbers, arrays của such, hoặc xếp lồng vào/nằm trong tính chất."
+
+msgid "See the `API documentation <https://www.blender.org/api/blender_python_api_current/info_quickstart.html#custom-properties>`__ for details."
+msgstr "Xin Xem Thêm the `API tài liệu <https://www.blender.org/api/blender_python_api_current/info_quickstart.html#custom-properties>`__ for chi tiết -- details."
+

@@ -1,0 +1,268 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-11-13 01:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Workflow & Examples"
+msgstr "Quy Trình Làm Việc & Các Ví Dụ -- Workflow & Examples"
+
+msgid "Simple Drivers can be configured from the pop-over that appears when adding a new Driver."
+msgstr "Đơn Giản Điều Vận có thể be configured từ the pop-over that appears when thêm một tạo mới Điều Vận."
+
+msgid "When adding multiple Drivers or for more advanced configurations, it is useful to have open the :doc:`Drivers Editor </editors/drivers_editor>`."
+msgstr "When thêm multiple Điều Vận hoặc for nhiều/lớn hơn cao cấp configurations, it is useful tới have mở the ."
+
+msgid "Transform Driver"
+msgstr "Bộ Điều Vận Biến Hóa -- Transform Driver"
+
+msgid "Control a property with an object's transform. In this example, the Y rotation of Object 2 will be driven by the X position of Object 1."
+msgstr "Điều Khiển một tính chất với một vật thể's biến hóa. Vào cái/điều này ví dụ -- example, the Y xoay chiều của Vật Thể 2 sẽ be bị điều vận by the X vị trí của Vật Thể 1."
+
+msgid "Starting from a simple setup with two objects:"
+msgstr "Khởi Đầu từ một đơn giản sắp đặt -- setup với hai vật thể:"
+
+msgid "Add a Driver to the *Rotation Y* property of the second object via the context menu or with :kbd:`Ctrl-D`."
+msgstr "Cộng Thêm một Điều Vận tới the *Xoay Chiều Y* tính chất của the thứ hai vật thể via the ngữ cảnh trình đơn hoặc với ."
+
+msgid "Open the *Drivers Editor* and select the *Y Euler Rotation* property in the channels region."
+msgstr "Mở the *Điều Vận Trình Biên Soạn* và chọn the *Y Euler (Tên Họ Của Nhà Toán Học Leonhard Euler, Người Thụy Sĩ) -- Euler Xoay Chiều* tính chất vào the kênh region."
+
+msgid "Open the Sidebar region and select the *Drivers* tab."
+msgstr "Press :kbd:`N` to open the properties region, scroll down to Drivers panel."
+
+msgid "Configure the driver to be the *Averaged Value* of a *Transform Channel* of the first object."
+msgstr "Configure the điều vận tới be the *Averaged Giá Trị* của một *Biến Hóa Kênh* của the đầu tiên/thứ nhất vật thể."
+
+msgid "Experiment with moving the first object and notice how it affects the Y rotation of the second object."
+msgstr "Experiment với moving the đầu tiên/thứ nhất vật thể và notice thế nào it affects the Y xoay chiều của the thứ hai vật thể."
+
+msgid "Scripted Expression - Orbit a Point"
+msgstr "Scripted Biểu Thức - Quỹ Đạo một Điểm/Chấm -- Scripted Expression - Orbit a Point"
+
+msgid "Orbit an object's position around a point with a custom *Scripted Expression*. The object's position will change when scrubbing the timeline."
+msgstr "Quỹ Đạo một vật thể's vị trí around một điểm/chấm với một tùy chọn *Scripted Biểu Thức*. The vật thể's vị trí sẽ thay/chuyển/biến/đổi when scrubbing the lịch trình thời gian."
+
+msgid "Using trigonometry, circular motion can be defined in 2D using the sinus and cosine functions. (See `Unit Circle <https://en.wikipedia.org/wiki/Unit_circle>`__.)"
+msgstr "Sử Dụng/Dùng trigonometry, vòng tròn chuyển động -- motion có thể be defined vào 2 Chiều -- 2D sử dụng/dùng the sinus và cos -- functions. (Xin Xem Thêm `Unit Hình/Vòng/Tròn <https://en.wikipedia.org/wiki/Unit_circle>`__.)"
+
+msgid "In this example, the current frame is used as the variable that induces the motion. ``frame`` is a :ref:`Simple Expression <drivers-simple-expressions>` that corresponds to ``bpy.context.scene.frame_current``."
+msgstr "Vào cái/điều này ví dụ -- example, the hiện tại khung hình is sử dụng tựa như the variable that induces the chuyển động -- motion.  is một  that corresponds tới ."
+
+msgid "Add a driver to the X Location property."
+msgstr "Cộng Thêm một điều vận tới the X Vị Trí tính chất."
+
+msgid "Set the *Driver Type* to *Scripted Expression*."
+msgstr "Đặt the *Điều Vận Thể Loại* tới *Scripted Biểu Thức*."
+
+msgid "Add the expression ``0 + (sin(frame / 8) * 4)``, where:"
+msgstr "Cộng Thêm the biểu thức , where:"
+
+msgid "``frame/8`` : is the current frame of the animation, divided by 8 to slow the orbit down."
+msgstr " : is the hiện tại khung hình của the hoạt họa, divided by 8 tới chậm the quỹ đạo xuống/dưới."
+
+msgid "``(sin( )*4)`` : multiplies the result of ``sin(frame/8)`` by 4 for a bigger circle."
+msgstr " : multiplies the kết quả của  by 4 for một bigger hình/vòng/tròn."
+
+msgid "``0 +`` : is used to control the offset to the orbit center point."
+msgstr " : is sử dụng tới điều khiển the dịch chuyển tới the quỹ đạo trung tâm điểm/chấm."
+
+msgid "Add a driver to the Y Location property with the expression ``0 + (cos(frame / 8) * 4)``."
+msgstr "Cộng Thêm một điều vận tới the Y Vị Trí tính chất với the biểu thức ."
+
+msgid "Scrub the timeline to see the effect. Experiment with the variables to control the size and center of the orbit."
+msgstr "Scrub the lịch trình thời gian tới xin xem thêm the hiệu ứng. Experiment với the biến số tới điều khiển the kích thước và trung tâm của the quỹ đạo."
+
+msgid "Custom Function - Square Value"
+msgstr "Tùy Chỉnh Function - Vuông/Hình Vuông Giá Trị -- Custom Function - Square Value"
+
+msgid "Create a custom function to get the square of a value (i.e. *value*\\ :sup:`2`). Adding the function to the *Driver Namespace* allows it to be used from driver expressions."
+msgstr "Tạo một tùy chọn function tới get the vuông/hình vuông của một giá trị (i.e. *giá trị*\\ :sup:`2`). Thêm the function tới the *Điều Vận Namespace* cho phép it tới be sử dụng từ điều vận biểu thức -- expression."
+
+msgid "The *Driver Namespace* has a list of built-in functions for use in driver expressions, as well as constants such as π and e. These can be inspected via the Python Console::"
+msgstr "The *Điều Vận Namespace* has một liệt kê -- list của built-vào -- functions for sử dụng vào điều vận biểu thức -- expression, tựa như well tựa như -- constants such tựa như π và e. These có thể be inspected via the Python Bàn Giao Tiếp::"
+
+msgid "To add a new function to the *Driver Namespace*, the function itself needs to be implemented and then added to the ``bpy.app.driver_namespace``."
+msgstr "Tới cộng thêm một tạo mới function tới the *Điều Vận Namespace*, the function itself needs tới be implemented và then cộng thêm tới the ."
+
+msgid "Add the following to the Text Editor inside Blender and press *Run Script*. ::"
+msgstr "Cộng Thêm the following tới the Văn Bản Trình Biên Soạn bên trong Blender và bấm *Run Tập Lệnh*. ::"
+
+msgid "Add a driver with a *Scripted Expression* such as ``square(frame)``."
+msgstr "Cộng Thêm một điều vận với một *Scripted Biểu Thức* such tựa như ."
+
+msgid "Observe the effect when scrubbing the timeline."
+msgstr "Observe the hiệu ứng when scrubbing the lịch trình thời gian."
+
+msgid "There are more custom function examples available in Blender's Text Editor :menuselection:`Templates --> Python --> Driver Functions`."
+msgstr "Kia/Có are nhiều/lớn hơn tùy chọn function ví dụ -- examples khả dụng vào Blender's Văn Bản Trình Biên Soạn ."
+
+msgid "Since :ref:`Simple Expressions <drivers-simple-expressions>` cannot access custom functions, using them only makes sense for complex computations."
+msgstr "Since  không thể access tùy chọn -- functions, sử dụng/dùng them only làm cho sense for complex computations."
+
+msgid "Shape Key Drivers"
+msgstr "Bộ Điều Vận Hình Mẫu -- Shape Key Driver -- Shape Key Drivers"
+
+msgid "Improved Mesh Deformation"
+msgstr "Improved Khung Lưới Biến Dạng -- Improved Mesh Deformation"
+
+msgid "Fix intersection problems that happen when using armatures and weight painting, especially at joints. Shape keys can also be used to tweak and refine a rig, for example to suggest muscle formations. In this example, a shape key is used to improve the deformation at the elbow of a rudimentary arm."
+msgstr "Fix intersection problems that happen when sử dụng/dùng cốt và trọng lượng painting, especially tại joints. Hình Dạng số điểm điều khiển có thể also be sử dụng tới hiệu chỉnh và tinh chỉnh một dàn dựng -- rig, for ví dụ -- ví dụ -- example tới suggest muscle formations. Vào cái/điều này ví dụ -- ví dụ -- example, một hình dạng khóa is sử dụng tới improve the biến dạng tại the elbow của một rudimentary cốt."
+
+msgid "Left: Skeletal mesh deformation without correction. Right: Corrective shape key applied"
+msgstr "Trái: Skeletal khung lưới biến dạng without correction. Phải: Corrective hình dạng khóa applied"
+
+msgid "Setup"
+msgstr "Sắp Đặt -- Setup"
+
+msgid "Add a mesh (in this example, a cylinder with loop cuts)."
+msgstr "Cộng Thêm một khung lưới (vào cái/điều này ví dụ -- example, một hình trụ với tuần hoàn cuts)."
+
+msgid "Add an armature with a chain of bones."
+msgstr "Cộng Thêm một cốt với một chain của xương."
+
+msgid "Skin the mesh to the armature using weight painting."
+msgstr "Da the khung lưới tới the cốt sử dụng/dùng trọng lượng painting."
+
+msgid "(Note: to parent the mesh to the armature: select the mesh first, then the armature and use :kbd:`Ctrl-P` to parent with auto weights.)"
+msgstr "(Ghi Chú: tới phụ huynh the khung lưới tới the cốt: chọn the khung lưới đầu tiên/thứ nhất, then the cốt và sử dụng  tới phụ huynh với tự động trọng lượng.)"
+
+msgid "Experiment with posing the armature and observe the deformation at the joint. To fix intersection problems or angles that look unsatisfactory, you can associate a :doc:`Shape Key </animation/shape_keys/index>` with a pose."
+msgstr "Experiment với tạo tư thế -- posing the cốt và observe the biến dạng tại the joint. Tới fix intersection problems hoặc angles that nhìn/dáng vẻ unsatisfactory, bạn có thể associate một  với một tư thế."
+
+msgid "Shape Key"
+msgstr "Hình Mẫu -- Shape Key"
+
+msgid "Pose the armature such that the problems are visible. Be sure to cover the extreme poses that you want to support for the rig."
+msgstr "Tư Thế the cốt such that the problems are hữu hình. Be sure tới cover the cường điệu poses that bạn want tới hỗ trợ for the dàn dựng -- rig."
+
+msgid "With the mesh selected, add a new *Shape Key* in addition to the *Basis* key. :menuselection:`Properties --> Mesh tab --> Shape Keys`"
+msgstr "Với the khung lưới cái được chọn, cộng thêm một tạo mới *Hình Dạng Khóa* vào addition tới the *Cơ Sở* khóa. "
+
+msgid "In order to author the shape key on top of the armature deformation, enable both *Edit Mode Display* and *Cage Editing* in the armature modifier. :menuselection:`Properties --> Modifiers tab --> Armature Modifier --> Header`"
+msgstr "Vào theo thứ tự tới tác giả the hình dạng khóa bật trên/đỉnh của the cốt biến dạng, bật cả hai *Biên Soạn Chế Độ Hiển Thị* và *Khung Lồng Biên Soạn* vào the cốt bộ điều chỉnh. "
+
+msgid "Enter Edit Mode and select the new shape key in the properties panel. Adjust the vertices as desired. Select the *Basis* key to toggle between the original mesh and your edits. (Note: be careful to apply edits only to your shape and not to the original mesh or other existing keys.)"
+msgstr "Enter Biên Soạn Chế Độ và chọn the tạo mới hình dạng khóa vào the tính chất bảng. Điều Chỉnh the điểm đỉnh tựa như desired. Chọn the *Cơ Sở* khóa tới đảo lật/bật/tắt between the gốc/nguyên bản khung lưới và của bạn edits. (Ghi Chú: be careful tới áp dụng edits only tới của bạn hình dạng và đảo nghịch tới the gốc/nguyên bản khung lưới hoặc cái/sắp đặt khác existing số điểm điều khiển.)"
+
+msgid "Once you are satisfied with how the deformation looks for the problematic pose, you'll need to configure a driver to activate the shape smoothly when entering that position."
+msgstr "Once bạn are satisfied với thế nào the biến dạng looks for the problematic tư thế, bạn'll need tới configure một điều vận tới activate the hình dạng smoothly when entering that vị trí."
+
+msgid "Driver"
+msgstr "Điều Vận -- Driver"
+
+msgid "Add a driver to the *Value* of the shape key you've created."
+msgstr "Cộng Thêm một điều vận tới the *Giá Trị* của the hình dạng khóa bạn've tạo."
+
+msgid "Open the Drivers Editor and select the driver."
+msgstr "Press :kbd:`N` to open the properties region, scroll down to Drivers panel."
+
+msgid "Method 1 -- Direct mapping to a bone rotation value"
+msgstr "Phương Pháp 1 -- Trực Tiếp ánh xạ tới một xương xoay chiều giá trị -- Method 1 -- Direct mapping to a bone rotation value"
+
+msgid "A simple way to configure the driver is with a direct correspondence of the value of a bone's rotation channel to the shape key activation *Value*. This method has the disadvantage of relying on a single channel of a bone's rotation which might be insufficient to precisely express the condition under which the shape key should be activated."
+msgstr "Một đơn giản đường lối/phương pháp/cách tới configure the điều vận is với một trực tiếp correspondence của the giá trị của một xương's xoay chiều kênh tới the hình dạng khóa kích hoạt -- activation *Giá Trị*. Cái/Điều Này phương pháp has the disadvantage của relying bật một đơn/một cánh kênh của một xương's xoay chiều cái mà/tức might be insufficient tới precisely express the condition under cái mà/tức the hình dạng khóa should be activated."
+
+msgid "In the Drivers tab, select the *Averaged Value* of the rotation of the bone you're posing."
+msgstr "Vào the Điều Vận tab, chọn the *Averaged Giá Trị* của the xoay chiều của the xương bạn're tạo tư thế -- posing."
+
+msgid "Understand the rotation axis that you're interested in by enabling axes display in the armature or by observing the bone's transform values in the Properties."
+msgstr "Understand the xoay chiều trục that bạn're interested vào by enabling trục hiển thị vào the cốt hoặc by observing the xương's biến hóa giá trị vào the Tính Chất."
+
+msgid "Select the rotation channel and set it to local, meaning, the bone's rotation value relative to its parent bone."
+msgstr "Chọn the xoay chiều kênh và đặt it tới địa phương, meaning, the xương's xoay chiều giá trị tương đối tới của nó phụ huynh xương."
+
+msgid "Manually set points in the driver curve by selecting a handle and dragging it or inserting values in the *F-Curve* tab. The Y axis represents the shape key *Value*, which should go from 0.0 to 1.0. The X axis is usually the frame, but for this driver it represents the rotation value in radians. You can have more than two points in the curve and tweak the transitions with the handles in the curve view (:kbd:`G` to move)."
+msgstr "Thủ Công đặt số điểm vào the điều vận đường cong by lựa chọn -- selecting một tay cầm và kéo rê it hoặc inserting giá trị vào the *Đường Cong-F* tab. The Y trục represents the hình dạng khóa *Giá Trị*, cái mà/tức should go từ 0.0 tới 1.0. The X trục is usually the khung hình, but for cái/điều này điều vận it represents the xoay chiều giá trị vào rad. Bạn có thể have nhiều/lớn hơn than hai số điểm vào the đường cong và hiệu chỉnh the chuyển cảnh với the tay cầm vào the đường cong góc nhìn ( tới di chuyển)."
+
+msgid "To verify that the driver behaves correctly, deselect the option to only show drivers for selected objects. This way, you can pose the armature and keep an eye on the driver."
+msgstr "Tới verify that the điều vận behaves correctly, hủy lựa chọn the tùy chọn tới only hiển thị điều vận for cái được chọn vật thể. Cái/Điều Này đường lối/phương pháp/cách, bạn có thể tư thế the cốt và -- keep một eye bật the điều vận."
+
+msgid "Method 2 -- Rotational difference to a target bone"
+msgstr "Phương Pháp 2 -- Rotational hiệu tới một mục tiêu xương -- Method 2 -- Rotational difference to a target bone"
+
+msgid "This method requires an additional *target* or *corrective* bone, but it better expresses the spatial condition in 3D space of the bone that is causing the problem."
+msgstr "Cái/Điều Này phương pháp requires một gia lượng *mục tiêu* hoặc *corrective* xương, but it better expresses the spatial condition vào 3D cách/khoảng trống/không gian của the xương that is causing the problem."
+
+msgid "In armature Edit Mode, add a new bone extruded from Bone 1, in the position at which Bone 2 should have the shape key active. This type of bones usually follow a naming convention such as \"TAR-\" (target) or \"COR-\" (corrective)."
+msgstr "Vào cốt Biên Soạn Chế Độ, cộng thêm một tạo mới xương extruded từ Xương 1, vào the vị trí tại cái mà/tức Xương 2 should have the hình dạng khóa đang/hoạt động. Cái/Điều Này thể loại của xương usually đi theo một đặt tên -- naming convention such tựa như \"TAR-\" (mục tiêu) hoặc \"COR-\" (corrective)."
+
+msgid "In the Drivers tab, select the *Averaged Value* of the rotational difference between the bone you're rotating and the target bone. A rotational difference is the minimum angle between two objects in World Space. It is therefore important that the bones have the same root, so that the only thing affecting the angle between the bones is the rotation of one of them. When the deformation bone (Bone 2) reaches the target rotation (TAR-Bone 2) the rotational difference will be 0°."
+msgstr "Vào the Điều Vận tab, chọn the *Averaged Giá Trị* của the rotational hiệu between the xương bạn're rotating và the mục tiêu xương. Một rotational hiệu is the tối thiểu góc độ between hai vật thể vào Thế Giới Cách/Khoảng Trống/Không Gian. It is therefore important that the xương have the same gốc/phép căn, so that the only thing affecting the góc độ between the xương is the xoay chiều của một của them. When the biến dạng xương (Xương 2) reaches the mục tiêu xoay chiều (TAR-Xương 2) the rotational hiệu sẽ be 0°."
+
+msgid "Manually adjust the driver curve handles so that the shape key *Value* (Y axis) is 1.0 when the rotational difference (X axis) is 0°. The *Value* should be 0.0 when the arm is extended, at which point the rotational difference should be around 90° or more (in radians)."
+msgstr "Thủ Công điều chỉnh the điều vận đường cong tay cầm so that the hình dạng khóa *Giá Trị* (Y trục) is 1.0 when the rotational hiệu (X trục) is 0°. The *Giá Trị* should be 0.0 when the cốt is mở rộng -- extended, tại cái mà/tức điểm/chấm the rotational hiệu should be around 90° hoặc nhiều/lớn hơn (vào rad)."
+
+msgid "See the steps in Method 1 on how to adjust the curve handles and confirm that the functionality is working. Pose the armature to verify that the ranges are correct."
+msgstr "Xin Xem Thêm the số bước vào Phương Pháp 1 bật thế nào tới điều chỉnh the đường cong tay cầm và chấp thuận that the functionality is working. Tư Thế the cốt tới verify that the ranges are -- correct."
+
+msgid "Chained Relative Shape Keys"
+msgstr "Chained Tương Đối Hình Dạng Số Điểm Điều Khiển -- Chained Relative Shape Keys"
+
+msgid "Activate different shape keys in succession. In this example, moving a single bone will activate first *Key 1* and then *Key 2*. See also :ref:`relative shape keys mix additively <animation-shapekeys-relative-vs-absolute>`."
+msgstr "Activate khác hình dạng số điểm điều khiển vào succession. Vào cái/điều này ví dụ -- example, moving một đơn/một cánh xương sẽ activate đầu tiên/thứ nhất *Khóa 1* và then *Khóa 2*. Xin Xem Thêm also ."
+
+msgid "Shape Keys"
+msgstr "Hình Mẫu -- Shape Keys"
+
+msgid "Add two shape keys to a mesh, besides the *Basis*."
+msgstr "Cộng Thêm hai hình dạng số điểm điều khiển tới một khung lưới, besides the *Cơ Sở*."
+
+msgid "Basis"
+msgstr "Cơ Sở"
+
+msgid "Key 1: top faces moved up by 1m"
+msgstr "Khóa 1: trên/đỉnh bề mặt được chuyển lên/trên by 1m"
+
+msgid "Key 2: inner top moved up by 1m"
+msgstr "Khóa 2: vùng bên trong/nội tại trên/đỉnh được chuyển lên/trên by 1m"
+
+msgid "Drivers"
+msgstr "Điều Vận -- Drivers"
+
+msgid "Add an armature with a single bone to control the shape keys. The goal is to activate the keys in succession as this bone moves up."
+msgstr "Cộng Thêm một cốt với một đơn/một cánh xương tới điều khiển the hình dạng số điểm điều khiển. The đích is tới activate the số điểm điều khiển vào succession tựa như cái/điều này xương di chuyển lên/trên."
+
+msgid "As shown in the picture above, when the bone is halfway up, both *Key 1* and *Key 2* have an influence. It is a matter of preference if *Key 1* should be at its maximum *Value* before *Key 2* starts to become active, or how much they should overlap. This example shows a seamless blend."
+msgstr "Tựa Như shown vào the picture above, when the xương is halfway lên/trên, cả hai *Khóa 1* và *Khóa 2* have một tác động/ảnh hưởng. It is một matter của preference if *Khóa 1* should be tại của nó tối đa *Giá Trị* trước *Khóa 2* starts tới become đang/hoạt động, hoặc thế nào much they should đè gối. Cái/Điều Này ví dụ -- example hiển thị/biểu hiện một seamless hòa trộn/chuyển đổi."
+
+msgid "For a seamless blend where there is overlap, *Key 1* should have a *Value* of 0.0 when the bone is at the bottom and increase linearly to 1.0 until the bone is past the midpoint height. *Key 2* should have a value of 0.0 before the midpoint height and then increase at the same rate than *Key 1* until reaching *Value* 1.0 when the bone is at maximum height."
+msgstr "For một seamless hòa trộn/chuyển đổi where kia/có is đè gối, *Khóa 1* should have một *Giá Trị* của 0.0 when the xương is tại the dưới/đáy và increase linearly tới 1.0 until the xương is past the trung điểm chiều cao. *Khóa 2* should have một giá trị của 0.0 trước the trung điểm chiều cao và then increase tại the same tốc độ than *Khóa 1* until reaching *Giá Trị* 1.0 when the xương is tại tối đa chiều cao."
+
+msgid "Add a driver to the *Value* of *Key 1* and *Key 2*. In the *Drivers* tab, configure both drivers to be the *Averaged Value* of a variable with the bone's Z location."
+msgstr "Cộng Thêm một điều vận tới the *Giá Trị* của *Khóa 1* và *Khóa 2*. Vào the *Điều Vận* tab, configure cả hai điều vận tới be the *Averaged Giá Trị* của một variable với the xương's Z vị trí."
+
+msgid "Determine the range of the bone's motion in the World Z axis by moving it up so that it is aligned with the top of the mesh when both keys are active. Here we will use [0.0 , 2.5]."
+msgstr "Determine the phạm vi của the xương's chuyển động -- motion vào the Thế Giới Z trục by moving it lên/trên so that it is thẳng hàng với the trên/đỉnh của the khung lưới when cả hai số điểm điều khiển are đang/hoạt động. Here we sẽ sử dụng [0.0 , 2.5]."
+
+msgid "Configure the driver functions so that the *Value* of the shape keys (Y axis) is as desired for the bone's height (X axis)."
+msgstr "Configure the điều vận -- functions so that the *Giá Trị* của the hình dạng số điểm điều khiển (Y trục) is tựa như desired for the xương's chiều cao (X trục)."
+
+msgid "The driver functions should be linear, therefore, they can be defined analytically with a function of type :math:`y = a + bx`, where :math:`a` is an offset in :math:`y` and :math:`b` is the slope."
+msgstr "The điều vận -- functions should be tuyến tính, therefore, they có thể be defined analytically với một function của thể loại :toán:`y = một + bx`, where :toán:`một` is một dịch chuyển vào :toán:`y` và :toán:`b` is the độ dốc."
+
+msgid "In the *Modifiers* tab, add a *Generator* of type *Extended Polynomial* for both drivers."
+msgstr "Vào the *Bộ Điều Chỉnh* tab, cộng thêm một *Hàm Sinh* của thể loại *Mở Rộng -- Extended Đa Thức* for cả hai điều vận."
+
+msgid "Play with the values of :math:`a` and :math:`b` so that the curves go from [0.0 , 1.0] in the Y axis and from [0.0 , 2.5] in the X axis. The curves should overlap in the mid area of the X axis and they should have the same slope (:math:`b`)."
+msgstr "Chơi với the giá trị của :toán:`một` và :toán:`b` so that the đường cong go từ [0.0 , 1.0] vào the Y trục và từ [0.0 , 2.5] vào the X trục. The đường cong should đè gối vào the mid diện tích của the X trục và they should have the same độ dốc (:toán:`b`)."
+
+msgid "Possible values are *Key 1*: :math:`y = 0.0 + 0.6x` and *Key 2*: :math:`y = -0.5 + 0.6x`."
+msgstr "Possible giá trị are *Khóa 1*: :toán:`y = 0.0 + 0.6x` và *Khóa 2*: :toán:`y = -0.5 + 0.6x`."
+
+msgid "Note that the functions go outside the range [0.0 , 1.0] for the shape keys' *Value*, but that has no effect because *Value* is clamped in a *Range* in the *Shape Keys* panel."
+msgstr "Ghi Chú that the -- functions go bên ngoài the phạm vi [0.0 , 1.0] for the hình dạng số điểm điều khiển' *Giá Trị*, but that has no hiệu ứng because *Giá Trị* is clamped vào một *Phạm Vi* vào the *Hình Dạng Số Điểm Điều Khiển* bảng."
+

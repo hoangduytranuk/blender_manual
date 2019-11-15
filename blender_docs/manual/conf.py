@@ -53,7 +53,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     '404',
     #'process_doctree'
-    'TranslateTitleLines'
+    #'TranslateTitleLines'
 ]
 
 # Is there a better way to check for PDF building?

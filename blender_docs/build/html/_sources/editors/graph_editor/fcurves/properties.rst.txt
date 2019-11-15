@@ -34,7 +34,8 @@ Color Mode
 .. _graph_editor-auto-handle-smoothing:
 
 Auto Handle Smoothing
-   Selects the method used to compute automatic Bézier handles (*Automatic*, *Auto Clamped*, *Vector*).
+   Selects the method used to compute :ref:`automatic Bézier handles <editors-graph-fcurves-settings-handles>`
+   (*Automatic*, *Auto Clamped*, *Vector*).
 
    .. figure:: /images/editors_graph-editor_fcurves_properties_auto_smoothing.png
       :align: center

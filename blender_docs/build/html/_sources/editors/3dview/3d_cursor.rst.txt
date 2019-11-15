@@ -1,4 +1,5 @@
 .. _bpy.types.View3DCursor:
+.. _editors-3dview-3d_cursor:
 
 *********
 3D Cursor

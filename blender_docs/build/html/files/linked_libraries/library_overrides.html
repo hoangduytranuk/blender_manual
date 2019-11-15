@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Library Overrides &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/files/linked_libraries/library_overrides.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="-- Media Formats" href="../media/index.html" />
+    <link rel="prev" title="Proxies" href="library_proxies.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Files &amp; Data System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blend/index.html">Blender File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_blocks.html">Khối Dữ Liệu -- Data-Blocks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Linked Libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_proxies.html">Proxies</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Library Overrides</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-an-override">Creating an Override</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#editing-an-override">Editing an Override</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../media/index.html">-- Media Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../import_export.html">Nhập &amp; Xuất Tập Tin -- Importing &amp; Exporting Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.81 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Files &amp; Data System</a> &raquo;</li>
+        
+          <li><a href="index.html">Linked Libraries</a> &raquo;</li>
+        
+      <li>Library Overrides</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/files/linked_libraries/library_overrides.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="library-overrides">
+<h1>Library Overrides<a class="headerlink" href="#library-overrides" title="Permalink to this headline">¶</a></h1>
+<p>Library Overrides is the new system designed to replace and
+supersede <a class="reference internal" href="library_proxies.html"><span class="doc">Proxies</span></a>.
+Most types of linked data-blocks can be overridden, and the properties of those overrides
+can then be edited. When the library data change, unmodified properties of the override one
+will be updated accordingly.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last"><strong>It is considered as experimental</strong>, and current proxy system will be kept alongside for a few releases.
+Automatic conversion from proxies to library overrides <em>is not planned</em>,
+there will be a manual operator to do that, but results on complex characters are not guaranteed.</p>
+</div>
+<p>Compared to proxies, library overrides support:</p>
+<ul class="simple">
+<li>Multiple independent overrides of a same linked data (e.g. a whole character).</li>
+<li>Adding new modifiers and constraints, anywhere in the stack.</li>
+<li>Recursively chaining overrides (i.e. link and override overrides from another library file, etc.).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">There are still many known TODOs/issues that have to be addressed.
+Please check the <a class="reference external" href="https://wiki.blender.org/wiki/Reference/Release_Notes/2.81/Library_Overrides">release notes</a>
+and Phabricator <a class="reference external" href="https://developer.blender.org/T53500">main task of the project</a>, for more details.</p>
+</div>
+<div class="section" id="creating-an-override">
+<h2>Creating an Override<a class="headerlink" href="#creating-an-override" title="Permalink to this headline">¶</a></h2>
+<p>There are two ways to create an override of a linked data-block.</p>
+<div class="section" id="single-data-block-override">
+<h3>Single Data-Block Override<a class="headerlink" href="#single-data-block-override" title="Permalink to this headline">¶</a></h3>
+<p>You can override a single data-block from two places:</p>
+<ul class="simple">
+<li>The Outliner (it's in the context menu of IDs), in which case <strong>all</strong> local usages
+of that linked ID will be remapped to the new local override.</li>
+<li>The data-block menu in the UI (<kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> on the chain icon to the right),
+in which case only that specific usage will be remapped to the new local override.</li>
+</ul>
+</div>
+<div class="section" id="make-library-override-operator">
+<h3>Make Library Override Operator<a class="headerlink" href="#make-library-override-operator" title="Permalink to this headline">¶</a></h3>
+<p>This one operates in the 3D View, over linked objects or local empties instantiating a linked collection
+(typically, a linked character). It is very similar to the <em>Make Proxy</em> operator,
+and is found in the same sub-menu <span class="menuselection">Object ‣ Relations ‣ Make Library Overrides...</span>.</p>
+<p>Unlike the method described above, it will go through the whole hierarchy of collections and objects,
+and override all those needed to allow posing/animation of a character.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>Proper Collections Layout Matters</p>
+<p class="last">For this operator to work properly, it is crucial that <strong>all</strong> the collections needed by
+the character are children of the root (linked and instantiated) one.
+Otherwise, some won't be automatically overridden, and manual work will be needed to fix the override.</p>
+</div>
+</div>
+</div>
+<div class="section" id="editing-an-override">
+<h2>Editing an Override<a class="headerlink" href="#editing-an-override" title="Permalink to this headline">¶</a></h2>
+<p>Essentially, and override is edited the same way as a regular local data-block.
+You can use operators on them, edit their properties from various editors, etc.</p>
+<p>There are some limitations however, most notably Edit Mode is not allowed currently for override.</p>
+<p>In most cases, as soon as you edit a property, you can see that it's overridden by it's teal blue
+outline/background (like the yellow/green/purple colors of animated/driven ones).</p>
+<p>You can also animate overrides, animated properties just replace/supersede overrides then.
+Note that you cannot override-edit an existing animation, you'll have to create a new action.</p>
+<p>You can manually define or remove an override from the context menu of the relevant property.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../media/index.html" class="btn btn-neutral float-right" title="-- Media Formats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="library_proxies.html" class="btn btn-neutral float-left" title="Proxies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.81 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

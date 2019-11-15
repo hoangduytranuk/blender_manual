@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Assign Shape Keys &mdash; Blender Manual</title>
+  <title>Chỉ Định Hình Mẫu -- Assign Shape Keys &mdash; Blender Manual</title>
   
 
   
@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
-    <link rel="next" title="BTracer" href="btracer.html" />
+    <link rel="next" title="Trình Truy Nguyên -- BTracer" href="btracer.html" />
     <link rel="prev" title="Add Curve" href="index.html" /> 
 </head>
 
@@ -127,11 +127,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">Góc Nhìn 3D -- 3D View</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Add Curve</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Assign Shape Keys</a></li>
-<li class="toctree-l4"><a class="reference internal" href="btracer.html">BTracer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="curve_tools.html">Curve Tools</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Chỉ Định Hình Mẫu -- Assign Shape Keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="btracer.html">Trình Truy Nguyên -- BTracer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve_tools.html">Công Cụ Đường Cong -- Curve Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="extra_objects.html">Add Curve Extra Objects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ivy_gen.html">Ivy Gen</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sapling.html">Sapling Tree Gen</a></li>
@@ -215,7 +215,7 @@
         
           <li><a href="index.html">Add Curve</a> &raquo;</li>
         
-      <li>Assign Shape Keys</li>
+      <li>Chỉ Định Hình Mẫu -- Assign Shape Keys</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -235,73 +235,74 @@
            <div itemprop="articleBody">
             
   <div class="section" id="assign-shape-keys">
-<h1>Assign Shape Keys<a class="headerlink" href="#assign-shape-keys" title="Permalink to this headline">¶</a></h1>
+<h1>Chỉ Định Hình Mẫu -- Assign Shape Keys<a class="headerlink" href="#assign-shape-keys" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>This add-on lets you assign one or more Bézier curve(s) as shape keys to other curve.
-Useful for morphing curves and curve based text objects.</p>
+<h2>Giới Thiệu -- Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Trình bổ sung này cho phép bạn ấn định một hoặc nhiều đường cong Bézier làm hình mẫu cho một đường cong khác. Có lợi trong việc chuyển hóa hình dạng (morphing) các đường cong hoặc các vật thể văn bản có nền tảng là đường cong.</p>
 <iframe src="https://www.youtube.com/embed/Ly64vezt0Go" style="border: 0; height: 345px; width: 560px">
 </iframe></div>
 <div class="section" id="activation">
-<h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
+<h2>Kích Hoạt -- Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Open Blender and go to Preferences then the Add-ons tab.</li>
-<li>Click Add Curve then Assign Shape Keys to enable the script.</li>
+<li>Mở Blender và chuyển đến Cấu Hình (Preferences), sau đó đến thẻ Trình Bổ Sung (Add-ons).</li>
+<li>Bấm vào Cộng Thêm Đường Cong (Add Curve), rồi Ấn Định Hình Mẫu (Assign Shape Keys) để cho phép tập lệnh hoạt động.</li>
 </ul>
 </div>
 <div class="section" id="interface">
-<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
-<p>Located in the <span class="menuselection">3D View ‣ Sidebar ‣ Edit tab</span>.</p>
+<h2>Giao Diện -- Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
+<p>Nằm trong <span class="menuselection">3D Góc Nhìn (3D View) ‣ Thanh Bên (Sidebar) ‣ Thẻ Biên Soạn (Edit tab)</span>.</p>
 <div class="figure align-right">
 <a class="reference internal image-reference" href="../../_images/addons_add_curve_shapekey_ui.jpg"><img alt="../../_images/addons_add_curve_shapekey_ui.jpg" src="../../_images/addons_add_curve_shapekey_ui.jpg" style="width: 220px;" /></a>
 </div>
 </div>
 <div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<h2>Sử Dụng -- Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Select the target and shape key Bézier curve objects.</li>
-<li>Make sure the target is the active object; you can do this by
-<kbd class="kbd docutils literal notranslate">Shift-RMB</kbd>-clicking the target curve after the other selections are made.</li>
-<li>Go to the <em>Assign Shape Keys</em> tab and click <em>Assign Shape Keys</em> button.</li>
-<li>Now a copy of the active object curve will be created, which will have the other selected curves as its target.</li>
+<li>Chọn mục tiêu và các vật thể hình mẫu đường cong Bézier.</li>
+<li>Hãy đảm bảo rằng mục tiêu là vật thể đang hoạt động; bạn có thể làm điều này bằng tổ hợp <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd>- bấm vào đường cong mục tiêu sau khi sự lựa chọn đã được thực hiện.</li>
+<li>Go to the <em>Curve Shape Keys</em> tab and click <em>Assign Shape Keys</em> button.</li>
+<li>Lúc này một bản sao của vật thể đường cong đang hoạt động sẽ được kiến tạo, và nó sẽ có các đường cong được chọn kia làm mục tiêu của mình.</li>
 </ol>
-<p>If the <em>Remove Original Objects</em> option is checked, the selected curve objects will be deleted
+<p>If the <em>Remove Shape Key Objects</em> option is checked, the selected curve objects will be deleted
 and only the target is kept.</p>
-<p>There are a number of options to align the closed (cyclic spline) target and the shape-key curves.
+<p>There are some options to align the closed (cyclic spline) target and the shape-key curves.
 Also it's possible to match individual parts from a multi-part (multi-spline) of target
 and shape key curves (e.g. a text object converted into a curve) based on various criteria.</p>
-<p>For smoother transition, you can subdivide the segments of one of the curves in the selection group.</p>
+<p>Để có được sự chuyển tiếp mềm mại hơn, bạn có thể phân chia các phân đoạn của một đường cong trong  nhóm lựa chọn.</p>
 <div class="section" id="manual-alignment-of-starting-vertices">
-<h3>Manual Alignment of Starting Vertices<a class="headerlink" href="#manual-alignment-of-starting-vertices" title="Permalink to this headline">¶</a></h3>
-<p>In Edit Mode the <em>Assign Shape Keys</em> panel shows a single button -- <em>Mark Starting Vertices</em>.
-When clicked, all the starting vertices of the closed splines (disconnected parts) of
-the selected curves are indicated by a marking point. Now if you select any vertex,
-the marker moves to this selected vertex, indicating the new starting vertex.
-You need to confirm the new positions by pressing <kbd class="kbd docutils literal notranslate">Return</kbd>.
-Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd>, reverts the positions to the earlier order.</p>
+<h3>Thủ Công Canh Hàng các Điểm Đỉnh Khởi Đầu -- Manual Alignment of Starting Vertices<a class="headerlink" href="#manual-alignment-of-starting-vertices" title="Permalink to this headline">¶</a></h3>
+<p>Trong Chế Độ Biên Soạn bảng <em>Hình Mẫu của Đường Cong</em> (Curve Shape Keys) hiển thị duy một nút bấm -- <em>Đánh Dấu Điểm Đỉnh Khởi Đầu</em> (Mark Starting Vertices). Khi bấm vào nó, toàn bộ các điểm đỉnh khởi đầu của đường cong spline đóng kín (các phần rời) của đường cong đã chọn được chỉ ra bằng một điểm đánh dấu. Lúc này, nếu bạn chọn bất cứ điểm đỉnh nào thì dấu mốc sẽ được chuyển tới điểm đỉnh được chọn đó, điểm chỉ điểm đỉnh khởi đầu mới. Bạn cần phải chấp thuận các vị trí mới tạo bằng cách bấm nút <kbd class="kbd docutils literal notranslate">Return</kbd>. Bấm nút <kbd class="kbd docutils literal notranslate">Esc</kbd> để hoàn lại các vị trí về trật tự cũ.</p>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
 <table class="last docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Category:</th><td class="field-body">Add Curve</td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Hạng Mục -- Category:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Cộng Thêm Đường Cong</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Assigns one or more Bézier curves as a shape key for another Bézier curve.</td>
+<tr class="field-even field"><th class="field-name" colspan="2">Miêu Tả -- Description:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Ấn định một hoặc nhiều đường cong Bézier làm hình mẫu cho một đường cong Bézier khác.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Location:</th><td class="field-body"><span class="menuselection">Sidebar ‣ Edit tab</span></td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Vị Trí -- Location:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Thanh Bên (Sidebar) ‣ Thẻ Biên Soạn (Edit tab)</span></td>
 </tr>
-<tr class="field-even field"><th class="field-name">File:</th><td class="field-body">curve_assign_shapekey.py</td>
+<tr class="field-even field"><th class="field-name" colspan="2">Tập Tin -- File:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">curve_assign_shapekey.py</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Shrinivas Kulkarni</td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tác Giả -- Author:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Shrinivas Kulkarni</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Maintainer:</th><td class="field-body">Shrinivas Kulkarni</td>
+<tr class="field-even field"><th class="field-name" colspan="2">Người Bảo Trì -- Maintainer:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Shrinivas Kulkarni</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">License:</th><td class="field-body">GPL</td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Giấy Phép -- License:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">GPL</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Support Level:</th><td class="field-body">Community</td>
+<tr class="field-even field"><th class="field-name" colspan="2">Mức Hỗ Trợ -- Support Level:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Cộng Đồng</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">This add-on is bundled with Blender.</td>
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">Trình bổ sung này được gói cùng (kèm theo) với Blender.</td>
 </tr>
 </tbody>
 </table>
@@ -318,7 +319,7 @@ Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd>, reverts the po
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="btracer.html" class="btn btn-neutral float-right" title="BTracer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="btracer.html" class="btn btn-neutral float-right" title="Trình Truy Nguyên -- BTracer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Add Curve" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

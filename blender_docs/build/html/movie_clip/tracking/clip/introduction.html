@@ -129,7 +129,6 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="marker.html">Dấu Giám Sát -- Tracking Marker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="editing/index.html">Biên Soạn -- Editing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="header.html">Header</a></li>
 <li class="toctree-l4"><a class="reference internal" href="properties/index.html">Tính Chất -- Properties</a></li>
 </ul>
 </li>
@@ -230,6 +229,46 @@ Almost all motion tracking tools are concentrated in the Movie Clip Editor.</p>
 <li>Camera intrinsics (focal length, distortion coefficients) specification/estimation/calibration.</li>
 <li>Solving camera, scene orientation, and scene reconstruction.</li>
 </ol>
+<div class="section" id="header">
+<h2>Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="marker-display">
+<h3>Marker Display<a class="headerlink" href="#marker-display" title="Permalink to this headline">¶</a></h3>
+<p>Defines how markers are displayed in the editor.
+Settings can be found in the <a class="reference internal" href="../../../editors/clip/introduction.html#clip-editor-clip-display-label"><span class="std std-ref">Clip Display</span></a> pop-over.</p>
+<dl class="docutils">
+<dt>Pattern</dt>
+<dd>Can be used to disable displaying of rectangles which correspond to pattern areas of tracks.
+In some cases it helps
+to make the clip view cleaner to check how good tracking is.</dd>
+<dt>Search <kbd class="kbd docutils literal notranslate">Alt-S</kbd></dt>
+<dd>Can be used to disable displaying of rectangles which correspond to search areas of tracks.
+In some cases it helps to make the clip view cleaner to check how good tracking is.
+Only search areas for selected tracks will be displayed.</dd>
+<dt>Path</dt>
+<dd>And <em>Length</em> control displaying of the paths of tracks. The ways tracks are moving can be visible looking
+at only one frame. It helps to determine if a track jumps from its position or not.</dd>
+<dt>Show Disabled <kbd class="kbd docutils literal notranslate">Alt-D</kbd></dt>
+<dd>Makes it possible to hide all tracks which are disabled on the current frame.
+This helps to make view more clear, to see if the tracking is accurate enough.</dd>
+<dt>Info</dt>
+<dd>Displays information such as track name and status of the track
+(if it is keyframed, disabled, tracked or estimated).
+Names and status for selected tracks are displayed.</dd>
+<dt>3D Markers</dt>
+<dd>Makes sense after solving the movie clip,
+and it works in the following way: the solved position of each track gets
+projected back to the movie clip and displayed as a small point. The color of the point depends on the distance
+between the projected coordinate and the original coordinate: if they are close enough, the point is green,
+otherwise it will be red. This helps to find tracks which were not solved nicely and need to be tweaked.</dd>
+<dt>Display Thin</dt>
+<dd>The way in which markers are displayed compact (black outline and yellow foreground color)
+makes tracks visible on all kind of footage (both dark and light).
+But sometimes it can be annoying and this option will make the marker display more compactly --
+the outline is replaced by dashed black lines rendered on top of the foreground,
+so that marker areas are only 1px thick.</dd>
+</dl>
+</div>
+</div>
 </div>
 
 

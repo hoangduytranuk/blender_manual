@@ -65,7 +65,7 @@ Refresh All
    If an image or video, used as a strip, is changed by some application outside of Blender,
    Blender has no real way of being notified from your operating system.
 Show Seconds :kbd:`Ctrl-T`
-   Shows seconds instead of frames on time axis.
+   Shows seconds instead of frames on the time axis.
 Show Offsets
    Shows overflow bars of "extra" content from either cutting or sliding strips.
 Show Marker Lines

@@ -40,8 +40,8 @@ Dragging
 --------
 
 To change many values at once on or off, you can press down
-:kbd:`LMB` and drag over multiple buttons. This works for check
-boxes, toggles and to select a radio button value.
+:kbd:`LMB` and drag over multiple buttons.
+This works for checkboxes, toggles and to select a radio button value.
 
 
 Radio Buttons

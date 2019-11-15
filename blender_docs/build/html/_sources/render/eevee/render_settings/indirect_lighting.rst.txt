@@ -71,4 +71,4 @@ Irradiance Size
 .. note::
 
    Cache data display only works in the 3D Viewport and
-   only if the viewport uses world lighting in LookDev mode or is in Render Preview mode.
+   only if the viewport uses world lighting in Material Preview or Rendered mode.

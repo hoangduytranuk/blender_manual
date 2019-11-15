@@ -14,6 +14,7 @@ post-processing effect on the image.
    blur_node.rst
    bokeh_blur.rst
    defocus.rst
+   denoise.rst
    despeckle.rst
    dilate_erode.rst
    directional_blur.rst

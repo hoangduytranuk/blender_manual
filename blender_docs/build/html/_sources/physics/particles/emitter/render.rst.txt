@@ -145,9 +145,8 @@ Use Count
    :Panel:     :menuselection:`Particle System --> Render --> Collection --> Use Count`
 
 Use objects multiple times in the same groups.
-Specify the order and number of times to repeat each object with the list view that appears.
-You can duplicate an object in the list with the :kbd:`Plus` button,
-or remove a duplicate with the :kbd:`Minus` button.
+Specify the order and number of times to repeat each object with the :ref:`list view <ui-list-view>` that appears.
+You can duplicate an object in the list with the ``+`` button, or remove a duplicate with the ``-`` button.
 
 
 Extra
