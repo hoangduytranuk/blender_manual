@@ -1,0 +1,169 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/files/linked_libraries/library_overrides.rst">
+ <section ids="library-overrides" names="library\ overrides">
+  <title>
+   Library Overrides
+  </title>
+  <paragraph>
+   Library Overrides is the new system designed to replace and
+supersede
+   <reference internal="True" refuri="">
+    <inline classes="doc">
+     Proxies
+    </inline>
+   </reference>
+   .
+Most types of linked data-blocks can be overridden, and the properties of those overrides
+can then be edited. When the library data change, unmodified properties of the override one
+will be updated accordingly.
+  </paragraph>
+  <note>
+   <paragraph>
+    <strong>
+     It is considered as experimental
+    </strong>
+    , and current proxy system will be kept alongside for a few releases.
+Automatic conversion from proxies to library overrides
+    <emphasis>
+     is not planned
+    </emphasis>
+    ,
+there will be a manual operator to do that, but results on complex characters are not guaranteed.
+   </paragraph>
+  </note>
+  <paragraph>
+   Compared to proxies, library overrides support:
+  </paragraph>
+  <bullet_list bullet="-">
+   <list_item>
+    <paragraph>
+     Multiple independent overrides of a same linked data (e.g. a whole character).
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Adding new modifiers and constraints, anywhere in the stack.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Recursively chaining overrides (i.e. link and override overrides from another library file, etc.).
+    </paragraph>
+   </list_item>
+  </bullet_list>
+  <comment xml:space="preserve">
+   - Overriding many more types of data-blocks, and selectively edit some of their properties
+(e.g. materials, textures...).
+  </comment>
+  <note>
+   <paragraph>
+    There are still many known TODOs/issues that have to be addressed.
+Please check the
+    <reference name="release notes" refuri="https://wiki.blender.org/wiki/Reference/Release_Notes/2.81/Library_Overrides">
+     release notes
+    </reference>
+    and Phabricator
+    <reference name="main task of the project" refuri="https://developer.blender.org/T53500">
+     main task of the project
+    </reference>
+    , for more details.
+   </paragraph>
+  </note>
+  <section ids="creating-an-override" names="creating\ an\ override">
+   <title>
+    Creating an Override
+   </title>
+   <paragraph>
+    There are two ways to create an override of a linked data-block.
+   </paragraph>
+   <section ids="single-data-block-override" names="single\ data-block\ override">
+    <title>
+     Single Data-Block Override
+    </title>
+    <paragraph>
+     You can override a single data-block from two places:
+    </paragraph>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       The Outliner (it’s in the context menu of IDs), in which case
+       <strong>
+        all
+       </strong>
+       local usages
+of that linked ID will be remapped to the new local override.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       The data-block menu in the UI (
+       <literal classes="kbd">
+        Shift-LMB
+       </literal>
+       on the chain icon to the right),
+in which case only that specific usage will be remapped to the new local override.
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="make-library-override-operator" names="make\ library\ override\ operator">
+    <title>
+     Make Library Override Operator
+    </title>
+    <paragraph>
+     This one operates in the 3D View, over linked objects or local empties instantiating a linked collection
+(typically, a linked character). It is very similar to the
+     <emphasis>
+      Make Proxy
+     </emphasis>
+     operator,
+and is found in the same sub-menu
+     <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Relations --&gt; Make Library Overrides...`">
+      Object ‣ Relations ‣ Make Library Overrides…
+     </inline>
+     .
+    </paragraph>
+    <paragraph>
+     Unlike the method described above, it will go through the whole hierarchy of collections and objects,
+and override all those needed to allow posing/animation of a character.
+    </paragraph>
+    <note>
+     <paragraph>
+      Proper Collections Layout Matters
+     </paragraph>
+     <paragraph>
+      For this operator to work properly, it is crucial that
+      <strong>
+       all
+      </strong>
+      the collections needed by
+the character are children of the root (linked and instantiated) one.
+Otherwise, some won’t be automatically overridden, and manual work will be needed to fix the override.
+     </paragraph>
+    </note>
+   </section>
+  </section>
+  <section ids="editing-an-override" names="editing\ an\ override">
+   <title>
+    Editing an Override
+   </title>
+   <paragraph>
+    Essentially, and override is edited the same way as a regular local data-block.
+You can use operators on them, edit their properties from various editors, etc.
+   </paragraph>
+   <paragraph>
+    There are some limitations however, most notably Edit Mode is not allowed currently for override.
+   </paragraph>
+   <paragraph>
+    In most cases, as soon as you edit a property, you can see that it’s overridden by it’s teal blue
+outline/background (like the yellow/green/purple colors of animated/driven ones).
+   </paragraph>
+   <paragraph>
+    You can also animate overrides, animated properties just replace/supersede overrides then.
+Note that you cannot override-edit an existing animation, you’ll have to create a new action.
+   </paragraph>
+   <paragraph>
+    You can manually define or remove an override from the context menu of the relevant property.
+   </paragraph>
+  </section>
+ </section>
+</document>

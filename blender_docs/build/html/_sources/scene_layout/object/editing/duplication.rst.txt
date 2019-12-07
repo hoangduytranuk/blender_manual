@@ -116,7 +116,7 @@ wheels on a car... anywhere there is repetition or symmetry.
 
 .. seealso:: Linked Library Duplication
 
-   :doc:`Linked Libraries </files/linked_libraries>` are also a form of duplication.
+   :doc:`Linked Libraries </files/linked_libraries/index>` are also a form of duplication.
    Any object or data-block in other blend-files can be reused in the current file.
 
 .. hint::

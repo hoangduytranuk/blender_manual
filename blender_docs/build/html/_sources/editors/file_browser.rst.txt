@@ -15,7 +15,7 @@ The File Browser is used in all the file-related operations. These include:
 
 - Opening and saving blend-files.
 - Browsing inside other blend-files, when appending or linking data-blocks,
-  see :doc:`Linked Libraries </files/linked_libraries>`.
+  see :doc:`Linked Libraries </files/linked_libraries/index>`.
 - Importing from/exporting to other file formats.
 - Picking new locations for existing file paths (images, videos, fonts...).
 
@@ -178,7 +178,7 @@ Open, Save, Save As Blender File
 Open, Replace, Save As Image
    See :doc:`/files/media/image_formats`.
 Link/Append from Library
-   See :doc:`Linked libraries </files/linked_libraries>`.
+   See :doc:`Linked libraries </files/linked_libraries/index>`.
 
 For the common option:
 

@@ -6,7 +6,7 @@ Corrective Shape Keys
 Introduction
 ============
 
-From the Author/s:
+From the Author(s):
 
 I merged and converted two old scripts, to let you make corrective shape keys.
 The first `script <http://www.apexbow.com/randd.html>`__ was created by Tal Trachtman in 2007 and

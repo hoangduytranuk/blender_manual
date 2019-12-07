@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-11-13 01:42+0000\n"
+"POT-Creation-Date: 2019-11-27 19:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,45 +17,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
+# Giới Thiệu -- Introduction
 msgid "Introduction"
-msgstr "Giới Thiệu -- Introduction"
+msgstr "Giới Thiệu"
 
 msgid "Smoke simulation is a subset of the fluids system, and can be used for simulating collections of airborne solids, liquid particulates and gases, such as those that make up smoke. It simulates the fluid movement of air and generates animated :term:`voxel` textures representing the density, heat, and velocity of other fluids or suspended particles (e.g. smoke) which can be used for rendering."
-msgstr "Khói mô phỏng is một tập hợp con của the fluids hệ thống, và có thể be sử dụng for simulating tập hợp của airborne solids, liquid particulates và gases, such tựa như those that tạo lên/trên khói. It simulates the chất lỏng chuyển động của không khí và generates hoạt họa :term:`thể tích tử` chất liệu representing the tỷ trọng, nhiệt, và tốc lực của cái/sắp đặt khác fluids hoặc suspended hạt (e.g. khói) cái mà/tức có thể be sử dụng for kết xuất -- render."
+msgstr "Smoke simulation is a subset of the fluids system, and can be used for simulating collections of airborne solids, liquid particulates and gases, such as those that make up smoke. It simulates the fluid movement of air and generates animated :term:`thể tích tử -- voxel` textures representing the density, heat, and velocity of other fluids or suspended particles (e.g. smoke) which can be used for rendering."
 
 msgid "Example of smoke simulation."
-msgstr "Ví Dụ -- Example của khói mô phỏng."
+msgstr "Example of smoke simulation."
 
+# Smoke and fire are emitted into a :doc:`Phạm Vi -- Domain </physics/smoke/types/domain>` from a mesh object or particle system. Smoke movement is controlled by airflow inside the domain, which can be influenced by :doc:`smoke collision objects </physics/smoke/types/collision>`. Smoke will also be affected by the scene's gravity and :doc:`trường lực -- force fields </physics/forces/force_fields/index>`. Airflow inside the domain can affect other physics simulations via the *Luồng Khói Tuôn -- Smoke Flow* force field.
 msgid "Smoke and fire are emitted into a :doc:`Domain </physics/smoke/types/domain>` from a mesh object or particle system. Smoke movement is controlled by airflow inside the domain, which can be influenced by :doc:`smoke collision objects </physics/smoke/types/collision>`. Smoke will also be affected by the scene's gravity and :doc:`force fields </physics/forces/force_fields/index>`. Airflow inside the domain can affect other physics simulations via the *Smoke Flow* force field."
 msgstr "Smoke and fire are emitted into a :doc:`Domain </physics/smoke/types/domain>` from a mesh object or particle system. Smoke movement is controlled by airflow inside the domain, which can be influenced by :doc:`smoke collision objects </physics/smoke/types/collision>`. Smoke will also be affected by the scene's gravity and :doc:`force fields </physics/force_fields/index>`. Airflow inside the domain can affect other physics simulations via the *Smoke Flow* force field."
 
+# Quy Trình Làm Việc -- Workflow
 msgid "Workflow"
-msgstr "Quy Trình Làm Việc -- Workflow"
+msgstr "Quy Trình Làm Việc"
 
 msgid "At least a :doc:`Domain </physics/smoke/types/domain>` object and one :doc:`Flow object </physics/smoke/types/flow_object>` are required to create a smoke simulation. A basic workflow looks like this:"
-msgstr "Tại least một  vật thể và một  are required tới tạo một khói mô phỏng. Một đơn giản quy trình làm việc looks like cái/điều này:"
+msgstr "At least a :doc:`Phạm Vi -- Domain </physics/smoke/types/domain>` object and one :doc:`Flow object </physics/smoke/types/flow_object>` are required to create a smoke simulation. A basic workflow looks like this:"
 
 msgid "Create a :doc:`Domain Object </physics/smoke/types/domain>` that defines the bounds of the simulation volume."
-msgstr "Tạo một  that defines the ranh giới của the mô phỏng âm lượng."
+msgstr "Create a :doc:`Vật Thể Định Phạm Vi -- Domain Object </physics/smoke/types/domain>` that defines the bounds of the simulation volume."
 
 msgid "Define a :doc:`Flow object </physics/smoke/types/flow_object>` or objects which will emit smoke and fire."
-msgstr "Define một  hoặc vật thể cái mà/tức sẽ phát xạ khói và lửa."
+msgstr "Define a :doc:`Flow object </physics/smoke/types/flow_object>` or objects which will emit smoke and fire."
 
 msgid "Set :doc:`Collision objects </physics/smoke/types/collision>` to make the smoke interact with objects in the scene."
-msgstr "Đặt  tới tạo the khói interact với vật thể vào the cảnh."
+msgstr "Set :doc:`Collision objects </physics/smoke/types/collision>` to make the smoke interact with objects in the scene."
 
 msgid "Assign a :doc:`Volumetric material </physics/smoke/material>` to the domain object."
-msgstr "Chỉ Định một  tới the phạm vi vật thể."
+msgstr "Assign a :doc:`Volumetric material </physics/smoke/material>` to the domain object."
 
 msgid "Save the blend-file."
-msgstr "Lưu the blend-file."
+msgstr "Save the blend-file."
 
 msgid ":doc:`Bake </physics/smoke/baking>` the simulation."
-msgstr " the mô phỏng."
+msgstr ":doc:`Nướng -- Bake </physics/smoke/baking>` the simulation."
 
+# There is a *Hiệu Ứng Khói Nhanh -- Quick Smoke* operator which will automatically create a domain object with a basic smoke/fire material. It can be found in :menuselection:`3D View --> Object --> Quick Effects --> Quick Smoke`, or with the operator search menu :kbd:`F3`.
 msgid "There is a *Quick Smoke* operator which will automatically create a domain object with a basic smoke/fire material. It can be found in :menuselection:`3D View --> Object --> Quick Effects --> Quick Smoke`, or with the operator search menu :kbd:`F3`."
 msgstr "There is a *Quick Smoke* operator which will automatically create a domain object with a basic smoke/fire material. It can be found in :menuselection:`Góc Nhìn 3D (3D View) --> Vật Thể (Object) --> Hiệu Ứng Nhanh (Quick Effects) --> Hiệu Ứng Khói Nhanh (Quick Smoke)`, or with the operator search menu :kbd:`Spacebar`."
 
 msgid "Blender's smoke simulation is based on the paper `Wavelet Turbulence for Fluid Simulation <https://www.cs.cornell.edu/~tedkim/wturb/>`__ and associated sample code."
-msgstr "Blender's khói mô phỏng is based bật the giấy `Con Sóng Gợn Hỗn Loạn for Chất Lỏng Mô Phỏng <https://www.cs.cornell.edu/~tedkim/wturb/>`__ và associated lấy mẫu vật code."
+msgstr "Blender's smoke simulation is based on the paper `Wavelet Turbulence for Fluid Simulation <https://www.cs.cornell.edu/~tedkim/wturb/>`__ and associated sample code."
 

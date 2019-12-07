@@ -3,10 +3,6 @@
   Animation
 #############
 
-.. important::
-
-   Work In Progress
-
 These add-ons relate to helper tools for the animation process and animation.
 
 .. toctree::

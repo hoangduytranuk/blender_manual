@@ -3,10 +3,6 @@
   Add Curve
 #############
 
-.. important::
-
-   Work In Progress
-
 These add-ons relate to curve object creation and curve based tools.
 
 .. toctree::

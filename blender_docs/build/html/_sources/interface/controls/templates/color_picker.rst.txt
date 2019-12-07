@@ -45,7 +45,7 @@ Types
 =====
 
 The default color picker type can be selected in the Preferences,
-see: :doc:`System </editors/preferences/system>`.
+see: :ref:`Interface <prefs-interface-color-picker-type>`.
 
 Circle
    The color values ranging from center to the borders. The center is a mix of the colors.

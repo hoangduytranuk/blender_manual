@@ -8,7 +8,7 @@ Saving and opening blend-file are usually done using the :doc:`File Browser </ed
 .. tip::
 
    Blend-files can also be opened by dragging and dropping blend-files into the Blender window.
-   This method also allows to :doc:`link/append </files/linked_libraries>` the file.
+   This method also allows to :doc:`link/append </files/linked_libraries/index>` the file.
 
 .. note:: Unsaved Changes
 

@@ -3,10 +3,6 @@
   Development
 ###############
 
-.. important::
-
-   Work In Progress
-
 These add-ons relate to Development tools.
 
 .. toctree::

@@ -1,0 +1,139 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/files/linked_libraries/library_proxies.rst">
+ <target refid="object-proxy">
+ </target>
+ <target refid="bpy-ops-object-proxy-make">
+ </target>
+ <target refid="files-library-proxies">
+ </target>
+ <section ids="proxies files-library-proxies bpy-ops-object-proxy-make object-proxy" names="proxies files-library_proxies bpy.ops.object.proxy_make object-proxy">
+  <title>
+   Proxies
+  </title>
+  <paragraph>
+   Proxies are the historical way in Blender to allow some local editing of linked data-blocks.
+This is mostly aimed at character animation.
+  </paragraph>
+  <paragraph>
+   One of their most important restrictions is that you can only have one proxy
+of any linked object in a given blend-file.
+  </paragraph>
+  <paragraph>
+   A new system, more powerful and flexible, is currently being implemented:
+   <reference internal="True" refuri="">
+    <inline classes="doc">
+     Library Overrides
+    </inline>
+   </reference>
+   .
+  </paragraph>
+  <section ids="proxy-objects" names="proxy\ objects">
+   <title>
+    Proxy Objects
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Editor
+      </field_name>
+      <field_body>
+       <paragraph>
+        3D View
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Mode
+      </field_name>
+      <field_body>
+       <paragraph>
+        Object Mode
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Menu
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Object --&gt; Relations --&gt; Make Proxy...`">
+         Object ‣ Relations ‣ Make Proxy…
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <paragraph>
+    This makes the active linked object into a local proxy, appending “_proxy” to its name.
+It allows you to make changes locally over an object (or collection) linked from an external library.
+   </paragraph>
+   <paragraph>
+    Possible changes are restricted, you can mainly edit and animate transformations of the proxy object,
+and its constraints.
+Those changes remain local, they are not sent back to the external library.
+   </paragraph>
+   <hint>
+    <paragraph>
+     Another way to transform a linked object locally is with
+the use of
+     <reference internal="True" refuri="">
+      <inline classes="doc">
+       Collection Instancing
+      </inline>
+     </reference>
+     .
+Instead of linking objects directly, it is often more useful to link in
+     <emphasis>
+      collections
+     </emphasis>
+     ,
+which can be assigned to empties and moved, while maintaining the link to the original file.
+    </paragraph>
+    <paragraph>
+     It is also useful to be able to add/remove objects from the collection (from within the library blend-file)
+without having to manage re-linking of multiple objects.
+    </paragraph>
+   </hint>
+   <section ids="proxy-armatures" names="proxy\ armatures">
+    <title>
+     Proxy Armatures
+    </title>
+    <paragraph>
+     On rigged models, proxy objects allow you to edit and animate their poses.
+    </paragraph>
+    <paragraph>
+     It is also possible, in the source (library) blend-file, to protect some bone layers from being editable in proxies.
+This helps keeping complex rigs usage sensible, by only exposing some ‘public’ bone layers as editable by users.
+    </paragraph>
+    <paragraph>
+     Set the
+     <emphasis>
+      Protected Layers
+     </emphasis>
+     in the source file using the
+     <emphasis>
+      Skeleton
+     </emphasis>
+     panel of the
+     <emphasis>
+      Armatures
+     </emphasis>
+     properties.
+See
+     <reference internal="True" refuri="#armature-layers">
+      <inline classes="std std-ref">
+       Armature Layers
+      </inline>
+     </reference>
+     .
+    </paragraph>
+   </section>
+  </section>
+ </section>
+</document>

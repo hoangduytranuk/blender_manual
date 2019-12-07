@@ -22,7 +22,7 @@ Usage
 
    - Select the points in all the selected keyframes and make your editions.
    - Start sculpting. The sculpt brushes will affects all the strokes in the selected keyframes.
-   - Start weight painting. The weight paint brush will affects all the strokes in the selected keyframes.
+   - Start weight painting. The weight paint brush will affect all the strokes in the selected keyframes.
 
 Use Falloff
    When enabled, the effects on the strokes start to falloff from the current frame

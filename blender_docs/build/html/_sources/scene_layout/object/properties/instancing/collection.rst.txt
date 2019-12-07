@@ -30,7 +30,7 @@ This way, you can get multiple copies of linked data very easily.
 Collections and Dynamic Linking
 ===============================
 
-See :doc:`Appending and Linking </files/linked_libraries>`
+See :doc:`Appending and Linking </files/linked_libraries/index>`
 to understand how to dynamically link data from another blend-file into the current file.
 You can dynamically link collections from one blend-file to another.
 When you do so, the linked collection does not appear anywhere in your scene

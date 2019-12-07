@@ -79,7 +79,7 @@ Offset
 .. seealso:: Appending or Linking Collections
 
    To append a collection from another blend-file,
-   consult :doc:`this page </files/linked_libraries>`.
+   consult :doc:`this page </files/linked_libraries/index>`.
    In summary, :menuselection:`File --> Link/Append Link` Select a blend-file and then the collection.
 
 .. tip:: Selecting Collections

@@ -81,7 +81,7 @@ Examples where sharing data is common:
 
 You can also share data-blocks between files, see:
 
-- :doc:`linked libraries </files/linked_libraries>`.
+- :doc:`linked libraries </files/linked_libraries/index>`.
 
 
 .. _data-system-datablock-make-single-user:
@@ -232,7 +232,7 @@ For reference, here is a table of data-blocks types stored in blend-files.
      - |tick|
      - |none|
      - | Used as object data by light objects.
-   * - :doc:`Library </files/linked_libraries>`
+   * - :doc:`Library </files/linked_libraries/index>`
      - |cross|
      - |tick|
      - | References to an external blend-file.

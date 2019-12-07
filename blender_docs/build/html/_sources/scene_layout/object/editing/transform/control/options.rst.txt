@@ -37,7 +37,7 @@ Origins :kbd:`Ctrl-Period`
 Locations
    Changes the position of the object's origin relative to another point during transformation.
    In other words, the pivot point and the origin cannot share the same location.
-   This will not affect the object local transforms, just it's position in world space.
+   This will not affect the object local transforms, just its position in world space.
 
    In the examples below, a comparison of the scaling and rotation of objects,
    when *Location* is enabled (middle) and disabled (right).

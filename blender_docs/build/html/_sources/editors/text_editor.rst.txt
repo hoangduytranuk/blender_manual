@@ -131,7 +131,7 @@ Find Next :kbd:`Ctrl-G`
    Finds the next instance of the selected text.
 Jump to :kbd:`Ctrl-J`
    Shows a pop-up, which lets you select a line number where to move the cursor to.
-Text Auto Complete :kbd:`Ctrl-Spacebar`
+Text Auto Complete :kbd:`Tab`
    Shows a selectable list of words already used in the text.
 Text To 3D Object
    Converts the text file to a :doc:`Text Object </modeling/texts/index>`

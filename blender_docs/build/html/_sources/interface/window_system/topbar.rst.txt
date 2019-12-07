@@ -62,7 +62,7 @@ Link...
    Links data from an external blend-file (library) to the current scene.
    The edition of that data is only possible in the external library.
    *Link* and *Append* are used to load in only selected parts from another file.
-   See :doc:`Linked Libraries </files/linked_libraries>`.
+   See :doc:`Linked Libraries </files/linked_libraries/index>`.
 Append...
    Appends data from an external blend-file to the current scene.
    The new data is copied from the external file, and completely unlinked from it.

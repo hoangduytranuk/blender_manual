@@ -1,0 +1,94 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-11-27 19:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Library Overrides"
+msgstr "Library Overrides"
+
+msgid "Library Overrides is the new system designed to replace and supersede :doc:`Proxies</files/linked_libraries/library_proxies>`. Most types of linked data-blocks can be overridden, and the properties of those overrides can then be edited. When the library data change, unmodified properties of the override one will be updated accordingly."
+msgstr "Library Overrides is the new system designed to replace and supersede :doc:`Proxies</files/linked_libraries/library_proxies>`. Most types of linked data-blocks can be overridden, and the properties of those overrides can then be edited. When the library data change, unmodified properties of the override one will be updated accordingly."
+
+msgid "**It is considered as experimental**, and current proxy system will be kept alongside for a few releases. Automatic conversion from proxies to library overrides *is not planned*, there will be a manual operator to do that, but results on complex characters are not guaranteed."
+msgstr "**It is considered as experimental**, and current proxy system will be kept alongside for a few releases. Automatic conversion from proxies to library overrides *is not planned*, there will be a manual operator to do that, but results on complex characters are not guaranteed."
+
+msgid "Compared to proxies, library overrides support:"
+msgstr "Compared to proxies, library overrides support:"
+
+msgid "Multiple independent overrides of a same linked data (e.g. a whole character)."
+msgstr "Multiple independent overrides of a same linked data (e.g. a whole character)."
+
+msgid "Adding new modifiers and constraints, anywhere in the stack."
+msgstr "Adding new modifiers and constraints, anywhere in the stack."
+
+msgid "Recursively chaining overrides (i.e. link and override overrides from another library file, etc.)."
+msgstr "Recursively chaining overrides (i.e. link and override overrides from another library file, etc.)."
+
+msgid "There are still many known TODOs/issues that have to be addressed. Please check the `release notes <https://wiki.blender.org/wiki/Reference/Release_Notes/2.81/Library_Overrides>`__ and Phabricator `main task of the project <https://developer.blender.org/T53500>`__, for more details."
+msgstr "There are still many known TODOs/issues that have to be addressed. Please check the `thông báo về bản phát hành -- release notes <https://wiki.blender.org/wiki/Reference/Release_Notes/2.81/Library_Overrides>`__ and Phabricator `main task of the project <https://developer.blender.org/T53500>`__, for more details."
+
+msgid "Creating an Override"
+msgstr "Creating an Override"
+
+msgid "There are two ways to create an override of a linked data-block."
+msgstr "There are two ways to create an override of a linked data-block."
+
+msgid "Single Data-Block Override"
+msgstr "Single Data-Block Override"
+
+msgid "You can override a single data-block from two places:"
+msgstr "You can override a single data-block from two places:"
+
+msgid "The Outliner (it's in the context menu of IDs), in which case **all** local usages of that linked ID will be remapped to the new local override."
+msgstr "The Outliner (it's in the context menu of IDs), in which case **toàn bộ -- all** local usages of that linked ID will be remapped to the new local override."
+
+msgid "The data-block menu in the UI (:kbd:`Shift-LMB` on the chain icon to the right), in which case only that specific usage will be remapped to the new local override."
+msgstr "The data-block menu in the UI (:kbd:`:kbd:`Shift-NCT (LMB)`` on the chain icon to the right), in which case only that specific usage will be remapped to the new local override."
+
+msgid "Make Library Override Operator"
+msgstr "Make Library Override Operator"
+
+msgid "This one operates in the 3D View, over linked objects or local empties instantiating a linked collection (typically, a linked character). It is very similar to the *Make Proxy* operator, and is found in the same sub-menu :menuselection:`Object --> Relations --> Make Library Overrides...`."
+msgstr "This one operates in the 3D View, over linked objects or local empties instantiating a linked collection (typically, a linked character). It is very similar to the *Tạo Bản Đại Diện -- Make Proxy* operator, and is found in the same sub-menu :menuselection:`Object --> Relations --> Make Library Overrides...`."
+
+msgid "Unlike the method described above, it will go through the whole hierarchy of collections and objects, and override all those needed to allow posing/animation of a character."
+msgstr "Unlike the method described above, it will go through the whole hierarchy of collections and objects, and override all those needed to allow posing/animation of a character."
+
+msgid "Proper Collections Layout Matters"
+msgstr "Proper Collections Layout Matters"
+
+msgid "For this operator to work properly, it is crucial that **all** the collections needed by the character are children of the root (linked and instantiated) one. Otherwise, some won't be automatically overridden, and manual work will be needed to fix the override."
+msgstr "For this operator to work properly, it is crucial that **toàn bộ -- all** the collections needed by the character are children of the root (linked and instantiated) one. Otherwise, some won't be automatically overridden, and manual work will be needed to fix the override."
+
+msgid "Editing an Override"
+msgstr "Editing an Override"
+
+msgid "Essentially, and override is edited the same way as a regular local data-block. You can use operators on them, edit their properties from various editors, etc."
+msgstr "Essentially, and override is edited the same way as a regular local data-block. You can use operators on them, edit their properties from various editors, etc."
+
+msgid "There are some limitations however, most notably Edit Mode is not allowed currently for override."
+msgstr "There are some limitations however, most notably Edit Mode is not allowed currently for override."
+
+msgid "In most cases, as soon as you edit a property, you can see that it's overridden by it's teal blue outline/background (like the yellow/green/purple colors of animated/driven ones)."
+msgstr "In most cases, as soon as you edit a property, you can see that it's overridden by it's teal blue outline/background (like the yellow/green/purple colors of animated/driven ones)."
+
+msgid "You can also animate overrides, animated properties just replace/supersede overrides then. Note that you cannot override-edit an existing animation, you'll have to create a new action."
+msgstr "You can also animate overrides, animated properties just replace/supersede overrides then. Note that you cannot override-edit an existing animation, you'll have to create a new action."
+
+msgid "You can manually define or remove an override from the context menu of the relevant property."
+msgstr "You can manually define or remove an override from the context menu of the relevant property."
+

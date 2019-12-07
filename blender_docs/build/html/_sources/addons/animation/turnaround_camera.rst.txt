@@ -7,7 +7,7 @@ Introduction
 ============
 
 This add-on creates an animated camera turn around an object,
-suitable for product visuals and character turnarounds.
+suitable for product visualizations and character turnarounds.
 
 .. youtube:: sgjx0ycmTAo
 

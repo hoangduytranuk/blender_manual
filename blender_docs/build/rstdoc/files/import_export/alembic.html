@@ -353,25 +353,121 @@ Hair is exported as animated zero-width curves. Particles are exported as animat
     </paragraph>
    </section>
   </section>
+  <section ids="importing-alembic-files" names="importing\ alembic\ files">
+   <title>
+    Importing Alembic Files
+   </title>
+   <paragraph>
+    When importing an Alembic file,
+    <reference internal="True" refuri="">
+     <inline classes="doc">
+      Mesh Sequence Cache modifiers
+     </inline>
+    </reference>
+    are automatically added to time-varying meshes. For time-varying object transforms (so animation of
+rotation, location, or scale), the
+    <reference internal="True" refuri="#bpy-types-transformcacheconstraint">
+     <inline classes="std std-ref">
+      Transform Cache Constraint
+     </inline>
+    </reference>
+    is used.
+   </paragraph>
+  </section>
   <section ids="custom-split-normals-of-meshes" names="custom\ split\ normals\ of\ meshes">
    <title>
     Custom Split Normals of Meshes
    </title>
    <paragraph>
-    Blender supports the export of
+    Blender supports the import and export of
     <reference internal="True" refuri="#modeling-meshes-normals-custom">
      <inline classes="std std-ref">
       custom normals
      </inline>
     </reference>
-    to Alembic
-files. This can be controlled on a mesh-by-mesh basis by enabling
+    to
+Alembic files. As a basic rule of thumb, a completely smooth mesh will be exported without normals
+and thus produce the smallest Alembic file. This is reflected in the importer; an Alembic mesh
+without normals is loaded as a smooth mesh.
+   </paragraph>
+   <paragraph>
+    On export, for every mesh:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      If it has
+      <emphasis>
+       Custom Loop Normals
+      </emphasis>
+      → loop normals are exported.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      If one or more polys are marked flat → loop normals are exported.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Otherwise, no normals are exported.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    On import, when the Alembic mesh contains:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      loop normals (kFacevaryingScope) → use as custom loop normals, and enble Auto Smooth to have
+Blender actually use them.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      vertex normals (kVertexScope or kVaryingScope) → convert to loop normals, and handle as above.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      no normals → mark mesh as smooth.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      unsupported normal types (kConstantScope, kUniformScope, kUnknownScope) → handle as ‘no normals’.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    When an imported mesh does not contain normals, the final look can be controlled by enabling the
     <reference internal="True" refuri="#auto-smooth">
      <inline classes="std std-ref">
       Auto Smooth
      </inline>
     </reference>
-    checkbox. Custom Split Normals are exported only when this checkbox is enabled.
+    checkbox and altering the threshold angle.
+   </paragraph>
+  </section>
+  <section ids="handling-time" names="handling\ time">
+   <title>
+    Handling Time
+   </title>
+   <paragraph>
+    Unlike Blender and many other applications and file formats, Alembic files don’t have any concept of
+frames. Alembic works purely with time, and values that are sampled over time. For example, there is
+no way to distinguish 30 FPS with 2 samples per frame, and 60 FPS with 1 sample per frame. This has
+caused numerous developers to just
+    <reference name="hard-code 24 FPS" refuri="https://developer.blender.org/T55288#754358">
+     hard-code 24 FPS
+    </reference>
+    when reading Alembic files.
+   </paragraph>
+   <paragraph>
+    Blender uies the current scene frame rate to convert a frame number (in Blender) to a time in
+seconds (in Alembic). As a result, you can import an Alembic file that was produced at 120 FPS into
+a Blender scene that is 30 FPS and still not see any time stretching.
    </paragraph>
   </section>
  </section>

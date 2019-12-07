@@ -28,7 +28,7 @@ Shortcut
 Value
    The value of the property.
 Library
-   Source file of the active object. See also :doc:`/files/linked_libraries`.
+   Source file of the active object. See also :doc:`/files/linked_libraries/index`.
 Disabled (red)
    The reason why the value is not editable.
 Python

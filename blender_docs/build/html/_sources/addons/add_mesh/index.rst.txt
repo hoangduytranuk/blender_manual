@@ -3,10 +3,6 @@
   Add Mesh
 ############
 
-.. important::
-
-   Work In Progress
-
 These add-ons relate to Mesh object creation.
 
 .. toctree::

@@ -20,3 +20,4 @@ These add-ons relate to Object Mode and related tools.
    oscurart_tools.rst
    scatter_objects.rst
    skinify.rst
+   align_tools.rst

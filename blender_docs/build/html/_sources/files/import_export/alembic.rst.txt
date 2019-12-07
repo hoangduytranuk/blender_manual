@@ -142,9 +142,9 @@ Importing Alembic Files
 =======================
 
 When importing an Alembic file, :doc:`Mesh Sequence Cache modifiers </modeling/modifiers/modify/mesh_sequence_cache>`
-are automatically added to time-varying meshes. For time-varying object transforms (so animation of
-rotation, location, or scale), the
-:ref:`Transform Cache Constraint <bpy.types.TransformCacheConstraint>` is used.
+are automatically added to time-varying meshes. For time-varying object transforms
+(so animation of rotation, location, or scale)
+the :ref:`Transform Cache Constraint <bpy.types.TransformCacheConstraint>` is used.
 
 
 Custom Split Normals of Meshes
@@ -157,31 +157,31 @@ without normals is loaded as a smooth mesh.
 
 On export, for every mesh:
 
-- If it has *Custom Loop Normals* → loop normals are exported.
-- If one or more polys are marked flat → loop normals are exported.
+- If it has *Custom Loop Normals* then the loop normals are exported.
+- If one or more polygons are marked flat then loop normals are also exported.
 - Otherwise, no normals are exported.
 
 On import, when the Alembic mesh contains:
 
-- loop normals (kFacevaryingScope) → use as custom loop normals, and enble Auto Smooth to have
+- Loop normals (``kFacevaryingScope``) are used as custom loop normals, and enable *Auto Smooth* to have
   Blender actually use them.
-- vertex normals (kVertexScope or kVaryingScope) → convert to loop normals, and handle as above.
-- no normals → mark mesh as smooth.
-- unsupported normal types (kConstantScope, kUniformScope, kUnknownScope) → handle as 'no normals'.
+- Vertex normals (``kVertexScope`` or ``kVaryingScope``) are convert to loop normals, and handle as above.
+- If there are no normals then the mesh is marked as smooth.
+- Unsupported normal types (``kConstantScope``, ``kUniformScope``, ``kUnknownScope``) are handled as *no normals*.
 
-When an imported mesh does not contain normals, the final look can be controlled by enabling the
-:ref:`Auto Smooth <auto-smooth>` checkbox and altering the threshold angle.
+When an imported mesh does not contain normals, the final look can be controlled by enabling
+the :ref:`Auto Smooth <auto-smooth>` checkbox and altering the threshold angle.
 
 
 Handling Time
 =============
 
-Unlike Blender and many other applications and file formats, Alembic files don't have any concept of
-frames. Alembic works purely with time, and values that are sampled over time. For example, there is
-no way to distinguish 30 FPS with 2 samples per frame, and 60 FPS with 1 sample per frame. This has
-caused numerous developers to just `hard-code 24 FPS <https://developer.blender.org/T55288#754358>`__
+Unlike Blender and many other applications and file formats, Alembic files don't have any concept of frames.
+Alembic works purely with time, and values that are sampled over time. For example,
+there is no way to distinguish 30 FPS with 2 samples per frame, and 60 FPS with 1 sample per frame.
+This has caused many developers to just `hard-coded 24 FPS <https://developer.blender.org/T55288#754358>`__
 when reading Alembic files.
 
-Blender uies the current scene frame rate to convert a frame number (in Blender) to a time in
-seconds (in Alembic). As a result, you can import an Alembic file that was produced at 120 FPS into
+Blender uses the current scene frame rate to convert a frame number (in Blender) to a time
+in seconds (in Alembic). As a result, you can import an Alembic file that was produced at 120 FPS into
 a Blender scene that is 30 FPS and still not see any time stretching.

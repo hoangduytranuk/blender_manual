@@ -11,7 +11,7 @@ Primitives
    :Menu:      :menuselection:`Add --> Grease Pencil`
    :Hotkey:    :kbd:`Shift-A`
 
-In Object Mode, the *Add Grease Pencil* menu, provides three different Grease Pencil primitives:
+In Object Mode, the *Add Grease Pencil* menu provides three different Grease Pencil primitives:
 
 .. figure:: /images/grease-pencil_primitives_all.png
 

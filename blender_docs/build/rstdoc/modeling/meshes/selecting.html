@@ -679,18 +679,6 @@ where an increasing angle selects sharper edges.
        </definition_list_item>
        <definition_list_item>
         <term>
-         <reference name="Edge Boundary" refid="edge-boundary">
-          Edge Boundary
-         </reference>
-        </term>
-        <definition>
-         <paragraph>
-          Select boundary edges.
-         </paragraph>
-        </definition>
-       </definition_list_item>
-       <definition_list_item>
-        <term>
          <reference name="Edge Ring" refid="edge-ring">
           Edge Ring
          </reference>
@@ -1541,8 +1529,26 @@ because the vertices at the pole connect to more than four edges. However,
 the right sphere shows an edge that was selected latitudinally and has formed a closed loop.
 This is because the algorithm hit the first edge that it started with.
     </paragraph>
-    <target refid="modeling-meshes-selecting-face-loops">
-    </target>
+    <section ids="edge-loops-all-boundaries" names="edge\ loops\ (all\ boundaries)">
+     <title>
+      Edge Loops (All Boundaries)
+     </title>
+     <paragraph>
+      All boundary edges can be selected by performing a second loop select action on a boundary edge.
+     </paragraph>
+     <paragraph>
+      This can be useful for selecting boundaries for meshes that include triangles &amp; n-gons,
+where loop-select wouldn’t otherwise select the full boundary.
+     </paragraph>
+     <figure ids="id14">
+      <image candidates="{'*': 'images/modeling_meshes_selecting_edge-boundary_loops.png'}" uri="images/modeling_meshes_selecting_edge-boundary_loops.png"/>
+      <caption>
+       The second select loop select action is shown on the right.
+      </caption>
+     </figure>
+     <target refid="modeling-meshes-selecting-face-loops">
+     </target>
+    </section>
    </section>
    <section ids="face-loops modeling-meshes-selecting-face-loops" names="face\ loops modeling-meshes-selecting-face-loops">
     <title>
@@ -1603,7 +1609,7 @@ the same can be accomplished by using
      to select an edge,
 which selects the face loop implicitly.
     </paragraph>
-    <figure ids="id14">
+    <figure ids="id15">
      <image candidates="{'*': 'images/modeling_meshes_selecting_face-loops.png'}" uri="images/modeling_meshes_selecting_face-loops.png"/>
      <caption>
       Face loop selection.
@@ -1622,7 +1628,7 @@ in
      select mode.
 The loop extends perpendicular from the edge that was selected.
     </paragraph>
-    <figure ids="id15">
+    <figure ids="id16">
      <image candidates="{'*': 'images/modeling_meshes_selecting_face-loops-vertex.png'}" uri="images/modeling_meshes_selecting_face-loops-vertex.png"/>
      <caption>
       <literal classes="kbd">
@@ -1665,49 +1671,6 @@ selects a
      </emphasis>
      since selecting opposite edges of a face implicitly selects
 the entire face.
-    </paragraph>
-   </section>
-   <section ids="edge-boundary" names="edge\ boundary">
-    <title>
-     Edge Boundary
-    </title>
-    <admonition classes="refbox">
-     <title>
-      Reference
-     </title>
-     <field_list>
-      <field>
-       <field_name>
-        Mode
-       </field_name>
-       <field_body>
-        <paragraph>
-         Edit Mode (Vertex or Edge select modes)
-        </paragraph>
-       </field_body>
-      </field>
-      <field>
-       <field_name>
-        Hotkey
-       </field_name>
-       <field_body>
-        <paragraph>
-         <literal classes="kbd">
-          Alt-LMB
-         </literal>
-        </paragraph>
-       </field_body>
-      </field>
-     </field_list>
-    </admonition>
-    <paragraph>
-     Loop selection on edge boundaries.
-To extend the selection to all boundaries if the current boundary is already selected
-use
-     <literal classes="kbd">
-      Alt-LMB
-     </literal>
-     again.
     </paragraph>
    </section>
    <section ids="edge-ring" names="edge\ ring">
@@ -1803,7 +1766,7 @@ but this will directly select the corresponding face loop…
     </note>
     <target refid="fig-mesh-select-advanced-loop-ring">
     </target>
-    <figure ids="id16 fig-mesh-select-advanced-loop-ring" names="fig-mesh-select-advanced-loop-ring">
+    <figure ids="id17 fig-mesh-select-advanced-loop-ring" names="fig-mesh-select-advanced-loop-ring">
      <image candidates="{'*': 'images/modeling_meshes_selecting_edge-ring.png'}" uri="images/modeling_meshes_selecting_edge-ring.png"/>
      <caption>
       A selected edge loop, and a selected edge ring.
@@ -1887,7 +1850,7 @@ A subsequent switch to Face Select Mode will then properly select the faces.
       </field>
      </field_list>
     </admonition>
-    <figure ids="id17">
+    <figure ids="id18">
      <image candidates="{'*': 'images/modeling_meshes_selecting_shortest-path.png'}" uri="images/modeling_meshes_selecting_shortest-path.png"/>
      <caption>
       Select a face or vertex path with
@@ -2114,19 +2077,19 @@ While it is possible to use this operator in
 Note that if the selected loop of edges is not closed,
 then all connected edges on the mesh will be considered inside the loop.
     </paragraph>
-    <figure ids="id18">
+    <figure ids="id19">
      <image candidates="{'*': 'images/modeling_meshes_selecting_inner-region1.png'}" uri="images/modeling_meshes_selecting_inner-region1.png"/>
      <caption>
       Loop to Region.
      </caption>
     </figure>
-    <figure ids="id19">
+    <figure ids="id20">
      <image candidates="{'*': 'images/modeling_meshes_selecting_inner-region2.png'}" uri="images/modeling_meshes_selecting_inner-region2.png"/>
      <caption>
       This tool handles multiple loops fine, as you can see.
      </caption>
     </figure>
-    <figure ids="id20">
+    <figure ids="id21">
      <image candidates="{'*': 'images/modeling_meshes_selecting_inner-region3.png'}" uri="images/modeling_meshes_selecting_inner-region3.png"/>
      <caption>
       This tool handles “holes” just fine as well.
@@ -2189,7 +2152,7 @@ It can operate in any select mode, but when in
     <paragraph>
      All this is much more simple to illustrate with examples:
     </paragraph>
-    <figure ids="id21">
+    <figure ids="id22">
      <image candidates="{'*': 'images/modeling_meshes_selecting_boundary-loop.png'}" uri="images/modeling_meshes_selecting_boundary-loop.png"/>
      <caption>
       Select Boundary Loop does the opposite and forces into Edge Select Mode.
@@ -2205,7 +2168,7 @@ It can operate in any select mode, but when in
     <title>
      N-Gons in Face Select Mode
     </title>
-    <figure ids="id22">
+    <figure ids="id23">
      <image candidates="{'*': 'images/modeling_meshes_selecting_face-mode-ngon-visual-problem.png'}" uri="images/modeling_meshes_selecting_face-mode-ngon-visual-problem.png"/>
      <caption>
       N-gon face having its center dot inside another face.

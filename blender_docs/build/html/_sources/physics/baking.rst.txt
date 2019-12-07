@@ -50,7 +50,7 @@ Disk Cache
 
    Use Library Path
       Share the disk cache when the physics object is
-      :doc:`linked </files/linked_libraries>` into another blend-file.
+      :doc:`linked </files/linked_libraries/index>` into another blend-file.
 
       When this option is enabled, linked versions of the object will reference the same disk cache.
       Otherwise linked versions of the object will use independent caches.

@@ -44,5 +44,7 @@ To access the previously opened text files, select them from the header data-blo
    :Location: :menuselection:`Text Editor --> Sidebar --> Edit Operator`
    :File: development_edit_operator.py
    :Author: scorpion81
+   :Maintainer: scorpion81
    :License: GPL
+   :Support Level: Community
    :Note: This add-on is bundled with Blender.

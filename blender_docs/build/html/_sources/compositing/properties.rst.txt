@@ -64,7 +64,7 @@ Render
 Edit
    Sets the quality when making edits.
 Chunk Size
-   Max size of a title (smaller values give a better distribution of multiple threads, but more overhead).
+   Max size of a tile (smaller values give a better distribution of multiple threads, but more overhead).
 OpenCL
    This allows the use of an OpenCL platform to aid in rendering.
    Generally, this should be enabled unless your hardware does not have good OpenCL support.

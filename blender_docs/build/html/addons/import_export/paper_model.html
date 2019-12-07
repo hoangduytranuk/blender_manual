@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Paper Model &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/import_export/paper_model.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Pointcache (pc2)" href="pc2.html" />
+    <link rel="prev" title="Atomic Blender (PDB/XYZ)" href="mesh_atomic.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.82 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">Góc Nhìn 3D -- 3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Import-Export</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="anim_camera.html">Camera Animation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_nuke_chan.html">Nuke Animation (chan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coat3D.html">3D-Coat Applink</a></li>
+<li class="toctree-l4"><a class="reference internal" href="images_as_planes.html">Images as Planes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_anim_bvh.html">BioVision Motion Capture (BVH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_curve_svg.html">Scalable Vector Graphics (SVG)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_mesh_ply.html">Stanford PLY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_mesh_stl.html">STL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_mesh_uv_layout.html">UV Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_node_shaders_info.html">Import &amp; Export of Node Shaders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_fbx.html">FBX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_gltf2.html">glTF 2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_obj.html">Wavefront OBJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_x3d.html">Web3D X3D/VRML2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_atomic.html">Atomic Blender (PDB/XYZ)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Paper Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pc2.html">Pointcache (pc2)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_dxf.html">AutoCAD DXF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shape_mdd.html">NewTek MDD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Rigging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.82 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Trình Bổ Sung -- Add-ons</a> &raquo;</li>
+        
+          <li><a href="index.html">Import-Export</a> &raquo;</li>
+        
+      <li>Paper Model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/addons/import_export/paper_model.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="paper-model">
+<h1>Paper Model<a class="headerlink" href="#paper-model" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Category:</th><td class="field-body">Import-Export</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">File ‣ Export ‣ Paper Model (.pdf/.svg)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">Properties editor ‣ Mesh ‣ Paper Model Islands</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Mesh ‣ Unfold</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This add-on generates a flat net of a given mesh.
+It creates either PDF or SVG files suitable for direct printing and paper modeling.
+The main goal is a maximal possible automation of the whole process.
+Common tasks like baking the model's texture into the output document are also supported.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>To avoid eventual issues, switch to Object Mode.
+Then, select the mesh you want to export so that it is the active one.
+If you want to get results quickly, just execute this add-on from the <span class="menuselection">File ‣ Export</span> menu.
+It will ask for a file name and do everything else automatically.
+All relevant settings are in the bottom left corner.
+These are described in more detail below.</p>
+<p>If you are unhappy with the generated net, you can edit it manually.
+For this, you have to execute the <em>Unfold</em> tool first (available Mesh tab in the Properties editor).
+Edges that will be cut in order to flatten the mesh must be marked as Edit Mode seams.
+You can use <em>Clear Seam</em> and <em>Mark Seam</em> tools to organize them as you wish,
+or use the helper button <em>Clear All Seams</em> in Object Mode to start from scratch.
+When you export the model, it will use all the given seams and add some more cuts if necessary.</p>
+<p>You can also call the <em>Unfold</em> tool just for a preview of the net.
+It will list all islands of the produced net in the panel and if you enable so in the tool's settings,
+it will also create a UV layout showing the islands.
+Note that island positions are not calculated in this stage, so that they will all just lay on top of each other.
+You can use Blender's <em>Pack Islands</em> tool to arrange them.</p>
+<p>There are a few kinds of topology that are possible in Blender but not in paper reality:</p>
+<ul class="simple">
+<li>N-gon faces (everything except triangles) that are not perfectly flat.</li>
+<li>Zero-length edges (two vertices exactly in the same spot and connected by an edge)</li>
+<li>Zero-area faces (typically their vertices lie all in line)</li>
+</ul>
+<p>If any of these cases is detected, the add-on will throw an error message and will not export.
+The error message guides you how to fix the issues.</p>
+<div class="section" id="exporting-textured-meshes">
+<h3>Exporting Textured Meshes<a class="headerlink" href="#exporting-textured-meshes" title="Permalink to this headline">¶</a></h3>
+<p>To export your model with a hand-painted texture, you have to unwrap the model, paint an image and
+assign it to the model so that it has an effect during render.
+You can use any tools you like for these tasks.
+What the add-on does is simply that it uses baking in <em>Textures</em> mode.</p>
+<p>Switch to Object Mode and deselect any objects except the one to be exported.
+Then execute <em>Export Paper Model</em> and in the File Browser switch the <em>Textures</em> selector to <em>From Materials</em>.</p>
+<p>If you choose to export a SVG file, you get several options how to attach the images.
+All the options are explained in more detail <a class="reference internal" href="#properties">Properties</a>.</p>
+<p>The resulting texture does not depend on any scene settings except for the given material,
+and on the other hand, all settings should be intact after doing the export.</p>
+</div>
+<div class="section" id="how-to-read-the-net">
+<h3>How to Read the Net<a class="headerlink" href="#how-to-read-the-net" title="Permalink to this headline">¶</a></h3>
+<p>Most of the document's appearance can be customized during export (see below).
+However, the default style is supposed to be familiar to paper modelers:
+dashed lines represent folding outwards, dash-dotted lines inwards (i.e., to form concave shapes).
+Boundary of each part of the net is rendered in solid lines.
+Sticking tabs have a grayish fill color to be distinguishable from other parts of the net.</p>
+<p>A label is written on a tab when its target edge might not be clear.
+Specifically, the label is omitted if the edge will be sticked to the same place as its both neighbors or
+if one of these is the target itself.
+The format of labels is <code class="docutils literal notranslate"><span class="pre">island_abbreviation:</span> <span class="pre">edge_number</span></code>.
+Island abbreviation is written in square brackets under the corresponding island, before to its full-length name.
+Edge number is written as a triangle arrow next to that target edge, outside the net.</p>
+<p>If <em>Create Tabs</em> is disabled, the same format is used for labels along each of the related edges, inside the net.
+This method is designed for modeling from hard and/or thick materials, for which sticking tabs are quite pointless.
+If <em>Create Numbers</em> is disabled, the labels are omitted; this may be necessary for highly detailed models.</p>
+</div>
+<div class="section" id="how-to-print-the-net">
+<h3>How to Print the Net<a class="headerlink" href="#how-to-print-the-net" title="Permalink to this headline">¶</a></h3>
+<p>The PDF file can be directly printed almost anywhere.
+However, things become difficult if you need to change the net by hand.</p>
+<p>If you select the SVG format, you can edit the exported files in a vector graphics editor such as Inkscape.
+One reason why you may want to do is to pack the islands manually and save paper.
+Another reason is that the tabs and numbers often make a lot of clutter around the model and
+it can be helpful to remove some of them by hand.</p>
+<p>If printed document gets cropped around the page borders,
+it means you should increase the <em>Margin</em> setting during export.</p>
+</div>
+<div class="section" id="placing-marks-on-the-net">
+<h3>Placing Marks on the Net<a class="headerlink" href="#placing-marks-on-the-net" title="Permalink to this headline">¶</a></h3>
+<p>Edges with a Freestyle Mark (<span class="menuselection">Edge ‣ Mark Freestyle Edge</span>) will be highlighted
+in the net with a user-defined color and drawing style.
+This is helpful especially when used on flat edges, which would normally not be drawn at all.
+If you draw a shape with the <em>Knife</em> tool and then mark some of the edges as Freestyle ones,
+you can make a simple line drawing on the model.</p>
+<p>When used on folding edges, the highlight will be drawn below the folding line.
+So you will probably have to change the <em>Freestyle Lines</em> drawing style to make it wider and not black,
+so that the lines stay distinguishable.</p>
+</div>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="paper-model-islands">
+<h3>Paper Model Islands<a class="headerlink" href="#paper-model-islands" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Paper Model Islands</em> tab in the Mesh tab offers two buttons for calling
+the <em>Unfold</em> and <em>Export Paper Model</em> tools conveniently.
+It also offers buttons for marking and clearing seams, depending on the context,
+and the experimental functionality <em>Limit Island Size</em>.</p>
+<p>Once the <em>Unfold</em> tool is called, the model is split into flattened parts and
+these are presented in a list called <em>Islands</em> below.
+The list allows you to change the label of each island.
+If <em>Create Numbers</em> is enabled during export, abbreviations of these labels will be used to
+describe which tab should be sticked to which island.
+After running the <em>Unfold</em> tool, these island labels are recalculated so
+that as many faces as possible remain under the same label.</p>
+<p>If you select an island and enable the <em>Highlight Selected Island</em> button
+(and the mesh you unfolded is the active one), the island will be highlighted in orange in the 3D View.
+Using the slider below, you can change the opacity of the highlight.</p>
+<div class="section" id="unfold">
+<h4>Unfold<a class="headerlink" href="#unfold" title="Permalink to this headline">¶</a></h4>
+<p>The first option from top is <em>Create UV map</em>.
+If enabled, a new UV map will be generated to show all the islands.
+However, their positions are not calculated yet at this time of the export process,
+so they are all just placed in the bottom left corner.
+This option is useful when editing the cutting lines by hand.
+You can use the <em>Unwrap</em> tool and get a similar result.</p>
+<p>The tool has three sliders, which all adjust edge cutting priority
+(namely: <em>Face Angle Convex</em>, <em>Face Angle Concave</em>, <em>Edge Length</em>).
+A high value gives an edge with the corresponding property a higher chance to be cut.
+Because of that, it is usually better to set Edge Length to a negative value, letting long edges stay connected.
+Randomly modifying these values may often help to reduce the count of islands in the net.
+For information about the meaning of these values, read the Unfold section in the <a class="reference internal" href="#technical-details">Technical Details</a>.</p>
+</div>
+</div>
+<div class="section" id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<p>When the export is initiated, the add-on silently unfolds the mesh (without marking any seams) and
+divides all faces into islands, which may take a few seconds for complex meshes.
+Then, a File Browser is displayed. With SVG format, the file name you choose will get a <code class="docutils literal notranslate"><span class="pre">_page&lt;number&gt;.svg</span></code> suffix,
+even if only one page was needed.</p>
+<p>Settings of this exporter are presented in the bottom left corner of the File Browser.</p>
+<dl class="docutils">
+<dt>Preset</dt>
+<dd>The <em>Preset</em> menu allows to quickly save and recall all the settings below it,
+including model scale and color style.</dd>
+<dt>Model Scale</dt>
+<dd><p class="first">Model Scale can be used to scale the whole net.
+If you want to have a model in 1:72 scale, just set this to 72.
+This is an important option also because the add-on often produces islands bigger than the page.</p>
+<p class="last">By default, this value is set so that even the biggest island fits onto the page.
+If set to one, the real model will have the same dimensions as the virtual one.</p>
+</dd>
+<dt>Create UV map</dt>
+<dd>Has a similar effect as the similar named option of the <em>Unfold</em> tool, but not the same.
+It will create a new UV map that exactly reflects the placement of all the model's islands.
+Unfortunately, islands from all pages are placed on top of each other,
+and it is quite impossible to tell them apart.</dd>
+</dl>
+<div class="section" id="document-settings">
+<h4>Document Settings<a class="headerlink" href="#document-settings" title="Permalink to this headline">¶</a></h4>
+<p>Settings closely related to the format of the output document are in the Document Settings sub-panel.</p>
+<dl class="docutils">
+<dt>Format</dt>
+<dd>First selector switches between PDF and SVG document formats.</dd>
+<dt>Page Size</dt>
+<dd>Another selector below allows you to choose one of the most common paper sizes quickly.
+If you need something else, choose <em>User Defined</em> and set the dimensions manually.</dd>
+<dt>Page Margin</dt>
+<dd><p class="first">Makes it easier to export models in exact scale (if you set the <em>Model Scale</em> slider to 1).</p>
+<p class="last">You can set it to the width of the non-printable border of your printer,
+in order for the resulting SVG document to be printable without further scaling. However,
+exporting in-scale models is still difficult, as the add-on does not automatically split oversize islands.</p>
+</dd>
+<dt>DPI</dt>
+<dd>The next value is <em>DPI</em>, which defines the overall resolution of the net.
+That is, not only resolution of baked images (if any), but also line thickness.</dd>
+<dt>Create Tabs</dt>
+<dd>Controls if the sticking tabs are created at all.
+For example, uncheck this if you want to stick the model using tape.</dd>
+<dt>Create Numbers</dt>
+<dd>Adds numbers to some edge pairs that are supposed to be sticked together.
+These numbers are excluded if the correct destination is easy to guess from the neighboring edges.
+In more complex models, they may overlap a lot with each other and with the net itself.
+Disabling this option may help solve such issues.
+If <em>Create Tabs</em> is disabled, the numbers will be rendered inside of the net.</dd>
+<dt>Tabs and Text Size</dt>
+<dd>Sets the maximal width of the sticking tabs around islands.
+The actual size of each tab is adjusted to be at most half the length of the corresponding edge.
+In some special cases, tabs are made not to overlap with real faces, but it does not work reliably yet.
+If <em>Create Tabs</em> is disabled, this slider controls the size of numbers on edges.</dd>
+<dt>Hidden Edge Angle</dt>
+<dd>Edges with folding angle below Hidden Edge Angle will not be drawn at all.
+Increasing this value may produce nicer results when exporting smooth surfaces, such as cylinders:
+it will spare a lot of unnecessary lines.
+Decreasing it could possibly help in some special cases.</dd>
+<dt>Textures</dt>
+<dd><p class="first">The <em>Textures</em> select menu lists options for exporting textured meshes.</p>
+<dl class="last docutils">
+<dt>No Texture</dt>
+<dd>Just creates the net on a white background (this used to be called &quot;Pure Net&quot;).
+The remaining options invoke texture baking and therefore are noticeable slower.</dd>
+<dt>From Materials</dt>
+<dd>Exports the image that is assigned to each of the model's faces in their active material.</dd>
+<dt>Full Render, Selected to Active</dt>
+<dd>Correspond to the respective <em>Bake Type</em> options.
+They both render all the materials and illumination: <em>Full Render</em> renders the model only,
+while <em>Selected to Active</em> projects other nearby selected objects onto the model.
+It may be helpful for creating patterns such as fur or leaves procedurally.</dd>
+</dl>
+</dd>
+<dt>Images</dt>
+<dd><p class="first">The <em>Images</em> select menu allows you to choose how to include the baked images in the SVG file.
+If you want to edit the layout of the net in an SVG editor, choose either <em>Linked</em> or <em>Embedded</em>.</p>
+<dl class="last docutils">
+<dt>Embedded</dt>
+<dd>Creates standalone SVG files, making them bigger but portable.</dd>
+<dt>Single Linked</dt>
+<dd>Remains mostly for compatibility reasons.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="colors-and-style">
+<h4>Colors and Style<a class="headerlink" href="#colors-and-style" title="Permalink to this headline">¶</a></h4>
+<p>Options related to the drawing style are packed in the <em>Colors and Style</em> sub-panel.
+They should be quite self-explanatory.</p>
+</div>
+</div>
+</div>
+<div class="section" id="technical-details">
+<h2>Technical Details<a class="headerlink" href="#technical-details" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Unfold<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Firstly, the algorithm assigns every edge a &quot;priority&quot;, depending on its angle and length.
+Edges with higher priority will more probably be cut apart in the final net.
+Shorter edges have higher priority (they are easier to glue on) and sharper angles too
+(that makes the net easier to visually understand).</p>
+<p>Faces form a concave angle if their normals are pointing against each other.
+Such angles have even a bit higher priority which is supposed to help for typical models.
+If some face normals are flipped, the algorithm always assumes the angle between them be convex.</p>
+<p>If more than two faces are connected by an edge, two of them are designated as the main ones and
+all others will have to be glued. The main faces are chosen so that they form the smallest angle possible.</p>
+<p>The actual priority effect of angle versus length may change the resulting net very much.
+The default values were chosen by trial and error for some basic models, but may be a bad choice for others.
+If you want to tweak them, the <em>Unfold</em> tool allows you to: they are the tool's three only settings.</p>
+<p>The cutting algorithm begins with all faces separated and tries to connect them to form bigger islands,
+ordered by the connecting edge's priority. If some of the faces of the resulting island would overlap,
+the operation is canceled and the algorithm continues with another edge.
+If some vertices or edges end up close enough to each other, they are merged.
+During this process, each edge is visited exactly once.</p>
+<p>The overlap check is basically the Bentley-Ottmann algorithm for line segment intersection,
+applied to the boundary of the resulting island. To handle some special cases,
+the algorithm automatically switches between a slightly quicker and a more robust version of itself.
+Another check is applied to detect if the boundary crosses itself in just a vertex of the resulting island --
+such cases have to be tested explicitly as they need not cause any intersecting line segments.</p>
+</div>
+<div class="section" id="positioning-the-nets-on-pages">
+<h3>Positioning the Nets on Pages<a class="headerlink" href="#positioning-the-nets-on-pages" title="Permalink to this headline">¶</a></h3>
+<p>Because the nets are not consisting only of the real faces, but also of the gluing tabs around,
+they cannot be positioned by the internal Blender tool (<em>Pack Islands</em>).
+Therefore, a standalone algorithm had to be written.</p>
+<p>For a great simplification of the process, all nets are packed into (smallest possible) bounding rectangles.
+These are then ordered by size (largest first) and in this order the algorithm tries to position them on a page.
+The positions tested for the lower left corner are given by an n × n grid resulting from
+all the corners of islands already positioned. A position is accepted or rejected by checking overlaps
+with each of the islands' bounding rectangles.</p>
+<p>When there are any islands left that could not be placed onto the page, a new free page is created.</p>
+<p>This algorithm should work reliably and quite fast.
+However, it is clearly inefficient if the bounding rectangles contain much free space.
+Also, the packing depends heavily on the order in which the islands are processed, which is in no way optimal.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pc2.html" class="btn btn-neutral float-right" title="Pointcache (pc2)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mesh_atomic.html" class="btn btn-neutral float-left" title="Atomic Blender (PDB/XYZ)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.82 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

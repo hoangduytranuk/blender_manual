@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-11-13 01:42+0000\n"
+"POT-Creation-Date: 2019-11-27 19:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,90 +17,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
+# Thể Tích/Vùng Lưu Trữ -- Volumes
 msgid "Volumes"
-msgstr "Thể Tích/Vùng Lưu Trữ -- Volumes"
+msgstr "Thể Tích/Vùng Lưu Trữ"
 
 msgid "Volume rendering can be used to render effects like fire, smoke, mist, absorption in glass, and many other effects that cannot be represented by surface meshes alone."
-msgstr "Âm Lượng kết xuất -- kết xuất có thể be sử dụng tới kết xuất hiệu ứng like lửa, khói, sương mù, độ hấp thụ vào glass, và many cái/sắp đặt khác hiệu ứng that không thể be represented by bề mặt khung lưới alone."
+msgstr "Volume rendering can be used to render effects like fire, smoke, mist, absorption in glass, and many other effects that cannot be represented by surface meshes alone."
 
 msgid "To set up a volume, you create a mesh that defines the bounds within which the volume exists. In the material you typically remove the surface nodes and instead connect volume nodes to define the shading inside the volume. For effects such as absorption in glass you can use both a surface and volume shader. The world can also use a volume shader to create effects such as mist."
-msgstr "Tới đặt lên/trên một âm lượng, bạn tạo một khung lưới that defines the ranh giới within cái mà/tức the âm lượng tồn tại. Vào the nguyên vật liệu bạn typically xóa the bề mặt nút và instead kết nối âm lượng nút tới define the tô bóng bên trong the âm lượng. For hiệu ứng such tựa như độ hấp thụ vào glass bạn có thể sử dụng cả hai một bề mặt và âm lượng bộ tô bóng. The thế giới có thể also sử dụng một âm lượng bộ tô bóng tới tạo hiệu ứng such tựa như sương mù."
+msgstr "To set up a volume, you create a mesh that defines the bounds within which the volume exists. In the material you typically remove the surface nodes and instead connect volume nodes to define the shading inside the volume. For effects such as absorption in glass you can use both a surface and volume shader. The world can also use a volume shader to create effects such as mist."
 
+# Tô Bóng -- Shading
 msgid "Shading"
-msgstr "Tô Bóng -- Shading"
+msgstr "Tô Bóng"
 
+# Thể Tích Nguyên Tắc -- Principled Volume
 msgid "Principled Volume"
-msgstr "Thể Tích Nguyên Tắc -- Principled Volume"
+msgstr "Thể Tích Nguyên Tắc"
 
+# :doc:`Thể Tích Nguyên Tắc -- Principled Volume </render/shader_nodes/shader/volume_principled>` is a physically-based volume shader that can be used to create a wide range of volume materials. It supports scattering, absorption and emission in one easy to use node. Fire can be rendered with blackbody emission.
 msgid ":doc:`Principled Volume </render/shader_nodes/shader/volume_principled>` is a physically-based volume shader that can be used to create a wide range of volume materials. It supports scattering, absorption and emission in one easy to use node. Fire can be rendered with blackbody emission."
 msgstr ":doc:`Principled Volume </render/cycles/nodes/types/shaders/volume_principled>` is a physically-based volume shader that can be used to create a wide range of volume materials. It supports scattering, absorption and emission in one easy to use node. Fire can be rendered with blackbody emission."
 
 msgid "Smoke and fire rendered with Principled Volume shader."
-msgstr "Khói và lửa kết xuất với Nguyên Tắc Âm Lượng bộ tô bóng."
+msgstr "Smoke and fire rendered with Principled Volume shader."
 
 msgid "Volume Components"
-msgstr "-- Volume Components"
+msgstr "Volume Components"
 
 msgid "For more control, volume shading components can be manually combined into a custom shader setup."
-msgstr "For nhiều/lớn hơn điều khiển, âm lượng tô bóng components có thể be thủ công kết hợp thành một tùy chọn bộ tô bóng sắp đặt -- setup."
+msgstr "For more control, volume shading components can be manually combined into a custom shader setup."
 
+# :doc:`Hấp Thụ Thể Tích -- Volume Absorption </render/shader_nodes/shader/volume_absorption>` will absorb part of the light as it passes through the volume. This can be used to shade for example black smoke or colored glass objects, or mixed with the volume scatter node. This node is similar to the transparent BSDF node, it blocks part of the light and lets other light pass straight through.
 msgid ":doc:`Volume Absorption </render/shader_nodes/shader/volume_absorption>` will absorb part of the light as it passes through the volume. This can be used to shade for example black smoke or colored glass objects, or mixed with the volume scatter node. This node is similar to the transparent BSDF node, it blocks part of the light and lets other light pass straight through."
 msgstr ":doc:`Volume Absorption </render/cycles/nodes/types/shaders/volume_absorption>` will absorb part of the light as it passes through the volume. This can be used to shade for example black smoke or colored glass objects, or mixed with the volume scatter node. This node is similar to the transparent BSDF node, it blocks part of the light and lets other light pass straight through."
 
+# :doc:`Tán Xạ Thể Tích -- Volume Scatter </render/shader_nodes/shader/volume_scatter>` lets light scatter in other directions as it hits particles in the volume. The anisotropy defines in which direction the light is more likely to scatter. A value of 0 will let light scatter evenly in all directions (similar to the diffuse BSDF node), negative values let light scatter mostly backwards, and positive values let light scatter mostly forward. This can be used to shade white smoke or clouds for example.
 msgid ":doc:`Volume Scatter </render/shader_nodes/shader/volume_scatter>` lets light scatter in other directions as it hits particles in the volume. The anisotropy defines in which direction the light is more likely to scatter. A value of 0 will let light scatter evenly in all directions (similar to the diffuse BSDF node), negative values let light scatter mostly backwards, and positive values let light scatter mostly forward. This can be used to shade white smoke or clouds for example."
 msgstr ":doc:`Volume Scatter </render/cycles/nodes/types/shaders/volume_scatter>` lets light scatter in other directions as it hits particles in the volume. The anisotropy defines in which direction the light is more likely to scatter. A value of 0 will let light scatter evenly in all directions (similar to the diffuse BSDF node), negative values let light scatter mostly backwards, and positive values let light scatter mostly forward. This can be used to shade white smoke or clouds for example."
 
+# :doc:`Phát Xạ -- Emission </render/shader_nodes/shader/emission>` will emit light from the volume, for example for fire.
 msgid ":doc:`Emission </render/shader_nodes/shader/emission>` will emit light from the volume, for example for fire."
 msgstr ":doc:`Emission </render/cycles/nodes/types/shaders/emission>` will emit light from the volume, for example for fire."
 
 msgid "Volume Absorption, Scatter and Emission"
-msgstr "Âm Lượng Độ Hấp Thụ, Scatter và Phát Xạ"
+msgstr "Volume Absorption, Scatter and Emission"
 
+# Thuộc Tính -- Attributes
 msgid "Attributes"
-msgstr "Thuộc Tính -- Attributes"
+msgstr "Thuộc Tính"
 
 msgid "When rendering smoke and fire, volume attributes are used to define the shape and shading of the volume. The Principled Volume shader will use them by default, while custom volume shaders can use the Attribute node to get attributes such as density, color and temperature."
-msgstr "When kết xuất -- render khói và lửa, âm lượng thuộc tính are sử dụng tới define the hình dạng và tô bóng của the âm lượng. The Nguyên Tắc Âm Lượng bộ tô bóng sẽ sử dụng them by mặc định, while tùy chọn âm lượng bộ tô bóng -- shaders có thể sử dụng the Thuộc Tính nút tới get thuộc tính such tựa như tỷ trọng, màu sắc và nhiệt độ."
+msgstr "When rendering smoke and fire, volume attributes are used to define the shape and shading of the volume. The Principled Volume shader will use them by default, while custom volume shaders can use the Attribute node to get attributes such as density, color and temperature."
 
+# Tỷ Trọng -- Density
 msgid "Density"
-msgstr "Tỷ Trọng -- Density"
+msgstr "Tỷ Trọng"
 
 msgid "All volume shaders have a density input. The density defines how much of the light will interact with the volume, getting absorbed or scattered, and how much will pass straight through. For effects such as smoke you would specify a density field to indicate where in the volume there is smoke and how much (density bigger than 0), and where there is no smoke (density equals 0)."
-msgstr "Toàn Bộ âm lượng bộ tô bóng -- shaders have một tỷ trọng đầu vào. The tỷ trọng defines thế nào much của the nguồn/ánh sáng sẽ interact với the âm lượng, getting absorbed hoặc scattered, và thế nào much sẽ lượt thẳng through. For hiệu ứng such tựa như khói bạn would specify một tỷ trọng trường tới chỉ ra/báo hiệu where vào the âm lượng kia/có is khói và thế nào much (tỷ trọng bigger than 0), và where kia/có is no khói (tỷ trọng equals 0)."
+msgstr "All volume shaders have a density input. The density defines how much of the light will interact with the volume, getting absorbed or scattered, and how much will pass straight through. For effects such as smoke you would specify a density field to indicate where in the volume there is smoke and how much (density bigger than 0), and where there is no smoke (density equals 0)."
 
 msgid "Volumes in the real world consist of particles, a higher density means there are more particles per unit volume. More particles means there is a higher chance for light to collide with a particle and get absorbed or scattered, rather than passing straight through."
-msgstr "Thể Tích/Vùng Lưu Trữ vào the real thế giới consist của hạt, một cao hơn tỷ trọng means kia/có are nhiều/lớn hơn hạt per unit âm lượng. Nhiều/Lớn Hơn hạt means kia/có is một cao hơn chance for nguồn/ánh sáng tới collide với một hạt và get absorbed hoặc scattered, rather than passing thẳng through."
+msgstr "Volumes in the real world consist of particles, a higher density means there are more particles per unit volume. More particles means there is a higher chance for light to collide with a particle and get absorbed or scattered, rather than passing straight through."
 
+# Thể Tích Khung Lưới -- Mesh Volumes
 msgid "Mesh Volumes"
-msgstr "Thể Tích Khung Lưới -- Mesh Volumes"
+msgstr "Thể Tích Khung Lưới"
 
 msgid "Meshes used for volume render should be closed and :term:`manifold`. That means that there should be no holes in the mesh. Each edge must be connected to exactly two faces such that there are no holes or T-shaped faces where three or more faces are connected to an edge."
-msgstr "Khung Lưới sử dụng for âm lượng kết xuất should be đóng/kín/gần và :term:`đa tạp -- manifold`. That means that kia/có should be no lỗ hổng vào the khung lưới. Each cạnh must be kết nối tới exactly hai bề mặt such that kia/có are no lỗ hổng hoặc T-shaped bề mặt where ba hoặc nhiều/lớn hơn bề mặt are kết nối tới một cạnh."
+msgstr "Meshes used for volume render should be closed and :term:`đa tạp -- manifold`. That means that there should be no holes in the mesh. Each edge must be connected to exactly two faces such that there are no holes or T-shaped faces where three or more faces are connected to an edge."
 
 msgid "Normals must point outside for correct results. The normals are used to determine if a ray enters or exits a volume, and if they point in a wrong direction, or there is a hole in the mesh, then the renderer is unable to decide what is the inside or outside of the volume."
-msgstr "Pháp Tuyến must điểm/chấm bên ngoài for -- correct results. The pháp tuyến are sử dụng tới determine if một ray enters hoặc exits một âm lượng, và if they điểm/chấm vào một wrong chiều hướng, hoặc kia/có is một hole vào the khung lưới, then the renderer is unable tới decide cái gì is the bên trong hoặc bên ngoài của the âm lượng."
+msgstr "Normals must point outside for correct results. The normals are used to determine if a ray enters or exits a volume, and if they point in a wrong direction, or there is a hole in the mesh, then the renderer is unable to decide what is the inside or outside of the volume."
 
 msgid "These rules are the same as for rendering glass refraction correctly."
-msgstr "These -- rules are the same tựa như for kết xuất -- render glass khúc xạ correctly."
+msgstr "These rules are the same as for rendering glass refraction correctly."
 
 msgid "World Volume"
-msgstr "-- World Volume"
+msgstr "World Volume"
 
 msgid "A volume shader can also be applied to the world, filling the entire space."
-msgstr "Một âm lượng bộ tô bóng có thể also be applied tới the thế giới, filling the entire cách/khoảng trống/không gian."
+msgstr "A volume shader can also be applied to the world, filling the entire space."
 
 msgid "Currently, this is most useful for night time or other dark scenes, as the world surface shader or sun lights will have no effect if a volume shader is used. This is because the world background is assumed to be infinitely far away, which is accurate enough for the sun for example. However, for modeling effects such as fog or atmospheric scattering, it is not a good assumption that the volume fills the entire space, as most of the distance between the sun and the earth is empty space. For such effects it is be better to create a volume object surrounding the scene. The size of this object will determine how much light is scattered or absorbed."
-msgstr "Currently, cái/điều này is most useful for night thời gian hoặc cái/sắp đặt khác dark cảnh, tựa như the thế giới bề mặt bộ tô bóng hoặc mặt trời nguồn/ánh sáng sẽ have no hiệu ứng if một âm lượng bộ tô bóng is sử dụng. Cái/Điều Này is because the thế giới màu/ảnh/nền is assumed tới be infinitely xa away, cái mà/tức is chính xác enough for the mặt trời for ví dụ -- example. However, for kiến tạo mô hình -- modeling hiệu ứng such tựa như fog hoặc atmospheric scattering, it is đảo nghịch một tốt assumption that the âm lượng fills the entire cách/khoảng trống/không gian, tựa như most của the khoảng cách between the mặt trời và the earth is phần tử trống/rỗng cách/khoảng trống/không gian. For such hiệu ứng it is be better tới tạo một âm lượng vật thể surrounding the cảnh. The kích thước của cái/điều này vật thể sẽ determine thế nào much nguồn/ánh sáng is scattered hoặc absorbed."
+msgstr "Currently, this is most useful for night time or other dark scenes, as the world surface shader or sun lights will have no effect if a volume shader is used. This is because the world background is assumed to be infinitely far away, which is accurate enough for the sun for example. However, for modeling effects such as fog or atmospheric scattering, it is not a good assumption that the volume fills the entire space, as most of the distance between the sun and the earth is empty space. For such effects it is be better to create a volume object surrounding the scene. The size of this object will determine how much light is scattered or absorbed."
 
+# Đa Tán Xạ -- Multiple Scattering
 msgid "Multiple Scattering"
-msgstr "Đa Tán Xạ -- Multiple Scattering"
+msgstr "Đa Tán Xạ"
 
 msgid "Real-world effects such as scattering in clouds or subsurface scattering require many scattering bounces. However, unbiased rendering of such effects can be noisy, so by default the number of bounces is zero in Cycles, and no support is available in Eevee. The effect you get when rendering with zero volume bounces is what is known as \"single scattering\", the effect from more bounces is \"multiple scattering\"."
-msgstr "Real-world hiệu ứng such tựa như scattering vào mây hoặc dưới bề mặt scattering require many scattering lượng bật nảy -- lượng bật nảy -- lượng bật nảy -- lượng bật nảy -- bounces. However, unbiased kết xuất -- render của such hiệu ứng có thể be noisy, so by mặc định the số của lượng bật nảy -- lượng bật nảy -- lượng bật nảy -- lượng bật nảy -- bounces is không vào Tuần Hoàn -- Cycles, và no hỗ trợ is khả dụng vào Eevee. The hiệu ứng bạn get when kết xuất -- render với không âm lượng lượng bật nảy -- lượng bật nảy -- lượng bật nảy -- lượng bật nảy -- bounces is cái gì is known tựa như \"đơn/một cánh scattering\", the hiệu ứng từ nhiều/lớn hơn lượng bật nảy -- lượng bật nảy -- lượng bật nảy -- lượng bật nảy -- bounces is \"multiple scattering\"."
+msgstr "Real-world effects such as scattering in clouds or subsurface scattering require many scattering bounces. However, unbiased rendering of such effects can be noisy, so by default the number of bounces is zero in Cycles, and no support is available in Eevee. The effect you get when rendering with zero volume bounces is what is known as \"single scattering\", the effect from more bounces is \"multiple scattering\"."
 
 msgid "For rendering materials like skin or milk that require multiple scattering, subsurface scattering is more efficient and easier to control. Particularly the random walk method can accurately render such materials."
-msgstr "For kết xuất -- kết xuất nguyên vật liệu like da hoặc milk that require multiple scattering, dưới bề mặt scattering is nhiều/lớn hơn efficient và easier tới điều khiển. Particularly the ngẫu nhiên đi bộ phương pháp có thể accurately kết xuất such nguyên vật liệu."
+msgstr "For rendering materials like skin or milk that require multiple scattering, subsurface scattering is more efficient and easier to control. Particularly the random walk method can accurately render such materials."
 
 msgid "For materials such as clouds or smoke that do not have a well defined surface, volume rendering is required. These look best with many scattering bounces, but in practice one might have to limit the number of bounces to keep render times acceptable."
-msgstr "For nguyên vật liệu such tựa như mây hoặc khói that làm đảo nghịch have một well defined bề mặt, âm lượng kết xuất -- kết xuất is required. These nhìn/dáng vẻ best với many scattering lượng bật nảy -- lượng bật nảy -- bounces, but vào practice một might have tới giới hạn the số của lượng bật nảy -- lượng bật nảy -- bounces tới -- keep kết xuất times acceptable."
+msgstr "For materials such as clouds or smoke that do not have a well defined surface, volume rendering is required. These look best with many scattering bounces, but in practice one might have to limit the number of bounces to keep render times acceptable."
 

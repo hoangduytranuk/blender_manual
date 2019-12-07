@@ -16,14 +16,13 @@
 import sys
 import os
 
-
 # -----------------------------------------------------------------------------
 # Local Vars
 #
 # Not used directly by Sphinx, only used by this file.
 #
 
-blender_version = '2.81'
+blender_version = '2.82'
 
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -53,7 +52,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     '404',
     #'process_doctree'
-    #'TranslateTitleLines'
+    #'TranslatePO'
 ]
 
 # Is there a better way to check for PDF building?
@@ -193,7 +192,6 @@ if html_theme == "sphinx_rtd_theme":
     "navigation_depth": 4,
     "canonical_url": "https://docs.blender.org/manual/en/latest/",
     }
-
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.

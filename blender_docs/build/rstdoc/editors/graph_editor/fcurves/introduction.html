@@ -587,8 +587,7 @@ For the transitional effects, this is basically
       </term>
       <definition>
        <paragraph>
-        Curves ends are straight lines (linear), as defined by their first two keyframes
-(respectively their last two keyframes).
+        Curves ends are straight lines (linear), as defined by the slope of their first and last keyframes.
        </paragraph>
        <figure ids="id9">
         <image candidates="{'*': 'images/editors_graph-editor_fcurves_introduction_extrapolate2.png'}" uri="images/editors_graph-editor_fcurves_introduction_extrapolate2.png" width="300px"/>
@@ -621,12 +620,45 @@ are located in the
      Handle Types
     </title>
     <paragraph>
-     There is another curve option quite useful for Bézier-interpolated curves.
-You can set the type of handle to use for the curve points
+     When using Bézier-interpolated curves it is possible to control the slope of the curve at the
+control points. This is done via the curve point
+     <emphasis>
+      handles
+     </emphasis>
+     ; you can set the type of handle to use
+for the curve points by pressing
      <literal classes="kbd">
       V
      </literal>
-     .
+     or choosing Key, Handle Type in the graph editor menu.
+Each curve point can have a different handle type, even within the same curve.
+    </paragraph>
+    <paragraph>
+     There are three automatic modes, ‘
+     <emphasis>
+      Automatic
+     </emphasis>
+     ’, ‘
+     <emphasis>
+      Auto Clamped
+     </emphasis>
+     ’, and ‘
+     <emphasis>
+      Vector
+     </emphasis>
+     ’, where Blender
+automatically determines the curve’s slope at each control point. The neighbouring control points
+have the most influence of the slope, and points further away have a smaller influence. This can be
+controlled per F-Curve with the
+     <reference internal="True" refuri="#graph-editor-auto-handle-smoothing">
+      <inline classes="std std-ref">
+       Auto Handle Smoothing
+      </inline>
+     </reference>
+     properties.
+    </paragraph>
+    <paragraph>
+     By using the other, non-automatic modes, you have full manual control over the slope.
     </paragraph>
     <definition_list>
      <definition_list_item>
@@ -668,8 +700,12 @@ changes in the curve direction between keyframes (S-shapes).
       </term>
       <definition>
        <paragraph>
-        Creates linear interpolation between keyframes.
-The linear segments remain if keyframe centers are moved. If handles are moved, the handle becomes Free.
+        Creates automatic linear interpolation between keyframes. The segments remain linear when
+keyframe centers are moved. However, when the handles are moved, the handle type switches to
+        <emphasis>
+         Free
+        </emphasis>
+        .
        </paragraph>
        <figure ids="id12">
         <image candidates="{'*': 'images/editors_graph-editor_fcurves_introduction_vector.png'}" uri="images/editors_graph-editor_fcurves_introduction_vector.png" width="400px"/>
@@ -685,7 +721,8 @@ The linear segments remain if keyframe centers are moved. If handles are moved, 
       </term>
       <definition>
        <paragraph>
-        The two handles of the curve point are locked together to always point in exactly opposite directions.
+        The two handles of the curve point are locked together to always point in exactly opposite
+directions. This results in a curve that is always smooth at the control point.
        </paragraph>
        <figure ids="id13">
         <image candidates="{'*': 'images/editors_graph-editor_fcurves_introduction_aligned.png'}" uri="images/editors_graph-editor_fcurves_introduction_aligned.png" width="400px"/>
@@ -701,7 +738,8 @@ The linear segments remain if keyframe centers are moved. If handles are moved, 
       </term>
       <definition>
        <paragraph>
-        The handles can be moved completely independently.
+        The handles can be moved completely independently, and thus can result in a sharp change of
+direction.
        </paragraph>
        <figure ids="id14">
         <image candidates="{'*': 'images/editors_graph-editor_fcurves_introduction_free.png'}" uri="images/editors_graph-editor_fcurves_introduction_free.png" width="400px"/>

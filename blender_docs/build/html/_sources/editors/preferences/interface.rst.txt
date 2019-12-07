@@ -27,9 +27,10 @@ Tooltips
    gives the associated hotkey (if any).
 Python Tooltips
    Displays a property's Python information below the tooltip.
-Developer Extras
-   .. _prefs-interface-dev-extras:
 
+.. _prefs-interface-dev-extras:
+
+Developer Extras
    Show settings and menu items which are intended to help developers, this includes:
 
    Button Context Menu
@@ -69,6 +70,8 @@ Navigation Controls
    .. note::
 
       If you're familiar with navigation key shortcuts, this can be disabled.
+
+.. _prefs-interface-color-picker-type:
 
 Color Picker Type
    Choose which type of :term:`color space` you prefer. It will show when clicking :kbd:`LMB` on any color field.

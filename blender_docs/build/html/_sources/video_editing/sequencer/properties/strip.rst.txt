@@ -10,8 +10,8 @@ Type
    Strip type represented by an icon.
 Name
    You can name or rename your strips here.
-Mute (checkbox)
-   Strip will not produce any output.
+Mute
+   If checked the strip will not produce any output.
 
 
 Adjust Panel
@@ -156,11 +156,11 @@ MPEG Preseek
    based on the specified amount of previous frames (e.g. 15 for MPEG-2 DVD).
 Color Space
    To specify the color space of the source file.
-Alpha mode
+Alpha Mode
    If the source file has an Alpha (transparency) channel, you can choose:
 
    :term:`Straight Alpha` or :term:`Premultiplied Alpha`
-Stream index
+Stream Index
    Movie strip only -- For files with several movie streams, use the stream with the given index.
 Deinterlace
    Removes fields in a video file. For example,

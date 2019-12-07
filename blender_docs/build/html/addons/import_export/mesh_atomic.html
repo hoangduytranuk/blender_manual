@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Atomic Blender (PDB/XYZ) &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/import_export/mesh_atomic.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Paper Model" href="paper_model.html" />
+    <link rel="prev" title="Web3D X3D/VRML2" href="io_scene_x3d.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.82 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">Góc Nhìn 3D -- 3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Import-Export</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="anim_camera.html">Camera Animation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_nuke_chan.html">Nuke Animation (chan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coat3D.html">3D-Coat Applink</a></li>
+<li class="toctree-l4"><a class="reference internal" href="images_as_planes.html">Images as Planes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_anim_bvh.html">BioVision Motion Capture (BVH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_curve_svg.html">Scalable Vector Graphics (SVG)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_mesh_ply.html">Stanford PLY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_mesh_stl.html">STL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_mesh_uv_layout.html">UV Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_node_shaders_info.html">Import &amp; Export of Node Shaders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_fbx.html">FBX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_gltf2.html">glTF 2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_obj.html">Wavefront OBJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_scene_x3d.html">Web3D X3D/VRML2</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Atomic Blender (PDB/XYZ)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="paper_model.html">Paper Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pc2.html">Pointcache (pc2)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_dxf.html">AutoCAD DXF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shape_mdd.html">NewTek MDD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Rigging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.82 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Trình Bổ Sung -- Add-ons</a> &raquo;</li>
+        
+          <li><a href="index.html">Import-Export</a> &raquo;</li>
+        
+      <li>Atomic Blender (PDB/XYZ)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/addons/import_export/mesh_atomic.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="atomic-blender-pdb-xyz">
+<h1>Atomic Blender (PDB/XYZ)<a class="headerlink" href="#atomic-blender-pdb-xyz" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Category:</th><td class="field-body">Import-Export</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">File ‣ Import ‣ PDB (.pdb)</span>
+<span class="menuselection">File ‣ Import ‣ XYZ (.xyz)</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">3D View ‣ Sidebar ‣ Create ‣ Atomic Blender Utilities</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="atomic-blender-utilities">
+<h2>Atomic Blender Utilities<a class="headerlink" href="#atomic-blender-utilities" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Atomic Blender Utilities</em> panel make your life easier during manipulating atoms of imported structures.</p>
+<div class="section" id="custom-data-file">
+<h3>Custom Data File<a class="headerlink" href="#custom-data-file" title="Permalink to this headline">¶</a></h3>
+<p>A separate custom data file containing all types of radii and colors of the atoms can be loaded.
+Such an option is useful when one wants to use predefined values for radii and colors.
+An example can be downloaded from here: <a class="reference external" href="http://development.root-1.de/X-Download/atom_info.dat">Custom data file</a>.</p>
+<p>The custom data file is an ASCII file, which can be duplicated and modified by the user.
+The radius and/or color of the atoms can be permanently changed as follows:
+Search the name of the atom and change the radius (<code class="docutils literal notranslate"><span class="pre">Radius</span> <span class="pre">used</span></code>).
+Do the same with the RGB values for the color.
+The value RGB(1.0, 1.0, 1.0) corresponds to white and RGB(0.0, 0.0, 0.0) is black.</p>
+<p>The data file needs to be loaded first. The colors and radii are changed after executing <em>Apply</em>.
+Note that only selected atoms are changed.</p>
+</div>
+<div class="section" id="measure-distances">
+<h3>Measure Distances<a class="headerlink" href="#measure-distances" title="Permalink to this headline">¶</a></h3>
+<p>This is to measure the distance of two objects in Object Mode but also in Edit Mode. The unit is Ångström.</p>
+</div>
+<div class="section" id="all-changes-concern">
+<h3>All Changes Concern<a class="headerlink" href="#all-changes-concern" title="Permalink to this headline">¶</a></h3>
+<p>This selector determines which objects are subject for changes defined by the options directly below.
+The changes are either applied on only selected objects or on all objects in the current scene and layer.</p>
+</div>
+<div class="section" id="change-atom-size">
+<h3>Change Atom Size<a class="headerlink" href="#change-atom-size" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Type of Radii</dt>
+<dd><dl class="first last docutils">
+<dt>Type</dt>
+<dd>With this selector the type of radii can be chosen.
+Either one uses Predefined, Atomic or Van der Waals radii.
+The default values for Predefined radii are the Atomic radii.</dd>
+<dt>Charge</dt>
+<dd>For option <em>Ionic radii</em>, the charge state can be chosen and
+the radii of selected objects are instantaneously changed.
+The best is to first select one type of atom (e.g. only all hydrogen ones) and then to apply the charge state.</dd>
+</dl>
+</dd>
+<dt>Radii in pm</dt>
+<dd>All radii of a specific type of atom can be manipulated.
+Type in the name of the atom (e.g. 'Hydrogen') and choose the radius in picometer.</dd>
+<dt>Radii by Scale</dt>
+<dd>This modifies the radii of all atoms with one scaling factor.
+Type in the scaling factor and increase or decrease the size of the radii by
+pushing <em>Bigger</em> button or <em>Smaller</em> button, respectively.</dd>
+</dl>
+</div>
+<div class="section" id="change-stick-size">
+<h3>Change Stick Size<a class="headerlink" href="#change-stick-size" title="Permalink to this headline">¶</a></h3>
+<p>The diameter of the sticks can be changed, too.
+The buttons <em>Bigger</em> and <em>Smaller</em> allow increasing or decreasing the diameter, respectively.
+The scale factor determines, how strong the change of diameter will be.
+By using the Outliner, one can apply these operators on only a selection of sticks
+(e.g. only the sticks of the hydrogen atoms).</p>
+</div>
+<div class="section" id="change-atom-shape">
+<h3>Change Atom Shape<a class="headerlink" href="#change-atom-shape" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to change the shape (sphere, cube, icosphere, etc.) and material of the atoms.
+First, select your atoms in the 3D Viewport or the Outliner.</p>
+<dl class="docutils">
+<dt>Shape</dt>
+<dd>Choose the shape in the first selector.</dd>
+<dt>Material</dt>
+<dd>Choose one of the materials in the second selector.
+The materials are only examples, further refinements can be done in Materials tab of the Properties editor.</dd>
+<dt>Special</dt>
+<dd>Here, you can choose an object with a special shape, material, etc.
+Such objects are quite nice to represent defects in atomic structures.
+When choosing such a special object, you cannot anymore separately choose the shape and material from above.
+In Objects and Materials tabs of the Properties editor further changes can be done.</dd>
+<dt>Replace</dt>
+<dd>After all, push the <em>Replace</em> button.
+The shape and/or material of all selected atoms are then changed.
+This option works for objects and dupliverts object structures.</dd>
+<dt>Default</dt>
+<dd>If you want to have the default values (NURBS spheres and specific element colors and sizes)
+of selected atoms push the <em>Default</em> button.</dd>
+</dl>
+</div>
+<div class="section" id="separate-atoms">
+<h3>Separate Atoms<a class="headerlink" href="#separate-atoms" title="Permalink to this headline">¶</a></h3>
+<p>When structures are imported via the PDB or XYZ importer the atoms are put into
+a so-called dupliverts structure, somewhat into 'groups' of elements (e.g. all hydrogen atoms).
+Single atoms can be deleted or displaced in Edit Mode of Blender
+by modifying the properties (position) of the vertices. However,
+they are always a part of the structure and are not independent objects.
+Sometimes one would like to mark single atoms or replace the atoms by something different:
+For example: Imagine you have a NaCl(001) surface where you would like to replace
+an atom by an atomic defect in form of a ball with a different color.</p>
+<p>To separate single atoms, one needs to select the atom (vertices) first in Edit Mode.
+In the <em>Atomic Blender Utilities</em> panel, the <em>Object</em> selector and the <em>Separate</em> button appear at the bottom.
+If the selector remains on <em>Unchanged</em> the type of object (NURBS, mesh, meta) and its properties will not be changed.
+If desired also an other type of object can chosen, which then replaces the standard type of object.</p>
+<p>After having chosen the type of object use bottom <em>Separate Atoms</em> to separate the selected atoms:
+the atoms are then single, new objects, which can be manipulated in any way.
+They appear in the Outliner and carry the suffix <code class="docutils literal notranslate"><span class="pre">_sep</span></code>.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Gợi ý</p>
+<p>Converting All Atoms of a Dupliverts Structure to Real Objects</p>
+<p class="last">Do the following: Select the whole structure (molecules, surface, etc.) with the mouse.
+Go to objects <span class="menuselection">Object ‣ Apply ‣ Make Instances Real</span>.
+With this you produce real objects! In the Outliner delete the remaining dupliverts structures,
+named like &quot;Carbon&quot;, &quot;Hydrogen&quot;, etc.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="paper_model.html" class="btn btn-neutral float-right" title="Paper Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="io_scene_x3d.html" class="btn btn-neutral float-left" title="Web3D X3D/VRML2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.82 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

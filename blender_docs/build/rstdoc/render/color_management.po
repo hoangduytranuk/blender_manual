@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-11-13 01:42+0000\n"
+"POT-Creation-Date: 2019-11-27 19:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,249 +17,277 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
+# Quản Lý Màu Sắc -- Color Management
 msgid "Color Management"
-msgstr "Quản Lý Màu Sắc -- Color Management"
+msgstr "Quản Lý Màu Sắc"
 
 msgid "Color management is important to create renders and assets that are physically accurate and look great on multiple display devices. It is used both to ensure all parts of the pipeline interpret colors correctly, and to make artistic changes like exposure and color grading."
-msgstr "Màu Sắc management is important tới tạo renders và assets that are physically chính xác và nhìn/dáng vẻ great bật multiple hiển thị devices. It is sử dụng cả hai tới ensure toàn bộ các phần của the quy trình interpret màu sắc correctly, và tới tạo artistic changes like độ phơi sáng và màu sắc grading."
+msgstr "Color management is important to create renders and assets that are physically accurate and look great on multiple display devices. It is used both to ensure all parts of the pipeline interpret colors correctly, and to make artistic changes like exposure and color grading."
 
 msgid "Different views and exposures of the same render."
-msgstr "Khác đa góc nhìn và exposures của the same kết xuất."
+msgstr "Different views and exposures of the same render."
 
 msgid "Blender's color management is based on the `OpenColorIO <http://opencolorio.org/>`__ library. By using the same OpenColorIO configuration in multiple applications, the same color spaces and transforms will be available for consistent results."
-msgstr "Blender's màu sắc management is based bật the `OpenColorIO <http://opencolorio.org/>`__ thư viện. By sử dụng/dùng the same OpenColorIO configuration vào multiple trình ứng dụng, the same màu sắc không gian/dấu cách trống và biến hóa sẽ be khả dụng for consistent results."
+msgstr "Blender's color management is based on the `OpenColorIO <http://opencolorio.org/>`__ library. By using the same OpenColorIO configuration in multiple applications, the same color spaces and transforms will be available for consistent results."
 
+# Quy Trình Làm Việc -- Workflow
 msgid "Workflow"
-msgstr "Quy Trình Làm Việc -- Workflow"
+msgstr "Quy Trình Làm Việc"
 
 msgid "Scene Linear Color Space"
-msgstr "-- Scene Linear Color Space"
+msgstr "Scene Linear Color Space"
 
+# For correct results, different :term:`color spaces <color space>` are needed for rendering, display and storage of images. Rendering and compositing is best done in *scene linear* color space, which corresponds more closely to nature, and makes computations more physically accurate.
 msgid "For correct results, different :term:`color spaces <color space>` are needed for rendering, display and storage of images. Rendering and compositing is best done in *scene linear* color space, which corresponds more closely to nature, and makes computations more physically accurate."
 msgstr "For correct results, different :term:`color spaces <color space>` are needed for rendering display and storage of images. Rendering and compositing is best done in scene *linear* color space, which corresponds more closely to nature, and makes computations more physically accurate."
 
 msgid "An example of a linear workflow."
-msgstr "Một ví dụ -- example của một tuyến tính quy trình làm việc."
+msgstr "An example of a linear workflow."
 
 msgid "If the colors are linear, it means that if in reality, we double the number of photons, the color values are also doubled. Put another way, if we have two photos/renders each with one of two lights on, and add those images together, the result would be the same as a render/photo with both lights on. It follows that such a radiometrically linear space is best for photorealistic rendering and compositing."
-msgstr "If the màu sắc are tuyến tính, it means that if vào reality, we đôi/hai cánh the số của photons, the màu sắc giá trị are also doubled. Put another đường lối/phương pháp/cách, if we have hai photos/renders each với một của hai nguồn/ánh sáng bật, và cộng thêm those hình ảnh cùng nhau/lại, the kết quả would be the same tựa như một kết xuất/photo với cả hai nguồn/ánh sáng bật. It follows that such một radiometrically tuyến tính cách/khoảng trống/không gian is best for photorealistic kết xuất -- render và tổng hợp."
+msgstr "If the colors are linear, it means that if in reality, we double the number of photons, the color values are also doubled. Put another way, if we have two photos/renders each with one of two lights on, and add those images together, the result would be the same as a render/photo with both lights on. It follows that such a radiometrically linear space is best for photorealistic rendering and compositing."
 
 msgid "However, these values do not directly correspond to human perception or the way display devices work. and image files are often stored in different color spaces. So we have to take care to do the right conversion into and out of this scene linear color space."
-msgstr "However, these giá trị làm đảo nghịch directly correspond tới human perception hoặc the đường lối/phương pháp/cách hiển thị devices work. và hình ảnh tập tin are often stored vào khác màu sắc không gian/dấu cách trống. So we have tới take care tới làm the phải -- conversion thành và ra của cái/điều này cảnh tuyến tính màu sắc cách/khoảng trống/không gian."
+msgstr "However, these values do not directly correspond to human perception or the way display devices work. and image files are often stored in different color spaces. So we have to take care to do the right conversion into and out of this scene linear color space."
 
+# Hiển Thị Các Biến Hóa -- Display Transforms
 msgid "Display Transforms"
-msgstr "Hiển Thị Các Biến Hóa -- Display Transforms"
+msgstr "Hiển Thị Các Biến Hóa"
 
 msgid "Transforming scene linear colors to display involves both technical and artistic choices."
-msgstr "Transforming cảnh tuyến tính màu sắc tới hiển thị involves cả hai technical và artistic choices."
+msgstr "Transforming scene linear colors to display involves both technical and artistic choices."
 
+# Correct display of renders requires a conversion to the display device color space. A computer monitor works differently from a digital cinema projector or HDTV, and so needs a different conversion.
 msgid "Correct display of renders requires a conversion to the display device color space. A computer monitor works differently from a digital cinema projector or HDTV, and so needs a different conversion."
 msgstr "Correct display of renders requires a conversion to the display device color space, which can be configured here. A computer monitor works differently from a digital cinema projector HDTV. The scene properties have these settings:"
 
 msgid "There is also an artistic choice to be made. Partially that is because display devices cannot display the full spectrum of colors and only have limited brightness, so we can squeeze the colors to fit in the gamut of the device. Besides that, it can also be useful to give the renders a particular look, e.g. as if they have been printed on real camera film. The default Filmic transform does this."
-msgstr "Kia/Có is also một artistic choice tới be made. Partially that is because hiển thị devices không thể hiển thị the toàn phần spectrum của màu sắc và only have limited độ sáng tối, so we có thể squeeze the màu sắc tới khít vào the gamut của the thiết bị. Besides that, it có thể also be useful tới give the renders một particular nhìn/dáng vẻ, e.g. tựa như if they have been printed bật real máy quay phim phim. The mặc định -- Filmic biến hóa does cái/điều này."
+msgstr "There is also an artistic choice to be made. Partially that is because display devices cannot display the full spectrum of colors and only have limited brightness, so we can squeeze the colors to fit in the gamut of the device. Besides that, it can also be useful to give the renders a particular look, e.g. as if they have been printed on real camera film. The default Filmic transform does this."
 
 msgid "Conversion from linear to display device space."
-msgstr "-- Conversion từ tuyến tính tới hiển thị thiết bị cách/khoảng trống/không gian."
+msgstr "Conversion from linear to display device space."
 
+# Không Gian Màu Sắc -- Color Space -- Image Color Spaces
 msgid "Image Color Spaces"
-msgstr "Không Gian Màu Sắc -- Color Space -- Image Color Spaces"
+msgstr "Không Gian Màu Sắc -- Color Space"
 
 msgid "When loading and saving media formats it is important to have color management in mind. File formats such as PNG or JPEG will typically store colors in a color space ready for display, not in a linear space. When they are used as textures in renders, they need to be converted to linear first, and when saving renders for display on the web, they also need to be converted to a display space."
-msgstr "When loading và -- -- saving media formats it is important tới have màu sắc management vào mind. Tập Tin formats such tựa như PNG hoặc JPEG sẽ typically store màu sắc vào một màu sắc cách/khoảng trống/không gian ready for hiển thị, đảo nghịch vào một tuyến tính cách/khoảng trống/không gian. When they are sử dụng tựa như chất liệu vào renders, they need tới be chuyển đổi tới tuyến tính đầu tiên/thứ nhất, và when -- -- saving renders for hiển thị bật the web, they also need tới be chuyển đổi tới một hiển thị cách/khoảng trống/không gian."
+msgstr "When loading and saving media formats it is important to have color management in mind. File formats such as PNG or JPEG will typically store colors in a color space ready for display, not in a linear space. When they are used as textures in renders, they need to be converted to linear first, and when saving renders for display on the web, they also need to be converted to a display space."
 
 msgid "For intermediate files in production, it is recommended to use *OpenEXR* files. These are always stored in scene linear color spaces, without any data loss. That makes them suitable to store renders that can later be composited, color graded and converted to different output formats."
-msgstr "For intermediate tập tin vào production, it is recommended tới sử dụng *`OpenEXR <https://en.wikipedia.org/wiki/OpenEXR>`__ -- OpenEXR* tập tin. These are luôn luôn stored vào cảnh tuyến tính màu sắc không gian/dấu cách trống, without bất cứ dữ liệu loss. That làm cho them suitable tới store renders that có thể later be composited, màu sắc graded và chuyển đổi tới khác đầu ra formats."
+msgstr "For intermediate files in production, it is recommended to use *OpenEXR* files. These are always stored in scene linear color spaces, without any data loss. That makes them suitable to store renders that can later be composited, color graded and converted to different output formats."
 
 msgid "Images can also contain data that is not actually a color. For example normal or displacement maps merely contain vectors and offsets. Such images should be marked as *Non-Color Data* so that no color space conversion happens on them."
-msgstr "Hình Ảnh có thể also contain dữ liệu that is đảo nghịch actually một màu sắc. For ví dụ -- example pháp tuyến hoặc phép/sự/dịch hình maps merely contain vectors và offsets. Such hình ảnh should be marked tựa như *Phi-Sắc Tính -- Non-Color Dữ Liệu* so that no màu sắc cách/khoảng trống/không gian -- conversion happens bật them."
+msgstr "Images can also contain data that is not actually a color. For example normal or displacement maps merely contain vectors and offsets. Such images should be marked as *Non-Color Data* so that no color space conversion happens on them."
 
+# Sắp Đặt -- Settings
 msgid "Settings"
-msgstr "Sắp Đặt -- Settings"
+msgstr "Sắp Đặt"
 
+# Tham Chiếu -- Reference
 msgid "Reference"
-msgstr "Tham Chiếu -- Reference"
+msgstr "Tham Chiếu"
 
 msgid "Panel"
-msgstr "Bảng -- Panel"
+msgstr "Bảng"
 
+# :menuselection:`Properties editor --> Render --> Color Management`
 msgid ":menuselection:`Properties editor --> Render --> Color Management`"
 msgstr ":menuselection:`Trình Biên Soạn Tính Chất (Properties editor) --> Cảnh (Scene) --> Quản Lý Màu Sắc (Color Management)`"
 
 msgid "Render settings for color management."
-msgstr "Kết Xuất sắp đặt for màu sắc management."
+msgstr "Render settings for color management."
 
+# Hiển Thị -- Display
 msgid "Display"
-msgstr "Hiển Thị -- Display"
+msgstr "Hiển Thị"
 
+# Thiết Bị Hiển Thị -- Display Device
 msgid "Display Device"
-msgstr "Thiết Bị Hiển Thị -- Display Device"
+msgstr "Thiết Bị Hiển Thị"
 
 msgid "The device that the image is being viewed on."
-msgstr "The thiết bị that the hình ảnh is being viewed bật."
+msgstr "The device that the image is being viewed on."
 
 msgid "Most computer monitors are configured for the sRGB color space, and so when working on a computer usually this option should just be left to the default. It would typically be changed when viewing the image on another display device connected to the computer, or when writing out image files intended to be displayed on another device."
-msgstr "Most computer monitors are configured for the Đỏ/Lục/Lam tiêu chuẩn -- sRGB màu sắc cách/khoảng trống/không gian, và so when working bật một computer usually cái/điều này tùy chọn should just be trái tới the mặc định. It would typically be đã thay đổi when viewing the hình ảnh bật another hiển thị thiết bị kết nối tới the computer, hoặc when viết/ghi -- writing ra hình ảnh tập tin intended tới be displayed bật another thiết bị."
+msgstr "Most computer monitors are configured for the sRGB color space, and so when working on a computer usually this option should just be left to the default. It would typically be changed when viewing the image on another display device connected to the computer, or when writing out image files intended to be displayed on another device."
 
 msgid "Rec709 is commonly used for HDTVs, while XYZ and DCI-P3 are common for digital projectors."
-msgstr "Rec709 is commonly sử dụng for HDTVs, while XYZ và DCI-P3 are sắp đặt chung -- common for digital máy chiếu."
+msgstr "Rec709 is commonly used for HDTVs, while XYZ and DCI-P3 are common for digital projectors."
 
 msgid "Color management can be disabled by setting the device to None."
-msgstr "Màu Sắc management có thể be tắt by setting the thiết bị tới Không/Có/Làm."
+msgstr "Color management can be disabled by setting the device to None."
 
+# Kết Xuất -- Render
 msgid "Render"
-msgstr "Kết Xuất -- Render"
+msgstr "Kết Xuất"
 
+# Góc Nhìn -- View
 msgid "View"
-msgstr "Góc Nhìn -- View"
+msgstr "Góc Nhìn"
 
 msgid "These are different ways to view the image on the same display device."
-msgstr "These are khác đường lối/phương pháp/cách tới góc nhìn the hình ảnh bật the same hiển thị thiết bị."
+msgstr "These are different ways to view the image on the same display device."
 
+# Tiêu Chuẩn -- Standard
 msgid "Standard"
-msgstr "Tiêu Chuẩn -- Standard"
+msgstr "Tiêu Chuẩn"
 
 msgid "Does no extra conversion besides the conversion for the display device. Often used for non-photorealistic results or video editing where a specific look is already baked into the input video."
-msgstr "Does no bổ sung -- -- conversion besides the -- -- conversion for the hiển thị thiết bị. Often sử dụng for non-photorealistic results hoặc phim phim video biên soạn where một specific nhìn/dáng vẻ is already baked thành the đầu vào phim phim video."
+msgstr "Does no extra conversion besides the conversion for the display device. Often used for non-photorealistic results or video editing where a specific look is already baked into the input video."
 
 msgid "Filmic"
-msgstr "-- Filmic"
+msgstr "Filmic"
 
 msgid "For photorealistic results and better handling of high dynamic range colors. The contrast can be adjusted by changing the *Look* option for the Filmic view transform."
-msgstr "For photorealistic results và better handling của cao tính năng động phạm vi màu sắc. The độ tương phản có thể be điều chỉnh by changing the *Nhìn/Dáng Vẻ* tùy chọn for the -- Filmic góc nhìn biến hóa."
+msgstr "For photorealistic results and better handling of high dynamic range colors. The contrast can be adjusted by changing the *Nhìn/Dáng Vẻ -- Look* option for the Filmic view transform."
 
+# -- Filmic -- Filmic Log
 msgid "Filmic Log"
-msgstr "-- Filmic -- Filmic Log"
+msgstr "-- Filmic"
 
 msgid "Converts to Filmic log color space. This can be used for export to color grading applications, or to inspect the image by flattening out very dark and light areas."
-msgstr "Chuyển Đổi tới -- Filmic loga màu sắc cách/khoảng trống/không gian. Cái/Điều Này có thể be sử dụng for xuất tới màu sắc grading trình ứng dụng, hoặc tới inspect the hình ảnh by flattening ra very dark và nguồn/ánh sáng vùng."
+msgstr "Converts to Filmic log color space. This can be used for export to color grading applications, or to inspect the image by flattening out very dark and light areas."
 
+# Nguyên Thủy/Thô Sơ -- Raw
 msgid "Raw"
-msgstr "Nguyên Thủy/Thô Sơ -- Raw"
+msgstr "Nguyên Thủy/Thô Sơ"
 
 msgid "Intended for inspecting the image but not for final export. Raw gives the image without any color space conversion."
-msgstr "Intended for inspecting the hình ảnh but đảo nghịch for kết thúc/kết cục/cuối cùng xuất. Nguyên Thủy/Thô Sơ -- Raw gives the hình ảnh without bất cứ màu sắc cách/khoảng trống/không gian -- conversion."
+msgstr "Intended for inspecting the image but not for final export. Raw gives the image without any color space conversion."
 
 msgid "False Color"
-msgstr "-- False Color"
+msgstr "False Color"
 
 msgid "Shows a heat map of image intensities, to visualize the dynamic range."
-msgstr "Hiển Thị/Biểu Hiện một nhiệt ánh xạ của hình ảnh intensities, tới visualize the tính năng động phạm vi."
+msgstr "Shows a heat map of image intensities, to visualize the dynamic range."
 
+# Độ Phơi Sáng -- Exposure
 msgid "Exposure"
-msgstr "Độ Phơi Sáng -- Exposure"
+msgstr "Độ Phơi Sáng"
 
 msgid "Used to control the image brightness (in stops) applied before color space conversion. It is calculated as follows: :math:`output\\_value = render\\_value × 2^{(exposure)}`"
-msgstr "Sử Dụng tới điều khiển the hình ảnh độ sáng tối (vào stops) applied trước màu sắc cách/khoảng trống/không gian -- conversion. It is calculated tựa như follows: :toán:`đầu ra\\_value = kết xuất\\_value × 2^{(độ phơi sáng)}`"
+msgstr "Used to control the image brightness (in stops) applied before color space conversion. It is calculated as follows: :math:`output\\_value = render\\_value × 2^{(exposure)}`"
 
 msgid "Gamma"
-msgstr "-- Gamma"
+msgstr "Gamma"
 
 msgid "Extra gamma correction applied after color space conversion. Note that the default display transforms already perform the appropriate conversion, so this mainly acts as an additional effect for artistic tweaks."
-msgstr "Bổ Sung gamma correction applied sau màu sắc cách/khoảng trống/không gian -- -- conversion. Ghi Chú that the mặc định hiển thị biến hóa already perform the appropriate -- -- conversion, so cái/điều này mainly acts tựa như một gia lượng hiệu ứng for artistic tweaks."
+msgstr "Extra gamma correction applied after color space conversion. Note that the default display transforms already perform the appropriate conversion, so this mainly acts as an additional effect for artistic tweaks."
 
+# Nhìn/Dáng Vẻ -- Look
 msgid "Look"
-msgstr "Nhìn/Dáng Vẻ -- Look"
+msgstr "Nhìn/Dáng Vẻ"
 
 msgid "Choose an artistic effect from a set of measured film response data which roughly emulates the look of certain film types. Applied before color space conversion."
-msgstr "Choose một artistic hiệu ứng từ một đặt của measured phim response dữ liệu cái mà/tức roughly emulates the nhìn/dáng vẻ của certain phim thể loại -- types. Applied trước màu sắc cách/khoảng trống/không gian -- conversion."
+msgstr "Choose an artistic effect from a set of measured film response data which roughly emulates the look of certain film types. Applied before color space conversion."
 
+# Dùng Đường Cong -- Use Curves
 msgid "Use Curves"
-msgstr "Dùng Đường Cong -- Use Curves"
+msgstr "Dùng Đường Cong"
 
 msgid "Adjust RGB Curves to control image colors before color space conversion. Read more about using the :ref:`ui-curve-widget`."
-msgstr "Điều Chỉnh ĐỎ, LỤC, LAM -- RGB Đường Cong tới điều khiển hình ảnh màu sắc trước màu sắc cách/khoảng trống/không gian -- conversion. Read nhiều/lớn hơn giới thiệu sử dụng/dùng the ."
+msgstr "Adjust RGB Curves to control image colors before color space conversion. Read more about using the :ref:`ui-curve-widget`Thành Tố Đường Cong -- Curve WidgetCurves to control image colors before color space conversion. Read more about using the :ref:`ui-curve-widget`."
 
+# Bộ Phối Hình -- Sequencer
 msgid "Sequencer"
-msgstr "Bộ Phối Hình -- Sequencer"
+msgstr "Bộ Phối Hình"
 
+# Không Gian Màu Sắc -- Color Space
 msgid "Color Space"
-msgstr "Không Gian Màu Sắc -- Color Space"
+msgstr "Không Gian Màu Sắc"
 
 msgid "The color space that the Sequencer operates in. By default, the Sequencer operates in sRGB space, but it can also be set to work in Linear space like the Compositing nodes, or another color space. Different color spaces will give different results for color correction, crossfades, and other operations."
-msgstr "The màu sắc cách/khoảng trống/không gian that the Bộ Phối Hình operates vào. By mặc định, the Bộ Phối Hình operates vào Đỏ/Lục/Lam tiêu chuẩn -- sRGB cách/khoảng trống/không gian, but it có thể also be đặt tới work vào Tuyến Tính cách/khoảng trống/không gian like the Tổng Hợp nút, hoặc another màu sắc cách/khoảng trống/không gian. Khác màu sắc không gian/dấu cách trống sẽ give khác results for màu sắc correction, crossfades, và cái/sắp đặt khác các thao tác."
+msgstr "The color space that the Sequencer operates in. By default, the Sequencer operates in sRGB space, but it can also be set to work in Linear space like the Compositing nodes, or another color space. Different color spaces will give different results for color correction, crossfades, and other operations."
 
+# Tập Tin Hình Ảnh -- Image Files
 msgid "Image Files"
-msgstr "Tập Tin Hình Ảnh -- Image Files"
+msgstr "Tập Tin Hình Ảnh"
 
 msgid "When working with image files, the default color space is usually the right one. If this is not the case, the color space of the image file can be configured in the image settings. A common situation where manual changes are needed is when working with or baking normal maps or displacement maps, for example. Such maps do not actually store colors, just data encoded as colors. Those images should be marked as *Non-Color Data*."
-msgstr "When working với hình ảnh tập tin, the mặc định màu sắc cách/khoảng trống/không gian is usually the phải một. If cái/điều này is đảo nghịch the kiểu chữ, the màu sắc cách/khoảng trống/không gian của the hình ảnh tập tin có thể be configured vào the hình ảnh sắp đặt. Một sắp đặt chung -- common situation where thủ công changes are needed is when working với hoặc nướng -- baking pháp tuyến maps hoặc phép/sự/dịch hình maps, for ví dụ -- example. Such maps làm đảo nghịch actually store màu sắc, just dữ liệu encoded tựa như màu sắc. Those hình ảnh should be marked tựa như *Phi-Sắc Tính -- Non-Color Dữ Liệu*."
+msgstr "When working with image files, the default color space is usually the right one. If this is not the case, the color space of the image file can be configured in the image settings. A common situation where manual changes are needed is when working with or baking normal maps or displacement maps, for example. Such maps do not actually store colors, just data encoded as colors. Those images should be marked as *Non-Color Data*."
 
 msgid "Image data-blocks will always store float buffers in memory in the scene linear color space, while a byte buffer in memory and files in a drive are stored in the color space specified with this setting:"
-msgstr "Hình Ảnh khối dữ liệu -- data-blocks sẽ luôn luôn store trôi nổi/float buffers vào bộ nhớ vào the cảnh tuyến tính màu sắc cách/khoảng trống/không gian, while một byte bộ đệm vào bộ nhớ và tập tin vào một drive are stored vào the màu sắc cách/khoảng trống/không gian specified với cái/điều này setting:"
+msgstr "Image data-blocks will always store float buffers in memory in the scene linear color space, while a byte buffer in memory and files in a drive are stored in the color space specified with this setting:"
 
 msgid "The color space of the image file on a drive. This depends on the file format, for example, PNG or JPEG images are often stored in sRGB, while OpenEXR images are stored in a linear color space. Some images such as normal, bump or stencil maps do not strictly contain 'colors', and on such values, no color space conversion should ever be applied. For such images, the color space should be set to *None*."
-msgstr "The màu sắc cách/khoảng trống/không gian của the hình ảnh tập tin bật một drive. Cái/Điều Này depends bật the tập tin định dạng/hình thức, for ví dụ -- example, PNG hoặc JPEG hình ảnh are often stored vào Đỏ/Lục/Lam tiêu chuẩn -- sRGB, while `OpenEXR <https://en.wikipedia.org/wiki/OpenEXR>`__ -- OpenEXR hình ảnh are stored vào một tuyến tính màu sắc cách/khoảng trống/không gian. Some hình ảnh such tựa như pháp tuyến, độ gồ ghề hoặc khuôn in maps làm đảo nghịch strictly contain 'màu sắc', và bật such giá trị, no màu sắc cách/khoảng trống/không gian -- conversion should ever be applied. For such hình ảnh, the màu sắc cách/khoảng trống/không gian should be đặt tới *Không/Có/Làm*."
+msgstr "The color space of the image file on a drive. This depends on the file format, for example, PNG or JPEG images are often stored in sRGB, while OpenEXR images are stored in a linear color space. Some images such as normal, bump or stencil maps do not strictly contain 'colors', and on such values, no color space conversion should ever be applied. For such images, the color space should be set to *Không/Có/Làm -- None*."
 
 msgid "By default only renders are displayed and saved with the render view transformations applied. These are the Render Result and Viewer image data-blocks, and the files saved directly to a drive with the Render Animation operator. However, when loading a render saved to an intermediate OpenEXR file, Blender cannot detect automatically that this is a render (it could be e.g. an image texture or displacement map). We need to specify that this is a render and that we want the transformations applied, with these two settings:"
-msgstr "By mặc định only renders are displayed và được lưu với the kết xuất góc nhìn -- -- transformations applied. These are the Kết Xuất Kết Quả và Xem Hình hình ảnh khối dữ liệu -- data-blocks, và the tập tin được lưu directly tới một drive với the Kết Xuất Hoạt Họa thao tác. However, when loading một kết xuất được lưu tới một intermediate `OpenEXR <https://en.wikipedia.org/wiki/OpenEXR>`__ -- OpenEXR tập tin, Blender không thể detect tự động that cái/điều này is một kết xuất (it could be e.g. một hình ảnh chất liệu hoặc phép/sự/dịch hình ánh xạ). We need tới specify that cái/điều này is một kết xuất và that we want the -- -- transformations applied, với these hai sắp đặt:"
+msgstr "By default only renders are displayed and saved with the render view transformations applied. These are the Render Result and Viewer image data-blocks, and the files saved directly to a drive with the Render Animation operator. However, when loading a render saved to an intermediate OpenEXR file, Blender cannot detect automatically that this is a render (it could be e.g. an image texture or displacement map). We need to specify that this is a render and that we want the transformations applied, with these two settings:"
 
+# Hiển Thị như Bản Kết Xuất -- View as Render
 msgid "View as Render"
-msgstr "Hiển Thị như Bản Kết Xuất -- View as Render"
+msgstr "Hiển Thị như Bản Kết Xuất"
 
 msgid "Display the image data-block (not only renders) with view transform, exposure, gamma, RGB curves applied. Useful for viewing rendered frames in linear OpenEXR files the same as when rendering them directly."
-msgstr "Hiển Thị the hình ảnh khối dữ liệu -- data-blocks (đảo nghịch only renders) với góc nhìn biến hóa, độ phơi sáng, gamma, ĐỎ, LỤC, LAM -- RGB đường cong applied. Useful for viewing kết xuất khung hình vào tuyến tính `OpenEXR <https://en.wikipedia.org/wiki/OpenEXR>`__ -- OpenEXR tập tin the same tựa như when kết xuất -- render them directly."
+msgstr "Display the image data-block (not only renders) with view transform, exposure, gamma, RGB curves applied. Useful for viewing rendered frames in linear OpenEXR files the same as when rendering them directly."
 
+# Lưu Như Kết Xuất -- Save as Render
 msgid "Save as Render"
-msgstr "Lưu Như Kết Xuất -- Save as Render"
+msgstr "Lưu Như Kết Xuất"
 
 msgid "Option in the image save operator to apply the view transform, exposure, gamma, RGB curves. This is useful for saving linear OpenEXR to e.g. PNG or JPEG files in display space."
-msgstr "Tùy Chọn vào the hình ảnh lưu thao tác tới áp dụng the góc nhìn biến hóa, độ phơi sáng, gamma, ĐỎ, LỤC, LAM -- RGB đường cong. Cái/Điều Này is useful for -- saving tuyến tính `OpenEXR <https://en.wikipedia.org/wiki/OpenEXR>`__ -- OpenEXR tới e.g. PNG hoặc JPEG tập tin vào hiển thị cách/khoảng trống/không gian."
+msgstr "Option in the image save operator to apply the view transform, exposure, gamma, RGB curves. This is useful for saving linear OpenEXR to e.g. PNG or JPEG files in display space."
 
 msgid "OpenColorIO Configuration"
-msgstr "-- OpenColorIO Configuration"
+msgstr "OpenColorIO Configuration"
 
 msgid "Blender comes with a standard OpenColorIO configuration that contains a number of useful display devices and view transforms. The reference linear :term:`color space` used is the linear color space with Rec. 709 chromaticities and D65 white point."
-msgstr "Blender comes với một tiêu chuẩn OpenColorIO configuration that contains một số của useful hiển thị devices và góc nhìn biến hóa. The tham chiếu tuyến tính :term:`màu sắc cách/khoảng trống/không gian` sử dụng is the tuyến tính màu sắc cách/khoảng trống/không gian với Rec. 709 sắc màu -- chromaticities và D65 màu trắng điểm/chấm."
+msgstr "Blender comes with a standard OpenColorIO configuration that contains a number of useful display devices and view transforms. The reference linear :term:`không gian màu sắc -- color space` used is the linear color space with Rec. 709 chromaticities and D65 white point."
 
 msgid "However, OpenColorIO was also designed to give a consistent user experience across `multiple applications <http://opencolorio.org/CompatibleSoftware.html>`__, and for this, a single shared configuration file can be used. Blender will use the standard OCIO environment variable to read an OpenColorIO configuration other than the default Blender one. More information about how to set up such a workflow can be found on the `OpenColorIO website <http://opencolorio.org/>`__."
-msgstr "However, OpenColorIO was also designed tới give một consistent người dùng experience across `multiple trình ứng dụng <http://opencolorio.org/CompatibleSoftware.html>`__, và for cái/điều này, một đơn/một cánh shared configuration tập tin có thể be sử dụng. Blender sẽ sử dụng the tiêu chuẩn OCIO môi trường variable tới read một OpenColorIO configuration cái/sắp đặt khác than the mặc định Blender một. Nhiều/Lớn Hơn thông tin giới thiệu thế nào tới đặt lên/trên such một quy trình làm việc có thể be found bật the `OpenColorIO website <http://opencolorio.org/>`__."
+msgstr "However, OpenColorIO was also designed to give a consistent user experience across `multiple applications <http://opencolorio.org/CompatibleSoftware.html>`__, and for this, a single shared configuration file can be used. Blender will use the standard OCIO environment variable to read an OpenColorIO configuration other than the default Blender one. More information about how to set up such a workflow can be found on the `OpenColorIO website <http://opencolorio.org/>`__."
 
 msgid "Blender currently use the following color space rules:"
 msgstr "We currently use the following color space rules:"
 
+# ``scene_linear``
 msgid "``scene_linear``"
-msgstr "-- scene_linear -- ``scene_linear``"
+msgstr "-- scene_linear"
 
 msgid "Color space used for rendering, compositing, and storing all float precision images in memory."
-msgstr "Màu Sắc cách/khoảng trống/không gian sử dụng for kết xuất -- render, tổng hợp, và storing toàn bộ trôi nổi/float độ chuẩn xác hình ảnh vào bộ nhớ."
+msgstr "Color space used for rendering, compositing, and storing all float precision images in memory."
 
 msgid "``data``"
-msgstr "-- ``data``"
+msgstr "``dữ liệu -- data``"
 
 msgid "Color space for non-color data."
-msgstr "Màu Sắc cách/khoảng trống/không gian for phi-sắc tính -- non-color dữ liệu."
+msgstr "Color space for non-color data."
 
 msgid "``XYZ``"
-msgstr "-- ``XYZ``"
+msgstr "``XYZ``"
 
 msgid "Standard linear XYZ color space. Used for effects such as blackbody emission to convert from physical units to the *scene_linear* color space."
-msgstr "Tiêu Chuẩn tuyến tính XYZ màu sắc cách/khoảng trống/không gian. Sử Dụng for hiệu ứng such tựa như vật đen phát xạ tới chuyển đổi từ physical đơn vị tới the *scene_linear* màu sắc cách/khoảng trống/không gian."
+msgstr "Standard linear XYZ color space. Used for effects such as blackbody emission to convert from physical units to the *scene_linear* color space."
 
 msgid "``color_picking``"
-msgstr "-- ``color_picking``"
+msgstr "``color_picking``"
 
 msgid "Defines the distribution of colors in color pickers. It is expected to be approximately perceptually linear, have the same gamut as the *scene_linear* color space, map 0..1 values to 0..1 values in the scene linear color space for predictable editing of material albedos."
-msgstr "Defines the phân bổ của màu sắc vào màu sắc pickers. It is expected tới be approximately perceptually tuyến tính, have the same gamut tựa như the *scene_linear* màu sắc cách/khoảng trống/không gian, ánh xạ 0..1 giá trị tới 0..1 giá trị vào the cảnh tuyến tính màu sắc cách/khoảng trống/không gian for predictable biên soạn của nguyên vật liệu albedos."
+msgstr "Defines the distribution of colors in color pickers. It is expected to be approximately perceptually linear, have the same gamut as the *scene_linear* color space, map 0..1 values to 0..1 values in the scene linear color space for predictable editing of material albedos."
 
+# ``default_sequencer``
 msgid "``default_sequencer``"
-msgstr "-- default_sequencer -- ``default_sequencer``"
+msgstr "-- default_sequencer"
 
 msgid "Default color space for the Sequencer, *scene_linear* if not specified."
-msgstr "Mặc Định màu sắc cách/khoảng trống/không gian for the Bộ Phối Hình, *scene_linear* if đảo nghịch specified."
+msgstr "Default color space for the Sequencer, *scene_linear* if not specified."
 
+# ``default_byte``
 msgid "``default_byte``"
-msgstr "-- default_byte -- ``default_byte``"
+msgstr "-- default_byte"
 
 msgid "Default color space for byte precision images and files, *texture_paint* if not specified."
-msgstr "Mặc Định màu sắc cách/khoảng trống/không gian for byte độ chuẩn xác hình ảnh và tập tin, *texture_paint* if đảo nghịch specified."
+msgstr "Default color space for byte precision images and files, *texture_paint* if not specified."
 
+# ``default_float``
 msgid "``default_float``"
-msgstr "-- default_float -- ``default_float``"
+msgstr "-- default_float"
 
 msgid "Default color space for float precision images and files, *scene_linear* if not specified."
-msgstr "Mặc Định màu sắc cách/khoảng trống/không gian for trôi nổi/float độ chuẩn xác hình ảnh và tập tin, *scene_linear* if đảo nghịch specified."
+msgstr "Default color space for float precision images and files, *scene_linear* if not specified."
 
 msgid "The standard Blender configuration includes support for saving and loading images in `ACES <https://www.oscars.org/science-technology/sci-tech-projects/aces>`__ (`code and documentation <https://github.com/ampas/aces-dev>`__) color spaces. However, the ACES gamut is larger than the Rec. 709 gamut, so for best results, an ACES specific configuration file should be used. OpenColorIO provides an `ACES configuration <http://opencolorio.org/configurations/index.html>`__ file, though it may need a few more tweaks to be usable in production."
-msgstr "The tiêu chuẩn Blender configuration includes hỗ trợ for -- saving và loading hình ảnh vào `ACES <https://www.oscars.org/science-technology/sci-tech-projects/aces>`__ (`code và tài liệu <https://github.com/ampas/aces-dev>`__) màu sắc không gian/dấu cách trống. However, the ACES gamut is larger than the Rec. 709 gamut, so for best results, một ACES specific configuration tập tin should be sử dụng. OpenColorIO provides một `ACES configuration <http://opencolorio.org/configurations/chỉ số.html>`__ tập tin, though it may need một few nhiều/lớn hơn tweaks tới be usable vào production."
+msgstr "The standard Blender configuration includes support for saving and loading images in `ACES <https://www.oscars.org/science-technology/sci-tech-projects/aces>`__ (`code and documentation <https://github.com/ampas/aces-dev>`__) color spaces. However, the ACES gamut is larger than the Rec. 709 gamut, so for best results, an ACES specific configuration file should be used. OpenColorIO provides an `ACES configuration <http://opencolorio.org/configurations/index.html>`__ file, though it may need a few more tweaks to be usable in production."
 

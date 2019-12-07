@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Blender 2.81 Manual
+            <a href="../../index.html" class="icon icon-home"> Blender 2.82 Manual
           
 
           
@@ -164,7 +164,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Blender 2.81 Manual</a>
+          <a href="../../index.html">Blender 2.82 Manual</a>
         
       </nav>
 
@@ -348,9 +348,9 @@ Hair is exported as animated zero-width curves. Particles are exported as animat
 <div class="section" id="importing-alembic-files">
 <h2>Importing Alembic Files<a class="headerlink" href="#importing-alembic-files" title="Permalink to this headline">¶</a></h2>
 <p>When importing an Alembic file, <a class="reference internal" href="../../modeling/modifiers/modify/mesh_sequence_cache.html"><span class="doc">Mesh Sequence Cache modifiers</span></a>
-are automatically added to time-varying meshes. For time-varying object transforms (so animation of
-rotation, location, or scale), the
-<a class="reference internal" href="../../animation/constraints/transform/transform_cache.html#bpy-types-transformcacheconstraint"><span class="std std-ref">Transform Cache Constraint</span></a> is used.</p>
+are automatically added to time-varying meshes. For time-varying object transforms
+(so animation of rotation, location, or scale)
+the <a class="reference internal" href="../../animation/constraints/transform/transform_cache.html#bpy-types-transformcacheconstraint"><span class="std std-ref">Transform Cache Constraint</span></a> is used.</p>
 </div>
 <div class="section" id="custom-split-normals-of-meshes">
 <h2>Custom Split Normals of Meshes<a class="headerlink" href="#custom-split-normals-of-meshes" title="Permalink to this headline">¶</a></h2>
@@ -360,30 +360,30 @@ and thus produce the smallest Alembic file. This is reflected in the importer; a
 without normals is loaded as a smooth mesh.</p>
 <p>On export, for every mesh:</p>
 <ul class="simple">
-<li>If it has <em>Custom Loop Normals</em> → loop normals are exported.</li>
-<li>If one or more polys are marked flat → loop normals are exported.</li>
+<li>If it has <em>Custom Loop Normals</em> then the loop normals are exported.</li>
+<li>If one or more polygons are marked flat then loop normals are also exported.</li>
 <li>Otherwise, no normals are exported.</li>
 </ul>
 <p>On import, when the Alembic mesh contains:</p>
 <ul class="simple">
-<li>loop normals (kFacevaryingScope) → use as custom loop normals, and enble Auto Smooth to have
+<li>Loop normals (<code class="docutils literal notranslate"><span class="pre">kFacevaryingScope</span></code>) are used as custom loop normals, and enable <em>Auto Smooth</em> to have
 Blender actually use them.</li>
-<li>vertex normals (kVertexScope or kVaryingScope) → convert to loop normals, and handle as above.</li>
-<li>no normals → mark mesh as smooth.</li>
-<li>unsupported normal types (kConstantScope, kUniformScope, kUnknownScope) → handle as 'no normals'.</li>
+<li>Vertex normals (<code class="docutils literal notranslate"><span class="pre">kVertexScope</span></code> or <code class="docutils literal notranslate"><span class="pre">kVaryingScope</span></code>) are convert to loop normals, and handle as above.</li>
+<li>If there are no normals then the mesh is marked as smooth.</li>
+<li>Unsupported normal types (<code class="docutils literal notranslate"><span class="pre">kConstantScope</span></code>, <code class="docutils literal notranslate"><span class="pre">kUniformScope</span></code>, <code class="docutils literal notranslate"><span class="pre">kUnknownScope</span></code>) are handled as <em>no normals</em>.</li>
 </ul>
-<p>When an imported mesh does not contain normals, the final look can be controlled by enabling the
-<a class="reference internal" href="../../modeling/meshes/structure.html#auto-smooth"><span class="std std-ref">Auto Smooth</span></a> checkbox and altering the threshold angle.</p>
+<p>When an imported mesh does not contain normals, the final look can be controlled by enabling
+the <a class="reference internal" href="../../modeling/meshes/structure.html#auto-smooth"><span class="std std-ref">Auto Smooth</span></a> checkbox and altering the threshold angle.</p>
 </div>
 <div class="section" id="handling-time">
 <h2>Handling Time<a class="headerlink" href="#handling-time" title="Permalink to this headline">¶</a></h2>
-<p>Unlike Blender and many other applications and file formats, Alembic files don't have any concept of
-frames. Alembic works purely with time, and values that are sampled over time. For example, there is
-no way to distinguish 30 FPS with 2 samples per frame, and 60 FPS with 1 sample per frame. This has
-caused numerous developers to just <a class="reference external" href="https://developer.blender.org/T55288#754358">hard-code 24 FPS</a>
+<p>Unlike Blender and many other applications and file formats, Alembic files don't have any concept of frames.
+Alembic works purely with time, and values that are sampled over time. For example,
+there is no way to distinguish 30 FPS with 2 samples per frame, and 60 FPS with 1 sample per frame.
+This has caused many developers to just <a class="reference external" href="https://developer.blender.org/T55288#754358">hard-coded 24 FPS</a>
 when reading Alembic files.</p>
-<p>Blender uies the current scene frame rate to convert a frame number (in Blender) to a time in
-seconds (in Alembic). As a result, you can import an Alembic file that was produced at 120 FPS into
+<p>Blender uses the current scene frame rate to convert a frame number (in Blender) to a time
+in seconds (in Alembic). As a result, you can import an Alembic file that was produced at 120 FPS into
 a Blender scene that is 30 FPS and still not see any time stretching.</p>
 </div>
 </div>
@@ -425,7 +425,7 @@ a Blender scene that is 30 FPS and still not see any time stretching.</p>
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.81 
+		2.82 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

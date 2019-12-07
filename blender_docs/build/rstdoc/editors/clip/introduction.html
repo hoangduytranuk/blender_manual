@@ -20,5 +20,295 @@ The empty editor looks like the image below.
     Movie Clip Editor interface.
    </caption>
   </figure>
+  <section ids="header" names="header">
+   <title>
+    Header
+   </title>
+   <section ids="menus" names="menus">
+    <title>
+     Menus
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       View
+      </term>
+      <definition>
+       <paragraph>
+        Tools for controlling how the content is displayed in the editor.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Select
+      </term>
+      <definition>
+       <paragraph>
+        TODO.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Clip
+      </term>
+      <definition>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Open Clip
+          <literal classes="kbd">
+           Alt-O
+          </literal>
+         </term>
+         <definition>
+          <paragraph>
+           Open a new clip from an image file sequence.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Prefetch Frames
+         </term>
+         <definition>
+          <paragraph>
+           TODO.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Reload Clip
+         </term>
+         <definition>
+          <paragraph>
+           TODO.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Proxy
+         </term>
+         <definition>
+          <paragraph>
+           TODO.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="controls" names="controls">
+    <title>
+     Controls
+    </title>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Clip
+      </term>
+      <definition>
+       <paragraph>
+        A
+        <reference internal="True" refuri="#ui-data-block">
+         <inline classes="std std-ref">
+          data-block menu
+         </inline>
+        </reference>
+        used for add a movie file.
+Both movie files and image sequences can be used in the Clip editor.
+When a movie clip is loaded into the Clip editor, extra panels are displayed in the interface.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <figure ids="id2">
+     <image candidates="{'*': 'images/editors_clip_header_example.png'}" uri="images/editors_clip_header_example.png"/>
+     <caption>
+      Movie Clip Editor with an opened clip.
+     </caption>
+    </figure>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Modes
+      </term>
+      <definition>
+       <bullet_list bullet="-">
+        <list_item>
+         <paragraph>
+          <reference internal="True" refuri="">
+           <inline classes="doc">
+            Motion Tracking
+           </inline>
+          </reference>
+         </paragraph>
+        </list_item>
+        <list_item>
+         <paragraph>
+          <reference internal="True" refuri="">
+           <inline classes="doc">
+            Masking
+           </inline>
+          </reference>
+         </paragraph>
+        </list_item>
+       </bullet_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Pivot Point
+      </term>
+      <definition>
+       <paragraph>
+        See
+        <reference internal="True" refuri="">
+         <inline classes="doc">
+          Pivot Points
+         </inline>
+        </reference>
+        .
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <target refid="clip-editor-clip-display-label">
+    </target>
+    <definition_list ids="clip-editor-clip-display-label" names="clip-editor-clip-display-label">
+     <definition_list_item>
+      <term>
+       Clip Display
+      </term>
+      <definition>
+       <paragraph>
+        This pop-over contains display settings related to editor itself.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Channels
+         </term>
+         <definition>
+          <paragraph>
+           The R, G, B toggles control the color channels used for frame preview.
+It is needed because the tracking algorithm works with grayscale images and it is not
+always obvious to see which channels disabled will increase contrast of feature points and reduce noise.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Grayscale Preview (B/W)
+         </term>
+         <definition>
+          <paragraph>
+           Shows the whole frame gray-scale.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Mute (eye icon)
+          <literal classes="kbd">
+           M
+          </literal>
+         </term>
+         <definition>
+          <paragraph>
+           Changes displaying on movie frame itself with black square,
+It helps to find tracks which are tracked inaccurately or which were not tracked at all.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Render Undistorted
+         </term>
+         <definition>
+          <paragraph>
+           Applies the
+           <emphasis>
+            Lens Distortion
+           </emphasis>
+           settings to the viewport image in order to display the footage undistorted.
+It is only a preview option, which does not actually change the footage itself.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Lock to Selection
+          <literal classes="kbd">
+           L
+          </literal>
+         </term>
+         <definition>
+          <paragraph>
+           Makes the editor display selected tracks at the same screen position
+along the whole footage during playback or tracking.
+This option helps to control the tracking process and
+stop it when the track is starting to slide off or when it jumped.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Show Stable
+         </term>
+         <definition>
+          <paragraph>
+           This option makes the displayed frame be affected by the 2D stabilization settings
+(available in reconstruction mode only).
+It is only a preview option, which does not actually change the footage itself.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Grid
+         </term>
+         <definition>
+          <paragraph>
+           Displays a grid which is originally orthographic,
+but is affected by the distortion model (available in distortion mode only).
+This grid can be used for manual calibration –
+distorted lines of grids are equal to straight lines in the footage.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Calibration
+         </term>
+         <definition>
+          <paragraph>
+           Applies the distortion model for annotation strokes (available in distortion mode only).
+This option also helps to perform manual calibration.
+A more detailed description of this process will be added later.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Display Aspect Ratio
+         </term>
+         <definition>
+          <paragraph>
+           Changes the aspect ratio for displaying only. It does not affect the tracking or solving process.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+  </section>
  </section>
 </document>

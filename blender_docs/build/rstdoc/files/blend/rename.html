@@ -48,17 +48,31 @@
     operator renames the active
     <reference internal="True" refuri="">
      <inline classes="doc">
-      Object
+      Bone
      </inline>
     </reference>
-    or
+    ,
     <reference internal="True" refuri="">
      <inline classes="doc">
       Node
      </inline>
     </reference>
+    ,
+    <reference internal="True" refuri="">
+     <inline classes="doc">
+      Object
+     </inline>
+    </reference>
+    and
+    <reference internal="True" refuri="">
+     <inline classes="doc">
+      Sequence Strip
+     </inline>
+    </reference>
     .
-When the operator is executed, a pop-up menu appears.
+   </paragraph>
+   <paragraph>
+    When the operator is executed, a pop-up dialog appears.
 The text field shows the name of the current item and can be overwritten to rename the item.
     <literal classes="kbd">
      Return
@@ -100,7 +114,7 @@ The text field shows the name of the current item and can be overwritten to rena
       <field_body>
        <paragraph>
         <literal classes="kbd">
-         Alt-F2
+         Ctrl-F2
         </literal>
        </paragraph>
       </field_body>
@@ -113,7 +127,12 @@ The text field shows the name of the current item and can be overwritten to rena
      Batch Rename
     </emphasis>
     operator can rename many data-block names at once.
-When the operator is executed, a popup menu appears with some options and operations to modify the name.
+   </paragraph>
+   <paragraph>
+    This uses a pop-up dialog with operations and their options to change the name.
+   </paragraph>
+   <paragraph>
+    These actions are applied in order, from first to last.
    </paragraph>
    <definition_list>
     <definition_list_item>
@@ -139,22 +158,31 @@ When the operator is executed, a popup menu appears with some options and operat
      <definition>
       <paragraph>
        Where to look for the data-blocks that are intended to be renamed.
-       <emphasis>
-        Selected
-       </emphasis>
-       looks within the currently selected objects.
-While,
-       <emphasis>
-        All
-       </emphasis>
-       looks within the entire
-       <reference internal="True" refuri="">
-        <inline classes="doc">
-         View Layer
-        </inline>
-       </reference>
-       .
-To the left of this option gives a readout on how many data-blocks are able to be renamed.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Selected
+        </term>
+        <definition>
+         <paragraph>
+          Operates on the currently selected objects.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         All
+        </term>
+        <definition>
+         <paragraph>
+          Operates on all data in the blend file.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <paragraph>
+       To the left of this option gives a readout on how many data-blocks are able to be renamed.
       </paragraph>
      </definition>
     </definition_list_item>
@@ -168,7 +196,7 @@ To the left of this option gives a readout on how many data-blocks are able to b
      <emphasis>
       Batch Rename
      </emphasis>
-     has several sub Operations that to modify the data names.
+     has several sub Operations to change the data names.
 The default operation is
      <emphasis>
       Find/Replace
@@ -298,7 +326,7 @@ This is useful for tools that look for special text in the prefix of a data-bloc
           <definition>
            <paragraph>
             Adds text to the end of the current name.
-This is useful for tools that look for special text in the Suffix of a data-block name.
+This is useful for tools that look for special text in the suffix of a data-block name.
            </paragraph>
           </definition>
          </definition_list_item>
@@ -345,7 +373,15 @@ character types from either the beginning or the end of the name.
        </term>
        <definition>
         <paragraph>
-         Strips any numerical characters from the name, e.g. “cube.001” becomes “cube.”.
+         Strips any numerical characters from the name, e.g.
+         <literal>
+          cube.001
+         </literal>
+         becomes
+         <literal>
+          cube.
+         </literal>
+         .
         </paragraph>
        </definition>
       </definition_list_item>
@@ -357,9 +393,17 @@ character types from either the beginning or the end of the name.
         <paragraph>
          Strips any punctuation characters (
          <literal>
-          ,.?!:; etc...
+          ,.?!:;
          </literal>
-         ) from the name, e.g. “cube?” becomes “cube”.
+         etc.) from the name, e.g.
+         <literal>
+          cube?
+         </literal>
+         becomes
+         <literal>
+          cube
+         </literal>
+         .
         </paragraph>
        </definition>
       </definition_list_item>
@@ -413,7 +457,15 @@ character types from either the beginning or the end of the name.
        </term>
        <definition>
         <paragraph>
-         Changes all text to be in upper case, e.g. “cube.001” becomes “CUBE.001”.
+         Changes all text to be in upper case, e.g.
+         <literal>
+          cube.001
+         </literal>
+         becomes
+         <literal>
+          CUBE.001
+         </literal>
+         .
         </paragraph>
        </definition>
       </definition_list_item>
@@ -423,7 +475,15 @@ character types from either the beginning or the end of the name.
        </term>
        <definition>
         <paragraph>
-         Changes all text to be in lower case, e.g. “CUBE.001” becomes “cube.001”.
+         Changes all text to be in lower case, e.g.
+         <literal>
+          CUBE.001
+         </literal>
+         becomes
+         <literal>
+          cube.001
+         </literal>
+         .
         </paragraph>
        </definition>
       </definition_list_item>
@@ -433,7 +493,15 @@ character types from either the beginning or the end of the name.
        </term>
        <definition>
         <paragraph>
-         Changes all text to be in title case, e.g. “living room” becomes “Living Room”.
+         Changes all text to be in title case, e.g.
+         <literal>
+          living room
+         </literal>
+         becomes
+         <literal>
+          Living Room
+         </literal>
+         .
         </paragraph>
        </definition>
       </definition_list_item>

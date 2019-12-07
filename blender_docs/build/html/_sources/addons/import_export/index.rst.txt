@@ -8,4 +8,4 @@
    :name: addons-io
    :glob:
 
-   io_*
+   *

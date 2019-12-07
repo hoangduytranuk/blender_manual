@@ -5,13 +5,13 @@ Transform Cache Constraint
 **************************
 
 The *Transform Cache Constraint* is used to stream animations from
-:doc:`Alembic </files/import_export/alembic>` made at the transformation matrix level (for example
-rigid bodies, or camera movements).
+:doc:`Alembic </files/import_export/alembic>` made at the transformation matrix level
+(for example rigid bodies, or camera movements).
 
 When :doc:`importing an Alembic file </files/import_export/alembic>`,
-Transform Cache constraints are automatically added to objects with animated transforms. For
-time-varying meshes (so deforming animations), the
-:doc:`Mesh Sequence Cache modifier </modeling/modifiers/modify/mesh_sequence_cache>` is used.
+Transform Cache constraints are automatically added to objects with animated transforms.
+For time-varying meshes (so deforming animations),
+the :doc:`Mesh Sequence Cache modifier </modeling/modifiers/modify/mesh_sequence_cache>` is used.
 
 
 
@@ -22,7 +22,7 @@ Cache File
    Data-block menu to select the Alembic file.
 
    File Path
-      Path to Alembic file.
+      Path to the Alembic file.
 
 Is Sequence
    Whether or not the cache is separated in a series of files.
@@ -39,5 +39,5 @@ Manual Transform Scale
 Object Path
    The path to the Alembic object inside the archive.
 Vertices/Faces/UV/Color
-   Type of data to read for a mesh object respectively: vertices,
-   polygons, UV maps and Vertex Color layers.
+   Type of data to read for a mesh object respectively:
+   vertices, polygons, UV maps and vertex color layers.

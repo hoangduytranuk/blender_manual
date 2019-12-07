@@ -11,8 +11,8 @@ There are several modes to choose from.
   </paragraph>
   <note>
    <paragraph>
-    The Look Dev option is not available when the render engine of the scene is
-set to Workbench.
+    The Material Preview option is not available when the render engine of
+the scene is set to Workbench.
    </paragraph>
   </note>
   <section ids="wireframe" names="wireframe">
@@ -216,16 +216,22 @@ render the 3D Viewport. The
      </definition>
     </definition_list_item>
    </definition_list>
-   <target refid="dview-lookdev">
+   <target refid="dview-material-preview">
    </target>
   </section>
-  <section ids="look-dev dview-lookdev" names="look\ dev 3dview-lookdev">
+  <section ids="material-preview dview-material-preview" names="material\ preview 3dview-material-preview">
    <title>
-    Look Dev
+    Material Preview
    </title>
    <paragraph>
-    Show the scene in the 3D View in LookDev mode.
-This mode is specialized for visualizing materials.
+    Render the 3D Viewport with
+    <reference internal="True" refuri="">
+     <inline classes="doc">
+      Eevee
+     </inline>
+    </reference>
+    and a HDRI environment.
+This mode is particularly suited for previewing materials and texture painting.
 You can select different lighting conditions to test your materials.
    </paragraph>
    <definition_list>
@@ -261,7 +267,7 @@ When turned off a world will be constructed with the next options.
            </term>
            <definition>
             <paragraph>
-             The environment map used to render the scene in Look Dev mode.
+             The environment map used to light the scene.
             </paragraph>
            </definition>
           </definition_list_item>
@@ -272,6 +278,16 @@ When turned off a world will be constructed with the next options.
            <definition>
             <paragraph>
              The rotation of the environment on the Z axis.
+            </paragraph>
+           </definition>
+          </definition_list_item>
+          <definition_list_item>
+           <term>
+            Strength
+           </term>
+           <definition>
+            <paragraph>
+             Light intensity of the environment.
             </paragraph>
            </definition>
           </definition_list_item>
@@ -293,18 +309,38 @@ background in the 3D View.
      </definition>
     </definition_list_item>
    </definition_list>
+   <target refid="dview-rendered">
+   </target>
   </section>
-  <section ids="render" names="render">
+  <section ids="rendered dview-rendered" names="rendered 3dview-rendered">
    <title>
-    Render
+    Rendered
    </title>
    <paragraph>
-    An accurate representation using the selected
+    Render the 3D Viewport with the scene
     <emphasis>
      Render Engine
     </emphasis>
-    and lit with the visible scene lights.
+    , for interactive rendering.
+By default the scene lights are used for lighting.
+A HDRI environment can be used as well, with the same options as Material Preview mode.
    </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Render Pass
+      <inline classes="guilabel" rawtext=":guilabel:`Cycles Only`">
+       Cycles Only
+      </inline>
+     </term>
+     <definition>
+      <paragraph>
+       Instead of the combined render, show another render pass.
+Useful to analyze and debug geometry, materials and lighting.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
   </section>
  </section>
 </document>

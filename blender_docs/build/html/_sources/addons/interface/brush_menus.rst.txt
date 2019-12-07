@@ -3,17 +3,6 @@
 Dynamic Brush Menus
 *******************
 
-.. admonition:: Reference
-   :class: refbox
-
-   :Category:  Interface
-   :Description: Fast access to brushes & tools in Sculpt and Paint Modes.
-   :Location: :kbd:`Spacebar` in Sculpt/Paint Modes
-   :File: space_view3d_brush_menus folder
-   :Author: Ryan Inch (Imaginer)
-   :License: GPL
-   :Note: This add-on is bundled with Blender.
-
 
 Activation
 ==========
@@ -41,3 +30,16 @@ this add-on by going to the Add-ons tab in Preferences and expanding the add-on.
 
 .. figure:: /images/addons_interface_brush_menus.jpg
    :align: center
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Category:  Interface
+   :Description: Fast access to brushes & tools in Sculpt and Paint Modes.
+   :Location: :kbd:`Spacebar` in Sculpt/Paint Modes
+   :File: space_view3d_brush_menus folder
+   :Author: Ryan Inch (Imaginer)
+   :Maintainer: Ryan Inch (Imaginer)
+   :License: GPL
+   :Support Level: Community
+   :Note: This add-on is bundled with Blender.

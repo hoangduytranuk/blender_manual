@@ -71,7 +71,7 @@ Backward in History :kbd:`Up`
    Changes the current command to previous command as they appear in the command history.
 Forward in History :kbd:`Down`
    Changes the current command to next command as they appear in the command history.
-Autocomplete :kbd:`Ctrl-Spacebar`
+Autocomplete :kbd:`Tab`
    See `Auto Completion`_ for more information.
 
 
@@ -115,7 +115,7 @@ at the prompt and execute it.
 Auto Completion
 ---------------
 
-Now, type ``bpy.`` and then press :kbd:`Ctrl-Spacebar` and you will see the Console
+Now, type ``bpy.`` and then press :kbd:`Tab` and you will see the Console
 auto-complete feature in action.
 
 .. figure:: /images/editors_python-console_completion.png
@@ -196,7 +196,7 @@ Now that is a lot of data that you have access to::
 ``bpy.context.selected_objects``
    Will give access to a list of all selected objects.
 
-Type this and then press :kbd:`Ctrl-Spacebar`::
+Type this and then press :kbd:`Tab`::
 
    bpy.context.selected_objects
 

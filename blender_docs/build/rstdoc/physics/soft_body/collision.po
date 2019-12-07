@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-11-13 01:42+0000\n"
+"POT-Creation-Date: 2019-11-27 19:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,99 +17,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
+# Va Đập -- Collision
 msgid "Collision"
-msgstr "Va Đập -- Collision"
+msgstr "Va Đập"
 
 msgid "There are two different collision types that you may use: collision between different objects and internal collision. We should set one thing straight from the start -- the primary targets of the collision calculation are the vertices of a soft body. So if you have too few vertices too few collision takes place. Secondarily, you can use edges and faces to improve the collision calculation."
-msgstr "Kia/Có are hai khác va đập thể loại -- types that bạn may sử dụng: va đập between khác vật thể và nội bộ va đập. We should đặt một thing thẳng từ the khởi đầu -- the chính mục tiêu của the va đập calculation are the điểm đỉnh của một mềm body. So if bạn have too few điểm đỉnh too few va đập takes place. Secondarily, bạn có thể sử dụng cạnh và bề mặt tới improve the va đập calculation."
+msgstr "There are two different collision types that you may use: collision between different objects and internal collision. We should set one thing straight from the start -- the primary targets of the collision calculation are the vertices of a soft body. So if you have too few vertices too few collision takes place. Secondarily, you can use edges and faces to improve the collision calculation."
 
 msgid "Collisions with Other Objects"
-msgstr "-- Collisions with Other Objects"
+msgstr "Collisions with Other Objects"
 
 msgid "For a soft body to collide with another object there are a few prerequisites:"
-msgstr "For một mềm body tới collide với another vật thể kia/có are một few điều kiện tiên quyết (đòi hỏi) -- prerequisites:"
+msgstr "For a soft body to collide with another object there are a few prerequisites:"
 
 msgid "If *Collision Collection* is set, the object must belong to the collection."
-msgstr "If *Va Đập Tập Hợp* is đặt, the vật thể must belong tới the tập hợp."
+msgstr "If *Tập Hợp Va Đập -- Collision Collection* is set, the object must belong to the collection."
 
 msgid "The collision object has to be a mesh object."
-msgstr "The va đập vật thể has tới be một khung lưới vật thể."
+msgstr "The collision object has to be a mesh object."
 
 msgid "You have to activate the *Collision* in the *Physics* tab for the collision object. The collision object may also be a soft body."
-msgstr "Bạn have tới activate the *Va Đập* vào the *Vật Lý* tab for the va đập vật thể. The va đập vật thể may also be một mềm body."
+msgstr "You have to activate the *Va Đập -- Collision* in the *Vật Lý -- Physics* tab for the collision object. The collision object may also be a soft body."
 
+# Ví Dụ -- Examples
 msgid "Examples"
-msgstr "Ví Dụ -- Examples"
+msgstr "Ví Dụ"
 
 msgid "A soft body cube colliding with a plane (Fig. :ref:`fig-softbody-collision-plane1`) works pretty well, but a soft body plane falls right through a cube that it is supposed to collide with (Fig. :ref:`fig-softbody-collision-plane2`)."
-msgstr "Một mềm body lập thể colliding với một mặt phẳng (Fig. ) works pretty well, but một mềm body mặt phẳng falls phải through một lập thể that it is supposed tới collide với (Fig. )."
+msgstr "A soft body cube colliding with a plane (Fig. :ref:`fig-softbody-collision-plane1`) works pretty well, but a soft body plane falls right through a cube that it is supposed to collide with (Fig. :ref:`fig-softbody-collision-plane2`)."
 
 msgid "A soft body cube colliding with a plane."
-msgstr "Một mềm body lập thể colliding với một mặt phẳng."
+msgstr "A soft body cube colliding with a plane."
 
 msgid "A soft body plane colliding with a cube, so no interaction at all."
-msgstr "Một mềm body mặt phẳng colliding với một lập thể, so no tương tác -- interaction tại toàn bộ."
+msgstr "A soft body plane colliding with a cube, so no interaction at all."
 
 msgid "Why is that? Because the default method of calculation only checks to see if the four vertices of the soft body plane collides with the cube as the plane is pulled down by gravity. You can activate *Collision: Face* (in the *Soft Body Edges* panel) to enable collision between the face of the plane and the object instead, but this type of calculation takes much longer."
-msgstr "Why is that? Because the mặc định phương pháp của calculation only kiểm tra tới xin xem thêm if the bốn điểm đỉnh của the mềm body mặt phẳng collides với the lập thể tựa như the mặt phẳng is pulled xuống/dưới by trọng lực. Bạn có thể activate *Va Đập: Bề Mặt* (vào the *Mềm Body Cạnh* bảng) tới bật va đập between the bề mặt của the mặt phẳng và the vật thể instead, but cái/điều này thể loại của calculation takes much longer."
+msgstr "Why is that? Because the default method of calculation only checks to see if the four vertices of the soft body plane collides with the cube as the plane is pulled down by gravity. You can activate *Collision: Face* (in the *Cạnh Thân Mềm -- Soft Body Edges* panel) to enable collision between the face of the plane and the object instead, but this type of calculation takes much longer."
 
 msgid "Let us have a closer look at the collision calculation, so you can get an idea of how we might optimize it."
-msgstr "Let us have một closer nhìn/dáng vẻ tại the va đập calculation, so bạn có thể get một idea của thế nào we might tối ưu hóa it."
+msgstr "Let us have a closer look at the collision calculation, so you can get an idea of how we might optimize it."
 
 msgid "Calculating Collisions"
-msgstr "-- Calculating Collisions"
+msgstr "Calculating Collisions"
 
 msgid "Soft body simulations are by default done on a per-vertex basis. If the vertices of the soft body do not collide with the collision object, there will be no interaction between the two objects."
-msgstr "Mềm body simulations are by mặc định done bật một per-vertex cơ sở. If the điểm đỉnh của the mềm body làm đảo nghịch collide với the va đập vật thể, kia/có sẽ be no tương tác -- interaction between the hai vật thể."
+msgstr "Soft body simulations are by default done on a per-vertex basis. If the vertices of the soft body do not collide with the collision object, there will be no interaction between the two objects."
 
 msgid "In the video below, you can see the vertices colliding with a plane. If a vertex penetrates the zone between *Outer* and *Inner*, it is repulsed by a force in the direction of the face normal. The position that a vertex finally ends up in is dependent on the forces that act upon it. In the example (the first vertex on the left in the video below) gravity and the repulsion force of the face balance out. The speed at which the vertex is pulled out of the collision zone is influenced by the *Choke* parameter in the :ref:`Soft Body Solver settings <physics-softbody-settings-solver>`."
-msgstr "Vào the phim phim video below, bạn có thể xin xem thêm the điểm đỉnh colliding với một mặt phẳng. If một điểm đỉnh penetrates the zone between *Bên Ngoài* và *Vùng Bên Trong/Nội Tại*, it is repulsed by một lực vào the chiều hướng của the bề mặt pháp tuyến. The vị trí that một điểm đỉnh finally ends lên/trên vào is dependent bật the tính năng của lực that act upon it. Vào the ví dụ -- example (the đầu tiên/thứ nhất điểm đỉnh bật the trái vào the phim phim video below) trọng lực và the repulsion lực của the bề mặt balance ra. The tốc độ tại cái mà/tức the điểm đỉnh is pulled ra của the va đập zone is influenced by the *Tắc Nghẹn* parameter vào the ."
+msgstr "In the video below, you can see the vertices colliding with a plane. If a vertex penetrates the zone between *Bên Ngoài -- Outer* and *Vùng Bên Trong/Nội Tại -- Inner*, it is repulsed by a force in the direction of the face normal. The position that a vertex finally ends up in is dependent on the forces that act upon it. In the example (the first vertex on the left in the video below) gravity and the repulsion force of the face balance out. The speed at which the vertex is pulled out of the collision zone is influenced by the *Tắc Nghẹn -- Choke* parameter in the :ref:`Soft Body Solver settings <physics-softbody-settings-solver>`."
 
 msgid "Download the `blend-file <https://en.blender.org/uploads/8/8d/CollidingVertices.blend>`__."
-msgstr "Download the `hòa trộn/chuyển đổi-file <https://en.blender.org/uploads/8/8d/CollidingVertices.hòa trộn/chuyển đổi>`__."
+msgstr "Download the `blend-file <https://en.blender.org/uploads/8/8d/CollidingVertices.blend>`__."
 
 msgid "Now let's see what happens if we make vertices heavier and let them travel at a faster speed. In the video above, you can see vertices traveling at different speeds. The two on the far right (fifth and sixth) are traveling so fast that they pass right through the collision zone (this is because of the default solver precision, which we can fix later). You will notice that the fourth vertex also travels quite fast and because it is heavier it breaches the inner zone. The first three vertices collide correctly."
-msgstr "Ngay Bây Giờ let's xin xem thêm cái gì happens if we tạo điểm đỉnh heavier và let them travel tại một faster tốc độ. Vào the phim video above, bạn có thể xin xem thêm điểm đỉnh traveling tại khác speeds. The hai bật the xa phải (fifth và sixth) are traveling so nhanh that they lượt phải through the va đập zone (cái/điều này is because của the mặc định trình giải nghiệm độ chuẩn xác, cái mà/tức we có thể fix later). Bạn sẽ notice that the thứ tư điểm đỉnh also travels quite nhanh và because it is heavier it breaches the vùng bên trong/nội tại zone. The đầu tiên/thứ nhất ba điểm đỉnh collide correctly."
+msgstr "Now let's see what happens if we make vertices heavier and let them travel at a faster speed. In the video above, you can see vertices traveling at different speeds. The two on the far right (fifth and sixth) are traveling so fast that they pass right through the collision zone (this is because of the default solver precision, which we can fix later). You will notice that the fourth vertex also travels quite fast and because it is heavier it breaches the inner zone. The first three vertices collide correctly."
 
 msgid "You can set up your collision so that edges and even faces are included in the collision calculation in the *Soft Body Edges* panel with the Collision *Face* and *Edge* options. The collision is then calculated differently. It is checked whether the edge or face intersects with the collision object, the collision zones are not used."
-msgstr "Bạn có thể đặt lên/trên của bạn va đập so that cạnh và đều đặn bề mặt are included vào the va đập calculation vào the *Mềm Body Cạnh* bảng với the Va Đập *Bề Mặt* và *Cạnh* tùy chọn. The va đập is then calculated differently. It is được đánh dấu kiểm whether the cạnh hoặc bề mặt intersects với the va đập vật thể, the va đập zones are đảo nghịch sử dụng."
+msgstr "You can set up your collision so that edges and even faces are included in the collision calculation in the *Cạnh Thân Mềm -- Soft Body Edges* panel with the Collision *Bề Mặt -- Face* and *Cạnh -- Edge* options. The collision is then calculated differently. It is checked whether the edge or face intersects with the collision object, the collision zones are not used."
 
 msgid "Good Collisions"
-msgstr "-- Good Collisions"
+msgstr "Good Collisions"
 
 msgid "If the collision you have set up is not behaving properly, you can try the following:"
-msgstr "If the va đập bạn have đặt lên/trên is đảo nghịch behaving properly, bạn có thể try the following:"
+msgstr "If the collision you have set up is not behaving properly, you can try the following:"
 
 msgid "The soft body object must have more subdivisions than the collision object. Add loop cuts to the soft body object in strategic areas that you know are most likely to be involved in a collision."
-msgstr "The mềm body vật thể must have nhiều/lớn hơn lượng phân hóa than the va đập vật thể. Cộng Thêm tuần hoàn cuts tới the mềm body vật thể vào strategic vùng that bạn know are most likely tới be involved vào một va đập."
+msgstr "The soft body object must have more subdivisions than the collision object. Add loop cuts to the soft body object in strategic areas that you know are most likely to be involved in a collision."
 
 msgid "Check the direction of the face normals."
-msgstr "Check the chiều hướng của the bề mặt pháp tuyến."
+msgstr "Check the direction of the face normals."
 
 msgid "If the collision object has sharp spikes, they might penetrate the soft body."
-msgstr "If the va đập vật thể has sắc/nhọn spikes, they might penetrate the mềm body."
+msgstr "If the collision object has sharp spikes, they might penetrate the soft body."
 
 msgid "The resolution of the solver must match the speed at which soft body vertices are traveling. Lower the parameter *Error Limit* and carefully increase *Min Step*."
-msgstr "The độ phân giải của the trình giải nghiệm must khớp the tốc độ tại cái mà/tức mềm body điểm đỉnh are traveling. Thường/Dưới the parameter *Lỗi/Sai Số Giới Hạn* và carefully increase *Tối Thiểu Bước*."
+msgstr "The resolution of the solver must match the speed at which soft body vertices are traveling. Lower the parameter *Giới Hạn Sai Số -- Error Limit* and carefully increase *Số Bước Tối Thiểu -- Min Step*."
 
 msgid "*Outer* and *Inner* should be large enough, but zones of opposite faces should not overlap, or you have forces in opposite directions."
-msgstr "*Bên Ngoài* và *Vùng Bên Trong/Nội Tại* should be lớn enough, but zones của opposite bề mặt should đảo nghịch đè gối, hoặc bạn have tính năng của lực vào opposite directions."
+msgstr "*Bên Ngoài -- Outer* and *Vùng Bên Trong/Nội Tại -- Inner* should be large enough, but zones of opposite faces should not overlap, or you have forces in opposite directions."
 
 msgid "If you use strong forces you should use large zones."
-msgstr "If bạn sử dụng mạnh tính năng của lực bạn should sử dụng lớn zones."
+msgstr "If you use strong forces you should use large zones."
 
 msgid "Set *Choke* to a high enough value (all the way up if necessary) if you have difficulties with repelled vertices."
-msgstr "Đặt *Tắc Nghẹn* tới một cao enough giá trị (toàn bộ the đường lối/phương pháp/cách lên/trên if necessary) if bạn have difficulties với repelled điểm đỉnh."
+msgstr "Set *Tắc Nghẹn -- Choke* to a high enough value (all the way up if necessary) if you have difficulties with repelled vertices."
 
 msgid "Colliding faces are difficult to control and need long calculation times. Try not to use them."
-msgstr "Colliding bề mặt are difficult tới điều khiển và need long calculation times. Try đảo nghịch tới sử dụng them."
+msgstr "Colliding faces are difficult to control and need long calculation times. Try not to use them."
 
 msgid "Often it is better to create a simplified mesh to use as your collision object, however, this may be difficult if you are using an animated mesh."
-msgstr "Often it is better tới tạo một simplified khung lưới tới sử dụng tựa như của bạn va đập vật thể, however, cái/điều này may be difficult if bạn are sử dụng/dùng một hoạt họa khung lưới."
+msgstr "Often it is better to create a simplified mesh to use as your collision object, however, this may be difficult if you are using an animated mesh."
 
 msgid "Self-Collisions"
-msgstr "-- Self-Collisions"
+msgstr "Self-Collisions"
 
 msgid "For information on self-collision please refer to the :ref:`Self-Collision <physics-softbody-settings-self-collision>` settings."
-msgstr "For thông tin bật self-collision please refer tới the  sắp đặt."
+msgstr "For information on self-collision please refer to the :ref:`Self-Collision <physics-softbody-settings-self-collision>` settings."
 

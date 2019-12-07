@@ -242,19 +242,24 @@ are located in the :doc:`F-Curve Modifiers </editors/graph_editor/fcurves/modifi
 Handle Types
 ------------
 
-When using Bézier-interpolated curves it is possible to control the slope of the curve at the
-control points. This is done via the curve point *handles*; you can set the type of handle to use
-for the curve points by pressing :kbd:`V` or choosing Key, Handle Type in the graph editor menu.
+.. admonition:: Reference
+   :class: refbox
+
+   :Menu:      :menuselection:`Key --> Handle Type`
+   :Hotkey:    :kbd:`V`
+
+When using Bézier-interpolated curves it is possible to control the slope of the curve at the control points.
+This is done via the curve point *handles*; you can set the type of handle to use
+for the curve points by pressing :kbd:`V` or choosing Key, Handle Type in the Graph editor menu.
 Each curve point can have a different handle type, even within the same curve.
 
-There are three automatic modes, '*Automatic*', '*Auto Clamped*', and '*Vector*', where Blender
-automatically determines the curve's slope at each control point. The neighbouring control points
-have the most influence of the slope, and points further away have a smaller influence. This can be
-controlled per F-Curve with the :ref:`Auto Handle Smoothing <graph_editor-auto-handle-smoothing>`
-properties.
+There are three automatic modes, *Automatic*, *Auto Clamped*, and *Vector*,
+where Blender automatically determines the curve's slope at each control point.
+The neighboring control points have the most influence of the slope,
+and points further away have a smaller influence. This can be controlled per F-curve with
+the :ref:`Auto Handle Smoothing <graph_editor-auto-handle-smoothing>` properties.
 
 By using the other, non-automatic modes, you have full manual control over the slope.
-
 
 Automatic
    Handle positions are automatically chosen to produce smooth curves.
@@ -275,8 +280,7 @@ Auto Clamped
 
 Vector
    Creates automatic linear interpolation between keyframes. The segments remain linear when
-   keyframe centers are moved. However, when the handles are moved, the handle type switches to
-   *Free*.
+   keyframe centers are moved. However, when the handles are moved, the handle type switches to *Free*.
 
    .. figure:: /images/editors_graph-editor_fcurves_introduction_vector.png
       :width: 400px
@@ -284,8 +288,8 @@ Vector
       Vector handles.
 
 Aligned
-   The two handles of the curve point are locked together to always point in exactly opposite
-   directions. This results in a curve that is always smooth at the control point.
+   The two handles of the curve point are locked together to always point in exactly opposite directions.
+   This results in a curve that is always smooth at the control point.
 
    .. figure:: /images/editors_graph-editor_fcurves_introduction_aligned.png
       :width: 400px
@@ -293,8 +297,7 @@ Aligned
       Aligned handles.
 
 Free
-   The handles can be moved completely independently, and thus can result in a sharp change of
-   direction.
+   The handles can be moved completely independently, and thus can result in a sharp change of direction.
 
    .. figure:: /images/editors_graph-editor_fcurves_introduction_free.png
       :width: 400px
