@@ -222,30 +222,30 @@
             
   <div class="section" id="building-on-linux">
 <h1>Xây Dựng trên Hệ Điều Hành Linux -- Building on Linux<a class="headerlink" href="#building-on-linux" title="Permalink to this headline">¶</a></h1>
-<p>Chuyển đổi các tập tin RST thành các trang HTML đẹp.</p>
-<p>Mở một thiết bị đầu cuối ở thư mục <code class="docutils literal notranslate"><span class="pre">~/blender_docs</span></code> và chỉ cần thi hành:</p>
+<p>Chuyển đổi các tập tin RST sang các trang HTML đẹp đẽ.</p>
+<p>Mở một cửa sổ dòng lệnh tại thư mục <code class="docutils literal notranslate"><span class="pre">~/blender_docs</span></code> và đơn thuần thi hành dòng lệnh:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make
 </pre></div>
 </div>
-<p>Đây là lệnh bạn sẽ luôn luôn sử dụng khi xây dựng bản tài liệu. Quá trình xây dựng có thể mất vài phút lần đầu tiên (hoặc sau bất kỳ thay đổi lớn nào), nhưng lần sau bạn xây dựng nó thì thường chỉ mất vài giây thôi.</p>
+<p>Lệnh này là lệnh bạn sẽ luôn luôn sử dụng khi xây dựng các tài liệu. Quá trình xây dựng lần đầu tiên sẽ kéo dài vài phút (hoặc sau những thay đổi lớn), song lần xây dựng sau sẽ chỉ kéo dài vài giây mà thôi.</p>
 <div class="section" id="viewing-the-local-manual">
 <h2>Duyệt Thảo Bản Hướng Dẫn Sử Dụng Cục Bộ -- Viewing the Local Manual<a class="headerlink" href="#viewing-the-local-manual" title="Permalink to this headline">¶</a></h2>
-<p>Một khi các bản tài liệu đã được xây dựng xong, bạn có thể tìm thấy toàn bộ các tập tin HTML trong thư mục <code class="docutils literal notranslate"><span class="pre">~/blender_docs/build/html</span></code>. Hãy thử mở <code class="docutils literal notranslate"><span class="pre">build/html/contents.html</span></code> trong trình duyệt trang mạng của bạn và đọc bản hướng dẫn sử dụng:</p>
+<p>Một khi các tài liệu đã được xây dựng, toàn bộ các tập tin HTML sẽ nằm trong <code class="docutils literal notranslate"><span class="pre">~/blender_docs/build/html</span></code>. Hãy thử mở <code class="docutils literal notranslate"><span class="pre">build/html/index.html</span></code> trong trình duyệt mạng của bạn và đọc bản hướng dẫn sử dụng:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>xdg-open build/html/index.html
 </pre></div>
 </div>
-<p>Như vậy là bạn đã có thể xây dựng bản hướng dẫn sử dụng rồi, phần tiếp theo sẽ nói về tùy chọn xây dựng nhanh chóng.</p>
+<p>Bây giờ, lúc bạn đã có thể xây dựng bản hướng dẫn sử dụng rồi, phần tiếp theo sẽ bàn về phương pháp xây dựng nhanh chóng ngoài ra mà bạn có thể thi hành.</p>
 </div>
 <div class="section" id="building-a-single-chapter">
 <h2>Xây Dựng một Chương mà thôi -- Building a Single Chapter<a class="headerlink" href="#building-a-single-chapter" title="Permalink to this headline">¶</a></h2>
-<p>Nếu bạn đang làm việc trên một chương cụ thể nào đó của bản hướng dẫn sử dụng, bạn có thể xây dựng nó một cách nhanh chóng bằng cách sử dụng:</p>
+<p>Nếu bạn tập trung làm việc trên một chương cụ thể nào đó của bản hướng dẫn sử dụng, bạn có thể xây dựng nó nhanh chóng dùng:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make &lt;chapter name&gt;
 </pre></div>
 </div>
-<p>Ví dụ, để chỉ xây dựng tài liệu cho các modifier, sử dụng <code class="docutils literal notranslate"><span class="pre">Tạo</span> <span class="pre">Bộ</span> <span class="pre">Điều</span> <span class="pre">Chỉnh</span> <span class="pre">--</span> <span class="pre">make</span> <span class="pre">modifiers</span></code>. Bạn có thể xem hướng dẫn xây dựng nhanh này bằng cách mở <code class="docutils literal notranslate"><span class="pre">build/html/contents_quicky.html</span></code>.</p>
-<p>Việc xây dựng này sẽ xảy ra rất nhanh, nhưng nó cũng có nghĩa là việc xây dựng hoàn chỉnh tiếp tới của tất cả các chương sẽ chậm lại.</p>
+<p>Lấy ví dụ, để chỉ xây dựng bản tài liệu về các bộ điều chỉnh, sử dụng <code class="docutils literal notranslate"><span class="pre">tạo</span> <span class="pre">bộ</span> <span class="pre">điều</span> <span class="pre">chỉnh</span> <span class="pre">--</span> <span class="pre">make</span> <span class="pre">modifiers</span></code>. Sau đó, bạn có thể duyệt thảo kết quả xây dựng nhanh chóng này bằng cách mở <code class="docutils literal notranslate"><span class="pre">build/html/contents_quicky.html</span></code>.</p>
+<p>Việc làm này tuy sẽ xây dựng nhanh chóng, song nó cũng có nghĩa là quá trình xây dựng toàn phần sau này, bao gồm toàn bộ tất cả các chương, sẽ chậm hơn.</p>
 <hr class="docutils" />
-<p>Tiếp tục với bước tiếp theo: <a class="reference internal" href="../editing.html"><span class="doc">Biên Soạn</span></a>.</p>
+<p>Tiếp tục với bước tới: <a class="reference internal" href="../editing.html"><span class="doc">Biên Soạn -- Editing</span></a>.</p>
 </div>
 </div>
 
