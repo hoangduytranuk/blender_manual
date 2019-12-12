@@ -51,7 +51,7 @@ Emulate 3 Button Mouse
       :kbd:`Alt`
          Use the :kbd:`Alt` key to emulate the middle mouse button.
       :kbd:`OSKey`
-         Use the :kbd:`OS-Key` to emulate the middle mouse button.
+         Use the :kbd:`OSKey` to emulate the middle mouse button.
 
          This has the advantage that it doesn't conflict with existing :kbd:`Alt-MMB` shortcuts,
          noted above.

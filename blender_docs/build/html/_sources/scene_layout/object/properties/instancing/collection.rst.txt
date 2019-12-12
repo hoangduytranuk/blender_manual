@@ -41,7 +41,8 @@ Making an Instanced Collection Real
 ===================================
 
 Say you want to make further edits on an instanced collection.
-Simply select your *Instance Collection* and press :kbd:`Shift-Ctrl-A` to convert the collection
+Simply select your *Instance Collection* and call the
+:menuselection:`Object --> Apply --> Make Instances Real` operator to convert the collection
 into regular objects that can be transformed and animated normally.
 
 .. note::

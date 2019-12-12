@@ -1,0 +1,147 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/addons/import_export/pc2.rst">
+ <section ids="pointcache-pc2" names="pointcache\ (pc2)">
+  <title>
+   Pointcache (pc2)
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Category
+     </field_name>
+     <field_body>
+      <paragraph>
+       Import-Export
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`File --&gt; Export --&gt; Pointcache (.pc2)`">
+        File ‣ Export ‣ Pointcache (.pc2)
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <paragraph>
+   This exporter produces pointcache files. These can be used to transfer animated meshes to external applications.
+Only the vertex positions at the samples are saved.
+  </paragraph>
+  <paragraph>
+   The exporter can export meshes, surfaced curves, surfaces and font objects. They are all treated as meshes.
+The base object has to be converted into a mesh before exporting it also.
+  </paragraph>
+  <section ids="properties" names="properties">
+   <title>
+    Properties
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Convert to Y-Up
+     </term>
+     <definition>
+      <paragraph>
+       Rotates the mesh data -90 degrees around X.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Export into World Space
+     </term>
+     <definition>
+      <paragraph>
+       Transform the mesh data into world space.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Apply Modifiers
+     </term>
+     <definition>
+      <paragraph>
+       Whether to apply modifiers before exporting.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Start Frame
+     </term>
+     <definition>
+      <paragraph>
+       First frame to export.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      End Frame
+     </term>
+     <definition>
+      <paragraph>
+       Export up to this frame.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Sampling
+     </term>
+     <definition>
+      <paragraph>
+       The sample rate. 1 means one sample per frame. 0.1 means 10 samples per frame,
+and 10 means one sample every 10 frames.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="importing" names="importing">
+   <title>
+    Importing
+   </title>
+   <paragraph>
+    The use of these files depends on the importing application.
+In general the object has to be first exported normally (OBJ export or the like) and
+then the pointcache data can be attached to the object.
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      In 3ds Max there is a modifier which can directly read pc2 files.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      In Maya the pc2 cache has to be converted into Maya’s geometry cache format first.
+The MEL command for that is this:
+     </paragraph>
+     <literal_block force_highlighting="True" highlight_args="{}" language="sh" linenos="False" xml:space="preserve">
+      cacheFile -pc2 1 -pcf "
+      <insert filepath="" of="" source="">
+       " -f "
+       <insert extension="" filename="" o="" target="" w="">
+        " -dir "
+        <insert directory="" for="" path="" target="">
+         " -format "OneFile";
+        </insert>
+       </insert>
+      </insert>
+     </literal_block>
+    </list_item>
+   </bullet_list>
+  </section>
+ </section>
+</document>

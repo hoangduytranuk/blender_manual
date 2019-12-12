@@ -40,7 +40,7 @@ Assign Material ``+``
    Assign a material to the current selection. List of all materials and search for a material by name.
 
 Select By Material (magnifying glass icon)
-   In Edit or Object Mode you can select based on material. 
+   In Edit or Object Mode you can select based on material.
    Faces with chosen material will become selected.
    All objects with a chosen material will be selected in Object Mode.
 
@@ -50,7 +50,8 @@ Copy Material to Selected (ID icon)
 Clean Slots (glossy sphere icon)
    Clean Material Slots ``X``
       For all selected objects, removes all empty and unused material slots (not assigned to any polygons).
-      Due to Blender's current limitations, available only in Object Mode (the option will be grayed out in Edit Mode).
+      Due to Blender's current limitations, available only in Object Mode
+      (the option will be grayed out in Edit Mode).
    Remove Active Material Slots ``-``
       Todo.
    Remove All Material Slots ``(X)``

@@ -1,0 +1,880 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/addons/import_export/scene_dxf.rst">
+ <section ids="autocad-dxf" names="autocad\ dxf">
+  <title>
+   AutoCAD DXF
+  </title>
+  <admonition classes="refbox">
+   <title>
+    Reference
+   </title>
+   <field_list>
+    <field>
+     <field_name>
+      Category
+     </field_name>
+     <field_body>
+      <paragraph>
+       Import-Export
+      </paragraph>
+     </field_body>
+    </field>
+    <field>
+     <field_name>
+      Menu
+     </field_name>
+     <field_body>
+      <paragraph>
+       <inline classes="menuselection" rawtext=":menuselection:`File --&gt; Import/Export --&gt; AutoCAD DXF`">
+        File ‣ Import/Export ‣ AutoCAD DXF
+       </inline>
+      </paragraph>
+     </field_body>
+    </field>
+   </field_list>
+  </admonition>
+  <target refid="dxf-import">
+  </target>
+  <section ids="import dxf-import" names="import dxf-import">
+   <title>
+    Import
+   </title>
+   <paragraph>
+    DXF layers are reflected as Blender groups. This importer uses a general purpose DXF library called “dxfgrabber”.
+   </paragraph>
+   <section ids="dxf-type-mapping" names="dxf\ type\ mapping">
+    <title>
+     DXF Type Mapping
+    </title>
+    <paragraph>
+     To be as non-destructive as possible the importer aims to map as many DXF types to
+Blender curves as possible.
+    </paragraph>
+    <section ids="dxf-to-curves" names="dxf\ to\ curves">
+     <title>
+      DXF to Curves
+     </title>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        <literal>
+         LINE
+        </literal>
+        as
+        <literal>
+         POLYLINE
+        </literal>
+        curve (with the option to merge connecting lines).
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <literal>
+         (LW)POLYLINE
+        </literal>
+        ,
+        <literal>
+         (LW)POLYGON
+        </literal>
+        as
+        <literal>
+         POLYLINE
+        </literal>
+        curve if they have no bulges else as
+        <literal>
+         BEZIER
+        </literal>
+        curve.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <literal>
+         ARC
+        </literal>
+        s,
+        <literal>
+         CIRCLE
+        </literal>
+        s and
+        <literal>
+         ELLIPSE
+        </literal>
+        s as
+        <literal>
+         BEZIER
+        </literal>
+        curves.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <literal>
+         HELIX
+        </literal>
+        es (3D) as
+        <literal>
+         BEZIER
+        </literal>
+        curves.
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </section>
+    <section ids="dxf-to-meshes" names="dxf\ to\ meshes">
+     <title>
+      DXF to Meshes
+     </title>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        <literal>
+         MESH
+        </literal>
+        is mapped to a mesh object with a Subdivision Surface modifier, including the edge crease.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <literal>
+         POLYFACE
+        </literal>
+        s and
+        <literal>
+         POLYMESH
+        </literal>
+        es are imported to a mesh object.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        <literal>
+         3DFACE
+        </literal>
+        s,
+        <literal>
+         SOLID
+        </literal>
+        s,
+        <literal>
+         POINT
+        </literal>
+        s are imported into one combined mesh object
+per layer called
+        <literal>
+         layername_3Dfaces
+        </literal>
+        .
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </section>
+    <section ids="missing-dxf-types" names="missing\ dxf\ types">
+     <title>
+      Missing DXF Types
+     </title>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        Hatches
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Leader
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </section>
+   </section>
+   <section ids="properties" names="properties">
+    <title>
+     Properties
+    </title>
+    <section ids="merge-options" names="merge\ options">
+     <title>
+      Merge Options
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Blocks As
+       </term>
+       <definition>
+        <paragraph>
+         DXF Blocks can be imported as linked objects or group instances.
+Linked objects use parenting for DXF sub-blocks (blocks in blocks).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Parent Blocks to Bounding Boxes
+       </term>
+       <definition>
+        <paragraph>
+         Draw a bounding box around blocks.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Merged Objects
+       </term>
+       <definition>
+        <paragraph>
+         Since Blender (v2.71) is pretty slow at adding objects the user might want to
+merge similar DXF geometry to one object.
+        </paragraph>
+        <definition_list>
+         <definition_list_item>
+          <term>
+           By Layer
+          </term>
+          <definition>
+           <paragraph>
+            Produces one object per layer; if there is mesh, curve, lamp, text data on one layer
+one object per layer and per Blender object.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           By Layer and DXF Type
+          </term>
+          <definition>
+           <paragraph>
+            The second not only differentiates between Blender data types but also DXF types,
+such as
+            <literal>
+             LWPOLYLINE
+            </literal>
+            and
+            <literal>
+             POLYLINE
+            </literal>
+            .
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           By Layer and closed no-bulge polygons
+          </term>
+          <definition>
+           <paragraph>
+            Closed polylines with no bulge, that is no curved edges, can be merged to one single mesh.
+This makes sense when the DXF polylines have an extrusion and/or an elevation attribute
+which basically describes a location/rotation/scale transformation.
+If this merge option is chosen, line thickness settings will be ignored/disabled.
+           </paragraph>
+          </definition>
+         </definition_list_item>
+         <definition_list_item>
+          <term>
+           By Layer and DXF-Type and Blocks
+          </term>
+          <definition>
+           <paragraph>
+            For DXF files with a block being referenced many times, this option allows to insert the same block many times
+with one dupli-face object instead of with one object for each time the block needs to be inserted.
+Unfortunately this works only for block inserts that are uniformly scaled.
+Non-uniformly scaled block inserts are being imported as defined in
+            <emphasis>
+             Blocks As
+            </emphasis>
+            .
+           </paragraph>
+          </definition>
+         </definition_list_item>
+        </definition_list>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Combine
+        <literal>
+         LINE
+        </literal>
+        entities to polygons
+       </term>
+       <definition>
+        <paragraph>
+         Separated lines in DXF might be merged to one consecutive Blender poly curve.
+Similar to
+         <emphasis>
+          Remove Doubles
+         </emphasis>
+         but for curves.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="line-thickness-and-width" names="line\ thickness\ and\ width">
+     <title>
+      Line Thickness and Width
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Represent Line Thickness/Width
+       </term>
+       <definition>
+        <paragraph>
+         DXF line attributes
+         <emphasis>
+          thickness
+         </emphasis>
+         and
+         <emphasis>
+          width
+         </emphasis>
+         have an effect on line in Z and X/Y direction respectively.
+A straight line might be turned to a cube by its attributes for instance.
+Therefore in Blender these attributes are represented with curve extrusion, bevel and taper objects.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Merge by Attributes
+       </term>
+       <definition>
+        <paragraph>
+         If both
+         <emphasis>
+          Merged Objects
+         </emphasis>
+         and
+         <emphasis>
+          Represent Line Thickness/Width
+         </emphasis>
+         are activated
+the object merging needs to be extended to separate all lines width different thickness and width.
+With
+         <emphasis>
+          Merge by Attributes
+         </emphasis>
+         this separation option is also available without
+the actual representation of line thickness and width.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="optional-objects" names="optional\ objects">
+     <title>
+      Optional Objects
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Import
+        <literal>
+         TEXT
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         (
+         <literal>
+          TEXT
+         </literal>
+         ,
+         <literal>
+          MTEXT
+         </literal>
+         )
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Import
+        <literal>
+         LIGHT
+        </literal>
+       </term>
+       <definition>
+        <paragraph>
+         Including support for AutoCAD colors.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Export
+        <literal>
+         ACIS
+        </literal>
+        Entities
+       </term>
+       <definition>
+        <paragraph>
+         Export NURBS 3D geometry (
+         <literal>
+          BODY
+         </literal>
+         ,
+         <literal>
+          REGION
+         </literal>
+         ,
+         <literal>
+          PLANESURFACE
+         </literal>
+         ,
+         <literal>
+          SURFACE
+         </literal>
+         ,
+         <literal>
+          3DSOLID
+         </literal>
+         ) to ACIS-Sat files,
+since this is the format AutoCAD stores NURBS to DXF.
+You are going to be notified about the amount of stored
+         <literal>
+          .sat
+         </literal>
+         /
+         <literal>
+          .sab
+         </literal>
+         files.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="view-options" names="view\ options">
+     <title>
+      View Options
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Display Groups in Outliner(s)
+       </term>
+       <definition>
+        <paragraph>
+         Switch the Outliner display mode to
+         <literal>
+          GROUPS
+         </literal>
+         (DXF layers are mapped to groups).
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Import DXF File to a New Scene
+       </term>
+       <definition>
+        <paragraph>
+         Todo.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Center Geometry to Scene
+       </term>
+       <definition>
+        <paragraph>
+         Center the imported geometry to the center of the scene;
+the offset information is stored as a custom property to the scene.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="georeferencing" names="georeferencing">
+     <title>
+      Georeferencing
+     </title>
+     <paragraph>
+      Important: DXF files do not store any information about
+the coordinate system / spherical projection of its coordinates.
+Best practice is to know the coordinate system for your specific DXF file and
+enter this information in the DXF importer interface as follows:
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Pyproj
+       </term>
+       <definition>
+        <paragraph>
+         Installation: Download (
+         <reference name="Windows" refuri="https://code.google.com/p/pyproj/downloads/list">
+          Windows
+         </reference>
+         ,
+         <reference name="macOS" refuri="http://www.ia.arch.ethz.ch/wp-content/uploads/2013/11/pyproj.zip">
+          macOS
+         </reference>
+         ) Pyproj and copy it to your
+        </paragraph>
+        <literal_block force_highlighting="False" language="python3" linenos="False" xml:space="preserve">
+         AppData/ApplicationSupport Folder/Blender/2.82/scripts/modules/.
+        </literal_block>
+        <paragraph>
+         In case you need to compile your own binary refer to
+         <reference name="this post" refuri="http://blenderartists.org/forum/showthread.php?323358-DXF-Importer&amp;p=2664492&amp;viewfull=1#post2664492">
+          this post
+         </reference>
+         on Blenderartists.
+        </paragraph>
+        <paragraph>
+         Pyproj is a python wrapper to the PROJ library, a well known C library used to
+convert coordinates between different coordinate systems.
+Open source GIS libraries such as PROJ are used directly or indirectly by many authorities and
+therefore can be considered to be well maintained.
+        </paragraph>
+        <paragraph>
+         If Pyproj is available the DXF importer shows a selection of national coordinate systems
+but lets the user also to enter a custom EPSG / SRID code.
+It also stores the SRID as a custom property to the Blender scene.
+If a scene has already such a SRID property the coordinates are being converted from
+your DXF file to target coordinate system and therefore you
+         <strong>
+          must
+         </strong>
+         specify a SRID for the DXF file.
+If no SRID custom property is available the scene SRID is by default the same as the DXF SRID.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        No Pyproj
+       </term>
+       <definition>
+        <paragraph>
+         In case Pyproj is not available the DXF importer will only use its built-in lat/lon to X/Y converter.
+For conversion the “transverse Mercator” projection is applied that inputs a lat/lon coordinate to be used
+as the center of the projection. The lat/lon coordinate is being added to your scene as a custom property.
+Subsequent imports will convert any lat/lon coordinates to the same georeference.
+        </paragraph>
+        <paragraph>
+         Important: So far only lat/lon to X/Y conversion is supported.
+If you have a DXF file with Euclidean coordinates that refer to another lat/lon center
+the conversion is not (yet) supported.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Rules of thumb for choosing an SRID
+       </term>
+       <definition>
+        <paragraph>
+         if you have your data from OpenStreetMap or some similar GIS service website and
+exported it with QGIS or ArcGIS the coordinates are most likely in lat/lon then use WGS84 as
+your SRID with Pyproj or “spherical” if Pyproj is not available.
+For other DXF vector maps it’s very likely that they use local / national coordinate systems.
+        </paragraph>
+        <paragraph>
+         Open the DXF with a text editor (it has many thousands of lines) and
+make an educated guess looking at some coordinates.
+DXF works with “group codes”, a name Autodesk invented for “key” as in key/value pairs.
+X has group code 10, Y has 20, Z has 30. If you find a pattern like:
+        </paragraph>
+        <literal_block force_highlighting="True" highlight_args="{}" language="none" linenos="False" xml:space="preserve">
+         10, newline, whitespace, whitespace, NUMBER, newline,
+20, newline, whitespace, whitespace, NUMBER, newline,
+30, newline, whitespace, whitespace, NUMBER
+        </literal_block>
+        <paragraph>
+         then
+         <literal>
+          NUMBER
+         </literal>
+         will be most likely your coordinates.
+Probably you can tell from the format and/or the range of the coordinates which coordinate system it should be.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+     <target refid="dxf-export">
+     </target>
+    </section>
+   </section>
+  </section>
+  <section ids="export dxf-export" names="export dxf-export">
+   <title>
+    Export
+   </title>
+   <section ids="supported-data" names="supported\ data">
+    <title>
+     Supported Data
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Mesh face:
+       <literal>
+        POLYFACE
+       </literal>
+       or
+       <literal>
+        3DFACE
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Mesh edge:
+       <literal>
+        LINE
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Modifier (optionally)
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+   <section ids="unsupported-data" names="unsupported\ data">
+    <title>
+     Unsupported Data
+    </title>
+    <bullet_list bullet="-">
+     <list_item>
+      <paragraph>
+       Mesh vertex:
+       <literal>
+        POINT
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Curve:
+       <literal>
+        LINE
+       </literal>
+       s or
+       <literal>
+        POLYLINE
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Curve NURBS:
+       <literal>
+        curved-POLYLINE
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Text:
+       <literal>
+        TEXT
+       </literal>
+       or (wip:
+       <literal>
+        MTEXT
+       </literal>
+       )
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Camera:
+       <literal>
+        POINT
+       </literal>
+       or
+       <literal>
+        VIEW
+       </literal>
+       or
+       <literal>
+        VPORT
+       </literal>
+       or (wip:
+       <literal>
+        INSERT(ATTRIB+XDATA)
+       </literal>
+       )
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Lamp:
+       <literal>
+        POINT
+       </literal>
+       or (wip:
+       <literal>
+        INSERT(ATTRIB+XDATA)
+       </literal>
+       )
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Empty:
+       <literal>
+        POINT
+       </literal>
+       or (wip:
+       <literal>
+        INSERT
+       </literal>
+       )
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Object matrix: extrusion (
+       <literal>
+        210-group
+       </literal>
+       ), rotation, elevation
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       3D View: (wip:
+       <literal>
+        VIEW
+       </literal>
+       ,
+       <literal>
+        VPORT
+       </literal>
+       )
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Duplivert: auto-instanced or (wip:
+       <literal>
+        INSERT
+       </literal>
+       )
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Dupliframe: auto-instanced or (wip:
+       <literal>
+        INSERT
+       </literal>
+       )
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Dupligroup: auto-instanced or (wip:
+       <literal>
+        INSERT
+       </literal>
+       )
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Material:
+       <literal>
+        LAYER
+       </literal>
+       ,
+       <literal>
+        COLOR
+       </literal>
+       and
+       <literal>
+        STYLE
+       </literal>
+       properties
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Group:
+       <literal>
+        BLOCK
+       </literal>
+       and
+       <literal>
+        INSERT
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Parenting:
+       <literal>
+        BLOCK
+       </literal>
+       and
+       <literal>
+        INSERT
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Visibility status:
+       <literal>
+        LAYER_on
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Frozen status:
+       <literal>
+        LAYER_frozen
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Locked status:
+       <literal>
+        LAYER_locked
+       </literal>
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Surface
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Meta
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Armature
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Lattice
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       <abbreviation explanation="InterPOlated">
+        IPO
+       </abbreviation>
+       /Animation
+      </paragraph>
+     </list_item>
+    </bullet_list>
+   </section>
+  </section>
+ </section>
+</document>

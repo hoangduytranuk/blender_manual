@@ -13,13 +13,15 @@ You can save, load and categorize materials that can be shared across all your p
 This version uses a blend-file as database so all external render engines,
 all node materials and textures are supported. It also makes use of Blender compression.
    </paragraph>
-   <paragraph>
-    Please see
-    <reference name="author's site" refuri="https://sites.google.com/site/aleonserra/home/scripts/matlib-vx-5-6">
-     author’s site
-    </reference>
-    for the full docs.
-   </paragraph>
+   <seealso>
+    <paragraph>
+     Please see
+     <reference name="author's site" refuri="https://sites.google.com/site/aleonserra/home/scripts/matlib-vx-5-6">
+      author’s site
+     </reference>
+     for the older original docs.
+    </paragraph>
+   </seealso>
   </section>
   <section ids="activation" names="activation">
    <title>
@@ -33,10 +35,220 @@ all node materials and textures are supported. It also makes use of Blender comp
     </list_item>
     <list_item>
      <paragraph>
-      Click Material then Material Library to enable the script.
+      Click Material then Material Library VX to enable the script.
      </paragraph>
     </list_item>
    </bullet_list>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Add-ons Preferences
+     </term>
+     <definition>
+      <paragraph>
+       Once the add-on is enabled you can open the preferences and
+choose to set a path to use your own materials in the library.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="interface" names="interface">
+   <title>
+    Interface
+   </title>
+   <paragraph>
+    Located in the
+    <inline classes="menuselection" rawtext=":menuselection:`Properties editor --&gt; Materials --&gt; Material Library VX`">
+     Properties editor ‣ Materials ‣ Material Library VX
+    </inline>
+    .
+   </paragraph>
+   <figure align="right">
+    <image candidates="{'*': 'images/addons_materials_matlibvx_ui.jpg'}" uri="images/addons_materials_matlibvx_ui.jpg" width="330px"/>
+   </figure>
+  </section>
+  <section ids="instructions" names="instructions">
+   <title>
+    Instructions
+   </title>
+   <paragraph>
+    It’s advisable to add a
+    <reference internal="True" refuri="#term-fake-user">
+     <inline classes="xref std std-term">
+      fake user
+     </inline>
+    </reference>
+    to your materials and
+to save your blend-file before use.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      New Library
+      <literal>
+       +
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Create a new Library and name it. The new library will have one material to start.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Add to Library
+      <literal>
+       +
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Add your materials to the library.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Apply to Selected (material icon)
+     </term>
+     <definition>
+      <paragraph>
+       Select a material in the list and apply it to the active object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Reload Material (circular arrows icon)
+     </term>
+     <definition>
+      <paragraph>
+       Restore the saved version of the material if you want to revert edits.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Preview Material (palette icon)
+     </term>
+     <definition>
+      <paragraph>
+       Display the material in the materials
+       <emphasis>
+        Preview
+       </emphasis>
+       panel before adding it to the object.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Remove Preview (ghost icon)
+     </term>
+     <definition>
+      <paragraph>
+       Restore the
+       <emphasis>
+        Preview
+       </emphasis>
+       panel.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Remove Material
+      <literal>
+       -
+      </literal>
+     </term>
+     <definition>
+      <paragraph>
+       Delete the active material from the Matlib VX list and your library.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Settings (wrench icon)
+     </term>
+     <definition>
+      <paragraph>
+       Extend the interface for some extra options.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Search
+     </term>
+     <definition>
+      <paragraph>
+       Search the library for a material.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Category Tools:
+     </term>
+     <definition>
+      <paragraph>
+       Here you can make sub categories.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Filter (funnel icon)
+        </term>
+        <definition>
+         <paragraph>
+          Apply the current filter.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Set Type (up arrow icon)
+        </term>
+        <definition>
+         <paragraph>
+          Apply the current selected category to the current material library.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Add
+         <literal>
+          +
+         </literal>
+        </term>
+        <definition>
+         <paragraph>
+          Add a new category.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Remove
+         <literal>
+          -
+         </literal>
+        </term>
+        <definition>
+         <paragraph>
+          Remove the current selected category from the list.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
+   </definition_list>
    <admonition classes="refbox">
     <title>
      Reference
@@ -96,11 +308,31 @@ all node materials and textures are supported. It also makes use of Blender comp
      </field>
      <field>
       <field_name>
+       Maintainer
+      </field_name>
+      <field_body>
+       <paragraph>
+        meta-androcto
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
        License
       </field_name>
       <field_body>
        <paragraph>
         GPL
+       </paragraph>
+      </field_body>
+     </field>
+     <field>
+      <field_name>
+       Support Level
+      </field_name>
+      <field_body>
+       <paragraph>
+        Community
        </paragraph>
       </field_body>
      </field>

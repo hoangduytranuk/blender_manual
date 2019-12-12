@@ -73,8 +73,10 @@ and :kbd:`Ctrl-=` or :kbd:`Ctrl-NumpadAsterix` to switch back to simple mode.
 It features:
 
 - Units (``cm``, ``"``, ``deg``, etc.).
-- Basic operations from Python/BKE_unit (``+``, ``*``, ``**``, etc.), and math constants
-  and functions (``pi``, ``sin``, etc.).
+  See :ref:`unit-system <data-scenes-props-units>`.
+- Basic operations from Python (``+``, ``*``, ``/``, ``**``, etc.).
+- Math constants and functions (``pi``, ``sin``, ``sqrt``, etc.).
+  See Python's `math <https://docs.python.org/3.8/library/math.html>`__ module.
 
 You can still use the negate and inverse shortcuts (:kbd:`Minus`, :kbd:`Slash`),
 as well as non-number inputs, but you have to hold :kbd:`Ctrl` to activate them.

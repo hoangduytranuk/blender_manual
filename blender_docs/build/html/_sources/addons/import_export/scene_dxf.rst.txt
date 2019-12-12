@@ -23,7 +23,7 @@ DXF Type Mapping
 
 To be as non-destructive as possible the importer aims to map as many DXF types to
 Blender curves as possible.
- 
+
 
 DXF to Curves
 ^^^^^^^^^^^^^
