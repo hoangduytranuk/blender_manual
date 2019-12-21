@@ -227,6 +227,8 @@ Show/Hide One Level
    Some data-block types will not have a context menu at all!
 
 
+.. _editors-outliner-restriction-columns:
+
 Restriction Columns
 ===================
 

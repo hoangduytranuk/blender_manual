@@ -32,7 +32,7 @@ see the `list of NVIDIA graphics cards <https://developer.nvidia.com/cuda-gpus>`
 with the compute capabilities and supported graphics cards.
 CUDA GPU rendering is supported on Windows, macOS, and Linux.
 
-For RTX graphics cards with hardware ray tracing support (Turing+), Optix can be used for better performance.
+For RTX graphics cards with hardware ray tracing support (e.g. Turing), Optix can be used for better performance.
 Optix support is still experimental and does not yet support all features, see below for details.
 
 Optix requires Geforce or Quadro RTX graphics card with recent NVIDIA drivers, and is supported on Windows and Linux.

@@ -29,12 +29,12 @@ Modular rigging
    (FK, IK, and all the relative snapping tools and the UI) in few seconds.
 
 Nondisruptive re-rig
-   If the generated rig doesn’t fit all the features you need or, for example,
+   If the generated rig doesn't fit all the features you need or, for example,
    you decide to add something more to your character (like a sixth arm or a tail),
    you can re-generate your rig without losing your previously generated features and your animation data.
 
 Advanced and flexible feature set for character animation
-   The included rig samples (limbs, spines, tails, fingers, faces…) adds to all the stretchy FK/IK features
+   The included rig samples (limbs, spines, tails, fingers, faces...) adds to all the stretchy FK/IK features
    a direct deformation secondary layer that lets you flex, bend and deform the character as you like
    through interactive Bendy Bones controls.
 
@@ -48,7 +48,7 @@ Extendable feature set
    Through Python scripting you can also extend Rigify with new Rigify-types or new rig samples.
 
 Ready to go
-   Once you generate your rig you won’t need Rigify or any other add-on to use it.
+   Once you generate your rig you won't need Rigify or any other add-on to use it.
 
 
 Activation
@@ -77,7 +77,7 @@ Add a Predefined Meta-Rig
    :Hotkey:    :kbd:`Shift-A`
 
 Rigify stores all the information required to generate complex rig controls and mechanism in
-more simple armatures called “meta-rigs”.
+more simple armatures called "meta-rigs".
 
 The precompiled meta-rigs can be found in the *Add* menu.
 Currently available meta-rig types are:
@@ -102,7 +102,7 @@ This can be achieved in two different ways: Pose Mode or Edit Mode.
    Rigify assumes that 1 unit corresponds to 1 meter. So a human is about 2 units tall.
    If your character is in a different scale and you are more familiar with modeling rather than rigging,
    it is suggested to scale it to Rigify dimensions before positioning the meta-rig bones.
-   f you want to scale the character’s geometry, we suggest you to first scale up the character in Object Mode,
+   f you want to scale the character's geometry, we suggest you to first scale up the character in Object Mode,
    then apply the geometry scale with the *Apply Scale* tool.
 
 
@@ -116,8 +116,8 @@ Rigify Human Alignment Tips
   are considered the neck bones. It is suggested to keep the neck bones as aligned as possible while editing.
 - Face: Positioning face bones can be tricky if you are not an expert in bone editing and
   they are almost useless if you plan to make facial animation through shape keys.
-  Consider removing face features from your character if they aren’t really needed.
-  If you don’t need the face all the face bones can be deleted.
+  Consider removing face features from your character if they aren't really needed.
+  If you don't need the face all the face bones can be deleted.
   All the face bones are on the first armature layer by default.
   You can select them by displaying only bone layer 1, selecting all of its content and
   then deleting the bones in Edit Mode to correctly remove the face.
@@ -184,7 +184,7 @@ Also the jaw-ear area is split in different parts identified by bone names. Foll
 .. tip:: Jaw Placement
 
    Try to place "ear.L" bone covering the part of the ear attached to the mandible (lower jaw).
-   Do the same with temple bone trying to cover the part you don’t want to move with the jaw,
+   Do the same with temple bone trying to cover the part you don't want to move with the jaw,
    this way you will also determine the jaw pivot position.
 
 .. warning::
@@ -206,7 +206,7 @@ Position the eye bones in the eye pivot point facing right **toward** the face o
    If your eye has a spherical shape you can define its pivot by entering Edit Mode and
    selecting two opposite vertices on the center meridian -- or the opposite poles -- and
    snapping the cursor to selection by pressing :menuselection:`Snap --> Cursor To Selected`.
-   If your eye is a complete sphere and its location it’s not applied, than you can just use its center of mass.
+   If your eye is a complete sphere and its location it's not applied, than you can just use its center of mass.
 
 Finally position the teeth bones on your teeth geometry and the tongue bone chain as described in the figure.
 
@@ -246,12 +246,12 @@ Limbs Bones
 While placing the arm bones try to start having a straight line that goes from
 the shoulder to the hand in both front and top view. After this is done just add a slight bend to the elbow.
 This can be easily done by going in the top view, entering armature Edit Mode and
-sliding the bone junction between forearm and upper_arm slightly toward the world’s Y axis.
+sliding the bone junction between forearm and upper_arm slightly toward the world's Y axis.
 
 For the leg you can follow a similar process. Start by aligning the leg bones creating a straight line from
 the hips to the ankle, then place the foot and the toe accordingly.
 Remember to add a slight bend to the knee. This can be easily done by going in the side view,
-entering armature Edit Mode and sliding the bone junction between thigh and shin slightly toward the world’s Y axis.
+entering armature Edit Mode and sliding the bone junction between thigh and shin slightly toward the world's Y axis.
 
 Finally align the heel bone by going in the front view and placing his head and
 tail to fill the foot size from side to side then, in the side view,
@@ -261,7 +261,7 @@ align the bone at the point where the heel just touches the ground floor.
 
    From version 0.5 and above there is no more need of manual bone rolls alignment,
    the generate function will take care of that for you evaluating it from bend axis;
-   just insert a slight bend in your limb and it’s done!
+   just insert a slight bend in your limb and it's done!
    If you need more control on the orientation follow the guidelines described in `Advanced Usage`_.
 
 
@@ -337,7 +337,7 @@ To bind the geometry to the rig you can use your preferred tools. Just few thing
 - Eyes and Teeth bones are not deforming. You are supposed to bind the eyes and teeth geometry
   through Child Of constraints.
 - Usually armature deform with automatic weights do a really good job out of the box
-  if you correctly place your bones (and there’s enough topology to work with!).
+  if you correctly place your bones (and there's enough topology to work with!).
 
 For more detailed information on armature layers, armature modifier and weight painting refer to the Blender manual.
 
@@ -345,7 +345,7 @@ For more detailed information on armature layers, armature modifier and weight p
 Rig Features Description
 ------------------------
 
-After human rig generation a new armature named “Rig” will be added to your scene.
+After human rig generation a new armature named "Rig" will be added to your scene.
 This is the character rig you have generated from the human meta-rig and will contain all the features.
 
 
@@ -354,12 +354,12 @@ Limbs
 
 Each limb will have a gear widget at its base. This is the utility bone that contains all the sub-rig properties.
 The rig features will be displayed anyway when the affected bone is selected but
-if you are looking in the Graph editor for those properties’ animated values, this is most likely the bone to look at.
-Rigify’s super limb will list the following features:
+if you are looking in the Graph editor for those properties' animated values, this is most likely the bone to look at.
+Rigify's super limb will list the following features:
 
 IK/FK Snapping
    To snap one chain to another just select the control you want to snap and
-   in the Sidebar panel the snap buttons will appear. Click on the snap you want and it’s done!
+   in the Sidebar panel the snap buttons will appear. Click on the snap you want and it's done!
 
 FK Limb Isolation
    Slider (0, 1)
@@ -398,7 +398,7 @@ Pole Vector Type Switch
    Pole Vector Following
       Slider (0= Root, 1=Limb)
 
-      If pole vector switch is set to 1 (standard pole), then this value defines the pole’s parenting.
+      If pole vector switch is set to 1 (standard pole), then this value defines the pole's parenting.
       If Pole Following is set to 1 then the pole vector will be parented to the limb,
       if set to 0 will instead follow the root. This properties also depends on the IK follow control.
       When The general IK follow is set to 0, then the pole vector following will have no effect.
@@ -406,12 +406,12 @@ Pole Vector Type Switch
 IK Auto-Stretching
    Slider (0=No stretching, 1=Full Stretch)
 
-   When set to 0 the IK limb it’s constrained to his rest length.
+   When set to 0 the IK limb it's constrained to his rest length.
    When set to 1 the IK limb will stretch until it reaches the IK effector.
 
 Bendy Bones Flexible Tweaking
    For each limb -- depending on the user defined meta-rig options -- multiple bone segments will be created.
-   Each bone can be controlled by controls placed at the respective bone’s head/tail.
+   Each bone can be controlled by controls placed at the respective bone's head/tail.
    Tweaks movement will depend from the general IK limb position but
    they can be moved apart, twisted and scaled freely, even reaching virtually impossible limb shapes.
 

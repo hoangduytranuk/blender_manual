@@ -75,7 +75,7 @@ Merge with Automatic Type Detection
    :Hotkey:    :kbd:`Ctrl-0`, :kbd:`Shift-Ctrl-=`, :kbd:`Ctrl-Minus`, :kbd:`Shift-Ctrl-8`, :kbd:`Ctrl-Slash`,
                :kbd:`Shift-Ctrl-Comma`, :kbd:`Shift-Ctrl-Period`
 
-Selected nodes‘ outputs will be merged using Mix, Math, Mix Shader or Add Shader nodes,
+Selected nodes' outputs will be merged using Mix, Math, Mix Shader or Add Shader nodes,
 depending on types of selected nodes.
 
 Add :kbd:`Shift-Ctrl-=`
@@ -182,7 +182,7 @@ Delete Unused Nodes
 
    :Hotkey:    :kbd:`Alt-X`
 
-Clean your node tree. Delete all of the nodes that don’t contribute to the final result.
+Clean your node tree. Delete all of the nodes that don't contribute to the final result.
 
 
 Swap Links
@@ -257,7 +257,7 @@ Frame Selected
 
    :Hotkey:    :kbd:`Shift-P`
 
-Select nodes and „wrap“ them in Frame node by hitting :kbd:`Shift-P`.
+Select nodes and "wrap" them in Frame node by hitting :kbd:`Shift-P`.
 Immediately after that hit :kbd:`F6` to set the color and label of the Frame.
 
 

@@ -37,7 +37,7 @@ the VSE editor will switch to a File Browser for you to select what you want to 
 Supported files are filtered by default.
 
 The start frame of the newly created strips will be placed at the position of the frame indicator.
-When loading multiple files (movie and sound) at the same time each will be add one after the other.
+When loading multiple files (movie and sound) at the same time each will be added one after the other.
 
 
 Adding Effects & Transitions

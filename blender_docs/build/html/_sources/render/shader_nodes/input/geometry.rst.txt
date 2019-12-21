@@ -49,3 +49,11 @@ Pointiness :guilabel:`Cycles Only`
    An approximation of the curvature of the mesh per vertex.
    Lighter values indicate convex angles, darker values indicate concave angles.
    It allows you to do effects like dirt maps and wear-off effects.
+Random Per Island :guilabel:`Cycles Only`
+   A random value for each connected component (island) of the mesh.
+   It is useful to add variations to meshes composed of separated units
+   like tree leaves, wood planks, or curves of multiple splines.
+
+   .. figure:: /images/render_shader-nodes_input_geometry_example_random_per_island.png
+   
+      Get a random value for each instance of the mesh when using an array modifier.

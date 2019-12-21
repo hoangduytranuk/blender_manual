@@ -40,10 +40,9 @@ until you create an object controlling where the collection instance appears.
 Making an Instanced Collection Real
 ===================================
 
-Say you want to make further edits on an instanced collection.
-Simply select your *Instance Collection* and call the
-:menuselection:`Object --> Apply --> Make Instances Real` operator to convert the collection
-into regular objects that can be transformed and animated normally.
+If you want to make further edits on an instanced collection select the *Instance Collection*.
+Then call the :menuselection:`Object --> Apply --> Make Instances Real` tool to convert
+the collection into regular objects that can be transformed and animated normally.
 
 .. note::
 

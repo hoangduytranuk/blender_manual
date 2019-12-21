@@ -122,6 +122,9 @@ Camera Data
 Geometry
    Pointiness is not supported.
 
+Random Per Island
+   Random Per island is not supported.
+
 Attribute
    Defaults to active UV layer. Only "density", "color", "flame" and "temperature" built-in attributes are supported.
    UVs and Vertex Color layers are supported.

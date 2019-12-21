@@ -42,7 +42,7 @@ Interface
 
    Panel layout (Thickness modifier as an example).
 
-Each modifier’s interface shares the same basic components like modifiers for meshes.
+Each modifier's interface shares the same basic components like modifiers for meshes.
 
 See :ref:`Modifiers Interface <bpy.types.Modifier.show>` for more information.
 

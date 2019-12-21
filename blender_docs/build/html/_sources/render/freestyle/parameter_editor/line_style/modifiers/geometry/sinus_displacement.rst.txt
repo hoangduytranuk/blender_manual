@@ -13,6 +13,13 @@ Amplitude
 Phase
    Allows "offsetting" ("moving") the undulations along the stroke.
 
+   .. tip::
+
+      The undulations this modifier produces look exactly the same at a Phase of ``0``
+      and any positive or negative multiple of the ``Wavelength`` set on the modifier.
+      This can be used for rendering short video sequences with wavy lines
+      that can then be seamlessly looped without any visual jumps in the undulations along the line.
+
 .. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_geometry_sinus-displacement-example.png
    :width: 50%
    :align: center

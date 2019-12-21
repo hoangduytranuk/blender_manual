@@ -302,7 +302,11 @@ Non Manifold
       and vertices that belong to non-adjoining faces.
 
 Loose Geometry
-   Selects all vertices or edges that do not form part of a face.
+   This selection depends on the currently selected `Selection Modes`_;
+   In vertex and edge selection mode it selects all vertices or edges that do not form
+   part of a face. In face selection mode it selects all faces that do not share edges with
+   other faces.
+
 Interior Faces
    Selects faces where all edges have more than two faces.
 Faces by Sides

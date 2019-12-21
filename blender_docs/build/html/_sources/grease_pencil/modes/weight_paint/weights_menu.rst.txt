@@ -98,5 +98,5 @@ With Empty Group
 With Automatic Weights
    Works similar to *With Empty Groups*, but it will not leave the vertex groups empty.
    It calculates how much influence a particular bone would have on points based on the distance
-   from those points to a particular bone (“bone heat” algorithm).
+   from those points to a particular bone ("bone heat" algorithm).
    This influence will be assigned as weights in the vertex groups.

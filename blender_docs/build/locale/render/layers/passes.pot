@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-12 03:56+0000\n"
+"POT-Creation-Date: 2019-12-20 01:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgid "Cycles"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:15
-#: ../../manual/render/layers/passes.rst:163
+#: ../../manual/render/layers/passes.rst:164
 msgid "Reference"
 msgstr ""
 
@@ -40,22 +40,22 @@ msgid "Panel"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:18
-#: ../../manual/render/layers/passes.rst:166
+#: ../../manual/render/layers/passes.rst:167
 msgid ":menuselection:`Scene --> View Layers --> Passes`"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:25
-#: ../../manual/render/layers/passes.rst:170
+#: ../../manual/render/layers/passes.rst:171
 msgid "Lighting Passes"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:27
-#: ../../manual/render/layers/passes.rst:172
+#: ../../manual/render/layers/passes.rst:173
 msgid "Combined"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:28
-#: ../../manual/render/layers/passes.rst:173
+#: ../../manual/render/layers/passes.rst:174
 msgid "The final combination of render passes with everything included."
 msgstr ""
 
@@ -140,12 +140,12 @@ msgid "Shadows from light objects. Mostly useful for compositing objects with sh
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:58
-#: ../../manual/render/layers/passes.rst:184
+#: ../../manual/render/layers/passes.rst:185
 msgid "Ambient Occlusion"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:57
-#: ../../manual/render/layers/passes.rst:182
+#: ../../manual/render/layers/passes.rst:183
 msgid "Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e. it gives a 'normalized' value between 0 and 1."
 msgstr ""
 
@@ -162,17 +162,17 @@ msgid "All these lighting passes can be combined to produce the final image as f
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:78
-#: ../../manual/render/layers/passes.rst:187
+#: ../../manual/render/layers/passes.rst:188
 msgid "Data Passes"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:86
-#: ../../manual/render/layers/passes.rst:190
+#: ../../manual/render/layers/passes.rst:191
 msgid "Z"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:81
-#: ../../manual/render/layers/passes.rst:190
+#: ../../manual/render/layers/passes.rst:191
 msgid "Distance to any visible surfaces."
 msgstr ""
 
@@ -181,7 +181,7 @@ msgid "The Z pass only uses one sample. When depth values need to be blended in 
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:91
-#: ../../manual/render/layers/passes.rst:193
+#: ../../manual/render/layers/passes.rst:194
 msgid "Mist"
 msgstr ""
 
@@ -195,7 +195,7 @@ msgid "Normal"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:94
-#: ../../manual/render/layers/passes.rst:196
+#: ../../manual/render/layers/passes.rst:197
 msgid "Surface normal used for shading."
 msgstr ""
 
@@ -276,79 +276,82 @@ msgid "Material"
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:133
-#: ../../manual/render/layers/passes.rst:135
 msgid "Render cryptomatte material pass, for isolating materials in compositing."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:135
+#: ../../manual/render/layers/passes.rst:136
 msgid "Asset"
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:137
-msgid "Levels"
+#: ../../manual/render/layers/passes.rst:135
+msgid "Render cryptomatte asset pass, for isolating groups of objects with the same :doc:`parent </scene_layout/object/properties/relations/parents>` in compositing."
 msgstr ""
 
 #: ../../manual/render/layers/passes.rst:138
+msgid "Levels"
+msgstr ""
+
+#: ../../manual/render/layers/passes.rst:139
 msgid "Sets how many unique objects can be distinguished per pixel."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:141
+#: ../../manual/render/layers/passes.rst:142
 msgid "Accurate Mode"
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:140
+#: ../../manual/render/layers/passes.rst:141
 msgid "Generate a more accurate Cryptomatte pass. CPU only, may render slower and use more memory."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:144
+#: ../../manual/render/layers/passes.rst:145
 msgid "Typical Workflow"
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:146
+#: ../../manual/render/layers/passes.rst:147
 msgid "Enable Cryptomatte Object render pass in the Passes panel, and render."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:147
+#: ../../manual/render/layers/passes.rst:148
 msgid "In the compositing nodes, create a Cryptomatte node and link the Render Layer matching Image and Cryptomatte passes to it."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:149
+#: ../../manual/render/layers/passes.rst:150
 msgid "Attach a Viewer node to the Pick output of the Cryptomatte node."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:150
+#: ../../manual/render/layers/passes.rst:151
 msgid "Use the Cryptomatte Add/Remove button to sample objects in the Pick Viewer node."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:151
+#: ../../manual/render/layers/passes.rst:152
 msgid "Use the Matte output of the Cryptomatte node to get the alpha mask."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:155
+#: ../../manual/render/layers/passes.rst:156
 msgid ":doc:`Cryptomatte Node </compositing/types/matte/cryptomatte>`."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:161
+#: ../../manual/render/layers/passes.rst:162
 msgid "Eevee"
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:176
+#: ../../manual/render/layers/passes.rst:177
 msgid "Subsurface Direct"
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:175
+#: ../../manual/render/layers/passes.rst:176
 msgid "Direct lighting from subsurface BSDFs. We define direct lighting as coming from lights, emitting surfaces, the background, or ambient occlusion after a single reflection or transmission off a surface. BSDF color is not included in this pass."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:179
+#: ../../manual/render/layers/passes.rst:180
 msgid "Subsurface Color"
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:179
+#: ../../manual/render/layers/passes.rst:180
 msgid "Color weights of subsurface BSDFs. These weights are the color input socket for BSDF nodes, modified by any Mix and Add Shader nodes."
 msgstr ""
 
-#: ../../manual/render/layers/passes.rst:193
+#: ../../manual/render/layers/passes.rst:194
 msgid "Distance to visible surfaces, mapped to the 0.0 - 1.0 range."
 msgstr ""
 

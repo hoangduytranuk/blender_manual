@@ -31,19 +31,19 @@ Grease Pencil sculpt tools:
 
 Smooth
    Eliminates irregularities in the area of the drawing
-   within the brush’s influence by smoothing the positions of the points.
+   within the brush's influence by smoothing the positions of the points.
 
 Thickness
    Increase or decrease the points thickness in the area of the drawing
-   within the brush’s influence.
+   within the brush's influence.
 
 Strength
    Increase or decrease the points transparency (alpha) in the area of the drawing
-   within the brush’s influence.
+   within the brush's influence.
 
 Randomize
    Add noise to the strokes in the area of the drawing
-   within the brush’s influence by moving points location in a random way.
+   within the brush's influence by moving points location in a random way.
 
 Grab
    Used to drag a group of points around. Unlike the other brushes,

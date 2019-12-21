@@ -10,3 +10,4 @@ These add-ons relate to lighting and lighting sets.
 
    dynamic_sky.rst
    trilighting.rst
+   sun_position.rst

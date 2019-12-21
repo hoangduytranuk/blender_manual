@@ -52,7 +52,7 @@ Run Script / Script Node Update
 View Menu
 ---------
 
-Sidebar :kbd:`N`
+Sidebar :kbd:`Ctrl-T`
    Show or hide the :ref:`Sidebar <ui-region-sidebar>`.
 Line Numbers
    Displays the text file's line numbers on the left of the `Main View`_.

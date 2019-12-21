@@ -53,7 +53,6 @@ Notes
 
 The slightest difference in seed values would result in completely different outputs.
 Consequently, bad precision may have significant impact on the output.
-This issue mostly affects Cycles but not Eevee.
 Usually, we can mitigate this issue by:
 
 - Eliminating the problematic seed value. If the problematic seed value is constant,

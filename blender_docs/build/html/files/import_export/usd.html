@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Universal Scene Description &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/files/import_export/usd.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="next" title="Trình Bổ Sung -- Add-ons" href="../../addons/index.html" />
+    <link rel="prev" title="Collada" href="collada.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Blender 2.82 Manual
+          
+
+          
+            
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Files &amp; Data System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blend/index.html">Blender File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_blocks.html">Khối Dữ Liệu -- Data-Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linked_libraries/index.html">Linked Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../media/index.html">-- Media Formats</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../import_export.html">Nhập &amp; Xuất Tập Tin -- Importing &amp; Exporting Files</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="alembic.html">Alembic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collada.html">Collada</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Universal Scene Description</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#export-options">Export Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 2.82 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Files &amp; Data System</a> &raquo;</li>
+        
+          <li><a href="../import_export.html">Nhập &amp; Xuất Tập Tin -- Importing &amp; Exporting Files</a> &raquo;</li>
+        
+      <li>Universal Scene Description</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/files/import_export/usd.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="universal-scene-description">
+<h1>Universal Scene Description<a class="headerlink" href="#universal-scene-description" title="Permalink to this headline">¶</a></h1>
+<p>Support for exporting to the Universal Scene Description file format was introduced in
+<a class="reference external" href="https://wiki.blender.org/wiki/Reference/Release_Notes/2.82/More_Features">Blender 2.82</a>.
+The USD exporter is still an experimental feature, and the structure of exported
+USD files is subject to change. To enable the USD exporter, enable it in the
+<a class="reference external" href="https://wiki.blender.org/wiki/Source/Interface/ExperimentalFeatures">Experimental Features</a>.</p>
+<div class="figure" id="id1">
+<img alt="../../_images/universal_scene_description_example.png" src="../../_images/universal_scene_description_example.png" />
+<p class="caption"><span class="caption-text">Shot from <a class="reference external" href="https://cloud.blender.org/p/spring/">Spring</a> exported to USD and opened in USDView.</span></p>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Universal Scene Description (USD) files can contain complex layering,
+overriding, and references to other files. Blender's USD Exporter takes a much
+simpler approach. When exporting, all supported objects in the scene are
+exported, optionally limited by their selection state. Blender does not (yet)
+support exporting USD layers, variants, skeletal animation, etc.</p>
+<p>The following objects can be exported to USD:</p>
+<ul class="simple">
+<li>Meshes (of different kinds, see below).</li>
+<li>Cameras (perspective cameras only at the moment, not orthogonal ones).</li>
+<li>Lamps (all types except area lamps).</li>
+<li>Hair (exported as curves, and limited to parent strands).</li>
+</ul>
+<p>When exporting an animation, the final, evaluated mesh is written to USD. This
+means that the following meshes can be exported:</p>
+<ul class="simple">
+<li>Static meshes.</li>
+<li>Deforming meshes; here the topology of the mesh doesn't change, but the
+locations of the vertices change over time. Examples are animated characters or
+bouncing (but not cracking) objects.</li>
+<li>Arbitrarily animated meshes; here the topology does change. An example is the
+result of a fluid simulation, where splashes of fluid can break off the main
+body.</li>
+</ul>
+</div>
+<div class="section" id="export-options">
+<h2>Export Options<a class="headerlink" href="#export-options" title="Permalink to this headline">¶</a></h2>
+<p>The following options are available when exporting to USD:</p>
+<dl class="docutils">
+<dt>Only Export Selected Objects</dt>
+<dd>Unchecked by default. When checked, only selected objects are exported.
+Duplicated objects, for example collections that are instanced in the scene,
+are considered 'selected' when their duplicator is selected.</dd>
+<dt>Only Export Visible Objects</dt>
+<dd>Checked by default. When checked, only visible objects are exported. An
+object is considered 'visible' when its view layer is visible.</dd>
+<dt>Export Animation</dt>
+<dd>Unchecked by default. When unchecked, only the current scene frame is
+exported. When checked, the entire scene frame range is exported.</dd>
+<dt>Export Hair</dt>
+<dd>Unchecked by default. When checked, parent hair strands are exported as a
+curve system. Hair strand colors are not exported.</dd>
+<dt>Export UV Maps</dt>
+<dd>Checked by default. When checked, includes UV coordinates for exported
+meshes. The name of the UV map in USD is the same as the name in Blender. In
+USD the default name is 'st' whereas in Blender the default name is 'UVMap'.
+In order to export to the standard UV map name 'st', rename the UV map in
+Blender to 'st'.</dd>
+<dt>Export Normals</dt>
+<dd>Checked by default. When checked, includes normals for exported meshes. This
+includes custom loop normals.</dd>
+<dt>Export Materials</dt>
+<dd><p class="first">Checked by default. When checked, exports the viewport materials of meshes.
+When a mesh has multiple materials assigned, a geometry subset is created
+for each material.</p>
+<p class="last">The first material (if any) is always applied to the mesh itself as well
+(regardless of the existence of geometry subsets), because the Hydra
+viewport doesn't support materials on subsets. See <a class="reference external" href="https://github.com/PixarAnimationStudios/USD/issues/542">USD issue #542</a> for more
+information.</p>
+</dd>
+<dt>Use Instancing</dt>
+<dd><p class="first">Unchecked by default, as this is an experimental option. When unchecked,
+duplicated objects are exported as real objects, so a particle system with
+100 particles that is displayed with 100 meshes will have 100 individual
+meshes in the exported file. When checked, duplicated objects are exported
+as reference to the original object. If the original object is not part of
+the export, the first duplicate is exported as real object and used as
+reference.</p>
+<p class="last">Note that currently this is incompatible with exporting materials, see
+<a class="reference internal" href="#limitations">Limitations</a> below.</p>
+</dd>
+</dl>
+<p>Regardless of the options selected above, bjects that are inside a
+<a class="reference internal" href="../../editors/outliner.html#editors-outliner-restriction-columns"><span class="std std-ref">Holdout collection</span></a> are always
+excluded from the export.</p>
+</div>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Single-sided and Double-sided Meshes</dt>
+<dd>USD seems to support neither per-material nor per-face-group
+double-sidedness, so Blender uses the flag from the first material to mark
+the entire mesh as single/double-sided. If there is no material we default
+to double-sided.</dd>
+<dt>Mesh Normals</dt>
+<dd>The mesh subdivision scheme in USD is 'Catmull Clark' by default, but
+Blender uses 'None' instead, indicating that a polygonal mesh is exported.
+This is necessary for USD to understand the custom normals; otherwise the
+mesh is always rendered smooth.</dd>
+<dt>Vertex Velocities</dt>
+<dd>Currently only fluid simulations (not meshes in general) have explicit
+vertex velocities. This is the most important case for exporting velocities,
+though, as the baked mesh changes topology all the time, and thus computing
+the velocities at import time in a post-processing step is hard.</dd>
+<dt>Coordinate System Orientation</dt>
+<dd>Blender uses the Z-axis as up-axis. Since USD supports both Y=up and Z=up,
+the USD files written by Blender always use Z=up.</dd>
+<dt>Materials</dt>
+<dd><p class="first">Very simple versions of the materials are exported, using only the
+<a class="reference internal" href="../../render/materials/settings.html#render-materials-settings-viewport-display"><span class="std std-ref">Viewport Display</span></a> color, metallic, and
+roughness.</p>
+<p class="last">When there are multiple materials, the mesh faces are stored as geometry
+subset and each material is assigned to the appropriate subset. If there is
+only one material this is skipped. Note that the geometry subsets are not
+time-sampled, so it may break when an animated mesh changes topology.</p>
+</dd>
+<dt>Hair</dt>
+<dd>Only the parent strands are exported, and only with a constant colour. No UV
+coordinates, no information about the normals.</dd>
+<dt>Camera</dt>
+<dd>Only perspective cameras are exported.</dd>
+<dt>Lights</dt>
+<dd>USD does not directly support spot lights, so those are not exported.</dd>
+<dt>Particles</dt>
+<dd><p class="first">Particles are only written when they are alive, which means that they are
+always visible. There is currently no code that deals with marking them as
+invisible outside their lifespan.</p>
+<p class="last">Particle-system-instanced objects are exported by suffixing the object name
+with the particle's persistent ID, giving each particle transform a unique
+name.</p>
+</dd>
+<dt>Instancing/Referencing</dt>
+<dd>This is still an experimental feature that can be enabled when exporting to USD.
+When enabled, dupli-object meshes are written to USD as references to the
+original mesh. This is still very limited in correctness, as there are
+issues referencing to materials from a referenced mesh.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../addons/index.html" class="btn btn-neutral float-right" title="Trình Bổ Sung -- Add-ons" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="collada.html" class="btn btn-neutral float-left" title="Collada" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.82 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

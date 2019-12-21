@@ -13,3 +13,4 @@ These add-ons add custom elements and menu's to the user interface.
    copy_attributes.rst
    modifier_tools.rst
    viewport_pies.rst
+   collection_manager.rst

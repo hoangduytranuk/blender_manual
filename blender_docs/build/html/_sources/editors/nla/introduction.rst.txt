@@ -26,11 +26,11 @@ Show Markers
 Show Local Markers
    Shows action-local markers on the strip, this is useful when synchronizing time across strips.
 
-Set Preview Range
+Set Preview Range :kbd:`P`
    Selecting a preview range by dragging in the NLA Editor.
-Clear Preview Range
+Clear Preview Range :kbd:`Alt-P`
    Unset the preview range
-Auto Select Preview Range
+Auto Select Preview Range :kbd:`Shift-Ctrl-P`
    Automatically select the preview range based on the range of keyframes.
 
 .. seealso:: See Timeline's :ref:`timeline-view-menu`.
@@ -39,21 +39,21 @@ Auto Select Preview Range
 Select Menu
 -----------
 
-All
+All :kbd:`A`
    Select all NLA-strips.
 None
    Deselect all NLA-strips.
-Invert
+Invert :kbd:`Ctrl-I`
    Invert the current selection of NLA-strips.
-Box Select
+Box Select :kbd:`B`
    Select NLA-strips by drawing a box. All NLA-strips that intersects the box
    will be added to the current selection.
-Border Axis Range
+Border Axis Range :kbd:`Alt-B`
    Select NLA-strips by drawing a box. All NLA-strips that intersects the frames
    of the drawn box will be added to the current selection.
-Before Current Frame
+Before Current Frame :kbd:`[`
    Select all NLA-strips before the current frame.
-After Current Frame
+After Current Frame :kbd:`]`
    Select all NLA-strips after the current frame.
 
 
@@ -76,9 +76,9 @@ Edit Menu
 Transform
    Move
       Move the selected NLA-strips in time or to different NLA-track.
-   Extend
+   Extend :kbd:`E`
       Extend the selected NLA-strips.
-   Scale
+   Scale :kbd:`S`
       Scale the selected NLA-strips.
 Snap
    Current Frame
@@ -90,32 +90,32 @@ Snap
    Nearest Marker
       Move the start of the selected NLA-strips to the nearest marker.
 
-Duplicate
+Duplicate :kbd:`Shift-D`
    Make a copy of the selected NLA-strips.
 
-Linked Duplicate
+Linked Duplicate :kbd:`Alt-D`
    Make a shallow copy of the selected NLA-strips.
-Split Strips
+Split Strips :kbd:`Y`
    NLA-Split the selected strips into two NLA-strips. The split happens at the current frame.
-Delete Strips
+Delete Strips :kbd:`X`
    Delete selected NLA-Strips.
-Toggle Muting
+Toggle Muting :kbd:`H`
    Mute or unmute the selected NLA-strips. Muted NLA-strips will not influence the animation.
-Apply Scale
+Apply Scale :kbd:`Ctrl-A`
    Apply the scale of the selected NLA-strips to their referenced Actions.
 
-Clear Scale
+Clear Scale :kbd:`Alt-S`
    Reset the scaling of the selected NLA-strips.
 Sync Action Length
    Synchronize the length of the action to the length used in the NLA-strip.
-Make Single User
+Make Single User :kbd:`U`
    This tool ensures that none of the selected strips use an action
    which is also used by any other strips.
-Swap Strips
+Swap Strips :kbd:`Alt-F`
    Swap the order of the selected NLA-strips in their NLA-track.
-Move Strips Up
+Move Strips Up :kbd:`PageUp`
    Move selected NLA-strips a track up if there is room.
-Move Strips Down
+Move Strips Down :kbd:`PageDown`
    Move selected NLA-strips a track down if there is room.
 Track Ordering
    To Top
@@ -129,11 +129,11 @@ Track Ordering
 
 Remove Empty Animation Data
    Remove Animation Data from selected objects when they don't contain any animation.
-Start Editing Stashed Action
+Start Editing Stashed Action :kbd:`Shift-Tab`
    It will enter and exit Tweak Mode as usual, but will also make sure that the action can be edited in isolation
    (by flagging the NLA track that the action strip comes from as being "solo").
    This is useful for editing stashed actions, without the rest of the NLA Stack interfering.
-Start Tweaking Strips Actions
+Start Tweaking Strips Actions :kbd:`Tab`
    The contents of Action strips can be edited, but you must be in *Tweak Mode* to do so.
    The keyframes of the action can then be edited in the Dope Sheet.
 
@@ -141,17 +141,17 @@ Start Tweaking Strips Actions
 Add
 ---
 
-Add Action strip
+Add Action strip :kbd:`Shift-A`
    Add an NLA-strip referencing an Action to the active track.
-Add Transition
+Add Transition :kbd:`Shift-T`
    Add an NLA-strip to create a transition between a selection of two adjacent NLA-strips.
-Add Sound Strip
+Add Sound Strip :kbd:`Shift-K`
    Add an NLA-strip controlling when the Speaker object plays its sound clip.
 
-Add Meta-Strip
+Add Meta-Strip :kbd:`Ctrl-G`
    Group selected NLA-strips into a meta strip.
    A meta strip will group the selected NLA-strips of the same NLA-track.
-Remove Meta-Strip
+Remove Meta-Strip :kbd:`Ctrl-Alt-G`
    Ungroup selected Meta strips.
 
 Add Tracks

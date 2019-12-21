@@ -132,7 +132,8 @@ Object
 Material
    Render cryptomatte material pass, for isolating materials in compositing.
 Asset
-   Render cryptomatte material pass, for isolating materials in compositing.
+   Render cryptomatte asset pass, for isolating groups of objects with the same
+   :doc:`parent </scene_layout/object/properties/relations/parents>` in compositing.
 
 Levels
    Sets how many unique objects can be distinguished per pixel.

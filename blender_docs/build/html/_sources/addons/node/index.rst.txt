@@ -14,3 +14,4 @@ These add-ons relate to the node editors and related tools.
 
    node_arrange.rst
    node_wrangler.rst
+   node_presets.rst

@@ -255,20 +255,20 @@
 <tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd></td>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Interactively places new vertices with <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd> at the mouse cursor position.</p>
+<p>Interactively places new vertices with <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> at the mouse cursor position.</p>
 <div class="section" id="creating-vertices">
 <h3>-- Creating Vertices<a class="headerlink" href="#creating-vertices" title="Permalink to this headline">¶</a></h3>
-<p>The most basic element, a vertex, can be added with a <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd> click
+<p>The most basic element, a vertex, can be added with a <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> click
 when no other vertices are selected.
 Because the camera space (computer screen) is two-dimensional,
 Blender cannot determine all three vertex coordinates from a single mouse click,
 so the new vertex is placed at the depth of the 3D cursor.</p>
-<p>To create interconnected vertices, you can add a vertex and continuously make subsequent <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd>
+<p>To create interconnected vertices, you can add a vertex and continuously make subsequent <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>
 operations with the last vertex selected.
 This will link the last selected vertex with the vertex created at the mouse position with an edge
 (See Fig. <a class="reference internal" href="#fig-mesh-basics-add-one"><span class="std std-ref">Adding vertices one by one.</span></a>),
@@ -284,30 +284,30 @@ and will continuously create and connect new vertices if you continue repeating 
 <img alt="../../../../_images/modeling_meshes_editing_basics_adding_quad.png" src="../../../../_images/modeling_meshes_editing_basics_adding_quad.png" />
 <p class="caption"><span class="caption-text">Quad from an Edge with source automatically rotated.</span></p>
 </div>
-<p>If you have two vertices selected and already connected with an edge, <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd> click
+<p>If you have two vertices selected and already connected with an edge, <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> click
 will create a planar face, also known as a quad. Blender will follow your mouse cursor
 and will use the planar view from your viewport to create those quads.</p>
-<p>For <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd>, Blender will automatically rotate the last selected Edge (the source)
+<p>For <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>, Blender will automatically rotate the last selected Edge (the source)
 for the subsequent operations if you have at least one face created, dividing the angles created between
 the newly created edge and the last two edges, creating a smooth angle between them. Blender will calculate
 this angle using the last positive and negative position of the last X and Y coordinates
 and the last connected unselected edge. If this angle exceeds a negative limit (following a quadrant rule)
 between the recently created edge and the last two, Blender will wrap the faces.
-But if you do not want Blender to rotate and smooth edges automatically when extruding from <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd>,
-you can also inhibit Blender from rotating sources using the shortcut <kbd class="kbd docutils literal notranslate">Shift-Ctrl-RMB</kbd>.
+But if you do not want Blender to rotate and smooth edges automatically when extruding from <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>,
+you can also inhibit Blender from rotating sources using the shortcut <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd>.
 In this case, Blender will not rotate the source dividing the angle between those edges when creating a face.</p>
 <p>For both cases, Blender will inform the user about the source rotation during the creation process.
-If you look at the <a class="reference internal" href="../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel and press <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd>,
-you will see that the Rotate Source is automatically checked and if <kbd class="kbd docutils literal notranslate">Shift-Ctrl-RMB</kbd> is used,
+If you look at the <a class="reference internal" href="../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel and press <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>,
+you will see that the Rotate Source is automatically checked and if <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd> is used,
 it will be automatically unchecked.</p>
-<p>If you have three or more vertices selected, and <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd> click,
+<p>If you have three or more vertices selected, and <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> click,
 you will also create planar faces, but along the vertices selected, following the direction of the cursor.
 This operation is similar to an extrude operation,
 which is explained in the <a class="reference internal" href="../duplicating/extrude.html"><span class="doc">Extrude</span></a> page.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Mẹo</p>
-<p class="last">When adding Objects with <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd>, the extrusions of the selected elements,
-being vertices, edges and faces with the <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd>, are viewport dependent.
+<p class="last">When adding Objects with <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>, the extrusions of the selected elements,
+being vertices, edges and faces with the <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>, are viewport dependent.
 This means, once you change your viewport, for example, from top to left, bottom or right,
 the extrusion direction will also follow your viewport and align your extrusions with your planar view.</p>
 </div>

@@ -17,7 +17,7 @@ Usage
 =====
 
 #. Select the desired keyframes to edit or sculpt at the same time.
-#. Activate the Multiframe tool in the 3D View’s header with the toggle button (fade lines icon).
+#. Activate the Multiframe tool in the 3D View's header with the toggle button (fade lines icon).
 #. Once activated you can:
 
    - Select the points in all the selected keyframes and make your editions.

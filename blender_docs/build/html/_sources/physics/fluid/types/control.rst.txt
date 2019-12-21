@@ -40,6 +40,8 @@ Attraction Force
    Strength
       The strength of the force.
       Positive force results in attraction of the fluid, negative force in avoidance.
+   Radius
+      Force field radius around the control object.
 Velocity Force
    If the fluid control object moves, the resulting velocity can also introduce a force to the fluid.
 

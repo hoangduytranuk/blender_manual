@@ -16,4 +16,3 @@ These add-ons relate to rendering, render engines and rendering tools.
    copy_settings.rst
    povray.rst
    render_freestyle_svg.rst
-   node_presets.rst

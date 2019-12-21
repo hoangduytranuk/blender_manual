@@ -88,7 +88,7 @@ Mirror
    :class: refbox
 
    :Menu:      :menuselection:`Key --> Mirror`
-   :Hotkey:    :kbd:`Shift-M`
+   :Hotkey:    :kbd:`Ctrl-M`
 
 Selected keyframes can be mirrored over different properties using the *Mirror Keys* tool.
 

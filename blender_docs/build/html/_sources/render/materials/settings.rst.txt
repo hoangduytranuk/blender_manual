@@ -27,6 +27,7 @@ Pass Index
    This can be used to give a mask to a material and then be read with
    the :doc:`ID Mask Node </compositing/types/converter/id_mask>` in the Compositor.
 
+.. _render-materials-settings-viewport-display:
 
 Viewport Display
 ================

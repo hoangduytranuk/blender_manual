@@ -51,6 +51,7 @@ Generate
    generate/solidify.rst
    generate/subdivision_surface.rst
    generate/triangulate.rst
+   generate/weld.rst
    generate/wireframe.rst
 
 

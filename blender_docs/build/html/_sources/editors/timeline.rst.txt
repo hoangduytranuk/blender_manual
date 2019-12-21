@@ -303,17 +303,17 @@ Jump to start (|first|) :kbd:`Shift-Ctrl-Down`, :kbd:`Shift-Left`
    This sets the cursor to the start of frame range.
 Jump to previous keyframe (|previous|) :kbd:`Down`
    This sets the cursor to the previous keyframe.
-Rewind (|rewind|) :kbd:`Shift-Alt-A`
+Rewind (|rewind|) :kbd:`Shift-Ctrl-Spacebar`
    This plays the animation sequence in reverse.
    When playing the play buttons switch to a pause button.
-Play (|play|) :kbd:`Alt-A`
+Play (|play|) :kbd:`Spacebar`
    This plays the animation sequence.
    When playing the play buttons switch to a pause button.
 Jump to next keyframe (|next|) :kbd:`Up`
    This sets the cursor to the next keyframe.
 Jump to end (|last|) :kbd:`Shift-Ctrl-Up`, :kbd:`Shift-Right`
    This sets the cursor to the end of frame range.
-Pause (|pause|) :kbd:`Alt-A`
+Pause (|pause|) :kbd:`Spacebar`
    This stops the animation.
 
 
