@@ -5,7 +5,7 @@
 Toolbar
 *******
 
-Mesh edit mode tools:
+Mesh Edit Mode tools:
 
 .. note::
 

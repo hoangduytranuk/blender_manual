@@ -146,7 +146,7 @@ and :doc:`Mirror </modeling/modifiers/generate/mirror>` modifiers that have swit
      - .. figure:: /images/modeling_modifiers_introduction_mirror-subdiv1.png
           :width: 320px
 
-          The Subdivision surface modifier is the last
+          The Subdivision Surface modifier is the last
           item in the stack and the result is a single merged surface.
 
 Modifiers are calculated from top to bottom in the stack.

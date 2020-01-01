@@ -24,12 +24,14 @@ Mix
       The new transformation replaces the existing transformation.
    Before Original
       The new transformation is added before the existing transformation, as if it was
-      applied to a parent of the constraint owner. Scale is handled specially to avoid
-      creating shear.
+      applied to an imaginary parent of the constraint owner. Scale is handled like in
+      the :ref:`Aligned Inherit Scale <bone-relations-inherit-settings>` mode of bones
+      to avoid creating shear.
    After Original
       The new transformation is added after the existing transformation, as if it was
-      applied to a child of the constraint owner. Scale is handled specially to avoid
-      creating shear.
+      applied locally to an imaginary child of the constraint owner. Scale is handled like
+      in the :ref:`Aligned Inherit Scale <bone-relations-inherit-settings>` mode of bones
+      to avoid creating shear.
 Space
    Standard conversion between spaces.
 

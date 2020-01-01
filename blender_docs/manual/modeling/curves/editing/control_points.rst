@@ -240,5 +240,5 @@ Select either one or three control points,
 then :kbd:`Ctrl-LMB` the object and use :kbd:`Ctrl-P` to make a vertex parent.
 Selecting three control points will make the child follow
 the median point between the three vertices. An alternative would be to use
-a :doc:`Child of Constraint </animation/constraints/relationship/child_of>`.
-See also the :doc:`Curve Modifier </modeling/modifiers/deform/curve>`.
+a :doc:`Child Of constraint </animation/constraints/relationship/child_of>`.
+See also the :doc:`Curve modifier </modeling/modifiers/deform/curve>`.

@@ -10,7 +10,7 @@ Keys
 Available Keys
 --------------
 
-When customizing keymaps its useful to use keys which won't conflict with Blender's default keymap.
+When customizing keymaps it's useful to use keys which won't conflict with Blender's default keymap.
 
 Here are keys which aren't used and aren't likely to be used in the future.
 
@@ -21,7 +21,7 @@ F-Keys (:kbd:`F5` - :kbd:`F8`)
    Blender doesn't use this key for any bindings.
 
    *macOS* is an exception, where :kbd:`Cmd` replaces :kbd:`Ctrl`
-   except in cases it would conflict with the systems key bindings.
+   except in cases it would conflict with the system's key bindings.
 Modifier Double Click
    Binding modifier keys as primary keys is supported,
    to avoid conflicts with regular usage you can bind them to double click.
@@ -34,7 +34,7 @@ Click/Drag
 ^^^^^^^^^^
 
 It's possible to configure a single key to perform multiple operations
-using *Click* event instead of *Press*, Then you may bind *Drag* to a separate action.
+using *Click* event instead of *Press*. Then you may bind *Drag* to a separate action.
 
 This is useful for mixing actions where one uses a drag event, e.g:
 Toggle a setting using with tab, drag to open a pie menu showing all options related to the setting.
@@ -86,7 +86,7 @@ for sub-menus you will need to use the back arrow to prevent the sub-menu from o
 Key Bindings for Properties
 ---------------------------
 
-There are many properties you might want to bind a keys with.
+There are many properties you might want to bind a key with.
 To avoid having to define operators for each property,
 there are generic operators for this purpose:
 
@@ -98,7 +98,7 @@ Some of these include:
 - ``wm.context_cycle_enum`` cycle an :abbr:`enum (enumeration)` property forwards or backwards.
 - ``wm.context_menu_enum`` show a pop-up menu for an enum property.
 - ``wm.context_pie_enum`` show a pie menu for an enum property.
-- ``wm.context_scale_float`` scale a number (use for increasing / decreasing brush size for example).
+- ``wm.context_scale_float`` scale a number (used for increasing / decreasing brush size for example).
 - ``wm.context_toggle_enum`` toggle between two options of an enum.
 - ``wm.context_modal_mouse`` moving the cursor to interactively change a value.
 
@@ -106,7 +106,7 @@ See `bpy.ops.wm <https://docs.blender.org/api/current/bpy.ops.wm.html>`__ for a 
 
 Each of these operators has a ``data_path`` setting to reference the property to change.
 
-To find the ``data_path`` basic Python knowledge is needed.
+To find the ``data_path``, basic Python knowledge is needed.
 
 For example, you can use the Python Console to access a boolean property you wish to map to a key::
 

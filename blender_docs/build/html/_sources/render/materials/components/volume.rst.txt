@@ -37,7 +37,7 @@ For more control, volume shading components can be manually combined into a cust
 
 - :doc:`Volume Absorption </render/shader_nodes/shader/volume_absorption>`
   will absorb part of the light as it passes through the volume.
-  This can be used to shade for example black smoke or colored glass objects, or mixed with the volume scatter node.
+  This can be used to shade for example black smoke or colored glass objects, or mixed with the Volume Scatter node.
   This node is similar to the transparent BSDF node,
   it blocks part of the light and lets other light pass straight through.
 - :doc:`Volume Scatter </render/shader_nodes/shader/volume_scatter>`

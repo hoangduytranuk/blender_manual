@@ -48,6 +48,8 @@ Value
    Output random value.
 
 
+.. _shader-white-noise-notes:
+
 Notes
 =====
 

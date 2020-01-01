@@ -53,6 +53,7 @@ extensions = [
     '404',
     #'process_doctree'
     #'TranslatePO'
+    #'translate_po'
 ]
 
 # Is there a better way to check for PDF building?

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-20 01:28+0000\n"
+"POT-Creation-Date: 2020-01-01 22:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,78 +69,94 @@ msgid "Roll Control"
 msgstr ""
 
 #: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:53
-msgid "To control the *twist* or *roll* of the Spline IK chain, the standard methods of rotating the bones in the chain along their Y axes still apply. For example, simply rotate the bones in the chain around their Y axes to adjust the roll of the chain from that point onward. Applying copy rotation constraints on the bones should also work."
+msgid "To control the :term:`roll` of the Spline IK chain, the standard methods of rotating the bones in the chain along their local Y axes still apply. For example, start at the farthest bone and simply rotate the bones in the chain around their local Y axes to adjust the roll of the chain from that point onward."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:61
-msgid "Offset Controls"
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:58
+msgid "Applying Copy Rotation constraints on the bones also works."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:63
-msgid "The entire bone chain can be made to follow the shape of the curve while still being able to be placed at an arbitrary point in 3D space when the *Chain Offset* option is enabled. By default, this option is not enabled, and the bones will be made to follow the curve in its untransformed position."
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:62
+msgid "There are a couple of limitations to consider:"
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:70
-msgid "Length Control"
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:64
+msgid "Bones do not inherit a curve's :ref:`tilt <modeling-curve-tilt>` value to control their roll."
+msgstr ""
+
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:66
+msgid "There is no way of automatically creating a twisting effect where a dampened rotation is inherited up the chain. Consider using :doc:`Bendy Bones </animation/armatures/bones/properties/bendy_bones>` instead."
 msgstr ""
 
 #: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:72
+msgid "Offset Controls"
+msgstr ""
+
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:74
+msgid "The entire bone chain can be made to follow the shape of the curve while still being able to be placed at an arbitrary point in 3D space when the *Chain Offset* option is enabled. By default, this option is not enabled, and the bones will be made to follow the curve in its untransformed position."
+msgstr ""
+
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:81
+msgid "Length Control"
+msgstr ""
+
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:83
 msgid "The *Y Scale Mode* setting can be used to choose the way bones are scaled length-wise. The available options allow stretching the bone chain to fit the curve, using the pre-IK scaling, or doing neither. In addition, the scale of the curve Object affects the result."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:78
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:89
 msgid "Thickness Controls"
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:80
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:91
 msgid "The thickness of the bones in the chain is controlled using the constraint's *XZ Scale Mode* setting. This setting determines the method used for determining the scaling on the X and Z axes of each bone in the chain."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:84
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:95
 msgid "The available modes are:"
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:86
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:97
 msgid "None"
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:87
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:98
 msgid "This option keeps the X and Z scaling factors as 1.0."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:89
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:100
 msgid "Volume Preserve"
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:89
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:100
 msgid "The X and Z scaling factors are taken as the inverse of the Y scaling factor (length of the bone), maintaining the 'volume' of the bone."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:92
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:103
 msgid "Bone Original"
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:92
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:103
 msgid "This options just uses the X and Z scaling factors the bone would have after being evaluated in the standard way."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:94
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:105
 msgid "In addition to these modes, there is an option, *Use Curve Radius*. When this option is enabled, the average radius of the radii of the points on the curve where the joints of each bone are placed, are used to derive X and Z scaling factors. This allows the scaling effects, determined using the modes above, to be tweaked as necessary for artistic control."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:102
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:113
 msgid "Tips for Nice Setups"
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:104
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:115
 msgid "For optimal deformations, it is recommended that the bones are roughly the same length, and that they are not too long, to facilitate a better fit to the curve. Also, bones should ideally be created in a way that follows the shape of the curve in its 'rest pose' shape, to minimize the problems in areas where the curve has sharp bends which may be especially noticeable when stretching is disabled."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:109
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:120
 msgid "For control of the curve, it is recommended that hooks (in particular, Bone Hooks) are used to control the control points of the curve, with one hook per control point. In general, only a few control points should be needed for the curve (e.g. one for every 3-5 bones offers decent control)."
 msgstr ""
 
-#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:113
+#: ../../manual/animation/armatures/posing/bone_constraints/inverse_kinematics/spline_ik.rst:124
 msgid "The type of curve used does not really matter, as long as a path can be extracted from it that could also be used by the Follow Path Constraint. This really depends on the level of control required from the hooks."
 msgstr ""
 

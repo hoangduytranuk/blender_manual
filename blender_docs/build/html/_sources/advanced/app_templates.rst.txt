@@ -54,7 +54,7 @@ Python Scripts
    typical operations include:
 
    - Modifying and replacing parts of the user interface.
-   - Defining new menus, keymaps & tools.
+   - Defining new menus, keymaps and tools.
    - Defining a custom add-on path for template specific add-ons.
 
 Templates also have their own user configuration, so saving a startup file while using a template
@@ -125,3 +125,89 @@ Each of the following files can be used for application templates but are option
 
    The original template settings can be loaded using: *Load Template Factory Settings*
    from the file menu in much the same way *Load Factory Settings* works.
+
+
+Template Scripts
+================
+
+While app templates can use Python scripts,
+they simply have access to the same API's available for add-ons and any other scripts.
+
+As noted above, you may optionally have an ``__init__.py`` in your app template.
+
+This has the following advantages:
+
+- Changes can be made to the startup or preferences, without having to distribute a blend-file.
+- Changes can be made dynamically.
+
+  You could for example -- configure the template to check the number of processors, operating system and memory,
+  then set values based on this.
+
+- You may enable add-ons associated with your template.
+
+On activation a ``register`` function is called, ``unregister`` is called when another template is selected.
+
+As these only run once, any changes to defaults must be made via handler.
+
+Two handlers you're likely to use are:
+
+- ``bpy.app.handlers.load_factory_preferences_post``
+- ``bpy.app.handlers.load_factory_startup_post``
+
+These allow you to define your own "factory settings", which the user may change,
+just as Blender has it's own defaults when first launched.
+
+This is an example ``__init__.py`` file which defines defaults for an app template to use.
+
+.. code-block:: python
+
+   import bpy
+   from bpy.app.handlers import persistent
+
+   @persistent
+   def load_handler_for_preferences(_):
+       print("Changing Preference Defaults!")
+       from bpy import context
+
+       prefs = context.preferences
+       prefs.use_preferences_save = False
+
+       kc = context.window_manager.keyconfigs["blender"]
+       kc_prefs = kc.preferences
+       if kc_prefs is not None:
+           kc_prefs.select_mouse = 'RIGHT'
+           kc_prefs.spacebar_action = 'SEARCH'
+           kc_prefs.use_pie_click_drag = True
+
+       view = prefs.view
+       view.header_align = 'BOTTOM'
+
+
+   @persistent
+   def load_handler_for_startup(_):
+       print("Changing Startup Defaults!")
+
+       # Use smooth faces.
+       for mesh in bpy.data.meshes:
+           for poly in mesh.polygons:
+               poly.use_smooth = True
+
+       # Use material preview shading.
+       for screen in bpy.data.screens:
+           for area in screen.areas:
+               for space in area.spaces:
+                   if space.type == 'VIEW_3D':
+                       space.shading.type = 'MATERIAL'
+                       space.shading.use_scene_lights = True
+
+
+
+   def register():
+       print("Registering to Change Defaults")
+       bpy.app.handlers.load_factory_preferences_post.append(load_handler_for_preferences)
+       bpy.app.handlers.load_factory_startup_post.append(load_handler_for_startup)
+
+   def unregister():
+       print("Unregistering to Change Defaults")
+       bpy.app.handlers.load_factory_preferences_post.remove(load_handler_for_preferences)
+       bpy.app.handlers.load_factory_startup_post.remove(load_handler_for_startup)

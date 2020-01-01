@@ -58,7 +58,7 @@ Examples
 In the example below,
 we have overlaid a grid pattern on top of the two heads after they have been rendered.
 During rendering, we enabled the UV layer in the Properties editor
-:menuselection:`Render Layer --> Passes`. Using a mix node ("Overlay" in figure),
+:menuselection:`Render Layer --> Passes`. Using a Mix node ("Overlay" in figure),
 we mix that new UV texture over the original face.
 We can use this grid texture to help in any motion tracking that we need to do.
 

@@ -71,7 +71,7 @@ To be avoided:
   if there is a simpler way to explain it.
 
   (E.g. explaining how mesh smoothing algorithms work is unnecessary,
-  but the blending types of a mix node do need a mathematical explanation.)
+  but the blending types of a Mix node do need a mathematical explanation.)
 - Avoid repetition of large portions of text. Simply explain it once, and from then on refer to that explanation.
 
   For general terminology, consider defining a ``:term:`` in the :doc:`glossary </glossary/index>`.

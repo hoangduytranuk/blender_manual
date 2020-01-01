@@ -16,12 +16,12 @@ controlling particle emission, hair density, many modifiers, shape keys, etc.
 
    Vertex Group in Weight Paint Mode.
 
-You enter *Weight Paint Mode* from the Mode Menu :kbd:`Ctrl-Tab`.
-The selected Mesh Object is displayed slightly shaded with a rainbow color spectrum.
+You can enter Weight Paint Mode from the Mode Menu :kbd:`Ctrl-Tab`.
+The selected mesh object is displayed slightly shaded with a rainbow color spectrum.
 The color visualizes the weights associated to each vertex in the active Vertex Group.
 By default *blue* means unweighted and *red* means fully weighted.
 
-You assign weights to the vertices of the Object by painting on it with weight brushes.
+You can assign weights to the vertices of the object by painting on it with weight brushes.
 Starting to paint on a mesh automatically adds weights to the active Vertex Group
 (a new Vertex Group is created if needed).
 

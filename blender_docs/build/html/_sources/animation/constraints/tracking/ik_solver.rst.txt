@@ -6,7 +6,7 @@ IK Solver Constraint
 
 The *Inverse Kinematics* constraint implements the *inverse kinematics* armature
 posing technique. Hence, it is only available for bones.
-To quickly create an IK constraint with a target, select a bone in pose mode,
+To quickly create an IK constraint with a target, select a bone in Pose Mode,
 and press :kbd:`Shift-I`.
 
 This constraint is fully documented in

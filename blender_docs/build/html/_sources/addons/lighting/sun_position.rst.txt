@@ -130,7 +130,7 @@ North Offset
 
 By default, the North points to the Y axis in the scene (to the top of the screen in top view).
 But sometimes, you may have modeled it in another orientation. In that case,
-you may enter a *North Offset* , to change the orientation of the scene.
+you may enter a *North Offset*, to change the orientation of the scene.
 *Show North* toggles a dashed line pointing to the North in the 3D View,
 to help you visualize the cardinal directions.
 
@@ -140,7 +140,7 @@ Setting the Time
 
 After selecting the location on earth, select or animate the date and time.
 This is fairly straightforward, but care must be taken to match
-the Time zone and *Daylight Saving* to the moment you wish to simulate.
+the *Time* zone and *Daylight Saving* to the moment you wish to simulate.
 Time entered is the local time, but the global, UTC time may be displayed below as well.
 
 .. note::

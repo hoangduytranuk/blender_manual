@@ -91,6 +91,33 @@ Factor Display Type
       Values are expressed as a percentage between 0 and 100.
 
 
+Temporary Windows
+-----------------
+
+When performing certain operations, Blender will open a new window.
+The behavior of these operations can be configured here.
+
+Render In
+   When rendering, the user interface can be do any of:
+
+   Keep User Interface
+      The user interface does not change and the render is computed in the background.
+   Full Screen
+      A new Image editor is opened as a temporary window in full screen mode.
+   Image Editor
+      The area that is the largest on screen is replaced placed by a temporary Image editor.
+   New Window
+      A new Image editor is opened as a regularly sized temporary window.
+
+File Browser
+   When opening files from the computer, the user interface can be do any of:
+
+   Full Screen
+      A new File Browser editor is opened as a temporary window in full screen mode.
+   New Window
+      A new File Browser editor is opened as a regularly sized temporary window.
+
+
 .. _prefs-interface-translation:
 
 Translation

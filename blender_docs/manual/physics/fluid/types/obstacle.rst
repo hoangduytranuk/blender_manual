@@ -14,7 +14,7 @@ This object will be used as an obstacle in the simulation. As with a fluid objec
 obstacle objects currently should not intersect. As for fluid objects,
 the actual mesh geometry is used for obstacles. For objects with a volume,
 make sure that the normals of the obstacle are calculated correctly, and radiating properly
-(use the :menuselection:`Mesh --> Normals --> Recalculate Outside` in mesh edit mode),
+(use the :menuselection:`Mesh --> Normals --> Recalculate Outside` in mesh Edit Mode),
 particularly when using a spinned container.
 Applying a :doc:`Subdivision Surface Modifier </modeling/modifiers/generate/subdivision_surface>`
 before baking the simulation could also be a good idea if the mesh is not animated.

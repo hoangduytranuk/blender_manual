@@ -1,3 +1,5 @@
+.. the title should be remeshing since retopology (feature based) is a subtype of remeshing.
+   remeshing vs. retopology by dev Pablo Dobarro bcon19: https://www.youtube.com/watch?v=lxkyA4Xslzs&t=9m34s
 
 **********
 Retopology
@@ -33,6 +35,11 @@ Remeshing is a technique that automatically rebuilds the geometry with a more un
 Remeshing can either add or remove the amount of topology depending on a defined resolution.
 This technique is especially useful for :doc:`sculpting </sculpt_paint/sculpting/index>`,
 to generate better topology after blocking out the initial shape.
+
+.. note::
+
+   Remeshing only works on the original mesh data and
+   ignores generated geometry from modifiers, shape keys, rigging, etc.
 
 .. seealso::
 

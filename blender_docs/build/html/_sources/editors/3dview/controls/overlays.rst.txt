@@ -33,6 +33,9 @@ Subdivision
 
 Text Info
    Show text overlay.
+HDRI Preview
+   Show two sphere, one glossy and one diffuse,
+   to preview HDRIs used in *Material Preview* and *Rendered* shading modes.
 3D Cursor
    Show the 3D Cursor overlay.
 Annotations
@@ -122,7 +125,7 @@ Creases
    Display edges marked with a crease
    for the :doc:`Subdivision Surface Modifier </modeling/modifiers/generate/subdivision_surface>`.
 Sharp
-   Display sharp edges, used with the edge split modifier.
+   Display sharp edges, used with the Edge Split modifier.
 Bevel
    Display weights created for the :doc:`Bevel Modifier </modeling/modifiers/generate/bevel>`.
 Seams

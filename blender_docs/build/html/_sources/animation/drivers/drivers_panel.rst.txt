@@ -187,8 +187,8 @@ Quaternion
    Provides the :term:`Quaternion` representation of the rotation.
 
 Swing and X/Y/Z Twist
-   Decomposes the rotation into two parts: a swing rotation that aims the specified
-   axis in its final direction, followed by a twist rotation around that axis.
+   Decomposes the rotation into two parts: a :term:`Swing` rotation that aims the specified
+   axis in its final direction, followed by a :term:`Twist <Swing>` rotation around that axis.
    This is often necessary for driving corrective :doc:`Shape Keys </animation/shape_keys/index>`
    and bones for organic joint rotation.
 

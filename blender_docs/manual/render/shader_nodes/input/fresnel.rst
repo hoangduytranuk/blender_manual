@@ -14,7 +14,7 @@ where the rest will be refracted through the layer.
 The resulting weight can be used for layering shaders with the *Mix Shader* node.
 It is dependent on the angle between the surface normal and the viewing direction.
 
-The most common use is to mix between two BSDFs using it as a blending factor in a mix shader node.
+The most common use is to mix between two BSDFs using it as a blending factor in a Mix Shader node.
 For a simple glass material you would mix between a glossy refraction and glossy reflection.
 At grazing angles more light will be reflected than refracted as happens in reality.
 

@@ -89,12 +89,11 @@ Why does a scene that renders on the CPU not render on the GPU?
 
 There maybe be multiple causes,
 but the most common is that there is not enough memory on your graphics card.
-We can currently only render scenes that fit in graphics card memory,
-and this is usually smaller than that of the CPU. Note that, for example, 8k, 4k,
-2k and 1k image textures take up respectively 256MB, 64MB, 16MB and 4MB of memory.
-
-We do intend to add a system to support scenes bigger than GPU memory,
-but this will not be added soon.
+Typically while using GPU rendering the GPU can only use the amount of memory that is on the GPU.
+This is usually much smaller then the amount of system memory that the CPU uses.
+In the case that the GPU runs out of memory Blender will automatically try to also use system and GPU memory.
+This has a performance impact but it is still faster than using CPU rendering.
+This feature does not work on OpenCL rendering.
 
 
 Can multiple GPUs be used for rendering?
@@ -185,6 +184,11 @@ CUDA Error: Out of memory
 This usually means there is not enough memory to store the scene on the GPU.
 We can currently only render scenes that fit in graphics card memory,
 and this is usually smaller than that of the CPU. See above for more details.
+
+.. note::
+
+   One way to reduce memory usage is by using smaller resolutions for textures.
+   For example, 8k, 4k, 2k, and 1k image textures take up respectively 256MB, 64MB, 16MB and 4MB of memory.
 
 
 The NVIDIA OpenGL driver lost connection with the display driver

@@ -95,7 +95,7 @@ the referenced Vertex Group becomes the new Active group.
 Display Weights in Edit Mode
 ----------------------------
 
-When you are in edit mode, you can make the Weights of the active Group visible on the mesh:
+When you are in Edit Mode, you can make the Weights of the active Group visible on the mesh:
 
 Search the *Mesh Display* panel in the Sidebar region.
 And there enable the *Show Weights* option.

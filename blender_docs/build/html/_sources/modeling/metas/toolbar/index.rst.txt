@@ -4,7 +4,7 @@
 Toolbar
 *******
 
-Metaball edit mode tools:
+Metaball Edit Mode tools:
 
 .. note::
 

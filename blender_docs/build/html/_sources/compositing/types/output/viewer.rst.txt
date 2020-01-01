@@ -28,7 +28,7 @@ Properties
 
 Tile order
    The tile order can be defined for the backdrop image, using the *Tile order* field in the properties of
-   the viewer node (*Properties* panel in Sidebar region, with the viewer node selected):
+   the Viewer node (*Properties* panel in Sidebar region, with the Viewer node selected):
 
    Rule of thirds
       Calculates tiles around each of the nine zones defined by the *rule of thirds*.
@@ -56,9 +56,9 @@ This node has no output sockets.
 Using the Image Editor
 ======================
 
-The viewer node allows results to be displayed in the Image Editor.
+The Viewer node allows results to be displayed in the Image Editor.
 The image is facilitated in the header by selecting *Viewer Node* in the linked *Image* data-block menu.
-The Image Editor will display the image from the currently selected viewer node.
+The Image Editor will display the image from the currently selected Viewer node.
 
 To save the image being viewed,
 use :menuselection:`Image --> Save As...`, :kbd:`Shift-S` to save the image in a file.

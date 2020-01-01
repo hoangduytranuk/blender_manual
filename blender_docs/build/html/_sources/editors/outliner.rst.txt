@@ -104,7 +104,7 @@ mode. For example, selecting the mesh data of the cube will select the cube and
 enter *Edit Mode*. Selecting the data-block again will toggle back into *Object Mode*
 
 If the data-block type supports multi-editing,
-you can use :kbd:`Shift` to add/remove objects from the edit mode.
+you can use :kbd:`Shift` to add/remove objects from the Edit Mode.
 
 
 Relations Management

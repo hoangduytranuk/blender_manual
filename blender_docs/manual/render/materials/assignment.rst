@@ -70,7 +70,7 @@ Data-block Links
    The Object menu item determines that the material will be linked to the object's data-block directly.
 
    This has consequences of course. For example, different objects may share the same mesh data-block.
-   Since this data-block defines the shape of the object any change in edit mode
+   Since this data-block defines the shape of the object any change in Edit Mode
    will be reflected on all of those objects.
    Moreover, anything linked to that mesh data-block will be shared by every object that shares that mesh.
    So, if the material is linked to the mesh, every object will share it.
@@ -89,12 +89,12 @@ Data-block Links
 Edit Mode
 ---------
 
-To assign materials to different parts of a mesh, enter edit mode on the mesh.
+To assign materials to different parts of a mesh, enter Edit Mode on the mesh.
 Additional buttons will then appear in the material slots panel.
 
 .. figure:: /images/render_materials_assignment_panel-edit-mode-BI.png
 
-   Material slots panel in edit mode.
+   Material slots panel in Edit Mode.
 
 Assign
    Assign active material slot and material to the selected faces in the mesh,

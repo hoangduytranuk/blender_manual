@@ -9,7 +9,7 @@ Pixelate Node
 
    Pixelate Node.
 
-Add this node in front of a :doc:`scale node </compositing/types/distort/scale>`
+Add this node in front of a :doc:`Scale node </compositing/types/distort/scale>`
 to get a pixelated (non-smoothed) image from the resultant upscaled image.
 
 
@@ -37,14 +37,14 @@ Example
 =======
 
 In the Compositor, check the *Use Nodes* checkbox and add an input Image node and an output Viewer node.
-Connect the Input node to the viewer node and check the *Backdrop* checkbox in the header.
-Open an image you would like to pixelate using the open button on the image node.
+Connect the Input node to the Viewer node and check the *Backdrop* checkbox in the header.
+Open an image you would like to pixelate using the open button on the Image node.
 This image should now appear in the backdrop.
-Now add two scale nodes between the input and output :menuselection:`Add --> Distort --> Scale`.
+Now add two Scale nodes between the input and output :menuselection:`Add --> Distort --> Scale`.
 Change the values of X and Y to 0.2 in the first scale box and to 5 in the second.
 The background image will be unchanged.
 
-Now add a Pixelate node between the two scale nodes.
+Now add a Pixelate node between the two Scale nodes.
 
 .. note::
 

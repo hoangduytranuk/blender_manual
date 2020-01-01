@@ -96,6 +96,10 @@ Lighting
          The opacity level of a very blurred version of the HDRI will be rendered as
          background in the 3D View.
 
+Render Pass
+   Instead of the combined render, show another render pass.
+   Useful to analyze and debug geometry, materials and lighting.
+
 
 .. _3dview-rendered:
 
@@ -106,6 +110,6 @@ Render the 3D Viewport with the scene *Render Engine*, for interactive rendering
 By default the scene lights are used for lighting.
 A HDRI environment can be used as well, with the same options as Material Preview mode.
 
-Render Pass :guilabel:`Cycles Only`
+Render Pass
    Instead of the combined render, show another render pass.
    Useful to analyze and debug geometry, materials and lighting.

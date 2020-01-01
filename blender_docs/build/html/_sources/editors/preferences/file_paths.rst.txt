@@ -16,7 +16,7 @@ Locations for various external files can be set for the following options:
 
 .. hint::
 
-   The default path ``//`` refers to the folder of the currently open ``.blend`` file
+   The default path ``//`` refers to the folder of the currently open blend-file
    (see :ref:`files-blend-relative_paths` for details).
 
 

@@ -17,7 +17,7 @@ Skin Data
 
 Add/Clear Skin Data
    Used to manage the skin data layer which is used by the :doc:`/modeling/modifiers/generate/skin`.
-   This operator can be needed in case a skin modifier is created but no skin data exist.
+   This operator can be needed in case a Skin modifier is created but no skin data exist.
 
 
 Custom Split Normals

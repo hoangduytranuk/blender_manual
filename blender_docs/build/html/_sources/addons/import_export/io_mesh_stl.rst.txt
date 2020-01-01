@@ -21,24 +21,27 @@ It is also commonly used for loading into 3D printing software.
 Properties
 ==========
 
-Common
+Import
 ------
 
-Forward / Up Axis
-   Since many applications use a different axis for 'Up', these are axis conversion for these settings,
-   Forward and Up axes -- By mapping these to different axes you can convert rotations
-   between applications default up and forward axes.
+Transform
+^^^^^^^^^
 
-   Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
-   For example, it is common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
 Scale
    TODO.
 Scene Unit
    TODO.
+Forward / Up Axis
+   Since many applications use a different axis for pointing upwards, these are axis conversion for these settings,
+   Forward and up axes -- By mapping these to different axes you can convert rotations
+   between applications default up and forward axes.
+
+   Blender uses Y forward, Z up (since the front view looks along the +Y direction).
+   For example, it is common for applications to use Y as the up axis, in that case -Z forward, Y up is needed.
 
 
-Import
-------
+Geometry
+^^^^^^^^
 
 Facet Normals
    TODO.
@@ -47,13 +50,39 @@ Facet Normals
 Export
 ------
 
-Selection Only
-   TODO.
 ASCII
    TODO.
-Apply Modifiers
-   TODO.
 Batch Mode
+   TODO.
+
+
+Include
+^^^^^^^
+
+Selection Only
+   TODO.
+
+
+Transform
+^^^^^^^^^
+
+Scale
+   TODO.
+Scene Unit
+   TODO.
+Forward / Up Axis
+   Since many applications use a different axis for 'Up', these are axis conversion for these settings,
+   Forward and Up axes -- By mapping these to different axes you can convert rotations
+   between applications default up and forward axes.
+
+   Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
+   For example, it's common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
+
+
+Geometry
+^^^^^^^^
+
+Apply Modifiers
    TODO.
 
 

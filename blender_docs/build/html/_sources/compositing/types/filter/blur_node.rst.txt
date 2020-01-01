@@ -51,7 +51,7 @@ Variable Size
    Allows a variable blur radius, if the size input is an image.
 
    Bokeh
-      The Bokeh button will force the blur node to use a circular blur filter.
+      The Bokeh button will force the Blur node to use a circular blur filter.
       This gives higher quality results, but is slower than using a normal filter.
 Gamma
    The Gamma button applies a gamma correction on the image before blurring it.

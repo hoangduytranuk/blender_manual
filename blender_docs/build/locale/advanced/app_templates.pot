@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-20 01:28+0000\n"
+"POT-Creation-Date: 2020-01-01 22:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,7 +121,7 @@ msgid "Modifying and replacing parts of the user interface."
 msgstr ""
 
 #: ../../manual/advanced/app_templates.rst:57
-msgid "Defining new menus, keymaps & tools."
+msgid "Defining new menus, keymaps and tools."
 msgstr ""
 
 #: ../../manual/advanced/app_templates.rst:58
@@ -254,5 +254,65 @@ msgstr ""
 
 #: ../../manual/advanced/app_templates.rst:126
 msgid "The original template settings can be loaded using: *Load Template Factory Settings* from the file menu in much the same way *Load Factory Settings* works."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:131
+msgid "Template Scripts"
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:133
+msgid "While app templates can use Python scripts, they simply have access to the same API's available for add-ons and any other scripts."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:136
+msgid "As noted above, you may optionally have an ``__init__.py`` in your app template."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:138
+msgid "This has the following advantages:"
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:140
+msgid "Changes can be made to the startup or preferences, without having to distribute a blend-file."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:141
+msgid "Changes can be made dynamically."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:143
+msgid "You could for example -- configure the template to check the number of processors, operating system and memory, then set values based on this."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:146
+msgid "You may enable add-ons associated with your template."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:148
+msgid "On activation a ``register`` function is called, ``unregister`` is called when another template is selected."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:150
+msgid "As these only run once, any changes to defaults must be made via handler."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:152
+msgid "Two handlers you're likely to use are:"
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:154
+msgid "``bpy.app.handlers.load_factory_preferences_post``"
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:155
+msgid "``bpy.app.handlers.load_factory_startup_post``"
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:157
+msgid "These allow you to define your own \"factory settings\", which the user may change, just as Blender has it's own defaults when first launched."
+msgstr ""
+
+#: ../../manual/advanced/app_templates.rst:160
+msgid "This is an example ``__init__.py`` file which defines defaults for an app template to use."
 msgstr ""
 

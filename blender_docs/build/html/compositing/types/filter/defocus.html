@@ -308,7 +308,7 @@ As the balls recede into the distance, they get blurrier.</p>
 you may want to only blur one object while leaving everything else alone (or the other way around),
 or you want to blur the whole image uniformly all at once.
 The node, therefore, allows you to use something other than an actual Z-buffer as the Z input.
-For instance, you could connect an image node and use a grayscale image where the color designates
+For instance, you could connect an Image node and use a grayscale image where the color designates
 how much to blur the image at that point, where white is the maximum blur and black is no blur.
 Or, you could use a Time node to uniformly blur the image,
 where the time value controls the maximum blur for that frame.
@@ -351,7 +351,7 @@ the defocus on the other decreases at the same rate, creating a smooth transitio
 <dd><p class="first">Ở các giá trị rất thấp, dưới 5, nút sẽ khởi công loại bỏ bất cứ sự lấy mẫu dư (oversampling) nào, và làm rõ nét vật thể trong Khoảng Cách Trường Ảnh (DoF Distance). Nếu vật thể nằm trên một nền tương phản thì việc làm này có thể dẫn đến tình trạng răng cưa (aliasing) nhìn thấy được, cái mà OSA (Lấy Mẫu Dư -- <span class="xref std std-term">Oversampling</span>) được thiết kế để tránh né. Nếu bạn gặp phải vấn đề này thì:</p>
 <ul class="last simple">
 <li>Tự mình Lấy Mẫu Dư (OSA) bằng cách kết xuất với kích thước gấp đôi cỡ dự định, rồi thu nhỏ lại, hầu cho các điểm ảnh kề cận hòa nhòe lại với nhau.</li>
-<li>Dùng <a class="reference internal" href="blur_node.html#bpy-types-compositornodeblur"><span class="std std-ref">Nút Làm Nhòe -- Blur Node</span></a>)</li>
+<li>Use the Blur node with a setting of 2 for X and Y.</li>
 <li>Đặt Khoảng Cách Trường Ảnh (DoF Distance) lệch đi một chút, hầu cho vật thể rõ nét bị làm nhòe đi một chút xíu.</li>
 <li>Use a higher f-stop, which will start the blur,
 and then use the Z socket to a Map Value to a Blur node to enhance the blur effect.</li>

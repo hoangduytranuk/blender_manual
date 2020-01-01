@@ -26,6 +26,31 @@ The import does not have any properties.
 Export
 ------
 
+Include
+^^^^^^^
+
+Selection Only
+   Todo.
+
+
+Transform
+^^^^^^^^^
+
+Forward / Up
+   Since many applications use a different axis for 'Up', these are axis conversion for these settings,
+   Forward and Up axes -- By mapping these to different axes you can convert rotations
+   between applications default up and forward axes.
+
+   Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
+   For example, its common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
+
+Scale
+   TODO.
+
+
+Geometry
+^^^^^^^^
+
 Apply Modifiers
    Todo.
 Normals
@@ -34,13 +59,6 @@ UVs
    Todo.
 Vertex Colors
    Todo.
-
-Forward
-   TODO.
-Up
-   TODO.
-Scale
-   TODO.
 
 
 Usage

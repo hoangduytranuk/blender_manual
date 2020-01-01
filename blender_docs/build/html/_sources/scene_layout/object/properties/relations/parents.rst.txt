@@ -263,9 +263,9 @@ the child/children will move as well.
 Vertex Parent from Object Mode
 ------------------------------
 
-Vertex parenting can be performed from object mode,
+Vertex parenting can be performed from Object Mode,
 this is done like regular object parenting,
-press :kbd:`Ctrl-P` in object mode and select *Vertex* or *Vertex (Triangle)*.
+press :kbd:`Ctrl-P` in Object Mode and select *Vertex* or *Vertex (Triangle)*.
 
 The nearest vertices will be used from each object which is typically what you would want.
 
@@ -280,12 +280,12 @@ The nearest vertices will be used from each object which is typically what you w
      - .. figure:: /images/scene-layout_object_properties_relations_parents_object-mode-example-2.png
           :width: 320px
 
-          Reshaping the object in edit mode then means each of the cubes follows their vertex parent separately.
+          Reshaping the object in Edit Mode then means each of the cubes follows their vertex parent separately.
 
      - .. figure:: /images/scene-layout_object_properties_relations_parents_object-mode-example-3.png
           :width: 320px
 
-          Re-scaling the parent icosphere in object mode means the child cubes are also rescaled as expected.
+          Re-scaling the parent icosphere in Object Mode means the child cubes are also rescaled as expected.
 
 The parent context menu item means users can rapidly set up a large number of vertex parent
 relationships,

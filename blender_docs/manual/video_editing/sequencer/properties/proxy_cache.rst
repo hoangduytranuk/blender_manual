@@ -131,8 +131,8 @@ Timecode
 When you are working with footage directly copied from a camera without pre-processing it,
 there might be bunch of artifacts, mostly due to seeking a given frame in sequence.
 This happens because such footage usually does not have correct frame rate values in their headers.
-So, for Blender to calculate the position of a needed frame in the stream works inaccurately and
-can give errant result. There are two possible ways to avoid this:
+This issue can still arise when the source clip has the same frame rate as the scene settings.
+In order for Blender to correctly calculate frames and frame rate there are two possible solutions:
 
 #. Preprocess your video with e.g. MEncoder to repair the file header and insert the correct keyframes.
 #. Use Proxy/Timecode option in Blender.

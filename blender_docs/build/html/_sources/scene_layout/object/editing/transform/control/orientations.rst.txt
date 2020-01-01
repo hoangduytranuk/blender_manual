@@ -13,7 +13,7 @@ Transform Orientations
 
    :Mode:      Object and Edit Modes
    :Panel:     :menuselection:`Sidebar region --> Transform Orientations`
-   :Hotkey:    :kbd:`Alt-Spacebar`
+   :Hotkey:    :kbd:`Comma`
 
 *Transform Orientations* affect the behavior of
 :doc:`Transformations </scene_layout/object/editing/transform/basics>`: *Location*, *Rotation*, and *Scale*.
@@ -110,7 +110,6 @@ Custom Orientations
 
    :Mode:      Object and Edit Modes
    :Panel:     :menuselection:`Sidebar region --> Transform Orientations`
-   :Hotkey:    :kbd:`Ctrl-Alt-Spacebar`
 
 You can define custom transform orientations, using object or mesh elements. Custom transform
 orientations defined from objects use the *Local* orientation of the object whereas those

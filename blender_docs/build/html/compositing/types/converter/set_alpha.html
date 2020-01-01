@@ -269,7 +269,19 @@
 <img alt="../../../_images/compositing_types_converter_set-alpha_fade-to-black.png" src="../../../_images/compositing_types_converter_set-alpha_fade-to-black.png" />
 <p class="caption"><span class="caption-text">Mờ dần sang màu đen.</span></p>
 </div>
-<p>Trong ví dụ trên, kênh alpha của hình ảnh lốc xoáy bị bỏ qua. Thay vào đó, a <a class="reference internal" href="../input/time.html"><span class="doc">nút thời gian -- time node</span></a> cung cấp một hệ số từ 0,00 đến 1,00 trong khoảng thời hạn 60 khung hình, tức chừng 2 giây, cho nút Đặt Alpha. Lưu ý rằng đường cong thời gian được nắn hình theo cấp số nhân, hầu cho màu đen tổng thể sẽ được chuyển mờ dần chậm chạp, song sau đó tăng tốc nhanh hơn ở đoạn cuối. Nút Đặt Alpha không cần một hình ảnh được cung cấp ở đầu vào; thay vào đó, màu đen phẳng trơn (không có chuyển sắc) được sử dụng. Nút Đặt Alpha sử dụng hệ số đầu vào (input factor) và màu sắc để tạo ra một hình ảnh màu đen có độ alpha được đặt từ 0,00 đến 1,00 nội trong khoảng thời gian của 60 khung hình, tức có nghĩa là nó biến chuyển từ hoàn toàn trong suốt đến hoàn toàn mờ đục (opaque). Hãy coi alpha như một số nhân cho mức độ nhìn rõ được mà bạn có thể thấy điểm ảnh đó. Hai hình ảnh này được kết hợp hoàn toàn bởi nút Alpha Chồng Lên (Alpha Over) (với <em>Hệ Số</em> (Factor) là 1,00) để tạo ra hình ảnh tổng hợp (composite image). Do đó, nút Đặt Alpha sẽ phụ thuộc vào khung hình được kết xuất, tạo ra hình ảnh màu đen có độ trong suốt nhất định. Thiết Lập và Hoạt Họa nó và bạn sẽ có một trình tự hình ảnh mờ dần sang màu đen trong khoảng thời gian 2 giây đồng hồ.</p>
+<p>In the example above, the alpha channel of the swirl image is ignored.
+Instead, a <a class="reference internal" href="../input/time.html"><span class="doc">Time node</span></a>
+introduces a factor from 0.00 to 1.00 over 60 frames, or about 2 seconds,
+to the Set Alpha node. Note that the time curve is exponentially-shaped,
+so that the overall blackness will fade in slowly and then accelerate toward the end.
+The Set Alpha node does not need an input image; instead, the flat (shadeless) black color is used.
+The Set Alpha Node uses the input factor and color to create a black image that has an alpha
+set which goes from 0.00 to 1.00 over 60 frames, or completely transparent to completely opaque.
+Think of alpha as a multiplier for how vivid you can see that pixel.
+These two images are combined by the Alpha Over node completely (a <em>Factor</em> of 1.00)
+to produce the composite image. The Set Alpha node will thus, depending on the frame being rendered,
+produce a black image that has some degree of transparency.
+Setup and Animate, and you have an image sequence that fades to black over a 2-second period.</p>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
 <p>Không Sử Dụng Thông Tin Cảnh</p>

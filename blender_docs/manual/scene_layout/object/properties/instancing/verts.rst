@@ -82,15 +82,14 @@ location :kbd:`Alt-G`, and origin :kbd:`Alt-O`.
 Rearranging
 ^^^^^^^^^^^
 
-If you now select the base object and modify it in either object or edit mode,
+If you now select the base object and modify it in either Object or Edit Mode,
 all changes will also affect the shape of all instanced objects.
 You can also select the parent mesh to modify the arrangement of the instances;
 adding vertices will also add more base objects.
 
-Note that the base objects will inherit changes made to the parent mesh in Object Mode, but
-not in Edit Mode. So scaling the circle up in object mode will enlarge the monkey head,
-while scaling the circle up in edit mode will only increase the distance between the base
-objects.
+Note that the base objects will inherit changes made to the parent mesh in Object Mode,
+but not in Edit Mode. So scaling the circle up in Object Mode will enlarge the monkey head,
+while scaling the circle up in Edit Mode will only increase the distance between the base objects.
 
 
 Orientation
@@ -142,7 +141,7 @@ The tentacle object was then parented to an icosphere.
 With *Align to Vertex Normal* enabled for the parent mesh (the icosphere),
 the orientation of the base object (the tentacle)
 was adapted to the vertex normals of the parent mesh
-(in this case the tentacle was rotated -90° about the X axis in edit mode).
+(in this case the tentacle was rotated -90° about the X axis in Edit Mode).
 
 .. list-table::
 

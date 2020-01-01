@@ -21,8 +21,8 @@ This has a few different purposes, most commonly:
 Setup
 =====
 
-Baking requires a mesh to have a UV map, and an image texture node with an image to be baked to.
-The active (last selected) image texture node is used as the baking target.
+Baking requires a mesh to have a UV map, and an Image Texture node with an image to be baked to.
+The active (last selected) Image Texture node is used as the baking target.
 
 Use Render Bake in intensive light/shadow solutions,
 such as AO or soft shadows from area lights. If you bake AO for the main objects,

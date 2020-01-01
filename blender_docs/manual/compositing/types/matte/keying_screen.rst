@@ -7,9 +7,9 @@ Keying Screen Node
 .. figure:: /images/compositing_node-types_CompositorNodeKeyingScreen.png
    :align: right
 
-   Keying Screen Node.
+   Keying Screen node.
 
-The *Keying Screen* node creates plates for use as a color reference for keying nodes.
+The Keying Screen node creates plates for use as a color reference for keying nodes.
 It generates gradients from sampled colors on motion tracking points on movie clips.
 It can be used to deal with uneven colors of green screens.
 
@@ -67,13 +67,13 @@ That can result in a bad matte.
    Example of a poor mask: Some of the backdrop is opaque,
    and some parts of the gun in the foreground are transparent.
 
-If you increase the tolerances on the keying node, it will accept
+If you increase the tolerances on the Color Key node, it will accept
 more shades of green to mask out. But it may also incorrectly mask out more of
 the foreground.
 
-Instead of increasing the range of accepted shades to be masked out, the *Keying Screen*
-node lets you change what shade of green (or other color) to use for different parts of
-the image.
+Instead of increasing the range of accepted shades to be masked out,
+the Keying Screen node lets you change what shade of green (or other color) to used
+for different parts of the image.
 
 Start in the :doc:`Movie Clip Editor </editors/clip/index>`.
 Open the Sidebar region and Toolbar to show tracking configuration.

@@ -316,28 +316,6 @@ Defines how much the boid can suddenly accelerate in order to fulfill a rule.</d
 <dd>Only collide with objects in this collection.</dd>
 </dl>
 </div>
-<div class="section" id="misc">
-<h2>-- Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
-<div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Physics ‣ Misc</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-<dl class="docutils">
-<dt>Góc Lượn -- Banking</dt>
-<dd>Amount of rotation around velocity vector on turns. Banking of 1.0 gives a natural banking effect.</dd>
-<dt>Cao Độ -- Pitch</dt>
-<dd>Amount of rotation around side vector.</dd>
-<dt>Chiều Cao -- Height</dt>
-<dd>Boid height relative to particle size.</dd>
-</dl>
-</div>
 <div class="section" id="battle">
 <h2>-- Battle<a class="headerlink" href="#battle" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
@@ -364,6 +342,28 @@ Defines how much the boid can suddenly accelerate in order to fulfill a rule.</d
 <dd>Maximum distance of which a boid can attack.</dd>
 </dl>
 </div>
+<div class="section" id="misc">
+<h2>-- Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Particle System ‣ Physics ‣ Misc</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="docutils">
+<dt>Góc Lượn -- Banking</dt>
+<dd>Amount of rotation around velocity vector on turns. Banking of 1.0 gives a natural banking effect.</dd>
+<dt>Cao Độ -- Pitch</dt>
+<dd>Amount of rotation around side vector.</dd>
+<dt>Chiều Cao -- Height</dt>
+<dd>Boid height relative to particle size.</dd>
+</dl>
+</div>
 <div class="section" id="relations">
 <h2>Mối Quan Hệ -- Relations<a class="headerlink" href="#relations" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
@@ -380,11 +380,11 @@ Defines how much the boid can suddenly accelerate in order to fulfill a rule.</d
 <dl class="docutils">
 <dt>Mục Tiêu -- Target</dt>
 <dd>This <a class="reference internal" href="../../../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">list view</span></a> allows you to set up other particle systems to react with the boids.</dd>
-<dt>Vật Thể -- Object</dt>
+<dt>Target Object</dt>
 <dd>A <a class="reference internal" href="../../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">data ID</span></a> to select an object with a particle system set on.</dd>
 <dt>Hệ Thống -- System</dt>
 <dd>Index of the <em>Object</em>'s particle system as set in the list view in the particle panel.</dd>
-<dt>-- Alliance</dt>
+<dt>Mode</dt>
 <dd><dl class="first last docutils">
 <dt>Kẻ Thù -- Enemy</dt>
 <dd>Setting the type to <em>Enemy</em> will cause the systems to fight with each other.</dd>
@@ -422,28 +422,57 @@ according to the (respectively) <em>Avoid</em> and <em>Goal</em> rules of the <e
 </tbody>
 </table>
 </div>
-<p>The Boid Brain panel controls how the boids particles will react with each other.</p>
-<div class="section" id="rules">
-<h3>-- Rules<a class="headerlink" href="#rules" title="Permalink to this headline">¶</a></h3>
-<p>The boids' behavior is controlled by a list of rules.
+<p>The Boid Brain panel controls how the boids particles will react with each other.
+The boids' behavior is controlled by a list of rules.
 Only a certain amount of information in the list can be evaluated.
 If the memory capacity is exceeded, the remaining rules are ignored.</p>
 <p>The rules are by default parsed from top-list to bottom-list
 (thus giving explicit priorities),
 and the order can be modified using the little arrows buttons on the right side.</p>
 <dl class="docutils">
-<dt>Đích -- Goal</dt>
-<dd><p class="first">Seek goal.</p>
-<dl class="last docutils">
+<dt>Tính Toán Quy Tắc -- Rule Evaluation</dt>
+<dd><p class="first">There are three ways to control how rules are evaluated:</p>
+<dl class="docutils">
+<dt>Trung Bình -- Average</dt>
+<dd>All rules are averaged.</dd>
+<dt>Ngẫu Nhiên -- Random</dt>
+<dd>A random rule is selected for each boid.</dd>
+<dt>Mờ Ám/Ảo -- Fuzzy</dt>
+<dd>Uses fuzzy logic to evaluate rules. Rules are gone through top to bottom.
+Only the first rule that affect above the <em>Rule Fuzziness</em> threshold is evaluated.
+The value should be considered how hard the boid will try to respect a given rule
+(a value of 1 means the Boid will always stick to it, a value of 0 means it will never).
+If the boid meets more than one conflicting condition at the same time,
+it will try to fulfill all the rules according to the respective weight of each.</dd>
+</dl>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">A given boid will try as much as it can to comply to each of the rules he is
+given, but it is more than likely that some rule will take precedence on other in some cases.
+For example, in order to avoid a predator, a boid could probably &quot;forget&quot; about Collision,
+Separate and Flock rules, meaning that &quot;while panicked&quot; it could well run into obstacles,
+e.g. even if instructed not to, most of the time.</p>
+</div>
+</dd>
+<dt>In Air</dt>
+<dd>The current rule affects boids while they are flying.</dd>
+<dt>On Land</dt>
+<dd>The current rule affects boids while they are not flying.</dd>
+</dl>
+<div class="section" id="goal-rule">
+<h3>Goal Rule<a class="headerlink" href="#goal-rule" title="Permalink to this headline">¶</a></h3>
+<p>Seek goal.</p>
+<dl class="docutils">
 <dt>Vật Thể -- Object</dt>
 <dd>Specifies the goal object. If not specified, Boid force fields with negative Strength are used as goals.</dd>
 <dt>Dự Đoán -- Predict</dt>
 <dd>Predict target's movements.</dd>
 </dl>
-</dd>
-<dt>Tránh -- Avoid</dt>
-<dd><p class="first">Avoid &quot;predators&quot;.</p>
-<dl class="last docutils">
+</div>
+<div class="section" id="avoid-rule">
+<h3>Avoid Rule<a class="headerlink" href="#avoid-rule" title="Permalink to this headline">¶</a></h3>
+<p>Avoid &quot;predators&quot;.</p>
+<dl class="docutils">
 <dt>Vật Thể -- Object</dt>
 <dd>Specifies the object to avoid.
 If not specified, Boid force fields with positive Strength are used as predators.</dd>
@@ -452,10 +481,11 @@ If not specified, Boid force fields with positive Strength are used as predators
 <dt>-- Fear Factor</dt>
 <dd>Avoid object if danger from it is above this threshold.</dd>
 </dl>
-</dd>
-<dt>Tránh Va Đập -- Avoid Collision</dt>
-<dd><p class="first">Avoid objects with activated Deflection.</p>
-<dl class="last docutils">
+</div>
+<div class="section" id="avoid-collision-rule">
+<h3>Avoid Collision Rule<a class="headerlink" href="#avoid-collision-rule" title="Permalink to this headline">¶</a></h3>
+<p>Avoid objects with activated Deflection.</p>
+<dl class="docutils">
 <dt>Quần Thể -- Boids</dt>
 <dd>Avoid collision with other boids.</dd>
 <dt>Vật Đi Lệch Hướng -- Deflectors</dt>
@@ -463,23 +493,34 @@ If not specified, Boid force fields with positive Strength are used as predators
 <dt>-- Look Ahead</dt>
 <dd>Time to look ahead in seconds.</dd>
 </dl>
-</dd>
-<dt>Phân Tách/Rã -- Separate</dt>
-<dd>Boids move away from each other.</dd>
-<dt>Đàn/Bầy -- Flock</dt>
-<dd>Copy movements of neighboring boids, but avoid each other.</dd>
-<dt>Đi Theo Hướng Đạo Viên -- Follow Leader</dt>
-<dd><p class="first">Follows a leader object instead of a boid.</p>
-<dl class="last docutils">
+</div>
+<div class="section" id="separate-rule">
+<h3>Separate Rule<a class="headerlink" href="#separate-rule" title="Permalink to this headline">¶</a></h3>
+<p>Boids move away from each other.</p>
+</div>
+<div class="section" id="flock-rule">
+<h3>Flock Rule<a class="headerlink" href="#flock-rule" title="Permalink to this headline">¶</a></h3>
+<p>Copy movements of neighboring boids, but avoid each other.</p>
+</div>
+<div class="section" id="follow-leader-rule">
+<h3>Follow Leader Rule<a class="headerlink" href="#follow-leader-rule" title="Permalink to this headline">¶</a></h3>
+<p>Follows a leader object instead of a boid.</p>
+<dl class="docutils">
 <dt>Khoảng Cách -- Distance</dt>
 <dd>Distance behind leader to follow.</dd>
 <dt>Dòng -- Line</dt>
-<dd>Follow the leader in a line.</dd>
+<dd><p class="first">Follow the leader in a line.</p>
+<dl class="last docutils">
+<dt>Queue Size</dt>
+<dd>How many boids that are allowed to follow in a line.</dd>
 </dl>
 </dd>
-<dt>Tốc Độ Trung Bình -- Average Speed</dt>
-<dd><p class="first">Maintain average velocity.</p>
-<dl class="last docutils">
+</dl>
+</div>
+<div class="section" id="average-speed-rule">
+<h3>Average Speed Rule<a class="headerlink" href="#average-speed-rule" title="Permalink to this headline">¶</a></h3>
+<p>Maintain average velocity.</p>
+<dl class="docutils">
 <dt>Tốc Độ -- Speed</dt>
 <dd>Percentage of maximum speed.</dd>
 <dt>Lang Thang -- Wander</dt>
@@ -487,39 +528,16 @@ If not specified, Boid force fields with positive Strength are used as predators
 <dt>Mức/Tầm -- Level</dt>
 <dd>How much velocity's Z component is kept constant.</dd>
 </dl>
-</dd>
-<dt>Chiến Đấu -- Fight</dt>
-<dd><p class="first">Move toward nearby boids.</p>
-<dl class="last docutils">
+</div>
+<div class="section" id="fight-rule">
+<h3>Fight Rule<a class="headerlink" href="#fight-rule" title="Permalink to this headline">¶</a></h3>
+<p>Move toward nearby boids.</p>
+<dl class="docutils">
 <dt>Khoảng Cách Chiến Đấu -- Fight Distance</dt>
 <dd>Attack boids at a maximum of this distance.</dd>
 <dt>Khoảng Cách Chạy Trốn -- Flee Distance</dt>
 <dd>Flee to this distance.</dd>
 </dl>
-</dd>
-</dl>
-<div class="section" id="rule-evaluation">
-<h4>Tính Toán Quy Tắc -- Rule Evaluation<a class="headerlink" href="#rule-evaluation" title="Permalink to this headline">¶</a></h4>
-<p>There are three ways to control how rules are evaluated.</p>
-<dl class="docutils">
-<dt>Trung Bình -- Average</dt>
-<dd>All rules are averaged.</dd>
-<dt>Ngẫu Nhiên -- Random</dt>
-<dd>A random rule is selected for each boid.</dd>
-<dt>Mờ Ám/Ảo -- Fuzzy</dt>
-<dd>Uses fuzzy logic to evaluate rules. Rules are gone through top to bottom.
-Only the first rule that affect above the fuzziness threshold is evaluated.
-The value should be considered how hard the boid will try to respect a given rule
-(a value of 1.000 means the Boid will always stick to it, a value of 0.000 means it will never).
-If the boid meets more than one conflicting condition at the same time,
-it will try to fulfill all the rules according to the respective weight of each.</dd>
-</dl>
-<p>Please note that a given boid will try as much as it can to comply to each of the rules he is
-given, but it is more than likely that some rule will take precedence on other in some cases.
-For example, in order to avoid a predator, a boid could probably &quot;forget&quot; about Collision,
-Separate and Flock rules, meaning that &quot;while panicked&quot; it could well run into obstacles,
-e.g. even if instructed not to, most of the time.</p>
-</div>
 </div>
 </div>
 </div>

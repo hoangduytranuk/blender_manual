@@ -40,7 +40,7 @@ DXF to Meshes
 - ``MESH`` is mapped to a mesh object with a Subdivision Surface modifier, including the edge crease.
 - ``POLYFACE``\ s and ``POLYMESH``\ es are imported to a mesh object.
 - ``3DFACE`` \ s, ``SOLID`` \ s, ``POINT`` \ s are imported into one combined mesh object
-  per layer called ``layername_3Dfaces`` .
+  per layer called ``layername_3Dfaces``.
 
 
 Missing DXF Types

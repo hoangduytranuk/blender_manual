@@ -8,7 +8,7 @@ Viewer Node
 
    Viewer node.
 
-The viewer node can be used to preview the results of a node.
+The Viewer node can be used to preview the results of a node.
 
 
 Inputs

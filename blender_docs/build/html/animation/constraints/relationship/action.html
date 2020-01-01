@@ -300,19 +300,33 @@ these values are &quot;mapped back&quot; to the (-180.0 to 180.0) range.</li>
 </ul>
 </div>
 </dd>
+<dt>Mix</dt>
+<dd><p class="first">Specifies how the keyframed transformation from the action is combined with the existing transformation.</p>
+<dl class="last docutils">
+<dt>Before Original</dt>
+<dd>The action transformation is added before the existing transformation, as if it was
+applied to an imaginary parent of the constraint owner. Scale is handled like in
+the <a class="reference internal" href="../../armatures/bones/properties/relations.html#bone-relations-inherit-settings"><span class="std std-ref">Aligned Inherit Scale</span></a> mode of bones
+to avoid creating shear.</dd>
+<dt>After Original</dt>
+<dd>The action transformation is added after the existing transformation, as if it was
+applied locally to an imaginary child of the constraint owner. Scale is handled like
+in the <a class="reference internal" href="../../armatures/bones/properties/relations.html#bone-relations-inherit-settings"><span class="std std-ref">Aligned Inherit Scale</span></a> mode of bones
+to avoid creating shear.</dd>
+<dt>After Original (Full Scale)</dt>
+<dd>The action transformation is added after the existing transformation, as if it was
+applied locally to an imaginary child of the constraint owner with ordinary parenting.
+This mode can create shear and is thus not recommended for use.</dd>
+</dl>
+</dd>
 </dl>
 </div>
 <div class="section" id="notes">
 <h2>Ghi Chú -- Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>When the linked action affects some location properties,
-the owner's existing location is added to the result of evaluating this constraint
-(exactly as when the <em>Offset</em> button of
-the <a class="reference internal" href="../transform/copy_location.html"><span class="doc">Copy Location constraint</span></a> is enabled...).</li>
-<li>When the linked action affects some scale properties,
-the owner's existing scale is multiplied with the result of evaluating this constraint.</li>
-<li>When the linked action affects some rotation properties,
-the owner's existing rotation is overridden by the result of evaluating this constraint.</li>
+<li>When the object or bone already has Action constraints, the next constraint using
+a newly keyframed action should be added before all others in order to get
+the same final combined transformation. This fact is not affected by the Mix mode.</li>
 <li>Unlike usual, you can have a <em>Start</em> value higher than the <em>End</em> one,
 or a <em>Min</em> one higher than a <em>Max</em> one: this will reverse the mapping of the action
 (i.e. it will be &quot;played&quot; reversed...), unless you have both sets reversed, obviously!</li>

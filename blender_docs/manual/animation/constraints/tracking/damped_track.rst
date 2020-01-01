@@ -7,6 +7,7 @@ Damped Track Constraint
 The *Damped Track* constraint constrains one local axis of the owner to always point towards *Target*.
 In other 3D software you can find it with the name "Look at" constraint.
 
+This constraint uses a pure :term:`Swing` rotation, i.e. the shortest possible single axis rotation.
 
 Options
 =======

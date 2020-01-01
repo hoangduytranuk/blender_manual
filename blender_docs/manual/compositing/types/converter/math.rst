@@ -129,7 +129,7 @@ where "n" is the number of possible output values, and "x" is the input pixel co
 <https://en.blender.org/index.php/Doc:2.4/Manual/Composite_Nodes/Types/Convertor#Quantize.2FRestrict_Color_Selection>`__.
 
 To implement this function in Blender, consider the node setup above.
-We string the math nodes into a function that takes each color (values from 0 to 1),
+We string the Math nodes into a function that takes each color (values from 0 to 1),
 multiplies it up by six, the desired number of divisions (values become from 0 to 6),
 offsets it by 0.5 (-0.5 to 5.5),
 rounds the value to the nearest whole number (produces 0, 1, 2, 3, 4, 5),

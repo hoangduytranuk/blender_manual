@@ -62,5 +62,5 @@ Mask
 
 .. tip::
 
-   For soft edges, pass the output mask through a slight :doc:`blur node </compositing/types/filter/blur_node>`.
+   For soft edges, pass the output mask through a slight :doc:`Blur node </compositing/types/filter/blur_node>`.
    For a vignette, pass the output of this through a heavy blur.

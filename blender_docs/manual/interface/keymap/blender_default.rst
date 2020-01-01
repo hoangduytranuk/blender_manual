@@ -159,7 +159,7 @@ Pie Menu on Drag
 
    :kbd:`Tab`
       :tap: Toggles Edit Mode.
-      :drag: Object mode pie menu.
+      :drag: Object Mode pie menu.
    :kbd:`Z`
       :tap: Toggles wireframe view.
       :drag: Display mode pie menu.

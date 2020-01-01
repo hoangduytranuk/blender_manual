@@ -81,7 +81,7 @@ Node settings are located below the outputs and above any inputs.
 
 .. figure:: /images/interface_controls_nodes_parts_controls.png
 
-   An example of the controls on the chroma key node.
+   An example of the controls on the Chroma Key node.
 
 
 Preview

@@ -39,6 +39,8 @@ Frame All :kbd:`Home`
    Center the view to the entire image.
 Frame All Fit :kbd:`Shift-Home`
    Fit the view to the image dimensions.
+Center View to Cursor
+   When the 2D cursor is visible, move the view so that it is at the center of the editor.
 Render Region :kbd:`Ctrl-B`
    See :ref:`Render Region <editors-3dview-navigate-render-region>`.
 Clear Render Region :kbd:`Ctrl-Alt-B`

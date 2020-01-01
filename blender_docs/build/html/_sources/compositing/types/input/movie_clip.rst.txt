@@ -7,7 +7,7 @@ Movie Clip Node
 .. figure:: /images/compositing_node-types_CompositorNodeMovieClip.png
    :align: right
 
-   Movie clip node.
+   Movie Clip node.
 
 This node is a special node that uses some of the values taken from
 footage cameras and trackings and links them to the output.

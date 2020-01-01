@@ -63,8 +63,28 @@ Properties
 Import
 ------
 
-Main
-^^^^
+Include
+^^^^^^^
+
+Import Normals
+   TODO.
+Import Subdivision Surface
+   Todo.
+Import User Properties
+   TODO.
+Import Enums As Strings
+   TODO.
+Image Search
+   TODO.
+
+
+Transform
+^^^^^^^^^
+
+Scale
+   Todo.
+Decal Offset
+   TODO.
 
 Manual Orientation
    TODO.
@@ -77,27 +97,21 @@ Forward / Up Axis
    For example, its common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
 Apply Transform
    TODO.
-Import Normals
-   TODO.
-Import Animation
-   TODO.
-
-   Animation Offset
-      TODO.
-Import User Properties
-   TODO.
-Import Enums As Strings
-   TODO.
-Image Search
-   TODO.
-Decal Offset
-   TODO.
 Use Pre/Post Rotation
    TODO.
 
 
-Armatures
+Animation
 ^^^^^^^^^
+
+TODO.
+
+Animation Offset
+   TODO.
+
+
+Armature
+^^^^^^^^
 
 Ignore Leaf Bones
    TODO.
@@ -112,32 +126,6 @@ Primary/Secondary Bone Axis
 Export
 ------
 
-Main
-^^^^
-
-Selected Objects
-   Only export the selected objects. Otherwise export all objects in the scene.
-   Note, this does not apply when batch exporting.
-Scale
-   Scale the exported data by this value. 10 is the default
-   because this fits best with the scale most applications import FBX to.
-Apply Scale
-   TODO.
-Apply Scalings
-   TODO.
-Forward / Up Axis
-   Since many applications use a different axis for 'Up', these are axis conversions for Forward and
-   Up axes -- By mapping these to different axes you can convert rotations between applications
-   default up and forward axes.
-
-   Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
-   For example, its common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
-Empty/Camera/Light/Armature/Mesh/Other
-   Enable/Disable exporting of respective object types.
-Apply Transform
-   TODO.
-Custom Properties
-   TODO.
 Path Mode
    When referencing paths in exported files you may want some control as to the method used since absolute paths
    may only be correct on your own system. Relative paths, on the other hand, are more portable
@@ -164,22 +152,57 @@ Batch Mode
       since it uses scene data and groups are not attached to any scenes.
       Also note, when Group/Scene is enabled you must include the armature objects
       in the group for animated actions to work.
-   Own Dir
+   Batch Own Directory
       When enabled, each file is exported into its own directory,
       this is useful when using the *Copy Images* option. So each directory contains
       one model with all the images it uses. Note, this requires a full Python installation.
       If you do not have a full Python installation, this button will not be shown.
 
 
-Geometries
-^^^^^^^^^^
+Include
+^^^^^^^
 
-Apply Modifiers
-   When enabled, the mesh will be from the output of the modifiers applied to the mesh.
-Use Modifiers Render Setting
+Selected Objects
+   Only export the selected objects. Otherwise export all objects in the scene.
+   Note, this does not apply when batch exporting.
+Active Collection
+   Todo.
+Object Types
+   Enable/Disable exporting of respective object types.
+Custom Properties
    TODO.
+
+
+Transform
+^^^^^^^^^
+
+Scale
+   Scale the exported data by this value. 10 is the default
+   because this fits best with the scale most applications import FBX to.
+Apply Scalings
+   TODO.
+Forward / Up
+   Since many applications use a different axis for 'Up', these are axis conversions for Forward and
+   Up axes -- By mapping these to different axes you can convert rotations between applications
+   default up and forward axes.
+
+   Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
+   For example, its common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
+Apply Unit
+   TODO.
+Apply Transform
+   TODO.
+
+
+Geometry
+^^^^^^^^
+
 Smoothing
    TODO.
+Export Subdivision Surface
+   Todo.
+Apply Modifiers
+   When enabled, the mesh will be from the output of the modifiers applied to the mesh.
 Loose Edges
    TODO.
 Tangent Space
@@ -189,21 +212,21 @@ Tangent Space
 Armatures
 ^^^^^^^^^
 
-Only Deform Bones
-   TODO.
-Add Leaf Bones
-   TODO.
 Primary/Secondary Bone Axis
    TODO.
 Armature FBXNode Type
    TODO.
-
-
-Animation
-^^^^^^^^^
-
-Baked Animation
+Only Deform Bones
    TODO.
+Add Leaf Bones
+   TODO.
+
+
+Bake Animation
+^^^^^^^^^^^^^^
+
+TODO.
+
 Key All Bones
    TODO.
 NLA Strips

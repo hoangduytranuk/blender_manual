@@ -72,7 +72,7 @@ Examples
 Using Image Output
 ------------------
 
-This can simply be achieved by using the alpha over node.
+This can simply be achieved by using the Alpha Over node.
 
 .. figure:: /images/compositing_types_distort_plane-track-deform_example-image-output.png
 
@@ -98,4 +98,4 @@ will display the part of the image that lies inside that mask. This image shows 
 
 .. figure:: /images/compositing_types_distort_plane-track-deform_output-comparison.png
 
-   Comparison between image output and original image (see viewer nodes carefully).
+   Comparison between image output and original image (see Viewer nodes carefully).

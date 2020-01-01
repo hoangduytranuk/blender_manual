@@ -62,7 +62,7 @@ so it is recommended to use some naming convention that will allow you to easily
    Input nodes
       If you include a source node in your group,
       you will end up having the source node appearing *twice*: once inside the group,
-      and once outside the group in the new material node-network.
+      and once outside the group in the new material node tree.
    Output node
       If you include an output node in the group, there will not be an output socket available *from* the group!
 

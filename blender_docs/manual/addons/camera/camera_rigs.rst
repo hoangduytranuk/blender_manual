@@ -3,12 +3,8 @@
 Add Camera Rigs
 ***************
 
-Introduction
-============
-
-.. figure:: /images/addons_camera_rigs.jpg
-   :align: right
-   :width: 465px
+.. figure:: /images/addons_camera_rigs.png
+   :align: center
 
 This script was designed to add some extended functionality to a camera by creating control rig
 with custom shapes and UI to easily access the cameras settings from the 3D View.
@@ -34,11 +30,8 @@ to make it easier to achieve a cinematic crane shot.
 Usage
 =====
 
-Add a :menuselection:`Add --> Armature --> Dolly Rig or Crane Rig`.
+Add a :menuselection:`Add --> Camera --> Dolly Camera Rig or Crane Camera Rig`.
 This will build the rig at the cursor location, add a new camera, making it the new active scene camera.
-
-The camera object will not be selectable by default
-but this can be toggled from the UI in the 3D View Sidebar.
 
 When the Rig is selected, the camera properties will be displayed in the Sidebar.
 
@@ -49,10 +42,25 @@ Rigs
 Root bone
    This is the parent of the entire rig.
 Control bone
-   This is the bone (named ``CTRL``) that will translate the camera around. By default it will track to the aim bone.
+   This is the bone (named ``Ctrl``) that will translate the camera around. By default it will track to the aim bone.
 Aim bone
-   The camera will point at this bone (named ``AIM``).
+   The camera will point at this bone (named ``Aim``).
    You can also tilt the camera by rotating the aim on the Y axis.
+
+
+Widgets
+=======
+
+When the rig(s) are built, the add-on will create a collection for all the custom bone shapes
+called (named ``WDGTS_camera``). When the custom shapes (widgets) are built
+they will use the prefix ``WDGTS_camera``. If you have more than one rig in the scene,
+it will use the same widgets in the same collection rather than duplicating them.
+The default collection name and the widget prefix can be set in the preferences of the add-on.
+(This will not change the name of any existing widgets or collection,
+only ones that are created after you change the setting.)
+
+.. figure:: /images/addons_camera_rigs_user_prefs.png
+   :align: center
 
 
 UI
@@ -65,22 +73,31 @@ Add DOF Empty
    The *Add DOF Empty* button will automatically add an Empty at the location of the aim bone and
    make it the depth of field (DOF) object.
 
-   The empty is a child of the aim bone but will give the user the ability to animate this object.
-X-Ray
+   The empty is a child of the aim bone, so you can animate that instead of animating the empty directly.
+   This is a workaround as it only possible to use objects as a target for the DOF and not bones.
+
+Focal Distance/F-Stop/Focal Length
+   These are custom properties on the camera bone that drive the equivalent setting on the actual camera.
+   This makes it animatable inside the armature object rather than having to animate the armature and the camera.
+
+Show in Front
    Will make the rig object visible through all other geometry.
    (Useful if you have a fly through scene or if other meshes are in the way.)
 
 Lock Camera Select
-   The *Lock Camera Select* is a toggle button to make the camera unselectable
-   (so you can't accidentally delete it).
+   The *Lock Camera Select* is a toggle button to make the camera unselectable (so you can't accidentally delete it).
 Tracking (Aim Lock)
    This slider controls the Track To constraint on the control bone.
    Turn it off and the bone will not point to the aim bone anymore.
 
+.. figure:: /images/addons_camera_rigs_crane_arm.png
+   :align: center
+   :width: 240px
+
 Crane Rig Height, Arm Length
    The *Arm Height* and *Arm Length* sliders at the bottom of the UI show the Y axis scale of the relevant bone.
    By default, both the height and the arm length are at 1 unit in size.
-   These values can be set to the users preferences and also animated if need be.
+   These values only show in the UI when a crane rig is selected, they are also animatable.
 
 
 Multiple Cameras
@@ -128,7 +145,7 @@ But an object called "A" will fail.
    :Description: Adds a camera rig with a UI.
    :Location: :menuselection:`3D View --> Add --> Camera`
    :File: camera_dolly_crane_rigs.py
-   :Author: Wayne Dixon, Kris Wittig
+   :Author: Wayne Dixon, Brian Raschko, Kris Wittig
    :Maintainer: to do
    :License: GPL
    :Support Level: Community

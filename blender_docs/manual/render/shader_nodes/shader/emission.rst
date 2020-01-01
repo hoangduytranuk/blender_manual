@@ -48,7 +48,7 @@ Outputs
 
 Emission
    The Emission shader output can both be plugged into the *Surface Input* as well as
-   the *Volume Input* of the :doc:`Material </render/shader_nodes/output/material>` output node.
+   the *Volume Input* of the :doc:`Material Output </render/shader_nodes/output/material>` node.
 
 
 Examples

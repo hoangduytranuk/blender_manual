@@ -55,5 +55,5 @@ Random Per Island :guilabel:`Cycles Only`
    like tree leaves, wood planks, or curves of multiple splines.
 
    .. figure:: /images/render_shader-nodes_input_geometry_example_random_per_island.png
-   
-      Get a random value for each instance of the mesh when using an array modifier.
+
+      Get a random value for each instance of the mesh when using an Array modifier.

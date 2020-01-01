@@ -44,7 +44,7 @@ Blender has various built in procedural texture nodes,
 with texture coordinates and various parameters as input, and a color or value as output.
 No texture data-blocks are needed; instead node groups can be used for reusing texture setups.
 
-For UV mapping and texture painting in the 3D Viewport, the Image texture node must be used.
+For UV mapping and texture painting in the 3D Viewport, the Image Texture node must be used.
 When setting such a node as active, it will be displayed in the 3D Viewport
 while using :doc:`Texture color </render/workbench/color>` mode.
 This method can us to for seeing painted textures while texture painting.

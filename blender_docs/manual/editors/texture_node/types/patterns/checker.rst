@@ -8,7 +8,7 @@ Checker Node
 
    Checker node.
 
-The checker node creates a checkerboard pattern.
+The Checker node creates a checkerboard pattern.
 
 
 Inputs

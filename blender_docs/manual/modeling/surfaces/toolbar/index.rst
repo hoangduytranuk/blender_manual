@@ -4,7 +4,7 @@
 Toolbar
 *******
 
-Surface edit mode tools:
+Surface Edit Mode tools:
 
 :ref:`Select <tool-select-tweak>`
    Select or move.

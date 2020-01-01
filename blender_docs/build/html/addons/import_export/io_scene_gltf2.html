@@ -144,6 +144,7 @@
 <li class="toctree-l4"><a class="reference internal" href="io_mesh_stl.html">STL</a></li>
 <li class="toctree-l4"><a class="reference internal" href="io_mesh_uv_layout.html">UV Layout</a></li>
 <li class="toctree-l4"><a class="reference internal" href="io_node_shaders_info.html">Import &amp; Export of Node Shaders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io_palettes.html">Import Palettes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="io_scene_fbx.html">FBX</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">glTF 2.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="io_scene_obj.html">Wavefront OBJ</a></li>
@@ -300,7 +301,7 @@ with the following channels of information:</p>
 <li>Normal Map</li>
 <li>Emissive</li>
 </ul>
-<div class="figure" id="id1">
+<div class="figure" id="id3">
 <img alt="../../_images/addons_io-gltf2_material-channels.jpg" src="../../_images/addons_io-gltf2_material-channels.jpg" />
 <p class="caption"><span class="caption-text">An example of the various image maps available in the glTF 2.0 core format. This is
 the <a class="reference external" href="https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/WaterBottle">water bottle sample model</a>
@@ -338,13 +339,13 @@ The add-on will automatically convert images from other formats, increasing expo
 <p>The glTF base color is determined by looking for a Base Color input on a Principled BSDF node.
 If the input is unconnected, the input's default color (the color field next to the unconnected socket)
 is used as the Base Color for the glTF material.</p>
-<div class="figure" id="id2">
+<div class="figure" id="id4">
 <img alt="../../_images/addons_io-gltf2_material-baseColor-solidGreen.png" src="../../_images/addons_io-gltf2_material-baseColor-solidGreen.png" />
 <p class="caption"><span class="caption-text">A solid base color can be specified directly on the node.</span></p>
 </div>
 <p>If an Image Texture node is found to be connected to the Base Color input,
 that image will be used as the glTF base color.</p>
-<div class="figure" id="id3">
+<div class="figure" id="id5">
 <img alt="../../_images/addons_io-gltf2_material-baseColor-imageHookup.png" src="../../_images/addons_io-gltf2_material-baseColor-imageHookup.png" />
 <p class="caption"><span class="caption-text">An image is used as the glTF base color.</span></p>
 </div>
@@ -364,7 +365,7 @@ connect the green (<code class="docutils literal notranslate"><span class="pre">
 The glTF exporter will recognize this arrangement as matching the glTF standard, and
 that will allow it to simply copy the image texture into the glTF file during export.</p>
 <p>The Image Texture node for this should have its <em>Color Space</em> set to Non-Color.</p>
-<div class="figure" id="id4">
+<div class="figure" id="id6">
 <img alt="../../_images/addons_io-gltf2_material-metalRough.png" src="../../_images/addons_io-gltf2_material-metalRough.png" />
 <p class="caption"><span class="caption-text">A metallic/roughness image connected in a manner consistent with the glTF standard,
 allowing it to be used verbatim inside an exported glTF file.</span></p>
@@ -382,7 +383,7 @@ The effect need not be shown in Blender, as Blender has other ways of showing am
 but this method will allow the exporter to write an occlusion image to the glTF.
 This can be useful to real-time glTF viewers, particularly on platforms where there
 may not be spare power for computing such things at render time.</p>
-<div class="figure" id="id5">
+<div class="figure" id="id7">
 <img alt="../../_images/addons_io-gltf2_material-occlusionOnly.png" src="../../_images/addons_io-gltf2_material-occlusionOnly.png" />
 <p class="caption"><span class="caption-text">A pre-baked ambient occlusion map, connected to a node that doesn't render but will export to glTF.</span></p>
 </div>
@@ -395,7 +396,7 @@ or another existing model. A manually created custom node group can also be used
 </div>
 <p>glTF stores occlusion in the red (<code class="docutils literal notranslate"><span class="pre">R</span></code>) channel, allowing it to optionally share
 the same image with the roughness and metallic channels.</p>
-<div class="figure" id="id6">
+<div class="figure" id="id8">
 <img alt="../../_images/addons_io-gltf2_material-orm-hookup.png" src="../../_images/addons_io-gltf2_material-orm-hookup.png" />
 <p class="caption"><span class="caption-text">This combination of nodes mimics the way glTF packs occlusion, roughness, and
 metallic values into a single image.</span></p>
@@ -418,7 +419,7 @@ this is the only type of normal map currently supported by glTF.
 The strength of the normal map can be adjusted on this node.
 The exporter is not exporting these nodes directly, but will use them to locate
 the correct image and will copy the strength setting into the glTF.</p>
-<div class="figure" id="id7">
+<div class="figure" id="id9">
 <img alt="../../_images/addons_io-gltf2_material-normal.png" src="../../_images/addons_io-gltf2_material-normal.png" />
 <p class="caption"><span class="caption-text">A normal map image connected such that the exporter will find it and copy it
 to the glTF file.</span></p>
@@ -437,10 +438,10 @@ the Normal Map node as described above, allowing it to export correctly.</p>
 <div class="section" id="emissive">
 <h4>Emissive<a class="headerlink" href="#emissive" title="Permalink to this headline">¶</a></h4>
 <p>An Image Texture node can be connected to an Emission shader node, and
-optionally combined with properties from a Principled BSDF node by way of an Add shader node.</p>
+optionally combined with properties from a Principled BSDF node by way of an Add Shader node.</p>
 <p>If the glTF exporter finds an image connected to the Emission shader node,
 it will export that image as the glTF material's emissive texture.</p>
-<div class="figure" id="id8">
+<div class="figure" id="id10">
 <img alt="../../_images/addons_io-gltf2_material-emissive.png" src="../../_images/addons_io-gltf2_material-emissive.png" />
 <p class="caption"><span class="caption-text">An Emission node can be added to existing nodes.</span></p>
 </div>
@@ -456,7 +457,7 @@ This may change in a future version.</p>
 the <em>Settings</em> panel of an Eevee material. When using other engines (Cycles, Workbench)
 you can temporarily switch to Eevee to configure this setting, then switch back.</p>
 <p>Leave this box un-checked for double-sided materials.</p>
-<div class="figure" id="id9">
+<div class="figure" id="id11">
 <img alt="../../_images/addons_io-gltf2_material-backfaceCulling.png" src="../../_images/addons_io-gltf2_material-backfaceCulling.png" />
 <p class="caption"><span class="caption-text">The inverse of this setting controls glTF's <code class="docutils literal notranslate"><span class="pre">DoubleSided</span></code> flag.</span></p>
 </div>
@@ -477,7 +478,7 @@ the Base Color channel are treated in glTF. Three settings are supported by glTF
 <dd>Alpha values below the <em>Clip Threshold</em> setting will cause portions
 of the material to not be rendered at all. Everything else is rendered as opaque.</dd>
 </dl>
-<div class="figure" id="id10">
+<div class="figure" id="id12">
 <img alt="../../_images/addons_io-gltf2_material-alphaBlend.png" src="../../_images/addons_io-gltf2_material-alphaBlend.png" />
 <p class="caption"><span class="caption-text">With the Eevee engine selected, a material's blend modes are configurable.</span></p>
 </div>
@@ -502,7 +503,7 @@ There is a mapping type selector across the top. <em>Point</em> is the recommend
 <li><em>Scale</em> - X and Y</li>
 </ul>
 <p>For the <em>Texture</em> type, <em>Scale</em> X and Y must be equal (uniform scaling).</p>
-<div class="figure" id="id11">
+<div class="figure" id="id13">
 <img alt="../../_images/addons_io-gltf2_material-mapping.png" src="../../_images/addons_io-gltf2_material-mapping.png" />
 <p class="caption"><span class="caption-text">A deliberate choice of UV mapping.</span></p>
 </div>
@@ -521,7 +522,7 @@ with the specified image textures. These are not common.</p>
 <h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
 <p>A single material may use all of the above at the same time, if desired. This figure shows
 a typical node structure when several of the above options are applied at once:</p>
-<div class="figure" id="id12">
+<div class="figure" id="id14">
 <img alt="../../_images/addons_io-gltf2_material-principled.png" src="../../_images/addons_io-gltf2_material-principled.png" />
 <p class="caption"><span class="caption-text">A Principled BSDF material with an emissive texture.</span></p>
 </div>
@@ -568,7 +569,7 @@ or (c) stash the action.</p>
 should play together. To create an NLA strip animation with the name &quot;My
 Animation&quot;, push the action that should play each object onto an NLA track for
 that object with the name &quot;My Animation&quot;.</p>
-<div class="figure" id="id13">
+<div class="figure" id="id15">
 <img alt="../../_images/addons_io-gltf2_animation-nla-strip-animation-example.png" src="../../_images/addons_io-gltf2_animation-nla-strip-animation-example.png" />
 <p class="caption"><span class="caption-text">Will be exported as an animation called &quot;My Animation&quot; with ConeAction
 playing on the Cone and CubeAction playing on the Cube.</span></p>
@@ -639,29 +640,40 @@ the asset must be shared over a plain-text-only connection.</p>
 </div>
 <div class="section" id="export">
 <h3>Export<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="general-tab">
-<h4>General Tab<a class="headerlink" href="#general-tab" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
 <dt>Format</dt>
-<dd>See: <a class="reference internal" href="#file-format-variations">File Format Variations</a></dd>
-<dt>Selected Objects</dt>
-<dd>Export selected objects only.</dd>
-<dt>Apply Modifiers</dt>
-<dd>Apply modifiers (excluding armatures) to mesh objects.</dd>
-<dt>Y Up</dt>
-<dd>Export using glTF convention, +Y up.</dd>
-<dt>Custom Properties</dt>
-<dd>Export custom properties as glTF extras.</dd>
-<dt>Remember Export Settings</dt>
-<dd>Store export settings in the Blender file, so they will be recalled next time
-the file is opened.</dd>
+<dd>See: <a class="reference internal" href="#file-format-variations">File Format Variations</a>.</dd>
 <dt>Copyright</dt>
 <dd>Legal rights and conditions for the model.</dd>
+<dt>Remember Export Settings</dt>
+<dd>Store export settings in the Blender file,
+so they will be recalled next time the file is opened.</dd>
+</dl>
+<div class="section" id="include">
+<h4>Include<a class="headerlink" href="#include" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Selected Objects</dt>
+<dd>Export selected objects only.</dd>
+<dt>Custom Properties</dt>
+<dd>Export custom properties as glTF extras.</dd>
+<dt>Cameras</dt>
+<dd>Export cameras.</dd>
+<dt>Punctual Lights</dt>
+<dd>Export directional, point, and spot lights. Uses the <code class="docutils literal notranslate"><span class="pre">KHR_lights_punctual</span></code> glTF extension.</dd>
 </dl>
 </div>
-<div class="section" id="meshes-tab">
-<h4>Meshes Tab<a class="headerlink" href="#meshes-tab" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="transform">
+<h4>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
+<dt>Y Up</dt>
+<dd>Export using glTF convention, +Y up.</dd>
+</dl>
+</div>
+<div class="section" id="geometry">
+<h4>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Apply Modifiers</dt>
+<dd>Apply modifiers (excluding armatures) to mesh objects.</dd>
 <dt>UVs</dt>
 <dd>Export UVs (texture coordinates) with meshes.</dd>
 <dt>Normals</dt>
@@ -672,34 +684,36 @@ the file is opened.</dd>
 <dd>Export vertex colors with meshes.</dd>
 <dt>Materials</dt>
 <dd>Export materials.</dd>
-<dt>Draco mesh compression</dt>
-<dd>Compress meshes using Google Draco.</dd>
-<dt>Compression level</dt>
-<dd>Higher compression results in slower encoding and decoding.</dd>
-<dt>Position quantization bits</dt>
-<dd>Higher values result in better compression rates.</dd>
-<dt>Normal quantization bits</dt>
-<dd>Higher values result in better compression rates.</dd>
-<dt>Texcoord quantization bits</dt>
-<dd>Higher values result in better compression rates.</dd>
+<dt>Images</dt>
+<dd>Todo.</dd>
 </dl>
-</div>
-<div class="section" id="objects-tab">
-<h4>Objects Tab<a class="headerlink" href="#objects-tab" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="compression">
+<h5>Compression<a class="headerlink" href="#compression" title="Permalink to this headline">¶</a></h5>
+<p>Compress meshes using Google Draco.</p>
 <dl class="docutils">
-<dt>Cameras</dt>
-<dd>Export cameras.</dd>
-<dt>Punctual Lights</dt>
-<dd>Export directional, point, and spot lights. Uses the <code class="docutils literal notranslate"><span class="pre">KHR_lights_punctual</span></code> glTF extension.</dd>
+<dt>Compression Level</dt>
+<dd>Higher compression results in slower encoding and decoding.</dd>
+<dt>Quantization Position</dt>
+<dd>Higher values result in better compression rates.</dd>
+<dt>Normal</dt>
+<dd>Higher values result in better compression rates.</dd>
+<dt>Texture Coordinates</dt>
+<dd>Higher values result in better compression rates.</dd>
+<dt>Generic</dt>
+<dd>Higher values result in better compression rates.</dd>
 </dl>
 </div>
-<div class="section" id="animation-tab">
-<h4>Animation Tab<a class="headerlink" href="#animation-tab" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id1">
+<h4>Animation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
 <dt>Use Current Frame</dt>
 <dd>Export the scene in the current animation frame.</dd>
-<dt>Animations</dt>
-<dd>Exports active actions and NLA tracks as glTF animations.</dd>
+</dl>
+<div class="section" id="id2">
+<h5>Animation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<p>Exports active actions and NLA tracks as glTF animations.</p>
+<dl class="docutils">
 <dt>Limit to Playback Range</dt>
 <dd>Clips animations to selected playback range.</dd>
 <dt>Sampling Rate</dt>
@@ -708,19 +722,28 @@ the file is opened.</dd>
 <dd>Apply sampling to all animations.</dd>
 <dt>NLA Strips</dt>
 <dd>Whether to export NLA strip animations.</dd>
-<dt>Skinning</dt>
-<dd>Export skinning (armature) data.</dd>
-<dt>Bake Skinning Constraints</dt>
-<dd>Apply skinning constraints to armatures.</dd>
-<dt>Include All Bone Influences</dt>
-<dd>Allow &gt;4 joint vertex influences. Models may appear incorrectly in many viewers.</dd>
-<dt>Shape Keys</dt>
-<dd>Export shape keys (morph targets).</dd>
+<dt>Export Deformation Bones Only</dt>
+<dd>Todo.</dd>
+</dl>
+</div>
+<div class="section" id="shape-keys">
+<h5>Shape Keys<a class="headerlink" href="#shape-keys" title="Permalink to this headline">¶</a></h5>
+<p>Export shape keys (morph targets).</p>
+<dl class="docutils">
 <dt>Shape Key Normals</dt>
 <dd>Export vertex normals with shape keys (morph targets).</dd>
 <dt>Shape Key Tangents</dt>
 <dd>Export vertex tangents with shape keys (morph targets).</dd>
 </dl>
+</div>
+<div class="section" id="skinning">
+<h5>Skinning<a class="headerlink" href="#skinning" title="Permalink to this headline">¶</a></h5>
+<p>Export skinning (armature) data.</p>
+<dl class="docutils">
+<dt>Include All Bone Influences</dt>
+<dd>Allow &gt;4 joint vertex influences. Models may appear incorrectly in many viewers.</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>

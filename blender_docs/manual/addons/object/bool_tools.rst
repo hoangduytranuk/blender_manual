@@ -22,7 +22,7 @@ Description
 .. rubric:: Concepts
 
 - Brush: Is an object used as a mask for the Boolean operation.
-- Canvas: Is the object that keep the Boolean Operation.
+- Canvas: Is the object that keep the Boolean operation.
 
 You can select any count of objects and apply all these objects to the active one as a Boolean brush.
 Just select the objects that you want to be a brush,
@@ -69,8 +69,8 @@ Preferences
 
 Fast Transformation
    When enable this option in the add-on preferences your :kbd:`G`/:kbd:`R`/:kbd:`S` hotkeys will be replaced for
-   a custom one that can handle objects visibility and boolean modifiers before and
-   after the transform operation to give a fast transform when using boolean operations.
+   a custom one that can handle objects visibility and Boolean modifiers before and
+   after the transform operation to give a fast transform when using Boolean operations.
    It only works good when handling high-poly brush, if you try to use it in a low-poly brush
    when another high-poly brush is applied it will be slow yet
    since we have a bad Dependency Graph handling of that situation.

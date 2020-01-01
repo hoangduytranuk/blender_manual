@@ -230,14 +230,11 @@
             
   <div class="section" id="add-camera-rigs">
 <h1>Add Camera Rigs<a class="headerlink" href="#add-camera-rigs" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-right">
-<a class="reference internal image-reference" href="../../_images/addons_camera_rigs.jpg"><img alt="../../_images/addons_camera_rigs.jpg" src="../../_images/addons_camera_rigs.jpg" style="width: 465px;" /></a>
+<div class="figure align-center">
+<img alt="../../_images/addons_camera_rigs.png" src="../../_images/addons_camera_rigs.png" />
 </div>
 <p>This script was designed to add some extended functionality to a camera by creating control rig
 with custom shapes and UI to easily access the cameras settings from the 3D View.</p>
-</div>
 <div class="section" id="activation">
 <h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -254,10 +251,8 @@ to make it easier to achieve a cinematic crane shot.</p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>Add a <span class="menuselection">Add ‣ Armature ‣ Dolly Rig or Crane Rig</span>.
+<p>Add a <span class="menuselection">Add ‣ Camera ‣ Dolly Camera Rig or Crane Camera Rig</span>.
 This will build the rig at the cursor location, add a new camera, making it the new active scene camera.</p>
-<p>The camera object will not be selectable by default
-but this can be toggled from the UI in the 3D View Sidebar.</p>
 <p>When the Rig is selected, the camera properties will be displayed in the Sidebar.</p>
 </div>
 <div class="section" id="rigs">
@@ -266,11 +261,24 @@ but this can be toggled from the UI in the 3D View Sidebar.</p>
 <dt>Root bone</dt>
 <dd>This is the parent of the entire rig.</dd>
 <dt>Control bone</dt>
-<dd>This is the bone (named <code class="docutils literal notranslate"><span class="pre">CTRL</span></code>) that will translate the camera around. By default it will track to the aim bone.</dd>
+<dd>This is the bone (named <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>) that will translate the camera around. By default it will track to the aim bone.</dd>
 <dt>Aim bone</dt>
-<dd>The camera will point at this bone (named <code class="docutils literal notranslate"><span class="pre">AIM</span></code>).
+<dd>The camera will point at this bone (named <code class="docutils literal notranslate"><span class="pre">Aim</span></code>).
 You can also tilt the camera by rotating the aim on the Y axis.</dd>
 </dl>
+</div>
+<div class="section" id="widgets">
+<h2>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
+<p>When the rig(s) are built, the add-on will create a collection for all the custom bone shapes
+called (named <code class="docutils literal notranslate"><span class="pre">WDGTS_camera</span></code>). When the custom shapes (widgets) are built
+they will use the prefix <code class="docutils literal notranslate"><span class="pre">WDGTS_camera</span></code>. If you have more than one rig in the scene,
+it will use the same widgets in the same collection rather than duplicating them.
+The default collection name and the widget prefix can be set in the preferences of the add-on.
+(This will not change the name of any existing widgets or collection,
+only ones that are created after you change the setting.)</p>
+<div class="figure align-center">
+<img alt="../../_images/addons_camera_rigs_user_prefs.png" src="../../_images/addons_camera_rigs_user_prefs.png" />
+</div>
 </div>
 <div class="section" id="ui">
 <h2>UI<a class="headerlink" href="#ui" title="Permalink to this headline">¶</a></h2>
@@ -280,21 +288,29 @@ I will only explain the added features here, for more information check out the 
 <dt>Add DOF Empty</dt>
 <dd><p class="first">The <em>Add DOF Empty</em> button will automatically add an Empty at the location of the aim bone and
 make it the depth of field (DOF) object.</p>
-<p class="last">The empty is a child of the aim bone but will give the user the ability to animate this object.</p>
+<p class="last">The empty is a child of the aim bone, so you can animate that instead of animating the empty directly.
+This is a workaround as it only possible to use objects as a target for the DOF and not bones.</p>
 </dd>
-<dt>X-Ray</dt>
+<dt>Focal Distance/F-Stop/Focal Length</dt>
+<dd>These are custom properties on the camera bone that drive the equivalent setting on the actual camera.
+This makes it animatable inside the armature object rather than having to animate the armature and the camera.</dd>
+<dt>Show in Front</dt>
 <dd>Will make the rig object visible through all other geometry.
 (Useful if you have a fly through scene or if other meshes are in the way.)</dd>
 <dt>Lock Camera Select</dt>
-<dd>The <em>Lock Camera Select</em> is a toggle button to make the camera unselectable
-(so you can't accidentally delete it).</dd>
+<dd>The <em>Lock Camera Select</em> is a toggle button to make the camera unselectable (so you can't accidentally delete it).</dd>
 <dt>Tracking (Aim Lock)</dt>
 <dd>This slider controls the Track To constraint on the control bone.
 Turn it off and the bone will not point to the aim bone anymore.</dd>
+</dl>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/addons_camera_rigs_crane_arm.png"><img alt="../../_images/addons_camera_rigs_crane_arm.png" src="../../_images/addons_camera_rigs_crane_arm.png" style="width: 240px;" /></a>
+</div>
+<dl class="docutils">
 <dt>Crane Rig Height, Arm Length</dt>
 <dd>The <em>Arm Height</em> and <em>Arm Length</em> sliders at the bottom of the UI show the Y axis scale of the relevant bone.
 By default, both the height and the arm length are at 1 unit in size.
-These values can be set to the users preferences and also animated if need be.</dd>
+These values only show in the UI when a crane rig is selected, they are also animatable.</dd>
 </dl>
 </div>
 <div class="section" id="multiple-cameras">
@@ -341,7 +357,7 @@ But an object called &quot;A&quot; will fail.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">File:</th><td class="field-body">camera_dolly_crane_rigs.py</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Wayne Dixon, Kris Wittig</td>
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Wayne Dixon, Brian Raschko, Kris Wittig</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Maintainer:</th><td class="field-body">to do</td>
 </tr>

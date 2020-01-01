@@ -225,7 +225,7 @@
 <h2>Phím -- Keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="available-keys">
 <h3>Những Phím Có Thể Sử Dụng -- Available Keys<a class="headerlink" href="#available-keys" title="Permalink to this headline">¶</a></h3>
-<p>Khi điều chỉnh bố trí bàn phím thì nên sử dụng những phím không gây xung khắc với bố trí bàn phím mặc định của Blender.</p>
+<p>When customizing keymaps it's useful to use keys which won't conflict with Blender's default keymap.</p>
 <p>Đây là những phím chưa sử dụng đến và có khả năng sẽ không bao giờ sử dụng đến trong tương lai.</p>
 <dl class="docutils">
 <dt>F-Keys (<kbd class="kbd docutils literal notranslate">F5</kbd> - <kbd class="kbd docutils literal notranslate">F8</kbd>)</dt>
@@ -234,7 +234,7 @@ have been intentionally kept free for users to bind their own keys to.</dd>
 <dt><kbd class="kbd docutils literal notranslate">OSKey</kbd> (also known as the <code class="docutils literal notranslate"><span class="pre">Windows-Key</span></code>, <code class="docutils literal notranslate"><span class="pre">Cmd</span></code> or <code class="docutils literal notranslate"><span class="pre">Super</span></code>)</dt>
 <dd><p class="first">Blender không sử dụng phím này cho bất cứ một gắn kết nào cả.</p>
 <p class="last"><em>macOS</em> is an exception, where <kbd class="kbd docutils literal notranslate">Cmd</kbd> replaces <kbd class="kbd docutils literal notranslate">Ctrl</kbd>
-except in cases it would conflict with the systems key bindings.</p>
+except in cases it would conflict with the system's key bindings.</p>
 </dd>
 <dt>Nháy Kép Phím Bổ Trợ -- Modifier Double Click</dt>
 <dd>Gắn kết các phím bổ trợ làm những phím chính cũng được hỗ trợ. Để tránh sự xung khắc xảy ra với những sử dụng thông thường thì bạn có thể gắn kết nó với nháy kép.</dd>
@@ -244,7 +244,8 @@ except in cases it would conflict with the systems key bindings.</p>
 <h3>Những Phím Đa-Hành Động -- Multi-Action Keys<a class="headerlink" href="#multi-action-keys" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="click-drag">
 <h4>Bấm/Kéo Rê -- Click/Drag<a class="headerlink" href="#click-drag" title="Permalink to this headline">¶</a></h4>
-<p>Việc cấu hình một đơn phím để thi hành nhiều hành động một lúc là một việc hoàn toàn khả dĩ, bằng cách dùng sự kiện <em>Bấm</em> (Click) thay vì <em>Ấn</em> (Press). Sau đó bạn có thể gắn <em>Kéo Rê</em> (Drag) vào một hành động riêng biệt.</p>
+<p>It's possible to configure a single key to perform multiple operations
+using <em>Click</em> event instead of <em>Press</em>. Then you may bind <em>Drag</em> to a separate action.</p>
 <p>Việc làm này có lợi cho việc pha trộn các hành động, mà trong đó, nó sử dụng sự kiện kéo rê, chẳng hạn, bật/tắt một sắp đặt nào đó với phím tab, kéo rê để mở trình đơn hình rẻ quạt, hiển thị toàn bộ các tùy chọn liên quan đến sắp đặt.</p>
 </div>
 <div class="section" id="click-tweak">
@@ -280,7 +281,9 @@ for sub-menus you will need to use the back arrow to prevent the sub-menu from o
 </div>
 <div class="section" id="key-bindings-for-properties">
 <h3>Những Gắn Kết về Phím Bấm cho các Tính Chất -- Key Bindings for Properties<a class="headerlink" href="#key-bindings-for-properties" title="Permalink to this headline">¶</a></h3>
-<p>Có rất nhiều các tính chất mà bạn có thể gắn một bố trí phím cho nó. Để tránh việc phải xác định các thao tác (phép toán) cho mỗi tính chất thì hãy sử dụng các thao tác (phép toán) phổ thông (generic operators) thay vì:</p>
+<p>There are many properties you might want to bind a key with.
+To avoid having to define operators for each property,
+there are generic operators for this purpose:</p>
 <p>Các thao tác (phép toán) để điều chỉnh tính chất khởi đầu bằng <code class="docutils literal notranslate"><span class="pre">wm.context_</span></code>.</p>
 <p>Một số cái thuộc thể loại này bao gồm:</p>
 <ul class="simple">
@@ -288,13 +291,13 @@ for sub-menus you will need to use the back arrow to prevent the sub-menu from o
 <li><code class="docutils literal notranslate"><span class="pre">wm.context_cycle_enum</span></code> tuần hoàn một tính chất <em>bảng liệt kê</em> (<abbr title="enumeration">enum</abbr>) từ đầu đến cuối, hoặc ngược lại.</li>
 <li><code class="docutils literal notranslate"><span class="pre">wm.context_menu_enum</span></code> hiển thị một trình đơn bật lên cho một tính chất <em>bảng liệt kê</em> (enum property).</li>
 <li><code class="docutils literal notranslate"><span class="pre">wm.context_pie_enum</span></code> hiển thị một trình đơn rẻ quạt cho một tính chất <em>bảng liệt kê</em> (enum property).</li>
-<li><code class="docutils literal notranslate"><span class="pre">wm.context_scale_float</span></code> tỷ lệ hóa một con số (sử dụng để tăng/giảm cỡ bút vẽ chẳng hạn).</li>
+<li><code class="docutils literal notranslate"><span class="pre">wm.context_scale_float</span></code> scale a number (used for increasing / decreasing brush size for example).</li>
 <li><code class="docutils literal notranslate"><span class="pre">wm.context_toggle_enum</span></code> đảo lật giữa hai tùy chọn của một tùy chọn của một <em>bảng liệt kê</em> (enum).</li>
 <li><code class="docutils literal notranslate"><span class="pre">wm.context_modal_mouse</span></code> di chuyển con trỏ để tương tác đổi một giá trị.</li>
 </ul>
 <p>Xin xem thêm bài <a class="reference external" href="https://docs.blender.org/api/current/bpy.ops.wm.html">bpy.ops.wm</a> để xem toàn bộ danh sách.</p>
 <p>Mỗi một thao tác (phép toán) này có một sắp đặt về <em>đường dẫn dữ liệu</em> (<code class="docutils literal notranslate"><span class="pre">data_path</span></code>) để tham chiếu tính chất hòng thay đổi.</p>
-<p>Để tìm <em>đường dẫn dữ liệu</em> (<code class="docutils literal notranslate"><span class="pre">data_path</span></code>), chúng ta cần phải có một kiến thức cơ bản về Python.</p>
+<p>To find the <code class="docutils literal notranslate"><span class="pre">data_path</span></code>, basic Python knowledge is needed.</p>
 <p>Chẳng hạn, bạn có thể sử dụng <em>bàn giao tiếp Python</em> (Python Console) để tiếp cận một tính chất kiểu bool (boolean property) mà bạn muốn gắn kết vào một phím bấm:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">show_name</span>
 </pre></div>

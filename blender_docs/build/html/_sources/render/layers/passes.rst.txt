@@ -93,7 +93,7 @@ Mist
 Normal
    Surface normal used for shading.
 Vector
-   Motion vectors for the vector blur node. The four components consist of 2D vectors
+   Motion vectors for the Vector Blur node. The four components consist of 2D vectors
    giving the motion towards the next and previous frame position in pixel space.
 UV
    Default render UV coordinates.

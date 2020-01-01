@@ -49,7 +49,7 @@ Stiffness
 
 Radius
    Controls the physical size of the metaball.
-   This works the same as scaling the metaball in object mode.
+   This works the same as scaling the metaball in Object Mode.
    The *Radius* is visualized by the *white ring* and can be selected and :ref:`scaled <bpy.ops.transform.resize>`
    to also changes the *Radius* value.
 

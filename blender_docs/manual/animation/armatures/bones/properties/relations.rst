@@ -114,6 +114,8 @@ using the Relations panel in the *Bones* tab:
 
       Relations panel in Pose Mode.
 
+.. _bone-relations-inherit-settings:
+
 Local Location
    When disabled, the location transform property is evaluated in the parent bone's local space,
    rather than using the bone's own *rest pose* local space orientation.
@@ -132,8 +134,13 @@ Inherit Scale
 
       If the inherited scale is non-uniform, this does not prevent shear from reappearing due to
       local rotation of the child bone, or of its children.
+   Aligned
+      Parent scaling is inherited as if the child was oriented the same as the parent, always
+      applying parent X scale over child X scale, and so on.
+
+      This mode never causes shear and is natural for connected chains like limbs and tentacles.
    Average
-      Inherits a uniform scaling factor that represents the total change in the volume of the parent.
+      Inherits a uniform scaling factor that is the total change in the volume of the parent.
 
       This effectively keeps the uniform part of the scaling of the parent, while removing squash
       and stretch effects. Uniform scaling never causes shear.

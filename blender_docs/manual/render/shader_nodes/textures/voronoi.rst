@@ -262,10 +262,9 @@ Notes
 
 In some configurations of the node, especially for low values of *Randomness*,
 rendering artifacts may occur. This happens due to the same reasons described
-in the Notes section in the
-:doc:`White Noise Texture </render/shader_nodes/textures/white_noise>` page
-and can be fixed in a manner similar to that described in the aforementioned
-section.
+in the :ref:`Notes section <shader-white-noise-notes>` in the White Noise Texture page
+and can be fixed in a similar manner as described there.
+
 
 Examples
 ========

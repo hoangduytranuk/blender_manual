@@ -69,7 +69,7 @@ and you cannot only Undo actions, but change them completely using the available
 
 If you are in *Edit Mode*,
 Blender will also change its contents based on your last action taken.
-In the second example (on the right), the last operation was a Move in object mode;
+In the second example (on the right), the last operation was a Move in Object Mode;
 but a *Scale* on a Face in Edit mode, and, as you can see,
 the contents of *Adjust Last Operation* are different, because of the mode (Edit mode)
 (See Fig. :ref:`fig-interface-redo-last-edit-mode` right).

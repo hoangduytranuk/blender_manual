@@ -98,7 +98,7 @@ Sometimes might want to have more control to blur the image. For instance,
 you may want to only blur one object while leaving everything else alone (or the other way around),
 or you want to blur the whole image uniformly all at once.
 The node, therefore, allows you to use something other than an actual Z-buffer as the Z input.
-For instance, you could connect an image node and use a grayscale image where the color designates
+For instance, you could connect an Image node and use a grayscale image where the color designates
 how much to blur the image at that point, where white is the maximum blur and black is no blur.
 Or, you could use a Time node to uniformly blur the image,
 where the time value controls the maximum blur for that frame.
@@ -171,7 +171,7 @@ Aliasing at Low f-Stop Values
 
    - Do your own OSA by rendering at twice the intended size and then scaling down,
      so that adjacent pixels are blurred together.
-   - Use the blur node with a setting of 2 for X and Y.
+   - Use the Blur node with a setting of 2 for X and Y.
    - Set DoF Distance off by a little, so that the object in focus is blurred by the tiniest bit.
    - Use a higher f-stop, which will start the blur,
      and then use the Z socket to a Map Value to a Blur node to enhance the blur effect.

@@ -3,7 +3,7 @@
 Introduction
 ************
 
-Draw mode is the mode in Grease Pencil that allows you to draw in the 3D View.
+Draw Mode is the mode in Grease Pencil that allows you to draw in the 3D View.
 This mode is actually the only one in which new strokes can be created.
 
 Already made strokes can not be selected in Draw Mode, for editing strokes you must use

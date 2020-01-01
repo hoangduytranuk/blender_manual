@@ -43,6 +43,9 @@ Header
 Menus
 -----
 
+View
+   Center View to Cursor
+      Move the view so that the 2D cursor is at the center of the editor.
 Add
    Use to add primitive shapes.
 Mask

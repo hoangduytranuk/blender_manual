@@ -52,7 +52,7 @@ Bake the Simulation
 -------------------
 
 Once you are happy with the general simulation, :doc:`bake </physics/particles/emitter/cache>`
-the simulation from object mode. The simulation must be baked to enable editing.
+the simulation from Object Mode. The simulation must be baked to enable editing.
 
 
 Edit the Simulation
@@ -90,7 +90,7 @@ You may also use the *Select* Menu.
    hover over the next and press :kbd:`L` to add that path to the selection.
    To remove a path, hold :kbd:`Shift` and press :kbd:`L`. To Deselect all press :kbd:`A`.
 
-   The method to select individual points is the same as in edit mode.
+   The method to select individual points is the same as in Edit Mode.
    :kbd:`RMB` to select, :kbd:`Shift-RMB` to add/remove a point from the selection.
 
 

@@ -35,7 +35,7 @@ saves/loads its transformations from or to a simple ASCII file, through the whol
 (set either in the Timeline or in the render settings). All you need to do is to select an object
 and run the add-on in :menuselection:`File --> Import/Export --> Nuke(*.chan)`.
 
-Note that Chan saves only the raw property values ( ``rotation_x`` , ``rotation_y`` , ``rotation_z`` , etc.),
+Note that Chan saves only the raw property values (``rotation_x``, ``rotation_y``, ``rotation_z``, etc.),
 so you have to mind the rotation order. In other words --
 the rotation orders during export and import must be the same
 (both are being set in the File Browser while importing/exporting).
@@ -54,6 +54,6 @@ you had in Nuke (or other software that this camera has been exported).
 .. tip:: Exporting Geometry to Other Software
 
    If you want to export the objects movement to other software via the OBJ format,
-   you have to save it with the Z-up, Y-forward setting.
+   you have to save it with the Z up, Y forward setting.
    After loading it to the other software it will be rotated 90 degrees,
    but when you apply the chan file it'll jump into its place.

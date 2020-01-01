@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-20 01:28+0000\n"
+"POT-Creation-Date: 2020-01-01 22:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,135 +157,147 @@ msgstr ""
 msgid "Exactly like standard children objects. You can modify this behavior on a per-bone basis, using the Relations panel in the *Bones* tab:"
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:118
+#: ../../manual/animation/armatures/bones/properties/relations.rst:120
 msgid "Local Location"
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:118
+#: ../../manual/animation/armatures/bones/properties/relations.rst:120
 msgid "When disabled, the location transform property is evaluated in the parent bone's local space, rather than using the bone's own *rest pose* local space orientation."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:121
+#: ../../manual/animation/armatures/bones/properties/relations.rst:123
 msgid "Inherit Rotation"
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:121
+#: ../../manual/animation/armatures/bones/properties/relations.rst:123
 msgid "When disabled, this will \"break\" the rotation relationship to the bone's parent. This means that the child will keep its rotation in the armature object space when its parent is rotated."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:145
+#: ../../manual/animation/armatures/bones/properties/relations.rst:152
 msgid "Inherit Scale"
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:124
+#: ../../manual/animation/armatures/bones/properties/relations.rst:126
 msgid "Specifies which effects of parent scaling the bone inherits:"
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:126
+#: ../../manual/animation/armatures/bones/properties/relations.rst:128
 msgid "Full"
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:127
+#: ../../manual/animation/armatures/bones/properties/relations.rst:129
 msgid "The bone inherits all effects of parent scaling and shear."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:133
+#: ../../manual/animation/armatures/bones/properties/relations.rst:135
 msgid "Fix Shear"
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:129
+#: ../../manual/animation/armatures/bones/properties/relations.rst:131
 msgid "Corrects the transformation inherited from the parent to remove shear caused by non-uniform parent scaling and rotation. The process preserves the bone direction, length and volume, and minimally affects roll on average."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:133
+#: ../../manual/animation/armatures/bones/properties/relations.rst:135
 msgid "If the inherited scale is non-uniform, this does not prevent shear from reappearing due to local rotation of the child bone, or of its children."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:138
-msgid "Average"
-msgstr ""
-
-#: ../../manual/animation/armatures/bones/properties/relations.rst:136
-msgid "Inherits a uniform scaling factor that represents the total change in the volume of the parent."
-msgstr ""
-
-#: ../../manual/animation/armatures/bones/properties/relations.rst:138
-msgid "This effectively keeps the uniform part of the scaling of the parent, while removing squash and stretch effects. Uniform scaling never causes shear."
-msgstr ""
-
 #: ../../manual/animation/armatures/bones/properties/relations.rst:140
-msgid "None"
+msgid "Aligned"
+msgstr ""
+
+#: ../../manual/animation/armatures/bones/properties/relations.rst:138
+msgid "Parent scaling is inherited as if the child was oriented the same as the parent, always applying parent X scale over child X scale, and so on."
 msgstr ""
 
 #: ../../manual/animation/armatures/bones/properties/relations.rst:141
-msgid "Ignores all scaling and shear of the parent."
+msgid "This mode never causes shear and is natural for connected chains like limbs and tentacles."
 msgstr ""
 
 #: ../../manual/animation/armatures/bones/properties/relations.rst:145
-msgid "None (Legacy)"
+msgid "Average"
 msgstr ""
 
 #: ../../manual/animation/armatures/bones/properties/relations.rst:143
-msgid "Ignores all scaling, provided the parent is not sheared. If it is, there are no guarantees."
+msgid "Inherits a uniform scaling factor that is the total change in the volume of the parent."
 msgstr ""
 
 #: ../../manual/animation/armatures/bones/properties/relations.rst:145
-msgid "This choice replicates the behavior of the old Inherit Scale checkbox, and may be removed in a future release."
+msgid "This effectively keeps the uniform part of the scaling of the parent, while removing squash and stretch effects. Uniform scaling never causes shear."
 msgstr ""
 
 #: ../../manual/animation/armatures/bones/properties/relations.rst:147
+msgid "None"
+msgstr ""
+
+#: ../../manual/animation/armatures/bones/properties/relations.rst:148
+msgid "Ignores all scaling and shear of the parent."
+msgstr ""
+
+#: ../../manual/animation/armatures/bones/properties/relations.rst:152
+msgid "None (Legacy)"
+msgstr ""
+
+#: ../../manual/animation/armatures/bones/properties/relations.rst:150
+msgid "Ignores all scaling, provided the parent is not sheared. If it is, there are no guarantees."
+msgstr ""
+
+#: ../../manual/animation/armatures/bones/properties/relations.rst:152
+msgid "This choice replicates the behavior of the old Inherit Scale checkbox, and may be removed in a future release."
+msgstr ""
+
+#: ../../manual/animation/armatures/bones/properties/relations.rst:154
 msgid "These inheriting behaviors propagate along the bones' hierarchy. So when you scale down a bone, all its descendants are by default scaled down accordingly. However, if you disable one bone's *Inherit Scale* or *Inherit Rotation* property in this \"family\", this will break the scaling propagation, i.e. this bone *and all its descendants* will no longer be affected when you scale one of its ancestors."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:153
+#: ../../manual/animation/armatures/bones/properties/relations.rst:160
 msgid "Examples of transforming parented/connected bones with Inherit Rotation disabled."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:157
+#: ../../manual/animation/armatures/bones/properties/relations.rst:164
 msgid "The yellow outlined Inherit Rotation disabled bone in the armature."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:161
+#: ../../manual/animation/armatures/bones/properties/relations.rst:168
 msgid "Rotation of a bone with an Inherit Rotation disabled bone among its descendants."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:165
+#: ../../manual/animation/armatures/bones/properties/relations.rst:172
 msgid "Scaling of a bone with an Inherit Rotation disabled bone among its descendants."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:167
+#: ../../manual/animation/armatures/bones/properties/relations.rst:174
 msgid "Connected bones have another specificity: they cannot be moved. Indeed, as their root must be at their parent's tip, if you do not move the parent, you cannot move the child's root, but only its tip, which leads to a child rotation. This is exactly what happens, when you press :kbd:`G` with a connected bone selected, Blender automatically switches to rotation operation."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:173
+#: ../../manual/animation/armatures/bones/properties/relations.rst:180
 msgid "Bones relationships also have important consequences on how selections of multiple bones behave when transformed. There are many different situations which may not be included on this list, however, this should give a good idea of the problem:"
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:177
+#: ../../manual/animation/armatures/bones/properties/relations.rst:184
 msgid "Non-related selected bones are transformed independently, as usual."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:178
+#: ../../manual/animation/armatures/bones/properties/relations.rst:185
 msgid "When several bones of the same \"family\" are selected, *only* the \"most parent\" ones are really transformed -- the descendants are just handled through the parent relationship process, as if they were not selected (see Fig. :ref:`fig-rig-pose-edit-scale` the third tip bone, outlined in yellow, was only scaled down through the parent relationship, exactly as the unselected ones, even though it is selected and active. Otherwise, it should have been twice smaller!)"
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:192
+#: ../../manual/animation/armatures/bones/properties/relations.rst:199
 msgid "Scaling bones, some of them related."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:194
+#: ../../manual/animation/armatures/bones/properties/relations.rst:201
 msgid "When connected and unconnected bones are selected, and you start a move operation, only the unconnected bones are affected."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:196
+#: ../../manual/animation/armatures/bones/properties/relations.rst:203
 msgid "When a child connected hinge bone is in the selection, and the \"most parent\" selected one is connected, when you press :kbd:`G`, nothing happens, because Blender remains in move operation, which of course has no effect on a connected bone."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:200
+#: ../../manual/animation/armatures/bones/properties/relations.rst:207
 msgid "So, when posing a chain of bones, you should always edit its elements from the root bone to the tip bone. This process is known as *forward kinematics* (FK). We will see in a :ref:`later page <bone-constraints-inverse-kinematics>` that Blender features another pose method, called *inverse kinematics* (IK), which allows you to pose a whole chain just by moving its tip."
 msgstr ""
 
-#: ../../manual/animation/armatures/bones/properties/relations.rst:208
+#: ../../manual/animation/armatures/bones/properties/relations.rst:215
 msgid "This feature is somewhat extended/completed by the :doc:`pose library </animation/armatures/properties/pose_library>` tool."
 msgstr ""
 

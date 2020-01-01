@@ -298,12 +298,35 @@ if you open the files in a text editor it must recognize <code class="docutils l
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="import">
 <h3>Import<a class="headerlink" href="#import" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="include">
+<h4>Include<a class="headerlink" href="#include" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
+<dt>Image Search</dt>
+<dd>This enables a recursive file search if an image file can't be found.</dd>
 <dt>Smooth Groups</dt>
 <dd>Surround OBJ smooth groups by sharp edges.
 Note that these will only be displayed when the Edge Split modifier is enabled.</dd>
 <dt>Lines</dt>
 <dd>Import OBJ lines and two-sided faces as mesh edges.</dd>
+</dl>
+</div>
+<div class="section" id="transform">
+<h4>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Clamp Size</dt>
+<dd>OBJ-files often vary greatly in scale, this setting clamps the imported file to a fixed size.</dd>
+<dt>Forward / Up</dt>
+<dd><p class="first">Since many applications use a different axis for 'Up', these are axis conversion for these settings,
+Forward and Up axes -- By mapping these to different axes you can convert rotations
+between applications default up and forward axes.</p>
+<p class="last">Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
+For example, it's common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="geometry">
+<h4>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
 <dt>Split/Keep Vertex Order</dt>
 <dd>When importing an OBJ it's useful to split up the objects into Blender objects,
 named according to the OBJ-file. However, this splitting looses the vertex order which
@@ -318,49 +341,16 @@ are not connected to a face, so this must be disabled if you want to keep the ve
 since they are just two levels of separation,
 the OBJ groups are not equivalent to Blender groups, so both can optionally be used for splitting.</p>
 </dd>
-<dt>Clamp Size</dt>
-<dd>OBJ-files often vary greatly in scale, this setting clamps the imported file to a fixed size.</dd>
-<dt>Forward / Up Axis</dt>
-<dd><p class="first">Since many applications use a different axis for 'Up', these are axis conversion for these settings,
-Forward and Up axes -- By mapping these to different axes you can convert rotations
-between applications default up and forward axes.</p>
-<p class="last">Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
-For example, it is common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.</p>
-</dd>
-<dt>Image Search</dt>
-<dd>This enables a recursive file search if an image file can't be found.</dd>
 </dl>
+</div>
 </div>
 <div class="section" id="export">
 <h3>Export<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Include<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
 <dt>Selected Objects</dt>
 <dd>Only export the selected objects. Otherwise export all objects in the scene.</dd>
-<dt>Animation</dt>
-<dd>Exports a numbered OBJ for each frame from the start to the end frame.
-Please be aware that this can take quite a long time.</dd>
-<dt>Apply Modifiers</dt>
-<dd>Export mesh objects as seen in the 3D Viewport with all modifiers applied.
-Mostly you will want this unless you are exporting a subdivision surface cage.</dd>
-<dt>Edges</dt>
-<dd>Export loose edges as two-sided faces. Mostly there is no need for this
-but it's enabled by default to ensure all geometry data is exported.</dd>
-<dt>Normals</dt>
-<dd><p class="first">Write out Blender's face and vertex normals (depending on the faces smooth setting).</p>
-<p class="last">Mostly this isn't needed since most applications will calculate their
-own normals but to match Blender's normal map textures you will need to write these too.</p>
-</dd>
-<dt>UVs</dt>
-<dd>Write out the active UV layers coordinates from Blender.</dd>
-<dt>Materials</dt>
-<dd>Write out the MTL-file along with the OBJ. Most importers that support OBJ will also read the MTL-file.</dd>
-<dt>Triangulate</dt>
-<dd>Write out quads as two triangles. Some programs only have very basic OBJ support and only support triangles.</dd>
-<dt>Polygroups</dt>
-<dd>Write faces into OBJ groups based on the meshes vertex group.
-Note that this does a best guess since a face's vertices can be in multiple vertex groups.</dd>
-<dt>NURBS</dt>
-<dd>Write out NURBS curves as OBJ NURBS rather than converting to geometry.</dd>
 <dt>Objects as OBJ Objects / Groups</dt>
 <dd><p class="first">Write out each Blender object as an OBJ object.</p>
 <div class="last admonition note">
@@ -371,17 +361,16 @@ this option is only included for applications which treat them differently.</p>
 </dd>
 <dt>Material Groups</dt>
 <dd>Create OBJ groups per material.</dd>
-<dt>Keep Vertex Order</dt>
-<dd>Maintain vertex order on export. This is needed when OBJ is used for morph targets.</dd>
+<dt>Animation</dt>
+<dd>Exports a numbered OBJ for each frame from the start to the end frame.
+Please be aware that this can take quite a long time.</dd>
+</dl>
+</div>
+<div class="section" id="id2">
+<h4>Transform<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
 <dt>Scale</dt>
 <dd>Global scale to use on export.</dd>
-<dt>Forward / Up Axis</dt>
-<dd><p class="first">Since many applications use a different axis for 'Up', there are axis conversion there settings,
-Forward and Up axis -- By mapping these to different axis you can convert rotations
-between applications default up and forward axis.</p>
-<p class="last">Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
-For example, its common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.</p>
-</dd>
 <dt>Path Mode</dt>
 <dd><p class="first">When referencing paths in exported files you may want some control as to the method used since absolute paths
 may only be correct on you're own system. Relative paths on the other hand are more portable
@@ -408,7 +397,45 @@ absolute for any directories outside that.</td>
 </tbody>
 </table>
 </dd>
+<dt>Forward / Up</dt>
+<dd><p class="first">Since many applications use a different axis for 'Up', there are axis conversion there settings,
+Forward and Up axis -- By mapping these to different axis you can convert rotations
+between applications default up and forward axis.</p>
+<p class="last">Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
+For example, its common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.</p>
+</dd>
 </dl>
+</div>
+<div class="section" id="id3">
+<h4>Geometry<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Apply Modifiers</dt>
+<dd>Export mesh objects as seen in the 3D Viewport with all modifiers applied.
+Mostly you will want this unless you are exporting a subdivision surface cage.</dd>
+<dt>Smooth Groups</dt>
+<dd>Todo.</dd>
+<dt>Bitflag Groups</dt>
+<dd>Todo.</dd>
+<dt>Write Normals</dt>
+<dd><p class="first">Write out Blender's face and vertex normals (depending on the faces smooth setting).</p>
+<p class="last">Mostly this isn't needed since most applications will calculate their
+own normals but to match Blender's normal map textures you will need to write these too.</p>
+</dd>
+<dt>Include UVs</dt>
+<dd>Write out the active UV layers coordinates from Blender.</dd>
+<dt>Write Materials</dt>
+<dd>Write out the MTL-file along with the OBJ. Most importers that support OBJ will also read the MTL-file.</dd>
+<dt>Triangulate Faces</dt>
+<dd>Write out quads as two triangles. Some programs only have very basic OBJ support and only support triangles.</dd>
+<dt>Curves as NURBS</dt>
+<dd>Write out NURBS curves as OBJ NURBS rather than converting to geometry.</dd>
+<dt>Polygroups</dt>
+<dd>Write faces into OBJ groups based on the meshes vertex group.
+Note that this does a best guess since a face's vertices can be in multiple vertex groups.</dd>
+<dt>Keep Vertex Order</dt>
+<dd>Maintain vertex order on export. This is needed when OBJ is used for morph targets.</dd>
+</dl>
+</div>
 </div>
 </div>
 <div class="section" id="compatibility">

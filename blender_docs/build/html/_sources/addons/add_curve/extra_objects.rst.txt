@@ -34,7 +34,7 @@ Information
 Included curve object add-ons:
 
 Curve Profiles (Curveaceous Galore) by Jimmy Hazevoet, testscreenings
-   Arc, Arrow, Cogwheel, Cycloid, Flower, Helix, Noise, Nsided, Profile, Rectangle, Splat and Star types.
+   Arc, Arrow, Cogwheel, Cycloid, Flower, Helix, Noise, N-sided, Profile, Rectangle, Splat and Star types.
 Braid by Jared Forsyth
    Adds a Braided Knot type curve.
 Celtic Knot by Adam Newgas

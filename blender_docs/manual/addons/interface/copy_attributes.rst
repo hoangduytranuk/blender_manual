@@ -62,7 +62,7 @@ Copy Vertex Weights
 Mesh Edit Mode
 --------------
 
-With a mesh object selected, enter edit mode and press :kbd:`Ctrl-C` to copy texture face attributes.
+With a mesh object selected, enter Edit Mode and press :kbd:`Ctrl-C` to copy texture face attributes.
 The following menu appears:
 
 Some of the items may not appear, depending on the number of UV texture or vertex color layers on the mesh.
@@ -127,7 +127,7 @@ Distinction between Local and Visual
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Local transformation of bones is relative the each bone's own rest position;
-if they do not match in edit mode, they will not match in pose mode,
+if they do not match in Edit Mode, they will not match in Pose Mode,
 even though the numbers appear the same in the bone's transformation panel.
 They also do not take into account constraints, or parenting.
 

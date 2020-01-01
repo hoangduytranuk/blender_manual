@@ -8,7 +8,7 @@ Cryptomatte
 
    Cryptomatte Node.
 
-The *Cryptomatte* node uses the Cryptomatte standard to efficiently create mattes for compositing.
+The Cryptomatte node uses the Cryptomatte standard to efficiently create mattes for compositing.
 Cycles outputs the required render passes, which can then be used in the Compositor
 or another Compositor with Cryptomatte support to create masks for specified objects.
 
@@ -47,7 +47,7 @@ Matte
    A black-and-white alpha mask of the all the selected crypto layers.
 Pick
    A colored representation of the Cryptomatte pass which can be used
-   with a viewer node to select which crypto passes are used to create the matte image.
+   with a Viewer node to select which crypto passes are used to create the matte image.
 
 
 Usage

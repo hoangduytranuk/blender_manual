@@ -83,18 +83,31 @@ Action Range Start/End
       - By default, both values are set to 0, which disables the mapping
         (i.e. the owner just gets the properties defined at frame 0 of the linked action...).
 
+Mix
+   Specifies how the keyframed transformation from the action is combined with the existing transformation.
+
+   Before Original
+      The action transformation is added before the existing transformation, as if it was
+      applied to an imaginary parent of the constraint owner. Scale is handled like in
+      the :ref:`Aligned Inherit Scale <bone-relations-inherit-settings>` mode of bones
+      to avoid creating shear.
+   After Original
+      The action transformation is added after the existing transformation, as if it was
+      applied locally to an imaginary child of the constraint owner. Scale is handled like
+      in the :ref:`Aligned Inherit Scale <bone-relations-inherit-settings>` mode of bones
+      to avoid creating shear.
+   After Original (Full Scale)
+      The action transformation is added after the existing transformation, as if it was
+      applied locally to an imaginary child of the constraint owner with ordinary parenting.
+      This mode can create shear and is thus not recommended for use.
+
 
 Notes
 =====
 
-- When the linked action affects some location properties,
-  the owner's existing location is added to the result of evaluating this constraint
-  (exactly as when the *Offset* button of
-  the :doc:`Copy Location constraint </animation/constraints/transform/copy_location>` is enabled...).
-- When the linked action affects some scale properties,
-  the owner's existing scale is multiplied with the result of evaluating this constraint.
-- When the linked action affects some rotation properties,
-  the owner's existing rotation is overridden by the result of evaluating this constraint.
+- When the object or bone already has Action constraints, the next constraint using
+  a newly keyframed action should be added before all others in order to get
+  the same final combined transformation. This fact is not affected by the Mix mode.
 - Unlike usual, you can have a *Start* value higher than the *End* one,
   or a *Min* one higher than a *Max* one: this will reverse the mapping of the action
   (i.e. it will be "played" reversed...), unless you have both sets reversed, obviously!

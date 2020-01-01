@@ -48,7 +48,7 @@ Workflow
 #. When you select the Multicam strip, the keys :kbd:`1` to :kbd:`9` are mapped to the cut buttons.
    So, select the Multicam strip and start playback and press the keys
    for the correct input while watching the individual cameras.
-#. You will end up with a small Multicam selector strip for every cut.
+#. You will end up with a small Multicam Selector strip for every cut.
 
 In reality, it boils down to: watch a few seconds to see, what is coming,
 watch it again and do a rough cut using the number keys,

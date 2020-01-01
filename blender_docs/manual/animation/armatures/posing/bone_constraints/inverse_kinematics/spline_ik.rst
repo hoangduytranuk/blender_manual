@@ -30,12 +30,12 @@ since the results may be difficult to control.
 To setup Spline IK,
 it is necessary to have a chain of connected bones and a curve to constrain these bones to:
 
-- With the last bone in the chain selected,
-  add a :doc:`Spline IK </animation/constraints/tracking/spline_ik>`
-  Constraint from the Bone Constraints tab in the Properties Editor.
-- Set the *Chain Length* setting to the number of bones in the chain
-  (starting from and including the selected bone) that should be influenced by the curve.
-- Finally, set the *Target* field to the curve that should control the curve.
+#. With the last bone in the chain selected,
+   add a :doc:`Spline IK </animation/constraints/tracking/spline_ik>`
+   Constraint from the Bone Constraints tab in the Properties Editor.
+#. Set the *Chain Length* setting to the number of bones in the chain
+   (starting from and including the selected bone) that should be influenced by the curve.
+#. Finally, set the *Target* field to the curve that should control the curve.
 
 Congratulations, the bone chain is now controlled by the curve.
 
@@ -50,11 +50,22 @@ This section is intended to introduce the workflow.
 Roll Control
 ------------
 
-To control the *twist* or *roll* of the Spline IK chain,
-the standard methods of rotating the bones in the chain along their Y axes still apply.
-For example, simply rotate the bones in the chain around their Y axes to adjust the roll of
-the chain from that point onward.
-Applying copy rotation constraints on the bones should also work.
+To control the :term:`roll` of the Spline IK chain,
+the standard methods of rotating the bones in the chain along their local Y axes still apply.
+For example, start at the farthest bone and simply rotate the bones in the chain around their
+local Y axes to adjust the roll of the chain from that point onward.
+
+Applying Copy Rotation constraints on the bones also works.
+
+.. note::
+
+   There are a couple of limitations to consider:
+
+   - Bones do not inherit a curve's :ref:`tilt <modeling-curve-tilt>` value to control their roll.
+
+   - There is no way of automatically creating a twisting effect
+     where a dampened rotation is inherited up the chain.
+     Consider using :doc:`Bendy Bones </animation/armatures/bones/properties/bendy_bones>` instead.
 
 
 Offset Controls

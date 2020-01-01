@@ -233,7 +233,7 @@ Your Second Add-on
 ==================
 
 For our second add-on, we will focus on object instancing -- this is -- to make linked
-copies of an object in a similar way to what you may have seen with the array modifier.
+copies of an object in a similar way to what you may have seen with the Array modifier.
 
 
 Write the Script

@@ -123,7 +123,7 @@ Version/Revision Milestones
 `2.41 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.41>`__ -- January 2006:
    Lots of fixes, and some Game Engine features.
 `2.42 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.42>`__ -- July 2006:
-   The nodes release, array modifier, vector blur, new physics engine, rendering, lip sync, and many other features.
+   The nodes release, Array modifier, vector blur, new physics engine, rendering, lip sync, and many other features.
    This was the release following `Project Orange <https://orange.blender.org/>`__.
 `2.43 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.43>`__ -- February 2007:
    Multi-resolution meshes, multi-layer UV textures, multi-layer images and multi-pass rendering and baking,
@@ -139,14 +139,14 @@ Version/Revision Milestones
    The Peach release was the result of a huge effort of over 70 developers providing enhancements to
    provide hair and fur, a new particle system, enhanced image browsing, cloth, a seamless
    and non-intrusive physics cache, rendering improvements in reflections, AO, and render baking,
-   a mesh deform modifier for muscles and such, better animation support via armature tools and
+   a Mesh Deform modifier for muscles and such, better animation support via armature tools and
    drawing, skinning, constraints and a colorful Action Editor, and much more.
    It contained the results of `Project Peach <https://peach.blender.org/>`__.
 `2.47 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.47>`__ -- August 2008:
    Bugfix release.
 `2.48 <http://archive.blender.org/development/release-logs/blender-248/index.html>`__ -- October 2008:
    The Apricot release, cool GLSL shaders, lights and GE improvements, snap, sky simulator,
-   shrinkwrap modifier, and Python editing improvements.
+   Shrinkwrap modifier, and Python editing improvements.
    This contained the results `Project Apricot <https://apricot.blender.org/>`__.
 `2.49 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.49>`__ -- June 2009:
    Node-based textures, armature sketching (called Etch-a-Ton), boolean mesh operation improvements,
@@ -192,7 +192,7 @@ Version/Revision Milestones
 `2.64 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.64>`__ -- October 2012:
    A mask editor was added, along with an improved motion tracker, OpenColorIO, Cycles improvements,
    Sequencer improvements, better mesh tools (Inset and Bevel were improved), new keying nodes, sculpt masking,
-   Collada improvements, a new skin modifier, a new compositing nodes back end, and the fixing of many bugs.
+   Collada improvements, a new Skin modifier, a new compositing nodes back end, and the fixing of many bugs.
 `2.65 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.65>`__ -- December 2012:
    Fire and smoke improvements, anisotropic shader for Cycles, modifier improvements,
    the Bevel tool now includes rounding, new add-ons, and over 200 bug fixes.
@@ -223,7 +223,7 @@ Version/Revision Milestones
    many improvements to the GE, and over 400 bug fixes.
 `2.72 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.72>`__ -- October 2014:
    Cycles gets volume and SSS support on the GPU, pie menus are added and tooltips greatly improved,
-   the Intersection modeling tool is added, new sun beam node for the Compositor, Freestyle now works with
+   the Intersection modeling tool is added, new Sun Beam node for the Compositor, Freestyle now works with
    Cycles, texture painting workflow is improved, and more than 220 bug fixes.
 `2.73 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.73>`__ -- January 2015:
    Cycles gets improved volumetric support, major upgrade to Grease Pencil,
@@ -232,7 +232,7 @@ Version/Revision Milestones
 `2.74 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.74>`__ -- March 2015:
    Support for custom normals, viewport compositing and improvements to hair dynamics.
 `2.75 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.75>`__ -- July 2015:
-   Integrated stereo/multi-view pipeline, corrective smooth modifier and new developmental dependency graph.
+   Integrated stereo/multi-view pipeline, Corrective Smooth modifier and new developmental dependency graph.
 `2.76 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.76>`__ -- November 2015:
    Pixar OpenSubdiv support, Viewport and File Browser performance boost,
    node auto-offset, and a text effect strip for the Sequencer.

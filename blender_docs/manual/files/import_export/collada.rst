@@ -225,9 +225,9 @@ Light
 Import
 ^^^^^^
 
-Blender does a best effort on importing lights from a .dae.
+Blender does a best effort on importing lights from a dae-file.
 If a Blender profile is detected for lights, all values from these will be used instead.
-This ensures full re-import from a Blender exported .dae. ``<extra>`` support has been added in Blender 2.57.
+This ensures full re-import from a Blender exported dae-file. ``<extra>`` support has been added in Blender 2.57.
 
 
 Export
@@ -264,7 +264,7 @@ Export & Import
   - Material effects
 - Non-skin controlling armature bone animation.
 - Animations of armatures with skin deforming bones.
-- Animations of armatures in Object mode.
+- Animations of armatures in Object Mode.
 - Fully rigified Armature animations (referring to the Rigify add-on). For export of rigified Armature animations:
 
   - Select Bake Action. (Press :kbd:`Spacebar` in 3D View and type "Bake Action".)
@@ -299,5 +299,5 @@ is added for those joint nodes. To correctly derive the bone-to-tail location on
    - Only armature animation on mesh, single skin controller.
    - No support for modifiers yet.
 
-   When importing a .dae that has ``<instance_node>`` on exporting
+   When importing a dae-file that has ``<instance_node>`` on exporting
    this information is essentially lost and these nodes will be ``<node>``\ s.

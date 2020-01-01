@@ -12,4 +12,4 @@ ToDo.
 .. toctree::
    :maxdepth: 1
 
-   rigify.rst
+   rigify/index.rst

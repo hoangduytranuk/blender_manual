@@ -178,4 +178,4 @@ Layer
 Group
    Select bones in the same group.
 Shape
-   Select bones using the same shape object (in pose mode).
+   Select bones using the same shape object (in Pose Mode).

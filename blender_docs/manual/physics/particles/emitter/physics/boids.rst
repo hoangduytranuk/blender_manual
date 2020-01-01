@@ -80,22 +80,6 @@ Collision Collection
    Only collide with objects in this collection.
 
 
-Misc
-====
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Panel:     :menuselection:`Particle System --> Physics --> Misc`
-
-Banking
-   Amount of rotation around velocity vector on turns. Banking of 1.0 gives a natural banking effect.
-Pitch
-   Amount of rotation around side vector.
-Height
-   Boid height relative to particle size.
-
-
 Battle
 ======
 
@@ -116,6 +100,22 @@ Range
    Maximum distance of which a boid can attack.
 
 
+Misc
+====
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Particle System --> Physics --> Misc`
+
+Banking
+   Amount of rotation around velocity vector on turns. Banking of 1.0 gives a natural banking effect.
+Pitch
+   Amount of rotation around side vector.
+Height
+   Boid height relative to particle size.
+
+
 Relations
 =========
 
@@ -126,12 +126,12 @@ Relations
 
 Target
    This :ref:`list view <ui-list-view>` allows you to set up other particle systems to react with the boids.
-Object
+Target Object
    A :ref:`data ID <ui-data-id>` to select an object with a particle system set on.
 System
    Index of the *Object*\ 's particle system as set in the list view in the particle panel.
 
-Alliance
+Mode
    Enemy
       Setting the type to *Enemy* will cause the systems to fight with each other.
    Friend
@@ -167,11 +167,6 @@ Boid Brain
    :Panel:     :menuselection:`Particle System --> Physics --> Boid Brain`
 
 The Boid Brain panel controls how the boids particles will react with each other.
-
-
-Rules
------
-
 The boids' behavior is controlled by a list of rules.
 Only a certain amount of information in the list can be evaluated.
 If the memory capacity is exceeded, the remaining rules are ignored.
@@ -180,81 +175,118 @@ The rules are by default parsed from top-list to bottom-list
 (thus giving explicit priorities),
 and the order can be modified using the little arrows buttons on the right side.
 
-Goal
-   Seek goal.
-
-   Object
-      Specifies the goal object. If not specified, Boid force fields with negative Strength are used as goals.
-   Predict
-      Predict target's movements.
-Avoid
-   Avoid "predators".
-
-   Object
-      Specifies the object to avoid.
-      If not specified, Boid force fields with positive Strength are used as predators.
-   Predict
-      Predict target's movements.
-   Fear Factor
-      Avoid object if danger from it is above this threshold.
-Avoid Collision
-   Avoid objects with activated Deflection.
-
-   Boids
-      Avoid collision with other boids.
-   Deflectors
-      Avoid collision with deflector objects.
-   Look Ahead
-      Time to look ahead in seconds.
-
-Separate
-   Boids move away from each other.
-Flock
-   Copy movements of neighboring boids, but avoid each other.
-Follow Leader
-   Follows a leader object instead of a boid.
-
-   Distance
-      Distance behind leader to follow.
-   Line
-      Follow the leader in a line.
-Average Speed
-   Maintain average velocity.
-
-   Speed
-      Percentage of maximum speed.
-   Wander
-      How fast velocity's direction is randomized.
-   Level
-      How much velocity's Z component is kept constant.
-Fight
-   Move toward nearby boids.
-
-   Fight Distance
-      Attack boids at a maximum of this distance.
-   Flee Distance
-      Flee to this distance.
-
-
 Rule Evaluation
-^^^^^^^^^^^^^^^
+   There are three ways to control how rules are evaluated:
 
-There are three ways to control how rules are evaluated.
+   Average
+      All rules are averaged.
+   Random
+      A random rule is selected for each boid.
+   Fuzzy
+      Uses fuzzy logic to evaluate rules. Rules are gone through top to bottom.
+      Only the first rule that affect above the *Rule Fuzziness* threshold is evaluated.
+      The value should be considered how hard the boid will try to respect a given rule
+      (a value of 1 means the Boid will always stick to it, a value of 0 means it will never).
+      If the boid meets more than one conflicting condition at the same time,
+      it will try to fulfill all the rules according to the respective weight of each.
 
-Average
-   All rules are averaged.
-Random
-   A random rule is selected for each boid.
-Fuzzy
-   Uses fuzzy logic to evaluate rules. Rules are gone through top to bottom.
-   Only the first rule that affect above the fuzziness threshold is evaluated.
-   The value should be considered how hard the boid will try to respect a given rule
-   (a value of 1.000 means the Boid will always stick to it, a value of 0.000 means it will never).
-   If the boid meets more than one conflicting condition at the same time,
-   it will try to fulfill all the rules according to the respective weight of each.
+   .. note::
 
-Please note that a given boid will try as much as it can to comply to each of the rules he is
-given, but it is more than likely that some rule will take precedence on other in some cases.
-For example, in order to avoid a predator, a boid could probably "forget" about Collision,
-Separate and Flock rules, meaning that "while panicked" it could well run into obstacles,
-e.g. even if instructed not to, most of the time.
+      A given boid will try as much as it can to comply to each of the rules he is
+      given, but it is more than likely that some rule will take precedence on other in some cases.
+      For example, in order to avoid a predator, a boid could probably "forget" about Collision,
+      Separate and Flock rules, meaning that "while panicked" it could well run into obstacles,
+      e.g. even if instructed not to, most of the time.
+
+In Air
+   The current rule affects boids while they are flying.
+On Land
+   The current rule affects boids while they are not flying.
+
+
+Goal Rule
+---------
+
+Seek goal.
+
+Object
+   Specifies the goal object. If not specified, Boid force fields with negative Strength are used as goals.
+Predict
+   Predict target's movements.
+
+
+Avoid Rule
+----------
+
+Avoid "predators".
+
+Object
+   Specifies the object to avoid.
+   If not specified, Boid force fields with positive Strength are used as predators.
+Predict
+   Predict target's movements.
+Fear Factor
+   Avoid object if danger from it is above this threshold.
+
+
+Avoid Collision Rule
+--------------------
+
+Avoid objects with activated Deflection.
+
+Boids
+   Avoid collision with other boids.
+Deflectors
+   Avoid collision with deflector objects.
+Look Ahead
+   Time to look ahead in seconds.
+
+
+Separate Rule
+-------------
+
+Boids move away from each other.
+
+
+Flock Rule
+----------
+
+Copy movements of neighboring boids, but avoid each other.
+
+
+Follow Leader Rule
+------------------
+
+Follows a leader object instead of a boid.
+
+Distance
+   Distance behind leader to follow.
+Line
+   Follow the leader in a line.
+
+   Queue Size
+      How many boids that are allowed to follow in a line.
+
+
+Average Speed Rule
+------------------
+
+Maintain average velocity.
+
+Speed
+   Percentage of maximum speed.
+Wander
+   How fast velocity's direction is randomized.
+Level
+   How much velocity's Z component is kept constant.
+
+
+Fight Rule
+----------
+
+Move toward nearby boids.
+
+Fight Distance
+   Attack boids at a maximum of this distance.
+Flee Distance
+   Flee to this distance.

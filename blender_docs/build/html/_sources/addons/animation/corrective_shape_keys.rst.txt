@@ -35,7 +35,7 @@ Usage
    This will create a copy of the mesh that you can edit/sculpt.
 #. Select your sculpted copy and then the character object.
    Click on the little black arrow in the shape keys panel and choose one of the options shown in the image.
-   If your object has only armature modifiers, choose the faster method.
+   If your object has only Armature modifiers, choose the faster method.
    If other (more complex?) modifiers are involved, or you want to incorporate dual quaternion skinning
    (now called *Preserve Volume* in the UI) you will have to use the slower method.
 

@@ -53,7 +53,7 @@ Integrators are a set of mathematical methods available to calculate the movemen
 The following guidelines will help to choose a proper integrator,
 according to the behavior aimed at by the animator.
 
-Integration Method
+Integration
    Euler
       Also known as "Forward Euler". Simplest integrator.
       Very fast but also with less exact results.
@@ -84,8 +84,8 @@ Subframes
 
 The following options are only available for Fluid type physics:
 
-Adaptive Subframes
-   When this checkbox without a label is enabled Blender will automatically set the number of subframes.
+Adaptive
+   Automatically set the number of subframes.
 
    Threshold
       A tolerance value that allows the number of subframes to vary.

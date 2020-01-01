@@ -11,7 +11,7 @@ Bevel Node
 
    Bevel Node.
 
-The *Bevel* shader node can be used for rendering rounded corners.
+The Bevel shader node can be used for rendering rounded corners.
 Like bump mapping, this does not modify the actual geometry, only the shading is affected.
 Slight rounding on edges helps to capture specular highlights that you would also see in the real world.
 
@@ -19,7 +19,7 @@ Note that this is a very expensive shader, and may slow down renders
 by 20% even if there is a lot of other complexity in the scene.
 For that reason, we suggest to mainly use this for baking or
 still frame renders where render time is not as much of an issue.
-The bevel modifier is a faster option when it works, but sometimes fails on complex or messy geometry.
+The Bevel modifier is a faster option when it works, but sometimes fails on complex or messy geometry.
 
 
 Inputs

@@ -24,7 +24,7 @@ Quick Effects
    :class: refbox
 
    :Editor:    3D View
-   :Mode:      Object mode
+   :Mode:      Object Mode
    :Menu:      :menuselection:`Object --> Quick Effects`
 
 Sets up a basic simulation scene or effect including the selected objects.

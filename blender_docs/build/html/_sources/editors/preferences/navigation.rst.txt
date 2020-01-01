@@ -40,7 +40,7 @@ Orbit Around Selection
    The selection center becomes the rotation center of the viewport.
    When there is no selection the last selection will be used.
 
-   This uses the selected object (bounding box center), in object mode and
+   This uses the selected object (bounding box center), in Object Mode and
    select elements in edit/pose modes.
 
    .. note::

@@ -37,7 +37,7 @@ For example, it can (the list is not exhaustive):
 - Eliminate Bump with constant Height input, using its Normal input or Geometry Normal instead.
 - Combine multiple copies of the same node with the same inputs into only one instance.
 
-Finally, any nodes that end up not connected either directly or indirectly to the output node are removed.
+Finally, any nodes that end up not connected either directly or indirectly to the Output node are removed.
 
 
 Run-Time Optimizations

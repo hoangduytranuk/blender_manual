@@ -54,9 +54,9 @@ Lazy Mix
 
    :Hotkey:    :kbd:`Alt-RMB`-drag
 
-Merge outputs of two nodes using Mix Node or Mix Shader by dragging from one node to another
-while holding down :kbd:`Alt-RMB`. Mix node or Mix Shader node will be added and
-outputs of the nodes will be connected to it.
+Merge outputs of two nodes using a Mix node or Mix Shader node by dragging from one node to another
+while holding down :kbd:`Alt-RMB`. A Mix node or Mix Shader node will be added and
+the outputs of the nodes will be connected to it.
 
 
 Merge
@@ -150,7 +150,7 @@ Batch Change Blend Type / Math Operation
    :Hotkey:    :kbd:`Alt-Up`, :kbd:`Alt-Down`, :kbd:`Alt-0`, :kbd:`Shift-Alt-=`, :kbd:`Alt-Minus`,
                :kbd:`Shift-Alt-8`, :kbd:`Alt-Slash`, :kbd:`Shift-Alt-Comma`, :kbd:`Shift-Alt-Period`
 
-Select mix nodes or math nodes and change their blend type or math operation at the same time.
+Select Mix nodes or Math nodes and change their blend type or math operation at the same time.
 Use keys specified above. They will change blend type or operation accordingly to:
 Mix, Add, Subtract, Divide, Less than, Greater than.
 Use :kbd:`Alt-Up` or  :kbd:`Alt-Down` to go through all available blend types or math operations.
@@ -223,7 +223,7 @@ Add UV Layout Attribute Node
 
    :Menu:      :menuselection:`Header --> Add menu`
 
-Add Attribute node with the attribute automatically set to UV Layout.
+Add Attribute node with the attribute set to UV Layout.
 
 
 Add Vertex Color Attribute Node
@@ -234,7 +234,7 @@ Add Vertex Color Attribute Node
 
    :Menu:      :menuselection:`Header --> Add menu`
 
-Add attribute node with the attribute automatically set to vertex color.
+Add an Attribute node with the attribute set to vertex color.
 
 
 Shader Viewer
@@ -246,7 +246,7 @@ Shader Viewer
    :Hotkey:    :kbd:`Shift-Ctrl-LMB`
 
 Viewer Node for shaders. :kbd:`Shift-Ctrl-LMB` and the output of the node will be linked to
-newly created Emission Shader and Material Output. This is an easy way of previewing textures.
+newly created Emission shader and Material Output. This is an easy way of previewing textures.
 
 
 Frame Selected
@@ -342,8 +342,8 @@ Add Texture Setup
    :Hotkey:    :kbd:`Ctrl-T`
 
 Select any shader node, :kbd:`Ctrl-T` and an image texture with nodes controlling coordinates will be added.
-If you select any texture node, only the coordinate and mapping nodes will be added.
-A background shader will get an Environment texture with generated mapping.
+If you select any texture node, only the Texture Coordinate and Mapping nodes will be added.
+A background shader will get an Environment Texture node with generated mapping.
 
 
 Add Reroutes to Outputs

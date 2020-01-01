@@ -252,14 +252,14 @@ IK chain takes priority. Such setups are best avoided though,
 since the results may be difficult to control.</p>
 <p>To setup Spline IK,
 it is necessary to have a chain of connected bones and a curve to constrain these bones to:</p>
-<ul class="simple">
+<ol class="arabic simple">
 <li>With the last bone in the chain selected,
 add a <a class="reference internal" href="../../../../constraints/tracking/spline_ik.html"><span class="doc">Spline IK</span></a>
 Constraint from the Bone Constraints tab in the Properties Editor.</li>
 <li>Set the <em>Chain Length</em> setting to the number of bones in the chain
 (starting from and including the selected bone) that should be influenced by the curve.</li>
 <li>Finally, set the <em>Target</em> field to the curve that should control the curve.</li>
-</ul>
+</ol>
 <p>Congratulations, the bone chain is now controlled by the curve.</p>
 </div>
 <div class="section" id="settings-and-controls">
@@ -268,11 +268,21 @@ Constraint from the Bone Constraints tab in the Properties Editor.</li>
 This section is intended to introduce the workflow.</p>
 <div class="section" id="roll-control">
 <h3>-- Roll Control<a class="headerlink" href="#roll-control" title="Permalink to this headline">¶</a></h3>
-<p>To control the <em>twist</em> or <em>roll</em> of the Spline IK chain,
-the standard methods of rotating the bones in the chain along their Y axes still apply.
-For example, simply rotate the bones in the chain around their Y axes to adjust the roll of
-the chain from that point onward.
-Applying copy rotation constraints on the bones should also work.</p>
+<p>To control the <a class="reference internal" href="../../../../../glossary/index.html#term-roll"><span class="xref std std-term">roll</span></a> of the Spline IK chain,
+the standard methods of rotating the bones in the chain along their local Y axes still apply.
+For example, start at the farthest bone and simply rotate the bones in the chain around their
+local Y axes to adjust the roll of the chain from that point onward.</p>
+<p>Applying Copy Rotation constraints on the bones also works.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p>There are a couple of limitations to consider:</p>
+<ul class="last simple">
+<li>Bones do not inherit a curve's <a class="reference internal" href="../../../../../modeling/curves/editing/control_points.html#modeling-curve-tilt"><span class="std std-ref">tilt</span></a> value to control their roll.</li>
+<li>There is no way of automatically creating a twisting effect
+where a dampened rotation is inherited up the chain.
+Consider using <a class="reference internal" href="../../../bones/properties/bendy_bones.html"><span class="doc">Bendy Bones</span></a> instead.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="offset-controls">
 <h3>-- Offset Controls<a class="headerlink" href="#offset-controls" title="Permalink to this headline">¶</a></h3>

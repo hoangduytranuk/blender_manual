@@ -340,7 +340,7 @@ to control in which layer(s) it lays.</li>
 </table>
 <p>Exactly like standard children objects. You can modify this behavior on a per-bone basis,
 using the Relations panel in the <em>Bones</em> tab:</p>
-<dl class="docutils">
+<dl class="docutils" id="bone-relations-inherit-settings">
 <dt>Local Location</dt>
 <dd>When disabled, the location transform property is evaluated in the parent bone's local space,
 rather than using the bone's own <em>rest pose</em> local space orientation.</dd>
@@ -359,8 +359,13 @@ minimally affects roll on average.</p>
 <p class="last">If the inherited scale is non-uniform, this does not prevent shear from reappearing due to
 local rotation of the child bone, or of its children.</p>
 </dd>
+<dt>Aligned</dt>
+<dd><p class="first">Parent scaling is inherited as if the child was oriented the same as the parent, always
+applying parent X scale over child X scale, and so on.</p>
+<p class="last">This mode never causes shear and is natural for connected chains like limbs and tentacles.</p>
+</dd>
 <dt>Average</dt>
-<dd><p class="first">Inherits a uniform scaling factor that represents the total change in the volume of the parent.</p>
+<dd><p class="first">Inherits a uniform scaling factor that is the total change in the volume of the parent.</p>
 <p class="last">This effectively keeps the uniform part of the scaling of the parent, while removing squash
 and stretch effects. Uniform scaling never causes shear.</p>
 </dd>

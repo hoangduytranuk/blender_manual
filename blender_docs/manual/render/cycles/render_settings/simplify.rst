@@ -17,7 +17,7 @@ Simplify
 .. rubric:: Common Settings
 
 Max Subdivision
-   Maximum number of subdivision by the subdivision surface modifiers.
+   Maximum number of subdivision by the Subdivision Surface modifiers.
 Child Particles
    Show only a subset of all child hairs and particles.
 Texture Limit

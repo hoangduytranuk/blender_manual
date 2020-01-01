@@ -141,7 +141,7 @@ Shape Key
    #. With the mesh selected, add a new *Shape Key* in addition to the *Basis* key.
       :menuselection:`Properties --> Mesh tab --> Shape Keys`
    #. In order to author the shape key on top of the armature deformation,
-      enable both *Edit Mode Display* and *Cage Editing* in the armature modifier.
+      enable both *Edit Mode Display* and *Cage Editing* in the Armature modifier.
       :menuselection:`Properties --> Modifiers tab --> Armature Modifier --> Header`
    #. Enter Edit Mode and select the new shape key in the properties panel.
       Adjust the vertices as desired.

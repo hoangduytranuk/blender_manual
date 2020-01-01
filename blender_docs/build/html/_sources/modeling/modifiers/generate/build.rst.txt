@@ -37,11 +37,11 @@ Reversed
 Example
 =======
 
-The *Build* modifier is often useful when needing a way to get a large number of items to progressively appear,
+The Build modifier is often useful when needing a way to get a large number of items to progressively appear,
 without resorting to animating the visibility of each one by one.
 Examples of this include a mesh containing vertices only,
 which is used as an :doc:`Instance Verts emitter </scene_layout/object/properties/instancing/verts>`,
-and has the build modifier on it. Such a setup is a workaround/technique for being able to
+and has the Build modifier on it. Such a setup is a workaround/technique for being able to
 art-direct some semi-random layout of a collection of objects (i.e. leaves/balls forming a carpet of sorts)
 when doing so with particles is not desirable
 (e.g. due to undesirable distribution of items leaving random gaps and overlapping in other places).

@@ -55,7 +55,7 @@ Possible ways to achieve this are:
 - Masking for ultimate control.
 
 After generating the sun beams from such a light source image they can then be overlayed on the original image.
-Usually, a simple "Add" mix node is sufficient,
+Usually, a simple "Add" Mix node is sufficient,
 and physically correct because the scattered light adds to the final result.
 
 .. figure:: /images/compositing_types_filter_sun-beams_example.jpg

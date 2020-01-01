@@ -9,7 +9,7 @@ Image Node
 
    Image node.
 
-The image node can be used to load an external image.
+The Image node can be used to load an external image.
 
 
 Inputs

@@ -268,7 +268,13 @@
 </div>
 <div class="section" id="multiplying-values">
 <h3>Nhân các Giá Trị -- Multiplying Values<a class="headerlink" href="#multiplying-values" title="Permalink to this headline">¶</a></h3>
-<p>Nút Ánh Xạ Giá Trị (<a class="reference internal" href="#bpy-types-compositornodemapvalue"><span class="std std-ref">Map Value</span></a>) cũng có thể được sử dụng để nhân giá trị lên thành một giá trị đầu ra mong muốn. Trong sơ đồ nhỏ ở bên phải, nút Thời Gian (<a class="reference internal" href="../../../editors/texture_node/types/input/time.html#bpy-types-texturenodecurvetime"><span class="std std-ref">Time</span></a>) cho ra một giá trị trong phạm vi từ 0,0 đến 1,0, được phân tỷ lệ đồng đều trên 30 khung hình. Nút Ánh Xạ Giá Trị (<a class="reference internal" href="#bpy-types-compositornodemapvalue"><span class="std std-ref">Map Value</span></a>) <em>đầu tiên</em> nhân giá trị đầu vào lên 2, dẫn đến giá trị của đầu ra được phân tỷ lệ từ 0,0 đến 2,0 trên 30 khung hình. Nút Ánh Xạ Giá Trị (<a class="reference internal" href="#bpy-types-compositornodemapvalue"><span class="std std-ref">Map Value</span></a>) <em>thứ hai</em> khấu trừ 1 khỏi giá trị đầu vào, tạo ra các giá trị hoạt động trong khoảng từ (-1,00 đến 1) và nhân nó với 150 để tạo thành giá trị đầu ra trong khoảng từ (-150 đến 150) trong trình tự 30 khung hình.</p>
+<p>The Map Value node can also be used to multiply values to achieve a desired output value.
+In the mini-map to the right, the Time node outputs a value between 0.0 and 1.0 evenly scaled over 30 frames.
+The <em>first</em> Map Value node multiplies the input by 2,
+resulting in an output value that scales from 0.0 to 2.0 over 30 frames.
+The <em>second</em> Map Value node subtracts 1 from the input,
+giving working values between (-1.00 to 1.0), and multiplies that by 150,
+resulting in an output value between (-150 to 150) over a 30-frame sequence.</p>
 <div class="figure" id="id2">
 <img alt="../../../_images/compositing_types_vector_map-value_example.png" src="../../../_images/compositing_types_vector_map-value_example.png" />
 <p class="caption"><span class="caption-text">Sử dụng nút Ánh Xạ Giá Trị (<a class="reference internal" href="#bpy-types-compositornodemapvalue"><span class="std std-ref">Map Value</span></a>) để thực hiện tính nhân.</span></p>
