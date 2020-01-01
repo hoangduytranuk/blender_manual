@@ -1,0 +1,372 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/files/import_export/usd.rst">
+ <section ids="universal-scene-description" names="universal\ scene\ description">
+  <title>
+   Universal Scene Description
+  </title>
+  <paragraph>
+   Support for exporting to the Universal Scene Description file format was introduced in
+   <reference name="Blender 2.82" refuri="https://wiki.blender.org/wiki/Reference/Release_Notes/2.82/More_Features">
+    Blender 2.82
+   </reference>
+   .
+The USD exporter is still an experimental feature, and the structure of exported
+USD files is subject to change. To enable the USD exporter, enable it in the
+   <reference name="Experimental Features" refuri="https://wiki.blender.org/wiki/Source/Interface/ExperimentalFeatures">
+    Experimental Features
+   </reference>
+   .
+  </paragraph>
+  <figure ids="id1">
+   <image candidates="{'*': 'images/universal_scene_description_example.png'}" uri="images/universal_scene_description_example.png"/>
+   <caption>
+    Shot from
+    <reference name="Spring" refuri="https://cloud.blender.org/p/spring/">
+     Spring
+    </reference>
+    <target ids="['spring']" names="['spring']" refuri="https://cloud.blender.org/p/spring/">
+    </target>
+    exported to USD and opened in USDView.
+   </caption>
+  </figure>
+  <section ids="overview" names="overview">
+   <title>
+    Overview
+   </title>
+   <paragraph>
+    Universal Scene Description (USD) files can contain complex layering,
+overriding, and references to other files. Blender’s USD Exporter takes a much
+simpler approach. When exporting, all supported objects in the scene are
+exported, optionally limited by their selection state. Blender does not (yet)
+support exporting USD layers, variants, skeletal animation, etc.
+   </paragraph>
+   <paragraph>
+    The following objects can be exported to USD:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Meshes (of different kinds, see below).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Cameras (perspective cameras only at the moment, not orthogonal ones).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Lamps (all types except area lamps).
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Hair (exported as curves, and limited to parent strands).
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    When exporting an animation, the final, evaluated mesh is written to USD. This
+means that the following meshes can be exported:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Static meshes.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Deforming meshes; here the topology of the mesh doesn’t change, but the
+locations of the vertices change over time. Examples are animated characters or
+bouncing (but not cracking) objects.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Arbitrarily animated meshes; here the topology does change. An example is the
+result of a fluid simulation, where splashes of fluid can break off the main
+body.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+  </section>
+  <section ids="export-options" names="export\ options">
+   <title>
+    Export Options
+   </title>
+   <paragraph>
+    The following options are available when exporting to USD:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Only Export Selected Objects
+     </term>
+     <definition>
+      <paragraph>
+       Unchecked by default. When checked, only selected objects are exported.
+Duplicated objects, for example collections that are instanced in the scene,
+are considered ‘selected’ when their duplicator is selected.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Only Export Visible Objects
+     </term>
+     <definition>
+      <paragraph>
+       Checked by default. When checked, only visible objects are exported. An
+object is considered ‘visible’ when its view layer is visible.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Export Animation
+     </term>
+     <definition>
+      <paragraph>
+       Unchecked by default. When unchecked, only the current scene frame is
+exported. When checked, the entire scene frame range is exported.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Export Hair
+     </term>
+     <definition>
+      <paragraph>
+       Unchecked by default. When checked, parent hair strands are exported as a
+curve system. Hair strand colors are not exported.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Export UV Maps
+     </term>
+     <definition>
+      <paragraph>
+       Checked by default. When checked, includes UV coordinates for exported
+meshes. The name of the UV map in USD is the same as the name in Blender. In
+USD the default name is ‘st’ whereas in Blender the default name is ‘UVMap’.
+In order to export to the standard UV map name ‘st’, rename the UV map in
+Blender to ‘st’.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Export Normals
+     </term>
+     <definition>
+      <paragraph>
+       Checked by default. When checked, includes normals for exported meshes. This
+includes custom loop normals.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Export Materials
+     </term>
+     <definition>
+      <paragraph>
+       Checked by default. When checked, exports the viewport materials of meshes.
+When a mesh has multiple materials assigned, a geometry subset is created
+for each material.
+      </paragraph>
+      <paragraph>
+       The first material (if any) is always applied to the mesh itself as well
+(regardless of the existence of geometry subsets), because the Hydra
+viewport doesn’t support materials on subsets. See
+       <reference name="USD issue #542" refuri="https://github.com/PixarAnimationStudios/USD/issues/542">
+        USD issue #542
+       </reference>
+       <target ids="['usd-issue-542']" names="['usd issue #542']" refuri="https://github.com/PixarAnimationStudios/USD/issues/542">
+       </target>
+       for more
+information.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Use Instancing
+     </term>
+     <definition>
+      <paragraph>
+       Unchecked by default, as this is an experimental option. When unchecked,
+duplicated objects are exported as real objects, so a particle system with
+100 particles that is displayed with 100 meshes will have 100 individual
+meshes in the exported file. When checked, duplicated objects are exported
+as reference to the original object. If the original object is not part of
+the export, the first duplicate is exported as real object and used as
+reference.
+      </paragraph>
+      <paragraph>
+       Note that currently this is incompatible with exporting materials, see
+       <reference name="Limitations" refid="limitations">
+        Limitations
+       </reference>
+       below.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    Regardless of the options selected above, bjects that are inside a
+    <reference internal="True" refuri="#editors-outliner-restriction-columns">
+     <inline classes="std std-ref">
+      Holdout collection
+     </inline>
+    </reference>
+    are always
+excluded from the export.
+   </paragraph>
+  </section>
+  <section ids="limitations" names="limitations">
+   <title>
+    Limitations
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Single-sided and Double-sided Meshes
+     </term>
+     <definition>
+      <paragraph>
+       USD seems to support neither per-material nor per-face-group
+double-sidedness, so Blender uses the flag from the first material to mark
+the entire mesh as single/double-sided. If there is no material we default
+to double-sided.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mesh Normals
+     </term>
+     <definition>
+      <paragraph>
+       The mesh subdivision scheme in USD is ‘Catmull Clark’ by default, but
+Blender uses ‘None’ instead, indicating that a polygonal mesh is exported.
+This is necessary for USD to understand the custom normals; otherwise the
+mesh is always rendered smooth.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Vertex Velocities
+     </term>
+     <definition>
+      <paragraph>
+       Currently only fluid simulations (not meshes in general) have explicit
+vertex velocities. This is the most important case for exporting velocities,
+though, as the baked mesh changes topology all the time, and thus computing
+the velocities at import time in a post-processing step is hard.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Coordinate System Orientation
+     </term>
+     <definition>
+      <paragraph>
+       Blender uses the Z-axis as up-axis. Since USD supports both Y=up and Z=up,
+the USD files written by Blender always use Z=up.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Materials
+     </term>
+     <definition>
+      <paragraph>
+       Very simple versions of the materials are exported, using only the
+       <reference internal="True" refuri="#render-materials-settings-viewport-display">
+        <inline classes="std std-ref">
+         Viewport Display
+        </inline>
+       </reference>
+       color, metallic, and
+roughness.
+      </paragraph>
+      <paragraph>
+       When there are multiple materials, the mesh faces are stored as geometry
+subset and each material is assigned to the appropriate subset. If there is
+only one material this is skipped. Note that the geometry subsets are not
+time-sampled, so it may break when an animated mesh changes topology.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Hair
+     </term>
+     <definition>
+      <paragraph>
+       Only the parent strands are exported, and only with a constant colour. No UV
+coordinates, no information about the normals.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Camera
+     </term>
+     <definition>
+      <paragraph>
+       Only perspective cameras are exported.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Lights
+     </term>
+     <definition>
+      <paragraph>
+       USD does not directly support spot lights, so those are not exported.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Particles
+     </term>
+     <definition>
+      <paragraph>
+       Particles are only written when they are alive, which means that they are
+always visible. There is currently no code that deals with marking them as
+invisible outside their lifespan.
+      </paragraph>
+      <paragraph>
+       Particle-system-instanced objects are exported by suffixing the object name
+with the particle’s persistent ID, giving each particle transform a unique
+name.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Instancing/Referencing
+     </term>
+     <definition>
+      <paragraph>
+       This is still an experimental feature that can be enabled when exporting to USD.
+When enabled, dupli-object meshes are written to USD as references to the
+original mesh. This is still very limited in correctness, as there are
+issues referencing to materials from a referenced mesh.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+ </section>
+</document>
