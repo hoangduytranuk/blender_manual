@@ -437,22 +437,21 @@ the Normal Map node as described above, allowing it to export correctly.</p>
 </div>
 <div class="section" id="emissive">
 <h4>Emissive<a class="headerlink" href="#emissive" title="Permalink to this headline">¶</a></h4>
-<p>An Image Texture node can be connected to an Emission shader node, and
-optionally combined with properties from a Principled BSDF node by way of an Add Shader node.</p>
-<p>If the glTF exporter finds an image connected to the Emission shader node,
-it will export that image as the glTF material's emissive texture.</p>
+<p>An Image Texture node can be connected to the Emission input on the Principled BSDF node
+to include an emissive map with the glTF material. Alternatively, the Image Texture node
+can be connected to an Emission shader node, and optionally combined with properties
+from a Principled BSDF node by way of an Add Shader node.</p>
+<p>If the emissive map is alone in the material, it is best to set the Base Color default
+to black, and the Roughness default to 1.0. This minimizes the influence of the other
+channels if they are not needed.</p>
 <div class="figure" id="id10">
 <img alt="../../_images/addons_io-gltf2_material-emissive.png" src="../../_images/addons_io-gltf2_material-emissive.png" />
-<p class="caption"><span class="caption-text">An Emission node can be added to existing nodes.</span></p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The <em>Emission</em> input of the Principled BSDF node is not yet supported by this exporter.
-This may change in a future version.</p>
+<p class="caption"><span class="caption-text">This arrangement is supported for backwards compatibility. It is simpler to use
+the Principled BSDF node directly.</span></p>
 </div>
 </div>
 <div class="section" id="double-sided-backface-culling">
-<h4>Double Sided / Backface Culling<a class="headerlink" href="#double-sided-backface-culling" title="Permalink to this headline">¶</a></h4>
+<h4>Double-Sided / Backface Culling<a class="headerlink" href="#double-sided-backface-culling" title="Permalink to this headline">¶</a></h4>
 <p>For materials where only the front faces will be visible, turn on <em>Backface Culling</em> in
 the <em>Settings</em> panel of an Eevee material. When using other engines (Cycles, Workbench)
 you can temporarily switch to Eevee to configure this setting, then switch back.</p>
@@ -471,7 +470,7 @@ the material settings panel. Use this setting to define how alpha values from
 the Base Color channel are treated in glTF. Three settings are supported by glTF:</p>
 <dl class="docutils">
 <dt>Opaque</dt>
-<dd>Alpha values are ignored (the default).</dd>
+<dd>Alpha values are ignored.</dd>
 <dt>Alpha Blend</dt>
 <dd>Lower alpha values cause blending with background objects.</dd>
 <dt>Alpha Clip</dt>
@@ -643,10 +642,12 @@ the asset must be shared over a plain-text-only connection.</p>
 <dl class="docutils">
 <dt>Format</dt>
 <dd>See: <a class="reference internal" href="#file-format-variations">File Format Variations</a>.</dd>
+<dt>Textures</dt>
+<dd>Folder to place texture files in. Relative to the gltf-file.</dd>
 <dt>Copyright</dt>
 <dd>Legal rights and conditions for the model.</dd>
 <dt>Remember Export Settings</dt>
-<dd>Store export settings in the Blender file,
+<dd>Store export settings in the blend-file,
 so they will be recalled next time the file is opened.</dd>
 </dl>
 <div class="section" id="include">
@@ -685,7 +686,8 @@ so they will be recalled next time the file is opened.</dd>
 <dt>Materials</dt>
 <dd>Export materials.</dd>
 <dt>Images</dt>
-<dd>Todo.</dd>
+<dd>Output format for images. PNG is lossless and generally preferred, but JPEG might be preferable for
+web applications due to the smaller file size.</dd>
 </dl>
 <div class="section" id="compression">
 <h5>Compression<a class="headerlink" href="#compression" title="Permalink to this headline">¶</a></h5>
@@ -723,7 +725,7 @@ so they will be recalled next time the file is opened.</dd>
 <dt>NLA Strips</dt>
 <dd>Whether to export NLA strip animations.</dd>
 <dt>Export Deformation Bones Only</dt>
-<dd>Todo.</dd>
+<dd>Export deformation bones only (and needed bones for hierarchy).</dd>
 </dl>
 </div>
 <div class="section" id="shape-keys">

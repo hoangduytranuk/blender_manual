@@ -38,8 +38,8 @@ Copy Draw Options
    Copies draw options: for instance wireframe draw, Empty draw shape, Empty draw size, etc.
 Copy Time Offset
    Copies the animation stack time offset.
-Copy Dupli
-   Copies the objects dupli group/vertex/face settings.
+Copy Instancing
+   Copies the objects instancing group/vertex/face settings.
 Copy Object Color
    (Self-explanatory)
 Copy Mass (physics setting)

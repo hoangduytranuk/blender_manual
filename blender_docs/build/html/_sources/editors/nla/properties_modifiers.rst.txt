@@ -28,11 +28,11 @@ Action Extrapolation
    Action to take for gaps past the strip extents.
 
    Hold
-      Affects both sides of the strip.
+      Affects both sides of the strip. This should only be set on the very first strip.
    Hold Forward
-      Affects the region after the clip, only.
+      Affects the region after the clip, only. This can be set on any strip.
    Nothing
-      Neither.
+      Affects only the region of the strip itself. This can be set on any strip.
 
 .. _nla-blend-modes:
 

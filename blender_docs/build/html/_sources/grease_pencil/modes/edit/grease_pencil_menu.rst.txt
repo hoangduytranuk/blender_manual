@@ -166,7 +166,7 @@ Paste / Paste by Layer
 Type
    Paste to Active
       Pastes the points/strokes copied from the clipboard into the active layer.
-      This is the default behavior and the mode used when using :menuselection:`Grease Pencil --> Paste`
+      This is the default behavior and the mode used when using :menuselection:`Grease Pencil --> Paste`.
 
    Paste by Layer
       Pastes the points/strokes copied from the clipboard into the layer they were copied from.

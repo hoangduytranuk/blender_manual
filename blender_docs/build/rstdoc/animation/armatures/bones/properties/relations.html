@@ -297,7 +297,9 @@ using the Relations panel in the
 
    Relations panel in Pose Mode.
     </comment>
-    <definition_list>
+    <target refid="bone-relations-inherit-settings">
+    </target>
+    <definition_list ids="bone-relations-inherit-settings" names="bone-relations-inherit-settings">
      <definition_list_item>
       <term>
        Local Location
@@ -361,11 +363,25 @@ local rotation of the child bone, or of its children.
         </definition_list_item>
         <definition_list_item>
          <term>
+          Aligned
+         </term>
+         <definition>
+          <paragraph>
+           Parent scaling is inherited as if the child was oriented the same as the parent, always
+applying parent X scale over child X scale, and so on.
+          </paragraph>
+          <paragraph>
+           This mode never causes shear and is natural for connected chains like limbs and tentacles.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
           Average
          </term>
          <definition>
           <paragraph>
-           Inherits a uniform scaling factor that represents the total change in the volume of the parent.
+           Inherits a uniform scaling factor that is the total change in the volume of the parent.
           </paragraph>
           <paragraph>
            This effectively keeps the uniform part of the scaling of the parent, while removing squash

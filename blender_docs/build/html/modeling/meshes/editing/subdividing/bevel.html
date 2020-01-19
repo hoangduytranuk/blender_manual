@@ -268,7 +268,7 @@
 </div>
 <p>The <em>Bevel</em> tool allows you to create chamfered or rounded corners on geometry.
 A bevel is an effect that smooths out edges and corners.</p>
-<p>True world edges are very seldom exactly sharp.
+<p>Real world edges are very seldom exactly sharp.
 Not even a knife blade edge can be considered perfectly sharp.
 Most edges are intentionally beveled for mechanical and practical reasons.</p>
 <p>Bevels are also useful for giving realism to non-organic models. In the real world,
@@ -481,6 +481,83 @@ Inner miters are shown in the following diagram, where two inner miters are on t
 </dd>
 <dt>Spread</dt>
 <dd>The value used to spread extra vertices apart for <em>Outer</em> and <em>Inner Miters</em>.</dd>
+<dt>Intersection Method <kbd class="kbd docutils literal notranslate">N</kbd></dt>
+<dd><p class="first">When more than two beveled edges meet at a vertex, a mesh is created as a way to complete the
+intersection between the generated geometry. This option controls the method used to create that mesh.</p>
+<dl class="docutils">
+<dt>Grid Fill</dt>
+<dd>The default method for building intersections, useful when a smooth continuation of the bevel
+profile is desired. Without <em>Custom Profile</em> enabled, the curve of the profile continues through
+the intersection, but with a custom profile it just creates a smooth grid within the
+intersection's boundary.</dd>
+<dt>Cutoff</dt>
+<dd><p class="first">Creates a cutoff face at the end of each beveled edge coming into the vertex. This is most
+useful for custom profiles when the new intersection is too complex for a smooth grid fill.</p>
+<p>With a three way intersection, when the inner corners of the cutoff profiles faces meet at
+the same location, no center face is created.</p>
+<p class="last">The direction of the cutoff faces depends on the original vertex's normal.</p>
+</dd>
+</dl>
+<table border="1" class="last docutils" id="id11">
+<caption><span class="caption-text">Intersection method options.</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id12">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_bevel_vmesh-1.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_bevel_vmesh-1.png" src="../../../../_images/modeling_meshes_editing_subdividing_bevel_vmesh-1.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Grid fill intersection method.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id13">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_bevel_vmesh-2.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_bevel_vmesh-2.png" src="../../../../_images/modeling_meshes_editing_subdividing_bevel_vmesh-2.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Three way cutoff intersection where the inner vertices are merged.</span></p>
+</div>
+</td>
+<td><div class="first last figure" id="id14">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_bevel_vmesh-3.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_bevel_vmesh-3.png" src="../../../../_images/modeling_meshes_editing_subdividing_bevel_vmesh-3.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Cutoff intersection method with a center face.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Custom Profile <kbd class="kbd docutils literal notranslate">Z</kbd></dt>
+<dd><div class="first figure align-right" id="id15">
+<a class="reference internal image-reference" href="../../../../_images/modeling_modifiers_generate_bevel_profile_widget.png"><img alt="../../../../_images/modeling_modifiers_generate_bevel_profile_widget.png" src="../../../../_images/modeling_modifiers_generate_bevel_profile_widget.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-text">The custom profile widget.</span></p>
+</div>
+<p>This widget allows the creation of a user-defined profile with more complexity than
+with the single profile parameter. The modal tool allows toggling the custom profile,
+but the shape of the profile is only editable in the options panel after the operation is confirmed.</p>
+<p>The profile starts at the bottom right of the widget and ends at the top left, as if it
+were between two edges meeting at a right angle. Control points are created in the widget and
+then the path is sampled with the number of segments from the bevel modifier.</p>
+<dl class="docutils">
+<dt>Presets</dt>
+<dd>The <em>Support Loops</em> and <em>Steps</em> presets are built dynamically depending on the number of segments in the bevel.
+If the number of segments is changed, the preset will have to be re-applied.</dd>
+<dt>Reverse</dt>
+<dd>The <em>Reverse</em> button flips the orientation of the profile for all beveled edges.</dd>
+<dt>Clipping</dt>
+<dd>The <em>Clipping</em> toggle allows control points to be moved beyond the initial boundary,
+allowing the bevel to add volume to the mesh rather than just removing it.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">The <em>Profile</em> slider is still useful when miters are enabled because it still controls the shape of the miter profiles.</p>
+</div>
+<p>Sampling</p>
+<blockquote class="last">
+<div>Samples will first be added to each control point, then if there are enough samples,
+they will be divided evenly between the edges. The <em>Sample Straight Edges</em> option toggles whether
+the samples are added to edges with sharp control points on either side. If there aren't enough samples
+to give each edge the same number of samples, they will just be added to the most curved edges,
+so it is recommended to use at least as many segments as there are control points.</div></blockquote>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
@@ -492,17 +569,17 @@ Inner miters are shown in the following diagram, where two inner miters are on t
 <col width="33%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id11">
+<tr class="row-odd"><td><div class="first last figure" id="id16">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_bevel_example-5.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_bevel_example-5.png" src="../../../../_images/modeling_meshes_editing_subdividing_bevel_example-5.png" style="width: 320px;" /></a>
 <p class="caption"><span class="caption-text">Result of beveling multiple edges.</span></p>
 </div>
 </td>
-<td><div class="first last figure" id="id12">
+<td><div class="first last figure" id="id17">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_bevel_example-6.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_bevel_example-6.png" src="../../../../_images/modeling_meshes_editing_subdividing_bevel_example-6.png" style="width: 320px;" /></a>
 <p class="caption"><span class="caption-text">Another example of beveling multiple edges.</span></p>
 </div>
 </td>
-<td><div class="first last figure" id="id13">
+<td><div class="first last figure" id="id18">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_subdividing_bevel_example-7.png"><img alt="../../../../_images/modeling_meshes_editing_subdividing_bevel_example-7.png" src="../../../../_images/modeling_meshes_editing_subdividing_bevel_example-7.png" style="width: 320px;" /></a>
 <p class="caption"><span class="caption-text">An example using Profile=0.150.</span></p>
 </div>

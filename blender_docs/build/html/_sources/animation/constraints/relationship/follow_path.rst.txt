@@ -49,7 +49,7 @@ the :doc:`Locked Track one </animation/constraints/tracking/locked_track>`.
 One example is a flying camera on a path. To control the camera's roll angle,
 you can use a *Locked Track* and a target object to specify the up direction, as the camera flies along the path.
 
-.. note:: *Follow Path* and *Clamp To*
+.. note:: *Follow Path* & *Clamp To*
 
    Do not confuse these two constraints. Both of them constraint the location of their owner along a curve,
    but *Follow Path* is an "animation-only" constraint,

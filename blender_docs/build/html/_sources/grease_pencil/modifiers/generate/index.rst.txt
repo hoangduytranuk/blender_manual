@@ -11,3 +11,4 @@
    mirror.rst
    simplify.rst
    subdivide.rst
+   multiple_strokes.rst

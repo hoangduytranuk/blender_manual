@@ -135,7 +135,7 @@ typical operations include:
         </list_item>
         <list_item>
          <paragraph>
-          Defining new menus, keymaps &amp; tools.
+          Defining new menus, keymaps and tools.
          </paragraph>
         </list_item>
         <list_item>
@@ -376,6 +376,142 @@ which will be stored in their user-configuration.
      works.
     </paragraph>
    </note>
+  </section>
+  <section ids="template-scripts" names="template\ scripts">
+   <title>
+    Template Scripts
+   </title>
+   <paragraph>
+    While app templates can use Python scripts,
+they simply have access to the same API’s available for add-ons and any other scripts.
+   </paragraph>
+   <paragraph>
+    As noted above, you may optionally have an
+    <literal>
+     __init__.py
+    </literal>
+    in your app template.
+   </paragraph>
+   <paragraph>
+    This has the following advantages:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      Changes can be made to the startup or preferences, without having to distribute a blend-file.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      Changes can be made dynamically.
+     </paragraph>
+     <paragraph>
+      You could for example – configure the template to check the number of processors, operating system and memory,
+then set values based on this.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      You may enable add-ons associated with your template.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    On activation a
+    <literal>
+     register
+    </literal>
+    function is called,
+    <literal>
+     unregister
+    </literal>
+    is called when another template is selected.
+   </paragraph>
+   <paragraph>
+    As these only run once, any changes to defaults must be made via handler.
+   </paragraph>
+   <paragraph>
+    Two handlers you’re likely to use are:
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      <literal>
+       bpy.app.handlers.load_factory_preferences_post
+      </literal>
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      <literal>
+       bpy.app.handlers.load_factory_startup_post
+      </literal>
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    These allow you to define your own “factory settings”, which the user may change,
+just as Blender has it’s own defaults when first launched.
+   </paragraph>
+   <paragraph>
+    This is an example
+    <literal>
+     __init__.py
+    </literal>
+    file which defines defaults for an app template to use.
+   </paragraph>
+   <literal_block force_highlighting="True" highlight_args="{}" language="python" linenos="False" xml:space="preserve">
+    import bpy
+from bpy.app.handlers import persistent
+
+@persistent
+def load_handler_for_preferences(_):
+    print("Changing Preference Defaults!")
+    from bpy import context
+
+    prefs = context.preferences
+    prefs.use_preferences_save = False
+
+    kc = context.window_manager.keyconfigs["blender"]
+    kc_prefs = kc.preferences
+    if kc_prefs is not None:
+        kc_prefs.select_mouse = 'RIGHT'
+        kc_prefs.spacebar_action = 'SEARCH'
+        kc_prefs.use_pie_click_drag = True
+
+    view = prefs.view
+    view.header_align = 'BOTTOM'
+
+
+@persistent
+def load_handler_for_startup(_):
+    print("Changing Startup Defaults!")
+
+    # Use smooth faces.
+    for mesh in bpy.data.meshes:
+        for poly in mesh.polygons:
+            poly.use_smooth = True
+
+    # Use material preview shading.
+    for screen in bpy.data.screens:
+        for area in screen.areas:
+            for space in area.spaces:
+                if space.type == 'VIEW_3D':
+                    space.shading.type = 'MATERIAL'
+                    space.shading.use_scene_lights = True
+
+
+
+def register():
+    print("Registering to Change Defaults")
+    bpy.app.handlers.load_factory_preferences_post.append(load_handler_for_preferences)
+    bpy.app.handlers.load_factory_startup_post.append(load_handler_for_startup)
+
+def unregister():
+    print("Unregistering to Change Defaults")
+    bpy.app.handlers.load_factory_preferences_post.remove(load_handler_for_preferences)
+    bpy.app.handlers.load_factory_startup_post.remove(load_handler_for_startup)
+   </literal_block>
   </section>
  </section>
 </document>

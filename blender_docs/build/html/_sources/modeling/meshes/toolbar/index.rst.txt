@@ -51,10 +51,10 @@ Poly Build
    Create geometry by adding vertices one by one.
 
 :ref:`Spin <tool-mesh-spin>`
-   Create new geometry by extruding & rotating.
+   Create new geometry by extruding and rotating.
 
    :ref:`Spin Duplicate <tool-mesh-spin>`
-      Create new geometry by duplicating & rotating.
+      Create new geometry by duplicating and rotating.
 
 :ref:`Smooth <tool-mesh-smooth>`
    Flatten angles of selected vertices.

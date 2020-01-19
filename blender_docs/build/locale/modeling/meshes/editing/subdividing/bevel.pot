@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-01 22:22+0000\n"
+"POT-Creation-Date: 2020-01-17 21:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgid "The *Bevel* tool allows you to create chamfered or rounded corners on geo
 msgstr ""
 
 #: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:19
-msgid "True world edges are very seldom exactly sharp. Not even a knife blade edge can be considered perfectly sharp. Most edges are intentionally beveled for mechanical and practical reasons."
+msgid "Real world edges are very seldom exactly sharp. Not even a knife blade edge can be considered perfectly sharp. Most edges are intentionally beveled for mechanical and practical reasons."
 msgstr ""
 
 #: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:23
@@ -342,7 +342,7 @@ msgstr ""
 msgid "Arc inner miter."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:226
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:225
 msgid "Spread"
 msgstr ""
 
@@ -350,27 +350,127 @@ msgstr ""
 msgid "The value used to spread extra vertices apart for *Outer* and *Inner Miters*."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:229
-msgid "Examples"
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:260
+msgid "Intersection Method :kbd:`N`"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:236
-msgid "Result of beveling multiple edges."
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:228
+msgid "When more than two beveled edges meet at a vertex, a mesh is created as a way to complete the intersection between the generated geometry. This option controls the method used to create that mesh."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:241
-msgid "Another example of beveling multiple edges."
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:234
+msgid "Grid Fill"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:246
-msgid "An example using Profile=0.150."
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:232
+msgid "The default method for building intersections, useful when a smooth continuation of the bevel profile is desired. Without *Custom Profile* enabled, the curve of the profile continues through the intersection, but with a custom profile it just creates a smooth grid within the intersection's boundary."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:248
-msgid "Bevel Modifier"
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:243
+msgid "Cutoff"
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:237
+msgid "Creates a cutoff face at the end of each beveled edge coming into the vertex. This is most useful for custom profiles when the new intersection is too complex for a smooth grid fill."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:240
+msgid "With a three way intersection, when the inner corners of the cutoff profiles faces meet at the same location, no center face is created."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:243
+msgid "The direction of the cutoff faces depends on the original vertex's normal."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:245
+msgid "Intersection method options."
 msgstr ""
 
 #: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:250
+msgid "Grid fill intersection method."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:255
+msgid "Three way cutoff intersection where the inner vertices are merged."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:260
+msgid "Cutoff intersection method with a center face."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:297
+msgid "Custom Profile :kbd:`Z`"
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:267
+msgid "The custom profile widget."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:269
+msgid "This widget allows the creation of a user-defined profile with more complexity than with the single profile parameter. The modal tool allows toggling the custom profile, but the shape of the profile is only editable in the options panel after the operation is confirmed."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:273
+msgid "The profile starts at the bottom right of the widget and ends at the top left, as if it were between two edges meeting at a right angle. Control points are created in the widget and then the path is sampled with the number of segments from the bevel modifier."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:278
+msgid "Presets"
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:278
+msgid "The *Support Loops* and *Steps* presets are built dynamically depending on the number of segments in the bevel. If the number of segments is changed, the preset will have to be re-applied."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:280
+msgid "Reverse"
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:281
+msgid "The *Reverse* button flips the orientation of the profile for all beveled edges."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:284
+msgid "Clipping"
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:283
+msgid "The *Clipping* toggle allows control points to be moved beyond the initial boundary, allowing the bevel to add volume to the mesh rather than just removing it."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:288
+msgid "The *Profile* slider is still useful when miters are enabled because it still controls the shape of the miter profiles."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:290
+msgid "Sampling"
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:292
+msgid "Samples will first be added to each control point, then if there are enough samples, they will be divided evenly between the edges. The *Sample Straight Edges* option toggles whether the samples are added to edges with sharp control points on either side. If there aren't enough samples to give each edge the same number of samples, they will just be added to the most curved edges, so it is recommended to use at least as many segments as there are control points."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:300
+msgid "Examples"
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:307
+msgid "Result of beveling multiple edges."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:312
+msgid "Another example of beveling multiple edges."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:317
+msgid "An example using Profile=0.150."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:319
+msgid "Bevel Modifier"
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/subdividing/bevel.rst:321
 msgid "The :doc:`Bevel Modifier </modeling/modifiers/generate/bevel>` is a non-destructive alternative to the Bevel tool."
 msgstr ""
 

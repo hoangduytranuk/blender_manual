@@ -1,3 +1,5 @@
+.. Local style: our solar system's sun/planets (Sun, Earth, Moon...) are capitalized,
+   except when Earth is preceded by "the"; following NASA's style guide.
 
 ************
 Sun Position
@@ -6,8 +8,8 @@ Sun Position
 Introduction
 ============
 
-Sun Position allows positioning and animating the sun (to a certain degree of accuracy),
-to simulate real-world natural lighting. It uses physical characteristics to position the sun in the scene:
+Sun Position allows positioning and animating the Sun (to a certain degree of accuracy),
+to simulate real-world natural lighting. It uses physical characteristics to position the Sun in the scene:
 geographic location, time and date. It is based on the Earth System Research Laboratory's
 `online calculator <https://www.esrl.noaa.gov/gmd/grad/solcalc>`__.
 
@@ -29,7 +31,7 @@ Usage
 =====
 
 This add-on has two distinct modes of operation:  the `Normal Mode`_ allows you to
-animate the sun realistically, while the `Sun + HDRI Texture Mode`_ is useful for
+animate the Sun realistically, while the `Sun + HDRI Texture Mode`_ is useful for
 synchronizing a sun light to an HDRI texture.
 
 The usage mode can be selected from the top of the Sun Position panel.
@@ -68,9 +70,9 @@ Analemma
 """"""""
 
 The `analemma <https://en.wikipedia.org/wiki/Analemma>`__ is a visualization of
-the position of the sun in the sky around the year for a given time of the day.
+the position of the Sun in the sky around the year for a given time of the day.
 In other words, it is like a time lapse picture of the sky over a year,
-with the sun appearing multiple times at the same time of the day.
+with the Sun appearing multiple times at the same time of the day.
 
 .. figure:: /images/addons_lighting_sun_position_bell_lab.jpg
 
@@ -81,7 +83,7 @@ with the sun appearing multiple times at the same time of the day.
 Diurnal
 """""""
 
-This option allows you to visualize the trajectory of the sun in the sky during a single day.
+This option allows you to visualize the trajectory of the Sun in the sky during a single day.
 
 
 Sky Texture
@@ -95,7 +97,7 @@ This is useful if you want to have a simple sky texture matching a sun light's p
 Location
 ^^^^^^^^
 
-In order for the sun to be placed correctly, you need to choose a place on earth where the scene is located.
+In order for the Sun to be placed correctly, you need to choose a place on Earth where the scene is located.
 This place is represented by two coordinates, *Longitude* (East / West) and *Latitude* (North / South).
 They are expressed in degrees, from -180° to +180° for the longitude, and from -90° to 90° for the latitude.
 The coordinates match those found on such databases as OpenStreetMap or Google Maps.
@@ -138,7 +140,7 @@ to help you visualize the cardinal directions.
 Setting the Time
 ^^^^^^^^^^^^^^^^
 
-After selecting the location on earth, select or animate the date and time.
+After selecting the location on Earth, select or animate the date and time.
 This is fairly straightforward, but care must be taken to match
 the *Time* zone and *Daylight Saving* to the moment you wish to simulate.
 Time entered is the local time, but the global, UTC time may be displayed below as well.
@@ -152,7 +154,7 @@ Time entered is the local time, but the global, UTC time may be displayed below 
 Sun + HDRI Texture Mode
 -----------------------
 
-Instead of simulating the position of the sun for a real location and time, this mode simply locks
+Instead of simulating the position of the Sun for a real location and time, this mode simply locks
 an environment texture with a sun light object. It is useful if you want to increase the contrast in
 a texture, by using an additional sun.
 
@@ -181,7 +183,7 @@ The preferences for the add-on make some features optional, so you can hide thos
    :class: refbox
 
    :Category:  Lighting
-   :Description: Show sun position with objects and/or sky texture.
+   :Description: Show Sun position with objects and/or sky texture.
    :Location: :menuselection:`Properties editor --> World --> Sun Position panel`
    :File: sun_position folder
    :Author: Michael Martin (xaire)

@@ -472,29 +472,7 @@ you only really lock its tip. With unconnected bones, the locking is effective o
 X-Axis Mirror
 =============
 
-.. admonition:: Reference
-   :class: refbox
-
-   :Mode:      Edit and Pose Mode
-   :Panel:     :menuselection:`Sidebar region --> Tool --> Options --> X-Axis Mirror`
-
-This option enables automatic mirroring of editing actions along the X axis.
-Another very useful tool is the *X-Axis Mirror* editing option by
-:menuselection:`Tool tab --> Options panel`, while Armature is selected in *Edit Mode*.
-When you have pairs of bones of the same name with just a different "side suffix"
-(e.g. ".R"/".L", or "_right"/"_left" ...), once this option is enabled,
-each time you transform (move/rotate/scale...) a bone,
-its "other side" counterpart will be transformed accordingly,
-through a symmetry along the armature local X axis.
-As most rigs have at least one axis of symmetry (animals, humans, ...),
-it is an easy way to spare you half of the editing work!
-
-Relative Mirror
-   Accounts for any relative transformations when using *X-Axis Mirror*.
-
-.. seealso::
-
-   :ref:`Naming bones <armature-editing-naming-bones>`.
+See :ref:`X-Axis Mirror Pose Mode <armature-posing-x-mirror>`.
 
 
 Separate Bones

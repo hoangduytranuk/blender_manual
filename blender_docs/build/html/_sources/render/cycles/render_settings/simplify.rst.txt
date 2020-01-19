@@ -75,14 +75,14 @@ Grease Pencil
 Playback Only
    Activates the simplification process only during animation playback.
 Modifiers
-   Disable Grease Pencil modifiers.
+   Shows Grease Pencil modifiers.
 ShaderFX
-   Disable Grease Pencil visual effects.
+   Shows Grease Pencil visual effects.
 Layer Blending
-   Disable the blending modes used in layers.
+   Shows the blending modes used in layers.
 Layer Tinting
-   Disable layers tint overrides, only base material colors are displayed.
+   Shows layers tint overrides.
 Disable Fill
-   Disable the fill component in Grease Pencil materials.
+   Shows the fill component in Grease Pencil materials.
 Lines
-   The strokes of materials that use a fill component are not displayed.
+   Shows the strokes of materials that use a fill component.

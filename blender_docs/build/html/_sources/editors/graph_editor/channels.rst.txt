@@ -61,9 +61,9 @@ Editing
 - Delete selected: :kbd:`X` or :kbd:`Delete`
 - Lock selected: :kbd:`Tab`
 - Make only selected visible: :kbd:`V`
-- Enable Mute Lock selected: :kbd:`Shift-Ctrl-W`
-- Disable Mute Lock selected: :kbd:`Alt-W`
-- Toggle Mute Lock selected: :kbd:`Shift-W`
+- Enable Channel Setting: :kbd:`Shift-Ctrl-W`
+- Disable Channel Setting: :kbd:`Alt-W`
+- Toggle Channel Setting: :kbd:`Shift-W`
 
 
 Sliders
@@ -91,13 +91,13 @@ Delete Channels :kbd:`X`
       it will delete the selected channels, whereas if you use it in the main area,
       it will delete the selected keyframes.
 
-Un/Group Channels :kbd:`Ctrl-G`, :kbd:`Alt-G`
+Un/Group Channels :kbd:`Ctrl-Alt-G`, :kbd:`Ctrl-G`
    Un/Groups the selected channels into a collection that can be renamed by double clicking on the group name.
    For example, this helps to group channels that relate a part of an armature to keep the editor more organized.
 Settings Toggle/Enable/Disable, :kbd:`Shift-W`, :kbd:`Shift-Ctrl-W`, :kbd:`Alt-W`
    Enable/disable a channel's setting (selected in the menu that pops up).
 
-   Lock, Mute
+   Protect, Mute
 Toggle Channel Editability :kbd:`Tab`
    Locks or unlocks a channel for editing.
 Extrapolation Mode

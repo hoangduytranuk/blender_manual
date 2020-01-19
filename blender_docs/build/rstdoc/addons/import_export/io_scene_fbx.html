@@ -138,11 +138,88 @@ this add-on uses the
     <title>
      Import
     </title>
-    <section dupnames="main" ids="main">
+    <section dupnames="include" ids="include">
      <title>
-      Main
+      Include
      </title>
      <definition_list>
+      <definition_list_item>
+       <term>
+        Import Normals
+       </term>
+       <definition>
+        <paragraph>
+         TODO.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Import Subdivision Surface
+       </term>
+       <definition>
+        <paragraph>
+         Todo.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Import User Properties
+       </term>
+       <definition>
+        <paragraph>
+         TODO.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Import Enums As Strings
+       </term>
+       <definition>
+        <paragraph>
+         TODO.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Image Search
+       </term>
+       <definition>
+        <paragraph>
+         TODO.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section dupnames="transform" ids="transform">
+     <title>
+      Transform
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Scale
+       </term>
+       <definition>
+        <paragraph>
+         Todo.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Decal Offset
+       </term>
+       <definition>
+        <paragraph>
+         TODO.
+        </paragraph>
+       </definition>
+      </definition_list_item>
       <definition_list_item>
        <term>
         Manual Orientation
@@ -181,78 +258,6 @@ For example, its common for applications to use Y as the up axis, in that case -
       </definition_list_item>
       <definition_list_item>
        <term>
-        Import Normals
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Import Animation
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-        <definition_list>
-         <definition_list_item>
-          <term>
-           Animation Offset
-          </term>
-          <definition>
-           <paragraph>
-            TODO.
-           </paragraph>
-          </definition>
-         </definition_list_item>
-        </definition_list>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Import User Properties
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Import Enums As Strings
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Image Search
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Decal Offset
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
         Use Pre/Post Rotation
        </term>
        <definition>
@@ -263,9 +268,29 @@ For example, its common for applications to use Y as the up axis, in that case -
       </definition_list_item>
      </definition_list>
     </section>
-    <section dupnames="armatures" ids="armatures">
+    <section ids="animation" names="animation">
      <title>
-      Armatures
+      Animation
+     </title>
+     <paragraph>
+      TODO.
+     </paragraph>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Animation Offset
+       </term>
+       <definition>
+        <paragraph>
+         TODO.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="armature" names="armature">
+     <title>
+      Armature
      </title>
      <definition_list>
       <definition_list_item>
@@ -315,9 +340,146 @@ For example, its common for applications to use Y as the up axis, in that case -
     <title>
      Export
     </title>
-    <section dupnames="main" ids="id1">
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Path Mode
+      </term>
+      <definition>
+       <paragraph>
+        When referencing paths in exported files you may want some control as to the method used since absolute paths
+may only be correct on your own system. Relative paths, on the other hand, are more portable
+but mean that you have to keep your files grouped when moving about on your local file system.
+In some cases, the path doesn’t matter since the target application will search
+a set of predefined paths anyway so you have the option to strip the path too.
+       </paragraph>
+       <field_list>
+        <field>
+         <field_name>
+          Auto
+         </field_name>
+         <field_body>
+          <paragraph>
+           Uses relative paths for files which are in a subdirectory of the exported location,
+absolute for any directories outside that.
+          </paragraph>
+         </field_body>
+        </field>
+        <field>
+         <field_name>
+          Absolute
+         </field_name>
+         <field_body>
+          <paragraph>
+           Uses full paths.
+          </paragraph>
+         </field_body>
+        </field>
+        <field>
+         <field_name>
+          Relative
+         </field_name>
+         <field_body>
+          <paragraph>
+           Uses relative paths in every case (except when on a different drive on windows).
+          </paragraph>
+         </field_body>
+        </field>
+        <field>
+         <field_name>
+          Match
+         </field_name>
+         <field_body>
+          <paragraph>
+           Uses relative / absolute paths based on the paths used in Blender.
+          </paragraph>
+         </field_body>
+        </field>
+        <field>
+         <field_name>
+          Strip Path
+         </field_name>
+         <field_body>
+          <paragraph>
+           Only write the filename and omit the path component.
+          </paragraph>
+         </field_body>
+        </field>
+        <field>
+         <field_name>
+          Copy
+         </field_name>
+         <field_body>
+          <paragraph>
+           Copy the file on exporting and reference it with a relative path.
+          </paragraph>
+         </field_body>
+        </field>
+       </field_list>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Embed Textures
+         </term>
+         <definition>
+          <paragraph>
+           TODO.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Batch Mode
+      </term>
+      <definition>
+       <paragraph>
+        When enabled, export each group or scene to a file.
+       </paragraph>
+       <definition_list>
+        <definition_list_item>
+         <term>
+          Group/Scene
+         </term>
+         <definition>
+          <paragraph>
+           Choose whether to batch export groups or scenes to files.
+Note, when Group/Scene is enabled, you cannot use the animation option
+           <emphasis>
+            Current Action
+           </emphasis>
+           since it uses scene data and groups are not attached to any scenes.
+Also note, when Group/Scene is enabled you must include the armature objects
+in the group for animated actions to work.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+        <definition_list_item>
+         <term>
+          Batch Own Directory
+         </term>
+         <definition>
+          <paragraph>
+           When enabled, each file is exported into its own directory,
+this is useful when using the
+           <emphasis>
+            Copy Images
+           </emphasis>
+           option. So each directory contains
+one model with all the images it uses. Note, this requires a full Python installation.
+If you do not have a full Python installation, this button will not be shown.
+          </paragraph>
+         </definition>
+        </definition_list_item>
+       </definition_list>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+    <section dupnames="include" ids="id1">
      <title>
-      Main
+      Include
      </title>
      <definition_list>
       <definition_list_item>
@@ -333,22 +495,49 @@ Note, this does not apply when batch exporting.
       </definition_list_item>
       <definition_list_item>
        <term>
+        Active Collection
+       </term>
+       <definition>
+        <paragraph>
+         Todo.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Object Types
+       </term>
+       <definition>
+        <paragraph>
+         Enable/Disable exporting of respective object types.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Custom Properties
+       </term>
+       <definition>
+        <paragraph>
+         TODO.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section dupnames="transform" ids="id2">
+     <title>
+      Transform
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
         Scale
        </term>
        <definition>
         <paragraph>
          Scale the exported data by this value. 10 is the default
 because this fits best with the scale most applications import FBX to.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Apply Scale
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
         </paragraph>
        </definition>
       </definition_list_item>
@@ -364,7 +553,7 @@ because this fits best with the scale most applications import FBX to.
       </definition_list_item>
       <definition_list_item>
        <term>
-        Forward / Up Axis
+        Forward / Up
        </term>
        <definition>
         <paragraph>
@@ -380,11 +569,11 @@ For example, its common for applications to use Y as the up axis, in that case -
       </definition_list_item>
       <definition_list_item>
        <term>
-        Empty/Camera/Light/Armature/Mesh/Other
+        Apply Unit
        </term>
        <definition>
         <paragraph>
-         Enable/Disable exporting of respective object types.
+         TODO.
         </paragraph>
        </definition>
       </definition_list_item>
@@ -398,178 +587,13 @@ For example, its common for applications to use Y as the up axis, in that case -
         </paragraph>
        </definition>
       </definition_list_item>
-      <definition_list_item>
-       <term>
-        Custom Properties
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Path Mode
-       </term>
-       <definition>
-        <paragraph>
-         When referencing paths in exported files you may want some control as to the method used since absolute paths
-may only be correct on your own system. Relative paths, on the other hand, are more portable
-but mean that you have to keep your files grouped when moving about on your local file system.
-In some cases, the path doesn’t matter since the target application will search
-a set of predefined paths anyway so you have the option to strip the path too.
-        </paragraph>
-        <field_list>
-         <field>
-          <field_name>
-           Auto
-          </field_name>
-          <field_body>
-           <paragraph>
-            Uses relative paths for files which are in a subdirectory of the exported location,
-absolute for any directories outside that.
-           </paragraph>
-          </field_body>
-         </field>
-         <field>
-          <field_name>
-           Absolute
-          </field_name>
-          <field_body>
-           <paragraph>
-            Uses full paths.
-           </paragraph>
-          </field_body>
-         </field>
-         <field>
-          <field_name>
-           Relative
-          </field_name>
-          <field_body>
-           <paragraph>
-            Uses relative paths in every case (except when on a different drive on windows).
-           </paragraph>
-          </field_body>
-         </field>
-         <field>
-          <field_name>
-           Match
-          </field_name>
-          <field_body>
-           <paragraph>
-            Uses relative / absolute paths based on the paths used in Blender.
-           </paragraph>
-          </field_body>
-         </field>
-         <field>
-          <field_name>
-           Strip Path
-          </field_name>
-          <field_body>
-           <paragraph>
-            Only write the filename and omit the path component.
-           </paragraph>
-          </field_body>
-         </field>
-         <field>
-          <field_name>
-           Copy
-          </field_name>
-          <field_body>
-           <paragraph>
-            Copy the file on exporting and reference it with a relative path.
-           </paragraph>
-          </field_body>
-         </field>
-        </field_list>
-        <definition_list>
-         <definition_list_item>
-          <term>
-           Embed Textures
-          </term>
-          <definition>
-           <paragraph>
-            TODO.
-           </paragraph>
-          </definition>
-         </definition_list_item>
-        </definition_list>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Batch Mode
-       </term>
-       <definition>
-        <paragraph>
-         When enabled, export each group or scene to a file.
-        </paragraph>
-        <definition_list>
-         <definition_list_item>
-          <term>
-           Group/Scene
-          </term>
-          <definition>
-           <paragraph>
-            Choose whether to batch export groups or scenes to files.
-Note, when Group/Scene is enabled, you cannot use the animation option
-            <emphasis>
-             Current Action
-            </emphasis>
-            since it uses scene data and groups are not attached to any scenes.
-Also note, when Group/Scene is enabled you must include the armature objects
-in the group for animated actions to work.
-           </paragraph>
-          </definition>
-         </definition_list_item>
-         <definition_list_item>
-          <term>
-           Own Dir
-          </term>
-          <definition>
-           <paragraph>
-            When enabled, each file is exported into its own directory,
-this is useful when using the
-            <emphasis>
-             Copy Images
-            </emphasis>
-            option. So each directory contains
-one model with all the images it uses. Note, this requires a full Python installation.
-If you do not have a full Python installation, this button will not be shown.
-           </paragraph>
-          </definition>
-         </definition_list_item>
-        </definition_list>
-       </definition>
-      </definition_list_item>
      </definition_list>
     </section>
-    <section ids="geometries" names="geometries">
+    <section ids="geometry" names="geometry">
      <title>
-      Geometries
+      Geometry
      </title>
      <definition_list>
-      <definition_list_item>
-       <term>
-        Apply Modifiers
-       </term>
-       <definition>
-        <paragraph>
-         When enabled, the mesh will be from the output of the modifiers applied to the mesh.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Use Modifiers Render Setting
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-       </definition>
-      </definition_list_item>
       <definition_list_item>
        <term>
         Smoothing
@@ -577,6 +601,26 @@ If you do not have a full Python installation, this button will not be shown.
        <definition>
         <paragraph>
          TODO.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Export Subdivision Surface
+       </term>
+       <definition>
+        <paragraph>
+         Todo.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Apply Modifiers
+       </term>
+       <definition>
+        <paragraph>
+         When enabled, the mesh will be from the output of the modifiers applied to the mesh.
         </paragraph>
        </definition>
       </definition_list_item>
@@ -602,31 +646,11 @@ If you do not have a full Python installation, this button will not be shown.
       </definition_list_item>
      </definition_list>
     </section>
-    <section dupnames="armatures" ids="id2">
+    <section ids="armatures" names="armatures">
      <title>
       Armatures
      </title>
      <definition_list>
-      <definition_list_item>
-       <term>
-        Only Deform Bones
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Add Leaf Bones
-       </term>
-       <definition>
-        <paragraph>
-         TODO.
-        </paragraph>
-       </definition>
-      </definition_list_item>
       <definition_list_item>
        <term>
         Primary/Secondary Bone Axis
@@ -647,16 +671,9 @@ If you do not have a full Python installation, this button will not be shown.
         </paragraph>
        </definition>
       </definition_list_item>
-     </definition_list>
-    </section>
-    <section ids="animation" names="animation">
-     <title>
-      Animation
-     </title>
-     <definition_list>
       <definition_list_item>
        <term>
-        Baked Animation
+        Only Deform Bones
        </term>
        <definition>
         <paragraph>
@@ -664,6 +681,26 @@ If you do not have a full Python installation, this button will not be shown.
         </paragraph>
        </definition>
       </definition_list_item>
+      <definition_list_item>
+       <term>
+        Add Leaf Bones
+       </term>
+       <definition>
+        <paragraph>
+         TODO.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section ids="bake-animation" names="bake\ animation">
+     <title>
+      Bake Animation
+     </title>
+     <paragraph>
+      TODO.
+     </paragraph>
+     <definition_list>
       <definition_list_item>
        <term>
         Key All Bones

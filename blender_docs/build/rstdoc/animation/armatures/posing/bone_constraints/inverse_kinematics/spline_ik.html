@@ -50,7 +50,7 @@ since the results may be difficult to control.
     To setup Spline IK,
 it is necessary to have a chain of connected bones and a curve to constrain these bones to:
    </paragraph>
-   <bullet_list bullet="-">
+   <enumerated_list enumtype="arabic" prefix="" suffix=".">
     <list_item>
      <paragraph>
       With the last bone in the chain selected,
@@ -82,7 +82,7 @@ add a
       field to the curve that should control the curve.
      </paragraph>
     </list_item>
-   </bullet_list>
+   </enumerated_list>
    <paragraph>
     Congratulations, the bone chain is now controlled by the curve.
    </paragraph>
@@ -107,19 +107,50 @@ This section is intended to introduce the workflow.
     </title>
     <paragraph>
      To control the
-     <emphasis>
-      twist
-     </emphasis>
-     or
-     <emphasis>
-      roll
-     </emphasis>
+     <reference internal="True" refuri="#term-roll">
+      <inline classes="xref std std-term">
+       roll
+      </inline>
+     </reference>
      of the Spline IK chain,
-the standard methods of rotating the bones in the chain along their Y axes still apply.
-For example, simply rotate the bones in the chain around their Y axes to adjust the roll of
-the chain from that point onward.
-Applying copy rotation constraints on the bones should also work.
+the standard methods of rotating the bones in the chain along their local Y axes still apply.
+For example, start at the farthest bone and simply rotate the bones in the chain around their
+local Y axes to adjust the roll of the chain from that point onward.
     </paragraph>
+    <paragraph>
+     Applying Copy Rotation constraints on the bones also works.
+    </paragraph>
+    <note>
+     <paragraph>
+      There are a couple of limitations to consider:
+     </paragraph>
+     <bullet_list bullet="-">
+      <list_item>
+       <paragraph>
+        Bones do not inherit a curve’s
+        <reference internal="True" refuri="#modeling-curve-tilt">
+         <inline classes="std std-ref">
+          tilt
+         </inline>
+        </reference>
+        value to control their roll.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        There is no way of automatically creating a twisting effect
+where a dampened rotation is inherited up the chain.
+Consider using
+        <reference internal="True" refuri="">
+         <inline classes="doc">
+          Bendy Bones
+         </inline>
+        </reference>
+        instead.
+       </paragraph>
+      </list_item>
+     </bullet_list>
+    </note>
    </section>
    <section ids="offset-controls" names="offset\ controls">
     <title>

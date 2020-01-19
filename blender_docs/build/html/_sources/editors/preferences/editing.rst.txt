@@ -57,18 +57,18 @@ Enter Edit Mode
 Duplicate Data
 --------------
 
-The *Duplicate Data* checkboxes define what data is copied with a duplicated Object and
+The *Duplicate Data* checkboxes define what data is copied with a duplicated object and
 what data remains linked. Any boxes that are checked will have their data copied along with
-the duplication of the Object. Any boxes that are not checked will instead have their data linked
-from the source Object that was duplicated.
+the duplication of the object. Any boxes that are not checked will instead have their data linked
+from the source object that was duplicated.
 
-For example, if you have Mesh checked,
-then a full copy of the mesh data is created with the new Object,
+For example, if you have *Mesh* checked,
+then a full copy of the mesh data is created with the new object,
 and each mesh will behave independently of the duplicate.
 If you leave the mesh box unchecked then when you change the mesh of one object,
-the change will be mirrored in the duplicate Object.
+the change will be mirrored in the duplicate object.
 
-The same rules apply to each of the checkboxes in the 'Duplicate Data' list.
+The same rules apply to each of the checkboxes in the *Duplicate Data* list.
 
 
 3D Cursor

@@ -257,62 +257,6 @@ Defines how much the boid can suddenly accelerate in order to fulfill a rule.
     </definition_list_item>
    </definition_list>
   </section>
-  <section ids="misc" names="misc">
-   <title>
-    Misc
-   </title>
-   <admonition classes="refbox">
-    <title>
-     Reference
-    </title>
-    <field_list>
-     <field>
-      <field_name>
-       Panel
-      </field_name>
-      <field_body>
-       <paragraph>
-        <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Physics --&gt; Misc`">
-         Particle System ‣ Physics ‣ Misc
-        </inline>
-       </paragraph>
-      </field_body>
-     </field>
-    </field_list>
-   </admonition>
-   <definition_list>
-    <definition_list_item>
-     <term>
-      Banking
-     </term>
-     <definition>
-      <paragraph>
-       Amount of rotation around velocity vector on turns. Banking of 1.0 gives a natural banking effect.
-      </paragraph>
-     </definition>
-    </definition_list_item>
-    <definition_list_item>
-     <term>
-      Pitch
-     </term>
-     <definition>
-      <paragraph>
-       Amount of rotation around side vector.
-      </paragraph>
-     </definition>
-    </definition_list_item>
-    <definition_list_item>
-     <term>
-      Height
-     </term>
-     <definition>
-      <paragraph>
-       Boid height relative to particle size.
-      </paragraph>
-     </definition>
-    </definition_list_item>
-   </definition_list>
-  </section>
   <section ids="battle" names="battle">
    <title>
     Battle
@@ -389,6 +333,62 @@ Defines how much the boid can suddenly accelerate in order to fulfill a rule.
     </definition_list_item>
    </definition_list>
   </section>
+  <section ids="misc" names="misc">
+   <title>
+    Misc
+   </title>
+   <admonition classes="refbox">
+    <title>
+     Reference
+    </title>
+    <field_list>
+     <field>
+      <field_name>
+       Panel
+      </field_name>
+      <field_body>
+       <paragraph>
+        <inline classes="menuselection" rawtext=":menuselection:`Particle System --&gt; Physics --&gt; Misc`">
+         Particle System ‣ Physics ‣ Misc
+        </inline>
+       </paragraph>
+      </field_body>
+     </field>
+    </field_list>
+   </admonition>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Banking
+     </term>
+     <definition>
+      <paragraph>
+       Amount of rotation around velocity vector on turns. Banking of 1.0 gives a natural banking effect.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Pitch
+     </term>
+     <definition>
+      <paragraph>
+       Amount of rotation around side vector.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Height
+     </term>
+     <definition>
+      <paragraph>
+       Boid height relative to particle size.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
   <section ids="relations" names="relations">
    <title>
     Relations
@@ -431,7 +431,7 @@ Defines how much the boid can suddenly accelerate in order to fulfill a rule.
     </definition_list_item>
     <definition_list_item>
      <term>
-      Object
+      Target Object
      </term>
      <definition>
       <paragraph>
@@ -461,7 +461,7 @@ Defines how much the boid can suddenly accelerate in order to fulfill a rule.
     </definition_list_item>
     <definition_list_item>
      <term>
-      Alliance
+      Mode
      </term>
      <definition>
       <definition_list>
@@ -568,259 +568,258 @@ according to the (respectively)
    </admonition>
    <paragraph>
     The Boid Brain panel controls how the boids particles will react with each other.
-   </paragraph>
-   <section ids="rules" names="rules">
-    <title>
-     Rules
-    </title>
-    <paragraph>
-     The boids’ behavior is controlled by a list of rules.
+The boids’ behavior is controlled by a list of rules.
 Only a certain amount of information in the list can be evaluated.
 If the memory capacity is exceeded, the remaining rules are ignored.
-    </paragraph>
-    <paragraph>
-     The rules are by default parsed from top-list to bottom-list
+   </paragraph>
+   <paragraph>
+    The rules are by default parsed from top-list to bottom-list
 (thus giving explicit priorities),
 and the order can be modified using the little arrows buttons on the right side.
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Rule Evaluation
+     </term>
+     <definition>
+      <paragraph>
+       There are three ways to control how rules are evaluated:
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Average
+        </term>
+        <definition>
+         <paragraph>
+          All rules are averaged.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Random
+        </term>
+        <definition>
+         <paragraph>
+          A random rule is selected for each boid.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         Fuzzy
+        </term>
+        <definition>
+         <paragraph>
+          Uses fuzzy logic to evaluate rules. Rules are gone through top to bottom.
+Only the first rule that affect above the
+          <emphasis>
+           Rule Fuzziness
+          </emphasis>
+          threshold is evaluated.
+The value should be considered how hard the boid will try to respect a given rule
+(a value of 1 means the Boid will always stick to it, a value of 0 means it will never).
+If the boid meets more than one conflicting condition at the same time,
+it will try to fulfill all the rules according to the respective weight of each.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+      <note>
+       <paragraph>
+        A given boid will try as much as it can to comply to each of the rules he is
+given, but it is more than likely that some rule will take precedence on other in some cases.
+For example, in order to avoid a predator, a boid could probably “forget” about Collision,
+Separate and Flock rules, meaning that “while panicked” it could well run into obstacles,
+e.g. even if instructed not to, most of the time.
+       </paragraph>
+      </note>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      In Air
+     </term>
+     <definition>
+      <paragraph>
+       The current rule affects boids while they are flying.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      On Land
+     </term>
+     <definition>
+      <paragraph>
+       The current rule affects boids while they are not flying.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <section ids="goal-rule" names="goal\ rule">
+    <title>
+     Goal Rule
+    </title>
+    <paragraph>
+     Seek goal.
     </paragraph>
     <definition_list>
      <definition_list_item>
       <term>
-       Goal
+       Object
       </term>
       <definition>
        <paragraph>
-        Seek goal.
+        Specifies the goal object. If not specified, Boid force fields with negative Strength are used as goals.
        </paragraph>
-       <definition_list>
-        <definition_list_item>
-         <term>
-          Object
-         </term>
-         <definition>
-          <paragraph>
-           Specifies the goal object. If not specified, Boid force fields with negative Strength are used as goals.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-        <definition_list_item>
-         <term>
-          Predict
-         </term>
-         <definition>
-          <paragraph>
-           Predict target’s movements.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-       </definition_list>
       </definition>
      </definition_list_item>
      <definition_list_item>
       <term>
-       Avoid
+       Predict
       </term>
       <definition>
        <paragraph>
-        Avoid “predators”.
+        Predict target’s movements.
        </paragraph>
-       <definition_list>
-        <definition_list_item>
-         <term>
-          Object
-         </term>
-         <definition>
-          <paragraph>
-           Specifies the object to avoid.
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="avoid-rule" names="avoid\ rule">
+    <title>
+     Avoid Rule
+    </title>
+    <paragraph>
+     Avoid “predators”.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Object
+      </term>
+      <definition>
+       <paragraph>
+        Specifies the object to avoid.
 If not specified, Boid force fields with positive Strength are used as predators.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-        <definition_list_item>
-         <term>
-          Predict
-         </term>
-         <definition>
-          <paragraph>
-           Predict target’s movements.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-        <definition_list_item>
-         <term>
-          Fear Factor
-         </term>
-         <definition>
-          <paragraph>
-           Avoid object if danger from it is above this threshold.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-       </definition_list>
+       </paragraph>
       </definition>
      </definition_list_item>
      <definition_list_item>
       <term>
-       Avoid Collision
+       Predict
       </term>
       <definition>
        <paragraph>
-        Avoid objects with activated Deflection.
+        Predict target’s movements.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Fear Factor
+      </term>
+      <definition>
+       <paragraph>
+        Avoid object if danger from it is above this threshold.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="avoid-collision-rule" names="avoid\ collision\ rule">
+    <title>
+     Avoid Collision Rule
+    </title>
+    <paragraph>
+     Avoid objects with activated Deflection.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Boids
+      </term>
+      <definition>
+       <paragraph>
+        Avoid collision with other boids.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Deflectors
+      </term>
+      <definition>
+       <paragraph>
+        Avoid collision with deflector objects.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Look Ahead
+      </term>
+      <definition>
+       <paragraph>
+        Time to look ahead in seconds.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="separate-rule" names="separate\ rule">
+    <title>
+     Separate Rule
+    </title>
+    <paragraph>
+     Boids move away from each other.
+    </paragraph>
+   </section>
+   <section ids="flock-rule" names="flock\ rule">
+    <title>
+     Flock Rule
+    </title>
+    <paragraph>
+     Copy movements of neighboring boids, but avoid each other.
+    </paragraph>
+   </section>
+   <section ids="follow-leader-rule" names="follow\ leader\ rule">
+    <title>
+     Follow Leader Rule
+    </title>
+    <paragraph>
+     Follows a leader object instead of a boid.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Distance
+      </term>
+      <definition>
+       <paragraph>
+        Distance behind leader to follow.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Line
+      </term>
+      <definition>
+       <paragraph>
+        Follow the leader in a line.
        </paragraph>
        <definition_list>
         <definition_list_item>
          <term>
-          Boids
+          Queue Size
          </term>
          <definition>
           <paragraph>
-           Avoid collision with other boids.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-        <definition_list_item>
-         <term>
-          Deflectors
-         </term>
-         <definition>
-          <paragraph>
-           Avoid collision with deflector objects.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-        <definition_list_item>
-         <term>
-          Look Ahead
-         </term>
-         <definition>
-          <paragraph>
-           Time to look ahead in seconds.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-       </definition_list>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Separate
-      </term>
-      <definition>
-       <paragraph>
-        Boids move away from each other.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Flock
-      </term>
-      <definition>
-       <paragraph>
-        Copy movements of neighboring boids, but avoid each other.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Follow Leader
-      </term>
-      <definition>
-       <paragraph>
-        Follows a leader object instead of a boid.
-       </paragraph>
-       <definition_list>
-        <definition_list_item>
-         <term>
-          Distance
-         </term>
-         <definition>
-          <paragraph>
-           Distance behind leader to follow.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-        <definition_list_item>
-         <term>
-          Line
-         </term>
-         <definition>
-          <paragraph>
-           Follow the leader in a line.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-       </definition_list>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Average Speed
-      </term>
-      <definition>
-       <paragraph>
-        Maintain average velocity.
-       </paragraph>
-       <definition_list>
-        <definition_list_item>
-         <term>
-          Speed
-         </term>
-         <definition>
-          <paragraph>
-           Percentage of maximum speed.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-        <definition_list_item>
-         <term>
-          Wander
-         </term>
-         <definition>
-          <paragraph>
-           How fast velocity’s direction is randomized.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-        <definition_list_item>
-         <term>
-          Level
-         </term>
-         <definition>
-          <paragraph>
-           How much velocity’s Z component is kept constant.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-       </definition_list>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Fight
-      </term>
-      <definition>
-       <paragraph>
-        Move toward nearby boids.
-       </paragraph>
-       <definition_list>
-        <definition_list_item>
-         <term>
-          Fight Distance
-         </term>
-         <definition>
-          <paragraph>
-           Attack boids at a maximum of this distance.
-          </paragraph>
-         </definition>
-        </definition_list_item>
-        <definition_list_item>
-         <term>
-          Flee Distance
-         </term>
-         <definition>
-          <paragraph>
-           Flee to this distance.
+           How many boids that are allowed to follow in a line.
           </paragraph>
          </definition>
         </definition_list_item>
@@ -828,58 +827,76 @@ If not specified, Boid force fields with positive Strength are used as predators
       </definition>
      </definition_list_item>
     </definition_list>
-    <section ids="rule-evaluation" names="rule\ evaluation">
-     <title>
-      Rule Evaluation
-     </title>
-     <paragraph>
-      There are three ways to control how rules are evaluated.
-     </paragraph>
-     <definition_list>
-      <definition_list_item>
-       <term>
-        Average
-       </term>
-       <definition>
-        <paragraph>
-         All rules are averaged.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Random
-       </term>
-       <definition>
-        <paragraph>
-         A random rule is selected for each boid.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-      <definition_list_item>
-       <term>
-        Fuzzy
-       </term>
-       <definition>
-        <paragraph>
-         Uses fuzzy logic to evaluate rules. Rules are gone through top to bottom.
-Only the first rule that affect above the fuzziness threshold is evaluated.
-The value should be considered how hard the boid will try to respect a given rule
-(a value of 1.000 means the Boid will always stick to it, a value of 0.000 means it will never).
-If the boid meets more than one conflicting condition at the same time,
-it will try to fulfill all the rules according to the respective weight of each.
-        </paragraph>
-       </definition>
-      </definition_list_item>
-     </definition_list>
-     <paragraph>
-      Please note that a given boid will try as much as it can to comply to each of the rules he is
-given, but it is more than likely that some rule will take precedence on other in some cases.
-For example, in order to avoid a predator, a boid could probably “forget” about Collision,
-Separate and Flock rules, meaning that “while panicked” it could well run into obstacles,
-e.g. even if instructed not to, most of the time.
-     </paragraph>
-    </section>
+   </section>
+   <section ids="average-speed-rule" names="average\ speed\ rule">
+    <title>
+     Average Speed Rule
+    </title>
+    <paragraph>
+     Maintain average velocity.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Speed
+      </term>
+      <definition>
+       <paragraph>
+        Percentage of maximum speed.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Wander
+      </term>
+      <definition>
+       <paragraph>
+        How fast velocity’s direction is randomized.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Level
+      </term>
+      <definition>
+       <paragraph>
+        How much velocity’s Z component is kept constant.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
+   </section>
+   <section ids="fight-rule" names="fight\ rule">
+    <title>
+     Fight Rule
+    </title>
+    <paragraph>
+     Move toward nearby boids.
+    </paragraph>
+    <definition_list>
+     <definition_list_item>
+      <term>
+       Fight Distance
+      </term>
+      <definition>
+       <paragraph>
+        Attack boids at a maximum of this distance.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+     <definition_list_item>
+      <term>
+       Flee Distance
+      </term>
+      <definition>
+       <paragraph>
+        Flee to this distance.
+       </paragraph>
+      </definition>
+     </definition_list_item>
+    </definition_list>
    </section>
   </section>
  </section>

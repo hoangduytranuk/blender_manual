@@ -430,7 +430,7 @@ To make this new example as short as possible, it will recycle the last example 
 #. Move the upper vertex and move a bit to the left, but no more than you have moved the last vertex.
    (See Fig. :ref:`fig-mesh-screw-start`.)
 #. Press the shortcut :kbd:`A` twice to deselect and select all.
-#. Press the shortcut :kbd:`Shift-S` and select *Cursor to Center*
+#. Press the shortcut :kbd:`Shift-S` and select *Cursor to Center*.
 #. Press Screw.
 
 .. list-table::

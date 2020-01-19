@@ -30,7 +30,7 @@ Usage
 =====
 
 #. Select the object to point the lights at.
-#. :menuselection:`3D View --> Add --> Light menu --> 3 Point Lights`
+#. Add the lights with :menuselection:`3D View --> Add --> Light menu --> 3 Point Lights`.
 #. Adjust settings in the Tri-Lighting Creator :ref:`ui-undo-redo-adjust-last-operation` panel.
 #. The created lights are pointed at and locked to the active object using a Track To constraint.
 #. In the :menuselection:`Properties editor --> Light tab` you can further edit the properties of your lights.

@@ -20,5 +20,5 @@ Brush Settings
    texture.rst
    stroke.rst
    falloff.rst
-   display.rst
+   cursor.rst
    symmetry.rst

@@ -30,7 +30,7 @@ Mode
 View
    This menu offers tools to :doc:`navigate </editors/3dview/navigate/index>` in 3D space.
 
-*Other menus depend on the current mode, Object Mode menus listed below.*
+Other menus depend on the current mode, Object Mode menus listed below:
 
 Select
    Contains tools for :ref:`selecting <object-select-menu>` objects.

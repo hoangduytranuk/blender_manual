@@ -39,7 +39,7 @@ Undo Memory Limit
    Maximum memory usage in Mb (0 is unlimited).
 Global Undo
    This enables Blender to save actions done when you are **not** in *Edit Mode*.
-   For example, duplicating Objects, changing panel settings or switching between modes.
+   For example, duplicating objects, changing panel settings or switching between modes.
 
    .. warning::
 

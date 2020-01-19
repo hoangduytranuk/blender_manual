@@ -13,8 +13,17 @@ Read more about using the :ref:`ui-curve-widget`.
 
    Brush curve example.
 
-Frontface Falloff
-   As faces point away from the view the brush strokes fade away to prevent harsh edges.
+Curve Preset
+   Todo.
 
-   Angle
-      The angle at which the falloff begins.
+   Smoother
+      Similar to *Smooth* but produces a flat surface at the brush center.
+
+
+Normal Falloff
+==============
+
+As faces point away from the view the brush strokes fade away to prevent harsh edges.
+
+Angle
+   The angle at which the falloff begins.

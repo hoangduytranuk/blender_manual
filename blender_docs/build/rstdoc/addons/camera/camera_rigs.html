@@ -3,18 +3,13 @@
   <title>
    Add Camera Rigs
   </title>
-  <section ids="introduction" names="introduction">
-   <title>
-    Introduction
-   </title>
-   <figure align="right">
-    <image candidates="{'*': 'images/addons_camera_rigs.jpg'}" uri="images/addons_camera_rigs.jpg" width="465px"/>
-   </figure>
-   <paragraph>
-    This script was designed to add some extended functionality to a camera by creating control rig
+  <figure align="center">
+   <image candidates="{'*': 'images/addons_camera_rigs.png'}" uri="images/addons_camera_rigs.png"/>
+  </figure>
+  <paragraph>
+   This script was designed to add some extended functionality to a camera by creating control rig
 with custom shapes and UI to easily access the cameras settings from the 3D View.
-   </paragraph>
-  </section>
+  </paragraph>
   <section ids="activation" names="activation">
    <title>
     Activation
@@ -55,15 +50,11 @@ to make it easier to achieve a cinematic crane shot.
    </title>
    <paragraph>
     Add a
-    <inline classes="menuselection" rawtext=":menuselection:`Add --&gt; Armature --&gt; Dolly Rig or Crane Rig`">
-     Add ‣ Armature ‣ Dolly Rig or Crane Rig
+    <inline classes="menuselection" rawtext=":menuselection:`Add --&gt; Camera --&gt; Dolly Camera Rig or Crane Camera Rig`">
+     Add ‣ Camera ‣ Dolly Camera Rig or Crane Camera Rig
     </inline>
     .
 This will build the rig at the cursor location, add a new camera, making it the new active scene camera.
-   </paragraph>
-   <paragraph>
-    The camera object will not be selectable by default
-but this can be toggled from the UI in the 3D View Sidebar.
    </paragraph>
    <paragraph>
     When the Rig is selected, the camera properties will be displayed in the Sidebar.
@@ -92,7 +83,7 @@ but this can be toggled from the UI in the 3D View Sidebar.
       <paragraph>
        This is the bone (named
        <literal>
-        CTRL
+        Ctrl
        </literal>
        ) that will translate the camera around. By default it will track to the aim bone.
       </paragraph>
@@ -106,7 +97,7 @@ but this can be toggled from the UI in the 3D View Sidebar.
       <paragraph>
        The camera will point at this bone (named
        <literal>
-        AIM
+        Aim
        </literal>
        ).
 You can also tilt the camera by rotating the aim on the Y axis.
@@ -114,6 +105,31 @@ You can also tilt the camera by rotating the aim on the Y axis.
      </definition>
     </definition_list_item>
    </definition_list>
+  </section>
+  <section ids="widgets" names="widgets">
+   <title>
+    Widgets
+   </title>
+   <paragraph>
+    When the rig(s) are built, the add-on will create a collection for all the custom bone shapes
+called (named
+    <literal>
+     WDGTS_camera
+    </literal>
+    ). When the custom shapes (widgets) are built
+they will use the prefix
+    <literal>
+     WDGTS_camera
+    </literal>
+    . If you have more than one rig in the scene,
+it will use the same widgets in the same collection rather than duplicating them.
+The default collection name and the widget prefix can be set in the preferences of the add-on.
+(This will not change the name of any existing widgets or collection,
+only ones that are created after you change the setting.)
+   </paragraph>
+   <figure align="center">
+    <image candidates="{'*': 'images/addons_camera_rigs_user_prefs.png'}" uri="images/addons_camera_rigs_user_prefs.png"/>
+   </figure>
   </section>
   <section ids="ui" names="ui">
    <title>
@@ -144,13 +160,25 @@ I will only explain the added features here, for more information check out the
 make it the depth of field (DOF) object.
       </paragraph>
       <paragraph>
-       The empty is a child of the aim bone but will give the user the ability to animate this object.
+       The empty is a child of the aim bone, so you can animate that instead of animating the empty directly.
+This is a workaround as it only possible to use objects as a target for the DOF and not bones.
       </paragraph>
      </definition>
     </definition_list_item>
     <definition_list_item>
      <term>
-      X-Ray
+      Focal Distance/F-Stop/Focal Length
+     </term>
+     <definition>
+      <paragraph>
+       These are custom properties on the camera bone that drive the equivalent setting on the actual camera.
+This makes it animatable inside the armature object rather than having to animate the armature and the camera.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Show in Front
      </term>
      <definition>
       <paragraph>
@@ -169,8 +197,7 @@ make it the depth of field (DOF) object.
        <emphasis>
         Lock Camera Select
        </emphasis>
-       is a toggle button to make the camera unselectable
-(so you can’t accidentally delete it).
+       is a toggle button to make the camera unselectable (so you can’t accidentally delete it).
       </paragraph>
      </definition>
     </definition_list_item>
@@ -185,6 +212,11 @@ Turn it off and the bone will not point to the aim bone anymore.
       </paragraph>
      </definition>
     </definition_list_item>
+   </definition_list>
+   <figure align="center">
+    <image candidates="{'*': 'images/addons_camera_rigs_crane_arm.png'}" uri="images/addons_camera_rigs_crane_arm.png" width="240px"/>
+   </figure>
+   <definition_list>
     <definition_list_item>
      <term>
       Crane Rig Height, Arm Length
@@ -201,7 +233,7 @@ Turn it off and the bone will not point to the aim bone anymore.
        </emphasis>
        sliders at the bottom of the UI show the Y axis scale of the relevant bone.
 By default, both the height and the arm length are at 1 unit in size.
-These values can be set to the users preferences and also animated if need be.
+These values only show in the UI when a crane rig is selected, they are also animatable.
       </paragraph>
      </definition>
     </definition_list_item>
@@ -328,7 +360,7 @@ But an object called “A” will fail.
       </field_name>
       <field_body>
        <paragraph>
-        Wayne Dixon, Kris Wittig
+        Wayne Dixon, Brian Raschko, Kris Wittig
        </paragraph>
       </field_body>
      </field>

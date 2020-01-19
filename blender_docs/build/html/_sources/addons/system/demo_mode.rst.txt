@@ -38,10 +38,8 @@ Adjusting the Configuration
 
 If you want to set options per file, you can disable *Run Immediately*,
 during setup and select ``demo.py`` text data-block.
-
 This file has one line per file and settings can be edited and saved with the blend-file.
-
-When ``demo.py`` is present you only have to go to :menuselection:`File --> Demo Mode (Start)`
+When ``demo.py`` is present you only have to go to :menuselection:`File --> Demo Mode (Start)`.
 
 
 Attributes
@@ -66,10 +64,8 @@ Portable Configuration
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Once you setup a ``demo.py`` you may want to move it to a different system.
-
 In this case the paths might not match up, In this case,
 update the ``search_path`` variable to point to the path on the new system.
-
 You can also set the ``search_path`` to use the directory of the current blend-file::
 
    search_path = "//"
@@ -79,7 +75,6 @@ Usage
 =====
 
 Once the demo starts it will play, render and load different files in the same Blender instance.
-
 Since its using a modal operator you can still use with Blender while the demo runs.
 
 If you want to stop Demo Mode you can press :kbd:`Esc` and continue using Blender.

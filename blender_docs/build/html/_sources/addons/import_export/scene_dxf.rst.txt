@@ -79,7 +79,7 @@ Merged Objects
       If this merge option is chosen, line thickness settings will be ignored/disabled.
    By Layer and DXF-Type and Blocks
       For DXF files with a block being referenced many times, this option allows to insert the same block many times
-      with one dupli-face object instead of with one object for each time the block needs to be inserted.
+      with one instanced-face object instead of with one object for each time the block needs to be inserted.
       Unfortunately this works only for block inserts that are uniformly scaled.
       Non-uniformly scaled block inserts are being imported as defined in *Blocks As*.
 Combine ``LINE`` entities to polygons
@@ -142,7 +142,7 @@ Pyproj
 
    In case you need to compile your own binary refer to
    `this post <http://blenderartists.org/forum/showthread.php?323358-DXF-Importer&p=2664492&viewfull=1#post2664492>`__
-   on Blenderartists.
+   on Blender Artists.
 
    Pyproj is a python wrapper to the PROJ library, a well known C library used to
    convert coordinates between different coordinate systems.
@@ -211,9 +211,9 @@ Unsupported Data
 - Empty: ``POINT`` or (wip: ``INSERT``)
 - Object matrix: extrusion (``210-group``), rotation, elevation
 - 3D View: (wip: ``VIEW``, ``VPORT``)
-- Duplivert: auto-instanced or (wip: ``INSERT``)
-- Dupliframe: auto-instanced or (wip: ``INSERT``)
-- Dupligroup: auto-instanced or (wip: ``INSERT``)
+- Instancing vert: auto-instanced or (wip: ``INSERT``)
+- Instancing frame: auto-instanced or (wip: ``INSERT``)
+- Instancing group: auto-instanced or (wip: ``INSERT``)
 - Material: ``LAYER``, ``COLOR`` and ``STYLE`` properties
 - Group: ``BLOCK`` and ``INSERT``
 - Parenting: ``BLOCK`` and ``INSERT``

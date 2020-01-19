@@ -5,8 +5,8 @@ Universal Scene Description
 
 Universal Scene Description (USD) files can contain complex layering, overriding,
 and references to other files. Blender's USD Exporter takes a much simpler approach.
-When exporting, all supported objects in the scene are exported, optionally limited by their selection state.
-Blender does not (yet) support exporting USD layers, variants, skeletal animation, etc.
+When exporting, all visible, supported objects in the scene are exported, optionally limited by their selection state.
+Blender does not (yet) support exporting invisible objects, USD layers, variants, skeletal animation, etc.
 
 The following objects can be exported to USD:
 
@@ -25,12 +25,6 @@ This means that the following meshes can be exported:
 - Arbitrarily animated meshes; here the topology does change.
   An example is the result of a fluid simulation, where splashes of fluid can break off the main body.
 
-.. note::
-
-   The USD exporter is still an experimental feature, and the structure of exported
-   USD files is subject to change. To enable the USD exporter, enable it in
-   the `Experimental Features <https://wiki.blender.org/wiki/Source/Interface/ExperimentalFeatures>`__.
-
 .. figure:: /images/universal_scene_description_example.png
 
    Shot from `Spring <https://cloud.blender.org/p/spring/>`__ exported to USD and opened in USDView.
@@ -46,28 +40,24 @@ Only Export Selected Objects
    Duplicated objects, for example collections that are instanced in the scene,
    are considered 'selected' when their duplicator is selected.
 
-Only Export Visible Objects
-   When checked, only visible objects are exported.
-   An object is considered 'visible' when its view layer is visible.
-
-Export Animation
+Animation
    When checked, the entire scene frame range is exported.
    When unchecked, only the current scene frame is exported.
 
-Export Hair
+Hair
    When checked, parent hair strands are exported as a curve system.
    Hair strand colors are not exported.
 
-Export UV Maps
+UV Maps
    When checked, includes UV coordinates for exported meshes.
    The name of the UV map in USD is the same as the name in Blender.
    In USD the default name is ``st`` whereas in Blender the default name is ``UVMap``.
    To export to the standard UV map name ``st``, rename the UV map in Blender to ``st``.
 
-Export Normals
+Normals
    When checked, includes normals for exported meshes. This includes custom loop normals.
 
-Export Materials
+Materials
    When checked, exports the viewport materials of meshes.
    When a mesh has multiple materials assigned, a geometry subset is created for each material.
 
@@ -84,9 +74,6 @@ Use Instancing
    in the exported file. When checked, duplicated objects are exported as
    a reference to the original object. If the original object is not part of the export,
    the first duplicate is exported as real object and used as reference.
-
-   Note that currently this is incompatible with exporting materials,
-   see `Limitations`_ below.
 
 Regardless of the options selected above, objects that are inside
 a :ref:`Holdout collection <editors-outliner-restriction-columns>` are always excluded from the export.
@@ -144,5 +131,6 @@ Particles
 
 Instancing/Referencing
    This is still an experimental feature that can be enabled when exporting to USD.
-   When enabled, dupli-object meshes are written to USD as references to the original mesh.
-   This is still very limited in correctness, as there are issues referencing to materials from a referenced mesh.
+   When enabled, instanced object meshes are written to USD as references to the original mesh.
+   The first copy of the mesh is written for real, and the following copies are referencing the first.
+   Which mesh is considered 'the first' is chosen more or less arbitrarily.

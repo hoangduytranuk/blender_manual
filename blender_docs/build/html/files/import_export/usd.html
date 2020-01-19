@@ -221,8 +221,8 @@
 <h1>Universal Scene Description<a class="headerlink" href="#universal-scene-description" title="Permalink to this headline">¶</a></h1>
 <p>Universal Scene Description (USD) files can contain complex layering, overriding,
 and references to other files. Blender's USD Exporter takes a much simpler approach.
-When exporting, all supported objects in the scene are exported, optionally limited by their selection state.
-Blender does not (yet) support exporting USD layers, variants, skeletal animation, etc.</p>
+When exporting, all visible, supported objects in the scene are exported, optionally limited by their selection state.
+Blender does not (yet) support exporting invisible objects, USD layers, variants, skeletal animation, etc.</p>
 <p>The following objects can be exported to USD:</p>
 <ul class="simple">
 <li>Meshes (of different kinds, see below).</li>
@@ -240,12 +240,6 @@ bouncing (but not cracking) objects.</li>
 <li>Arbitrarily animated meshes; here the topology does change.
 An example is the result of a fluid simulation, where splashes of fluid can break off the main body.</li>
 </ul>
-<div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The USD exporter is still an experimental feature, and the structure of exported
-USD files is subject to change. To enable the USD exporter, enable it in
-the <a class="reference external" href="https://wiki.blender.org/wiki/Source/Interface/ExperimentalFeatures">Experimental Features</a>.</p>
-</div>
 <div class="figure" id="id1">
 <img alt="../../_images/universal_scene_description_example.png" src="../../_images/universal_scene_description_example.png" />
 <p class="caption"><span class="caption-text">Shot from <a class="reference external" href="https://cloud.blender.org/p/spring/">Spring</a> exported to USD and opened in USDView.</span></p>
@@ -258,23 +252,20 @@ the <a class="reference external" href="https://wiki.blender.org/wiki/Source/Int
 <dd>When checked, only selected objects are exported.
 Duplicated objects, for example collections that are instanced in the scene,
 are considered 'selected' when their duplicator is selected.</dd>
-<dt>Only Export Visible Objects</dt>
-<dd>When checked, only visible objects are exported.
-An object is considered 'visible' when its view layer is visible.</dd>
-<dt>Export Animation</dt>
+<dt>Animation</dt>
 <dd>When checked, the entire scene frame range is exported.
 When unchecked, only the current scene frame is exported.</dd>
-<dt>Export Hair</dt>
+<dt>Hair</dt>
 <dd>When checked, parent hair strands are exported as a curve system.
 Hair strand colors are not exported.</dd>
-<dt>Export UV Maps</dt>
+<dt>UV Maps</dt>
 <dd>When checked, includes UV coordinates for exported meshes.
 The name of the UV map in USD is the same as the name in Blender.
 In USD the default name is <code class="docutils literal notranslate"><span class="pre">st</span></code> whereas in Blender the default name is <code class="docutils literal notranslate"><span class="pre">UVMap</span></code>.
 To export to the standard UV map name <code class="docutils literal notranslate"><span class="pre">st</span></code>, rename the UV map in Blender to <code class="docutils literal notranslate"><span class="pre">st</span></code>.</dd>
-<dt>Export Normals</dt>
+<dt>Normals</dt>
 <dd>When checked, includes normals for exported meshes. This includes custom loop normals.</dd>
-<dt>Export Materials</dt>
+<dt>Materials</dt>
 <dd><p class="first">When checked, exports the viewport materials of meshes.
 When a mesh has multiple materials assigned, a geometry subset is created for each material.</p>
 <p class="last">The first material (if any) is always applied to the mesh itself as well
@@ -284,15 +275,12 @@ See <a class="reference external" href="https://github.com/PixarAnimationStudios
 for more information.</p>
 </dd>
 <dt>Use Instancing</dt>
-<dd><p class="first">As this is an experimental option. When unchecked,
+<dd>As this is an experimental option. When unchecked,
 duplicated objects are exported as real objects, so a particle system with
 100 particles that is displayed with 100 meshes will have 100 individual meshes
 in the exported file. When checked, duplicated objects are exported as
 a reference to the original object. If the original object is not part of the export,
-the first duplicate is exported as real object and used as reference.</p>
-<p class="last">Note that currently this is incompatible with exporting materials,
-see <a class="reference internal" href="#limitations">Limitations</a> below.</p>
-</dd>
+the first duplicate is exported as real object and used as reference.</dd>
 </dl>
 <p>Regardless of the options selected above, objects that are inside
 a <a class="reference internal" href="../../editors/outliner.html#editors-outliner-restriction-columns"><span class="std std-ref">Holdout collection</span></a> are always excluded from the export.</p>
@@ -340,8 +328,9 @@ the particle's persistent ID, giving each particle transform a unique name.</p>
 </dd>
 <dt>Instancing/Referencing</dt>
 <dd>This is still an experimental feature that can be enabled when exporting to USD.
-When enabled, dupli-object meshes are written to USD as references to the original mesh.
-This is still very limited in correctness, as there are issues referencing to materials from a referenced mesh.</dd>
+When enabled, instanced object meshes are written to USD as references to the original mesh.
+The first copy of the mesh is written for real, and the following copies are referencing the first.
+Which mesh is considered 'the first' is chosen more or less arbitrarily.</dd>
 </dl>
 </div>
 </div>

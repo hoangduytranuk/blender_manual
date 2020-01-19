@@ -109,6 +109,11 @@ External Data
          Recovered files might need to be reloaded. You can do that one by one, or
          you can save the blend-file and reload it again, so that all external files are reloaded at once.
 
+Clean Up
+   Purge All
+      Remove all unused data-blocks from the file (cannot be undone).
+      See the :ref:`Outliner <bpy.ops.outliner.orphans_purge>` for more information.
+
 .. _startup-file:
 
 Defaults

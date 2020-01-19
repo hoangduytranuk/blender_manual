@@ -16,9 +16,9 @@ Strand Shape
    the value of zero makes the primitive linear,
    and positive values make the primitive rounded more towards the bottom.
 
-Radius Root
+Diameter Root
    Multiplier of the hair width at the root.
-Radius Tip
+Tip
    Multiplier of the hair width at the tip.
 Radius Scale
    Multiplier for the *Root* and *Tip* values. This can be used to change the thickness of the hair.

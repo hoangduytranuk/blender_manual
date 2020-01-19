@@ -122,350 +122,397 @@ if you open the files in a text editor it must recognize
     <title>
      Import
     </title>
-    <definition_list>
-     <definition_list_item>
-      <term>
-       Smooth Groups
-      </term>
-      <definition>
-       <paragraph>
-        Surround OBJ smooth groups by sharp edges.
+    <section dupnames="include" ids="include">
+     <title>
+      Include
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Image Search
+       </term>
+       <definition>
+        <paragraph>
+         This enables a recursive file search if an image file can’t be found.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Smooth Groups
+       </term>
+       <definition>
+        <paragraph>
+         Surround OBJ smooth groups by sharp edges.
 Note that these will only be displayed when the Edge Split modifier is enabled.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Lines
-      </term>
-      <definition>
-       <paragraph>
-        Import OBJ lines and two-sided faces as mesh edges.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Split/Keep Vertex Order
-      </term>
-      <definition>
-       <paragraph>
-        When importing an OBJ it’s useful to split up the objects into Blender objects,
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Lines
+       </term>
+       <definition>
+        <paragraph>
+         Import OBJ lines and two-sided faces as mesh edges.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section dupnames="transform" ids="transform">
+     <title>
+      Transform
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Clamp Size
+       </term>
+       <definition>
+        <paragraph>
+         OBJ-files often vary greatly in scale, this setting clamps the imported file to a fixed size.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Forward / Up
+       </term>
+       <definition>
+        <paragraph>
+         Since many applications use a different axis for ‘Up’, these are axis conversion for these settings,
+Forward and Up axes – By mapping these to different axes you can convert rotations
+between applications default up and forward axes.
+        </paragraph>
+        <paragraph>
+         Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
+For example, it’s common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section dupnames="geometry" ids="geometry">
+     <title>
+      Geometry
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Split/Keep Vertex Order
+       </term>
+       <definition>
+        <paragraph>
+         When importing an OBJ it’s useful to split up the objects into Blender objects,
 named according to the OBJ-file. However, this splitting looses the vertex order which
 is needed when using OBJ-files as morph targets. It also looses any vertices that
 are not connected to a face so this must be disabled if you want to keep the vertex order.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Split by Object &amp; Split by Group
-      </term>
-      <definition>
-       <paragraph>
-        When importing an OBJ it’s useful to split up the objects into Blender objects,
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Split by Object &amp; Split by Group
+       </term>
+       <definition>
+        <paragraph>
+         When importing an OBJ it’s useful to split up the objects into Blender objects,
 named according to the OBJ-file. However, this splitting looses the vertex order which
 is needed when using OBJ-files as morph targets. It also looses any vertices that
 are not connected to a face, so this must be disabled if you want to keep the vertex order.
-       </paragraph>
-       <paragraph>
-        As far as Blender is concerned OBJ Objects and Groups are no difference,
+        </paragraph>
+        <paragraph>
+         As far as Blender is concerned OBJ Objects and Groups are no difference,
 since they are just two levels of separation,
 the OBJ groups are not equivalent to Blender groups, so both can optionally be used for splitting.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Clamp Size
-      </term>
-      <definition>
-       <paragraph>
-        OBJ-files often vary greatly in scale, this setting clamps the imported file to a fixed size.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Forward / Up Axis
-      </term>
-      <definition>
-       <paragraph>
-        Since many applications use a different axis for ‘Up’, these are axis conversion for these settings,
-Forward and Up axes – By mapping these to different axes you can convert rotations
-between applications default up and forward axes.
-       </paragraph>
-       <paragraph>
-        Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
-For example, it is common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Image Search
-      </term>
-      <definition>
-       <paragraph>
-        This enables a recursive file search if an image file can’t be found.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-    </definition_list>
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
    </section>
    <section ids="export" names="export">
     <title>
      Export
     </title>
-    <definition_list>
-     <definition_list_item>
-      <term>
-       Selected Objects
-      </term>
-      <definition>
-       <paragraph>
-        Only export the selected objects. Otherwise export all objects in the scene.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Animation
-      </term>
-      <definition>
-       <paragraph>
-        Exports a numbered OBJ for each frame from the start to the end frame.
-Please be aware that this can take quite a long time.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Apply Modifiers
-      </term>
-      <definition>
-       <paragraph>
-        Export mesh objects as seen in the 3D Viewport with all modifiers applied.
-Mostly you will want this unless you are exporting a subdivision surface cage.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Edges
-      </term>
-      <definition>
-       <paragraph>
-        Export loose edges as two-sided faces. Mostly there is no need for this
-but it’s enabled by default to ensure all geometry data is exported.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Normals
-      </term>
-      <definition>
-       <paragraph>
-        Write out Blender’s face and vertex normals (depending on the faces smooth setting).
-       </paragraph>
-       <paragraph>
-        Mostly this isn’t needed since most applications will calculate their
-own normals but to match Blender’s normal map textures you will need to write these too.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       UVs
-      </term>
-      <definition>
-       <paragraph>
-        Write out the active UV layers coordinates from Blender.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Materials
-      </term>
-      <definition>
-       <paragraph>
-        Write out the MTL-file along with the OBJ. Most importers that support OBJ will also read the MTL-file.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Triangulate
-      </term>
-      <definition>
-       <paragraph>
-        Write out quads as two triangles. Some programs only have very basic OBJ support and only support triangles.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Polygroups
-      </term>
-      <definition>
-       <paragraph>
-        Write faces into OBJ groups based on the meshes vertex group.
-Note that this does a best guess since a face’s vertices can be in multiple vertex groups.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       NURBS
-      </term>
-      <definition>
-       <paragraph>
-        Write out NURBS curves as OBJ NURBS rather than converting to geometry.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Objects as OBJ Objects / Groups
-      </term>
-      <definition>
-       <paragraph>
-        Write out each Blender object as an OBJ object.
-       </paragraph>
-       <note>
+    <section dupnames="include" ids="id1">
+     <title>
+      Include
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Selected Objects
+       </term>
+       <definition>
         <paragraph>
-         Note that as far as Blender is concerned there is no difference between OBJ Groups and Objects,
-this option is only included for applications which treat them differently.
+         Only export the selected objects. Otherwise export all objects in the scene.
         </paragraph>
-       </note>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Material Groups
-      </term>
-      <definition>
-       <paragraph>
-        Create OBJ groups per material.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Keep Vertex Order
-      </term>
-      <definition>
-       <paragraph>
-        Maintain vertex order on export. This is needed when OBJ is used for morph targets.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Scale
-      </term>
-      <definition>
-       <paragraph>
-        Global scale to use on export.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Forward / Up Axis
-      </term>
-      <definition>
-       <paragraph>
-        Since many applications use a different axis for ‘Up’, there are axis conversion there settings,
-Forward and Up axis – By mapping these to different axis you can convert rotations
-between applications default up and forward axis.
-       </paragraph>
-       <paragraph>
-        Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
-For example, its common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
-       </paragraph>
-      </definition>
-     </definition_list_item>
-     <definition_list_item>
-      <term>
-       Path Mode
-      </term>
-      <definition>
-       <paragraph>
-        When referencing paths in exported files you may want some control as to the method used since absolute paths
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Objects as OBJ Objects / Groups
+       </term>
+       <definition>
+        <paragraph>
+         Write out each Blender object as an OBJ object.
+        </paragraph>
+        <note>
+         <paragraph>
+          Note that as far as Blender is concerned there is no difference between OBJ Groups and Objects,
+this option is only included for applications which treat them differently.
+         </paragraph>
+        </note>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Material Groups
+       </term>
+       <definition>
+        <paragraph>
+         Create OBJ groups per material.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Animation
+       </term>
+       <definition>
+        <paragraph>
+         Exports a numbered OBJ for each frame from the start to the end frame.
+Please be aware that this can take quite a long time.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section dupnames="transform" ids="id2">
+     <title>
+      Transform
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Scale
+       </term>
+       <definition>
+        <paragraph>
+         Global scale to use on export.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Path Mode
+       </term>
+       <definition>
+        <paragraph>
+         When referencing paths in exported files you may want some control as to the method used since absolute paths
 may only be correct on you’re own system. Relative paths on the other hand are more portable
 but mean you have to keep your files grouped when moving about on your local file system.
 In some cases the path doesn’t matter since the target application will search
 a set of predefined paths anyway so you have the option to strip the path too.
-       </paragraph>
-       <field_list>
-        <field>
-         <field_name>
-          Auto
-         </field_name>
-         <field_body>
-          <paragraph>
-           Uses relative paths for files which are in a subdirectory of the exported location,
+        </paragraph>
+        <field_list>
+         <field>
+          <field_name>
+           Auto
+          </field_name>
+          <field_body>
+           <paragraph>
+            Uses relative paths for files which are in a subdirectory of the exported location,
 absolute for any directories outside that.
-          </paragraph>
-         </field_body>
-        </field>
-        <field>
-         <field_name>
-          Absolute
-         </field_name>
-         <field_body>
-          <paragraph>
-           Uses full paths.
-          </paragraph>
-         </field_body>
-        </field>
-        <field>
-         <field_name>
-          Relative
-         </field_name>
-         <field_body>
-          <paragraph>
-           Uses relative paths in every case (except when on a different drive on windows).
-          </paragraph>
-         </field_body>
-        </field>
-        <field>
-         <field_name>
-          Match
-         </field_name>
-         <field_body>
-          <paragraph>
-           Uses relative / absolute paths based on the paths used in Blender.
-          </paragraph>
-         </field_body>
-        </field>
-        <field>
-         <field_name>
-          Strip Path
-         </field_name>
-         <field_body>
-          <paragraph>
-           Only write the filename and omit the path component.
-          </paragraph>
-         </field_body>
-        </field>
-        <field>
-         <field_name>
-          Copy
-         </field_name>
-         <field_body>
-          <paragraph>
-           Copy the file on exporting and reference it with a relative path.
-          </paragraph>
-         </field_body>
-        </field>
-       </field_list>
-      </definition>
-     </definition_list_item>
-    </definition_list>
+           </paragraph>
+          </field_body>
+         </field>
+         <field>
+          <field_name>
+           Absolute
+          </field_name>
+          <field_body>
+           <paragraph>
+            Uses full paths.
+           </paragraph>
+          </field_body>
+         </field>
+         <field>
+          <field_name>
+           Relative
+          </field_name>
+          <field_body>
+           <paragraph>
+            Uses relative paths in every case (except when on a different drive on windows).
+           </paragraph>
+          </field_body>
+         </field>
+         <field>
+          <field_name>
+           Match
+          </field_name>
+          <field_body>
+           <paragraph>
+            Uses relative / absolute paths based on the paths used in Blender.
+           </paragraph>
+          </field_body>
+         </field>
+         <field>
+          <field_name>
+           Strip Path
+          </field_name>
+          <field_body>
+           <paragraph>
+            Only write the filename and omit the path component.
+           </paragraph>
+          </field_body>
+         </field>
+         <field>
+          <field_name>
+           Copy
+          </field_name>
+          <field_body>
+           <paragraph>
+            Copy the file on exporting and reference it with a relative path.
+           </paragraph>
+          </field_body>
+         </field>
+        </field_list>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Forward / Up
+       </term>
+       <definition>
+        <paragraph>
+         Since many applications use a different axis for ‘Up’, there are axis conversion there settings,
+Forward and Up axis – By mapping these to different axis you can convert rotations
+between applications default up and forward axis.
+        </paragraph>
+        <paragraph>
+         Blender uses Y Forward, Z Up (since the front view looks along the +Y direction).
+For example, its common for applications to use Y as the up axis, in that case -Z Forward, Y Up is needed.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
+    <section dupnames="geometry" ids="id3">
+     <title>
+      Geometry
+     </title>
+     <definition_list>
+      <definition_list_item>
+       <term>
+        Apply Modifiers
+       </term>
+       <definition>
+        <paragraph>
+         Export mesh objects as seen in the 3D Viewport with all modifiers applied.
+Mostly you will want this unless you are exporting a subdivision surface cage.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Smooth Groups
+       </term>
+       <definition>
+        <paragraph>
+         Todo.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Bitflag Groups
+       </term>
+       <definition>
+        <paragraph>
+         Todo.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Write Normals
+       </term>
+       <definition>
+        <paragraph>
+         Write out Blender’s face and vertex normals (depending on the faces smooth setting).
+        </paragraph>
+        <paragraph>
+         Mostly this isn’t needed since most applications will calculate their
+own normals but to match Blender’s normal map textures you will need to write these too.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Include UVs
+       </term>
+       <definition>
+        <paragraph>
+         Write out the active UV layers coordinates from Blender.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Write Materials
+       </term>
+       <definition>
+        <paragraph>
+         Write out the MTL-file along with the OBJ. Most importers that support OBJ will also read the MTL-file.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Triangulate Faces
+       </term>
+       <definition>
+        <paragraph>
+         Write out quads as two triangles. Some programs only have very basic OBJ support and only support triangles.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Curves as NURBS
+       </term>
+       <definition>
+        <paragraph>
+         Write out NURBS curves as OBJ NURBS rather than converting to geometry.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Polygroups
+       </term>
+       <definition>
+        <paragraph>
+         Write faces into OBJ groups based on the meshes vertex group.
+Note that this does a best guess since a face’s vertices can be in multiple vertex groups.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+      <definition_list_item>
+       <term>
+        Keep Vertex Order
+       </term>
+       <definition>
+        <paragraph>
+         Maintain vertex order on export. This is needed when OBJ is used for morph targets.
+        </paragraph>
+       </definition>
+      </definition_list_item>
+     </definition_list>
+    </section>
    </section>
   </section>
   <section ids="compatibility" names="compatibility">

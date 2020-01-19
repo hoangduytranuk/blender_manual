@@ -99,6 +99,8 @@ Split Strips :kbd:`Y`
    NLA-Split the selected strips into two NLA-strips. The split happens at the current frame.
 Delete Strips :kbd:`X`
    Delete selected NLA-Strips.
+Delete Tracks
+   Delete the selected NLA track and all strips that it contains.
 Toggle Muting :kbd:`H`
    Mute or unmute the selected NLA-strips. Muted NLA-strips will not influence the animation.
 Apply Scale :kbd:`Ctrl-A`

@@ -363,18 +363,18 @@ just as Blender has it's own defaults when first launched.</p>
 
 <span class="nd">@persistent</span>
 <span class="k">def</span> <span class="nf">load_handler_for_preferences</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Changing Preference Defaults!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Changing Preference Defaults!&quot;</span><span class="p">)</span>
     <span class="kn">from</span> <span class="nn">bpy</span> <span class="kn">import</span> <span class="n">context</span>
 
     <span class="n">prefs</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">preferences</span>
-    <span class="n">prefs</span><span class="o">.</span><span class="n">use_preferences_save</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">prefs</span><span class="o">.</span><span class="n">use_preferences_save</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="n">kc</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">window_manager</span><span class="o">.</span><span class="n">keyconfigs</span><span class="p">[</span><span class="s2">&quot;blender&quot;</span><span class="p">]</span>
     <span class="n">kc_prefs</span> <span class="o">=</span> <span class="n">kc</span><span class="o">.</span><span class="n">preferences</span>
-    <span class="k">if</span> <span class="n">kc_prefs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">kc_prefs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">kc_prefs</span><span class="o">.</span><span class="n">select_mouse</span> <span class="o">=</span> <span class="s1">&#39;RIGHT&#39;</span>
         <span class="n">kc_prefs</span><span class="o">.</span><span class="n">spacebar_action</span> <span class="o">=</span> <span class="s1">&#39;SEARCH&#39;</span>
-        <span class="n">kc_prefs</span><span class="o">.</span><span class="n">use_pie_click_drag</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">kc_prefs</span><span class="o">.</span><span class="n">use_pie_click_drag</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="n">view</span> <span class="o">=</span> <span class="n">prefs</span><span class="o">.</span><span class="n">view</span>
     <span class="n">view</span><span class="o">.</span><span class="n">header_align</span> <span class="o">=</span> <span class="s1">&#39;BOTTOM&#39;</span>
@@ -382,12 +382,12 @@ just as Blender has it's own defaults when first launched.</p>
 
 <span class="nd">@persistent</span>
 <span class="k">def</span> <span class="nf">load_handler_for_startup</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Changing Startup Defaults!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Changing Startup Defaults!&quot;</span><span class="p">)</span>
 
     <span class="c1"># Use smooth faces.</span>
     <span class="k">for</span> <span class="n">mesh</span> <span class="ow">in</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meshes</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">mesh</span><span class="o">.</span><span class="n">polygons</span><span class="p">:</span>
-            <span class="n">poly</span><span class="o">.</span><span class="n">use_smooth</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">poly</span><span class="o">.</span><span class="n">use_smooth</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="c1"># Use material preview shading.</span>
     <span class="k">for</span> <span class="n">screen</span> <span class="ow">in</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">screens</span><span class="p">:</span>
@@ -395,17 +395,17 @@ just as Blender has it's own defaults when first launched.</p>
             <span class="k">for</span> <span class="n">space</span> <span class="ow">in</span> <span class="n">area</span><span class="o">.</span><span class="n">spaces</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">space</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;VIEW_3D&#39;</span><span class="p">:</span>
                     <span class="n">space</span><span class="o">.</span><span class="n">shading</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;MATERIAL&#39;</span>
-                    <span class="n">space</span><span class="o">.</span><span class="n">shading</span><span class="o">.</span><span class="n">use_scene_lights</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">space</span><span class="o">.</span><span class="n">shading</span><span class="o">.</span><span class="n">use_scene_lights</span> <span class="o">=</span> <span class="kc">True</span>
 
 
 
 <span class="k">def</span> <span class="nf">register</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Registering to Change Defaults&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Registering to Change Defaults&quot;</span><span class="p">)</span>
     <span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">load_factory_preferences_post</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">load_handler_for_preferences</span><span class="p">)</span>
     <span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">load_factory_startup_post</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">load_handler_for_startup</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">unregister</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Unregistering to Change Defaults&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unregistering to Change Defaults&quot;</span><span class="p">)</span>
     <span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">load_factory_preferences_post</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">load_handler_for_preferences</span><span class="p">)</span>
     <span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">load_factory_startup_post</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">load_handler_for_startup</span><span class="p">)</span>
 </pre></div>

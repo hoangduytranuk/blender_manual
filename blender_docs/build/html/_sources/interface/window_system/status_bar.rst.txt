@@ -17,6 +17,8 @@ Keymap Information
 The region to the left of the Status Bar displays information about what mouse buttons
 and keys do for each editor, mode and tool, and it updates as you hold modifier keys.
 
+In editors with a toolbar, pressing :kbd:`Alt` shows the hotkey to change to a desired tool.
+
 
 Status Messages
 ===============

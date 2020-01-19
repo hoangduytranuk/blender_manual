@@ -9,6 +9,14 @@ The eyedropper can be used to select different kinds of data:
 
 Color
    This is the most common usage, the eyedropper is used to sample a pixels color from anywhere within Blender.
+
+   Grease Pencil
+      Adds Grease Pencil materials based on the sampled color.
+      
+      - :kbd:`LMB` add a new Stroke type Grease Pencil material.
+      - :kbd:`Shift-LMB` add a new Fill type Grease Pencil material.
+      - :kbd:`Ctrl-LMB` add a new Stroke and Fill type Grease Pencil material.
+
 Color Ramp
    Dragging the cursor over the window to sample a line which is converted into a color ramp.
 Objects/Object-Data

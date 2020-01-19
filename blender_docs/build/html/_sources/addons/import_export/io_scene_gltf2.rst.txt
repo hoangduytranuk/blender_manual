@@ -213,23 +213,22 @@ the correct image and will copy the strength setting into the glTF.
 Emissive
 ^^^^^^^^
 
-An Image Texture node can be connected to an Emission shader node, and
-optionally combined with properties from a Principled BSDF node by way of an Add Shader node.
+An Image Texture node can be connected to the Emission input on the Principled BSDF node
+to include an emissive map with the glTF material. Alternatively, the Image Texture node
+can be connected to an Emission shader node, and optionally combined with properties
+from a Principled BSDF node by way of an Add Shader node.
 
-If the glTF exporter finds an image connected to the Emission shader node,
-it will export that image as the glTF material's emissive texture.
+If the emissive map is alone in the material, it is best to set the Base Color default
+to black, and the Roughness default to 1.0. This minimizes the influence of the other
+channels if they are not needed.
 
 .. figure:: /images/addons_io-gltf2_material-emissive.png
 
-   An Emission node can be added to existing nodes.
-
-.. note::
-
-   The *Emission* input of the Principled BSDF node is not yet supported by this exporter.
-   This may change in a future version.
+   This arrangement is supported for backwards compatibility. It is simpler to use
+   the Principled BSDF node directly.
 
 
-Double Sided / Backface Culling
+Double-Sided / Backface Culling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For materials where only the front faces will be visible, turn on *Backface Culling* in
@@ -254,7 +253,7 @@ the material settings panel. Use this setting to define how alpha values from
 the Base Color channel are treated in glTF. Three settings are supported by glTF:
 
 Opaque
-   Alpha values are ignored (the default).
+   Alpha values are ignored.
 Alpha Blend
    Lower alpha values cause blending with background objects.
 Alpha Clip
@@ -455,10 +454,12 @@ Export
 
 Format
    See: `File Format Variations`_.
+Textures
+   Folder to place texture files in. Relative to the gltf-file.
 Copyright
    Legal rights and conditions for the model.
 Remember Export Settings
-   Store export settings in the Blender file,
+   Store export settings in the blend-file,
    so they will be recalled next time the file is opened.
 
 
@@ -498,7 +499,8 @@ Vertex Colors
 Materials
    Export materials.
 Images
-   Todo.
+   Output format for images. PNG is lossless and generally preferred, but JPEG might be preferable for
+   web applications due to the smaller file size.
 
 
 Compression
@@ -540,7 +542,7 @@ Always Sample Animations
 NLA Strips
    Whether to export NLA strip animations.
 Export Deformation Bones Only
-   Todo.
+   Export deformation bones only (and needed bones for hierarchy).
 
 
 Shape Keys

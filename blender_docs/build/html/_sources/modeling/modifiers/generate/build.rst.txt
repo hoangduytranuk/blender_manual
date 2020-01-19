@@ -31,7 +31,7 @@ Seed
    This order is always the same for a given seed/mesh set.
 Reversed
    The modifier will operate in reverse, essentially allowing it to be used as a "deconstruction" effect.
-   This is useful for making a set of dupli-objects gradually disappear.
+   This is useful for making a set of instancing objects gradually disappear.
 
 
 Example

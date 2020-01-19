@@ -231,6 +231,68 @@ these values are “mapped back” to the (-180.0 to 180.0) range.
       </note>
      </definition>
     </definition_list_item>
+    <definition_list_item>
+     <term>
+      Mix
+     </term>
+     <definition>
+      <paragraph>
+       Specifies how the keyframed transformation from the action is combined with the existing transformation.
+      </paragraph>
+      <definition_list>
+       <definition_list_item>
+        <term>
+         Before Original
+        </term>
+        <definition>
+         <paragraph>
+          The action transformation is added before the existing transformation, as if it was
+applied to an imaginary parent of the constraint owner. Scale is handled like in
+the
+          <reference internal="True" refuri="#bone-relations-inherit-settings">
+           <inline classes="std std-ref">
+            Aligned Inherit Scale
+           </inline>
+          </reference>
+          mode of bones
+to avoid creating shear.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         After Original
+        </term>
+        <definition>
+         <paragraph>
+          The action transformation is added after the existing transformation, as if it was
+applied locally to an imaginary child of the constraint owner. Scale is handled like
+in the
+          <reference internal="True" refuri="#bone-relations-inherit-settings">
+           <inline classes="std std-ref">
+            Aligned Inherit Scale
+           </inline>
+          </reference>
+          mode of bones
+to avoid creating shear.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+       <definition_list_item>
+        <term>
+         After Original (Full Scale)
+        </term>
+        <definition>
+         <paragraph>
+          The action transformation is added after the existing transformation, as if it was
+applied locally to an imaginary child of the constraint owner with ordinary parenting.
+This mode can create shear and is thus not recommended for use.
+         </paragraph>
+        </definition>
+       </definition_list_item>
+      </definition_list>
+     </definition>
+    </definition_list_item>
    </definition_list>
   </section>
   <section ids="notes" names="notes">
@@ -240,32 +302,9 @@ these values are “mapped back” to the (-180.0 to 180.0) range.
    <bullet_list bullet="-">
     <list_item>
      <paragraph>
-      When the linked action affects some location properties,
-the owner’s existing location is added to the result of evaluating this constraint
-(exactly as when the
-      <emphasis>
-       Offset
-      </emphasis>
-      button of
-the
-      <reference internal="True" refuri="">
-       <inline classes="doc">
-        Copy Location constraint
-       </inline>
-      </reference>
-      is enabled…).
-     </paragraph>
-    </list_item>
-    <list_item>
-     <paragraph>
-      When the linked action affects some scale properties,
-the owner’s existing scale is multiplied with the result of evaluating this constraint.
-     </paragraph>
-    </list_item>
-    <list_item>
-     <paragraph>
-      When the linked action affects some rotation properties,
-the owner’s existing rotation is overridden by the result of evaluating this constraint.
+      When the object or bone already has Action constraints, the next constraint using
+a newly keyframed action should be added before all others in order to get
+the same final combined transformation. This fact is not affected by the Mix mode.
      </paragraph>
     </list_item>
     <list_item>

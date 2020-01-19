@@ -66,12 +66,26 @@ Stroke Method :kbd:`E`
 
 Jitter
    Jitter the position of the brush while painting.
-Smooth stroke :kbd:`Shift-S`
-   Brush lags behind mouse and follows a smoother path.
 
-   Radius
-      Sets the minimum distance from the last point before stroke continues.
-   Factor
-      Sets the amount of smoothing.
+   Jitter Pressure
+      Brush *Jitter* can be affected by enabling the pressure sensitivity icon,
+      if you are using a :ref:`Graphics Tablet <hardware-tablet>`.
+Jitter Unit
+   Todo.
+
 Input Samples
    Recent mouse locations (input samples) are averaged together to smooth brush strokes.
+
+
+Stabilize Stroke
+================
+
+*Stabilize Stroke* makes the stroke lag behind the cursor
+and applies a smoothed curve to the path of the cursor.
+This can be enabled temporary by holding :kbd:`Shift-S` while painting
+or permanently by clicking the checkbox found in the header.
+
+Radius
+   Sets the minimum distance from the last point before stroke continues.
+Factor
+   Sets the amount of smoothing.

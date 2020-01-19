@@ -338,7 +338,7 @@ Clear Parent Inverse
    in the coordinate space of the parent.
 
 
-.. hint:: **Use the Outliner**
+.. hint:: Use the Outliner
 
    There is another way to see the parent-child relationship in groups and that is to use the *Outliner* view
    of the :doc:`Outliner editor </editors/outliner>`.

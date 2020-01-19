@@ -265,9 +265,9 @@ the following script can be pasted into the Text editor and run to check for dup
 <span class="k">def</span> <span class="nf">GetSystemDirectory</span><span class="p">():</span>
     <span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">windll</span><span class="p">,</span> <span class="n">create_string_buffer</span><span class="p">,</span> <span class="n">sizeof</span>
     <span class="n">GetSystemDirectory</span> <span class="o">=</span> <span class="n">windll</span><span class="o">.</span><span class="n">kernel32</span><span class="o">.</span><span class="n">GetSystemDirectoryA</span>
-    <span class="nb">buffer</span> <span class="o">=</span> <span class="n">create_string_buffer</span><span class="p">(</span><span class="mi">260</span><span class="p">)</span>
-    <span class="n">GetSystemDirectory</span><span class="p">(</span><span class="nb">buffer</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">buffer</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">fsdecode</span><span class="p">(</span><span class="nb">buffer</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">buffer</span> <span class="o">=</span> <span class="n">create_string_buffer</span><span class="p">(</span><span class="mi">260</span><span class="p">)</span>
+    <span class="n">GetSystemDirectory</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">fsdecode</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">library_search_paths</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">(</span>
@@ -286,9 +286,9 @@ the following script can be pasted into the Text editor and run to check for dup
     <span class="n">paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">library_search_paths</span><span class="p">()</span>
              <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">libname</span><span class="p">))]</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Library </span><span class="si">%r</span><span class="s2"> found in </span><span class="si">%d</span><span class="s2"> locations:&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">libname</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Library </span><span class="si">%r</span><span class="s2"> found in </span><span class="si">%d</span><span class="s2"> locations:&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">libname</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)))</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;- </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">p</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">p</span><span class="p">)</span>
 
 <span class="n">check_library_duplicate</span><span class="p">(</span><span class="n">test_lib</span><span class="p">)</span>
 </pre></div>

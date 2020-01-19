@@ -1,3 +1,4 @@
+.. _bpy.types.SpaceUVEditor.show_pixel_coords:
 
 *************
 Display Panel

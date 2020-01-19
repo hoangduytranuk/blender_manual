@@ -10,7 +10,7 @@
    Texture & Texture Mask </sculpt_paint/brush/texture.rst>
    /sculpt_paint/brush/stroke.rst
    /sculpt_paint/brush/falloff.rst
-   /sculpt_paint/brush/display.rst
+   /sculpt_paint/brush/cursor.rst
    texture_slots.rst
    mask.rst
    /sculpt_paint/brush/symmetry.rst

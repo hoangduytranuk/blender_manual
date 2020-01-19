@@ -13,11 +13,11 @@ Particle Info Node
 
    Particle Info Node.
 
-The *Particle Info* node can be used in the material node tree for objects that are used as the Dupli Objects,
-when you use *Object* or *Group* :doc:`Render mode </physics/particles/emitter/render>` of a Particle System.
+The *Particle Info* node can be used in the material node tree for objects that are used as the instancing objects,
+when you use *Object* or *Group* :doc:`Render mode </physics/particles/emitter/render>` of a particle system.
 
 This node gives access to the data of the particle that spawned the object instance.
-It can be useful to give some variation to a single material assigned to multiple instances of Dupli Object.
+It can be useful to give some variation to a single material assigned to multiple instances of instancing object.
 
 .. note::
 

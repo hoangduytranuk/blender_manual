@@ -29,6 +29,7 @@ Options
 
 .. figure:: /images/modeling_modifiers_generate_bevel_panel.png
    :align: right
+   :width: 275px
 
    The Bevel modifier.
 
@@ -177,3 +178,73 @@ Miter Patterns
 
 Spread
    The value used to spread extra vertices apart for non-sharp miters.
+
+Intersection Method
+   When more than two beveled edges meet at a vertex, a mesh is created as a way to complete the intersection
+   between the generated geometry. This option controls the method used to create that mesh.
+
+   Grid Fill
+      The default method for building intersections, useful when a smooth continuation of
+      the bevel profile is desired. Without *Custom Profile* enabled, the curve of the profile continues through
+      the intersection, but with a custom profile it just creates a smooth grid within the boundary of the intersection.
+   Cutoff
+      Creates a cutoff face at the end of each beveled edge coming into the vertex.
+      This is most useful for custom profiles when the new intersection is too complex for a smooth grid fill.
+
+      With a three way intersection, when the inner corners of the cutoff profiles faces meet at
+      the same location, no center face is created.
+
+      The direction of the cutoff faces depends on the original vertex's normal.
+
+   .. list-table:: Intersection method options.
+
+      * - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_vmesh-1.png
+             :width: 200px
+
+             Grid fill intersection method.
+
+        - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_vmesh-2.png
+             :width: 200px
+
+             Three way cutoff intersection where the inner vertices are merged.
+
+        - .. figure:: /images/modeling_meshes_editing_subdividing_bevel_vmesh-3.png
+             :width: 200px
+
+             Cutoff intersection method with a center face.
+
+Custom Profile
+   .. figure:: /images/modeling_modifiers_generate_bevel_profile_widget.png
+      :align: right
+      :width: 300px
+
+      The custom profile widget.
+
+   This widget allows the creation of a user-defined profile with more complexity than
+   with the single profile parameter. The modal tool allows toggling the custom profile,
+   but the shape of the profile is only editable in the options panel after the operation is confirmed.
+
+   The profile starts at the bottom right of the widget and ends at the top left, as if it
+   were between two edges meeting at a right angle. Control points are created in the widget and
+   then the path is sampled with the number of segments from the bevel modifier.
+
+   Presets
+      The *Support Loops* and *Steps* presets are built dynamically depending on the number of segments in the bevel.
+      If the number of segments is changed, the preset will have to be re-applied.
+   Reverse
+      The *Reverse* button flips the orientation of the profile for all beveled edges.
+   Clipping
+      The *Clipping* toggle allows control points to be moved beyond the initial boundary,
+      allowing the bevel to add volume to the mesh rather than just removing it.
+
+   .. note::
+
+      The *Profile* slider is still useful when miters are enabled because it still controls the shape of the miter profiles.
+
+   Sampling
+
+      Samples will first be added to each control point, then if there are enough samples,
+      they will be divided evenly between the edges. The *Sample Straight Edges* option toggles whether
+      the samples are added to edges with sharp control points on either side. If there aren't enough samples
+      to give each edge the same number of samples, they will just be added to the most curved edges,
+      so it is recommended to use at least as many segments as there are control points.

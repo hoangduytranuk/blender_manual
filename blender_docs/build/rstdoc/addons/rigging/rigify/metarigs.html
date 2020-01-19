@@ -1,0 +1,436 @@
+<document source="/home/htran/blender_documentations/blender_docs/manual/addons/rigging/rigify/metarigs.rst">
+ <section ids="creating-meta-rigs" names="creating\ meta-rigs">
+  <title>
+   Creating Meta-rigs
+  </title>
+  <enumerated_list enumtype="arabic" prefix="" suffix=".">
+   <list_item>
+    <paragraph>
+     Add a single bone from the
+     <inline classes="menuselection" rawtext=":menuselection:`Add --&gt; Armature`">
+      Add ‣ Armature
+     </inline>
+     menu.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Go in armature Edit Mode and build the meta rig by samples or Rigify-types.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     Define Rigify layers, bone grouping and selection sets.
+    </paragraph>
+   </list_item>
+   <list_item>
+    <paragraph>
+     In the armature properties click on the
+     <emphasis>
+      Generate
+     </emphasis>
+     button to generate the rig.
+    </paragraph>
+   </list_item>
+  </enumerated_list>
+  <section ids="how-rigify-works" names="how\ rigify\ works">
+   <title>
+    How Rigify Works
+   </title>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Rigify Meta-Rigs are split in multiple Sub-Rigs
+     </term>
+     <definition>
+      <paragraph>
+       A meta-rig is an assembly of bone chains. A bone chain is identified by the
+       <emphasis>
+        Connected
+       </emphasis>
+       attribute.
+Bone chains can be further connected together by parenting them without using the
+       <emphasis>
+        Connected
+       </emphasis>
+       attribute
+(i.e. using the
+       <emphasis>
+        Keep Offset
+       </emphasis>
+       option while parenting).
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      A custom attribute is set on the first bone of the sub-rig chain
+     </term>
+     <definition>
+      <paragraph>
+       Each first bone of a bone chain has a custom attribute on it which is a Rigify custom property
+that identifies the sub-rig type. At rig generation time Rigify will determine which controls and
+deform bones will be created processing the meta-rig from the first bone to the last of each chain.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      New meta-rigs are created assembling sub-rigs samples
+     </term>
+     <definition>
+      <paragraph>
+       Since a meta-rig is just a collection of sub-rigs,
+new meta-rigs can be built assembling sub-rigs in different ways.
+This way an infinite number of meta-rigs can be built from the same rigging blocks.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      All the mechanics, deformation bones and widget are created on a single click
+     </term>
+     <definition>
+      <paragraph>
+       The meta-rig contains more information than the visualized bones.
+In fact at generation time Rigify will identify each sub-rig type and depending on
+the selected options will create all the sophisticated controls, switches, and
+deforming bones with a single click.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+  </section>
+  <section ids="creating-a-new-meta-rig" names="creating\ a\ new\ meta-rig">
+   <title>
+    Creating a new Meta-rig
+   </title>
+   <section ids="add-a-new-armature-object" names="add\ a\ new\ armature\ object">
+    <title>
+     Add a new Armature Object
+    </title>
+    <admonition classes="refbox">
+     <title>
+      Reference
+     </title>
+     <field_list>
+      <field>
+       <field_name>
+        Mode
+       </field_name>
+       <field_body>
+        <paragraph>
+         Object Mode
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Menu
+       </field_name>
+       <field_body>
+        <paragraph>
+         <inline classes="menuselection" rawtext=":menuselection:`Add --&gt; Armature --&gt; Single Bone`">
+          Add ‣ Armature ‣ Single Bone
+         </inline>
+        </paragraph>
+       </field_body>
+      </field>
+      <field>
+       <field_name>
+        Hotkey
+       </field_name>
+       <field_body>
+        <paragraph>
+         <literal classes="kbd">
+          Shift-A
+         </literal>
+        </paragraph>
+       </field_body>
+      </field>
+     </field_list>
+    </admonition>
+    <paragraph>
+     Building your own meta-rig from scratch requires an armature object to work with.
+Just add a single bone from the
+     <emphasis>
+      Add
+     </emphasis>
+     menu.
+    </paragraph>
+    <tip>
+     <paragraph>
+      At this stage naming the newly added armature “meta-rig” is a good idea.
+You can do it at any time (or not at all) but it’s suggested to do it before going on
+so it will always be clear on which armature you have to work when editing the meta-rig structure.
+     </paragraph>
+    </tip>
+   </section>
+   <section ids="editing-the-armature" names="editing\ the\ armature">
+    <title>
+     Editing the Armature
+    </title>
+    <paragraph>
+     Now that there is an armature object to work – with the armature selected – enter armature Edit Mode.
+Building a meta-rig from scratch in Edit Mode can be done in two ways:
+    </paragraph>
+    <enumerated_list enumtype="arabic" prefix="" suffix=".">
+     <list_item>
+      <paragraph>
+       Adding rig samples.
+      </paragraph>
+     </list_item>
+     <list_item>
+      <paragraph>
+       Creating bone chains.
+      </paragraph>
+     </list_item>
+    </enumerated_list>
+    <section ids="adding-samples-basic" names="adding\ samples\ (basic)">
+     <title>
+      Adding Samples (Basic)
+     </title>
+     <paragraph>
+      Adding samples in Edit Mode is a good way to start building a meta-rig.
+This way you can become familiar with the available building blocks and how they are meant to be used.
+To add a rig sample:
+     </paragraph>
+     <enumerated_list enumtype="arabic" prefix="" suffix=".">
+      <list_item>
+       <paragraph>
+        Go in the armature tab.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Scroll down to Rigify panel.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Select a sample from the list.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Click on the
+        <emphasis>
+         Add sample
+        </emphasis>
+        button.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Edit the bone positions to match your character.
+       </paragraph>
+      </list_item>
+     </enumerated_list>
+     <paragraph>
+      For the list of available samples, see the
+      <reference internal="True" refuri="">
+       <inline classes="doc">
+        Rig Types
+       </inline>
+      </reference>
+      page.
+     </paragraph>
+    </section>
+    <section ids="using-rig-types-advanced" names="using\ rig\ types\ (advanced)">
+     <title>
+      Using Rig Types (Advanced)
+     </title>
+     <enumerated_list enumtype="arabic" prefix="" suffix=".">
+      <list_item>
+       <paragraph>
+        Create your bone chains in Edit Mode.
+       </paragraph>
+      </list_item>
+      <list_item>
+       <paragraph>
+        Assign the correct rig type to the first bone of each chain in Pose Mode.
+       </paragraph>
+      </list_item>
+     </enumerated_list>
+     <note>
+      <paragraph>
+       Each sub rig has a required number of bones as input. If you are unsure on how to use rig-types properties,
+add a rig sample to your armature to see how it is supposed to be used.
+      </paragraph>
+     </note>
+    </section>
+   </section>
+  </section>
+  <section ids="layers-bone-groups-selection-sets" names="layers,\ bone\ groups\ &amp;\ selection\ sets">
+   <title>
+    Layers, Bone Groups &amp; Selection Sets
+   </title>
+   <paragraph>
+    Armature layers are usually used to isolate bones.
+Rigify can take advantage of armature layer to generate extra features and the user interface for the final rig.
+Blender 2.79 can handle 32 separate layers for each armature.
+The armature layers are visualized under the armature tab. They are split in two separate groups of 16:
+The top row contains layers from 1 to 8 and from 9 to 16.
+The bottom row layers form 17 to 24 and form 25 to 32.
+   </paragraph>
+   <paragraph>
+    Rigify layers are displayed in a vertical layout inside their own separate panel named Rigify Layer Names.
+   </paragraph>
+   <bullet_list bullet="-">
+    <list_item>
+     <paragraph>
+      The first column shows the layer number.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The second column is a display toggle.
+     </paragraph>
+     <paragraph>
+      This toggle controls the armature layer visibility.
+It has the same effect of enabling/disabling the layer visibility from the top armature layers menu.
+It is just redrawn here for a simplicity.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The third column sets a specific layer name to be used to build the rig UI of the final rig.
+If set, a button with the specified name will be created in the rig_ui to control the visibility of
+this specific armature layer. If layer contains at least one bone but its name field is empty,
+a button with no name will be created in the rig UI.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The fourth column defines in which UI row the layer button will be created.
+     </paragraph>
+     <paragraph>
+      This numbers define the layer ordering in the UI and will ignore the effective layer number.
+If two layer have the same row number their UI buttons will be created in the same row.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The fifth column is a toggle for the selection set.
+     </paragraph>
+     <paragraph>
+      If checked a selection set with that name will be created and associated to the final rig.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The sixth column defines the Rigify Bone Grouping.
+     </paragraph>
+     <paragraph>
+      If Rigify Bone Groups are set, the user can make the association between
+the bones on the layer and the specified bone group from the list.
+The controls on the final rig will inherit the bone grouping through this value.
+     </paragraph>
+    </list_item>
+    <list_item>
+     <paragraph>
+      The seventh column displays – if set – the associated bone group name.
+     </paragraph>
+    </list_item>
+   </bullet_list>
+   <paragraph>
+    In order to use the Bone Groups in the
+    <emphasis>
+     Rigify Layer Names
+    </emphasis>
+    fields,
+    <emphasis>
+     Rigify Bone Groups
+    </emphasis>
+    must be set through the specific panel.
+Usually this panel is displayed just above Rigify Layer Names panel.
+   </paragraph>
+   <paragraph>
+    Rigify Bone Groups are used to define bone colors on the final rig.
+The top two rows of the Rigify Bone Groups panel are used to define the bone colors general behavior.
+Usually color themes use a gradient of colors to define the different bone states: default, selected and active.
+When multiple color themes are used in the same rig, identifying which bone is selected or
+active can be tricky since each color will have its corresponding state.
+   </paragraph>
+   <paragraph>
+    To override this behavior Rigify Bone Groups unifies the active and selected states with the same color.
+This is defined by two values:
+   </paragraph>
+   <definition_list>
+    <definition_list_item>
+     <term>
+      Unified Selected/Active Colors
+     </term>
+     <definition>
+      <paragraph>
+       When this option is active adding a bone group in the list will always keep the colors consistent.
+When a color scheme is added as from a theme, the color scheme is loaded as is.
+Click on the
+       <emphasis>
+        Apply
+       </emphasis>
+       button to force the system to unify selected and active colors.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+    <definition_list_item>
+     <term>
+      Selected/Active Colors
+     </term>
+     <definition>
+      <paragraph>
+       This two color fields define respectively
+       <emphasis>
+        Selected
+       </emphasis>
+       and
+       <emphasis>
+        Active
+       </emphasis>
+       colors.
+By default Rigify reads this colors from the theme defined by the user in the Blender preferences.
+This way the
+       <emphasis>
+        Selected
+       </emphasis>
+       /
+       <emphasis>
+        Active
+       </emphasis>
+       colors can always have a predictable and consistent behavior in the UI.
+The colors can be customized by clicking on the relative color field.
+To reset them to the Blender current theme value just click on the button with the update icon.
+      </paragraph>
+     </definition>
+    </definition_list_item>
+   </definition_list>
+   <paragraph>
+    Bone Groups can be added and deleted as done in the general Bone Group panel
+by clicking on the
+    <literal>
+     +
+    </literal>
+    or
+    <literal>
+     -
+    </literal>
+    buttons.
+All Bone Groups can be deleted at once by clicking on the specials menu.
+   </paragraph>
+   <paragraph>
+    To add the predefined Rigify Default Bone Groups list click on
+    <emphasis>
+     Add Standard
+    </emphasis>
+    button.
+   </paragraph>
+   <paragraph>
+    To add a specific theme with its own color scheme, select it from the list and click on the
+    <emphasis>
+     Add From Theme
+    </emphasis>
+    button.
+   </paragraph>
+  </section>
+ </section>
+</document>

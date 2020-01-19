@@ -98,7 +98,7 @@ the contents of *Adjust Last Operation* are different, because of the mode (Edit
 
 .. tip::
 
-   The *Adjust Last Operation* region can be hidden by :menuselection:`View --> Adjust Last Operation`
+   The *Adjust Last Operation* region can be hidden by :menuselection:`View --> Adjust Last Operation`.
 
 
 .. _bpy.ops.ed.undo_history:

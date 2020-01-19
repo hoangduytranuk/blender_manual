@@ -12,7 +12,7 @@ so it is a good idea to read that manual page first,
 if you are not familiar with the basics of that system.
 
 You can select and create scenes with the *Scene data-block* menu
-in the :doc:`Topbar </interface/window_system/topbar>`
+in the :doc:`Topbar </interface/window_system/topbar>`.
 
 
 Controls

@@ -46,7 +46,7 @@ A bit like a :doc:`lattice </animation/lattice>`...
 
 This is very important to grasp: you cannot add a single control point to a NURBS surface;
 you have to add a whole U or V row at once
-(in practice, you will usually use the Extrude tool, or perhaps the Duplicate one, to add those...),
+(in practice, you will usually use the *Extrude* tool, or perhaps the *Duplicate* one, to add those...),
 containing exactly the same number of points as the others. This also means that you will only
 be able to "merge" different pieces of surfaces if at least one of their rows matches together.
 

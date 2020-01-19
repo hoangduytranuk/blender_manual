@@ -31,16 +31,6 @@ Cavity masking means that the brush will be masked if there is a cavity or a hil
 on the mesh surface depending on the mesh options. The cavity algorithm is vertex-based.
 
 
-.. _bpy.types.UnifiedPaintSettings:
-
-Unified Brush
-=============
-
-Brush options shared between the brush types.
-
-Size, Color, Strength
-
-
 .. _bpy.types.ImagePaint.screen_grab_size:
 .. _bpy.ops.image.project:
 

@@ -11,7 +11,7 @@ Options
 
 Threaded Sculpt
    Takes advantage of multiple CPU processors to improve the sculpting performance.
-Fast Navigation
+Fast Navigate
    For *multi-resolution* models, shows low resolution while navigating in the viewport.
 Use Deform Only
    Limits the activated modifiers on the active object to Deform Modifiers, and Multiresolution.
@@ -21,17 +21,6 @@ Use Deform Only
 .. seealso::
 
    See the :ref:`Display <sculpt-paint-brush-display>` options.
-
-
-Unified Brush
-=============
-
-   Size
-      Forces the brush size to be shared across brushes.
-   Strength
-      Forces the brush strength to be shared across brushes.
-   Color
-      Not used in Sculpt Mode.
 
 
 Gravity
