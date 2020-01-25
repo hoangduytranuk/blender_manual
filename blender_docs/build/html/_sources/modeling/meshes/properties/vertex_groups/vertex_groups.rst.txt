@@ -14,7 +14,7 @@ Vertex Groups Panel
 
    The Vertex Group panel.
 
-Vertex Groups are maintained within the *Object Data* Properties Editor,
+Vertex groups are maintained within the *Object Data* Properties Editor,
 and there in the *Vertex Groups* panel.
 
 .. _bpy.ops.object.vertex_group_add:
@@ -40,19 +40,19 @@ Active Vertex Group
 
    Specials
       Sort by Name
-         Sorts Vertex Groups alphabetically.
+         Sorts vertex groups alphabetically.
       Sort by Bone Hierarchy
          (Todo)
 
       Copy Vertex Group
-         Add a Copy of the active Vertex Group as a new Group.
+         Add a copy of the active vertex group as a new group.
          The new group will be named like the original group with "_copy" appended at the end of its name.
          And it will contain associations to exactly the same vertices
          with the exact same weights as in the source vertex group.
       Copy Vertex Groups to Linked
-         Copy Vertex Groups of this Mesh to all linked Objects which use the same mesh data (all users of the data).
+         Copy vertex groups of this mesh to all linked objects which use the same mesh data (all users of the data).
       Copy Vertex Group to Selected
-         Copy all Vertex Groups to other Selected Objects provided they have matching indices
+         Copy all vertex groups to other selected objects provided they have matching indices
          (typically this is true for copies of the mesh which are only deformed and not otherwise edited).
 
       Mirror Vertex Group
@@ -66,20 +66,20 @@ Active Vertex Group
          After this operation has been performed, the vertices will no longer be contained in any vertex group.
          (Not available for locked groups.)
       Clear Active Group
-         Remove all assigned vertices from the active Group. The group is made empty.
-         Note that the vertices may still be assigned to other Vertex Groups of the Object.
+         Remove all assigned vertices from the active group. The group is made empty.
+         Note that the vertices may still be assigned to other vertex groups of the object.
          (Not available for locked groups.)
       Delete All Unlocked Groups
-         Remove all Vertex Groups from the Object that are *not* locked.
+         Remove all vertex groups from the object that are *not* locked.
       Delete All Groups
-         Remove all Vertex Groups from the Object.
+         Remove all vertex groups from the object.
 
       Lock All
          Lock all groups.
       Unlock All
          Unlock all groups.
       Lock Invert All
-         Invert Group Locks.
+         Invert group locks.
 
 
 Editing Vertex Groups
@@ -96,14 +96,14 @@ Editing Vertex Groups
 .. figure:: /images/modeling_meshes_properties_vertex-groups_vertex-groups_panel-edit.png
    :align: right
 
-   Vertex Group Panel in Edit or Weight Paint Mode.
+   Vertex Group panel in Edit or Weight Paint Mode.
 
-When you switch either to *Edit Mode* or to *Weight Paint Mode* Vertex weights can be edited.
-The same operations are available in the 3D Views menu
-:menuselection:`Mesh --> Vertices --> Vertex Groups` or :kbd:`Ctrl-G`.
+When you switch either to Edit Mode or to Weight Paint Mode vertex weights can be edited.
+The same operations are available in the 3D Views
+:menuselection:`Mesh --> Vertices --> Vertex Groups` menu or :kbd:`Ctrl-G`.
 
 Assign
-   To assign the Selected vertices to the active group with the weight as defined in the *Weight* (see below).
+   To assign the selected vertices to the active group with the weight as defined in the *Weight* (see below).
 Remove
    To remove the selected vertices from the active group (and thus also delete their weight values).
 Select

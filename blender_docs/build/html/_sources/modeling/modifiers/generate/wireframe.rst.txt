@@ -74,7 +74,7 @@ In this example, the wireframes carry a second (dark) material while the displac
 .. figure:: /images/modeling_modifiers_generate_wireframe_example-weights.png
    :width: 420px
 
-   Vertex Group weighting.
+   Vertex group weighting.
 
 The weights of the vertex group gradually change from 0 to 1.
 

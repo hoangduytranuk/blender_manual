@@ -3,7 +3,7 @@
 Introduction
 ************
 
-The creation of a 3D scene needs at least three key components: Models, Materials and Lights.
+The creation of a 3D scene needs at least three key components: Models, materials and lights.
 In this part, the first of these is covered, that being modeling.
 Modeling is simply the art and science of creating a surface that either mimics the shape
 of a real-world object or expresses your imagination of abstract objects.

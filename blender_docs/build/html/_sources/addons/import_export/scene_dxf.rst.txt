@@ -207,7 +207,7 @@ Unsupported Data
 - Curve NURBS: ``curved-POLYLINE``
 - Text: ``TEXT`` or (wip: ``MTEXT``)
 - Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
-- Lamp: ``POINT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
+- Light: ``POINT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
 - Empty: ``POINT`` or (wip: ``INSERT``)
 - Object matrix: extrusion (``210-group``), rotation, elevation
 - 3D View: (wip: ``VIEW``, ``VPORT``)

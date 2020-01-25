@@ -11,7 +11,7 @@ Field Weights
 
    :Panel:     :menuselection:`Particle System --> Field Weights`
 
-The Field Weight Panel allows you to control how much influence each type of external force field, or effector,
+The Field Weight panel allows you to control how much influence each type of external force field, or effector,
 has on the particle system. Force fields are external forces that give dynamic system's motion.
 The force fields types are detailed on the :doc:`Force Field Page </physics/forces/force_fields/index>`.
 
@@ -31,7 +31,7 @@ Force Fields Settings
 
    :Panel:     :menuselection:`Particle System --> Force Fields Settings`
 
-The Force Field Settings Panel allows you to make each individual act as a force field,
+The Force Field Settings panel allows you to make each individual act as a force field,
 allowing them to affect other dynamic systems, or even, each other.
 
 Self Effect
@@ -41,4 +41,4 @@ Effector Amount
 
 You can give particle systems up to two force fields. By default they do not have any.
 Choose an effector type from the selector to enable them.
-Settings are described on the :doc:`Force Field Page </physics/forces/force_fields/index>`.
+Settings are described in the :ref:`Common Settings section <force-field-common-settings>`.

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Brush &mdash; Blender Manual</title>
+  <title>Brushes &mdash; Blender Manual</title>
   
 
   
@@ -118,21 +118,22 @@
 <li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Sculpting &amp; Painting</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Brush</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html#brush-settings">Brush Settings</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Brush</a></li>
-<li class="toctree-l4"><a class="reference internal" href="texture.html">-- Texture &amp; Texture Mask</a></li>
-<li class="toctree-l4"><a class="reference internal" href="stroke.html">Stroke</a></li>
-<li class="toctree-l4"><a class="reference internal" href="falloff.html">Falloff</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cursor.html">Cursor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="symmetry.html">Symmetry</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html">Brush</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../navigation.html">Navigation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#modes">Chế Độ -- Modes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#modes">Chế Độ -- Modes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../sculpting/index.html">Điều Khắc -- Sculpting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../texture_paint/index.html">Sơn Chất Liệu -- Texture Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vertex_paint/index.html">Sơn Điểm Đỉnh -- Vertex Paint</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../weight_paint/index.html">Sơn Trọng Lượng -- Weight Paint</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../weight_paint/introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../weight_paint/tools.html">Weight Paint Tools</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../weight_paint/tool_settings/index.html">Tool Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../weight_paint/usage.html">-- Using Vertex Groups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../weight_paint/editing.html">Editing Weights</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -199,17 +200,12 @@
         
           <li><a href="index.html">Brush</a> &raquo;</li>
         
-      <li>Brush</li>
+      <li>Brushes</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/sculpt_paint/brush/brush.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/sculpt_paint/brush/brush.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -218,9 +214,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="brush">
-<span id="bpy-types-unifiedpaintsettings"></span><span id="bpy-types-brush-icon-filepath"></span><span id="bpy-types-brush-use-custom-icon"></span><span id="bpy-ops-brush"></span><span id="bpy-types-brush"></span><h1>Brush<a class="headerlink" href="#brush" title="Permalink to this headline">¶</a></h1>
-<p>For painting modes each brush type is exposed as a tool,
+  <div class="section" id="brushes">
+<span id="bpy-types-unifiedpaintsettings"></span><span id="bpy-types-brush-icon-filepath"></span><span id="bpy-types-brush-use-custom-icon"></span><span id="bpy-ops-brush"></span><span id="bpy-types-brush"></span><h1>Brushes<a class="headerlink" href="#brushes" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="first admonition-title">Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Sculpt Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">Toolbar ‣ Tools ‣ Brushes</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For painting/sculpting modes each brush type is exposed as a tool,
 the brush can be changed from the tool setting.</p>
 <div class="figure align-right" id="id1">
 <img alt="../../_images/sculpt-paint_brush_brush_data-block-menu.png" src="../../_images/sculpt-paint_brush_brush_data-block-menu.png" />
@@ -251,36 +260,7 @@ They are a combination of a &quot;tool&quot;, along with stroke, texture, and op
 <p class="last">In order to save in a blend-user a custom brush, enable Fake User.</p>
 </div>
 </dd>
-<dt>Radius</dt>
-<dd>The size of the brush can be changed by the <kbd class="kbd docutils literal notranslate">[</kbd> and <kbd class="kbd docutils literal notranslate">]</kbd> shortcuts.</dd>
-<dt>Autosmooth</dt>
-<dd>Amount of smoothing to apply to each stroke.</dd>
-<dt>Inverse Autosmooth</dt>
-<dd>Lighter pressure causes more smoothing to apply.</dd>
-<dt>Height</dt>
-<dd>Simulated height of brush.</dd>
 </dl>
-<div class="section" id="options">
-<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Accumulate</dt>
-<dd>Accumulate stroke daubs on top of each other.</dd>
-<dt>Radius Unit</dt>
-<dd><dl class="first last docutils">
-<dt>View</dt>
-<dd>Measure brush size relative to the screen.</dd>
-<dt>Scene</dt>
-<dd>Measure brush size relative to the scene.</dd>
-</dl>
-</dd>
-<dt>Original Normal</dt>
-<dd>Keep using the normal of the initial location where the stroke originated.</dd>
-<dt>Front Faces Only</dt>
-<dd>Brush only affects vertices that face the viewer.</dd>
-<dt>2D Falloff</dt>
-<dd>Apply brush influence in 2D circle instead of a sphere.</dd>
-</dl>
-</div>
 </div>
 
 

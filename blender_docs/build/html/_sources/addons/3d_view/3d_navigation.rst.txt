@@ -96,7 +96,7 @@ Roll Left/Right
    :class: refbox
 
    :Category:  3D View
-   :Description: Navigate the 3D View and Camera from the Sidebar.
+   :Description: Navigate the 3D View and camera from the Sidebar.
    :Location: :menuselection:`3D View --> Sidebar --> View tab`
    :File: space_view3d_3d_navigation.py
    :Author: Demohero, uriel, meta-androcto

@@ -13,7 +13,7 @@
 Layers List
 ===========
 
-*Grease Pencil* objects each have a list of 2D layers for grouping and arranging strokes
+Grease Pencil objects each have a list of 2D layers for grouping and arranging strokes
 in a :ref:`List view <ui-list-view>`. Any stroke can only belong to a single 2D layer.
 
 There is always only one active layer in the list (the selected one).
@@ -97,13 +97,13 @@ Unlock All
 
 Autolock inactive layer
    Locks automatically the edition of every layer in the list except the active one.
-   This way you avoid to make unwanted changes in other layers without the need to lock them everytime.
+   This way you avoid to make unwanted changes in other layers without the need to lock them every time.
 
 Merge Down
    Merge the selected layer with the layer below, the new layer keeps the name of the lower layer.
 
 Copy Layer to Object
-   Makes a copy of the layer and move it to the selected *Grease Pencil* object.
+   Makes a copy of the layer and move it to the selected Grease Pencil object.
 
 
 Lock and Visibility General Controls
@@ -137,7 +137,7 @@ Pass Index
    See :doc:`Modifiers </grease_pencil/modifiers/introduction>` for more information.
 
 View Layer
-   Defines the View Layer to use for the *Grease Pencil* layer.
+   Defines the View Layer to use for the Grease Pencil layer.
    If empty, the layer will be included in all View Layers.
    This is useful to separate drawings parts for :doc:`compositing </compositing/introduction>`.
 

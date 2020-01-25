@@ -9,10 +9,10 @@ See :doc:`Using Vertex Group </sculpt_paint/weight_paint/usage>` for more inform
 
 .. note::
 
-   A vertex in *Grease Pencil* is called point.
+   A vertex in Grease Pencil is called point.
 
 Weight Painting is a method to maintain large amounts of weight information in a very intuitive way.
-The selected *Grease Pencil* object is displayed slightly shaded with a rainbow color spectrum.
+The selected Grease Pencil object is displayed slightly shaded with a rainbow color spectrum.
 The color visualizes the weights associated to each point in the active vertex group.
 By default blue means unweighted and red means fully weighted.
 

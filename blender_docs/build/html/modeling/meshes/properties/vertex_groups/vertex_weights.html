@@ -213,14 +213,9 @@
       <li>Trọng Lượng Điểm Đỉnh -- Vertex Weights</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../../../_sources/modeling/meshes/properties/vertex_groups/vertex_weights.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/properties/vertex_groups/vertex_weights.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -251,32 +246,32 @@
 (1) Vertex Group Categories, (2) Weight Table, (3) Tools.</div>
 </div>
 <p>As mentioned before in <a class="reference internal" href="index.html"><span class="doc">Vertex Groups</span></a>
-each entry in a Vertex Group also contains a weight value in the range of (0.0 to 1.0).
+each entry in a vertex group also contains a weight value in the range of (0.0 to 1.0).
 Blender provides a <em>Vertex Weights</em> panel from where you can get (and edit)
-information about the weight values of each Vertex of a mesh.
-That is: to which Vertex Groups the vertex is assigned with which weight value.</p>
-<p>The Vertex Weights panel can be found in the right Sidebar region of the 3D View.
+information about the weight values of each vertex of a mesh.
+That is: to which vertex groups the vertex is assigned with which weight value.</p>
+<p>The Vertex Weights panel can be found in the Sidebar region of the 3D View.
 It is available in Edit Mode and in Weight Paint Mode
 (when Vertex Selection masking is enabled as well).</p>
 <div class="section" id="vertex-group-categories">
 <h2>-- Vertex Group Categories<a class="headerlink" href="#vertex-group-categories" title="Permalink to this headline">¶</a></h2>
-<p>Actually we do not have any strict categories of Vertex Groups in Blender.
+<p>Actually we do not have any strict categories of vertex groups in Blender.
 Technically they all behave the same way.
-However, we can identify two implicit categories of Vertex Groups:</p>
+However, we can identify two implicit categories of vertex groups:</p>
 <div class="section" id="deform-groups">
 <h3>-- Deform Groups<a class="headerlink" href="#deform-groups" title="Permalink to this headline">¶</a></h3>
-<p>These Vertex Groups are sometimes also named <em>Weight Groups</em> or <em>Weight Maps</em>.
-They are used for defining the weight tables of Armature bones.
-All Deform Groups of an Object are strictly related to each other via their weight values.</p>
+<p>These vertex groups are sometimes also named 'weight groups' or 'weight maps'.
+They are used for defining the weight tables of armature bones.
+All deform groups of an object are strictly related to each other via their weight values.</p>
 <p>Strictly speaking, the sum of all deform weights for any vertex of a mesh should be exactly 1.0.
 In Blender this constraint is a bit relaxed (see below).
-Nevertheless, Deform Groups should always be seen as related to each other.
+Nevertheless, deform groups should always be seen as related to each other.
 Hence, we have provided a filter that allows restricting the Vertex Weight panel to
-display only the Deform bones of an Object.</p>
+display only the deform bones of an object.</p>
 </div>
 <div class="section" id="other-groups">
 <h3>-- Other Groups<a class="headerlink" href="#other-groups" title="Permalink to this headline">¶</a></h3>
-<p>All other usages of Vertex Groups are summarized into the <em>Other</em> category.
+<p>All other usages of vertex groups are summarized into the <em>Other</em> category.
 These vertex groups can be found within Shape keys, Modifiers, etc.
 There is really no good name for this category,
 so we kept it simple and named it <em>Other</em>.</p>
@@ -292,7 +287,7 @@ In that case the Vertex Weights Panel is not displayed.</p>
 <p>The active Vertex</p>
 <p class="last">That is the most recently selected vertex.
 This vertex is always highlighted so that you can see it easily in the mesh.
-If the active Vertex does not have weights, or there is no active vertex selected at the moment,
+If the active vertex does not have weights, or there is no active vertex selected at the moment,
 then the Vertex Weights Panel disappears.</p>
 </div>
 <p>Each row in the Weight table contains four active elements:</p>
@@ -303,18 +298,18 @@ then the Vertex Weights Panel disappears.</p>
 <div class="section" id="set-the-active-group">
 <h3>-- Set the Active Group<a class="headerlink" href="#set-the-active-group" title="Permalink to this headline">¶</a></h3>
 <p>As soon as you select any of the Vertex Group Names in the Weight table,
-the referenced Vertex Group becomes the new Active group.</p>
+the referenced vertex group becomes the new active group.</p>
 <div class="figure" id="id3">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_show.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_show.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_show.png" style="width: 260px;" /></a>
-<p class="caption"><span class="caption-text">Enable display of Weights in Edit Mode.</span></p>
+<p class="caption"><span class="caption-text">Enable display of weights in Edit Mode.</span></p>
 </div>
 </div>
 <div class="section" id="display-weights-in-edit-mode">
 <h3>-- Display Weights in Edit Mode<a class="headerlink" href="#display-weights-in-edit-mode" title="Permalink to this headline">¶</a></h3>
-<p>When you are in Edit Mode, you can make the Weights of the active Group visible on the mesh:</p>
+<p>When you are in Edit Mode, you can make the weights of the active group visible on the mesh:</p>
 <p>Search the <em>Mesh Display</em> panel in the Sidebar region.
 And there enable the <em>Show Weights</em> option.
-Now you can see the weights of the active Vertex Group displayed on the mesh surface.</p>
+Now you can see the weights of the active vertex group displayed on the mesh surface.</p>
 <div class="figure" id="id4">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_edit-mode.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_edit-mode.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_edit-mode.png" style="width: 260px;" /></a>
 <p class="caption"><span class="caption-text">Weights in Edit Mode.</span></p>
@@ -322,9 +317,9 @@ Now you can see the weights of the active Vertex Group displayed on the mesh sur
 </div>
 <div class="section" id="edit-weights-in-edit-mode">
 <h3>-- Edit Weights in Edit Mode<a class="headerlink" href="#edit-weights-in-edit-mode" title="Permalink to this headline">¶</a></h3>
-<p>It is now very easy to work with Vertex Groups in Edit Mode.
+<p>It is now very easy to work with vertex groups in Edit Mode.
 All edit options of the mesh are available and
-you have direct visual control over how your Weights change when you edit the weight values.</p>
+you have direct visual control over how your weights change when you edit the weight values.</p>
 <div class="figure" id="id5">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-weight.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-weight.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-weight.png" style="width: 260px;" /></a>
 <p class="caption"><span class="caption-text">Change Weight value.</span></p>
@@ -343,8 +338,8 @@ arrows displayed around the weight value to change the weight in steps.</p>
 </div>
 <div class="section" id="pasting">
 <h3>-- Pasting<a class="headerlink" href="#pasting" title="Permalink to this headline">¶</a></h3>
-<p><kbd class="kbd docutils literal notranslate">LMB</kbd> the Paste Icon allows you to forward a single weight of the active Vertex to all selected vertices.
-But note that weights are only pasted to vertices which already have a weight value in the affected Vertex Group.</p>
+<p><kbd class="kbd docutils literal notranslate">LMB</kbd> the Paste button allows you to forward a single weight of the active vertex to all selected vertices.
+But note that weights are only pasted to vertices which already have a weight value in the affected vertex group.</p>
 <div class="figure" id="id7">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-delete.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-delete.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-delete.png" style="width: 260px;" /></a>
 <p class="caption"><span class="caption-text">Delete weights.</span></p>
@@ -352,7 +347,7 @@ But note that weights are only pasted to vertices which already have a weight va
 </div>
 <div class="section" id="deleting">
 <h3>-- Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">¶</a></h3>
-<p><kbd class="kbd docutils literal notranslate">LMB</kbd> the Delete Icon will instantly remove the weight from the active vertex.
+<p><kbd class="kbd docutils literal notranslate">LMB</kbd> the Delete button will instantly remove the weight from the active vertex.
 Thus the entire row disappears when you click on the delete icon.</p>
 </div>
 </div>
@@ -364,17 +359,17 @@ Thus the entire row disappears when you click on the delete icon.</p>
 </div>
 <dl class="docutils">
 <dt>Bình Thường Hóa -- Normalize</dt>
-<dd>Normalizes the weights of the active Vertex.
+<dd>Normalizes the weights of the active vertex.
 That is all weights of the active vertex are recalculated
 such that their relative weight is maintained and the weight sum is 1.0.</dd>
 <dt>Sao Chép -- Copy</dt>
-<dd>Copies all weights defined for the active Vertex to all selected vertices.
+<dd>Copies all weights defined for the active vertex to all selected vertices.
 Thus all previously defined weights are overwritten.</dd>
 </dl>
 <div class="admonition tip">
 <p class="first admonition-title">Mẹo</p>
 <p>The filter setting is respected</p>
-<p class="last">Note that both tools only work on the Vertex Groups currently displayed in the Weights Table.
+<p class="last">Note that both tools only work on the vertex groups currently displayed in the Weights Table.
 So if for example only the <em>Deform weights</em> are displayed,
 then Normalize and Copy only affect the Deform bones.</p>
 </div>
@@ -385,11 +380,11 @@ then Normalize and Copy only affect the Deform bones.</p>
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-locked.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-locked.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-locked.png" style="width: 260px;" /></a>
 <p class="caption"><span class="caption-text">Locked Vertex Weights panel.</span></p>
 </div>
-<p>Whenever a Weight Group is locked, all data changing tools get disabled:</p>
+<p>Whenever a weight group is locked, all data changing tools get disabled:</p>
 <ul class="simple">
-<li>Normalize the vertex Weights.</li>
-<li>Copy the Vertex weights.</li>
-<li>Change the Weight of the active vertices.</li>
+<li>Normalize the vertex weights.</li>
+<li>Copy the vertex weights.</li>
+<li>Change the weight of the active vertices.</li>
 <li>Paste to selected vertices.</li>
 </ul>
 <div class="admonition tip">
@@ -397,7 +392,7 @@ then Normalize and Copy only affect the Deform bones.</p>
 <p>The filter setting is respected</p>
 <p class="last">If you have for example all deform weight groups unlocked and all other vertex groups locked,
 then you can safely select <em>Deform</em> from the Filter row
-and use all available tools from the Weight table again.</p>
+and use all available tools from the Weight Table again.</p>
 </div>
 </div>
 </div>

@@ -203,14 +203,9 @@
       <li>Alembic</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/files/import_export/alembic.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/files/import_export/alembic.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -254,7 +249,7 @@ load those files into other software for further processing.</p>
 <p>This section describes the effect of the different export options.</p>
 <div class="section" id="manual-transform">
 <h3>-- Manual Transform<a class="headerlink" href="#manual-transform" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-right" id="id2">
+<div class="figure align-right" id="id1">
 <img alt="../../_images/files_import-export_alembic_export-panel-scene-options.png" src="../../_images/files_import-export_alembic_export-panel-scene-options.png" />
 <p class="caption"><span class="caption-text">Alembic Export options.</span></p>
 </div>
@@ -297,14 +292,13 @@ and closing 90 degrees after the frame.</p>
 <dd>Limits the export to scene collections that are currently visible.</dd>
 <dt>Hợp các Tầng Bậc Thành Một -- Flatten Hierarchy</dt>
 <dd>When disabled, parent/child relations between objects are exported too. Any parent object that
-is not exported itself, but with children that <em>are</em> exported, is replaced by an Empty.
-When enabled, parent/child relations are not exported, and transformations are all written in
-world coordinates.</dd>
+is not exported itself, but with children that <em>are</em> exported, is replaced by an empty.
+When enabled, parent/child relations are not exported, and transformations are all written in world coordinates.</dd>
 </dl>
 </div>
 <div class="section" id="object-options">
 <h3>-- Object Options<a class="headerlink" href="#object-options" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-right" id="id3">
+<div class="figure align-right" id="id2">
 <img alt="../../_images/files_import-export_alembic_export-panel-object-options.png" src="../../_images/files_import-export_alembic_export-panel-object-options.png" />
 <p class="caption"><span class="caption-text">Object options.</span></p>
 </div>
@@ -318,11 +312,15 @@ that tries to efficiently fill the <a class="reference internal" href="../../glo
 See the <a class="reference internal" href="../../modeling/meshes/editing/uv/editing.html#editors-uv-editing-layout-pack-islands"><span class="std std-ref">pack islands operator</span></a>
 that works with the same principle for more information.</dd>
 <dt>Pháp Tuyến -- Normals</dt>
-<dd>When enabled, an object's <a class="reference internal" href="../../glossary/index.html#term-normal"><span class="xref std std-term">normals</span></a> are exported. See
-<a class="reference internal" href="#custom-split-normals-of-meshes"><span class="std std-ref">Custom Split Normals of Meshes</span></a> below for more information.</dd>
+<dd>When enabled, an object's <a class="reference internal" href="../../glossary/index.html#term-normal"><span class="xref std std-term">normals</span></a> are exported.
+See <a class="reference internal" href="#custom-split-normals-of-meshes">Custom Split Normals of Meshes</a> below for more information.</dd>
 <dt>Màu Điểm Đỉnh -- Vertex Colors</dt>
-<dd>When enabled, exports vertex colors. At this moment, this only supports static vertex colors,
-and not dynamically animated vertex colors.</dd>
+<dd><p class="first">When enabled, exports vertex colors.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Currently this only supports static vertex colors, and not dynamically animated vertex colors.</p>
+</div>
+</dd>
 <dt>Tập Hợp Bề Mặt -- Face Sets</dt>
 <dd>Exports the material names per face. The material data is not exported but only material names.</dd>
 <dt>Dùng Kế Hoạch Phân Hóa -- Use Subdivision Schema</dt>
@@ -339,7 +337,7 @@ For more detail on the specific option see the
 </div>
 <div class="section" id="particle-systems">
 <h3>Hệ Thống Hạt -- Particle Systems<a class="headerlink" href="#particle-systems" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-right" id="id4">
+<div class="figure align-right" id="id3">
 <img alt="../../_images/files_import-export_alembic_export-panel-particle-systems.png" src="../../_images/files_import-export_alembic_export-panel-particle-systems.png" />
 <p class="caption"><span class="caption-text">Particle Systems options.</span></p>
 </div>
@@ -355,7 +353,7 @@ are automatically added to time-varying meshes. For time-varying object transfor
 the <a class="reference internal" href="../../animation/constraints/transform/transform_cache.html#bpy-types-transformcacheconstraint"><span class="std std-ref">Transform Cache Constraint</span></a> is used.</p>
 </div>
 <div class="section" id="custom-split-normals-of-meshes">
-<span id="id1"></span><h2>Custom Split Normals of Meshes<a class="headerlink" href="#custom-split-normals-of-meshes" title="Permalink to this headline">¶</a></h2>
+<h2>Custom Split Normals of Meshes<a class="headerlink" href="#custom-split-normals-of-meshes" title="Permalink to this headline">¶</a></h2>
 <p>Blender supports the import and export of <a class="reference internal" href="../../modeling/meshes/structure.html#modeling-meshes-normals-custom"><span class="std std-ref">custom normals</span></a> to
 Alembic files. As a basic rule of thumb, a completely smooth mesh will be exported without normals
 and thus produce the smallest Alembic file. This is reflected in the importer; an Alembic mesh

@@ -45,8 +45,8 @@ Apply the envelope weight of the selected bone(s) to the selected vertex group.
 Assign Automatic from Bone
 ==========================
 
-Apply from the selected bone(s) to the vertex group the same "auto-weighting"
-methods as available in the Parent armature menu.
+Apply from the selected bone(s) to the vertex group the same "auto-weighting" methods
+as available in the Parent armature menu.
 
 
 .. _bpy.ops.object.vertex_group_normalize_all:
@@ -55,7 +55,7 @@ Normalize All
 =============
 
 For each vertex, this tool makes sure that the sum of the weights across
-all Vertex Groups is equal to 1. This tool normalizes all of the vertex groups,
+all vertex groups is equal to 1. This tool normalizes all of the vertex groups,
 except for locked groups, which keep their weight values untouched.
 
 .. figure:: /images/sculpt-paint_weight-paint_weight-tools_normalize.png
@@ -72,7 +72,7 @@ Lock Active
 Normalize
 =========
 
-This tool only works on the active Vertex Group. All vertices keep their relative weights,
+This tool only works on the active vertex group. All vertices keep their relative weights,
 but the entire set of weights is scaled up such that the highest weight value is 1.0.
 
 .. figure:: /images/sculpt-paint_weight-paint_weight-tools_normalize-example.png
@@ -162,11 +162,11 @@ Subset
 Add Weights
    Add vertices that have no weight before inverting (these weights will all be set to 1.0).
 Remove Weights
-   Remove vertices from the Vertex Group if they are 0.0 after inverting.
+   Remove vertices from the vertex group if they are 0.0 after inverting.
 
 .. note::
 
-   Locked vertex Groups are not affected.
+   Locked vertex groups are not affected.
 
 
 .. _bpy.ops.object.vertex_group_clean:
@@ -196,11 +196,11 @@ Subset
    Restrict the tool to a subset.
    See above :ref:`The Subset Option <sculpt-paint_weight-paint_editing_subset>` for how subsets are defined.
 Limit
-   This is the minimum weight value that will be kept in the Group.
+   This is the minimum weight value that will be kept in the group.
    Weights below this value will be removed from the group.
 Keep Single
-   Ensure that the Clean tool will not create completely unreferenced vertices
-   (vertices which are not assigned to any Vertex Group), so each vertex will
+   Ensure that the *Clean* tool will not create completely unreferenced vertices
+   (vertices which are not assigned to any vertex group), so each vertex will
    keep at least one weight, even if it is below the limit value!
 
 
@@ -227,7 +227,7 @@ Steps
 Levels
 ======
 
-Adds an offset and a scale to all weights of the selected Weight Groups.
+Adds an offset and a scale to all weights of the selected weight groups.
 with this tool you can raise or lower the overall "heat" of the weight group.
 
 .. note::
@@ -247,7 +247,7 @@ Subset
    Restrict the tool to a subset.
    See above :ref:`The Subset Option <sculpt-paint_weight-paint_editing_subset>` for how subsets are defined.
 Offset
-   A value from the range (-1.0 - 1.0) to be added to all weights in the Vertex Group.
+   A value from the range (-1.0 - 1.0) to be added to all weights in the vertex group.
 Gain
    All weights in the Subset are multiplied with the gain.
 

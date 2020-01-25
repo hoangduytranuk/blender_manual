@@ -31,14 +31,3 @@ A red circle will appear and follow the location of the cursor in the 3D View.
 .. figure:: /images/sculpt-paint_sculpting_introduction_brush-circle.png
 
    The cursor in Sculpt Mode.
-
-
-Keyboard Shortcuts
-==================
-
-- Smooth stroke toggle :kbd:`Shift`
-- Invert stroke toggle :kbd:`Ctrl`
-
-Cancel Stroke in Progress :kbd:`Esc`
-   By pressing :kbd:`Esc` while in the middle of a sculpt stroke,
-   the stroke will be canceled and any changes will be undone.

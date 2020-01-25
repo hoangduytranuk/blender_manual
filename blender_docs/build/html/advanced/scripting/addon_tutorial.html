@@ -206,14 +206,9 @@
       <li>Hướng Dẫn về Trình Bổ Sung -- Add-on Tutorial</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/advanced/scripting/addon_tutorial.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/advanced/scripting/addon_tutorial.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -254,9 +249,9 @@ See <a class="reference external" href="https://docs.blender.org/api/blender_pyt
 <ul class="simple">
 <li><a class="reference external" href="https://docs.blender.org/api/blender_python_api_current/info_overview.html">Blender API Overview</a>:
 This document is rather detailed but helpful if you want to know more on a topic.</li>
-<li><a class="reference external" href="https://docs.blender.org/api/2.82/bpy.context.html#module-bpy.context" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy.context</span></code></a> API reference --
+<li><a class="reference external" href="https://docs.blender.org/api/2.82/bpy.context.html#module-bpy.context" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy.context</span></code></a> API reference --
 Handy to have a list of available items your script may operate on.</li>
-<li><a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.Operator.html#bpy.types.Operator" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy.types.Operator</span></code></a> --
+<li><a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.Operator.html#bpy.types.Operator" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.Operator</span></code></a> --
 The following add-ons define operators, these docs give details and more examples of operators.</li>
 </ul>
 </div>
@@ -290,14 +285,14 @@ this means the module can be loaded without activating the add-on.</dd>
 this is called when the add-on is disabled.</dd>
 </dl>
 <p>Notice this add-on does not do anything related to Blender
-(the <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.data.html#module-bpy" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy</span></code></a> module is not imported for example).</p>
+(the <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.data.html#module-bpy" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy</span></code></a> module is not imported for example).</p>
 <p>This is a contrived example of an add-on that serves to illustrate the point
 that the base requirements of an add-on are simple.</p>
 <p>An add-on will typically register operators, panels, menu items, etc,
 but it's worth noting that <em>any</em> script can do this,
 when executed from the Text editor or even the interactive console --
 there is nothing inherently different about an add-on that allows it to integrate with Blender,
-such functionality is just provided by the <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.data.html#module-bpy" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy</span></code></a> module for any script to access.</p>
+such functionality is just provided by the <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.data.html#module-bpy" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy</span></code></a> module for any script to access.</p>
 <p>So an add-on is just a way to encapsulate a Python module in a way a user can easily utilize.</p>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
@@ -326,7 +321,7 @@ which is the typical way to define a tool accessed from menus, buttons and keybo
 all objects in the active scene are moved by 1.0 unit.</p>
 </div>
 <div class="section" id="write-the-add-on-simple">
-<span id="tutorial-write-the-addon"></span><h3>Viết Trình Bổ Sung (Đơn Giản) -- Write the Add-on (Simple)<a class="headerlink" href="#write-the-add-on-simple" title="Permalink to this headline">¶</a></h3>
+<h3>Viết Trình Bổ Sung (Đơn Giản) -- Write the Add-on (Simple)<a class="headerlink" href="#write-the-add-on-simple" title="Permalink to this headline">¶</a></h3>
 <p>This add-on takes the body of the script above, and adds it to an operator's <code class="docutils literal notranslate"><span class="pre">execute()</span></code> function.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">bl_info</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Move X Axis&quot;</span><span class="p">,</span>
@@ -399,9 +394,9 @@ restrictions that apply to Python modules and end with a <code class="docutils l
 <p>Open the <span class="menuselection">Preferences ‣ Add-ons ‣ Install...</span> and select the file.</p>
 <p>Now the add-on will be listed and you can enable it by pressing the checkbox,
 if you want it to be enabled on restart, press <em>Save as Default</em>. The operator
-can be run in the same way as described in <a class="reference internal" href="#tutorial-write-the-addon"><span class="std std-ref">the previous section</span></a>.</p>
-<p>When the add-on is enabled, Blender executes the code and runs the <code class="docutils literal notranslate"><span class="pre">register()</span></code>
-function. When the add-on is disabled, Blender runs the <code class="docutils literal notranslate"><span class="pre">unregister()</span></code> function.</p>
+can be run in the same way as described in the <a class="reference external" href="WritetheAdd-on(Simple)">previous section</a>.</p>
+<p>When the add-on is enabled, Blender executes the code and runs the <code class="docutils literal notranslate"><span class="pre">register()</span></code> function.
+When the add-on is disabled, Blender runs the <code class="docutils literal notranslate"><span class="pre">unregister()</span></code> function.</p>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
 <p>The destination of the add-on depends on your Blender configuration.
@@ -473,12 +468,12 @@ In Blender, this is known as <em>Linked Duplicates</em>.</p>
 </div>
 <p>Try running this script with the active object and the cursor spaced apart to see the result.</p>
 <p>With this script you'll notice we're doing some math with the object location and cursor,
-this works because both are 3D <a class="reference external" href="https://docs.blender.org/api/2.82/mathutils.html#mathutils.Vector" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">mathutils.Vector</span></code></a> instances,
-a convenient class provided by the <a class="reference external" href="https://docs.blender.org/api/2.82/mathutils.html#module-mathutils" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">mathutils</span></code></a> module which
+this works because both are 3D <a class="reference external" href="https://docs.blender.org/api/2.82/mathutils.html#mathutils.Vector" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">mathutils.Vector</span></code></a> instances,
+a convenient class provided by the <a class="reference external" href="https://docs.blender.org/api/2.82/mathutils.html#module-mathutils" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">mathutils</span></code></a> module which
 allows vectors to be multiplied by numbers and matrices.</p>
-<p>If you are interested in this area, read into <a class="reference external" href="https://docs.blender.org/api/2.82/mathutils.html#mathutils.Vector" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">mathutils.Vector</span></code></a>
+<p>If you are interested in this area, read into <a class="reference external" href="https://docs.blender.org/api/2.82/mathutils.html#mathutils.Vector" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">mathutils.Vector</span></code></a>
 -- there are many handy utility functions such as getting the angle between vectors,
-cross product, dot products as well as more advanced functions in <a class="reference external" href="https://docs.blender.org/api/2.82/mathutils.geometry.html#module-mathutils.geometry" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">mathutils.geometry</span></code></a>
+cross product, dot products as well as more advanced functions in <a class="reference external" href="https://docs.blender.org/api/2.82/mathutils.geometry.html#module-mathutils.geometry" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">mathutils.geometry</span></code></a>
 such as Bézier spline interpolation and ray-triangle intersection.</p>
 <p>For now we will focus on making this script an add-on, but it's good to know that this
 3D math module is available and can help you with more advanced functionality later on.</p>
@@ -532,7 +527,7 @@ such as Bézier spline interpolation and ray-triangle intersection.</p>
 <p>Everything here has been covered in the previous steps, you may want to try run
 the add-on still and consider what could be done to make it more useful.</p>
 <p>The two of the most obvious missing things are -- having the total fixed at 10,
-and having to access the operator from <kbd class="kbd docutils literal notranslate">F3</kbd> is not very convenient.</p>
+and having to access the operator with <a class="reference internal" href="../../interface/controls/templates/operator_search.html"><span class="doc">Tìm Kiếm Thao Tác/Toán Tử -- Operator Search</span></a> is not very convenient.</p>
 <p>Both these additions are explained next, with the final script afterwards.</p>
 <div class="section" id="operator-property">
 <h4>Tính Chất của Operator -- Operator Property<a class="headerlink" href="#operator-property" title="Permalink to this headline">¶</a></h4>
@@ -553,7 +548,7 @@ Operator properties are defined via bpy.props module, this is added to the class
 <span class="bp">self</span><span class="o">.</span><span class="n">total</span>
 </pre></div>
 </div>
-<p>These properties from <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.props.html#module-bpy.props" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy.props</span></code></a> are handled specially by Blender
+<p>These properties from <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.props.html#module-bpy.props" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy.props</span></code></a> are handled specially by Blender
 when the class is registered so they display as buttons in the user interface.
 There are many arguments you can pass to properties to set limits,
 change the default and display a tooltip.</p>
@@ -582,13 +577,13 @@ Then you can hover your mouse over the menu item and the identifier is displayed
     <span class="n">bpy</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">VIEW3D_MT_object</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">menu_func</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>For docs on extending menus, see: <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.Menu.html#bpy.types.Menu" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy.types.Menu</span></code></a>.</p>
+<p>For docs on extending menus, see: <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.Menu.html#bpy.types.Menu" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.Menu</span></code></a>.</p>
 </div>
 <div class="section" id="keymap">
 <h4>Bố Trí Bàn Phím -- Keymap<a class="headerlink" href="#keymap" title="Permalink to this headline">¶</a></h4>
 <p>In Blender, add-ons have their own keymaps so as not to interfere with Blender's built-in keymaps.</p>
-<p>In the example below, a new object mode <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.KeyMap.html#bpy.types.KeyMap" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMap</span></code></a> is added,
-then a <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMapItem</span></code></a> is added to the keymap which references
+<p>In the example below, a new object mode <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.KeyMap.html#bpy.types.KeyMap" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMap</span></code></a> is added,
+then a <a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMapItem</span></code></a> is added to the keymap which references
 our newly added operator, using <kbd class="kbd docutils literal notranslate">Shift-Ctrl-T</kbd> as the key shortcut to activate it.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># store keymaps here to access after registration</span>
 <span class="n">addon_keymaps</span> <span class="o">=</span> <span class="p">[]</span>
@@ -625,9 +620,9 @@ conflict with important functionality within Blender.</p>
 <p>For API documentation on the functions listed above, see:</p>
 <ul class="simple">
 <li><code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.KeyMaps.new</span></code>,</li>
-<li><a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.KeyMap.html#bpy.types.KeyMap" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMap</span></code></a>,</li>
+<li><a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.KeyMap.html#bpy.types.KeyMap" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMap</span></code></a>,</li>
 <li><code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.KeyMapItems.new</span></code>,</li>
-<li><a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem" title="(in Blender 2.82.6 Python API vdfa3f51e5245)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMapItem</span></code></a>.</li>
+<li><a class="reference external" href="https://docs.blender.org/api/2.82/bpy.types.KeyMapItem.html#bpy.types.KeyMapItem" title="(in Blender 2.82.6 Python API v02f6722350d9)"><code class="docutils literal notranslate"><span class="pre">bpy.types.KeyMapItem</span></code></a>.</li>
 </ul>
 </div>
 <div class="section" id="bringing-it-all-together">

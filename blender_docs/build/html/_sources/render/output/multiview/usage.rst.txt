@@ -231,7 +231,7 @@ Viewport Stereo 3D
 
 When you enable 'Views' in the Render Layer panel, a new area is available in the 3D View Sidebar region.
 In this panel you can pick whether to see the stereo 3D in the viewport, or which camera to see.
-It also allow you to see the Cameras, the Plane and the Volume of the stereo cameras.
+It also allow you to see the *Cameras*, the *Plane* and the *Volume* of the stereo cameras.
 
 .. figure:: /images/render_output_multiview_usage_3d-view-stereoscopy-panel.png
 

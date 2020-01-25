@@ -35,7 +35,7 @@ Copy Rotation
 Copy Scale
    Copies the object scale in world coordinates.
 Copy Draw Options
-   Copies draw options: for instance wireframe draw, Empty draw shape, Empty draw size, etc.
+   Copies draw options: for instance wireframe draw, empty draw shape, empty draw size, etc.
 Copy Time Offset
    Copies the animation stack time offset.
 Copy Instancing

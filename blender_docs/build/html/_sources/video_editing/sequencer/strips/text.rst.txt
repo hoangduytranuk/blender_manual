@@ -11,7 +11,7 @@ The strip will display the text inserted in its text field on the final sequence
 
    All Text strips in a video sequence can be :ref:`exported <bpy.ops.sequencer.export_subtitles>`
    as a `SubRip <https://en.wikipedia.org/wiki/SubRip>`__ file.
-   This is useful when using Text Strips as subtitles.
+   This is useful when using Text strips as subtitles.
 
 
 Options

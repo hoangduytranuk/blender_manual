@@ -9,7 +9,7 @@ Map Range Node
 
    Map Range Node.
 
-The *Map Range* node linearly remaps a value from a range to a target range.
+The *Map Range* node remaps a value from a range to a target range.
 
 
 Inputs
@@ -25,10 +25,23 @@ To Min
    The lower bound of the target range.
 To Max
    The higher bound of the target range.
+Steps
+   The number of values allowed between *To Max* and *To Max* when using *Stepped Linear* interpolation.
+   A higher value will give a smoother interpolation while lower values will progressively quantize the input.
 
 
 Properties
 ==========
+
+Interpolation Type
+   Linear
+      Linear interpolation between From Min and From Max values.
+   Stepped Linear
+      Stepped linear interpolation between From Min and From Max values.
+   Smooth Step
+      Smooth Hermite edge interpolation between From Min and From Max values.
+   Smoother Step
+      Smoother Hermite edge interpolation between From Min and From Max values.
 
 Clamp
    If enabled, the output is clamped to the target range.

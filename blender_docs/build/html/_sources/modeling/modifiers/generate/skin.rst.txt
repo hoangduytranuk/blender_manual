@@ -42,7 +42,7 @@ Symmetry Axes X/Y/Z
 
       They do not add geometry flipped across an axis.
       For that, the :doc:`Mirror </modeling/modifiers/generate/mirror>` modifier should be used,
-      typically placed above the *Skin* one.
+      typically placed above the Skin one.
 
 
 Add Skin Data
@@ -57,7 +57,7 @@ However, you may remove that data, or loose it some way or the other. That opera
 Selected Vertices
 -----------------
 
-Those operators modify the original mesh 'control data' for the *Skin* modifier. They help manage its behavior.
+Those operators modify the original mesh 'control data' for the Skin modifier. They help manage its behavior.
 
 Mark/Clear Loose
    By default, a branch vertex (vertex with three or more connected edges)
@@ -94,10 +94,10 @@ This tool does the following:
 
 #. A new armature object is added with bones matching the input mesh.
    The active selection is switched to the new armature.
-#. Weight groups are added to the input mesh. The *Skin* modifier propagates these weights to the output as well.
-#. An :doc:`Armature </modeling/modifiers/deform/armature>` modifier is added directly below the *Skin* one.
-   Note that the *Armature* modifier is being applied after
-   the *Skin* one because it should only deform the output,
+#. Weight groups are added to the input mesh. The Skin modifier propagates these weights to the output as well.
+#. An :doc:`Armature </modeling/modifiers/deform/armature>` modifier is added directly below the Skin one.
+   Note that the Armature modifier is being applied after
+   the Skin one because it should only deform the output,
    whereas if it were above, it might change the resulting topology.
 
 

@@ -65,8 +65,8 @@ Relative Offset, X, Y, Z
 
 Object Offset
    Adds a transformation taken from an object (relative to the current object) to the offset.
-   It is good practice to use an Empty object centered or near to the initial object.
-   E.g. by rotating this Empty a circle or helix of objects can be created.
+   It is good practice to use an empty object centered or near to the initial object.
+   E.g. by rotating this empty a circle or helix of objects can be created.
 
    .. figure:: /images/modeling_modifiers_generate_array_offset-object.png
 

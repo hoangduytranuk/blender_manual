@@ -30,11 +30,11 @@ See below for the result of using *Push/Pull* on a number of different elements.
 
 .. figure:: /images/modeling_meshes_editing_transform_push-pull_objects-equidistant.png
 
-   Equidistant Objects being pushed together.
+   Equidistant objects being pushed together.
 
 .. figure:: /images/modeling_meshes_editing_transform_push-pull_objects-random.png
 
-   Random Objects being pushed together.
+   Random objects being pushed together.
 
 .. figure:: /images/modeling_meshes_editing_transform_push-pull_vertices-push-pull.png
 

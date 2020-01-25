@@ -441,10 +441,10 @@ Normal map for camera plane, native POV procedural patterns can be used with var
 - Scale
 
 
-Lamp
-^^^^
+Lights
+^^^^^^
 
-No Shadows toggle button can be used to deactivate tracing of shadows for specific lamps only.
+No Shadows toggle button can be used to deactivate tracing of shadows for specific lights only.
 
 .. tip:: For Realistic Light Attenuation
 

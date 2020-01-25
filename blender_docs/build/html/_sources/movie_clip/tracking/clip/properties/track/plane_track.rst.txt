@@ -16,7 +16,7 @@ Auto Keyframe
    Toggles the auto-keyframing for corners of the plane track.
    With this enabled, keyframes will automatically get inserted when any corner is moved.
 Image
-   Field to select an image which will be displayed inside the plane track.
+   Field to select or create an image which will be displayed inside the plane track.
    This image is for preview purposes in the Movie Clip editor only.
    To include it in your final render,
    see :doc:`Plane Track Deform node </compositing/types/distort/plane_track_deform>`.

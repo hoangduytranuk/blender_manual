@@ -74,7 +74,7 @@ Snap
    :Hotkey:    :kbd:`Shift-S`
 
 :doc:`Mesh snapping </scene_layout/object/editing/transform/control/snap>`
-also works with *Grease Pencil* components.
+also works with Grease Pencil components.
 
 
 Animation
@@ -184,17 +184,17 @@ Separate Strokes
    :Menu:      :menuselection:`Grease Pencil --> Separate Strokes`
    :Hotkey:    :kbd:`P`
 
-Separate the selected elements into a new *Grease Pencil* object.
+Separate the selected elements into a new Grease Pencil object.
 
 Selected Points
-   Separate the selected points into a new *Grease Pencil* object.
+   Separate the selected points into a new object.
 
 Selected Strokes
-   Separate the selected strokes into a new *Grease Pencil* object.
+   Separate the selected strokes into a new object.
    If one point of a stroke is selected, the entire stroke will be separated.
 
 Active Layer
-   Separate all the strokes in the active layer into a new *Grease Pencil* object.
+   Separate all the strokes in the active layer into a new object.
    See :doc:`2D Layers </grease_pencil/properties/layers>` for more information.
 
 

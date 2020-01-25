@@ -60,7 +60,7 @@ Auto Texture Space
 
 Texture Mesh
    Use another mesh for texture indices, the vertex of the two objects must be perfectly aligned.
-   otherwise the UV map will be distorted. Note that, this is only for mesh objects.
+   Otherwise the UV map will be distorted. Note that, this is only for mesh objects.
 Use UV for Mapping
    Use UV values as generated texture coordinates. Note that, this is only for curve objects.
 Match Texture Space

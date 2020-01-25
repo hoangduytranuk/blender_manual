@@ -27,7 +27,7 @@ Placement Options
    Stroke Placement selector on 3D View header.
 
 Origin
-   Strokes are placed at *Grease Pencil* object origin.
+   Strokes are placed at Grease Pencil object origin.
 
 3D Cursor
    Strokes are placed at 3D cursor.

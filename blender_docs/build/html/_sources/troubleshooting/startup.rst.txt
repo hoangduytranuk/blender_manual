@@ -18,25 +18,6 @@ If Blender crashes on startup, there are a few things to check for:
 Known causes listed below.
 
 
-Python
-======
-
-If you get an error on startup like:
-
-.. code-block:: python
-
-   Fatal Python error: Py_Initialize: unable to load the file system codec
-
-you may have set your system's ``PYTHONPATH`` environment variable.
-
-In this case, Blender's bundled Python will attempt to use the ``PYTHONPATH``.
-If the Python version is different from the version used by Blender, this will crash Blender on startup.
-
-To solve the problem, either clear the ``PYTHONPATH`` before starting Blender
-(can also be done with a launcher script),
-or set it to a compatible Python version.
-
-
 Common Startup Messages
 =======================
 

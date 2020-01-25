@@ -88,7 +88,7 @@ X-Axis Mirror
 
 This option enables automatic mirroring of editing actions along the X axis.
 Another very useful tool is the *X-Axis Mirror* editing option by
-:menuselection:`Tool tab --> Options panel`, while Armature is selected in *Edit Mode*.
+:menuselection:`Tool tab --> Options panel`, while the armature is selected in *Edit Mode*.
 When you have pairs of bones of the same name with just a different "side suffix"
 (e.g. ".R"/".L", or "_right"/"_left" ...), once this option is enabled,
 each time you transform (move/rotate/scale...) a bone,

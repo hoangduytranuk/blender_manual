@@ -3,7 +3,7 @@
 Introduction
 ************
 
-The geometry of a scene is constructed from one or more Objects.
+The geometry of a scene is constructed from one or more objects.
 These objects can range from lights to illuminate your scene, basic 2D and 3D shapes to fill it with models,
 armatures to animate those models, to cameras to take pictures or make video of it all.
 

@@ -12,7 +12,7 @@ Hinge
 
 The hinge permits 1 degree of freedom between two objects. Translation is completely constrained.
 Rotation is permitted about the Z axis of the object hosting the Physics constraint
-(usually an :term:`Empty`, distinct from the two objects that are being linked).
+(usually an :term:`empty`, distinct from the two objects that are being linked).
 Adjusting the position and rotation of the object hosting the constraint allows you to
 control the anchor and axis of the hinge.
 

@@ -9,8 +9,8 @@ Vector Transform Node
 
    Vector Transform node.
 
-The *Vector Transform* node allows converting a Vector,
-Point, or Normal between World and Camera and Object coordinate space.
+The *Vector Transform* node allows converting a vector, point, or normal between
+world and camera and object coordinate space.
 
 
 Inputs

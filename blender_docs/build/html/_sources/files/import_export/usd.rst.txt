@@ -12,7 +12,7 @@ The following objects can be exported to USD:
 
 - Meshes (of different kinds, see below).
 - Cameras (perspective cameras only at the moment, not orthogonal ones).
-- Lamps (all types except area lamps).
+- Light (all types except area lights).
 - Hair (exported as curves, and limited to parent strands).
 
 When exporting an animation, the final, evaluated mesh is written to USD.
@@ -35,7 +35,7 @@ Export Options
 
 The following options are available when exporting to USD:
 
-Only Export Selected Objects
+Selection Only
    When checked, only selected objects are exported.
    Duplicated objects, for example collections that are instanced in the scene,
    are considered 'selected' when their duplicator is selected.
@@ -67,16 +67,26 @@ Materials
    See `USD issue #542 <https://github.com/PixarAnimationStudios/USD/issues/542>`__
    for more information.
 
-Use Instancing
+Use Settings for
+   Determines the whether to use *Viewport* or *Render* visibility of collection, modifiers,
+   or any other property that can be set for both the *Viewport* and *Render*.
+
+.. note::
+
+   Regardless of the options selected above, objects that are inside
+   a :ref:`Holdout collection <editors-outliner-restriction-columns>` are always excluded from the export.
+
+
+Experimental
+------------
+
+Instancing
    As this is an experimental option. When unchecked,
    duplicated objects are exported as real objects, so a particle system with
    100 particles that is displayed with 100 meshes will have 100 individual meshes
    in the exported file. When checked, duplicated objects are exported as
    a reference to the original object. If the original object is not part of the export,
    the first duplicate is exported as real object and used as reference.
-
-Regardless of the options selected above, objects that are inside
-a :ref:`Holdout collection <editors-outliner-restriction-columns>` are always excluded from the export.
 
 
 Limitations

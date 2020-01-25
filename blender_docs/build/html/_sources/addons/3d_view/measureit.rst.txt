@@ -51,7 +51,7 @@ Usage
 - Object to object: Distance between object origins, vertex to origin or vertex to vertex.
 - Object to origin: Distance between object origin to scene origin or vertex to scene origin.
 - Allows work with different scales.
-- The measures can be used with meshes, empties, lamps and cameras. Blender units, metric and imperial are supported.
+- The measures can be used with meshes, empties, lights, and cameras.
 
 As all measure definitions are saved in the blend-file, you can save the file and
 the next time you use it, the measures will be ready.

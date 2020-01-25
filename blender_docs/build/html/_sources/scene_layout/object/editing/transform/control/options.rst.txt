@@ -19,7 +19,7 @@ Affect Only
 Origins :kbd:`Ctrl-Period`
    Directly transforms the object's :doc:`origin </scene_layout/object/origin>`.
    This only works for objects with data which can be transformed;
-   i.e. it will not work on lamp objects.
+   i.e. it will not work on object lights.
 
    When enabled, the object axes are displayed.
 

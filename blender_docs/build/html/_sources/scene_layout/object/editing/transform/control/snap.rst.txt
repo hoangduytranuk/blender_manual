@@ -68,7 +68,7 @@ Transform Snapping
    :Header:    :menuselection:`Snap`
    :Hotkey:    :kbd:`Shift-Tab`
 
-The ability to snap Objects and Mesh element to various types of scene elements during
+The ability to snap objects and mesh element to various types of scene elements during
 a transformation is available by toggling the magnet icon in the 3D View's header buttons.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_snap_header-magnet-icon.png
@@ -110,7 +110,7 @@ Face
    Snaps to the surfaces of faces in mesh objects;
    This is useful for retopologizing.
 Volume
-   Snaps to regions within the volume of the first Object found below the mouse cursor.
+   Snaps to regions within the volume of the first object found below the mouse cursor.
    Unlike the other options, this one controls the depth
    (i.e. Z coordinates in current view space) of the transformed element.
    By toggling the button that appears to the right of the snap target menu (see below),
@@ -165,6 +165,8 @@ Closest
           Median.
 
 
+.. _bpy.types.ToolSettings.use_snap_backface_culling:
+
 Additional Snap Options
 -----------------------
 
@@ -177,6 +179,8 @@ additional controls are available to alter snap behavior. These options vary bet
 Absolute Grid Snap
    Available only for the increase option.
    Snap to grid, instead of snapping in increments relative to the current location.
+Backface Culling
+   Exclude back facing geometry from snapping.
 Project Onto Self
    Available only in editing mode for Vertices, Edges, Faces and Volume.
    Snaps elements to its own mesh.
@@ -188,7 +192,7 @@ Project Individual Elements
    Project individual elements on the surface of other objects.
 Snap Peel Object
    Available for snap to Volume.
-   Consider Objects as whole when finding volume center.
+   Consider objects as whole when finding volume center.
 Affect
    Limits the effect of the snap to the transformation type.
 

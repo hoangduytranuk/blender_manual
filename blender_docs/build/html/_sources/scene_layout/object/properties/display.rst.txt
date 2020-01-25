@@ -15,7 +15,7 @@ The *Viewport Display* panel is used to enable extra display options for the 3D 
 Name
    Displays the name of the object in the 3D View.
 Axis
-   Displays an object similar to an *Empty* that shows the object's axis.
+   Displays an object similar to an empty that shows the object's axis.
 Wireframe
    Displays an object's wireframe on top of the solid display.
 All Edges

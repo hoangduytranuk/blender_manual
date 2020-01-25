@@ -59,4 +59,4 @@ Example
 
 .. figure:: /images/grease-pencil_modifiers_deform_hook_sample.png
 
-   Empty used as Hook to manipulate a vertex group (right eye of the monkey).
+   Empty used as a hook to manipulate a vertex group (right eye of the monkey).

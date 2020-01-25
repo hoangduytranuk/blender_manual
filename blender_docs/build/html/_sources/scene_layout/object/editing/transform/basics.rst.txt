@@ -92,8 +92,8 @@ to the opposite side, the scale will continue in the negative direction and flip
 
 .. figure:: /images/scene-layout_object_editing_transform_basics_scale-basic-usage.png
 
-   Basic scale usage. From left to right, the panels show: the original Object,
-   a scaled down Object, a scaled up Object and a scale-flipped Object.
+   Basic scale usage. From left to right, the panels show: the original object,
+   a scaled down object, a scaled up object and a scale-flipped object.
 
 The amount of scaling will be displayed in the footer of the 3D Viewport.
 

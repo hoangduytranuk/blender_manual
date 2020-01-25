@@ -87,6 +87,8 @@ Sample Bias
    Value added to texture samples (sculpting only).
 
 
+.. _bpy.types.BrushTextureSlot.mask:
+
 Texture Mask
 ============
 

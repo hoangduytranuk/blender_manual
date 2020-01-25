@@ -34,7 +34,7 @@ Flip
    (i.e. when it is enabled, the "positive" side will be kept, instead of the "negative" one).
 
 Mirror Object
-   An :ref:`Object Selector <ui-eyedropper>` to select an object (usually an empty),
+   An :ref:`Object Selector <ui-data-id>` to select an object (usually an empty),
    which position and rotation will be used to define mirror planes
    (instead of using the ones from the modified object).
 
@@ -105,4 +105,4 @@ Finally, use the :ref:`Set Origin <bpy.ops.object.origin_set>` menu, and select 
 This will move the object's origin (and thus, the mirror plane) to where the 3D cursor is located,
 and the mirroring will be exact.
 
-An alternative is to use an Empty as a *Mirror Object* that you move to the correct position.
+An alternative is to use an empty as a *Mirror Object* that you move to the correct position.

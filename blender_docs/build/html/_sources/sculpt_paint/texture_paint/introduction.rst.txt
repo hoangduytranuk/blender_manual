@@ -135,7 +135,7 @@ Using an External Image Editor
 
 If you use an external program to edit your UV texture, you must:
 
-#. Run that paint program (GIMP, Krita, Photoshop\ :sup:`®` \, etc.).
+#. Run that paint program (GIMP, Krita, etc.).
 #. Load the image or create a new one.
 #. Change the image.
 #. And re-save it within that program.

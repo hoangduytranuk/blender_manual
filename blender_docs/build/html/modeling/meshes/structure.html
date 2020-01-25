@@ -211,14 +211,9 @@
       <li>Cấu Trúc -- Structure</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/modeling/meshes/structure.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/structure.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -318,6 +313,18 @@ when shading of these parts of the mesh is set to smooth. This is an easier way 
 <a class="reference internal image-reference" href="../../_images/modeling_meshes_editing_normals_example-auto-smooth.png"><img alt="../../_images/modeling_meshes_editing_normals_example-auto-smooth.png" src="../../_images/modeling_meshes_editing_normals_example-auto-smooth.png" style="width: 250px;" /></a>
 <p class="caption"><span class="caption-text">Example mesh with <em>Auto Smooth</em> enabled.</span></p>
 </div>
+<div class="section" id="advanced-smooth-shading-sharp-edges">
+<span id="modeling-meshes-normals-sharp-edge"></span><h4>Advanced Smooth Shading &amp; Sharp Edges<a class="headerlink" href="#advanced-smooth-shading-sharp-edges" title="Permalink to this headline">¶</a></h4>
+<p>By default in Blender, with basic normal computing behavior, a sharp edge is always defined
+as an edge being either non-manifold, or having at least one of its faces defined as flat.</p>
+<p>Enabling the <em>Auto Smooth</em> setting adds an extra parameter to define a sharp edge,
+the <em>Angle</em> threshold between two neighbor faces, above which the edge will always be considered as sharp.</p>
+<p><em>Auto Smooth</em> also enables <em>Custom Split Normals</em> handling, which can be either defined (and edited)
+as a <a class="reference internal" href="editing/normals.html"><span class="doc">mesh data layer</span></a>, or generated on the fly by modifiers.
+In any case, when a mesh gets custom normals, they always supersede the default ones computed by <em>Auto Smooth</em>.</p>
+<p>Sharp edges may still be used by the custom normals modifiers to compute their normals,
+depending on their settings.</p>
+</div>
 </div>
 <div class="section" id="custom-split-normals">
 <span id="modeling-meshes-normals-custom"></span><h3>Custom Split Normals<a class="headerlink" href="#custom-split-normals" title="Permalink to this headline">¶</a></h3>
@@ -343,7 +350,7 @@ per a set of neighbor face corners, or per vertex.</p>
 </tbody>
 </table>
 </div>
-<p>Enables Custom Split Normals.</p>
+<p>Enables custom split normals.</p>
 <p>Also, any of the custom normal editing tools (see below) will, as a convenience,
 enable custom normals if they are not already enabled.</p>
 <div class="admonition note">

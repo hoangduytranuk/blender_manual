@@ -36,6 +36,7 @@ Viewing the Active Camera
 This switches the view to the active camera.
 The triangle above the camera will become shaded when active.
 
+
 Setting the Active Camera
 =========================
 

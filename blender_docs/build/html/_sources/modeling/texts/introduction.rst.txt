@@ -9,8 +9,7 @@ Introduction
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Add --> Text`
 
-*Text* objects contain some text,
-and are in the same object type family as *Curves* and *Surfaces* ones,
+Text objects contain some text, and are in the same object type family as curves and surfaces ones,
 as fonts are vectorial data (they are made of curves).
 
 Blender uses a "Font System" to manage mapping letter codes to geometry representing them in 3D Views.
@@ -23,16 +22,16 @@ And moreover, it can use any objects existing in the current blend-file as lette
 
    An example of an extruded text.
 
-*Text* objects allow you to create and render 2D or 3D text,
+Text objects allow you to create and render 2D or 3D text,
 with various advanced layout options, like justifying and frames.
 By default, letters are just flat filled surfaces, exactly like any closed 2D curve.
-But, just like *Curves*, you can extrude them,
+But, just like curves, you can extrude them,
 and apply :doc:`modifiers </modeling/modifiers/introduction>` to them
 (e.g. to make them :doc:`follow a curve </modeling/modifiers/deform/curve>`).
 
 .. tip::
 
-   You can convert a *Text* object, either to a curve, or directly to a mesh,
+   You can convert a text object, either to a curve, or directly to a mesh,
    using :ref:`object-convert-to` in Object Mode.
 
 .. note::

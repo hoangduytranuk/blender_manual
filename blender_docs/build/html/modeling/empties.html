@@ -197,14 +197,9 @@
       <li>-- Empties</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/modeling/empties.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/empties.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -215,16 +210,16 @@
             
   <span class="target" id="bpy-ops-object-empty"><span id="bpy-types-object-empty"></span></span><div class="section" id="empties">
 <h1>-- Empties<a class="headerlink" href="#empties" title="Permalink to this headline">¶</a></h1>
-<p>The &quot;Empty&quot; is a single coordinate point with no additional geometry.
-Because an Empty has no volume and surface, it cannot be rendered.
+<p>The &quot;empty&quot; is a single coordinate point with no additional geometry.
+Because an empty has no volume and surface, it cannot be rendered.
 Still it can be used as a handle for many purposes.</p>
 <div class="section" id="selecting-editing">
 <h2>Lựa Chọn &amp; Biên Soạn -- Selecting &amp; Editing<a class="headerlink" href="#selecting-editing" title="Permalink to this headline">¶</a></h2>
-<p>An Empty can only be edited in <em>Object Mode</em>, which includes its transformation and parenting properties.
+<p>An empty can only be edited in Object Mode, which includes its transformation and parenting properties.
 For other tools see the <a class="reference internal" href="../scene_layout/object/index.html"><span class="doc">Object section</span></a>.</p>
 <dl class="docutils">
 <dt>Áp Dụng Tỷ Lệ <kbd class="kbd docutils literal notranslate">Ctrl-A</kbd> -- Apply Scale <kbd class="kbd docutils literal notranslate">Ctrl-A</kbd></dt>
-<dd>While Empties don't exactly have any object data attached to them which can be used for supporting
+<dd>While empties don't exactly have any object data attached to them which can be used for supporting
 &quot;true&quot; apply scale (i.e. with non-uniform scaling), they do have <em>Display Size</em> which controls how
 large the empties are displayed (before scaling). This works by taking the scale factor on the most-scaled axis,
 and combines this with the existing empty <em>Display Size</em> to maintain the correct dimensions on that axis.</dd>
@@ -262,13 +257,13 @@ The image is displayed regardless of the 3D display mode.</p>
 <dl class="last docutils">
 <dt>Use Alpha</dt>
 <dd>Use alpha blending instead of alpha-test
-<em>(blends with the background but can have depth sorting artifacts)</em>.</dd>
-<dt>Transparency</dt>
-<dd>Fade the images transparency
-<em>(uses the Object Color's Alpha component)</em>.</dd>
+(blends with the background but can have depth sorting artifacts).</dd>
+<dt>Opacity</dt>
+<dd>Fade the image to make it transparent
+(uses the object <em>Color</em>'s alpha component).</dd>
 <dt>Offset X, Y</dt>
 <dd><p class="first">Offset the image origin
-<em>(where 1.0 represents the width/height of the image)</em>.</p>
+(where 1.0 represents the width/height of the image).</p>
 <table class="last docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -298,7 +293,7 @@ The image is displayed regardless of the 3D display mode.</p>
 <div class="last admonition tip">
 <p class="first admonition-title">Mẹo</p>
 <p class="last">When using the image as a reference for modeling,
-it can be useful to set the depth to <em>Front</em>, with a low <em>Transparency</em>.</p>
+it can be useful to set the depth to <em>Front</em>, with a low <em>Opacity</em>.</p>
 </div>
 </dd>
 <dt>Side</dt>
@@ -343,7 +338,7 @@ so two empty images can be set only to show when viewed from the correct side.</
 <h2>Sử Dụng -- Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>Empties can serve as transform handles. Some examples of ways to use them include:</p>
 <p class="rubric">-- Parent object for a group of objects</p>
-<p>An Empty can be parented to any number of other objects.
+<p>An empty can be parented to any number of other objects.
 This gives the user the ability to control a group of objects easily, and without affecting a render.</p>
 <p class="rubric">-- Target for constraints</p>
 <p>An empty can also be used as a target for normal, or bone constraints.

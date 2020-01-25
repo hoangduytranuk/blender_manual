@@ -186,7 +186,8 @@ Intersection Method
    Grid Fill
       The default method for building intersections, useful when a smooth continuation of
       the bevel profile is desired. Without *Custom Profile* enabled, the curve of the profile continues through
-      the intersection, but with a custom profile it just creates a smooth grid within the boundary of the intersection.
+      the intersection, but with a custom profile it just creates a smooth grid
+      within the boundary of the intersection.
    Cutoff
       Creates a cutoff face at the end of each beveled edge coming into the vertex.
       This is most useful for custom profiles when the new intersection is too complex for a smooth grid fill.
@@ -239,7 +240,8 @@ Custom Profile
 
    .. note::
 
-      The *Profile* slider is still useful when miters are enabled because it still controls the shape of the miter profiles.
+      The *Profile* slider is still useful when miters are enabled because
+      it still controls the shape of the miter profiles.
 
    Sampling
 

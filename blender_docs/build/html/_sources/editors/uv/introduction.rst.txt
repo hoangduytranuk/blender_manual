@@ -87,7 +87,7 @@ For more complex 3D models, regular Cubic, Cylindrical or Spherical mapping, is 
 For even and accurate projection, use seams to guide the UV mapping.
 This can be used to apply textures to arbitrary and complex shapes,
 like human heads or animals. Often these textures are painted images,
-created in applications like the Gimp, Photoshop, or your favorite painting application.
+created in applications like the Gimp, Krita, or your favorite painting application.
 
 
 Interface

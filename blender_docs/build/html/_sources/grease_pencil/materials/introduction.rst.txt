@@ -3,7 +3,7 @@
 Introduction
 ************
 
-Materials control the appearance of the *Grease Pencil* object.
+Materials control the appearance of the Grease Pencil object.
 They define the color and texture of the strokes and filled areas.
 
 There is always only one active material in the list (the selected one).
@@ -20,20 +20,20 @@ the look of already drawn strokes.
 Setting up Materials
 ====================
 
-*Grease Pencil* Materials can be created in the :doc:`Material properties </editors/properties_editor>`
+Grease Pencil materials can be created in the :doc:`Material properties </editors/properties_editor>`
 as any other materials in Blender.
 See :doc:`Material assignment </render/materials/assignment>` for more information.
 
 The 3D Viewport can be set to Material Preview or Rendered shading,
 to interactively preview how the material looks in the scene.
 
-*Grease Pencil* Materials are data-blocks that can be :doc:`assigned </render/materials/assignment>`
+Grease Pencil materials are data-blocks that can be :doc:`assigned </render/materials/assignment>`
 to one or more objects, and different materials can be assigned to different strokes.
 
-In *Grease Pencil* the :doc:`brush </grease_pencil/modes/draw/tool_settings/index>`
+In Grease Pencil the :doc:`brush </grease_pencil/modes/draw/tool_settings/index>`
 settings together with the material used will define the look and feel of the final strokes.
 
-*Grease Pencil* Materials slots in the :ref:`List view <ui-list-view>` also have some extra controls
+Materials slots in the :ref:`List view <ui-list-view>` also have some extra controls
 that help to work with materials while drawing or editing lines.
 
 
@@ -86,5 +86,5 @@ Visibility (screen icon)
 Grease Pencil Shader
 ====================
 
-*Grease Pencil* Materials use a special :doc:`shader </grease_pencil/materials/grease_pencil_shader>`
+Grease Pencil materials use a special :doc:`shader </grease_pencil/materials/grease_pencil_shader>`
 that define the appearance of the surface of the stroke and fill.

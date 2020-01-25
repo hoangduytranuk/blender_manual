@@ -148,7 +148,7 @@ Move to Layer
 
 A pop-up menu to move the stroke to a different layer.
 You can choose the layer to move the selected strokes to
-from a list of layers of the current *Grease Pencil* object.
+from a list of layers of the current Grease Pencil object.
 You can also add a new layer to move the selected stroke to.
 
 
@@ -165,7 +165,7 @@ Assign Material
 
 Changes the material linked to the selected stroke.
 You can choose the name of the material to be used by the selected stroke
-from a list of materials of the current *Grease Pencil* object.
+from a list of materials of the current Grease Pencil object.
 
 
 .. _bpy.ops.gpencil.set_active_material:

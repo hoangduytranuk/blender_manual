@@ -7,7 +7,7 @@ Opacity Modifier
 
 The *Opacity* Modifier change the opacity (alpha) value of the stroke points.
 
-The alpha value in *Grease Pencil* is stored per-point,
+The alpha value in Grease Pencil is stored per-point,
 The modifier can alter these values to go from totally transparent points to totally opaque points.
 
 

@@ -285,7 +285,8 @@ Custom Profile :kbd:`Z`
 
    .. note::
 
-      The *Profile* slider is still useful when miters are enabled because it still controls the shape of the miter profiles.
+      The *Profile* slider is still useful when miters are enabled
+      because it still controls the shape of the miter profiles.
 
    Sampling
 

@@ -38,14 +38,14 @@ See :ref:`grease-pencil-modifier-influence-filters`.
 Example
 =======
 
-.. list-table:: Lattice modifier sample.
+.. list-table:: Lattice modifier example.
 
    * - .. figure:: /images/grease-pencil_modifiers_deform_lattice_original.png
           :width: 320px
 
-          Original Model.
+          Original model.
 
      - .. figure:: /images/grease-pencil_modifiers_deform_lattice_edit.png
           :width: 320px
 
-          After Lattice edition.
+          After lattice edition.

@@ -4,7 +4,7 @@
 Time Offset Modifier
 ********************
 
-The *Time Offset* Modifier offsets the position of *Grease Pencil* keyframes.
+The *Time Offset* Modifier offsets the position of Grease Pencil keyframes.
 
 For example can be used to start the same animation loop
 at different times and avoid an unappealing synchronization of the loops.

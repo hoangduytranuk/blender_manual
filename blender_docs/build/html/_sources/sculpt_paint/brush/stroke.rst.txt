@@ -64,6 +64,10 @@ Stroke Method :kbd:`E`
          To confirm and execute the curved stroke,
          press :kbd:`Return` or use the Draw Curve button.
 
+Adjust Strength for Spacing
+   Attenuate the brush strength according to spacing.
+   Available for the *Space*, *Line*, and *Curve* stroke methods.
+
 Jitter
    Jitter the position of the brush while painting.
 

@@ -8,7 +8,7 @@ Strokes
 
    Strokes panel.
 
-General settings for *Grease Pencil* strokes.
+General settings for Grease Pencil strokes.
 
 
 Stroke Depth Order

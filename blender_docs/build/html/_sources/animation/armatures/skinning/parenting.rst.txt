@@ -58,9 +58,9 @@ the armature, the cube will get three new vertex groups created on it called "Bo
 With Automatic Weights
 ======================
 
-*With Automatic Weights* parenting works similar to With Empty Groups, but it will not leave the vertex groups empty.
-It calculates how much influence a particular bone would have on vertices
-based on the distance from those vertices to a particular bone ("bone heat" algorithm).
+*With Automatic Weights* parenting works similar to *With Empty Groups*,
+but it will not leave the vertex groups empty. It calculates how much influence a particular bone
+would have on vertices based on the distance from those vertices to a particular bone ("bone heat" algorithm).
 This influence will be assigned as weights in the vertex groups.
 
 This method of parenting is certainly easier to setup, but it can often lead to armatures which do not deform child
@@ -90,7 +90,7 @@ You will have to apply Armature Deform With Envelope Weights parenting again.
 
 .. figure:: /images/animation_armatures_skinning_parenting_envelope-influence.png
 
-   Two sets of Armatures, each with three bones.
+   Two sets of armatures, each with three bones.
 
 .. warning::
 

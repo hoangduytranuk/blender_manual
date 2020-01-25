@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-17 21:35+0000\n"
+"POT-Creation-Date: 2020-01-25 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgid "Cameras (perspective cameras only at the moment, not orthogonal ones)."
 msgstr ""
 
 #: ../../manual/files/import_export/usd.rst:15
-msgid "Lamps (all types except area lamps)."
+msgid "Light (all types except area lights)."
 msgstr ""
 
 #: ../../manual/files/import_export/usd.rst:16
@@ -73,7 +73,7 @@ msgid "The following options are available when exporting to USD:"
 msgstr ""
 
 #: ../../manual/files/import_export/usd.rst:41
-msgid "Only Export Selected Objects"
+msgid "Selection Only"
 msgstr ""
 
 #: ../../manual/files/import_export/usd.rst:39
@@ -89,7 +89,7 @@ msgid "When checked, the entire scene frame range is exported. When unchecked, o
 msgstr ""
 
 #: ../../manual/files/import_export/usd.rst:49
-#: ../../manual/files/import_export/usd.rst:117
+#: ../../manual/files/import_export/usd.rst:127
 msgid "Hair"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgid "When checked, includes normals for exported meshes. This includes custom 
 msgstr ""
 
 #: ../../manual/files/import_export/usd.rst:68
-#: ../../manual/files/import_export/usd.rst:113
+#: ../../manual/files/import_export/usd.rst:123
 msgid "Materials"
 msgstr ""
 
@@ -126,91 +126,103 @@ msgstr ""
 msgid "The first material (if any) is always applied to the mesh itself as well (regardless of the existence of geometry subsets), because the Hydra viewport does not support materials on subsets. See `USD issue #542 <https://github.com/PixarAnimationStudios/USD/issues/542>`__ for more information."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:76
-msgid "Use Instancing"
+#: ../../manual/files/import_export/usd.rst:72
+msgid "Use Settings for"
 msgstr ""
 
 #: ../../manual/files/import_export/usd.rst:71
-msgid "As this is an experimental option. When unchecked, duplicated objects are exported as real objects, so a particle system with 100 particles that is displayed with 100 meshes will have 100 individual meshes in the exported file. When checked, duplicated objects are exported as a reference to the original object. If the original object is not part of the export, the first duplicate is exported as real object and used as reference."
+msgid "Determines the whether to use *Viewport* or *Render* visibility of collection, modifiers, or any other property that can be set for both the *Viewport* and *Render*."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:78
+#: ../../manual/files/import_export/usd.rst:76
 msgid "Regardless of the options selected above, objects that are inside a :ref:`Holdout collection <editors-outliner-restriction-columns>` are always excluded from the export."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:83
+#: ../../manual/files/import_export/usd.rst:81
+msgid "Experimental"
+msgstr ""
+
+#: ../../manual/files/import_export/usd.rst:90
+msgid "Instancing"
+msgstr ""
+
+#: ../../manual/files/import_export/usd.rst:84
+msgid "As this is an experimental option. When unchecked, duplicated objects are exported as real objects, so a particle system with 100 particles that is displayed with 100 meshes will have 100 individual meshes in the exported file. When checked, duplicated objects are exported as a reference to the original object. If the original object is not part of the export, the first duplicate is exported as real object and used as reference."
+msgstr ""
+
+#: ../../manual/files/import_export/usd.rst:93
 msgid "Limitations"
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:88
+#: ../../manual/files/import_export/usd.rst:98
 msgid "Single-sided and Double-sided Meshes"
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:86
+#: ../../manual/files/import_export/usd.rst:96
 msgid "USD seems to support neither per-material nor per-face-group double-sidedness, so Blender uses the flag from the first material to mark the entire mesh as single/double-sided. If there is no material it defaults to double-sided."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:94
+#: ../../manual/files/import_export/usd.rst:104
 msgid "Mesh Normals"
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:91
+#: ../../manual/files/import_export/usd.rst:101
 msgid "The mesh subdivision scheme in USD is 'Catmull-Clark' by default, but Blender uses 'None' instead, indicating that a polygonal mesh is exported. This is necessary for USD to understand the custom normals; otherwise the mesh is always rendered smooth."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:100
+#: ../../manual/files/import_export/usd.rst:110
 msgid "Vertex Velocities"
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:97
+#: ../../manual/files/import_export/usd.rst:107
 msgid "Currently only fluid simulations (not meshes in general) have explicit vertex velocities. This is the most important case for exporting velocities, though, as the baked mesh changes topology all the time, and thus computing the velocities at import time in a post-processing step is hard."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:104
+#: ../../manual/files/import_export/usd.rst:114
 msgid "Coordinate System Orientation"
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:103
+#: ../../manual/files/import_export/usd.rst:113
 msgid "Blender uses the Z axis as up axis. Since USD supports both Y up and Z up, the USD files written by Blender always use Z up."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:107
+#: ../../manual/files/import_export/usd.rst:117
 msgid "Very simple versions of the materials are exported, using only the :ref:`render-materials-settings-viewport-display` color, metallic, and roughness."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:110
+#: ../../manual/files/import_export/usd.rst:120
 msgid "When there are multiple materials, the mesh faces are stored as geometry subset and each material is assigned to the appropriate subset. If there is only one material this is skipped. Note that the geometry subsets are not time-sampled, so it may break when an animated mesh changes topology."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:116
+#: ../../manual/files/import_export/usd.rst:126
 msgid "Only the parent strands are exported, and only with a constant color. No UV coordinates, and no information about the normals."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:120
+#: ../../manual/files/import_export/usd.rst:130
 msgid "Camera"
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:120
+#: ../../manual/files/import_export/usd.rst:130
 msgid "Only perspective cameras are exported."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:123
+#: ../../manual/files/import_export/usd.rst:133
 msgid "Lights"
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:123
+#: ../../manual/files/import_export/usd.rst:133
 msgid "USD does not directly support spot lights, so those are not exported."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:130
+#: ../../manual/files/import_export/usd.rst:140
 msgid "Particles"
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:126
+#: ../../manual/files/import_export/usd.rst:136
 msgid "Particles are only written when they are alive, which means that they are always visible. There is currently no code that deals with marking them as invisible outside their lifespan."
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:129
+#: ../../manual/files/import_export/usd.rst:139
 msgid "Objects instanced by particle system are exported by suffixing the object name with the particle's persistent ID, giving each particle transform a unique name."
 msgstr ""
 
@@ -218,7 +230,7 @@ msgstr ""
 msgid "Instancing/Referencing"
 msgstr ""
 
-#: ../../manual/files/import_export/usd.rst:133
+#: ../../manual/files/import_export/usd.rst:143
 msgid "This is still an experimental feature that can be enabled when exporting to USD. When enabled, instanced object meshes are written to USD as references to the original mesh. The first copy of the mesh is written for real, and the following copies are referencing the first. Which mesh is considered 'the first' is chosen more or less arbitrarily."
 msgstr ""
 

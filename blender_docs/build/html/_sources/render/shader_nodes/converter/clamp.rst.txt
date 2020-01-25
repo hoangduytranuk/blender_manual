@@ -23,6 +23,16 @@ Max
    The maximum value.
 
 
+Properties
+==========
+
+Clamp Type
+   Min Max
+      Clamp values using Min and Max values.
+   Range
+      Clamp values between Min and Max range.
+
+
 Outputs
 =======
 

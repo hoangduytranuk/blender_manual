@@ -1,4 +1,3 @@
-.. TODO Move target: move to ui data id if proof.
 
 ******
 Common
@@ -18,9 +17,9 @@ Fill in the Target field, and the Copy Location constraint will begin to use loc
 
    The Target field must be filled in for the constraint to function.
 
-By default, the Target will use the :term:`Object Origin` as the target point.
+By default, the Target will use the :term:`object origin` as the target point.
 
-If the Target field links to a :term:`Mesh` or :term:`Lattice` object, a :term:`Vertex Group` field will appear.
+If the Target field links to a :term:`mesh` or :term:`lattice` object, a :term:`Vertex Group` field will appear.
 Enter the name of a vertex group and the constraint will target the median point
 of this vertex group instead of the object's origin.
 
@@ -32,7 +31,7 @@ Enter the name of a bone and the constraint will target the bone instead of the 
 
 .. figure:: /images/animation_constraints_interface_common_target-bone.png
 
-The slider moves the precise position of the target between the :term:`Head` and :term:`Tail` of the bone.
+The slider moves the precise position of the target between the :term:`head` and :term:`tail` of the bone.
 Some constraints have a button next to the slider
 that enables using the curved shape of :ref:`Bendy Bones <bendy-bones>`.
 

@@ -86,9 +86,9 @@ the faces you were working with. Their UVs will disappear from the UV Editor, bu
 just not shown. (To verify this, you can select a few faces in 3D View and it will show up in the UV Editor.)
 
 To work on the ear, in the 3D View, we now select only the "ear" faces.
-You can use Vertex Groups to select the ear faces. Selecting sub-meshes is easy too,
+You can use vertex groups to select the ear faces. Selecting sub-meshes is easy too,
 since they are not connected to the rest of the mesh.
-Simply selecting Linked vertices will select that entire submesh. Basically,
+Simply selecting linked vertices will select that entire submesh. Basically,
 since you are in Edit Mode, all the selecting/deselecting features are available to you.
 
 Now unwrap the ear again using the *Project* tool from side view,
@@ -128,9 +128,9 @@ Iteration & Refinement
 
 At least for common people, we just do not "get it right the first time." It takes building on
 an idea and iterating our creative process until we reach that magical milestone called "Done".
-In software development, this is called the Spiral Methodology.
+In software development, this is called the 'spiral methodology'.
 
-Applied to Computer Graphics, we cycle between modeling, texturing, animating,
+Applied to computer graphics, we cycle between modeling, texturing, animating,
 and then back to making some modifications to mesh, UV mapping, tweaking the animation,
 adding a bone or two, finding out we need a few more faces, so back to modeling, etc.
 We continue going round and round like this until we either run out of time, money,
@@ -147,7 +147,7 @@ As you start to edit the image,
 you realize that there just are not enough pixels available to paint the detail that you want.
 
 Your only choice is to expand the size (scale out) that UV face.
-Using the Minimize stretch or Scale tools,
+Using the *Minimize Stretch* or *Scale* tools,
 you expand the UV faces around the eyes or chest, allocating more pixels to those areas,
 but at the same time taking away pixels (detail) from something else,
 like the back of the head. After refining the UV map,
@@ -167,4 +167,4 @@ and unwrap just the legs of characters to use that image.
 It would be good to have a generic skin image, and use that for character's hands, feet, arms,
 legs, and neck. When modeling a fantasy sword,
 a small image for a piece of the sword blade would suffice,
-and you would Reset Unwrap the sword faces to reuse that image down the length of the blade.
+and you would *Reset Unwrap* the sword faces to reuse that image down the length of the blade.

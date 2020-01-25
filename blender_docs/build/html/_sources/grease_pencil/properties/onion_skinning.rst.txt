@@ -7,7 +7,7 @@ Onion Skinning show ghosts of the keyframes before and after the current frame a
 to make decisions in the animation sequence.
 
 The main switch to show/hide Onion Skinning is in the :ref:`Viewport Overlays <3dview-overlay-grease-pencil>`,
-but *Grease Pencil* Onion Skinning is per-layer and the visibility can be toggle in the layer list.
+but Grease Pencil Onion Skinning is per-layer and the visibility can be toggle in the layer list.
 See :doc:`2D Layers </grease_pencil/properties/layers>` for more information.
 
 .. figure:: /images/grease-pencil_properties_onion-skinning_panel.png

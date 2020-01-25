@@ -213,14 +213,9 @@
       <li>Draw Brush</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../../../../_sources/grease_pencil/modes/draw/tool_settings/brushes/draw_brush.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/grease_pencil/modes/draw/tool_settings/brushes/draw_brush.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -231,13 +226,14 @@
             
   <div class="section" id="draw-brush">
 <h1>Draw Brush<a class="headerlink" href="#draw-brush" title="Permalink to this headline">¶</a></h1>
-<p>Draw brushes are the special type of brushes that uses <em>Grease Pencil</em> for drawing tools.
+<p>Draw brushes are the special type of brushes that uses Grease Pencil for drawing tools.
 The brush can be changed in the Tool Settings.</p>
 <p>The different draw brushes (pencil, Ink, marker, etc.) are settings variations of the same <em>Draw Brush</em>.
-you can create many brushes, each with unique settings
-to obtain different artistic result while drawing.</p>
-<div class="section" id="common-options">
-<h2>Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h2>
+You can create many brushes, each with unique settings to get different artistic result while drawing.</p>
+<div class="section" id="tool-settings">
+<h2>Tool Settings<a class="headerlink" href="#tool-settings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="brushes">
+<h3>Brushes<a class="headerlink" href="#brushes" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-right" id="id1">
 <img alt="../../../../../_images/grease-pencil_modes_draw_brushes_draw-brush-data-block.png" src="../../../../../_images/grease-pencil_modes_draw_brushes_draw-brush-data-block.png" />
 <p class="caption"><span class="caption-text">Brush data-block panel.</span></p>
@@ -248,6 +244,13 @@ to obtain different artistic result while drawing.</p>
 <dl class="last docutils">
 <dt>Add Brush</dt>
 <dd>When you add a brush, the new brush is a clone of the current one.</dd>
+<dt>Custom Icon</dt>
+<dd><p class="first">Allows definition of a custom brush icon.</p>
+<dl class="last docutils">
+<dt>Image Path</dt>
+<dd>Defines the path to the image to use as custom icon.</dd>
+</dl>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -255,17 +258,19 @@ to obtain different artistic result while drawing.</p>
 <p class="first admonition-title">Ghi chú</p>
 <p class="last">In order to save a custom brush, activate <em>Fake User</em>.</p>
 </div>
+</div>
+</div>
+<div class="section" id="brush-settings">
+<h2>Brush Settings<a class="headerlink" href="#brush-settings" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>Radius</dt>
 <dd><p class="first">The radius of the brush in pixels.</p>
 <p><kbd class="kbd docutils literal notranslate">F</kbd> allows you to change the brush size interactively by dragging the mouse/pen or
 by typing a number then confirm.</p>
-<blockquote class="last">
-<div><dl class="docutils">
+<dl class="last docutils">
 <dt>Use Pressure (pressure sensitivity icon)</dt>
 <dd>Uses stylus pressure to control how strong the effect is.</dd>
 </dl>
-</div></blockquote>
 </dd>
 <dt>Strength</dt>
 <dd><p class="first">Control the stroke transparency (alpha).
@@ -273,13 +278,15 @@ From totally transparent (0.0) to fully opaque (1.0).</p>
 <p>You can change the brush strength interactively by pressing <kbd class="kbd docutils literal notranslate">Shift-F</kbd>
 in the 3D View and then moving the mouse/pen and then <kbd class="kbd docutils literal notranslate">LMB</kbd>.
 You can also enter the size numerically.</p>
-<blockquote class="last">
-<div><dl class="docutils">
+<dl class="last docutils">
 <dt>Use Pressure (pressure sensitivity icon)</dt>
 <dd>Uses stylus pressure to control how strong the effect is.</dd>
 </dl>
-</div></blockquote>
 </dd>
+</dl>
+<div class="section" id="advanced">
+<h3>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
 <dt>Input Samples</dt>
 <dd><p class="first">Controls how often the input device is read to generate points on the stroke.
 Higher values give a higher precision (more points) but produce an irregular stroke,
@@ -309,8 +316,11 @@ Works only when the brush is using stroke materials of <em>Dot</em> or <em>Box</
 </dl>
 </dd>
 </dl>
+</div>
+<div class="section" id="stroke">
+<h3>Stroke<a class="headerlink" href="#stroke" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="post-processing">
-<h3>Post-Processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h3>
+<h4>Post-Processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h4>
 <p>Post-processing methods that are executed on the strokes
 when you finished drawing, right after releasing the <kbd class="kbd docutils literal notranslate">LMB</kbd> or <kbd class="kbd docutils literal notranslate">Pen</kbd> tip.
 You can toggle the use of post-processing using the checkbox in the section panel header.</p>
@@ -342,11 +352,11 @@ You can toggle the use of post-processing using the checkbox in the section pane
 <dd>Automatically trim intersection strokes ends.</dd>
 </dl>
 </div>
-<div class="section" id="stabilizer">
-<span id="bpy-types-brush-smooth-stroke"></span><span id="bpy-types-brushgpencilsettings-use-settings-stabilizer"></span><span id="grease-pencil-draw-brushes-stabilizer"></span><h3>Stabilizer<a class="headerlink" href="#stabilizer" title="Permalink to this headline">¶</a></h3>
-<p>Stabilizer helps to reduce jitter of the strokes while drawing by
+<div class="section" id="stabilize-stroke">
+<span id="bpy-types-brush-smooth-stroke"></span><span id="bpy-types-brushgpencilsettings-use-settings-stabilizer"></span><span id="grease-pencil-draw-brushes-stabilizer"></span><h4>Stabilize Stroke<a class="headerlink" href="#stabilize-stroke" title="Permalink to this headline">¶</a></h4>
+<p><em>Stabilize Stroke</em> helps to reduce jitter of the strokes while drawing by
 delaying and correcting the location of points.
-You can toggle the use of stabilizer using the checkbox in the section panel header.</p>
+You can toggle the use of <em>Stabilize Stroke</em> using the checkbox in the section panel header.</p>
 <dl class="docutils">
 <dt>Radius</dt>
 <dd>Minimum distance from the last point before the stroke continues.</dd>
@@ -356,8 +366,8 @@ feels like as if you were pulling the stroke.</dd>
 </dl>
 </div>
 <div class="section" id="randomize">
-<span id="bpy-types-brushgpencilsettings-use-jitter-pressure"></span><span id="bpy-types-brushgpencilsettings-pen-jitter"></span><span id="bpy-types-brushgpencilsettings-uv-random"></span><span id="bpy-types-brushgpencilsettings-random"></span><span id="bpy-types-brushgpencilsettings-use-settings-random"></span><h3>Randomize<a class="headerlink" href="#randomize" title="Permalink to this headline">¶</a></h3>
-<p>Adds randomness to the points' position along the stroke.
+<span id="bpy-types-brushgpencilsettings-use-jitter-pressure"></span><span id="bpy-types-brushgpencilsettings-pen-jitter"></span><span id="bpy-types-brushgpencilsettings-uv-random"></span><span id="bpy-types-brushgpencilsettings-random"></span><span id="bpy-types-brushgpencilsettings-use-settings-random"></span><h4>Randomize<a class="headerlink" href="#randomize" title="Permalink to this headline">¶</a></h4>
+<p>Adds randomness to the position of the points along the stroke.
 You can toggle the use of Randomize using the checkbox in the section panel header.</p>
 <dl class="docutils">
 <dt>Pressure</dt>
@@ -377,7 +387,7 @@ You can toggle the use of Randomize using the checkbox in the section panel head
 </div>
 </div>
 <div class="section" id="curves">
-<h2>Curves<a class="headerlink" href="#curves" title="Permalink to this headline">¶</a></h2>
+<h3>Curves<a class="headerlink" href="#curves" title="Permalink to this headline">¶</a></h3>
 <p>For more precise control on some strokes properties you can use
 a <a class="reference internal" href="../../../../../interface/controls/templates/curve.html"><span class="doc">curve widget</span></a>.</p>
 <dl class="docutils">
@@ -389,23 +399,14 @@ a <a class="reference internal" href="../../../../../interface/controls/template
 <dd>Controls the jitter amount on the stroke.</dd>
 </dl>
 </div>
-<div class="section" id="display">
-<h2>Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cursor">
+<h3>Cursor<a class="headerlink" href="#cursor" title="Permalink to this headline">¶</a></h3>
+<p>The cursor can be disabled by toggling the checkbox in the <em>Cursor</em> header.</p>
 <dl class="docutils">
-<dt>Icon</dt>
-<dd>Sets a predefined icon to use.</dd>
-<dt>Custom Icon</dt>
-<dd><p class="first">Allows definition of a custom brush icon.</p>
-<dl class="last docutils">
-<dt>Image Path</dt>
-<dd>Defines the path to the image to use as custom icon.</dd>
-</dl>
-</dd>
-<dt>Show Brush</dt>
-<dd>Shows the brush shape in the viewport.</dd>
-<dt>Show fill color while drawing</dt>
+<dt>Show Fill Color While Drawing</dt>
 <dd>Shows the brush linked material color in the viewport.</dd>
 </dl>
+</div>
 </div>
 </div>
 

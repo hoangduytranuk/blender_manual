@@ -221,14 +221,9 @@
       <li>Bộ Điều Chỉnh Tạo Độ Dày -- Solidify Modifier</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../../_sources/modeling/modifiers/generate/solidify.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/generate/solidify.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -242,22 +237,45 @@
 <p>The <em>Solidify</em> modifier takes the surface of any mesh and adds depth, thickness to it.</p>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-right" id="id1">
-<img alt="../../../_images/modeling_modifiers_generate_solidify_panel.png" src="../../../_images/modeling_modifiers_generate_solidify_panel.png" />
-<p class="caption"><span class="caption-text">The Solidify modifier.</span></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id1">
+<img alt="../../../_images/modeling_modifiers_generate_solidify_panel_simple.png" src="../../../_images/modeling_modifiers_generate_solidify_panel_simple.png" />
+<p class="caption"><span class="caption-text">The Solidify modifier in simple mode.</span></p>
 </div>
+</td>
+<td><div class="first last figure" id="id2">
+<img alt="../../../_images/modeling_modifiers_generate_solidify_panel_complex.png" src="../../../_images/modeling_modifiers_generate_solidify_panel_complex.png" />
+<p class="caption"><span class="caption-text">The Solidify modifier in complex mode.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="mode-independent-properties">
+<h3>Mode Independent Properties<a class="headerlink" href="#mode-independent-properties" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>Độ Dày -- Thickness</dt>
 <dd>The depth to be solidified.</dd>
 <dt>Dịch Chuyển -- Offset</dt>
 <dd>A value between (-1 to 1) to locate the solidified output inside or outside the original mesh.
+The inside and outside is determined by the face normals.
 Set to 0.0, the solidified output will be centered on the original mesh.</dd>
 <dt>Hạn Định -- Clamp</dt>
-<dd><p class="first">A value between (0 to 2) to clamp offsets to avoid self-intersection.</p>
-<div class="last figure" id="id2">
+<dd><p class="first">A value between (0 to 2) to clamp offsets to avoid self-intersection.
+The amount is determined by the length of the shortest adjacent edge.</p>
+<div class="figure" id="id3">
 <img alt="../../../_images/modeling_modifiers_generate_solidify_clamp.png" src="../../../_images/modeling_modifiers_generate_solidify_clamp.png" />
 <p class="caption"><span class="caption-text">Clamp Offset.</span></p>
 </div>
+<dl class="last docutils">
+<dt>Angle Clamp</dt>
+<dd>If enabled clamping will also consider angles in the geometry, not only lengths.</dd>
+</dl>
 </dd>
 <dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
 <dd><p class="first">Only vertices in this group are solidified. Their weights are multiplied by the thickness,
@@ -268,41 +286,22 @@ so vertices with lower weights will be less thick.</p>
 <dt>Hệ Số -- Factor</dt>
 <dd><p class="first">How much the vertex weights are taken into account.</p>
 <ul class="last simple">
-<li>On 0.0 , vertices with zero weight will have no thickness at all.</li>
+<li>On 0.0 , vertices with zero weight will have no thickness at all (creates duplicate vertices).</li>
 <li>On 0.5 , vertices with zero weight will be half as thick as those with full weight.</li>
 <li>On 1.0 , the weights are ignored and the <em>Thickness</em> value is used for every vertex.</li>
 </ul>
 </dd>
 </dl>
 </dd>
-<dt>Nếp Gập -- Crease</dt>
-<dd><p class="first">These options are intended for usage with
-the <a class="reference internal" href="subdivision_surface.html"><span class="doc">Subdivision Surface</span></a> modifier.</p>
-<div class="figure" id="id3">
-<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_solidify_rims.png"><img alt="../../../_images/modeling_modifiers_generate_solidify_rims.png" src="../../../_images/modeling_modifiers_generate_solidify_rims.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-text">Rim and edges. In this example, the object was assigned a second material used to color the rim red.</span></p>
-</div>
-<dl class="last docutils">
-<dt>Bên Trong -- Inner</dt>
-<dd>Set a crease to the inner edges.</dd>
-<dt>Bên Ngoài -- Outer</dt>
-<dd>Set a crease to the outer edges.</dd>
-<dt>Vành Mép -- Rim</dt>
-<dd>Set a crease to the rim.</dd>
-</dl>
-</dd>
 <dt>Đảo Lật Pháp Tuyến -- Flip Normals</dt>
 <dd>Reverse the normals of all geometry (both the inner and outer surfaces).</dd>
-<dt>Chiều Dày Đều Đặn -- Even Thickness</dt>
-<dd>Maintain thickness by adjusting for sharp corners.
-Sometimes improves quality but also increases computation time.</dd>
-<dt>Pháp Tuyến Chất Lượng Cao -- High Quality Normals</dt>
-<dd>Normals are calculated to produce a more even thickness.
-Sometimes improves quality but also increases computation time.</dd>
 <dt>Phủ Kín Mép Viền -- Fill Rim</dt>
 <dd>Fills the gap between the inner and outer edges.</dd>
 <dt>Duy Mép Viền -- Only Rim</dt>
-<dd>Will not extrude surfaces parallel to the original one, but instead will only generate the perpendicular rim.</dd>
+<dd><p class="first">In <em>Simple Mode</em>: Will not extrude surfaces parallel to the original one,
+but instead will only add the perpendicular rim.</p>
+<p class="last">In <em>Complex Mode</em>: Will only leave the generated perpendicular rim.</p>
+</dd>
 </dl>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
@@ -325,12 +324,96 @@ This is applied as an offset from the original material of the face from which i
 </dl>
 </dd>
 </dl>
+</div>
+<div class="section" id="simple-mode">
+<h3>Simple Mode<a class="headerlink" href="#simple-mode" title="Permalink to this headline">¶</a></h3>
+<p>This is the default solidify algorithm, which simply extrudes the geometry.
+This algorithm does not work on geometry where edges have more than two adjacent faces.</p>
+<dl class="docutils">
+<dt>Nếp Gập -- Crease</dt>
+<dd><p class="first">These options are intended for usage with
+the <a class="reference internal" href="subdivision_surface.html"><span class="doc">Subdivision Surface</span></a> modifier.</p>
+<div class="figure" id="id4">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_solidify_rims.png"><img alt="../../../_images/modeling_modifiers_generate_solidify_rims.png" src="../../../_images/modeling_modifiers_generate_solidify_rims.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-text">Edges which will get creases marked.</span></p>
+</div>
+<dl class="last docutils">
+<dt>Bên Trong -- Inner</dt>
+<dd>Set a crease to the inner edges.</dd>
+<dt>Bên Ngoài -- Outer</dt>
+<dd>Set a crease to the outer edges.</dd>
+<dt>Vành Mép -- Rim</dt>
+<dd>Set a crease to the rim.</dd>
+</dl>
+</dd>
+<dt>Chiều Dày Đều Đặn -- Even Thickness</dt>
+<dd>Maintain thickness by adjusting for sharp corners.
+Sometimes improves quality but also increases computation time.</dd>
+<dt>Pháp Tuyến Chất Lượng Cao -- High Quality Normals</dt>
+<dd>Normals are calculated to produce a more even thickness.
+Sometimes improves quality but also increases computation time.</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Quan trọng</p>
+<p class="last">If the normals of adjacent faces don't point into the same general direction, simple mode
+will not be able to solidify the boundary between those. This happens if the normals
+are not recalculated or for example on one-sided surfaces like a Möbius strip.</p>
+</div>
+</div>
+<div class="section" id="complex-mode">
+<h3>Complex Mode<a class="headerlink" href="#complex-mode" title="Permalink to this headline">¶</a></h3>
+<p>This is a new solidify algorithm which can handle every geometric situation to guarantee a manifold output geometry.
+This algorithm is able to solidify shapes like Möbius strips, Klein bottles, architectural wall layouts and many more
+which the standard implementation isn't able to do. If the special cases are not present it is recommended to
+choose <em>Simple Mode</em> because the extra logic makes this algorithm much slower.</p>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">There are no options for crease in the Modifier tab because crease is handled in a dynamic way.
+The modifier will transfer the creases of the original mesh in a smart way to the output mesh to
+work with the <a class="reference internal" href="subdivision_surface.html"><span class="doc">Subdivision Surface</span></a> modifier.</p>
+</div>
+<dl class="docutils">
+<dt>Thickness Mode</dt>
+<dd><p class="first">Choose the kind of thickness handling (thickness solver)</p>
+<div class="figure" id="id5">
+<img alt="../../../_images/modeling_modifiers_generate_solidify_thickness_mode.png" src="../../../_images/modeling_modifiers_generate_solidify_thickness_mode.png" />
+<p class="caption"><span class="caption-text">Different thickness options on a non-manifold mesh.</span></p>
+</div>
+<dl class="last docutils">
+<dt>Fixed</dt>
+<dd>This is similar to <em>Simple Mode</em> without <em>Even Thickness</em>.
+The new vertices are always in a fixed distance to the old ones.</dd>
+<dt>Even</dt>
+<dd>This is similar to <em>Simple Mode</em> with <em>Even Thickness</em> and <em>High Quality Normals</em>.
+It adjusts for sharp corners, but may not always work when more than three faces come together.</dd>
+<dt>Constraints</dt>
+<dd>This is a more advanced model to try to always get the perfect thickness everywhere.
+For up to three faces it is always guaranteed to find a perfect solution.</dd>
+</dl>
+</dd>
+<dt>Boundary Shape</dt>
+<dd><p class="first">Choose the kind of boundary that suits the model the most.</p>
+<div class="figure" id="id6">
+<img alt="../../../_images/modeling_modifiers_generate_solidify_boundary_shape.png" src="../../../_images/modeling_modifiers_generate_solidify_boundary_shape.png" />
+<p class="caption"><span class="caption-text">Different boundary options with a matCap.</span></p>
+</div>
+<dl class="last docutils">
+<dt>None</dt>
+<dd>No boundary fix is applied. Results are stable.</dd>
+<dt>Round</dt>
+<dd>Adjusts the boundary for an opening to face inwards (like a hole in an egg).</dd>
+<dt>Flat</dt>
+<dd>Adjusts the boundary of a planar opening to be a flat (like a cut sphere).</dd>
+</dl>
+</dd>
+</dl>
 <div class="admonition important">
 <p class="first admonition-title">Quan trọng</p>
 <p>The modifier thickness is calculated using local vertex coordinates. If the object has non-uniform scale,
 the thickness will vary on different sides of the object.</p>
-<p class="last">To fix this, either <a class="reference internal" href="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-transform-apply"><span class="std std-ref">apply</span></a>
-or <a class="reference internal" href="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-clear"><span class="std std-ref">clear</span></a> the scale.</p>
+<p class="last">To fix this, either <a class="reference internal" href="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-transform-apply"><span class="std std-ref">Apply</span></a>
+or <a class="reference internal" href="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-clear"><span class="std std-ref">Clear</span></a> the scale.</p>
+</div>
 </div>
 </div>
 <div class="section" id="known-limitations">
@@ -339,9 +422,12 @@ or <a class="reference internal" href="../../../scene_layout/object/editing/tran
 <h3>Chiều Dày Đều Đặn -- Even Thickness<a class="headerlink" href="#even-thickness" title="Permalink to this headline">¶</a></h3>
 <p>Solidify thickness is an approximation.
 While <em>Even Thickness</em> and <em>High Quality Normals</em> should yield good results,
-the final wall thickness is not guaranteed and may vary depending on the mesh topology.</p>
-<p>In order to maintain precise wall thickness in every case, we would need to add/remove faces on the offset shell,
-something this modifier does not do since this would add a lot of complexity and slow it down.</p>
+the final wall thickness is not guaranteed and may vary depending on the mesh topology.
+Especially for vertices with more than three adjacent faces.</p>
+<p>In order to maintain a precise wall thickness in every case, we would need to add/remove faces on
+the offset shell, something this modifier does not do since this would add a lot of complexity.
+The best option to preserve wall thickness is complex mode with constraints thickness mode,
+but it is also not guaranteed to work perfect in every case.</p>
 </div>
 </div>
 </div>

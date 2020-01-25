@@ -76,7 +76,7 @@ Show on cage (vertices-triangle icon) -- Meshes only
       This can lead to weird and unpredictable effects with some tools,
       and should be disabled whenever you need to perform complex or precise editing on the mesh.
 
-Apply On Spline Points (point-surface icon) -- Curves, Surfaces and Texts only
+Apply On Spline Points (point-surface icon) -- Curves, surfaces and texts only
    Apply the whole modifier stack up to and including that one on the curve or surface control points,
    instead of their tessellated geometry.
 

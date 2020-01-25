@@ -314,7 +314,8 @@ Examples
      - .. figure:: /images/addons_io_atomic_blender_ESE_2017_hres.jpeg
 
           Solar cell structure to underline the properties of silicon nanocrystals deposited by pulsed spray system
-          (Mickael Lozac'h et al. -- `Link to publication <https://onlinelibrary.wiley.com/doi/abs/10.1002/ese3.174>`__).
+          (Mickael Lozac'h et al. --
+          `Link to publication <https://onlinelibrary.wiley.com/doi/abs/10.1002/ese3.174>`__).
 
 The following movie was created by Sébastien Coget (responsible researcher: Frank Palmino)
 at the `Femto-ST institute <https://www.femto-st.fr/en>`__ in Besançon (France).

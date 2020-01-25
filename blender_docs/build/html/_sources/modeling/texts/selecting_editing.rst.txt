@@ -65,7 +65,7 @@ The menu of the 3D View header offers few options. You have no transform nor mir
 Basic
 -----
 
-Editing *Text* is similar to using a standard text editor but is not as
+Editing text objects is similar to using a standard text editor but is not as
 full-featured and has some differences:
 
 Exit Edit Mode
@@ -223,11 +223,11 @@ Converting Text Objects
 Converting to Text Object
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Using an existing text data-block, you can convert it to an object from the *Text* editor's header,
+Using an existing text data-block, you can convert it to an object from the Text editor's header,
 select :menuselection:`Edit --> Text to 3D Object`,
 *One Object* or *One Object per Line* depending on your needs.
 
-It is also possible to paste from the clipboard or a file from the *Edit* menu, while editing 3D Text.
+It is also possible to paste from the clipboard or a file from the *Edit* menu, while editing 3D text.
 
 
 Converting to a Mesh or Curve

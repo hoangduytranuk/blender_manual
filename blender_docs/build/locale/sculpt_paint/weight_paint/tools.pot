@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-17 21:35+0000\n"
+"POT-Creation-Date: 2020-01-25 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Weight Paint Tools"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:7
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:41
 msgid "Draw"
 msgstr ""
 
@@ -28,87 +28,145 @@ msgstr ""
 msgid "Paints a specified weight over the object."
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:11
-msgid "Blur"
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:41
+msgid "Blend"
 msgstr ""
 
 #: ../../manual/sculpt_paint/weight_paint/tools.rst:10
-msgid "Smooths out the weighting of adjacent vertices. In this mode the Weight Value is ignored. The strength defines how much the smoothing is applied."
-msgstr ""
-
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:14
-msgid "Average"
-msgstr ""
-
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:14
-msgid "Smooths weights by painting the average resulting weight from all weights under the brush."
-msgstr ""
-
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:18
-msgid "Smear"
+msgid "The brush :term:`Blend Modes` defines in which way the weight value is applied to the vertex group while painting."
 msgstr ""
 
 #: ../../manual/sculpt_paint/weight_paint/tools.rst:17
-msgid "Smudges weights by grabbing the weights under the brush and \"dragging\" them. This can be imagined as a finger painting tool."
+msgid "Mix"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:35
-msgid "Gradient"
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:14
+msgid "In this Blending mode the Weight value defines the *target weight* that will eventually be reached when you paint long enough on the same location of the mesh. And the strength determines how many strokes you need to place at the target weight. Note that for strength = 1.0 the target weight is painted immediately and for Weight = 0.0 the brush just does nothing."
 msgstr ""
 
 #: ../../manual/sculpt_paint/weight_paint/tools.rst:21
-msgid "Applies a linear/radial weight gradient; this is useful at times when painting gradual changes in weight becomes difficult. Blends the weights of selected vertices with unselected vertices."
+msgid "Add"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:27
-msgid "Example of the Gradient tool being used with selected vertices."
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:20
+msgid "In this Blending mode the specified weight value is *added* to the vertex weights. The strength determines which fraction of the weight gets added per stroke. However, the brush will not paint weight values above 1.0."
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:25
+msgid "Subtract"
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:24
+msgid "In this Blending mode the specified weight value is *subtracted* from the vertex weights. The strength determines which fraction of the weight gets removed per stroke. However, the brush will not paint weight values below 0.0."
 msgstr ""
 
 #: ../../manual/sculpt_paint/weight_paint/tools.rst:29
-msgid "Weight"
+msgid "Lighten"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:30
-msgid "The gradient starts at the current selected weight value, blending out to nothing."
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:28
+msgid "In this Blending mode the specified weight value is interpreted as the target weight. Very similar to the Mix Blending mode, but only weights below the target weight are affected. Weights above the target weight remain unchanged."
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:31
-msgid "Strength"
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:33
+msgid "Darken"
 msgstr ""
 
 #: ../../manual/sculpt_paint/weight_paint/tools.rst:32
+msgid "This Blending mode is very similar to the Lighten Blending mode. But only weights above the target weight are affected. Weights below the target weight remain unchanged."
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:37
+msgid "Multiply"
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:36
+msgid "Multiplies the vertex weights with the specified weight value. This is somewhat like subtract, but the amount of removed weight is now dependent on the Weight value itself."
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:41
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:45
+msgid "Blur"
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:40
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:44
+msgid "Smooths out the weighting of adjacent vertices. In this mode the Weight Value is ignored. The strength defines how much the smoothing is applied."
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:48
+msgid "Average"
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:48
+msgid "Smooths weights by painting the average resulting weight from all weights under the brush."
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:52
+msgid "Smear"
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:51
+msgid "Smudges weights by grabbing the weights under the brush and \"dragging\" them. This can be imagined as a finger painting tool."
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:69
+msgid "Gradient"
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:55
+msgid "Applies a linear/radial weight gradient; this is useful at times when painting gradual changes in weight becomes difficult. Blends the weights of selected vertices with unselected vertices."
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:61
+msgid "Example of the Gradient tool being used with selected vertices."
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:63
+msgid "Weight"
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:64
+msgid "The gradient starts at the current selected weight value, blending out to nothing."
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:65
+msgid "Strength"
+msgstr ""
+
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:66
 msgid "Lower values can be used so the gradient mixes in with the existing weights (just like with the brush)."
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:35
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:69
 msgid "Type"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:34
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:68
 msgid "Linear: :kbd:`Alt-LMB` and drag."
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:35
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:69
 msgid "Radial: :kbd:`Ctrl-Alt-LMB` and drag."
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:41
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:75
 msgid "Sample"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:38
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:72
 msgid "Weights"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:39
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:73
 msgid "Sets the brush *Weight* as the weight selected under the cursor."
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:41
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:75
 msgid "Vertex Group"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:41
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:75
 msgid "Displays a list of possible vertex groups to select that are under the cursor."
 msgstr ""
 
@@ -116,23 +174,23 @@ msgstr ""
 msgid ":ref:`Annotate <tool-annotate>`"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:44
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:78
 msgid "Draw free-hand annotation."
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:46
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:80
 msgid "Annotate Line"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:47
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:81
 msgid "Draw straight line annotation."
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:48
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:82
 msgid "Annotate Polygon"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:49
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:83
 msgid "Draw a polygon annotation."
 msgstr ""
 
@@ -140,7 +198,7 @@ msgstr ""
 msgid "Annotate Eraser"
 msgstr ""
 
-#: ../../manual/sculpt_paint/weight_paint/tools.rst:51
+#: ../../manual/sculpt_paint/weight_paint/tools.rst:85
 msgid "Erase previous drawn annotations."
 msgstr ""
 

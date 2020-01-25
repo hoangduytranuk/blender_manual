@@ -35,7 +35,7 @@ Strokes Location and Orientation Controls
 =========================================
 
 Drawing in a 3D space is not the same as drawing on a flat canvas.
-When drawing with *Grease Pencil* you have to define
+When drawing with Grease Pencil you have to define
 the location and orientation of the new strokes in the 3D space.
 
 .. figure:: /images/grease-pencil_modes_draw_introduction_header-stroke-controls.png

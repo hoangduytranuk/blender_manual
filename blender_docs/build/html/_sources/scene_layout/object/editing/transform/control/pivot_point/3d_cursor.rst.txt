@@ -21,7 +21,7 @@ scaling transformations will now be done relative to the location of the 3D curs
 Example
 =======
 
-The image below shows the difference when rotating an Object
+The image below shows the difference when rotating an object
 around the median point (left) and around the 3D cursor (right).
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_3d-cursor_example.png

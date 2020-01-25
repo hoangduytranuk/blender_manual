@@ -89,7 +89,7 @@ Generate Weights
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Weights --> Generate Weights`
 
-Generate automatic weight for armatures (requires the Armature modifier).
+Generate automatic weight for armatures (requires an Armature modifier).
 
 With Empty Group
    When parenting it will create an empty vertex groups on the child objects (if they do not exist already)

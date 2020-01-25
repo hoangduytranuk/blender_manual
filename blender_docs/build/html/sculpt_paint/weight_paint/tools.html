@@ -203,14 +203,9 @@
       <li>Weight Paint Tools</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/sculpt_paint/weight_paint/tools.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/sculpt_paint/weight_paint/tools.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -223,7 +218,45 @@
 <h1>Weight Paint Tools<a class="headerlink" href="#weight-paint-tools" title="Permalink to this headline">¶</a></h1>
 <dl class="docutils">
 <dt>Draw</dt>
-<dd>Paints a specified weight over the object.</dd>
+<dd><p class="first">Paints a specified weight over the object.</p>
+<dl class="last docutils">
+<dt>Blend</dt>
+<dd><p class="first">The brush <a class="reference internal" href="../../glossary/index.html#term-blend-modes"><span class="xref std std-term">Blend Modes</span></a> defines in which way the weight value is
+applied to the vertex group while painting.</p>
+<dl class="last docutils">
+<dt>Mix</dt>
+<dd>In this Blending mode the Weight value defines the <em>target weight</em>
+that will eventually be reached when you paint long enough on the same
+location of the mesh. And the strength determines how many strokes
+you need to place at the target weight. Note that for strength = 1.0
+the target weight is painted immediately and for Weight = 0.0 the brush just does nothing.</dd>
+<dt>Add</dt>
+<dd>In this Blending mode the specified weight value is <em>added</em> to the vertex weights.
+The strength determines which fraction of the weight gets added per stroke.
+However, the brush will not paint weight values above 1.0.</dd>
+<dt>Subtract</dt>
+<dd>In this Blending mode the specified weight value is <em>subtracted</em> from the vertex weights.
+The strength determines which fraction of the weight gets removed per stroke.
+However, the brush will not paint weight values below 0.0.</dd>
+<dt>Lighten</dt>
+<dd>In this Blending mode the specified weight value is interpreted as the target weight.
+Very similar to the Mix Blending mode, but only weights below the target weight are affected.
+Weights above the target weight remain unchanged.</dd>
+<dt>Darken</dt>
+<dd>This Blending mode is very similar to the Lighten Blending mode.
+But only weights above the target weight are affected.
+Weights below the target weight remain unchanged.</dd>
+<dt>Multiply</dt>
+<dd>Multiplies the vertex weights with the specified weight value.
+This is somewhat like subtract, but the amount of removed weight is now
+dependent on the Weight value itself.</dd>
+<dt>Làm Nhòe -- Blur</dt>
+<dd>Smooths out the weighting of adjacent vertices. In this mode the Weight
+Value is ignored. The strength defines how much the smoothing is applied.</dd>
+</dl>
+</dd>
+</dl>
+</dd>
 <dt>Làm Nhòe -- Blur</dt>
 <dd>Smooths out the weighting of adjacent vertices. In this mode the Weight
 Value is ignored. The strength defines how much the smoothing is applied.</dd>

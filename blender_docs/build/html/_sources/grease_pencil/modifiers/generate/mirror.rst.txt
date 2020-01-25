@@ -26,7 +26,7 @@ Axis
    With one axis you get a single mirror, with two axes four mirrors, and with all three axes eight mirrors.
 
 Mirror Object
-   An :ref:`Object Selector <ui-eyedropper>` to select an object (usually an empty),
+   An :ref:`ui-data-id` to select an object (usually an empty),
    which position and rotation will be used to define mirror planes
    (instead of using the ones from the modified object).
 

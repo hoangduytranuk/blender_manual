@@ -86,7 +86,7 @@ Methods to bind the armature to the mesh.
 Vertex Groups
    Meshes and lattices only. When enabled, bones of a given name will deform vertices which belong to
    :doc:`vertex groups </modeling/meshes/properties/vertex_groups/index>` of the same name.
-   e.g. a bone named "forearm", will only affect the vertices in the "forearm" vertex group.
+   E.g. a bone named "forearm", will only affect the vertices in the "forearm" vertex group.
 
    The influence of one bone on a given vertex is controlled by the weight of this vertex in the relevant group.
    A much more precise method than *Bone Envelopes*, but also generally longer to set up.

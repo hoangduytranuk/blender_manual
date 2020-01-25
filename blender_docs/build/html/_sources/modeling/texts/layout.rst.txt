@@ -32,14 +32,14 @@ Alignment
 Horizontal Alignment
    Left
       Aligns text to the left of the frames when using them,
-      else uses the origin of the *Text* object as the starting point of the text (which grows to the right).
+      else uses the origin of the text object as the starting point of the text (which grows to the right).
    Center
       Centers text in the frames when using them,
-      else uses the origin of the *Text* object as the mid-point of the text
+      else uses the origin of the text object as the mid-point of the text
       (which grows equally to the left and right).
    Right
       Aligns text to the right of the frames when using them,
-      else uses the origin of the *Text* object as the ending point of the text (which grows to the left).
+      else uses the origin of the text object as the ending point of the text (which grows to the left).
    Justify
       Only flushes a line when it is terminated by a word-wrap (**not** by a newline),
       and uses *white-space* instead of *character spacing* (kerning) to fill lines.

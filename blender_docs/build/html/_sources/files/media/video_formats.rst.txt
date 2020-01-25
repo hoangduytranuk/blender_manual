@@ -1,6 +1,6 @@
 
 *******************************
-Supported Audio & Video Formats
+Supported Video & Audio Formats
 *******************************
 
 Video Formats
@@ -92,6 +92,7 @@ FFmpeg Containers
 `WebM <https://en.wikipedia.org/wiki/WebM>`__: ``.webm``
    A free open-standard container format, designed to be used for internet streaming.
    Note that this container can only hold VP8 or VP9 video, and Vorbis or Opus audio.
+
 
 .. _files-video-codecs:
 

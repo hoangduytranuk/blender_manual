@@ -3,8 +3,8 @@
 Introduction
 ************
 
-An Armature in Blender can be thought of as similar to the armature of a real skeleton,
-and just like a real skeleton an Armature can consist of many bones.
+An armature in Blender can be thought of as similar to the armature of a real skeleton,
+and just like a real skeleton an armature can consist of many bones.
 These bones can be moved around and anything that they are attached to or
 associated with will move and deform in a similar way.
 

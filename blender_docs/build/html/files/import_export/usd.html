@@ -201,14 +201,9 @@
       <li>Universal Scene Description</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/files/import_export/usd.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/files/import_export/usd.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -227,7 +222,7 @@ Blender does not (yet) support exporting invisible objects, USD layers, variants
 <ul class="simple">
 <li>Meshes (of different kinds, see below).</li>
 <li>Cameras (perspective cameras only at the moment, not orthogonal ones).</li>
-<li>Lamps (all types except area lamps).</li>
+<li>Light (all types except area lights).</li>
 <li>Hair (exported as curves, and limited to parent strands).</li>
 </ul>
 <p>When exporting an animation, the final, evaluated mesh is written to USD.
@@ -248,7 +243,7 @@ An example is the result of a fluid simulation, where splashes of fluid can brea
 <h2>Export Options<a class="headerlink" href="#export-options" title="Permalink to this headline">¶</a></h2>
 <p>The following options are available when exporting to USD:</p>
 <dl class="docutils">
-<dt>Only Export Selected Objects</dt>
+<dt>Selection Only</dt>
 <dd>When checked, only selected objects are exported.
 Duplicated objects, for example collections that are instanced in the scene,
 are considered 'selected' when their duplicator is selected.</dd>
@@ -274,7 +269,19 @@ because the Hydra viewport does not support materials on subsets.
 See <a class="reference external" href="https://github.com/PixarAnimationStudios/USD/issues/542">USD issue #542</a>
 for more information.</p>
 </dd>
-<dt>Use Instancing</dt>
+<dt>Use Settings for</dt>
+<dd>Determines the whether to use <em>Viewport</em> or <em>Render</em> visibility of collection, modifiers,
+or any other property that can be set for both the <em>Viewport</em> and <em>Render</em>.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">Regardless of the options selected above, objects that are inside
+a <a class="reference internal" href="../../editors/outliner.html#editors-outliner-restriction-columns"><span class="std std-ref">Holdout collection</span></a> are always excluded from the export.</p>
+</div>
+<div class="section" id="experimental">
+<h3>Experimental<a class="headerlink" href="#experimental" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Instancing</dt>
 <dd>As this is an experimental option. When unchecked,
 duplicated objects are exported as real objects, so a particle system with
 100 particles that is displayed with 100 meshes will have 100 individual meshes
@@ -282,8 +289,7 @@ in the exported file. When checked, duplicated objects are exported as
 a reference to the original object. If the original object is not part of the export,
 the first duplicate is exported as real object and used as reference.</dd>
 </dl>
-<p>Regardless of the options selected above, objects that are inside
-a <a class="reference internal" href="../../editors/outliner.html#editors-outliner-restriction-columns"><span class="std std-ref">Holdout collection</span></a> are always excluded from the export.</p>
+</div>
 </div>
 <div class="section" id="limitations">
 <h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>

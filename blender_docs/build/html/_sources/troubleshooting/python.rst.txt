@@ -3,19 +3,6 @@
 Python Errors
 *************
 
-PYTHONPATH
-==========
-
-Blender will fail to load if the ``PYTHONPATH`` is set incorrectly.
-
-This can be useful for Python developers who want to use their own Python installation
-however, it will prevent Blender from opening at all when set to an incompatible version of Python.
-
-To see if this is the cause of an error temporary unset the environment variable and reload Blender.
-
-See `Python's documentation <https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH>`__ for details.
-
-
 Precompiled Libraries
 =====================
 

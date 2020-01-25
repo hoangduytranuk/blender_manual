@@ -142,7 +142,7 @@ To delete a material, select the material and click X in the Available Materials
 Although the material will seem to disappear immediately,
 the Delete action can depend on how the material is used elsewhere.
 
-If the material is linked to the Object and there are other objects which use this material,
+If the material is linked to the object and there are other objects which use this material,
 then the material will be removed from that object (but remain on all its other objects).
 
 If the "Fake User" button has been lit in the Available Materials list,

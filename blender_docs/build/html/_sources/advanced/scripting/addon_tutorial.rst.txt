@@ -126,7 +126,6 @@ Add the following script to the Text editor in Blender::
 Click the :ref:`Run Script button <editors-text-run-script>`,
 all objects in the active scene are moved by 1.0 unit.
 
-.. _`tutorial-write-the-addon`:
 
 Write the Add-on (Simple)
 -------------------------
@@ -214,10 +213,10 @@ Open the :menuselection:`Preferences --> Add-ons --> Install...` and select the 
 
 Now the add-on will be listed and you can enable it by pressing the checkbox,
 if you want it to be enabled on restart, press *Save as Default*. The operator
-can be run in the same way as described in :ref:`the previous section <tutorial-write-the-addon>`.
+can be run in the same way as described in the `previous section <Write the Add-on (Simple)>`_.
 
-When the add-on is enabled, Blender executes the code and runs the ``register()``
-function. When the add-on is disabled, Blender runs the ``unregister()`` function.
+When the add-on is enabled, Blender executes the code and runs the ``register()`` function.
+When the add-on is disabled, Blender runs the ``unregister()`` function.
 
 
 .. note::
@@ -363,7 +362,7 @@ Everything here has been covered in the previous steps, you may want to try run
 the add-on still and consider what could be done to make it more useful.
 
 The two of the most obvious missing things are -- having the total fixed at 10,
-and having to access the operator from :kbd:`F3` is not very convenient.
+and having to access the operator with :doc:`/interface/controls/templates/operator_search` is not very convenient.
 
 Both these additions are explained next, with the final script afterwards.
 

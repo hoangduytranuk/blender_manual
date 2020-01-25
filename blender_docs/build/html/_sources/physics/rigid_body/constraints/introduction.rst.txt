@@ -8,7 +8,7 @@ Introduction
 The physics constraints are meant to be attached to an :term:`Empty` object.
 The constraint then has fields which can be pointed at the two physics-enabled object
 which will be bound by the constraint.
-The *Empty* object provides a location and axis for the constraint distinct from the two constrained objects.
+The empty object provides a location and axis for the constraint distinct from the two constrained objects.
 The location of the entity hosting the physics constraint marks a location and
 set of axes on each of the two constrained objects.
 These two anchor points are calculated at the beginning of the animation and their position and
@@ -23,7 +23,7 @@ Connect
 
 The quickest way to constrain two objects is to select both and
 click the *Connect* button in :menuselection:`Object --> Rigid Body`.
-This creates a new *Empty* object (named "Constraint") with a physics constraint
+This creates a new empty object (named "Constraint") with a physics constraint
 already attached and pointing at the two selected objects.
 
 
@@ -33,12 +33,12 @@ Physics Menu
 Also you can create *Rigid Body Constraint* on one of the two constrained objects with
 *Rigid Body Constraint* button of the *Physics* tab in the Properties editor.
 This constraint is dependent on the object location and rotation on which it was created.
-This way, there are no *Empty* object created for the constraint.
-The role of the *Empty* object is put on this object.
+This way, there are no empty object created for the constraint.
+The role of the empty object is put on this object.
 The constrained object can be then set as *Passive* type for better driving the constrain.
 
 Additional parameters appear in the *Rigid Body Constraint* panel of the *Physics* tab in the Properties editor
-for the selected *Empty* object or the one of the two constrained objects with the created constraint.
+for the selected empty object or the one of the two constrained objects with the created constraint.
 
 
 Common Options

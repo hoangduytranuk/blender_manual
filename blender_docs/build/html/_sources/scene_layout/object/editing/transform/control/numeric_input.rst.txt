@@ -7,7 +7,7 @@ Numeric Input
 Using the mouse for transformations is convenient, but if you require more precise control,
 you can also enter numeric values. After pressing the shortcut type a number
 to indicate the magnitude of the transformation. Then confirm or cancel.
-e.g. pressing :kbd:`S 2`, :kbd:`Return` will double the scale of an object.
+E.g. pressing :kbd:`S 2`, :kbd:`Return` will double the scale of an object.
 
 Move :kbd:`G`
    By default and with no other key presses, the translation will occur along the X axis.
@@ -51,7 +51,7 @@ Reset :kbd:`Backspace`
    the whole number editing will be canceled, going back to usual transform with mouse.
 Next/previous Component :kbd:`Tab`, :kbd:`Ctrl-Tab`
    To enter numeric values for multiple axes, use :kbd:`Tab` or :kbd:`Ctrl-Tab`.
-   e.g. To move an object, one unit on all three axes press: :kbd:`G 1`
+   E.g. To move an object, one unit on all three axes press: :kbd:`G 1`
    and :kbd:`Tab 1` and :kbd:`Tab 1`.
 
 Non-number Inputs

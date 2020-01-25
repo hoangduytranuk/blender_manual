@@ -46,6 +46,9 @@ Developer Extras
    3D View
       Show Indices
          The option to show mesh vertex/edge/face indices in the overlay popover.
+   Preferences
+      Experimental Tab
+         Work in progress features can be enabled here which are currently being tested.
 
 Large Cursors
    Use large mouse cursors when available.

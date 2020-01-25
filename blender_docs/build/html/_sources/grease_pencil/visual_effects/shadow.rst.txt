@@ -32,7 +32,7 @@ Scale
    X, Z
 
 Rotation
-   Sets the shadow rotation around the *Grease Pencil* object center
+   Sets the shadow rotation around the Grease Pencil object center
    or another object when *Use Object As Pivot* is enabled.
 
 Blur
@@ -44,7 +44,7 @@ Blur
       Number of blur samples (0 disabled the blur effect).
 
 Use Object As Pivot
-   When enabled, an Object is used by the shadow as the center of rotation.
+   When enabled, an *Object* is used by the shadow as the center of rotation.
 
    Object
       Sets the object to use as the pivot point for the shadow.
@@ -83,4 +83,4 @@ Example
      - .. figure:: /images/grease-pencil_visual-effects_shadow_stretch.png
           :width: 200px
 
-          Stretched shadow with an Empty as center of rotation.
+          Stretched shadow with an empty as center of rotation.

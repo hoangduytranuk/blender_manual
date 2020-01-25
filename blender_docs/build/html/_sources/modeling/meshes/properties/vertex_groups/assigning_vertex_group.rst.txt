@@ -11,13 +11,13 @@ Creating Vertex Groups
 
    Empty Vertex Group panel.
 
-Vertex Groups are maintained within the *Mesh* tab (1) in the Properties Editor.
-As long as no Vertex groups are defined (the default for new Mesh Objects),
-the Panel is empty (2).
+Vertex groups are maintained within the *Mesh* tab (1) in the Properties Editor.
+As long as no vertex groups are defined (the default for new mesh objects),
+the panel is empty (2).
 
-You create a vertex group by :kbd:`LMB` on the *Add* button (+) on the right Panel border (3).
+You create a vertex group by :kbd:`LMB` on the *Add* button ``+`` on the right panel border (3).
 Initially the group is named "Group" (or "Group.nnn" when the name already exists) and
-gets displayed in the Panel (2) (see next image).
+gets displayed in the panel (2) (see next image).
 
 .. container:: lead
 
@@ -30,9 +30,9 @@ Vertex Groups Panel Controls
 .. figure:: /images/modeling_meshes_properties_vertex-groups_vertex-groups_panel-edit.png
    :align: right
 
-   One Vertex Group.
+   One vertex group.
 
-Once a new Vertex Group has been added, the new Group appears
+Once a new vertex group has been added, the new group appears
 in the Vertex Groups panel. There you find three clickable elements:
 
 Group Name
@@ -46,11 +46,11 @@ Plus Icon
 
 Drag Handle
    If you have a large number of vertex groups and you want to see more
-   than a few Groups, you can :kbd:`LMB` on the small drag handle to tear
+   than a few groups, you can :kbd:`LMB` on the small drag handle to tear
    the vertex groups list larger or smaller.
 
 Active Group
-   When a Vertex Group is created,
+   When a vertex group is created,
    then it is also automatically marked as the *Active Group*.
    This is indicated by setting the background of the panel entry
    to a light blue color. If you have two or more groups in the list,
@@ -64,13 +64,13 @@ Deleting Vertex Groups
 .. figure:: /images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_delete.png
    :align: right
 
-   Delete a Vertex Group.
+   Delete a vertex group.
 
-You delete a Vertex Group by first making it the active group
+You delete a vertex group by first making it the active group
 (select it in the panel) and then :kbd:`LMB`
-the *Remove* button (-) at the right Panel border.
+the *Remove* button ``-`` at the right panel border.
 
-Deleting a Vertex Group only deletes the vertex assignments to the Group.
+Deleting a vertex group only deletes the vertex assignments to the group.
 The vertices themselves are not deleted.
 
 
@@ -80,19 +80,19 @@ Locking Vertex Groups
 .. figure:: /images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_lock.png
    :align: right
 
-   Lock a Vertex Group.
+   Lock a vertex group.
 
-Right after creation of a Vertex Group,
-an open padlock icon shows up on the right side of the Vertex Group List entry.
-This icon indicates that the Vertex Group can be edited.
+Right after creation of a vertex group,
+an open padlock icon shows up on the right side of the list entry.
+This icon indicates that the vertex group can be edited.
 You can add vertex assignments to the group or remove assignments from the group.
 And you can change it with the weight paint brushes, etc.
 
 When you click on the icon,
 it changes to a closed padlock icon and all vertex group modifications get disabled.
 You can only rename or delete the group, and unlock it again.
-No other operations are allowed on locked Vertex Groups,
-thus all corresponding buttons become disabled for locked Vertex Groups.
+No other operations are allowed on locked vertex groups,
+thus all corresponding buttons become disabled for locked vertex groups.
 
 
 Working with Content of Vertex Groups
@@ -108,13 +108,13 @@ Assigning Vertices to a Group
 
 You add vertices to a group as follows:
 
-- Select the group from the group list, thus make it the Active Group (1).
+- Select the group from the group list, thus make it the active group (1).
 - From the 3D View select :kbd:`Shift-RMB` all vertices that you want to add to the group.
 - Set the weight value that shall be assigned to all selected vertices (2).
 - :kbd:`LMB` the *Assign* button to assign the selected vertices to the active group using the given weight (3).
 
-Note that weight Assignment is not available for locked Vertex Groups.
-The Assign button is grayed out in that case.
+Note that weight assignment is not available for locked vertex groups.
+The *Assign* button is grayed out in that case.
 
 .. note:: Assign is additive
 
@@ -128,9 +128,9 @@ The Assign button is grayed out in that case.
 Checking Assignments
 --------------------
 
-To be sure the selected vertices are in the desired Vertex Group,
+To be sure the selected vertices are in the desired vertex group,
 you can try press the deselect button.
-If the vertices remain selected then they are not yet in the current Vertex Group.
+If the vertices remain selected then they are not yet in the current vertex group.
 
 At this point you may assign then, but take care since all selected vertices
 will have their weight set to the value in the *Weight:* field.
@@ -145,8 +145,8 @@ You remove vertices from a group as follows:
 - Select all vertices that you want to remove from the group.
 - Press the *Remove* button.
 
-Note that Removing weight Assignments is not available for locked Vertex Groups.
-The Remove button is grayed out in that case.
+Note that removing weight assignments is not available for locked vertex groups.
+The *Remove* button is grayed out in that case.
 
 
 Using Groups for Selecting/Deselecting

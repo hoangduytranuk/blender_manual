@@ -67,7 +67,7 @@ See :ref:`Normal Properties <modeling_meshes_editing_normals_properties>` for mo
 Texture Space
 =============
 
-Each Object can have an automatically generated UV map, these maps can be adjusted here.
+Each object can have an automatically generated UV map, these maps can be adjusted here.
 
 See :ref:`Generated UV Properties <properties-texture-space>` for more information.
 

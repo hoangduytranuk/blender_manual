@@ -148,7 +148,7 @@ Add Action strip :kbd:`Shift-A`
 Add Transition :kbd:`Shift-T`
    Add an NLA-strip to create a transition between a selection of two adjacent NLA-strips.
 Add Sound Strip :kbd:`Shift-K`
-   Add an NLA-strip controlling when the Speaker object plays its sound clip.
+   Add an NLA-strip controlling when the speaker object plays its sound clip.
 
 Add Meta-Strip :kbd:`Ctrl-G`
    Group selected NLA-strips into a meta strip.

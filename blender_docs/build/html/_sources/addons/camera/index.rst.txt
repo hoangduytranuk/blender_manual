@@ -3,7 +3,7 @@
   Camera
 ##########
 
-These add-ons relate to Camera objects and tools.
+These add-ons relate to camera objects and tools.
 
 .. toctree::
    :maxdepth: 1

@@ -12,7 +12,7 @@ Color
 
    Grease Pencil
       Adds Grease Pencil materials based on the sampled color.
-      
+
       - :kbd:`LMB` add a new Stroke type Grease Pencil material.
       - :kbd:`Shift-LMB` add a new Fill type Grease Pencil material.
       - :kbd:`Ctrl-LMB` add a new Stroke and Fill type Grease Pencil material.

@@ -79,7 +79,7 @@ which is explained in the :doc:`Extrude </modeling/meshes/editing/duplicating/ex
 
 .. tip::
 
-   When adding Objects with :kbd:`Ctrl-LMB`, the extrusions of the selected elements,
+   When adding objects with :kbd:`Ctrl-LMB`, the extrusions of the selected elements,
    being vertices, edges and faces with the :kbd:`Ctrl-LMB`, are viewport dependent.
    This means, once you change your viewport, for example, from top to left, bottom or right,
    the extrusion direction will also follow your viewport and align the extrusions with your planar view.

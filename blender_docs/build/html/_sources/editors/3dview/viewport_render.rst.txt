@@ -83,13 +83,12 @@ Render a Still Image
 Render an Animation
    to render an animation, use :menuselection:`3D Viewport --> View --> Viewport Render Animation`.
 Render Keyframes
-   To render an animation, but only those frames that have a keyframe, use
-   :menuselection:`3D Viewport --> View --> Viewport Render Keyframes`. This
-   only renders those frames for which the selected objects have an animation
-   key. The other frames are still written to the output, but will simply repeat
-   the last-rendered frame.
+   To render an animation, but only those frames that have a keyframe,
+   use :menuselection:`3D Viewport --> View --> Viewport Render Keyframes`.
+   This only renders those frames for which the selected objects have an animation key.
+   The other frames are still written to the output, but will simply repeat the last-rendered frame.
 
-   For example, when a 6-frame animation is rendered, and the selected objects
+   For example, when a six-frame animation is rendered, and the selected objects
    have a key on frames 3 and 5, the following frames will be output:
 
    1. The 1st frame is always rendered.

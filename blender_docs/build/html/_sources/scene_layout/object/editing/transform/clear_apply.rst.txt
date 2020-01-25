@@ -84,7 +84,7 @@ Location
    Apply (set) the location of the selection.
    This will make Blender consider the current location to be equivalent to 0 in each plane
    i.e. the selection will not move, the current location will be considered to be the "default location".
-   The Object origin will be set to actual (0, 0, 0) (where the colored axis lines intersect in each view).
+   The object origin will be set to actual (0, 0, 0) (where the colored axis lines intersect in each view).
 Rotation
    Apply (set) the rotation of the selection.
    This will make Blender consider the current rotation to be equivalent to 0 degrees in each plane
@@ -145,7 +145,7 @@ Visual Transform
    :Menu:      :menuselection:`Object --> Apply --> Visual Transform`
    :Hotkey:    :kbd:`Ctrl-A`
 
-Apply (set) the result of a constraint and apply this back to the Object's location, rotation and scale.
+Apply (set) the result of a constraint and apply this back to the object's location, rotation and scale.
 
 
 Visual Geometry as Mesh

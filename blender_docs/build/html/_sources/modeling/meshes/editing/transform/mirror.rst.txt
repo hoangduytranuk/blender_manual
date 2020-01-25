@@ -62,7 +62,7 @@ the :doc:`pivot point page </scene_layout/object/editing/transform/control/pivot
           Mesh after mirrored along X axis.
 
 In Fig. :ref:`fig-mesh-deform-mirror-cursor` the pivot point is the *3D Cursor*,
-the transformation orientation is *Local*, a.k.a. the Object space,
+the transformation orientation is *Local*, a.k.a. the object space,
 and the axis of transformation is X.
 
 .. _fig-mesh-deform-mirror-cursor:

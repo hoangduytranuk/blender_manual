@@ -6,7 +6,7 @@ Geometry
 In this tab you control the geometry of your strokes.
 It contains only the option to add modifiers.
 
-as they always completely apply to the strokes' geometry (like object modifiers do).
+As they always completely apply to the strokes' geometry (like object modifiers do).
 They take the resulting two-dimensional strokes from the Freestyle line set and
 displace or deform them in various ways.
 

@@ -32,7 +32,7 @@ For the draw brushes configuration and settings see:
 :doc:`Draw Brush </grease_pencil/modes/draw/tool_settings/brushes/draw_brush>`.
 
 Thickness Profile
-   Use a :doc:`curve widget </interface/controls/templates/curve>`. to define the stroke thickness
+   Use a :doc:`curve widget </interface/controls/templates/curve>` to define the stroke thickness
    from the start (left) to end (right) of the stroke.
 
    Use Curve

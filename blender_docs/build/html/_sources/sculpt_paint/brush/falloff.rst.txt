@@ -19,6 +19,13 @@ Curve Preset
    Smoother
       Similar to *Smooth* but produces a flat surface at the brush center.
 
+Falloff Shape
+   Sphere
+      Applies brushes influence in a sphere, outwards from the center.
+   Projected
+      This turns the brush influence into a cylinder (the depth along the view is ignored) instead of a sphere.
+      It can be used along the outline of a mesh to adjust its silhouette.
+
 
 Normal Falloff
 ==============

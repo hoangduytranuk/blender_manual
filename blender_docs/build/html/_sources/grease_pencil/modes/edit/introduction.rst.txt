@@ -3,7 +3,7 @@
 Introduction
 ************
 
-Blender provides a variety of tools for editing *Grease Pencil* strokes.
+Blender provides a variety of tools for editing Grease Pencil strokes.
 These are tools used to add, duplicate, move and delete elements.
 
 

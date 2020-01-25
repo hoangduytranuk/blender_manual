@@ -4,9 +4,8 @@
 Hook Modifier
 *************
 
-The *Hook* modifier is used to deform a *Mesh*, *Curve* or *Lattice* using another object
-(usually an *Empty* or a *Bone* but it can be any object).
-
+The *Hook* modifier is used to deform a mesh, curve or lattice using another object
+(usually an empty or a bone but it can be any object).
 As an object specified as hook moves, it pulls vertices or control points from the geometry with it.
 You can think of it as animated
 :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`.

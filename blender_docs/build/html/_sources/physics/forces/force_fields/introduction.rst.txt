@@ -3,17 +3,17 @@
 Introduction
 ************
 
-Force Fields offer a way to influence a simulation, in example to add extra movement.
+Force fields offer a way to influence a simulation, in example to add extra movement.
 :doc:`Particles </physics/particles/index>`, :doc:`Soft Bodies </physics/soft_body/index>`,
 :doc:`Rigid Bodies </physics/rigid_body/index>`, and :doc:`Cloth objects </physics/cloth/index>`
 can all be affected by forces fields.
-Force Fields automatically affect everything.
+Force fields automatically affect everything.
 To remove a simulation or particle system from their influence,
-simply turn down the influence of that type of Force Field in its Field Weights panel.
+simply turn down the influence of that type of force field in its Field Weights panel.
 
 - All types of objects and particles can generate fields,
   but only curve object can bear *Curve Guides* fields.
-- Force Fields can also be generated from particles.
+- Force fields can also be generated from particles.
   See :doc:`Particle Physics </physics/particles/emitter/physics/index>`.
 - The objects need to share at least one common layer to have an effect.
 
@@ -30,11 +30,11 @@ Creating a Force Field
    :Mode:      Object Mode
    :Panel:     :menuselection:`Physics --> Fields`
 
-To create a single Force Field,
+To create a single force field,
 you can select :menuselection:`Add --> Force Field` and select the desired force field.
-This method creates an Empty with the force field attached.
+This method creates an empty with the force field attached.
 
-.. list-table:: Examples of Empty with the force field attached.
+.. list-table:: Examples of empty with the force field attached.
 
    * - .. figure:: /images/physics_forces_force-fields_types_vortex_visualzation.png
 
@@ -57,17 +57,19 @@ change to the *Physics* tab. Select the field type in the *Fields* menu.
    you have to recalculate the particle, soft body or cloth system by *Free Cache*,
    this is not done automatically.
 
-   Particles react to all kinds of *Force Fields*,
+   Particles react to all kinds of force fields,
    soft bodies only to *Force*, *Wind*, *Vortex*
    (they react on *Harmonic* fields but not in a useful way).
 
 
+.. _force-field-common-settings:
+
 Common Field Settings
 =====================
 
-Most Fields have the same settings, even though they act very differently.
+Most fields have the same settings, even though they act very differently.
 Settings unique to a field type are described below.
-Curve Guide and Texture Fields have very different options.
+Curve Guide and Texture fields have very different options.
 
 Shape
    Sets the direction which is used to calculate the effector force.

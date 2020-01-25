@@ -29,14 +29,14 @@ Surface
    and organic landscapes.
    See :doc:`Surfaces Primitives </modeling/surfaces/primitives>`.
 Metaball
-   :doc:`Meta Objects </modeling/metas/introduction>` (or Metaballs) are objects
+   :doc:`Meta Objects </modeling/metas/introduction>` (or metaballs) are objects
    formed by a mathematical function (with no control points or vertices)
-   defining the 3D volume in which the object exists. Meta Objects have a liquid-like quality
-   where when two or more Metaballs are brought together,
+   defining the 3D volume in which the object exists. Meta objects have a liquid-like quality
+   where when two or more metaballs are brought together,
    they merge by smoothly rounding out the connection, appearing as one unified object.
    See :doc:`Meta Primitives </modeling/metas/primitives>`.
 Text
-   :doc:`Text objects </modeling/texts/introduction>`
+   :doc:`Text Objects </modeling/texts/introduction>`
    create a two-dimensional representation of a string of characters.
 Grease Pencil
    :doc:`Grease Pencil Objects </grease_pencil/primitives>` are objects
@@ -59,8 +59,7 @@ Image
    in the 3D Viewport. These images can be used to support modeling and animating.
 
 Light
-   :doc:`Lights </render/lights/light_object>` for lighting the scene in
-   renders.
+   :doc:`Lights </render/lights/light_object>` for lighting the scene in renders.
 Light Probe
    :doc:`Lights </render/eevee/lightprobes/introduction>` are used by
    the Eevee render engine and record lighting information for indirect lighting.
@@ -78,7 +77,7 @@ Force Field
    are represented in the 3D Viewport as small control objects.
 
 Collection Instance
-   Lets you select from a list of existing collections. Once selected, an Empty object will be created,
+   Lets you select from a list of existing collections. Once selected, an empty object will be created,
    with an instance of the selected collection (collection instancing active).
    See :doc:`/scene_layout/object/properties/instancing/collection`.
 

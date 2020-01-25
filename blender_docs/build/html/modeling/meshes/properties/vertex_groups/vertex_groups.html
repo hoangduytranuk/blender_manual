@@ -213,14 +213,9 @@
       <li>-- Vertex Groups Panel</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../../../_sources/modeling/meshes/properties/vertex_groups/vertex_groups.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/properties/vertex_groups/vertex_groups.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -248,7 +243,7 @@
 <img alt="../../../../_images/modeling_meshes_properties_vertex-groups_introduction_panel.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_introduction_panel.png" />
 <p class="caption"><span class="caption-text">The Vertex Group panel.</span></p>
 </div>
-<p>Vertex Groups are maintained within the <em>Object Data</em> Properties Editor,
+<p>Vertex groups are maintained within the <em>Object Data</em> Properties Editor,
 and there in the <em>Vertex Groups</em> panel.</p>
 <span id="bpy-ops-object-vertex-group-lock"></span><span id="bpy-ops-object-vertex-group-remove"></span><span id="bpy-ops-object-vertex-group-remove-from"></span><span id="bpy-ops-object-vertex-group-copy-to-selected"></span><span id="bpy-ops-object-vertex-group-copy-to-linked"></span><span id="bpy-ops-object-vertex-group-copy"></span><span id="bpy-ops-object-vertex-group-sort"></span><span id="bpy-ops-object-vertex-group-add"></span><dl class="docutils" id="bpy-ops-object-vertex-group-move">
 <dt>Nhóm Điểm Đỉnh Đang Hoạt Động -- Active Vertex Group</dt>
@@ -263,18 +258,18 @@ and there in the <em>Vertex Groups</em> panel.</p>
 <dt>Đặc Biệt -- Specials</dt>
 <dd><dl class="first last docutils">
 <dt>Sort by Name</dt>
-<dd>Sorts Vertex Groups alphabetically.</dd>
+<dd>Sorts vertex groups alphabetically.</dd>
 <dt>Sort by Bone Hierarchy</dt>
 <dd>(Todo)</dd>
 <dt>Sao Chép Nhóm Điểm Đỉnh -- Copy Vertex Group</dt>
-<dd>Add a Copy of the active Vertex Group as a new Group.
+<dd>Add a copy of the active vertex group as a new group.
 The new group will be named like the original group with &quot;_copy&quot; appended at the end of its name.
 And it will contain associations to exactly the same vertices
 with the exact same weights as in the source vertex group.</dd>
 <dt>Sao Chép Nhóm Điểm Đỉnh sang những cái Kết Nối -- Copy Vertex Groups to Linked</dt>
-<dd>Copy Vertex Groups of this Mesh to all linked Objects which use the same mesh data (all users of the data).</dd>
+<dd>Copy vertex groups of this mesh to all linked objects which use the same mesh data (all users of the data).</dd>
 <dt>Sao Chép Nhóm Điểm Đỉnh đến những cái Được Chọn -- Copy Vertex Group to Selected</dt>
-<dd>Copy all Vertex Groups to other Selected Objects provided they have matching indices
+<dd>Copy all vertex groups to other selected objects provided they have matching indices
 (typically this is true for copies of the mesh which are only deformed and not otherwise edited).</dd>
 <dt>Đối Xứng Hóa Nhóm Điểm Đỉnh -- Mirror Vertex Group</dt>
 <dd>Mirrors weights and/or flips group names.
@@ -286,19 +281,19 @@ See <a class="reference internal" href="../../../../sculpt_paint/weight_paint/ed
 After this operation has been performed, the vertices will no longer be contained in any vertex group.
 (Not available for locked groups.)</dd>
 <dt>Xóa Nhóm Đang Hoạt Động -- Clear Active Group</dt>
-<dd>Remove all assigned vertices from the active Group. The group is made empty.
-Note that the vertices may still be assigned to other Vertex Groups of the Object.
+<dd>Remove all assigned vertices from the active group. The group is made empty.
+Note that the vertices may still be assigned to other vertex groups of the object.
 (Not available for locked groups.)</dd>
 <dt>Xóa Toàn bộ các Nhóm Không Khóa -- Delete All Unlocked Groups</dt>
-<dd>Remove all Vertex Groups from the Object that are <em>not</em> locked.</dd>
+<dd>Remove all vertex groups from the object that are <em>not</em> locked.</dd>
 <dt>Xóa Toàn Bộ các Nhóm -- Delete All Groups</dt>
-<dd>Remove all Vertex Groups from the Object.</dd>
+<dd>Remove all vertex groups from the object.</dd>
 <dt>Khóa Toàn Bộ -- Lock All</dt>
 <dd>Lock all groups.</dd>
 <dt>-- Unlock All</dt>
 <dd>Unlock all groups.</dd>
 <dt>Đảo Nghịch Khóa Toàn Bộ -- Lock Invert All</dt>
-<dd>Invert Group Locks.</dd>
+<dd>Invert group locks.</dd>
 </dl>
 </dd>
 </dl>
@@ -327,12 +322,14 @@ Note that the vertices may still be assigned to other Vertex Groups of the Objec
 </div>
 <div class="figure align-right" id="id2">
 <img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-groups_panel-edit.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-groups_panel-edit.png" />
-<p class="caption"><span class="caption-text">Vertex Group Panel in Edit or Weight Paint Mode.</span></p>
+<p class="caption"><span class="caption-text">Vertex Group panel in Edit or Weight Paint Mode.</span></p>
 </div>
-<p>When you switch either to <em>Edit Mode</em> or to <em>Weight Paint Mode</em> Vertex weights can be edited. The same operations are available in the 3D Views menu <span class="menuselection">Khung Lưới (Mesh) ‣ Điểm Đỉnh (Vertices) ‣ Nhóm Điểm Đỉnh (Vertex Groups)</span> or <kbd class="kbd docutils literal notranslate">Ctrl-G</kbd>.</p>
+<p>When you switch either to Edit Mode or to Weight Paint Mode vertex weights can be edited.
+The same operations are available in the 3D Views
+<span class="menuselection">Mesh ‣ Vertices ‣ Vertex Groups</span> menu or <kbd class="kbd docutils literal notranslate">Ctrl-G</kbd>.</p>
 <dl class="docutils">
 <dt>Chỉ Định -- Assign</dt>
-<dd>To assign the Selected vertices to the active group with the weight as defined in the <em>Weight</em> (see below).</dd>
+<dd>To assign the selected vertices to the active group with the weight as defined in the <em>Weight</em> (see below).</dd>
 <dt>Xóa -- Remove</dt>
 <dd>To remove the selected vertices from the active group (and thus also delete their weight values).</dd>
 <dt>Chọn -- Select</dt>

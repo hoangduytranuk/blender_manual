@@ -111,7 +111,7 @@ Object Font
    #. Create the font characters, each character can be any object type (mesh, curve, etc.).
       They must all have a name following the naming schema:
       "common prefix" followed by the "character name" (e.g. "ft.a", "ft.b", etc.).
-   #. For the *Text* object, enable
+   #. For the text object, enable
       :doc:`Instancing Vertices </scene_layout/object/properties/instancing/verts>`.
    #. In the *Font* tab, fill the *Object Font* field with the "common prefix" of your "font" objects.
       Now, each time a character in your text matches the *suffix part* of a "font" object's name,

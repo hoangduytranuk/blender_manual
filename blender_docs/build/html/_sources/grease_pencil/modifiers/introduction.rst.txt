@@ -22,7 +22,7 @@ and *Apply* a modifier if you wish to make its changes permanent.
 
    Grease Pencil Modifiers menu.
 
-There are three types of modifiers for *Grease Pencil*:
+There are three types of modifiers for Grease Pencil:
 
 Generate
    The *Generate* group of modifiers includes constructive tools that either change
@@ -56,7 +56,7 @@ See :ref:`Modifiers Interface <bpy.types.Modifier.show>` for more information.
 Influence Filters
 -----------------
 
-Most of *Grease Pencil* modifiers share some special properties that restrict the effect only to certain items.
+Most of the modifiers share some special properties that restrict the effect only to certain items.
 
 Vertex Group
    Restricts the effect only to a vertex group.

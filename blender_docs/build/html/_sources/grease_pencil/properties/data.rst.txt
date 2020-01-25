@@ -9,13 +9,13 @@ Object Data
    Grease Pencil Object Data.
 
 Grease Pencil
-   The *Grease Pencil* :ref:`data-block menu <ui-data-block>` can be used to link the data between objects.
+   The Grease Pencil :ref:`data-block menu <ui-data-block>` can be used to link the data between objects.
 
 
 2D Layers
 =========
 
-Strokes can be grouped in 2D layers, a special *Grease Pencil* layers
+Strokes can be grouped in 2D layers, a special Grease Pencil layers
 that help to organize the drawing order and visibility of the strokes.
 
 See :doc:`2D Layers </grease_pencil/properties/layers>` for more information.
@@ -43,6 +43,6 @@ See :doc:`Vertex Groups </modeling/meshes/properties/vertex_groups/index>` for m
 Strokes
 =======
 
-General settings for *Grease Pencil* strokes.
+General settings for Grease Pencil strokes.
 
 See :doc:`Strokes </grease_pencil/properties/strokes>` for more information.

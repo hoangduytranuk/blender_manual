@@ -21,7 +21,7 @@ The new points stay connected with the original points of the edit line.
 
 .. note::
 
-   Since *Grease Pencil* strokes can only have one start an end point,
+   Since Grease Pencil strokes can only have one start an end point,
    a new stroke will be created when extrude intermediate points in the strokes.
 
 

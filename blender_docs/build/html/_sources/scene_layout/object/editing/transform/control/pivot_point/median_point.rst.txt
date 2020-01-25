@@ -20,11 +20,11 @@ the median point would sit at the point of equilibrium for the selection (the CO
 In Object Mode
 ==============
 
-In Object Mode, Blender only considers the Object origins when determining the median point.
+In Object Mode, Blender only considers the object origins when determining the median point.
 This can lead to some counter-intuitive results.
 In the Fig. :ref:`fig-view3d-median-point-object-mode` below,
-you can see that the median point is between the Object origins and
-can be nowhere near the Objects' mesh (geometric center).
+you can see that the median point is between the object origins and
+can be nowhere near the objects' mesh (geometric center).
 
 .. _fig-view3d-median-point-object-mode:
 

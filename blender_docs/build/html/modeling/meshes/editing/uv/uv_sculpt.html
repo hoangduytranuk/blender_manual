@@ -225,14 +225,9 @@
       <li>Điêu Khắc UV -- UV Sculpting</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../../../_sources/modeling/meshes/editing/uv/uv_sculpt.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/editing/uv/uv_sculpt.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -249,38 +244,30 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Paint Mode and Mask Mode</td>
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Edit Mode</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Giá Công Cụ (Tools Shelf) ‣ Tùy Chọn (Options) ‣ Điêu Khắc UV (UV Sculpt)</span>, <span class="menuselection">Giá Công Cụ (Tools Shelf) ‣ Công Cụ (Tools)</span></td>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Toolbar ‣ Grab</span>,</td>
 </tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">UV (UVs) ‣ Điêu Khắc UV (UV Sculpt)</span></td>
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Toolbar ‣ Relax</span>,</td>
 </tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Q</kbd></td>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Toolbar ‣ Pinch</span></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar ‣ Tool ‣ Brushes</span></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The UV Sculpting &quot;mode&quot; allow you to grab, pinch and smooth UVs, just like Sculpt Mode.
-It can be activated with <kbd class="kbd docutils literal notranslate">Q</kbd> or by checking UV Sculpt in the <em>UVs</em> menu.</p>
-<div class="section" id="uv-sculpt">
-<h2>Điêu Khắc UV -- UV Sculpt<a class="headerlink" href="#uv-sculpt" title="Permalink to this headline">¶</a></h2>
-<p>When UV sculpting is activated, the Toolbar shows the brush tool selection and options.</p>
+<p>The sculpting tools allow you to grab, pinch and smooth UVs, just like for meshes in Sculpt Mode.
+It can be activated with selecting either the <em>Grab</em>, <em>Relax</em>, or <em>Pinch</em> tool in the Toolbar.</p>
+<div class="section" id="brushes">
+<h2>Brushes<a class="headerlink" href="#brushes" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt>Khóa Ranh Giới -- Lock Borders</dt>
-<dd>Locks the boundary of UV islands from being affected by the brush.
-This is very useful to preserve the shape of UV islands.</dd>
-<dt>Điêu Khắc Toàn Bộ các Hải Đảo -- Sculpt All Islands</dt>
-<dd>To edit all islands and not only the island nearest to the brush center
-when the sculpt stroke was started.</dd>
-<dt>Công Cụ Điêu Khắc UV -- UV Sculpt Tools</dt>
-<dd><p class="first">Brushes that operate on UVs.
-All brushes use the Airbrush Stroke Method: they continue to act as long as you keep <kbd class="kbd docutils literal notranslate">LMB</kbd> pressed.</p>
+<dt>Brushes</dt>
+<dd><p class="first">The <a class="reference internal" href="../../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> to select a preset brush type or a custom brush.</p>
 <dl class="last docutils">
-<dt>Nắm Giữ -- Grab <kbd class="kbd docutils literal notranslate">G</kbd></dt>
+<dt>Grab</dt>
 <dd>The Grab brush moves UVs around.</dd>
-<dt>Nới Lỏng -- Relax <kbd class="kbd docutils literal notranslate">S</kbd>, <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd></dt>
+<dt>Relax</dt>
 <dd><p class="first">The Relax brush makes UVs more evenly distributed.
 The algorithm relies on space, not stretch minimization,
 so most probably a minimize stretch will have to be run for optimal results.
@@ -293,12 +280,74 @@ or when unwrap produces cluttered results to smooth the distribution of UVs.</p>
 </dd>
 </dl>
 </dd>
-<dt>Véo -- Pinch <kbd class="kbd docutils literal notranslate">P</kbd></dt>
+<dt>Pinch</dt>
 <dd>The Pinch brush moves UVs toward the brush's center.
 The pinch brush can be inverted by pressing <kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>.</dd>
 </dl>
 </dd>
-<dt>Hiển Thị Bút Vẽ -- Show Brush</dt>
+</dl>
+</div>
+<div class="section" id="brush-settings">
+<h2>Brush Settings<a class="headerlink" href="#brush-settings" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Radius</dt>
+<dd><p class="first">This option controls the radius of the brush, measured in pixels.
+<kbd class="kbd docutils literal notranslate">F</kbd> allows you to change the brush size interactively by dragging the mouse and then <kbd class="kbd docutils literal notranslate">LMB</kbd>.
+Typing a number then enter while using <kbd class="kbd docutils literal notranslate">F</kbd> allows you to enter the size numerically.</p>
+<dl class="last docutils">
+<dt>Size Pressure</dt>
+<dd>Brush size can be affected by enabling the pressure sensitivity icon,
+if you are using a <a class="reference internal" href="../../../../getting_started/configuration/hardware.html#hardware-tablet"><span class="std std-ref">Graphics Tablet</span></a>.</dd>
+<dt>Use Unified Radius</dt>
+<dd>Use the same brush <em>Radius</em> across all brushes.</dd>
+</dl>
+</dd>
+<dt>Strength</dt>
+<dd><p class="first">Controls how much each application of the brush affects the UVs.
+You can change the brush strength interactively by pressing <kbd class="kbd docutils literal notranslate">Shift-F</kbd>
+in the 3D View and then moving the brush and then <kbd class="kbd docutils literal notranslate">LMB</kbd>.
+You can enter the size numerically also while in <kbd class="kbd docutils literal notranslate">Shift-F</kbd> sizing.</p>
+<dl class="last docutils">
+<dt>Use Unified Strength</dt>
+<dd>Use the same brush <em>Strength</em> across all brushes.</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">All brushes use the <a class="reference internal" href="../../../../sculpt_paint/brush/stroke.html"><span class="doc">Airbrush Stroke Method</span></a>;
+they continue to act as long as you keep <kbd class="kbd docutils literal notranslate">LMB</kbd> pressed.</p>
+</div>
+<div class="section" id="falloff">
+<h3>Falloff<a class="headerlink" href="#falloff" title="Permalink to this headline">¶</a></h3>
+<p>The Falloff allows you to control the <em>Strength</em> falloff of the brush.
+See <a class="reference internal" href="../../../../sculpt_paint/brush/falloff.html"><span class="doc">Painting Falloff</span></a> for more information.</p>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar ‣ Tool ‣ Options</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When UV sculpting is activated, the Sidebar shows the brush tool selection and options.</p>
+<dl class="docutils">
+<dt>Khóa Ranh Giới -- Lock Borders</dt>
+<dd>Locks the boundary of UV islands from being affected by the brush.
+This is very useful to preserve the shape of UV islands.</dd>
+<dt>Điêu Khắc Toàn Bộ các Hải Đảo -- Sculpt All Islands</dt>
+<dd>To edit all islands and not only the island nearest to the brush center
+when the sculpt stroke was started.</dd>
+<dt>Display Cursor</dt>
 <dd>Ẩn giấu con trỏ điêu khắc.</dd>
 </dl>
 </div>

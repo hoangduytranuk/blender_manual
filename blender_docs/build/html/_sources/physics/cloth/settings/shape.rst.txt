@@ -13,7 +13,7 @@ Shape
    Cloth Shape.
 
 Pin Group
-   Vertex Group to use for pinning.
+   Vertex group to use for pinning.
 
    The shape of the cloth can be controlled by pinning cloth to
    a :doc:`Vertex Group </modeling/meshes/properties/vertex_groups/index>`.

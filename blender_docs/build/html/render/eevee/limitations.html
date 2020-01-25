@@ -136,6 +136,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#indirect-lighting">Áng Sáng Gián Tiếp -- Indirect Lighting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#shadows">Shadows</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#volumetrics">Thể Tích -- Volumetrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#depth-of-field">Depth of Field</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#screen-space-effects">Screen Space Effects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#materials">Nguyên Liệu -- Materials</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#shader-nodes">Nút Tô Bóng -- Shader Nodes</a></li>
@@ -222,14 +223,9 @@
       <li>Những Giới Hạn -- Limitations</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/render/eevee/limitations.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/eevee/limitations.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -289,6 +285,14 @@ may be impossible to implement into Eevee's architecture without compromising pe
 <li>Volumetric shadowing does only work on other volumetrics. They won't cast shadows on solid objects in the scene.</li>
 <li>Volumetric shadowing does only work for volumes inside the view frustum.</li>
 <li>Volumetric lighting does not respect the lights shapes. They are treated as point lights.</li>
+</ul>
+</div>
+<div class="section" id="depth-of-field">
+<span id="eevee-limitations-dof"></span><h2>Depth of Field<a class="headerlink" href="#depth-of-field" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Rendered at half resolution which can create blocky pixel artifacts on tiny features that are nearly in focus.</li>
+<li>The near and far defocus buffers are in fact one single continuous texture. This can make some bleeding
+appear on the left and right size of the image. This can be fixed by using the <em>overscan</em> feature.</li>
 </ul>
 </div>
 <div class="section" id="screen-space-effects">

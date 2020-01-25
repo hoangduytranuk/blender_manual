@@ -129,6 +129,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#channels-region">Khu Vực các Kênh -- Channels Region</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#header">Tiêu Đề -- Header</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#main-view">Khung Nhìn Chính -- Main View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sidebar">Sidebar</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="shape_key.html">Hình Mẫu -- Shape Key</a></li>
@@ -217,14 +218,9 @@
       <li>Bút Chì Dầu -- Grease Pencil</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/editors/dope_sheet/grease_pencil.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/dope_sheet/grease_pencil.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -239,10 +235,10 @@
 animation frames. It is especially useful for animators blocking out shots,
 where the ability to re-time blocking is one of the main purposes of the whole exercise.</p>
 <p>This mode can be accessed by changing the Dope Sheet editor's <em>Mode</em> selector (found in the header to the far left)
-to <em>Grease Pencil</em>.</p>
+to Grease Pencil.</p>
 <p>To use this editor mode, make sure you have a <a class="reference internal" href="../../grease_pencil/index.html"><span class="doc">Grease Pencil object</span></a> selected.</p>
 <div class="figure">
-<a class="reference internal image-reference" href="../../_images/editors_dope-sheet_grease-pencil_view.png"><img alt="../../_images/editors_dope-sheet_grease-pencil_view.png" src="../../_images/editors_dope-sheet_grease-pencil_view.png" style="width: 620px;" /></a>
+<img alt="../../_images/editors_dope-sheet_grease-pencil_view.png" src="../../_images/editors_dope-sheet_grease-pencil_view.png" />
 </div>
 <div class="section" id="channels-region">
 <h2>Khu Vực các Kênh -- Channels Region<a class="headerlink" href="#channels-region" title="Permalink to this headline">¶</a></h2>
@@ -251,13 +247,33 @@ to <em>Grease Pencil</em>.</p>
 <dd>The channels' region shows the Grease Pencil data-blocks containing the layers.
 Multiple blocks are used for each area (e.g. one for the 3D View and the Image editor).</dd>
 <dt>Tầng Lớp (màu ghi) -- Layers (gray)</dt>
-<dd>These channels contain the keyframes to which
-the <a class="reference internal" href="../../grease_pencil/properties/layers.html"><span class="doc">layers</span></a> are bound.</dd>
+<dd><p class="first">These channels contain the keyframes to which
+the <a class="reference internal" href="../../grease_pencil/properties/layers.html"><span class="doc">layers</span></a> are bound.</p>
+<dl class="last docutils">
+<dt>Opacity</dt>
+<dd>Controls the layers <a class="reference internal" href="../../grease_pencil/properties/layers.html#bpy-types-gpencillayer-opacity"><span class="std std-ref">Opacity</span></a>.</dd>
+<dt>Mask (mask icon)</dt>
+<dd>When the mask is enabled, all the layers below the current one function as a single mask.
+This mask hide any pixel in the current layer outside the mask created by the underlying layers.</dd>
+<dt>Onion Skinning (onion skin icon)</dt>
+<dd>Toggle the use the layer for <a class="reference internal" href="../../grease_pencil/properties/onion_skinning.html"><span class="doc">Onion Skinning</span></a>.</dd>
+<dt>Lock Animation (checkbox icon)</dt>
+<dd>Toggles playback of animation or keep the channel static.</dd>
+<dt>Viewport/Render Visibility (eye icon)</dt>
+<dd>Toggle layer visibility in the viewport and in render.</dd>
+<dt>Lock (padlock icon)</dt>
+<dd>Toggle layer from being editable.</dd>
+</dl>
+</dd>
 </dl>
 </div>
 <div class="section" id="header">
 <h2>Tiêu Đề -- Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
+<dt>Layer Move</dt>
+<dd>Moves the selected layer/channel up or down in the evaluation stack.</dd>
+<dt>Layer Add/Remove</dt>
+<dd>Adds/removes Grease Pencil layers/channels.</dd>
 <dt>Duy cái Đang Hoạt Động -- Active Only</dt>
 <dd>Only show the Grease Pencil data-blocks attached to the current scene and the objects within it.</dd>
 </dl>
@@ -278,6 +294,10 @@ Note that keyframes will be pasted into selected layers, so make sure you have a
 <h2>Khung Nhìn Chính -- Main View<a class="headerlink" href="#main-view" title="Permalink to this headline">¶</a></h2>
 <p>The keyframes can be manipulated like any other data in the <em>Dope Sheet</em>.
 Interpolated keyframes (alias breakdowns) are visualized as smaller light blue points.</p>
+</div>
+<div class="section" id="sidebar">
+<h2>Sidebar<a class="headerlink" href="#sidebar" title="Permalink to this headline">¶</a></h2>
+<p>The Sidebar contains a copy of the Grease Pencil <a class="reference internal" href="../../grease_pencil/properties/layers.html"><span class="doc">Layer Properties</span></a>.</p>
 </div>
 </div>
 

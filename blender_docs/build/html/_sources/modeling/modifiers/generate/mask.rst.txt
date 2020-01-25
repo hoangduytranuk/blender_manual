@@ -15,11 +15,10 @@ Mode
 
    Vertex Group
       When the *Vertex Group* option is selected,
-      all vertices belonging to the chosen Vertex Group (with a weight above zero) will be visible,
+      all vertices belonging to the chosen vertex group (with a weight above zero) will be visible,
       and all other vertices will be hidden.
 
-      .. list-table::
-         The Mask modifier, Vertex Group mode.
+      .. list-table:: The Mask modifier in Vertex Group mode.
 
          *  - .. figure:: /images/modeling_modifiers_generate_mask_vertex-group.png
 
@@ -27,20 +26,19 @@ Mode
 
    Armature
       When in Pose Mode,
-      vertices belonging to the Vertex Group associated with the active bone (same names) will be visible.
+      vertices belonging to the vertex group associated with the active bone (same names) will be visible.
       Vertices not in that group will be hidden.
 
-      .. list-table::
-         The Mask modifier, Armature mode.
+      .. list-table:: The Mask modifier in Armature mode.
 
          *  - .. figure:: /images/modeling_modifiers_generate_mask_armature.png
 
             - .. figure:: /images/modeling_modifiers_generate_mask_panel-armature.png
 
 Inverse
-   Normally, vertices belonging to the selected Vertex Group (or group associated with the active pose bone)
+   Normally, vertices belonging to the selected vertex group (or group associated with the active pose bone)
    will be shown. The *Invert* toggle allows you to reverse this behavior, instead only showing vertices
-   which do not belong to the Vertex Group.
+   which do not belong to the vertex group.
 
 Threshold
    Vertices with weights less or equal to this value will be hidden.

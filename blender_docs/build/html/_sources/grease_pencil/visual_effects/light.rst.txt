@@ -11,9 +11,9 @@ This fake light source does not cast shadows.
 
 .. note::
 
-   *Grease Pencil* objects are still not affected by real lights objects,
+   Grease Pencil objects are still not affected by real lights objects,
    so this effect can act as workaround to obtain a similar lighting condition
-   when in the scene are *Grease Pencil* objects together with 3D meshes and lights.
+   when in the scene are Grease Pencil objects together with 3D meshes and lights.
 
 
 Options

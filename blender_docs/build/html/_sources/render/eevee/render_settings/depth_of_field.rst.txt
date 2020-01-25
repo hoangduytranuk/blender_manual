@@ -23,3 +23,5 @@ The depth of field effect can be controlled in the :doc:`camera settings </rende
 
 Max Size
    Max size of the bokeh shape for the depth of field (lower is faster).
+
+.. seealso:: :ref:`Limitations <eevee-limitations-dof>`.

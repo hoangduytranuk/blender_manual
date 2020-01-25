@@ -223,14 +223,9 @@
       <li>Tùy Chọn về Khung Lưới -- Mesh Options</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../../_sources/modeling/meshes/editing/mesh_options.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/editing/mesh_options.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -254,15 +249,15 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="x-mirror">
-<span id="bpy-types-mesh-use-mirror-x"></span><h2>Đối Xứng X -- X Mirror<a class="headerlink" href="#x-mirror" title="Permalink to this headline">¶</a></h2>
-<p>The <em>X Mirror</em> option of the <em>Mesh Options</em> panel allows you to edit symmetrical vertices on the other side
-of the mesh in a single action. When you transform an element (vertex, edge or face),
-if there is its exact X-mirrored counterpart (in local space),
-it will be transformed accordingly, through a symmetry along the local X axis.</p>
+<div class="section" id="mirror">
+<span id="bpy-types-mesh-use-mirror-z"></span><span id="bpy-types-mesh-use-mirror-y"></span><span id="bpy-types-mesh-use-mirror-x"></span><h2>Mirror<a class="headerlink" href="#mirror" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Mirror</em> option of the <em>Mesh Options</em> panel allows you to transform vertices symmetrically
+according to the chosen axis. When you transform an element (vertex, edge or face),
+if there is its exact axis-mirrored counterpart (in local space),
+it will be transformed accordingly, through a symmetry along the chosen axis.</p>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
-<p class="last">The conditions for <em>X Mirror</em> to work are quite strict, which can make it difficult to use.
+<p class="last">The conditions for <em>Mirror</em> to work are quite strict, which can make it difficult to use.
 To have an exact mirrored version of a (half) mesh,
 it's easier and simpler to use the <a class="reference internal" href="../../modifiers/generate/mirror.html"><span class="doc">Mirror Modifier</span></a>.</p>
 </div>
@@ -271,16 +266,15 @@ it's easier and simpler to use the <a class="reference internal" href="../../mod
 <span id="bpy-types-mesh-use-mirror-topology"></span><span id="modeling-meshes-editing-topology-mirror"></span><h2>Đối Xứng Cấu Trúc Liên Kết -- Topology Mirror<a class="headerlink" href="#topology-mirror" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
-<p class="last">For <em>Topology Mirror</em> to work the <em>X Mirror</em> option must be enabled.</p>
+<p class="last">For <em>Topology Mirror</em> to work, at least one of the three <em>Mirror Axis</em> must be enabled.</p>
 </div>
-<p>When using the <em>X Mirror</em> option to work on mirrored Mesh Geometry, the vertices that
+<p>When using any of the three <em>Mirror Axis</em> options to work on a mirrored Mesh Geometry, the vertices that
 are mirrored must be perfectly placed. If they are not exactly positioned in their mirror
-locations then <em>X Mirror</em> will not treat those vertices as mirrored.</p>
+locations then the <em>Mirror Axis</em> will not treat those vertices as mirrored.</p>
 <p><em>Topology Mirror</em> tries to address this problem by determining which vertices are mirrored vertices not only by
 using their positions but also by looking at how those vertices are related to others in the Mesh Geometry.
 It looks at the overall topology to determine if particular vertices will be treated as mirrored.
-The effect of this is that mirrored vertices can be non-symmetrical and yet still be treated as mirrored when
-<em>X Mirror</em> and <em>Topology Mirror</em> are both active.</p>
+The effect of this is that mirrored vertices can be non-symmetrical and yet still be treated as mirrored.</p>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
 <p class="last">The <em>Topology Mirror</em> functionality will work more reliably on mesh geometry
@@ -293,12 +287,12 @@ a <em>Cube</em> or <em>UV Sphere</em>, the <em>Topology Mirror</em> option will 
 then delete the default cube and add a Monkey object to the 3D View.</p>
 <ol class="arabic simple">
 <li>Press <kbd class="kbd docutils literal notranslate">Tab</kbd> to put the Monkey object into <em>Edit Mode</em>.</li>
-<li>With the <em>X Mirror</em> option disabled move one of the Monkey object's vertices slightly.</li>
-<li>Then Turn <em>X Mirror</em> option on again but leave <em>Topology Mirror</em> disabled.</li>
-<li>If you now move that vertex again <em>X Mirror</em> will not work and the mirrored
+<li>With all the <em>Mirror Axis</em> options disabled move one of the Monkey object's vertices slightly.</li>
+<li>Then Turn the <em>X Axis Mirror</em> on but leave <em>Topology Mirror</em> disabled.</li>
+<li>If you now move that vertex again, the <em>X Axis Mirror</em> will not work and the mirrored
 vertices will not be altered.</li>
 <li>If you then enable <em>Topology Mirror</em> and move the same vertices again,
-then <em>X Mirror</em> should still mirror the other vertex,
+then <em>X Axis Mirror</em> should still mirror the other vertex,
 even though they are not perfectly positioned.</li>
 </ol>
 </div>
@@ -329,7 +323,8 @@ then the merge will be performed between the moved vertex and one of those.</p>
 <dd><p class="first">Enables the Auto Merge feature.</p>
 <dl class="last docutils">
 <dt>Split Edges &amp; Faces</dt>
-<dd>Detects the intersection of each transformed edge, creating a new vertex in place and sectioning the edge.</dd>
+<dd>Detects the intersection of each transformed edge, creating a new vertex in place
+and sectioning the edge and the face if any.</dd>
 <dt>Threshold</dt>
 <dd>Defines the maximum distance between vertices that are merged by the <em>Auto Merge</em>.</dd>
 </dl>

@@ -30,7 +30,7 @@ Outputs
 =======
 
 View Vector
-   A Camera space vector from the camera to the shading point.
+   A camera space vector from the camera to the shading point.
 View Z Depth
    The distance each pixel is away from the camera.
 View Distance

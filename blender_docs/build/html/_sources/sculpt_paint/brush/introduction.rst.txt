@@ -15,6 +15,7 @@ Brush Control
 - Set brush size :kbd:`F`
 - Set brush strength :kbd:`Shift-F`
 - Rotate brush texture :kbd:`Ctrl-F`
+- Invert stroke toggle :kbd:`Ctrl`
 
 You can then either adjust the value interactively or by typing in numbers.
 After pressing the hotkey move the mouse to increase/reduce the value

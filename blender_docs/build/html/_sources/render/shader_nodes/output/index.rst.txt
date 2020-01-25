@@ -11,6 +11,7 @@ except in the case of the :doc:`Displacement </render/materials/components/displ
 .. toctree::
    :maxdepth: 1
 
+   aov.rst
    material.rst
    light.rst
    world.rst

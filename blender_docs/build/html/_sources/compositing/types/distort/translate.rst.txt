@@ -11,7 +11,7 @@ Translate Node
 
 The Translate node moves an image.
 
-Could also be used to add a 2D Camera shake.
+Could also be used to add a 2D camera shake.
 
 
 Inputs

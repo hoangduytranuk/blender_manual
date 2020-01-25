@@ -4,7 +4,7 @@
 Sculpting Tools
 ***************
 
-For *Grease Pencil* Sculpt modes each brush type is exposed as a tool,
+For Grease Pencil sculpt modes each brush type is exposed as a tool,
 the brush can be changed in the Tool Settings.
 See :doc:`Brush </grease_pencil/modes/sculpting/tool_settings/brush>` for more information.
 

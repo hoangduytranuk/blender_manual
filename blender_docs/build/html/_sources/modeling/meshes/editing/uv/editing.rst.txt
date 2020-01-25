@@ -187,7 +187,7 @@ Stitch
    :Hotkey:    :kbd:`V`
 
 The *Stitch* tool, will join selected UVs that share vertices.
-you set the tool to limit stitching by distance in the :ref:`ui-undo-redo-adjust-last-operation` panel,
+You set the tool to limit stitching by distance in the :ref:`ui-undo-redo-adjust-last-operation` panel,
 by activating *use limit* and adjusting the *limit distance*
 
 

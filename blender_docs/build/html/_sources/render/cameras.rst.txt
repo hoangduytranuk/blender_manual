@@ -3,7 +3,7 @@
 Cameras
 *******
 
-A *Camera* is an object that provides a means of rendering images from Blender.
+A camera is an object that provides a means of rendering images from Blender.
 It defines which portion of a scene is visible in the rendered image.
 
 Cameras are invisible in renders, so they do not have any material or texture settings.

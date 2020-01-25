@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-17 21:35+0000\n"
+"POT-Creation-Date: 2020-01-25 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgid "Mesh Options"
 msgstr ""
 
 #: ../../manual/modeling/meshes/editing/mesh_options.rst:6
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:76
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:77
 msgid "Reference"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgid "Mode"
 msgstr ""
 
 #: ../../manual/modeling/meshes/editing/mesh_options.rst:9
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:79
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:80
 msgid "Edit Mode"
 msgstr ""
 
@@ -43,67 +43,67 @@ msgstr ""
 msgid ":menuselection:`Sidebar --> Tool tab --> Options panel`"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:16
-msgid "X Mirror"
-msgstr ""
-
 #: ../../manual/modeling/meshes/editing/mesh_options.rst:18
-msgid "The *X Mirror* option of the *Mesh Options* panel allows you to edit symmetrical vertices on the other side of the mesh in a single action. When you transform an element (vertex, edge or face), if there is its exact X-mirrored counterpart (in local space), it will be transformed accordingly, through a symmetry along the local X axis."
+msgid "Mirror"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:25
-msgid "The conditions for *X Mirror* to work are quite strict, which can make it difficult to use. To have an exact mirrored version of a (half) mesh, it's easier and simpler to use the :doc:`Mirror Modifier </modeling/modifiers/generate/mirror>`."
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:20
+msgid "The *Mirror* option of the *Mesh Options* panel allows you to transform vertices symmetrically according to the chosen axis. When you transform an element (vertex, edge or face), if there is its exact axis-mirrored counterpart (in local space), it will be transformed accordingly, through a symmetry along the chosen axis."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:34
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:27
+msgid "The conditions for *Mirror* to work are quite strict, which can make it difficult to use. To have an exact mirrored version of a (half) mesh, it's easier and simpler to use the :doc:`Mirror Modifier </modeling/modifiers/generate/mirror>`."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:36
 msgid "Topology Mirror"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:38
-msgid "For *Topology Mirror* to work the *X Mirror* option must be enabled."
-msgstr ""
-
 #: ../../manual/modeling/meshes/editing/mesh_options.rst:40
-msgid "When using the *X Mirror* option to work on mirrored Mesh Geometry, the vertices that are mirrored must be perfectly placed. If they are not exactly positioned in their mirror locations then *X Mirror* will not treat those vertices as mirrored."
+msgid "For *Topology Mirror* to work, at least one of the three *Mirror Axis* must be enabled."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:44
-msgid "*Topology Mirror* tries to address this problem by determining which vertices are mirrored vertices not only by using their positions but also by looking at how those vertices are related to others in the Mesh Geometry. It looks at the overall topology to determine if particular vertices will be treated as mirrored. The effect of this is that mirrored vertices can be non-symmetrical and yet still be treated as mirrored when *X Mirror* and *Topology Mirror* are both active."
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:42
+msgid "When using any of the three *Mirror Axis* options to work on a mirrored Mesh Geometry, the vertices that are mirrored must be perfectly placed. If they are not exactly positioned in their mirror locations then the *Mirror Axis* will not treat those vertices as mirrored."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:52
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:46
+msgid "*Topology Mirror* tries to address this problem by determining which vertices are mirrored vertices not only by using their positions but also by looking at how those vertices are related to others in the Mesh Geometry. It looks at the overall topology to determine if particular vertices will be treated as mirrored. The effect of this is that mirrored vertices can be non-symmetrical and yet still be treated as mirrored."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:53
 msgid "The *Topology Mirror* functionality will work more reliably on mesh geometry which is more detailed. If you use very simple geometry, for example a *Cube* or *UV Sphere*, the *Topology Mirror* option will often not work."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:58
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:59
 msgid "Example"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:60
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:61
 msgid "For an example of how to use *Topology Mirror* open up a new Blender scene, then delete the default cube and add a Monkey object to the 3D View."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:63
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:64
 msgid "Press :kbd:`Tab` to put the Monkey object into *Edit Mode*."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:64
-msgid "With the *X Mirror* option disabled move one of the Monkey object's vertices slightly."
-msgstr ""
-
 #: ../../manual/modeling/meshes/editing/mesh_options.rst:65
-msgid "Then Turn *X Mirror* option on again but leave *Topology Mirror* disabled."
+msgid "With all the *Mirror Axis* options disabled move one of the Monkey object's vertices slightly."
 msgstr ""
 
 #: ../../manual/modeling/meshes/editing/mesh_options.rst:66
-msgid "If you now move that vertex again *X Mirror* will not work and the mirrored vertices will not be altered."
+msgid "Then Turn the *X Axis Mirror* on but leave *Topology Mirror* disabled."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:68
-msgid "If you then enable *Topology Mirror* and move the same vertices again, then *X Mirror* should still mirror the other vertex, even though they are not perfectly positioned."
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:67
+msgid "If you now move that vertex again, the *X Axis Mirror* will not work and the mirrored vertices will not be altered."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:74
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:69
+msgid "If you then enable *Topology Mirror* and move the same vertices again, then *X Axis Mirror* should still mirror the other vertex, even though they are not perfectly positioned."
+msgstr ""
+
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:75
 #: ../../<generated>:1
 msgid "Auto Merge"
 msgstr ""
@@ -112,31 +112,31 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:80
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:81
 msgid ":menuselection:`Sidebar --> Tool --> Options --> Auto Merge`"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:82
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:83
 msgid "When the *Auto Merge* option is enabled, as soon as a vertex moves closer to another one than the *Threshold* setting, they are automatically merged. This option affects interactive operations only (tweaks made in the :ref:`ui-undo-redo-adjust-last-operation` panel are considered interactive too). If the exact spot where a vertex is moved contains more than one vertex, then the merge will be performed between the moved vertex and one of those."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:90
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:91
 msgid "Enables the Auto Merge feature."
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:93
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:95
 msgid "Split Edges & Faces"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:93
-msgid "Detects the intersection of each transformed edge, creating a new vertex in place and sectioning the edge."
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:94
+msgid "Detects the intersection of each transformed edge, creating a new vertex in place and sectioning the edge and the face if any."
 msgstr ""
 
 #: ../../<generated>:1
 msgid "Threshold"
 msgstr ""
 
-#: ../../manual/modeling/meshes/editing/mesh_options.rst:96
+#: ../../manual/modeling/meshes/editing/mesh_options.rst:98
 msgid "Defines the maximum distance between vertices that are merged by the *Auto Merge*."
 msgstr ""
 

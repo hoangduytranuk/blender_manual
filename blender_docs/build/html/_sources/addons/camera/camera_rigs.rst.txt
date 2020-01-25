@@ -70,7 +70,7 @@ The UI will display most of the useful camera settings.
 I will only explain the added features here, for more information check out the :doc:`/render/cameras`.
 
 Add DOF Empty
-   The *Add DOF Empty* button will automatically add an Empty at the location of the aim bone and
+   The *Add DOF Empty* button will automatically add an empty at the location of the aim bone and
    make it the depth of field (DOF) object.
 
    The empty is a child of the aim bone, so you can animate that instead of animating the empty directly.
@@ -115,7 +115,7 @@ Camera Switching
 If you wish to switch cameras during an animation you can do this with the *Add Marker and Bind* button.
 This uses Blender's built-in camera binding tool to a Timeline marker.
 When pressed, it will add a marker to the Timeline and bind it to the camera controlled by the selected rig.
-Go to another frame, select a different Camera Rig and press it again.
+Go to another frame, select a different camera rig and press it again.
 Now you have two markers and when you scrub the time line you will see the active camera switch accordingly.
 (repeat this process as many times as needed)
 This markers can then also be dragged around in the time to change the frame in which they will switch.

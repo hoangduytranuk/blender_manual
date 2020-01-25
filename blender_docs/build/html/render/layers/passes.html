@@ -207,14 +207,9 @@
       <li>Lượt -- Passes</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/render/layers/passes.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/layers/passes.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -372,6 +367,25 @@ link the Render Layer matching Image and Cryptomatte passes to it.</li>
 <p class="last"><a class="reference internal" href="../../compositing/types/matte/cryptomatte.html"><span class="doc">Cryptomatte Node</span></a>.</p>
 </div>
 </div>
+</div>
+<div class="section" id="shader-aov">
+<span id="render-cycles-passes-aov"></span><h3>Shader AOV<a class="headerlink" href="#shader-aov" title="Permalink to this headline">¶</a></h3>
+<p>Shader AOVs (Arbitrary Output Variables) provide custom render passes for arbitrary shader node components.
+As an artist this can be a good way to debug or tweak very fine details of a scene in post processing.
+To use Shader AOVs create the pass in the <em>Shader AOV</em> panel then reference this pass with
+the <a class="reference internal" href="../shader_nodes/output/aov.html"><span class="doc">AOV Output</span></a> shading node.
+Shader AOVs can be added or removed in the <em>Shader AOV</em> panel.
+In this panel is a list of all AOV passes; each AOV in the list consists of a <em>Name</em> and <em>Data Type</em>.</p>
+<dl class="docutils">
+<dt>Name</dt>
+<dd>The name of the render pass; this is the <em>Name</em> that is referenced in the <em>AOV Output</em> node.
+Arbitrary names can be used for these passes,
+as long as they do not conflict with built-in passes that are enabled.</dd>
+<dt>Data Type</dt>
+<dd>Shader AOVs can either express a <em>Color</em> or a <em>Value</em> variable.
+The <em>Color</em> variable as the name suggest can be used for a color but also a normal value.
+A <em>Value</em> variable can be used for any single numerical value.</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="eevee">

@@ -225,7 +225,7 @@ def setup(app):
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
-html_extra_path = ["../resources/versions.json"]
+html_extra_path = ["../resources/versions.json", "../.htaccess"]
 
 # If not None, a 'Last updated on:' timestamp is inserted at every page
 # bottom, using the given strftime format.
@@ -256,6 +256,7 @@ html_additional_pages = {
 
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = True
+html_copy_source = True
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
 html_show_sphinx = False

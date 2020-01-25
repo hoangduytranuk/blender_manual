@@ -93,7 +93,7 @@ to the same Plane mesh when in different views.
 
 .. note:: Warping text
 
-   If you want to warp text, you will need to convert it from a Text Object to Mesh
+   If you want to warp text, you will need to convert it from a text object to mesh
    using :ref:`object-convert-to`.
 
 
@@ -104,5 +104,5 @@ Example
 
    Text wrapped around logo.
 
-This was made by creating the Blender logo and text as separate Objects.
+This was made by creating the Blender logo and text as separate objects.
 The text was converted to a mesh and then warped around the Blender logo.

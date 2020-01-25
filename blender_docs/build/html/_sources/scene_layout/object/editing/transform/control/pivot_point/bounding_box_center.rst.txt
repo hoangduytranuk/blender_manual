@@ -52,7 +52,7 @@ In Edit Mode
 ============
 
 This time it is the Object Data that is enclosed in the bounding box.
-The bounding box in *Edit Mode* takes no account of the Object(s) origins,
+The bounding box in *Edit Mode* takes no account of the object(s) origins,
 only the center of the selected vertices.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_bounding-box-center_edit-mode-rotation.png

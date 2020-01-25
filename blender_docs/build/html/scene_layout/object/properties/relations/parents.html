@@ -212,14 +212,9 @@
       <li>Vật Thể Phụ Huynh -- Parenting Objects</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../../../_sources/scene_layout/object/properties/relations/parents.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/scene_layout/object/properties/relations/parents.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -254,17 +249,17 @@ you may choose to model the different parts as separate objects. However,
 all of the parts may be attached to each other. In these cases,
 you want to designate one object as the parent of all the children. Movement,
 rotation or scaling of the parent also affects the children.</p>
-<p>To parent objects, select at least two objects (select the <em>Child Objects</em> first,
-and select the <em>Parent Object</em> last), and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd>.
+<p>To parent objects, select at least two objects (select the child objects first,
+and select the parent object last), and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd>.
 The <em>Set Parent To</em> menu will pop up allowing you to select from one of several
 possible different parenting types.
 Selecting one of the entries in <em>Set Parent To</em> confirms,
 and the child/children to parent relationship is created.</p>
-<p>The last object selected will be the <em>Active Object</em> (outlined in light orange),
-and will also be the <em>Parent Object</em>.
+<p>The last object selected will be the active object (outlined in light orange),
+and will also be the parent object.
 If you selected multiple objects before selecting the parent,
 they will all be children of the parent and will be at the same level of the hierarchy
-(they are &quot;siblings&quot;).</p>
+(they are called 'siblings').</p>
 <p>The <em>Set Parent To</em> pop-up menu is context-sensitive, which means
 the number of entries it displays can change depending on what objects are selected
 when the <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> shortcut is used.</p>
@@ -273,11 +268,14 @@ when the <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> shortcut is 
 However, moving/rotating/scaling the child/children of the parent will not result in the parent
 moving/rotating/scaling. In other words,
 the direction of influence is from parent to child and not child to parent.</p>
-<p>In general when using <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> or <span class="menuselection">Thanh Tiêu Đề Góc Nhìn 3D (3D View Header) ‣ Vật Thể (Object) ‣ Phụ Huynh (Parent)</span> to parent objects, the <em>Child Objects</em> can only have one <em>Parent Object</em>. If a <em>Child Object</em> already has a <em>Parent Object</em> and you give it another parent then Blender will remove the previous parent relationship.</p>
+<p>In general when using <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> or <span class="menuselection">3D View Header ‣ Object ‣ Parent</span>
+to parent objects, the child objects can only have one parent object.
+If a child object already has a parent object and you give it another parent then
+Blender will remove the previous parent relationship.</p>
 <div class="section" id="parent-inverse">
 <h3>Parent Inverse<a class="headerlink" href="#parent-inverse" title="Permalink to this headline">¶</a></h3>
 <p>When objects are parented with <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd>, the current transformation of the parent
-is stored in a hidden <em>Parent Inverse</em> matrix. By using that, the location, rotation and
+is stored in a hidden parent inverse matrix. By using that, the location, rotation and
 scale properties of the child can continue to be effectively interpreted in world space,
 as long as the parent doesn't move.</p>
 <p>For parenting without assigning the matrix, use the <kbd class="kbd docutils literal notranslate">Shift-Ctrl-P</kbd> shortcut instead.
@@ -311,17 +309,17 @@ or activates a parent property i.e. <em>Follow Path</em>.</p>
 <div class="section" id="object-parent">
 <span id="object-parenting"></span><h2>Phụ Huynh của Vật Thể -- Object Parent<a class="headerlink" href="#object-parent" title="Permalink to this headline">¶</a></h2>
 <p><em>Object Parent</em> is the most general form of parenting that Blender supports.
-If will take selected objects and make the last selected object the <em>Parent Object</em>,
-while all other selected objects will be <em>Child Objects</em>.
+If will take selected objects and make the last selected object the parent object,
+while all other selected objects will be child objects.
 The child objects will inherit the transformations of the parent. The parent object can be of any type.</p>
 <div class="section" id="object-keep-transform-parent">
 <h3>Phụ Huynh của Vật Thể (Duy Trì Biến Hóa) -- Object (Keep Transform) Parent<a class="headerlink" href="#object-keep-transform-parent" title="Permalink to this headline">¶</a></h3>
 <p><em>Object (Keep Transform) Parent</em> works in a very similar way to <em>Object Parent</em>. The major difference is in whether
-the <em>Child Objects</em> will remember any previous transformations applied to them from the previous <em>Parent Object</em>.</p>
+the child objects will keep any previous transformations applied to them from the previous parent object.</p>
 <p>Since explaining this in an easy to understand technical way is hard,
 let's instead use an example to demonstrate.</p>
 <p>Assume that we have a scene consisting of three objects,
-those being two Empty Objects named &quot;EmptyA&quot; and &quot;EmptyB&quot;, and a Monkey object.
+those being two empty objects named &quot;EmptyA&quot; and &quot;EmptyB&quot;, and a Monkey object.
 Fig. <a class="reference internal" href="#fig-view3d-parent-scene-no"><span class="std std-ref">Scene with no parenting.</span></a> shows the three objects with no parenting relationships active on them.</p>
 <div class="figure" id="id1">
 <span id="fig-view3d-parent-scene-no"></span><img alt="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-a.png" src="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-a.png" />
@@ -330,7 +328,7 @@ Fig. <a class="reference internal" href="#fig-view3d-parent-scene-no"><span clas
 <p>If you select the Monkey object by <kbd class="kbd docutils literal notranslate">RMB</kbd> click and then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd>
 click &quot;EmptyA&quot; object and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and finally select <em>Object</em>
 from the <em>Set Parent To</em> pop-up menu.
-This will result in &quot;EmptyA&quot; object being the <em>Parent Object</em> of the Monkey object.
+This will result in &quot;EmptyA&quot; object being the parent object of the Monkey object.
 With only &quot;EmptyA&quot; selected rotating/scaling/moving it will result in
 the Monkey object being altered respectively.</p>
 <p>Scale the &quot;EmptyA&quot; object, so that the Monkey becomes smaller and moves to the left a little.</p>
@@ -341,7 +339,7 @@ the Monkey object being altered respectively.</p>
 <p>If you select only the Monkey object by <kbd class="kbd docutils literal notranslate">RMB</kbd> click and then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd>
 click &quot;EmptyB&quot; object and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and select <em>Object</em> from
 the <em>Set Parent To</em> pop-up menu.
-This will result in &quot;EmptyB&quot; object being the <em>Parent Object</em> of the Monkey object.
+This will result in &quot;EmptyB&quot; object being the parent object of the Monkey object.
 Notice that when you change the parent of the Monkey the scale of the Monkey changed.</p>
 <div class="figure" id="id3">
 <img alt="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-c.png" src="../../../../_images/scene-layout_object_properties_relations_parents_keep-transform-c.png" />
@@ -352,8 +350,8 @@ the change came about because it was the child of &quot;EmptyA&quot; which had i
 Changing the Monkey's parent to &quot;EmptyB&quot; resulted in those indirect changes in scale being
 removed, because &quot;EmptyB&quot; has not had its scale altered.</p>
 <p>This is often the required behavior, but it is also sometimes useful that if you change your
-<em>Parent Object</em> that the <em>Child Object</em> keep any previous transformations
-it got from the old <em>Parent Object</em>; If instead when changing the <em>Parent Object</em> of the Monkey
+parent object that the child object keep any previous transformations
+it got from the old parent object; If instead when changing the parent object of the Monkey
 from &quot;EmptyA&quot; to &quot;EmptyB&quot; we had chosen parenting type <em>Object (Keep Transform)</em>,
 the Monkey would keep its scale information it obtained from the old parent &quot;EmptyA&quot;
 when it is assigned to the new parent &quot;EmptyB&quot;;</p>
@@ -368,29 +366,29 @@ when it is assigned to the new parent &quot;EmptyB&quot;;</p>
 </div>
 <div class="section" id="bone-parent">
 <h2>Phụ huynh của xương -- Bone Parent<a class="headerlink" href="#bone-parent" title="Permalink to this headline">¶</a></h2>
-<p>Bone parenting allows you to make a certain bone in an armature the Parent Object of another object.
-This means that when transforming an armature the Child Object will only move
-if the specific bone is the Child Object of moves.</p>
+<p>Bone parenting allows you to make a certain bone in an armature the parent object of another object.
+This means that when transforming an armature the child object will only move
+if the specific bone is the child object of moves.</p>
 <div class="figure" id="id5">
 <span id="fig-view3d-parent-bone-parent"></span><img alt="../../../../_images/scene-layout_object_properties_relations_parents_bone1.png" src="../../../../_images/scene-layout_object_properties_relations_parents_bone1.png" />
 <p class="caption"><span class="caption-text">Three pictures of armatures with four bones.</span></p>
 </div>
-<p>In Fig. <a class="reference internal" href="#fig-view3d-parent-bone-parent"><span class="std std-ref">Three pictures of armatures with four bones.</span></a> with the 2nd bone being the Bone Parent of the Child Object Cube.
-The Cube is only transformed if the 1st or 2nd bones are.
-Notice altering the 3rd and 4th bones has no effect on the Cone.</p>
-<p>To use Bone Parenting, you must first select all the Child Objects you wish to parent to a specific Armature Bone,
-then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd> select the Armature Object and switch it into Pose Mode and
-then select the specific bone you wish to be the Parent Bone by <kbd class="kbd docutils literal notranslate">RMB</kbd> selecting it.
-Once done press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and select Bone from the Set Parent To pop-up menu.</p>
-<p>Now transforming that bone in Pose Mode will result in the Child Objects also transforming.</p>
+<p>In Fig. <a class="reference internal" href="#fig-view3d-parent-bone-parent"><span class="std std-ref">Three pictures of armatures with four bones.</span></a> with the 2nd bone being the bone parent of the child object cube.
+The cube is only transformed if the 1st or 2nd bones are.
+Notice altering the 3rd and 4th bones has no effect on the cone.</p>
+<p>To use bone parenting, you must first select all the child objects you wish to parent to a specific armature bone,
+then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd> select the armature object and switch it into Pose Mode and
+then select the specific bone you wish to be the parent bone by <kbd class="kbd docutils literal notranslate">RMB</kbd> selecting it.
+Once done press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and select bone from the <em>Set Parent To</em> pop-up menu.</p>
+<p>Now transforming that bone in Pose Mode will result in the child objects also transforming.</p>
 <div class="section" id="relative-parenting">
 <h3>Phụ Huynh Hóa Tương Đối -- Relative Parenting<a class="headerlink" href="#relative-parenting" title="Permalink to this headline">¶</a></h3>
-<p>Bone Relative parenting is an option you can toggle for each bone.
-This works in the same way as Bone parenting with one difference.</p>
-<p>With Bone parenting if you have parented a bone to some Child Objects and
+<p>Bone relative parenting is an option you can toggle for each bone.
+This works in the same way as bone parenting with one difference.</p>
+<p>With bone parenting if you have parented a bone to some child objects and
 you select that bone and switch it into Edit Mode and then move that bone;
 When you switch back into Pose Mode on that bone,
-the Child Object which is parented to that bone will snap back to the location of the bone in Pose Mode.</p>
+the child object which is parented to that bone will snap back to the location of the bone in Pose Mode.</p>
 <div class="figure" id="id6">
 <span id="fig-view3d-parent-bone-parent-child"></span><img alt="../../../../_images/scene-layout_object_properties_relations_parents_bone2.png" src="../../../../_images/scene-layout_object_properties_relations_parents_bone2.png" />
 <p class="caption"><span class="caption-text">Single armature bone which has a child object cube parented to it using bone parenting.</span></p>
@@ -398,10 +396,10 @@ the Child Object which is parented to that bone will snap back to the location o
 <p>In Fig. <a class="reference internal" href="#fig-view3d-parent-bone-parent-child"><span class="std std-ref">Single armature bone which has a child object cube parented to it using bone parenting.</span></a> the 1st picture shows the position of the cube and
 armature before the bone is moved in Edit Mode.
 2nd picture shows the position of the cube and armature after the bone was selected in Edit Mode,
-moved and switched back into Pose Mode. Notice that the Child Object moves to the new location of the Pose Bone.</p>
-<p>Bone Relative parenting works differently;
-If you move a Parent Bone in Edit Mode, when you switch back to Pose Mode,
-the Child Objects will not move to the new location of the Pose Bone.</p>
+moved and switched back into Pose Mode. Notice that the child object moves to the new location of the pose bone.</p>
+<p>Bone relative parenting works differently;
+If you move a parent bone in Edit Mode, when you switch back to Pose Mode,
+the child objects will not move to the new location of the Pose Bone.</p>
 <div class="figure" id="id7">
 <span id="fig-view3d-parent-bone-parent-relative"></span><img alt="../../../../_images/scene-layout_object_properties_relations_parents_bone3.png" src="../../../../_images/scene-layout_object_properties_relations_parents_bone3.png" />
 <p class="caption"><span class="caption-text">Single bone with bone relative parent to a cube.</span></p>
@@ -410,7 +408,7 @@ the Child Objects will not move to the new location of the Pose Bone.</p>
 shows the position of the cube and armature before the bone is moved in Edit Mode.
 2nd picture shows the position of the cube and armature after the bone was selected in Edit Mode,
 moved and switched back into Pose Mode.
-Notice that the Child Object does not move to the new location of the Pose Bone.</p>
+Notice that the child object does not move to the new location of the pose bone.</p>
 </div>
 </div>
 <div class="section" id="vertex-parent">

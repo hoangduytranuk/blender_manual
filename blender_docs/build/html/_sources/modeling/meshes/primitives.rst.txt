@@ -134,7 +134,7 @@ Vertices
 Radius 1
    Sets the radius of the circular base of the cone.
 Radius 2
-   Sets the radius of the tip of the cone. which will create a frustum (a pyramid or cone with the top cut off).
+   Sets the radius of the tip of the cone. Which will create a frustum (a pyramid or cone with the top cut off).
    A value of 0 will produce a standard cone shape.
 Depth
    Sets the starting height of the cone.

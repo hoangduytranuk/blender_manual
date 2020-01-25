@@ -6,13 +6,13 @@ Introduction
 Animating with Grease Pencil
 ============================
 
-The main goal of *Grease Pencil* is to offer a 2D animation tools full immersed in a 3D environment.
+The main goal of Grease Pencil is to offer a 2D animation tools full immersed in a 3D environment.
 
 .. figure:: /images/grease-pencil_animation_introduction_example.png
 
-   Sample animation showing *Grease Pencil* Object keyframes in the Dope Sheet with onion skinning enabled.
+   Sample animation showing Grease Pencil object keyframes in the Dope Sheet with onion skinning enabled.
 
-In Blender, *Grease Pencil* Objects can be animated in many ways:
+In Blender, Grease Pencil objects can be animated in many ways:
 
 Moving as a whole object
    Changing their position, orientation or size in time;
@@ -37,19 +37,19 @@ the :doc:`Animation & Rigging </animation/index>` chapter.
 Keyframes
 ---------
 
-Traditional animation in *Grease Pencil* is achieved with the use of
+Traditional animation in Grease Pencil is achieved with the use of
 :doc:`keyframes </animation/keyframes/introduction>`
 that hold the strokes information at a particular frame.
 
-Every time you create a stroke in *Grease Pencil* Object Draw Mode
+Every time you create a stroke in Grease Pencil object Draw Mode
 a new keyframe is added at the current frame on the active channel.
 
 .. note::
 
-   The channels in the Dope Sheet correspond to the active 2D layer of the *Grease Pencil* Object.
+   The channels in the Dope Sheet correspond to the active 2D layer of the Grease Pencil object.
 
-*Grease Pencil* has its own mode in the Dope Sheet to works with keyframes.
-See *Grease Pencil* mode in the :doc:`Dope Sheet </editors/dope_sheet/grease_pencil>`
+Grease Pencil has its own mode in the Dope Sheet to works with keyframes.
+See Grease Pencil mode in the :doc:`Dope Sheet </editors/dope_sheet/grease_pencil>`
 section for more information.
 
 There are also several tools on the Stroke menu to work with keyframes and strokes.
@@ -60,7 +60,7 @@ Onion Skinning
 --------------
 
 One key element in traditional animation is the use of onion skinning.
-*Grease Pencil* offer a lot of flexibility and options for this tool.
+Grease Pencil offer a lot of flexibility and options for this tool.
 See :doc:`Onion Skinning </grease_pencil/properties/onion_skinning>` for more information.
 
 
@@ -112,7 +112,7 @@ Traditional Animation
 ---------------------
 
 This example shows you how to animate a bouncing ball
-with a traditional 2D animation technique and *Grease Pencil*.
+with a traditional 2D animation technique and Grease Pencil.
 
 First, go to menu :menuselection:`File --> New --> 2D Animation` to start with a new 2D animation template.
 The template is ready to quick start your animation with a Grease Pencil object already created,

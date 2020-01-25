@@ -25,7 +25,7 @@ Cursor
 While painting or sculpting a special cursor is help display information about the brush.
 The cursor is shown as a circle in the 3D Viewport, the radius of the circle match the size of the brush.
 
-In the *Cursor* panel the cursor can be disabled by toggling the checkbox in the header.
+The cursor can be disabled by toggling the checkbox in the *Cursor* header.
 
 Cursor Color
    Set the color of the brush ring while performing an add/positive stroke.

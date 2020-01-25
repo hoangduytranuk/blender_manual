@@ -213,14 +213,9 @@
       <li>Erase Brush</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../../../../_sources/grease_pencil/modes/draw/tool_settings/brushes/erase_brush.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/grease_pencil/modes/draw/tool_settings/brushes/erase_brush.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -231,14 +226,15 @@
             
   <div class="section" id="erase-brush">
 <h1>Erase Brush<a class="headerlink" href="#erase-brush" title="Permalink to this headline">¶</a></h1>
-<p>Erase brushes are the special types of brushes that uses <em>Grease Pencil</em> for <em>Erase</em> tools.
+<p>Erase brushes are the special types of brushes that uses Grease Pencil for <em>Erase</em> tools.
 The brush can be changed in the Tool Settings.</p>
 <p>Soft and hard eraser brushes are settings variations of the same <em>Erase Brush</em>.
-you can create many brushes, each with unique settings
-to obtain different effects while erasing.</p>
+You can create many brushes, each with unique settings to get different effects while erasing.</p>
 <p>The <em>Erase Brush</em> has also other two special eraser types: point and stroke.</p>
-<div class="section" id="common-options">
-<h2>Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tool-settings">
+<h2>Tool Settings<a class="headerlink" href="#tool-settings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="brushes">
+<h3>Brushes<a class="headerlink" href="#brushes" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-right" id="id1">
 <img alt="../../../../../_images/grease-pencil_modes_draw_brushes_erase-brush-data-block.png" src="../../../../../_images/grease-pencil_modes_draw_brushes_erase-brush-data-block.png" />
 <p class="caption"><span class="caption-text">Brush data-block panel.</span></p>
@@ -249,6 +245,13 @@ to obtain different effects while erasing.</p>
 <dl class="last docutils">
 <dt>Add Brush</dt>
 <dd>When you add a brush, the new brush is a clone of the current one.</dd>
+<dt>Custom Icon</dt>
+<dd><p class="first">Allows definition of a custom brush icon.</p>
+<dl class="last docutils">
+<dt>Image Path</dt>
+<dd>Defines the path to the image to use as custom icon.</dd>
+</dl>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -257,90 +260,53 @@ to obtain different effects while erasing.</p>
 <p class="last">In order to save in a blend-user a custom brush, tick Fake User.</p>
 </div>
 </div>
-<div class="section" id="types">
-<h2>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="soft-hard">
-<h3>Soft/Hard<a class="headerlink" href="#soft-hard" title="Permalink to this headline">¶</a></h3>
-<p>To simulate a raster type eraser, this eraser type
-affects the strength and thickness of the strokes before actually delete a point.</p>
+<div class="section" id="brush-settings">
+<h3>Brush Settings<a class="headerlink" href="#brush-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>Radius</dt>
 <dd><p class="first">The radius of the brush in pixels.</p>
 <p><kbd class="kbd docutils literal notranslate">F</kbd> allows you to change the brush size interactively by dragging the mouse/pen or
 by typing a number then confirm.</p>
-<blockquote class="last">
-<div><dl class="docutils">
+<dl class="last docutils">
 <dt>Use Pressure (pressure sensitivity icon)</dt>
 <dd>Uses stylus pressure to control how strong the effect is.</dd>
 <dt>Occlude Eraser (overlapping squares icon)</dt>
 <dd>Erase only strokes visible and not occluded by geometry.</dd>
 </dl>
-</div></blockquote>
 </dd>
+<dt>Mode</dt>
+<dd><p class="first">Determines how the erase tool behaves.</p>
+<dl class="last docutils">
+<dt>Soft/Hard</dt>
+<dd><p class="first">To simulate a raster type eraser, this eraser type
+affects the strength and thickness of the strokes before actually delete a point.</p>
+<dl class="last docutils">
 <dt>Strength</dt>
 <dd><p class="first">Control how much will affect the eraser the stroke transparency (alpha).</p>
 <p>You can change the brush strength interactively by pressing <kbd class="kbd docutils literal notranslate">Shift-F</kbd>
 in the 3D View and then moving the mouse/pen and then <kbd class="kbd docutils literal notranslate">LMB</kbd>.
 You can also enter the size numerically.</p>
-<blockquote class="last">
-<div><dl class="docutils">
+<dl class="last docutils">
 <dt>Use Pressure (pressure sensitivity icon)</dt>
 <dd>Uses stylus pressure to control how strong the effect is.</dd>
 </dl>
-</div></blockquote>
 </dd>
 <dt>Affect Stroke Strength</dt>
 <dd>The amount of deletion of the stroke strength (alpha) while erasing.</dd>
 <dt>Affect Stroke Thickness</dt>
 <dd>The amount of deletion of the stroke thickness while erasing.</dd>
 </dl>
-</div>
-<div class="section" id="point">
-<h3>Point<a class="headerlink" href="#point" title="Permalink to this headline">¶</a></h3>
-<p>Delete one point at a time.</p>
-<dl class="docutils">
-<dt>Radius</dt>
-<dd><p class="first">Radius of the brush in pixels.</p>
-<dl class="last docutils">
-<dt>Use Pressure (pressure sensitivity icon)</dt>
-<dd>Uses stylus pressure to control how strong the effect is.</dd>
-<dt>Occlude Eraser (overlapping squares icon)</dt>
-<dd>Erase only strokes visible and not occluded by geometry.</dd>
+</dd>
+<dt>Point</dt>
+<dd>Delete one point at a time.</dd>
+<dt>Stroke</dt>
+<dd>Delete an entire stroke.</dd>
 </dl>
 </dd>
-</dl>
-</div>
-<div class="section" id="stroke">
-<h3>Stroke<a class="headerlink" href="#stroke" title="Permalink to this headline">¶</a></h3>
-<p>Delete an entire stroke.</p>
-<dl class="docutils">
-<dt>Radius</dt>
-<dd><p class="first">Radius of the brush in pixels.</p>
-<dl class="last docutils">
-<dt>Use Pressure (pressure sensitivity icon)</dt>
-<dd>Uses stylus pressure to control how strong the effect is.</dd>
-<dt>Occlude Eraser (overlapping squares icon)</dt>
-<dd>Erase only strokes visible and not occluded by geometry.</dd>
-</dl>
-</dd>
-</dl>
-</div>
-</div>
-<div class="section" id="display">
-<h2>Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Icon</dt>
-<dd>Sets a predefined icon to use.</dd>
-<dt>Custom Icon</dt>
-<dd><p class="first">Allows definition of a custom brush icon.</p>
-<dl class="last docutils">
-<dt>Image Path</dt>
-<dd>Defines the path to the image to use as custom icon.</dd>
-</dl>
-</dd>
-<dt>Show Brush</dt>
+<dt>Display Cursor</dt>
 <dd>Shows the brush shape in the viewport.</dd>
 </dl>
+</div>
 </div>
 </div>
 

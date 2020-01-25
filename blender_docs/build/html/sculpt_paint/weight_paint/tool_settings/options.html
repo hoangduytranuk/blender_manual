@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="next" title="-- Using Vertex Groups" href="../usage.html" />
-    <link rel="prev" title="Brush" href="brush.html" /> 
+    <link rel="prev" title="Brush Settings" href="brush_settings.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -205,14 +205,9 @@
       <li>Options</li>
     
     
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../../_sources/sculpt_paint/weight_paint/tool_settings/options.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/sculpt_paint/weight_paint/tool_settings/options.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
   </ul>
 
   
@@ -223,15 +218,48 @@
             
   <div class="section" id="options">
 <h1>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
-<p>See the <a class="reference internal" href="../../brush/cursor.html#sculpt-paint-brush-display"><span class="std std-ref">Brush Display</span></a> options.</p>
-<div class="section" id="id1">
-<h2>Options<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-right" id="id2">
+<div class="figure align-right" id="id1">
 <img alt="../../../_images/sculpt-paint_weight-paint_options_options-panel.png" src="../../../_images/sculpt-paint_weight-paint_options_options-panel.png" />
 <p class="caption"><span class="caption-text">Paint options.</span></p>
 </div>
-<p>The Weight Paint Options modify the overall brush behavior:</p>
+<p>The weight paint options change the overall brush behavior:</p>
 <dl class="docutils">
+<dt>Auto Normalize</dt>
+<dd><p class="first">Ensures that all deforming vertex groups add up to one while painting.
+When this option is turned off, then all weights of a vertex can have any value between 0 and 1.
+However, when vertex groups are used as deform groups for character animation
+then Blender always interprets the weight values relative to each other.
+That is, Blender always does a normalization over all deform bones.
+Hence in practice it is not necessary to maintain a strict normalization and
+further normalizing weights should not affect animation at all.</p>
+<p class="last">This option works most intuitively when used to maintain normalization while
+painting on top of weights that are already normalized with some other tool.</p>
+</dd>
+<dt>Multi-Paint</dt>
+<dd><p class="first">Paint on all selected vertex groups simultaneously, in a way that preserves their relative influence.
+This can be useful when tweaking weights in an area that is affected by more than three bones at once,
+e.g. certain areas on a character's face.</p>
+<p>This option is only useful in the <em>Armature</em> tab, where you can select multiple vertex groups
+by selecting multiple pose bones. Once at least two vertex groups are selected,
+viewport colors and paint logic switch to Multi-Paint mode,
+using the sum of the selected groups' weights if <em>Auto Normalize</em> is enabled,
+and the average otherwise. Any paint operations aimed at this collective weight are applied to
+individual vertex group weights in such way that their ratio stays the same.</p>
+<p>Since the ratio is undefined if all weights are zero, Multi-Paint cannot operate on
+vertices that do not have any weight assigned to the relevant vertex groups.
+For this reason it also does not allow reducing the weight all the way to zero.
+When used with <em>X Mirror</em>, it only guarantees completely a symmetrical result
+if weights are initially symmetrical.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p>While Multi-Paint cannot directly paint on zero-weight vertices,
+it is possible to use the <em>Smooth Weight</em> tool to copy a reasonable non-zero weight distribution
+from adjacent vertices without leaving Multi-Paint mode or changing bone selection.</p>
+<p class="last">To do that, enable vertex selection, select target vertices, and apply one iteration of
+the tool using vertex groups from <em>Selected Pose Bones</em> with low Factor.
+After that simply paint on top to set the desired collective weight.</p>
+</div>
+</dd>
 <dt>Restrict</dt>
 <dd>This option limits the influence of painting to vertices (even with weight 0)
 belonging to the selected vertex group.</dd>
@@ -245,10 +273,10 @@ The convention for armatures/bones apply here as well.</dd>
 <dt>Topology Mirror</dt>
 <dd>Use topology-based mirroring, for when both sides of a mesh have matching mirrored topology.
 See <a class="reference internal" href="../../../modeling/meshes/editing/mesh_options.html#modeling-meshes-editing-topology-mirror"><span class="std std-ref">here</span></a> for more information.</dd>
-<dt>Unified Settings</dt>
-<dd>The <em>Size</em>, <em>Strength</em> and <em>Weight</em> of the brush can be set to be shared
-across different brushes, as opposed to per brush.</dd>
 </dl>
+<div class="admonition seealso">
+<p class="first admonition-title">Xem thêm</p>
+<p class="last">See the <a class="reference internal" href="../../brush/cursor.html#sculpt-paint-brush-display"><span class="std std-ref">Brush Display</span></a> options.</p>
 </div>
 </div>
 
@@ -263,7 +291,7 @@ across different brushes, as opposed to per brush.</dd>
         <a href="../usage.html" class="btn btn-neutral float-right" title="-- Using Vertex Groups" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="brush.html" class="btn btn-neutral float-left" title="Brush" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="brush_settings.html" class="btn btn-neutral float-left" title="Brush Settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
