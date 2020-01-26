@@ -1,1 +1,0 @@
-/home/htran/PycharmProjects/potranslate/translate_po.py
