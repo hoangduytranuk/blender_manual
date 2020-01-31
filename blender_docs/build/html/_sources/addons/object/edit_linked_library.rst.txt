@@ -3,9 +3,6 @@
 Edit Linked Library
 *******************
 
-Introduction
-============
-
 When working in larger projects that involve scenes with assets linked from a blend-file library,
 it can get very time-consuming to save your current scene, track down the proper linked blend-file,
 make your modifications, save, and return to your original scene file.

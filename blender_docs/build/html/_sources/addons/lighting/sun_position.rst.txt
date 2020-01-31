@@ -5,9 +5,6 @@
 Sun Position
 ************
 
-Introduction
-============
-
 Sun Position allows positioning and animating the Sun (to a certain degree of accuracy),
 to simulate real-world natural lighting. It uses physical characteristics to position the Sun in the scene:
 geographic location, time and date. It is based on the Earth System Research Laboratory's

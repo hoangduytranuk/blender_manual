@@ -232,45 +232,39 @@
             
   <div class="section" id="editing">
 <h1>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h1>
-<p>By default, when new channels are added, the <em>Graph Editor</em> sets them to <em>Edit Mode</em>.</p>
-<p>Many of the hotkeys are the same as the <a class="reference internal" href="../../../scene_layout/object/index.html"><span class="doc">3D View ones</span></a>,
-for example:</p>
-<ul class="simple">
-<li><kbd class="kbd docutils literal notranslate">G</kbd> to move</li>
-<li><kbd class="kbd docutils literal notranslate">R</kbd> to rotate</li>
-<li><kbd class="kbd docutils literal notranslate">S</kbd> to scale</li>
-<li><kbd class="kbd docutils literal notranslate">B</kbd> for box select/deselect</li>
-</ul>
-<p>And of course you can lock the transformation along the X axis (time frame) or
-Y axis (value) by pressing <kbd class="kbd docutils literal notranslate">X</kbd> or <kbd class="kbd docutils literal notranslate">Y</kbd> during transformation.</p>
-<p>For precise control of the keyframe position and value,
-you can set values in the <em>Active Keyframe</em> of the Sidebar region.</p>
-<div class="section" id="insert-keyframe">
-<h2>Chèn Thêm Khung Khóa -- Insert Keyframe<a class="headerlink" href="#insert-keyframe" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="transform">
+<h2>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="first admonition-title">Tham Chiếu -- Reference</p>
 <table class="last docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd></td>
+<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Key ‣ Transform</span></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> inserts a keyframe to the active F-curve at the mouse position.
-The newly added keyframes will be selected, making it easier to quickly tweak the newly added keyframes.
-All previously selected keyframes are kept selected by using <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd>.</p>
+<p>An F-curve can be edited by transforming the locations of the keyframes.</p>
+<dl class="docutils">
+<dt>Move, Rotate, Scale</dt>
+<dd>Like other elements in Blender, keyframes can be
+moved, rotated, or scaled as described in
+<a class="reference internal" href="../../../scene_layout/object/editing/transform/introduction.html"><span class="doc">Basic Transformations</span></a>.</dd>
+<dt>Extend</dt>
+<dd>Todo.</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Mẹo</p>
+<p class="last">For precise control of the keyframe position and value,
+you can set values in the <em>Active Keyframe</em> of the Sidebar region.</p>
 </div>
-<div class="section" id="transform-snapping">
-<h2>Bám Dính Biến Hóa -- Transform Snapping<a class="headerlink" href="#transform-snapping" title="Permalink to this headline">¶</a></h2>
-<p>When transforming keyframes with <kbd class="kbd docutils literal notranslate">G</kbd>, <kbd class="kbd docutils literal notranslate">R</kbd>, <kbd class="kbd docutils literal notranslate">S</kbd>,
-the transformation can be snapped to increments.</p>
-<p>Snap Transformation to 1.0 <kbd class="kbd docutils literal notranslate">Ctrl</kbd>.</p>
-<p>Divide Transformation by 10.0 <kbd class="kbd docutils literal notranslate">Shift</kbd>.</p>
+</div>
 <div class="section" id="snap">
-<h3>Bám Dính -- Snap<a class="headerlink" href="#snap" title="Permalink to this headline">¶</a></h3>
+<span id="bpy-ops-graph-snap"></span><h2>Bám Dính -- Snap<a class="headerlink" href="#snap" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="first admonition-title">Tham Chiếu -- Reference</p>
 <table class="last docutils field-list" frame="void" rules="none">
@@ -308,12 +302,12 @@ the transformation can be snapped to increments.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><div class="first last figure" id="id2">
-<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-1.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-1.png" src="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-1.png" style="width: 204px;" /></a>
+<img alt="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-1.png" src="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-1.png" />
 <p class="caption"><span class="caption-text">Before Flatten Handles.</span></p>
 </div>
 </td>
 <td><div class="first last figure" id="id3">
-<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-2.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-2.png" src="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-2.png" style="width: 204px;" /></a>
+<img alt="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-2.png" src="../../../_images/editors_graph-editor_fcurves_editing_flatten-handles-2.png" />
 <p class="caption"><span class="caption-text">After Flatten Handles.</span></p>
 </div>
 </td>
@@ -323,9 +317,8 @@ the transformation can be snapped to increments.</p>
 </dd>
 </dl>
 </div>
-</div>
 <div class="section" id="mirror">
-<h2>Đối Xứng Hóa/Gương -- Mirror<a class="headerlink" href="#mirror" title="Permalink to this headline">¶</a></h2>
+<span id="bpy-ops-graph-mirror"></span><h2>Đối Xứng Hóa/Gương -- Mirror<a class="headerlink" href="#mirror" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="first admonition-title">Tham Chiếu -- Reference</p>
 <table class="last docutils field-list" frame="void" rules="none">
@@ -344,19 +337,148 @@ the transformation can be snapped to increments.</p>
 <p>Selected keyframes can be mirrored over different properties using the <em>Mirror Keys</em> tool.</p>
 <dl class="docutils">
 <dt>Theo Thời Gian qua Khung Hình Hiện Tại -- By Times Over Current Frame</dt>
-<dd>Mirror horizontally over the <em>Playhead</em>.</dd>
+<dd>Mirror horizontally over the playhead.</dd>
 <dt>Theo Giá Trị dùng Giá Trị của Con Trỏ -- By Values over Cursor Value</dt>
-<dd>Mirror vertically over the <em>2D Cursor</em>.</dd>
+<dd>Mirror vertically over the 2D cursor.</dd>
 <dt>Theo Thời Gian qua Mốc Thời Gian 0 -- By Times over Time 0</dt>
 <dd>Mirror horizontally over frame 0.</dd>
 <dt>Theo Giá Trị qua Mốc Giá Trị 0 -- By Values over Value 0</dt>
 <dd>Mirror vertically over value 0.</dd>
 <dt>Theo Thời Gian dùng Dấu Mốc Được Chọn Đầu Tiên -- By Times over First Selected Marker</dt>
-<dd>Đối xứng theo chiều ngang qua <em>Dấu Mốc</em> đầu tiên</dd>
+<dd>Mirror horizontally over the first selected marker.</dd>
+</dl>
+</div>
+<div class="section" id="insert-keyframes">
+<span id="bpy-ops-graph-keyframe-insert"></span><h2>Insert Keyframes<a class="headerlink" href="#insert-keyframes" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Key ‣ Insert Keyframes</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> inserts a keyframe to the active F-curve at the mouse position.
+The newly added keyframes will be selected, making it easier to quickly tweak the newly added keyframes.
+All previously selected keyframes are kept selected by using <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd>.</p>
+</div>
+<div class="section" id="add-f-curve-modifier">
+<h2>Add F-Curve Modifier<a class="headerlink" href="#add-f-curve-modifier" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
+<div class="section" id="bake-sound-to-f-curves">
+<span id="bpy-ops-graph-sound-bake"></span><h2>Nướng Âm Thanh thành Đường Cong-F -- Bake Sound to F-Curves<a class="headerlink" href="#bake-sound-to-f-curves" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khóa (Key) ‣ Nướng Âm Thanh thành Đường Cong-F (Bake Sound to F-Curves)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <em>Bake Sound to F-Curves</em> operator takes a sound file and uses its sound wave to create the animation data.</p>
+<dl class="docutils">
+<dt>Lowest Frequency</dt>
+<dd>Cutoff frequency of a high-pass filter that is applied to the audio data.</dd>
+<dt>Highest Frequency</dt>
+<dd>Cutoff frequency of a low-pass filter that is applied to the audio data.</dd>
+<dt>Attack Time</dt>
+<dd>Value for the hull curve calculation that tells how fast the hull curve can rise.
+The lower the value the steeper it can rise.</dd>
+<dt>Release Time</dt>
+<dd>Value for the hull curve calculation that tells how fast the hull curve can fall.
+The lower the value the steeper it can fall.</dd>
+<dt>Giới Hạn -- Threshold</dt>
+<dd>Minimum amplitude value needed to influence the hull curve.</dd>
+<dt>Chồng Chất/Tích Tụ -- Accumulate</dt>
+<dd>Only the positive differences of the hull curve amplitudes are summarized to produce the output.</dd>
+<dt>Bổ Sung -- Additive</dt>
+<dd>The amplitudes of the hull curve are summarized. If <em>Accumulate</em> is enabled,
+both positive and negative differences are accumulated.</dd>
+<dt>Hình Vuông -- Square</dt>
+<dd><p class="first">Cho kết quả là một đường cong hình vuông. Các giá trị âm luôn luôn có kết quả là -1 và những giá trị dương là 1</p>
+<dl class="last docutils">
+<dt>Giới Hạn Hình Vuông -- Square Threshold</dt>
+<dd>Tất cả các giá trị thấp hơn ngưỡng này sẽ cho kết quả là 0.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="jump-to-keyframe">
+<span id="bpy-ops-graph-frame-jump"></span><h2>Jump to Keyframe<a class="headerlink" href="#jump-to-keyframe" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
+<div class="section" id="copy-paste">
+<span id="bpy-ops-graph-paste"></span><span id="bpy-ops-graph-copy"></span><h2>Copy/Paste<a class="headerlink" href="#copy-paste" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
+<div class="section" id="duplicate">
+<span id="bpy-ops-graph-duplicate-move"></span><h2>Duplicate<a class="headerlink" href="#duplicate" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
+<div class="section" id="delete-keyframes">
+<span id="bpy-ops-graph-delete"></span><h2>Delete Keyframes<a class="headerlink" href="#delete-keyframes" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
+<div class="section" id="handle-type">
+<span id="bpy-ops-graph-handle-type"></span><h2>Handle Type<a class="headerlink" href="#handle-type" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
+<div class="section" id="interpolation-mode">
+<span id="bpy-ops-graph-interpolation-type"></span><h2>Interpolation Mode<a class="headerlink" href="#interpolation-mode" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
+<div class="section" id="easing-mode">
+<span id="bpy-ops-graph-easing-type"></span><h2>Easing Mode<a class="headerlink" href="#easing-mode" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
+<div class="section" id="decimate">
+<span id="bpy-ops-graph-decimate"></span><h2>Decimate<a class="headerlink" href="#decimate" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Key ‣ Decimate (Ratio)</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Key ‣ Decimate (Allowed Change)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <em>Decimate</em> operator simplifies an F-curve by removing
+keyframes that influence the curve shape the least.</p>
+<dl class="docutils">
+<dt>Mode</dt>
+<dd><p class="first">Controls which method is used pick the number of keyframes to use.</p>
+<dl class="last docutils">
+<dt>Ratio</dt>
+<dd>Deletes a defined percentage of keyframes,
+the amount of keyframes to delete is define by the <em>Remove</em> property.</dd>
+<dt>Error Margin</dt>
+<dd>Deletes keyframes which only allowing the F-curve to change by a defined amount.
+The amount of change is controlled by the <em>Max Error Margin</em>
+which controls how much the new decimated curve is allowed to deviate from the original.</dd>
+</dl>
+</dd>
 </dl>
 </div>
 <div class="section" id="clean-keyframes">
-<h2>Làm Sạch Khung Khóa -- Clean Keyframes<a class="headerlink" href="#clean-keyframes" title="Permalink to this headline">¶</a></h2>
+<span id="bpy-ops-graph-clean"></span><h2>Làm Sạch Khung Khóa -- Clean Keyframes<a class="headerlink" href="#clean-keyframes" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="first admonition-title">Tham Chiếu -- Reference</p>
 <table class="last docutils field-list" frame="void" rules="none">
@@ -372,8 +494,8 @@ the transformation can be snapped to increments.</p>
 </tbody>
 </table>
 </div>
-<p><em>Clean Keyframes</em> resets the keyframe tangents on selected keyframes to their auto-clamped shape,
-if they have been modified.</p>
+<p><em>Clean Keyframes</em> resets the keyframe tangents on selected keyframes
+to their auto-clamped shape, if they have been modified.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -381,12 +503,12 @@ if they have been modified.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><div class="first last figure" id="id4">
-<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_clean1.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" src="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" style="width: 320px;" /></a>
+<img alt="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" src="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" />
 <p class="caption"><span class="caption-text">F-Curve before cleaning.</span></p>
 </div>
 </td>
 <td><div class="first last figure" id="id5">
-<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_clean2.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_clean2.png" src="../../../_images/editors_graph-editor_fcurves_editing_clean2.png" style="width: 320px;" /></a>
+<img alt="../../../_images/editors_graph-editor_fcurves_editing_clean2.png" src="../../../_images/editors_graph-editor_fcurves_editing_clean2.png" />
 <p class="caption"><span class="caption-text">F-Curve after cleaning.</span></p>
 </div>
 </td>
@@ -403,7 +525,7 @@ if they have been modified.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khóa (Key) ‣ Kênh (Channels)</span></td>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Key ‣ Clean Channels</span></td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">X</kbd></td>
@@ -411,19 +533,19 @@ if they have been modified.</p>
 </tbody>
 </table>
 </div>
-<p>Acts like the <em>Clean Keyframes</em> tool but will also delete the channel itself if it is only left with
+<p>Acts like the <em>Clean Keyframes</em> operator but will also delete the channel itself if it is only left with
 a single keyframe containing the default property value and
-it's not being used by any generative f-curve modifiers or drivers.</p>
+it's not being used by any generative F-curve modifiers or drivers.</p>
 <div class="admonition note">
 <p class="first admonition-title">Ghi chú</p>
 <p class="last">The modified curve left after the <em>Clean</em> tool is run is not the same as the original,
-so this tool is better used before doing custom editing of f-curves and after initial keyframe insertion,
+so this tool is better used before doing custom editing of F-curves and after initial keyframe insertion,
 to get rid of any unwanted keyframes inserted while doing mass keyframe insertion
 (by selecting all bones and pressing <kbd class="kbd docutils literal notranslate">I</kbd> for instance).</p>
 </div>
 </div>
-<div class="section" id="smoothing">
-<h2>Làm Mịn -- Smoothing<a class="headerlink" href="#smoothing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="smooth-keys">
+<span id="bpy-ops-graph-smooth"></span><h2>Smooth Keys<a class="headerlink" href="#smooth-keys" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="first admonition-title">Tham Chiếu -- Reference</p>
 <table class="last docutils field-list" frame="void" rules="none">
@@ -450,12 +572,12 @@ seem to be never modified by this tool.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><div class="first last figure" id="id6">
-<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_clean1.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" src="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" style="width: 320px;" /></a>
+<img alt="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" src="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" />
 <p class="caption"><span class="caption-text">Đường cong-F trước khi làm mịn.</span></p>
 </div>
 </td>
 <td><div class="first last figure" id="id7">
-<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_smooth.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_smooth.png" src="../../../_images/editors_graph-editor_fcurves_editing_smooth.png" style="width: 320px;" /></a>
+<img alt="../../../_images/editors_graph-editor_fcurves_editing_smooth.png" src="../../../_images/editors_graph-editor_fcurves_editing_smooth.png" />
 <p class="caption"><span class="caption-text">Đường cong-F sau khi làm mịn.</span></p>
 </div>
 </td>
@@ -463,37 +585,8 @@ seem to be never modified by this tool.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="sampling-and-baking-keyframes">
-<h2>Lấy Mẫu Vật và Nướng Khung Hình -- Sampling and Baking Keyframes<a class="headerlink" href="#sampling-and-baking-keyframes" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Lấy Mẫu Vật các Khung Hình <kbd class="kbd docutils literal notranslate">Shift-O</kbd> -- Sample Keyframes <kbd class="kbd docutils literal notranslate">Shift-O</kbd></dt>
-<dd><p class="first">Việc lấy mẫu vật của một bộ các khung hình sẽ thay thế các giá trị nội suy với một khung khóa mới cho mỗi khung hình</p>
-<table border="1" class="last docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id8">
-<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_sample.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_sample.png" src="../../../_images/editors_graph-editor_fcurves_editing_sample.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Đường cong-F trước khi lấy mẫu vật.</span></p>
-</div>
-</td>
-<td><div class="first last figure" id="id9">
-<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_sample2.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_sample2.png" src="../../../_images/editors_graph-editor_fcurves_editing_sample2.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Đường cong-F sau khi lấy mẫu.</span></p>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</dd>
-<dt>Nướng Đường Cong -- Bake Curves <kbd class="kbd docutils literal notranslate">Alt-C</kbd></dt>
-<dd>Baking a curve replaces it with a set of sampled points, and removes the ability to edit the curve.</dd>
-</dl>
-</div>
-<div class="section" id="bake-sound-to-f-curves">
-<h2>Nướng Âm Thanh thành Đường Cong-F -- Bake Sound to F-Curves<a class="headerlink" href="#bake-sound-to-f-curves" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sample-keyframes">
+<span id="bpy-ops-graph-sample"></span><h2>Sample Keyframes<a class="headerlink" href="#sample-keyframes" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="first admonition-title">Tham Chiếu -- Reference</p>
 <table class="last docutils field-list" frame="void" rules="none">
@@ -501,49 +594,57 @@ seem to be never modified by this tool.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khóa (Key) ‣ Nướng Âm Thanh thành Đường Cong-F (Bake Sound to F-Curves)</span></td>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Key ‣ Sample Keyframes</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-O</kbd></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The <em>Bake Sound to F-Curves</em> tool takes a sound file and uses its sound wave to create the animation data.</p>
-<dl class="docutils">
-<dt>Tần số thấp nhất -- Lowest frequency</dt>
-<dd>Cutoff frequency of a high-pass filter that is applied to the audio data.</dd>
-<dt>Tần số cao nhất -- Highest frequency</dt>
-<dd>Cutoff frequency of a low-pass filter that is applied to the audio data.</dd>
-<dt>Thời gian công -- Attack time</dt>
-<dd>Value for the hull curve calculation that tells how fast the hull curve can rise.
-The lower the value the steeper it can rise.</dd>
-<dt>Thời gian thả -- Release time</dt>
-<dd>Value for the hull curve calculation that tells how fast the hull curve can fall.
-The lower the value the steeper it can fall.</dd>
-<dt>Giới Hạn -- Threshold</dt>
-<dd>Minimum amplitude value needed to influence the hull curve.</dd>
-<dt>Chồng Chất/Tích Tụ -- Accumulate</dt>
-<dd>Only the positive differences of the hull curve amplitudes are summarized to produce the output.</dd>
-<dt>Bổ Sung -- Additive</dt>
-<dd>The amplitudes of the hull curve are summarized. If <em>Accumulate</em> is enabled,
-both positive and negative differences are accumulated.</dd>
-<dt>Hình Vuông -- Square</dt>
-<dd><p class="first">Cho kết quả là một đường cong hình vuông. Các giá trị âm luôn luôn có kết quả là -1 và những giá trị dương là 1</p>
-<dl class="last docutils">
-<dt>Giới Hạn Hình Vuông -- Square Threshold</dt>
-<dd>Tất cả các giá trị thấp hơn ngưỡng này sẽ cho kết quả là 0.</dd>
-</dl>
-</dd>
-</dl>
+<p>Việc lấy mẫu vật của một bộ các khung hình sẽ thay thế các giá trị nội suy với một khung khóa mới cho mỗi khung hình</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last figure" id="id8">
+<img alt="../../../_images/editors_graph-editor_fcurves_editing_sample.png" src="../../../_images/editors_graph-editor_fcurves_editing_sample.png" />
+<p class="caption"><span class="caption-text">Đường cong-F trước khi lấy mẫu vật.</span></p>
 </div>
-<div class="section" id="show-hide">
-<h2>Hiện/Ẩn -- Show/Hide<a class="headerlink" href="#show-hide" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hide Selected Curves <kbd class="kbd docutils literal notranslate">H</kbd></dt>
-<dd>Hides the selected curves.</dd>
-<dt>Ẩn Giấu Cái Không Được Chọn -- Hide Unselected <kbd class="kbd docutils literal notranslate">Shift-H</kbd></dt>
-<dd>Chỉ hiển thị các đường cong được chọn (ẩn giấu tất cả mọi thứ khác)</dd>
-<dt>Reveal Curves <kbd class="kbd docutils literal notranslate">Alt-H</kbd></dt>
-<dd>Hiển thị toàn bộ các  đường cong bị ẩn giấu trước đây.</dd>
-</dl>
+</td>
+<td><div class="first last figure" id="id9">
+<img alt="../../../_images/editors_graph-editor_fcurves_editing_sample2.png" src="../../../_images/editors_graph-editor_fcurves_editing_sample2.png" />
+<p class="caption"><span class="caption-text">Đường cong-F sau khi lấy mẫu.</span></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bake-curve">
+<span id="bpy-ops-graph-bake"></span><h2>Bake Curve<a class="headerlink" href="#bake-curve" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="first admonition-title">Tham Chiếu -- Reference</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Key ‣ Bake Curve</span></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-C</kbd></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Baking a curve replaces it with a set of sampled points, and removes the ability to edit the curve.</p>
+</div>
+<div class="section" id="discontinuity-euler-filter">
+<span id="bpy-ops-graph-euler-filter"></span><h2>Discontinuity (Euler) Filter<a class="headerlink" href="#discontinuity-euler-filter" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
 </div>
 </div>
 

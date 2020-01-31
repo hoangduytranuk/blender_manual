@@ -243,20 +243,26 @@ and select either <em>CUDA</em>, <em>Optix</em> or <em>OpenCL</em>. Next, you mu
 <div class="section" id="nvidia">
 <h3>NVIDIA<a class="headerlink" href="#nvidia" title="Permalink to this headline">¶</a></h3>
 <p><abbr title="Compute Unified Device Architecture">CUDA</abbr> and Optix
-are supported for GPU rendering with <em>NVIDIA</em> graphics cards.</p>
+are supported for GPU rendering with NVIDIA graphics cards.</p>
+<div class="section" id="cuda">
+<h4>CUDA<a class="headerlink" href="#cuda" title="Permalink to this headline">¶</a></h4>
 <p>CUDA requires graphics cards with compute capability 3.0 and higher.
 To make sure your GPU is supported,
 see the <a class="reference external" href="https://developer.nvidia.com/cuda-gpus">list of NVIDIA graphics cards</a>
 with the compute capabilities and supported graphics cards.
 CUDA GPU rendering is supported on Windows, macOS, and Linux.</p>
+</div>
+<div class="section" id="optix">
+<span id="render-cycles-gpu-optix"></span><h4>Optix<a class="headerlink" href="#optix" title="Permalink to this headline">¶</a></h4>
 <p>For RTX graphics cards with hardware ray tracing support (e.g. Turing), Optix can be used for better performance.
 Optix support is still experimental and does not yet support all features, see below for details.</p>
 <p>Optix requires Geforce or Quadro RTX graphics card with recent NVIDIA drivers, and is supported on Windows and Linux.</p>
 </div>
+</div>
 <div class="section" id="amd">
 <h3>AMD<a class="headerlink" href="#amd" title="Permalink to this headline">¶</a></h3>
 <p><abbr title="Open Computing Language">OpenCL</abbr>
-is supported for GPU rendering with <em>AMD</em> graphics cards.
+is supported for GPU rendering with AMD graphics cards.
 Blender supports graphics cards with <abbr title="Graphics Core Next">GCN</abbr> generation 2 and above.
 To make sure your GPU is supported,
 see the <a class="reference external" href="https://en.wikipedia.org/wiki/Graphics_Core_Next#Iterations">list of GCN generations</a>
@@ -274,7 +280,7 @@ with the GCN generation and supported graphics cards.</p>
 <p>Optix support is experimental and does not yet support the following features:</p>
 <ul class="simple">
 <li>Baking</li>
-<li>Brachend Path Tracing</li>
+<li>Branched Path Tracing</li>
 <li>Ambient Occlusion and Bevel shader nodes</li>
 <li>Combined CPU + GPU rendering</li>
 <li>Using CPU memory for bigger scenes</li>

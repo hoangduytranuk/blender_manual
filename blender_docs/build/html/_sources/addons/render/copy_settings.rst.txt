@@ -3,9 +3,6 @@
 Copy Render Settings
 ********************
 
-Introduction
-============
-
 This is a simple tool that adds in the Render properties a new panel with a big *Copy Render Settings* button,
 and some options to control what to copy, and to which scenes...
 

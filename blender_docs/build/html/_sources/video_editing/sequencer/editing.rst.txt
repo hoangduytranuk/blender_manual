@@ -247,7 +247,7 @@ This tool can be used to assign (reconnect) effect strips in a different way.
 Just select three arbitrary strips and press :kbd:`R`.
 If you don't create a cycle, those will be connected to a new effect chain.
 
-The Strip Menu contains additional tools for working with strips:
+The Strip menu contains additional tools for working with strips:
 
 - Insert/Remove Gap
 - Deinterlace Movies
@@ -255,7 +255,7 @@ The Strip Menu contains additional tools for working with strips:
 - Reload Strips
 - Swap Inputs
 - Lock Strips
-- UnLock Strips
+- Unlock Strips
 - Swap Strips
 
 

@@ -99,7 +99,7 @@ Tracks
    - Cone
 
 Size
-   Change the display size of the recontructed tracks.
+   Change the display size of the reconstructed tracks.
 
 
 .. _3dview-overlay-mesh_edit_mode:

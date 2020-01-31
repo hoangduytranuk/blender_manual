@@ -72,7 +72,7 @@ To give an example, here is the simplest possible add-on::
    is a dictionary containing add-on metadata such as the title,
    version and author to be displayed in the Preferences add-on list.
    It also specifies the minimum Blender version required to run the script;
-   older versions won't display the addon in the list.
+   older versions won't display the add-on in the list.
 ``register``
    is a function which only runs when enabling the add-on,
    this means the module can be loaded without activating the add-on.

@@ -3,9 +3,6 @@
 Corrective Shape Keys
 *********************
 
-Introduction
-============
-
 From the Author(s):
 
 I merged and converted two old scripts, to let you make corrective shape keys.

@@ -131,7 +131,7 @@ Geometry Panel
    Only tracks from the current tracking object will be used.
    The intention of this operator is to give a nice starting point for a manual mesh reconstruction.
 Link Empty to Track
-   Creates new empty in 3D viewport and appends contraint which parts it to the active track.
+   Creates new empty in 3D Viewport and appends constraint which parts it to the active track.
 
 
 Orientation Panel

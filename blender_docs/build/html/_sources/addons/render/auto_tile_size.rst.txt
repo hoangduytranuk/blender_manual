@@ -3,9 +3,6 @@
 Auto Tile Size
 **************
 
-Introduction
-============
-
 This add-on gives you some quick controls to get the best possible tile sizes for the fastest possible Cycles render.
 Usually it's a good idea to stick to powers of 2 (16, 64, 256...) to get fast renders,
 however in the case of tile sizes it's even more important to keep the tiles fairly square and of consistent size.

@@ -121,7 +121,7 @@ Each of the following files can be used for application templates but are option
    and are never overwritten.
 
    The user may save their own startup/preferences while using this template
-   which will be stored in their user-configuration.
+   which will be stored in their user configuration.
 
    The original template settings can be loaded using: *Load Template Factory Settings*
    from the file menu in much the same way *Load Factory Settings* works.

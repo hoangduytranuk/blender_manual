@@ -103,7 +103,6 @@ Left/Right Handle
 
 
 .. _bpy.types.SpaceGraphEditor.show_cursor:
-.. _bpy.ops.graph.frame_jump:
 .. _graph_editor-view-properties:
 
 View Properties

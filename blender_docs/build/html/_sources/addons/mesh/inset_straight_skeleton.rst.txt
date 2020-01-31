@@ -3,9 +3,6 @@
 Inset Straight Skeleton
 ***********************
 
-Introduction
-============
-
 This add-on makes 'inset polygons', which you get when you advance the edges of
 the polygon inwards at a constant rate. Sometimes when you do that, an advancing edge shrinks to nothing,
 or edges hit an advancing concave corner. The algorithm tries to do the right thing when this happens:

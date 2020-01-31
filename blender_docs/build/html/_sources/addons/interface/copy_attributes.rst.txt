@@ -3,9 +3,6 @@
 Copy Attributes Menu
 ********************
 
-Introduction
-============
-
 This add-on extends the *Copy Objects* :kbd:`Ctrl-C` hotkey to include many extra copy types.
 
 

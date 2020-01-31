@@ -57,9 +57,6 @@ Source
 
    Mesh
       Create smoke/fire directly from the object's mesh.
-      With this option selected there two additional settings, *Surface* and *Volume*.
-
-         .. _smoke-flow-surface:
 
          Surface
             Maximum distance in voxels from the surface of the mesh in which smoke is created (see :term:`voxel`).
@@ -81,7 +78,7 @@ Source
          Set Size
             When this setting is enabled, it allows the *Size* setting to define
             the maximum distance in voxels at which particles can emit smoke,
-            similar to the :ref:`*Surface* <smoke-flow-surface>` setting for mesh sources.
+            similar to the *Surface* setting for mesh sources.
 
             When disabled, particles will fill the nearest :term:`voxel` with smoke.
 

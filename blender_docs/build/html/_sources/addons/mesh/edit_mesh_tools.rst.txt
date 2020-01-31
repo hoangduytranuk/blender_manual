@@ -3,9 +3,6 @@
 Edit Mesh Tools
 ***************
 
-Introduction
-============
-
 Mesh Edit Tool adds several tools to Blender that are not available in the built-in tools or
 provide different methods for similar tasks.
 Each Menu: Vertex, Edge, Face and Utility is a sub panel that is closed

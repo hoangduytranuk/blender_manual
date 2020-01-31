@@ -230,9 +230,10 @@
             
   <div class="section" id="collection-manager">
 <h1>Collection Manager<a class="headerlink" href="#collection-manager" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>This add-on add new functionality for the management of collections via the 3D Viewport.</p>
+<p>This add-on adds new functionality for the management of collections via a pop-up in the 3D Viewport.
+It also offers a simple display and modification of the relationship of objects with collections.</p>
+<div class="figure align-center">
+<img alt="../../_images/addons_interface_collection-manager_popup.png" src="../../_images/addons_interface_collection-manager_popup.png" />
 </div>
 <div class="section" id="activation">
 <h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
@@ -243,7 +244,76 @@
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>to do</p>
+<p>Use <kbd class="kbd docutils literal notranslate">M</kbd> call up the main Collection Manager pop-up in the 3D View when in Object Mode.</p>
+<dl class="docutils">
+<dt>View Layer</dt>
+<dd><dl class="first last docutils">
+<dt>Render</dt>
+<dd>Enable/disable rendering of this view layer with this checkbox.</dd>
+<dt>View Layer</dt>
+<dd><a class="reference internal" href="../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> of the current view layer.</dd>
+</dl>
+</dd>
+<dt>Filter (funnel icon)</dt>
+<dd>Choose which restriction toggles are shown in the interface.</dd>
+<dt>Global Restrictions (checkbox, cursor, eye, screen, camera icons)</dt>
+<dd><p class="first">See the Outliner page for information about <a class="reference internal" href="../../editors/outliner.html#editors-outliner-restriction-columns"><span class="std std-ref">Restrictions</span></a>.</p>
+<ul class="last simple">
+<li><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Enable the restrictions for all collections. Click again to restore the previous state.</li>
+<li><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Invert the restriction state on all collections.</li>
+</ul>
+</dd>
+<dt>Tree View</dt>
+<dd><p class="first">Shows the collections within the current selected scene.
+The active collection is synced to tree view selection.</p>
+<dl class="last docutils">
+<dt>Expansion (small triangle icon)</dt>
+<dd><ul class="first last simple">
+<li><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Expand/collapse children.</li>
+<li><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Expand/collapse children and descendants.</li>
+</ul>
+</dd>
+<dt>Name</dt>
+<dd>Double <kbd class="kbd docutils literal notranslate">LMB</kbd>-click to rename the collection.</dd>
+<dt>Set Object (box icon)</dt>
+<dd><ul class="first last simple">
+<li><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Move object(s) to collection.</li>
+<li><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Add/Remove object(s) to/from collection.</li>
+</ul>
+</dd>
+<dt>Local Restrictions (checkbox, cursor, eye, screen, camera icons)</dt>
+<dd><ul class="first last simple">
+<li><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Toggle collection restriction on/off.</li>
+<li><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Isolate the collection's restriction, preserving parents if need be.
+Click again to restore the previous state.</li>
+<li><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> -- Toggles the restrictions of the collection and it's children on/off.</li>
+</ul>
+</dd>
+<dt>Remove <code class="docutils literal notranslate"><span class="pre">X</span></code></dt>
+<dd>Remove the collection.</dd>
+<dt>Filtering</dt>
+<dd><dl class="first last docutils">
+<dt>By Name (box icon)</dt>
+<dd>A text field to filter collections by name.</dd>
+<dt>Invert (magnifying glass icon)</dt>
+<dd>Invert filtering (inverts the collections shown in the tree view so that what is shown is hidden
+and what was hidden is shown).</dd>
+<dt>By Selected (box icon)</dt>
+<dd>Filter collections by selected objects (show only collections that contain the selected objects).</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Add Collection, Add Subcollection</dt>
+<dd>Self-explanatory.</dd>
+<dt>Phantom Mode</dt>
+<dd><p class="first">All visibility changes made in this mode will be discarded when it’s disabled.</p>
+<p>Enabling Phantom Mode saves the current state of your restrictions and
+allows you to edit them without fear of losing your current state.
+When finished, disabling Phantom Mode will restore the saved state.</p>
+<p class="last">Note: You will be unable to edit anything other than the collections' restrictions while in Phantom Mode.</p>
+</dd>
+</dl>
 <div class="refbox admonition">
 <p class="first admonition-title">Reference</p>
 <table class="last docutils field-list" frame="void" rules="none">

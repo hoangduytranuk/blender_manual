@@ -3,9 +3,6 @@
 Edit Operator Source
 ********************
 
-Introduction
-============
-
 This add-on allows searching for operator names (``bl_idname``) and opens source files containing them.
 
 

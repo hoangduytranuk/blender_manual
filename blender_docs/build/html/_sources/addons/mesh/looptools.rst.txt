@@ -3,9 +3,6 @@
 Loop Tools
 **********
 
-Introduction
-============
-
 Todo.
 
 

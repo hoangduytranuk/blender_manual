@@ -3,9 +3,6 @@
 Power Sequencer
 ***************
 
-Introduction
-============
-
 The documentation can be found on the `authors site <https://www.gdquest.com/blender/power-sequencer/docs/>`__.
 
 

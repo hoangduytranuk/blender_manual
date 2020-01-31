@@ -3,9 +3,6 @@
 Relax
 *****
 
-Introduction
-============
-
 This script relaxes the selected vertices while retaining the shape as much as possible.
 
 

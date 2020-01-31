@@ -3,9 +3,6 @@
 tinyCAD Mesh Tools
 ******************
 
-Introduction
-============
-
 The add-on is a combination of several scripts which should be useful to anyone
 who has used other :abbr:`CAD (Computer-Aided Design)` software for drafting with some level of precision.
 The context menu has the tinyCAD functions prepended to it.

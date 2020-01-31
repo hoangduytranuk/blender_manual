@@ -3,9 +3,6 @@
 BTracer
 *******
 
-Introduction
-============
-
 The purpose of this script is to add tools that are similar to C4D Tracer.
 Btrace provides several ways to trace objects and particles and animate the resulting curve.
 

@@ -3,9 +3,6 @@
 Modifier Tools
 **************
 
-Introduction
-============
-
 A small collection of utilities for managing modifiers.
 
 

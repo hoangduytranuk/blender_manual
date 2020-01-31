@@ -71,8 +71,8 @@ Adding Text
 Generally, **you should always translate exactly what is in the text**,
 and avoid providing updates or extra information.
 
-But sometimes that is necessary, for example when talking about the manual
-itself: To a foreign reader it is not clear, that he or she can contribute English text only,
+But sometimes that is necessary, for example when talking about the manual itself:
+To a foreign reader it is not clear, that they can contribute English text only,
 whereas this is obvious to an English reader.
 
 In these (rare) cases you can and should provide extra information.

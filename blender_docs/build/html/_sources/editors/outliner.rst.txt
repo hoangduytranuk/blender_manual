@@ -243,7 +243,7 @@ The other options can be enabled in the *Restriction Toggles* option in the Outl
 
 Visibility (eye icon)
    Toggles the visibility of the object in the 3D View.
-Enable collection (checkbox)
+Enable Collection (checkbox)
    Exclude the collection from the view layer.
    This is not really a restriction column. It is shown besides the collection icon.
 

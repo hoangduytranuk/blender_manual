@@ -3,10 +3,7 @@
 Manage UI Translations
 **********************
 
-Introduction
-============
-
-- To Do
+Todo
 
 
 Activation

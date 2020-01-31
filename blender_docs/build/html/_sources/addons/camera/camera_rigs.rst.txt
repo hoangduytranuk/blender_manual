@@ -135,7 +135,7 @@ But an object called "A" will fail.
 
 .. seealso::
 
-   The `Authors's Github repository <https://github.com/waylow/add_camera_rigs>`__.
+   The `Author's Github Repository <https://github.com/waylow/add_camera_rigs>`__.
 
 
 .. admonition:: Reference

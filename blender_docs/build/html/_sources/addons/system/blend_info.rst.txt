@@ -3,9 +3,6 @@
 Scene Information
 *****************
 
-Introduction
-============
-
 A visual overview of your scene and it's contents.
 
 

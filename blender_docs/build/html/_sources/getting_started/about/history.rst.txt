@@ -126,7 +126,7 @@ Version/Revision Milestones
    The nodes release, Array modifier, vector blur, new physics engine, rendering, lip sync, and many other features.
    This was the release following `Project Orange <https://orange.blender.org/>`__.
 `2.43 <https://wiki.blender.org/wiki/Reference/Release_Notes/2.43>`__ -- February 2007:
-   Multi-resolution meshes, multi-layer UV textures, multi-layer images and multi-pass rendering and baking,
+   Multiresolution meshes, multi-layer UV textures, multi-layer images and multi-pass rendering and baking,
    sculpting, retopology, multiple additional mattes, distort and filter nodes, modeling and
    animation improvements, better painting with multiple brushes, fluid particles,
    proxy objects, Sequencer rewrite, and post-production UV texturing.

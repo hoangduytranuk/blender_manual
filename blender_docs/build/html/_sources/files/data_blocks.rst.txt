@@ -90,7 +90,7 @@ Making Single User
 ==================
 
 When a data-block is shared between several users, you can make a copy of it for a given user.
-To do so, click on the user-count button to the right of its name.
+To do so, click on the user count button to the right of its name.
 This will duplicate that data-block and assign the newly created copy to that usage only.
 
 .. note::

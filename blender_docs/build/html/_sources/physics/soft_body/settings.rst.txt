@@ -124,7 +124,7 @@ Springs
       This includes diagonal edges. Damping also applies to these connections.
    Length
       The edges can shrink or be blown up. This value is given in percent,
-      0 disables this function. 100% means no change, the body keeps 100% of his size.
+      0 disables this function. 100% means no change, the body keeps 100% of its size.
 
 Collision
    Edge

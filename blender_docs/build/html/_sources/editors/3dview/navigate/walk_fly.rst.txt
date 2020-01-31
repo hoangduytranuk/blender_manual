@@ -86,14 +86,14 @@ Fly Mode
    :Hotkey:    :kbd:`Shift-AccentGrave`
    :Menu:      :menuselection:`View --> Navigation --> Fly Navigation`
 
-On activation the cursor is centered inside a rectangle that defines a safe-region.
+On activation the cursor is centered inside a rectangle that defines a safe region.
 When the cursor is outside this region the view will rotate/pan.
 
 
 Shortcuts
 ---------
 
-- Move the mouse outside the safe-region in the direction you want to look.
+- Move the mouse outside the safe region in the direction you want to look.
 - Move the view forward/backward:
 
   - :kbd:`WheelUp` or :kbd:`NumpadPlus` to accelerate the movement forward.

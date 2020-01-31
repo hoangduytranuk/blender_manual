@@ -3,9 +3,6 @@
 Math Vis Console
 ****************
 
-Introduction
-============
-
 Sometimes when writing Python scripts you stumble on complicated
 matrix transformations, ray intersections, rotation conversions, mesh modifications, etc.
 where its useful to view lines, points and matrices in the viewport to better understand the problem.

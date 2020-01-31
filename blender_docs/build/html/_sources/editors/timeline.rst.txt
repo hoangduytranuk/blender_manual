@@ -243,7 +243,7 @@ Cache
    Show Cache
       Show all enabled types.
 
-      Softbody, Particles, Cloth, Smoke, Dynamic Paint, Rigid Body.
+      Soft Body, Particles, Cloth, Smoke, Dynamic Paint, Rigid Body.
 
    .. figure:: /images/editors_timeline_cache.png
 

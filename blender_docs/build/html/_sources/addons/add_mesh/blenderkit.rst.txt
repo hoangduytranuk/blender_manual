@@ -3,9 +3,6 @@
 BlenderKit
 **********
 
-Introduction
-============
-
 Online Blenderkit Library, materials, models, brushes and more.
 
 An extended version is available from the `authors site <https://www.blenderkit.com/>`__

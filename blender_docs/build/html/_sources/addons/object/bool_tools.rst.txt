@@ -3,9 +3,6 @@
 Bool Tool
 *********
 
-Introduction
-============
-
 Todo.
 
 

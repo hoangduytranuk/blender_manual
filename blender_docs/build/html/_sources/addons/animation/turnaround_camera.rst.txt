@@ -3,9 +3,6 @@
 Turnaround Camera
 *****************
 
-Introduction
-============
-
 This add-on creates an animated camera turn around an object,
 suitable for product visualizations and character turnarounds.
 

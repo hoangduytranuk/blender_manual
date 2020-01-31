@@ -3,9 +3,6 @@
 Dynamic Context Menu
 ********************
 
-Introduction
-============
-
 .. figure:: /images/addons_interface_dynamic_menu.jpg
    :align: right
 

@@ -364,8 +364,8 @@ Only certain types of animation are supported:
 Animation of other properties, like lights or materials, will be ignored.
 
 An *NLA Strip animation* consists of multiple actions on multiple objects that
-should play together. To create an NLA strip animation with the name "My
-Animation", push the action that should play each object onto an NLA track for
+should play together. To create an NLA strip animation with the name "My Animation",
+push the action that should play each object onto an NLA track for
 that object with the name "My Animation".
 
 .. figure:: /images/addons_io-gltf2_animation-nla-strip-animation-example.png
@@ -573,5 +573,5 @@ the `glTF-Blender-IO repository <https://github.com/KhronosGroup/glTF-Blender-IO
 where you can file bug reports, submit feature requests, or contribute code.
 
 Discussion and development of the glTF 2.0 format itself takes place on
-the Khronos Group `glTF GitHub repository <https://github.com/KhronosGroup/glTF>`__,
+the Khronos Group `glTF Github repository <https://github.com/KhronosGroup/glTF>`__,
 and feedback there is welcome.

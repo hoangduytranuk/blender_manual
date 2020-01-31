@@ -3,9 +3,6 @@
 Simplify Curves
 ***************
 
-Introduction
-============
-
 The Simplify Curves tool works on a single selected curve object.
 It generates a new curve based on the original one.
 The higher the *Distance Error* threshold is set the more control points are removed.

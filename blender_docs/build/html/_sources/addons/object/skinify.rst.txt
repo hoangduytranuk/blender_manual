@@ -3,9 +3,6 @@
 Skinify Rig
 ***********
 
-Introduction
-============
-
 This add-on creates a mesh object "Skinify Guy" covering an armature with a mesh.
 
 - It works with Rigify:

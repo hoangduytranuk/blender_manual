@@ -3,9 +3,6 @@
 Node Wrangler
 *************
 
-Introduction
-============
-
 This add-on gives you several tools that help you work with nodes quickly and efficiently.
 Many functions work for both the Compositor and shader nodes, and some functions bring features
 already in the Compositor to the shader nodes as well. Some tools are made for a specific function,

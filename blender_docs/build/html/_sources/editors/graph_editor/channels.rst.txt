@@ -104,6 +104,12 @@ Extrapolation Mode
    Change the :ref:`extrapolation <editors-graph-fcurves-settings-extrapolation>` between selected keyframes.
 Expand Channels, Collapse Channels :kbd:`NumpadPlus`, :kbd:`NumpadMinus`
    Expands or collapses selected channels.
+Hide Selected Curves :kbd:`H`
+   Hides the selected curves.
+Hide Unselected :kbd:`Shift-H`
+   Show only the selected curve (and hide everything else).
+Reveal Curves :kbd:`Alt-H`
+   Show all previous hidden curves.
 Move...
    This allows you to move top-level channels up/down :kbd:`Shift-PageUp`, :kbd:`Shift-PageDown`,
    or directly to the top/bottom :kbd:`Shift-Ctrl-PageUp`, :kbd:`Shift-Ctrl-PageDown`.

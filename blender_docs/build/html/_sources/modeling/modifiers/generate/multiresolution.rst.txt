@@ -55,7 +55,7 @@ Quality
 Operations
 ----------
 
-The right column gathers several operators necessary to manage multi-resolution workflow.
+The right column gathers several operators necessary to manage multiresolution workflow.
 
 Subdivide
    Adds another level of subdivision.

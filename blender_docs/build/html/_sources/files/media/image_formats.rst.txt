@@ -113,8 +113,6 @@ This is the list of image file formats supported internally by Blender:
 Opening Images
 ==============
 
-Filter Alembic Files
-   Todo.
 Relative Path
    Sets the file path to be relative to the currently open blend-file.
 

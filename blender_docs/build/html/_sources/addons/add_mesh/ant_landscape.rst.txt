@@ -3,9 +3,6 @@
 ANT Landscape
 *************
 
-Introduction
-============
-
 This add-on creates landscapes and planets using various noise types. A.N.T. stands for Another Noise Tool.
 
 

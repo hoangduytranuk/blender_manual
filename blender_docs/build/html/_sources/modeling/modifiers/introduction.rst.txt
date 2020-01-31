@@ -62,11 +62,11 @@ Name
    but two modifiers on different objects can have the same name. The default name is based off the modifier type.
 Render (camera icon)
    Toggle visibility of the modifier's effect in the render.
-Show in viewport (screen icon)
+Show in Viewport (screen icon)
    Toggle visibility of the modifier's effect in the 3D View.
 Show in Edit Mode (vertices-square icon)
    Display the modified geometry in Edit mode, as well as the original geometry which you can edit.
-Show on cage (vertices-triangle icon) -- Meshes only
+Show on Cage (vertices-triangle icon) -- Meshes only
    Depends on the previous setting, if enabled, the modified geometry can also be edited directly,
    instead of the original one.
 
@@ -76,7 +76,7 @@ Show on cage (vertices-triangle icon) -- Meshes only
       This can lead to weird and unpredictable effects with some tools,
       and should be disabled whenever you need to perform complex or precise editing on the mesh.
 
-Apply On Spline Points (point-surface icon) -- Curves, surfaces and texts only
+Apply On Spline Points (point surface icon) -- Curves, surfaces and texts only
    Apply the whole modifier stack up to and including that one on the curve or surface control points,
    instead of their tessellated geometry.
 

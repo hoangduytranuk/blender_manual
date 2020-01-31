@@ -23,7 +23,7 @@ You can also use constraints to make a bone track another object/bone
 And the :ref:`inverse kinematics feature <bone-constraints-inverse-kinematics>`
 is also mainly available through the *IK Solver* constraint, which is specific to bones.
 
-For example, a human elbow cannot rotate backward (unless the character has broken his arm),
+For example, a human elbow cannot rotate backward (unless the character has broken their arm),
 nor to the sides, and its forward and roll rotations are limited in a given range.
 (E.g. depending on the rest position of your elbow, it may be from (0 to 160) or from (-45 to 135).)
 

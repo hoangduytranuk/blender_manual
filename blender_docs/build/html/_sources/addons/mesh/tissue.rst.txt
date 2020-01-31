@@ -3,9 +3,6 @@
 Tissue
 ******
 
-Introduction
-============
-
 The add-on is composed by different tools for computational design.
 
 

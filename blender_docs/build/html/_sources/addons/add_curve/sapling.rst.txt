@@ -3,9 +3,6 @@
 Sapling Tree Gen
 ****************
 
-Introduction
-============
-
 This add-on creates trees. There are many preset tree types to choose from or create your own.
 The method is presented by Jason Weber & Joseph Penn in their paper "Creation and Rendering of Realistic Trees".
 

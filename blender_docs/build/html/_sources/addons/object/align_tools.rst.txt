@@ -3,9 +3,6 @@
 Align Tools
 ***********
 
-Introduction
-============
-
 Use to align the location, rotation or scale of selected objects to the active object on the specified axes.
 
 .. seealso::

@@ -77,6 +77,16 @@ Lasso Mask :kbd:`Shift-Ctrl-LMB`
       To clear the mask of areas with the *Lasso Mask* tool, first invert the mask,
       apply the *Lasso Mask*, and then invert the mask back.
 
+Mask Slice
+   Removes the masked vertices from the mesh.
+
+   Threshold
+      Minimum mask value to consider the vertex valid to extract a face from the original mesh
+   Fill Holes
+      Fills concave holes with geometry that might have resulted from the *Mask Slice* operation.
+   Slice to New Object
+      Create a new object from the masked geometry.
+
 
 Displaying
 ----------

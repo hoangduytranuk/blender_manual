@@ -8,7 +8,7 @@ and makes it possible to make more advanced animations with lesser effort.
 
 IK allows you to position the last bone in a bone chain and
 the other bones are positioned automatically.
-This is like how moving someone's finger would cause his arm to follow it.
+This is like how moving someone's finger would cause their arm to follow it.
 By normal posing techniques, you would have to start from the root bone,
 and set bones sequentially until you reach the tip bone:
 When each parent bone is moved, its child bone would inherit its location and rotation.
@@ -117,7 +117,7 @@ Solver
    Selects the inverse Jacobian solver that iTaSC will use.
 
    :abbr:`SDLS (Selective Damped Least Square)`
-      Computes the damping automatically by estimating the level of 'cancelation' in the armature kinematics.
+      Computes the damping automatically by estimating the level of 'cancellation' in the armature kinematics.
       This method works well with the Copy Pose constraint but has the drawback of damping more than
       necessary around the singular pose, which means slower movements.
       Of course, this is only noticeable in Simulation mode.
@@ -147,7 +147,7 @@ Solver
 Animation
 ^^^^^^^^^
 
-In Animation mode, iTaSC operates like an IK-solver:
+In Animation mode, iTaSC operates like an IK solver:
 it is stateless and uses the pose from F-curves interpolation as the start pose before the IK convergence.
 The target velocity is ignored and the solver converges until the given precision is obtained.
 Still the new solver is usually faster than the old one and provides features that are inherent to iTaSC:

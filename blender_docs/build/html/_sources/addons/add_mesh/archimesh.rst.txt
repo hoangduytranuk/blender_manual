@@ -3,10 +3,6 @@
 Archimesh
 *********
 
-
-Introduction
-============
-
 This tool is specially designed to generate architecture elements, like:
 
 - Rooms

@@ -223,6 +223,10 @@
 <dt>Draw <kbd class="kbd docutils literal notranslate">X</kbd></dt>
 <dd>Moves vertices inward or outward,
 based the average normal of the vertices contained within the drawn brush stroke.</dd>
+<dt>Draw Sharp</dt>
+<dd>Similar to the <em>Draw</em> brush however, it deforms the mesh from the original coordinates
+and uses the <em>Sharper</em> <a class="reference internal" href="../brush/falloff.html"><span class="doc">Falloff</span></a>.
+This is useful for creating cloth wrinkles, stylized hair or hard surface edges.</dd>
 <dt>Clay <kbd class="kbd docutils literal notranslate">C</kbd></dt>
 <dd>Similar to the <em>Draw</em> brush, but includes settings to adjust the plane on which the brush acts.
 It behaves like a combination of the <em>Flatten</em> and <em>Draw</em> brushes.</dd>
@@ -241,7 +245,7 @@ will reset the depth and paint on top of the previous stroke.</p>
 <dd>This button resets the base so that you can add another layer.</dd>
 </dl>
 </dd>
-<dt>Inflate/Deflate <kbd class="kbd docutils literal notranslate">I</kbd></dt>
+<dt>Inflate <kbd class="kbd docutils literal notranslate">I</kbd></dt>
 <dd>Similar to <em>Draw</em>,
 except that vertices in <em>Inflate</em> mode are displaced in the direction of their own normals.</dd>
 <dt>Blob</dt>
@@ -252,18 +256,47 @@ control the amount of pinching at the edge of the sphere.</dd>
 <dt>Smooth <kbd class="kbd docutils literal notranslate">S</kbd></dt>
 <dd>As the name suggests, eliminates irregularities in the area of the mesh within the brush's
 influence by smoothing the positions of the vertices.</dd>
-<dt>Flatten/Contrast <kbd class="kbd docutils literal notranslate">Shift-T</kbd></dt>
+<dt>Flatten <kbd class="kbd docutils literal notranslate">Shift-T</kbd></dt>
 <dd>The <em>Flatten</em> brush determines an &quot;area plane&quot;
 located by default at the average height above/below the vertices within the brush area.
 The vertices are then pulled towards this plane.
 The inverse of the <em>Flatten</em> brush is the <em>Contrast</em> brush
 which pushes vertices up or down away from the brush plane.</dd>
-<dt>Fill/Deepen</dt>
-<dd>Works like the Flatten brush, but only brings vertices below the brush plane upwards.
-The inverse of the <em>Fill</em> brush is to <em>Deepen</em> by pushing vertices below the plane downward.</dd>
-<dt>Scrape/Peaks</dt>
-<dd>The <em>Scrape</em> brush works like the <em>Flatten</em> brush, but only brings vertices above the plane downwards.
-The inverse of the <em>Scrape</em> brush is to <em>Peak</em> by pushing vertices above the plane up away from the plane.</dd>
+<dt>Fill</dt>
+<dd><p class="first">Works like the Flatten brush, but only brings vertices below the brush plane upwards.</p>
+<dl class="last docutils">
+<dt>Invert to Scrape</dt>
+<dd>When enabled, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while sculpting
+changes the brush behavior to be the same as the <em>Scrape</em> brush.
+When disabled, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while sculpting,
+will push vertices below the cursor downward.</dd>
+</dl>
+</dd>
+<dt>Scrape</dt>
+<dd><p class="first">The <em>Scrape</em> brush works like the <em>Flatten</em> brush, but only brings vertices above the plane downwards.</p>
+<dl class="last docutils">
+<dt>Invert to Fill</dt>
+<dd>When enabled, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while sculpting
+changes the brush behavior to be the same as the <em>Fill</em> brush.
+When disabled, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while sculpting,
+will push vertices above the cursor up away from the cursor.</dd>
+</dl>
+</dd>
+<dt>Multiplane Scrape</dt>
+<dd><p class="first">Scrapes the mesh with two angled planes at the same time, producing a sharp edge between them.
+This is useful for creating edges when sculpting hard surface objects.</p>
+<dl class="last docutils">
+<dt>Plane Angle</dt>
+<dd>The angle between the two planes of the brush, pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd> inverts the angle.</dd>
+<dt>Dynamic Mode</dt>
+<dd>When enabled, the base angle is sampled from the mesh surface.
+The <em>Plane Angle</em> controls how much the angle will increase when applying pen pressure.
+When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, it locks the plane angle to 0 degrees.</dd>
+<dt>Show Cursor Preview</dt>
+<dd>Displays a preview of the two scrape planes
+and the angle they form instead of the cursor while performing the stroke.</dd>
+</dl>
+</dd>
 <dt>Pinch/Magnify <kbd class="kbd docutils literal notranslate">P</kbd></dt>
 <dd>Pulls vertices towards the center of the brush.
 The inverse setting is <em>Magnify</em>, in which vertices are pushed away from the center of the brush.</dd>
@@ -286,11 +319,34 @@ with pinch &gt; 0.5 it's possible to sculpt shapes without loosing volume.</dd>
 <dt>Thumb</dt>
 <dd>Similar to the <em>Nudge</em> brush, this one flattens the mesh in the brush area,
 while moving it in the direction of the brush stroke.</dd>
+<dt>Pose</dt>
+<dd><p class="first">This brush is used to pose a model simulating an armature-like deformation.
+The pivot point for rotation is calculated automatically based
+on the radius of the brush and the topology of the model.
+When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, the pose brush applies a twist rotation
+to the posing segments instead of using the rotation or an IK deformation.
+The falloff of the rotation across multiple segments is controlled by the brush falloff curve.</p>
+<dl class="last docutils">
+<dt>Pose Origin Offset</dt>
+<dd>Offset of the pose origin in relation to the brush radius.
+This is useful to manipulate areas with a lot of complex shapes like fingers.</dd>
+<dt>Smooth Iterations</dt>
+<dd>Controls the smoothness of the falloff of the deformation.</dd>
+<dt>Pose IK Segments</dt>
+<dd>Controls how many <a class="reference internal" href="../../animation/armatures/posing/bone_constraints/index.html#bone-constraints-inverse-kinematics"><span class="std std-ref">IK bones</span></a>
+are going to be created for posing.</dd>
+</dl>
+</dd>
 <dt>Nudge</dt>
 <dd>Moves vertices in the direction of the brush stroke.</dd>
 <dt>Rotate</dt>
 <dd>Rotates vertices within the brush in the direction the cursor is moved. The initial drag direction
 is the zero angle and by rotating around the center you can create a vortex effect.</dd>
+<dt>Slide Relax</dt>
+<dd>This brush slides the topology of the mesh in the direction of the stroke
+without changing the geometrical shape of the mesh.
+When pressing <kbd class="kbd docutils literal notranslate">Shift</kbd>, the brush enters <em>Relax</em> mode
+which tries to create an even distribution of quads without deforming the volume of the mesh.</dd>
 <dt>Simplify</dt>
 <dd>This brush collapses short edges (as defined by the detail size) whether or
 not the <em>Collapse Short Edges</em> option is enabled.
@@ -308,6 +364,18 @@ See also the options of the <a class="reference internal" href="hide_mask.html#s
 <dd>Mask drawing.</dd>
 <dt>Smooth <kbd class="kbd docutils literal notranslate">Shift</kbd></dt>
 <dd>Pressing <kbd class="kbd docutils literal notranslate">Shift</kbd> with the mask brush active will toggle the mask smoothing mode.</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Mesh Filter</dt>
+<dd><p class="first">Todo</p>
+<dl class="last docutils">
+<dt>Filter Type</dt>
+<dd><dl class="first last docutils">
+<dt>Relax</dt>
+<dd>Tries to create an even distribution of quads without deforming the volume of the mesh.
+This works the same as the <em>Relax</em> mode of the <em>Slide Relax</em> brush.</dd>
 </dl>
 </dd>
 </dl>

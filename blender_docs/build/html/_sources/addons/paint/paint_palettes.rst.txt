@@ -3,9 +3,6 @@
 Paint Palettes
 **************
 
-Introduction
-============
-
 Todo.
 
 .. seealso::

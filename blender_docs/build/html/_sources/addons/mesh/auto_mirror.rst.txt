@@ -3,9 +3,6 @@
 Auto Mirror
 ***********
 
-Introduction
-============
-
 Todo.
 
 .. seealso::

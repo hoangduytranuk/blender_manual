@@ -3,9 +3,6 @@
 Stored Views
 ************
 
-Introduction
-============
-
 Stored Views has three modes of operation, depending on which the following are saved or restored.
 Save stored views to your blend-file to easily have access to saved views later.
 

@@ -96,7 +96,7 @@ Special Characters
 
 This is a limited character map to insert characters which aren't available from the keyboard.
 Many other special characters can be "composed", see `Accent Characters`_ below.
-If you need others, you will have to copy-paste them from an external editor or charmap tool.
+If you need others, you will have to copy-paste them from an external editor or character map program.
 
 
 Accent Characters

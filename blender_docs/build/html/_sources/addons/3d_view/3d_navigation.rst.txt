@@ -3,9 +3,6 @@
 3D Navigation
 *************
 
-Introduction
-============
-
 This custom menu is in part a virtual numpad emulator and a user perspective navigation tool.
 
 

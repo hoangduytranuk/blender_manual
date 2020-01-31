@@ -3,9 +3,6 @@
 Ivy Gen
 *******
 
-Introduction
-============
-
 Based on the wonderful code by Thomas Luft and
 his original `IvyGen program <http://graphics.uni-konstanz.de/~luft/ivy_generator/>`__.
 

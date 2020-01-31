@@ -3,9 +3,6 @@
 Tri-Lighting
 ************
 
-Introduction
-============
-
 This add-on creates a simple three point studio style lighting set up.
 
 

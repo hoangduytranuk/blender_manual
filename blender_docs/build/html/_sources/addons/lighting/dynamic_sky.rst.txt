@@ -3,9 +3,6 @@
 Dynamic Sky
 ***********
 
-Introduction
-============
-
 .. figure:: /images/addons_lighting_dynamic_sky.jpg
    :align: center
    :width: 650px

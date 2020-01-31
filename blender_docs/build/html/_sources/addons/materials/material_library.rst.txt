@@ -3,9 +3,6 @@
 Material Library
 ****************
 
-Introduction
-============
-
 Materials Library VX is a Blender add-on that will create a material library.
 You can save, load and categorize materials that can be shared across all your projects.
 This version uses a blend-file as database so all external render engines,

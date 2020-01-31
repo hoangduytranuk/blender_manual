@@ -28,7 +28,7 @@ FK Limb Isolation
 IK Following
    Boolean (0=False, 1=True)
 
-   When the IK follow is set to 1 the IK limb will follow his parent depending on the Root/Parent slider.
+   When the IK follow is set to 1 the IK limb will follow its parent depending on the Root/Parent slider.
    When set to 0 the IK limb will stay fixed in space whatever the rest of the rig will do.
    This is an useful option if you want to create your own Child Of constraint on the IK limb toward
    another part of the rig itself (like parenting the hand to the head).
@@ -65,7 +65,7 @@ Pole Vector Type Switch
 IK Auto-Stretching
    Slider (0=No stretching, 1=Full Stretch)
 
-   When set to 0 the IK limb it's constrained to his rest length.
+   When set to 0 the IK limb it's constrained to its rest length.
    When set to 1 the IK limb will stretch until it reaches the IK effector.
 
 Bendy Bones Flexible Tweaking

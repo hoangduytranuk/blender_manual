@@ -30,6 +30,10 @@ Voxel Size
    (assuming *Preserve Volume* is enabled).
    Lower values preserve finer details but will result in a mesh with a much more dense topology.
 
+   Sample Voxel Size
+      Used to adjust the *Voxel Size* by picking and an area of the mesh
+      to match the denseness of polygons after the remesh operation.
+
 Adaptivity
    Todo 2.81.
 Fix Poles

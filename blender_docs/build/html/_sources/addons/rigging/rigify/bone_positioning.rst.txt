@@ -94,8 +94,8 @@ the hips to the ankle, then place the foot and the toe accordingly.
 Remember to add a slight bend to the knee. This can be easily done by going in the side view,
 entering armature Edit Mode and sliding the bone junction between thigh and shin slightly toward the world's Y axis.
 
-Finally align the heel bone by going in the front view and placing his head and
-tail to fill the foot size from side to side then, in the side view,
+Finally align the heel bone by going in the front view and placing the head and tail to
+fill the foot size from side to side then, in the side view,
 align the bone at the point where the heel just touches the ground floor.
 
 .. note::

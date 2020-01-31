@@ -3,9 +3,6 @@
 Bone Selection Sets
 *******************
 
-Introduction
-============
-
 This add-on allows the creation, deletion and editing of selection sets.
 
 Selection Sets are a feature that allows the definition of sets of bones for easy selection while animating.

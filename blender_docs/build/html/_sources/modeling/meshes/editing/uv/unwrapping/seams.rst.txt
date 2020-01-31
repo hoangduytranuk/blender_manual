@@ -99,7 +99,7 @@ the right side of the face will match the left, etc.
 
 .. note::
 
-   You **do not** have to come up with "one unwrapping that works perfectly for everything everywhere."
+   You **do not** have to come up with "one unwrapping that works perfectly for everything everywhere".
    As we will discuss later, you can easily have multiple UV unwrappings,
    using different approaches in different areas of your mesh.
 

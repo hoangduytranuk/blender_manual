@@ -3,9 +3,6 @@
 Oscurart Tools
 **************
 
-Introduction
-============
-
 Todo.
 
 

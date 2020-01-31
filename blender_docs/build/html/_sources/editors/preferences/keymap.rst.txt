@@ -80,7 +80,7 @@ Active
    Un-check to disable this keymap item.
 Map Type
    Keyboard
-      Single hotkey or key-combination.
+      Single hotkey or key combination.
    Mouse
       Actions from mouse buttons, tablet or touchpad input.
    NDOF

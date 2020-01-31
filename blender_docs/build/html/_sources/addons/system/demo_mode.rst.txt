@@ -3,9 +3,6 @@
 Demo Mode
 *********
 
-Introduction
-============
-
 Todo.
 
 

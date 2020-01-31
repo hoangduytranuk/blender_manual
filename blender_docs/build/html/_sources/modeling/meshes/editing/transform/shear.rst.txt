@@ -8,7 +8,8 @@ Shear
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      Object and Edit Modes
+   :Mode:      Object and Edit Mode
+   :Panel:     :menuselection:`Toolbar --> Shear`
    :Menu:      :menuselection:`Object/Mesh/Curve/Surface --> Transform --> Shear`
    :Hotkey:    :kbd:`Shift-Ctrl-Alt-S`
 

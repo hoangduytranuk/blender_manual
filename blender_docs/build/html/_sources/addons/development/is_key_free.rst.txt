@@ -3,9 +3,6 @@
 Is Key Free
 ***********
 
-Introduction
-============
-
 Primarily used to check the availability of hotkeys and the editor types they are associated with.
 
 

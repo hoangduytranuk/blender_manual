@@ -28,14 +28,14 @@ Multiresolution Modifier
 
 The Multiresolution Modifier can be used to dynamically subdivide the mesh.
 The more subdivision the more computing will be needed. With the Blender stack
-non-destructive data, multi-resolution sculpting will help when you have a clean topology base mesh.
+non-destructive data, multiresolution sculpting will help when you have a clean topology base mesh.
 
 When sculpting with multiple resolutions you have the ability to sculpt in different levels of subdivision,
 this mean you can sculpt some details in subdivision level 1 and add more details in
 subdivision 2 and go back to subdivision 1 correct some mistakes. While this workflow is
 often used, the Multiresolution Modifier has some limitations. You may end up with some mesh distortions.
 As an advice, add as most details as possible before adding more subdivisions.
-Clay brush works better with multi-resolution sculpting to sculpt secondary forms.
+Clay brush works better with multiresolution sculpting to sculpt secondary forms.
 
 - Step up one multires level :kbd:`PageUp`
 - Step down one multires level :kbd:`PageDown`

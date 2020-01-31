@@ -3,9 +3,6 @@
 Bsurfaces GPL Edition
 *********************
 
-Introduction
-============
-
 Todo.
 
 

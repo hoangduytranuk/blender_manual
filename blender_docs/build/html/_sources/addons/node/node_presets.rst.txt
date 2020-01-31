@@ -3,9 +3,6 @@
 Node Presets
 ************
 
-Introduction
-============
-
 This add-on allows you to set a file path to a directory with blend-file(s) containing node groups.
 All the node groups will then be available from a new menu in
 the :menuselection:`node editors --> Add --> Template` menu.

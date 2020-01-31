@@ -3,9 +3,6 @@
 Magic UV
 ********
 
-Introduction
-============
-
 The documentation can be found in Magic UV's `Github repository <https://github.com/nutti/Magic-UV/wiki>`__.
 
 

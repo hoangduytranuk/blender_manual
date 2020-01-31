@@ -3,9 +3,6 @@
 Carver
 ******
 
-Introduction
-============
-
 Cut and boolean objects directly in the 3D View.
 
 

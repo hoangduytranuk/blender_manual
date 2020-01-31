@@ -3,9 +3,6 @@
 Animall
 *******
 
-Introduction
-============
-
 Allows animation of mesh, lattice, curve and surface data.
 
 

@@ -34,7 +34,7 @@ To create a single force field,
 you can select :menuselection:`Add --> Force Field` and select the desired force field.
 This method creates an empty with the force field attached.
 
-.. list-table:: Examples of empty with the force field attached.
+.. list-table:: Examples of an empty with the force field attached.
 
    * - .. figure:: /images/physics_forces_force-fields_types_vortex_visualzation.png
 

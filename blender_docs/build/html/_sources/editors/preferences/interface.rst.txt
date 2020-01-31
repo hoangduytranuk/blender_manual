@@ -41,8 +41,8 @@ Developer Extras
       Edit Source
          To edit Python source code that defines the button.
       Edit Translation
-         The option to edit-translations
-         (Only when the *Manage UI translations* add-on is also enabled).
+         The option to edit UI translations
+         (only available when the *Manage UI translations* add-on is also enabled).
    3D View
       Show Indices
          The option to show mesh vertex/edge/face indices in the overlay popover.

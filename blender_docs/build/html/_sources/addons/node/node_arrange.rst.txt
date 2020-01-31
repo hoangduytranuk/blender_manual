@@ -3,9 +3,6 @@
 Node Arrange
 ************
 
-Introduction
-============
-
 This add-on allows you to neatly arrange your nodes.
 
 

@@ -3,9 +3,6 @@
 Archipack
 *********
 
-Introduction
-============
-
 This add-on features architectural objects and tools.
 
 An extended version is available from the authors Github

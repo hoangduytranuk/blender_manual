@@ -3,9 +3,6 @@
 Property Chart
 **************
 
-Introduction
-============
-
 When selecting an object you will see a new panel in the 3D View's Sidebar.
 In that panel you can edit the properties of selected objects.
 

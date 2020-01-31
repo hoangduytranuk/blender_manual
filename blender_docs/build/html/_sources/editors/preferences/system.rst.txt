@@ -14,6 +14,8 @@ then they will either not show up or be corrected on startup.
    Preferences System section.
 
 
+.. _editors_preferences_cycles:
+
 Cycles Render Device
 ====================
 
@@ -26,6 +28,8 @@ None
    the CPU will be used as the computing device for the Cycles Renderer.
 CUDA
    If the system has a compatible NVIDIA CUDA device, it will show up an option for rendering with Cycles.
+Optix
+   If the system has a compatible NVIDIA Optix device, it will show up an option for rendering with Cycles.
 OpenCL
    If the system has a compatible AMD OpenCL device, it will show up an option for rendering with Cycles.
 

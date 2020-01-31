@@ -192,8 +192,8 @@ Rule Evaluation
 
    .. note::
 
-      A given boid will try as much as it can to comply to each of the rules he is
-      given, but it is more than likely that some rule will take precedence on other in some cases.
+      A given boid will try as much as it can to comply to each of the rules it is given,
+      but it is more than likely that some rule will take precedence on other in some cases.
       For example, in order to avoid a predator, a boid could probably "forget" about Collision,
       Separate and Flock rules, meaning that "while panicked" it could well run into obstacles,
       e.g. even if instructed not to, most of the time.
