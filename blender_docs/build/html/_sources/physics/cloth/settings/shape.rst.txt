@@ -44,7 +44,7 @@ Max Sewing Force
    extreme forces in the initial frames where the ends of the sewing springs are far apart.
 
 Shrinking Factor
-   Factor by which to shrink the cloth.
+   Factor by which to shrink the cloth, specifying a negative value controls the amount for the cloth to grow.
 
 Dynamic Mesh
    Allows animating the rest shape of cloth using shape keys or

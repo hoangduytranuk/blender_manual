@@ -31,4 +31,4 @@ Max Bending
 Shrinking Group
    Vertex group for shrinking cloth.
 Max Shrinking
-   Max amount to shrink cloth by.
+   Max amount to shrink cloth by, specifying a negative value controls the max amount for the cloth to grow.

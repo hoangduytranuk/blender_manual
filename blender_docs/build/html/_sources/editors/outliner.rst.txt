@@ -164,7 +164,10 @@ Duplicate Collections
 Duplicate Linked
    Duplicate entire hierarchy keeping content linked with original.
 Delete Hierarchy
-   Deletes the collection and all of its child objects.
+   Deletes the collection and removes all of its child objects or collections.
+   It is important to note that this only deletes the collection,
+   if child objects are part of another collection they will remain in the scene collection
+   and their Data-blocks will not be deleted from the blend-file.
 Instance to Scene
    Creates a new :doc:`collection instance </scene_layout/object/properties/instancing/collection>`.
 Visibility
