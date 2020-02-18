@@ -38,7 +38,6 @@ If several curves are joined, each one will keep its subtype (NURBS or Bézier).
 .. _object-convert-to:
 .. _bpy.ops.object.convert:
 
-
 Convert To
 ==========
 
@@ -69,6 +68,19 @@ Mesh from Curve/Metaball/Surface/Text
 Converts the selected curve, metaball, surface and text objects to mesh objects.
 The actual defined resolution of these objects will be taken into account for the conversion.
 Note that it also keeps the faces and volumes created by closed and extruded curves.
+
+
+Grease Pencil from Curve
+------------------------
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Object --> Convert to --> Grease Pencil from Curve`
+
+Converts the selected curve to a Grease Pencil object with strokes matching the curve; basic materials are also add.
+When multiple curves are selected, they are all converted into the same Grease Pencil object.
 
 
 Options

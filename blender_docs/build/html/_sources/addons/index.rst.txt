@@ -5,17 +5,19 @@
 
 .. important::
 
-   Work In Progress
+   This is work In progress.
+
+   Documentation might be outdated and on some pages images, videos, and links aren't added yet.
 
 
 Add-ons Category Listings
 =========================
 
-About:
-   - This section lists the add-ons categories in the same order they appear in Blender 2.81.
-   - Each sub section contains the documentation files for the related add-ons.
+.. Editor notes:
+
    - Note that only add-ons released in Blender are included in this section.
-   - Documentation might be outdated and on some pages images, videos, and links aren't added yet.
+   - This section lists the add-ons categories in the same order they appear in Blender
+   - Each sub section contains the documentation files for the related add-ons.
 
 .. toctree::
    :maxdepth: 1

@@ -1,0 +1,11 @@
+#!/bin/bash -x
+from_dir=$BLENDER_MAN_EN
+to_dir=~/blender_docs_backup
+github_dỉr=$BLENDER_GITHUB_MANUAL
+
+cd $BLENDER_MAN_EN
+#make -d -w -B -e SPHINXOPTS="-D language='vi'" 2>&1c
+sphinx-build -b html -D language='vi' ./manual "build/html"
+cd ~
+rsync -arP $from_dir $to_dir
+rsync -arP $from_dir $github_dir

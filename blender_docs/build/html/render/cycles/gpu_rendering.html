@@ -241,14 +241,14 @@ and select either <em>CUDA</em>, <em>Optix</em> or <em>OpenCL</em>. Next, you mu
 <h2>Supported Hardware<a class="headerlink" href="#supported-hardware" title="Permalink to this headline">¶</a></h2>
 <p>Blender supports two different technologies to render on the GPU depending on the particular GPU manufacture.</p>
 <div class="section" id="nvidia">
-<h3>NVIDIA<a class="headerlink" href="#nvidia" title="Permalink to this headline">¶</a></h3>
+<h3>Nvidia<a class="headerlink" href="#nvidia" title="Permalink to this headline">¶</a></h3>
 <p><abbr title="Compute Unified Device Architecture">CUDA</abbr> and Optix
-are supported for GPU rendering with NVIDIA graphics cards.</p>
+are supported for GPU rendering with Nvidia graphics cards.</p>
 <div class="section" id="cuda">
 <h4>CUDA<a class="headerlink" href="#cuda" title="Permalink to this headline">¶</a></h4>
 <p>CUDA requires graphics cards with compute capability 3.0 and higher.
 To make sure your GPU is supported,
-see the <a class="reference external" href="https://developer.nvidia.com/cuda-gpus">list of NVIDIA graphics cards</a>
+see the <a class="reference external" href="https://developer.nvidia.com/cuda-gpus">list of Nvidia graphics cards</a>
 with the compute capabilities and supported graphics cards.
 CUDA GPU rendering is supported on Windows, macOS, and Linux.</p>
 </div>
@@ -256,7 +256,7 @@ CUDA GPU rendering is supported on Windows, macOS, and Linux.</p>
 <span id="render-cycles-gpu-optix"></span><h4>Optix<a class="headerlink" href="#optix" title="Permalink to this headline">¶</a></h4>
 <p>For RTX graphics cards with hardware ray tracing support (e.g. Turing), Optix can be used for better performance.
 Optix support is still experimental and does not yet support all features, see below for details.</p>
-<p>Optix requires Geforce or Quadro RTX graphics card with recent NVIDIA drivers, and is supported on Windows and Linux.</p>
+<p>Optix requires Geforce or Quadro RTX graphics card with recent Nvidia drivers, and is supported on Windows and Linux.</p>
 </div>
 </div>
 <div class="section" id="amd">
@@ -274,16 +274,16 @@ with the GCN generation and supported graphics cards.</p>
 <h2>-- Supported Features and Limitations<a class="headerlink" href="#supported-features-and-limitations" title="Permalink to this headline">¶</a></h2>
 <p>CUDA and OpenCL rendering supports all the same features as CPU rendering, except two:</p>
 <ul class="simple">
-<li>Open Shading Language.</li>
-<li>Advanced volume light sampling to reduce noise.</li>
+<li><p>Open Shading Language.</p></li>
+<li><p>Advanced volume light sampling to reduce noise.</p></li>
 </ul>
 <p>Optix support is experimental and does not yet support the following features:</p>
 <ul class="simple">
-<li>Baking</li>
-<li>Branched Path Tracing</li>
-<li>Ambient Occlusion and Bevel shader nodes</li>
-<li>Combined CPU + GPU rendering</li>
-<li>Using CPU memory for bigger scenes</li>
+<li><p>Baking</p></li>
+<li><p>Branched Path Tracing</p></li>
+<li><p>Ambient Occlusion and Bevel shader nodes</p></li>
+<li><p>Combined CPU + GPU rendering</p></li>
+<li><p>Using CPU memory for bigger scenes</p></li>
 </ul>
 </div>
 <div class="section" id="frequently-asked-questions">
@@ -317,34 +317,32 @@ This feature does not work on OpenCL rendering.</p>
 <p>No, each GPU can only access its own memory.</p>
 </div>
 <div class="section" id="what-renders-faster-nvidia-or-amd-cuda-or-opencl">
-<h3>What renders faster, NVIDIA or AMD, CUDA or OpenCL?<a class="headerlink" href="#what-renders-faster-nvidia-or-amd-cuda-or-opencl" title="Permalink to this headline">¶</a></h3>
-<p>Currently NVIDIA with CUDA is rendering fastest, but this really depends on the hardware you buy.
+<h3>What renders faster, Nvidia or AMD, CUDA or OpenCL?<a class="headerlink" href="#what-renders-faster-nvidia-or-amd-cuda-or-opencl" title="Permalink to this headline">¶</a></h3>
+<p>Currently Nvidia with CUDA is rendering fastest, but this really depends on the hardware you buy.
 Currently, CUDA and OpenCL are about the same in the newest mid-range GPUs.
 However, CUDA is fastest in the respect of high-end GPUs.</p>
 </div>
 </div>
 <div class="section" id="error-messages">
 <h2>Thông Điệp Báo Lỗi -- Error Messages<a class="headerlink" href="#error-messages" title="Permalink to this headline">¶</a></h2>
-<p>In case of problems, be sure to install the official graphics drivers from the NVIDIA or AMD website,
+<p>In case of problems, be sure to install the official graphics drivers from the Nvidia or AMD website,
 or through the package manager on Linux.</p>
 <div class="section" id="unsupported-gnu-version-gcc-4-7-and-up-are-not-supported">
 <h3>-- Unsupported GNU version! gcc 4.7 and up are not supported!<a class="headerlink" href="#unsupported-gnu-version-gcc-4-7-and-up-are-not-supported" title="Permalink to this headline">¶</a></h3>
 <p>On Linux, depending on your GCC version you might get this error. There are two possible solutions:</p>
-<dl class="docutils">
-<dt>-- Use an alternate compiler</dt>
-<dd><p class="first">If you have an older GCC installed that is compatible with the installed CUDA toolkit version,
+<dl>
+<dt>-- Use an alternate compiler</dt><dd><p>If you have an older GCC installed that is compatible with the installed CUDA toolkit version,
 then you can use it instead of the default compiler.
 This is done by setting the <code class="docutils literal notranslate"><span class="pre">CYCLES_CUDA_EXTRA_CFLAGS</span></code> environment variable when starting Blender.</p>
 <p>Launch Blender from the command line as follows:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">CYCLES_CUDA_EXTRA_CFLAGS</span><span class="o">=</span><span class="s2">&quot;-ccbin gcc-x.x&quot;</span> blender
 </pre></div>
 </div>
-<p class="last">(Substitute the name or path of the compatible GCC compiler).</p>
+<p>(Substitute the name or path of the compatible GCC compiler).</p>
 </dd>
-<dt>-- Remove compatibility checks</dt>
-<dd><p class="first">If the above is unsuccessful, delete the following line in
+<dt>-- Remove compatibility checks</dt><dd><p>If the above is unsuccessful, delete the following line in
 <code class="docutils literal notranslate"><span class="pre">/usr/local/cuda/include/host_config.h</span></code></p>
-<div class="last highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#error -- unsupported GNU version! gcc 4.7 and up are not supported!</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#error -- unsupported GNU version! gcc 4.7 and up are not supported!</span>
 </pre></div>
 </div>
 </dd>
@@ -360,15 +358,15 @@ not the 32-bit version.</p>
 </div>
 <div class="section" id="cuda-error-kernel-compilation-failed">
 <h3>-- CUDA Error: Kernel compilation failed<a class="headerlink" href="#cuda-error-kernel-compilation-failed" title="Permalink to this headline">¶</a></h3>
-<p>This error may happen if you have a new NVIDIA graphics card that is not yet supported by
+<p>This error may happen if you have a new Nvidia graphics card that is not yet supported by
 the Blender version and CUDA toolkit you have installed.
 In this case Blender may try to dynamically build a kernel for your graphics card and fail.</p>
 <p>In this case you can:</p>
 <ol class="arabic simple">
-<li>Check if the latest Blender version
+<li><p>Check if the latest Blender version
 (official or <a class="reference external" href="https://builder.blender.org/download/experimental/">experimental builds</a>)
-supports your graphics card.</li>
-<li>If you build Blender yourself, try to download and install a newer CUDA developer toolkit.</li>
+supports your graphics card.</p></li>
+<li><p>If you build Blender yourself, try to download and install a newer CUDA developer toolkit.</p></li>
 </ol>
 <p>Normally users do not need to install the CUDA toolkit as Blender comes with precompiled kernels.</p>
 </div>
@@ -378,13 +376,13 @@ supports your graphics card.</li>
 We can currently only render scenes that fit in graphics card memory,
 and this is usually smaller than that of the CPU. See above for more details.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">One way to reduce memory usage is by using smaller resolutions for textures.
+<p class="admonition-title">Ghi chú</p>
+<p>One way to reduce memory usage is by using smaller resolutions for textures.
 For example, 8k, 4k, 2k, and 1k image textures take up respectively 256MB, 64MB, 16MB and 4MB of memory.</p>
 </div>
 </div>
 <div class="section" id="the-nvidia-opengl-driver-lost-connection-with-the-display-driver">
-<h3>The NVIDIA OpenGL driver lost connection with the display driver<a class="headerlink" href="#the-nvidia-opengl-driver-lost-connection-with-the-display-driver" title="Permalink to this headline">¶</a></h3>
+<h3>The Nvidia OpenGL driver lost connection with the display driver<a class="headerlink" href="#the-nvidia-opengl-driver-lost-connection-with-the-display-driver" title="Permalink to this headline">¶</a></h3>
 <p>If a GPU is used for both display and rendering,
 Windows has a limit on the time the GPU can do render computations.
 If you have a particularly heavy scene, Cycles can take up too much GPU time.

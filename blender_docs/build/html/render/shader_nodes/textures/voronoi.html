@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -243,138 +243,135 @@
 <span id="bpy-types-shadernodetexvoronoi"></span><h1>Nút Chất Liệu Voronoi -- Voronoi Texture Node<a class="headerlink" href="#voronoi-texture-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_textures_voronoi_node.png" src="../../../_images/render_shader-nodes_textures_voronoi_node.png" />
-<p class="caption"><span class="caption-text">Voronoi Texture Node.</span></p>
+<p class="caption"><span class="caption-text">Voronoi Texture Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Voronoi Texture</em> node evaluates a <a class="reference external" href="https://en.wikipedia.org/wiki/Worley_noise">Worley Noise</a> at
 the input texture coordinates.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <p>The inputs are dynamic, they become available if needed depending on the node properties.</p>
-<dl class="docutils">
-<dt>Vectơ -- Vector</dt>
-<dd>Texture coordinate to evaluate the noise at;
-defaults to <em>Generated</em> texture coordinates if the socket is left unconnected.</dd>
-<dt>W</dt>
-<dd>Texture coordinate to evaluate the noise at.</dd>
-<dt>Tỷ Lệ -- Scale</dt>
-<dd>Scale of the noise.</dd>
-<dt>Smoothness</dt>
-<dd><p class="first">The smoothness of the noise.</p>
-<table border="1" class="last docutils">
+<dl>
+<dt>Vectơ -- Vector</dt><dd><p>Texture coordinate to evaluate the noise at;
+defaults to <em>Generated</em> texture coordinates if the socket is left unconnected.</p>
+</dd>
+<dt>W</dt><dd><p>Texture coordinate to evaluate the noise at.</p>
+</dd>
+<dt>Tỷ Lệ -- Scale</dt><dd><p>Scale of the noise.</p>
+</dd>
+<dt>Smoothness</dt><dd><p>The smoothness of the noise.</p>
+<table class="docutils align-default">
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id2">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_zero.png" />
-<p class="caption"><span class="caption-text">Smoothness: 0.0.</span></p>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-zero.png" />
+<p class="caption"><span class="caption-text">Smoothness: 0.0.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id3">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_quarter.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_quarter.png" />
-<p class="caption"><span class="caption-text">Smoothness: 0.25.</span></p>
+<td><div class="figure align-default" id="id3">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-quarter.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-quarter.png" />
+<p class="caption"><span class="caption-text">Smoothness: 0.25.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id4">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_half.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_half.png" />
-<p class="caption"><span class="caption-text">Smoothness: 0.5.</span></p>
+<td><div class="figure align-default" id="id4">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-half.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-half.png" />
+<p class="caption"><span class="caption-text">Smoothness: 0.5.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id5">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_one.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_one.png" />
-<p class="caption"><span class="caption-text">Smoothness: 1.0.</span></p>
+<td><div class="figure align-default" id="id5">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-one.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-one.png" />
+<p class="caption"><span class="caption-text">Smoothness: 1.0.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><div class="first last figure" id="id6">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_zero.png" />
-<p class="caption"><span class="caption-text">Smoothness: 0.0.</span></p>
+<tr class="row-even"><td><div class="figure align-default" id="id6">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-zero.png" />
+<p class="caption"><span class="caption-text">Smoothness: 0.0.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id7">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_quarter.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_quarter.png" />
-<p class="caption"><span class="caption-text">Smoothness: 0.25.</span></p>
+<td><div class="figure align-default" id="id7">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-quarter.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-quarter.png" />
+<p class="caption"><span class="caption-text">Smoothness: 0.25.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id8">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_half.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_half.png" />
-<p class="caption"><span class="caption-text">Smoothness: 0.5.</span></p>
+<td><div class="figure align-default" id="id8">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-half.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-half.png" />
+<p class="caption"><span class="caption-text">Smoothness: 0.5.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id9">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_one.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_one.png" />
-<p class="caption"><span class="caption-text">Smoothness: 1.0.</span></p>
+<td><div class="figure align-default" id="id9">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-one.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-one.png" />
+<p class="caption"><span class="caption-text">Smoothness: 1.0.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </dd>
-<dt>Exponent</dt>
-<dd><p class="first">Exponent of the Minkowski distance metric.</p>
-<table border="1" class="last docutils">
+<dt>Exponent</dt><dd><p>Exponent of the Minkowski distance metric.</p>
+<table class="docutils align-default">
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id10">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski_half.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski_half.png" />
-<p class="caption"><span class="caption-text">Exponent: 0.5.</span></p>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id10">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski-half.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski-half.png" />
+<p class="caption"><span class="caption-text">Exponent: 0.5.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id11">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski_one.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski_one.png" />
-<p class="caption"><span class="caption-text">Exponent: 1.0.</span></p>
+<td><div class="figure align-default" id="id11">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski-one.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski-one.png" />
+<p class="caption"><span class="caption-text">Exponent: 1.0.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id12">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski_two.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski_two.png" />
-<p class="caption"><span class="caption-text">Exponent: 2.0.</span></p>
+<td><div class="figure align-default" id="id12">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski-two.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski-two.png" />
+<p class="caption"><span class="caption-text">Exponent: 2.0.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id13">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski_32.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski_32.png" />
-<p class="caption"><span class="caption-text">Exponent: 32.0.</span></p>
+<td><div class="figure align-default" id="id13">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski-32.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski-32.png" />
+<p class="caption"><span class="caption-text">Exponent: 32.0.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </dd>
-<dt>Randomness</dt>
-<dd><p class="first">The randomness of the noise.</p>
-<table border="1" class="last docutils">
+<dt>Randomness</dt><dd><p>The randomness of the noise.</p>
+<table class="docutils align-default">
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id14">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_randomness_one.png" src="../../../_images/render_shader-nodes_textures_voronoi_randomness_one.png" />
-<p class="caption"><span class="caption-text">Randomness: 1.0.</span></p>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id14">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_randomness-one.png" src="../../../_images/render_shader-nodes_textures_voronoi_randomness-one.png" />
+<p class="caption"><span class="caption-text">Randomness: 1.0.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id15">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_randomness_half.png" src="../../../_images/render_shader-nodes_textures_voronoi_randomness_half.png" />
-<p class="caption"><span class="caption-text">Randomness: 0.5.</span></p>
+<td><div class="figure align-default" id="id15">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_randomness-half.png" src="../../../_images/render_shader-nodes_textures_voronoi_randomness-half.png" />
+<p class="caption"><span class="caption-text">Randomness: 0.5.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id16">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_randomness_quarter.png" src="../../../_images/render_shader-nodes_textures_voronoi_randomness_quarter.png" />
-<p class="caption"><span class="caption-text">Randomness: 0.25.</span></p>
+<td><div class="figure align-default" id="id16">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_randomness-quarter.png" src="../../../_images/render_shader-nodes_textures_voronoi_randomness-quarter.png" />
+<p class="caption"><span class="caption-text">Randomness: 0.25.</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id17">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_randomness_zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_randomness_zero.png" />
-<p class="caption"><span class="caption-text">Randomness: 0.0.</span></p>
+<td><div class="figure align-default" id="id17">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_randomness-zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_randomness-zero.png" />
+<p class="caption"><span class="caption-text">Randomness: 0.0.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -385,148 +382,141 @@ defaults to <em>Generated</em> texture coordinates if the socket is left unconne
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Dimensions</dt>
-<dd><p class="first">The dimensions of the space to evaluate the noise in.</p>
-<dl class="docutils">
-<dt>1D</dt>
-<dd>Evaluate the noise in 1D space at the input W.</dd>
-<dt>2D</dt>
-<dd>Evaluate the noise in 2D space at the input Vector. The Z component is ignored.</dd>
-<dt>3D</dt>
-<dd>Evaluate the noise in 3D space at the input Vector.</dd>
-<dt>4D</dt>
-<dd>Evaluate the noise in 4D space at the input Vector and the input W as the fourth dimension.</dd>
+<dl>
+<dt>Dimensions</dt><dd><p>The dimensions of the space to evaluate the noise in.</p>
+<dl class="simple">
+<dt>1D</dt><dd><p>Evaluate the noise in 1D space at the input W.</p>
+</dd>
+<dt>2D</dt><dd><p>Evaluate the noise in 2D space at the input Vector. The Z component is ignored.</p>
+</dd>
+<dt>3D</dt><dd><p>Evaluate the noise in 3D space at the input Vector.</p>
+</dd>
+<dt>4D</dt><dd><p>Evaluate the noise in 4D space at the input Vector and the input W as the fourth dimension.</p>
+</dd>
 </dl>
-<p class="last">Higher dimensions corresponds to higher render time,
+<p>Higher dimensions corresponds to higher render time,
 so lower dimensions should be used unless higher dimensions are necessary.</p>
 </dd>
-<dt>Feature</dt>
-<dd><p class="first">The Voronoi feature that the node will compute and return.</p>
-<dl class="last docutils">
-<dt>F1</dt>
-<dd><p class="first">Compute and return the distance to the closest feature point as well as its position and color.</p>
-<table border="1" class="last docutils">
+<dt>Feature</dt><dd><p>The Voronoi feature that the node will compute and return.</p>
+<dl>
+<dt>F1</dt><dd><p>Compute and return the distance to the closest feature point as well as its position and color.</p>
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id18">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_zero.png" />
-<p class="caption"><span class="caption-text">Distance.</span></p>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id18">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-zero.png" />
+<p class="caption"><span class="caption-text">Distance.</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id19">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_zero.png" />
-<p class="caption"><span class="caption-text">Color.</span></p>
+<td><div class="figure align-default" id="id19">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-zero.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-zero.png" />
+<p class="caption"><span class="caption-text">Color.</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id20">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_f1_position.png" src="../../../_images/render_shader-nodes_textures_voronoi_f1_position.png" />
-<p class="caption"><span class="caption-text">Position.</span></p>
+<td><div class="figure align-default" id="id20">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_f1-position.png" src="../../../_images/render_shader-nodes_textures_voronoi_f1-position.png" />
+<p class="caption"><span class="caption-text">Position.</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </dd>
-<dt>F2</dt>
-<dd><p class="first">Compute and return the distance to the second closest feature point as well as its position and color.</p>
-<table border="1" class="last docutils">
+<dt>F2</dt><dd><p>Compute and return the distance to the second closest feature point as well as its position and color.</p>
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id21">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_f2_distance.png" src="../../../_images/render_shader-nodes_textures_voronoi_f2_distance.png" />
-<p class="caption"><span class="caption-text">Distance.</span></p>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id21">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_f2-distance.png" src="../../../_images/render_shader-nodes_textures_voronoi_f2-distance.png" />
+<p class="caption"><span class="caption-text">Distance.</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id22">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_f2_color.png" src="../../../_images/render_shader-nodes_textures_voronoi_f2_color.png" />
-<p class="caption"><span class="caption-text">Color.</span></p>
+<td><div class="figure align-default" id="id22">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_f2-color.png" src="../../../_images/render_shader-nodes_textures_voronoi_f2-color.png" />
+<p class="caption"><span class="caption-text">Color.</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id23">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_f2_position.png" src="../../../_images/render_shader-nodes_textures_voronoi_f2_position.png" />
-<p class="caption"><span class="caption-text">Position.</span></p>
+<td><div class="figure align-default" id="id23">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_f2-position.png" src="../../../_images/render_shader-nodes_textures_voronoi_f2-position.png" />
+<p class="caption"><span class="caption-text">Position.</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </dd>
-<dt>Smooth F1</dt>
-<dd><p class="first">Compute and return a smooth version of F1.</p>
-<table border="1" class="last docutils">
+<dt>Smooth F1</dt><dd><p>Compute and return a smooth version of F1.</p>
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id24">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_one.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_distance_one.png" />
-<p class="caption"><span class="caption-text">Distance.</span></p>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id24">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-one.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-distance-one.png" />
+<p class="caption"><span class="caption-text">Distance.</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id25">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_one.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness_color_one.png" />
-<p class="caption"><span class="caption-text">Color.</span></p>
+<td><div class="figure align-default" id="id25">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-one.png" src="../../../_images/render_shader-nodes_textures_voronoi_smoothness-color-one.png" />
+<p class="caption"><span class="caption-text">Color.</span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id26">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_smooth_f1_position.png" src="../../../_images/render_shader-nodes_textures_voronoi_smooth_f1_position.png" />
-<p class="caption"><span class="caption-text">Position.</span></p>
+<td><div class="figure align-default" id="id26">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_smooth-f1-position.png" src="../../../_images/render_shader-nodes_textures_voronoi_smooth-f1-position.png" />
+<p class="caption"><span class="caption-text">Position.</span><a class="headerlink" href="#id26" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </dd>
-<dt>Distance To Edge</dt>
-<dd><p class="first">Compute and return the distance to the edges of the Voronoi cells.</p>
-<table border="1" class="last docutils">
+<dt>Distance To Edge</dt><dd><p>Compute and return the distance to the edges of the Voronoi cells.</p>
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id27">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id27">
 <img alt="../../../_images/render_shader-nodes_textures_voronoi_distance-to-edge.png" src="../../../_images/render_shader-nodes_textures_voronoi_distance-to-edge.png" />
-<p class="caption"><span class="caption-text">Distance.</span></p>
+<p class="caption"><span class="caption-text">Distance.</span><a class="headerlink" href="#id27" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id28">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_distance-to-edge_less-than.png" src="../../../_images/render_shader-nodes_textures_voronoi_distance-to-edge_less-than.png" />
-<p class="caption"><span class="caption-text">Distance &lt; 0.05.</span></p>
+<td><div class="figure align-default" id="id28">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_distance-to-edge-less-than.png" src="../../../_images/render_shader-nodes_textures_voronoi_distance-to-edge-less-than.png" />
+<p class="caption"><span class="caption-text">Distance &lt; 0.05.</span><a class="headerlink" href="#id28" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </dd>
-<dt>N-Sphere Radius</dt>
-<dd><p class="first">Compute and return the radius of the n-sphere inscribed in the Voronoi cells.
+<dt>N-Sphere Radius</dt><dd><p>Compute and return the radius of the n-sphere inscribed in the Voronoi cells.
 In other words, it is half the distance between the closest feature point and the feature point closest to it.</p>
-<table border="1" class="last docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id29">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id29">
 <img alt="../../../_images/render_shader-nodes_textures_voronoi_n-sphere-radius.png" src="../../../_images/render_shader-nodes_textures_voronoi_n-sphere-radius.png" />
-<p class="caption"><span class="caption-text">The n-sphere radius can be used to create tightly packed n-spheres.</span></p>
+<p class="caption"><span class="caption-text">The n-sphere radius can be used to create tightly packed n-spheres.</span><a class="headerlink" href="#id29" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id30">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_n-sphere-radius_nodetree.png" src="../../../_images/render_shader-nodes_textures_voronoi_n-sphere-radius_nodetree.png" />
-<p class="caption"><span class="caption-text">Node tree for the shader to the left.</span></p>
+<td><div class="figure align-default" id="id30">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_n-sphere-radius-nodetree.png" src="../../../_images/render_shader-nodes_textures_voronoi_n-sphere-radius-nodetree.png" />
+<p class="caption"><span class="caption-text">Node tree for the shader to the left.</span><a class="headerlink" href="#id30" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -535,48 +525,47 @@ In other words, it is half the distance between the closest feature point and th
 </dd>
 </dl>
 </dd>
-<dt>Distance Metric</dt>
-<dd><p class="first">The distance metric used to compute the texture.</p>
-<dl class="docutils">
-<dt>Euclidean</dt>
-<dd>Use the <a class="reference external" href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance metric</a>.</dd>
-<dt>Manhattan</dt>
-<dd>Use the <a class="reference external" href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan distance metric</a>.</dd>
-<dt>Chebychev</dt>
-<dd>Use the <a class="reference external" href="https://en.wikipedia.org/wiki/Chebyshev_distance">Chebychev distance metric</a>.</dd>
-<dt>Minkowski</dt>
-<dd>Use the <a class="reference external" href="https://en.wikipedia.org/wiki/Minkowski_distance">Minkowski distance metric</a>.
+<dt>Distance Metric</dt><dd><p>The distance metric used to compute the texture.</p>
+<dl class="simple">
+<dt>Euclidean</dt><dd><p>Use the <a class="reference external" href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance metric</a>.</p>
+</dd>
+<dt>Manhattan</dt><dd><p>Use the <a class="reference external" href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan distance metric</a>.</p>
+</dd>
+<dt>Chebychev</dt><dd><p>Use the <a class="reference external" href="https://en.wikipedia.org/wiki/Chebyshev_distance">Chebychev distance metric</a>.</p>
+</dd>
+<dt>Minkowski</dt><dd><p>Use the <a class="reference external" href="https://en.wikipedia.org/wiki/Minkowski_distance">Minkowski distance metric</a>.
 The Minkowski distance is a generalization of the aforementioned metrics with an <em>Exponent</em> as a parameter.
 Minkowski with an exponent of one is equivalent to the <em>Manhattan</em> distance metric.
 Minkowski with an exponent of two is equivalent to the <em>Euclidean</em> distance metric.
-Minkowski with an infinite exponent is equivalent to the <em>Chebychev</em> distance metric.</dd>
+Minkowski with an infinite exponent is equivalent to the <em>Chebychev</em> distance metric.</p>
+</dd>
 </dl>
-<table border="1" class="last docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id31">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski_half.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski_half.png" />
-<p class="caption"><span class="caption-text">Minkowski Exponent: 0.5 (Minkowski 1/2).</span></p>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id31">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski-half.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski-half.png" />
+<p class="caption"><span class="caption-text">Minkowski Exponent: 0.5 (Minkowski 1/2).</span><a class="headerlink" href="#id31" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id32">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski_one.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski_one.png" />
-<p class="caption"><span class="caption-text">Minkowski Exponent: 1.0 (Manhattan).</span></p>
+<td><div class="figure align-default" id="id32">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski-one.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski-one.png" />
+<p class="caption"><span class="caption-text">Minkowski Exponent: 1.0 (Manhattan).</span><a class="headerlink" href="#id32" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id33">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski_two.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski_two.png" />
-<p class="caption"><span class="caption-text">Minkowski Exponent: 2.0 (Euclidean).</span></p>
+<td><div class="figure align-default" id="id33">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski-two.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski-two.png" />
+<p class="caption"><span class="caption-text">Minkowski Exponent: 2.0 (Euclidean).</span><a class="headerlink" href="#id33" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id34">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski_32.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski_32.png" />
-<p class="caption"><span class="caption-text">Minkowski Exponent: 32.0 (approximation of Chebychev).</span></p>
+<td><div class="figure align-default" id="id34">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_minkowski-32.png" src="../../../_images/render_shader-nodes_textures_voronoi_minkowski-32.png" />
+<p class="caption"><span class="caption-text">Minkowski Exponent: 32.0 (approximation of Chebychev).</span><a class="headerlink" href="#id34" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -587,17 +576,17 @@ Minkowski with an infinite exponent is equivalent to the <em>Chebychev</em> dist
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Distance</dt>
-<dd>Distance.</dd>
-<dt>Màu Sắc -- Color</dt>
-<dd>Cell color. The color is arbitrary.</dd>
-<dt>Position</dt>
-<dd>Position of feature point.</dd>
-<dt>W</dt>
-<dd>Position of feature point.</dd>
-<dt>Radius</dt>
-<dd>N-Sphere radius.</dd>
+<dl class="simple">
+<dt>Distance</dt><dd><p>Distance.</p>
+</dd>
+<dt>Màu Sắc -- Color</dt><dd><p>Cell color. The color is arbitrary.</p>
+</dd>
+<dt>Position</dt><dd><p>Position of feature point.</p>
+</dd>
+<dt>W</dt><dd><p>Position of feature point.</p>
+</dd>
+<dt>Radius</dt><dd><p>N-Sphere radius.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="notes">
@@ -609,13 +598,13 @@ and can be fixed in a similar manner as described there.</p>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id35">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_example_beveled_cells.png" src="../../../_images/render_shader-nodes_textures_voronoi_example_beveled_cells.png" />
-<p class="caption"><span class="caption-text">The difference between <em>F1</em> and <em>Smooth F1</em> can be used to create beveled Voronoi cells.</span></p>
+<div class="figure align-default" id="id35">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_example-beveled-cells.png" src="../../../_images/render_shader-nodes_textures_voronoi_example-beveled-cells.png" />
+<p class="caption"><span class="caption-text">The difference between <em>F1</em> and <em>Smooth F1</em> can be used to create beveled Voronoi cells.</span><a class="headerlink" href="#id35" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure" id="id36">
-<img alt="../../../_images/render_shader-nodes_textures_voronoi_example_hammered_metal.jpg" src="../../../_images/render_shader-nodes_textures_voronoi_example_hammered_metal.jpg" />
-<p class="caption"><span class="caption-text">Creating a hammered metal shader using the <em>Voronoi Texture</em> node.</span></p>
+<div class="figure align-default" id="id36">
+<img alt="../../../_images/render_shader-nodes_textures_voronoi_example-hammered-metal.jpg" src="../../../_images/render_shader-nodes_textures_voronoi_example-hammered-metal.jpg" />
+<p class="caption"><span class="caption-text">Creating a hammered metal shader using the <em>Voronoi Texture</em> node.</span><a class="headerlink" href="#id36" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

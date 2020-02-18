@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
-    <link rel="next" title="-- Light Probes" href="lightprobes/index.html" />
+    <link rel="next" title="Light Probes" href="light_probes/index.html" />
     <link rel="prev" title="Thế Giới -- World" href="world.html" /> 
 </head>
 
@@ -134,7 +134,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#limitations">Limitations</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="lightprobes/index.html">-- Light Probes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light_probes/index.html">Light Probes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="limitations.html">Những Giới Hạn -- Limitations</a></li>
 </ul>
 </li>
@@ -227,15 +227,12 @@
   <div class="section" id="light-settings">
 <h1>Light Settings<a class="headerlink" href="#light-settings" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ Light</span> and <span class="menuselection">Shader Editor ‣ Sidebar ‣ Settings</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Light</span> and <span class="menuselection">Shader Editor ‣ Sidebar ‣ Settings</span></p>
+</dd>
+</dl>
 </div>
 <p>Next to lighting from the background and any object with an emission shader,
 lights are another way to add light into the scene.
@@ -247,38 +244,37 @@ and can be more easily managed as objects of their own type.</p>
 </div>
 <div class="section" id="eevee">
 <h2>Eevee<a class="headerlink" href="#eevee" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Lóng Lánh -- Specular</dt>
-<dd>Specular Light intensity multiplier. Use it for more artistic control.
-Setting this to anything but 1.0 will yield non-photorealistic result.</dd>
-<dt>Custom Distance</dt>
-<dd><p class="first">If enabled uses <em>Distance</em> as the custom attenuation distance instead of global light threshold.</p>
-<dl class="docutils">
-<dt>Distance</dt>
-<dd>Specifies where light influence will be set to 0.</dd>
+<dl>
+<dt>Lóng Lánh -- Specular</dt><dd><p>Specular Light intensity multiplier. Use it for more artistic control.
+Setting this to anything but 1.0 will yield non-photorealistic result.</p>
+</dd>
+<dt>Custom Distance</dt><dd><p>If enabled uses <em>Distance</em> as the custom attenuation distance instead of global light threshold.</p>
+<dl class="simple">
+<dt>Distance</dt><dd><p>Specifies where light influence will be set to 0.</p>
+</dd>
 </dl>
-<div class="last admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="render_settings/shadows.html"><span class="doc">Light Threshold</span></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="render_settings/shadows.html"><span class="doc">Light Threshold</span></a>.</p>
 </div>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The light's <em>Power</em>/<em>Strength</em> affect both specular and diffuse light.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>The light's <em>Power</em>/<em>Strength</em> affect both specular and diffuse light.</p>
 </div>
 </div>
 <div class="section" id="shadows">
 <span id="bpy-types-light-shadow"></span><h2>Shadows<a class="headerlink" href="#shadows" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="common-parameters">
 <h3>Common Parameters<a class="headerlink" href="#common-parameters" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Clip Start</dt>
-<dd>Distance from the light object at which the shadow map starts.
+<dl class="simple">
+<dt>Clip Start</dt><dd><p>Distance from the light object at which the shadow map starts.
 Any object before this distance will not appear to cast shadows.
-<em>Clip Start</em> will only appear for point, spot and area lights.</dd>
-<dt>Bias</dt>
-<dd>Bias applied to the depth test to reduce self shadowing artifacts.</dd>
+<em>Clip Start</em> will only appear for point, spot and area lights.</p>
+</dd>
+<dt>Bias</dt><dd><p>Bias applied to the depth test to reduce self shadowing artifacts.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="contact-shadows">
@@ -288,17 +284,17 @@ It uses the depth buffer to find occluders (just like Screen Space Reflections).
 However, just like Screen Space Reflections it has the same limitations,
 namely, unknown object thickness and effect disappearing at screen edges.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">The distance of action of Contact Shadows should remain quite small.
+<p class="admonition-title">Mẹo</p>
+<p>The distance of action of Contact Shadows should remain quite small.
 They are not accurate enough to shadow the entire scene.</p>
 </div>
-<dl class="docutils">
-<dt>Distance</dt>
-<dd>World space distance in which to search for screen space occluder.</dd>
-<dt>Bias</dt>
-<dd>Bias applied to the ray tracing to reduce self-shadowing artifacts.</dd>
-<dt>Thickness</dt>
-<dd>Pixel thickness used to detect occlusion, treating any potential occluder as this thick.</dd>
+<dl class="simple">
+<dt>Distance</dt><dd><p>World space distance in which to search for screen space occluder.</p>
+</dd>
+<dt>Bias</dt><dd><p>Bias applied to the ray tracing to reduce self-shadowing artifacts.</p>
+</dd>
+<dt>Thickness</dt><dd><p>Pixel thickness used to detect occlusion, treating any potential occluder as this thick.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="cascaded-shadow-map">
@@ -309,33 +305,33 @@ Each cascade covers a different portion of the view frustum.
 Do note that cascade shadow maps are always updated because they are view dependent.
 This means they have a high performance impact.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">In orthographic view the cascades cover the whole depth range of the camera
+<p class="admonition-title">Ghi chú</p>
+<p>In orthographic view the cascades cover the whole depth range of the camera
 with an evenly distributed shadow precision.</p>
 </div>
-<dl class="docutils">
-<dt>Count</dt>
-<dd>Number of cascades to use. More cascades means better precision but a lower update rate.</dd>
-<dt>Fade</dt>
-<dd>Fade transition area between two cascades.
-Higher values means less overall resolution because cascades need to overlap.</dd>
-<dt>Max Distance</dt>
-<dd>Distance away from the view origin (or camera origin if in camera view) to cover by the cascade.
+<dl class="simple">
+<dt>Count</dt><dd><p>Number of cascades to use. More cascades means better precision but a lower update rate.</p>
+</dd>
+<dt>Fade</dt><dd><p>Fade transition area between two cascades.
+Higher values means less overall resolution because cascades need to overlap.</p>
+</dd>
+<dt>Max Distance</dt><dd><p>Distance away from the view origin (or camera origin if in camera view) to cover by the cascade.
 If the view far clip distance is lower than Max Distance, the lowest of the two will be used.
-Only works in perspective view.</dd>
-<dt>Distribution</dt>
-<dd>Puts more resolution towards the near clip plane. Only works in perspective view.</dd>
+Only works in perspective view.</p>
+</dd>
+<dt>Distribution</dt><dd><p>Puts more resolution towards the near clip plane. Only works in perspective view.</p>
+</dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="limitations.html#eevee-limitations-shadows"><span class="std std-ref">Limitations</span></a>.</p>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="limitations.html#eevee-limitations-shadows"><span class="std std-ref">Limitations</span></a>.</p>
 </div>
 </div>
 </div>
 <div class="section" id="limitations">
 <h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Unlike in Cycles, the <em>Size</em> of spot lights does not change the softness of the cone.</li>
+<li><p>Unlike in Cycles, the <em>Size</em> of spot lights does not change the softness of the cone.</p></li>
 </ul>
 </div>
 </div>
@@ -348,7 +344,7 @@ Only works in perspective view.</dd>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="lightprobes/index.html" class="btn btn-neutral float-right" title="-- Light Probes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="light_probes/index.html" class="btn btn-neutral float-right" title="Light Probes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="world.html" class="btn btn-neutral float-left" title="Thế Giới -- World" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

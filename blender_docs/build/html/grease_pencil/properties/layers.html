@@ -137,10 +137,10 @@
 <li class="toctree-l3"><a class="reference internal" href="display.html">Viewport Display</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Grease Pencil Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Grease Pencil Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visual_effects/index.html">Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../animation/index.html">Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#modes">Modes</a></li>
 </ul>
 </li>
@@ -225,7 +225,7 @@
 <span id="bpy-types-gpencillayer"></span><h1>2D Layers<a class="headerlink" href="#d-layers" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../_images/grease-pencil_properties_layers_panel.png" src="../../_images/grease-pencil_properties_layers_panel.png" />
-<p class="caption"><span class="caption-text">Grease Pencil Layers panel.</span></p>
+<p class="caption"><span class="caption-text">Grease Pencil Layers panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="layers-list">
 <h2>Layers List<a class="headerlink" href="#layers-list" title="Permalink to this headline">¶</a></h2>
@@ -239,79 +239,78 @@ See <a class="reference internal" href="../../editors/dope_sheet/grease_pencil.h
 <p>Layers can also be used together with Modifiers to only affects part of your drawing.
 See <a class="reference internal" href="../modifiers/introduction.html"><span class="doc">Modifiers</span></a> for more information.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">Sometimes the layers that your are not working on could be a distraction,
+<p class="admonition-title">Mẹo</p>
+<p>Sometimes the layers that your are not working on could be a distraction,
 you can activate <em>Fade Layers</em> in overlays to control the opacity of the non active layers.
 See <a class="reference internal" href="../../editors/3dview/controls/overlays.html"><span class="doc">Overlays</span></a> for more information.</p>
 </div>
 <p id="bpy-types-gpencillayer-use-onion-skinning"><span id="bpy-types-gpencillayer-hide"></span><span id="bpy-types-gpencillayer-lock"></span><span id="bpy-types-gpencillayer-mask-layer"></span>Next to the layer name there are four icons buttons that control common properties of the layer:</p>
-<dl class="docutils" id="bpy-types-gpencillayer-use-solo-mode">
-<dt>Mask (mask icon)</dt>
-<dd><p class="first">When the mask is enabled, all the layers below the current one function as a single mask.
+<dl id="bpy-types-gpencillayer-use-solo-mode">
+<dt>Mask (mask icon)</dt><dd><p>When the mask is enabled, all the layers below the current one function as a single mask.
 This mask hide any pixel in the current layer outside the mask created by the underlying layers.</p>
-<table border="1" class="last docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id2">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
 <img alt="../../_images/grease-pencil_properties_layers_mask-off.png" src="../../_images/grease-pencil_properties_layers_mask-off.png" />
-<p class="caption"><span class="caption-text">Red stroke on top layer without mask.</span></p>
+<p class="caption"><span class="caption-text">Red stroke on top layer without mask.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id3">
+<td><div class="figure align-default" id="id3">
 <img alt="../../_images/grease-pencil_properties_layers_mask-on.png" src="../../_images/grease-pencil_properties_layers_mask-on.png" />
-<p class="caption"><span class="caption-text">Red stroke on top layer with mask activated.</span></p>
+<p class="caption"><span class="caption-text">Red stroke on top layer with mask activated.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </dd>
-<dt>Lock (padlock icon)</dt>
-<dd>Toggle layer from being editable.</dd>
-<dt>Viewport/Render Visibility (eye icon)</dt>
-<dd>Toggle layer visibility in the viewport and in render.</dd>
-<dt>Onion Skinning (onion skin icon)</dt>
-<dd>Toggle the use the layer for <a class="reference internal" href="onion_skinning.html"><span class="doc">Onion Skinning</span></a>.</dd>
+<dt>Lock (padlock icon)</dt><dd><p>Toggle layer from being editable.</p>
+</dd>
+<dt>Viewport/Render Visibility (eye icon)</dt><dd><p>Toggle layer visibility in the viewport and in render.</p>
+</dd>
+<dt>Onion Skinning (onion skin icon)</dt><dd><p>Toggle the use the layer for <a class="reference internal" href="onion_skinning.html"><span class="doc">Onion Skinning</span></a>.</p>
+</dd>
 </dl>
 <p id="bpy-types-gpencillayer-opacity"><span id="bpy-types-gpencillayer-blend-mode"></span>Below the layers list there are additional common settings:</p>
-<dl class="docutils">
-<dt>Blend</dt>
-<dd>The layer blending operation to perform. See <a class="reference internal" href="../../glossary/index.html#term-color-blend-modes"><span class="xref std std-term">Color Blend Modes</span></a>.</dd>
-<dt>Opacity</dt>
-<dd>Used to set the opacity of the layer.</dd>
+<dl class="simple">
+<dt>Blend</dt><dd><p>The layer blending operation to perform. See <a class="reference internal" href="../../glossary/index.html#term-color-blend-modes"><span class="xref std std-term">Color Blend Modes</span></a>.</p>
+</dd>
+<dt>Opacity</dt><dd><p>Used to set the opacity of the layer.</p>
+</dd>
 </dl>
 <div class="section" id="specials">
 <h3>Specials<a class="headerlink" href="#specials" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Duplicate Layer</dt>
-<dd>Makes an exact copy of the selected layer appending a number to differentiate its name.</dd>
-<dt>Show All</dt>
-<dd>Turns on the visibility of every layer in the list.</dd>
-<dt>Hide Others</dt>
-<dd>Turns off the visibility of every layer in the list except the active one.</dd>
-<dt>Lock All</dt>
-<dd>Locks edition of all the layers in the list.</dd>
-<dt>Unlock All</dt>
-<dd>Unlocks edition of all the layers in the list.</dd>
-<dt>Autolock inactive layer</dt>
-<dd>Locks automatically the edition of every layer in the list except the active one.
-This way you avoid to make unwanted changes in other layers without the need to lock them every time.</dd>
-<dt>Merge Down</dt>
-<dd>Merge the selected layer with the layer below, the new layer keeps the name of the lower layer.</dd>
-<dt>Copy Layer to Object</dt>
-<dd>Makes a copy of the layer and move it to the selected Grease Pencil object.</dd>
+<dl class="simple">
+<dt>Duplicate Layer</dt><dd><p>Makes an exact copy of the selected layer appending a number to differentiate its name.</p>
+</dd>
+<dt>Show All</dt><dd><p>Turns on the visibility of every layer in the list.</p>
+</dd>
+<dt>Hide Others</dt><dd><p>Turns off the visibility of every layer in the list except the active one.</p>
+</dd>
+<dt>Lock All</dt><dd><p>Locks edition of all the layers in the list.</p>
+</dd>
+<dt>Unlock All</dt><dd><p>Unlocks edition of all the layers in the list.</p>
+</dd>
+<dt>Autolock inactive layer</dt><dd><p>Locks automatically the edition of every layer in the list except the active one.
+This way you avoid to make unwanted changes in other layers without the need to lock them every time.</p>
+</dd>
+<dt>Merge Down</dt><dd><p>Merge the selected layer with the layer below, the new layer keeps the name of the lower layer.</p>
+</dd>
+<dt>Copy Layer to Object</dt><dd><p>Makes a copy of the layer and move it to the selected Grease Pencil object.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="lock-and-visibility-general-controls">
 <h3>Lock and Visibility General Controls<a class="headerlink" href="#lock-and-visibility-general-controls" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Lock (padlock icon)</dt>
-<dd>Toggle whether the active layer is the only one that can be edited.</dd>
-<dt>Visibility (screen icon)</dt>
-<dd>Toggle whether the active layer is the only one that can be edited and is visible.</dd>
+<dl class="simple">
+<dt>Lock (padlock icon)</dt><dd><p>Toggle whether the active layer is the only one that can be edited.</p>
+</dd>
+<dt>Visibility (screen icon)</dt><dd><p>Toggle whether the active layer is the only one that can be edited and is visible.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -319,45 +318,44 @@ This way you avoid to make unwanted changes in other layers without the need to 
 <h2>Adjustments<a class="headerlink" href="#adjustments" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id4">
 <img alt="../../_images/grease-pencil_properties_layers_adjustment.png" src="../../_images/grease-pencil_properties_layers_adjustment.png" />
-<p class="caption"><span class="caption-text">Layers adjustment panel.</span></p>
+<p class="caption"><span class="caption-text">Layers adjustment panel.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Tint Color/Factor</dt>
-<dd>Color that tint any material colors used in the layer.
-The <em>Factor</em> controls the amount of tint color to apply.</dd>
-<dt>Stroke Thickness</dt>
-<dd>Thickness value that override the strokes thickness in the layer.</dd>
-<dt>Pass Index</dt>
-<dd><p class="first">The layer index number can be used with some modifiers to restrict changes to only certain areas.</p>
-<p class="last">See <a class="reference internal" href="../modifiers/introduction.html"><span class="doc">Modifiers</span></a> for more information.</p>
+<dl>
+<dt>Tint Color/Factor</dt><dd><p>Color that tint any material colors used in the layer.
+The <em>Factor</em> controls the amount of tint color to apply.</p>
 </dd>
-<dt>View Layer</dt>
-<dd>Defines the View Layer to use for the Grease Pencil layer.
+<dt>Stroke Thickness</dt><dd><p>Thickness value that override the strokes thickness in the layer.</p>
+</dd>
+<dt>Pass Index</dt><dd><p>The layer index number can be used with some modifiers to restrict changes to only certain areas.</p>
+<p>See <a class="reference internal" href="../modifiers/introduction.html"><span class="doc">Modifiers</span></a> for more information.</p>
+</dd>
+<dt>View Layer</dt><dd><p>Defines the View Layer to use for the Grease Pencil layer.
 If empty, the layer will be included in all View Layers.
-This is useful to separate drawings parts for <a class="reference internal" href="../../compositing/introduction.html"><span class="doc">compositing</span></a>.</dd>
-<dt>Disallow Locked Materials Editing</dt>
-<dd>Avoids editing locked materials in the layer. When disabled,
-any material can be edited even if they are locked in the material list.</dd>
+This is useful to separate drawings parts for <a class="reference internal" href="../../compositing/introduction.html"><span class="doc">compositing</span></a>.</p>
+</dd>
+<dt>Disallow Locked Materials Editing</dt><dd><p>Avoids editing locked materials in the layer. When disabled,
+any material can be edited even if they are locked in the material list.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="relations">
 <h2>Relations<a class="headerlink" href="#relations" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Parent/Type</dt>
-<dd>Select a Parent object and Type to manipulate the layer.
+<dl class="simple">
+<dt>Parent/Type</dt><dd><p>Select a Parent object and Type to manipulate the layer.
 The layer will inherit the transformations of the parent,
-this is especially useful when rigging for cut-out animation.</dd>
+this is especially useful when rigging for cut-out animation.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="display">
 <h2>Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Custom Channel Color</dt>
-<dd>Sets the color to use in the channel region of the <a class="reference internal" href="../../editors/dope_sheet/grease_pencil.html"><span class="doc">Dope Sheet</span></a>.</dd>
-<dt>Show Only On Keyframed</dt>
-<dd>Makes the layer visible in the viewport only if it has a keyframe in the actual frame.
+<dl class="simple">
+<dt>Custom Channel Color</dt><dd><p>Sets the color to use in the channel region of the <a class="reference internal" href="../../editors/dope_sheet/grease_pencil.html"><span class="doc">Dope Sheet</span></a>.</p>
+</dd>
+<dt>Show Only On Keyframed</dt><dd><p>Makes the layer visible in the viewport only if it has a keyframe in the actual frame.
 This helps for example when you are in the inking process using the <em>Fill</em> tool and want to only see
-the strokes that are in the actual frame to avoid fill in unwanted regions.</dd>
+the strokes that are in the actual frame to avoid fill in unwanted regions.</p>
+</dd>
 </dl>
 </div>
 </div>

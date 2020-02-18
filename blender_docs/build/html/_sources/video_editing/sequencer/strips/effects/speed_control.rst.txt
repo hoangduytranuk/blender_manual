@@ -18,7 +18,7 @@ Options
 
 Stretch to Input Strip Length
    Automatically calculates the *Speed Factor* based on the length of the input strip.
-   So if you make a strip 1/2 the original size the sequence will play back at 2x speed.
+   So if you make a strip 1/2 the original size the sequence will play back at 2 times the speed.
 Use as Speed
    Calculates the scale value based on a *Speed Factor*.
 

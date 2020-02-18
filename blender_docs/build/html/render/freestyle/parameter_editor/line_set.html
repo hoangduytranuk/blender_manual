@@ -225,47 +225,42 @@
   <div class="section" id="line-set">
 <span id="bpy-types-freestylelineset"></span><span id="bpy-types-linesets"></span><h1>Bộ Đường Nét -- Line Set<a class="headerlink" href="#line-set" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ View Layer ‣ Freestyle Line Set</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ View Layer ‣ Freestyle Line Set</span></p>
+</dd>
+</dl>
 </div>
 <p>A line set selects, among the lines (edges) detected by Freestyle,
 which ones will be rendered using its attached
 <a class="reference internal" href="line_style/introduction.html"><span class="doc">line style</span></a>, through various methods.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/render_freestyle_parameter-editor_line-set_panel.png" src="../../../_images/render_freestyle_parameter-editor_line-set_panel.png" />
-<p class="caption"><span class="caption-text">Freestyle Line Set panel.</span></p>
+<p class="caption"><span class="caption-text">Freestyle Line Set panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="visibility">
 <h2>Ẩn/Hiện -- Visibility<a class="headerlink" href="#visibility" title="Permalink to this headline">¶</a></h2>
 <p>There are three choices for selecting edges by visibility.</p>
-<dl class="docutils">
-<dt>Hữu Hình -- Visible</dt>
-<dd>Only lines occluded by no surfaces are rendered.</dd>
-<dt>Ẩn -- Hidden</dt>
-<dd><p class="first">Lines occluded by at least one surface are rendered.</p>
-<div class="last figure align-center" id="id2">
+<dl>
+<dt>Hữu Hình -- Visible</dt><dd><p>Only lines occluded by no surfaces are rendered.</p>
+</dd>
+<dt>Ẩn -- Hidden</dt><dd><p>Lines occluded by at least one surface are rendered.</p>
+<div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_visibility-hidden-edges.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_visibility-hidden-edges.png" src="../../../_images/render_freestyle_parameter-editor_line-set_visibility-hidden-edges.png" style="width: 60%;" /></a>
 <p class="caption"><span class="caption-text">Proof of concept of visible and hidden edges by LightBWK
-(<a class="reference external" href="https://wiki.blender.org/wiki/File:HiddenCreaseEdgeMark.zip">blend-file</a>)</span></p>
+(<a class="reference external" href="https://wiki.blender.org/wiki/File:HiddenCreaseEdgeMark.zip">blend-file</a>)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Phạm Vi ĐLVH -- QI Range</dt>
-<dd><p class="first">QI stands for <em>Quantitative Invisibility</em>. Lines occluded by a number of surfaces in the given range are rendered.</p>
-<dl class="docutils">
-<dt>-- Start and End</dt>
-<dd>Min/max number of occluding surfaces for a line to be rendered.</dd>
+<dt>Phạm Vi ĐLVH -- QI Range</dt><dd><p>QI stands for <em>Quantitative Invisibility</em>. Lines occluded by a number of surfaces in the given range are rendered.</p>
+<dl class="simple">
+<dt>-- Start and End</dt><dd><p>Min/max number of occluding surfaces for a line to be rendered.</p>
+</dd>
 </dl>
-<div class="last figure align-center" id="id3">
+<div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_visibility-qi-range.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_visibility-qi-range.png" src="../../../_images/render_freestyle_parameter-editor_line-set_visibility-qi-range.png" style="width: 60%;" /></a>
 <p class="caption"><span class="caption-text">QI Range proof of concept demo, Start: 3, End: 7, by LightBWK
-(<a class="reference external" href="https://wiki.blender.org/wiki/File:QI-Range.zip">blend-file</a>)</span></p>
+(<a class="reference external" href="https://wiki.blender.org/wiki/File:QI-Range.zip">blend-file</a>)</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
 </dl>
@@ -280,45 +275,44 @@ Edge types can also be excluded from calculation by pressing the <em>X</em> next
 <a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-basic.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-basic.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-basic.png" style="width: 60%;" /></a>
 <p class="caption"><span class="caption-text">Examples of some basic edge types:
 Silhouette (green), Crease (black), Border (blue) and Edge Marks (red)
-(<a class="reference external" href="https://wiki.blender.org/wiki/File:EdgeType.zip">blend-file</a> by LightBWK).</span></p>
+(<a class="reference external" href="https://wiki.blender.org/wiki/File:EdgeType.zip">blend-file</a> by LightBWK).</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Hình Bóng -- Silhouette</dt>
-<dd>Draws silhouettes around your closed objects by rendering lines where the surface normal transitions between
+<dl>
+<dt>Hình Bóng -- Silhouette</dt><dd><p>Draws silhouettes around your closed objects by rendering lines where the surface normal transitions between
 pointing toward and away from the camera. It is often good for organic objects (like Suzanne &amp; Sphere),
-and bad for sharp edges, like a box. It cannot render open mesh objects like open cylinders and flat planes.</dd>
-<dt>Nếp Gập -- Crease</dt>
-<dd><p class="first">Shows only edges whose adjacent faces form an angle sharper than the defined view map's <em>Crease Angle</em>.</p>
-<div class="last figure align-center" id="id5">
+and bad for sharp edges, like a box. It cannot render open mesh objects like open cylinders and flat planes.</p>
+</dd>
+<dt>Nếp Gập -- Crease</dt><dd><p>Shows only edges whose adjacent faces form an angle sharper than the defined view map's <em>Crease Angle</em>.</p>
+<div class="figure align-center" id="id5">
 <a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-crease.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-crease.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-crease.png" style="width: 60%;" /></a>
 <p class="caption"><span class="caption-text">Crease Angle proof of concept for 121° by LightBWK
-(<a class="reference external" href="https://wiki.blender.org/wiki/File:CreaseAngle.zip">blend-file</a>).</span></p>
+(<a class="reference external" href="https://wiki.blender.org/wiki/File:CreaseAngle.zip">blend-file</a>).</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Đường Ranh Giới -- Border</dt>
-<dd>Border shows open mesh edges, i.e. edges that belong to only one face. An open cylinder has open edges at
-the top and bottom, and a plane is open all around. Suzanne's eye socket is an open edge.</dd>
-<dt>Dấu Cạnh -- Edge Marks</dt>
-<dd>Renders marked edges. See <a class="reference internal" href="#edge-marks">Edge Marks</a> for details.</dd>
-<dt>Đường Công-Tua -- Contour</dt>
-<dd>Draws lines around each object, separating it from other objects behind it, or the scene background.</dd>
-<dt>Đường Công-Tua Ngoài -- External Contour</dt>
-<dd>Draws lines around all objects, separating them from the scene background, but not each other.</dd>
+<dt>Đường Ranh Giới -- Border</dt><dd><p>Border shows open mesh edges, i.e. edges that belong to only one face. An open cylinder has open edges at
+the top and bottom, and a plane is open all around. Suzanne's eye socket is an open edge.</p>
+</dd>
+<dt>Dấu Cạnh -- Edge Marks</dt><dd><p>Renders marked edges. See <a class="reference internal" href="#edge-marks">Edge Marks</a> for details.</p>
+</dd>
+<dt>Đường Công-Tua -- Contour</dt><dd><p>Draws lines around each object, separating it from other objects behind it, or the scene background.</p>
+</dd>
+<dt>Đường Công-Tua Ngoài -- External Contour</dt><dd><p>Draws lines around all objects, separating them from the scene background, but not each other.</p>
+</dd>
 </dl>
 <div class="figure align-center" id="id6">
 <a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-contour.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-contour.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-types-contour.png" style="width: 60%;" /></a>
-<p class="caption"><span class="caption-text">Left pair: Contour; Right pair: External Contour.</span></p>
+<p class="caption"><span class="caption-text">Left pair: Contour; Right pair: External Contour.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Đường Công-Tua Gợi Ý -- Suggestive Contour</dt>
-<dd>Draws some lines which would form the <em>Silhouette</em> of the mesh if the view point was shifted.
+<dl class="simple">
+<dt>Đường Công-Tua Gợi Ý -- Suggestive Contour</dt><dd><p>Draws some lines which would form the <em>Silhouette</em> of the mesh if the view point was shifted.
 Depends on your view map settings for <em>Kr Derivative Epsilon</em> and <em>Sphere Radius</em>
-(further information: <a class="reference external" href="https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf">File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf</a>).</dd>
-<dt>Ranh Giới Nguyên Liệu -- Material Boundary</dt>
-<dd>Draws lines where two materials meet on the same object.</dd>
-<dt>Lằn Gợn &amp; Thung Lũng -- Ridge &amp; Valley</dt>
-<dd>Draws lines marking crests of ridges and valleys, i.e. places where the surface curvature is at
-its minimum or maximum. Depends on your <em>Sphere Radius</em> view map settings.</dd>
+(further information: <a class="reference external" href="https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf">File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf</a>).</p>
+</dd>
+<dt>Ranh Giới Nguyên Liệu -- Material Boundary</dt><dd><p>Draws lines where two materials meet on the same object.</p>
+</dd>
+<dt>Lằn Gợn &amp; Thung Lũng -- Ridge &amp; Valley</dt><dd><p>Draws lines marking crests of ridges and valleys, i.e. places where the surface curvature is at
+its minimum or maximum. Depends on your <em>Sphere Radius</em> view map settings.</p>
+</dd>
 </dl>
 <div class="section" id="edge-marks">
 <h3>Dấu Cạnh -- Edge Marks<a class="headerlink" href="#edge-marks" title="Permalink to this headline">¶</a></h3>
@@ -327,32 +321,32 @@ you can mark &quot;Seams&quot; for UV unwrapping or &quot;Sharp&quot; for edge s
 These marked edges are available to render when you select <em>Edge Mark</em>.</p>
 <p>This is done as follows:</p>
 <ol class="arabic simple">
-<li>Select the mesh object and enter <em>Edit Mode</em>.</li>
-<li>Select the edges you want to be marked.</li>
-<li>Press <kbd class="kbd docutils literal notranslate">Ctrl-E</kbd> and select <em>Mark Freestyle Edge</em>.</li>
+<li><p>Select the mesh object and enter <em>Edit Mode</em>.</p></li>
+<li><p>Select the edges you want to be marked.</p></li>
+<li><p>Press <kbd class="kbd docutils literal notranslate">Ctrl-E</kbd> and select <em>Mark Freestyle Edge</em>.</p></li>
 </ol>
 <p>Edge marks are useful when you want to draw lines along particular mesh edges.
 The examples below explain the use of edge marks.</p>
 <div class="figure align-center" id="id7">
 <a class="reference internal image-reference" href="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-mark-freestyle-edge.png"><img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-mark-freestyle-edge.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-mark-freestyle-edge.png" style="width: 60%;" /></a>
-<p class="caption"><span class="caption-text">Marking Freestyle Edges in Edit Mode; the edge marks are highlighted in green.</span></p>
+<p class="caption"><span class="caption-text">Marking Freestyle Edges in Edit Mode; the edge marks are highlighted in green.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>With <em>Edge Marks</em> enabled, the previously-marked lines are always rendered.
 You can see the black contour lines and the blue lines that are made with edge marks.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id8">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id8">
 <img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-example-1.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-example-1.png" />
-<p class="caption"><span class="caption-text">Render without Edge Marks.</span></p>
+<p class="caption"><span class="caption-text">Render without Edge Marks.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id9">
+<td><div class="figure align-default" id="id9">
 <img alt="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-example-2.png" src="../../../_images/render_freestyle_parameter-editor_line-set_edge-marks-example-2.png" />
-<p class="caption"><span class="caption-text">Render with Edge Marks enabled.</span></p>
+<p class="caption"><span class="caption-text">Render with Edge Marks enabled.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -360,13 +354,13 @@ You can see the black contour lines and the blue lines that are made with edge m
 </table>
 <p>What are edge marks good for?</p>
 <ul class="simple">
-<li>When you need to render marks on an almost-flat plane, when other edge types cannot detect any line.</li>
-<li>When you want full control of edge rendering. Often used for edges of squarish shapes.</li>
-<li>Mark the whole base mesh to be rendered for base mesh preview.</li>
+<li><p>When you need to render marks on an almost-flat plane, when other edge types cannot detect any line.</p></li>
+<li><p>When you want full control of edge rendering. Often used for edges of squarish shapes.</p></li>
+<li><p>Mark the whole base mesh to be rendered for base mesh preview.</p></li>
 </ul>
 <p>What are edge marks not good for?</p>
 <ul class="simple">
-<li>Round outer edges (use instead <em>Contour/External Contour/Silhouette</em>).</li>
+<li><p>Round outer edges (use instead <em>Contour/External Contour/Silhouette</em>).</p></li>
 </ul>
 </div>
 </div>
@@ -375,65 +369,65 @@ You can see the black contour lines and the blue lines that are made with edge m
 <p>Face marks are useful for removing lines from certain areas of a mesh.</p>
 <p>To set a face mark:</p>
 <ol class="arabic simple">
-<li>Select a mesh object and enter <em>Edit Mode</em>.</li>
-<li>Select the faces you want to be marked.</li>
-<li>Press <kbd class="kbd docutils literal notranslate">Ctrl-F</kbd> and select <span class="menuselection">Face Data ‣ Mark Freestyle Face</span>.</li>
+<li><p>Select a mesh object and enter <em>Edit Mode</em>.</p></li>
+<li><p>Select the faces you want to be marked.</p></li>
+<li><p>Press <kbd class="kbd docutils literal notranslate">Ctrl-F</kbd> and select <span class="menuselection">Face Data ‣ Mark Freestyle Face</span>.</p></li>
 </ol>
 <p>In this example, two faces of the default cube are marked like the image on the left.
 On the right is a render without face marks activated.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id10">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id10">
 <img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-1.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-1.png" />
-<p class="caption"><span class="caption-text">Marked faces (Edit Mode).</span></p>
+<p class="caption"><span class="caption-text">Marked faces (Edit Mode).</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id11">
+<td><div class="figure align-default" id="id11">
 <img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-2.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-2.png" />
-<p class="caption"><span class="caption-text">Render output.</span></p>
+<p class="caption"><span class="caption-text">Render output.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 <p>The line selection can be controlled via inclusion and faces options:</p>
-<dl class="docutils">
-<dt>-- Inclusive/Exclusive</dt>
-<dd>Whether to include or exclude edges matching defined face mark conditions from the line set.</dd>
-<dt>Một Mặt -- One Face</dt>
-<dd>(De)select all edges which have one or both neighbor faces marked.</dd>
-<dt>Cả Hai Mặt -- Both Faces</dt>
-<dd>(De)select all edges which have both of their neighbor faces marked.</dd>
+<dl class="simple">
+<dt>-- Inclusive/Exclusive</dt><dd><p>Whether to include or exclude edges matching defined face mark conditions from the line set.</p>
+</dd>
+<dt>Một Mặt -- One Face</dt><dd><p>(De)select all edges which have one or both neighbor faces marked.</p>
+</dd>
+<dt>Cả Hai Mặt -- Both Faces</dt><dd><p>(De)select all edges which have both of their neighbor faces marked.</p>
+</dd>
 </dl>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id12">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id12">
 <img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-3.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-3.png" />
-<p class="caption"><span class="caption-text">Inclusive, One Face.</span></p>
+<p class="caption"><span class="caption-text">Inclusive, One Face.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id13">
+<td><div class="figure align-default" id="id13">
 <img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-4.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-4.png" />
-<p class="caption"><span class="caption-text">Inclusive, Both Faces.</span></p>
+<p class="caption"><span class="caption-text">Inclusive, Both Faces.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><div class="first last figure" id="id14">
+<tr class="row-even"><td><div class="figure align-default" id="id14">
 <img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-5.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-5.png" />
-<p class="caption"><span class="caption-text">Exclusive, One face.</span></p>
+<p class="caption"><span class="caption-text">Exclusive, One face.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id15">
+<td><div class="figure align-default" id="id15">
 <img alt="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-6.png" src="../../../_images/render_freestyle_parameter-editor_line-set_face-marks-example-6.png" />
-<p class="caption"><span class="caption-text">Exclusive, Both Faces.</span></p>
+<p class="caption"><span class="caption-text">Exclusive, Both Faces.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -444,11 +438,11 @@ On the right is a render without face marks activated.</p>
 <h2>Collection<a class="headerlink" href="#collection" title="Permalink to this headline">¶</a></h2>
 <p>Include or exclude objects for line calculation,
 based on their belonging to a <a class="reference internal" href="../../../scene_layout/collections/index.html"><span class="doc">Collection</span></a>.</p>
-<dl class="docutils">
-<dt>Collection</dt>
-<dd>The name of the object collection to use.</dd>
-<dt>-- Inclusive/Exclusive</dt>
-<dd>Whether to include or exclude lines from those objects in this line set.</dd>
+<dl class="simple">
+<dt>Collection</dt><dd><p>The name of the object collection to use.</p>
+</dd>
+<dt>-- Inclusive/Exclusive</dt><dd><p>Whether to include or exclude lines from those objects in this line set.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="image-border">

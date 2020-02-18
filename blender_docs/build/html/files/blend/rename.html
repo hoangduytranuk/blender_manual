@@ -127,7 +127,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Files &amp; Data System</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Blender File</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="save_load.html">Blend Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="open_save.html">Opening &amp; Saving</a></li>
 <li class="toctree-l3"><a class="reference internal" href="packed_data.html">Packed Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="previews.html">Blend-Files Previews</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Rename</a><ul>
@@ -218,17 +218,15 @@
 <div class="section" id="rename-active-item">
 <span id="tools-rename-active"></span><h2>Rename Active Item<a class="headerlink" href="#rename-active-item" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Edit ‣ Rename Active Item</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">F2</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Edit ‣ Rename Active Item</span></p>
+</dd>
+<dt class="field-even">Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">F2</kbd></p>
+</dd>
+</dl>
 </div>
 <p>The <em>Rename Active Item</em> operator renames the active
 <a class="reference internal" href="../../animation/armatures/bones/index.html"><span class="doc">Bone</span></a>,
@@ -242,33 +240,30 @@ The text field shows the name of the current item and can be overwritten to rena
 <div class="section" id="batch-rename">
 <span id="bpy-ops-wm-batch-rename"></span><h2>Batch Rename<a class="headerlink" href="#batch-rename" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Edit ‣ Batch Rename</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-F2</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Edit ‣ Batch Rename</span></p>
+</dd>
+<dt class="field-even">Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Ctrl-F2</kbd></p>
+</dd>
+</dl>
 </div>
 <p>The <em>Batch Rename</em> operator can rename many data-block names at once.</p>
 <p>This uses a pop-up dialog with operations and their options to change the name.</p>
 <p>These actions are applied in order, from first to last.</p>
-<dl class="docutils">
-<dt>Data Type</dt>
-<dd>The <a class="reference internal" href="../data_blocks.html#data-system-datablock-types"><span class="std std-ref">data-block type</span></a> to perform the batch rename operations on.</dd>
-<dt>Data Source</dt>
-<dd><p class="first">Where to look for the data-blocks that are intended to be renamed.</p>
-<dl class="docutils">
-<dt>Selected</dt>
-<dd>Operates on the currently selected objects.</dd>
-<dt>All</dt>
-<dd>Operates on all data in the blend file.</dd>
+<dl>
+<dt>Data Type</dt><dd><p>The <a class="reference internal" href="../data_blocks.html#data-system-datablock-types"><span class="std std-ref">data-block type</span></a> to perform the batch rename operations on.</p>
+</dd>
+<dt>Data Source</dt><dd><p>Where to look for the data-blocks that are intended to be renamed.</p>
+<dl class="simple">
+<dt>Selected</dt><dd><p>Operates on the currently selected objects.</p>
+</dd>
+<dt>All</dt><dd><p>Operates on all data in the blend file.</p>
+</dd>
 </dl>
-<p class="last">To the left of this option gives a readout on how many data-blocks are able to be renamed.</p>
+<p>To the left of this option gives a readout on how many data-blocks are able to be renamed.</p>
 </dd>
 </dl>
 <div class="section" id="operations">
@@ -279,72 +274,71 @@ to modify the data names farther.</p>
 <div class="section" id="find-replace">
 <h4>Find/Replace<a class="headerlink" href="#find-replace" title="Permalink to this headline">¶</a></h4>
 <p><em>Find/Replace</em> searches for a particular string in the names and optionally replaces it with a new string.</p>
-<dl class="docutils">
-<dt>Find</dt>
-<dd>The string of text to look for in names.</dd>
-<dt>Replace</dt>
-<dd>The string of text to replace for in matching names found from the <em>Find</em> string.</dd>
-<dt>Regular Expressions</dt>
-<dd>Enables the use of <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">Regular Expressions</a>
-which are a powerful way to tailor the <em>Find</em>/<em>Replace</em> strings.</dd>
-<dt>Case Sensitive</dt>
-<dd>Search results must match the <em>Find</em> string's case exactly.</dd>
+<dl class="simple">
+<dt>Find</dt><dd><p>The string of text to look for in names.</p>
+</dd>
+<dt>Replace</dt><dd><p>The string of text to replace for in matching names found from the <em>Find</em> string.</p>
+</dd>
+<dt>Regular Expressions</dt><dd><p>Enables the use of <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">Regular Expressions</a>
+which are a powerful way to tailor the <em>Find</em>/<em>Replace</em> strings.</p>
+</dd>
+<dt>Case Sensitive</dt><dd><p>Search results must match the <em>Find</em> string's case exactly.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="set-name">
 <h4>Set Name<a class="headerlink" href="#set-name" title="Permalink to this headline">¶</a></h4>
 <p><em>Set Name</em> works the most similar to <a class="reference internal" href="#rename-active-item">Rename Active Item</a>
 by renaming the current data-block without having to do a find and replace operation.</p>
-<dl class="docutils">
-<dt>Method</dt>
-<dd><dl class="first last docutils">
-<dt>New</dt>
-<dd>Disregards the current name replacing it with the &quot;new&quot; name.</dd>
-<dt>Prefix</dt>
-<dd>Adds text to the beginning of the current name.
-This is useful for tools that look for special text in the prefix of a data-block name.</dd>
-<dt>Suffix</dt>
-<dd>Adds text to the end of the current name.
-This is useful for tools that look for special text in the suffix of a data-block name.</dd>
+<dl class="simple">
+<dt>Method</dt><dd><dl class="simple">
+<dt>New</dt><dd><p>Disregards the current name replacing it with the &quot;new&quot; name.</p>
+</dd>
+<dt>Prefix</dt><dd><p>Adds text to the beginning of the current name.
+This is useful for tools that look for special text in the prefix of a data-block name.</p>
+</dd>
+<dt>Suffix</dt><dd><p>Adds text to the end of the current name.
+This is useful for tools that look for special text in the suffix of a data-block name.</p>
+</dd>
 </dl>
 </dd>
-<dt>Name</dt>
-<dd>Defines the new name or the text to add as a prefix/suffix,</dd>
+<dt>Name</dt><dd><p>Defines the new name or the text to add as a prefix/suffix.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="strip-characters">
 <h4>Strip Characters<a class="headerlink" href="#strip-characters" title="Permalink to this headline">¶</a></h4>
 <p><em>Strip Characters</em> cleans up names by removing certain
 character types from either the beginning or the end of the name.</p>
-<dl class="docutils">
-<dt>Spaces</dt>
-<dd>Strips any space characters from the name, e.g. &quot;Living Room   &quot; becomes &quot;Living Room&quot;.</dd>
-<dt>Digits</dt>
-<dd>Strips any numerical characters from the name, e.g. <code class="docutils literal notranslate"><span class="pre">cube.001</span></code> becomes <code class="docutils literal notranslate"><span class="pre">cube.</span></code>.</dd>
-<dt>Punctuation</dt>
-<dd>Strips any punctuation characters (<code class="docutils literal notranslate"><span class="pre">,.?!:;</span></code> etc.) from the name, e.g. <code class="docutils literal notranslate"><span class="pre">cube?</span></code> becomes <code class="docutils literal notranslate"><span class="pre">cube</span></code>.</dd>
+<dl class="simple">
+<dt>Spaces</dt><dd><p>Strips any space characters from the name, e.g. &quot;Living Room   &quot; becomes &quot;Living Room&quot;.</p>
+</dd>
+<dt>Digits</dt><dd><p>Strips any numerical characters from the name, e.g. <code class="docutils literal notranslate"><span class="pre">cube.001</span></code> becomes <code class="docutils literal notranslate"><span class="pre">cube.</span></code>.</p>
+</dd>
+<dt>Punctuation</dt><dd><p>Strips any punctuation characters (<code class="docutils literal notranslate"><span class="pre">,.?!:;</span></code> etc.) from the name, e.g. <code class="docutils literal notranslate"><span class="pre">cube?</span></code> becomes <code class="docutils literal notranslate"><span class="pre">cube</span></code>.</p>
+</dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">Multiple character types can be removed at once by <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> on the types.</p>
+<p class="admonition-title">Mẹo</p>
+<p>Multiple character types can be removed at once by <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> on the types.</p>
 </div>
-<dl class="docutils">
-<dt>Start</dt>
-<dd>Strips and any leading characters in the name.</dd>
-<dt>End</dt>
-<dd>Strips and any trailing characters in the name.</dd>
+<dl class="simple">
+<dt>Start</dt><dd><p>Strips and any leading characters in the name.</p>
+</dd>
+<dt>End</dt><dd><p>Strips and any trailing characters in the name.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="change-case">
 <h4>Change Case<a class="headerlink" href="#change-case" title="Permalink to this headline">¶</a></h4>
 <p><em>Change Case</em> modifies the case of names to be on of the following:</p>
-<dl class="docutils">
-<dt>Upper Case</dt>
-<dd>Changes all text to be in upper case, e.g. <code class="docutils literal notranslate"><span class="pre">cube.001</span></code> becomes <code class="docutils literal notranslate"><span class="pre">CUBE.001</span></code>.</dd>
-<dt>Lower Case</dt>
-<dd>Changes all text to be in lower case, e.g. <code class="docutils literal notranslate"><span class="pre">CUBE.001</span></code> becomes <code class="docutils literal notranslate"><span class="pre">cube.001</span></code>.</dd>
-<dt>Title Caps</dt>
-<dd>Changes all text to be in title case, e.g. <code class="docutils literal notranslate"><span class="pre">living</span> <span class="pre">room</span></code> becomes <code class="docutils literal notranslate"><span class="pre">Living</span> <span class="pre">Room</span></code>.</dd>
+<dl class="simple">
+<dt>Upper Case</dt><dd><p>Changes all text to be in upper case, e.g. <code class="docutils literal notranslate"><span class="pre">cube.001</span></code> becomes <code class="docutils literal notranslate"><span class="pre">CUBE.001</span></code>.</p>
+</dd>
+<dt>Lower Case</dt><dd><p>Changes all text to be in lower case, e.g. <code class="docutils literal notranslate"><span class="pre">CUBE.001</span></code> becomes <code class="docutils literal notranslate"><span class="pre">cube.001</span></code>.</p>
+</dd>
+<dt>Title Caps</dt><dd><p>Changes all text to be in title case, e.g. <code class="docutils literal notranslate"><span class="pre">living</span> <span class="pre">room</span></code> becomes <code class="docutils literal notranslate"><span class="pre">Living</span> <span class="pre">Room</span></code>.</p>
+</dd>
 </dl>
 </div>
 </div>

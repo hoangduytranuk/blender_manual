@@ -249,21 +249,21 @@ it is impossible to determine the actual feature points in space due to a lack o
 So this solver will solve only the relative camera rotation and then reproject the feature points into a sphere,
 with the same distance between feature and camera for all feature points.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This is special type of camera solver and it behaves different from regular solver.
+<p class="admonition-title">Ghi chú</p>
+<p>This is special type of camera solver and it behaves different from regular solver.
 It means using more tracks doesn't imply more accurate solution.
 Having 5-10 tracks on frame is likely what shall be commonly used for this kind of solver.</p>
 </div>
 </div>
 <div class="section" id="keyframe">
 <h3>Khung Khóa -- Keyframe<a class="headerlink" href="#keyframe" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Khung Khóa -- Keyframe</dt>
-<dd>Automatically select keyframes for initial reconstruction.
+<dl class="simple">
+<dt>Khung Khóa -- Keyframe</dt><dd><p>Automatically select keyframes for initial reconstruction.
 This option enables complex algorithms which tries to find a keyframe pair
-with minimal reconstruction error and best scene scale guess.</dd>
-<dt>Khung Hình A, B -- Keyframe A, B <kbd class="kbd docutils literal notranslate">Q</kbd>, <kbd class="kbd docutils literal notranslate">E</kbd></dt>
-<dd>Start (A) and End (B) frame of the range used for reconstruction.</dd>
+with minimal reconstruction error and best scene scale guess.</p>
+</dd>
+<dt>Khung Hình A, B -- Keyframe A, B <kbd class="kbd docutils literal notranslate">Q</kbd>, <kbd class="kbd docutils literal notranslate">E</kbd></dt><dd><p>Start (A) and End (B) frame of the range used for reconstruction.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="refine">
@@ -279,8 +279,8 @@ it will fail to find correct values if they were set completely incorrectly init
 <p>The <em>Camera Motion</em> operator solves the motion of camera using all tracks placed
 on the footage and two keyframes specified on this panel. There are some requirements:</p>
 <ul class="simple">
-<li>There should be at least eight common tracks on the both of the selected keyframes.</li>
-<li>There should be noticeable parallax effects between these two keyframes.</li>
+<li><p>There should be at least eight common tracks on the both of the selected keyframes.</p></li>
+<li><p>There should be noticeable parallax effects between these two keyframes.</p></li>
 </ul>
 <p>If everything goes smoothly during the solve, the average reprojection error is reported to
 the information space and to the Clip editor header. Reprojection error means the average
@@ -295,76 +295,74 @@ or that values for focal length or distortion coefficients were set incorrectly.
 <h2>Bảng Dọn Dẹp -- Cleanup Panel<a class="headerlink" href="#cleanup-panel" title="Permalink to this headline">¶</a></h2>
 <p>This panel contains operators and their settings which are needed to clean up bad tracks:
 tracks which are not tracked long enough or which failed to reconstruct accurately.</p>
-<dl class="docutils">
-<dt>Khung Hình -- Frames</dt>
-<dd>Tracks or tracked segments shorter than this number of frames will be removed.</dd>
-<dt>Sai Số -- Error</dt>
-<dd>Tracks which has reprojection error higher than this value will be removed.</dd>
-<dt>Hành Động -- Action</dt>
-<dd><p class="first">Several actions can be performed for bad tracks:</p>
-<dl class="last docutils">
-<dt>Cái Được Chọn -- Selected</dt>
-<dd>They can simply be selected.</dd>
-<dt>Xóa Giám Sát -- Delete Track</dt>
-<dd>The whole track can be deleted.</dd>
-<dt>Xóa các Phân Đoạn -- Delete Segments</dt>
-<dd>Bad segments of tracked sequence can be removed.</dd>
+<dl>
+<dt>Khung Hình -- Frames</dt><dd><p>Tracks or tracked segments shorter than this number of frames will be removed.</p>
+</dd>
+<dt>Sai Số -- Error</dt><dd><p>Tracks which has reprojection error higher than this value will be removed.</p>
+</dd>
+<dt>Hành Động -- Action</dt><dd><p>Several actions can be performed for bad tracks:</p>
+<dl class="simple">
+<dt>Cái Được Chọn -- Selected</dt><dd><p>They can simply be selected.</p>
+</dd>
+<dt>Xóa Giám Sát -- Delete Track</dt><dd><p>The whole track can be deleted.</p>
+</dd>
+<dt>Xóa các Phân Đoạn -- Delete Segments</dt><dd><p>Bad segments of tracked sequence can be removed.</p>
+</dd>
 </dl>
 </dd>
-<dt>Clean Tracks</dt>
-<dd>Identifies all tracks which matches settings from above and performs desired action on them.</dd>
-<dt>Filter Tracks</dt>
-<dd>This operator deletes obviously bad tracks (for example, the ones which are too short).
-Additionally, it identifies tracks which has suspicious spikes in their motion and selects them.</dd>
+<dt>Clean Tracks</dt><dd><p>Identifies all tracks which matches settings from above and performs desired action on them.</p>
+</dd>
+<dt>Filter Tracks</dt><dd><p>This operator deletes obviously bad tracks (for example, the ones which are too short).
+Additionally, it identifies tracks which has suspicious spikes in their motion and selects them.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="geometry-panel">
 <h2>Bảng Hình Học -- Geometry Panel<a class="headerlink" href="#geometry-panel" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Dấu Mốc 3D thành Khung Lưới -- 3D Markers to Mesh</dt>
-<dd>Creates a mesh which vertices matches positions of reconstructed tracks.
+<dl class="simple">
+<dt>Dấu Mốc 3D thành Khung Lưới -- 3D Markers to Mesh</dt><dd><p>Creates a mesh which vertices matches positions of reconstructed tracks.
 It is required to have motion solved first before using this operator.
 Only tracks from the current tracking object will be used.
-The intention of this operator is to give a nice starting point for a manual mesh reconstruction.</dd>
-<dt>Kết Nối Vật Thể Rỗng với Giám Sát -- Link Empty to Track</dt>
-<dd>Creates new empty in 3D Viewport and appends constraint which parts it to the active track.</dd>
+The intention of this operator is to give a nice starting point for a manual mesh reconstruction.</p>
+</dd>
+<dt>Kết Nối Vật Thể Rỗng với Giám Sát -- Link Empty to Track</dt><dd><p>Creates new empty in 3D Viewport and appends constraint which parts it to the active track.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="orientation-panel">
 <h2>Bảng Định Hướng -- Orientation Panel<a class="headerlink" href="#orientation-panel" title="Permalink to this headline">¶</a></h2>
 <p>Scene orientation tools can be used for orienting object to bundles.</p>
-<dl class="docutils">
-<dt>Sàn -- Floor</dt>
-<dd>Use selected three markers to define a floor. Camera will be transformed in a way which makes the selected
-markers to be flat (have Z = 0).</dd>
-<dt>Tường -- Wall</dt>
-<dd>Similar to the floor orientation, but defines a wall (selected tracks are placed onto OXZ plane).</dd>
-<dt>Đặt Gốc Tọa Độ -- Set Origin</dt>
-<dd>Transform camera in a way which makes active track to be moved to a scene origin.
-Only translation is applied to the camera.</dd>
-<dt>Đặt Trục X, Y -- Set X, Y Axis</dt>
-<dd>Transform camera in a way which makes active track to become on X or Y axis. No translation is applied, meaning
-scene origin which was specified before will be preserved.</dd>
-<dt>Đặt Tỷ Lệ -- Set Scale</dt>
-<dd>Scale camera or tracking object in a way which makes distance between two selected tracks match the given value in
-Distance.</dd>
-<dt>Apply Scale</dt>
-<dd>Similar to Set Scale, but actually modifies the tracking data.</dd>
-<dt>Khoảng Cách -- Distance</dt>
-<dd>Distance in active scene units which is used by Set/Apply scale.</dd>
+<dl class="simple">
+<dt>Sàn -- Floor</dt><dd><p>Use selected three markers to define a floor. Camera will be transformed in a way which makes the selected
+markers to be flat (have Z = 0).</p>
+</dd>
+<dt>Tường -- Wall</dt><dd><p>Similar to the floor orientation, but defines a wall (selected tracks are placed onto OXZ plane).</p>
+</dd>
+<dt>Đặt Gốc Tọa Độ -- Set Origin</dt><dd><p>Transform camera in a way which makes active track to be moved to a scene origin.
+Only translation is applied to the camera.</p>
+</dd>
+<dt>Đặt Trục X, Y -- Set X, Y Axis</dt><dd><p>Transform camera in a way which makes active track to become on X or Y axis. No translation is applied, meaning
+scene origin which was specified before will be preserved.</p>
+</dd>
+<dt>Đặt Tỷ Lệ -- Set Scale</dt><dd><p>Scale camera or tracking object in a way which makes distance between two selected tracks match the given value in
+Distance.</p>
+</dd>
+<dt>Apply Scale</dt><dd><p>Similar to Set Scale, but actually modifies the tracking data.</p>
+</dd>
+<dt>Khoảng Cách -- Distance</dt><dd><p>Distance in active scene units which is used by Set/Apply scale.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="scene-setup">
 <h2>Thiết Lập Cảnh -- Scene Setup<a class="headerlink" href="#scene-setup" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Đặt làm Nền -- Set as Background</dt>
-<dd>Sets the clip currently being edited as the camera background for all visible 3D Views.
-If there is no visible 3D Views or the Clip Editor is open in full screen, nothing will happen.</dd>
-<dt>Thiết Lập Cảnh Giám Sát -- Setup Tracking Scene</dt>
-<dd><p class="first">Performs all usual steps to set up a VFX scene:</p>
-<ul class="last simple">
-<li>Create reference objects for floor and test object.</li>
-<li>Create node set up for combining CG with an actual clip.</li>
+<dl class="simple">
+<dt>Đặt làm Nền -- Set as Background</dt><dd><p>Sets the clip currently being edited as the camera background for all visible 3D Views.
+If there is no visible 3D Views or the Clip Editor is open in full screen, nothing will happen.</p>
+</dd>
+<dt>Thiết Lập Cảnh Giám Sát -- Setup Tracking Scene</dt><dd><p>Performs all usual steps to set up a VFX scene:</p>
+<ul class="simple">
+<li><p>Create reference objects for floor and test object.</p></li>
+<li><p>Create node set up for combining CG with an actual clip.</p></li>
 </ul>
 </dd>
 </dl>

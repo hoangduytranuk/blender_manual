@@ -6,7 +6,7 @@
 .. toctree::
    :maxdepth: 2
 
-   save_load.rst
+   open_save.rst
    packed_data.rst
    previews.rst
    rename.rst

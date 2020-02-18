@@ -15,7 +15,7 @@ Active Spline
 
 The *Active Spline* panel is used in Edit Mode to control properties of the currently selected spline.
 
-.. figure:: /images/modeling_surfaces_properties_active-spline-panel.png
+.. figure:: /images/modeling_surfaces_properties_active-spline_panel.png
    :align: center
 
    Active Spline panel.

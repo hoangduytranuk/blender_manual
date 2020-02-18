@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Khung Lưới -- Meshes</a><ul class="current">
@@ -248,30 +248,32 @@ Retopology can be done by hand by manipulating geometry in Edit Mode or through 
 <div class="section" id="remeshing">
 <span id="bpy-ops-object-quadriflow-remesh"></span><span id="bpy-ops-object-voxel-remesh"></span><span id="bpy-types-mesh-remesh"></span><h2>Remeshing<a class="headerlink" href="#remeshing" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Object Mode, Sculpt Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ Object Data ‣ Remesh</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Object Mode, Sculpt Mode</p>
+</dd>
+<dt class="field-even">Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Properties ‣ Object Data ‣ Remesh</span></p>
+</dd>
+</dl>
 </div>
 <p>Remeshing is a technique that automatically rebuilds the geometry with a more uniform topology.
 Remeshing can either add or remove the amount of topology depending on a defined resolution.
 This technique is especially useful for <a class="reference internal" href="../../../sculpt_paint/sculpting/index.html"><span class="doc">sculpting</span></a>,
 to generate better topology after blocking out the initial shape.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Remeshing only works on the original mesh data and
-ignores generated geometry from modifiers, shape keys, rigging, etc.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>Limitations:</p>
+<ul class="simple">
+<li><p>Remeshing only works on the original mesh data and
+ignores generated geometry from modifiers, shape keys, rigging, etc.</p></li>
+<li><p>Remeshing will not work with the <span class="xref std std-doc">/modeling/modifiers/generate/multiresolution&gt;</span></p></li>
+</ul>
 </div>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="../../modifiers/generate/remesh.html"><span class="doc">Remesh modifier</span></a></p>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../modifiers/generate/remesh.html"><span class="doc">Remesh modifier</span></a></p>
 </div>
 <div class="section" id="voxel">
 <h3>Voxel<a class="headerlink" href="#voxel" title="Permalink to this headline">¶</a></h3>
@@ -281,49 +283,51 @@ it does not have any performance penalty once the new mesh is calculated.
 This makes the voxel remesher great for sculpting has it is possible to
 sculpt at a much higher level of detail than using other features
 like dyntopo which often adds more performance overhead.</p>
-<dl class="docutils">
-<dt>Voxel Size</dt>
-<dd>The resolution or the amount of detail the remeshed mesh will have.
+<dl class="simple">
+<dt>Voxel Size</dt><dd><p>The resolution or the amount of detail the remeshed mesh will have.
 The value is used to define the size, in object space, of the <a class="reference internal" href="../../../glossary/index.html#term-voxel"><span class="xref std std-term">Voxel</span></a>.
 These voxels are assembled around the mesh and are used to determine the new geometry.
 For example a value of 0.5m will create topological patches that are about 0.5m
 (assuming <em>Preserve Volume</em> is enabled).
-Lower values preserve finer details but will result in a mesh with a much more dense topology.</dd>
-<dt>Adaptivity</dt>
-<dd>Todo 2.81.</dd>
-<dt>Fix Poles</dt>
-<dd>Todo 2.81.</dd>
-<dt>Smooth Normals</dt>
-<dd>Applies the <a class="reference internal" href="normals.html#bpy-ops-object-shade-smooth"><span class="std std-ref">Smooth Normals</span></a> operator to the resulting mesh.</dd>
-<dt>Preserve Volume</dt>
-<dd>Todo 2.81.</dd>
-<dt>Preserve Paint Mask</dt>
-<dd>Todo 2.81.</dd>
-<dt>Voxel Remesh</dt>
-<dd>Todo 2.81.</dd>
+Lower values preserve finer details but will result in a mesh with a much more dense topology.</p>
+</dd>
+<dt>Adaptivity</dt><dd><p>Reduces the final face count by simplifying geometry where detail is not needed.
+This introduce triangulation to faces that do not require as much detail.
+Note, an <em>Adaptivity</em> value greater than zero disables <em>Fix Poles</em>.</p>
+</dd>
+<dt>Fix Poles</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Smooth Normals</dt><dd><p>Applies the <a class="reference internal" href="normals.html#bpy-ops-object-shade-smooth"><span class="std std-ref">Smooth Normals</span></a> operator to the resulting mesh.</p>
+</dd>
+<dt>Preserve Volume</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Preserve Paint Mask</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Voxel Remesh</dt><dd><p>Todo 2.81.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="quad">
 <h3>Quad<a class="headerlink" href="#quad" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Quadriflow Remesh</dt>
-<dd>Todo 2.81.</dd>
-<dt>Use Paint Symmetry</dt>
-<dd>Todo 2.81.</dd>
-<dt>Preserve Sharp</dt>
-<dd>Todo 2.81.</dd>
-<dt>Preserve Mesh Boundary</dt>
-<dd>Todo 2.81.</dd>
-<dt>Use Mesh Curvature</dt>
-<dd>Todo 2.81.</dd>
-<dt>Preserve Paint Mask</dt>
-<dd>Todo 2.81.</dd>
-<dt>Smooth Normals</dt>
-<dd>Applies the <a class="reference internal" href="normals.html#bpy-ops-object-shade-smooth"><span class="std std-ref">Smooth Normals</span></a> operator to the resulting mesh.</dd>
-<dt>Modes</dt>
-<dd>Todo 2.81.</dd>
-<dt>Number of Faces</dt>
-<dd>Todo 2.81.</dd>
+<dl class="simple">
+<dt>Quadriflow Remesh</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Use Paint Symmetry</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Preserve Sharp</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Preserve Mesh Boundary</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Use Mesh Curvature</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Preserve Paint Mask</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Smooth Normals</dt><dd><p>Applies the <a class="reference internal" href="normals.html#bpy-ops-object-shade-smooth"><span class="std std-ref">Smooth Normals</span></a> operator to the resulting mesh.</p>
+</dd>
+<dt>Modes</dt><dd><p>Todo 2.81.</p>
+</dd>
+<dt>Number of Faces</dt><dd><p>Todo 2.81.</p>
+</dd>
 </dl>
 </div>
 </div>

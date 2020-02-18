@@ -6,5 +6,5 @@
 .. toctree::
    :maxdepth: 2
 
-   uv_management.rst
+   layout.rst
    udims.rst

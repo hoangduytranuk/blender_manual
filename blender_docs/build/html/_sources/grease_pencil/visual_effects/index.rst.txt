@@ -1,8 +1,8 @@
 .. _bpy.types.ShaderFx:
 
-################################
-  Grease Pencil Visual Effects
-################################
+##################
+  Visual Effects
+##################
 
 .. toctree::
    :maxdepth: 2
@@ -10,8 +10,8 @@
    introduction.rst
 
 
-Visual Effects
-==============
+Types
+=====
 
 .. toctree::
    :maxdepth: 1

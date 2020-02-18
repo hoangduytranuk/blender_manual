@@ -115,7 +115,7 @@ Fix intersection problems that happen when using armatures and weight painting, 
 Shape keys can also be used to tweak and refine a rig, for example to suggest muscle formations.
 In this example, a shape key is used to improve the deformation at the elbow of a rudimentary arm.
 
-.. figure:: /images/animation_drivers_workflow-examples_shape-key_improved_deformation.png
+.. figure:: /images/animation_drivers_workflow-examples_shape-key-improved-deformation.png
 
    Left: Skeletal mesh deformation without correction.
    Right: Corrective shape key applied
@@ -174,7 +174,7 @@ Driver
          Select the rotation channel and set it to local, meaning, the bone's
          rotation value relative to its parent bone.
 
-         .. figure:: /images/animation_drivers_workflow-examples_shape-key_method1.png
+         .. figure:: /images/animation_drivers_workflow-examples_shape-key-method1.png
 
       #. Manually set points in the driver curve by selecting a handle and
          dragging it or inserting values in the *F-Curve* tab.
@@ -206,7 +206,7 @@ Driver
          When the deformation bone (Bone 2) reaches the target rotation (TAR-Bone 2)
          the rotational difference will be 0°.
 
-         .. figure:: /images/animation_drivers_workflow-examples_shape-key_method2.png
+         .. figure:: /images/animation_drivers_workflow-examples_shape-key-method2.png
 
       #. Manually adjust the driver curve handles so that the shape key *Value*
          (Y axis) is 1.0 when the rotational difference (X axis) is 0°.
@@ -231,17 +231,17 @@ Shape Keys
 
 .. list-table::
 
-   * - .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys_basis.png
+   * - .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-basis.png
           :width: 200px
 
           Basis
 
-     - .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys_key1.png
+     - .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-key1.png
           :width: 200px
 
           Key 1: top faces moved up by 1m
 
-     - .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys_key2.png
+     - .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-key2.png
           :width: 200px
 
           Key 2: inner top moved up by 1m
@@ -251,7 +251,7 @@ Drivers
    Add an armature with a single bone to control the shape keys.
    The goal is to activate the keys in succession as this bone moves up.
 
-   .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys_result.png
+   .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-result.png
 
 
    As shown in the picture above, when the bone is halfway up, both *Key 1* and *Key 2* have an influence.
@@ -282,7 +282,7 @@ Drivers
 
             Possible values are *Key 1*: :math:`y = 0.0 + 0.6x` and *Key 2*: :math:`y = -0.5 + 0.6x`.
 
-            .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys_driver-setup.png
+            .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-driver-setup.png
 
 
             Note that the functions go outside the range [0.0 , 1.0] for the shape keys' *Value*,

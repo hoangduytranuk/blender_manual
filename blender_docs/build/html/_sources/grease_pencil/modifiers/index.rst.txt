@@ -1,8 +1,8 @@
 .. _bpy.ops.object.gpencil_modifier:
 
-###########################
-  Grease Pencil Modifiers
-###########################
+#############
+  Modifiers
+#############
 
 .. toctree::
    :maxdepth: 2

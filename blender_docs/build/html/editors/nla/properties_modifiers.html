@@ -235,71 +235,62 @@
 <div class="section" id="animation-data">
 <h3>Dữ Liệu Hoạt Họa -- Animation Data<a class="headerlink" href="#animation-data" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Animations ‣ Animation Data</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ Animations ‣ Animation Data</span></p>
+</dd>
+</dl>
 </div>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../_images/editors_nla_properties-modifiers_animation-data-panel.png" src="../../_images/editors_nla_properties-modifiers_animation-data-panel.png" />
-<p class="caption"><span class="caption-text">Animation Data panel.</span></p>
+<p class="caption"><span class="caption-text">Animation Data panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Hành Động -- Action</dt>
-<dd>A <a class="reference internal" href="../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Data-Block</span></a> menu that allows you to edit actions shown in the action track.
-See also the Action Editor's <a class="reference internal" href="../dope_sheet/action.html#dopesheet-action-action"><span class="std std-ref">Action</span></a>.</dd>
-<dt>Ngoại Suy -- Action Extrapolation</dt>
-<dd><p class="first">Action to take for gaps past the strip extents.</p>
-<dl class="last docutils">
-<dt>Giữ -- Hold</dt>
-<dd>Affects both sides of the strip. This should only be set on the very first strip.</dd>
-<dt>Giữ Từ Đây Trở Đi -- Hold Forward</dt>
-<dd>Affects the region after the clip, only. This can be set on any strip.</dd>
-<dt>Không -- Nothing</dt>
-<dd>Affects only the region of the strip itself. This can be set on any strip.</dd>
+<dl>
+<dt>Hành Động -- Action</dt><dd><p>A <a class="reference internal" href="../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Data-Block</span></a> menu that allows you to edit actions shown in the action track.
+See also the Action Editor's <a class="reference internal" href="../dope_sheet/action.html#dopesheet-action-action"><span class="std std-ref">Action</span></a>.</p>
+</dd>
+<dt>Ngoại Suy -- Action Extrapolation</dt><dd><p>Action to take for gaps past the strip extents.</p>
+<dl class="simple">
+<dt>Giữ -- Hold</dt><dd><p>Affects both sides of the strip. This should only be set on the very first strip.</p>
+</dd>
+<dt>Giữ Từ Đây Trở Đi -- Hold Forward</dt><dd><p>Affects the region after the clip, only. This can be set on any strip.</p>
+</dd>
+<dt>Không -- Nothing</dt><dd><p>Affects only the region of the strip itself. This can be set on any strip.</p>
+</dd>
 </dl>
 </dd>
 </dl>
-<dl class="docutils" id="nla-blend-modes">
-<dt>Hòa Trộn Hành Động -- Action Blending</dt>
-<dd><p class="first">Affects how the property values directly produced by the strip are combined with
+<dl id="nla-blend-modes">
+<dt>Hòa Trộn Hành Động -- Action Blending</dt><dd><p>Affects how the property values directly produced by the strip are combined with
 the result of evaluating the stack below. The bottom-most strip is blended on top of
 the default values of the properties.</p>
-<dl class="last docutils">
-<dt>Thay Thế -- Replace</dt>
-<dd>The top strip is linearly blended in with the accumulated result according to influence,
-completely overwriting it if influence is set to 100%.</dd>
-<dt>Nhân, Trừ, Cộng -- Multiply, Subtract, Add</dt>
-<dd><p class="first">The result of the strip is multiplied, subtracted, or added to the accumulated results,
+<dl>
+<dt>Thay Thế -- Replace</dt><dd><p>The top strip is linearly blended in with the accumulated result according to influence,
+completely overwriting it if influence is set to 100%.</p>
+</dd>
+<dt>Nhân, Trừ, Cộng -- Multiply, Subtract, Add</dt><dd><p>The result of the strip is multiplied, subtracted, or added to the accumulated results,
 and then blended in according to influence.</p>
-<p class="last"><span class="math notranslate nohighlight">\(result = mix(previous, previous (+-*) value, influence)\)</span></p>
+<p><span class="math notranslate nohighlight">\(result = mix(previous, previous (+-*) value, influence)\)</span></p>
 </dd>
-<dt>-- Combine</dt>
-<dd><p class="first">Depending on the type of each property, one of the following methods is automatically chosen:</p>
-<dl class="docutils">
-<dt>-- Axis/Angle Rotation</dt>
-<dd><p class="first"><span class="math notranslate nohighlight">\(result = previous + value * influence\)</span></p>
-<p class="last">This results in averaging the axis and adding the amount of rotation.</p>
+<dt>-- Combine</dt><dd><p>Depending on the type of each property, one of the following methods is automatically chosen:</p>
+<dl>
+<dt>-- Axis/Angle Rotation</dt><dd><p><span class="math notranslate nohighlight">\(result = previous + value * influence\)</span></p>
+<p>This results in averaging the axis and adding the amount of rotation.</p>
 </dd>
-<dt>Xoay Quatenion -- Quaternion Rotation</dt>
-<dd><p class="first">Quaternion math is applied to all four channels of the property at once:</p>
-<p class="last"><span class="math notranslate nohighlight">\(result = {previous} \times {value} ^ {influence}\)</span></p>
+<dt>Xoay Quatenion -- Quaternion Rotation</dt><dd><p>Quaternion math is applied to all four channels of the property at once:</p>
+<p><span class="math notranslate nohighlight">\(result = {previous} \times {value} ^ {influence}\)</span></p>
 </dd>
-<dt>-- Proportional (Scale)</dt>
-<dd><span class="math notranslate nohighlight">\(result = previous * (value / default) ^ {influence}\)</span></dd>
-<dt>-- Others</dt>
-<dd><span class="math notranslate nohighlight">\(result = previous + (value - default) * {influence}\)</span></dd>
+<dt>-- Proportional (Scale)</dt><dd><p><span class="math notranslate nohighlight">\(result = previous * (value / default) ^ {influence}\)</span></p>
+</dd>
+<dt>-- Others</dt><dd><p><span class="math notranslate nohighlight">\(result = previous + (value - default) * {influence}\)</span></p>
+</dd>
 </dl>
 <p>This allows layering actions that can also be used as a standalone.
 Properties keyframed at their default values remain at default.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Since this blending mode is based on using quaternion multiplication to calculate
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Since this blending mode is based on using quaternion multiplication to calculate
 the Quaternion Rotation properties, it always drives all four channels during playback,
 and <em>Insert Single Keyframe</em> is forced to insert all four keys.
 Other types of channels can still be keyed individually.</p>
@@ -307,102 +298,94 @@ Other types of channels can still be keyed individually.</p>
 </dd>
 </dl>
 </dd>
-<dt>Ảnh Hưởng của Hành Động -- Action Influence</dt>
-<dd>Amount the active Action contributes to the result of the NLA stack.</dd>
+<dt>Ảnh Hưởng của Hành Động -- Action Influence</dt><dd><p>Amount the active Action contributes to the result of the NLA stack.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="active-track">
 <h3>Giám Sát/Rãnh Đang Hoạt Động -- Active Track<a class="headerlink" href="#active-track" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Animations ‣ Active Track</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ Animations ‣ Active Track</span></p>
+</dd>
+</dl>
 </div>
-<dl class="docutils">
-<dt>Tên -- Name</dt>
-<dd>Name of the track which the strip currently belongs to.</dd>
+<dl class="simple">
+<dt>Tên -- Name</dt><dd><p>Name of the track which the strip currently belongs to.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="active-strip">
 <h3>Dải Đang Hoạt Động -- Active Strip<a class="headerlink" href="#active-strip" title="Permalink to this headline">¶</a></h3>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../_images/editors_nla_properties-modifiers_active-strip-panel.png" src="../../_images/editors_nla_properties-modifiers_active-strip-panel.png" />
-<p class="caption"><span class="caption-text">Active Strip panel.</span></p>
+<p class="caption"><span class="caption-text">Active Strip panel.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Options of the strip itself.</p>
-<dl class="docutils">
-<dt>Tên -- Name</dt>
-<dd>Renames the strips.</dd>
-<dt>Thể Loại -- Type</dt>
-<dd>Will either say &quot;Action Clip&quot;, &quot;Transition&quot;, or &quot;Meta&quot;, according to the three types of strips.</dd>
-<dt>Giới Hạn của Đoạn Phim -- Strip Extents</dt>
-<dd>The boundaries of the strip itself. Note that this will stretch the duration of the Action,
-it will not cause greater or fewer keyframes from the Actions to play (see below for that option).</dd>
-<dt>Ngoại Suy -- Extrapolation</dt>
-<dd>See <em>Action Extrapolation</em> above.</dd>
-<dt>Pha Trộn -- Blending</dt>
-<dd>See <em>Action Blending</em> above.</dd>
-<dt>Tự Động Hòa Trộn Vào/Ra -- Auto Blend In/Out</dt>
-<dd>Creates a ramp starting at the overlap of the strips. The first strip has full control,
-and it ramps linearly giving the second strip full control by the end of the overlapping time period.</dd>
-<dt>Khởi Đầu Hòa Trộn -- Blend In</dt>
-<dd>Set the frame that represents when this strip will have full influence.</dd>
-<dt>Kết Thúc Hòa Trộn -- Blend Out</dt>
-<dd>Set the last frame of this strip's full influence.</dd>
-<dt>Đã Giải Hoạt -- Muted</dt>
-<dd>Mute a single strip (like muting the track, above). Causes the track outline to be dashed.</dd>
-<dt>Đảo Nghịch -- Reversed</dt>
-<dd>Cause this strip to be played completely backwards.</dd>
+<dl class="simple">
+<dt>Tên -- Name</dt><dd><p>Renames the strips.</p>
+</dd>
+<dt>Thể Loại -- Type</dt><dd><p>Will either say &quot;Action Clip&quot;, &quot;Transition&quot;, or &quot;Meta&quot;, according to the three types of strips.</p>
+</dd>
+<dt>Giới Hạn của Đoạn Phim -- Strip Extents</dt><dd><p>The boundaries of the strip itself. Note that this will stretch the duration of the Action,
+it will not cause greater or fewer keyframes from the Actions to play (see below for that option).</p>
+</dd>
+<dt>Ngoại Suy -- Extrapolation</dt><dd><p>See <em>Action Extrapolation</em> above.</p>
+</dd>
+<dt>Pha Trộn -- Blending</dt><dd><p>See <em>Action Blending</em> above.</p>
+</dd>
+<dt>Tự Động Hòa Trộn Vào/Ra -- Auto Blend In/Out</dt><dd><p>Creates a ramp starting at the overlap of the strips. The first strip has full control,
+and it ramps linearly giving the second strip full control by the end of the overlapping time period.</p>
+</dd>
+<dt>Khởi Đầu Hòa Trộn -- Blend In</dt><dd><p>Set the frame that represents when this strip will have full influence.</p>
+</dd>
+<dt>Kết Thúc Hòa Trộn -- Blend Out</dt><dd><p>Set the last frame of this strip's full influence.</p>
+</dd>
+<dt>Đã Giải Hoạt -- Muted</dt><dd><p>Mute a single strip (like muting the track, above). Causes the track outline to be dashed.</p>
+</dd>
+<dt>Đảo Nghịch -- Reversed</dt><dd><p>Cause this strip to be played completely backwards.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="action-clip">
 <h3>Đoạn Hành Động -- Action Clip<a class="headerlink" href="#action-clip" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Animations ‣ Active Clip</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ Animations ‣ Active Clip</span></p>
+</dd>
+</dl>
 </div>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="../../_images/editors_nla_properties-modifiers_action-clip-panel.png" src="../../_images/editors_nla_properties-modifiers_action-clip-panel.png" />
-<p class="caption"><span class="caption-text">Action Clip panel.</span></p>
+<p class="caption"><span class="caption-text">Action Clip panel.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>This represents the 'object data' of the strip. Much like the transform values of an object.</p>
-<dl class="docutils">
-<dt>Hành Động -- Action</dt>
-<dd>A reference to the Action contained within the strip.
-Can be changed to replace the current strip's value with another Action.</dd>
-<dt>Giới Hạn của Hành Động -- Action Extents</dt>
-<dd><p class="first">Bao nhiêu phần của Hành Động để sử dụng.</p>
+<dl>
+<dt>Hành Động -- Action</dt><dd><p>A reference to the Action contained within the strip.
+Can be changed to replace the current strip's value with another Action.</p>
+</dd>
+<dt>Giới Hạn của Hành Động -- Action Extents</dt><dd><p>Bao nhiêu phần của Hành Động để sử dụng.</p>
 <p>For instance, it is common to set the first and last keyframe of an Action to be the same keyframes.
 The problem with this is if you loop the animation,
 there is a slight hitch where the same keyframes are played twice.
 To fix this, simply reduce the <em>End Frame</em> one.</p>
-<p class="last">Note: If you select values that are above or below the actual keyframe count of the Action,
+<p>Note: If you select values that are above or below the actual keyframe count of the Action,
 then the F-curve Extrapolation will be applied.
 Which can be changed in the Graph Editor, under <span class="menuselection">Channel ‣ Extrapolation Mode</span>.</p>
 </dd>
-<dt>Đồng Bộ Hóa Độ Dài -- Sync Length</dt>
-<dd>Causes the &quot;Start&quot; and &quot;End&quot; Frames, above, to be reset to the first and last keyframed frames of the Action.</dd>
-<dt>-- Sync Action Length &quot;Now&quot;</dt>
-<dd>Causes the &quot;Start&quot; and &quot;End&quot; Frames, above, to be reset to the first and last keyframed frames of the Action.</dd>
-<dt>Cài Đặt Chơi Lại -- Playback Settings</dt>
-<dd><dl class="first last docutils">
-<dt>Tỷ Lệ -- Scale</dt>
-<dd>Stretches strip, another way of increasing the <em>Strip Extents: End Frame</em>, above.</dd>
-<dt>Lặp Lại -- Repeat</dt>
-<dd>Also expands the strip, but by looping from the first keyframe and going forward.</dd>
+<dt>Đồng Bộ Hóa Độ Dài -- Sync Length</dt><dd><p>Causes the &quot;Start&quot; and &quot;End&quot; Frames, above, to be reset to the first and last keyframed frames of the Action.</p>
+</dd>
+<dt>-- Sync Action Length &quot;Now&quot;</dt><dd><p>Causes the &quot;Start&quot; and &quot;End&quot; Frames, above, to be reset to the first and last keyframed frames of the Action.</p>
+</dd>
+<dt>Cài Đặt Chơi Lại -- Playback Settings</dt><dd><dl class="simple">
+<dt>Tỷ Lệ -- Scale</dt><dd><p>Stretches strip, another way of increasing the <em>Strip Extents: End Frame</em>, above.</p>
+</dd>
+<dt>Lặp Lại -- Repeat</dt><dd><p>Also expands the strip, but by looping from the first keyframe and going forward.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -410,47 +393,40 @@ Which can be changed in the Graph Editor, under <span class="menuselection">Chan
 <div class="section" id="evaluation">
 <h3>Ước Tính -- Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Animations ‣ Evaluation</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ Animations ‣ Evaluation</span></p>
+</dd>
+</dl>
 </div>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="../../_images/editors_nla_properties-modifiers_evaluation-panel.png" src="../../_images/editors_nla_properties-modifiers_evaluation-panel.png" />
-<p class="caption"><span class="caption-text">Evaluation panel.</span></p>
+<p class="caption"><span class="caption-text">Evaluation panel.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>This determines the degree of influence the strip has, and over what time.</p>
-<dl class="docutils">
-<dt>Ảnh Hưởng Hoạt Họa -- Animated Influence</dt>
-<dd><p class="first">Enabling alteration of the degree of influence this strip has as a keyframable value.
+<dl>
+<dt>Ảnh Hưởng Hoạt Họa -- Animated Influence</dt><dd><p>Enabling alteration of the degree of influence this strip has as a keyframable value.
 If influence isn't animated, the strips will fade linearly, during the overlap.</p>
-<p class="last">These can be found in the Dope Sheet or Graph Editors under the <em>NLA Control Curves</em> and
+<p>These can be found in the Dope Sheet or Graph Editors under the <em>NLA Control Curves</em> and
 look like group channels. They appear before all the groups/F-curves for that channel.</p>
 </dd>
-<dt>Đoạn Phim đã Hoạt Họa -- Animated Strip</dt>
-<dd>Same as <em>Animated Influence</em>, but with <em>Strip Time</em>.</dd>
-<dt>Tuần Hoàn Thời Gian của Đoạn -- Cyclic Strip Time</dt>
-<dd>Cycle the animated time within the action start and end.</dd>
+<dt>Đoạn Phim đã Hoạt Họa -- Animated Strip</dt><dd><p>Same as <em>Animated Influence</em>, but with <em>Strip Time</em>.</p>
+</dd>
+<dt>Tuần Hoàn Thời Gian của Đoạn -- Cyclic Strip Time</dt><dd><p>Cycle the animated time within the action start and end.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="modifiers">
 <h2>Bộ Điều Chỉnh -- Modifiers<a class="headerlink" href="#modifiers" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Modifiers ‣ Modifiers</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ Modifiers ‣ Modifiers</span></p>
+</dd>
+</dl>
 </div>
 <p>Like its counterparts in graph and video editing,
 Modifiers can stack different combinations of effects for strips.</p>

@@ -19,6 +19,9 @@ Menus
 
 View
    Tools for controlling how the content is displayed in the editor.
+
+   Center View to Cursor
+      Centers the view so that the cursor is in the middle of the view.
 Select
    TODO.
 Clip

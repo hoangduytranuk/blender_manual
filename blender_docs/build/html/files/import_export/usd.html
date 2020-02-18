@@ -220,123 +220,115 @@ When exporting, all visible, supported objects in the scene are exported, option
 Blender does not (yet) support exporting invisible objects, USD layers, variants, skeletal animation, etc.</p>
 <p>The following objects can be exported to USD:</p>
 <ul class="simple">
-<li>Meshes (of different kinds, see below).</li>
-<li>Cameras (perspective cameras only at the moment, not orthogonal ones).</li>
-<li>Light (all types except area lights).</li>
-<li>Hair (exported as curves, and limited to parent strands).</li>
+<li><p>Meshes (of different kinds, see below).</p></li>
+<li><p>Cameras (perspective cameras only at the moment, not orthogonal ones).</p></li>
+<li><p>Light (all types except area lights).</p></li>
+<li><p>Hair (exported as curves, and limited to parent strands).</p></li>
 </ul>
 <p>When exporting an animation, the final, evaluated mesh is written to USD.
 This means that the following meshes can be exported:</p>
 <ul class="simple">
-<li>Static meshes.</li>
-<li>Deforming meshes; here the topology of the mesh does not change,
+<li><p>Static meshes.</p></li>
+<li><p>Deforming meshes; here the topology of the mesh does not change,
 but the locations of the vertices change over time. Examples are animated characters or
-bouncing (but not cracking) objects.</li>
-<li>Arbitrarily animated meshes; here the topology does change.
-An example is the result of a fluid simulation, where splashes of fluid can break off the main body.</li>
+bouncing (but not cracking) objects.</p></li>
+<li><p>Arbitrarily animated meshes; here the topology does change.
+An example is the result of a fluid simulation, where splashes of fluid can break off the main body.</p></li>
 </ul>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../_images/universal_scene_description_example.png" src="../../_images/universal_scene_description_example.png" />
-<p class="caption"><span class="caption-text">Shot from <a class="reference external" href="https://cloud.blender.org/p/spring/">Spring</a> exported to USD and opened in USDView.</span></p>
+<p class="caption"><span class="caption-text">Shot from <a class="reference external" href="https://cloud.blender.org/p/spring/">Spring</a> exported to USD and opened in USDView.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="export-options">
 <h2>Export Options<a class="headerlink" href="#export-options" title="Permalink to this headline">¶</a></h2>
 <p>The following options are available when exporting to USD:</p>
-<dl class="docutils">
-<dt>Selection Only</dt>
-<dd>When checked, only selected objects are exported.
+<dl>
+<dt>Selection Only</dt><dd><p>When checked, only selected objects are exported.
 Duplicated objects, for example collections that are instanced in the scene,
-are considered 'selected' when their duplicator is selected.</dd>
-<dt>Animation</dt>
-<dd>When checked, the entire scene frame range is exported.
-When unchecked, only the current scene frame is exported.</dd>
-<dt>Hair</dt>
-<dd>When checked, parent hair strands are exported as a curve system.
-Hair strand colors are not exported.</dd>
-<dt>UV Maps</dt>
-<dd>When checked, includes UV coordinates for exported meshes.
+are considered 'selected' when their duplicator is selected.</p>
+</dd>
+<dt>Animation</dt><dd><p>When checked, the entire scene frame range is exported.
+When unchecked, only the current scene frame is exported.</p>
+</dd>
+<dt>Hair</dt><dd><p>When checked, parent hair strands are exported as a curve system.
+Hair strand colors are not exported.</p>
+</dd>
+<dt>UV Maps</dt><dd><p>When checked, includes UV coordinates for exported meshes.
 The name of the UV map in USD is the same as the name in Blender.
 In USD the default name is <code class="docutils literal notranslate"><span class="pre">st</span></code> whereas in Blender the default name is <code class="docutils literal notranslate"><span class="pre">UVMap</span></code>.
-To export to the standard UV map name <code class="docutils literal notranslate"><span class="pre">st</span></code>, rename the UV map in Blender to <code class="docutils literal notranslate"><span class="pre">st</span></code>.</dd>
-<dt>Normals</dt>
-<dd>When checked, includes normals for exported meshes. This includes custom loop normals.</dd>
-<dt>Materials</dt>
-<dd><p class="first">When checked, exports the viewport materials of meshes.
+To export to the standard UV map name <code class="docutils literal notranslate"><span class="pre">st</span></code>, rename the UV map in Blender to <code class="docutils literal notranslate"><span class="pre">st</span></code>.</p>
+</dd>
+<dt>Normals</dt><dd><p>When checked, includes normals for exported meshes. This includes custom loop normals.</p>
+</dd>
+<dt>Materials</dt><dd><p>When checked, exports the viewport materials of meshes.
 When a mesh has multiple materials assigned, a geometry subset is created for each material.</p>
-<p class="last">The first material (if any) is always applied to the mesh itself as well
+<p>The first material (if any) is always applied to the mesh itself as well
 (regardless of the existence of geometry subsets),
 because the Hydra viewport does not support materials on subsets.
 See <a class="reference external" href="https://github.com/PixarAnimationStudios/USD/issues/542">USD issue #542</a>
 for more information.</p>
 </dd>
-<dt>Use Settings for</dt>
-<dd>Determines the whether to use <em>Viewport</em> or <em>Render</em> visibility of collection, modifiers,
-or any other property that can be set for both the <em>Viewport</em> and <em>Render</em>.</dd>
+<dt>Use Settings for</dt><dd><p>Determines the whether to use <em>Viewport</em> or <em>Render</em> visibility of collection, modifiers,
+or any other property that can be set for both the <em>Viewport</em> and <em>Render</em>.</p>
+</dd>
 </dl>
-<div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Regardless of the options selected above, objects that are inside
-a <a class="reference internal" href="../../editors/outliner.html#editors-outliner-restriction-columns"><span class="std std-ref">Holdout collection</span></a> are always excluded from the export.</p>
-</div>
 <div class="section" id="experimental">
 <h3>Experimental<a class="headerlink" href="#experimental" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Instancing</dt>
-<dd>As this is an experimental option. When unchecked,
+<dl class="simple">
+<dt>Instancing</dt><dd><p>As this is an experimental option. When unchecked,
 duplicated objects are exported as real objects, so a particle system with
 100 particles that is displayed with 100 meshes will have 100 individual meshes
 in the exported file. When checked, duplicated objects are exported as
 a reference to the original object. If the original object is not part of the export,
-the first duplicate is exported as real object and used as reference.</dd>
+the first duplicate is exported as real object and used as reference.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="limitations">
 <h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Single-sided and Double-sided Meshes</dt>
-<dd>USD seems to support neither per-material nor per-face-group double-sidedness,
+<dl>
+<dt>Single-sided and Double-sided Meshes</dt><dd><p>USD seems to support neither per-material nor per-face-group double-sidedness,
 so Blender uses the flag from the first material to mark the entire mesh as single/double-sided.
-If there is no material it defaults to double-sided.</dd>
-<dt>Mesh Normals</dt>
-<dd>The mesh subdivision scheme in USD is 'Catmull-Clark' by default,
+If there is no material it defaults to double-sided.</p>
+</dd>
+<dt>Mesh Normals</dt><dd><p>The mesh subdivision scheme in USD is 'Catmull-Clark' by default,
 but Blender uses 'None' instead, indicating that a polygonal mesh is exported.
 This is necessary for USD to understand the custom normals;
-otherwise the mesh is always rendered smooth.</dd>
-<dt>Vertex Velocities</dt>
-<dd>Currently only fluid simulations (not meshes in general) have explicit vertex velocities.
+otherwise the mesh is always rendered smooth.</p>
+</dd>
+<dt>Vertex Velocities</dt><dd><p>Currently only fluid simulations (not meshes in general) have explicit vertex velocities.
 This is the most important case for exporting velocities, though,
 as the baked mesh changes topology all the time, and
-thus computing the velocities at import time in a post-processing step is hard.</dd>
-<dt>Coordinate System Orientation</dt>
-<dd>Blender uses the Z axis as up axis. Since USD supports both Y up and Z up,
-the USD files written by Blender always use Z up.</dd>
-<dt>Materials</dt>
-<dd><p class="first">Very simple versions of the materials are exported, using only
+thus computing the velocities at import time in a post-processing step is hard.</p>
+</dd>
+<dt>Coordinate System Orientation</dt><dd><p>Blender uses the Z axis as up axis. Since USD supports both Y up and Z up,
+the USD files written by Blender always use Z up.</p>
+</dd>
+<dt>Materials</dt><dd><p>Very simple versions of the materials are exported, using only
 the <a class="reference internal" href="../../render/materials/settings.html#render-materials-settings-viewport-display"><span class="std std-ref">Viewport Display</span></a> color, metallic, and roughness.</p>
-<p class="last">When there are multiple materials, the mesh faces are stored as geometry subset
+<p>When there are multiple materials, the mesh faces are stored as geometry subset
 and each material is assigned to the appropriate subset.
 If there is only one material this is skipped. Note that the geometry subsets are not time-sampled,
 so it may break when an animated mesh changes topology.</p>
 </dd>
-<dt>Hair</dt>
-<dd>Only the parent strands are exported, and only with a constant color.
-No UV coordinates, and no information about the normals.</dd>
-<dt>Camera</dt>
-<dd>Only perspective cameras are exported.</dd>
-<dt>Lights</dt>
-<dd>USD does not directly support spot lights, so those are not exported.</dd>
-<dt>Particles</dt>
-<dd><p class="first">Particles are only written when they are alive, which means that they are always visible.
+<dt>Hair</dt><dd><p>Only the parent strands are exported, and only with a constant color.
+No UV coordinates, and no information about the normals.</p>
+</dd>
+<dt>Camera</dt><dd><p>Only perspective cameras are exported.</p>
+</dd>
+<dt>Lights</dt><dd><p>USD does not directly support spot lights, so those are not exported.</p>
+</dd>
+<dt>Particles</dt><dd><p>Particles are only written when they are alive, which means that they are always visible.
 There is currently no code that deals with marking them as invisible outside their lifespan.</p>
-<p class="last">Objects instanced by particle system are exported by suffixing the object name with
+<p>Objects instanced by particle system are exported by suffixing the object name with
 the particle's persistent ID, giving each particle transform a unique name.</p>
 </dd>
-<dt>Instancing/Referencing</dt>
-<dd>This is still an experimental feature that can be enabled when exporting to USD.
+<dt>Instancing/Referencing</dt><dd><p>This is still an experimental feature that can be enabled when exporting to USD.
 When enabled, instanced object meshes are written to USD as references to the original mesh.
 The first copy of the mesh is written for real, and the following copies are referencing the first.
-Which mesh is considered 'the first' is chosen more or less arbitrarily.</dd>
+Which mesh is considered 'the first' is chosen more or less arbitrarily.</p>
+</dd>
 </dl>
 </div>
 </div>

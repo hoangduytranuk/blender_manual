@@ -124,6 +124,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">-- Particles System</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="particle_system_panel.html">-- Particle System Panel</a></li>
@@ -133,8 +134,6 @@
 <li class="toctree-l3"><a class="reference internal" href="mode.html">-- Particle Edit Mode</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
@@ -227,30 +226,30 @@ and other things such as dust or magic spells.</p>
 Hair systems form curves that can represent hair, fur, grass and bristles.</p>
 <p>You see particles as a Particle Modifier,
 but all settings are done in the <em>Particle tab</em>.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../_images/physics_particles_introduction_fur-example.jpg"><img alt="../../_images/physics_particles_introduction_fur-example.jpg" src="../../_images/physics_particles_introduction_fur-example.jpg" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Some fur made from particles.</span></p>
+<p class="caption"><span class="caption-text">Some fur made from particles.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Particles generally flow out from their mesh into space.
 Their movement can be affected by many things, including:</p>
 <ul class="simple">
-<li>Initial velocity out from the mesh.</li>
-<li>Movement of the emitter (vertex, face or object) itself.</li>
-<li>Movement according to &quot;gravity&quot; or &quot;air resistance&quot;.</li>
-<li>Influence of force fields like wind, vortexes or guided along a curve.</li>
-<li>Interaction with other objects like collisions.</li>
-<li>Partially intelligent members of a flock (herd, school, ...),
-that react to other members of their flock, while trying to reach a target or avoid predators.</li>
-<li>Smooth motion with soft body physics (only <em>Hair</em> particle systems).</li>
-<li>Or even manual transformation with <a class="reference internal" href="../../modeling/modifiers/deform/lattice.html"><span class="doc">Lattices</span></a>.</li>
+<li><p>Initial velocity out from the mesh.</p></li>
+<li><p>Movement of the emitter (vertex, face or object) itself.</p></li>
+<li><p>Movement according to &quot;gravity&quot; or &quot;air resistance&quot;.</p></li>
+<li><p>Influence of force fields like wind, vortexes or guided along a curve.</p></li>
+<li><p>Interaction with other objects like collisions.</p></li>
+<li><p>Partially intelligent members of a flock (herd, school, ...),
+that react to other members of their flock, while trying to reach a target or avoid predators.</p></li>
+<li><p>Smooth motion with soft body physics (only <em>Hair</em> particle systems).</p></li>
+<li><p>Or even manual transformation with <a class="reference internal" href="../../modeling/modifiers/deform/lattice.html"><span class="doc">Lattices</span></a>.</p></li>
 </ul>
 <p>Particles may be rendered as:</p>
 <ul class="simple">
-<li><a class="reference internal" href="emitter/render.html#particle-halo"><span class="std std-ref">Halos</span></a> (for Flames, Smoke, Clouds).</li>
-<li>Meshes which in turn may be animated (e.g. fish, bees, ...).
-In these cases, each particle &quot;carries&quot; another object.</li>
-<li><a class="reference internal" href="hair/shape.html"><span class="doc">Hair curves</span></a>, following the path of the particle.
-These hair curves can be manipulated in the 3D View (combing, adding, cutting, moving, etc.).</li>
+<li><p><a class="reference internal" href="emitter/render.html#particle-halo"><span class="std std-ref">Halos</span></a> (for Flames, Smoke, Clouds).</p></li>
+<li><p>Meshes which in turn may be animated (e.g. fish, bees, ...).
+In these cases, each particle &quot;carries&quot; another object.</p></li>
+<li><p><a class="reference internal" href="hair/shape.html"><span class="doc">Hair curves</span></a>, following the path of the particle.
+These hair curves can be manipulated in the 3D View (combing, adding, cutting, moving, etc.).</p></li>
 </ul>
 <p>Every object may carry many particle systems. Each particle system may contain up to
 10.000.000 particles. Certain particle types (<em>Hair</em> and <em>Keyed</em>)

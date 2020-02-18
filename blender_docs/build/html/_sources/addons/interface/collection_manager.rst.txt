@@ -72,7 +72,7 @@ Add Collection, Add Subcollection
    Self-explanatory.
 
 Phantom Mode
-   All visibility changes made in this mode will be discarded when it’s disabled.
+   All visibility changes made in this mode will be discarded when it's disabled.
 
    Enabling Phantom Mode saves the current state of your restrictions and
    allows you to edit them without fear of losing your current state.

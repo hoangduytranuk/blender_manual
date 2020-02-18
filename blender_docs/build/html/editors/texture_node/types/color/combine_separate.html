@@ -237,8 +237,8 @@
 <h1>Nút Kết Hợp/Phân Tách -- Combine/Separate Nodes<a class="headerlink" href="#combine-separate-nodes" title="Permalink to this headline">¶</a></h1>
 <p>Tất cả các nút này thực chất ra đều giống nhau:</p>
 <ul class="simple">
-<li>Tách Phân: Chia hình ảnh ra thành các kênh màu tổng hợp của nó.</li>
-<li>Kết hợp: Tái/Kết hợp một hình ảnh từ các kênh màu tổng hợp của nó.</li>
+<li><p>Tách Phân: Chia hình ảnh ra thành các kênh màu tổng hợp của nó.</p></li>
+<li><p>Kết hợp: Tái/Kết hợp một hình ảnh từ các kênh màu tổng hợp của nó.</p></li>
 </ul>
 <p>Các nút này có thể được sử dụng để thao tác từng kênh màu một, một cách độc lập. Mỗi thể loại sẽ được phân biệt trong <a class="reference internal" href="../../../../glossary/index.html#term-color-space"><span class="xref std std-term">color space</span></a>. áp dụng.</p>
 <p>Trong bối cảnh tổng hợp và chất liệu, mỗi nút đều có hỗ trợ kênh Alpha, song trong bối cảnh chất liệu, chỉ có không gian màu RGB là có thể sử dụng được (không có Alpha). Trong bối cảnh tô bóng của Blender nội tại (Blender internal), bạn còn có thể làm việc với HSV (trong cách phân màu thành các thành phần về Sắc Thái (Hue), Độ Bão Hòa (Saturation), Giá Trị (Value), viết tắt là HSV), và trong tô bóng Cycles, làm việc với cặp nút HSV, XYZ để kết hợp/tách phân một véctơ (XYZ) (hai cách để biểu thị màu sắc khác nhau).</p>
@@ -247,23 +247,23 @@
 <h2>Nút Phân Tách/Kết Hợp RGBA -- Separate/Combine RGBA Nodes<a class="headerlink" href="#separate-combine-rgba-nodes" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id8">
 <img alt="../../../../_images/compositing_node-types_CompositorNodeCombRGBA.png" src="../../../../_images/compositing_node-types_CompositorNodeCombRGBA.png" />
-<p class="caption"><span class="caption-text">Nút Kết Hợp RGBA.</span></p>
+<p class="caption"><span class="caption-text">Nút Kết Hợp RGBA.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-right" id="id9">
 <img alt="../../../../_images/compositing_node-types_CompositorNodeSepRGBA.png" src="../../../../_images/compositing_node-types_CompositorNodeSepRGBA.png" />
-<p class="caption"><span class="caption-text">Nút Phân Tách RGBA.</span></p>
+<p class="caption"><span class="caption-text">Nút Phân Tách RGBA.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="input-output">
 <h3>Đầu Vào/Ra -- Input/Output<a class="headerlink" href="#input-output" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào/ra hình ảnh chuẩn.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào/ra hình ảnh chuẩn.</p>
+</dd>
 </dl>
 <ul class="simple">
-<li>R (Đỏ) -- R (Red)</li>
-<li>G (Xanh Lục) -- G (Green)</li>
-<li>B (Blue)</li>
-<li>A (Alpha)</li>
+<li><p>R (Đỏ) -- R (Red)</p></li>
+<li><p>G (Xanh Lục) -- G (Green)</p></li>
+<li><p>B (Blue)</p></li>
+<li><p>A (Alpha)</p></li>
 </ul>
 </div>
 <div class="section" id="properties">
@@ -272,9 +272,9 @@
 </div>
 <div class="section" id="examples">
 <h3>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<div class="figure" id="id10">
+<div class="figure align-default" id="id10">
 <a class="reference internal image-reference" href="../../../../_images/compositing_types_converter_combine-separate_example-combine-rgba.png"><img alt="../../../../_images/compositing_types_converter_combine-separate_example-combine-rgba.png" src="../../../../_images/compositing_types_converter_combine-separate_example-combine-rgba.png" style="width: 640px;" /></a>
-<p class="caption"><span class="caption-text">Một ví dụ về làm nhòe mờ kênh alpha.</span></p>
+<p class="caption"><span class="caption-text">Một ví dụ về làm nhòe mờ kênh alpha.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 <p>Trong ví dụ đầu tiên này, chúng ta lấy kênh Alpha và làm mờ nó đi, sau đó kết hợp màu sắc trở lại. Khi được đặt trong một cảnh, các cạnh của nó sẽ hòa nhập vào, không còn là một cạnh cứng nữa. Điều này gần giống như phương pháp chống răng cưa nhưng theo nghĩa ba chiều. Hãy sử dụng thiết lập nút như thế này khi lồng phần tử Đồ Họa Máy Tính (Computer Graphics, viết tắt là CG) vào hành động trực tuyến (lồng phim và mô hình máy tính), để xóa mọi cạnh cứng đi. Hoạt hình hiệu ứng này trên phạm vi rộng hơn sẽ làm cho vật thể xuất hiện như được Chuyển Thờivào/ra (chuyển dần vào/ra : phase in and out), như trong hiệu ứng đồng bộ hóa du hành xuyên thời gian, Xuất Thời(out-of-phase)</p>
 </div>
@@ -283,23 +283,23 @@
 <h2>Nút Phân Tách/Kết Hợp HSVA -- Separate/Combine HSVA Nodes<a class="headerlink" href="#separate-combine-hsva-nodes" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id11">
 <img alt="../../../../_images/compositing_node-types_CompositorNodeCombHSVA.png" src="../../../../_images/compositing_node-types_CompositorNodeCombHSVA.png" />
-<p class="caption"><span class="caption-text">Nút Kết Hợp HSVA.</span></p>
+<p class="caption"><span class="caption-text">Nút Kết Hợp HSVA.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-right" id="id12">
 <img alt="../../../../_images/compositing_node-types_CompositorNodeSepHSVA.png" src="../../../../_images/compositing_node-types_CompositorNodeSepHSVA.png" />
-<p class="caption"><span class="caption-text">Nút Phân Tách HSVA.</span></p>
+<p class="caption"><span class="caption-text">Nút Phân Tách HSVA.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="id1">
 <h3>Đầu Vào/Ra -- Input/Output<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào/ra hình ảnh chuẩn.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào/ra hình ảnh chuẩn.</p>
+</dd>
 </dl>
 <ul class="simple">
-<li>H (Sắc) -- H (Hue)</li>
-<li>S (Độ Bão Hòa) -- S (Saturation)</li>
-<li>V (Giá Trị) -- V (Value)</li>
-<li>A (Alpha)</li>
+<li><p>H (Sắc) -- H (Hue)</p></li>
+<li><p>S (Độ Bão Hòa) -- S (Saturation)</p></li>
+<li><p>V (Giá Trị) -- V (Value)</p></li>
+<li><p>A (Alpha)</p></li>
 </ul>
 </div>
 <div class="section" id="id2">
@@ -311,23 +311,23 @@
 <h2>Nút Phân Tách/Kết Hợp YUVA -- Separate/Combine YUVA Nodes<a class="headerlink" href="#separate-combine-yuva-nodes" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id13">
 <img alt="../../../../_images/compositing_node-types_CompositorNodeCombYUVA.png" src="../../../../_images/compositing_node-types_CompositorNodeCombYUVA.png" />
-<p class="caption"><span class="caption-text">Nút Kết Hợp YUVA.</span></p>
+<p class="caption"><span class="caption-text">Nút Kết Hợp YUVA.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-right" id="id14">
 <img alt="../../../../_images/compositing_node-types_CompositorNodeSepYUVA.png" src="../../../../_images/compositing_node-types_CompositorNodeSepYUVA.png" />
-<p class="caption"><span class="caption-text">Nút Phân Tách YUVA.</span></p>
+<p class="caption"><span class="caption-text">Nút Phân Tách YUVA.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="id3">
 <h3>Đầu Vào/Ra -- Input/Output<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào/ra hình ảnh chuẩn.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào/ra hình ảnh chuẩn.</p>
+</dd>
 </dl>
 <ul class="simple">
-<li>Y (Độ Sáng) -- Y (Luminance)</li>
-<li>U (U độ màu) -- U (U chrominance)</li>
-<li>V (V Độ Màu) -- V (V chrominance)</li>
-<li>A (Alpha)</li>
+<li><p>Y (Độ Sáng) -- Y (Luminance)</p></li>
+<li><p>U (U độ màu) -- U (U chrominance)</p></li>
+<li><p>V (V Độ Màu) -- V (V chrominance)</p></li>
+<li><p>A (Alpha)</p></li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -339,42 +339,42 @@
 <h2>Nút Phân Tách/Kết Hợp YCbCrA -- Separate/Combine YCbCrA Node<a class="headerlink" href="#separate-combine-ycbcra-node" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id15">
 <img alt="../../../../_images/compositing_node-types_CompositorNodeCombYCCA.png" src="../../../../_images/compositing_node-types_CompositorNodeCombYCCA.png" />
-<p class="caption"><span class="caption-text">Nút Kết Hợp YCbCrA.</span></p>
+<p class="caption"><span class="caption-text">Nút Kết Hợp YCbCrA.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-right" id="id16">
 <img alt="../../../../_images/compositing_node-types_CompositorNodeSepYCCA.png" src="../../../../_images/compositing_node-types_CompositorNodeSepYCCA.png" />
-<p class="caption"><span class="caption-text">Nút Phân Tách YCbCrA.</span></p>
+<p class="caption"><span class="caption-text">Nút Phân Tách YCbCrA.</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="id5">
 <h3>Đầu Vào/Ra -- Input/Output<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào/ra hình ảnh chuẩn.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào/ra hình ảnh chuẩn.</p>
+</dd>
 </dl>
 <ul class="simple">
-<li>Y (Độ Sáng) -- Y (Luminance)</li>
-<li>Màu Xanh Lam -- Cb (Chrominance Blue)</li>
-<li>Màu Đỏ -- Cr (Chrominance Red)</li>
-<li>A (Alpha)</li>
+<li><p>Y (Độ Sáng) -- Y (Luminance)</p></li>
+<li><p>Màu Xanh Lam -- Cb (Chrominance Blue)</p></li>
+<li><p>Màu Đỏ -- Cr (Chrominance Red)</p></li>
+<li><p>A (Alpha)</p></li>
 </ul>
 </div>
 <div class="section" id="id6">
 <h3>Tính Chất -- Properties<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Chế Độ -- Mode</dt>
-<dd>ITU 601, ITU 709, Jpeg</dd>
+<dl class="simple">
+<dt>Chế Độ -- Mode</dt><dd><p>ITU 601, ITU 709, Jpeg</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="id7">
 <h3>Ví Dụ -- Examples<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<div class="figure" id="id17">
+<div class="figure align-default" id="id17">
 <img alt="../../../../_images/compositing_types_converter_math_multiply.png" src="../../../../_images/compositing_types_converter_math_multiply.png" />
-<p class="caption"><span class="caption-text">Một ví dụ về việc tỷ lệ hóa kênh về Độ Sáng (Luminance).</span></p>
+<p class="caption"><span class="caption-text">Một ví dụ về việc tỷ lệ hóa kênh về Độ Sáng (Luminance).</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
 </div>
 <p>Ví dụ này dùng nút <em>Toán (Nhân)</em> (Math (Multiply)) để tăng kênh độ sáng (Y) của hình ảnh, để làm cho nó sáng hơn.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">Nếu thông nối các kênh này qua nút <em>Dốc Màu</em> (Color Ramp) để điều chỉnh giá trị, thì hãy sử dụng thang đo Chính (Cardinal scale) để biểu đạt được chính xác. Sử dụng thang đo Lũy Thừa (Exponential scale) trên kênh độ sáng (luminance channel) để đạt được hiệu ứng tương phản cao.</p>
+<p class="admonition-title">Mẹo</p>
+<p>Nếu thông nối các kênh này qua nút <em>Dốc Màu</em> (Color Ramp) để điều chỉnh giá trị, thì hãy sử dụng thang đo Chính (Cardinal scale) để biểu đạt được chính xác. Sử dụng thang đo Lũy Thừa (Exponential scale) trên kênh độ sáng (luminance channel) để đạt được hiệu ứng tương phản cao.</p>
 </div>
 </div>
 </div>

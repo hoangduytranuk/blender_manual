@@ -219,27 +219,24 @@
 <h1>Cài đặt trên Linux -- Installation on Linux<a class="headerlink" href="#installation-on-linux" title="Permalink to this headline">¶</a></h1>
 <p>Hướng dẫn này bao gồm các chủ đề sau:</p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="#installing-dependencies">Cài Đặt các Thành Phần Phụ Thuộc -- Installing Dependencies</a></li>
-<li><a class="reference internal" href="#downloading-the-repository">Tải kho lưu trữ xuống máy -- Downloading the Repository</a></li>
-<li><a class="reference internal" href="#setting-up-the-build-environment">Thiết Lập Môi Trường Biên Dịch -- Setting up the Build Environment</a></li>
+<li><p><a class="reference internal" href="#installing-dependencies">Cài Đặt các Thành Phần Phụ Thuộc -- Installing Dependencies</a></p></li>
+<li><p><a class="reference internal" href="#downloading-the-repository">Tải kho lưu trữ xuống máy -- Downloading the Repository</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-the-build-environment">Thiết Lập Môi Trường Biên Dịch -- Setting up the Build Environment</a></p></li>
 </ol>
 <div class="section" id="installing-dependencies">
 <h2>Cài Đặt các Phụ Thuộc -- Installing Dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this headline">¶</a></h2>
 <p>Dưới đây là danh sách các lệnh cài đặt cho các phiên bản phân phối Linux phổ biến.</p>
 <p>Đối với hệ thống thích hợp, hãy thi hành lệnh sau trong thiết bị đầu cuối (bàn giao tiếp):</p>
-<dl class="docutils">
-<dt>Debian/Ubuntu</dt>
-<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt-get install python3 python3-pip subversion
+<dl>
+<dt>Debian/Ubuntu</dt><dd><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt-get install python3 python3-pip subversion
 </pre></div>
 </div>
 </dd>
-<dt>Redhat/Fedora</dt>
-<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install python python-pip
+<dt>Redhat/Fedora</dt><dd><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install python python-pip
 </pre></div>
 </div>
 </dd>
-<dt>Arch Linux</dt>
-<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo pacman -S python python-pip subversion
+<dt>Arch Linux</dt><dd><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo pacman -S python python-pip subversion
 </pre></div>
 </div>
 </dd>
@@ -257,23 +254,22 @@ svn checkout https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs
 <div class="section" id="setting-up-the-build-environment">
 <h2>Thiết Lập Môi Trường Biên Dịch -- Setting up the Build Environment<a class="headerlink" href="#setting-up-the-build-environment" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Mở một cửa sổ Thiết Bị Đầu Cuối (Bàn Giao Tiếp để đánh dòng lệnh).</p>
-</li>
-<li><p class="first">Bước vào thư mục <code class="docutils literal notranslate"><span class="pre">blender_docs</span></code> vừa được kiến tạo và bổ sung bởi việc kiểm xuất (checkout) SVN:</p>
+<li><p>Mở một cửa sổ Thiết Bị Đầu Cuối (Bàn Giao Tiếp để đánh dòng lệnh).</p></li>
+<li><p>Bước vào thư mục <code class="docutils literal notranslate"><span class="pre">blender_docs</span></code> vừa được kiến tạo và bổ sung bởi việc kiểm xuất (checkout) SVN:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/blender_docs
 </pre></div>
 </div>
 </li>
-<li><p class="first">Bên trong thư mục đó có một tập tin với cái tên <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, và trong đó có chứa một danh sách tất cả các phần mềm phụ thuộc mà chúng ta cần phải có. Để cài đặt các phần phụ thuộc này, chúng ta có thể sử dụng lệnh <code class="docutils literal notranslate"><span class="pre">pip3</span></code> như sau:</p>
+<li><p>Bên trong thư mục đó có một tập tin với cái tên <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, và trong đó có chứa một danh sách tất cả các phần mềm phụ thuộc mà chúng ta cần phải có. Để cài đặt các phần phụ thuộc này, chúng ta có thể sử dụng lệnh <code class="docutils literal notranslate"><span class="pre">pip3</span></code> như sau:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo pip3 install -r requirements.txt
 </pre></div>
 </div>
 </li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p>Thỉnh thoảng, bạn có thể muốn các thư viện phụ thuộc của bạn được cập nhật với những thay đổi gần đây nhất, nếu vậy, hãy sử dụng:</p>
-<div class="last highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo pip3 install -r requirements.txt --upgrade
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo pip3 install -r requirements.txt --upgrade
 </pre></div>
 </div>
 </div>

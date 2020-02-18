@@ -58,17 +58,16 @@ Internal Springs
 ================
 
 As stated in the introduction, cloth physics are simulated through :ref:`physics-cloth-introduction-springs`
-connecting vertices on the surface of a mesh.
-However, these springs only interact on the surface and only apply to 2D surfaces.
-3D or *Internal Springs* can be used to make a mesh behave similarly to a
-:doc:`Soft Body </physics/soft_body/index>`.
-Internal springs can be enabled by toggling the checkbox in the *Internal Springs* panel header.
+connecting vertices on the surface of a mesh. But these springs only interact on the surface
+and only apply to 2D surfaces. 3D or *Internal Springs* can be used to make a mesh behave similarly to
+a :doc:`Soft Body </physics/soft_body/index>`. Internal springs can be enabled by toggling the checkbox in
+the *Internal Springs* panel header.
 
 Max Spring Creation Length
    The maximum length an internal spring can have during creation.
    If the distance between internal points is greater than this,
    no internal spring will be created between these points.
-   A length of zero means that there is no length limit
+   A length of zero means that there is no length limit.
 Max Creation Diversion
    The maximum angle that is allowed to use to connect the internal points can diverge from the vertex normal.
 Check Surface Normals
@@ -78,9 +77,9 @@ Tension
 Compression
    How much the material resists compression.
 Vertex Group
-   The *Tension* and *Compression* of internal springs can be controlled via a
-   :doc:`Vertex Group </modeling/meshes/properties/vertex_groups/index>`
-   to specify which the portions of the mesh have internal springs or the spring strength.
+   The *Tension* and *Compression* of internal springs can be controlled via
+   a :doc:`Vertex Group </modeling/meshes/properties/vertex_groups/index>` to
+   specify which the portions of the mesh have internal springs or the spring strength.
 Max Tension
    Maximum tension stiffness value.
 Max Compression
@@ -96,16 +95,16 @@ Max Compression
 Pressure
 ========
 
-Cloth pressure allows the simulation of soft shelled objects
+Cloth pressure allows the simulation of soft-shelled objects
 such as balloons or balls that are filled with some sort of fluid.
 This fluid can be seen either as a gas or a liquid however, both are generalized as "fluids".
 Cloth pressure can be enabled by toggling the checkbox in the *Pressure* panel header.
 
 .. note::
 
-   Non manifold meshes will work with cloth pressure however,
+   :term:`Non-manifold` meshes will work with cloth pressure however,
    pressure will escape out of the mesh holes and cause drifting or propulsion forces.
-   One way to get around this is by using the *Vertex Group* to exclude the non manifold portions of the mesh.
+   One way to get around this is by using the *Vertex Group* to exclude the non-manifold portions of the mesh.
 
 Pressure
    The uniform pressure that is constantly applied to the mesh.
@@ -127,4 +126,4 @@ Vertex Group
    to specify which the portions of the mesh to apply pressure.
    Zero weight means no pressure while a weight of one means full pressure.
 
-   Note, Faces with a vertex that has zero weight will be excluded from the *Target Volume* calculation.
+   Note, faces with a vertex that has zero weight will be excluded from the *Target Volume* calculation.

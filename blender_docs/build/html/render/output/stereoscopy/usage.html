@@ -1,0 +1,618 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Usage &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/output/stereoscopy/usage.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="-- Rendering Animations" href="../animation.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cycles/index.html">Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Phong Cách Tự Do -- Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">-- Render Output</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../settings.html">Output Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../file_formats.html">File Formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../audio/index.html">-- Audio Rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html">Siêu Dữ Liệu -- Metadata</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Stereoscopy</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../animation.html">-- Rendering Animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation_player.html">Máy Chơi Hoạt Họa -- Animation Player</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.82 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+        
+          <li><a href="../index.html">-- Render Output</a> &raquo;</li>
+        
+          <li><a href="index.html">Stereoscopy</a> &raquo;</li>
+        
+      <li>Usage</li>
+    
+    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/output/stereoscopy/usage.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>For example, we will take an existing blend-file
+that was made for monoscopic rendering and transform it to be stereo 3D ready.</p>
+<div class="figure align-default" id="id1">
+<img alt="../../../_images/render_output_multiview_usage_anaglyph.png" src="../../../_images/render_output_multiview_usage_anaglyph.png" />
+<p class="caption"><span class="caption-text">Creature Factory 2 by Andy Goralczyk rendered in stereo 3D (anaglyph).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Start opening up your project file, in this case <code class="docutils literal notranslate"><span class="pre">turntable.blend</span></code> from the <em>Creature Factory 2</em>
+Open Movie Workshop series from the Blender Institute by Andy Goralczyk.</p>
+<div class="figure align-default" id="id2">
+<img alt="../../../_images/render_output_multiview_usage_turntable-creature.png" src="../../../_images/render_output_multiview_usage_turntable-creature.png" />
+<p class="caption"><span class="caption-text">Turntable Creature Factory 2.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="stereoscopy-setup">
+<h2>Stereoscopy Setup<a class="headerlink" href="#stereoscopy-setup" title="Permalink to this headline">¶</a></h2>
+<p>Go to the <a class="reference internal" href="../settings.html"><span class="doc">Render Output</span></a> settings and enable <em>Stereoscopy</em> for this scene.</p>
+<div class="figure align-default" id="id3">
+<img alt="../../../_images/render_output_multiview_usage_views-panel.png" src="../../../_images/render_output_multiview_usage_views-panel.png" />
+<p class="caption"><span class="caption-text">Scene render views.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>When you turn on <em>Stereoscopy</em> in the scene, you get 3D preview in the viewport,
+as well as multiple panels that are now accessible all over the user interface.</p>
+</div>
+<div class="figure align-default" id="id4">
+<img alt="../../../_images/render_output_multiview_usage_viewport.png" src="../../../_images/render_output_multiview_usage_viewport.png" />
+<p class="caption"><span class="caption-text">Viewport with 3D visualization.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="camera">
+<h2>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">¶</a></h2>
+<p>To tweak the stereo 3D parameters, select the camera in the Outliner.
+In the Camera panel go to the Stereoscopy tab and change the <em>Convergence Distance</em>.</p>
+<p>The viewport will respond in real-time to those changes allowing you to preview the current depth value of the scene.</p>
+<div class="figure align-default" id="id5">
+<img alt="../../../_images/render_output_multiview_usage_camera-stereoscopy-panel.png" src="../../../_images/render_output_multiview_usage_camera-stereoscopy-panel.png" />
+<p class="caption"><span class="caption-text">Stereo convergence distance.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="viewport">
+<h2>Viewport<a class="headerlink" href="#viewport" title="Permalink to this headline">¶</a></h2>
+<p>Before fine-tuning the camera parameters,
+you can set the convergence plane in the viewport based in your scene depth layout.
+Go outside the camera view and you will instantly see the convergence plane in front of the camera.</p>
+<p>You can toggle this and other display settings in the Stereoscopy panel of the 3D Views Sidebar.
+In the following image, the camera's frustum volumes are also visible.</p>
+<div class="figure align-default" id="id6">
+<a class="reference internal image-reference" href="../../../_images/render_output_multiview_usage_stereo-preview.png"><img alt="../../../_images/render_output_multiview_usage_stereo-preview.png" src="../../../_images/render_output_multiview_usage_stereo-preview.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-text">Viewport plane and volume stereo preview.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="stereo-3d-display">
+<h2>Stereo 3D Display<a class="headerlink" href="#stereo-3d-display" title="Permalink to this headline">¶</a></h2>
+<p>If you have a real 3D display at some point, you can change the 3D display mode in the Window menu,
+by calling the Stereo 3D operator.
+Be aware that some modes require a fullscreen editor to work.</p>
+<div class="figure align-default" id="id7">
+<img alt="../../../_images/render_output_multiview_usage_window-stereo-3d.png" src="../../../_images/render_output_multiview_usage_window-stereo-3d.png" />
+<p class="caption"><span class="caption-text">Window menu, stereo 3D operator.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="viewport-preview">
+<h2>Viewport Preview<a class="headerlink" href="#viewport-preview" title="Permalink to this headline">¶</a></h2>
+<p>Before rendering your scene, you can save a Viewport Preview of the animation for testing in the final display.
+In the Render Output panel you can choose the output <em>Views Format</em>.</p>
+<p>The options include individual files per view, top-bottom, anaglyph among others.
+Pick the one that fits your display requirements.</p>
+<iframe src="https://www.youtube.com/embed/COmIIjlH-to" style="border: 0; height: 345px; width: 560px">
+</iframe></div>
+<div class="section" id="rendering-and-image-editor">
+<h2>Rendering and Image Editor<a class="headerlink" href="#rendering-and-image-editor" title="Permalink to this headline">¶</a></h2>
+<p>Once you are happy with the results, you can render out the final animation.
+In the Image Editor you can inspect the individual views and the stereo result.</p>
+</div>
+<div class="section" id="image-formats">
+<h2>Image Formats<a class="headerlink" href="#image-formats" title="Permalink to this headline">¶</a></h2>
+<p>Your final animation can be saved in more robust formats.
+In this example we saved as cross-eyed side-by-side stereo 3D.</p>
+<div class="figure align-default" id="id8">
+<img alt="../../../_images/render_output_multiview_usage_render-sidebyside.png" src="../../../_images/render_output_multiview_usage_render-sidebyside.png" />
+<p class="caption"><span class="caption-text">Side-by-side cross-eye format.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="final-considerations">
+<h2>Final Considerations<a class="headerlink" href="#final-considerations" title="Permalink to this headline">¶</a></h2>
+<p>As this guide showed, there is more to stereo 3D rendering than just generate two images.
+The earlier the stereo pipeline is considered the smoother it will get.
+The following sections are a more in-depth view of the individual components we visited in the workflow.</p>
+</div>
+<div class="section" id="window-stereo-3d-display">
+<h2>Window Stereo 3D Display<a class="headerlink" href="#window-stereo-3d-display" title="Permalink to this headline">¶</a></h2>
+<p>An essential component of the Stereoscopy pipeline is the ability to display the stereo image in a proper display.
+Blender supports from high-end 3D displays to simple red-cyan glasses.
+On top of that, you can set a different display mode for each window.</p>
+<p>The display mode can be changed via the Window menu
+or if you create your own shortcuts for the <code class="docutils literal notranslate"><span class="pre">wm.set_stereo_3d</span></code> operator.</p>
+<div class="figure align-default" id="id9">
+<img alt="../../../_images/render_output_multiview_usage_window-stereo-3d.png" src="../../../_images/render_output_multiview_usage_window-stereo-3d.png" />
+<p class="caption"><span class="caption-text">Window menu, stereo 3D operator.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="display-mode">
+<h3>Display Mode<a class="headerlink" href="#display-mode" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt>Anaglyph</dt><dd><p>Render two differently filtered colored images for each eye.
+Anaglyph glasses are required. We support red-cyan, green-magenta and yellow-blue glasses.</p>
+</dd>
+<dt>Interlace</dt><dd><p>Render two images for each eye into one interlaced image.
+A 3D-ready monitor is required. We support Row, Column and Checkerboard Interleaved.
+An option to Swap Left/Right helps to adjust the image for the screen. This method works better in fullscreen.</p>
+</dd>
+<dt>Time Sequential</dt><dd><p>Render alternate eyes.
+This method is also known as Page Flip.
+This requires the graphic card to support Quad Buffer and it only works in fullscreen.</p>
+</dd>
+<dt>Side-by-Side</dt><dd><p>Render images for left and right eye side-by-side.
+There is an option to support Cross-Eye glasses.
+It works only in fullscreen, and it should be used with the Full Editor operator.</p>
+</dd>
+<dt>Top-Bottom</dt><dd><p>Render images for left and right eye one above another.
+It works only in fullscreen, and it should be used with the Full Editor operator.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Full Screen Stereo 3D Modes</p>
+<p>If you have a 3D display most of the time,
+you will use it to see in stereo 3D, you will have to go to the fullscreen mode.
+In fact some modes will only work in the full window mode that hides most of the user
+interface from the work area.
+In this case it is recommended to work with two monitors,
+using the 3D screen for visualizing the stereo result
+while the other screen can be used for the regular Blender work.</p>
+</div>
+</div>
+</div>
+<div class="section" id="stereo-3d-camera">
+<h2>Stereo 3D Camera<a class="headerlink" href="#stereo-3d-camera" title="Permalink to this headline">¶</a></h2>
+<p>When using the Stereo 3D scene view setup, a stereo pair is created
+on-the-fly and used for rendering and previsualization.
+For all the purposes this works as two cameras that share most parameters (focal length, clipping, ...).
+The stereo pair, however, is offsetted, and can have unique rotation and shift between itself.</p>
+<div class="figure align-default" id="id10">
+<img alt="../../../_images/render_output_multiview_usage_camera-stereoscopy-panel.png" src="../../../_images/render_output_multiview_usage_camera-stereoscopy-panel.png" />
+<p class="caption"><span class="caption-text">Stereo 3D camera settings.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<dl class="simple">
+<dt>Interocular Distance</dt><dd><p>Set the distance between the camera pair.
+Although the convergence of a stereo pair can be changed in post-production,
+different interocular distances will produce different results
+due to the parts of the scene being occluded from each point of view.</p>
+</dd>
+<dt>Convergence Plane Distance</dt><dd><p>The converge point for the stereo cameras.
+This is often the distance between a projector and the projection screen.
+You can visualize this in the 3D View.</p>
+</dd>
+</dl>
+<dl>
+<dt>Spherical Stereo</dt><dd><p>Render every pixel rotating the camera around the middle of the interocular distance.</p>
+</dd>
+<dt>Use Pole Merge</dt><dd><p>Fade interocular distance to 0 after the given cutoff angle.</p>
+<dl class="simple">
+<dt>Pole Merge Start Angle</dt><dd><p>Angle at which interocular distance starts to fade to 0.</p>
+</dd>
+<dt>Pole Merge End Angle</dt><dd><p>Angle at which interocular distance is 0.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="section" id="convergence-mode">
+<h3>Convergence Mode<a class="headerlink" href="#convergence-mode" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt>Off-Axis</dt><dd><p>The stereo camera pair is separated by the interocular distance,
+and shifted inwards so it converges in the convergence plane.
+This is the ideal format since it is the one closest to how the human vision works.</p>
+</dd>
+<dt>Parallel</dt><dd><p>This method produces two parallel cameras that do not converge.
+Since this method needs to be manually converged it cannot be used for viewing.
+This method is common when combining real footage with rendered elements.</p>
+</dd>
+<dt>Toe-in</dt><dd><p>A less common approach is to rotate the cameras instead of shifting their frustum.
+The Toe-in method is rarely used in modern 3D productions.</p>
+</dd>
+<dt>Pivot</dt><dd><p>The stereo pair can be constructed around the active camera with a new camera built for each eye
+(Center Pivot) or using the existing camera and creating (Left or Right).
+The latter is what is used when only one eye needs to be rendered for an existing mono 2D project.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="viewport-stereo-3d">
+<h2>Viewport Stereo 3D<a class="headerlink" href="#viewport-stereo-3d" title="Permalink to this headline">¶</a></h2>
+<p>When you enable 'Views' in the Render Layer panel, a new area is available in the 3D View Sidebar region.
+In this panel you can pick whether to see the stereo 3D in the viewport, or which camera to see.
+It also allow you to see the <em>Cameras</em>, the <em>Plane</em> and the <em>Volume</em> of the stereo cameras.</p>
+<div class="figure align-default" id="id11">
+<img alt="../../../_images/render_output_multiview_usage_3d-view-stereoscopy-panel.png" src="../../../_images/render_output_multiview_usage_3d-view-stereoscopy-panel.png" />
+<p class="caption"><span class="caption-text">Viewport stereo 3D settings.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<dl>
+<dt>Cameras</dt><dd><p>When working with the Stereo 3D Views setup, you can inspect what
+each individual generated camera is looking or the combined result of them.
+In the Multi-View mode you can see the combined result of the left and right cameras
+(when available) or the current selected camera.</p>
+</dd>
+<dt>Plane</dt><dd><p>The convergence plane represents the screen as it is perceived by the audience.
+Visualizing it in the 3D View allows you to layout your scene
+based on your depth script outside the camera view.</p>
+</dd>
+<dt>Volume</dt><dd><p>The intersection of the stereo cameras frustums helps planning the show
+by avoiding elements being visible by only one camera.
+The volume is defined by the camera's start and end clipping distances.
+The areas that are in the frustum of one camera only are known as <em>retinal rivalry areas</em>.
+They are tolerated in the negative space (the region from the convergence plane into the image)
+but are to be avoided at all costs in the positive space (the area from the convergence plane to the camera).</p>
+<div class="figure align-default" id="id12">
+<a class="reference internal image-reference" href="../../../_images/render_output_multiview_usage_volume.png"><img alt="../../../_images/render_output_multiview_usage_volume.png" src="../../../_images/render_output_multiview_usage_volume.png" style="width: 402px;" /></a>
+<p class="caption"><span class="caption-text">Viewport 3D: convergence plane and volume display.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="multi-view-and-stereo-3d-image-i-o">
+<h2>Multi-View and Stereo 3D Image I/O<a class="headerlink" href="#multi-view-and-stereo-3d-image-i-o" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Multi-View and Stereo 3D</dt><dd><p>Multi-view images can be saved in special formats according to the production requirements.
+By default the system saves each view as an individual file,
+thus generating as many files as views to be rendered.
+In stereo 3D productions, for the final deployment or
+even intermediary previews it is convenient to save stereo 3D images,
+that are ready to use with 3D displays or simple anaglyph glasses.
+The formats supported match the display modes available for the window.</p>
+</dd>
+<dt>Lossy-Formats</dt><dd><p>Some stereo 3D formats represent a considerable loss of data.
+For example, the Anaglyph format will cap out entire color channels from the original image.
+The Top-Bottom compressed will discard half of your vertical resolution data.
+The Interlace will mash your data considerably.
+Once you export in those formats, you can still import the image
+back in Blender, for it to be treated as Stereo 3D.
+You will need to match the window stereo 3D display mode to the image stereo 3D format though.</p>
+</dd>
+<dt>Lossless Formats</dt><dd><p>Some formats will preserve the original data,
+leading to no problems on exporting and importing the files back in Blender.
+The Individual option will produce separate images that
+(if saved in a lossless encoding such as <code class="docutils literal notranslate"><span class="pre">PNG</span></code> or <code class="docutils literal notranslate"><span class="pre">OpenEXR</span></code>)
+can be loaded back in production with no loss of data.
+For the Stereo 3D formats the only lossless options are
+<em>Top-Bottom</em> and <em>Side-by-Side</em> without the Squeezed Frame option.</p>
+</dd>
+<dt>Multi-View OpenEXR</dt><dd><p>Another option is to use multi-view OpenEXR files.
+This format can save multiple views in a single file and is backward compatible
+with old OpenEXR viewers (you see only one view though).
+Multi-view native support is only available to OpenEXR.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="image-editor">
+<h2>Image Editor<a class="headerlink" href="#image-editor" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt>View Menu</dt><dd><p>After you render your scene with Stereo 3D you will be able to see
+the rendered result in the combined stereo 3D or to inspect the individual views.
+This works for Viewer nodes, render results or opened images.</p>
+<div class="figure align-default" id="id13">
+<img alt="../../../_images/render_output_multiview_usage_image-editor-header.png" src="../../../_images/render_output_multiview_usage_image-editor-header.png" />
+<p class="caption"><span class="caption-text">Stereo 3D and view menu.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+</dd>
+<dt>Views Format</dt><dd><p>When you drag and drop an image into the Image Editor, Blender will open it as an individual images at first.
+If your image was saved with one of the Stereo 3D formats, you can change how
+Blender should interpret the image by switching the mode to Stereo 3D,
+turning on <em>Use Multi-View</em> and picking the corresponding stereo method.</p>
+<div class="figure align-default" id="id14">
+<img alt="../../../_images/render_output_multiview_usage_image-editor-multi-view.png" src="../../../_images/render_output_multiview_usage_image-editor-multi-view.png" />
+<p class="caption"><span class="caption-text">Views formats and stereo 3D.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="compositor">
+<h2>Compositor<a class="headerlink" href="#compositor" title="Permalink to this headline">¶</a></h2>
+<p>The Compositor works smoothly with multi-view images.
+The compositing of a view is completed before the remaining views start to be composited.
+The pipeline is the same as the single-view workflow, with the difference that you can use Images,
+Movies or Image Sequences in any of the supported multi-view formats.</p>
+<div class="figure align-default" id="id15">
+<img alt="../../../_images/render_output_multiview_usage_compositor.png" src="../../../_images/render_output_multiview_usage_compositor.png" />
+<p class="caption"><span class="caption-text">Compositor, backdrop and Split Viewer node.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</div>
+<p>The views to render are defined in the current scene views,
+in a similar way as you define the composite output resolution in the current scene render panel,
+regardless of the Image nodes resolutions or Render Layers from different scenes.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Single-View Images</p>
+<p>If the image from an Image node does not have the view you are trying to render,
+the image will be treated as a single-view image.</p>
+</div>
+<dl class="simple">
+<dt>Switch View Node</dt><dd><p>If you need to treat the views separately, you can use
+the <a class="reference internal" href="../../../compositing/types/converter/switch_view.html"><span class="doc">Switch View node</span></a>
+to combine the views before an Output node.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Performance</p>
+<p>By default, when compositing and rendering from the user interface all views are rendered and then composited.
+During test iterations you can disable all but one view from the Scene Views panel,
+and re-enable it after you get the final look.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../animation.html" class="btn btn-neutral float-right" title="-- Rendering Animations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.82 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

@@ -20,7 +20,7 @@ Phase
       This can be used for rendering short video sequences with wavy lines
       that can then be seamlessly looped without any visual jumps in the undulations along the line.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_geometry_sinus-displacement-example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_geometry_sinus-displacement_example.png
    :width: 50%
    :align: center
 

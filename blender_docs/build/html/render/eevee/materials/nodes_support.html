@@ -133,7 +133,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../world.html">Thế Giới -- World</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../lighting.html">Light Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../lightprobes/index.html">-- Light Probes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../light_probes/index.html">Light Probes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../limitations.html">Những Giới Hạn -- Limitations</a></li>
 </ul>
 </li>
@@ -230,8 +230,8 @@
 <p>Most nodes are taken from Cycles. However some features are missing and
 may (or may not) be implemented in Eevee in the future.</p>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="../../shader_nodes/index.html"><span class="doc">Shader Nodes</span></a>.</p>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../shader_nodes/index.html"><span class="doc">Shader Nodes</span></a>.</p>
 </div>
 <div class="section" id="eevee-only-nodes">
 <h2>-- Eevee only Nodes<a class="headerlink" href="#eevee-only-nodes" title="Permalink to this headline">¶</a></h2>
@@ -255,146 +255,145 @@ found in other render engines.</p>
 <p>In the general case, shader nodes should behave more or less like in Cycles.
 So be sure to check out the Cycles section of this manual for that.</p>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="../../shader_nodes/shader/index.html"><span class="doc">Material</span></a>.</p>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../shader_nodes/shader/index.html"><span class="doc">Material</span></a>.</p>
 </div>
 <p>Although most BSDFs are supported, many of them are approximations and are not feature complete.</p>
-<dl class="docutils">
-<dt>BSDF Khuếch Tán -- Diffuse BSDF</dt>
-<dd>Roughness is not supported. Only Lambertian diffusion is supported.</dd>
-<dt>Phát Xạ -- Emission</dt>
-<dd>Treated as indirect lighting and will only show up in <abbr title="Screen Space Reflection">SSR</abbr>s and Probes.</dd>
-<dt>-- Glass / Refraction BSDF</dt>
-<dd>Does not refract lights. Does not support Beckmann and GGX Multiscatter distribution.
-See limitation of Refraction.</dd>
-<dt>BSDF Bóng Bẩy -- Glossy BSDF</dt>
-<dd>Does not support Beckmann, Ashikhmin-Shirley and GGX Multiscatter distribution.</dd>
-<dt>Tán Xạ Dưới Bề Mặt -- Subsurface Scattering</dt>
-<dd>Random Walk sampling is not supported. Per color channel Radius is specified by the default socket value.
+<dl class="simple">
+<dt>BSDF Khuếch Tán -- Diffuse BSDF</dt><dd><p>Roughness is not supported. Only Lambertian diffusion is supported.</p>
+</dd>
+<dt>Phát Xạ -- Emission</dt><dd><p>Treated as indirect lighting and will only show up in <abbr title="Screen Space Reflection">SSR</abbr>s and Probes.</p>
+</dd>
+<dt>-- Glass / Refraction BSDF</dt><dd><p>Does not refract lights. Does not support Beckmann and GGX Multiscatter distribution.
+See limitation of Refraction.</p>
+</dd>
+<dt>BSDF Bóng Bẩy -- Glossy BSDF</dt><dd><p>Does not support Beckmann, Ashikhmin-Shirley and GGX Multiscatter distribution.</p>
+</dd>
+<dt>Tán Xạ Dưới Bề Mặt -- Subsurface Scattering</dt><dd><p>Random Walk sampling is not supported. Per color channel Radius is specified by the default socket value.
 Any link plugged into this socket gets ignored.
-Texture Blur is not accurate for any value other than 0.0 and 1.0.</dd>
-<dt>BSDF Trong Suốt -- Transparent BSDF</dt>
-<dd>Transparency will only have an effect if the Material blend mode is not Opaque.
-Colored and additive transparency are only compatible with &quot;Alpha Blend&quot; mode.</dd>
-<dt>BSDF Trong Mờ -- Translucent BSDF</dt>
-<dd>Does not diffuse the light inside the object. It only lights the object with reversed normals.</dd>
-<dt>BSDF Nguyên Tắc -- Principled BSDF</dt>
-<dd>Cumulative limitations from Diffuse BSDF, Glossy BSDF, Refraction BSDF and Subsurface Scattering.
-Anisotropy is not supported. Transmission Roughness is not supported. The Sheen layer is a crude approximation.</dd>
-<dt>Hấp Thụ Thể Tích -- Volume Absorption</dt>
-<dd>See <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Volume Limitation</span></a>.</dd>
-<dt>Tán Xạ Thể Tích -- Volume Scatter</dt>
-<dd>The anisotropy parameter will be mixed and averaged for all overlapping volumetric objects,
+Texture Blur is not accurate for any value other than 0.0 and 1.0.</p>
+</dd>
+<dt>BSDF Trong Suốt -- Transparent BSDF</dt><dd><p>Transparency will only have an effect if the Material blend mode is not Opaque.
+Colored and additive transparency are only compatible with &quot;Alpha Blend&quot; mode.</p>
+</dd>
+<dt>BSDF Trong Mờ -- Translucent BSDF</dt><dd><p>Does not diffuse the light inside the object. It only lights the object with reversed normals.</p>
+</dd>
+<dt>BSDF Nguyên Tắc -- Principled BSDF</dt><dd><p>Cumulative limitations from Diffuse BSDF, Glossy BSDF, Refraction BSDF and Subsurface Scattering.
+Anisotropy is not supported. Transmission Roughness is not supported. The Sheen layer is a crude approximation.</p>
+</dd>
+<dt>Hấp Thụ Thể Tích -- Volume Absorption</dt><dd><p>See <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Volume Limitation</span></a>.</p>
+</dd>
+<dt>Tán Xạ Thể Tích -- Volume Scatter</dt><dd><p>The anisotropy parameter will be mixed and averaged for all overlapping volumetric objects,
 which is not physically correct and differs from Cycles.
-Also see <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Volume Limitation</span></a>.</dd>
-<dt>Thể Tích Nguyên Tắc -- Principled Volume</dt>
-<dd>Same as Volume Scatter. Also see <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Volume Limitation</span></a>.</dd>
-<dt>Giữ Chỗ Trống -- Holdout</dt>
-<dd>Partially supported, using <a class="reference internal" href="settings.html#bpy-types-material-blend-method"><span class="std std-ref">Blend Modes</span></a>
-other than <em>Alpha</em> may give incorrect results.</dd>
-<dt>BSDF Dị Hướng -- Anisotropic BSDF</dt>
-<dd>Not supported.</dd>
-<dt>BSDF Hoạt Họa -- Toon BSDF</dt>
-<dd>Not supported.</dd>
-<dt>BSDF Tóc -- Hair BSDF</dt>
-<dd>Not supported.</dd>
-<dt>BSDF Vải Nhung -- Velvet BSDF</dt>
-<dd>Not supported.</dd>
-<dt>-- Principled Hair BSDF</dt>
-<dd>Not supported.</dd>
+Also see <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Volume Limitation</span></a>.</p>
+</dd>
+<dt>Thể Tích Nguyên Tắc -- Principled Volume</dt><dd><p>Same as Volume Scatter. Also see <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Volume Limitation</span></a>.</p>
+</dd>
+<dt>Giữ Chỗ Trống -- Holdout</dt><dd><p>Partially supported, using <a class="reference internal" href="settings.html#bpy-types-material-blend-method"><span class="std std-ref">Blend Modes</span></a>
+other than <em>Alpha</em> may give incorrect results.</p>
+</dd>
+<dt>BSDF Dị Hướng -- Anisotropic BSDF</dt><dd><p>Not supported.</p>
+</dd>
+<dt>BSDF Hoạt Họa -- Toon BSDF</dt><dd><p>Not supported.</p>
+</dd>
+<dt>BSDF Tóc -- Hair BSDF</dt><dd><p>Not supported.</p>
+</dd>
+<dt>BSDF Vải Nhung -- Velvet BSDF</dt><dd><p>Not supported.</p>
+</dd>
+<dt>-- Principled Hair BSDF</dt><dd><p>Not supported.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="input-nodes">
 <h3>Nút Đầu Vào -- Input Nodes<a class="headerlink" href="#input-nodes" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt>
-<dd>All parameters will have no effects except Normal and Color.
-This is because the AO is computed before evaluating this node and it uses the scene settings for that.</dd>
-<dt>Dữ Liệu Máy Quay Phim -- Camera Data</dt>
-<dd>Everything is compatible.</dd>
-<dt>Hình Dạng -- Geometry</dt>
-<dd>Pointiness is not supported.</dd>
-<dt>Random Per Island</dt>
-<dd>Random Per island is not supported.</dd>
-<dt>Thuộc Tính -- Attribute</dt>
-<dd>Defaults to active UV layer. Only &quot;density&quot;, &quot;color&quot;, &quot;flame&quot; and &quot;temperature&quot; built-in attributes are supported.
-UVs and Vertex Color layers are supported.</dd>
-<dt>Bo Tròn -- Bevel</dt>
-<dd>Not supported.</dd>
-<dt>Fresnen -- Fresnel</dt>
-<dd>Everything is compatible.</dd>
-<dt>Thông Tin về Tóc -- Hair Info</dt>
-<dd>The Random output uses a different <abbr title="Random Number Generator">RNG</abbr> algorithm.
-Range and statistical distribution of the values should be the same but the values will be different.</dd>
-<dt>Trọng Lượng Tầng -- Layer Weight</dt>
-<dd>Everything is compatible.</dd>
-<dt>Đường Đi của Ánh Sáng -- Light Path</dt>
-<dd><p class="first">Eevee has no real concept of rays. But in order to ease the workflow between Cycles and Eevee
+<dl>
+<dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt><dd><p>All parameters will have no effects except Normal and Color.
+This is because the AO is computed before evaluating this node and it uses the scene settings for that.</p>
+</dd>
+<dt>Dữ Liệu Máy Quay Phim -- Camera Data</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Hình Dạng -- Geometry</dt><dd><p>Pointiness is not supported.</p>
+</dd>
+<dt>Random Per Island</dt><dd><p>Random Per island is not supported.</p>
+</dd>
+<dt>Thuộc Tính -- Attribute</dt><dd><p>Defaults to active UV layer. Only &quot;density&quot;, &quot;color&quot;, &quot;flame&quot; and &quot;temperature&quot; built-in attributes are supported.
+UVs and Vertex Color layers are supported.</p>
+</dd>
+<dt>Bo Tròn -- Bevel</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Fresnen -- Fresnel</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Thông Tin về Tóc -- Hair Info</dt><dd><p>The Random output uses a different <abbr title="Random Number Generator">RNG</abbr> algorithm.
+Range and statistical distribution of the values should be the same but the values will be different.</p>
+</dd>
+<dt>Trọng Lượng Tầng -- Layer Weight</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Đường Đi của Ánh Sáng -- Light Path</dt><dd><p>Eevee has no real concept of rays. But in order to ease the workflow between Cycles and Eevee
 some of the outputs are supported in particular cases.
 This node makes it possible to tweak indirect lighting in the shader.</p>
 <p>Only a subset of the outputs is supported and the ray depth has not exactly
 the same meaning:</p>
 <ul class="simple">
-<li><em>Is Camera</em>: Supported.</li>
-<li><em>Is Shadow</em>: Supported.</li>
-<li><em>Is Diffuse</em>: Supported.</li>
-<li><em>Is Glossy</em>: Supported.</li>
-<li><em>Is Singular</em>: Not supported. Same as Is Glossy.</li>
-<li><em>Is Reflection</em>: Not supported. Same as Is Glossy.</li>
-<li><em>Is Transmission</em>: Not supported. Same as Is Glossy.</li>
-<li><em>Ray Length</em>: Not supported. Defaults to 1.0.</li>
-<li><em>Ray Depth</em>: Indicates the current bounce when baking the light cache.</li>
-<li><em>Diffuse Depth</em>: Same as Ray Depth but only when baking diffuse light.</li>
-<li><em>Glossy Depth</em>: Same as Ray Depth but only when baking specular light.</li>
-<li><em>Transparent Depth</em>: Not supported. Defaults to 0.</li>
-<li><em>Transmission Depth</em>: Not supported. Same as Glossy Depth.</li>
+<li><p><em>Is Camera</em>: Supported.</p></li>
+<li><p><em>Is Shadow</em>: Supported.</p></li>
+<li><p><em>Is Diffuse</em>: Supported.</p></li>
+<li><p><em>Is Glossy</em>: Supported.</p></li>
+<li><p><em>Is Singular</em>: Not supported. Same as Is Glossy.</p></li>
+<li><p><em>Is Reflection</em>: Not supported. Same as Is Glossy.</p></li>
+<li><p><em>Is Transmission</em>: Not supported. Same as Is Glossy.</p></li>
+<li><p><em>Ray Length</em>: Not supported. Defaults to 1.0.</p></li>
+<li><p><em>Ray Depth</em>: Indicates the current bounce when baking the light cache.</p></li>
+<li><p><em>Diffuse Depth</em>: Same as Ray Depth but only when baking diffuse light.</p></li>
+<li><p><em>Glossy Depth</em>: Same as Ray Depth but only when baking specular light.</p></li>
+<li><p><em>Transparent Depth</em>: Not supported. Defaults to 0.</p></li>
+<li><p><em>Transmission Depth</em>: Not supported. Same as Glossy Depth.</p></li>
 </ul>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Is Glossy does not work with Screen Space Reflections/Refractions
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Is Glossy does not work with Screen Space Reflections/Refractions
 but does work with reflection planes (whether used with SSR or not).</p>
 </div>
 </dd>
-<dt>Thông Tin Vật Thể -- Object Info</dt>
-<dd>Everything is compatible.</dd>
-<dt>Thông Tin về Hạt -- Particle Info</dt>
-<dd>Not supported.</dd>
-<dt>Tiếp Tuyến -- Tangent</dt>
-<dd>Everything is compatible.</dd>
-<dt>Tọa Độ Chất Liệu -- Texture Coordinate</dt>
-<dd><em>From Instancer</em> is not supported.</dd>
-<dt>Ánh Xạ UV -- UV Map</dt>
-<dd><em>From Instancer</em> is not supported.</dd>
-<dt>Khung Dây -- Wireframe</dt>
-<dd>Pixel size option does not give exactly the same output as Cycles. The width can be a bit different.</dd>
+<dt>Thông Tin Vật Thể -- Object Info</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Thông Tin về Hạt -- Particle Info</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Tiếp Tuyến -- Tangent</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Tọa Độ Chất Liệu -- Texture Coordinate</dt><dd><p><em>From Instancer</em> is not supported.</p>
+</dd>
+<dt>Ánh Xạ UV -- UV Map</dt><dd><p><em>From Instancer</em> is not supported.</p>
+</dd>
+<dt>Khung Dây -- Wireframe</dt><dd><p>Pixel size option does not give exactly the same output as Cycles. The width can be a bit different.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="other-nodes">
 <h3>-- Other Nodes<a class="headerlink" href="#other-nodes" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Suy Giảm của Ánh Sáng -- Light Falloff</dt>
-<dd>Not supported.</dd>
-<dt>Độ Gồ Ghề -- Bump</dt>
-<dd>Imprecision due to less precise derivatives.</dd>
-<dt>-- Displacement/Vector Displacement</dt>
-<dd>Not supported.</dd>
-<dt><abbr title="Illuminating Engineering Society">IES</abbr> Texture</dt>
-<dd>Not supported.</dd>
-<dt>Chất Liệu Bầu Trời -- Sky Texture</dt>
-<dd>Not supported.</dd>
-<dt>Chất Liệu Hình Ảnh -- Image Texture</dt>
-<dd>Smart Interpolation always uses Cubic interpolation.
+<dl class="simple">
+<dt>Suy Giảm của Ánh Sáng -- Light Falloff</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Độ Gồ Ghề -- Bump</dt><dd><p>Imprecision due to less precise derivatives.</p>
+</dd>
+<dt>-- Displacement/Vector Displacement</dt><dd><p>Not supported.</p>
+</dd>
+<dt><abbr title="Illuminating Engineering Society">IES</abbr> Texture</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Chất Liệu Bầu Trời -- Sky Texture</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Chất Liệu Hình Ảnh -- Image Texture</dt><dd><p>Smart Interpolation always uses Cubic interpolation.
 Artifact present using Tube or Sphere projection with linear interpolation.
 This is due to hardware mip-mapping and Anisotropic filtering.
 This kind of artifact will be also visible if the texture coordinates provided are not continuous.
 Using Box projection with <em>Extend type</em> set to Clip or Extend is not supported.
-Instead, it will always use Repeat.</dd>
-<dt>Đầu Ra Nguyên Liệu -- Material Output</dt>
-<dd>Displacement output behavior is broken compared to Cycles.</dd>
-<dt>Bước Sóng -- Wavelength</dt>
-<dd>Not supported.</dd>
-<dt>Point Density</dt>
-<dd>Not supported.</dd>
+Instead, it will always use Repeat.</p>
+</dd>
+<dt>Đầu Ra Nguyên Liệu -- Material Output</dt><dd><p>Displacement output behavior is broken compared to Cycles.</p>
+</dd>
+<dt>Bước Sóng -- Wavelength</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Point Density</dt><dd><p>Not supported.</p>
+</dd>
 </dl>
 </div>
 </div>

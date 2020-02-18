@@ -37,15 +37,34 @@ remains exactly the same every time.
 Caches List
    Blender allows for storing and managing multiple caches at once for the same physics object.
    You can manage the caches with this :ref:`list view <ui-list-view>`.
+   Double-click the cache entry to give it a name.
 
 
 Options
 =======
 
+Cache Name
+   Each cache can have a name. If this name is given, any disk cache will be
+   stored in files starting with that name. For example, a cache named 'MyCache'
+   will be stored in ``MyCache_xxxxxx_yy.bphys``.
+
+   If the cache does not have a name (which is the default),
+   the filename of the cache will depend on the object it is attached to,
+   although this is not immediately obvious. For example, a cache on
+   an object ``Cube`` will be stored in ``43756265_xxxxxx_yy.bphys``,
+   where ``43756265`` is determined by the object name.
+
+   .. warning::
+
+      When there are multiple caches on one object, **always specify a Cache Name**. As described above,
+      the filename of an unnamed cache is determined by the name of the object it is attached to.
+      As a result, an object with multiple physics systems that all have an unnamed cache will cause
+      conflict and **can result in losing cache files**.
+
 Disk Cache
    The cache of a baked simulation will be stored inside the blend-file when you save it.
-   When *Disk Cache* is checked, Blender will save the Cache separately to the drive
-   in a folder named ``blendcache_[filename]`` alongside the blend-file.
+   When *Disk Cache* is checked, Blender will save the cache separately to
+   the drive in a folder named ``blendcache_[filename]`` alongside the blend-file.
    (The blend-file must be saved first.)
 
    Use Library Path

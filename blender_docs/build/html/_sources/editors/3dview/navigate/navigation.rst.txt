@@ -31,12 +31,13 @@ The four buttons (listed from left to right) do the following:
 The `Orbit`_ gizmo on the far right can be used to rotate around 3D Viewport.
 Hovering over the gizmo and dragging with :kbd:`LMB` will orbit the view.
 Clicking any of the axis labels will :doc:`Align </editors/3dview/navigate/align>` to that view.
-Clicking the same axis again switches to the opposite side of that same axis,
+Clicking the same axis again switches to the opposite side of that same axis.
 
 .. figure:: /images/editors_3dview_navigation_gizmo.png
    :align: center
 
    Navigation Gizmo.
+
 
 Orbit
 =====

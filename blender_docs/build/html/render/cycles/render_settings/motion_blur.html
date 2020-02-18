@@ -237,62 +237,57 @@
   <div class="section" id="motion-blur">
 <h1>Làm Nhòe Chuyển Động -- Motion Blur<a class="headerlink" href="#motion-blur" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Kết Xuất (Render) ‣ Làm Nhòe Chuyển Động (Motion Blur)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Kết Xuất (Render) ‣ Làm Nhòe Chuyển Động (Motion Blur)</span></p>
+</dd>
+</dl>
 </div>
 <p>Blender's animations are by default rendered as a sequence of <em>perfectly still</em> images.
 While great for stop-motion and time-lapses, this is unrealistic, since fast-moving
 objects do appear to be blurred in the direction of motion,
 both in a movie frame and in a photograph from a real-world camera.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/render_cycles_render-settings_motion-blur_example-cubes.jpg" src="../../../_images/render_cycles_render-settings_motion-blur_example-cubes.jpg" />
 <p class="caption"><span class="caption-text">Motion blur example.
-(<a class="reference external" href="https://en.blender.org/uploads/0/03/Blender2.65_motion_blur.blend">blend-file</a>)</span></p>
+(<a class="reference external" href="https://en.blender.org/uploads/0/03/Blender2.65_motion_blur.blend">blend-file</a>)</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Vị Trí -- Position</dt>
-<dd><p class="first">Controls at what point the shutter opens in relation to the current frame.</p>
-<dl class="last docutils">
-<dt>Bắt Đầu tại Khung Hình -- Start on Frame</dt>
-<dd>Shutter is starting to open at the current frame.</dd>
-<dt>Tập Trung vào Khung Hình -- Center on Frame</dt>
-<dd>Shutter is fully opened at the current frame.</dd>
-<dt>Kết Thúc tại Khung Hình -- End on Frame</dt>
-<dd>Shutter is fully closed at the current frame.</dd>
+<dl>
+<dt>Vị Trí -- Position</dt><dd><p>Controls at what point the shutter opens in relation to the current frame.</p>
+<dl class="simple">
+<dt>Bắt Đầu tại Khung Hình -- Start on Frame</dt><dd><p>Shutter is starting to open at the current frame.</p>
+</dd>
+<dt>Tập Trung vào Khung Hình -- Center on Frame</dt><dd><p>Shutter is fully opened at the current frame.</p>
+</dd>
+<dt>Kết Thúc tại Khung Hình -- End on Frame</dt><dd><p>Shutter is fully closed at the current frame.</p>
+</dd>
 </dl>
 </dd>
-<dt>Shutter</dt>
-<dd>Time (in frames) between when the shutter starts to open and fully closed.
-For example, shutter time 1.0 blurs over the length of 1 frame.</dd>
-<dt>Rolling Shutter</dt>
-<dd><p class="first">Creates a <a class="reference internal" href="../../../glossary/index.html#term-rolling-shutter"><span class="xref std std-term">rolling shutter</span></a> effect.</p>
-<dl class="last docutils">
-<dt>Không Có -- None</dt>
-<dd>No rolling shutter effect.</dd>
-<dt>Trên xuống Dưới -- Top-Bottom</dt>
-<dd>Renders rolling shutter from the top of the image to the bottom.</dd>
+<dt>Shutter</dt><dd><p>Time (in frames) between when the shutter starts to open and fully closed.
+For example, shutter time 1.0 blurs over the length of 1 frame.</p>
+</dd>
+<dt>Rolling Shutter</dt><dd><p>Creates a <a class="reference internal" href="../../../glossary/index.html#term-rolling-shutter"><span class="xref std std-term">rolling shutter</span></a> effect.</p>
+<dl class="simple">
+<dt>Không Có -- None</dt><dd><p>No rolling shutter effect.</p>
+</dd>
+<dt>Trên xuống Dưới -- Top-Bottom</dt><dd><p>Renders rolling shutter from the top of the image to the bottom.</p>
+</dd>
 </dl>
 </dd>
-<dt>Khoảng Thời Gian của Màn Trập Lăn -- Rolling Shutter Duration</dt>
-<dd>Controls balance between pure rolling shutter effect (if the value is zero)
-and pure motion blur effect (if the value is one).</dd>
+<dt>Khoảng Thời Gian của Màn Trập Lăn -- Rolling Shutter Duration</dt><dd><p>Controls balance between pure rolling shutter effect (if the value is zero)
+and pure motion blur effect (if the value is one).</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">If there are particles or other physics system in a scene,
+<p class="admonition-title">Ghi chú</p>
+<p>If there are particles or other physics system in a scene,
 be sure to bake them before rendering,
 otherwise you might not get correct or consistent motion blur.</p>
 </div>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">Each object has its own settings to control motion blur.
+<p class="admonition-title">Xem thêm</p>
+<p>Each object has its own settings to control motion blur.
 These options can be found in the Object tab of the Properties editor.
 See <a class="reference internal" href="../object_settings/object_data.html#render-cycles-settings-object-motion-blur"><span class="std std-ref">object setting</span></a> for more information.</p>
 </div>

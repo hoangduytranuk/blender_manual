@@ -234,46 +234,46 @@
 <span id="bpy-types-compositornodesunbeams"></span><h1>Nút Tia Nắng -- Sun Beams Node<a class="headerlink" href="#sun-beams-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeSunBeams.png" src="../../../_images/compositing_node-types_CompositorNodeSunBeams.png" />
-<p class="caption"><span class="caption-text">Nút Tia Nắng.</span></p>
+<p class="caption"><span class="caption-text">Nút Tia Nắng.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Nút Tia Nắng cung cấp một phương pháp tính toán ít công sức để tạo hiệu ứng, như cái tên của nó chỉ ra, duy dựa trên độ sáng của hình ảnh.</p>
 <p>Tia Nắng (Sun Beams) là một hiệu ứng 2D để mô phỏng ảnh hưởng của nguồn sáng chói tán xạ trong một môi trường <a class="reference external" href="https://en.wikipedia.org/wiki/Crepuscular_rays">Tia Hoàng Hôn -- Crepuscular Rays</a>. Hiện tượng này có thể được tạo ra bởi các bộ máy kết xuất, song sự chiếu sáng thể tích toàn diện là một việc khá khó khăn và mất nhiều thời gian kết xuất.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào hình ảnh tiêu chuẩn.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào hình ảnh tiêu chuẩn.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Chiều Rộng/Cao của Nguồn -- Source width, height</dt>
-<dd>Source point of the rays as a factor of the image dimensions.</dd>
-<dt>Chiều Dài của Tia Xạ -- Ray length</dt>
-<dd>Length of the rays as a factor of the image size.</dd>
+<dl class="simple">
+<dt>Chiều Rộng/Cao của Nguồn -- Source width, height</dt><dd><p>Source point of the rays as a factor of the image dimensions.</p>
+</dd>
+<dt>Chiều Dài của Tia Xạ -- Ray length</dt><dd><p>Length of the rays as a factor of the image size.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu ra tiêu chuẩn của hình ảnh.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu ra tiêu chuẩn của hình ảnh.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="example">
 <h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>Thông thường, bước đầu tiên là xác định khu vực mà các tia xạ phóng vào. Bất cứ sự phản quang ánh sáng của bề mặt khuếch xạ nào cũng đều sẽ không đóng góp vào sự tán xạ như vậy trong thế giới thực, do đó, cần phải được loại trừ ra khỏi nguồn dữ liệu đầu vào. Những phương pháp khả dĩ để thực hiện điều này là:</p>
 <ul class="simple">
-<li>Entirely separate image as a light source.</li>
-<li>Brightness/contrast tweaking to leave only the brightest areas.</li>
-<li>Muting shadow and midtone colors, which is a bit more flexible.</li>
-<li>Masking for ultimate control.</li>
+<li><p>Entirely separate image as a light source.</p></li>
+<li><p>Brightness/contrast tweaking to leave only the brightest areas.</p></li>
+<li><p>Muting shadow and midtone colors, which is a bit more flexible.</p></li>
+<li><p>Masking for ultimate control.</p></li>
 </ul>
 <p>After generating the sun beams from such a light source image they can then be overlayed on the original image.
 Usually, a simple &quot;Add&quot; Mix node is sufficient,
 and physically correct because the scattered light adds to the final result.</p>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_sun-beams_example.jpg"><img alt="../../../_images/compositing_types_filter_sun-beams_example.jpg" src="../../../_images/compositing_types_filter_sun-beams_example.jpg" style="width: 400px;" /></a>
 </div>
 </div>

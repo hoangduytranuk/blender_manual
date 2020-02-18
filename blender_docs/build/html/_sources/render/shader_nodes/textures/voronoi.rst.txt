@@ -30,35 +30,35 @@ Smoothness
 
    .. list-table::
 
-      * - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_distance_zero.png
+      * - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-distance-zero.png
 
              Smoothness: 0.0.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_distance_quarter.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-distance-quarter.png
 
              Smoothness: 0.25.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_distance_half.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-distance-half.png
 
              Smoothness: 0.5.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_distance_one.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-distance-one.png
 
              Smoothness: 1.0.
 
-      * - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_color_zero.png
+      * - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-color-zero.png
 
              Smoothness: 0.0.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_color_quarter.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-color-quarter.png
 
              Smoothness: 0.25.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_color_half.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-color-half.png
 
              Smoothness: 0.5.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_color_one.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-color-one.png
 
              Smoothness: 1.0.
 
@@ -67,19 +67,19 @@ Exponent
 
    .. list-table::
 
-      * - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski_half.png
+      * - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski-half.png
 
              Exponent: 0.5.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski_one.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski-one.png
 
              Exponent: 1.0.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski_two.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski-two.png
 
              Exponent: 2.0.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski_32.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski-32.png
 
              Exponent: 32.0.
 
@@ -88,19 +88,19 @@ Randomness
 
    .. list-table::
 
-      * - .. figure:: /images/render_shader-nodes_textures_voronoi_randomness_one.png
+      * - .. figure:: /images/render_shader-nodes_textures_voronoi_randomness-one.png
 
              Randomness: 1.0.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_randomness_half.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_randomness-half.png
 
              Randomness: 0.5.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_randomness_quarter.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_randomness-quarter.png
 
              Randomness: 0.25.
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_randomness_zero.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_randomness-zero.png
 
              Randomness: 0.0.
 
@@ -134,15 +134,15 @@ Feature
 
       .. list-table::
 
-         * - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_distance_zero.png
+         * - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-distance-zero.png
 
                 Distance.
 
-           - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_color_zero.png
+           - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-color-zero.png
 
                 Color.
 
-           - .. figure:: /images/render_shader-nodes_textures_voronoi_f1_position.png
+           - .. figure:: /images/render_shader-nodes_textures_voronoi_f1-position.png
 
                 Position.
 
@@ -151,15 +151,15 @@ Feature
 
       .. list-table::
 
-         * - .. figure:: /images/render_shader-nodes_textures_voronoi_f2_distance.png
+         * - .. figure:: /images/render_shader-nodes_textures_voronoi_f2-distance.png
 
                 Distance.
 
-           - .. figure:: /images/render_shader-nodes_textures_voronoi_f2_color.png
+           - .. figure:: /images/render_shader-nodes_textures_voronoi_f2-color.png
 
                 Color.
 
-           - .. figure:: /images/render_shader-nodes_textures_voronoi_f2_position.png
+           - .. figure:: /images/render_shader-nodes_textures_voronoi_f2-position.png
 
                 Position.
 
@@ -168,15 +168,15 @@ Feature
 
       .. list-table::
 
-         * - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_distance_one.png
+         * - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-distance-one.png
 
                 Distance.
 
-           - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness_color_one.png
+           - .. figure:: /images/render_shader-nodes_textures_voronoi_smoothness-color-one.png
 
                 Color.
 
-           - .. figure:: /images/render_shader-nodes_textures_voronoi_smooth_f1_position.png
+           - .. figure:: /images/render_shader-nodes_textures_voronoi_smooth-f1-position.png
 
                 Position.
 
@@ -189,7 +189,7 @@ Feature
 
                 Distance.
 
-           - .. figure:: /images/render_shader-nodes_textures_voronoi_distance-to-edge_less-than.png
+           - .. figure:: /images/render_shader-nodes_textures_voronoi_distance-to-edge-less-than.png
 
                 Distance < 0.05.
 
@@ -203,7 +203,7 @@ Feature
 
                 The n-sphere radius can be used to create tightly packed n-spheres.
 
-           - .. figure:: /images/render_shader-nodes_textures_voronoi_n-sphere-radius_nodetree.png
+           - .. figure:: /images/render_shader-nodes_textures_voronoi_n-sphere-radius-nodetree.png
 
                 Node tree for the shader to the left.
 
@@ -225,19 +225,19 @@ Distance Metric
 
    .. list-table::
 
-      * - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski_half.png
+      * - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski-half.png
 
              Minkowski Exponent: 0.5 (Minkowski 1/2).
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski_one.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski-one.png
 
              Minkowski Exponent: 1.0 (Manhattan).
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski_two.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski-two.png
 
              Minkowski Exponent: 2.0 (Euclidean).
 
-        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski_32.png
+        - .. figure:: /images/render_shader-nodes_textures_voronoi_minkowski-32.png
 
              Minkowski Exponent: 32.0 (approximation of Chebychev).
 
@@ -269,10 +269,10 @@ and can be fixed in a similar manner as described there.
 Examples
 ========
 
-.. figure:: /images/render_shader-nodes_textures_voronoi_example_beveled_cells.png
+.. figure:: /images/render_shader-nodes_textures_voronoi_example-beveled-cells.png
 
    The difference between *F1* and *Smooth F1* can be used to create beveled Voronoi cells.
 
-.. figure:: /images/render_shader-nodes_textures_voronoi_example_hammered_metal.jpg
+.. figure:: /images/render_shader-nodes_textures_voronoi_example-hammered-metal.jpg
 
    Creating a hammered metal shader using the *Voronoi Texture* node.

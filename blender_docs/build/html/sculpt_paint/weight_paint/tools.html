@@ -216,93 +216,87 @@
             
   <div class="section" id="weight-paint-tools">
 <h1>Weight Paint Tools<a class="headerlink" href="#weight-paint-tools" title="Permalink to this headline">¶</a></h1>
-<dl class="docutils">
-<dt>Draw</dt>
-<dd><p class="first">Paints a specified weight over the object.</p>
-<dl class="last docutils">
-<dt>Blend</dt>
-<dd><p class="first">The brush <a class="reference internal" href="../../glossary/index.html#term-blend-modes"><span class="xref std std-term">Blend Modes</span></a> defines in which way the weight value is
+<dl>
+<dt>Draw</dt><dd><p>Paints a specified weight over the object.</p>
+<dl>
+<dt>Blend</dt><dd><p>The brush <a class="reference internal" href="../../glossary/index.html#term-blend-modes"><span class="xref std std-term">Blend Modes</span></a> defines in which way the weight value is
 applied to the vertex group while painting.</p>
-<dl class="last docutils">
-<dt>Mix</dt>
-<dd>In this Blending mode the Weight value defines the <em>target weight</em>
+<dl class="simple">
+<dt>Mix</dt><dd><p>In this Blending mode the Weight value defines the <em>target weight</em>
 that will eventually be reached when you paint long enough on the same
 location of the mesh. And the strength determines how many strokes
 you need to place at the target weight. Note that for strength = 1.0
-the target weight is painted immediately and for Weight = 0.0 the brush just does nothing.</dd>
-<dt>Add</dt>
-<dd>In this Blending mode the specified weight value is <em>added</em> to the vertex weights.
+the target weight is painted immediately and for Weight = 0.0 the brush just does nothing.</p>
+</dd>
+<dt>Add</dt><dd><p>In this Blending mode the specified weight value is <em>added</em> to the vertex weights.
 The strength determines which fraction of the weight gets added per stroke.
-However, the brush will not paint weight values above 1.0.</dd>
-<dt>Subtract</dt>
-<dd>In this Blending mode the specified weight value is <em>subtracted</em> from the vertex weights.
+However, the brush will not paint weight values above 1.0.</p>
+</dd>
+<dt>Subtract</dt><dd><p>In this Blending mode the specified weight value is <em>subtracted</em> from the vertex weights.
 The strength determines which fraction of the weight gets removed per stroke.
-However, the brush will not paint weight values below 0.0.</dd>
-<dt>Lighten</dt>
-<dd>In this Blending mode the specified weight value is interpreted as the target weight.
+However, the brush will not paint weight values below 0.0.</p>
+</dd>
+<dt>Lighten</dt><dd><p>In this Blending mode the specified weight value is interpreted as the target weight.
 Very similar to the Mix Blending mode, but only weights below the target weight are affected.
-Weights above the target weight remain unchanged.</dd>
-<dt>Darken</dt>
-<dd>This Blending mode is very similar to the Lighten Blending mode.
+Weights above the target weight remain unchanged.</p>
+</dd>
+<dt>Darken</dt><dd><p>This Blending mode is very similar to the Lighten Blending mode.
 But only weights above the target weight are affected.
-Weights below the target weight remain unchanged.</dd>
-<dt>Multiply</dt>
-<dd>Multiplies the vertex weights with the specified weight value.
+Weights below the target weight remain unchanged.</p>
+</dd>
+<dt>Multiply</dt><dd><p>Multiplies the vertex weights with the specified weight value.
 This is somewhat like subtract, but the amount of removed weight is now
-dependent on the Weight value itself.</dd>
-<dt>Làm Nhòe -- Blur</dt>
-<dd>Smooths out the weighting of adjacent vertices. In this mode the Weight
-Value is ignored. The strength defines how much the smoothing is applied.</dd>
-</dl>
+dependent on the Weight value itself.</p>
+</dd>
+<dt>Làm Nhòe -- Blur</dt><dd><p>Smooths out the weighting of adjacent vertices. In this mode the Weight
+Value is ignored. The strength defines how much the smoothing is applied.</p>
 </dd>
 </dl>
 </dd>
-<dt>Làm Nhòe -- Blur</dt>
-<dd>Smooths out the weighting of adjacent vertices. In this mode the Weight
-Value is ignored. The strength defines how much the smoothing is applied.</dd>
-<dt>Average</dt>
-<dd>Smooths weights by painting the average resulting weight from all weights under the brush.</dd>
-<dt>Smear</dt>
-<dd>Smudges weights by grabbing the weights under the brush and &quot;dragging&quot; them.
-This can be imagined as a finger painting tool.</dd>
-<dt>Gradient</dt>
-<dd><p class="first">Applies a linear/radial weight gradient;
+</dl>
+</dd>
+<dt>Làm Nhòe -- Blur</dt><dd><p>Smooths out the weighting of adjacent vertices. In this mode the Weight
+Value is ignored. The strength defines how much the smoothing is applied.</p>
+</dd>
+<dt>Average</dt><dd><p>Smooths weights by painting the average resulting weight from all weights under the brush.</p>
+</dd>
+<dt>Smear</dt><dd><p>Smudges weights by grabbing the weights under the brush and &quot;dragging&quot; them.
+This can be imagined as a finger painting tool.</p>
+</dd>
+<dt>Gradient</dt><dd><p>Applies a linear/radial weight gradient;
 this is useful at times when painting gradual changes in weight becomes difficult.
 Blends the weights of selected vertices with unselected vertices.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../_images/sculpt-paint_weight-paint_weight-tools_gradient.png" src="../../_images/sculpt-paint_weight-paint_weight-tools_gradient.png" />
-<p class="caption"><span class="caption-text">Example of the Gradient tool being used with selected vertices.</span></p>
+<p class="caption"><span class="caption-text">Example of the Gradient tool being used with selected vertices.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="last docutils">
-<dt>Weight</dt>
-<dd>The gradient starts at the current selected weight value, blending out to nothing.</dd>
-<dt>Sức Mạnh/Cường Độ -- Strength</dt>
-<dd>Lower values can be used so the gradient mixes in with the existing weights (just like with the brush).</dd>
-<dt>Type</dt>
-<dd><ul class="first last simple">
-<li>Linear: <kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> and drag.</li>
-<li>Radial: <kbd class="kbd docutils literal notranslate">Ctrl-Alt-LMB</kbd> and drag.</li>
+<dl class="simple">
+<dt>Weight</dt><dd><p>The gradient starts at the current selected weight value, blending out to nothing.</p>
+</dd>
+<dt>Sức Mạnh/Cường Độ -- Strength</dt><dd><p>Lower values can be used so the gradient mixes in with the existing weights (just like with the brush).</p>
+</dd>
+<dt>Type</dt><dd><ul class="simple">
+<li><p>Linear: <kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> and drag.</p></li>
+<li><p>Radial: <kbd class="kbd docutils literal notranslate">Ctrl-Alt-LMB</kbd> and drag.</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
-<dt>Sample</dt>
-<dd><dl class="first last docutils">
-<dt>Weights</dt>
-<dd>Sets the brush <em>Weight</em> as the weight selected under the cursor.</dd>
-<dt>Vertex Group</dt>
-<dd>Displays a list of possible vertex groups to select that are under the cursor.</dd>
+<dt>Sample</dt><dd><dl class="simple">
+<dt>Weights</dt><dd><p>Sets the brush <em>Weight</em> as the weight selected under the cursor.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>Displays a list of possible vertex groups to select that are under the cursor.</p>
+</dd>
 </dl>
 </dd>
-<dt><a class="reference internal" href="../../interface/annotate_tool.html#tool-annotate"><span class="std std-ref">Annotate</span></a></dt>
-<dd><p class="first">Draw free-hand annotation.</p>
-<dl class="last docutils">
-<dt>Annotate Line</dt>
-<dd>Draw straight line annotation.</dd>
-<dt>Annotate Polygon</dt>
-<dd>Draw a polygon annotation.</dd>
-<dt>Annotate Eraser</dt>
-<dd>Erase previous drawn annotations.</dd>
+<dt><a class="reference internal" href="../../interface/annotate_tool.html#tool-annotate"><span class="std std-ref">Annotate</span></a></dt><dd><p>Draw free-hand annotation.</p>
+<dl class="simple">
+<dt>Annotate Line</dt><dd><p>Draw straight line annotation.</p>
+</dd>
+<dt>Annotate Polygon</dt><dd><p>Draw a polygon annotation.</p>
+</dd>
+<dt>Annotate Eraser</dt><dd><p>Erase previous drawn annotations.</p>
+</dd>
 </dl>
 </dd>
 </dl>

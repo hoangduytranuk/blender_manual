@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Grease Pencil</a><ul class="current">
@@ -124,12 +124,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../selecting.html">Selecting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../multiframe.html">Multiframe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../properties/index.html">Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../modifiers/index.html">Grease Pencil Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../materials/index.html">Grease Pencil Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../visual_effects/index.html">Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../animation/index.html">Animation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html#modes">Modes</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Grease Pencil Draw Mode</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Draw Mode</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../tools.html">Drawing Tools</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html">Tools Settings</a></li>
@@ -138,9 +138,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../guides.html">Guides</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../sculpting/index.html">Grease Pencil Sculpt Mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../edit/index.html">Grease Pencil Edit Mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../weight_paint/index.html">Grease Pencil Weight Paint Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sculpting/index.html">Sculpt Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../edit/index.html">Edit Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../weight_paint/index.html">Weight Paint Mode</a></li>
 </ul>
 </li>
 </ul>
@@ -206,7 +206,7 @@
         
           <li><a href="../../../../index.html">Grease Pencil</a> &raquo;</li>
         
-          <li><a href="../../index.html">Grease Pencil Draw Mode</a> &raquo;</li>
+          <li><a href="../../index.html">Draw Mode</a> &raquo;</li>
         
           <li><a href="../index.html">Tools Settings</a> &raquo;</li>
         
@@ -235,83 +235,75 @@ You can create many brushes, each with unique settings to get different artistic
 <div class="section" id="brushes">
 <h3>Brushes<a class="headerlink" href="#brushes" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-right" id="id1">
-<img alt="../../../../../_images/grease-pencil_modes_draw_brushes_draw-brush-data-block.png" src="../../../../../_images/grease-pencil_modes_draw_brushes_draw-brush-data-block.png" />
-<p class="caption"><span class="caption-text">Brush data-block panel.</span></p>
+<img alt="../../../../../_images/grease-pencil_modes_draw_tool-settings_brushes_draw-brush_data-block.png" src="../../../../../_images/grease-pencil_modes_draw_tool-settings_brushes_draw-brush_data-block.png" />
+<p class="caption"><span class="caption-text">Brush data-block panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Brush</dt>
-<dd><p class="first">The <a class="reference internal" href="../../../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> to select a preset brush type or a custom brush.</p>
-<dl class="last docutils">
-<dt>Add Brush</dt>
-<dd>When you add a brush, the new brush is a clone of the current one.</dd>
-<dt>Custom Icon</dt>
-<dd><p class="first">Allows definition of a custom brush icon.</p>
-<dl class="last docutils">
-<dt>Image Path</dt>
-<dd>Defines the path to the image to use as custom icon.</dd>
+<dl>
+<dt>Brush</dt><dd><p>The <a class="reference internal" href="../../../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> to select a preset brush type or a custom brush.</p>
+<dl>
+<dt>Add Brush</dt><dd><p>When you add a brush, the new brush is a clone of the current one.</p>
+</dd>
+<dt>Custom Icon</dt><dd><p>Allows definition of a custom brush icon.</p>
+<dl class="simple">
+<dt>Image Path</dt><dd><p>Defines the path to the image to use as custom icon.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">In order to save a custom brush, activate <em>Fake User</em>.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>In order to save a custom brush, activate <em>Fake User</em>.</p>
 </div>
 </div>
 </div>
 <div class="section" id="brush-settings">
 <h2>Brush Settings<a class="headerlink" href="#brush-settings" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Radius</dt>
-<dd><p class="first">The radius of the brush in pixels.</p>
+<dl>
+<dt>Radius</dt><dd><p>The radius of the brush in pixels.</p>
 <p><kbd class="kbd docutils literal notranslate">F</kbd> allows you to change the brush size interactively by dragging the mouse/pen or
 by typing a number then confirm.</p>
-<dl class="last docutils">
-<dt>Use Pressure (pressure sensitivity icon)</dt>
-<dd>Uses stylus pressure to control how strong the effect is.</dd>
+<dl class="simple">
+<dt>Use Pressure (pressure sensitivity icon)</dt><dd><p>Uses stylus pressure to control how strong the effect is.</p>
+</dd>
 </dl>
 </dd>
-<dt>Strength</dt>
-<dd><p class="first">Control the stroke transparency (alpha).
+<dt>Strength</dt><dd><p>Control the stroke transparency (alpha).
 From totally transparent (0.0) to fully opaque (1.0).</p>
 <p>You can change the brush strength interactively by pressing <kbd class="kbd docutils literal notranslate">Shift-F</kbd>
 in the 3D View and then moving the mouse/pen and then <kbd class="kbd docutils literal notranslate">LMB</kbd>.
 You can also enter the size numerically.</p>
-<dl class="last docutils">
-<dt>Use Pressure (pressure sensitivity icon)</dt>
-<dd>Uses stylus pressure to control how strong the effect is.</dd>
+<dl class="simple">
+<dt>Use Pressure (pressure sensitivity icon)</dt><dd><p>Uses stylus pressure to control how strong the effect is.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <div class="section" id="advanced">
 <h3>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Input Samples</dt>
-<dd><p class="first">Controls how often the input device is read to generate points on the stroke.
+<dl>
+<dt>Input Samples</dt><dd><p>Controls how often the input device is read to generate points on the stroke.
 Higher values give a higher precision (more points) but produce an irregular stroke,
 while lower values give a lower precision (fewer points) but produce a soften stroke.
 (0 disabled extra input device samples.)</p>
-<p class="last">You have to set up this value according to your input device to obtain
+<p>You have to set up this value according to your input device to obtain
 the right balance between accuracy and softness for your strokes.
 See <a class="reference internal" href="../../../../../getting_started/configuration/hardware.html"><span class="doc">Input Device</span></a> for more information.</p>
 </dd>
-<dt>Active Smooth</dt>
-<dd>The number of smoothing iterations to apply to the stroke while drawing.</dd>
-<dt>Angle</dt>
-<dd><p class="first">Direction of the input device that gives the maximum thickness to the stroke (0° for horizontal).</p>
-<dl class="last docutils">
-<dt>Factor</dt>
-<dd>Amount of thickness reduction when the stroke is perpendicular to the <em>Angle</em> value.</dd>
+<dt>Active Smooth</dt><dd><p>The number of smoothing iterations to apply to the stroke while drawing.</p>
+</dd>
+<dt>Angle</dt><dd><p>Direction of the input device that gives the maximum thickness to the stroke (0° for horizontal).</p>
+<dl class="simple">
+<dt>Factor</dt><dd><p>Amount of thickness reduction when the stroke is perpendicular to the <em>Angle</em> value.</p>
+</dd>
 </dl>
 </dd>
-<dt>Border Opacity Factor</dt>
-<dd><p class="first">Amount of transparency (alpha) to apply from the border of the point to the center.
+<dt>Border Opacity Factor</dt><dd><p>Amount of transparency (alpha) to apply from the border of the point to the center.
 Works only when the brush is using stroke materials of <em>Dot</em> or <em>Box</em> style.</p>
-<dl class="last docutils">
-<dt>Aspect Ratio</dt>
-<dd><p class="first">Controls the width and height of the alpha gradient.</p>
-<p class="last">X, Y</p>
+<dl>
+<dt>Aspect Ratio</dt><dd><p>Controls the width and height of the alpha gradient.</p>
+<p>X, Y</p>
 </dd>
 </dl>
 </dd>
@@ -324,32 +316,29 @@ Works only when the brush is using stroke materials of <em>Dot</em> or <em>Box</
 <p>Post-processing methods that are executed on the strokes
 when you finished drawing, right after releasing the <kbd class="kbd docutils literal notranslate">LMB</kbd> or <kbd class="kbd docutils literal notranslate">Pen</kbd> tip.
 You can toggle the use of post-processing using the checkbox in the section panel header.</p>
-<dl class="docutils">
-<dt>Smooth</dt>
-<dd><p class="first">Strength of smoothing process on the points location along the stroke.</p>
-<dl class="last docutils">
-<dt>Iterations</dt>
-<dd>The number of smoothing iterations to apply to the stroke.</dd>
+<dl>
+<dt>Smooth</dt><dd><p>Strength of smoothing process on the points location along the stroke.</p>
+<dl class="simple">
+<dt>Iterations</dt><dd><p>The number of smoothing iterations to apply to the stroke.</p>
+</dd>
 </dl>
 </dd>
-<dt>Smooth Thickness</dt>
-<dd><p class="first">Strength of smoothing process on the points thickness along the stroke.</p>
-<dl class="last docutils">
-<dt>Iterations</dt>
-<dd>The number of smoothing iterations to apply to the stroke.</dd>
+<dt>Smooth Thickness</dt><dd><p>Strength of smoothing process on the points thickness along the stroke.</p>
+<dl class="simple">
+<dt>Iterations</dt><dd><p>The number of smoothing iterations to apply to the stroke.</p>
+</dd>
 </dl>
 </dd>
-<dt>Subdivision Steps</dt>
-<dd><p class="first">Number of subdivisions to apply to newly created strokes.</p>
-<dl class="last docutils">
-<dt>Randomness</dt>
-<dd>Amount of randomness to apply on the points location after subdivision.</dd>
+<dt>Subdivision Steps</dt><dd><p>Number of subdivisions to apply to newly created strokes.</p>
+<dl class="simple">
+<dt>Randomness</dt><dd><p>Amount of randomness to apply on the points location after subdivision.</p>
+</dd>
 </dl>
 </dd>
-<dt>Simplify</dt>
-<dd>Reduces final points numbers in the stroke with an adaptive algorithm.</dd>
-<dt>Trim Strokes End</dt>
-<dd>Automatically trim intersection strokes ends.</dd>
+<dt>Simplify</dt><dd><p>Reduces final points numbers in the stroke with an adaptive algorithm.</p>
+</dd>
+<dt>Trim Strokes End</dt><dd><p>Automatically trim intersection strokes ends.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="stabilize-stroke">
@@ -357,30 +346,29 @@ You can toggle the use of post-processing using the checkbox in the section pane
 <p><em>Stabilize Stroke</em> helps to reduce jitter of the strokes while drawing by
 delaying and correcting the location of points.
 You can toggle the use of <em>Stabilize Stroke</em> using the checkbox in the section panel header.</p>
-<dl class="docutils">
-<dt>Radius</dt>
-<dd>Minimum distance from the last point before the stroke continues.</dd>
-<dt>Factor</dt>
-<dd>A smooth factor, where higher values result in smoother strokes but the drawing sensation
-feels like as if you were pulling the stroke.</dd>
+<dl class="simple">
+<dt>Radius</dt><dd><p>Minimum distance from the last point before the stroke continues.</p>
+</dd>
+<dt>Factor</dt><dd><p>A smooth factor, where higher values result in smoother strokes but the drawing sensation
+feels like as if you were pulling the stroke.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="randomize">
 <span id="bpy-types-brushgpencilsettings-use-jitter-pressure"></span><span id="bpy-types-brushgpencilsettings-pen-jitter"></span><span id="bpy-types-brushgpencilsettings-uv-random"></span><span id="bpy-types-brushgpencilsettings-random"></span><span id="bpy-types-brushgpencilsettings-use-settings-random"></span><h4>Randomize<a class="headerlink" href="#randomize" title="Permalink to this headline">¶</a></h4>
 <p>Adds randomness to the position of the points along the stroke.
 You can toggle the use of Randomize using the checkbox in the section panel header.</p>
-<dl class="docutils">
-<dt>Pressure</dt>
-<dd>The amount of randomness to apply using the pressure of the input device.</dd>
-<dt>Strength</dt>
-<dd>The amount of randomness to apply to the stroke strength value (alpha).</dd>
-<dt>UV</dt>
-<dd>The amount of randomness to apply to the UV rotation.</dd>
-<dt>Jitter</dt>
-<dd><p class="first">The amount of jittering to add to the stroke.</p>
-<dl class="last docutils">
-<dt>Use Pressure (pressure sensitivity icon)</dt>
-<dd>Uses the stylus pressure to control how strong the effect is.</dd>
+<dl>
+<dt>Pressure</dt><dd><p>The amount of randomness to apply using the pressure of the input device.</p>
+</dd>
+<dt>Strength</dt><dd><p>The amount of randomness to apply to the stroke strength value (alpha).</p>
+</dd>
+<dt>UV</dt><dd><p>The amount of randomness to apply to the UV rotation.</p>
+</dd>
+<dt>Jitter</dt><dd><p>The amount of jittering to add to the stroke.</p>
+<dl class="simple">
+<dt>Use Pressure (pressure sensitivity icon)</dt><dd><p>Uses the stylus pressure to control how strong the effect is.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -390,21 +378,21 @@ You can toggle the use of Randomize using the checkbox in the section panel head
 <h3>Curves<a class="headerlink" href="#curves" title="Permalink to this headline">¶</a></h3>
 <p>For more precise control on some strokes properties you can use
 a <a class="reference internal" href="../../../../../interface/controls/templates/curve.html"><span class="doc">curve widget</span></a>.</p>
-<dl class="docutils">
-<dt>Sensitivity</dt>
-<dd>Controls the sensitivity of the input device.</dd>
-<dt>Strength</dt>
-<dd>Controls the stroke strength (alpha).</dd>
-<dt>Jitter</dt>
-<dd>Controls the jitter amount on the stroke.</dd>
+<dl class="simple">
+<dt>Sensitivity</dt><dd><p>Controls the sensitivity of the input device.</p>
+</dd>
+<dt>Strength</dt><dd><p>Controls the stroke strength (alpha).</p>
+</dd>
+<dt>Jitter</dt><dd><p>Controls the jitter amount on the stroke.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="cursor">
 <h3>Cursor<a class="headerlink" href="#cursor" title="Permalink to this headline">¶</a></h3>
 <p>The cursor can be disabled by toggling the checkbox in the <em>Cursor</em> header.</p>
-<dl class="docutils">
-<dt>Show Fill Color While Drawing</dt>
-<dd>Shows the brush linked material color in the viewport.</dd>
+<dl class="simple">
+<dt>Show Fill Color While Drawing</dt><dd><p>Shows the brush linked material color in the viewport.</p>
+</dd>
 </dl>
 </div>
 </div>

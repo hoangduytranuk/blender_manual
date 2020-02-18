@@ -228,16 +228,16 @@
 <span id="bpy-types-compositornodesetalpha"></span><h1>Nút Đặt Alpha -- Set Alpha Node<a class="headerlink" href="#set-alpha-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeSetAlpha.png" src="../../../_images/compositing_node-types_CompositorNodeSetAlpha.png" />
-<p class="caption"><span class="caption-text">Nút Đặt Alpha.</span></p>
+<p class="caption"><span class="caption-text">Nút Đặt Alpha.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p><em>Nút Đặt Alpha</em> cho thêm một kênh alpha vào một hình ảnh.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào hình ảnh tiêu chuẩn.</dd>
-<dt>Alpha</dt>
-<dd>Lượng Alpha có thể đặt cho toàn bộ hình ảnh bằng cách sử dụng trường đầu vào (input field) hoặc bằng mỗi điểm ảnh (pixel) bằng cách kết nối vào ổ cắm.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào hình ảnh tiêu chuẩn.</p>
+</dd>
+<dt>Alpha</dt><dd><p>Lượng Alpha có thể đặt cho toàn bộ hình ảnh bằng cách sử dụng trường đầu vào (input field) hoặc bằng mỗi điểm ảnh (pixel) bằng cách kết nối vào ổ cắm.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
@@ -246,13 +246,13 @@
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu ra tiêu chuẩn của hình ảnh.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu ra tiêu chuẩn của hình ảnh.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Đây không phải là, và không nhằm mục đích trở thành một giải pháp toàn diện cho vấn đề tổng hợp một hình ảnh không chứa thông tin Alpha. Bạn có thể nên sử dụng phương pháp &quot;Khóa Lọc Màu&quot; (Chroma Keying) hoặc &quot;Khóa Chênh Lệch&quot; (Difference Keying) (như đã được bàn luận ở chỗ khác của bảng hướng dẫn sử dụng) nếu có thể. Nút này thường được sử dụng (với đầu vào thích hợp được cung cấp qua phương tiện ổ cắm) trong những trường hợp rắc rối khi bạn <em>không thể</em>, do một số lý do nào đó, sử dụng trực tiếp các kỹ thuật đó.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>Đây không phải là, và không nhằm mục đích trở thành một giải pháp toàn diện cho vấn đề tổng hợp một hình ảnh không chứa thông tin Alpha. Bạn có thể nên sử dụng phương pháp &quot;Khóa Lọc Màu&quot; (Chroma Keying) hoặc &quot;Khóa Chênh Lệch&quot; (Difference Keying) (như đã được bàn luận ở chỗ khác của bảng hướng dẫn sử dụng) nếu có thể. Nút này thường được sử dụng (với đầu vào thích hợp được cung cấp qua phương tiện ổ cắm) trong những trường hợp rắc rối khi bạn <em>không thể</em>, do một số lý do nào đó, sử dụng trực tiếp các kỹ thuật đó.</p>
 </div>
 </div>
 <div class="section" id="example">
@@ -260,9 +260,9 @@
 <div class="section" id="fade-to-black">
 <h3>Phai Mờ Dần về Màu Đen -- Fade To Black<a class="headerlink" href="#fade-to-black" title="Permalink to this headline">¶</a></h3>
 <p>Để chuyển đối tượng từ cảnh này sang cảnh khác, một kỹ thuật phổ biến thường dùng là &quot;chuyển mờ dần sang màu đen&quot; (fade to black). Đúng như tên gọi của nó, khung cảnh sẽ mờ dần sang một màn hình đen. Bạn cũng có thể &quot;chuyển mờ dần sang màu trắng&quot; (fade to white), hoặc bất kỳ màu nào bạn muốn, nhưng màu đen là màu trung tính tốt, dễ nhìn và về giác quan mà nói, nó &quot;hoàn lại&quot; trí giác của người xem. Sơ đồ bài trí nút dưới đây cho thấy cách thực hiện việc này bằng nút Đặt Alpha.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/compositing_types_converter_set-alpha_fade-to-black.png" src="../../../_images/compositing_types_converter_set-alpha_fade-to-black.png" />
-<p class="caption"><span class="caption-text">Mờ dần sang màu đen.</span></p>
+<p class="caption"><span class="caption-text">Mờ dần sang màu đen.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the example above, the alpha channel of the swirl image is ignored.
 Instead, a <a class="reference internal" href="../input/time.html"><span class="doc">Time node</span></a>
@@ -278,9 +278,9 @@ to produce the composite image. The Set Alpha node will thus, depending on the f
 produce a black image that has some degree of transparency.
 Setup and Animate, and you have an image sequence that fades to black over a 2-second period.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p>Không Sử Dụng Thông Tin Cảnh</p>
-<p class="last">This example node map does not use the Render Layer node.
+<p>This example node map does not use the Render Layer node.
 To produce this 2-second animation, no Blender scene information was used.
 This is an example of using Blender's powerful compositing abilities
 separate from its modeling and animation capabilities.
@@ -291,17 +291,17 @@ and the &quot;fade-network&quot; effect will still produce the same effect.)</p>
 <div class="section" id="fade-in-a-title">
 <h3>Làm Rõ Dần Tiêu Đề -- Fade In a Title<a class="headerlink" href="#fade-in-a-title" title="Permalink to this headline">¶</a></h3>
 <p>Để giới thiệu hoạt hình của mình, bạn nên trình bày tiêu đề của đoạn hoạt hình của bạn trên một cái nền. Bạn có thể để tiêu đề bay vào, hoặc bạn có thể làm nó rõ dần lên. Để làm rõ dần lên, bạn hãy sử dụng nút Đặt Alpha với nút Thời Gian (Time) như trình bày dưới đây.</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="../../../_images/compositing_types_converter_set-alpha_fade-in-title.png" src="../../../_images/compositing_types_converter_set-alpha_fade-in-title.png" />
-<p class="caption"><span class="caption-text">Dùng Đặt Alpha để làm mờ dần một tiêu đề vào</span></p>
+<p class="caption"><span class="caption-text">Dùng Đặt Alpha để làm mờ dần một tiêu đề vào</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>Trong ví dụ trên, đường cong Thời gian cung cấp giá trị Alpha cho ổ cắm đầu vào. Nút Tầng Kết Xuất (Render Layer) hiện tại, tức cái có tiêu đề nhìn thấy được là nút cung cấp hình ảnh. Như trước đây, nút Alpha Chồng Lên (Alpha Over) pha trộn (sử dụng các giá trị alpha) hình ảnh nền xoáy lốc và alpha của tiêu đề để tạo ra hình ảnh tổng hợp.</p>
 </div>
 <div class="section" id="colorizing-a-bw-image">
 <h3>Tô Màu một Hình Ảnh Trắng/Đen -- Colorizing a BW Image<a class="headerlink" href="#colorizing-a-bw-image" title="Permalink to this headline">¶</a></h3>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="../../../_images/compositing_types_converter_set-alpha_colorizing-image.png" src="../../../_images/compositing_types_converter_set-alpha_colorizing-image.png" />
-<p class="caption"><span class="caption-text">Sử dụng Đặt Alpha để tô màu một hình ảnh.</span></p>
+<p class="caption"><span class="caption-text">Sử dụng Đặt Alpha để tô màu một hình ảnh.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the example above, notice how the blue tinge of the render input colors the swirl.
 You can use the Set Alpha node's color field with this kind of node map to add a consistent color to a BW image.</p>

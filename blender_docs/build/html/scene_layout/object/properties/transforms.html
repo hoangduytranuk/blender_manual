@@ -228,19 +228,18 @@ These may need to be manipulated numerically, reset, or applied.</p>
 <div class="section" id="transform-panel">
 <h2>Bảng Biến Hóa -- Transform Panel<a class="headerlink" href="#transform-panel" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể -- Object Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Biến Hóa (Transform)</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Transform</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể -- Object Mode</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Vật Thể (Object) ‣ Biến Hóa (Transform)</span></p>
+</dd>
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ Transform</span></p>
+</dd>
+</dl>
 </div>
 <p>The <em>Transform</em> panel in the Sidebar region allows you to view and
 manually/numerically control the position, rotation, and other properties of an object, in <em>Object Mode</em>.
@@ -255,42 +254,41 @@ rotation and/or scaling. These fields change the object's origin and then affect
 of all of its <em>vertices</em> and faces.</p>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/scene-layout_object_properties_transforms_panel.png" src="../../../_images/scene-layout_object_properties_transforms_panel.png" />
-<p class="caption"><span class="caption-text">Các Tính Chất Biến Hóa.</span></p>
+<p class="caption"><span class="caption-text">Các Tính Chất Biến Hóa.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Vị Trí -- Location</dt>
-<dd>The object's origin location in global coordinates.</dd>
-<dt>Xoay Chiều -- Rotation</dt>
-<dd>The object's orientation, relative to the global axes and its own origin.</dd>
+<dl class="simple">
+<dt>Vị Trí -- Location</dt><dd><p>The object's origin location in global coordinates.</p>
+</dd>
+<dt>Xoay Chiều -- Rotation</dt><dd><p>The object's orientation, relative to the global axes and its own origin.</p>
+</dd>
 </dl>
 <blockquote id="rotation-modes">
-<div><dl class="docutils">
-<dt>Chế Độ Xoay -- Rotation Mode</dt>
-<dd><p class="first">Method for calculating rotations, additional information can be found
+<div><dl>
+<dt>Chế Độ Xoay -- Rotation Mode</dt><dd><p>Method for calculating rotations, additional information can be found
 <a class="reference external" href="https://wiki.blender.org/index.php/User:Pepribal/Ref/Appendices/Rotation">here</a>.</p>
-<dl class="last docutils">
-<dt>Euler (tên họ của nhà toán học Leonhard Euler, người Thụy Sĩ) -- Euler</dt>
-<dd>The gizmo handles are aligned to the <a class="reference internal" href="../../../glossary/index.html#term-euler"><span class="xref std std-term">Euler</span></a> axis,
+<dl class="simple">
+<dt>Euler (tên họ của nhà toán học Leonhard Euler, người Thụy Sĩ) -- Euler</dt><dd><p>The gizmo handles are aligned to the <a class="reference internal" href="../../../glossary/index.html#term-euler"><span class="xref std std-term">Euler</span></a> axis,
 allowing you to see the discreet XYZ axis underlying the euler rotation,
-as well as possible <a class="reference internal" href="../../../glossary/index.html#term-gimbal-lock"><span class="xref std std-term">gimbal lock</span></a>.</dd>
-<dt>Góc Trục -- Axis Angle</dt>
-<dd>The X, Y, and Z coordinates define a point relative to the object origin.
-This point and the origin define an axis around the W value defines the rotation.</dd>
-<dt>Quatenion -- Quaternion</dt>
-<dd>X, Y, Z and W correspond to the <a class="reference internal" href="../../../glossary/index.html#term-quaternion"><span class="xref std std-term">Quaternion</span></a> components.</dd>
+as well as possible <a class="reference internal" href="../../../glossary/index.html#term-gimbal-lock"><span class="xref std std-term">gimbal lock</span></a>.</p>
+</dd>
+<dt>Góc Trục -- Axis Angle</dt><dd><p>The X, Y, and Z coordinates define a point relative to the object origin.
+This point and the origin define an axis around the W value defines the rotation.</p>
+</dd>
+<dt>Quatenion -- Quaternion</dt><dd><p>X, Y, Z and W correspond to the <a class="reference internal" href="../../../glossary/index.html#term-quaternion"><span class="xref std std-term">Quaternion</span></a> components.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div></blockquote>
-<dl class="docutils">
-<dt>Tỷ Lệ -- Scale</dt>
-<dd>The object's relative scale along the local axis
+<dl class="simple">
+<dt>Tỷ Lệ -- Scale</dt><dd><p>The object's relative scale along the local axis
 (e.g. the <em>Scale X</em> value represents the scale along the local X axis).
 Each object (cube, sphere, etc.), when created, has a scale of one unit in each local direction.
-To make the object bigger or smaller, you scale it in the desired axis.</dd>
-<dt>Kích Thước -- Dimensions</dt>
-<dd>The size of the object's bounding box
-(aligned with the local axes -- think of a cardboard box just big enough to hold the object).</dd>
+To make the object bigger or smaller, you scale it in the desired axis.</p>
+</dd>
+<dt>Kích Thước -- Dimensions</dt><dd><p>The size of the object's bounding box
+(aligned with the local axes -- think of a cardboard box just big enough to hold the object).</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="transform-properties-locking">

@@ -17,7 +17,7 @@ Windows
    windows/nvidia.rst
    windows/amd.rst
    windows/intel.rst
-   windows/unknown.rst
+   windows/other.rst
 
 
 Linux
@@ -29,7 +29,7 @@ Linux
    linux/nvidia.rst
    linux/amd.rst
    linux/intel.rst
-   linux/unknown.rst
+   linux/other.rst
 
 
 macOS
@@ -41,4 +41,4 @@ macOS
    apple/nvidia.rst
    apple/amd.rst
    apple/intel.rst
-   apple/unknown.rst
+   apple/other.rst

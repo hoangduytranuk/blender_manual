@@ -237,78 +237,75 @@
 <p>This is typically useful <em>after</em> an <a class="reference internal" href="armature.html"><span class="doc">Armature modifier</span></a>,
 where distortion around joints may be hard to avoid, even with careful weight painting.</p>
 <p>To use this modifier effectively, it is important to understand the basics of how it works.</p>
-<dl class="docutils">
-<dt>-- Rest State</dt>
-<dd>Used as a reference to detect highly distorted areas.
-The original vertex locations are used by default.</dd>
-<dt>Làm Mịn -- Smoothing</dt>
-<dd>Many options for this modifier relate to smoothing which is used internally
-to correct the distorted regions.</dd>
+<dl class="simple">
+<dt>-- Rest State</dt><dd><p>Used as a reference to detect highly distorted areas.
+The original vertex locations are used by default.</p>
+</dd>
+<dt>Làm Mịn -- Smoothing</dt><dd><p>Many options for this modifier relate to smoothing which is used internally
+to correct the distorted regions.</p>
+</dd>
 </dl>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_deform_corrective-smooth_panel.png" src="../../../_images/modeling_modifiers_deform_corrective-smooth_panel.png" />
-<p class="caption"><span class="caption-text">The Corrective Smooth modifier.</span></p>
+<p class="caption"><span class="caption-text">The Corrective Smooth modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Hệ Số -- Factor</dt>
-<dd><p class="first">The factor to control the smoothing amount.
+<dl>
+<dt>Hệ Số -- Factor</dt><dd><p>The factor to control the smoothing amount.
 Higher values will increase the effect.</p>
-<p class="last">Values outside expected range (above 1.0 or below 0.0) will distort the mesh.</p>
+<p>Values outside expected range (above 1.0 or below 0.0) will distort the mesh.</p>
 </dd>
-<dt>Lặp Lại -- Repeat</dt>
-<dd>The number of smoothing iterations,
-equivalent to executing the <em>Smooth</em> tool multiple times.</dd>
-<dt>Loại Mịn Hóa -- Smooth Type</dt>
-<dd><p class="first">Select the smoothing method used.</p>
-<dl class="last docutils">
-<dt>Đơn Giản -- Simple</dt>
-<dd>This simply relaxes vertices to their connected edges.</dd>
-<dt>Trọng Lượng tùy Chiều Dài -- Length Weight</dt>
-<dd>Uses a method of relaxing that weights by the distance of surrounding vertices.
+<dt>Lặp Lại -- Repeat</dt><dd><p>The number of smoothing iterations,
+equivalent to executing the <em>Smooth</em> tool multiple times.</p>
+</dd>
+<dt>Loại Mịn Hóa -- Smooth Type</dt><dd><p>Select the smoothing method used.</p>
+<dl class="simple">
+<dt>Đơn Giản -- Simple</dt><dd><p>This simply relaxes vertices to their connected edges.</p>
+</dd>
+<dt>Trọng Lượng tùy Chiều Dài -- Length Weight</dt><dd><p>Uses a method of relaxing that weights by the distance of surrounding vertices.
 This option can give higher quality smoothing in some cases,
-by better preserving the shape of the original form.</dd>
+by better preserving the shape of the original form.</p>
+</dd>
 </dl>
 </dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd>If set, restrict the effect to the only vertices in that vertex group.
-This allows for selective, real-time smoothing, by painting vertex weights.</dd>
-<dt>Chỉ Làm Mịn Thôi -- Only Smooth</dt>
-<dd>This option is included to preview the smoothing used, before correction is applied.</dd>
-<dt>Giữ Ranh Giới -- Pin Boundaries</dt>
-<dd>Prevent boundary vertices from smoothing.</dd>
-<dt>Nguồn cho Tư Thế Nghỉ -- Rest Source</dt>
-<dd><p class="first">Select the source for reference vertex positions that defines the undeformed state.</p>
-<dl class="last docutils">
-<dt>-- Original Coordinates</dt>
-<dd>Use the original input vertex positions.
-This relies on the original mesh having the same number of vertices as the input, modified mesh.</dd>
-<dt>-- Bind Coordinates</dt>
-<dd>Optionally you may bind the modifier to a specific state.
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>If set, restrict the effect to the only vertices in that vertex group.
+This allows for selective, real-time smoothing, by painting vertex weights.</p>
+</dd>
+<dt>Chỉ Làm Mịn Thôi -- Only Smooth</dt><dd><p>This option is included to preview the smoothing used, before correction is applied.</p>
+</dd>
+<dt>Giữ Ranh Giới -- Pin Boundaries</dt><dd><p>Prevent boundary vertices from smoothing.</p>
+</dd>
+<dt>Nguồn cho Tư Thế Nghỉ -- Rest Source</dt><dd><p>Select the source for reference vertex positions that defines the undeformed state.</p>
+<dl class="simple">
+<dt>-- Original Coordinates</dt><dd><p>Use the original input vertex positions.
+This relies on the original mesh having the same number of vertices as the input, modified mesh.</p>
+</dd>
+<dt>-- Bind Coordinates</dt><dd><p>Optionally you may bind the modifier to a specific state.
 This is required when there are constructive modifiers such as <em>Subdivision Surface</em> or <em>Mirror</em>
-in the stack before this modifier.</dd>
+in the stack before this modifier.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="example">
 <h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils" id="id2">
+<table class="docutils align-default" id="id2">
 <caption><span class="caption-text">An example of a rig using bone envelopes and not weight painting.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id3">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_corrective-smooth_example-pose-before.png"><img alt="../../../_images/modeling_modifiers_deform_corrective-smooth_example-pose-before.png" src="../../../_images/modeling_modifiers_deform_corrective-smooth_example-pose-before.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-text">Armature only.</span></p>
+<p class="caption"><span class="caption-text">Armature only.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id4">
+<td><div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_corrective-smooth_example-pose-after.png"><img alt="../../../_images/modeling_modifiers_deform_corrective-smooth_example-pose-after.png" src="../../../_images/modeling_modifiers_deform_corrective-smooth_example-pose-after.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-text">Armature and Corrective Smooth.</span></p>
+<p class="caption"><span class="caption-text">Armature and Corrective Smooth.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>

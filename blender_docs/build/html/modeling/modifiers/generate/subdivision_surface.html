@@ -244,83 +244,78 @@ has an important bearing on the results.</p>
 <p>Keep in mind that this is a different operation than its companion,
 <a class="reference internal" href="../../meshes/editing/normals.html#modeling-meshes-editing-normals-shading"><span class="std std-ref">Smooth Shading</span></a>.
 You can see the difference between the two in the grid image below.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/modeling_modifiers_generate_subdivision-surface_grid.png" src="../../../_images/modeling_modifiers_generate_subdivision-surface_grid.png" />
-<p class="caption"><span class="caption-text">Subdivision levels 0 to 3, without and with Smooth Shading.</span></p>
+<p class="caption"><span class="caption-text">Subdivision levels 0 to 3, without and with Smooth Shading.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">The <em>Subdivision Surface</em> modifier does not allow you to edit the new subdivided geometry without applying it,
+<p class="admonition-title">Mẹo</p>
+<p>The <em>Subdivision Surface</em> modifier does not allow you to edit the new subdivided geometry without applying it,
 but the <a class="reference internal" href="multiresolution.html"><span class="doc">Multiresolution</span></a> modifier does (in Sculpt Mode).</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This modifier now uses
+<p class="admonition-title">Ghi chú</p>
+<p>This modifier now uses
 the <a class="reference external" href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv library</a> as a backend.</p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id2">
 <img alt="../../../_images/modeling_modifiers_generate_subdivision-surface_panel.png" src="../../../_images/modeling_modifiers_generate_subdivision-surface_panel.png" />
-<p class="caption"><span class="caption-text">The Subdivision Surface modifier.</span></p>
+<p class="caption"><span class="caption-text">The Subdivision Surface modifier.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Thể Loại -- Type</dt>
-<dd><p class="first">This toggle button allows you to choose the subdivision algorithm:</p>
-<dl class="last docutils">
-<dt>Catmull-Clark</dt>
-<dd>The default option, subdivides and smooths the surfaces. According to its <a class="reference external" href="https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface">Wikipedia page</a>, the &quot;arbitrary-looking formula was chosen by Catmull and Clark based on the aesthetic appearance of the resulting surfaces rather than on a mathematical derivation.</dd>
-<dt>Đơn Giản -- Simple</dt>
-<dd>Only subdivides the surfaces, without any smoothing
+<dl>
+<dt>Thể Loại -- Type</dt><dd><p>This toggle button allows you to choose the subdivision algorithm:</p>
+<dl class="simple">
+<dt>Catmull-Clark</dt><dd><p>The default option, subdivides and smooths the surfaces. According to its <a class="reference external" href="https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface">Wikipedia page</a>, the &quot;arbitrary-looking formula was chosen by Catmull and Clark based on the aesthetic appearance of the resulting surfaces rather than on a mathematical derivation.</p>
+</dd>
+<dt>Đơn Giản -- Simple</dt><dd><p>Only subdivides the surfaces, without any smoothing
 (the same as the <a class="reference internal" href="../../meshes/editing/subdividing/subdivide.html#bpy-ops-mesh-subdivide"><span class="std std-ref">Subdivide</span></a> operator, in Edit Mode).
-Can be used, for example, to increase base mesh resolution when using displacement maps.</dd>
+Can be used, for example, to increase base mesh resolution when using displacement maps.</p>
+</dd>
 </dl>
 </dd>
-<dt>Lượng Phân Hóa -- Subdivisions</dt>
-<dd><p class="first">Recursively adds more geometry.</p>
+<dt>Lượng Phân Hóa -- Subdivisions</dt><dd><p>Recursively adds more geometry.</p>
 <p>The right combination of these settings will allow you to keep a fast and lightweight approximation of your model
 when interacting with it in the 3D Viewport, but use a higher quality version when rendering.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">Higher levels of subdivisions results in more vertices, which means more memory will be occupied
+<p class="admonition-title">Cảnh báo</p>
+<p>Higher levels of subdivisions results in more vertices, which means more memory will be occupied
 (both system RAM, and video memory for display).
 Blender could potentially crash or hang if you do not have enough available memory.</p>
 </div>
-<dl class="docutils">
-<dt>Kết Xuất -- Render</dt>
-<dd>The number of subdivision levels shown in renders.</dd>
-<dt>Viewport</dt>
-<dd>The number of subdivision levels shown in the 3D View.</dd>
-<dt>Quality</dt>
-<dd><p class="first">How precisely the vertices are positioned
+<dl>
+<dt>Kết Xuất -- Render</dt><dd><p>The number of subdivision levels shown in renders.</p>
+</dd>
+<dt>Viewport</dt><dd><p>The number of subdivision levels shown in the 3D View.</p>
+</dd>
+<dt>Quality</dt><dd><p>How precisely the vertices are positioned
 (relatively to their theoretical position of an infinitely subdivided mesh),
 can be lowered to get a better performance.</p>
-<p class="last">Using higher values does not necessarily mean real improvement in quality,
+<p>Using higher values does not necessarily mean real improvement in quality,
 ideal results might be reached well before the maximum <em>Quality</em> value.</p>
 </dd>
 </dl>
-<div class="last admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">Be careful not to set the <em>Viewport</em> subdivisions higher than the <em>Render</em> subdivisions,
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Be careful not to set the <em>Viewport</em> subdivisions higher than the <em>Render</em> subdivisions,
 this would mean that in the 3D View the quality will be higher than the rendered.</p>
 </div>
 </dd>
-<dt>Tùy Chọn -- Options</dt>
-<dd><dl class="first last docutils">
-<dt>UV Smooth</dt>
-<dd><p class="first">How to handle UVs during subdivision.</p>
-<dl class="last docutils">
-<dt>Smooth, keep corners</dt>
-<dd>UV islands are smoothed, but their boundary remain sharp.</dd>
-<dt>Sharp</dt>
-<dd>UV remain unchanged.</dd>
+<dt>Tùy Chọn -- Options</dt><dd><dl>
+<dt>UV Smooth</dt><dd><p>How to handle UVs during subdivision.</p>
+<dl class="simple">
+<dt>Smooth, keep corners</dt><dd><p>UV islands are smoothed, but their boundary remain sharp.</p>
+</dd>
+<dt>Sharp</dt><dd><p>UV remain unchanged.</p>
+</dd>
 </dl>
 </dd>
-<dt>Hiển Thị Tối Ưu -- Optimal Display</dt>
-<dd>When rendering the wireframe of this object, the wires of the new subdivided edges will be skipped
-(only displays the edges of the original geometry).</dd>
-<dt>Use Creases</dt>
-<dd>Use the <a class="reference internal" href="#weighted-edge-creases">Weighted Edge Creases</a> values stored in edges to control how smooth they are made.</dd>
+<dt>Hiển Thị Tối Ưu -- Optimal Display</dt><dd><p>When rendering the wireframe of this object, the wires of the new subdivided edges will be skipped
+(only displays the edges of the original geometry).</p>
+</dd>
+<dt>Use Creases</dt><dd><p>Use the <a class="reference internal" href="#weighted-edge-creases">Weighted Edge Creases</a> values stored in edges to control how smooth they are made.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -343,9 +338,9 @@ There are several solutions that allow you to control the subdivision.</p>
 <span id="modifiers-generate-subsurf-creases"></span><h3>-- Weighted Edge Creases<a class="headerlink" href="#weighted-edge-creases" title="Permalink to this headline">¶</a></h3>
 <p>Weighted edge creases for subdivision surfaces allows you to change the way
 the <em>Subdivision Surface</em> modifier subdivides the geometry to give the edges a smooth or sharp appearance.</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="../../../_images/modeling_modifiers_generate_subdivision-surface_withcrease.png" src="../../../_images/modeling_modifiers_generate_subdivision-surface_withcrease.png" />
-<p class="caption"><span class="caption-text">A subdivided cube with creased edges.</span></p>
+<p class="caption"><span class="caption-text">A subdivided cube with creased edges.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>The crease weight of selected edges can be changed in the <em>Transform</em> panel, Sidebar of the 3D View.
 The scale-like dedicated tool <kbd class="kbd docutils literal notranslate">Shift-E</kbd> can also be used to adjust the crease weight.
@@ -353,9 +348,9 @@ A higher value makes the edge &quot;stronger&quot; and more resistant to the smo
 </div>
 <div class="section" id="edge-loops">
 <h3>Theo Vòng Mạch -- Edge Loops<a class="headerlink" href="#edge-loops" title="Permalink to this headline">¶</a></h3>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="../../../_images/modeling_modifiers_generate_subdivision-surface_cube-with-edge-loops.png" src="../../../_images/modeling_modifiers_generate_subdivision-surface_cube-with-edge-loops.png" />
-<p class="caption"><span class="caption-text">Subdivision Level 2 cube, the same with an extra Edge Loop, and the same with six extra Edge Loops.</span></p>
+<p class="caption"><span class="caption-text">Subdivision Level 2 cube, the same with an extra Edge Loop, and the same with six extra Edge Loops.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Subdivision Surface</em> modifier demonstrates why good, clean topology is so important.
 As you can see in the figure, the it has a drastic effect on a default cube.
@@ -372,20 +367,20 @@ the shape is almost unrecognizable as a cube.</p>
 <p>Blender's subdivision system produces nice smooth subdivided meshes, but any subdivided face
 (that is, any small face created by the algorithm from a single face of the original mesh),
 shares the overall normal orientation of that original face.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id5">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_subdivision-surface_normal-orientation-1.png"><img alt="../../../_images/modeling_modifiers_generate_subdivision-surface_normal-orientation-1.png" src="../../../_images/modeling_modifiers_generate_subdivision-surface_normal-orientation-1.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Comparison of good normals and bad normals.</span></p>
+<p class="caption"><span class="caption-text">Comparison of good normals and bad normals.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id6">
+<td><div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_subdivision-surface_normal-orientation-2.png"><img alt="../../../_images/modeling_modifiers_generate_subdivision-surface_normal-orientation-2.png" src="../../../_images/modeling_modifiers_generate_subdivision-surface_normal-orientation-2.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Side view of image on the left.</span></p>
+<p class="caption"><span class="caption-text">Side view of image on the left.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>

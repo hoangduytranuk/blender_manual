@@ -57,8 +57,8 @@ Strobe
    the strip will only display frames 1, 11, 21, 31, 41... of the source.
    *Strobe* is a float value -- this way you can get a strobe effect synced exactly to a beat,
    for example, by using non-integer values.
-Playback Direction
-   Options for choosing to play strip forwards or backwards.
+Reverse Frames
+   Strip is played backwards starting from the last frame in the sequence.
 
 
 Color

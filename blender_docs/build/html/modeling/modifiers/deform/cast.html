@@ -239,13 +239,13 @@ surface or lattice, towards any of a few predefined shapes (sphere, cylinder, cu
 and what other programs call &quot;Spherify&quot; or &quot;Spherize&quot;, but, as written above,
 it is not limited to casting to a sphere.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">The <a class="reference internal" href="smooth.html"><span class="doc">Smooth Modifier</span></a> is a good companion to <em>Cast</em>,
+<p class="admonition-title">Mẹo</p>
+<p>The <a class="reference internal" href="smooth.html"><span class="doc">Smooth Modifier</span></a> is a good companion to <em>Cast</em>,
 since the cast shape sometimes needs smoothing to look nicer or even to fix shading artifacts.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">For performance reasons, this modifier only works with local coordinates.
+<p class="admonition-title">Ghi chú</p>
+<p>For performance reasons, this modifier only works with local coordinates.
 If the modified object looks wrong, you may need to apply its
 <a class="reference internal" href="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-transform-apply"><span class="std std-ref">transformations</span></a>, especially when casting to a cylinder.</p>
 </div>
@@ -253,49 +253,47 @@ If the modified object looks wrong, you may need to apply its
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_deform_cast_panel.png" src="../../../_images/modeling_modifiers_deform_cast_panel.png" />
-<p class="caption"><span class="caption-text">The Cast modifier.</span></p>
+<p class="caption"><span class="caption-text">The Cast modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Loại Khuôn Đúc -- Cast Type</dt>
-<dd>Menu to choose target shape of the projection: <em>Sphere</em>, <em>Cylinder</em> or <em>Cuboid</em>.</dd>
-<dt>Axis X/Y/Z</dt>
-<dd>Toggle buttons to enable/disable the modifier in the X, Y, Z axes directions
-(X and Y only for <em>Cylinder</em> cast type, since the Z axis remains unaffected).</dd>
-<dt>Hệ Số -- Factor</dt>
-<dd><p class="first">The factor to control blending between original and cast vertex positions.</p>
+<dl>
+<dt>Loại Khuôn Đúc -- Cast Type</dt><dd><p>Menu to choose target shape of the projection: <em>Sphere</em>, <em>Cylinder</em> or <em>Cuboid</em>.</p>
+</dd>
+<dt>Axis X/Y/Z</dt><dd><p>Toggle buttons to enable/disable the modifier in the X, Y, Z axes directions
+(X and Y only for <em>Cylinder</em> cast type, since the Z axis remains unaffected).</p>
+</dd>
+<dt>Hệ Số -- Factor</dt><dd><p>The factor to control blending between original and cast vertex positions.</p>
 <p>It is a linear interpolation: 0.0 gives original coordinates (i.e. modifier has no effect),
 1.0 casts to the target shape.</p>
-<p class="last">Values below 0.0 or above 1.0 exaggerate the deformation, sometimes in interesting ways.</p>
+<p>Values below 0.0 or above 1.0 exaggerate the deformation, sometimes in interesting ways.</p>
 </dd>
-<dt>Bán Kính -- Radius</dt>
-<dd>If non-zero, this radius defines a sphere of influence.
-Vertices outside it are not affected by the modifier.</dd>
-<dt>Kích Thước -- Size</dt>
-<dd>Alternative size for the projected shape. If zero,
-it is defined by the initial shape and the control object, if any.</dd>
-<dt>-- From radius</dt>
-<dd>If activated, calculate <em>Size</em> from <em>Radius</em>, for smoother results.</dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd>If set, restrict the effect to the only vertices in that vertex group.
-This allows selective, real-time casting, by painting vertex weights.</dd>
-<dt>-- Control Object</dt>
-<dd><p class="first">The name of an object to control the effect.
+<dt>Bán Kính -- Radius</dt><dd><p>If non-zero, this radius defines a sphere of influence.
+Vertices outside it are not affected by the modifier.</p>
+</dd>
+<dt>Kích Thước -- Size</dt><dd><p>Alternative size for the projected shape. If zero,
+it is defined by the initial shape and the control object, if any.</p>
+</dd>
+<dt>-- From radius</dt><dd><p>If activated, calculate <em>Size</em> from <em>Radius</em>, for smoother results.</p>
+</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>If set, restrict the effect to the only vertices in that vertex group.
+This allows selective, real-time casting, by painting vertex weights.</p>
+</dd>
+<dt>-- Control Object</dt><dd><p>The name of an object to control the effect.
 The location of this object's origin defines the center of the projection.
 Also, its size and rotation transform the projected vertices.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">Animating (keyframing) this control object also animates the modified object's casting deformation.</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>Animating (keyframing) this control object also animates the modified object's casting deformation.</p>
 </div>
 </dd>
 </dl>
 </div>
 <div class="section" id="example">
 <h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_cast_example.jpg"><img alt="../../../_images/modeling_modifiers_deform_cast_example.jpg" src="../../../_images/modeling_modifiers_deform_cast_example.jpg" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-text">Top: Suzanne without modifiers. Middle: Suzanne with each type of Cast Modifier (Sphere, Cylinder and Cuboid).
 Bottom: Same as above, but now only X axis is enabled.
-<a class="reference external" href="https://wiki.blender.org/wiki/File:263-Cast-Modifier.blend">Sample blend-file</a>.</span></p>
+<a class="reference external" href="https://wiki.blender.org/wiki/File:263-Cast-Modifier.blend">Sample blend-file</a>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

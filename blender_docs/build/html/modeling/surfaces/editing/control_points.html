@@ -228,19 +228,18 @@
 <div class="section" id="extrude-curve-and-move">
 <h2>Extrude Curve and Move<a class="headerlink" href="#extrude-curve-and-move" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Surface ‣ Extrude Curve and Move</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">E</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Extrude Curve and Move</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">E</kbd></p>
+</dd>
+</dl>
 </div>
 <p>Unlike meshes or curves, you cannot generally directly add new control points to a surface,
 as you can only extend a surface by adding a whole U or V row at once.
@@ -252,16 +251,16 @@ the extrusion happens immediately and you are placed into <em>select mode</em>,
 ready to drag the new extruded surface to its destination.</p>
 <p>There are two things very important to understand:</p>
 <ol class="arabic simple">
-<li>Surfaces are <em>2D</em> objects. So you cannot extrude anything <em>inside</em> a surface
-(e.g. &quot;inner&quot; row); it would not make any sense!</li>
-<li>The control &quot;grid&quot; <em>must</em> remain &quot;squarish&quot;,
-which means that you can only extrude a whole row, not parts of rows here and there...</li>
+<li><p>Surfaces are <em>2D</em> objects. So you cannot extrude anything <em>inside</em> a surface
+(e.g. &quot;inner&quot; row); it would not make any sense!</p></li>
+<li><p>The control &quot;grid&quot; <em>must</em> remain &quot;squarish&quot;,
+which means that you can only extrude a whole row, not parts of rows here and there...</p></li>
 </ol>
 <p>To summarize, the <em>Extrude</em> tool will only work, when one and only one whole border
 row is selected, otherwise nothing happens.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">As for curves, you cannot create a new surface in your object out of nowhere.
+<p class="admonition-title">Ghi chú</p>
+<p>As for curves, you cannot create a new surface in your object out of nowhere.
 However, unlike for curves, there is no &quot;cut&quot; option allowing you to separate a surface into several parts,
 so you only can create a new surface by <a class="reference internal" href="surface.html#modeling-surface-editing-duplicating"><span class="std std-ref">Duplicating</span></a>
 an existing one, or adding a new one with the <em>Add</em> menu.</p>
@@ -273,20 +272,20 @@ show a typical extrusion along the side of a surface.</p>
 <p>In Fig. <a class="reference internal" href="#fig-surface-edit-select-point"><span class="std std-ref">Selecting control point.</span></a> and <a class="reference internal" href="#fig-surface-edit-select-row"><span class="std std-ref">Select Control Point Row.</span></a>,
 a border row of control points were highlighted by selecting a single control point,
 and then using <a class="reference internal" href="../selecting.html#bpy-ops-curve-select-row"><span class="std std-ref">Select Control Point Row</span></a> to select the rest of the control points.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id2">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
 <span id="fig-surface-edit-select-point"></span><img alt="../../../_images/modeling_surfaces_editing_selecting-point.png" src="../../../_images/modeling_surfaces_editing_selecting-point.png" />
-<p class="caption"><span class="caption-text">Selecting control point.</span></p>
+<p class="caption"><span class="caption-text">Selecting control point.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id3">
+<td><div class="figure align-default" id="id3">
 <span id="fig-surface-edit-select-row"></span><img alt="../../../_images/modeling_surfaces_editing_selecting-row.png" src="../../../_images/modeling_surfaces_editing_selecting-row.png" />
-<p class="caption"><span class="caption-text">Select Control Point Row.</span></p>
+<p class="caption"><span class="caption-text">Select Control Point Row.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -295,9 +294,9 @@ and then using <a class="reference internal" href="../selecting.html#bpy-ops-cur
 <p>The edge is then extruded as shown in Fig. <a class="reference internal" href="#fig-surface-edit-extruding"><span class="std std-ref">Extruding.</span></a>.
 Notice how the mesh has bunched up next to the highlighted edge.
 That is because the <em>new</em> extruded surface section is bunched up there as well.</p>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <span id="fig-surface-edit-extruding"></span><img alt="../../../_images/modeling_surfaces_editing_extruding.png" src="../../../_images/modeling_surfaces_editing_extruding.png" />
-<p class="caption"><span class="caption-text">Extruding.</span></p>
+<p class="caption"><span class="caption-text">Extruding.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>By moving the new section away from the area, the surface begins to &quot;unbunch&quot;.</p>
 <p>You can continue this process of extruding or adding new surface sections
@@ -307,19 +306,18 @@ until you have reached the final shape for your model.</p>
 <div class="section" id="make-segment">
 <h2>Make Segment<a class="headerlink" href="#make-segment" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Surface ‣ Make Segment</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">F</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Make Segment</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">F</kbd></p>
+</dd>
+</dl>
 </div>
 <p>Just like <a class="reference internal" href="../../curves/editing/control_points.html#modeling-curves-make-segment"><span class="std std-ref">curves</span></a>,
 merging two surfaces requires that a single edge, a border row of control points,
@@ -346,20 +344,20 @@ and you just have to &quot;skin&quot; them as described above to get a nice, smo
 <p>Fig. <a class="reference internal" href="#fig-surface-edit-join-ready"><span class="std std-ref">Joining ready.</span></a> is an example of two NURBS surface curves,
 <strong>not</strong> NURBS curves, in <em>Edit Mode</em>, ready to be joined.
 Fig. <a class="reference internal" href="#fig-surface-edit-join-complete"><span class="std std-ref">Joining complete.</span></a> is the result of joining the two curves.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id5">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id5">
 <span id="fig-surface-edit-join-ready"></span><img alt="../../../_images/modeling_surfaces_editing_joining-ready.png" src="../../../_images/modeling_surfaces_editing_joining-ready.png" />
-<p class="caption"><span class="caption-text">Joining ready.</span></p>
+<p class="caption"><span class="caption-text">Joining ready.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id6">
+<td><div class="figure align-default" id="id6">
 <span id="fig-surface-edit-join-complete"></span><img alt="../../../_images/modeling_surfaces_editing_joining-complete.png" src="../../../_images/modeling_surfaces_editing_joining-complete.png" />
-<p class="caption"><span class="caption-text">Joining complete.</span></p>
+<p class="caption"><span class="caption-text">Joining complete.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -370,17 +368,15 @@ Fig. <a class="reference internal" href="#fig-surface-edit-join-complete"><span 
 <div class="section" id="smooth">
 <h2>Smooth<a class="headerlink" href="#smooth" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Surface ‣ Control Points ‣ Smooth</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Control Points ‣ Smooth</span></p>
+</dd>
+</dl>
 </div>
 <p>Iteratively smooths the selected control points
 by reducing the distance between neighboring control points.</p>
@@ -388,38 +384,36 @@ by reducing the distance between neighboring control points.</p>
 <div class="section" id="hooks">
 <h2>Hooks<a class="headerlink" href="#hooks" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Surface ‣ Control Points ‣ Hooks</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-H</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Control Points ‣ Hooks</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Ctrl-H</kbd></p>
+</dd>
+</dl>
 </div>
 <p><a class="reference internal" href="../../modifiers/deform/hooks.html"><span class="doc">Hooks</span></a> can be added to control one or more points with other objects.</p>
 </div>
 <div class="section" id="make-vertex-parent">
 <h2>Make Vertex Parent<a class="headerlink" href="#make-vertex-parent" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Surface ‣ Control Points ‣ Make Vertex Parent</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-P</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Control Points ‣ Make Vertex Parent</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Ctrl-P</kbd></p>
+</dd>
+</dl>
 </div>
 <p>You can make other selected objects <a class="reference internal" href="../../../scene_layout/object/properties/relations/parents.html#object-parenting"><span class="std std-ref">children</span></a>
 of one or three control points, as with mesh objects.</p>

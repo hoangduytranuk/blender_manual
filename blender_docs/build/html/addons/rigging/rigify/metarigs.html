@@ -228,31 +228,31 @@
   <div class="section" id="creating-meta-rigs">
 <h1>Creating Meta-rigs<a class="headerlink" href="#creating-meta-rigs" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic simple">
-<li>Add a single bone from the <span class="menuselection">Add ‣ Armature</span> menu.</li>
-<li>Go in armature Edit Mode and build the meta rig by samples or Rigify-types.</li>
-<li>Define Rigify layers, bone grouping and selection sets.</li>
-<li>In the armature properties click on the <em>Generate</em> button to generate the rig.</li>
+<li><p>Add a single bone from the <span class="menuselection">Add ‣ Armature</span> menu.</p></li>
+<li><p>Go in armature Edit Mode and build the meta rig by samples or Rigify-types.</p></li>
+<li><p>Define Rigify layers, bone grouping and selection sets.</p></li>
+<li><p>In the armature properties click on the <em>Generate</em> button to generate the rig.</p></li>
 </ol>
 <div class="section" id="how-rigify-works">
 <h2>How Rigify Works<a class="headerlink" href="#how-rigify-works" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Rigify Meta-Rigs are split in multiple Sub-Rigs</dt>
-<dd>A meta-rig is an assembly of bone chains. A bone chain is identified by the <em>Connected</em> attribute.
+<dl class="simple">
+<dt>Rigify Meta-Rigs are split in multiple Sub-Rigs</dt><dd><p>A meta-rig is an assembly of bone chains. A bone chain is identified by the <em>Connected</em> attribute.
 Bone chains can be further connected together by parenting them without using the <em>Connected</em> attribute
-(i.e. using the <em>Keep Offset</em> option while parenting).</dd>
-<dt>A custom attribute is set on the first bone of the sub-rig chain</dt>
-<dd>Each first bone of a bone chain has a custom attribute on it which is a Rigify custom property
+(i.e. using the <em>Keep Offset</em> option while parenting).</p>
+</dd>
+<dt>A custom attribute is set on the first bone of the sub-rig chain</dt><dd><p>Each first bone of a bone chain has a custom attribute on it which is a Rigify custom property
 that identifies the sub-rig type. At rig generation time Rigify will determine which controls and
-deform bones will be created processing the meta-rig from the first bone to the last of each chain.</dd>
-<dt>New meta-rigs are created assembling sub-rigs samples</dt>
-<dd>Since a meta-rig is just a collection of sub-rigs,
+deform bones will be created processing the meta-rig from the first bone to the last of each chain.</p>
+</dd>
+<dt>New meta-rigs are created assembling sub-rigs samples</dt><dd><p>Since a meta-rig is just a collection of sub-rigs,
 new meta-rigs can be built assembling sub-rigs in different ways.
-This way an infinite number of meta-rigs can be built from the same rigging blocks.</dd>
-<dt>All the mechanics, deformation bones and widget are created on a single click</dt>
-<dd>The meta-rig contains more information than the visualized bones.
+This way an infinite number of meta-rigs can be built from the same rigging blocks.</p>
+</dd>
+<dt>All the mechanics, deformation bones and widget are created on a single click</dt><dd><p>The meta-rig contains more information than the visualized bones.
 In fact at generation time Rigify will identify each sub-rig type and depending on
 the selected options will create all the sophisticated controls, switches, and
-deforming bones with a single click.</dd>
+deforming bones with a single click.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="creating-a-new-meta-rig">
@@ -260,25 +260,24 @@ deforming bones with a single click.</dd>
 <div class="section" id="add-a-new-armature-object">
 <h3>Add a new Armature Object<a class="headerlink" href="#add-a-new-armature-object" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Object Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Add ‣ Armature ‣ Single Bone</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-A</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Object Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Add ‣ Armature ‣ Single Bone</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Shift-A</kbd></p>
+</dd>
+</dl>
 </div>
 <p>Building your own meta-rig from scratch requires an armature object to work with.
 Just add a single bone from the <em>Add</em> menu.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">At this stage naming the newly added armature &quot;meta-rig&quot; is a good idea.
+<p class="admonition-title">Mẹo</p>
+<p>At this stage naming the newly added armature &quot;meta-rig&quot; is a good idea.
 You can do it at any time (or not at all) but it's suggested to do it before going on
 so it will always be clear on which armature you have to work when editing the meta-rig structure.</p>
 </div>
@@ -288,8 +287,8 @@ so it will always be clear on which armature you have to work when editing the m
 <p>Now that there is an armature object to work -- with the armature selected -- enter armature Edit Mode.
 Building a meta-rig from scratch in Edit Mode can be done in two ways:</p>
 <ol class="arabic simple">
-<li>Adding rig samples.</li>
-<li>Creating bone chains.</li>
+<li><p>Adding rig samples.</p></li>
+<li><p>Creating bone chains.</p></li>
 </ol>
 <div class="section" id="adding-samples-basic">
 <h4>Adding Samples (Basic)<a class="headerlink" href="#adding-samples-basic" title="Permalink to this headline">¶</a></h4>
@@ -297,23 +296,23 @@ Building a meta-rig from scratch in Edit Mode can be done in two ways:</p>
 This way you can become familiar with the available building blocks and how they are meant to be used.
 To add a rig sample:</p>
 <ol class="arabic simple">
-<li>Go in the armature tab.</li>
-<li>Scroll down to Rigify panel.</li>
-<li>Select a sample from the list.</li>
-<li>Click on the <em>Add sample</em> button.</li>
-<li>Edit the bone positions to match your character.</li>
+<li><p>Go in the armature tab.</p></li>
+<li><p>Scroll down to Rigify panel.</p></li>
+<li><p>Select a sample from the list.</p></li>
+<li><p>Click on the <em>Add sample</em> button.</p></li>
+<li><p>Edit the bone positions to match your character.</p></li>
 </ol>
 <p>For the list of available samples, see the <a class="reference internal" href="rig_types/index.html"><span class="doc">Rig Types</span></a> page.</p>
 </div>
 <div class="section" id="using-rig-types-advanced">
 <h4>Using Rig Types (Advanced)<a class="headerlink" href="#using-rig-types-advanced" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
-<li>Create your bone chains in Edit Mode.</li>
-<li>Assign the correct rig type to the first bone of each chain in Pose Mode.</li>
+<li><p>Create your bone chains in Edit Mode.</p></li>
+<li><p>Assign the correct rig type to the first bone of each chain in Pose Mode.</p></li>
 </ol>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Each sub rig has a required number of bones as input. If you are unsure on how to use rig-types properties,
+<p class="admonition-title">Ghi chú</p>
+<p>Each sub rig has a required number of bones as input. If you are unsure on how to use rig-types properties,
 add a rig sample to your armature to see how it is supposed to be used.</p>
 </div>
 </div>
@@ -329,32 +328,29 @@ The top row contains layers from 1 to 8 and from 9 to 16.
 The bottom row layers form 17 to 24 and form 25 to 32.</p>
 <p>Rigify layers are displayed in a vertical layout inside their own separate panel named Rigify Layer Names.</p>
 <ul>
-<li><p class="first">The first column shows the layer number.</p>
-</li>
-<li><p class="first">The second column is a display toggle.</p>
+<li><p>The first column shows the layer number.</p></li>
+<li><p>The second column is a display toggle.</p>
 <p>This toggle controls the armature layer visibility.
 It has the same effect of enabling/disabling the layer visibility from the top armature layers menu.
 It is just redrawn here for a simplicity.</p>
 </li>
-<li><p class="first">The third column sets a specific layer name to be used to build the rig UI of the final rig.
+<li><p>The third column sets a specific layer name to be used to build the rig UI of the final rig.
 If set, a button with the specified name will be created in the rig_ui to control the visibility of
 this specific armature layer. If layer contains at least one bone but its name field is empty,
-a button with no name will be created in the rig UI.</p>
-</li>
-<li><p class="first">The fourth column defines in which UI row the layer button will be created.</p>
+a button with no name will be created in the rig UI.</p></li>
+<li><p>The fourth column defines in which UI row the layer button will be created.</p>
 <p>This numbers define the layer ordering in the UI and will ignore the effective layer number.
 If two layer have the same row number their UI buttons will be created in the same row.</p>
 </li>
-<li><p class="first">The fifth column is a toggle for the selection set.</p>
+<li><p>The fifth column is a toggle for the selection set.</p>
 <p>If checked a selection set with that name will be created and associated to the final rig.</p>
 </li>
-<li><p class="first">The sixth column defines the Rigify Bone Grouping.</p>
+<li><p>The sixth column defines the Rigify Bone Grouping.</p>
 <p>If Rigify Bone Groups are set, the user can make the association between
 the bones on the layer and the specified bone group from the list.
 The controls on the final rig will inherit the bone grouping through this value.</p>
 </li>
-<li><p class="first">The seventh column displays -- if set -- the associated bone group name.</p>
-</li>
+<li><p>The seventh column displays -- if set -- the associated bone group name.</p></li>
 </ul>
 <p>In order to use the Bone Groups in the <em>Rigify Layer Names</em> fields,
 <em>Rigify Bone Groups</em> must be set through the specific panel.
@@ -366,17 +362,17 @@ When multiple color themes are used in the same rig, identifying which bone is s
 active can be tricky since each color will have its corresponding state.</p>
 <p>To override this behavior Rigify Bone Groups unifies the active and selected states with the same color.
 This is defined by two values:</p>
-<dl class="docutils">
-<dt>Unified Selected/Active Colors</dt>
-<dd>When this option is active adding a bone group in the list will always keep the colors consistent.
+<dl class="simple">
+<dt>Unified Selected/Active Colors</dt><dd><p>When this option is active adding a bone group in the list will always keep the colors consistent.
 When a color scheme is added as from a theme, the color scheme is loaded as is.
-Click on the <em>Apply</em> button to force the system to unify selected and active colors.</dd>
-<dt>Selected/Active Colors</dt>
-<dd>This two color fields define respectively <em>Selected</em> and <em>Active</em> colors.
+Click on the <em>Apply</em> button to force the system to unify selected and active colors.</p>
+</dd>
+<dt>Selected/Active Colors</dt><dd><p>This two color fields define respectively <em>Selected</em> and <em>Active</em> colors.
 By default Rigify reads this colors from the theme defined by the user in the Blender preferences.
 This way the <em>Selected</em>/<em>Active</em> colors can always have a predictable and consistent behavior in the UI.
 The colors can be customized by clicking on the relative color field.
-To reset them to the Blender current theme value just click on the button with the update icon.</dd>
+To reset them to the Blender current theme value just click on the button with the update icon.</p>
+</dd>
 </dl>
 <p>Bone Groups can be added and deleted as done in the general Bone Group panel
 by clicking on the <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">-</span></code> buttons.

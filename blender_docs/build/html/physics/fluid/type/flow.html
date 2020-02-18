@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Flow &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/fluid/type/flow.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Effector" href="effector.html" />
+    <link rel="prev" title="Field Weights" href="domain/field_weights.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Vật Lý -- Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Fluid</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Type</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="domain/index.html">Domain</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="effector.html">Effector</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../material.html">Materials</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">-- Particles System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../baking.html">-- Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.82 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Vật Lý -- Physics</a> &raquo;</li>
+        
+          <li><a href="../index.html">Fluid</a> &raquo;</li>
+        
+          <li><a href="index.html">Type</a> &raquo;</li>
+        
+      <li>Flow</li>
+    
+    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/fluid/type/flow.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flow">
+<h1>Flow<a class="headerlink" href="#flow" title="Permalink to this headline">¶</a></h1>
+<p>Fluid <em>Flow</em> types are used to add or remove fluid to a domain object.
+Flow objects should be contained within the domain's <a class="reference internal" href="../../../glossary/index.html#term-bounding-box"><span class="xref std std-term">bounding box</span></a> in order to work.</p>
+<p>To define any mesh object as a <em>Flow</em> object, add Fluid physics by clicking <em>Fluid</em>
+in the <span class="menuselection">Properties ‣ Physics</span> tab. Then select <em>Flow</em> as the fluid <em>Type</em>.
+Now you should have a default fluid flow source object.</p>
+<div class="section" id="settings">
+<span id="bpy-types-fluidflowsettings"></span><h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Physics ‣ Fluid ‣ Settings</span></p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>Flow</p>
+</dd>
+</dl>
+</div>
+<dl>
+<dt>Flow Type</dt><dd><dl class="simple">
+<dt>Smoke</dt><dd><p>Emit only smoke.</p>
+</dd>
+<dt>Fire + Smoke</dt><dd><p>Emit both fire and smoke.</p>
+</dd>
+<dt>Fire</dt><dd><p>Emit only fire. Note that the domain will automatically create some smoke to simulate smoke left by burnt fuel.</p>
+</dd>
+<dt>Liquid</dt><dd><p>Emit liquid.</p>
+</dd>
+</dl>
+</dd>
+<dt>Flow Behavior</dt><dd><p>Controls if the Flow object either adds (<em>Inflow</em>), removes (<em>Outflow</em>),
+or turn the mesh itself into fluid (<em>Geometry</em>).</p>
+<dl>
+<dt>Inflow</dt><dd><p>This object will emit fluid into the simulation, like a water tap or base of a fire.</p>
+<dl class="simple">
+<dt>Use Inflow</dt><dd><p>Enables or disables the flow of fluid, this property is useful for animations
+to selectively enable and disable when fluid is being added to the domain.</p>
+</dd>
+</dl>
+</dd>
+<dt>Outflow</dt><dd><p>Any fluid that enters the <a class="reference internal" href="../../../glossary/index.html#term-bounding-box"><span class="xref std std-term">bounding box</span></a> of this object will be removed from
+the domain (think of a drain or a black hole). This can be useful in combination with
+an inflow to prevent the whole domain from filling up. Outflow objects can be animated
+and the area where the fluid disappears will follow the object as it moves around.</p>
+</dd>
+<dt>Geometry</dt><dd><p>All regions of this object that are inside the domain bounding box will be used as
+actual fluid in the simulation. You can place more than one fluid object inside the domain.
+Also make sure that the surface normals are pointing outwards or else they will not simulate properly.
+In contrast to domain objects, the actual mesh geometry is used for fluid objects.</p>
+</dd>
+</dl>
+</dd>
+<dt>Sampling Substeps</dt><dd><p>Number of subframes used to reduce gaps in emission of smoke from fast-moving sources.</p>
+<div class="figure align-default" id="id1">
+<img alt="../../../_images/physics_smoke_types_flow-object_subframes.jpg" src="../../../_images/physics_smoke_types_flow-object_subframes.jpg" />
+<p class="caption"><span class="caption-text">Example showing two fast-moving sources.
+The object on the left uses 0 subframes, while the one on the right uses 6.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</dd>
+<dt>Smoke Color</dt><dd><p>The color of emitted smoke. When smoke of different colors are mixed they will blend together,
+eventually settling into a new combined color.</p>
+<div class="figure align-default" id="id2">
+<img alt="../../../_images/physics_smoke_types_flow-object_color-blending.jpg" src="../../../_images/physics_smoke_types_flow-object_color-blending.jpg" />
+<p class="caption"><span class="caption-text">Color blending example.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</dd>
+<dt>Absolute Density</dt><dd><p>Maximum density of smoke allowed within range of the source.</p>
+</dd>
+</dl>
+<dl id="physics-fluid-flow-init-temp">
+<dt>Initial Temperature</dt><dd><p>Difference between the temperature of emitted smoke and the domain's ambient temperature.
+This setting's effect on smoke depends on the domain's <a class="reference internal" href="domain/settings.html#smoke-domain-heat"><span class="std std-ref">Initial Temperature</span></a>.</p>
+</dd>
+<dt>Density</dt><dd><p>Amount of smoke to emit at once.</p>
+</dd>
+<dt>Fuel</dt><dd><p>Amount of &quot;fuel&quot; being burned per second. Larger values result in larger flames,
+smaller values result in smaller flames:</p>
+<div class="figure align-default" id="id3">
+<img alt="../../../_images/physics_smoke_types_flow-object_flame-rate.jpg" src="../../../_images/physics_smoke_types_flow-object_flame-rate.jpg" />
+<p class="caption"><span class="caption-text">Example showing two fire sources.
+The object on the left has a <em>Flame Rate</em> of 5, while the one on the right has 0.3.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</dd>
+<dt>Vertex Group</dt><dd><p>When set, use the specified <a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/vertex_groups.html"><span class="doc">Vertex Group</span></a>
+to control where smoke is emitted.</p>
+</dd>
+</dl>
+<div class="section" id="flow-source">
+<span id="bpy-types-fluidflowsettings-particle-size"></span><span id="bpy-types-fluidflowsettings-use-particle-size"></span><span id="bpy-types-fluidflowsettings-particle-system"></span><span id="bpy-types-fluidflowsettings-volume-density"></span><span id="bpy-types-fluidflowsettings-surface-distance"></span><span id="bpy-types-fluidflowsettings-use-plane-init"></span><span id="bpy-types-fluidflowsettings-flow-source"></span><h3>Flow Source<a class="headerlink" href="#flow-source" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>Flow Source</dt><dd><p>This setting defines the method used to emit fluid.</p>
+<dl>
+<dt>Mesh</dt><dd><p>Emit smoke/fire directly from the object's mesh.</p>
+<dl class="simple">
+<dt>Is Planar</dt><dd><p>Defines the effector as either a single dimension object i.e. a plane or the mesh is <a class="reference internal" href="../../../glossary/index.html#term-non-manifold"><span class="xref std std-term">non-manifold</span></a>.
+This ensures that the fluid simulator will give the most accurate results for these types of meshes.</p>
+</dd>
+<dt>Surface Emission</dt><dd><p>Maximum distance in <a class="reference internal" href="../../../glossary/index.html#term-voxel"><span class="xref std std-term">voxels</span></a> from the surface of the mesh in which fluid is emitted.
+Since this setting uses voxels to determine the distance,
+results will vary depending on the domain's resolution.</p>
+</dd>
+<dt>Volume Emission</dt><dd><p>Amount of fluid to emit inside the emitter mesh, where 0 is none and 1 is the full amount.
+Note that emitting fluid based on volume may have unpredictable results
+if your mesh is <a class="reference internal" href="../../../glossary/index.html#term-non-manifold"><span class="xref std std-term">non-manifold</span></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Particle System <span class="guilabel">Fire or Smoke Only</span>:</dt><dd><p>Emit smoke/fire from a particle system on the flow object.
+Note that only <em>Emitter</em> type particle systems can add smoke.
+See <a class="reference internal" href="../../particles/introduction.html"><span class="doc">Particles</span></a> for information on how to create a particle system.</p>
+<p>With this option selected, there is a box to select a particle system and one additional setting, <em>Set Size</em>.</p>
+<blockquote>
+<div><dl>
+<dt>Set Size</dt><dd><p>When this setting is enabled, it allows the <em>Size</em> setting to define
+the maximum distance in voxels at which particles can emit smoke,
+similar to the <em>Surface Emission</em> setting for mesh sources.</p>
+<p>When disabled, particles will fill the nearest <a class="reference internal" href="../../../glossary/index.html#term-voxel"><span class="xref std std-term">voxel</span></a> with smoke.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="initial-velocity">
+<span id="bpy-types-fluidflowsettings-velocity"></span><span id="bpy-types-fluidflowsettings-use-initial-velocity"></span><h3>Initial Velocity<a class="headerlink" href="#initial-velocity" title="Permalink to this headline">¶</a></h3>
+<p>When enabled, the fluid will inherit the momentum of the flow source.</p>
+<dl class="simple">
+<dt>Source</dt><dd><p>Factor for the inherited velocity. A value of 1 will emit fluid moving at the same speed as the source.</p>
+</dd>
+<dt>Normal</dt><dd><p>When using a <em>Geometry Flow Source</em>,
+this option controls how much velocity fluid is given along the source's <a class="reference internal" href="../../../glossary/index.html#term-normal"><span class="xref std std-term">normal</span></a>.</p>
+</dd>
+<dt>Initial X, Y, Z</dt><dd><p>Controls how much velocity is given in a particular axis.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="texture">
+<span id="bpy-types-fluidflowsettings-texture"></span><span id="bpy-types-fluidflowsettings-noise-texture"></span><span id="bpy-types-fluidflowsettings-use-texture"></span><h3>Texture<a class="headerlink" href="#texture" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Flow</p>
+</dd>
+<dt class="field-even">Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Fluid ‣ Settings ‣ Texture</span></p>
+</dd>
+</dl>
+</div>
+<p>When enabled, use the specified texture and settings to control where on
+the mesh smoke or fire can be emitted from. These settings have no effect on <em>Outflow Flow Behavior</em>.</p>
+<dl class="simple">
+<dt>Texture</dt><dd><p>A <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> selector to choose the <a class="reference internal" href="../../../render/materials/legacy_textures/index.html"><span class="doc">Texture</span></a>.</p>
+</dd>
+<dt>Mapping</dt><dd><p>Controls whether to use <a class="reference internal" href="../../../modeling/meshes/editing/uv/uv_texture_spaces.html#properties-texture-space"><span class="std std-ref">Generated UVs</span></a> or manual UV mapping.</p>
+</dd>
+<dt>Size</dt><dd><p>Overall texture scale.</p>
+</dd>
+<dt>Offset</dt><dd><p>Translates the texture along the Z axis.</p>
+</dd>
+</dl>
+<div class="figure align-center" id="id4">
+<img alt="../../../_images/physics_smoke_types_flow-object_texture-usecase.jpg" src="../../../_images/physics_smoke_types_flow-object_texture-usecase.jpg" />
+<p class="caption"><span class="caption-text">Example of using a texture to control smoke flow.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="effector.html" class="btn btn-neutral float-right" title="Effector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="domain/field_weights.html" class="btn btn-neutral float-left" title="Field Weights" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.82 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

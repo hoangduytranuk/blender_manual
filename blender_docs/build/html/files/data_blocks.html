@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Cảnh và Vật Thể</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
@@ -221,20 +221,20 @@
 meshes, objects, materials, textures, node trees, scenes, texts, brushes, and even Workspaces.</p>
 <div class="figure align-right" id="id1">
 <img alt="../_images/files_data-blocks_outliner-blender-file-view.png" src="../_images/files_data-blocks_outliner-blender-file-view.png" />
-<p class="caption"><span class="caption-text">Blender File view of the Outliner.</span></p>
+<p class="caption"><span class="caption-text">Blender File view of the Outliner.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>A data-block is a generic abstraction of very different kinds of data,
 which features a common set of basic features, properties and behaviors.</p>
 <p>Some common characteristics:</p>
 <ul class="simple">
-<li>They are the primary contents of the blend-file.</li>
-<li>They can reference to each other, for reuse and instancing.
-(Child/parent, object/object-data, materials/images, in modifiers or constraints too...)</li>
-<li>Their names are unique within a blend-file, for a given type.</li>
-<li>They can be added/removed/edited/duplicated.</li>
-<li>They can be linked between files (only enabled for a limited set of data-blocks).</li>
-<li>They can have their own animation data.</li>
-<li>They can have <a class="reference internal" href="#files-data-blocks-custom-properties"><span class="std std-ref">Custom Properties</span></a>.</li>
+<li><p>They are the primary contents of the blend-file.</p></li>
+<li><p>They can reference to each other, for reuse and instancing.
+(Child/parent, object/object-data, materials/images, in modifiers or constraints too...)</p></li>
+<li><p>Their names are unique within a blend-file, for a given type.</p></li>
+<li><p>They can be added/removed/edited/duplicated.</p></li>
+<li><p>They can be linked between files (only enabled for a limited set of data-blocks).</p></li>
+<li><p>They can have their own animation data.</p></li>
+<li><p>They can have <a class="reference internal" href="#files-data-blocks-custom-properties"><span class="std std-ref">Custom Properties</span></a>.</p></li>
 </ul>
 <p>User will typically interact with the higher level data types (objects, meshes, etc.).
 When doing more complex projects, managing data-blocks becomes more important,
@@ -267,14 +267,14 @@ but you can still do it manually if needed.</p>
 <p>Data-blocks can be shared among other data-blocks.</p>
 <p>Examples where sharing data is common:</p>
 <ul class="simple">
-<li>Sharing textures among materials.</li>
-<li>Sharing meshes between objects (instances).</li>
-<li>Sharing animated actions between objects,
-for example to make all the lights dim together.</li>
+<li><p>Sharing textures among materials.</p></li>
+<li><p>Sharing meshes between objects (instances).</p></li>
+<li><p>Sharing animated actions between objects,
+for example to make all the lights dim together.</p></li>
 </ul>
 <p>You can also share data-blocks between files, see:</p>
 <ul class="simple">
-<li><a class="reference internal" href="linked_libraries/index.html"><span class="doc">linked libraries</span></a>.</li>
+<li><p><a class="reference internal" href="linked_libraries/index.html"><span class="doc">linked libraries</span></a>.</p></li>
 </ul>
 </div>
 <div class="section" id="making-single-user">
@@ -283,8 +283,8 @@ for example to make all the lights dim together.</li>
 To do so, click on the user count button to the right of its name.
 This will duplicate that data-block and assign the newly created copy to that usage only.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Objects have a set of more advanced actions to become single-user,
+<p class="admonition-title">Ghi chú</p>
+<p>Objects have a set of more advanced actions to become single-user,
 see <a class="reference internal" href="../scene_layout/object/editing/duplication.html"><span class="doc">their documentation</span></a>.</p>
 </div>
 </div>
@@ -299,8 +299,8 @@ it will eventually be deleted by Blender as described above (unless it is a prot
 <p>Deleting a data-block directly erases it from the blend-file, automatically unlinking it from all of its users.
 This can be achieved by <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> on the &quot;X&quot; icon next to its name.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">Deleting some data-blocks can lead to deletion of some of its users, which would become invalid without it.
+<p class="admonition-title">Cảnh báo</p>
+<p>Deleting some data-blocks can lead to deletion of some of its users, which would become invalid without it.
 The main example is that object-data deletion (like mesh, curve, camera...) will also delete all objects using it.</p>
 </div>
 <p>Those two operations are also available in the context menu
@@ -310,335 +310,331 @@ when <kbd class="kbd docutils literal notranslate">RMB</kbd>-clicking on a data-
 <span id="data-system-datablock-types"></span><h2>Thể Loại của Khối Dữ Liệu -- Data-Block Types<a class="headerlink" href="#data-block-types" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id2">
 <img alt="../_images/files_data-blocks_id-types.png" src="../_images/files_data-blocks_id-types.png" />
-<p class="caption"><span class="caption-text">Data-blocks types with their icon.</span></p>
+<p class="caption"><span class="caption-text">Data-blocks types with their icon.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>For reference, here is a table of data-blocks types stored in blend-files.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Kết Nối -- Link:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Library Linking, supports being linked into other blend-files.</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Đóng Gói -- Pack:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">File Packing, supports file contents being packed into the blend-file
-<em>(not applicable for most data-blocks which have no file reference)</em>.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Kết Nối -- Link</dt>
+<dd class="field-odd"><p>Library Linking, supports being linked into other blend-files.</p>
+</dd>
+<dt class="field-even">Đóng Gói -- Pack</dt>
+<dd class="field-even"><p>File Packing, supports file contents being packed into the blend-file
+<em>(not applicable for most data-blocks which have no file reference)</em>.</p>
+</dd>
+</dl>
 <div class="lead docutils container">
 </div>
-<table border="1" class="colwidths-given valign docutils">
+<table class="colwidths-given valign docutils align-default">
 <colgroup>
-<col width="20%" />
-<col width="5%" />
-<col width="5%" />
-<col width="70%" />
+<col style="width: 20%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 70%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Thể Loại -- Type</th>
-<th class="head">Kết Nối -- Link</th>
-<th class="head">Đóng Gói -- Pack</th>
-<th class="head">Miêu Tả -- Description</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Thể Loại -- Type</p></th>
+<th class="head"><p>Kết Nối -- Link</p></th>
+<th class="head"><p>Đóng Gói -- Pack</p></th>
+<th class="head"><p>Miêu Tả -- Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><a class="reference internal" href="../animation/actions.html"><span class="doc">Action</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../animation/actions.html"><span class="doc">Action</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Stores animation F-curves.</div>
 <div class="line">Used as data-block animation data,</div>
 <div class="line">and the Nonlinear Animation editor.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../animation/armatures/introduction.html"><span class="doc">Armature</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../animation/armatures/introduction.html"><span class="doc">Armature</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Skeleton used to deform meshes.</div>
 <div class="line">Used as data of armature objects, and by the Armature Modifier.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../sculpt_paint/brush/brush.html"><span class="doc">Brush</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../sculpt_paint/brush/brush.html"><span class="doc">Brush</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Used by paint tools.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../render/cameras.html"><span class="doc">Camera</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/cameras.html"><span class="doc">Camera</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Used as data by camera objects.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../modeling/modifiers/modify/mesh_sequence_cache.html"><span class="doc">Cache File</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../modeling/modifiers/modify/mesh_sequence_cache.html"><span class="doc">Cache File</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Used by Mesh Cache modifiers.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../modeling/curves/introduction.html"><span class="doc">Curve</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../modeling/curves/introduction.html"><span class="doc">Curve</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Used as data by curve, font &amp; surface objects.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../modeling/texts/introduction.html"><span class="doc">Font</span></a></td>
-<td>✓</td>
-<td>✓</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../modeling/texts/introduction.html"><span class="doc">Font</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><div class="line-block">
 <div class="line">References font files.</div>
 <div class="line">Used by curve object-data of text objects.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../grease_pencil/introduction.html"><span class="doc">Grease Pencil</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../grease_pencil/introduction.html"><span class="doc">Grease Pencil</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">2D/3D sketch data used by Grease Pencil objects.</div>
 <div class="line">Used as overlay <em>helper</em> info, by the</div>
 <div class="line">3D View, Image, Sequencer &amp; Movie Clip editors.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../scene_layout/collections/introduction.html"><span class="doc">Collection</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../scene_layout/collections/introduction.html"><span class="doc">Collection</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Group and organize objects in scenes.</div>
 <div class="line">Used to instance objects, and in library linking.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../editors/image/introduction.html"><span class="doc">Image</span></a></td>
-<td>✓</td>
-<td>✓</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../editors/image/introduction.html"><span class="doc">Image</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><div class="line-block">
 <div class="line">Image files.</div>
 <div class="line">Used by shader nodes and textures.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../animation/shape_keys/introduction.html"><span class="doc">Keys (Shape Keys)</span></a></td>
-<td>✗</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../animation/shape_keys/introduction.html"><span class="doc">Keys (Shape Keys)</span></a></p></td>
+<td><p>✗</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Geometry shape storage, which can be animated.</div>
 <div class="line">Used by mesh, curve, and lattice objects.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../render/lights/light_object.html"><span class="doc">Light</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/lights/light_object.html"><span class="doc">Light</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Used as object data by light objects.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="linked_libraries/index.html"><span class="doc">Library</span></a></td>
-<td>✗</td>
-<td>✓</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="linked_libraries/index.html"><span class="doc">Library</span></a></p></td>
+<td><p>✗</p></td>
+<td><p>✓</p></td>
+<td><div class="line-block">
 <div class="line">References to an external blend-file.</div>
 <div class="line">Access from the Outliner's <em>Blender File</em> view.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../render/freestyle/introduction.html"><span class="doc">Line Style</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/freestyle/introduction.html"><span class="doc">Line Style</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Used by the Freestyle renderer.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../animation/lattice.html"><span class="doc">Lattice</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../animation/lattice.html"><span class="doc">Lattice</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Grid based lattice deformation.</div>
 <div class="line">Used as data of lattice objects, and by the Lattice Modifier.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../movie_clip/masking/introduction.html"><span class="doc">Mask</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../movie_clip/masking/introduction.html"><span class="doc">Mask</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">2D animated mask curves.</div>
 <div class="line">Used by compositing nodes &amp; sequencer strip.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../render/materials/introduction.html"><span class="doc">Material</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../render/materials/introduction.html"><span class="doc">Material</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Set shading and texturing render properties.</div>
 <div class="line">Used by objects, meshes &amp; curves.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../modeling/metas/introduction.html"><span class="doc">Metaball</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../modeling/metas/introduction.html"><span class="doc">Metaball</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">An isosurface in 3D space.</div>
 <div class="line">Used as data of metaball objects.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../modeling/meshes/introduction.html"><span class="doc">Mesh</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../modeling/meshes/introduction.html"><span class="doc">Mesh</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Geometry made of vertices/edges/faces.</div>
 <div class="line">Used as data of mesh objects.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../editors/clip/introduction.html"><span class="doc">Movie Clip</span></a></td>
-<td>✓</td>
-<td>✗</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../editors/clip/introduction.html"><span class="doc">Movie Clip</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✗</p></td>
+<td><div class="line-block">
 <div class="line">Reference to an image sequence or video file.</div>
 <div class="line">Used in the <em>Movie Clip</em> editor.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../render/shader_nodes/groups.html"><span class="doc">Node Tree</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../render/shader_nodes/groups.html"><span class="doc">Node Tree</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Groups of re-usable nodes.</div>
 <div class="line">Used in the node editors.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../scene_layout/object/introduction.html"><span class="doc">Object</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../scene_layout/object/introduction.html"><span class="doc">Object</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">An entity in the scene with location,</div>
 <div class="line">scale, rotation.</div>
 <div class="line">Used by scenes &amp; collections.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../sculpt_paint/brush/stroke.html"><span class="doc">Paint Curve</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../sculpt_paint/brush/stroke.html"><span class="doc">Paint Curve</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Stores a paint or sculpt stroke.</div>
 <div class="line">Access from the paint tools.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../sculpt_paint/index.html"><span class="doc">Palette</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../sculpt_paint/index.html"><span class="doc">Palette</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Store color presets.</div>
 <div class="line">Access from the paint tools.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../physics/particles/introduction.html"><span class="doc">Particle</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../physics/particles/introduction.html"><span class="doc">Particle</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Particle settings.</div>
 <div class="line">Used by particle systems.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../render/eevee/lightprobes/introduction.html"><span class="doc">Light Probe</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/eevee/light_probes/introduction.html"><span class="doc">Light Probe</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Help achieve complex real-time lighting in Eevee.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../scene_layout/scene/introduction.html"><span class="doc">Scene</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../scene_layout/scene/introduction.html"><span class="doc">Scene</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Primary store of all data displayed and animated.</div>
 <div class="line">Used as top-level storage for objects &amp; animation.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../render/output/audio/speaker.html"><span class="doc">Sounds</span></a></td>
-<td>✓</td>
-<td>✓</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/output/audio/speaker.html"><span class="doc">Sounds</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><div class="line-block">
 <div class="line">Reference to sound files.</div>
 <div class="line">Used as data of speaker objects.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../render/output/audio/speaker.html"><span class="doc">Speaker</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../render/output/audio/speaker.html"><span class="doc">Speaker</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Sound sources for a 3D scene.</div>
 <div class="line">Used as data of speaker object.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../editors/text_editor.html"><span class="doc">Text</span></a></td>
-<td>✓</td>
-<td>✗</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../editors/text_editor.html"><span class="doc">Text</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✗</p></td>
+<td><div class="line-block">
 <div class="line">Text data.</div>
 <div class="line">Used by Python scripts and OSL shaders.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../render/materials/legacy_textures/introduction.html"><span class="doc">Texture</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../render/materials/legacy_textures/introduction.html"><span class="doc">Texture</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">2D/3D textures.</div>
 <div class="line">Used by brushes and modifiers.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../interface/window_system/introduction.html"><span class="doc">Window Manager</span></a></td>
-<td>✗</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../interface/window_system/introduction.html"><span class="doc">Window Manager</span></a></p></td>
+<td><p>✗</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">The overarching manager for all of Blender's UI.</div>
 <div class="line">Includes Workspaces, notification system, operators, and keymaps.</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../render/lights/world.html"><span class="doc">World</span></a></td>
-<td>✓</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-even"><td><p><a class="reference internal" href="../render/lights/world.html"><span class="doc">World</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">Define global render environment settings.</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="../interface/window_system/workspaces.html"><span class="doc">Workspace</span></a></td>
-<td>✗</td>
-<td>—</td>
-<td><div class="first last line-block">
+<tr class="row-odd"><td><p><a class="reference internal" href="../interface/window_system/workspaces.html"><span class="doc">Workspace</span></a></p></td>
+<td><p>✗</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
 <div class="line">UI layout.</div>
 <div class="line">Used by each window, which has its own workspace.</div>
 </div>
@@ -651,16 +647,16 @@ when <kbd class="kbd docutils literal notranslate">RMB</kbd>-clicking on a data-
 <span id="bpy-ops-wm-properties"></span><span id="bpy-types-bpy-struct"></span><span id="files-data-blocks-custom-properties"></span><h2>Custom Properties<a class="headerlink" href="#custom-properties" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id3">
 <img alt="../_images/files_data-blocks_add.png" src="../_images/files_data-blocks_add.png" />
-<p class="caption"><span class="caption-text">Custom Properties panel.</span></p>
+<p class="caption"><span class="caption-text">Custom Properties panel.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>Custom properties are a way to store your own data in Blender's data-blocks.
 It can be used for rigging (where bones and objects can have custom properties driving other properties),
 and Python scripts, where it's common to define new settings not available in Blender.</p>
 <p>Only certain data supports custom properties:</p>
 <ul class="simple">
-<li>All <a class="reference internal" href="#data-system-datablock-types"><span class="std std-ref">data-blocks types</span></a>.</li>
-<li>Bones and pose bones.</li>
-<li>Sequence strips.</li>
+<li><p>All <a class="reference internal" href="#data-system-datablock-types"><span class="std std-ref">data-blocks types</span></a>.</p></li>
+<li><p>Bones and pose bones.</p></li>
+<li><p>Sequence strips.</p></li>
 </ul>
 <p>To add a custom property, search for the <em>Custom Properties</em> panel,
 found at the bottom of most <a class="reference internal" href="../editors/properties_editor.html"><span class="doc">Properties Editor</span></a> or Sidebar region, and hit <em>Add</em>.</p>
@@ -671,75 +667,73 @@ found at the bottom of most <a class="reference internal" href="../editors/prope
 <p>Custom properties can be edited using the panel available for data types that support it.</p>
 <div class="figure align-right" id="id4">
 <img alt="../_images/files_data-blocks_edit.png" src="../_images/files_data-blocks_edit.png" />
-<p class="caption"><span class="caption-text">Custom Properties edit pop-up.</span></p>
+<p class="caption"><span class="caption-text">Custom Properties edit pop-up.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Property Name</dt>
-<dd>The name of the custom property.</dd>
-<dt>Property Value</dt>
-<dd><p class="first">This does two things: first it sets the current value of the custom property, and
+<dl>
+<dt>Property Name</dt><dd><p>The name of the custom property.</p>
+</dd>
+<dt>Property Value</dt><dd><p>This does two things: first it sets the current value of the custom property, and
 second, it defines the data type of the property.</p>
 <p>Custom properties can be of the following types: Integers, Floats, Strings, Booleans,
 or short vectors of Integers or Floats.</p>
 <p>See the table below for a list of examples for each:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Integers:</th><td class="field-body">1, 2, 3, 4,</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Floats:</th><td class="field-body">3.141, 5.0, 6.125,</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Strings:</th><td class="field-body">any text,</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Booleans:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Vectors:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>, <code class="docutils literal notranslate"><span class="pre">[1.0,</span> <span class="pre">2.0,</span> <span class="pre">3.0]</span></code></td>
-</tr>
-</tbody>
-</table>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<dl class="field-list simple">
+<dt class="field-odd">Integers</dt>
+<dd class="field-odd"><p>1, 2, 3, 4,</p>
+</dd>
+<dt class="field-even">Floats</dt>
+<dd class="field-even"><p>3.141, 5.0, 6.125,</p>
+</dd>
+<dt class="field-odd">Strings</dt>
+<dd class="field-odd"><p>any text,</p>
+</dd>
+<dt class="field-even">Booleans</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+<dt class="field-odd">Vectors</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>, <code class="docutils literal notranslate"><span class="pre">[1.0,</span> <span class="pre">2.0,</span> <span class="pre">3.0]</span></code></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
 <p>Booleans are handled very similar to integers and only work
 when using Min/Max values that are integers and that are no more than 1 apart.</p>
-<p class="last">At this point, the booleans will still look like integers but behave like
+<p>At this point, the booleans will still look like integers but behave like
 booleans having one lower, off, value and a higher, on, value.</p>
 </div>
 </dd>
-<dt>Default Value</dt>
-<dd><p class="first">This sets the default value of the property used by the Reset to Default Value operator.</p>
-<div class="last admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">Default values are used as the basis of <a class="reference internal" href="../editors/nla/properties_modifiers.html#nla-blend-modes"><span class="std std-ref">NLA blending</span></a>,
+<dt>Default Value</dt><dd><p>This sets the default value of the property used by the Reset to Default Value operator.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Default values are used as the basis of <a class="reference internal" href="../editors/nla/properties_modifiers.html#nla-blend-modes"><span class="std std-ref">NLA blending</span></a>,
 and a nonsensical default (e.g. 0 for a property used for scaling) on a property intended for
 being keyframed is likely to cause issues.</p>
 </div>
 </dd>
-<dt>Min</dt>
-<dd>The minimum value the custom property can take.</dd>
-<dt>Max</dt>
-<dd>The maximum value the custom property can take.</dd>
+<dt>Min</dt><dd><p>The minimum value the custom property can take.</p>
+</dd>
+<dt>Max</dt><dd><p>The maximum value the custom property can take.</p>
+</dd>
 </dl>
 <div class="figure align-right" id="id5">
-<img alt="../_images/files_data-blocks_edit_color.png" src="../_images/files_data-blocks_edit_color.png" />
-<p class="caption"><span class="caption-text">Custom Property settings for a color with alpha.</span></p>
+<img alt="../_images/files_data-blocks_edit-color.png" src="../_images/files_data-blocks_edit-color.png" />
+<p class="caption"><span class="caption-text">Custom Property settings for a color with alpha.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Use Soft Limits</dt>
-<dd><p class="first">Enables limits that the <em>Property Value</em> slider can be adjusted to
+<dl>
+<dt>Use Soft Limits</dt><dd><p>Enables limits that the <em>Property Value</em> slider can be adjusted to
 without having to input the value numerically.</p>
-<dl class="last docutils">
-<dt>Soft Min</dt>
-<dd>The minimum value for the soft limit.</dd>
-<dt>Soft Max</dt>
-<dd>The maximum value for the soft limit.</dd>
+<dl class="simple">
+<dt>Soft Min</dt><dd><p>The minimum value for the soft limit.</p>
+</dd>
+<dt>Soft Max</dt><dd><p>The maximum value for the soft limit.</p>
+</dd>
 </dl>
 </dd>
-<dt>Tooltip</dt>
-<dd>Allows you to write a custom <a class="reference internal" href="../getting_started/help.html"><span class="doc">Tooltip</span></a> for your property.</dd>
-<dt>Subtype</dt>
-<dd>For vector properties, specifies the kind of data the property contains,
-which affects how it appears in the <abbr title="User Interface">UI</abbr>. Most useful for color properties.</dd>
+<dt>Tooltip</dt><dd><p>Allows you to write a custom <a class="reference internal" href="../getting_started/help.html"><span class="doc">Tooltip</span></a> for your property.</p>
+</dd>
+<dt>Subtype</dt><dd><p>For vector properties, specifies the kind of data the property contains,
+which affects how it appears in the <abbr title="User Interface">UI</abbr>. Most useful for color properties.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="python-access">

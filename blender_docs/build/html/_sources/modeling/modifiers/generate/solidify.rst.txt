@@ -12,11 +12,11 @@ Options
 
 .. list-table::
 
-   * - .. figure:: /images/modeling_modifiers_generate_solidify_panel_simple.png
+   * - .. figure:: /images/modeling_modifiers_generate_solidify_panel-simple.png
 
           The Solidify modifier in simple mode.
 
-     - .. figure:: /images/modeling_modifiers_generate_solidify_panel_complex.png
+     - .. figure:: /images/modeling_modifiers_generate_solidify_panel-complex.png
 
           The Solidify modifier in complex mode.
 
@@ -135,7 +135,7 @@ choose *Simple Mode* because the extra logic makes this algorithm much slower.
 Thickness Mode
    Choose the kind of thickness handling (thickness solver)
 
-   .. figure:: /images/modeling_modifiers_generate_solidify_thickness_mode.png
+   .. figure:: /images/modeling_modifiers_generate_solidify_thickness-mode.png
 
       Different thickness options on a non-manifold mesh.
 
@@ -152,7 +152,7 @@ Thickness Mode
 Boundary Shape
    Choose the kind of boundary that suits the model the most.
 
-   .. figure:: /images/modeling_modifiers_generate_solidify_boundary_shape.png
+   .. figure:: /images/modeling_modifiers_generate_solidify_boundary-shape.png
 
       Different boundary options with a matCap.
 

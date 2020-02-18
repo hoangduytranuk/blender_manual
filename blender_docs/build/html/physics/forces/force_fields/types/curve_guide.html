@@ -124,9 +124,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../cloth/index.html">-- Cloth Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Forces</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../gravity.html">Trọng Lực -- Gravity</a></li>
@@ -221,18 +220,15 @@
   <div class="section" id="curve-guide">
 <h1>Đường Cong Hướng Đạo -- Curve Guide<a class="headerlink" href="#curve-guide" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Lý (Physics) ‣ Trường Lực (Force Fields)</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">Đường Cong Hướng Đạo -- Curve Guide</td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Vật Lý (Physics) ‣ Trường Lực (Force Fields)</span></p>
+</dd>
+<dt class="field-even">Thể Loại -- Type</dt>
+<dd class="field-even"><p>Đường Cong Hướng Đạo -- Curve Guide</p>
+</dd>
+</dl>
 </div>
 <p>The <em>Curve Guide</em> is used to force particles to follow a certain
 path defined by a <a class="reference internal" href="../../../../modeling/curves/index.html"><span class="doc">Curve Object</span></a>.
@@ -240,8 +236,8 @@ A typical scenario would be to move a red blood cell inside a vein,
 or to animate the particle flow in a motor.
 You can also use <em>Curve Guide</em> to shape certain hair strands.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">You can also use the <a class="reference internal" href="../../../particles/mode.html"><span class="doc">Particle Edit Mode</span></a> to define a path.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>You can also use the <a class="reference internal" href="../../../particles/mode.html"><span class="doc">Particle Edit Mode</span></a> to define a path.</p>
 </div>
 <p>Since you can animate curves as a soft body or any other usual way,
 you may build very complex animations while keeping great control and keeping the simulation time to a minimum.</p>
@@ -252,86 +248,85 @@ If you have several guides in a layer,
 their fields add up to each other (the way you may have learned it in your physics course).
 But you can limit their influence radius by changing there <em>Minimum Distance</em> (see below).</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The Curve Guide does not affect <a class="reference internal" href="../../../soft_body/index.html"><span class="doc">soft bodies</span></a>.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>The Curve Guide does not affect <a class="reference internal" href="../../../soft_body/index.html"><span class="doc">soft bodies</span></a>.</p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>-- Minimum Distance</dt>
-<dd>The distance from the curve, up to where the force field is effective with full strength.
+<dl class="simple">
+<dt>-- Minimum Distance</dt><dd><p>The distance from the curve, up to where the force field is effective with full strength.
 If you have a falloff of 0, this parameter will have no effect,
 because the field is effective with full strength up to <em>Max Distance</em> (or the infinity).
-<em>Min Distance</em> is shown with a circle at the endpoints of the curve in the 3D View.</dd>
-<dt>Tự Do -- Free</dt>
-<dd>Fraction of particle life time, that is not used for the curve.</dd>
-<dt>Suy Giảm Dần -- Falloff</dt>
-<dd>This setting governs the strength of the guide between <em>Min Distance</em> and <em>Max Distance</em>.
-A falloff of 1 means a linear progression.</dd>
+<em>Min Distance</em> is shown with a circle at the endpoints of the curve in the 3D View.</p>
+</dd>
+<dt>Tự Do -- Free</dt><dd><p>Fraction of particle life time, that is not used for the curve.</p>
+</dd>
+<dt>Suy Giảm Dần -- Falloff</dt><dd><p>This setting governs the strength of the guide between <em>Min Distance</em> and <em>Max Distance</em>.
+A falloff of 1 means a linear progression.</p>
+</dd>
 </dl>
 <div class="section" id="path">
 <h3>Đường/Đi/Dẫn -- Path<a class="headerlink" href="#path" title="Permalink to this headline">¶</a></h3>
 <p>A particle follows a <em>Curve Guide</em> during its lifetime,
 the velocity depends on its lifetime and the length of the path.</p>
-<dl class="docutils">
-<dt>Bổ Sung -- Additive</dt>
-<dd>If you use <em>Additive</em>, the speed of the particles is also evaluated depending on the falloff.</dd>
-<dt>Trọng Lượng -- Weights</dt>
-<dd>Use Curve weights to influence the particle influence along the curve.</dd>
-<dt>-- Maximum Distance / Use Max</dt>
-<dd>The maximum influence radius. Shown by an additional circle around the curve object.</dd>
+<dl class="simple">
+<dt>Bổ Sung -- Additive</dt><dd><p>If you use <em>Additive</em>, the speed of the particles is also evaluated depending on the falloff.</p>
+</dd>
+<dt>Trọng Lượng -- Weights</dt><dd><p>Use Curve weights to influence the particle influence along the curve.</p>
+</dd>
+<dt>-- Maximum Distance / Use Max</dt><dd><p>The maximum influence radius. Shown by an additional circle around the curve object.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="clumping">
 <h3>-- Clumping<a class="headerlink" href="#clumping" title="Permalink to this headline">¶</a></h3>
 <p>The other settings govern the form of the force field along the curve.</p>
-<dl class="docutils">
-<dt>-- Clumping Amount</dt>
-<dd>The particles come together at the end of the curve (1) or they drift apart (-1).</dd>
-<dt>Hình Dạng -- Shape</dt>
-<dd>Defines the form in which the particles come together.
+<dl class="simple">
+<dt>-- Clumping Amount</dt><dd><p>The particles come together at the end of the curve (1) or they drift apart (-1).</p>
+</dd>
+<dt>Hình Dạng -- Shape</dt><dd><p>Defines the form in which the particles come together.
 +0.99: the particles meet at the end of the curve.
-0: linear progression along the curve. -0.99: the particles meet at the beginning of the curve.</dd>
+0: linear progression along the curve. -0.99: the particles meet at the beginning of the curve.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="kink">
 <h3>Xoắn Vặn -- Kink<a class="headerlink" href="#kink" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">This feature is broken in the current version, see T46776.</p>
+<p class="admonition-title">Cảnh báo</p>
+<p>This feature is broken in the current version, see T46776.</p>
 </div>
 <p>Changes the shape that the particles can take.</p>
-<dl class="docutils">
-<dt>Thể Loại -- Type</dt>
-<dd><dl class="first last docutils">
-<dt>Quăn -- Curl</dt>
-<dd>The radius of the influence depends on the distance of the curve to the emitter.</dd>
-<dt>Tỏa Tròn -- Radial</dt>
-<dd>A three-dimensional, standing wave.</dd>
-<dt>Sóng -- Wave</dt>
-<dd>A two-dimensional, standing wave.</dd>
-<dt>Tết -- Braid</dt>
-<dd>Braid.</dd>
-<dt>Xoáy -- Roll</dt>
-<dd>A one-dimensional, standing wave.</dd>
+<dl class="simple">
+<dt>Thể Loại -- Type</dt><dd><dl class="simple">
+<dt>Quăn -- Curl</dt><dd><p>The radius of the influence depends on the distance of the curve to the emitter.</p>
+</dd>
+<dt>Tỏa Tròn -- Radial</dt><dd><p>A three-dimensional, standing wave.</p>
+</dd>
+<dt>Sóng -- Wave</dt><dd><p>A two-dimensional, standing wave.</p>
+</dd>
+<dt>Tết -- Braid</dt><dd><p>Braid.</p>
+</dd>
+<dt>Xoáy -- Roll</dt><dd><p>A one-dimensional, standing wave.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <p>It is not so easy to describe the resulting shapes, so have a look at the example below.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../../../_images/physics_forces_force-fields_types_curve-guide_kink.jpg"><img alt="../../../../_images/physics_forces_force-fields_types_curve-guide_kink.jpg" src="../../../../_images/physics_forces_force-fields_types_curve-guide_kink.jpg" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-text">Kink options of a curve guide. From left to right: Radial, Wave, Braid, Roll.
-<a class="reference external" href="https://vimeo.com/1866538">Animation</a>.</span></p>
+<a class="reference external" href="https://vimeo.com/1866538">Animation</a>.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Trục -- Axis</dt>
-<dd>Which axis to use for the offset.</dd>
-<dt>Tần Số -- Frequency</dt>
-<dd>The frequency of the offset.</dd>
-<dt>Biên Độ -- Amplitude</dt>
-<dd>The Amplitude of the offset.</dd>
-<dt>Hình Dạng -- Shape</dt>
-<dd>Adjust the offset to the beginning/end.</dd>
+<dl class="simple">
+<dt>Trục -- Axis</dt><dd><p>Which axis to use for the offset.</p>
+</dd>
+<dt>Tần Số -- Frequency</dt><dd><p>The frequency of the offset.</p>
+</dd>
+<dt>Biên Độ -- Amplitude</dt><dd><p>The Amplitude of the offset.</p>
+</dd>
+<dt>Hình Dạng -- Shape</dt><dd><p>Adjust the offset to the beginning/end.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -340,7 +335,7 @@ the velocity depends on its lifetime and the length of the path.</p>
 <iframe src="https://player.vimeo.com/video/182780872" style="border: 0; height: 345px; width: 560px">
 </iframe><div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../../../../_images/physics_forces_force-fields_types_curve-guide_example.png"><img alt="../../../../_images/physics_forces_force-fields_types_curve-guide_example.png" src="../../../../_images/physics_forces_force-fields_types_curve-guide_example.png" style="width: 560px;" /></a>
-<p class="caption"><span class="caption-text">Curve Guide force field.</span></p>
+<p class="caption"><span class="caption-text">Curve Guide force field.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

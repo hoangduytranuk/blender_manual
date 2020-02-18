@@ -220,20 +220,20 @@ Most types of linked data-blocks can be overridden, and the properties of those 
 can then be edited. When the library data change, unmodified properties of the override one
 will be updated accordingly.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last"><strong>It is considered as experimental</strong>, and current proxy system will be kept alongside for a few releases.
+<p class="admonition-title">Ghi chú</p>
+<p><strong>It is considered as experimental</strong>, and current proxy system will be kept alongside for a few releases.
 Automatic conversion from proxies to library overrides <em>is not planned</em>,
 there will be a manual operator to do that, but results on complex characters are not guaranteed.</p>
 </div>
 <p>Compared to proxies, library overrides support:</p>
 <ul class="simple">
-<li>Multiple independent overrides of a same linked data (e.g. a whole character).</li>
-<li>Adding new modifiers and constraints, anywhere in the stack.</li>
-<li>Recursively chaining overrides (i.e. link and override overrides from another library file, etc.).</li>
+<li><p>Multiple independent overrides of a same linked data (e.g. a whole character).</p></li>
+<li><p>Adding new modifiers and constraints, anywhere in the stack.</p></li>
+<li><p>Recursively chaining overrides (i.e. link and override overrides from another library file, etc.).</p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">There are still many known TODOs/issues that have to be addressed.
+<p class="admonition-title">Ghi chú</p>
+<p>There are still many known TODOs/issues that have to be addressed.
 Please check the <a class="reference external" href="https://wiki.blender.org/wiki/Reference/Release_Notes/2.81/Library_Overrides">release notes</a>
 and Phabricator <a class="reference external" href="https://developer.blender.org/T53500">main task of the project</a>, for more details.</p>
 </div>
@@ -244,10 +244,10 @@ and Phabricator <a class="reference external" href="https://developer.blender.or
 <h3>Single Data-Block Override<a class="headerlink" href="#single-data-block-override" title="Permalink to this headline">¶</a></h3>
 <p>You can override a single data-block from two places:</p>
 <ul class="simple">
-<li>The Outliner (it's in the context menu of IDs), in which case <strong>all</strong> local usages
-of that linked ID will be remapped to the new local override.</li>
-<li>The data-block menu in the UI (<kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> on the chain icon to the right),
-in which case only that specific usage will be remapped to the new local override.</li>
+<li><p>The Outliner (it's in the context menu of IDs), in which case <strong>all</strong> local usages
+of that linked ID will be remapped to the new local override.</p></li>
+<li><p>The data-block menu in the UI (<kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> on the chain icon to the right),
+in which case only that specific usage will be remapped to the new local override.</p></li>
 </ul>
 </div>
 <div class="section" id="make-library-override-operator">
@@ -258,9 +258,9 @@ and is found in the same sub-menu <span class="menuselection">Object ‣ Relatio
 <p>Unlike the method described above, it will go through the whole hierarchy of collections and objects,
 and override all those needed to allow posing/animation of a character.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p>Proper Collections Layout Matters</p>
-<p class="last">For this operator to work properly, it is crucial that <strong>all</strong> the collections needed by
+<p>For this operator to work properly, it is crucial that <strong>all</strong> the collections needed by
 the character are children of the root (linked and instantiated) one.
 Otherwise, some won't be automatically overridden, and manual work will be needed to fix the override.</p>
 </div>

@@ -225,56 +225,53 @@ and also to extract data such as depth or normals.</p>
 <div class="section" id="cycles">
 <span id="render-cycles-passes"></span><h2>Cycles<a class="headerlink" href="#cycles" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Scene ‣ View Layers ‣ Passes</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Scene ‣ View Layers ‣ Passes</span></p>
+</dd>
+</dl>
 </div>
 <p>Passes can be used to split rendered images into colors, direct and indirect light to edit them individually,
 and also to extract data such as depth or normals.</p>
 <div class="section" id="lighting-passes">
 <h3>Lượt về Ánh Sáng -- Lighting Passes<a class="headerlink" href="#lighting-passes" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Tổng Hợp -- Combined</dt>
-<dd>The final combination of render passes with everything included.</dd>
-<dt>Hình Ảnh Nhiễu -- Noisy Image</dt>
-<dd>If denoising is enabled, the original combined pass before denoising.</dd>
-<dt>Khuếch Tán Trực Tiếp -- Diffuse Direct</dt>
-<dd>Direct lighting from diffuse BSDFs. We define direct lighting as coming from lights, emitting surfaces,
+<dl class="simple">
+<dt>Tổng Hợp -- Combined</dt><dd><p>The final combination of render passes with everything included.</p>
+</dd>
+<dt>Hình Ảnh Nhiễu -- Noisy Image</dt><dd><p>If denoising is enabled, the original combined pass before denoising.</p>
+</dd>
+<dt>Khuếch Tán Trực Tiếp -- Diffuse Direct</dt><dd><p>Direct lighting from diffuse BSDFs. We define direct lighting as coming from lights, emitting surfaces,
 the background, or ambient occlusion after a single reflection or transmission off a surface.
-BSDF color is not included in this pass.</dd>
-<dt>Khuếch Tán Gián Tiếp -- Diffuse Indirect</dt>
-<dd>Indirect lighting from diffuse BSDFs. We define indirect lighting as coming from lights,
+BSDF color is not included in this pass.</p>
+</dd>
+<dt>Khuếch Tán Gián Tiếp -- Diffuse Indirect</dt><dd><p>Indirect lighting from diffuse BSDFs. We define indirect lighting as coming from lights,
 emitting surfaces or the background after more than one reflection or transmission off a surface.
-BSDF color is not included in this pass.</dd>
-<dt>Màu Khuếch Tán -- Diffuse Color</dt>
-<dd>Color weights of diffuse BSDFs. These weights are the color input socket for BSDF nodes,
-modified by any Mix and Add Shader nodes.</dd>
-<dt>Độ Bóng Loáng Trực Tiếp, Gián Tiếp, Màu Sắc -- Glossy Direct, Indirect, Color</dt>
-<dd>Same as above, but for glossy BSDFs.</dd>
-<dt>Truyền Xạ Trực Tiếp, Gián Tiếp, Màu Sắc -- Transmission Direct, Indirect, Color</dt>
-<dd>Same as above, but for transmission BSDFs.</dd>
-<dt>Dưới Bề Mặt Trực Tiếp, Gián Tiếp, Màu Sắc -- Subsurface Direct, Indirect, Color</dt>
-<dd>Same as above, but for subsurface BSDFs.</dd>
-<dt>Phát Xạ -- Emission</dt>
-<dd>Emission from directly visible surfaces.</dd>
-<dt>Môi Trường -- Environment</dt>
-<dd>Emission from the directly visible background. When the film is set to transparent,
-this can be used to get the environment color and composite it back in.</dd>
-<dt>Ngả Bóng Tối -- Shadow</dt>
-<dd>Shadows from light objects. Mostly useful for compositing objects with shadow into existing footage.</dd>
-<dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt>
-<dd>Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e.
-it gives a 'normalized' value between 0 and 1.</dd>
+BSDF color is not included in this pass.</p>
+</dd>
+<dt>Màu Khuếch Tán -- Diffuse Color</dt><dd><p>Color weights of diffuse BSDFs. These weights are the color input socket for BSDF nodes,
+modified by any Mix and Add Shader nodes.</p>
+</dd>
+<dt>Độ Bóng Loáng Trực Tiếp, Gián Tiếp, Màu Sắc -- Glossy Direct, Indirect, Color</dt><dd><p>Same as above, but for glossy BSDFs.</p>
+</dd>
+<dt>Truyền Xạ Trực Tiếp, Gián Tiếp, Màu Sắc -- Transmission Direct, Indirect, Color</dt><dd><p>Same as above, but for transmission BSDFs.</p>
+</dd>
+<dt>Dưới Bề Mặt Trực Tiếp, Gián Tiếp, Màu Sắc -- Subsurface Direct, Indirect, Color</dt><dd><p>Same as above, but for subsurface BSDFs.</p>
+</dd>
+<dt>Phát Xạ -- Emission</dt><dd><p>Emission from directly visible surfaces.</p>
+</dd>
+<dt>Môi Trường -- Environment</dt><dd><p>Emission from the directly visible background. When the film is set to transparent,
+this can be used to get the environment color and composite it back in.</p>
+</dd>
+<dt>Ngả Bóng Tối -- Shadow</dt><dd><p>Shadows from light objects. Mostly useful for compositing objects with shadow into existing footage.</p>
+</dd>
+<dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt><dd><p>Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e.
+it gives a 'normalized' value between 0 and 1.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last"><a class="reference internal" href="../cycles/render_settings/light_paths.html"><span class="doc">Transparent BSDFs are given special treatment</span></a>.
+<p class="admonition-title">Ghi chú</p>
+<p><a class="reference internal" href="../cycles/render_settings/light_paths.html"><span class="doc">Transparent BSDFs are given special treatment</span></a>.
 A fully transparent surface is treated as if there is no surface there at all;
 a partially transparent surface is treated as if only part of the light rays can pass through.
 This means it is not included in the Transmission passes;
@@ -283,53 +280,54 @@ for that a glass BSDF with index of refraction 1.0 can be used.</p>
 <div class="section" id="combining">
 <h4>Tổng Hợp -- Combining<a class="headerlink" href="#combining" title="Permalink to this headline">¶</a></h4>
 <p>All these lighting passes can be combined to produce the final image as follows:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../_images/render_layers_passes_combine.svg" src="../../_images/render_layers_passes_combine.svg" /></div>
 </div>
 </div>
 <div class="section" id="data-passes">
 <h3>Lượt Dữ Liệu -- Data Passes<a class="headerlink" href="#data-passes" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Z</dt>
-<dd><p class="first">Distance to any visible surfaces.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The Z pass only uses one sample.
+<dl>
+<dt>Z</dt><dd><p>Distance to any visible surfaces.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The Z pass only uses one sample.
 When depth values need to be blended in case of motion blur or <a class="reference internal" href="../../glossary/index.html#term-depth-of-field"><span class="xref std std-term">Depth of Field</span></a>, use the mist pass.</p>
 </div>
 </dd>
-<dt>Sương Mù -- Mist</dt>
-<dd>Distance to visible surfaces, mapped to the 0.0-1.0 range.
+<dt>Sương Mù -- Mist</dt><dd><p>Distance to visible surfaces, mapped to the 0.0-1.0 range.
 When enabled, settings are in <a class="reference internal" href="../cycles/world_settings.html#render-cycles-integrator-world-mist"><span class="std std-ref">World tab</span></a>.
-This pass can be used in compositing to fade out objects that are farther away.</dd>
-<dt>Pháp Tuyến -- Normal</dt>
-<dd>Surface normal used for shading.</dd>
-<dt>Vectơ -- Vector</dt>
-<dd>Motion vectors for the Vector Blur node. The four components consist of 2D vectors
-giving the motion towards the next and previous frame position in pixel space.</dd>
-<dt>UV</dt>
-<dd>Default render UV coordinates.</dd>
-<dt>Chỉ Số Vật Thể -- Object Index</dt>
-<dd>Creates a mask of the object that can be later read by
-the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</dd>
-<dt>Chỉ Số Nguyên Liệu -- Material Index</dt>
-<dd>Creates a mask of the material that can be later read by
-the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</dd>
-<dt>Dữ Liệu Chống Nhiễu -- Denoising Data</dt>
-<dd>Passes needed by the denoiser, for performing animation denoising in a second pass
+This pass can be used in compositing to fade out objects that are farther away.</p>
+</dd>
+<dt>Pháp Tuyến -- Normal</dt><dd><p>Surface normal used for shading.</p>
+</dd>
+<dt>Vectơ -- Vector</dt><dd><p>Motion vectors for the Vector Blur node. The four components consist of 2D vectors
+giving the motion towards the next and previous frame position in pixel space.</p>
+</dd>
+<dt>UV</dt><dd><p>Mapped UV coordinates, used to represent where on a mesh a texture gets mapped too.
+This is represented through the red and green channels of the image,
+the blue channel is encoded with a constant value of 1 but does not hold any information.</p>
+</dd>
+<dt>Chỉ Số Vật Thể -- Object Index</dt><dd><p>Creates a mask of the object that can be later read by
+the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</p>
+</dd>
+<dt>Chỉ Số Nguyên Liệu -- Material Index</dt><dd><p>Creates a mask of the material that can be later read by
+the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</p>
+</dd>
+<dt>Dữ Liệu Chống Nhiễu -- Denoising Data</dt><dd><p>Passes needed by the denoiser, for performing animation denoising in a second pass
 after rendering the entire animation. For still image denoising as part of
-the render process these are not needed.</dd>
+the render process these are not needed.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The Z, Object Index and Material Index passes are not anti-aliased.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>The Z, Object Index and Material Index passes are not anti-aliased.</p>
 </div>
-<dl class="docutils">
-<dt>Giới Hạn Alpha -- Alpha Threshold</dt>
-<dd>Z, Index, normal, UV and vector passes are
+<dl class="simple">
+<dt>Giới Hạn Alpha -- Alpha Threshold</dt><dd><p>Z, Index, normal, UV and vector passes are
 only affected by surfaces with alpha transparency equal to or higher than this threshold.
 With value 0.0 the first surface hit will always write to these passes, regardless of transparency.
-With higher values surfaces that are mostly transparent can be skipped until an opaque surface is encountered.</dd>
+With higher values surfaces that are mostly transparent can be skipped until an opaque surface is encountered.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="cryptomatte">
@@ -339,32 +337,32 @@ Cycles outputs the required render passes, which can then be used in the Blender
 or another compositor with Cryptomatte support to create masks for specified objects.</p>
 <p>Unlike the Material and Object Index passes, the objects to isolate are selected in compositing,
 and mattes will be anti-aliased and take into account effects like motion blur and transparency.</p>
-<dl class="docutils">
-<dt>Vật Thể -- Object</dt>
-<dd>Render cryptomatte object pass, for isolating objects in compositing.</dd>
-<dt>Nguyên Liệu -- Material</dt>
-<dd>Render cryptomatte material pass, for isolating materials in compositing.</dd>
-<dt>Tài Nguyên -- Asset</dt>
-<dd>Render cryptomatte asset pass, for isolating groups of objects with the same
-<a class="reference internal" href="../../scene_layout/object/properties/relations/parents.html"><span class="doc">parent</span></a> in compositing.</dd>
-<dt>Mức Độ -- Levels</dt>
-<dd>Đặt số vật thể đơn nhất có thể phân biệt tại mỗi điểm ảnh.</dd>
-<dt>Chế Độ Chính Xác -- Accurate Mode</dt>
-<dd>Generate a more accurate Cryptomatte pass. CPU only, may render slower and use more memory.</dd>
+<dl class="simple">
+<dt>Vật Thể -- Object</dt><dd><p>Render cryptomatte object pass, for isolating objects in compositing.</p>
+</dd>
+<dt>Nguyên Liệu -- Material</dt><dd><p>Render cryptomatte material pass, for isolating materials in compositing.</p>
+</dd>
+<dt>Tài Nguyên -- Asset</dt><dd><p>Render cryptomatte asset pass, for isolating groups of objects with the same
+<a class="reference internal" href="../../scene_layout/object/properties/relations/parents.html"><span class="doc">parent</span></a> in compositing.</p>
+</dd>
+<dt>Mức Độ -- Levels</dt><dd><p>Đặt số vật thể đơn nhất có thể phân biệt tại mỗi điểm ảnh.</p>
+</dd>
+<dt>Chế Độ Chính Xác -- Accurate Mode</dt><dd><p>Generate a more accurate Cryptomatte pass. CPU only, may render slower and use more memory.</p>
+</dd>
 </dl>
 <div class="section" id="typical-workflow">
 <h4>Chu Trình Làm Việc Phổ Biến -- Typical Workflow<a class="headerlink" href="#typical-workflow" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
-<li>Enable Cryptomatte Object render pass in the Passes panel, and render.</li>
-<li>In the compositing nodes, create a Cryptomatte node and
-link the Render Layer matching Image and Cryptomatte passes to it.</li>
-<li>Attach a Viewer node to the Pick output of the Cryptomatte node.</li>
-<li>Use the Cryptomatte Add/Remove button to sample objects in the Pick Viewer node.</li>
-<li>Use the Matte output of the Cryptomatte node to get the alpha mask.</li>
+<li><p>Enable Cryptomatte Object render pass in the Passes panel, and render.</p></li>
+<li><p>In the compositing nodes, create a Cryptomatte node and
+link the Render Layer matching Image and Cryptomatte passes to it.</p></li>
+<li><p>Attach a Viewer node to the Pick output of the Cryptomatte node.</p></li>
+<li><p>Use the Cryptomatte Add/Remove button to sample objects in the Pick Viewer node.</p></li>
+<li><p>Use the Matte output of the Cryptomatte node to get the alpha mask.</p></li>
 </ol>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="../../compositing/types/matte/cryptomatte.html"><span class="doc">Cryptomatte Node</span></a>.</p>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../compositing/types/matte/cryptomatte.html"><span class="doc">Cryptomatte Node</span></a>.</p>
 </div>
 </div>
 </div>
@@ -376,57 +374,54 @@ To use Shader AOVs create the pass in the <em>Shader AOV</em> panel then referen
 the <a class="reference internal" href="../shader_nodes/output/aov.html"><span class="doc">AOV Output</span></a> shading node.
 Shader AOVs can be added or removed in the <em>Shader AOV</em> panel.
 In this panel is a list of all AOV passes; each AOV in the list consists of a <em>Name</em> and <em>Data Type</em>.</p>
-<dl class="docutils">
-<dt>Name</dt>
-<dd>The name of the render pass; this is the <em>Name</em> that is referenced in the <em>AOV Output</em> node.
+<dl class="simple">
+<dt>Name</dt><dd><p>The name of the render pass; this is the <em>Name</em> that is referenced in the <em>AOV Output</em> node.
 Arbitrary names can be used for these passes,
-as long as they do not conflict with built-in passes that are enabled.</dd>
-<dt>Data Type</dt>
-<dd>Shader AOVs can either express a <em>Color</em> or a <em>Value</em> variable.
+as long as they do not conflict with built-in passes that are enabled.</p>
+</dd>
+<dt>Data Type</dt><dd><p>Shader AOVs can either express a <em>Color</em> or a <em>Value</em> variable.
 The <em>Color</em> variable as the name suggest can be used for a color but also a normal value.
-A <em>Value</em> variable can be used for any single numerical value.</dd>
+A <em>Value</em> variable can be used for any single numerical value.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="eevee">
 <span id="render-eevee-passes"></span><h2>Eevee<a class="headerlink" href="#eevee" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Scene ‣ View Layers ‣ Passes</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Scene ‣ View Layers ‣ Passes</span></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="id1">
 <h3>Lượt về Ánh Sáng -- Lighting Passes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Tổng Hợp -- Combined</dt>
-<dd>The final combination of render passes with everything included.</dd>
-<dt>Subsurface Direct</dt>
-<dd>Direct lighting from subsurface BSDFs. We define direct lighting as coming from lights, emitting surfaces,
+<dl class="simple">
+<dt>Tổng Hợp -- Combined</dt><dd><p>The final combination of render passes with everything included.</p>
+</dd>
+<dt>Subsurface Direct</dt><dd><p>Direct lighting from subsurface BSDFs. We define direct lighting as coming from lights, emitting surfaces,
 the background, or ambient occlusion after a single reflection or transmission off a surface.
-BSDF color is not included in this pass.</dd>
-<dt>Subsurface Color</dt>
-<dd>Color weights of subsurface BSDFs. These weights are the color input socket for BSDF nodes,
-modified by any Mix and Add Shader nodes.</dd>
-<dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt>
-<dd>Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e.
-it gives a 'normalized' value between 0 and 1.</dd>
+BSDF color is not included in this pass.</p>
+</dd>
+<dt>Subsurface Color</dt><dd><p>Color weights of subsurface BSDFs. These weights are the color input socket for BSDF nodes,
+modified by any Mix and Add Shader nodes.</p>
+</dd>
+<dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt><dd><p>Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e.
+it gives a 'normalized' value between 0 and 1.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="id2">
 <h3>Lượt Dữ Liệu -- Data Passes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Z</dt>
-<dd>Distance to any visible surfaces.</dd>
-<dt>Sương Mù -- Mist</dt>
-<dd>Distance to visible surfaces, mapped to the 0.0 - 1.0 range.</dd>
-<dt>Pháp Tuyến -- Normal</dt>
-<dd>Surface normal used for shading.</dd>
+<dl class="simple">
+<dt>Z</dt><dd><p>Distance to any visible surfaces.</p>
+</dd>
+<dt>Sương Mù -- Mist</dt><dd><p>Distance to visible surfaces, mapped to the 0.0 - 1.0 range.</p>
+</dd>
+<dt>Pháp Tuyến -- Normal</dt><dd><p>Surface normal used for shading.</p>
+</dd>
 </dl>
 </div>
 </div>

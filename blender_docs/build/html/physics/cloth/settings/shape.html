@@ -137,9 +137,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../collision.html">-- Collisions</a></li>
@@ -226,33 +225,28 @@
   <div class="section" id="shape">
 <h1>Shape<a class="headerlink" href="#shape" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Cloth ‣ Shape</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Physics ‣ Cloth ‣ Shape</span></p>
+</dd>
+</dl>
 </div>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/physics_cloth_settings_cloth-settings_pinning.png" src="../../../_images/physics_cloth_settings_cloth-settings_pinning.png" />
-<p class="caption"><span class="caption-text">Cloth Shape.</span></p>
+<p class="caption"><span class="caption-text">Cloth Shape.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Pin Group</dt>
-<dd><p class="first">Vertex group to use for pinning.</p>
-<p class="last">The shape of the cloth can be controlled by pinning cloth to
+<dl>
+<dt>Pin Group</dt><dd><p>Vertex group to use for pinning.</p>
+<p>The shape of the cloth can be controlled by pinning cloth to
 a <a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/index.html"><span class="doc">Vertex Group</span></a>.
 There are several ways of doing this including
 <a class="reference internal" href="../../../sculpt_paint/weight_paint/index.html"><span class="doc">Weight Painting</span></a> areas you want to pin.
 The weight of each vertex in the group controls how strongly it is pinned.</p>
 </dd>
-<dt>Stiffness</dt>
-<dd>Target position stiffness.</dd>
-<dt>Sewing</dt>
-<dd><p class="first">Another method of restraining cloth similar to pinning is sewing springs.
+<dt>Stiffness</dt><dd><p>Target position stiffness.</p>
+</dd>
+<dt>Sewing</dt><dd><p>Another method of restraining cloth similar to pinning is sewing springs.
 Sewing springs are virtual springs that pull vertices in one part of
 a cloth mesh toward vertices in another part of the cloth mesh.
 This is different from pinning which binds vertices of the cloth mesh in place or to another object.
@@ -260,23 +254,22 @@ A clasp on a cloak could be created with a sewing spring.
 The spring could pull two corners of a cloak about a character's neck.
 This could result in a more realistic simulation than pinning the cloak to
 the character's neck since the cloak would be free to slide about the character's neck and shoulders.</p>
-<p class="last">Sewing springs are created by adding extra edges to a cloth mesh that are not included in any faces.
+<p>Sewing springs are created by adding extra edges to a cloth mesh that are not included in any faces.
 They should connect vertices in the mesh that should be pulled together.
 For example the corners of a cloak.</p>
 </dd>
-<dt>Max Sewing Force</dt>
-<dd>Maximum force that can be applied by sewing springs. Zero means unbounded, but it is not
+<dt>Max Sewing Force</dt><dd><p>Maximum force that can be applied by sewing springs. Zero means unbounded, but it is not
 recommended to leave the field at zero in most cases, as it can cause instability due to
-extreme forces in the initial frames where the ends of the sewing springs are far apart.</dd>
-<dt>Shrinking Factor</dt>
-<dd>Factor by which to shrink the cloth, specifying a negative value controls the amount for the cloth to grow.</dd>
-<dt>Dynamic Mesh</dt>
-<dd><p class="first">Allows animating the rest shape of cloth using shape keys or
+extreme forces in the initial frames where the ends of the sewing springs are far apart.</p>
+</dd>
+<dt>Shrinking Factor</dt><dd><p>Factor by which to shrink the cloth, specifying a negative value controls the amount for the cloth to grow.</p>
+</dd>
+<dt>Dynamic Mesh</dt><dd><p>Allows animating the rest shape of cloth using shape keys or
 modifiers (e.g. an Armature modifier or any deformation modifier) placed above the Cloth modifier.
 When it is enabled, the rest shape is recalculated every frame, allowing unpinned
 cloth to squash and stretch following the character with the help of shape keys or modifiers, but
 otherwise move freely under control of the physics simulation.</p>
-<p class="last">Normally cloth uses the state of the object in the first frame to compute
+<p>Normally cloth uses the state of the object in the first frame to compute
 the natural rest shape of the cloth, and keeps that constant throughout the simulation.
 This is reasonable for fully realistic scenes, but does not quite work for clothing
 on cartoon style characters that use a lot of squash and stretch.</p>

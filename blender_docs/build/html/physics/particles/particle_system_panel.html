@@ -124,6 +124,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">-- Particles System</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">-- Particle System Panel</a><ul>
@@ -136,8 +137,6 @@
 <li class="toctree-l3"><a class="reference internal" href="mode.html">-- Particle Edit Mode</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
@@ -222,61 +221,53 @@
   <div class="section" id="particle-system-panel">
 <h1>-- Particle System Panel<a class="headerlink" href="#particle-system-panel" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Hệ Thống Hạt (Particle System) ‣ Hệ Thống Hạt (Particle System)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Hệ Thống Hạt (Particle System) ‣ Hệ Thống Hạt (Particle System)</span></p>
+</dd>
+</dl>
 </div>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../_images/physics_particles_particle-system-panel_panel.png" src="../../_images/physics_particles_particle-system-panel_panel.png" />
-<p class="caption"><span class="caption-text">Particle System panel.</span></p>
+<p class="caption"><span class="caption-text">Particle System panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>These are the basic settings.</p>
-<dl class="docutils">
-<dt>Hệ Thống Hạt Đang Hoạt Động -- Active Particle System</dt>
-<dd><p class="first">The <a class="reference internal" href="../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">List View</span></a> of the objects Particle Modifier(s).</p>
-<dl class="last docutils">
-<dt>Đặc Biệt -- Specials</dt>
-<dd><dl class="first last docutils">
-<dt>Sao Chép Cái Đang Hoạt Động sang Vật Thể Được Chọn -- Copy Active to Selected Objects</dt>
-<dd>Copies the active particle system to all selected objects.</dd>
-<dt>Sao Chép Toàn Bộ sang các Vật Thể Được Chọn -- Copy All to Selected Objects</dt>
-<dd>Copies all particle systems from the active object to all selected objects.</dd>
-<dt>Sao Chép Hệ Thống Hạt -- Duplicate Particle Systems</dt>
-<dd>Duplicates the particle system within the active object.
+<dl>
+<dt>Hệ Thống Hạt Đang Hoạt Động -- Active Particle System</dt><dd><p>The <a class="reference internal" href="../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">List View</span></a> of the objects Particle Modifier(s).</p>
+<dl class="simple">
+<dt>Đặc Biệt -- Specials</dt><dd><dl class="simple">
+<dt>Sao Chép Cái Đang Hoạt Động sang Vật Thể Được Chọn -- Copy Active to Selected Objects</dt><dd><p>Copies the active particle system to all selected objects.</p>
+</dd>
+<dt>Sao Chép Toàn Bộ sang các Vật Thể Được Chọn -- Copy All to Selected Objects</dt><dd><p>Copies all particle systems from the active object to all selected objects.</p>
+</dd>
+<dt>Sao Chép Hệ Thống Hạt -- Duplicate Particle Systems</dt><dd><p>Duplicates the particle system within the active object.
 The <em>Duplicate Settings</em> option (in the <a class="reference internal" href="../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel) will duplicate
-settings as well, so the new particle system uses its own settings.</dd>
-</dl>
+settings as well, so the new particle system uses its own settings.</p>
 </dd>
 </dl>
 </dd>
-<dt>Sắp Đặt Hạt -- Particle Settings</dt>
-<dd>The <a class="reference internal" href="../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Data-Block menu</span></a> for settings.</dd>
-<dt>Thể Loại -- Type</dt>
-<dd><p class="first">Main selector of the system type.</p>
-<dl class="last docutils">
-<dt>Vật Phát Sinh -- Emitter</dt>
-<dd>In such a system, particles are <a class="reference internal" href="emitter/index.html"><span class="doc">emitted</span></a> from the object.</dd>
-<dt>Tóc -- Hair</dt>
-<dd><p class="first">Use <a class="reference internal" href="hair/index.html"><span class="doc">Hair</span></a> type, rendered as strands.</p>
-<dl class="last docutils">
-<dt>Làm Mọc Lại -- Regrow</dt>
-<dd>Regrows the hair for each frame. This is useful when you are animating properties.</dd>
-<dt>Cao Cấp -- Advanced</dt>
-<dd><p class="first">Enables advanced settings which reflect the same ones as working in Emitter mode.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This manual assumes that this option is enabled.</p>
+</dl>
+</dd>
+<dt>Sắp Đặt Hạt -- Particle Settings</dt><dd><p>The <a class="reference internal" href="../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Data-Block menu</span></a> for settings.</p>
+</dd>
+<dt>Thể Loại -- Type</dt><dd><p>Main selector of the system type.</p>
+<dl>
+<dt>Vật Phát Sinh -- Emitter</dt><dd><p>In such a system, particles are <a class="reference internal" href="emitter/index.html"><span class="doc">emitted</span></a> from the object.</p>
+</dd>
+<dt>Tóc -- Hair</dt><dd><p>Use <a class="reference internal" href="hair/index.html"><span class="doc">Hair</span></a> type, rendered as strands.</p>
+<dl>
+<dt>Làm Mọc Lại -- Regrow</dt><dd><p>Regrows the hair for each frame. This is useful when you are animating properties.</p>
+</dd>
+<dt>Cao Cấp -- Advanced</dt><dd><p>Enables advanced settings which reflect the same ones as working in Emitter mode.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>This manual assumes that this option is enabled.</p>
 </div>
 </dd>
-<dt>Phân Đoạn -- Segments</dt>
-<dd>Controls the number of parts a hair is made of.
-Increasing this value will improve the quality of animations.</dd>
+<dt>Phân Đoạn -- Segments</dt><dd><p>Controls the number of parts a hair is made of.
+Increasing this value will improve the quality of animations.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -286,15 +277,15 @@ Increasing this value will improve the quality of animations.</dd>
 <h2>Quy Trình Làm Việc -- Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h2>
 <p>The process for working with standard particles is:</p>
 <ol class="arabic simple">
-<li>Create the mesh which will emit the particles.</li>
-<li>Create one or more Particle Systems to emit from the mesh. Many times, multiple
-particle systems interact or merge with each other to achieve the overall desired effect.</li>
-<li>Tailor each Particle System's settings to achieve the desired effect.</li>
-<li>Animate the base mesh and other particle meshes involved in the scene.</li>
-<li>Define and shape the path and flow of the particles.</li>
-<li>For <a class="reference internal" href="hair/index.html"><span class="doc">Hair</span></a> particle systems: Sculpt the emitter's flow
-(cut the hair to length and comb it for example).</li>
-<li>Make final render and do physics simulation(s), and tweak as needed.</li>
+<li><p>Create the mesh which will emit the particles.</p></li>
+<li><p>Create one or more Particle Systems to emit from the mesh. Many times, multiple
+particle systems interact or merge with each other to achieve the overall desired effect.</p></li>
+<li><p>Tailor each Particle System's settings to achieve the desired effect.</p></li>
+<li><p>Animate the base mesh and other particle meshes involved in the scene.</p></li>
+<li><p>Define and shape the path and flow of the particles.</p></li>
+<li><p>For <a class="reference internal" href="hair/index.html"><span class="doc">Hair</span></a> particle systems: Sculpt the emitter's flow
+(cut the hair to length and comb it for example).</p></li>
+<li><p>Make final render and do physics simulation(s), and tweak as needed.</p></li>
 </ol>
 <div class="section" id="creating-a-particle-system">
 <h3>-- Creating a Particle System<a class="headerlink" href="#creating-a-particle-system" title="Permalink to this headline">¶</a></h3>

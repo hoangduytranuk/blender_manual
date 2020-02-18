@@ -228,23 +228,20 @@
   <div class="section" id="render-baking">
 <span id="bpy-types-bakesettings"></span><h1>-- Render Baking<a class="headerlink" href="#render-baking" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Kết Xuất (Render) ‣ Nướng (Bake)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Kết Xuất (Render) ‣ Nướng (Bake)</span></p>
+</dd>
+</dl>
 </div>
 <p>Cycles shaders and lighting can be baked to image textures.
 This has a few different purposes, most commonly:</p>
 <ul class="simple">
-<li>Baking textures like base color or normal maps for export to game engines.</li>
-<li>Baking ambient occlusion or procedural textures,
-as a base for texture painting or further edits.</li>
-<li>Creating light maps to provide global illumination or speed up rendering in games.</li>
+<li><p>Baking textures like base color or normal maps for export to game engines.</p></li>
+<li><p>Baking ambient occlusion or procedural textures,
+as a base for texture painting or further edits.</p></li>
+<li><p>Creating light maps to provide global illumination or speed up rendering in games.</p></li>
 </ul>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
@@ -260,92 +257,89 @@ This way the quality of the baked textures should match the result you get from 
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="bake-types">
 <h3>Bake Types<a class="headerlink" href="#bake-types" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Tổng Hợp -- Combined</dt>
-<dd><p class="first">Bakes all materials, textures, and lighting except specularity.</p>
-<p class="last">The passes that contribute to the combined pass can be toggled individually to form the final map.</p>
+<dl>
+<dt>Tổng Hợp -- Combined</dt><dd><p>Bakes all materials, textures, and lighting except specularity.</p>
+<p>The passes that contribute to the combined pass can be toggled individually to form the final map.</p>
 </dd>
-<dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt>
-<dd>Bakes ambient occlusion as specified in the World panels. Ignores all lights in the scene.</dd>
-<dt>Ngả Bóng Tối -- Shadow</dt>
-<dd>Bakes shadows and lighting.</dd>
-<dt>Pháp Tuyến -- Normals</dt>
-<dd><p class="first">Bakes normals to an RGB image.</p>
-<dl class="docutils">
-<dt>Không Gian Pháp Tuyến -- Normal Space</dt>
-<dd><p class="first">Normals can be baked in different spaces:</p>
-<dl class="last docutils">
-<dt>Không gian vật thể -- Object space</dt>
-<dd>Normals in object coordinates, independent of object transformation, but dependent on deformation.</dd>
-<dt>-- Tangent space</dt>
-<dd>Normals in tangent space coordinates, independent of object transformation and deformation.
+<dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt><dd><p>Bakes ambient occlusion as specified in the World panels. Ignores all lights in the scene.</p>
+</dd>
+<dt>Ngả Bóng Tối -- Shadow</dt><dd><p>Bakes shadows and lighting.</p>
+</dd>
+<dt>Pháp Tuyến -- Normals</dt><dd><p>Bakes normals to an RGB image.</p>
+<dl>
+<dt>Không Gian Pháp Tuyến -- Normal Space</dt><dd><p>Normals can be baked in different spaces:</p>
+<dl class="simple">
+<dt>Không gian vật thể -- Object space</dt><dd><p>Normals in object coordinates, independent of object transformation, but dependent on deformation.</p>
+</dd>
+<dt>-- Tangent space</dt><dd><p>Normals in tangent space coordinates, independent of object transformation and deformation.
 This is the default, and the right choice in most cases, since then the normal map can be used for animated
-objects too.</dd>
+objects too.</p>
+</dd>
 </dl>
 </dd>
-<dt>-- Normal Swizzle</dt>
-<dd>Axis to bake into the red, green and blue channel.</dd>
+<dt>-- Normal Swizzle</dt><dd><p>Axis to bake into the red, green and blue channel.</p>
+</dd>
 </dl>
-<p class="last">For materials the same spaces can be chosen in the image texture options
+<p>For materials the same spaces can be chosen in the image texture options
 next to the existing <em>Normal Map</em> setting. For correct results,
 the setting here should match the setting used for baking.</p>
 </dd>
-<dt>UV</dt>
-<dd>Bakes colors of materials and textures only, without shading.</dd>
-<dt>Phát Xạ -- Emit</dt>
-<dd>Bakes Emission, or the Glow color of a material.</dd>
-<dt>Môi Trường -- Environment</dt>
-<dd>Bakes the environment (i.e. the world surface shader defined for the scene) onto
-the selected object(s) as seen by rays cast from the world origin.</dd>
-<dt>-- Diffuse, Glossy, Transmission, Subsurface</dt>
-<dd><p class="first">Bakes the diffuse, glossiness, transmission of subsurface pass of a material.</p>
-<ul class="last simple">
-<li>If only color is selected you get the pass color,
-which is a property of the surface and independent of sampling refinement.</li>
-<li>If color is not selected, you get the direct and/or indirect contributions in gray-scale.</li>
-<li>If color and either direct or indirect are selected, you get the direct and/or indirect contributions colored.</li>
+<dt>UV</dt><dd><p>Mapped UV coordinates, used to represent where on a mesh a texture gets mapped too.
+This is represented through the red and green channels of the image,
+the blue channel is encoded with a constant value of 1 but does not hold any information.</p>
+</dd>
+<dt>Phát Xạ -- Emit</dt><dd><p>Bakes Emission, or the Glow color of a material.</p>
+</dd>
+<dt>Môi Trường -- Environment</dt><dd><p>Bakes the environment (i.e. the world surface shader defined for the scene) onto
+the selected object(s) as seen by rays cast from the world origin.</p>
+</dd>
+<dt>-- Diffuse, Glossy, Transmission, Subsurface</dt><dd><p>Bakes the diffuse, glossiness, transmission of subsurface pass of a material.</p>
+<ul class="simple">
+<li><p>If only color is selected you get the pass color,
+which is a property of the surface and independent of sampling refinement.</p></li>
+<li><p>If color is not selected, you get the direct and/or indirect contributions in gray-scale.</p></li>
+<li><p>If color and either direct or indirect are selected, you get the direct and/or indirect contributions colored.</p></li>
 </ul>
 </dd>
 </dl>
 </div>
 <div class="section" id="selected-to-active">
 <h3>Selected to Active<a class="headerlink" href="#selected-to-active" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>-- Select to Active</dt>
-<dd>Bake shading on the surface of selected objects to the active object.
+<dl class="simple">
+<dt>-- Select to Active</dt><dd><p>Bake shading on the surface of selected objects to the active object.
 The rays are cast from the low-poly object inwards towards the high-poly object.
 If the high-poly object is not entirely involved by the low-poly object, you can tweak the rays start point with
 <em>Ray Distance</em> or <em>Cage Extrusion</em> (depending on whether or not you are using cage).
-For even more control you can use a <em>Cage Object</em>.</dd>
+For even more control you can use a <em>Cage Object</em>.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p>Memory Usage</p>
-<p class="last">There is a CPU fixed memory footprint for every object used to bake from.
+<p>There is a CPU fixed memory footprint for every object used to bake from.
 In order to avoid crashes due to lack of memory, the high-poly objects can be joined before the baking process.
 The render tiles parameter also influence the memory usage, so the bigger the tile the less overhead you have,
 but the more memory it will take during baking (either in GPU or CPU).</p>
 </div>
-<dl class="docutils">
-<dt>Khung Lồng -- Cage</dt>
-<dd>Cast rays to active object from a cage.
+<dl>
+<dt>Khung Lồng -- Cage</dt><dd><p>Cast rays to active object from a cage.
 A cage is a ballooned-out version of the low-poly mesh created either automatically
 (by adjusting the ray distance) or manually (by specifying an object to use).
 When not using a cage the rays will conform to the mesh normals. This produces glitches on the edges,
-but it is a preferable method when baking into planes to avoid the need of adding extra loops around the edges.</dd>
-<dt>Khoảng Cách Tia Xạ -- Ray Distance</dt>
-<dd>Distance to use for the inward ray cast when using selected to active.
-Ray distance is only available when not using <em>Cage</em>.</dd>
-<dt>Đẩy Trồi Khung Lồng -- Cage Extrusion</dt>
-<dd>Distance to use for the inward ray cast when using <em>Selected to Active</em> and <em>Cage</em>.
+but it is a preferable method when baking into planes to avoid the need of adding extra loops around the edges.</p>
+</dd>
+<dt>Khoảng Cách Tia Xạ -- Ray Distance</dt><dd><p>Distance to use for the inward ray cast when using selected to active.
+Ray distance is only available when not using <em>Cage</em>.</p>
+</dd>
+<dt>Đẩy Trồi Khung Lồng -- Cage Extrusion</dt><dd><p>Distance to use for the inward ray cast when using <em>Selected to Active</em> and <em>Cage</em>.
 The inward rays are casted from a version of the active object with disabled Edge Split Modifiers.
 Hard splits (e.g. when the Edge Split Modifier is applied) should be avoided because they will lead to non-smooth
-normals around the edges.</dd>
-<dt>Khung Lồng -- Cage</dt>
-<dd><p class="first">Object to use as cage instead of calculating the cage from the active object with the <em>Cage Extrusion</em>.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">When the base mesh extruded does not give good results,
+normals around the edges.</p>
+</dd>
+<dt>Khung Lồng -- Cage</dt><dd><p>Object to use as cage instead of calculating the cage from the active object with the <em>Cage Extrusion</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>When the base mesh extruded does not give good results,
 you can create a copy of the base mesh and modify it to use as a <em>Cage</em>.
 Both meshes need to have the same <a class="reference internal" href="../../glossary/index.html#term-topology"><span class="xref std std-term">topology</span></a> (number of faces and face order).</p>
 </div>
@@ -354,11 +348,11 @@ Both meshes need to have the same <a class="reference internal" href="../../glos
 </div>
 <div class="section" id="output">
 <h3>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Lề -- Margin</dt>
-<dd>Baked result is extended this many pixels beyond the border of each UV &quot;island&quot;, to soften seams in the texture.</dd>
-<dt>Xóa Sạch -- Clear</dt>
-<dd>If selected, clears the image before baking render.</dd>
+<dl class="simple">
+<dt>Lề -- Margin</dt><dd><p>Baked result is extended this many pixels beyond the border of each UV &quot;island&quot;, to soften seams in the texture.</p>
+</dd>
+<dt>Xóa Sạch -- Clear</dt><dd><p>If selected, clears the image before baking render.</p>
+</dd>
 </dl>
 </div>
 </div>

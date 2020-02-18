@@ -9,7 +9,7 @@ Mapping Types
 
    :Editor:    3D View
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Toolbar --> Shading/UVs --> UVs --> UV Mapping: Unwrap`
+   :Tool:      :menuselection:`Toolbar --> Shading/UVs --> UVs --> UV Mapping: Unwrap`
    :Menu:      :menuselection:`Mesh --> UV Unwrap`
    :Hotkey:    :kbd:`U`
 
@@ -18,7 +18,7 @@ Mapping Types
 
    :Editor:    UV Editor
    :Mode:      View mode
-   :Panel:     :menuselection:`Toolbar --> Tools --> UV Tools --> UV Unwrap: Unwrap`
+   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> UV Unwrap: Unwrap`
    :Menu:      :menuselection:`UVs --> Unwrap`
    :Hotkey:    :kbd:`E`
 

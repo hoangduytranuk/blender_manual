@@ -61,7 +61,7 @@ Image
 Light
    :doc:`Lights </render/lights/light_object>` for lighting the scene in renders.
 Light Probe
-   :doc:`Lights </render/eevee/lightprobes/introduction>` are used by
+   :doc:`Lights </render/eevee/light_probes/introduction>` are used by
    the Eevee render engine and record lighting information for indirect lighting.
 
 Camera

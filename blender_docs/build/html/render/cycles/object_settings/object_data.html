@@ -233,47 +233,44 @@
 <div class="section" id="visibility">
 <span id="render-cycles-object-settings-visibility"></span><h2>Visibility<a class="headerlink" href="#visibility" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Object ‣ Visibility</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Object ‣ Visibility</span></p>
+</dd>
+</dl>
 </div>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">There are several other <a class="reference internal" href="../../../scene_layout/object/properties/visibility.html"><span class="doc">general visibility</span></a> properties.</p>
+<p class="admonition-title">Xem thêm</p>
+<p>There are several other <a class="reference internal" href="../../../scene_layout/object/properties/visibility.html"><span class="doc">general visibility</span></a> properties.</p>
 </div>
 <div class="section" id="shadow-catcher">
 <h3>Tóm Bắt Bóng Tối -- Shadow Catcher<a class="headerlink" href="#shadow-catcher" title="Permalink to this headline">¶</a></h3>
 <p>Enables the object to only receive shadow rays.
 It is to be noted that shadow catcher objects will interact with other CG objects via indirect light interaction.
-This feature makes it really easy to combine <abbr title="Computer-generated imagery">CGI</abbr> elements
+This feature makes it really easy to combine <abbr title="Computer-Generated Imagery">CGI</abbr> elements
 into a real-world footage.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/render_cycles_object-settings_object-data_shadow-catcher.jpg" src="../../../_images/render_cycles_object-settings_object-data_shadow-catcher.jpg" />
-<p class="caption"><span class="caption-text">Example of the shadow catcher. Note how the material of the plane can still be viewed in the spheres.</span></p>
+<p class="caption"><span class="caption-text">Example of the shadow catcher. Note how the material of the plane can still be viewed in the spheres.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="ray-visibility">
 <span id="bpy-types-cyclesvisibilitysettings"></span><span id="cycles-ray-visibility"></span><h3>Tầm Nhìn của Tia Xạ -- Ray Visibility<a class="headerlink" href="#ray-visibility" title="Permalink to this headline">¶</a></h3>
 <p>Objects can be set to be invisible to particular ray types:</p>
-<dl class="docutils">
-<dt>Máy Quay Phim -- Camera</dt>
-<dd>Makes the object visible in camera rays.</dd>
-<dt>Khuếch Tán -- Diffuse</dt>
-<dd>Makes the object visible in diffuse rays.</dd>
-<dt>Bóng Bẩy -- Glossy</dt>
-<dd>Makes the object visible in glossy rays.</dd>
-<dt>Truyền Xạ -- Transmission</dt>
-<dd>Makes the object visible in transmission rays.</dd>
-<dt>Tán Xạ Thể Tích -- Volume Scatter</dt>
-<dd>Makes the object visible in transmission rays.</dd>
-<dt>Ngả Bóng Tối -- Shadow</dt>
-<dd>Enables the object to cast shadows.</dd>
+<dl class="simple">
+<dt>Máy Quay Phim -- Camera</dt><dd><p>Makes the object visible in camera rays.</p>
+</dd>
+<dt>Khuếch Tán -- Diffuse</dt><dd><p>Makes the object visible in diffuse rays.</p>
+</dd>
+<dt>Bóng Bẩy -- Glossy</dt><dd><p>Makes the object visible in glossy rays.</p>
+</dd>
+<dt>Truyền Xạ -- Transmission</dt><dd><p>Makes the object visible in transmission rays.</p>
+</dd>
+<dt>Tán Xạ Thể Tích -- Volume Scatter</dt><dd><p>Makes the object visible in transmission rays.</p>
+</dd>
+<dt>Ngả Bóng Tối -- Shadow</dt><dd><p>Enables the object to cast shadows.</p>
+</dd>
 </dl>
 <p>This can be used, for example, to make an emitting mesh invisible to camera rays.
 For instancers, visibility is inherited; if the parent object is hidden for some ray types,
@@ -287,46 +284,43 @@ leading to fewer rays cast and shaders executed.</p>
 <h3>Culling<a class="headerlink" href="#culling" title="Permalink to this headline">¶</a></h3>
 <p>In order to activate these options the respectively camera cull options have to be enabled
 in the scene <a class="reference internal" href="../render_settings/simplify.html#render-cycles-settings-scene-simplify"><span class="std std-ref">simplify panel</span></a>.</p>
-<dl class="docutils">
-<dt>Loại Bỏ trong Máy Quay Phim -- Use Camera Cull</dt>
-<dd>Ignore and this way make objects invisible to rays outside of the camera frustum.</dd>
-<dt>Khoảng Cách Loại Bỏ -- Use Distance Cull</dt>
-<dd>Will cull any objects further from the camera than a given distance. When used in combination with
+<dl class="simple">
+<dt>Loại Bỏ trong Máy Quay Phim -- Use Camera Cull</dt><dd><p>Ignore and this way make objects invisible to rays outside of the camera frustum.</p>
+</dd>
+<dt>Khoảng Cách Loại Bỏ -- Use Distance Cull</dt><dd><p>Will cull any objects further from the camera than a given distance. When used in combination with
 camera frustum culling, this can be used to avoid culling nearby objects that are outside the camera frustum,
-but still visible in reflections. It is also useful to cull small objects far from the camera.</dd>
+but still visible in reflections. It is also useful to cull small objects far from the camera.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="motion-blur">
 <span id="render-cycles-settings-object-motion-blur"></span><h2>Làm Nhòe Chuyển Động -- Motion Blur<a class="headerlink" href="#motion-blur" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Làm Nhòe Chuyển Động (Motion Blur)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Vật Thể (Object) ‣ Làm Nhòe Chuyển Động (Motion Blur)</span></p>
+</dd>
+</dl>
 </div>
 <p>Each object has its own motion blur settings along with
 the <a class="reference internal" href="../render_settings/motion_blur.html"><span class="doc">Scene Level Motion Blur</span></a>
 These settings can be found
 in the <a class="reference internal" href="../../../scene_layout/object/properties/introduction.html"><span class="doc">Object Properties</span></a> tab
 of the Properties editor.</p>
-<dl class="docutils">
-<dt>Biến Dạng -- Deformation</dt>
-<dd>Enables motion blur for deformed meshes such as animated characters, including hair.</dd>
-<dt>Số Bước -- Steps</dt>
-<dd>Controls accuracy of deformation motion blur, more steps gives more memory usage.
-The actual number of time steps is <span class="math notranslate nohighlight">\(2^{steps -1}\)</span>.</dd>
+<dl class="simple">
+<dt>Biến Dạng -- Deformation</dt><dd><p>Enables motion blur for deformed meshes such as animated characters, including hair.</p>
+</dd>
+<dt>Số Bước -- Steps</dt><dd><p>Controls accuracy of deformation motion blur, more steps gives more memory usage.
+The actual number of time steps is <span class="math notranslate nohighlight">\(2^{steps -1}\)</span>.</p>
+</dd>
 </dl>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
+<p class="admonition-title">Cảnh báo</p>
 <p>An object modifier setup that changes mesh topology over time can not render
 deformation motion blur correctly. Deformation blur should be disabled for such objects.</p>
-<p class="last">Common examples of this are animated Booleans, Deformation before Edge Split, Remesh, Skin or Decimate modifiers.</p>
+<p>Common examples of this are animated Booleans, Deformation before Edge Split, Remesh, Skin or Decimate modifiers.</p>
 </div>
 </div>
 </div>

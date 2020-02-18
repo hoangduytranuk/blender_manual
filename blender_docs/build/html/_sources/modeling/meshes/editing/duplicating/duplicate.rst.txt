@@ -9,7 +9,7 @@ Duplicate
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Duplicate`
+   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Duplicate`
    :Menu:      :menuselection:`Mesh --> Add Duplicate`
    :Hotkey:    :kbd:`Shift-D`
 

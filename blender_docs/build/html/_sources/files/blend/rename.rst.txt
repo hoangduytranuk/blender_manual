@@ -95,7 +95,7 @@ Method
       Adds text to the end of the current name.
       This is useful for tools that look for special text in the suffix of a data-block name.
 Name
-   Defines the new name or the text to add as a prefix/suffix,
+   Defines the new name or the text to add as a prefix/suffix.
 
 
 Strip Characters

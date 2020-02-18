@@ -231,19 +231,18 @@ or rendering different lighting variations of the same scene.</p>
 allowing you to instead re-render only the layer(s) that you need.</p>
 <div class="section" id="id1">
 <h2>View Layers<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../_images/render_layers_layers_list.png" src="../../_images/render_layers_layers_list.png" />
-<p class="caption"><span class="caption-text">View Layers.</span></p>
+<p class="caption"><span class="caption-text">View Layers.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the top of the screen there is a list of all the View Layers in the active scene.</p>
-<dl class="docutils">
-<dt>Add View Layer</dt>
-<dd>Will add a new view layer to the active scene.</dd>
-<dt>Remove View Layer</dt>
-<dd><p class="first">Will remove the selected view layer from the active scene.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">A scene must at least have a single view layer.</p>
+<dl>
+<dt>Add View Layer</dt><dd><p>Will add a new view layer to the active scene.</p>
+</dd>
+<dt>Remove View Layer</dt><dd><p>Will remove the selected view layer from the active scene.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>A scene must at least have a single view layer.</p>
 </div>
 </dd>
 </dl>
@@ -251,35 +250,31 @@ allowing you to instead re-render only the layer(s) that you need.</p>
 <div class="section" id="view-layer-panel">
 <h2>View Layer Panel<a class="headerlink" href="#view-layer-panel" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties editor ‣ Scene ‣ View Layer</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties editor ‣ Scene ‣ View Layer</span></p>
+</dd>
+</dl>
 </div>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="../../_images/render_layers_layers_panel.png" src="../../_images/render_layers_layers_panel.png" />
-<p class="caption"><span class="caption-text">View Layer panel (shown here for the Eevee render engine)</span></p>
+<p class="caption"><span class="caption-text">View Layer panel (shown here for the Eevee render engine)</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>The Layer Panel shows the settings of the active View Layer.</p>
-<dl class="docutils">
-<dt>Use for Rendering</dt>
-<dd>The active view layer will be used during rendering.</dd>
-<dt>Render Single Layer</dt>
-<dd><p class="first">Only render the active view layer.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This option is ignored when rendering from the command line.</p>
+<dl>
+<dt>Use for Rendering</dt><dd><p>The active view layer will be used during rendering.</p>
+</dd>
+<dt>Render Single Layer</dt><dd><p>Only render the active view layer.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>This option is ignored when rendering from the command line.</p>
 </div>
 </dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">Additional options shown in this panel are different for each render engine.
+<p class="admonition-title">Xem thêm</p>
+<p>Additional options shown in this panel are different for each render engine.
 See <a class="reference internal" href="passes.html"><span class="doc">Render Passes</span></a> for the options per render
 engine.</p>
 </div>
@@ -290,8 +285,8 @@ engine.</p>
 Objects which are on one of the associated collections are shown in that Render Layer,
 as long as that collection is also visible.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">Only the objects in visible Scene Layers will be rendered.
+<p class="admonition-title">Cảnh báo</p>
+<p>Only the objects in visible Scene Layers will be rendered.
 So, if only Collection 1 is visible and your Render Layer set specifies to render only Collections 2 and 3,
 nothing will be rendered.</p>
 </div>
@@ -300,74 +295,71 @@ nothing will be rendered.</p>
 <h2>Collections<a class="headerlink" href="#collections" title="Permalink to this headline">¶</a></h2>
 <p>Per collection you can adjust the way how the render engine needs to render the objects inside.
 Based on the render engine different options can be set.</p>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="../../_images/render_layers_layers_viewlayer-collection.png" src="../../_images/render_layers_layers_viewlayer-collection.png" />
-<p class="caption"><span class="caption-text">Collection/View layer settings</span></p>
+<p class="caption"><span class="caption-text">Collection/View layer settings</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Disable from View Layer</dt>
-<dd>Remove this collection from the active view layer. Objects that are only in
-this collection will not be rendered for the active view layer.</dd>
-<dt>Enable in View Layer</dt>
-<dd>Add this collection to the active view layer. Objects inside the collection
-will be rendered with the active view layer.</dd>
-<dt>Set Indirect Only</dt>
-<dd>Objects inside this collection will only contribute to the final image
-indirectly through shadows and reflections.</dd>
-<dt>Clear Indirect Only</dt>
-<dd>Clear the Set Indirect Only flag. Objects inside this collection will contribute normal to the final image.</dd>
-<dt>Set Holdout</dt>
-<dd>Objects inside this collection will generate a holdout/mask in the active view layer.</dd>
-<dt>Clear Holdout</dt>
-<dd>Clear the Set Holdout flag.</dd>
+<dl class="simple">
+<dt>Disable from View Layer</dt><dd><p>Remove this collection from the active view layer. Objects that are only in
+this collection will not be rendered for the active view layer.</p>
+</dd>
+<dt>Enable in View Layer</dt><dd><p>Add this collection to the active view layer. Objects inside the collection
+will be rendered with the active view layer.</p>
+</dd>
+<dt>Set Indirect Only</dt><dd><p>Objects inside this collection will only contribute to the final image
+indirectly through shadows and reflections.</p>
+</dd>
+<dt>Clear Indirect Only</dt><dd><p>Clear the Set Indirect Only flag. Objects inside this collection will contribute normal to the final image.</p>
+</dd>
+<dt>Set Holdout</dt><dd><p>Objects inside this collection will generate a holdout/mask in the active view layer.</p>
+</dd>
+<dt>Clear Holdout</dt><dd><p>Clear the Set Holdout flag.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="cycles">
 <h2>Cycles<a class="headerlink" href="#cycles" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">View Layers ‣ Layer</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">View Layers ‣ Layer</span></p>
+</dd>
+</dl>
 </div>
 <p>This section covers only the Render Layer settings appropriate for the Cycles renderer.
 For the engine-independent settings, see <a class="reference internal" href="#render-layers"><span class="std std-ref">this section</span></a>.</p>
 <div class="section" id="view-layer">
 <h3>-- View Layer<a class="headerlink" href="#view-layer" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Loại Trừ -- Exclude</dt>
-<dd>Scene layers are shared between all render layers;
-however, sometimes it is useful to leave out some object influence for a particular render layer.</dd>
+<dl class="simple">
+<dt>Loại Trừ -- Exclude</dt><dd><p>Scene layers are shared between all render layers;
+however, sometimes it is useful to leave out some object influence for a particular render layer.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="filter">
 <h3>Bộ/Thanh Lọc -- Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Dùng Môi Trường -- Use Environment</dt>
-<dd>Disables rendering the <em>Environment</em> render pass in the final render.</dd>
-<dt>-- Use Ambient Occlusion</dt>
-<dd>Disables rendering the <em>Ambient Occlusion</em> render pass in the final render.</dd>
-<dt>Dùng Bề Mặt -- Use Surfaces</dt>
-<dd>Disables rendering object materials in the final render.</dd>
-<dt>Dùng Tóc -- Use Hair</dt>
-<dd>Disables rendering hair strands in the final render.</dd>
-<dt>-- Use Freestyle</dt>
-<dd>Disables freestyle rendering in the final render.</dd>
+<dl class="simple">
+<dt>Dùng Môi Trường -- Use Environment</dt><dd><p>Disables rendering the <em>Environment</em> render pass in the final render.</p>
+</dd>
+<dt>-- Use Ambient Occlusion</dt><dd><p>Disables rendering the <em>Ambient Occlusion</em> render pass in the final render.</p>
+</dd>
+<dt>Dùng Bề Mặt -- Use Surfaces</dt><dd><p>Disables rendering object materials in the final render.</p>
+</dd>
+<dt>Dùng Tóc -- Use Hair</dt><dd><p>Disables rendering hair strands in the final render.</p>
+</dd>
+<dt>-- Use Freestyle</dt><dd><p>Disables freestyle rendering in the final render.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="override">
 <h3>-- Override<a class="headerlink" href="#override" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Material Override</dt>
-<dd>Overrides all materials in the render layer.</dd>
-<dt>Lượng Mẫu Vật -- Samples</dt>
-<dd>View layer samples to override the scene samples.
-Controlled by the <a class="reference internal" href="../cycles/render_settings/sampling.html#render-cycles-integrator-layer-samples"><span class="std std-ref">layer samples</span></a> in the sampling panel.</dd>
+<dl class="simple">
+<dt>Material Override</dt><dd><p>Overrides all materials in the render layer.</p>
+</dd>
+<dt>Lượng Mẫu Vật -- Samples</dt><dd><p>View layer samples to override the scene samples.
+Controlled by the <a class="reference internal" href="../cycles/render_settings/sampling.html#render-cycles-integrator-layer-samples"><span class="std std-ref">layer samples</span></a> in the sampling panel.</p>
+</dd>
 </dl>
 </div>
 </div>

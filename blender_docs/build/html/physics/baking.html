@@ -124,9 +124,8 @@
 <li class="toctree-l2"><a class="reference internal" href="rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cloth/index.html">-- Cloth Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="forces/index.html">Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision.html">-- Collisions</a></li>
@@ -223,81 +222,92 @@ Aside from no longer needing to go through the time-consuming process of simulat
 baking can help prevent potential glitches and ensure that the outcome of the simulation
 remains exactly the same every time.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Most physics simulators in Blender use a similar system,
+<p class="admonition-title">Ghi chú</p>
+<p>Most physics simulators in Blender use a similar system,
 but not all have exactly the same settings available. All the settings are covered here,
 but individual physics types may not provide all these options.</p>
 </div>
 <div class="figure align-right" id="id1">
 <img alt="../_images/physics_baking_multi-cache-interface.png" src="../_images/physics_baking_multi-cache-interface.png" />
-<p class="caption"><span class="caption-text">Two different caches stored simultaneously.</span></p>
+<p class="caption"><span class="caption-text">Two different caches stored simultaneously.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>-- Caches List</dt>
-<dd>Blender allows for storing and managing multiple caches at once for the same physics object.
-You can manage the caches with this <a class="reference internal" href="../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">list view</span></a>.</dd>
+<dl class="simple">
+<dt>-- Caches List</dt><dd><p>Blender allows for storing and managing multiple caches at once for the same physics object.
+You can manage the caches with this <a class="reference internal" href="../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">list view</span></a>.
+Double-click the cache entry to give it a name.</p>
+</dd>
 </dl>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Bộ Nhớ Đệm trên Đĩa -- Disk Cache</dt>
-<dd><p class="first">The cache of a baked simulation will be stored inside the blend-file when you save it.
-When <em>Disk Cache</em> is checked, Blender will save the Cache separately to the drive
-in a folder named <code class="docutils literal notranslate"><span class="pre">blendcache_[filename]</span></code> alongside the blend-file.
+<dl>
+<dt>Cache Name</dt><dd><p>Each cache can have a name. If this name is given, any disk cache will be
+stored in files starting with that name. For example, a cache named 'MyCache'
+will be stored in <code class="docutils literal notranslate"><span class="pre">MyCache_xxxxxx_yy.bphys</span></code>.</p>
+<p>If the cache does not have a name (which is the default),
+the filename of the cache will depend on the object it is attached to,
+although this is not immediately obvious. For example, a cache on
+an object <code class="docutils literal notranslate"><span class="pre">Cube</span></code> will be stored in <code class="docutils literal notranslate"><span class="pre">43756265_xxxxxx_yy.bphys</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">43756265</span></code> is determined by the object name.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>When there are multiple caches on one object, <strong>always specify a Cache Name</strong>. As described above,
+the filename of an unnamed cache is determined by the name of the object it is attached to.
+As a result, an object with multiple physics systems that all have an unnamed cache will cause
+conflict and <strong>can result in losing cache files</strong>.</p>
+</div>
+</dd>
+<dt>Bộ Nhớ Đệm trên Đĩa -- Disk Cache</dt><dd><p>The cache of a baked simulation will be stored inside the blend-file when you save it.
+When <em>Disk Cache</em> is checked, Blender will save the cache separately to
+the drive in a folder named <code class="docutils literal notranslate"><span class="pre">blendcache_[filename]</span></code> alongside the blend-file.
 (The blend-file must be saved first.)</p>
-<dl class="last docutils">
-<dt>Use Library Path</dt>
-<dd><p class="first">Share the disk cache when the physics object is
+<dl>
+<dt>Use Library Path</dt><dd><p>Share the disk cache when the physics object is
 <a class="reference internal" href="../files/linked_libraries/index.html"><span class="doc">linked</span></a> into another blend-file.</p>
-<p class="last">When this option is enabled, linked versions of the object will reference the same disk cache.
+<p>When this option is enabled, linked versions of the object will reference the same disk cache.
 Otherwise linked versions of the object will use independent caches.</p>
 </dd>
-<dt>Nén -- Compression</dt>
-<dd><p class="first">The compression level for cache files. Some physics caches can be very large (such as smoke).
+<dt>Nén -- Compression</dt><dd><p>The compression level for cache files. Some physics caches can be very large (such as smoke).
 Blender can compress these caches in order to save space.</p>
-<dl class="last docutils">
-<dt>Không Có -- None</dt>
-<dd>Do not compress the cache.</dd>
-<dt>Nguồn Sáng -- Light</dt>
-<dd>Compression will optimize the speed of compressing/decompressing operations over file size.</dd>
-<dt>Nặng -- Heavy</dt>
-<dd>Compression will result in smaller cache files more than <em>Light</em>,
-however, requires more CPU time to compress/decompress.</dd>
-</dl>
+<dl class="simple">
+<dt>Không Có -- None</dt><dd><p>Do not compress the cache.</p>
+</dd>
+<dt>Nguồn Sáng -- Light</dt><dd><p>Compression will optimize the speed of compressing/decompressing operations over file size.</p>
+</dd>
+<dt>Nặng -- Heavy</dt><dd><p>Compression will result in smaller cache files more than <em>Light</em>,
+however, requires more CPU time to compress/decompress.</p>
 </dd>
 </dl>
 </dd>
-<dt>Bên Ngoài -- External</dt>
-<dd><p class="first">Allows you to read the cache from a drive using a user-specified file path.</p>
+</dl>
+</dd>
+<dt>Bên Ngoài -- External</dt><dd><p>Allows you to read the cache from a drive using a user-specified file path.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The cache name in <em>Caches List</em> and the <em>Index Number</em>
+<p class="admonition-title">Ghi chú</p>
+<p>The cache name in <em>Caches List</em> and the <em>Index Number</em>
 has to exactly match the external cache files name in order to work.
 The cache files name format is <code class="docutils literal notranslate"><span class="pre">name_frame_index.bphys</span></code>.</p>
 </div>
-<dl class="last docutils">
-<dt>-- Index Number</dt>
-<dd>The index number of cache files. (The last two digits of the files name.)</dd>
-<dt>Tập Tin -- File Path</dt>
-<dd>Select the directory path to the cache files.</dd>
+<dl class="simple">
+<dt>-- Index Number</dt><dd><p>The index number of cache files. (The last two digits of the files name.)</p>
+</dd>
+<dt>Tập Tin -- File Path</dt><dd><p>Select the directory path to the cache files.</p>
+</dd>
 </dl>
 </dd>
-<dt>Bắt Đầu -- Start</dt>
-<dd>Frame on which to start the simulation.</dd>
-<dt>Kết Thúc -- End</dt>
-<dd><p class="first">Frame on which to stop the simulation.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The simulation is only calculated for positive frames
+<dt>Bắt Đầu -- Start</dt><dd><p>Frame on which to start the simulation.</p>
+</dd>
+<dt>Kết Thúc -- End</dt><dd><p>Frame on which to stop the simulation.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The simulation is only calculated for positive frames
 in between the <em>Start</em> and <em>End</em> frames of the <em>Cache</em> panel, whether you bake or not.
 So if you want a simulation that is longer than the default frame range you have to change the <em>End</em> frame.</p>
 </div>
 </dd>
-<dt>Bước Bộ Nhớ Đệm -- Cache Step</dt>
-<dd><p class="first">Interval for storing simulation data.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Some physics systems (such as particles)
+<dt>Bước Bộ Nhớ Đệm -- Cache Step</dt><dd><p>Interval for storing simulation data.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Some physics systems (such as particles)
 allow for positions to be stored only on every nth frame,
 letting the positions for in-between frames be interpolated.
 Using a cache step greater than one will result in a smaller cache,
@@ -308,40 +318,37 @@ but the result may differ from the original simulation.</p>
 </div>
 <div class="section" id="baking">
 <span id="physics-bake"></span><h2>Nướng -- Baking<a class="headerlink" href="#baking" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Nướng -- Bake</dt>
-<dd>Start baking.
+<dl class="simple">
+<dt>Nướng -- Bake</dt><dd><p>Start baking.
 Blender will become unresponsive during most baking operations.
 The cursor will display as a number representing the progress of the baking.
-You need to be in Object Mode to bake.</dd>
+You need to be in Object Mode to bake.</p>
+</dd>
 </dl>
-<dl class="docutils" id="free-physics-bake">
-<dt>Phóng Thích Nướng -- Free Bake</dt>
-<dd>Mark the baked cache as temporary. The data will still exist,
+<dl class="simple" id="free-physics-bake">
+<dt>Phóng Thích Nướng -- Free Bake</dt><dd><p>Mark the baked cache as temporary. The data will still exist,
 but will be removed with the next object modification and frame change.
-This button is only available when the physics system has been baked.</dd>
+This button is only available when the physics system has been baked.</p>
+</dd>
 </dl>
-<dl class="docutils" id="calc-physics-bake-to-frame">
-<dt>Tính đến Khung Hình -- Calculate To Frame</dt>
-<dd>Bake only up to the current frame. Limited by <em>End</em> frame set in the cache settings.</dd>
-<dt>Bộ Nhớ Đệm Hiện Tại thành Nướng -- Current Cache to Bake</dt>
-<dd>Store any temporarily cached simulation data as a bake.
+<dl id="calc-physics-bake-to-frame">
+<dt>Tính đến Khung Hình -- Calculate To Frame</dt><dd><p>Bake only up to the current frame. Limited by <em>End</em> frame set in the cache settings.</p>
+</dd>
+<dt>Bộ Nhớ Đệm Hiện Tại thành Nướng -- Current Cache to Bake</dt><dd><p>Store any temporarily cached simulation data as a bake.
 Note that playing the animation will try to simulate any visible physics simulations.
 Depending on the physics type, this data may be temporarily cached.
 Normally such temporary caches are cleared when an object or setting is
-modified, but converting it to a bake will &quot;save&quot; it.</dd>
-<dt>Nướng Tất Cả các Động Năng -- Bake All Dynamics</dt>
-<dd><p class="first">Bake all physics systems in the scene, even those of different types.
+modified, but converting it to a bake will &quot;save&quot; it.</p>
+</dd>
+<dt>Nướng Tất Cả các Động Năng -- Bake All Dynamics</dt><dd><p>Bake all physics systems in the scene, even those of different types.
 Useful for baking complex setups involving interactions between different physics types.</p>
-<p class="last">See <a class="reference internal" href="#physics-bake"><span class="std std-ref">Bake</span></a>.</p>
+<p>See <a class="reference internal" href="#physics-bake"><span class="std std-ref">Bake</span></a>.</p>
 </dd>
-<dt>Phóng Thích Tất Cả các Nướng -- Free All Bakes</dt>
-<dd><p class="first">Free bakes of all physics systems in the scene, even those of different types.</p>
-<p class="last">See <a class="reference internal" href="#free-physics-bake"><span class="std std-ref">Free Bake</span></a>.</p>
+<dt>Phóng Thích Tất Cả các Nướng -- Free All Bakes</dt><dd><p>Free bakes of all physics systems in the scene, even those of different types.</p>
+<p>See <a class="reference internal" href="#free-physics-bake"><span class="std std-ref">Free Bake</span></a>.</p>
 </dd>
-<dt>Cập Nhật Tất Cả vào Khung Hình -- Update All To Frame</dt>
-<dd><p class="first">Bake all physics systems in the scene to the current frame.</p>
-<p class="last">See <a class="reference internal" href="#calc-physics-bake-to-frame"><span class="std std-ref">Calculate To Frame</span></a>.</p>
+<dt>Cập Nhật Tất Cả vào Khung Hình -- Update All To Frame</dt><dd><p>Bake all physics systems in the scene to the current frame.</p>
+<p>See <a class="reference internal" href="#calc-physics-bake-to-frame"><span class="std std-ref">Calculate To Frame</span></a>.</p>
 </dd>
 </dl>
 </div>

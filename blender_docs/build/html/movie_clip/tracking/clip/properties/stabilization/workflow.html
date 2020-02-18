@@ -230,20 +230,20 @@ without motion blur, perfect stabilization is easy to achieve. This might be the
 but wind or vibrations on the floor (e.g. on a stage) caused some minor shakes.
 Shoulder camera shots done by an experienced operator also frequently fall into this category.</p>
 <ul class="simple">
-<li>Use as few points as possible. Start with a single point right on the main subject.</li>
-<li>Track this single point as accurate as possible. Beware of movements and shape changes of the tracked feature.
+<li><p>Use as few points as possible. Start with a single point right on the main subject.</p></li>
+<li><p>Track this single point as accurate as possible. Beware of movements and shape changes of the tracked feature.
 Proceed in small increments (e.g. 50 frames), zoom in and readjust the target point manually when it drifts away.
 Another option is to use a larger target area for tracking; since we're tracking only a single point,
-the slower tracking speed might be acceptable.</li>
-<li>After enabling the basic (location) stabilization, consider if you really need rotation stabilization.
+the slower tracking speed might be acceptable.</p></li>
+<li><p>After enabling the basic (location) stabilization, consider if you really need rotation stabilization.
 Often, some minor, slow swinging movements are not really noticeable and do not warrant the additional working time
-and quality loss caused by rotation and scale stabilization.</li>
-<li>For rotation, start with one extra point, well spaced but preferably still attached to the main subject.</li>
-<li>Consider to fix some slow residual motion by manually animating the &quot;<em>Expected</em> *&quot; parameters,
-before you even think of adding more tracking markers. Because doing so is often not worth the effort.</li>
-<li>If you need to add more points, the most important goal is to achieve <em>symmetry.</em>
+and quality loss caused by rotation and scale stabilization.</p></li>
+<li><p>For rotation, start with one extra point, well spaced but preferably still attached to the main subject.</p></li>
+<li><p>Consider to fix some slow residual motion by manually animating the &quot;<em>Expected</em> *&quot; parameters,
+before you even think of adding more tracking markers. Because doing so is often not worth the effort.</p></li>
+<li><p>If you need to add more points, the most important goal is to achieve <em>symmetry.</em>
 Place location tracking points symmetrically above and below the horizon.
-Place rotation tracking points into diagonally opposed direction, always centered around the main focal area.</li>
+Place rotation tracking points into diagonally opposed direction, always centered around the main focal area.</p></li>
 </ul>
 </div>
 <div class="section" id="avoid-problematic-footage">
@@ -254,28 +254,28 @@ Especially if you do succeed with basic stabilization, such image flaws become y
 When on set or on location, it might be tempting to &quot;fix matters in postpro&quot;.
 Resist that deception, it rarely works out well.</p>
 <ul class="simple">
-<li>Prefer a short exposure time to avoid motion blur.
+<li><p>Prefer a short exposure time to avoid motion blur.
 While motion blur is good to render filmed movements more smooth and natural,
 it seriously impedes the ability to track features precisely.
-As a guideline, try to get at least to 1/250 s.</li>
-<li>Prefer higher frame rates. The more <em>temporal resolution</em> the stabilizer has to work on, the better the results.
+As a guideline, try to get at least to 1/250 s.</p></li>
+<li><p>Prefer higher frame rates. The more <em>temporal resolution</em> the stabilizer has to work on, the better the results.
 If you have the option to choose between progressive and interlaced modes, by all means use interlaced
 and deinterlace the footage to the <em>doubled frame rate</em>. This can be done with
-the <a class="reference external" href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1">yadif</a> filter of FFmpeg: use the mode 1 (<code class="docutils literal notranslate"><span class="pre">send_field</span></code>).</li>
-<li>Beware of the <a class="reference internal" href="../../../../../glossary/index.html#term-rolling-shutter"><span class="xref std std-term">Rolling Shutter</span></a> effect. Avoid fast lateral movements.
+the <a class="reference external" href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1">yadif</a> filter of FFmpeg: use the mode 1 (<code class="docutils literal notranslate"><span class="pre">send_field</span></code>).</p></li>
+<li><p>Beware of the <a class="reference internal" href="../../../../../glossary/index.html#term-rolling-shutter"><span class="xref std std-term">Rolling Shutter</span></a> effect. Avoid fast lateral movements.
 If you can, prefer a camera which produces less rolling shutter.
 Also, using a higher frame rate reduces the amount of rolling shutter; another reason to prefer
-interlaced over progressive for the purpose at hand.</li>
-<li>Switch off autofocus.
+interlaced over progressive for the purpose at hand.</p></li>
+<li><p>Switch off autofocus.
 Better plan your movement beforehand, set a fixed focus and rely on depth of field through using a small aperture.
 Pumping movements might not be so noticeable to the human observer, but the feature tracking tends to slide away
-on defocused image elements; fixing this manually after the fact can cause a huge waste of time.</li>
-<li>Increase the lighting level, at least use a higher sensitivity.
+on defocused image elements; fixing this manually after the fact can cause a huge waste of time.</p></li>
+<li><p>Increase the lighting level, at least use a higher sensitivity.
 This helps to set a fast shutter speed plus a small aperture.
 Better lighting and good exposure also help to reduce the impact of compression artifacts.
 If you can, also select a codec with less data reduction, better color space, etc.
 Inevitably, we're loosing some quality through the interpolation necessary for stabilization.
-Plus we're loosing some quality due to color space conversion.</li>
+Plus we're loosing some quality due to color space conversion.</p></li>
 </ul>
 </div>
 <div class="section" id="elaborate-movements">
@@ -288,20 +288,15 @@ it is easy to get into a situation where additional manipulations actually decre
 while it might be hard to spot and locate the root cause of problems.
 Recommendation is to proceed systematically, starting from the general outline down to tweaking of specific aspects.</p>
 <ol class="arabic">
-<li><p class="first">Understand the nature of the movements in the shot, both the intended and the accidental.</p>
-</li>
-<li><p class="first">Track some relevant features for location.</p>
-</li>
-<li><p class="first">Establish the basic location stabilization.
+<li><p>Understand the nature of the movements in the shot, both the intended and the accidental.</p></li>
+<li><p>Track some relevant features for location.</p></li>
+<li><p>Establish the basic location stabilization.
 This includes the decision, which feature to use for what segment of the shot.
 Work with the track weights to get an overall consistent movement of the weight center,
-in accordance with the inherent focus of the shot.</p>
-</li>
-<li><p class="first">Define the panning movements of the virtual camera (through animation of the <em>Expected Position</em> parameter).</p>
-</li>
-<li><p class="first">Add tracking for rotation and zoom stabilization.</p>
-</li>
-<li><p class="first">Fine-tuning pass:</p>
+in accordance with the inherent focus of the shot.</p></li>
+<li><p>Define the panning movements of the virtual camera (through animation of the <em>Expected Position</em> parameter).</p></li>
+<li><p>Add tracking for rotation and zoom stabilization.</p></li>
+<li><p>Fine-tuning pass:</p>
 <p>Break down the whole duration of the shot into logical segments to define the intended camera movement.
 Then refine those segments incrementally step-by-step, until the overall result looks satisfactory...</p>
 </li>
@@ -329,7 +324,7 @@ In such a situation, we need <em>another tracked feature</em> to take on its rol
 to get a smooth transition without visible jump.</p>
 <div class="figure align-right" id="id1">
 <a class="reference internal image-reference" href="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_workflow_irregular-tracks.png"><img alt="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_workflow_irregular-tracks.png" src="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_workflow_irregular-tracks.png" style="width: 250px;" /></a>
-<p class="caption"><span class="caption-text">Irregular Tracks.</span></p>
+<p class="caption"><span class="caption-text">Irregular Tracks.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The stabilizer is able to deal with gaps and partial coverage within the given tracks.
 However, the basic assumption is that each track covers a single,

@@ -9,7 +9,7 @@ Interpolate Panel
 When you are animating simple shapes you can use the interpolate tools
 to automatically add new breakdown keyframes.
 
-.. figure:: /images/grease-pencil_animation_interpolation-panel.png
+.. figure:: /images/grease-pencil_animation_interpolation_panel.png
 
    Interpolate panel.
 

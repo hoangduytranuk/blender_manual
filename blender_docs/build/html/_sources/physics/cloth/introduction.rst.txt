@@ -5,9 +5,9 @@ Introduction
 
 Cloth simulation is one of the hardest aspects of computer graphics,
 it is a deceptively simple real-world item that is taken for granted,
-however, it actually has very complex internal and environmental interactions.
+but it actually has very complex internal and environmental interactions.
 Cloth is commonly modeled as 2D mesh to simulate real world objects such as fabrics, flags, banners.
-However, cloth can also be used to model 3D objects such as teddy bears, pillows, balloons, or balls.
+And yet cloth can also be used to model 3D objects such as teddy bears, pillows, balloons, or balls.
 
 Cloth interacts with and is affected by other moving objects,
 the wind and other forces, as well as a general aerodynamic model,
@@ -28,7 +28,7 @@ all of which is under your control.
           Cloth example.
 
 Once Cloth physics have been added to a mesh, a Cloth :doc:`modifier </modeling/modifiers/index>`
-will be added to the object's modifier stack automatically. As a modifier then,
+will be added to the object's modifier stack. As a modifier then,
 it can interact with other modifiers, such as *Armature* and *Smooth*. In these cases,
 the ultimate shape of the mesh is computed in accordance with the order of the modifier stack.
 For example, you should smooth the cloth *after* the modifier computes the shape of the cloth.
@@ -48,7 +48,7 @@ thus you can continue working while the simulation is computed. However, it is C
 and depending on the power of your PC and the complexity of the simulation,
 the amount of CPU needed to compute the mesh varies, as does the lag you might notice.
 
-.. note:: Do not jump ahead
+.. note:: Do Not Jump Ahead
 
    If you set up a cloth simulation but Blender has not computed the shapes for the duration of the simulation,
    and if you jump ahead a lot of frames forward in your animation,
@@ -67,14 +67,14 @@ A general process for working with cloth is to:
    Ensure the Deflection modifier is last on the modifier stack, after any other mesh deforming modifiers.
 #. Light the cloth and assign materials and textures, UV unwrapping if desired.
 #. If desired, give the object particles, such as steam coming off the surface.
-#. Run the simulation and adjust Options to obtain satisfactory results.
-   The Timeline editors VCR controls are great for this step.
+#. Run the simulation and adjust settings to obtain satisfactory results.
+   The Timeline editors playback controls are great for this step.
 #. Optionally age the mesh to some point in the simulation to obtain a new default starting shape.
 #. Make minor edits to the mesh on a frame-by-frame basis to correct minor tears.
 
 .. tip::
 
-   To avoid unstable simulation, ensure that the cloth object does not penetrate any of the deflection objects.
+   To avoid unstable simulation, make sure that the cloth object does not penetrate any of the deflection objects.
 
 
 .. _physics-cloth-introduction-springs:
@@ -83,7 +83,7 @@ Springs
 =======
 
 Internally, cloth physics is simulated with virtual springs that connect the vertices of a mesh.
-There are four types of springs that control how cloth bends.
+There are four types of springs that control how the cloth bends.
 These four types are defined below and illustrated in the following image:
 
 .. figure:: /images/physics_cloth_introduction_springs.png
@@ -98,12 +98,11 @@ Tension Springs
 Compression Springs
    Control the amount of force required to collapse or compress the cloth.
 Shear Springs
-   Similar to compression springs but control angular deformation.
+   Like compression springs but it controls the angular deformation.
 Angular Bending Springs
    Control how resilient the cloth is to folding or crumpling.
 
-All four of these spring types can be controlled independently in the
-:doc:`/physics/cloth/settings/physical_properties` panel.
-While these settings control surface springs, optionally,
-internal springs can be used for 3D meshes and behave similarly to
-:doc:`Soft Bodies </physics/soft_body/index>`
+All four of these spring types can be controlled independently in
+the :doc:`/physics/cloth/settings/physical_properties` panel. While these settings
+control surface springs, optionally, internal springs can be used for 3D meshes
+and behave similarly to :doc:`Soft Bodies </physics/soft_body/index>`.

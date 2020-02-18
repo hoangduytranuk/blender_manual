@@ -171,8 +171,8 @@ Color Depth
 
       Internally Blender's image system supports either:
 
-      - 8 bit per channel (4 x 8 bits).
-      - 32 bit float per channel (4 x 32 bits) -- *using 4x as much memory.*
+      - 8 bit per channel (4 × 8 bits).
+      - 32 bit float per channel (4 × 32 bits) -- *using 4 times as much memory.*
 
       Images higher than 8 bits per channel will be converted into a float on loading into Blender.
 Compression

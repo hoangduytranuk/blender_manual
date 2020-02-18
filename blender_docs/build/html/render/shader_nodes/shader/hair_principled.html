@@ -252,37 +252,36 @@
 <p><span class="guilabel">Cycles Only</span></p>
 <div class="figure align-right" id="id5" style="width: 30%">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_node-melaninconcentration.png" src="../../../_images/render_shader-nodes_shader_hair-principled_node-melaninconcentration.png" />
-<p class="caption"><span class="caption-text">Principled Hair BSDF under Melanin concentration.</span></p>
+<p class="caption"><span class="caption-text">Principled Hair BSDF under Melanin concentration.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Principled Hair</em> <abbr title="Bidirectional scattering distribution function">BSDF</abbr> is a physically-based,
 easy-to-use shader for rendering hair and fur.</p>
 <div class="section" id="coloring-hair">
 <h2>-- Coloring Hair<a class="headerlink" href="#coloring-hair" title="Permalink to this headline">¶</a></h2>
 <p>The shader provides three different ways, or <em>parametrizations</em>, to color the hair strands.</p>
-<dl class="docutils">
-<dt>-- Direct coloring</dt>
-<dd>Choose the desired RGB color and the shader will approximate
-the necessary <em>absorption coefficient</em> (below).</dd>
-<dt>-- Melanin concentration</dt>
-<dd><p class="first">This mode defines the color as the quantity and
+<dl>
+<dt>-- Direct coloring</dt><dd><p>Choose the desired RGB color and the shader will approximate
+the necessary <em>absorption coefficient</em> (below).</p>
+</dd>
+<dt>-- Melanin concentration</dt><dd><p>This mode defines the color as the quantity and
 ratio of the pigments which are commonly found in hair and fur,
 <em>eumelanin</em> (prevalent in brown-black hair) and <em>pheomelanin</em> (red hair).
 The quantity is specified in the <em>Melanin</em> input, and the ratio between them in <em>Melanin Redness</em>.
 Increasing concentrations darken the hair (the following are with <em>Melanin Redness</em> <span class="math notranslate nohighlight">\(1\)</span>):</p>
 <ul class="simple">
-<li>White (Melanin <span class="math notranslate nohighlight">\(0\)</span>),</li>
-<li>Blonde (Melanin <span class="math notranslate nohighlight">\(0.25\)</span>)</li>
-<li>Reddish (Melanin <span class="math notranslate nohighlight">\(0.5\)</span>)</li>
-<li>Brown (Melanin <span class="math notranslate nohighlight">\(0.75\)</span>)</li>
-<li>Black (Melanin <span class="math notranslate nohighlight">\(1\)</span>)</li>
+<li><p>White (Melanin <span class="math notranslate nohighlight">\(0\)</span>),</p></li>
+<li><p>Blonde (Melanin <span class="math notranslate nohighlight">\(0.25\)</span>)</p></li>
+<li><p>Reddish (Melanin <span class="math notranslate nohighlight">\(0.5\)</span>)</p></li>
+<li><p>Brown (Melanin <span class="math notranslate nohighlight">\(0.75\)</span>)</p></li>
+<li><p>Black (Melanin <span class="math notranslate nohighlight">\(1\)</span>)</p></li>
 </ul>
-<p class="last">Additionally, the <em>Tint</em> inputs allows to dye the hair with the desired color.</p>
+<p>Additionally, the <em>Tint</em> inputs allows to dye the hair with the desired color.</p>
 </dd>
-<dt>-- Absorption coefficient</dt>
-<dd>Specifies the attenuation coefficient <span class="math notranslate nohighlight">\(\sigma_{a}\)</span>, as applied by the
+<dt>-- Absorption coefficient</dt><dd><p>Specifies the attenuation coefficient <span class="math notranslate nohighlight">\(\sigma_{a}\)</span>, as applied by the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law#Expression_with_attenuation_coefficient">Beer-Lambert law</a>.
 This mode is intended mainly for technical users who want to use
-coefficients from the literature without any sort of conversion.</dd>
+coefficients from the literature without any sort of conversion.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="randomizing-properties">
@@ -294,53 +293,50 @@ values to the range <span class="math notranslate nohighlight">\(Color/Roughness
 </div>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Màu Sắc -- Color</dt>
-<dd><p class="first">The RGB color of the strand. Only used in Direct coloring.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
+<dl>
+<dt>Màu Sắc -- Color</dt><dd><p>The RGB color of the strand. Only used in Direct coloring.</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
 <p>The chosen color is converted to an absorption coefficient with
-the following formula (section 4.2 of <a class="reference internal" href="#cbtb16" id="id1">[CBTB16]</a>):</p>
+the following formula (section 4.2 of <a class="reference internal" href="#cbtb16" id="id1"><span>[CBTB16]</span></a>):</p>
 <div class="math notranslate nohighlight">
 \[\sigma_{a} = \frac{\ln(Color)}
 {\left(5.969 - 0.215\beta_{N} + 2.532\beta_{N}^{2} -
 10.73\beta_{N}^{3} + 5.574\beta_{N}^{4} + 0.245\beta_{N}^{5}\right)^{2}}\]</div>
-<p class="last">where <span class="math notranslate nohighlight">\(\beta_{N}\)</span> is the radial roughness of the hair after applying randomization (if specified).</p>
+<p>where <span class="math notranslate nohighlight">\(\beta_{N}\)</span> is the radial roughness of the hair after applying randomization (if specified).</p>
 </div>
 </dd>
 </dl>
 <div class="figure align-center" id="id6">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-color.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-color.jpg" />
-<p class="caption"><span class="caption-text">Coloring hair using the Direct coloring parametrization. (The numbers on top are the RGB values.)</span></p>
+<p class="caption"><span class="caption-text">Coloring hair using the Direct coloring parametrization. (The numbers on top are the RGB values.)</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>-- Melanin</dt>
-<dd><p class="first">Absolute quantity of pigment.
+<dl>
+<dt>-- Melanin</dt><dd><p>Absolute quantity of pigment.
 Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span>.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
 <p>This is a linear mapping to the underlying exponential function:</p>
-<div class="last math notranslate nohighlight">
+<div class="math notranslate nohighlight">
 \[melanin\_qty = -\ln(\max(1.0 - Melanin, 0.0001))\]</div>
 </div>
 </dd>
 </dl>
 <div class="figure align-center" id="id7">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-melanin.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-melanin.jpg" />
-<p class="caption"><span class="caption-text">Melanin.</span></p>
+<p class="caption"><span class="caption-text">Melanin.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>-- Melanin Redness</dt>
-<dd><p class="first">Ratio of pheomelanin to eumelanin.
+<dl>
+<dt>-- Melanin Redness</dt><dd><p>Ratio of pheomelanin to eumelanin.
 Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span>.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
 <p>The ratio formula is: <span class="math notranslate nohighlight">\(eumelanin = Melanin*(1.0-MelaninRedness)\)</span>,
 <span class="math notranslate nohighlight">\(pheomelanin = Melanin*MelaninRedness\)</span>.</p>
 <p>The resulting quantities are converted (after randomization, if specified)
 to absorption concentration via the following formula
-(section 6.1 of <a class="reference internal" href="#efhla11" id="id2">[EFHLA11]</a>, adjusted for the range <span class="math notranslate nohighlight">\([0, 1]\)</span>):</p>
-<div class="last math notranslate nohighlight">
+(section 6.1 of <a class="reference internal" href="#efhla11" id="id2"><span>[EFHLA11]</span></a>, adjusted for the range <span class="math notranslate nohighlight">\([0, 1]\)</span>):</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\sigma_{a} =
 eumelanin * \left[\begin{matrix}   0.506 \\ 0.841 \\ 1.653 \\ \end{matrix}\right] +
 pheomelanin * \left[\begin{matrix} 0.343 \\ 0.733 \\ 1.924 \\ \end{matrix}\right]\end{split}\]</div>
@@ -349,141 +345,133 @@ pheomelanin * \left[\begin{matrix} 0.343 \\ 0.733 \\ 1.924 \\ \end{matrix}\right
 </dl>
 <div class="figure align-center" id="id8">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-melanin-redness.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-melanin-redness.jpg" />
-<p class="caption"><span class="caption-text">Melanin Redness.</span></p>
+<p class="caption"><span class="caption-text">Melanin Redness.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Sắc Thái -- Tint</dt>
-<dd><p class="first">Color used for dyeing the hair after applying the melanin pigment.
+<dl>
+<dt>Sắc Thái -- Tint</dt><dd><p>Color used for dyeing the hair after applying the melanin pigment.
 It is not subject to randomization.
 It can be disabled by setting the color to white.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">This is converted via the Color mapping above and added to
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>This is converted via the Color mapping above and added to
 the absorption coefficient of the melanin concentration.</p>
 </div>
 </dd>
 </dl>
 <div class="figure align-center" id="id9">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-tint.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-tint.jpg" />
-<p class="caption"><span class="caption-text">Tint, using Melanin 0.1 and the corresponding RGB values.</span></p>
+<p class="caption"><span class="caption-text">Tint, using Melanin 0.1 and the corresponding RGB values.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>-- Absorption coefficient</dt>
-<dd>Attenuation coefficient <span class="math notranslate nohighlight">\(\sigma\)</span>.</dd>
-<dt>Độ Ráp -- Roughness</dt>
-<dd>Specify how much the glints are smoothed in the direction of the hair shaft.
+<dl class="simple">
+<dt>-- Absorption coefficient</dt><dd><p>Attenuation coefficient <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+</dd>
+<dt>Độ Ráp -- Roughness</dt><dd><p>Specify how much the glints are smoothed in the direction of the hair shaft.
 Too low values will smoothen the hair to the point of looking almost metallic,
-making glints look like fireflies; while setting it too high will result in a Lambertian look.</dd>
+making glints look like fireflies; while setting it too high will result in a Lambertian look.</p>
+</dd>
 </dl>
 <div class="figure align-center" id="id10">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-roughness.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-roughness.jpg" />
-<p class="caption"><span class="caption-text">Roughness.</span></p>
+<p class="caption"><span class="caption-text">Roughness.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>-- Radial Roughness</dt>
-<dd><p class="first">Specify how much the glints are smoothed in the direction of the hair tangent.
+<dl>
+<dt>-- Radial Roughness</dt><dd><p>Specify how much the glints are smoothed in the direction of the hair tangent.
 Too low values will concentrate the glint;
 while setting it too high will spread the light across the width of the strand.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">Mathematically, this parameter is mapped to the logistic distribution's
-scale factor <span class="math notranslate nohighlight">\(s\)</span> (section 4.1 of <a class="reference internal" href="#cbtb16" id="id3">[CBTB16]</a>).</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>Mathematically, this parameter is mapped to the logistic distribution's
+scale factor <span class="math notranslate nohighlight">\(s\)</span> (section 4.1 of <a class="reference internal" href="#cbtb16" id="id3"><span>[CBTB16]</span></a>).</p>
 </div>
 </dd>
 </dl>
 <div class="figure align-center" id="id11">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-radial-roughness.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-radial-roughness.jpg" />
-<p class="caption"><span class="caption-text">Radial Roughness.</span></p>
+<p class="caption"><span class="caption-text">Radial Roughness.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>-- Coat</dt>
-<dd>Simulate a shiny coat of fur, by reducing the Roughness to the given factor
+<dl class="simple">
+<dt>-- Coat</dt><dd><p>Simulate a shiny coat of fur, by reducing the Roughness to the given factor
 only for the first light bounce (diffuse).
-Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to a reduction of <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span> of the original Roughness.</dd>
+Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to a reduction of <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span> of the original Roughness.</p>
+</dd>
 </dl>
 <div class="figure align-center" id="id12">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-coat.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-coat.jpg" />
-<p class="caption"><span class="caption-text">Coat.</span></p>
+<p class="caption"><span class="caption-text">Coat.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Chỉ Số Khúc Xạ (IOR) -- IOR</dt>
-<dd>Index of refraction (<a class="reference internal" href="../../../glossary/index.html#term-ior"><span class="xref std std-term">IOR</span></a>) defining how much the ray changes direction.
+<dl>
+<dt>Chỉ Số Khúc Xạ (IOR) -- IOR</dt><dd><p>Index of refraction (<a class="reference internal" href="../../../glossary/index.html#term-ior"><span class="xref std std-term">IOR</span></a>) defining how much the ray changes direction.
 At 1.0 rays pass straight through like in a transparent material;
 higher values give more refraction.
-Default value is <span class="math notranslate nohighlight">\(1.55\)</span>.</dd>
-<dt>Dịch Chuyển -- Offset</dt>
-<dd>Tilts the glint of the hair by increasing the angle of the scales of
+Default value is <span class="math notranslate nohighlight">\(1.55\)</span>.</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>Tilts the glint of the hair by increasing the angle of the scales of
 the hair's cuticle with respect to the hair shaft.
-Human hair usually has low values.</dd>
-<dt>-- Random Color</dt>
-<dd><p class="first">For each strand, vary the melanin concentration by <span class="math notranslate nohighlight">\(RandomFactor\)</span>.
+Human hair usually has low values.</p>
+</dd>
+<dt>-- Random Color</dt><dd><p>For each strand, vary the melanin concentration by <span class="math notranslate nohighlight">\(RandomFactor\)</span>.
 Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span> of
 the initial melanin concentration.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">The melanin concentration is multiplied by <span class="math notranslate nohighlight">\(randomFactor\)</span>,
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>The melanin concentration is multiplied by <span class="math notranslate nohighlight">\(randomFactor\)</span>,
 where <span class="math notranslate nohighlight">\(randomFactor = 1.0 + 2.0*(Random - 0.5) * RandomColor\)</span>.</p>
 </div>
 </dd>
 </dl>
 <div class="figure align-center" id="id13">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-random-color.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-random-color.jpg" />
-<p class="caption"><span class="caption-text">Random Color.</span></p>
+<p class="caption"><span class="caption-text">Random Color.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>-- Random Roughness</dt>
-<dd><p class="first">For each strand, vary both Roughness values by <span class="math notranslate nohighlight">\(RandomFactor\)</span>.
+<dl>
+<dt>-- Random Roughness</dt><dd><p>For each strand, vary both Roughness values by <span class="math notranslate nohighlight">\(RandomFactor\)</span>.
 Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span> of
 the initial roughness values.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">The applied formula is the same one as for <em>Random Color</em>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>The applied formula is the same one as for <em>Random Color</em>.</p>
 </div>
 </dd>
 </dl>
 <div class="figure align-center" id="id14">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-random-roughness.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-random-roughness.jpg" />
-<p class="caption"><span class="caption-text">Random Roughness.</span></p>
+<p class="caption"><span class="caption-text">Random Roughness.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Ngẫu Nhiên -- Random</dt>
-<dd>Random number source. If no node is connected here, it is automatically instanced with the value obtained from <span class="menuselection">Thông Tin về Tóc (Hair Info) ‣ Ngẫu Nhiên (Random)</span>.</dd>
+<dl class="simple">
+<dt>Ngẫu Nhiên -- Random</dt><dd><p>Random number source. If no node is connected here, it is automatically instanced with the value obtained from <span class="menuselection">Thông Tin về Tóc (Hair Info) ‣ Ngẫu Nhiên (Random)</span>.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>-- Parametrization</dt>
-<dd>Choose one of the three coloring modes described above.</dd>
+<dl class="simple">
+<dt>-- Parametrization</dt><dd><p>Choose one of the three coloring modes described above.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>BSDF</dt>
-<dd>Đầu ra chuẩn của bộ tô bóng.</dd>
+<dl class="simple">
+<dt>BSDF</dt><dd><p>Đầu ra chuẩn của bộ tô bóng.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="references">
 <h2>-- References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p>This shader is an implementation of the paper by Chiang et al. <a class="reference internal" href="#cbtb16" id="id4">[CBTB16]</a>,
+<p>This shader is an implementation of the paper by Chiang et al. <a class="reference internal" href="#cbtb16" id="id4"><span>[CBTB16]</span></a>,
 which was used in the Disney film, &quot;Zootopia&quot;<sup>®</sup>.</p>
-<table class="docutils citation" frame="void" id="cbtb16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[CBTB16]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>, <a class="fn-backref" href="#id4">3</a>)</em> Chiang, M. J. , Bitterli, B. , Tappan, C. and Burley, B. (2016),
+<dl class="citation">
+<dt class="label" id="cbtb16"><span class="brackets">CBTB16</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>)</span></dt>
+<dd><p>Chiang, M. J. , Bitterli, B. , Tappan, C. and Burley, B. (2016),
 A Practical and Controllable Hair and Fur Model for Production Path Tracing. Computer Graphics Forum, 35: 275-283.
-<a class="reference external" href="https://doi.org/10.1111/cgf.12830">doi:10.1111/cgf.12830</a></td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="efhla11" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[EFHLA11]</a></td><td>d'Eon, E. , Francois, G. , Hill, M. , Letteri, J. and Aubry, J. (2011),
+<a class="reference external" href="https://doi.org/10.1111/cgf.12830">doi:10.1111/cgf.12830</a></p>
+</dd>
+<dt class="label" id="efhla11"><span class="brackets"><a class="fn-backref" href="#id2">EFHLA11</a></span></dt>
+<dd><p>d'Eon, E. , Francois, G. , Hill, M. , Letteri, J. and Aubry, J. (2011),
 An Energy‐Conserving Hair Reflectance Model. Computer Graphics Forum, 30: 1181-1187.
-<a class="reference external" href="https://doi.org/10.1111/j.1467-8659.2011.01976.x">doi:10.1111/j.1467-8659.2011.01976.x</a></td></tr>
-</tbody>
-</table>
+<a class="reference external" href="https://doi.org/10.1111/j.1467-8659.2011.01976.x">doi:10.1111/j.1467-8659.2011.01976.x</a></p>
+</dd>
+</dl>
 </div>
 </div>
 

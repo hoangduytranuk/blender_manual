@@ -235,68 +235,63 @@ but is aimed at playing back external files and is often used for interchange be
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_modify_mesh-cache_panel.png" src="../../../_images/modeling_modifiers_modify_mesh-cache_panel.png" />
-<p class="caption"><span class="caption-text">Mesh Cache Modifier.</span></p>
+<p class="caption"><span class="caption-text">Mesh Cache Modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Định Dạng -- Format</dt>
-<dd>The input file format (currently <code class="docutils literal notranslate"><span class="pre">.mdd</span></code> and <code class="docutils literal notranslate"><span class="pre">.pc2</span></code> are supported).</dd>
-<dt>Tập Tin -- File Path</dt>
-<dd>Path to the cache file.</dd>
+<dl class="simple">
+<dt>Định Dạng -- Format</dt><dd><p>The input file format (currently <code class="docutils literal notranslate"><span class="pre">.mdd</span></code> and <code class="docutils literal notranslate"><span class="pre">.pc2</span></code> are supported).</p>
+</dd>
+<dt>Tập Tin -- File Path</dt><dd><p>Path to the cache file.</p>
+</dd>
 </dl>
 <div class="section" id="evaluation">
 <h3>Ước Tính -- Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Tác Động/Ảnh Hưởng -- Influence</dt>
-<dd>Factor to adjust the influence of the modifier's deformation, useful for blending in/out from the cache data.</dd>
-<dt>Chế Độ Biến Dạng -- Deform Mode</dt>
-<dd><p class="first">This setting defaults to <em>Overwrite</em> which will replace the vertex locations with those in the cache file.
+<dl>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Factor to adjust the influence of the modifier's deformation, useful for blending in/out from the cache data.</p>
+</dd>
+<dt>Chế Độ Biến Dạng -- Deform Mode</dt><dd><p>This setting defaults to <em>Overwrite</em> which will replace the vertex locations with those in the cache file.
 However, you may want to use shape keys, for example, and mix them with the mesh cache.
 In this case you can select the <em>Deform</em> option which integrates deformations with the mesh cache result.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This feature is limited to making smaller, isolated edits and
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>This feature is limited to making smaller, isolated edits and
 will not work for larger changes such as re-posing limbs.</p>
 </div>
 </dd>
-<dt>Nội Suy -- Interpolation</dt>
-<dd><em>None</em>, or <em>Linear</em>, which will blend between frames.
-Use linear when the frames in the cache file do not match up exactly with the frames in the blend-file.</dd>
+<dt>Nội Suy -- Interpolation</dt><dd><p><em>None</em>, or <em>Linear</em>, which will blend between frames.
+Use linear when the frames in the cache file do not match up exactly with the frames in the blend-file.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="time-mapping">
 <h3>-- Time Mapping<a class="headerlink" href="#time-mapping" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Chế Độ Thời Gian -- Time Mode</dt>
-<dd><p class="first">Select how time is calculated.</p>
-<dl class="last docutils">
-<dt>Khung Hình -- Frame</dt>
-<dd>Allows you to control the frames,
-which will ignore timing data in the file but is often useful since it gives simple control.</dd>
-<dt>Thời Gian -- Time</dt>
-<dd>Evaluates time in seconds,
-taking into account timing information from the file (offset and frame-times).</dd>
-<dt>Hệ Số -- Factor</dt>
-<dd>Evaluates the entire animation as a value in the [0, 1] range.</dd>
+<dl>
+<dt>Chế Độ Thời Gian -- Time Mode</dt><dd><p>Select how time is calculated.</p>
+<dl class="simple">
+<dt>Khung Hình -- Frame</dt><dd><p>Allows you to control the frames,
+which will ignore timing data in the file but is often useful since it gives simple control.</p>
+</dd>
+<dt>Thời Gian -- Time</dt><dd><p>Evaluates time in seconds,
+taking into account timing information from the file (offset and frame-times).</p>
+</dd>
+<dt>Hệ Số -- Factor</dt><dd><p>Evaluates the entire animation as a value in the [0, 1] range.</p>
+</dd>
 </dl>
 </dd>
-<dt>Chế Độ Chơi -- Play Mode</dt>
-<dd><p class="first">Select how playback operates.</p>
-<dl class="last docutils">
-<dt>Cảnh -- Scene</dt>
-<dd><p class="first">Use the current frame from the scene to control playback.</p>
-<dl class="last docutils">
-<dt>Khởi Đầu Khung Hình -- Frame Start</dt>
-<dd>Play the cache starting from this frame.</dd>
-<dt>Tỷ Lệ Khung Hình -- Frame Scale</dt>
-<dd>Scale time by this factor (applied after the start value).</dd>
+<dt>Chế Độ Chơi -- Play Mode</dt><dd><p>Select how playback operates.</p>
+<dl>
+<dt>Cảnh -- Scene</dt><dd><p>Use the current frame from the scene to control playback.</p>
+<dl class="simple">
+<dt>Khởi Đầu Khung Hình -- Frame Start</dt><dd><p>Play the cache starting from this frame.</p>
+</dd>
+<dt>Tỷ Lệ Khung Hình -- Frame Scale</dt><dd><p>Scale time by this factor (applied after the start value).</p>
+</dd>
 </dl>
 </dd>
-<dt>Tùy Chỉnh -- Custom</dt>
-<dd><p class="first">Control animation timing manually.</p>
-<dl class="last docutils">
-<dt>-- Evaluation Value</dt>
-<dd>Property used for animation time,
-this gives more control of timing (typically this value will be animated).</dd>
+<dt>Tùy Chỉnh -- Custom</dt><dd><p>Control animation timing manually.</p>
+<dl class="simple">
+<dt>-- Evaluation Value</dt><dd><p>Property used for animation time,
+this gives more control of timing (typically this value will be animated).</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -305,15 +300,15 @@ this gives more control of timing (typically this value will be animated).</dd>
 </div>
 <div class="section" id="axis-mapping">
 <h3>-- Axis Mapping<a class="headerlink" href="#axis-mapping" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>-- Forward/Up Axis</dt>
-<dd>The axis for forward and up used in the source file.</dd>
-<dt>Lật Trục -- Flip Axis</dt>
-<dd>In rare cases you may also need to flip the coordinates on an axis.</dd>
+<dl class="simple">
+<dt>-- Forward/Up Axis</dt><dd><p>The axis for forward and up used in the source file.</p>
+</dd>
+<dt>Lật Trục -- Flip Axis</dt><dd><p>In rare cases you may also need to flip the coordinates on an axis.</p>
+</dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">Both MDD and PC2 depend on the vertex order on the mesh remaining unchanged.
+<p class="admonition-title">Mẹo</p>
+<p>Both MDD and PC2 depend on the vertex order on the mesh remaining unchanged.
 This is a limitation of this method, so take care not to add/remove/reorder vertices once this modifier is used.</p>
 </div>
 </div>

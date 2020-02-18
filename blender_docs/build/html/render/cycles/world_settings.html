@@ -232,15 +232,12 @@
 <div class="section" id="ambient-occlusion">
 <h2>Ambient Occlusion<a class="headerlink" href="#ambient-occlusion" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">World ‣ Ambient Occlusion</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">World ‣ Ambient Occlusion</span></p>
+</dd>
+</dl>
 </div>
 <p>Ambient occlusion is a lighting method based on how much a point on a surface is occluded by
 nearby surfaces. It simulates soft global illumination shadows by faking darkness
@@ -249,13 +246,13 @@ where ambient light is occluded, or blocked.
 This is a trick that is not physically accurate,
 but it is useful to emphasize the shapes of surfaces,
 or as a cheap way to get an effect that looks a bit like indirect lighting.</p>
-<dl class="docutils">
-<dt>Factor</dt>
-<dd>The strength of the ambient occlusion; value 1.0 is like a white world shader.</dd>
-<dt>Distance</dt>
-<dd>Distance from shading point to trace rays.
+<dl class="simple">
+<dt>Factor</dt><dd><p>The strength of the ambient occlusion; value 1.0 is like a white world shader.</p>
+</dd>
+<dt>Distance</dt><dd><p>Distance from shading point to trace rays.
 A shorter distance emphasizes nearby features,
-while longer distances make it also take objects farther away into account.</dd>
+while longer distances make it also take objects farther away into account.</p>
+</dd>
 </dl>
 <p>Lighting from ambient occlusion is only applied to diffuse reflection BSDFs;
 glossy or transmission BSDFs are not affected.
@@ -267,19 +264,16 @@ the <a class="reference internal" href="../shader_nodes/input/ao.html"><span cla
 <div class="section" id="mist-pass">
 <span id="bpy-types-worldmistsettings"></span><span id="render-cycles-integrator-world-mist"></span><h2>Mist Pass<a class="headerlink" href="#mist-pass" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">World ‣ Mist Pass</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">World ‣ Mist Pass</span></p>
+</dd>
+</dl>
 </div>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../_images/render_cycles_world-settings_mist-example1-BI.jpg" src="../../_images/render_cycles_world-settings_mist-example1-BI.jpg" />
-<p class="caption"><span class="caption-text">Mist example (<a class="reference external" href="https://wiki.blender.org/wiki/File:25-Manual-World-Mist-Example1.blend">blend-file</a>).</span></p>
+<p class="caption"><span class="caption-text">Mist example (<a class="reference external" href="https://wiki.blender.org/wiki/File:25-Manual-World-Mist-Example1.blend">blend-file</a>).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Mist can greatly enhance the illusion of depth in your rendering. To create mist,
 Blender makes objects farther away more transparent (decreasing their Alpha value)
@@ -287,33 +281,32 @@ so that they mix more of the background color with the object color. With Mist e
 the further the object is away from the camera the less its alpha value will be.</p>
 <p>Shown when the Mist pass is enabled. Mist values will range from 0.0 - 1.0 and
 are available from the Render Layers node.</p>
-<dl class="docutils">
-<dt>Start</dt>
-<dd>The distance from the camera at which the mist starts to fade in.</dd>
-<dt>Depth</dt>
-<dd>The distance from <em>Start</em> of the mist, that it fades in over.
-Objects further from the camera than <em>Start + Depth</em> are completely hidden by the mist.</dd>
-<dt>Falloff</dt>
-<dd><p class="first">The curve function that controls the rate of change of the mist's strength further and further into the distance.</p>
-<dl class="last docutils">
-<dt>Quadratic</dt>
-<dd>Uses the same calculation as light falloff (<span class="math notranslate nohighlight">\(1\over{x^2}\)</span>) and provides the smoothest
-transition from transparent (0.0) to opaque (1.0).</dd>
-<dt>Linear</dt>
-<dd>Has a steeper start than quadratic (<span class="math notranslate nohighlight">\(1\over{x}\)</span>).</dd>
-<dt>Inverse Quadratic</dt>
-<dd>Has the steepest start (<span class="math notranslate nohighlight">\(1\over{\sqrt{x}}\)</span>) and approaches 1.0 faster than the other two
-functions.</dd>
+<dl>
+<dt>Start</dt><dd><p>The distance from the camera at which the mist starts to fade in.</p>
+</dd>
+<dt>Depth</dt><dd><p>The distance from <em>Start</em> of the mist, that it fades in over.
+Objects further from the camera than <em>Start + Depth</em> are completely hidden by the mist.</p>
+</dd>
+<dt>Falloff</dt><dd><p>The curve function that controls the rate of change of the mist's strength further and further into the distance.</p>
+<dl class="simple">
+<dt>Quadratic</dt><dd><p>Uses the same calculation as light falloff (<span class="math notranslate nohighlight">\(1\over{x^2}\)</span>) and provides the smoothest
+transition from transparent (0.0) to opaque (1.0).</p>
+</dd>
+<dt>Linear</dt><dd><p>Has a steeper start than quadratic (<span class="math notranslate nohighlight">\(1\over{x}\)</span>).</p>
+</dd>
+<dt>Inverse Quadratic</dt><dd><p>Has the steepest start (<span class="math notranslate nohighlight">\(1\over{\sqrt{x}}\)</span>) and approaches 1.0 faster than the other two
+functions.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">A visualization can be activated in the <span class="menuselection">Camera ‣ Display</span> panel.</p>
+<p class="admonition-title">Mẹo</p>
+<p>A visualization can be activated in the <span class="menuselection">Camera ‣ Display</span> panel.</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">Because <em>Mist</em> works by adjusting transparency,
+<p class="admonition-title">Mẹo</p>
+<p>Because <em>Mist</em> works by adjusting transparency,
 this can sometimes cause objects to be partially transparent when they should not be.
 One workaround is to set the Mist settings as desired, but turn Mist off.
 The Mist data is still available for compositing even though it is off.
@@ -326,102 +319,93 @@ This produces the mist effect but since Mist is off the object transparency (or 
 <div class="section" id="settings">
 <span id="render-cycles-integrator-world-settings"></span><h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">World ‣ Settings</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">World ‣ Settings</span></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="surface">
 <h3>Surface<a class="headerlink" href="#surface" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Multiple Importance Sample</dt>
-<dd><p class="first">Enabling this will sample the background texture such that lighter parts are favored,
+<dl>
+<dt>Multiple Importance Sample</dt><dd><p>Enabling this will sample the background texture such that lighter parts are favored,
 creating an importance map. It will producing less noise in the render in trade of artifacts (fireflies).
 It is almost always a good idea to enable this when
 using an image texture to light the scene, otherwise noise can take a very long time to converge.</p>
 <p>Below is a comparison between <em>Multiple Importance Sample</em> off and on.
 Both images are rendered for 25 seconds (Off: 1500 samples, On: 1000 samples).</p>
-<table border="1" class="last docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id2">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
 <img alt="../../_images/render_cycles_world-settings_mis-off.jpg" src="../../_images/render_cycles_world-settings_mis-off.jpg" />
-<p class="caption"><span class="caption-text">Multiple Importance Sample off.</span></p>
+<p class="caption"><span class="caption-text">Multiple Importance Sample off.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id3">
+<td><div class="figure align-default" id="id3">
 <img alt="../../_images/render_cycles_world-settings_mis-on.jpg" src="../../_images/render_cycles_world-settings_mis-on.jpg" />
-<p class="caption"><span class="caption-text">Multiple Importance Sample on.</span></p>
+<p class="caption"><span class="caption-text">Multiple Importance Sample on.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </dd>
-<dt>Map Resolution</dt>
-<dd>Sets the resolution of the importance map.
+<dt>Map Resolution</dt><dd><p>Sets the resolution of the importance map.
 A higher resolution will better detect small features in the map and give more accurate sampling
 but conversely will take up more memory and render slightly slower.
-Higher values also may produce less noise when using high-res images.</dd>
-<dt>Max Bounces</dt>
-<dd>Maximal number of bounces the background light will contribute to the render.</dd>
+Higher values also may produce less noise when using high-res images.</p>
+</dd>
+<dt>Max Bounces</dt><dd><p>Maximal number of bounces the background light will contribute to the render.</p>
+</dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">See <a class="reference internal" href="optimizations/reducing_noise.html"><span class="doc">Reducing Noise</span></a>
+<p class="admonition-title">Xem thêm</p>
+<p>See <a class="reference internal" href="optimizations/reducing_noise.html"><span class="doc">Reducing Noise</span></a>
 for more information on how to reduce noise.</p>
 </div>
 </div>
 <div class="section" id="volume">
 <h3>Volume<a class="headerlink" href="#volume" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Sampling Method</dt>
-<dd><dl class="first last docutils">
-<dt>Distance</dt>
-<dd>If you have got a pretty dense volume that is lit from far away
-then <em>Distance</em> sampling is usually more efficient.</dd>
-<dt>Equiangular</dt>
-<dd>If you have got a light inside or near the volume then <em>equiangular</em> sampling is better.</dd>
-<dt>Multiple Importance</dt>
-<dd>If you have a combination of both, then the multiple importance sampling will be better.</dd>
+<dl>
+<dt>Sampling Method</dt><dd><dl class="simple">
+<dt>Distance</dt><dd><p>If you have got a pretty dense volume that is lit from far away
+then <em>Distance</em> sampling is usually more efficient.</p>
+</dd>
+<dt>Equiangular</dt><dd><p>If you have got a light inside or near the volume then <em>equiangular</em> sampling is better.</p>
+</dd>
+<dt>Multiple Importance</dt><dd><p>If you have a combination of both, then the multiple importance sampling will be better.</p>
+</dd>
 </dl>
 </dd>
-<dt>Interpolation</dt>
-<dd><p class="first">Interpolation method to use for the volume.</p>
-<dl class="last docutils">
-<dt>Linear</dt>
-<dd>Good smoothness and speed.</dd>
-<dt>Cubic</dt>
-<dd>Smoothed high-quality interpolation, but slower.</dd>
+<dt>Interpolation</dt><dd><p>Interpolation method to use for the volume.</p>
+<dl class="simple">
+<dt>Linear</dt><dd><p>Good smoothness and speed.</p>
+</dd>
+<dt>Cubic</dt><dd><p>Smoothed high-quality interpolation, but slower.</p>
+</dd>
 </dl>
 </dd>
-<dt>Homogeneous Volume</dt>
-<dd>Assume volume has the same density everywhere (not using any textures), for faster rendering.
+<dt>Homogeneous Volume</dt><dd><p>Assume volume has the same density everywhere (not using any textures), for faster rendering.
 For example absorption in a glass object would typically not have any textures,
-and so the renderer can be set to avoid taking small steps to sample the volume shader.</dd>
+and so the renderer can be set to avoid taking small steps to sample the volume shader.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="ray-visibility">
 <h2>Ray Visibility<a class="headerlink" href="#ray-visibility" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">World ‣ Ray Visibility</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">World ‣ Ray Visibility</span></p>
+</dd>
+</dl>
 </div>
 <p>As with other objects,
 <em>Ray Visibility</em> allows you to control which other shaders can &quot;see&quot; the environment.</p>
@@ -434,9 +418,9 @@ and the second the directly visible color. This is useful when using a high-res 
 the background and a low-res image for the actual lighting.</p>
 <p>Similarly, adding the <em>Is Camera</em> and <em>Is Glossy</em> rays will mean that the high-res image
 will also be visible in reflections.</p>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="../../_images/render_cycles_world-settings_tricks.png" src="../../_images/render_cycles_world-settings_tricks.png" />
-<p class="caption"><span class="caption-text">Nodes for the trick above.</span></p>
+<p class="caption"><span class="caption-text">Nodes for the trick above.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

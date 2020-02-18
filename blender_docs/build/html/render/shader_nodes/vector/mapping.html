@@ -236,85 +236,82 @@
   <div class="section" id="mapping-node">
 <span id="bpy-types-shadernodemapping"></span><h1>Nút Ánh Xạ -- Mapping Node<a class="headerlink" href="#mapping-node" title="Permalink to this headline">¶</a></h1>
 <p>The <em>Mapping</em> node transforms the input vector by applying translation, rotation, and scaling.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/render_shader-nodes_vector_mapping_node.png" src="../../../_images/render_shader-nodes_vector_mapping_node.png" />
-<p class="caption"><span class="caption-text">Mapping node.</span></p>
+<p class="caption"><span class="caption-text">Mapping node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <p>The inputs of the node are dynamic. In particular, the <em>Location</em> input is only available in
 the <em>Texture</em> and <em>Point</em> vector types.</p>
-<dl class="docutils">
-<dt>Vectơ -- Vector</dt>
-<dd>The vector to be transformed.</dd>
-<dt>Vị Trí -- Location</dt>
-<dd>The amount of translation along each axis.</dd>
-<dt>Xoay Chiều -- Rotation</dt>
-<dd>The amount of rotation along each axis. XYZ order.</dd>
-<dt>Tỷ Lệ -- Scale</dt>
-<dd>The amount of scaling along each axis.</dd>
+<dl class="simple">
+<dt>Vectơ -- Vector</dt><dd><p>The vector to be transformed.</p>
+</dd>
+<dt>Vị Trí -- Location</dt><dd><p>The amount of translation along each axis.</p>
+</dd>
+<dt>Xoay Chiều -- Rotation</dt><dd><p>The amount of rotation along each axis. XYZ order.</p>
+</dd>
+<dt>Tỷ Lệ -- Scale</dt><dd><p>The amount of scaling along each axis.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>-- Vector type</dt>
-<dd><p class="first">The node applies the transformation differently depending on the semantic type of the input vector.</p>
-<dl class="last docutils">
-<dt>Điểm -- Point</dt>
-<dd><p class="first">For this vector type, the node performs a straightforward transformation.</p>
+<dl>
+<dt>-- Vector type</dt><dd><p>The node applies the transformation differently depending on the semantic type of the input vector.</p>
+<dl>
+<dt>Điểm -- Point</dt><dd><p>For this vector type, the node performs a straightforward transformation.</p>
 <p>Transforming a texture coordinates is analogous to transforming a UV map.
 For instance, translating the texture coordinates along the <strong>positive</strong> X axis would result
 in the evaluated texture to move in the <strong>negative</strong> X axis, much like if one translated a UV map.
 Similarly, scaling the texture coordinates <strong>up</strong> would result in the evaluated texture to scale <strong>down</strong>.
 So transforming the texture coordinates would appear to have the opposite effect on the evaluated texture.</p>
 <p>The order of transformation is: Scale --&gt; Rotate --&gt; Translate, which means:</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>Translation moves the input along the local rotation axis.</li>
-<li>Rotation rotates the input around the origin of the space.</li>
-<li>Scaling scales the input along the global axis.</li>
+<li><p>Translation moves the input along the local rotation axis.</p></li>
+<li><p>Rotation rotates the input around the origin of the space.</p></li>
+<li><p>Scaling scales the input along the global axis.</p></li>
 </ul>
 </div></blockquote>
 </dd>
-<dt>Chất Liệu -- Texture</dt>
-<dd><p class="first">For this vector type, the node performs an inverse transformation.</p>
+<dt>Chất Liệu -- Texture</dt><dd><p>For this vector type, the node performs an inverse transformation.</p>
 <p>Inverse transforming a texture coordinates would, as opposed to the <em>Point</em> type,
 transform the evaluated texture itself. For instance, translating the texture coordinates along
 the positive X axis would result in the evaluated texture to move in the positive X axis,
 as one would expected. Similarly, scaling the texture coordinates up would result in
 the evaluated texture to scale up, as one would expect.</p>
 <p>The order of transformation is: Translate --&gt; Rotate --&gt; Scale, which means:</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>Translation moves the input along the global axis.</li>
-<li>Rotation rotates the input around the translation vector.</li>
-<li>Scaling scales the input along the local rotation axis.</li>
+<li><p>Translation moves the input along the global axis.</p></li>
+<li><p>Rotation rotates the input around the translation vector.</p></li>
+<li><p>Scaling scales the input along the local rotation axis.</p></li>
 </ul>
 </div></blockquote>
 </dd>
-<dt>Vectơ -- Vector</dt>
-<dd>For this vector type, a <em>Point</em> transformation is performed, but with zero translation.</dd>
-<dt>Pháp Tuyến -- Normal</dt>
-<dd>For this vector type, the node performs the inverse transpose of the transformation and normalize the result.
+<dt>Vectơ -- Vector</dt><dd><p>For this vector type, a <em>Point</em> transformation is performed, but with zero translation.</p>
+</dd>
+<dt>Pháp Tuyến -- Normal</dt><dd><p>For this vector type, the node performs the inverse transpose of the transformation and normalize the result.
 Such transformation ensures correct normals after non-uniform scaling.
-So this type should be used when transforming normals.</dd>
+So this type should be used when transforming normals.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Vectơ -- Vector</dt>
-<dd>The input vector after transformation.</dd>
+<dl class="simple">
+<dt>Vectơ -- Vector</dt><dd><p>The input vector after transformation.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/render_shader-nodes_vector_mapping_example.png" src="../../../_images/render_shader-nodes_vector_mapping_example.png" />
-<p class="caption"><span class="caption-text">Mapping node example.</span></p>
+<p class="caption"><span class="caption-text">Mapping node example.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

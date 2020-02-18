@@ -124,7 +124,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../multiframe.html">Multiframe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../properties/index.html">Properties</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Grease Pencil Modifiers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Generate</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="array.html">Array Modifier</a></li>
@@ -139,9 +139,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Grease Pencil Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visual_effects/index.html">Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../animation/index.html">Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#modes">Modes</a></li>
 </ul>
 </li>
@@ -206,7 +206,7 @@
         
           <li><a href="../../index.html">Grease Pencil</a> &raquo;</li>
         
-          <li><a href="../index.html">Grease Pencil Modifiers</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
         
           <li><a href="index.html">Generate</a> &raquo;</li>
         
@@ -233,41 +233,36 @@ The goal of this modifier is reduce points while maintaining the lines shape.</p
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/grease-pencil_modifiers_generate_simplify_panel.png" src="../../../_images/grease-pencil_modifiers_generate_simplify_panel.png" />
-<p class="caption"><span class="caption-text">The Simplify modifier.</span></p>
+<p class="caption"><span class="caption-text">The Simplify modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Mode</dt>
-<dd><p class="first">Determines how to reduce points in the strokes.</p>
-<dl class="last docutils">
-<dt>Fixed</dt>
-<dd><p class="first">Deletes alternated points in the strokes, except the start and end points.</p>
-<dl class="last docutils">
-<dt>Iterations</dt>
-<dd>Number of times to repeat the procedure.</dd>
+<dl>
+<dt>Mode</dt><dd><p>Determines how to reduce points in the strokes.</p>
+<dl>
+<dt>Fixed</dt><dd><p>Deletes alternated points in the strokes, except the start and end points.</p>
+<dl class="simple">
+<dt>Iterations</dt><dd><p>Number of times to repeat the procedure.</p>
+</dd>
 </dl>
 </dd>
-<dt>Adaptive</dt>
-<dd><p class="first">Uses the RDP algorithm (Ramer-Douglas-Peucker algorithm) for points deletion.
+<dt>Adaptive</dt><dd><p>Uses the RDP algorithm (Ramer-Douglas-Peucker algorithm) for points deletion.
 The algorithm try to obtain a similar line shape with fewer points.</p>
-<dl class="last docutils">
-<dt>Factor</dt>
-<dd>Controls the amount of recursively simplifications applied by the algorithm.</dd>
+<dl class="simple">
+<dt>Factor</dt><dd><p>Controls the amount of recursively simplifications applied by the algorithm.</p>
+</dd>
 </dl>
 </dd>
-<dt>Sample</dt>
-<dd><p class="first">Recreates the stroke geometry with a predefined length between points.</p>
-<dl class="last docutils">
-<dt>Length</dt>
-<dd>The distance between points on the recreated stroke.
+<dt>Sample</dt><dd><p>Recreates the stroke geometry with a predefined length between points.</p>
+<dl class="simple">
+<dt>Length</dt><dd><p>The distance between points on the recreated stroke.
 Smaller values will require more points to recreate the stroke,
-while larger values will result in fewer points needed to recreate the curve.</dd>
+while larger values will result in fewer points needed to recreate the curve.</p>
+</dd>
 </dl>
 </dd>
-<dt>Merge</dt>
-<dd><p class="first">Simplifies the strokes by merging points that are closer than a specified distance to each other.</p>
-<dl class="last docutils">
-<dt>Distance</dt>
-<dd>Sets the distance threshold for merging points.</dd>
+<dt>Merge</dt><dd><p>Simplifies the strokes by merging points that are closer than a specified distance to each other.</p>
+<dl class="simple">
+<dt>Distance</dt><dd><p>Sets the distance threshold for merging points.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -280,65 +275,65 @@ while larger values will result in fewer points needed to recreate the curve.</d
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils" id="id2">
+<table class="docutils align-default" id="id2">
 <caption><span class="caption-text">Fixed Mode sample.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id3">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-0.png"><img alt="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-0.png" src="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-0.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Original Model.</span></p>
+<p class="caption"><span class="caption-text">Original Model.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id4">
+<td><div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-1.png"><img alt="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-1.png" src="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-1.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Iteration: 1.</span></p>
+<p class="caption"><span class="caption-text">Iteration: 1.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id5">
+<td><div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-2.png"><img alt="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-2.png" src="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-2.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Iteration: 2.</span></p>
+<p class="caption"><span class="caption-text">Iteration: 2.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id6">
+<td><div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-3.png"><img alt="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-3.png" src="../../../_images/grease-pencil_modifiers_generate_simplify_fixed-iterations-3.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Iteration: 3.</span></p>
+<p class="caption"><span class="caption-text">Iteration: 3.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils" id="id7">
+<table class="docutils align-default" id="id7">
 <caption><span class="caption-text">Adaptive Mode sample.</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id8">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id8">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-0.png"><img alt="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-0.png" src="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-0.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Original Model.</span></p>
+<p class="caption"><span class="caption-text">Original Model.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id9">
+<td><div class="figure align-default" id="id9">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-01.png"><img alt="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-01.png" src="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-01.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Factor: 0.1.</span></p>
+<p class="caption"><span class="caption-text">Factor: 0.1.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id10">
+<td><div class="figure align-default" id="id10">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-02.png"><img alt="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-02.png" src="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-02.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Factor: 0.5.</span></p>
+<p class="caption"><span class="caption-text">Factor: 0.5.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id11">
+<td><div class="figure align-default" id="id11">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-05.png"><img alt="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-05.png" src="../../../_images/grease-pencil_modifiers_generate_simplify_adaptive-factor-05.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Factor: 1.</span></p>
+<p class="caption"><span class="caption-text">Factor: 1.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>

@@ -239,23 +239,21 @@
   <div class="section" id="inset-faces">
 <span id="tool-mesh-inset-faces"></span><h1>Cắt Nội Bề Mặt -- Inset Faces<a class="headerlink" href="#inset-faces" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Toolbar ‣ Tools ‣ Mesh Tools ‣ Add: Inset Faces</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Bề Mặt (Faces) ‣ Cắt Nội Bề Mặt (Inset Faces)</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">I</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Tools ‣ Mesh Tools ‣ Add: Inset Faces</span></p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Khung Lưới (Mesh) ‣ Bề Mặt (Faces) ‣ Cắt Nội Bề Mặt (Inset Faces)</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">I</kbd></p>
+</dd>
+</dl>
 </div>
 <p>This tool takes the currently selected faces and creates an inset of them,
 with adjustable thickness and depth. Think of it as like creating an edge loop,
@@ -263,20 +261,20 @@ but relative to the selected edges, even in complex meshes.</p>
 <p>The tool is modal, such that when you activate it,
 you may adjust the thickness with your mouse position.
 You may also adjust the depth of the inset during the modal operation by holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd>.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id1">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_duplicating_inset_before.png"><img alt="../../../../_images/modeling_meshes_editing_duplicating_inset_before.png" src="../../../../_images/modeling_meshes_editing_duplicating_inset_before.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Selection to inset.</span></p>
+<p class="caption"><span class="caption-text">Selection to inset.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id2">
+<td><div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_duplicating_inset_after.png"><img alt="../../../../_images/modeling_meshes_editing_duplicating_inset_after.png" src="../../../../_images/modeling_meshes_editing_duplicating_inset_after.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Selection with inset.</span></p>
+<p class="caption"><span class="caption-text">Selection with inset.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -286,31 +284,31 @@ You may also adjust the depth of the inset during the modal operation by holding
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id3">
 <img alt="../../../../_images/modeling_meshes_editing_duplicating_inset_options.png" src="../../../../_images/modeling_meshes_editing_duplicating_inset_options.png" />
-<p class="caption"><span class="caption-text">Inset operator options.</span></p>
+<p class="caption"><span class="caption-text">Inset operator options.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Ranh Giới <kbd class="kbd docutils literal notranslate">B</kbd> -- Boundary <kbd class="kbd docutils literal notranslate">B</kbd></dt>
-<dd>Determines whether open edges will be inset or not.</dd>
-<dt>Dịch Chuyển Đều -- Offset Even</dt>
-<dd>Scale the offset to give a more even thickness.</dd>
-<dt>Dịch Chuyển Tương Đối -- Offset Relative</dt>
-<dd>Scale the offset by lengths of surrounding geometry.</dd>
-<dt>Bám theo Cạnh -- Edge Rail</dt>
-<dd>Created vertices slide along the original edges of the inner geometry, instead of the normals.</dd>
-<dt>Độ Dày -- Thickness</dt>
-<dd>Set the size of the offset.</dd>
-<dt>Chiều/Độ Sâu <kbd class="kbd docutils literal notranslate">Ctrl</kbd> -- Depth <kbd class="kbd docutils literal notranslate">Ctrl</kbd></dt>
-<dd>Raise or lower the newly inset faces to add depth.</dd>
-<dt>Cắt Ngoại <kbd class="kbd docutils literal notranslate">O</kbd> -- Outset <kbd class="kbd docutils literal notranslate">O</kbd></dt>
-<dd>Create an outset rather than an inset.
-Causes the geometry to be created surrounding selection (instead of within).</dd>
-<dt>Chọn Ngoài -- Select Outer</dt>
-<dd>Toggle which side of the inset is selected after the operation.</dd>
-<dt>Cá Nhân <kbd class="kbd docutils literal notranslate">I</kbd> -- Individual <kbd class="kbd docutils literal notranslate">I</kbd></dt>
-<dd>By default the Inset tool operates on the region around selected faces,
-but with this option each selected face can be inset on its own.</dd>
-<dt>Nội Suy -- Interpolate</dt>
-<dd>Interpolate mesh data: e.g. UV's, vertex colors, weights, etc.</dd>
+<dl class="simple">
+<dt>Ranh Giới <kbd class="kbd docutils literal notranslate">B</kbd> -- Boundary <kbd class="kbd docutils literal notranslate">B</kbd></dt><dd><p>Determines whether open edges will be inset or not.</p>
+</dd>
+<dt>Dịch Chuyển Đều -- Offset Even</dt><dd><p>Scale the offset to give a more even thickness.</p>
+</dd>
+<dt>Dịch Chuyển Tương Đối -- Offset Relative</dt><dd><p>Scale the offset by lengths of surrounding geometry.</p>
+</dd>
+<dt>Bám theo Cạnh -- Edge Rail</dt><dd><p>Created vertices slide along the original edges of the inner geometry, instead of the normals.</p>
+</dd>
+<dt>Độ Dày -- Thickness</dt><dd><p>Set the size of the offset.</p>
+</dd>
+<dt>Chiều/Độ Sâu <kbd class="kbd docutils literal notranslate">Ctrl</kbd> -- Depth <kbd class="kbd docutils literal notranslate">Ctrl</kbd></dt><dd><p>Raise or lower the newly inset faces to add depth.</p>
+</dd>
+<dt>Cắt Ngoại <kbd class="kbd docutils literal notranslate">O</kbd> -- Outset <kbd class="kbd docutils literal notranslate">O</kbd></dt><dd><p>Create an outset rather than an inset.
+Causes the geometry to be created surrounding selection (instead of within).</p>
+</dd>
+<dt>Chọn Ngoài -- Select Outer</dt><dd><p>Toggle which side of the inset is selected after the operation.</p>
+</dd>
+<dt>Cá Nhân <kbd class="kbd docutils literal notranslate">I</kbd> -- Individual <kbd class="kbd docutils literal notranslate">I</kbd></dt><dd><p>By default the Inset tool operates on the region around selected faces,
+but with this option each selected face can be inset on its own.</p>
+</dd>
+<dt>Nội Suy -- Interpolate</dt><dd><p>Interpolate mesh data: e.g. UV's, vertex colors, weights, etc.</p>
+</dd>
 </dl>
 </div>
 </div>

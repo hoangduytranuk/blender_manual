@@ -16,7 +16,7 @@ as it has a more easily controlled constraining mechanism.
 This constraint shares a close relationship to
 the :doc:`Inverse Kinematics constraint </animation/constraints/tracking/ik_solver>` in some ways.
 
-.. tip:: Billboard tracking
+.. tip:: Billboard Tracking
 
    The term "billboard" has a specific meaning in real-time CG programming (i.e. video games!),
    where it is used for plane objects always facing the camera

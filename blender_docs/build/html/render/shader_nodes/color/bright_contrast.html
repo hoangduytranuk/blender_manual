@@ -236,50 +236,49 @@
 <h1>Nút Độ Sáng/Tương Phản -- Bright/Contrast Node<a class="headerlink" href="#bright-contrast-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeBrightContrast.png" src="../../../_images/compositing_node-types_CompositorNodeBrightContrast.png" />
-<p class="caption"><span class="caption-text">Nút Độ Sáng/Tương Phản.</span></p>
+<p class="caption"><span class="caption-text">Nút Độ Sáng/Tương Phản.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào hình ảnh tiêu chuẩn.</dd>
-<dt>Độ Sáng Tối -- Brightness</dt>
-<dd>An additive-type factor by which to increase the overall brightness
-of the image. Use a negative number to darken an image.</dd>
-<dt>Độ Tương Phản -- Contrast</dt>
-<dd>Một loại hệ số phóng đại dùng để làm cho các điểm ảnh sáng sáng rực hơn, song giữ cho các điểm ảnh đã tối vẫn ở mức độ tối. Giá trị cao sẽ làm cho chi tiết nổi bật lên. Sử dụng số âm hòng để giảm độ tương phản tổng thể trong hình ảnh.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào hình ảnh tiêu chuẩn.</p>
+</dd>
+<dt>Độ Sáng Tối -- Brightness</dt><dd><p>An additive-type factor by which to increase the overall brightness
+of the image. Use a negative number to darken an image.</p>
+</dd>
+<dt>Độ Tương Phản -- Contrast</dt><dd><p>Một loại hệ số phóng đại dùng để làm cho các điểm ảnh sáng sáng rực hơn, song giữ cho các điểm ảnh đã tối vẫn ở mức độ tối. Giá trị cao sẽ làm cho chi tiết nổi bật lên. Sử dụng số âm hòng để giảm độ tương phản tổng thể trong hình ảnh.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Chuyển Đổi Nhân Trước -- Convert Premultiplied</dt>
-<dd><p class="first">Theo mặc định, nó có nghĩa vụ phải hoạt động đối với alpha <em>nhân trước</em> (<em>premultiplied alpha</em>). Nếu hộp kiểm <em>Chuyển Đổi Nhân Trước</em> (<em>Convert Premul</em>) không được kích hoạt, thì đúng nghĩa ra, nó sẽ hoạt động trong alpha <em>thẳng</em> (<em>straight alpha</em>).</p>
-<p class="last">Xin xem thêm về <em>Kênh Alpha</em> -- <a class="reference internal" href="../../../glossary/index.html#term-alpha-channel"><span class="xref std std-term">Alpha Channel</span></a>.</p>
+<dl>
+<dt>Chuyển Đổi Nhân Trước -- Convert Premultiplied</dt><dd><p>Theo mặc định, nó có nghĩa vụ phải hoạt động đối với alpha <em>nhân trước</em> (<em>premultiplied alpha</em>). Nếu hộp kiểm <em>Chuyển Đổi Nhân Trước</em> (<em>Convert Premul</em>) không được kích hoạt, thì đúng nghĩa ra, nó sẽ hoạt động trong alpha <em>thẳng</em> (<em>straight alpha</em>).</p>
+<p>Xin xem thêm về <em>Kênh Alpha</em> -- <a class="reference internal" href="../../../glossary/index.html#term-alpha-channel"><span class="xref std std-term">Alpha Channel</span></a>.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu ra tiêu chuẩn của hình ảnh.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu ra tiêu chuẩn của hình ảnh.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="notes">
 <h2>Ghi Chú -- Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
 <p>Có thể nút này sẽ xuất ra một tập hợp các giá trị có độ lớn vượt quá phạm vi bình thường, tức là các giá trị lớn hơn 1 và nhỏ hơn 0. Nếu bạn sử dụng giá trị đầu ra để trộn với các ảnh khác trong phạm vi bình thường thì bạn nên hạn định các giá trị bằng cách sử dụng nút Ánh Xạ Giá Trị (<em>Map Value</em>) (với Tối Thiểu (Min) và Tối Đa (Max) được bật), hoặc chuyển qua nút Dốc Màu (<em>Color Ramp</em>) (với tất cả các giá trị mặc định thông thường).</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_bright-contrast_clamp-values.png"><img alt="../../../_images/compositing_types_color_bright-contrast_clamp-values.png" src="../../../_images/compositing_types_color_bright-contrast_clamp-values.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Hạn định các giá trị trong phạm vi bình thường.</span></p>
+<p class="caption"><span class="caption-text">Hạn định các giá trị trong phạm vi bình thường.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Một trong các nút này sẽ tỷ lệ hóa các giá trị để chúng trở lại trong phạm vi bình thường. Trong hình ảnh ví dụ, chúng tôi muốn phóng đại lượt giải quyết về độ lóng lánh (<em>specular pass</em>). Luồng dưới cùng cho thấy nếu chúng ta không hạn định các giá trị lại thì điều gì sẽ xảy ra; Lượt giải quyết về độ lóng lánh (<em>specular pass</em>) có giá trị ít hơn 1 trong những vùng tối; khi cộng thêm vào màu xám trung bình, nó làm thành màu đen. Việc truyền hình ảnh đã được làm sáng lên qua một trong hai cái, Ánh Xạ Giá Trị (<em>Map Value</em>) hoặc Dốc Màu (<em>Color Ramp</em>) tạo ra được hiệu ứng mình mong muốn.</p>
 </div>
 <div class="section" id="example">
 <h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_bright-contrast_basic-example.png"><img alt="../../../_images/compositing_types_color_bright-contrast_basic-example.png" src="../../../_images/compositing_types_color_bright-contrast_basic-example.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Một ví dụ cơ bản.</span></p>
+<p class="caption"><span class="caption-text">Một ví dụ cơ bản.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

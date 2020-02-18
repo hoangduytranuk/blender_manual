@@ -39,8 +39,8 @@ or in the direction of known light sources.
    :doc:`Sampling </render/cycles/render_settings/sampling>` documentation.
 
 
-Where Noise Comes From
-======================
+The Source of the Noise
+=======================
 
 To understand where noise can come from, take for example the scene below.
 When we trace a light ray into the location marked by the white circle on a red dot,
@@ -49,7 +49,7 @@ the second image below gives an impression of what the diffuse shader "sees".
 To find the light that is reflected from this surface,
 we need to find the average color from all these pixels.
 Note the glossy highlight on the sphere,
-and the bright spot the light casts on the nearby wall. These hotspots are 100x brighter than
+and the bright spot the light casts on the nearby wall. These hotspots are much brighter than
 other parts of the image and will contribute significantly to the lighting of this pixel.
 
 .. list-table::

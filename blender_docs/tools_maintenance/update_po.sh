@@ -41,14 +41,14 @@ ROOTDIR="$(pwd)"
 
 
 # All directories containing '.svn' (the parent directory).
-SVN_DIRS_ALL="$(find locale/ -name '.svn' -printf '%h\n')"
-
+# SVN_DIRS_ALL="$(find locale/ -name '.svn' -printf '%h\n')"
+SVN_DIRS_ALL="$(find locale/ -name '.svn' -print)"
 # Update the locale dir:
-#for SVNDIR in "$SVN_DIRS_ALL"; do
-#  svn cleanup "$SVNDIR"
-#  svn up "$SVNDIR"
-#done
-#unset SVNDIR
+for SVNDIR in "$SVN_DIRS_ALL"; do
+  svn cleanup "$SVNDIR"
+  svn up "$SVNDIR"
+done
+unset SVNDIR
 
 # Create PO files:
 rm -rf build/locale

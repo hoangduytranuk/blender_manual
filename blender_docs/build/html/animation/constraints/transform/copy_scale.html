@@ -232,8 +232,8 @@
 <span id="bpy-types-copyscaleconstraint"></span><h1>Sao Chép Ràng Buộc Về Tỷ Lệ -- Copy Scale Constraint<a class="headerlink" href="#copy-scale-constraint" title="Permalink to this headline">¶</a></h1>
 <p>The <em>Copy Scale</em> constraint forces its owner to have the same scale as its target.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Here we talk of <em>scale</em>, not of <em>size</em>! Indeed, you can have two objects,
+<p class="admonition-title">Ghi chú</p>
+<p>Here we talk of <em>scale</em>, not of <em>size</em>! Indeed, you can have two objects,
 one much bigger than the other, and yet both of them have the same scale.
 This is also true with bones: in <em>Pose Mode</em>,
 they all have a unitary scale when they are in rest position,
@@ -241,34 +241,34 @@ represented by their visible length.</p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Mục Tiêu -- Target</dt>
-<dd><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.</dd>
-<dt>X, Y, Z</dt>
-<dd>These buttons control which axes of the target scale are copied.</dd>
-<dt>Power</dt>
-<dd>Allows raising the copied scale to the specified arbitrary power.</dd>
-<dt>Make Uniform</dt>
-<dd>Instead of copying scale for individual axes, apply a uniform scaling factor
-to all axes of the owner that achieves the same overall change in volume.</dd>
-<dt>Dịch Chuyển -- Offset</dt>
-<dd>When enabled, the constraint combines the copied scale with the owner's scale,
-instead of overwriting it.</dd>
-<dt>Bổ Sung -- Additive</dt>
-<dd>Uses addition instead of multiplication in the implementation of the <em>Offset</em> option.</dd>
-<dt>Không Gian -- Space</dt>
-<dd>Sự chuyển đổi tiêu chuẩn giữa các không gian.</dd>
+<dl class="simple">
+<dt>Mục Tiêu -- Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.</p>
+</dd>
+<dt>X, Y, Z</dt><dd><p>These buttons control which axes of the target scale are copied.</p>
+</dd>
+<dt>Power</dt><dd><p>Allows raising the copied scale to the specified arbitrary power.</p>
+</dd>
+<dt>Make Uniform</dt><dd><p>Instead of copying scale for individual axes, apply a uniform scaling factor
+to all axes of the owner that achieves the same overall change in volume.</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>When enabled, the constraint combines the copied scale with the owner's scale,
+instead of overwriting it.</p>
+</dd>
+<dt>Bổ Sung -- Additive</dt><dd><p>Uses addition instead of multiplication in the implementation of the <em>Offset</em> option.</p>
+</dd>
+<dt>Không Gian -- Space</dt><dd><p>Sự chuyển đổi tiêu chuẩn giữa các không gian.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Since scale is a multiplicative quantity, it should be combined using multiplication,
+<p class="admonition-title">Ghi chú</p>
+<p>Since scale is a multiplicative quantity, it should be combined using multiplication,
 and split into fractions or inverted via power. Thus the use of <em>Power</em> is
 more mathematically correct than <em>Influence</em>, which uses linear interpolation.
 The use of the <em>Additive</em> option is also not recommended.</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">To copy scale from one axis of the target to all axes of the owner,
+<p class="admonition-title">Mẹo</p>
+<p>To copy scale from one axis of the target to all axes of the owner,
 disable other axes, enable <em>Make Uniform</em>, and set <em>Power</em> to 3.</p>
 </div>
 <iframe src="https://player.vimeo.com/video/171077617" style="border: 0; height: 345px; width: 560px">

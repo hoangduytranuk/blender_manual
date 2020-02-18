@@ -7,7 +7,7 @@ Dyntopo
    :class: refbox
 
    :Mode:      Sculpt Mode
-   :Panel:     :menuselection:`Toolbar --> Tools --> Dyntopo`
+   :Tool:      :menuselection:`Toolbar --> Tools --> Dyntopo`
    :Hotkey:    :kbd:`Ctrl-D`
 
 Dynamic topology (aka dyntopo) is a dynamic tessellation sculpting method,

@@ -148,7 +148,7 @@ Refractions
    Surfaces that use Screen Space Refraction will not cast Ambient Occlusion onto other surfaces.
 
 Bump Mapping
-   As of now, bump mapping is supported using OpenGL derivatives which are the same for each block of 2x2 pixels.
+   As of now, bump mapping is supported using OpenGL derivatives which are the same for each block of 2×2 pixels.
    This means the bump output value will appear pixelated.
    It is recommended to use normal mapping instead.
 

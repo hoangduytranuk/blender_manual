@@ -241,17 +241,15 @@ as you may have to adjust all the parent bones first.</p>
 <div class="section" id="automatic-ik">
 <h2>-- Automatic IK<a class="headerlink" href="#automatic-ik" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Tư Thế -- Pose Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Tool ‣ Pose Options</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Tư Thế -- Pose Mode</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Sidebar region ‣ Tool ‣ Pose Options</span></p>
+</dd>
+</dl>
 </div>
 <p>Automatic IK is a tool for quick posing, it can be enabled in the Toolbar in the 3D View,
 when in Pose Mode. When the Auto IK option is enabled, translating a bone will activate
@@ -277,24 +275,22 @@ but it can be useful for quick posing.</p>
 They work by the same method but offer more choices and settings.
 Please refer to these pages for detail about the settings for the constraints:</p>
 <ul class="simple">
-<li><a class="reference internal" href="../../../../constraints/tracking/ik_solver.html"><span class="doc">IK Solver</span></a></li>
-<li><a class="reference internal" href="../../../../constraints/tracking/spline_ik.html"><span class="doc">Spline IK</span></a></li>
+<li><p><a class="reference internal" href="../../../../constraints/tracking/ik_solver.html"><span class="doc">IK Solver</span></a></p></li>
+<li><p><a class="reference internal" href="../../../../constraints/tracking/spline_ik.html"><span class="doc">Spline IK</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="armature-ik-panel">
 <h2>-- Armature IK Panel<a class="headerlink" href="#armature-ik-panel" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Tư Thế -- Pose Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Cốt (Armature) ‣ Động Học Ngược (IK) (Inverse Kinematics)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Tư Thế -- Pose Mode</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Cốt (Armature) ‣ Động Học Ngược (IK) (Inverse Kinematics)</span></p>
+</dd>
+</dl>
 </div>
 <p>This panel is used to select the IK Solver type for the armature: <em>Standard</em> or <em>iTaSC</em>.
 Most the time people will use the <em>Standard</em> IK solver.</p>
@@ -317,45 +313,43 @@ Those interested in the mathematics can find a short description of the method u
 the solver computes the optimal pose according to the respective weights of each constraint.
 This is a major improvement from the current constraint system where constraints are solved
 one by one in order of definition so that conflicting constraints overwrite each other.</p>
-<dl class="docutils">
-<dt>Chuẩn Xác -- Precision</dt>
-<dd>The maximum variation of the end effector between two successive iterations
+<dl>
+<dt>Chuẩn Xác -- Precision</dt><dd><p>The maximum variation of the end effector between two successive iterations
 at which a pose is obtained that is stable enough and the solver should stop the iterations.
-Lower values means higher precision on the end effector position.</dd>
-<dt>Số Lần Lặp Lại -- Iterations</dt>
-<dd>The upper bound for the number of iterations.</dd>
-<dt>Trình Giải Nghiệm -- Solver</dt>
-<dd><p class="first">Selects the inverse Jacobian solver that iTaSC will use.</p>
-<dl class="docutils">
-<dt><abbr title="Selective Damped Least Square">SDLS</abbr></dt>
-<dd>Computes the damping automatically by estimating the level of 'cancellation' in the armature kinematics.
+Lower values means higher precision on the end effector position.</p>
+</dd>
+<dt>Số Lần Lặp Lại -- Iterations</dt><dd><p>The upper bound for the number of iterations.</p>
+</dd>
+<dt>Trình Giải Nghiệm -- Solver</dt><dd><p>Selects the inverse Jacobian solver that iTaSC will use.</p>
+<dl>
+<dt><abbr title="Selective Damped Least Square">SDLS</abbr></dt><dd><p>Computes the damping automatically by estimating the level of 'cancellation' in the armature kinematics.
 This method works well with the Copy Pose constraint but has the drawback of damping more than
 necessary around the singular pose, which means slower movements.
-Of course, this is only noticeable in Simulation mode.</dd>
-<dt><abbr title="Damped Least Square">DLS</abbr></dt>
-<dd><p class="first">Computes the damping manually which can provide more reactivity and more precision.</p>
-<dl class="docutils">
-<dt>-- Damping Max</dt>
-<dd>Maximum amount of damping. Smaller values means less damping, hence more velocity
-and better precision but also more risk of oscillation at singular pose. 0 means no damping at all.</dd>
-<dt>-- Damping Epsilon</dt>
-<dd>Range of the damping zone around singular pose. Smaller values means a smaller zone
-of control and greater risk of passing over the singular pose, which means oscillation.</dd>
+Of course, this is only noticeable in Simulation mode.</p>
+</dd>
+<dt><abbr title="Damped Least Square">DLS</abbr></dt><dd><p>Computes the damping manually which can provide more reactivity and more precision.</p>
+<dl class="simple">
+<dt>-- Damping Max</dt><dd><p>Maximum amount of damping. Smaller values means less damping, hence more velocity
+and better precision but also more risk of oscillation at singular pose. 0 means no damping at all.</p>
+</dd>
+<dt>-- Damping Epsilon</dt><dd><p>Range of the damping zone around singular pose. Smaller values means a smaller zone
+of control and greater risk of passing over the singular pose, which means oscillation.</p>
+</dd>
 </dl>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last"><em>Damping</em> and <em>Epsilon</em> must be tuned for each armature.
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p><em>Damping</em> and <em>Epsilon</em> must be tuned for each armature.
 You should use the smallest values that preserve stability.</p>
 </div>
 </dd>
 </dl>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<ul class="last simple">
-<li>The SDLS solver does not work together with a Distance constraint.
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<ul class="simple">
+<li><p>The SDLS solver does not work together with a Distance constraint.
 You must use the DLS solver if you are going to have a singular pose
-in your animation with the Distance constraint.</li>
-<li>Both solvers perform well if you do not have a singular pose.</li>
+in your animation with the Distance constraint.</p></li>
+<li><p>Both solvers perform well if you do not have a singular pose.</p></li>
 </ul>
 </div>
 </dd>
@@ -373,51 +367,48 @@ multiple targets per bone and multiple types of constraints.</p>
 <p>The Simulation mode is the stateful mode of the solver: it estimates the target's velocity,
 operates in a 'true time' context, ignores rotation from keyframes
 (except via a joint rotation constraint) and builds up a state cache automatically.</p>
-<dl class="docutils">
-<dt>Tái Lặp -- Reiteration</dt>
-<dd><dl class="first last docutils">
-<dt>Không Bao Giờ -- Never</dt>
-<dd>The solver starts from the rest pose and does not reiterate (converges) even for the first frame.
-This means that it will take a few frames to get to the target at the start of the animation.</dd>
-<dt>Khởi Đầu -- Initial</dt>
-<dd>The solver starts from the rest pose and re-iterates until the given precision is achieved,
+<dl>
+<dt>Tái Lặp -- Reiteration</dt><dd><dl class="simple">
+<dt>Không Bao Giờ -- Never</dt><dd><p>The solver starts from the rest pose and does not reiterate (converges) even for the first frame.
+This means that it will take a few frames to get to the target at the start of the animation.</p>
+</dd>
+<dt>Khởi Đầu -- Initial</dt><dd><p>The solver starts from the rest pose and re-iterates until the given precision is achieved,
 but only on the first frame (i.e. a frame which doesn't have any previous frame in the cache).
 This option basically allows you to choose a different start pose than the rest pose
 and it is the default value. For the subsequent frames, the solver will track the target
 by integrating the joint velocity computed by the Jacobian solver over the time interval
 that the frame represents. The precision of the tracking depends on the feedback coefficient,
-number of substeps and velocity of the target.</dd>
-<dt>Luôn Luôn -- Always</dt>
-<dd>The solver re-iterates on each frame until the given precision is achieved.
+number of substeps and velocity of the target.</p>
+</dd>
+<dt>Luôn Luôn -- Always</dt><dd><p>The solver re-iterates on each frame until the given precision is achieved.
 This option omits most of the iTaSC dynamic behavior: the maximum joint velocity
 and the continuity between frames is not guaranteed anymore in compensation of better
 precision on the end effector positions. It is an intermediate mode
-between <em>Animation</em> and real-time <em>Simulation</em>.</dd>
+between <em>Animation</em> and real-time <em>Simulation</em>.</p>
+</dd>
 </dl>
 </dd>
-<dt>-- Auto Step</dt>
-<dd><p class="first">Use this option if you want to let the solver set how many substeps should be executed for each frame.
+<dt>-- Auto Step</dt><dd><p>Use this option if you want to let the solver set how many substeps should be executed for each frame.
 A substep is a subdivision on the time between two frames for which the solver evaluates
 the IK equation and updates the joint position. More substeps means more processing but better precision
 on tracking the targets. The auto step algorithm estimates the optimal number of steps to get
 the best trade-off between processing and precision. It works by estimation of the nonlinearity
 of the pose and by limiting the amplitude of joint variation during a substep.
 It can be configured with next two parameters:</p>
-<dl class="last docutils">
-<dt>Nhỏ Nhất -- Min</dt>
-<dd>Proposed minimum substep duration (in second).
-The auto step algorithm may reduce the substep further based on joint velocity.</dd>
-<dt>Lớn Nhất -- Max</dt>
-<dd>Maximum substep duration (in second). The auto step algorithm will not allow substep longer than this value.</dd>
+<dl class="simple">
+<dt>Nhỏ Nhất -- Min</dt><dd><p>Proposed minimum substep duration (in second).
+The auto step algorithm may reduce the substep further based on joint velocity.</p>
+</dd>
+<dt>Lớn Nhất -- Max</dt><dd><p>Maximum substep duration (in second). The auto step algorithm will not allow substep longer than this value.</p>
+</dd>
 </dl>
 </dd>
-<dt>Số Bước -- Steps</dt>
-<dd>If Auto Step is disabled, you can choose a fixed number of substeps with this parameter.
+<dt>Số Bước -- Steps</dt><dd><p>If Auto Step is disabled, you can choose a fixed number of substeps with this parameter.
 Substep should not be longer than 10ms, which means the number of steps is 4 for a 25 fps animation.
 If the armature seems unstable (vibrates) between frames,
-you can improve the stability by increasing the number of steps.</dd>
-<dt>Phản Hồi -- Feedback</dt>
-<dd>Coefficient on end effector position error to set corrective joint velocity.
+you can improve the stability by increasing the number of steps.</p>
+</dd>
+<dt>Phản Hồi -- Feedback</dt><dd><p>Coefficient on end effector position error to set corrective joint velocity.
 The time constant of the error correction is the inverse of this value.
 However, this parameter has little effect on the dynamic of the armature
 since the algorithm evaluates the target velocity in any case.
@@ -428,12 +419,13 @@ The value should be in the range 20-100. Default value is 20, which means that t
 are corrected in a typical time of 100-200ms.
 The feedback coefficient is the reason why the armature continues to move slightly
 in Simulation mode even if the target has stopped moving: the residual error
-is progressively suppressed frame after frame.</dd>
-<dt>Vận Tốc Tối Đa -- Max Velocity</dt>
-<dd>Indicative maximum joint velocity in radian per second.
+is progressively suppressed frame after frame.</p>
+</dd>
+<dt>Vận Tốc Tối Đa -- Max Velocity</dt><dd><p>Indicative maximum joint velocity in radian per second.
 This parameter has an important effect on the armature dynamic.
 Smaller value will cause the armature to move slowly and lag behind if the targets are moving rapidly.
-You can simulate an inertia by setting this parameter to a low value.</dd>
+You can simulate an inertia by setting this parameter to a low value.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -441,47 +433,44 @@ You can simulate an inertia by setting this parameter to a low value.</dd>
 <div class="section" id="bone-ik-panel">
 <span id="bpy-types-posebone-ik"></span><h2>-- Bone IK Panel<a class="headerlink" href="#bone-ik-panel" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Tư Thế -- Pose Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Xương (Bone) ‣ Động Học Ngược (IK) (Inverse Kinematics)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Tư Thế -- Pose Mode</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Trình Biên Soạn Tính Chất (Properties editor) ‣ Xương (Bone) ‣ Động Học Ngược (IK) (Inverse Kinematics)</span></p>
+</dd>
+</dl>
 </div>
 <p>This panel is used to control how the <em>Pose Bones</em> work in the IK chain.</p>
-<dl class="docutils">
-<dt>Kéo Giãn IK -- IK Stretch</dt>
-<dd>Stretch influence to IK target.</dd>
-<dt>Khóa -- Lock</dt>
-<dd>Disallow movement around the axis.</dd>
-<dt>Độ Cứng -- Stiffness</dt>
-<dd>Stiffness around the axis. Influence disabled if using <em>Lock</em>.</dd>
-<dt>Giới Hạn -- Limit</dt>
-<dd>Limit movement around the axis.</dd>
+<dl class="simple">
+<dt>Kéo Giãn IK -- IK Stretch</dt><dd><p>Stretch influence to IK target.</p>
+</dd>
+<dt>Khóa -- Lock</dt><dd><p>Disallow movement around the axis.</p>
+</dd>
+<dt>Độ Cứng -- Stiffness</dt><dd><p>Stiffness around the axis. Influence disabled if using <em>Lock</em>.</p>
+</dd>
+<dt>Giới Hạn -- Limit</dt><dd><p>Limit movement around the axis.</p>
+</dd>
 </dl>
 <div class="section" id="itasc-solver">
 <span id="bpy-types-posebone-ik-rotation-weight"></span><span id="bpy-types-posebone-use-ik-rotation-control"></span><h3>Bộ Giải Nhiệm iTaSC -- iTaSC Solver<a class="headerlink" href="#itasc-solver" title="Permalink to this headline">¶</a></h3>
 <p>If the <a class="reference internal" href="#rigging-armatures-posing-bone-constraints-ik-model-itasc"><span class="std std-ref">iTaSC IK Solver</span></a>
 is used, the bone IK panel changes to add these additional parameters.</p>
-<dl class="docutils">
-<dt>Điều Khiển Độ Xoay -- Control Rotation</dt>
-<dd><p class="first">Activates a joint rotation constraint on that bone.
+<dl>
+<dt>Điều Khiển Độ Xoay -- Control Rotation</dt><dd><p>Activates a joint rotation constraint on that bone.
 The pose rotation computed from Action or UI interaction will be converted
 into a joint value and passed to the solver as target for the joint.
 This will give you control over the joint while the solver still tracks the other IK targets.
 You can use this feature to give a preferred pose for joints (e.g. rest pose)
 or to animate a joint angle by playing an action on it.</p>
-<dl class="last docutils">
-<dt>Trọng Lượng -- Weight</dt>
-<dd>The importance of the joint rotation constraint based on the constraints weight
+<dl class="simple">
+<dt>Trọng Lượng -- Weight</dt><dd><p>The importance of the joint rotation constraint based on the constraints weight
 in case all constraints cannot be achieved at the same time.
 For example, if you want to enforce strongly the joint rotation,
-set a high weight on the joint rotation constraint and a low weight on the IK constraints.</dd>
+set a high weight on the joint rotation constraint and a low weight on the IK constraints.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -495,7 +484,7 @@ but the forearm can still be twisted manually by pressing <kbd class="kbd docuti
 or by using other constraints.</p>
 <div class="figure align-center" id="id1">
 <img alt="../../../../../_images/animation_armatures_posing_bone-constraints_inverse-kinematics_introduction_example.png" src="../../../../../_images/animation_armatures_posing_bone-constraints_inverse-kinematics_introduction_example.png" />
-<p class="caption"><span class="caption-text"><a class="reference external" href="https://wiki.blender.org/wiki/File:IK_Arm_Example.blend">IK Arm Example</a>.</span></p>
+<p class="caption"><span class="caption-text"><a class="reference external" href="https://wiki.blender.org/wiki/File:IK_Arm_Example.blend">IK Arm Example</a>.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Note that, if a <em>Pole Target</em> is used, IK locking will not work on the root boot.</p>
 </div>

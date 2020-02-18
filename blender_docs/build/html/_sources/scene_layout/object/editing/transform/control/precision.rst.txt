@@ -74,7 +74,7 @@ Snapping
 Move
 ----
 
-.. figure:: /images/scene-layout_object_editing_transform_control_precision_introduction_blender-units.png
+.. figure:: /images/scene-layout_object_editing_transform_control_precision_units.png
    :align: right
    :width: 200px
    :figwidth: 200px

@@ -251,7 +251,7 @@
 <span id="bpy-types-shadernodebsdfprincipled"></span><h1>BSDF Nguyên Tắc -- Principled BSDF<a class="headerlink" href="#principled-bsdf" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_shader_principled_node.png" src="../../../_images/render_shader-nodes_shader_principled_node.png" />
-<p class="caption"><span class="caption-text">Principled BSDF.</span></p>
+<p class="caption"><span class="caption-text">Principled BSDF.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Principled</em> <abbr title="Bidirectional scattering distribution function">BSDF</abbr>
 that combines multiple layers into a single easy to use node.
@@ -265,151 +265,145 @@ The base layer is a user controlled mix between diffuse, metal,
 subsurface scattering and transmission.
 On top of that there is a specular layer, sheen layer and clearcoat layer.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The emphasis on compatibility with other software means that it interprets
+<p class="admonition-title">Ghi chú</p>
+<p>The emphasis on compatibility with other software means that it interprets
 certain input parameters differently from older Blender nodes.</p>
 </div>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Màu Cơ Sở -- Base Color</dt>
-<dd>Diffuse or metal surface color.</dd>
-<dt>Dưới Bề Mặt -- Subsurface</dt>
-<dd>Mix between diffuse and subsurface scattering.
+<dl>
+<dt>Màu Cơ Sở -- Base Color</dt><dd><p>Diffuse or metal surface color.</p>
+</dd>
+<dt>Dưới Bề Mặt -- Subsurface</dt><dd><p>Mix between diffuse and subsurface scattering.
 Rather than being a simple mix between Diffuse and Subsurface Scattering,
-it acts as a multiplier for the Subsurface Radius.</dd>
-<dt>Bán Kính của Lớp Dưới Bề Mặt -- Subsurface Radius</dt>
-<dd>Average distance that light scatters below the surface.
+it acts as a multiplier for the Subsurface Radius.</p>
+</dd>
+<dt>Bán Kính của Lớp Dưới Bề Mặt -- Subsurface Radius</dt><dd><p>Average distance that light scatters below the surface.
 Higher radius gives a softer appearance, as light bleeds into shadows and through the object.
 The scattering distance is specified separately for the RGB channels,
 to render materials such as skin where red light scatters deeper.
-The X, Y and Z values are mapped to the R, G and B values, respectively.</dd>
-<dt>Màu Dưới Bề Mặt -- Subsurface Color</dt>
-<dd>Subsurface scattering base color.</dd>
-<dt>Kim Loại -- Metallic</dt>
-<dd>Blends between a non-metallic and metallic material model.
+The X, Y and Z values are mapped to the R, G and B values, respectively.</p>
+</dd>
+<dt>Màu Dưới Bề Mặt -- Subsurface Color</dt><dd><p>Subsurface scattering base color.</p>
+</dd>
+<dt>Kim Loại -- Metallic</dt><dd><p>Blends between a non-metallic and metallic material model.
 A value of 1.0 gives a fully specular reflection tinted with the base color,
 without diffuse reflection or transmission.
-At 0.0 the material consists of a diffuse or transmissive base layer, with a specular reflection layer on top.</dd>
-<dt>Lóng Lánh -- Specular</dt>
-<dd><p class="first">Amount of dielectric specular reflection. Specifies facing (along normal)
+At 0.0 the material consists of a diffuse or transmissive base layer, with a specular reflection layer on top.</p>
+</dd>
+<dt>Lóng Lánh -- Specular</dt><dd><p>Amount of dielectric specular reflection. Specifies facing (along normal)
 reflectivity in the most common 0 - 8% range.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
 <p>To compute this value for a realistic material with a known index of
 refraction, you may use this special case of the Fresnel formula:
 <span class="math notranslate nohighlight">\(specular = ((ior - 1)/(ior + 1))^2 / 0.08\)</span></p>
 <p>Ví dụ:</p>
 <ul class="simple">
-<li>water: ior = 1.33, specular = 0.25</li>
-<li>glass: ior = 1.5, specular = 0.5</li>
-<li>diamond: ior = 2.417, specular = 2.15</li>
+<li><p>water: ior = 1.33, specular = 0.25</p></li>
+<li><p>glass: ior = 1.5, specular = 0.5</p></li>
+<li><p>diamond: ior = 2.417, specular = 2.15</p></li>
 </ul>
-<p class="last">Since materials with reflectivity above 8% do exist, the field allows values above 1.</p>
+<p>Since materials with reflectivity above 8% do exist, the field allows values above 1.</p>
 </div>
 </dd>
-<dt>Sắc Thái của Lóng Lánh -- Specular Tint</dt>
-<dd><p class="first">Tints the facing specular reflection using the base color, while glancing reflection remains white.</p>
-<p class="last">Normal dielectrics have colorless reflection, so this parameter is not technically physically correct
+<dt>Sắc Thái của Lóng Lánh -- Specular Tint</dt><dd><p>Tints the facing specular reflection using the base color, while glancing reflection remains white.</p>
+<p>Normal dielectrics have colorless reflection, so this parameter is not technically physically correct
 and is provided for faking the appearance of materials with complex surface structure.</p>
 </dd>
-<dt>Độ Ráp -- Roughness</dt>
-<dd><p class="first">Specifies microfacet roughness of the surface for diffuse and specular reflection.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">When converting from the older <em>Glossy BSDF</em> node, use the square root of the original value.</p>
+<dt>Độ Ráp -- Roughness</dt><dd><p>Specifies microfacet roughness of the surface for diffuse and specular reflection.</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>When converting from the older <em>Glossy BSDF</em> node, use the square root of the original value.</p>
 </div>
 </dd>
-<dt>Anisotropic <span class="guilabel">Cycles Only</span></dt>
-<dd>Amount of anisotropy for specular reflection. Higher values give elongated highlights along the tangent direction;
-negative values give highlights shaped perpendicular to the tangent direction.</dd>
-<dt>Anisotropic Rotation <span class="guilabel">Cycles Only</span></dt>
-<dd><p class="first">Rotates the direction of anisotropy, with 1.0 going full circle.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">Compared to the <em>Anisotropic BSDF</em> node, the direction of highlight elongation
+<dt>Anisotropic <span class="guilabel">Cycles Only</span></dt><dd><p>Amount of anisotropy for specular reflection. Higher values give elongated highlights along the tangent direction;
+negative values give highlights shaped perpendicular to the tangent direction.</p>
+</dd>
+<dt>Anisotropic Rotation <span class="guilabel">Cycles Only</span></dt><dd><p>Rotates the direction of anisotropy, with 1.0 going full circle.</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>Compared to the <em>Anisotropic BSDF</em> node, the direction of highlight elongation
 is rotated by 90°. Add 0.25 to the value to correct.</p>
 </div>
 </dd>
-<dt>Bóng Bảy -- Sheen</dt>
-<dd>Amount of soft velvet like reflection near edges,
-for simulating materials such as cloth.</dd>
-<dt>Sắc Thái của Bóng Bảy -- Sheen Tint</dt>
-<dd>Mix between white and using base color for sheen reflection.</dd>
-<dt>Lớp Sơn Bóng -- Clearcoat</dt>
-<dd>Extra white specular layer on top of others.
-This is useful for materials like car paint and the like.</dd>
-<dt>-- Clearcoat Roughness:</dt>
-<dd>Roughness of clearcoat specular.</dd>
-<dt>Chỉ Số Khúc Xạ (IOR) -- IOR</dt>
-<dd>Index of refraction for transmission.</dd>
-<dt>Truyền Xạ -- Transmission</dt>
-<dd>Mix between fully opaque surface at zero and fully glass like transmission at one.</dd>
-<dt>Transmission Roughness <span class="guilabel">Cycles Only</span></dt>
-<dd>With <strong>GGX</strong> distribution controls roughness used for transmitted light.</dd>
-<dt>Emission</dt>
-<dd>Light emission from the surface, like the Emission shader.</dd>
-<dt>Alpha</dt>
-<dd>Controls the transparency of the surface, with 1.0 fully opaque.
-Usually linked to the Alpha output of an Image Texture node.</dd>
-<dt>Pháp Tuyến -- Normal</dt>
-<dd>Controls the normals of the base layers.</dd>
-<dt>Pháp Tuyến của Lớp Sơn Bóng -- Clearcoat Normal</dt>
-<dd>Controls the normals of the <em>Clearcoat</em> layer.</dd>
-<dt>Tiếp Tuyến -- Tangent</dt>
-<dd>Controls the tangent for the <em>Anisotropic</em> layer.</dd>
+<dt>Bóng Bảy -- Sheen</dt><dd><p>Amount of soft velvet like reflection near edges,
+for simulating materials such as cloth.</p>
+</dd>
+<dt>Sắc Thái của Bóng Bảy -- Sheen Tint</dt><dd><p>Mix between white and using base color for sheen reflection.</p>
+</dd>
+<dt>Lớp Sơn Bóng -- Clearcoat</dt><dd><p>Extra white specular layer on top of others.
+This is useful for materials like car paint and the like.</p>
+</dd>
+<dt>-- Clearcoat Roughness:</dt><dd><p>Roughness of clearcoat specular.</p>
+</dd>
+<dt>Chỉ Số Khúc Xạ (IOR) -- IOR</dt><dd><p>Index of refraction for transmission.</p>
+</dd>
+<dt>Truyền Xạ -- Transmission</dt><dd><p>Mix between fully opaque surface at zero and fully glass like transmission at one.</p>
+</dd>
+<dt>Transmission Roughness <span class="guilabel">Cycles Only</span></dt><dd><p>With <strong>GGX</strong> distribution controls roughness used for transmitted light.</p>
+</dd>
+<dt>Emission</dt><dd><p>Light emission from the surface, like the Emission shader.</p>
+</dd>
+<dt>Alpha</dt><dd><p>Controls the transparency of the surface, with 1.0 fully opaque.
+Usually linked to the Alpha output of an Image Texture node.</p>
+</dd>
+<dt>Pháp Tuyến -- Normal</dt><dd><p>Controls the normals of the base layers.</p>
+</dd>
+<dt>Pháp Tuyến của Lớp Sơn Bóng -- Clearcoat Normal</dt><dd><p>Controls the normals of the <em>Clearcoat</em> layer.</p>
+</dd>
+<dt>Tiếp Tuyến -- Tangent</dt><dd><p>Controls the tangent for the <em>Anisotropic</em> layer.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Phân Phối -- Distribution</dt>
-<dd><p class="first">Microfacet distribution to use.</p>
-<dl class="last docutils">
-<dt>GGX</dt>
-<dd>A method that is faster than <em>Multiple-scattering GGX</em>
-but is less physically accurate. Selecting it enables the <em>Transmission Roughness</em> input.</dd>
-<dt>-- Multiple-scattering GGX</dt>
-<dd>Takes multiple bounce (scattering) events between microfacets into account.
+<dl>
+<dt>Phân Phối -- Distribution</dt><dd><p>Microfacet distribution to use.</p>
+<dl class="simple">
+<dt>GGX</dt><dd><p>A method that is faster than <em>Multiple-scattering GGX</em>
+but is less physically accurate. Selecting it enables the <em>Transmission Roughness</em> input.</p>
+</dd>
+<dt>-- Multiple-scattering GGX</dt><dd><p>Takes multiple bounce (scattering) events between microfacets into account.
 This gives a more energy conserving results,
-which would otherwise be visible as excessive darkening.</dd>
+which would otherwise be visible as excessive darkening.</p>
+</dd>
 </dl>
 </dd>
-<dt>Phương Pháp Dưới Bề Mặt -- Subsurface Method</dt>
-<dd><p class="first">Rendering method to simulate subsurface scattering.</p>
-<dl class="last docutils">
-<dt>Christensen-Burley</dt>
-<dd>Is an approximation to physically-based volume scattering.
-Gives less blurry results than Cubic and Gaussian functions.</dd>
-<dt>Tiến Bước Ngẫu Nhiên -- Random Walk</dt>
-<dd>Provides the most accurate results for thin and curved objects.
+<dt>Phương Pháp Dưới Bề Mặt -- Subsurface Method</dt><dd><p>Rendering method to simulate subsurface scattering.</p>
+<dl class="simple">
+<dt>Christensen-Burley</dt><dd><p>Is an approximation to physically-based volume scattering.
+Gives less blurry results than Cubic and Gaussian functions.</p>
+</dd>
+<dt>Tiến Bước Ngẫu Nhiên -- Random Walk</dt><dd><p>Provides the most accurate results for thin and curved objects.
 This comes at the cost of increased render time or noise for more dense media like skin,
 but also better geometry detail preservation.
 Random Walk uses true volumetric scattering inside the mesh,
 which means that it works best for closed meshes.
-Overlapping faces and holes in the mesh can cause problems.</dd>
+Overlapping faces and holes in the mesh can cause problems.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>BSDF</dt>
-<dd>Đầu ra chuẩn của bộ tô bóng.</dd>
+<dl class="simple">
+<dt>BSDF</dt><dd><p>Đầu ra chuẩn của bộ tô bóng.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>Below are some examples of how all the Principled BSDF's
 parameters interact with each other.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/render_shader-nodes_shader_principled_example-1a.jpg" src="../../../_images/render_shader-nodes_shader_principled_example-1a.jpg" />
 </div>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/render_shader-nodes_shader_principled_example-2a.jpg" src="../../../_images/render_shader-nodes_shader_principled_example-2a.jpg" />
 </div>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/render_shader-nodes_shader_principled_example-2b.jpg" src="../../../_images/render_shader-nodes_shader_principled_example-2b.jpg" />
 </div>
 </div>

@@ -233,54 +233,53 @@
 <span id="bpy-types-compositornodeboxmask"></span><h1>Nút Màn Chắn Hình Hộp -- Box Mask Node<a class="headerlink" href="#box-mask-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeBoxMask.png" src="../../../_images/compositing_node-types_CompositorNodeBoxMask.png" />
-<p class="caption"><span class="caption-text">Nút Màn Chắn Hình Hộp.</span></p>
+<p class="caption"><span class="caption-text">Nút Màn Chắn Hình Hộp.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Nút <em>Màn Chắn Hình Hộp</em> kiến tạo một hình ảnh thích hợp để sử dụng nó như một lớp lồng đơn giản.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Màn Chắn -- Mask</dt>
-<dd>Một chắn lọc tùy chọn (không bắt buộc) để sử dụng làm cơ sở cho các thao tác (phép toán) chắn lọc.</dd>
-<dt>Giá Trị -- Value</dt>
-<dd>Cường độ của màn chắn sinh tạo.</dd>
+<dl class="simple">
+<dt>Màn Chắn -- Mask</dt><dd><p>Một chắn lọc tùy chọn (không bắt buộc) để sử dụng làm cơ sở cho các thao tác (phép toán) chắn lọc.</p>
+</dd>
+<dt>Giá Trị -- Value</dt><dd><p>Cường độ của màn chắn sinh tạo.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>X, Y</dt>
-<dd>Position of the center of the box as a fraction of the total width or height.
-(0.5, 0.5 creates a centered box; 0.0, 0.0 creates a box in the lower left.)</dd>
-<dt>Chiều Rộng -- Width</dt>
-<dd>Chiều rộng của hình hộp như một hệ số của tổng chiều rộng của hình ảnh.</dd>
-<dt>Chiều Cao -- Height</dt>
-<dd>Chiều cao của hình hộp như một hệ số của tổng <em>chiều rộng</em> (width), chứ không phải chiều cao.</dd>
-<dt>Xoay Chiều -- Rotation</dt>
-<dd>Xoay chiều hình hộp chung quanh trung tâm của nó.</dd>
-<dt>Thể Loại Màn Chắn -- Mask Type</dt>
-<dd><p class="first">Phép toán để sử dụng với màn chắn đầu vào.</p>
-<dl class="last docutils">
-<dt>Cộng Thêm -- Add</dt>
-<dd>Cái này sẽ tạo ra một <em>kết hợp</em> (union) của màn chắn đầu vào và màn chắn do máy sinh tạo ra: Khu vực được màn chắn do máy sinh tạo bao phủ sẽ được đặt thành <em>Giá Trị</em> (Value) đã chỉ định. Những bộ phận khác của màn chắn đầu vào sẽ được truyền qua nguyên vẹn, không thay đổi, hoặc sẽ được đặt thành màu đen nếu không có màn chắn đầu vào.</dd>
-<dt>Trừ Khấu -- Subtract</dt>
-<dd>Values of the input mask have the specified <em>Value</em> subtracted from them.</dd>
-<dt>Nhân -- Multiply</dt>
-<dd>Cái này sẽ cho ra khoảng <em>giao cắt</em> (intersection) giữa màn chắn đã sinh tạo này và màn chắn ở đầu vào: Các giá trị của màn chắn đầu vào được nhân với <em>Giá Trị</em> (Value) đã chỉ định cho diện tích mà màn chắn sinh tạo bao trùm. Toàn bộ những khu vực khác sẽ trở thành màu đen.</dd>
-<dt>Đảo Nghịch -- Not</dt>
-<dd>Bất cứ khu vực nào được bao trùm bởi cả hai, màn chắn đầu vào và màn chắn đã sinh tạo sẽ trở thành màu đen. Những khu vực mà màn chắn sinh tạo bao trùm là màu đen trên màn chắn đầu vào sẽ trở thành <em>Giá Trị</em> (Value) chỉ định. Những khu vực không được màn chắn sinh tạo bao trùm sẽ được giữ nguyên, không thay đổi.</dd>
+<dl>
+<dt>X, Y</dt><dd><p>Position of the center of the box as a fraction of the total width or height.
+(0.5, 0.5 creates a centered box; 0.0, 0.0 creates a box in the lower left.)</p>
+</dd>
+<dt>Chiều Rộng -- Width</dt><dd><p>Chiều rộng của hình hộp như một hệ số của tổng chiều rộng của hình ảnh.</p>
+</dd>
+<dt>Chiều Cao -- Height</dt><dd><p>Chiều cao của hình hộp như một hệ số của tổng <em>chiều rộng</em> (width), chứ không phải chiều cao.</p>
+</dd>
+<dt>Xoay Chiều -- Rotation</dt><dd><p>Xoay chiều hình hộp chung quanh trung tâm của nó.</p>
+</dd>
+<dt>Thể Loại Màn Chắn -- Mask Type</dt><dd><p>Phép toán để sử dụng với màn chắn đầu vào.</p>
+<dl class="simple">
+<dt>Cộng Thêm -- Add</dt><dd><p>Cái này sẽ tạo ra một <em>kết hợp</em> (union) của màn chắn đầu vào và màn chắn do máy sinh tạo ra: Khu vực được màn chắn do máy sinh tạo bao phủ sẽ được đặt thành <em>Giá Trị</em> (Value) đã chỉ định. Những bộ phận khác của màn chắn đầu vào sẽ được truyền qua nguyên vẹn, không thay đổi, hoặc sẽ được đặt thành màu đen nếu không có màn chắn đầu vào.</p>
+</dd>
+<dt>Trừ Khấu -- Subtract</dt><dd><p>Values of the input mask have the specified <em>Value</em> subtracted from them.</p>
+</dd>
+<dt>Nhân -- Multiply</dt><dd><p>Cái này sẽ cho ra khoảng <em>giao cắt</em> (intersection) giữa màn chắn đã sinh tạo này và màn chắn ở đầu vào: Các giá trị của màn chắn đầu vào được nhân với <em>Giá Trị</em> (Value) đã chỉ định cho diện tích mà màn chắn sinh tạo bao trùm. Toàn bộ những khu vực khác sẽ trở thành màu đen.</p>
+</dd>
+<dt>Đảo Nghịch -- Not</dt><dd><p>Bất cứ khu vực nào được bao trùm bởi cả hai, màn chắn đầu vào và màn chắn đã sinh tạo sẽ trở thành màu đen. Những khu vực mà màn chắn sinh tạo bao trùm là màu đen trên màn chắn đầu vào sẽ trở thành <em>Giá Trị</em> (Value) chỉ định. Những khu vực không được màn chắn sinh tạo bao trùm sẽ được giữ nguyên, không thay đổi.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Màn Chắn -- Mask</dt>
-<dd>Màn chắn hình chữ nhật đã sinh tạo sẽ được hội nhập với màn chắn đầu vào. Màn chắn tạo nên sẽ là cỡ của kích thước bản kết xuất cảnh hiện tại.</dd>
+<dl class="simple">
+<dt>Màn Chắn -- Mask</dt><dd><p>Màn chắn hình chữ nhật đã sinh tạo sẽ được hội nhập với màn chắn đầu vào. Màn chắn tạo nên sẽ là cỡ của kích thước bản kết xuất cảnh hiện tại.</p>
+</dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">For soft edges, pass the output mask through a slight <a class="reference internal" href="../filter/blur_node.html"><span class="doc">Blur node</span></a>.</p>
+<p class="admonition-title">Mẹo</p>
+<p>For soft edges, pass the output mask through a slight <a class="reference internal" href="../filter/blur_node.html"><span class="doc">Blur node</span></a>.</p>
 </div>
 </div>
 </div>

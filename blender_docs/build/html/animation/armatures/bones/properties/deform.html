@@ -229,17 +229,15 @@
   <div class="section" id="deform">
 <h1>Biến Dạng -- Deform<a class="headerlink" href="#deform" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Xương (Bone) ‣ Biến Dạng (Deform)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Xương (Bone) ‣ Biến Dạng (Deform)</span></p>
+</dd>
+</dl>
 </div>
 <p>In this panel you can set deformation options for each bone.</p>
 <p>Toggling the checkbox in the panel header off,
@@ -251,7 +249,7 @@ parented to the armature using the <em>Armature Deform</em> tool with the &quot;
 <span id="armature-bones-envelope"></span><h2>Vỏ Bao -- Envelope<a class="headerlink" href="#envelope" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1" style="width: 180px">
 <img alt="../../../../_images/animation_armatures_bones_structure_envelope-edit-mode.png" src="../../../../_images/animation_armatures_bones_structure_envelope-edit-mode.png" />
-<p class="caption"><span class="caption-text">Bone influence areas for envelopes method.</span></p>
+<p class="caption"><span class="caption-text">Bone influence areas for envelopes method.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Envelopes is the most general skinning method. It works with all available object types for
 skinning (meshes, lattices, curves, surfaces and texts).
@@ -259,51 +257,49 @@ It is based on proximity between bones and their geometry,
 each bone having two different areas of influence,
 shown in the <em>Envelope</em> visualization:</p>
 <ul class="simple">
-<li>The inside area, materialized by the &quot;solid&quot; part of the bone, and controlled by both root and tip radius.</li>
-<li>The outside area, materialized by the lighter part around the bone,
-and controlled by the <em>Distance</em> setting.</li>
+<li><p>The inside area, materialized by the &quot;solid&quot; part of the bone, and controlled by both root and tip radius.</p></li>
+<li><p>The outside area, materialized by the lighter part around the bone,
+and controlled by the <em>Distance</em> setting.</p></li>
 </ul>
 <div class="lead docutils container">
 </div>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">The <a class="reference internal" href="../editing/transform.html"><span class="doc">editing pages</span></a> for how to edit these properties.</p>
+<p class="admonition-title">Xem thêm</p>
+<p>The <a class="reference internal" href="../editing/transform.html"><span class="doc">editing pages</span></a> for how to edit these properties.</p>
 </div>
-<dl class="docutils">
-<dt>Envelope Distance</dt>
-<dd><p class="first">The Distance defines a volume which is the range within the bone
+<dl>
+<dt>Envelope Distance</dt><dd><p>The Distance defines a volume which is the range within the bone
 has an influence on vertices of the deformed object.
 The geometry is less and less affected by the bone as it goes away by following a quadratic decay.</p>
-<div class="last figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../../_images/animation_armatures_bones_properties_deform_envelope-distance.png" src="../../../../_images/animation_armatures_bones_properties_deform_envelope-distance.png" />
-<p class="caption"><span class="caption-text">Single bone with various different envelope sizes.</span></p>
+<p class="caption"><span class="caption-text">Single bone with various different envelope sizes.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Envelope Weight</dt>
-<dd><p class="first">A bone property, that controls the global influence of the bone over the deformed object,
+<dt>Envelope Weight</dt><dd><p>A bone property, that controls the global influence of the bone over the deformed object,
 when using the envelopes method.</p>
-<p class="last">It is only useful for the parts of geometry that are &quot;shared&quot;,
+<p>It is only useful for the parts of geometry that are &quot;shared&quot;,
 influenced by more than one bone (generally, at the joints...) -- a bone with a high weight will
 have more influence on the result than one with a low weight...
 Note that when set to 0.0, it has the same effect as disabling the <em>Deform</em> option.</p>
 </dd>
-<dt>Bán Kính -- Radius</dt>
-<dd><p class="first">Set the radius for the head and the tail of envelope bones.
+<dt>Bán Kính -- Radius</dt><dd><p>Set the radius for the head and the tail of envelope bones.
 Inside this volume, the geometry if fully affected by the bone.</p>
-<div class="last figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="../../../../_images/animation_armatures_bones_properties_deform_envelope-radius.png" src="../../../../_images/animation_armatures_bones_properties_deform_envelope-radius.png" />
-<p class="caption"><span class="caption-text">Three Armature Bones all using Envelope Weight.</span></p>
+<p class="caption"><span class="caption-text">Three Armature Bones all using Envelope Weight.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 <div class="legend">
-The 1st with a default radius value, the two others with differing Tail and Head radius values.</div>
+<p>The 1st with a default radius value, the two others with differing Tail and Head radius values.</p>
+</div>
 </div>
 </dd>
-<dt>Envelope Multiply</dt>
-<dd>This option controls how the two deforming methods interact, when they are both enabled.
+<dt>Envelope Multiply</dt><dd><p>This option controls how the two deforming methods interact, when they are both enabled.
 By default, when they are both active, all vertices belonging to at least one vertex group are only deformed
 through the vertex groups method. The other &quot;orphan&quot; vertices being handled by the envelopes one.
 When you enable this option, the &quot;deformation influence&quot; that this bone would have on a vertex
 (based from its envelope settings) is multiplied with this vertex's weight in the corresponding vertex group.
-In other words, the vertex groups method is further &quot;weighted&quot; by the envelopes method.</dd>
+In other words, the vertex groups method is further &quot;weighted&quot; by the envelopes method.</p>
+</dd>
 </dl>
 </div>
 </div>

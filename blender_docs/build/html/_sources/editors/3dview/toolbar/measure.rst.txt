@@ -9,7 +9,7 @@ Measure
    :class: refbox
 
    :Mode:      All Modes
-   :Menu:      :menuselection:`Toolbar --> Measure`
+   :Tool:      :menuselection:`Toolbar --> Measure`
 
 The ruler is an interactive tool where you can drag lines in the scene to measure distances or angles.
 Optionally snapping to geometry could be activated for better accuracy or to measure wall thickness.

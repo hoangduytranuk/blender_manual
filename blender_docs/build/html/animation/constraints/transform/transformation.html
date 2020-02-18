@@ -242,11 +242,10 @@ to 10 units around the owner Z axis. Typical uses for this include gears (see no
 and rotation based on location setups.</p>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Mục Tiêu -- Target</dt>
-<dd><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.</dd>
-<dt>Ngoại Suy -- Extrapolate</dt>
-<dd><p class="first">By default, the <em>min</em> and <em>max</em> values bound the input and output values;
+<dl>
+<dt>Mục Tiêu -- Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.</p>
+</dd>
+<dt>Ngoại Suy -- Extrapolate</dt><dd><p>By default, the <em>min</em> and <em>max</em> values bound the input and output values;
 all values outside these ranges are clipped to them.
 When you enable this button, the <em>min</em> and <em>max</em> values are no longer strict limits,
 but rather &quot;markers&quot; defining a proportional (linear) mapping between input and corresponding output values.
@@ -254,21 +253,21 @@ Let us illustrate that with two graphs Fig. <a class="reference internal" href="
 In these pictures, the input range (in abscissa) is set to (1.0 to 4.0),
 and its corresponding output range (in ordinate), to (1.0 to 2.0).
 The yellow curve represents the mapping between input and output.</p>
-<span id="fig-constraints-transformation-extrapolate"></span><table border="1" class="last docutils" id="id1">
+<span id="fig-constraints-transformation-extrapolate"></span><table class="docutils align-default" id="id1">
 <caption><span class="caption-text">The Extrapolate principles.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id2">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/animation_constraints_transform_transformation_extrapolate-1.png"><img alt="../../../_images/animation_constraints_transform_transformation_extrapolate-1.png" src="../../../_images/animation_constraints_transform_transformation_extrapolate-1.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Extrapolate disabled: the output values are bounded inside the (1.0 to 2.0) range.</span></p>
+<p class="caption"><span class="caption-text">Extrapolate disabled: the output values are bounded inside the (1.0 to 2.0) range.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id3">
+<td><div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/animation_constraints_transform_transformation_extrapolate-2.png"><img alt="../../../_images/animation_constraints_transform_transformation_extrapolate-2.png" src="../../../_images/animation_constraints_transform_transformation_extrapolate-2.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Extrapolate enabled: the output values are &quot;free&quot; to proportionally follow the input ones.</span></p>
+<p class="caption"><span class="caption-text">Extrapolate enabled: the output values are &quot;free&quot; to proportionally follow the input ones.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -279,84 +278,77 @@ The yellow curve represents the mapping between input and output.</p>
 <div class="section" id="source">
 <h3>Nguồn -- Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h3>
 <p>It contains the input (from target) settings.</p>
-<dl class="docutils">
-<dt>Ánh Xạ Từ -- Map From</dt>
-<dd><p class="first">The radio buttons allow you to select which type of property to use.</p>
-<p class="last">Location, Rotation, and Scale</p>
+<dl>
+<dt>Ánh Xạ Từ -- Map From</dt><dd><p>The radio buttons allow you to select which type of property to use.</p>
+<p>Location, Rotation, and Scale</p>
 </dd>
-<dt>Mode (Rotation)</dt>
-<dd><p class="first">Allows specifying the type of rotation input to use, including different <a class="reference internal" href="../../../glossary/index.html#term-euler"><span class="xref std std-term">Euler</span></a> orders,
+<dt>Mode (Rotation)</dt><dd><p>Allows specifying the type of rotation input to use, including different <a class="reference internal" href="../../../glossary/index.html#term-euler"><span class="xref std std-term">Euler</span></a> orders,
 <a class="reference internal" href="../../../glossary/index.html#term-quaternion"><span class="xref std std-term">Quaternion</span></a>, and other <a class="reference internal" href="../../drivers/drivers_panel.html#drivers-variables-rotation-modes"><span class="std std-ref">Rotation Channel Modes</span></a>.
 Defaults to using the <a class="reference internal" href="../../../glossary/index.html#term-euler"><span class="xref std std-term">Euler</span></a> order of the constraint owner.</p>
-<p class="last">In the <em>Quaternion</em> mode the channels are converted to weighted angles in the same way as
+<p>In the <em>Quaternion</em> mode the channels are converted to weighted angles in the same way as
 the swing angles of the <a class="reference internal" href="../../drivers/drivers_panel.html#drivers-variables-rotation-modes"><span class="std std-ref">Swing and X/Y/Z Twist</span></a> modes.</p>
 </dd>
-<dt>Từ -- From</dt>
-<dd>Independently for each axis (X, Y, and Z) the min and max number fields control
+<dt>Từ -- From</dt><dd><p>Independently for each axis (X, Y, and Z) the min and max number fields control
 the lower and upper bounds of the input value range.
 Note that if a min value is higher than its corresponding max value,
-the constraint behaves as if it had the same value as the max one.</dd>
-<dt>-- Source to Destination Mapping</dt>
-<dd>The three <em>Axis Mapping</em> selectors allow you to select which input axis to map to,
-respectively (from top to bottom), the X, Y and Z output (owner) axes.</dd>
+the constraint behaves as if it had the same value as the max one.</p>
+</dd>
+<dt>-- Source to Destination Mapping</dt><dd><p>The three <em>Axis Mapping</em> selectors allow you to select which input axis to map to,
+respectively (from top to bottom), the X, Y and Z output (owner) axes.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="destination">
 <h3>-- Destination<a class="headerlink" href="#destination" title="Permalink to this headline">¶</a></h3>
 <p>It contains the output (to owner) settings.</p>
-<dl class="docutils">
-<dt>Ánh Xạ Tới -- Map To</dt>
-<dd><p class="first">The three radio buttons allow you to select which type of property to control.</p>
-<p class="last">Location, Rotation, and Scale</p>
+<dl>
+<dt>Ánh Xạ Tới -- Map To</dt><dd><p>The three radio buttons allow you to select which type of property to control.</p>
+<p>Location, Rotation, and Scale</p>
 </dd>
-<dt>Order (Rotation)</dt>
-<dd>For rotation, allows specifying which <a class="reference internal" href="../../../glossary/index.html#term-euler"><span class="xref std std-term">Euler</span></a> order to use during evaluation
-of the constraint. Defaults to using the order of the constraint owner.</dd>
-<dt>Tới -- To</dt>
-<dd>The <em>min</em> and <em>max</em> number fields control the lower and upper bounds of the output value range,
+<dt>Order (Rotation)</dt><dd><p>For rotation, allows specifying which <a class="reference internal" href="../../../glossary/index.html#term-euler"><span class="xref std std-term">Euler</span></a> order to use during evaluation
+of the constraint. Defaults to using the order of the constraint owner.</p>
+</dd>
+<dt>Tới -- To</dt><dd><p>The <em>min</em> and <em>max</em> number fields control the lower and upper bounds of the output value range,
 independently for each mapped axis.
 Note that if a min value is higher than its corresponding max value,
-the constraint behaves as if it had the same value as the max one.</dd>
-<dt>Mix</dt>
-<dd><p class="first">Specifies how the result of the constraint is combined with the existing transformation.
+the constraint behaves as if it had the same value as the max one.</p>
+</dd>
+<dt>Mix</dt><dd><p>Specifies how the result of the constraint is combined with the existing transformation.
 The set of available choices varies based on the type of transformation.</p>
-<dl class="last docutils">
-<dt>Replace</dt>
-<dd>The result of the constraint replaces the existing transformation.</dd>
-<dt>Multiply (Scale)</dt>
-<dd>The new values are multiplied with the existing axis values.</dd>
-<dt>Add (Location, Rotation)</dt>
-<dd>The new values are added to the existing axis values.</dd>
-<dt>Before Original (Rotation)</dt>
-<dd>The new rotation is added before the existing rotation, as if it was applied to
-a parent of the constraint owner.</dd>
-<dt>After Original (Rotation)</dt>
-<dd>The new rotation is added after the existing rotation, as if it was applied to
-a child of the constraint owner.</dd>
+<dl class="simple">
+<dt>Replace</dt><dd><p>The result of the constraint replaces the existing transformation.</p>
+</dd>
+<dt>Multiply (Scale)</dt><dd><p>The new values are multiplied with the existing axis values.</p>
+</dd>
+<dt>Add (Location, Rotation)</dt><dd><p>The new values are added to the existing axis values.</p>
+</dd>
+<dt>Before Original (Rotation)</dt><dd><p>The new rotation is added before the existing rotation, as if it was applied to
+a parent of the constraint owner.</p>
+</dd>
+<dt>After Original (Rotation)</dt><dd><p>The new rotation is added after the existing rotation, as if it was applied to
+a child of the constraint owner.</p>
+</dd>
 </dl>
 </dd>
-<dt>Không Gian -- Space</dt>
-<dd>Sự chuyển đổi tiêu chuẩn giữa các không gian.</dd>
+<dt>Không Gian -- Space</dt><dd><p>Sự chuyển đổi tiêu chuẩn giữa các không gian.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<ul class="last">
-<li><p class="first">For historical reasons, the <em>Mix</em> mode defaults to <em>Add</em> for location and rotation,
-and <em>Replace</em> for scale.</p>
-</li>
-<li><p class="first">When using the rotation transform properties of the target as input,
+<p class="admonition-title">Ghi chú</p>
+<ul>
+<li><p>For historical reasons, the <em>Mix</em> mode defaults to <em>Add</em> for location and rotation,
+and <em>Replace</em> for scale.</p></li>
+<li><p>When using the rotation transform properties of the target as input,
 whatever the real values are, the constraint will always &quot;take them back&quot; into the (-180 to 180) range.
 E.g. if the target has a rotation of 420 degrees around its X axis,
 the values used as <em>X</em> input by the constraint will be:</p>
 <p><span class="math notranslate nohighlight">\(((420 + 180) modulo 360) - 180 = 60 - ...\)</span></p>
 <p>This is why this constraint is not really suited for gears!</p>
 </li>
-<li><p class="first">Similarly, when using the scale transform properties of the target as input,
-whatever the real values are, the constraint will always take their absolute values (i.e. invert negative ones).</p>
-</li>
-<li><p class="first">When a <em>min</em> value is higher than its corresponding <em>max</em> one,
-both are considered equal to the <em>max</em> one. This implies you cannot create &quot;reversed&quot; mappings...</p>
-</li>
+<li><p>Similarly, when using the scale transform properties of the target as input,
+whatever the real values are, the constraint will always take their absolute values (i.e. invert negative ones).</p></li>
+<li><p>When a <em>min</em> value is higher than its corresponding <em>max</em> one,
+both are considered equal to the <em>max</em> one. This implies you cannot create &quot;reversed&quot; mappings...</p></li>
 </ul>
 </div>
 <iframe src="https://player.vimeo.com/video/171275353" style="border: 0; height: 345px; width: 560px">

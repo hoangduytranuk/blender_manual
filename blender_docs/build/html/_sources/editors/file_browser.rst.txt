@@ -174,7 +174,7 @@ Shows the options of the calling operator.
 Besides common actions listed below, many import/export add-ons will also expose their options there.
 
 Open, Save, Save As Blender File
-   See :doc:`/files/blend/save_load`.
+   See :doc:`/files/blend/open_save`.
 Open, Replace, Save As Image
    See :doc:`/files/media/image_formats`.
 Link/Append from Library

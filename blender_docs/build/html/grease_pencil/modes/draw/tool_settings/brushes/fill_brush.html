@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Grease Pencil</a><ul class="current">
@@ -124,12 +124,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../selecting.html">Selecting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../multiframe.html">Multiframe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../properties/index.html">Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../modifiers/index.html">Grease Pencil Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../materials/index.html">Grease Pencil Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../visual_effects/index.html">Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../animation/index.html">Animation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html#modes">Modes</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Grease Pencil Draw Mode</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Draw Mode</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../tools.html">Drawing Tools</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html">Tools Settings</a></li>
@@ -138,9 +138,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../guides.html">Guides</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../sculpting/index.html">Grease Pencil Sculpt Mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../edit/index.html">Grease Pencil Edit Mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../weight_paint/index.html">Grease Pencil Weight Paint Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sculpting/index.html">Sculpt Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../edit/index.html">Edit Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../weight_paint/index.html">Weight Paint Mode</a></li>
 </ul>
 </li>
 </ul>
@@ -206,7 +206,7 @@
         
           <li><a href="../../../../index.html">Grease Pencil</a> &raquo;</li>
         
-          <li><a href="../../index.html">Grease Pencil Draw Mode</a> &raquo;</li>
+          <li><a href="../../index.html">Draw Mode</a> &raquo;</li>
         
           <li><a href="../index.html">Tools Settings</a> &raquo;</li>
         
@@ -235,65 +235,61 @@ You can create many brushes, each with unique settings to get different result w
 <div class="section" id="brushes">
 <h3>Brushes<a class="headerlink" href="#brushes" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-right" id="id1">
-<img alt="../../../../../_images/grease-pencil_modes_draw_brushes_fill-brush-data-block.png" src="../../../../../_images/grease-pencil_modes_draw_brushes_fill-brush-data-block.png" />
-<p class="caption"><span class="caption-text">Brush data-block panel.</span></p>
+<img alt="../../../../../_images/grease-pencil_modes_draw_tool-settings_brushes_fill-brush_data-block.png" src="../../../../../_images/grease-pencil_modes_draw_tool-settings_brushes_fill-brush_data-block.png" />
+<p class="caption"><span class="caption-text">Brush data-block panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Brush</dt>
-<dd><p class="first">The <a class="reference internal" href="../../../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> to select a preset brush type or a custom brush.</p>
-<dl class="last docutils">
-<dt>Add Brush</dt>
-<dd>When you add a brush, the new brush is a clone of the current one.</dd>
-<dt>Custom Icon</dt>
-<dd><p class="first">Allows definition of a custom brush icon.</p>
-<dl class="last docutils">
-<dt>Image Path</dt>
-<dd>Defines the path to the image to use as custom icon.</dd>
+<dl>
+<dt>Brush</dt><dd><p>The <a class="reference internal" href="../../../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> to select a preset brush type or a custom brush.</p>
+<dl>
+<dt>Add Brush</dt><dd><p>When you add a brush, the new brush is a clone of the current one.</p>
+</dd>
+<dt>Custom Icon</dt><dd><p>Allows definition of a custom brush icon.</p>
+<dl class="simple">
+<dt>Image Path</dt><dd><p>Defines the path to the image to use as custom icon.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">In order to save in a blend-user a custom brush, tick Fake User.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>In order to save in a blend-user a custom brush, tick Fake User.</p>
 </div>
 </div>
 <div class="section" id="brush-settings">
 <h3>Brush Settings<a class="headerlink" href="#brush-settings" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Leak Size</dt>
-<dd>Size in pixel to consider the leak as closed.</dd>
-<dt>Thickness</dt>
-<dd>The thickness radius of the boundary stroke in pixels.</dd>
-<dt>Simplify</dt>
-<dd>Number of simplify steps to apply to the boundary line.
-Higher values reduce the accuracy of the final filled area.</dd>
+<dl class="simple">
+<dt>Leak Size</dt><dd><p>Size in pixel to consider the leak as closed.</p>
+</dd>
+<dt>Thickness</dt><dd><p>The thickness radius of the boundary stroke in pixels.</p>
+</dd>
+<dt>Simplify</dt><dd><p>Number of simplify steps to apply to the boundary line.
+Higher values reduce the accuracy of the final filled area.</p>
+</dd>
 </dl>
 <div class="section" id="advanced">
 <h4>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h4>
-<dl class="docutils">
-<dt>Boundary</dt>
-<dd><p class="first">Sets the type of fill boundary limits calculation to perform.</p>
-<dl class="last docutils">
-<dt>Default</dt>
-<dd>Use the thickness of the strokes and the editing lines together.</dd>
-<dt>Stroke</dt>
-<dd>Use only the thickness of the strokes (ignore edit lines).</dd>
-<dt>Line</dt>
-<dd>Use only the edit lines (ignore strokes).</dd>
-<dt>Show lines (grid icon)</dt>
-<dd>Toggle show help lines to see the fill boundary.</dd>
+<dl>
+<dt>Boundary</dt><dd><p>Sets the type of fill boundary limits calculation to perform.</p>
+<dl class="simple">
+<dt>Default</dt><dd><p>Use the thickness of the strokes and the editing lines together.</p>
+</dd>
+<dt>Stroke</dt><dd><p>Use only the thickness of the strokes (ignore edit lines).</p>
+</dd>
+<dt>Line</dt><dd><p>Use only the edit lines (ignore strokes).</p>
+</dd>
+<dt>Show lines (grid icon)</dt><dd><p>Toggle show help lines to see the fill boundary.</p>
+</dd>
 </dl>
 </dd>
-<dt>Resolution</dt>
-<dd>Multiplier for fill resolution.
-Higher values gives better fill boundary accuracy but slower time for calculations.</dd>
-<dt>Ignore Transparent strokes</dt>
-<dd><p class="first">When enabled, strokes with transparency does not take into account on fill boundary calculations.</p>
-<dl class="last docutils">
-<dt>Threshold</dt>
-<dd>Threshold value to consider a material transparent.</dd>
+<dt>Resolution</dt><dd><p>Multiplier for fill resolution.
+Higher values gives better fill boundary accuracy but slower time for calculations.</p>
+</dd>
+<dt>Ignore Transparent strokes</dt><dd><p>When enabled, strokes with transparency does not take into account on fill boundary calculations.</p>
+<dl class="simple">
+<dt>Threshold</dt><dd><p>Threshold value to consider a material transparent.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -302,9 +298,9 @@ Higher values gives better fill boundary accuracy but slower time for calculatio
 <div class="section" id="cursor">
 <h3>Cursor<a class="headerlink" href="#cursor" title="Permalink to this headline">¶</a></h3>
 <p>The cursor can be disabled by toggling the checkbox in the <em>Cursor</em> header.</p>
-<dl class="docutils">
-<dt>Cursor Color</dt>
-<dd>Set the color of the brush ring.</dd>
+<dl class="simple">
+<dt>Cursor Color</dt><dd><p>Set the color of the brush ring.</p>
+</dd>
 </dl>
 </div>
 </div>

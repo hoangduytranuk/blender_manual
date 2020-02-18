@@ -7,7 +7,7 @@ Decorators are small buttons that appear to the right of other buttons and show 
 Decorators may appear next to number fields, menus,
 and checkboxes to indicate the property can be :doc:`animated </animation/index>`.
 
-.. figure:: /images/interface_controls_buttons_decorators.png
+.. figure:: /images/interface_controls_buttons_decorators_ui.png
    :align: center
 
    Decorators indicating different property states.

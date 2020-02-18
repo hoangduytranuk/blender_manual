@@ -239,86 +239,85 @@ and hit <em>Copy Render Settings</em>!</p>
 <div class="section" id="activation">
 <h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Open Blender and go to Preferences then the Add-ons tab.</li>
-<li>Click Render then Copy Render Settings to enable the script.</li>
+<li><p>Open Blender and go to Preferences then the Add-ons tab.</p></li>
+<li><p>Click Render then Copy Render Settings to enable the script.</p></li>
 </ul>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Render Settings</dt>
-<dd><p class="first">This lists all render settings. The checkbox to the right controls whether that setting will be copied or not.
+<dl>
+<dt>Render Settings</dt><dd><p>This lists all render settings. The checkbox to the right controls whether that setting will be copied or not.
 So if you want to copy a specific setting, hover your mouse over its control,
 note its Python name (e.g. <code class="docutils literal notranslate"><span class="pre">resolution_x</span></code> for the X resolution, etc.),
 and enable the corresponding item in this list.</p>
-<div class="last admonition important">
-<p class="first admonition-title">Quan trọng</p>
-<p class="last">This will only work if you have a Blender patched with <code class="docutils literal notranslate"><span class="pre">ui_template_list</span> <span class="pre">diff</span></code>,
+<div class="admonition important">
+<p class="admonition-title">Quan trọng</p>
+<p>This will only work if you have a Blender patched with <code class="docutils literal notranslate"><span class="pre">ui_template_list</span> <span class="pre">diff</span></code>,
 see <a class="reference external" href="https://archive.blender.org/wiki/index.php/User:Mont29/UI_Template_List_Enhancement/">UI Template List Enhancement</a>.</p>
 </div>
 </dd>
-<dt>Presets</dt>
-<dd><p class="first">The column of buttons to the right of the list are a set of presets
+<dt>Presets</dt><dd><p>The column of buttons to the right of the list are a set of presets
 which set or clear one or more settings at once.
 <em>This will work even without the UI template list patch.</em></p>
-<dl class="last docutils">
-<dt>Set Scale/Clear Scale</dt>
-<dd>Copy the render scale setting (below resolution controls, in <em>Dimensions</em> panel).
-Highly useful to do preview renders!</dd>
-<dt>Set Resolution/Clear Resolution</dt>
-<dd>Copy the render resolution and aspect ratio settings.
-Beware of side effects if you modify the aspect of your render (e.g. switching from: 4/3 to 16/9...).</dd>
-<dt>Set OSA/Clear OSA</dt>
-<dd>Copy the global <abbr title="Oversampling">OSA</abbr> usage, and OSA level settings.
-Together with <em>Render Scale</em>, this is most useful for preview renders.</dd>
-<dt>Set Threads/Clear Threads</dt>
-<dd>Copy the settings (auto/fixed, and number) of threads used during rendering.
+<dl class="simple">
+<dt>Set Scale/Clear Scale</dt><dd><p>Copy the render scale setting (below resolution controls, in <em>Dimensions</em> panel).
+Highly useful to do preview renders!</p>
+</dd>
+<dt>Set Resolution/Clear Resolution</dt><dd><p>Copy the render resolution and aspect ratio settings.
+Beware of side effects if you modify the aspect of your render (e.g. switching from: 4/3 to 16/9...).</p>
+</dd>
+<dt>Set OSA/Clear OSA</dt><dd><p>Copy the global <abbr title="Oversampling">OSA</abbr> usage, and OSA level settings.
+Together with <em>Render Scale</em>, this is most useful for preview renders.</p>
+</dd>
+<dt>Set Threads/Clear Threads</dt><dd><p>Copy the settings (auto/fixed, and number) of threads used during rendering.
 Might be useful when e.g. you render your blend-files on various computers
-(even though the <em>Auto</em> option should work good in general...).</dd>
-<dt>Set Fields/Clear Fields</dt>
-<dd>Copy all fields settings.
-Allows you to easily switch from progressive to interlaced...</dd>
-<dt>Set Stamp/Clear Stamp</dt>
-<dd>Copy whether to render stamps or not (i.e. the global stamp switch setting).</dd>
+(even though the <em>Auto</em> option should work good in general...).</p>
+</dd>
+<dt>Set Fields/Clear Fields</dt><dd><p>Copy all fields settings.
+Allows you to easily switch from progressive to interlaced...</p>
+</dd>
+<dt>Set Stamp/Clear Stamp</dt><dd><p>Copy whether to render stamps or not (i.e. the global stamp switch setting).</p>
+</dd>
 </dl>
 </dd>
-<dt>Affected Scenes:</dt>
-<dd><dl class="first last docutils">
-<dt>Filter Scene</dt>
-<dd><p class="first">You can type in this text field a regex (using Python syntax), and only scene
+<dt>Affected Scenes:</dt><dd><dl>
+<dt>Filter Scene</dt><dd><p>You can type in this text field a regex (using Python syntax), and only scene
 which name matches this regex will be available. Quite useful when you have tenths of scenes in a file...</p>
-<p class="last">E.g. if you only want to copy some of your current render settings to scenes
+<p>E.g. if you only want to copy some of your current render settings to scenes
 having &quot;rabbit&quot; in their name, type <code class="docutils literal notranslate"><span class="pre">.*rabbit.*</span></code> in this field.</p>
 </dd>
-<dt>Columns of buttons</dt>
-<dd>These toggle buttons represent all scenes of the blend-file
+<dt>Columns of buttons</dt><dd><p>These toggle buttons represent all scenes of the blend-file
 (optionally filtered through the <em>Filter Scene</em> regex),
-except the current one. Only enabled scenes will receive the copied settings!</dd>
+except the current one. Only enabled scenes will receive the copied settings!</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Category:</th><td class="field-body">Render</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Allows to copy a selection of render settings from current scene to others.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Location:</th><td class="field-body"><span class="menuselection">Properties editor ‣ Render tab</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name">File:</th><td class="field-body">render_copy_settings folder</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Bastien Montagne</td>
-</tr>
-<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">GPL</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">This add-on is bundled with Blender.</td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Category</dt>
+<dd class="field-odd"><p>Render</p>
+</dd>
+<dt class="field-even">Description</dt>
+<dd class="field-even"><p>Allows to copy a selection of render settings from current scene to others.</p>
+</dd>
+<dt class="field-odd">Location</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties editor ‣ Render tab</span></p>
+</dd>
+<dt class="field-even">File</dt>
+<dd class="field-even"><p>render_copy_settings folder</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Bastien Montagne</p>
+</dd>
+<dt class="field-even">License</dt>
+<dd class="field-even"><p>GPL</p>
+</dd>
+<dt class="field-odd">Note</dt>
+<dd class="field-odd"><p>This add-on is bundled with Blender.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>

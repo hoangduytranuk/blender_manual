@@ -9,6 +9,7 @@ Remesh
    :Mode:      All Paint Modes
    :Header:    :menuselection:`Tool Settings --> Remesh`
    :Panel:     :menuselection:`Sidebar --> Tool --> Remesh`
+   :Hotkey:    :kbd:`Ctrl-R` (Voxel), :kbd:`Ctrl-Alt-R` (Quadriflow)
 
 Remeshing is a technique that automatically rebuilds the geometry with a more uniform topology.
 Remeshing can either add or remove the amount of topology depending on a defined resolution.
@@ -35,7 +36,9 @@ Voxel Size
       to match the denseness of polygons after the remesh operation.
 
 Adaptivity
-   Todo 2.81.
+   Reduces the final face count by simplifying geometry where detail is not needed.
+   This introduce triangulation to faces that do not require as much detail.
+   Note, an *Adaptivity* value greater than zero disables *Fix Poles*.
 Fix Poles
    Todo 2.81.
 Smooth Normals
@@ -48,10 +51,11 @@ Preserve Paint Mask
 Voxel Remesh
    Todo 2.81.
 
-.. note::
+.. note:: Limitations:
 
-   Remeshing only works on the original mesh data and
-   ignores generated geometry from modifiers, shape keys, rigging, etc.
+   - Remeshing only works on the original mesh data and
+     ignores generated geometry from modifiers, shape keys, rigging, etc.
+   - Remeshing will not work with the :doc:`/modeling/modifiers/generate/multiresolution>`
 
 .. seealso::
 

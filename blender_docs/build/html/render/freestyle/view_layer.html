@@ -219,67 +219,61 @@
   <div class="section" id="view-layer-properties">
 <span id="bpy-types-freestylesettings"></span><h1>View Layer Properties<a class="headerlink" href="#view-layer-properties" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ View Layer ‣ Freestyle</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ View Layer ‣ Freestyle</span></p>
+</dd>
+</dl>
 </div>
 <p>There is only one view map per view layer. It controls the edge detection parameters.</p>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="../../_images/render_freestyle_view-map_freestyle-panel.png"><img alt="../../_images/render_freestyle_view-map_freestyle-panel.png" src="../../_images/render_freestyle_view-map_freestyle-panel.png" style="width: 50%;" /></a>
-<p class="caption"><span class="caption-text">View Layer: Freestyle panel.</span></p>
+<p class="caption"><span class="caption-text">View Layer: Freestyle panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Chế Độ Điều Khiển -- Control Mode</dt>
-<dd><p class="first">Which detected edges are actually rendered, and how, can be controlled either through:</p>
-<dl class="last docutils">
-<dt>Chế Độ Biên Soạn Tham Số -- Parameter Editor Mode</dt>
-<dd>Lines are rendered via the <a class="reference internal" href="parameter_editor/index.html"><span class="doc">parameter editor</span></a>,
-easy but limited.</dd>
-<dt>Chế Độ Tập Lệnh Python -- Python Scripting Mode</dt>
-<dd>Lines are rendered via <a class="reference internal" href="python.html"><span class="doc">Python scripting</span></a>, powerful but complex.</dd>
+<dl>
+<dt>Chế Độ Điều Khiển -- Control Mode</dt><dd><p>Which detected edges are actually rendered, and how, can be controlled either through:</p>
+<dl class="simple">
+<dt>Chế Độ Biên Soạn Tham Số -- Parameter Editor Mode</dt><dd><p>Lines are rendered via the <a class="reference internal" href="parameter_editor/index.html"><span class="doc">parameter editor</span></a>,
+easy but limited.</p>
+</dd>
+<dt>Chế Độ Tập Lệnh Python -- Python Scripting Mode</dt><dd><p>Lines are rendered via <a class="reference internal" href="python.html"><span class="doc">Python scripting</span></a>, powerful but complex.</p>
+</dd>
 </dl>
 </dd>
-<dt>Bộ Nhớ Đệm Ánh Xạ Khung Nhìn -- View Map Cache</dt>
-<dd><p class="first">An option to reuse a previously computed view map for subsequent rendering.
+<dt>Bộ Nhớ Đệm Ánh Xạ Khung Nhìn -- View Map Cache</dt><dd><p>An option to reuse a previously computed view map for subsequent rendering.
 The cache is automatically updated when the mesh geometry of the input 3D scene has been changed.</p>
 <p>This functionality offers a major performance boost for Freestyle animation rendering
 when the camera-space mesh geometry is static, as well as for repeated still renders
 with updates of line stylization options.</p>
-<p class="last">Although the ''View map cache'' checkbox is a view layer option,
+<p>Although the ''View map cache'' checkbox is a view layer option,
 the cache memory is shared by all view layers and scenes.
 This means that if Freestyle is used for two or more view layers
 (possibly in different scenes through the Compositor),
 then the cached view map for one view layer is replaced by a new view map
 for another view layer and hence no performance gain is expected.</p>
 </dd>
-<dt>Độ Mịn Mặt -- Face Smoothness</dt>
-<dd>Takes <em>Smooth Shading</em> into account for edges calculation.</dd>
-<dt>Góc Độ Nếp Gấp -- Crease Angle</dt>
-<dd>If two adjacent faces form an angle less than the defined <em>Crease Angle</em>,
+<dt>Độ Mịn Mặt -- Face Smoothness</dt><dd><p>Takes <em>Smooth Shading</em> into account for edges calculation.</p>
+</dd>
+<dt>Góc Độ Nếp Gấp -- Crease Angle</dt><dd><p>If two adjacent faces form an angle less than the defined <em>Crease Angle</em>,
 the edge between them will be rendered when using <em>Crease</em> edge type selection in a line set.
-The value also affects <em>Silhouette</em> edge type selection.</dd>
-<dt>Loại Bỏ -- Culling</dt>
-<dd>Ignore the edges that are out of view.
-(Saves some processing time and memory, but may reduce the quality of the result in some cases.)</dd>
-<dt>Tùy Chọn Thâm Sâu -- Advanced Options</dt>
-<dd><dl class="first last docutils">
-<dt>Sphere Radius</dt>
-<dd>Affects the calculation of curvatures for <em>Ridge</em>, <em>Valley</em>
+The value also affects <em>Silhouette</em> edge type selection.</p>
+</dd>
+<dt>Loại Bỏ -- Culling</dt><dd><p>Ignore the edges that are out of view.
+(Saves some processing time and memory, but may reduce the quality of the result in some cases.)</p>
+</dd>
+<dt>Tùy Chọn Thâm Sâu -- Advanced Options</dt><dd><dl class="simple">
+<dt>Sphere Radius</dt><dd><p>Affects the calculation of curvatures for <em>Ridge</em>, <em>Valley</em>
 and <em>Suggestive Contour</em> edge type selection in a line set.
 The curvature at each vertex is computed by averaging the shape
 of the surface within the specified radius.
-Increasing the value reduces noise and detail.</dd>
-<dt>Đạo Hàm Kr Epsilon -- Kr Derivative Epsilon</dt>
-<dd>Controls the threshold on the minimum rate of change of curvature used to filter the output
+Increasing the value reduces noise and detail.</p>
+</dd>
+<dt>Đạo Hàm Kr Epsilon -- Kr Derivative Epsilon</dt><dd><p>Controls the threshold on the minimum rate of change of curvature used to filter the output
 of the <em>Suggestive Contour</em> edge type selection. Increasing the value reduces the amount of
 rendered lines, starting from smoother areas of the object (further information in
-<a class="reference external" href="https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf">this pdf</a>).</dd>
+<a class="reference external" href="https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf">this pdf</a>).</p>
+</dd>
 </dl>
 </dd>
 </dl>

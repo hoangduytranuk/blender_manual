@@ -204,10 +204,10 @@ you will want to be able to install it so it can be enabled in the Preferences t
 
 Even though the add-on above is a test, let's go through the steps anyway so you know how to do it for later.
 
-To install the Blender text as an add-on, you will first have to save it to disk. Take care to obey the naming
+To install the Blender text as an add-on, you will first have to save it on drive. Take care to obey the naming
 restrictions that apply to Python modules and end with a ``.py`` extension.
 
-Once the file is on disk, you can install it as you would for an add-on downloaded online.
+Once the file is on drive, you can install it as you would for an add-on downloaded online.
 
 Open the :menuselection:`Preferences --> Add-ons --> Install...` and select the file.
 

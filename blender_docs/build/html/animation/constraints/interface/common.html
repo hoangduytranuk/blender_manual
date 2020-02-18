@@ -229,21 +229,21 @@
 This link provides data to the constraint so that it can begin to function.
 For example, the Copy Location Constraint needs location data to function.
 Fill in the Target field, and the Copy Location constraint will begin to use location data from the Target object.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/animation_constraints_interface_common_target.png" src="../../../_images/animation_constraints_interface_common_target.png" />
-<p class="caption"><span class="caption-text">The Target field must be filled in for the constraint to function.</span></p>
+<p class="caption"><span class="caption-text">The Target field must be filled in for the constraint to function.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>By default, the Target will use the <a class="reference internal" href="../../../glossary/index.html#term-object-origin"><span class="xref std std-term">object origin</span></a> as the target point.</p>
 <p>If the Target field links to a <a class="reference internal" href="../../../glossary/index.html#term-mesh"><span class="xref std std-term">mesh</span></a> or <a class="reference internal" href="../../../glossary/index.html#term-lattice"><span class="xref std std-term">lattice</span></a> object, a <a class="reference internal" href="../../../glossary/index.html#term-vertex-group"><span class="xref std std-term">Vertex Group</span></a> field will appear.
 Enter the name of a vertex group and the constraint will target the median point
 of this vertex group instead of the object's origin.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/animation_constraints_interface_common_target-vertex-group.png" src="../../../_images/animation_constraints_interface_common_target-vertex-group.png" />
 </div>
 <p>If the Target field links to an <a class="reference internal" href="../../../glossary/index.html#term-armature"><span class="xref std std-term">Armature</span></a>, a <a class="reference internal" href="../../../glossary/index.html#term-bone"><span class="xref std std-term">Bone</span></a> field will appear
 along with a <em>Head/Tail</em> slider.
 Enter the name of a bone and the constraint will target the bone instead of the entire armature object origin.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/animation_constraints_interface_common_target-bone.png" src="../../../_images/animation_constraints_interface_common_target-bone.png" />
 </div>
 <p>The slider moves the precise position of the target between the <a class="reference internal" href="../../../glossary/index.html#term-head"><span class="xref std std-term">head</span></a> and <a class="reference internal" href="../../../glossary/index.html#term-tail"><span class="xref std std-term">tail</span></a> of the bone.
@@ -263,10 +263,10 @@ Make sure to size one empty a little larger than the other so that they are both
 even if directly on top of each other.
 Then add a constraint to one empty that targets the other and experiment thoroughly by
 moving, rotating and scaling the target in many different ways.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/animation_constraints_interface_common_space.png" src="../../../_images/animation_constraints_interface_common_space.png" />
 <p class="caption"><span class="caption-text">This constraint is set to use World Space as the frame of reference for both
-its Target Space and its Owner Space.</span></p>
+its Target Space and its Owner Space.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="target-space-owner-space">
 <h3>-- Target Space &amp; Owner Space<a class="headerlink" href="#target-space-owner-space" title="Permalink to this headline">¶</a></h3>
@@ -281,35 +281,35 @@ the Target and Owner can be any combination of space types.</p>
 </div>
 <div class="section" id="space-types">
 <h3>Loại Khoảng Trống -- Space Types<a class="headerlink" href="#space-types" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Không Gian Thế Giới -- World Space</dt>
-<dd>In this space type the world is the frame of reference for the object (or bone).
+<dl class="simple">
+<dt>Không Gian Thế Giới -- World Space</dt><dd><p>In this space type the world is the frame of reference for the object (or bone).
 Location is relative to the world origin.
 Rotation and Scale are oriented to the world axes.
 Transformations to the object, the object's parent and any other constraints
-higher up in the constraint stack are all taken into account.</dd>
-<dt>Không Gian Địa Phương -- Local Space</dt>
-<dd>In this space type the parent of the object (or bone) is the frame of reference.
+higher up in the constraint stack are all taken into account.</p>
+</dd>
+<dt>Không Gian Địa Phương -- Local Space</dt><dd><p>In this space type the parent of the object (or bone) is the frame of reference.
 Location is relative to the parent object origin.
 Rotation and Scale are oriented to the parent object axes.
 Only transformations to the object itself are taken into account.
-Transformations to the object's parent are <strong>not</strong> taken into account.</dd>
-<dt>-- Local With Parent (bones only)</dt>
-<dd>The bone properties are evaluated relative to its rest pose location and orientation, thus
+Transformations to the object's parent are <strong>not</strong> taken into account.</p>
+</dd>
+<dt>-- Local With Parent (bones only)</dt><dd><p>The bone properties are evaluated relative to its rest pose location and orientation, thus
 including both its own transformations and those caused by a possible parent relationship
-(i.e. the chain's transformations above the bone).</dd>
-<dt>-- Pose Space (bones only)</dt>
-<dd>The bone properties are evaluated in the armature object local space
+(i.e. the chain's transformations above the bone).</p>
+</dd>
+<dt>-- Pose Space (bones only)</dt><dd><p>The bone properties are evaluated in the armature object local space
 (i.e. independently from the armature transformations in <em>Object Mode</em>).
 Hence, if the armature object has null transformations,
-<em>Pose Space</em> will have the same effect as <em>World Space</em>.</dd>
+<em>Pose Space</em> will have the same effect as <em>World Space</em>.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="influence">
 <span id="bpy-types-constraint-influence"></span><span id="rigging-constraints-influence"></span><h2>Tác Động/Ảnh Hưởng -- Influence<a class="headerlink" href="#influence" title="Permalink to this headline">¶</a></h2>
 <p>The influence slider determines how much the constraint will affect the constrained object (target).</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/animation_constraints_interface_common_influence.png" src="../../../_images/animation_constraints_interface_common_influence.png" />
 </div>
 <p>An influence of 0.0 will have no effect.

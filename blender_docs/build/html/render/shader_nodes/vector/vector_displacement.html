@@ -237,7 +237,7 @@
 <span id="bpy-types-shadernodevectordisplacement"></span><h1>Nút Dời Hình Vectơ -- Vector Displacement Node<a class="headerlink" href="#vector-displacement-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_vector_vector-displacement_node.png" src="../../../_images/render_shader-nodes_vector_vector-displacement_node.png" />
-<p class="caption"><span class="caption-text">Vector Displacement Node.</span></p>
+<p class="caption"><span class="caption-text">Vector Displacement Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Vector Displacement</em> node is used to displace the surface along arbitrary directions,
 unlike the regular Displacement node which only displaces along the surface normal.</p>
@@ -247,49 +247,48 @@ be applied on a smooth base mesh, unlike regular displacement maps.</p>
 <p>For best results the mesh must be subdivided finely to bring out
 the detail in the displacement texture.</p>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="../../materials/components/displacement.html"><span class="doc">Material Displacement</span></a>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../materials/components/displacement.html"><span class="doc">Material Displacement</span></a>
 for more details on displacement workflows.</p>
 </div>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Vectơ -- Vector</dt>
-<dd><p class="first">Vector specifying the displacement along three axes.
+<dl>
+<dt>Vectơ -- Vector</dt><dd><p>Vector specifying the displacement along three axes.
 This is where a texture node can be connected.</p>
-<p class="last">Typically a baked vector displacement image texture is used.
+<p>Typically a baked vector displacement image texture is used.
 For Object Space, RGB colors in the image are interpreted as an XYZ offset in object space.
 For Tangent Space, R is an offset along the tangent, G along the normal and B along the bitangent.</p>
 </dd>
-<dt>Mức Trung Độ -- Midlevel</dt>
-<dd>Neutral displacement value that causes no displacement.
+<dt>Mức Trung Độ -- Midlevel</dt><dd><p>Neutral displacement value that causes no displacement.
 With the default 0.0, any lower values will cause the surfaces to be pushed inwards,
-and any higher values will push them outwards.</dd>
-<dt>Tỷ Lệ -- Scale</dt>
-<dd>Increase or decrease the amount of displacement.</dd>
+and any higher values will push them outwards.</p>
+</dd>
+<dt>Tỷ Lệ -- Scale</dt><dd><p>Increase or decrease the amount of displacement.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Không Gian -- Space</dt>
-<dd>Object Space maps work for static meshes, and will render slightly faster with less memory usage.
+<dl class="simple">
+<dt>Không Gian -- Space</dt><dd><p>Object Space maps work for static meshes, and will render slightly faster with less memory usage.
 Tangent Space maps can be used for meshes that will be deformed, like animated characters,
-so the displacement follows the deformation.</dd>
+so the displacement follows the deformation.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Dịch Hình -- Displacement</dt>
-<dd>Displacement offset to be connected into the Material Output.</dd>
+<dl class="simple">
+<dt>Dịch Hình -- Displacement</dt><dd><p>Displacement offset to be connected into the Material Output.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/render_shader-nodes_vector_vector-displacement_example.jpg" src="../../../_images/render_shader-nodes_vector_vector-displacement_example.jpg" />
-<p class="caption"><span class="caption-text">Regular and exaggerated vector displacement on a smooth base mesh.</span></p>
+<p class="caption"><span class="caption-text">Regular and exaggerated vector displacement on a smooth base mesh.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

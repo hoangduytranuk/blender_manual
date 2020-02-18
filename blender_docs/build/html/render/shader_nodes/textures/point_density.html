@@ -243,86 +243,79 @@
 <h1>Nút Mật Độ Điểm -- Point Density Node<a class="headerlink" href="#point-density-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_textures_point-density_node.png" src="../../../_images/render_shader-nodes_textures_point-density_node.png" />
-<p class="caption"><span class="caption-text">Point Density Node.</span></p>
+<p class="caption"><span class="caption-text">Point Density Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Point Density</em> node is used to add volumetric points for each particle or vertex of another object.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Vectơ -- Vector</dt>
-<dd>Texture coordinate to sample texture at;
-defaults to global position (<em>Position</em> output of <em>Geometry</em> node) if the socket is left unconnected.</dd>
+<dl class="simple">
+<dt>Vectơ -- Vector</dt><dd><p>Texture coordinate to sample texture at;
+defaults to global position (<em>Position</em> output of <em>Geometry</em> node) if the socket is left unconnected.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>-- Point Data</dt>
-<dd><p class="first">Where to get points from.</p>
-<dl class="last docutils">
-<dt>Hệ Thống Hạt -- Particle System</dt>
-<dd>Use each particle position from the specified particle system.</dd>
-<dt>Điểm Đỉnh của Vật Thể -- Object Vertices</dt>
-<dd>Use each vertex position from the specified object.</dd>
+<dl>
+<dt>-- Point Data</dt><dd><p>Where to get points from.</p>
+<dl class="simple">
+<dt>Hệ Thống Hạt -- Particle System</dt><dd><p>Use each particle position from the specified particle system.</p>
+</dd>
+<dt>Điểm Đỉnh của Vật Thể -- Object Vertices</dt><dd><p>Use each vertex position from the specified object.</p>
+</dd>
 </dl>
 </dd>
-<dt>Vật Thể -- Object</dt>
-<dd>Which object's vertices or particle system will be used.</dd>
-<dt>Hệ Thống Hạt -- Particle System</dt>
-<dd>Particle positions from this system will be used.</dd>
-<dt>Không Gian -- Space</dt>
-<dd><p class="first">The coordinate system for mapping points.</p>
-<dl class="last docutils">
-<dt>Không Gian Thế Giới -- World Space</dt>
-<dd>Map each point exactly where the source particle/vertex is.</dd>
-<dt>Không Gian Vật Thể -- Object Space</dt>
-<dd>Fit the points from the source particles/vertices
-inside the bounding box of the object with the point density texture.</dd>
+<dt>Vật Thể -- Object</dt><dd><p>Which object's vertices or particle system will be used.</p>
+</dd>
+<dt>Hệ Thống Hạt -- Particle System</dt><dd><p>Particle positions from this system will be used.</p>
+</dd>
+<dt>Không Gian -- Space</dt><dd><p>The coordinate system for mapping points.</p>
+<dl class="simple">
+<dt>Không Gian Thế Giới -- World Space</dt><dd><p>Map each point exactly where the source particle/vertex is.</p>
+</dd>
+<dt>Không Gian Vật Thể -- Object Space</dt><dd><p>Fit the points from the source particles/vertices
+inside the bounding box of the object with the point density texture.</p>
+</dd>
 </dl>
 </dd>
-<dt>Bán Kính -- Radius</dt>
-<dd>Size of the points.</dd>
-<dt>Nội Suy -- Interpolation</dt>
-<dd><p class="first">Texel filtering type.</p>
-<dl class="last docutils">
-<dt>Gần Nhất -- Closest</dt>
-<dd>No interpolation, use nearest texel. Produces blocky looking points.</dd>
-<dt>Tuyến Tính -- Linear</dt>
-<dd>Interpolate linearly between texels, producing soft, round points.</dd>
-<dt>Lập Phương -- Cubic</dt>
-<dd>Use cubic falloff, producing very soft points. Useful when points are very densely packed.</dd>
+<dt>Bán Kính -- Radius</dt><dd><p>Size of the points.</p>
+</dd>
+<dt>Nội Suy -- Interpolation</dt><dd><p>Texel filtering type.</p>
+<dl class="simple">
+<dt>Gần Nhất -- Closest</dt><dd><p>No interpolation, use nearest texel. Produces blocky looking points.</p>
+</dd>
+<dt>Tuyến Tính -- Linear</dt><dd><p>Interpolate linearly between texels, producing soft, round points.</p>
+</dd>
+<dt>Lập Phương -- Cubic</dt><dd><p>Use cubic falloff, producing very soft points. Useful when points are very densely packed.</p>
+</dd>
 </dl>
 </dd>
-<dt>Độ Phân Giải -- Resolution</dt>
-<dd>The dimensions of the texture holding the point data.</dd>
-<dt>Nguồn Màu Sắc -- Color Source</dt>
-<dd><p class="first">Which attribute of the particle system or mesh is used to color the output.</p>
-<dl class="last docutils">
-<dt>-- Particle Color Sources</dt>
-<dd><dl class="first last docutils">
-<dt>Tuổi Thọ Hạt -- Particle Age</dt>
-<dd>Lifetime mapped as (0.0 - 1.0) intensity.</dd>
-<dt>Tốc Độ Hạt -- Particle Speed</dt>
-<dd>Particle speed (absolute magnitude of velocity) mapped as (0.0 - 1.0) intensity.</dd>
-<dt>Vận Tốc Hạt -- Particle Velocity</dt>
-<dd>XYZ velocity mapped to RGB colors.</dd>
+<dt>Độ Phân Giải -- Resolution</dt><dd><p>The dimensions of the texture holding the point data.</p>
+</dd>
+<dt>Nguồn Màu Sắc -- Color Source</dt><dd><p>Which attribute of the particle system or mesh is used to color the output.</p>
+<dl>
+<dt>-- Particle Color Sources</dt><dd><dl class="simple">
+<dt>Tuổi Thọ Hạt -- Particle Age</dt><dd><p>Lifetime mapped as (0.0 - 1.0) intensity.</p>
+</dd>
+<dt>Tốc Độ Hạt -- Particle Speed</dt><dd><p>Particle speed (absolute magnitude of velocity) mapped as (0.0 - 1.0) intensity.</p>
+</dd>
+<dt>Vận Tốc Hạt -- Particle Velocity</dt><dd><p>XYZ velocity mapped to RGB colors.</p>
+</dd>
 </dl>
 </dd>
-<dt>-- Vertex Color Sources</dt>
-<dd><dl class="first last docutils">
-<dt>Màu Điểm Đỉnh -- Vertex Color</dt>
-<dd><p class="first">Use a vertex color layer for coloring the point density texture.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Vertex colors are defined per face corner.
+<dt>-- Vertex Color Sources</dt><dd><dl>
+<dt>Màu Điểm Đỉnh -- Vertex Color</dt><dd><p>Use a vertex color layer for coloring the point density texture.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Vertex colors are defined per face corner.
 A single vertex can have as many different colors as faces it is part of.
 The actual color of the point density texture is averaged from all vertex corners.</p>
 </div>
 </dd>
-<dt>Trọng Lượng Điểm Đỉnh -- Vertex Weight</dt>
-<dd>Use weights from a vertex group as intensity values.</dd>
-<dt>Pháp Tuyến Điểm Đỉnh -- Vertex Normals</dt>
-<dd>Use object-space vertex normals as RGB values.</dd>
+<dt>Trọng Lượng Điểm Đỉnh -- Vertex Weight</dt><dd><p>Use weights from a vertex group as intensity values.</p>
+</dd>
+<dt>Pháp Tuyến Điểm Đỉnh -- Vertex Normals</dt><dd><p>Use object-space vertex normals as RGB values.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -331,18 +324,18 @@ The actual color of the point density texture is averaged from all vertex corner
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Màu Sắc -- Color</dt>
-<dd>Đầu ra của màu chất liệu.</dd>
-<dt>Tỷ Trọng -- Density</dt>
-<dd>Density of volume.</dd>
+<dl class="simple">
+<dt>Màu Sắc -- Color</dt><dd><p>Đầu ra của màu chất liệu.</p>
+</dd>
+<dt>Tỷ Trọng -- Density</dt><dd><p>Density of volume.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/render_shader-nodes_textures_point-density_example.jpg"><img alt="../../../_images/render_shader-nodes_textures_point-density_example.jpg" src="../../../_images/render_shader-nodes_textures_point-density_example.jpg" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Domain object with Point Density texture using vertices from ball as points.</span></p>
+<p class="caption"><span class="caption-text">Domain object with Point Density texture using vertices from ball as points.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

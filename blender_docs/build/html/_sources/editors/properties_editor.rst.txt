@@ -91,7 +91,7 @@ but its icon will change based of the actual type of the active object.
 - :doc:`Speaker </render/output/audio/speaker>`
 - :doc:`Camera </render/cameras>`
 - :doc:`Light </render/lights/light_object>`
-- :doc:`Light Probe </render/eevee/lightprobes/index>`
+- :doc:`Light Probe </render/eevee/light_probes/index>`
 
 
 Object Shading

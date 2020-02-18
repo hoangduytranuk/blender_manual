@@ -8,9 +8,9 @@ UV Sculpting
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Toolbar --> Grab`,
-   :Panel:     :menuselection:`Toolbar --> Relax`,
-   :Panel:     :menuselection:`Toolbar --> Pinch`
+   :Tool:      :menuselection:`Toolbar --> Grab`,
+   :Tool:      :menuselection:`Toolbar --> Relax`,
+   :Tool:      :menuselection:`Toolbar --> Pinch`
    :Panel:     :menuselection:`Sidebar --> Tool --> Brushes`
 
 The sculpting tools allow you to grab, pinch and smooth UVs, just like for meshes in Sculpt Mode.

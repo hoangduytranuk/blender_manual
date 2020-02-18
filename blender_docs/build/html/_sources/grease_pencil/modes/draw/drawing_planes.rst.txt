@@ -25,7 +25,7 @@ See :doc:`Viewport Display </interface/controls/templates/curve>` to know more a
 Plane Options
 =============
 
-.. figure:: /images/grease-pencil_modes_draw_stroke_drawing_planes-selector.png
+.. figure:: /images/grease-pencil_modes_draw_drawing-planes_selector.png
    :align: right
 
    Drawing Planes selector in the 3D View header.
@@ -51,27 +51,27 @@ Examples
 
 .. list-table:: Stroke using different Drawing Planes with Canvas overlay activated.
 
-   * - .. figure:: /images/grease-pencil_modes_draw_drawing_planes-front.png
+   * - .. figure:: /images/grease-pencil_modes_draw_drawing-planes_front.png
           :width: 200px
 
           Front.
 
-     - .. figure:: /images/grease-pencil_modes_draw_drawing_planes-side.png
+     - .. figure:: /images/grease-pencil_modes_draw_drawing-planes_side.png
           :width: 200px
 
           Side.
 
-     - .. figure:: /images/grease-pencil_modes_draw_drawing_planes-top.png
+     - .. figure:: /images/grease-pencil_modes_draw_drawing-planes_top.png
           :width: 200px
 
           Top.
 
-     - .. figure:: /images/grease-pencil_modes_draw_drawing_planes-view.png
+     - .. figure:: /images/grease-pencil_modes_draw_drawing-planes_view.png
           :width: 200px
 
           View.
 
-     - .. figure:: /images/grease-pencil_modes_draw_drawing_planes-cursor.png
+     - .. figure:: /images/grease-pencil_modes_draw_drawing-planes_cursor.png
           :width: 200px
 
           Cursor.

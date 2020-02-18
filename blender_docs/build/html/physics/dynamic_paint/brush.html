@@ -124,9 +124,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Sơn Động Lực -- Dynamic Paint</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Bút Vẽ -- Brush</a><ul>
@@ -221,175 +220,159 @@
   <div class="section" id="brush">
 <span id="bpy-types-dynamicpaintbrushsettings"></span><h1>Bút Vẽ -- Brush<a class="headerlink" href="#brush" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Lý (Physics) ‣ Sơn Động Lực (Dynamic Paint)</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">Bút Vẽ -- Brush</td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Vật Lý (Physics) ‣ Sơn Động Lực (Dynamic Paint)</span></p>
+</dd>
+<dt class="field-even">Thể Loại -- Type</dt>
+<dd class="field-even"><p>Bút Vẽ -- Brush</p>
+</dd>
+</dl>
 </div>
 <p>The Brush type makes object apply paint on the canvas.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../_images/physics_dynamic-paint_brush_main-panel.png" src="../../_images/physics_dynamic-paint_brush_main-panel.png" />
-<p class="caption"><span class="caption-text">Brush main panel.</span></p>
+<p class="caption"><span class="caption-text">Brush main panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>From the first brush panel you can define how brush affects canvas color surfaces.</p>
-<dl class="docutils">
-<dt>Paint Color</dt>
-<dd>Color of the paint.</dd>
-<dt>Alpha</dt>
-<dd>Defines brush alpha or visibility. Final wetness is also affected by alpha.</dd>
-<dt>Độ Ướt -- Wetness</dt>
-<dd>Defines how &quot;wet&quot; new paint is. Wetness is visible on &quot;Paint&quot; surface &quot;wetmap&quot;.
-Speed of &quot;Drip&quot; and &quot;Spread&quot; effects also depends on how wet the paint is.</dd>
-<dt>Alpha Tuyệt Đối -- Absolute Alpha</dt>
-<dd>This setting limits brush alpha influence.
+<dl class="simple">
+<dt>Paint Color</dt><dd><p>Color of the paint.</p>
+</dd>
+<dt>Alpha</dt><dd><p>Defines brush alpha or visibility. Final wetness is also affected by alpha.</p>
+</dd>
+<dt>Độ Ướt -- Wetness</dt><dd><p>Defines how &quot;wet&quot; new paint is. Wetness is visible on &quot;Paint&quot; surface &quot;wetmap&quot;.
+Speed of &quot;Drip&quot; and &quot;Spread&quot; effects also depends on how wet the paint is.</p>
+</dd>
+<dt>Alpha Tuyệt Đối -- Absolute Alpha</dt><dd><p>This setting limits brush alpha influence.
 Without it, brush is &quot;added&quot; on surface over and over again each frame,
 increasing alpha and therefore influence of brush on canvas. In many cases however,
-it is preferred to not increase brush alpha if it already is on brushes level.</dd>
-<dt>Xóa Sơn -- Erase Paint</dt>
-<dd>Makes brush dissolve existing paint instead of adding it.</dd>
+it is preferred to not increase brush alpha if it already is on brushes level.</p>
+</dd>
+<dt>Xóa Sơn -- Erase Paint</dt><dd><p>Makes brush dissolve existing paint instead of adding it.</p>
+</dd>
 </dl>
 <div class="section" id="source">
 <h2>Nguồn -- Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Bút Vẽ -- Brush</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Dynamic Paint ‣ Source</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Thể Loại -- Type</dt>
+<dd class="field-odd"><p>Bút Vẽ -- Brush</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Dynamic Paint ‣ Source</span></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="paint-source">
 <h3>Nguồn Sơn -- Paint Source<a class="headerlink" href="#paint-source" title="Permalink to this headline">¶</a></h3>
 <p>Paint Source setting lets you define how brush influence/intersection is defined.</p>
-<dl class="docutils">
-<dt>Thể Tích Khung Lưới -- Mesh Volume</dt>
-<dd><p class="first">The Brush affects all surface point inside the mesh volume.</p>
-<div class="last figure" id="id2">
+<dl>
+<dt>Thể Tích Khung Lưới -- Mesh Volume</dt><dd><p>The Brush affects all surface point inside the mesh volume.</p>
+<div class="figure align-default" id="id2">
 <img alt="../../_images/physics_dynamic-paint_brush_source-mesh-volume.png" src="../../_images/physics_dynamic-paint_brush_source-mesh-volume.png" />
-<p class="caption"><span class="caption-text">Source: Mesh Volume.</span></p>
+<p class="caption"><span class="caption-text">Source: Mesh Volume.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Vùng Lân Cận -- Proximity</dt>
-<dd><p class="first">Only uses defined distance to the closest point on brush mesh surface.
+<dt>Vùng Lân Cận -- Proximity</dt><dd><p>Only uses defined distance to the closest point on brush mesh surface.
 Note that inside of the volume is not necessarily affected because it is not close to the surface.</p>
-<div class="last figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="../../_images/physics_dynamic-paint_brush_source-proximity.png" src="../../_images/physics_dynamic-paint_brush_source-proximity.png" />
-<p class="caption"><span class="caption-text">Source: Proximity. Brush affects all canvas pixels around it.</span></p>
+<p class="caption"><span class="caption-text">Source: Proximity. Brush affects all canvas pixels around it.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Thể Tích Khung Lưới + Vùng Lân Cận -- Mesh Volume + Proximity</dt>
-<dd><p class="first">Same as volume type, but also has influence over defined distance.</p>
-<dl class="docutils">
-<dt>Vùng Lân Cận Nội Tại -- Inner Proximity</dt>
-<dd>Applies proximity inside the mesh volume.</dd>
-<dt>Giảm Thể Tích -- Negate Volume</dt>
-<dd>Negates brush alpha within mesh volume.</dd>
+<dt>Thể Tích Khung Lưới + Vùng Lân Cận -- Mesh Volume + Proximity</dt><dd><p>Same as volume type, but also has influence over defined distance.</p>
+<dl class="simple">
+<dt>Vùng Lân Cận Nội Tại -- Inner Proximity</dt><dd><p>Applies proximity inside the mesh volume.</p>
+</dd>
+<dt>Giảm Thể Tích -- Negate Volume</dt><dd><p>Negates brush alpha within mesh volume.</p>
+</dd>
 </dl>
-<table border="1" class="last docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id4">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id4">
 <img alt="../../_images/physics_dynamic-paint_brush_source-mesh-volume-proximity-1.png" src="../../_images/physics_dynamic-paint_brush_source-mesh-volume-proximity-1.png" />
-<p class="caption"><span class="caption-text">The Volume + Proximity brush with no additional settings.</span></p>
+<p class="caption"><span class="caption-text">The Volume + Proximity brush with no additional settings.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id5">
+<td><div class="figure align-default" id="id5">
 <img alt="../../_images/physics_dynamic-paint_brush_source-mesh-volume-proximity-2.png" src="../../_images/physics_dynamic-paint_brush_source-mesh-volume-proximity-2.png" />
-<p class="caption"><span class="caption-text">Inner Proximity. Proximity falloff is now visible inside the volume.</span></p>
+<p class="caption"><span class="caption-text">Inner Proximity. Proximity falloff is now visible inside the volume.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><div class="first last figure" id="id6">
+<tr class="row-even"><td><div class="figure align-default" id="id6">
 <img alt="../../_images/physics_dynamic-paint_brush_source-mesh-volume-proximity-3.png" src="../../_images/physics_dynamic-paint_brush_source-mesh-volume-proximity-3.png" />
-<p class="caption"><span class="caption-text">Negate Volume. Inner side of the volume has become completely transparent.</span></p>
+<p class="caption"><span class="caption-text">Negate Volume. Inner side of the volume has become completely transparent.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id7">
+<td><div class="figure align-default" id="id7">
 <img alt="../../_images/physics_dynamic-paint_brush_source-mesh-volume-proximity-4.png" src="../../_images/physics_dynamic-paint_brush_source-mesh-volume-proximity-4.png" />
-<p class="caption"><span class="caption-text">Inner Proximity and Negate Volume enabled together.</span></p>
+<p class="caption"><span class="caption-text">Inner Proximity and Negate Volume enabled together.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </dd>
-<dt>Tâm Vật Thể -- Object Center</dt>
-<dd><p class="first">Instead of calculating proximity to the brush object mesh, which can be quite slow in some cases,
+<dt>Tâm Vật Thể -- Object Center</dt><dd><p>Instead of calculating proximity to the brush object mesh, which can be quite slow in some cases,
 only distance to only center is calculated. This is much faster and often good enough.</p>
-<div class="last figure" id="id8">
+<div class="figure align-default" id="id8">
 <img alt="../../_images/physics_dynamic-paint_brush_source-object-center.png" src="../../_images/physics_dynamic-paint_brush_source-object-center.png" />
-<p class="caption"><span class="caption-text">Source: Object Center.</span></p>
+<p class="caption"><span class="caption-text">Source: Object Center.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Hệ Thống Hạt -- Particle System</dt>
-<dd><p class="first">Brush influence is defined by particles from a selected particle system.</p>
-<dl class="docutils">
-<dt>-- Particle Effect: Solid Radius</dt>
-<dd>ToDo 2.62.</dd>
-<dt>Sử Dụng Bán Kính Hạt -- Use Particle Radius</dt>
-<dd><dl class="first last docutils">
-<dt>Bán Kính Làm Mịn -- Smooth Radius</dt>
-<dd>ToDo 2.62.</dd>
+<dt>Hệ Thống Hạt -- Particle System</dt><dd><p>Brush influence is defined by particles from a selected particle system.</p>
+<dl class="simple">
+<dt>-- Particle Effect: Solid Radius</dt><dd><p>ToDo 2.62.</p>
+</dd>
+<dt>Sử Dụng Bán Kính Hạt -- Use Particle Radius</dt><dd><dl class="simple">
+<dt>Bán Kính Làm Mịn -- Smooth Radius</dt><dd><p>ToDo 2.62.</p>
+</dd>
 </dl>
 </dd>
 </dl>
-<div class="last figure" id="id9">
+<div class="figure align-default" id="id9">
 <img alt="../../_images/physics_dynamic-paint_brush_source-particle-system.png" src="../../_images/physics_dynamic-paint_brush_source-particle-system.png" />
-<p class="caption"><span class="caption-text">Source: Particle System.</span></p>
+<p class="caption"><span class="caption-text">Source: Particle System.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
 </dl>
 </div>
 <div class="section" id="common-options">
 <h3>Tùy Chọn Chung -- Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Khoảng Cách Sơn -- Paint Distance</dt>
-<dd>ToDo 2.62.</dd>
-<dt>Phóng Chiếu -- Project</dt>
-<dd><p class="first">Projects brush to the canvas from a defined direction.
+<dl>
+<dt>Khoảng Cách Sơn -- Paint Distance</dt><dd><p>ToDo 2.62.</p>
+</dd>
+<dt>Phóng Chiếu -- Project</dt><dd><p>Projects brush to the canvas from a defined direction.
 Basically this can be considered as &quot;direction aligned&quot; proximity.</p>
-<div class="last figure" id="id10">
+<div class="figure align-default" id="id10">
 <img alt="../../_images/physics_dynamic-paint_brush_source-project.png" src="../../_images/physics_dynamic-paint_brush_source-project.png" />
-<p class="caption"><span class="caption-text">The Project option enabled. See how brush only affects canvas in normal direction.</span></p>
+<p class="caption"><span class="caption-text">The Project option enabled. See how brush only affects canvas in normal direction.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Suy Giảm Dần -- Falloff</dt>
-<dd>Falloff type can be &quot;Smooth&quot;, &quot;Sharp&quot; or tweaked with a color ramp.</dd>
+<dt>Suy Giảm Dần -- Falloff</dt><dd><p>Falloff type can be &quot;Smooth&quot;, &quot;Sharp&quot; or tweaked with a color ramp.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="velocity">
 <h2>Tốc Lực -- Velocity<a class="headerlink" href="#velocity" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Bút Vẽ -- Brush</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Dynamic Paint ‣ Velocity</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Thể Loại -- Type</dt>
+<dd class="field-odd"><p>Bút Vẽ -- Brush</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Dynamic Paint ‣ Velocity</span></p>
+</dd>
+</dl>
 </div>
 <p>This panel shows brush options that are based on object velocity.</p>
 <p>On top you have a color ramp and several related settings.
@@ -397,18 +380,17 @@ Basically the color ramp represents brush velocity values:
 left side being zero velocity and right side being the &quot;Max velocity&quot;.
 Speed is measured in &quot;units per frame&quot;.</p>
 <p>Checkboxes above can be used to define color ramp influence.</p>
-<dl class="docutils">
-<dt>Nhân Alpha -- Multiply Alpha</dt>
-<dd>Uses color ramp's alpha value depending on current velocity and multiplies brush alpha with it.</dd>
-<dt>Thay Thế Màu -- Replace Color</dt>
-<dd>Replaces the brush color with the values from the <a class="reference internal" href="../../interface/controls/templates/color_ramp.html#ui-color-ramp-widget"><span class="std std-ref">Thành Tố Dốc Màu -- Color Ramp Widget</span></a>.</dd>
-<dt>Nhân Độ Sâu -- Multiply Depth</dt>
-<dd>Multiplies brushes &quot;depth intersection&quot; effect.
-Basically you can adjust displace and wave strength depending on brush speed.</dd>
-<dt>Bôi Nhòe -- Do Smudge</dt>
-<dd><p class="first">Enabling Smudge makes the brush &quot;smudge&quot; (or &quot;smear&quot;) existing colors on the surface as it moves.
+<dl>
+<dt>Nhân Alpha -- Multiply Alpha</dt><dd><p>Uses color ramp's alpha value depending on current velocity and multiplies brush alpha with it.</p>
+</dd>
+<dt>Thay Thế Màu -- Replace Color</dt><dd><p>Replaces the brush color with the values from the <a class="reference internal" href="../../interface/controls/templates/color_ramp.html#ui-color-ramp-widget"><span class="std std-ref">Thành Tố Dốc Màu -- Color Ramp Widget</span></a>.</p>
+</dd>
+<dt>Nhân Độ Sâu -- Multiply Depth</dt><dd><p>Multiplies brushes &quot;depth intersection&quot; effect.
+Basically you can adjust displace and wave strength depending on brush speed.</p>
+</dd>
+<dt>Bôi Nhòe -- Do Smudge</dt><dd><p>Enabling Smudge makes the brush &quot;smudge&quot; (or &quot;smear&quot;) existing colors on the surface as it moves.
 The strength of this effect can be defined from the <em>Smudge Strength</em> property.</p>
-<p class="last">Even when smudge is enabled brush still does its normal paint effect.
+<p>Even when smudge is enabled brush still does its normal paint effect.
 If you want a purely smudging brush use zero alpha.
 It is also possible to have <em>Erase</em> option enabled together with smudge.</p>
 </dd>
@@ -417,47 +399,42 @@ It is also possible to have <em>Erase</em> option enabled together with smudge.<
 <div class="section" id="waves">
 <h2>-- Waves<a class="headerlink" href="#waves" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Bút Vẽ -- Brush</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Dynamic Paint ‣ Waves</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Thể Loại -- Type</dt>
+<dd class="field-odd"><p>Bút Vẽ -- Brush</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Dynamic Paint ‣ Waves</span></p>
+</dd>
+</dl>
 </div>
 <p>This panel is used to adjust brush influence to &quot;Wave&quot; surfaces.</p>
-<dl class="docutils">
-<dt>Loại Sóng -- Wave Type</dt>
-<dd><p class="first">Select what effect the brush creates in the wave simulation.</p>
-<dl class="last docutils">
-<dt>Đổi Độ Sâu -- Depth Change</dt>
-<dd><p class="first">This option makes brush create waves when the intersection depth with the surface is <em>changed</em> on that point.
+<dl>
+<dt>Loại Sóng -- Wave Type</dt><dd><p>Select what effect the brush creates in the wave simulation.</p>
+<dl>
+<dt>Đổi Độ Sâu -- Depth Change</dt><dd><p>This option makes brush create waves when the intersection depth with the surface is <em>changed</em> on that point.
 If the brush remains still, it will not have influence.</p>
-<p class="last">Using a negative &quot;Factor&quot; with this type can create a nice looking &quot;wake&quot; for moving objects like ships.</p>
+<p>Using a negative &quot;Factor&quot; with this type can create a nice looking &quot;wake&quot; for moving objects like ships.</p>
 </dd>
-<dt>Trướng Ngại Vật -- Obstacle</dt>
-<dd>Constantly affects surface whenever intersecting.
+<dt>Trướng Ngại Vật -- Obstacle</dt><dd><p>Constantly affects surface whenever intersecting.
 Waves are also reflected off this brush type.
 However, due the nature of wave simulation algorithm this type creates
-an unnatural &quot;dent&quot; in the surface if brush remains still.</dd>
-<dt>Lực -- Force</dt>
-<dd>Directly affects the velocity of wave motion.
-Therefore the effect is not one-to-one with brush intersection depth, yet the force strength depends on it.</dd>
-<dt>Chỉ Phản Xạ -- Reflect Only</dt>
-<dd>This type has no visible effect on the surface alone but reflects waves that are already on the surface.</dd>
+an unnatural &quot;dent&quot; in the surface if brush remains still.</p>
+</dd>
+<dt>Lực -- Force</dt><dd><p>Directly affects the velocity of wave motion.
+Therefore the effect is not one-to-one with brush intersection depth, yet the force strength depends on it.</p>
+</dd>
+<dt>Chỉ Phản Xạ -- Reflect Only</dt><dd><p>This type has no visible effect on the surface alone but reflects waves that are already on the surface.</p>
+</dd>
 </dl>
 </dd>
-<dt>Hệ Số -- Factor</dt>
-<dd>Adjusts how strongly brush &quot;depth&quot; affects the simulation.
-You can also use negative values to make brush pull water up instead of down.</dd>
-<dt>Hạn Định Sóng -- Clamp Waves</dt>
-<dd>In some cases the brush goes very deep inside the surface messing whole simulation up.
-You can use this setting to &quot;limit&quot; influence to only certain depth.</dd>
+<dt>Hệ Số -- Factor</dt><dd><p>Adjusts how strongly brush &quot;depth&quot; affects the simulation.
+You can also use negative values to make brush pull water up instead of down.</p>
+</dd>
+<dt>Hạn Định Sóng -- Clamp Waves</dt><dd><p>In some cases the brush goes very deep inside the surface messing whole simulation up.
+You can use this setting to &quot;limit&quot; influence to only certain depth.</p>
+</dd>
 </dl>
 </div>
 </div>

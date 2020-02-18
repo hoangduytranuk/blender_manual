@@ -217,9 +217,9 @@
 <h1>-- Texture &amp; Texture Mask<a class="headerlink" href="#texture-texture-mask" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="texture">
 <h2>Chất Liệu -- Texture<a class="headerlink" href="#texture" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../_images/sculpt-paint_brush_texture_brush-texture.jpg"><img alt="../../_images/sculpt-paint_brush_texture_brush-texture.jpg" src="../../_images/sculpt-paint_brush_texture_brush-texture.jpg" style="width: 580px;" /></a>
-<p class="caption"><span class="caption-text">Texture options and example.</span></p>
+<p class="caption"><span class="caption-text">Texture options and example.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Use the texture data-block at the bottom of the paint panel to select a preloaded image or
 procedural texture to use as your brush pattern.</p>
@@ -228,93 +228,88 @@ and that particular texture defined using the Material and Texture buttons.
 It is not necessary to have that material or texture applied to any mesh anywhere;
 it must only be defined.</p>
 <p>The example to the right shows the effects of painting with a Voronoi texture.</p>
-<dl class="docutils">
-<dt>Chất Liệu -- Texture</dt>
-<dd>In paint modes the texture is used as a color source,
-while for sculpting it is used to determine the strength of the brush.</dd>
-<dt>Mapping</dt>
-<dd><p class="first">Sets the way the texture is applied to the brush stroke.</p>
-<dl class="last docutils">
-<dt>Góc Nhìn -- View Plane</dt>
-<dd>If <em>View Plane</em> is enabled, the current view angle is used to project the brush texture onto the model.
+<dl>
+<dt>Chất Liệu -- Texture</dt><dd><p>In paint modes the texture is used as a color source,
+while for sculpting it is used to determine the strength of the brush.</p>
+</dd>
+<dt>Mapping</dt><dd><p>Sets the way the texture is applied to the brush stroke.</p>
+<dl>
+<dt>Góc Nhìn -- View Plane</dt><dd><p>If <em>View Plane</em> is enabled, the current view angle is used to project the brush texture onto the model.
 I.e. the texture follows the mouse, so it appears that the texture is being dragged across the model.
-In 2D painting, the texture moves with the brush.</dd>
-<dt>Bình Diện -- Area Plane</dt>
-<dd>Projects the brush texture along the local surface normal,
+In 2D painting, the texture moves with the brush.</p>
+</dd>
+<dt>Bình Diện -- Area Plane</dt><dd><p>Projects the brush texture along the local surface normal,
 which keeps the texture from stretching when sculpting on a portion of the mesh
-that is at an extreme angle to the viewpoint.</dd>
-<dt>Xếp Ô -- Tiled</dt>
-<dd>The <em>Tile</em> option tiles the texture across the screen,
+that is at an extreme angle to the viewpoint.</p>
+</dd>
+<dt>Xếp Ô -- Tiled</dt><dd><p>The <em>Tile</em> option tiles the texture across the screen,
 so moving the brush appears to move separately from the texture.
-The <em>Tile</em> option is most useful with tileable images, rather than procedural textures.</dd>
-<dt>3D</dt>
-<dd>The <em>3D</em> option allows the brush to take full advantage of procedural textures.
-This mode uses vertex coordinates rather than the brush location to determine what area of the texture to use.</dd>
-<dt>Ngẫu Nhiên -- Random</dt>
-<dd>Picks a random texture coordinate to sample from for each dab.</dd>
-<dt>Khuôn In -- Stencil</dt>
-<dd><p class="first">Stencil mapping works by projecting the paint from the camera space on the mesh or canvas.
+The <em>Tile</em> option is most useful with tileable images, rather than procedural textures.</p>
+</dd>
+<dt>3D</dt><dd><p>The <em>3D</em> option allows the brush to take full advantage of procedural textures.
+This mode uses vertex coordinates rather than the brush location to determine what area of the texture to use.</p>
+</dd>
+<dt>Ngẫu Nhiên -- Random</dt><dd><p>Picks a random texture coordinate to sample from for each dab.</p>
+</dd>
+<dt>Khuôn In -- Stencil</dt><dd><p>Stencil mapping works by projecting the paint from the camera space on the mesh or canvas.
 Painting is applied only inside the boundaries of the stencil.
 The stencil is displayed as a screen space overlay on the viewport.
 To the transform the stencil texture and the stencil mask with additional <kbd class="kbd docutils literal notranslate">Alt</kbd> pressed:</p>
 <ul class="simple">
-<li>Move <kbd class="kbd docutils literal notranslate">RMB</kbd></li>
-<li>Scale <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd></li>
-<li>Rotate <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd></li>
+<li><p>Move <kbd class="kbd docutils literal notranslate">RMB</kbd></p></li>
+<li><p>Scale <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd></p></li>
+<li><p>Rotate <kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd></p></li>
 </ul>
 <p>When using stencil scaling, <kbd class="kbd docutils literal notranslate">X</kbd> and <kbd class="kbd docutils literal notranslate">Y</kbd> are used to constrain the scaling to one axis.
 Pressing one of the buttons twice reverts to unconstrained scaling.</p>
-<dl class="last docutils">
-<dt>Tỷ Lệ Tương Quan của Hình Ảnh -- Image Aspect</dt>
-<dd>Restore the aspect ratio of the original image to reset stretching introduce by scaling,
+<dl class="simple">
+<dt>Tỷ Lệ Tương Quan của Hình Ảnh -- Image Aspect</dt><dd><p>Restore the aspect ratio of the original image to reset stretching introduce by scaling,
 (Image textures only.) This operator can use the tiling and scale values of the brush texture
-if the relevant are enabled in <a class="reference internal" href="../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel.</dd>
-<dt>Hoàn Lại Biến Hóa -- Reset Transform</dt>
-<dd>Restores the position of the stencil.</dd>
-</dl>
+if the relevant are enabled in <a class="reference internal" href="../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel.</p>
+</dd>
+<dt>Hoàn Lại Biến Hóa -- Reset Transform</dt><dd><p>Restores the position of the stencil.</p>
 </dd>
 </dl>
 </dd>
-<dt>Góc Độ <kbd class="kbd docutils literal notranslate">Ctrl-F</kbd> -- Angle <kbd class="kbd docutils literal notranslate">Ctrl-F</kbd></dt>
-<dd><p class="first">This is the rotation angle of the texture brush.
+</dl>
+</dd>
+<dt>Góc Độ <kbd class="kbd docutils literal notranslate">Ctrl-F</kbd> -- Angle <kbd class="kbd docutils literal notranslate">Ctrl-F</kbd></dt><dd><p>This is the rotation angle of the texture brush.
 It can be changed interactively via <kbd class="kbd docutils literal notranslate">Ctrl-F</kbd> in the 3D View.
 While in the interactive rotation you can enter a value numerically as well.</p>
-<dl class="last docutils">
-<dt>-- Rake <kbd class="kbd docutils literal notranslate">R</kbd></dt>
-<dd>Angle follows the direction of the brush stroke. Not available with <em>3D</em> textures.
-(Shortcut sculpting only.)</dd>
-<dt>-- Random <kbd class="kbd docutils literal notranslate">R</kbd></dt>
-<dd><p class="first">Angle is randomized per dab.</p>
-<dl class="last docutils">
-<dt>Góc Ngẫu Nhiên -- Random Angle</dt>
-<dd>Constraints the random deviation to a range.</dd>
-</dl>
+<dl>
+<dt>-- Rake <kbd class="kbd docutils literal notranslate">R</kbd></dt><dd><p>Angle follows the direction of the brush stroke. Not available with <em>3D</em> textures.
+(Shortcut sculpting only.)</p>
+</dd>
+<dt>-- Random <kbd class="kbd docutils literal notranslate">R</kbd></dt><dd><p>Angle is randomized per dab.</p>
+<dl class="simple">
+<dt>Góc Ngẫu Nhiên -- Random Angle</dt><dd><p>Constraints the random deviation to a range.</p>
 </dd>
 </dl>
 </dd>
-<dt>Dịch Chuyển -- Offset</dt>
-<dd>Offset the texture map placement in X, Y, and Z axes.</dd>
-<dt>Kích Thước -- Size</dt>
-<dd>Set the scale of the texture in each axis. Not available for <em>Drag</em> sculpting textures.</dd>
-<dt>-- Sample Bias</dt>
-<dd>Value added to texture samples (sculpting only).</dd>
+</dl>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>Offset the texture map placement in X, Y, and Z axes.</p>
+</dd>
+<dt>Kích Thước -- Size</dt><dd><p>Set the scale of the texture in each axis. Not available for <em>Drag</em> sculpting textures.</p>
+</dd>
+<dt>-- Sample Bias</dt><dd><p>Value added to texture samples (sculpting only).</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="texture-mask">
 <span id="bpy-types-brushtextureslot-mask"></span><h2>Chất Liệu Màn Chắn -- Texture Mask<a class="headerlink" href="#texture-mask" title="Permalink to this headline">¶</a></h2>
 <p>Brush strength is masked with a texture.</p>
-<dl class="docutils">
-<dt>-- Pressure Masking</dt>
-<dd><p class="first">A mask cut-off function. It allows to clip the mask result based on pressure,
+<dl>
+<dt>-- Pressure Masking</dt><dd><p>A mask cut-off function. It allows to clip the mask result based on pressure,
 creating areas of no paint when low pressure is applied to the brush,
 similar to how a real brush would behave.</p>
-<dl class="last docutils">
-<dt>Tắt -- Off</dt>
-<dd>Bị giải hoạt (tắt).</dd>
-<dt>Dốc Màu -- Ramp</dt>
-<dd>Distributes the mask effect above the pressure value.</dd>
-<dt>Cắt Bỏ -- Cutoff</dt>
-<dd>Simply selects between zero and one based on stylus pressure.</dd>
+<dl class="simple">
+<dt>Tắt -- Off</dt><dd><p>Bị giải hoạt (tắt).</p>
+</dd>
+<dt>Dốc Màu -- Ramp</dt><dd><p>Distributes the mask effect above the pressure value.</p>
+</dd>
+<dt>Cắt Bỏ -- Cutoff</dt><dd><p>Simply selects between zero and one based on stylus pressure.</p>
+</dd>
 </dl>
 </dd>
 </dl>

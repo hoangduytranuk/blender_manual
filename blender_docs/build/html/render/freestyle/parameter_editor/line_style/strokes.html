@@ -232,21 +232,21 @@ chaining lines into a single stroke or breaking a stroke into several ones based
 dashed pattern, etc.</p>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="../../../../_images/render_freestyle_parameter-editor_line-style_tabs_stroke.png"><img alt="../../../../_images/render_freestyle_parameter-editor_line-style_tabs_stroke.png" src="../../../../_images/render_freestyle_parameter-editor_line-style_tabs_stroke.png" style="width: 50%;" /></a>
-<p class="caption"><span class="caption-text">Line Style: Strokes</span></p>
+<p class="caption"><span class="caption-text">Line Style: Strokes</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="chaining">
 <h2>Chaining<a class="headerlink" href="#chaining" title="Permalink to this headline">¶</a></h2>
 <p>By default all retrieved lines from the line set are chained together.
 There are two basic chaining methods:</p>
-<dl class="docutils">
-<dt>Plain</dt>
-<dd>The default chaining method; it creates simple chains.</dd>
-<dt>Sketchy</dt>
-<dd>This chaining option allows for generating chains of feature edges with sketchy multiple strokes.
+<dl class="simple">
+<dt>Plain</dt><dd><p>The default chaining method; it creates simple chains.</p>
+</dd>
+<dt>Sketchy</dt><dd><p>This chaining option allows for generating chains of feature edges with sketchy multiple strokes.
 Basically, it generates <em>Round</em> strokes instead of a single one.
-It is only really useful if you use some random-driven modifiers in the line style!</dd>
-<dt>Rounds</dt>
-<dd>It specifies the number of rounds in sketchy strokes.</dd>
+It is only really useful if you use some random-driven modifiers in the line style!</p>
+</dd>
+<dt>Rounds</dt><dd><p>It specifies the number of rounds in sketchy strokes.</p>
+</dd>
 </dl>
 <p>Chaining can also be turned off to render each line separately,
 which can be useful for line styles which depend on accurate representation of the line set.</p>
@@ -254,82 +254,79 @@ which can be useful for line styles which depend on accurate representation of t
 <div class="section" id="splitting">
 <h2>Splitting<a class="headerlink" href="#splitting" title="Permalink to this headline">¶</a></h2>
 <p>You can split up chains of Freestyle lines by checking one of the following:</p>
-<dl class="docutils">
-<dt>Min, Max 2D Angle</dt>
-<dd>Splits chains of feature edges when they make a 2D angle above (or below) a minimum (or maximum) threshold.</dd>
-<dt>2D Length</dt>
-<dd>Splits chains when they are longer than the given value.</dd>
-<dt>Material Boundary</dt>
-<dd>Splits chains of feature edges if they cross from one material to another.</dd>
-<dt>Split Dash, Gap</dt>
-<dd><p class="first">Splits the chains using the given dashed pattern
+<dl>
+<dt>Min, Max 2D Angle</dt><dd><p>Splits chains of feature edges when they make a 2D angle above (or below) a minimum (or maximum) threshold.</p>
+</dd>
+<dt>2D Length</dt><dd><p>Splits chains when they are longer than the given value.</p>
+</dd>
+<dt>Material Boundary</dt><dd><p>Splits chains of feature edges if they cross from one material to another.</p>
+</dd>
+<dt>Split Dash, Gap</dt><dd><p>Splits the chains using the given dashed pattern
 (&quot;D&quot; stands for &quot;dash&quot;, &quot;G&quot; stands for &quot;gap&quot;; see also <a class="reference internal" href="#dashed-line">Dashed Line</a>).</p>
-<p class="last">D1, G1, D2, G2, D3, G3</p>
+<p>D1, G1, D2, G2, D3, G3</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="sorting">
 <h2>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
 <p>You can sort the order of your strokes, allowing the lines to stack in the order given.</p>
-<dl class="docutils">
-<dt>Sort key</dt>
-<dd><p class="first">A sort key is used to determine the stacking order of lines.</p>
-<dl class="last docutils">
-<dt>Distance from camera</dt>
-<dd>Lines closer to the camera lie on top of further lines.</dd>
-<dt>2D length</dt>
-<dd>Longer lines lie on top of shorter lines.</dd>
-<dt>Projected X, Y</dt>
-<dd>Sort by the projected X or Y value in the image coordinate system.</dd>
+<dl>
+<dt>Sort key</dt><dd><p>A sort key is used to determine the stacking order of lines.</p>
+<dl class="simple">
+<dt>Distance from camera</dt><dd><p>Lines closer to the camera lie on top of further lines.</p>
+</dd>
+<dt>2D length</dt><dd><p>Longer lines lie on top of shorter lines.</p>
+</dd>
+<dt>Projected X, Y</dt><dd><p>Sort by the projected X or Y value in the image coordinate system.</p>
+</dd>
 </dl>
 </dd>
-<dt>Integration Type</dt>
-<dd><p class="first">Use in tandem with the Sort Key to determine the range for sorting.
+<dt>Integration Type</dt><dd><p>Use in tandem with the Sort Key to determine the range for sorting.
 Since the distance of a line from the camera may vary over vertices,
 this option computes the sort key for a line from the values computed at
 individual vertices. The value computed for the line is:</p>
-<dl class="last docutils">
-<dt>Mean</dt>
-<dd>The mean of the values obtained for the vertices.</dd>
-<dt>Min</dt>
-<dd>The minimum of the values obtained for the vertices.</dd>
-<dt>Max</dt>
-<dd>The maximum of the values obtained for the vertices.</dd>
-<dt>First</dt>
-<dd>The value obtained for the first vertex.</dd>
-<dt>Last</dt>
-<dd>The value obtained for the last vertex.</dd>
+<dl class="simple">
+<dt>Mean</dt><dd><p>The mean of the values obtained for the vertices.</p>
+</dd>
+<dt>Min</dt><dd><p>The minimum of the values obtained for the vertices.</p>
+</dd>
+<dt>Max</dt><dd><p>The maximum of the values obtained for the vertices.</p>
+</dd>
+<dt>First</dt><dd><p>The value obtained for the first vertex.</p>
+</dd>
+<dt>Last</dt><dd><p>The value obtained for the last vertex.</p>
+</dd>
 </dl>
 </dd>
-<dt>Sort Order</dt>
-<dd>With the given result you can choose to &quot;Reverse&quot; the sort order.</dd>
+<dt>Sort Order</dt><dd><p>With the given result you can choose to &quot;Reverse&quot; the sort order.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="selection">
 <h2>Selection<a class="headerlink" href="#selection" title="Permalink to this headline">¶</a></h2>
 <p>You can also choose to only render selected chains.</p>
-<dl class="docutils">
-<dt>Minimal, Maximal 2D Length</dt>
-<dd>Chains longer and/or shorter than <em>2D Length</em>.</dd>
-<dt>Chain Count</dt>
-<dd>Allows the selection of first N chains.</dd>
+<dl class="simple">
+<dt>Minimal, Maximal 2D Length</dt><dd><p>Chains longer and/or shorter than <em>2D Length</em>.</p>
+</dd>
+<dt>Chain Count</dt><dd><p>Allows the selection of first N chains.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="caps">
 <h2>Caps<a class="headerlink" href="#caps" title="Permalink to this headline">¶</a></h2>
 <p>You can choose between three types of line caps:</p>
-<dl class="docutils">
-<dt>Butt</dt>
-<dd>Flat cap, exactly at the point the line ends.</dd>
-<dt>Round</dt>
-<dd>A half circle centered on the end point of the line.</dd>
-<dt>Square</dt>
-<dd>A square centered on the end point of the line
-(hence, like the circle, the drawn end of the line is slightly extended compared to its computed value).</dd>
+<dl class="simple">
+<dt>Butt</dt><dd><p>Flat cap, exactly at the point the line ends.</p>
+</dd>
+<dt>Round</dt><dd><p>A half circle centered on the end point of the line.</p>
+</dd>
+<dt>Square</dt><dd><p>A square centered on the end point of the line
+(hence, like the circle, the drawn end of the line is slightly extended compared to its computed value).</p>
+</dd>
 </dl>
 <div class="figure align-center" id="id2">
 <img alt="../../../../_images/render_freestyle_parameter-editor_line-style_tabs_stroke-caps-example.png" src="../../../../_images/render_freestyle_parameter-editor_line-style_tabs_stroke-caps-example.png" />
-<p class="caption"><span class="caption-text">Line caps example.</span></p>
+<p class="caption"><span class="caption-text">Line caps example.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="dashed-line">

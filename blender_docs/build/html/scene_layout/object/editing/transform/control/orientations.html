@@ -224,20 +224,18 @@
   <span class="target" id="bpy-types-spaceview3d-transform-orientation"><span id="bpy-types-transformorientation"></span></span><div class="section" id="transform-orientations">
 <h1>Định Hướng Biến Hóa -- Transform Orientations<a class="headerlink" href="#transform-orientations" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Transform Orientations</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Comma</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Sidebar region ‣ Transform Orientations</span></p>
+</dd>
+<dt class="field-odd">Phím Tắt -- Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Comma</kbd></p>
+</dd>
+</dl>
 </div>
 <p><em>Transform Orientations</em> affect the behavior of
 <a class="reference internal" href="../basics.html"><span class="doc">Transformations</span></a>: <em>Location</em>, <em>Rotation</em>, and <em>Scale</em>.
@@ -248,67 +246,61 @@ the <a class="reference internal" href="gizmos.html"><span class="doc">Object Gi
 <p>For example, when you press <kbd class="kbd docutils literal notranslate">X</kbd>, during the execution of the operation,
 it will constrain the transformation to the <em>Global</em> X axis.
 But if you press <kbd class="kbd docutils literal notranslate">X</kbd> a second time it will constrain to your <em>Transform Orientation</em>'s X axis.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../../../_images/scene-layout_object_editing_transform_control_orientations_menu.png" src="../../../../../_images/scene-layout_object_editing_transform_control_orientations_menu.png" />
-<p class="caption"><span class="caption-text">Transform Orientations selector.</span></p>
+<p class="caption"><span class="caption-text">Transform Orientations selector.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The Orientations options can be set through the <em>Transform Orientation</em> selector in a 3D View header.</p>
 <p>In addition to the five preset options,
 you can define your own custom orientation (see <a class="reference internal" href="#custom-orientations">Custom Orientations</a> below).</p>
 <div class="section" id="orientations">
 <h2>Định Hướng -- Orientations<a class="headerlink" href="#orientations" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Toàn Cầu -- Global</dt>
-<dd><p class="first">The gizmo matches the <em>Global</em> (or <em>World</em>) axis.</p>
-<p class="last">The <a class="reference internal" href="../../../../../editors/3dview/startup_scene.html"><span class="doc">Axis</span></a> in the top right corner of the viewport,
+<dl>
+<dt>Toàn Cầu -- Global</dt><dd><p>The gizmo matches the <em>Global</em> (or <em>World</em>) axis.</p>
+<p>The <a class="reference internal" href="../../../../../editors/3dview/startup_scene.html"><span class="doc">Axis</span></a> in the top right corner of the viewport,
 and the <em>Grid Floor</em>, shows the axes of world coordinate system.</p>
 </dd>
-<dt>Địa Phương -- Local</dt>
-<dd><p class="first">The gizmo matches the <em>Object</em> axis.</p>
-<p class="last">When an object is rotated, the direction of the <em>Local</em> gizmo
+<dt>Địa Phương -- Local</dt><dd><p>The gizmo matches the <em>Object</em> axis.</p>
+<p>When an object is rotated, the direction of the <em>Local</em> gizmo
 matches to the object's rotation relative to the global axes.
 While the <em>Global</em> gizmo always correspond to world coordinates.</p>
 </dd>
-<dt>Pháp Tuyến -- Normal</dt>
-<dd><p class="first">The Z axis of the gizmo will match
+<dt>Pháp Tuyến -- Normal</dt><dd><p>The Z axis of the gizmo will match
 the <a class="reference internal" href="../../../../../modeling/meshes/editing/normals.html"><span class="doc">Normal</span></a> of the selected element.
 If multiple elements are selected, it will orient towards the average of those normals.</p>
-<p class="last">In <em>Object Mode</em>, this is equivalent to <em>Local</em> orientation.</p>
+<p>In <em>Object Mode</em>, this is equivalent to <em>Local</em> orientation.</p>
 </dd>
-<dt>Trục Vạn Năng -- Gimbal</dt>
-<dd>Uses a <a class="reference internal" href="../../../../../glossary/index.html#term-gimbal"><span class="xref std std-term">Gimbal</span></a> behavior that can be changed
-depending on the current <a class="reference internal" href="../../../properties/transforms.html#rotation-modes"><span class="std std-ref">Rotation Mode</span></a>.</dd>
-<dt>Góc Nhìn -- View</dt>
-<dd><p class="first">The gizmo will match the 3D View (viewport):</p>
-<ul class="last simple">
-<li>Y: Up/Down</li>
-<li>X: Left/Right</li>
-<li>Z: Towards/Away from the screen</li>
+<dt>Trục Vạn Năng -- Gimbal</dt><dd><p>Uses a <a class="reference internal" href="../../../../../glossary/index.html#term-gimbal"><span class="xref std std-term">Gimbal</span></a> behavior that can be changed
+depending on the current <a class="reference internal" href="../../../properties/transforms.html#rotation-modes"><span class="std std-ref">Rotation Mode</span></a>.</p>
+</dd>
+<dt>Góc Nhìn -- View</dt><dd><p>The gizmo will match the 3D View (viewport):</p>
+<ul class="simple">
+<li><p>Y: Up/Down</p></li>
+<li><p>X: Left/Right</p></li>
+<li><p>Z: Towards/Away from the screen</p></li>
 </ul>
 </dd>
 </dl>
 <div class="section" id="custom-orientations">
 <h3>Định Hướng Tùy Chỉnh -- Custom Orientations<a class="headerlink" href="#custom-orientations" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Transform Orientations</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Sidebar region ‣ Transform Orientations</span></p>
+</dd>
+</dl>
 </div>
 <p>You can define custom transform orientations, using object or mesh elements. Custom transform
 orientations defined from objects use the <em>Local</em> orientation of the object whereas those
 defined from selected mesh elements (vertices, edges, faces)
 use the <em>Normal</em> orientation of the selection.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../../../_images/scene-layout_object_editing_transform_control_orientations_custom.png" src="../../../../../_images/scene-layout_object_editing_transform_control_orientations_custom.png" />
-<p class="caption"><span class="caption-text">Transform Orientations panel.</span></p>
+<p class="caption"><span class="caption-text">Transform Orientations panel.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Transform Orientations</em> panel, found in the header of the 3D View,
 can be used to manage transform orientations: selecting the active orientation,
@@ -320,22 +312,22 @@ it will take that object's name, etc.</p>
 <h4>Kiến Tạo Định Hướng -- Create Orientation<a class="headerlink" href="#create-orientation" title="Permalink to this headline">¶</a></h4>
 <p>To create a custom orientation, select the object or mesh element(s) and
 click the &quot;+&quot; button on the <em>Transform Orientations</em> panel.</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="../../../../../_images/scene-layout_object_editing_transform_control_orientations_custom-name.png" src="../../../../../_images/scene-layout_object_editing_transform_control_orientations_custom-name.png" />
-<p class="caption"><span class="caption-text">Create Orientation <a class="reference internal" href="../../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel.</span></p>
+<p class="caption"><span class="caption-text">Create Orientation <a class="reference internal" href="../../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>Just after creating the orientation,
 the <em>Create Orientation</em> <a class="reference internal" href="../../../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel gives a few options:</p>
-<dl class="docutils">
-<dt>Tên -- Name</dt>
-<dd>Text field for naming the new orientation.</dd>
-<dt>Dùng Góc Nhìn -- Use View</dt>
-<dd>The new orientation will be aligned to the view space.</dd>
-<dt>Dùng sau sự kiến tạo -- Use after creation</dt>
-<dd>If checked it leaves the newly created orientation active.</dd>
-<dt>Ghi đè lên cái trước -- Overwrite previous</dt>
-<dd>If the new orientation is given an existing name, a suffix will be added to it to avoid overwriting the old one,
-unless <em>Overwrite previous</em> is checked, in which case it will be overwritten.</dd>
+<dl class="simple">
+<dt>Tên -- Name</dt><dd><p>Text field for naming the new orientation.</p>
+</dd>
+<dt>Dùng Góc Nhìn -- Use View</dt><dd><p>The new orientation will be aligned to the view space.</p>
+</dd>
+<dt>Dùng sau sự kiến tạo -- Use after creation</dt><dd><p>If checked it leaves the newly created orientation active.</p>
+</dd>
+<dt>Ghi đè lên cái trước -- Overwrite previous</dt><dd><p>If the new orientation is given an existing name, a suffix will be added to it to avoid overwriting the old one,
+unless <em>Overwrite previous</em> is checked, in which case it will be overwritten.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -343,18 +335,15 @@ unless <em>Overwrite previous</em> is checked, in which case it will be overwrit
 <div class="section" id="align-to-transform-orientation">
 <span id="bpy-ops-transform-transform"></span><h2>Canh Hàng theo Định Hướng Biến Hóa -- Align to Transform Orientation<a class="headerlink" href="#align-to-transform-orientation" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Vật Thể (Object) ‣ Biến Hóa (Transform) ‣ Canh Hàng theo Định Hướng Biến Hóa (Align to Transform Orientation)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể và Biên Soạn -- Object and Edit Modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Vật Thể (Object) ‣ Biến Hóa (Transform) ‣ Canh Hàng theo Định Hướng Biến Hóa (Align to Transform Orientation)</span></p>
+</dd>
+</dl>
 </div>
 <p>Aligns (rotates) the selected objects so that their local orientation matches the active transform orientation
 in the Transform orientation panel or the <em>Orientation</em> selection

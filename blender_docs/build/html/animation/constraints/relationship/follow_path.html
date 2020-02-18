@@ -235,49 +235,49 @@ a train on its rails and most other vehicles can also use &quot;invisible&quot; 
 the links of a bicycle chain, etc.</p>
 <p>The owner is always evaluated in the global (world) space:</p>
 <ul class="simple">
-<li>Its location (as shown in the <em>Transform</em> panel)
+<li><p>Its location (as shown in the <em>Transform</em> panel)
 is used as an offset from its normal position on the path. E.g.
 if you have an owner with the (1.0, 1.0, 0.0) location,
 it will be one unit away from its normal position on the curve, along the X and Y axis.
-Hence, if you want your owner <em>on</em> its target path, clear its location <kbd class="kbd docutils literal notranslate">Alt-G</kbd>!</li>
-<li>This location offset is also proportionally affected by the scale of the target curve.
+Hence, if you want your owner <em>on</em> its target path, clear its location <kbd class="kbd docutils literal notranslate">Alt-G</kbd>!</p></li>
+<li><p>This location offset is also proportionally affected by the scale of the target curve.
 Taking the same (1.0, 1.0, 0.0) offset as above,
 if the curve has a scale of (2.0, 1.0, 1.0),
-the owner will be offset two units along the X axis (and one along the Y one)...</li>
-<li>When the <em>Curve Follow</em> option is enabled, its rotation is also offset to the one given by the curve
+the owner will be offset two units along the X axis (and one along the Y one)...</p></li>
+<li><p>When the <em>Curve Follow</em> option is enabled, its rotation is also offset to the one given by the curve
 (i.e. if you want the Y axis of your object to be aligned with the curve's direction,
 it must be in rest, non-constrained state, aligned with the global Y axis).
-Here again, clearing your owner's rotation <kbd class="kbd docutils literal notranslate">Alt-R</kbd> might be useful...</li>
+Here again, clearing your owner's rotation <kbd class="kbd docutils literal notranslate">Alt-R</kbd> might be useful...</p></li>
 </ul>
 <p>The movement of the owner along the target curve/path may be controlled in two different ways:</p>
 <ul class="simple">
-<li>The most simple is to define the number of frames of the movement,
+<li><p>The most simple is to define the number of frames of the movement,
 in the <a class="reference internal" href="../../../modeling/curves/properties/path_animation.html#curve-path-animation"><span class="std std-ref">Path Animation panel</span></a> of the Curve tab,
 via the <em>Frames</em> number field, and its start frame via the constraint's Offset option
-(by default, start frame: 1 [= offset of 0], duration: 100).</li>
-<li>The second way, much more precise and powerful,
+(by default, start frame: 1 [= offset of 0], duration: 100).</p></li>
+<li><p>The second way, much more precise and powerful,
 is to define an <em>Evaluation Time</em> interpolation curve for the <em>Target</em> path
 (in the <em>Graph Editor</em>). See the <a class="reference internal" href="../../../editors/graph_editor/fcurves/index.html"><span class="doc">Graph Editor chapter</span></a>
-to learn more about F-curves.</li>
-<li>If you do not want your owner to move along the path, you can give to the target curve a flat <em>Speed</em> F-curve
-(its value will control the position of the owner along the path).</li>
+to learn more about F-curves.</p></li>
+<li><p>If you do not want your owner to move along the path, you can give to the target curve a flat <em>Speed</em> F-curve
+(its value will control the position of the owner along the path).</p></li>
 </ul>
 <p><em>Follow Path</em> is another constraint that works well with
 the <a class="reference internal" href="../tracking/locked_track.html"><span class="doc">Locked Track one</span></a>.
 One example is a flying camera on a path. To control the camera's roll angle,
 you can use a <em>Locked Track</em> and a target object to specify the up direction, as the camera flies along the path.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p><em>Follow Path</em> &amp; <em>Clamp To</em></p>
-<p class="last">Do not confuse these two constraints. Both of them constraint the location of their owner along a curve,
+<p>Do not confuse these two constraints. Both of them constraint the location of their owner along a curve,
 but <em>Follow Path</em> is an &quot;animation-only&quot; constraint,
 inasmuch as the position of the owner along the curve is determined by the time (i.e. current frame),
 whereas the <a class="reference internal" href="../tracking/clamp_to.html"><span class="doc">Clamp To</span></a> <em>constraint</em> determines the position of its
 owner along the curve using one of its location properties' values.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Note that you also need to keyframe Evaluation Time for the Path. Select the path,
+<p class="admonition-title">Ghi chú</p>
+<p>Note that you also need to keyframe Evaluation Time for the Path. Select the path,
 go to the <em>Path Animation</em> panel in the curve properties,
 set the overall frame to the first frame of the path (e.g. frame 1),
 set the value of Evaluation time to the first frame of the path (e.g. 1), right-click on Evaluation time,
@@ -287,30 +287,29 @@ select create keyframe.</p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Mục Tiêu -- Target</dt>
-<dd><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> used to select the constraint's target, which <em>must</em> be a curve object,
-and is not functional (red state) when it has none.</dd>
-<dt>Hoạt Họa Đường Dẫn -- Animate Path</dt>
-<dd>Adds an F-curve with options for the start and end frame. ToDo: from above.</dd>
-<dt>Bán Kính Đường Cong -- Curve Radius</dt>
-<dd>Objects scaled by the curve radius. See <a class="reference internal" href="../../../modeling/curves/properties/geometry.html"><span class="doc">Curve Editing</span></a>.</dd>
-<dt>Vị Trí Cố Định -- Fixed Position</dt>
-<dd>Object will stay locked to a single point somewhere along the length of the curve regardless of time.</dd>
-<dt>Dịch Chuyển -- Offset</dt>
-<dd>The number of frames to offset from the &quot;animation&quot; defined by the path (by default, from frame 1).</dd>
-<dt>Đi Theo Đường Cong -- Follow Curve</dt>
-<dd><p class="first">If this option is not activated, the owner's rotation is not modified by the curve; otherwise,
+<dl>
+<dt>Mục Tiêu -- Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> used to select the constraint's target, which <em>must</em> be a curve object,
+and is not functional (red state) when it has none.</p>
+</dd>
+<dt>Hoạt Họa Đường Dẫn -- Animate Path</dt><dd><p>Adds an F-curve with options for the start and end frame. ToDo: from above.</p>
+</dd>
+<dt>Bán Kính Đường Cong -- Curve Radius</dt><dd><p>Objects scaled by the curve radius. See <a class="reference internal" href="../../../modeling/curves/properties/geometry.html"><span class="doc">Curve Editing</span></a>.</p>
+</dd>
+<dt>Vị Trí Cố Định -- Fixed Position</dt><dd><p>Object will stay locked to a single point somewhere along the length of the curve regardless of time.</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>The number of frames to offset from the &quot;animation&quot; defined by the path (by default, from frame 1).</p>
+</dd>
+<dt>Đi Theo Đường Cong -- Follow Curve</dt><dd><p>If this option is not activated, the owner's rotation is not modified by the curve; otherwise,
 it is affected depending on the following options:</p>
-<dl class="last docutils">
-<dt>Phía Trước -- Forward</dt>
-<dd>The axis of the object that has to be aligned with the forward direction of the path
-(i.e. tangent to the curve at the owner's position).</dd>
-<dt>Lên/Trên -- Up</dt>
-<dd>The axis of the object that has to be aligned (as much as possible) with the world Z axis.
+<dl class="simple">
+<dt>Phía Trước -- Forward</dt><dd><p>The axis of the object that has to be aligned with the forward direction of the path
+(i.e. tangent to the curve at the owner's position).</p>
+</dd>
+<dt>Lên/Trên -- Up</dt><dd><p>The axis of the object that has to be aligned (as much as possible) with the world Z axis.
 In fact, with this option activated, the behavior of the owner shares some properties with
 the one caused by a <a class="reference internal" href="../tracking/locked_track.html"><span class="doc">Locked Track constraint</span></a>,
-with the path as &quot;axle&quot;, and the world Z axis as &quot;magnet&quot;.</dd>
+with the path as &quot;axle&quot;, and the world Z axis as &quot;magnet&quot;.</p>
+</dd>
 </dl>
 </dd>
 </dl>

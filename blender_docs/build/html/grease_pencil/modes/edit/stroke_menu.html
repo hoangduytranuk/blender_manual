@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Grease Pencil</a><ul class="current">
@@ -124,14 +124,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../multiframe.html">Multiframe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../properties/index.html">Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Grease Pencil Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Grease Pencil Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visual_effects/index.html">Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../animation/index.html">Animation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#modes">Modes</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../draw/index.html">Grease Pencil Draw Mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../sculpting/index.html">Grease Pencil Sculpt Mode</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Grease Pencil Edit Mode</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../draw/index.html">Draw Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sculpting/index.html">Sculpt Mode</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Edit Mode</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tools.html">Editing Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="grease_pencil_menu.html">Grease Pencil Menu</a></li>
@@ -139,7 +139,7 @@
 <li class="toctree-l4"><a class="reference internal" href="point_menu.html">Point Menu</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../weight_paint/index.html">Grease Pencil Weight Paint Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../weight_paint/index.html">Weight Paint Mode</a></li>
 </ul>
 </li>
 </ul>
@@ -205,7 +205,7 @@
         
           <li><a href="../../index.html">Grease Pencil</a> &raquo;</li>
         
-          <li><a href="index.html">Grease Pencil Edit Mode</a> &raquo;</li>
+          <li><a href="index.html">Edit Mode</a> &raquo;</li>
         
       <li>Stroke Menu</li>
     
@@ -229,77 +229,70 @@ some also work with point selections.</p>
 <div class="section" id="subdivide">
 <span id="bpy-ops-gpencil-stroke-subdivide"></span><h2>Subdivide<a class="headerlink" href="#subdivide" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Subdivide</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Subdivide</span></p>
+</dd>
+</dl>
 </div>
 <p>Subdivides the strokes by inserting points between the selected points.</p>
-<dl class="docutils">
-<dt>Number of Cuts</dt>
-<dd>The number of subdivisions to perform.</dd>
-<dt>Smooth</dt>
-<dd>The amount of the smoothness on subdivided points.</dd>
-<dt>Repeat</dt>
-<dd>Number of times to repeat the procedure.</dd>
-<dt>Selected points</dt>
-<dd>When enabled, limits the effect to only the selected points within the stroke.</dd>
-<dt>Position</dt>
-<dd>When enabled, the operator affect the points location.</dd>
-<dt>Thickness</dt>
-<dd>When enabled, the operator affect the points thickness.</dd>
-<dt>Strength</dt>
-<dd>When enabled, the operator affect the points strength (alpha).</dd>
-<dt>UVs</dt>
-<dd>When enabled, the operator affect the UV rotation on the points.</dd>
+<dl class="simple">
+<dt>Number of Cuts</dt><dd><p>The number of subdivisions to perform.</p>
+</dd>
+<dt>Smooth</dt><dd><p>The amount of the smoothness on subdivided points.</p>
+</dd>
+<dt>Repeat</dt><dd><p>Number of times to repeat the procedure.</p>
+</dd>
+<dt>Selected points</dt><dd><p>When enabled, limits the effect to only the selected points within the stroke.</p>
+</dd>
+<dt>Position</dt><dd><p>When enabled, the operator affect the points location.</p>
+</dd>
+<dt>Thickness</dt><dd><p>When enabled, the operator affect the points thickness.</p>
+</dd>
+<dt>Strength</dt><dd><p>When enabled, the operator affect the points strength (alpha).</p>
+</dd>
+<dt>UVs</dt><dd><p>When enabled, the operator affect the UV rotation on the points.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="simplify">
 <span id="bpy-ops-gpencil-stroke-sample"></span><span id="bpy-ops-gpencil-stroke-simplify"></span><span id="bpy-ops-gpencil-stroke-simplify-fixed"></span><h2>Simplify<a class="headerlink" href="#simplify" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Simplify</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Simplify</span></p>
+</dd>
+</dl>
 </div>
 <p>Reduce the amount of points in the strokes.</p>
-<dl class="docutils">
-<dt>Fixed</dt>
-<dd><p class="first">Deletes alternated points in the strokes, except the start and end points.</p>
-<dl class="last docutils">
-<dt>Steps</dt>
-<dd>The number of times to repeat the procedure.</dd>
+<dl>
+<dt>Fixed</dt><dd><p>Deletes alternated points in the strokes, except the start and end points.</p>
+<dl class="simple">
+<dt>Steps</dt><dd><p>The number of times to repeat the procedure.</p>
+</dd>
 </dl>
 </dd>
-<dt>Adaptive</dt>
-<dd><p class="first">Uses the RDP algorithm (Ramer-Douglas-Peucker algorithm) for points deletion.
+<dt>Adaptive</dt><dd><p>Uses the RDP algorithm (Ramer-Douglas-Peucker algorithm) for points deletion.
 The algorithm tries to obtain a similar line shape with fewer points.</p>
-<dl class="last docutils">
-<dt>Factor</dt>
-<dd>Controls the amount of recursively simplifications applied by the algorithm.</dd>
+<dl class="simple">
+<dt>Factor</dt><dd><p>Controls the amount of recursively simplifications applied by the algorithm.</p>
+</dd>
 </dl>
 </dd>
-<dt>Sample</dt>
-<dd><p class="first">Recreates the stroke geometry with a predefined length between points.</p>
-<dl class="last docutils">
-<dt>Length</dt>
-<dd>The distance between points on the recreated stroke.
+<dt>Sample</dt><dd><p>Recreates the stroke geometry with a predefined length between points.</p>
+<dl class="simple">
+<dt>Length</dt><dd><p>The distance between points on the recreated stroke.
 Smaller values will require more points to recreate the stroke,
-while larger values will result in fewer points needed to recreate the curve.</dd>
+while larger values will result in fewer points needed to recreate the curve.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -307,33 +300,31 @@ while larger values will result in fewer points needed to recreate the curve.</d
 <div class="section" id="trim">
 <span id="bpy-ops-gpencil-stroke-trim"></span><h2>Trim<a class="headerlink" href="#trim" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Trim</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Trim</span></p>
+</dd>
+</dl>
 </div>
 <p>Trims selected stroke to first loop or intersection.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id1">
-<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke_menu_trim-1.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke_menu_trim-1.png" src="../../../_images/grease-pencil_modes_edit_stroke_menu_trim-1.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Original stroke.</span></p>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke-menu_trim-1.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke-menu_trim-1.png" src="../../../_images/grease-pencil_modes_edit_stroke-menu_trim-1.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Original stroke.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id2">
-<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke_menu_trim-2.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke_menu_trim-2.png" src="../../../_images/grease-pencil_modes_edit_stroke_menu_trim-2.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Result of trim operation.</span></p>
+<td><div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke-menu_trim-2.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke-menu_trim-2.png" src="../../../_images/grease-pencil_modes_edit_stroke-menu_trim-2.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Result of trim operation.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -343,50 +334,47 @@ while larger values will result in fewer points needed to recreate the curve.</d
 <div class="section" id="join">
 <span id="bpy-ops-gpencil-stroke-join"></span><h2>Join<a class="headerlink" href="#join" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Join ‣ Join, Join and Copy</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-J</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Ctrl-J</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Join ‣ Join, Join and Copy</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Ctrl-J</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Ctrl-J</kbd></p>
+</dd>
+</dl>
 </div>
 <p>Join two or more strokes into a single one.</p>
-<dl class="docutils">
-<dt>Type</dt>
-<dd><dl class="first last docutils">
-<dt>Join <kbd class="kbd docutils literal notranslate">Ctrl-J</kbd></dt>
-<dd>Join selected strokes by connecting points.</dd>
-<dt>Join and Copy <kbd class="kbd docutils literal notranslate">Shift-Ctrl-J</kbd></dt>
-<dd>Join selected strokes by connecting points in a new stroke.</dd>
+<dl class="simple">
+<dt>Type</dt><dd><dl class="simple">
+<dt>Join <kbd class="kbd docutils literal notranslate">Ctrl-J</kbd></dt><dd><p>Join selected strokes by connecting points.</p>
+</dd>
+<dt>Join and Copy <kbd class="kbd docutils literal notranslate">Shift-Ctrl-J</kbd></dt><dd><p>Join selected strokes by connecting points in a new stroke.</p>
+</dd>
 </dl>
 </dd>
-<dt>Leave Gaps</dt>
-<dd>When enabled, do not use geometry to connect the strokes.</dd>
+<dt>Leave Gaps</dt><dd><p>When enabled, do not use geometry to connect the strokes.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="move-to-layer">
 <span id="bpy-ops-gpencil-move-to-layer"></span><h2>Move to Layer<a class="headerlink" href="#move-to-layer" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Move to Layer</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">M</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Move to Layer</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">M</kbd></p>
+</dd>
+</dl>
 </div>
 <p>A pop-up menu to move the stroke to a different layer.
 You can choose the layer to move the selected strokes to
@@ -396,17 +384,15 @@ You can also add a new layer to move the selected stroke to.</p>
 <div class="section" id="assign-material">
 <span id="bpy-ops-gpencil-stroke-change-color"></span><h2>Assign Material<a class="headerlink" href="#assign-material" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Assign Material</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Assign Material</span></p>
+</dd>
+</dl>
 </div>
 <p>Changes the material linked to the selected stroke.
 You can choose the name of the material to be used by the selected stroke
@@ -415,109 +401,100 @@ from a list of materials of the current Grease Pencil object.</p>
 <div class="section" id="set-as-active-material">
 <span id="bpy-ops-gpencil-set-active-material"></span><h2>Set as Active Material<a class="headerlink" href="#set-as-active-material" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Set as Active Material</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Set as Active Material</span></p>
+</dd>
+</dl>
 </div>
 <p>Sets the active object material based on the selected stroke material.</p>
 </div>
 <div class="section" id="arrange-strokes">
 <span id="bpy-ops-gpencil-stroke-arrange"></span><h2>Arrange Strokes<a class="headerlink" href="#arrange-strokes" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Arrange Strokes</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Arrange Strokes</span></p>
+</dd>
+</dl>
 </div>
 <p>Change the drawing order of the strokes in the 2D layer.</p>
-<dl class="docutils">
-<dt>Bring to Front</dt>
-<dd>Moves to the top the selected points/strokes.</dd>
-<dt>Bring Forward</dt>
-<dd>Moves the selected points/strokes upper the next one in the drawing order.</dd>
-<dt>Send Backward</dt>
-<dd>Moves the selected points/strokes below the previous one in the drawing order.</dd>
-<dt>Send to Back</dt>
-<dd>Moves to the bottom the selected points/strokes.</dd>
+<dl class="simple">
+<dt>Bring to Front</dt><dd><p>Moves to the top the selected points/strokes.</p>
+</dd>
+<dt>Bring Forward</dt><dd><p>Moves the selected points/strokes upper the next one in the drawing order.</p>
+</dd>
+<dt>Send Backward</dt><dd><p>Moves the selected points/strokes below the previous one in the drawing order.</p>
+</dd>
+<dt>Send to Back</dt><dd><p>Moves to the bottom the selected points/strokes.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="close">
 <h2>Close<a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Close</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">F</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Close</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">F</kbd></p>
+</dd>
+</dl>
 </div>
 <p>Close or open strokes by connecting the last and first point.</p>
-<dl class="docutils">
-<dt>Type</dt>
-<dd><dl class="first last docutils">
-<dt>Close all</dt>
-<dd>Close all open selected strokes.</dd>
-<dt>Open all</dt>
-<dd>Open all closed selected strokes.</dd>
-<dt>Toggle</dt>
-<dd>Close or Open selected strokes as required.</dd>
+<dl class="simple">
+<dt>Type</dt><dd><dl class="simple">
+<dt>Close all</dt><dd><p>Close all open selected strokes.</p>
+</dd>
+<dt>Open all</dt><dd><p>Open all closed selected strokes.</p>
+</dd>
+<dt>Toggle</dt><dd><p>Close or Open selected strokes as required.</p>
+</dd>
 </dl>
 </dd>
-<dt>Create geometry</dt>
-<dd>When enabled, points are added for closing the strokes.
-If disabled, the operator act the same as <em>Toggle Cyclic</em>.</dd>
+<dt>Create geometry</dt><dd><p>When enabled, points are added for closing the strokes.
+If disabled, the operator act the same as <em>Toggle Cyclic</em>.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="toggle-cyclic">
 <span id="bpy-ops-gpencil-stroke-cyclical-set"></span><h2>Toggle Cyclic<a class="headerlink" href="#toggle-cyclic" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Toggle Cyclic</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Toggle Cyclic</span></p>
+</dd>
+</dl>
 </div>
 <p>Toggles between an open stroke and closed stroke (cyclic).</p>
-<dl class="docutils">
-<dt>Type</dt>
-<dd><dl class="first last docutils">
-<dt>Close all</dt>
-<dd>Close all open selected strokes.</dd>
-<dt>Open all</dt>
-<dd>Open all closed selected strokes.</dd>
-<dt>Toggle</dt>
-<dd>Close or Open selected strokes as required.</dd>
-<dt>Create geometry</dt>
-<dd>When enabled, points are added for closing the strokes like when using the <em>Close</em> tool.
-If disabled, the stroke is close without any actual geometry.</dd>
+<dl class="simple">
+<dt>Type</dt><dd><dl class="simple">
+<dt>Close all</dt><dd><p>Close all open selected strokes.</p>
+</dd>
+<dt>Open all</dt><dd><p>Open all closed selected strokes.</p>
+</dd>
+<dt>Toggle</dt><dd><p>Close or Open selected strokes as required.</p>
+</dd>
+<dt>Create geometry</dt><dd><p>When enabled, points are added for closing the strokes like when using the <em>Close</em> tool.
+If disabled, the stroke is close without any actual geometry.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -525,49 +502,47 @@ If disabled, the stroke is close without any actual geometry.</dd>
 <div class="section" id="toggle-caps">
 <span id="bpy-ops-gpencil-stroke-caps-set"></span><h2>Toggle Caps<a class="headerlink" href="#toggle-caps" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Toggle Caps</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Toggle Caps</span></p>
+</dd>
+</dl>
 </div>
 <p>Toggle ending cap styles of the stroke.</p>
-<dl class="docutils">
-<dt>Default</dt>
-<dd>Sets stroke start and end points to rounded (default).</dd>
-<dt>Both</dt>
-<dd>Toggle stroke start and end points caps to flat or rounded.</dd>
-<dt>Start</dt>
-<dd>Toggle stroke start point cap to flat or rounded.</dd>
-<dt>End</dt>
-<dd>Toggle stroke end point cap to flat or rounded.</dd>
+<dl class="simple">
+<dt>Default</dt><dd><p>Sets stroke start and end points to rounded (default).</p>
+</dd>
+<dt>Both</dt><dd><p>Toggle stroke start and end points caps to flat or rounded.</p>
+</dd>
+<dt>Start</dt><dd><p>Toggle stroke start point cap to flat or rounded.</p>
+</dd>
+<dt>End</dt><dd><p>Toggle stroke end point cap to flat or rounded.</p>
+</dd>
 </dl>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id3">
-<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke_menu_cap-1.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke_menu_cap-1.png" src="../../../_images/grease-pencil_modes_edit_stroke_menu_cap-1.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Stroke ending with rounded caps.</span></p>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke-menu_cap-1.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke-menu_cap-1.png" src="../../../_images/grease-pencil_modes_edit_stroke-menu_cap-1.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Stroke ending with rounded caps.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id4">
-<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke_menu_cap-2.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke_menu_cap-2.png" src="../../../_images/grease-pencil_modes_edit_stroke_menu_cap-2.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Stroke ending with flat caps.</span></p>
+<td><div class="figure align-default" id="id4">
+<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke-menu_cap-2.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke-menu_cap-2.png" src="../../../_images/grease-pencil_modes_edit_stroke-menu_cap-2.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Stroke ending with flat caps.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id5">
-<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke_menu_cap-3.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke_menu_cap-3.png" src="../../../_images/grease-pencil_modes_edit_stroke_menu_cap-3.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Stroke ending with combined caps.</span></p>
+<td><div class="figure align-default" id="id5">
+<a class="reference internal image-reference" href="../../../_images/grease-pencil_modes_edit_stroke-menu_cap-3.png"><img alt="../../../_images/grease-pencil_modes_edit_stroke-menu_cap-3.png" src="../../../_images/grease-pencil_modes_edit_stroke-menu_cap-3.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Stroke ending with combined caps.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -577,17 +552,15 @@ If disabled, the stroke is close without any actual geometry.</dd>
 <div class="section" id="switch-direction">
 <span id="bpy-ops-gpencil-stroke-flip"></span><h2>Switch Direction<a class="headerlink" href="#switch-direction" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Stroke ‣ Switch Direction</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Stroke ‣ Switch Direction</span></p>
+</dd>
+</dl>
 </div>
 <p>Reverse the direction of the points in the selected strokes
 (i.e. the start point will become the end one, and vice versa).</p>

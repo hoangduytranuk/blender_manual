@@ -248,12 +248,12 @@ since the results may be difficult to control.</p>
 <p>To setup Spline IK,
 it is necessary to have a chain of connected bones and a curve to constrain these bones to:</p>
 <ol class="arabic simple">
-<li>With the last bone in the chain selected,
+<li><p>With the last bone in the chain selected,
 add a <a class="reference internal" href="../../../../constraints/tracking/spline_ik.html"><span class="doc">Spline IK</span></a>
-Constraint from the Bone Constraints tab in the Properties Editor.</li>
-<li>Set the <em>Chain Length</em> setting to the number of bones in the chain
-(starting from and including the selected bone) that should be influenced by the curve.</li>
-<li>Finally, set the <em>Target</em> field to the curve that should control the curve.</li>
+Constraint from the Bone Constraints tab in the Properties Editor.</p></li>
+<li><p>Set the <em>Chain Length</em> setting to the number of bones in the chain
+(starting from and including the selected bone) that should be influenced by the curve.</p></li>
+<li><p>Finally, set the <em>Target</em> field to the curve that should control the curve.</p></li>
 </ol>
 <p>Congratulations, the bone chain is now controlled by the curve.</p>
 </div>
@@ -269,13 +269,13 @@ For example, start at the farthest bone and simply rotate the bones in the chain
 local Y axes to adjust the roll of the chain from that point onward.</p>
 <p>Applying Copy Rotation constraints on the bones also works.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p>There are a couple of limitations to consider:</p>
-<ul class="last simple">
-<li>Bones do not inherit a curve's <a class="reference internal" href="../../../../../modeling/curves/editing/control_points.html#modeling-curve-tilt"><span class="std std-ref">tilt</span></a> value to control their roll.</li>
-<li>There is no way of automatically creating a twisting effect
+<ul class="simple">
+<li><p>Bones do not inherit a curve's <a class="reference internal" href="../../../../../modeling/curves/editing/control_points.html#modeling-curve-tilt"><span class="std std-ref">tilt</span></a> value to control their roll.</p></li>
+<li><p>There is no way of automatically creating a twisting effect
 where a dampened rotation is inherited up the chain.
-Consider using <a class="reference internal" href="../../../bones/properties/bendy_bones.html"><span class="doc">Bendy Bones</span></a> instead.</li>
+Consider using <a class="reference internal" href="../../../bones/properties/bendy_bones.html"><span class="doc">Bendy Bones</span></a> instead.</p></li>
 </ul>
 </div>
 </div>
@@ -298,14 +298,14 @@ scaling, or doing neither. In addition, the scale of the curve Object affects th
 This setting determines the method used for determining the scaling on
 the X and Z axes of each bone in the chain.</p>
 <p>The available modes are:</p>
-<dl class="docutils">
-<dt>Không Có -- None</dt>
-<dd>This option keeps the X and Z scaling factors as 1.0.</dd>
-<dt>-- Volume Preserve</dt>
-<dd>The X and Z scaling factors are taken as the inverse of the Y scaling factor (length of the bone),
-maintaining the 'volume' of the bone.</dd>
-<dt>Nguyên Gốc của Xương -- Bone Original</dt>
-<dd>This options just uses the X and Z scaling factors the bone would have after being evaluated in the standard way.</dd>
+<dl class="simple">
+<dt>Không Có -- None</dt><dd><p>This option keeps the X and Z scaling factors as 1.0.</p>
+</dd>
+<dt>-- Volume Preserve</dt><dd><p>The X and Z scaling factors are taken as the inverse of the Y scaling factor (length of the bone),
+maintaining the 'volume' of the bone.</p>
+</dd>
+<dt>Nguyên Gốc của Xương -- Bone Original</dt><dd><p>This options just uses the X and Z scaling factors the bone would have after being evaluated in the standard way.</p>
+</dd>
 </dl>
 <p>In addition to these modes, there is an option, <em>Use Curve Radius</em>.
 When this option is enabled, the average radius of the radii of the points on the curve where
@@ -317,18 +317,18 @@ to be tweaked as necessary for artistic control.</p>
 <div class="section" id="tips-for-nice-setups">
 <h2>-- Tips for Nice Setups<a class="headerlink" href="#tips-for-nice-setups" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>For optimal deformations, it is recommended that the bones are roughly the same length,
+<li><p>For optimal deformations, it is recommended that the bones are roughly the same length,
 and that they are not too long, to facilitate a better fit to the curve.
 Also, bones should ideally be created in a way that follows the shape of the curve in its 'rest pose' shape,
 to minimize the problems in areas where the curve has sharp bends
-which may be especially noticeable when stretching is disabled.</li>
-<li>For control of the curve, it is recommended that hooks (in particular, Bone Hooks)
+which may be especially noticeable when stretching is disabled.</p></li>
+<li><p>For control of the curve, it is recommended that hooks (in particular, Bone Hooks)
 are used to control the control points of the curve, with one hook per control point.
 In general, only a few control points should be needed for the curve
-(e.g. one for every 3-5 bones offers decent control).</li>
-<li>The type of curve used does not really matter,
+(e.g. one for every 3-5 bones offers decent control).</p></li>
+<li><p>The type of curve used does not really matter,
 as long as a path can be extracted from it that could also be used by the Follow Path Constraint.
-This really depends on the level of control required from the hooks.</li>
+This really depends on the level of control required from the hooks.</p></li>
 </ul>
 </div>
 </div>

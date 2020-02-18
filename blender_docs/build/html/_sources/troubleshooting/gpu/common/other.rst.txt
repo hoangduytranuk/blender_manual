@@ -20,7 +20,7 @@ Try running Blender from the :doc:`command line </advanced/command_line/index>`,
 to see if any helpful error messages are printed.
 
 On Windows, graphics drivers can sometimes get corrupted.
-In this case it can help to uninstall all graphics drivers (there may be multiple from Intel, AMD and NVIDIA) and
+In this case it can help to uninstall all graphics drivers (there may be multiple from Intel, AMD and Nvidia) and
 perform a clean installation with drivers from the manufacturer's website.
 
 

@@ -7,7 +7,7 @@ Options
    :class: refbox
 
    :Mode:      Sculpt Mode
-   :Panel:     :menuselection:`Toolbar --> Options`
+   :Tool:      :menuselection:`Toolbar --> Options`
 
 Threaded Sculpt
    Takes advantage of multiple CPU processors to improve the sculpting performance.

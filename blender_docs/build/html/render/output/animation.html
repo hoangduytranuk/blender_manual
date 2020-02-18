@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="next" title="Máy Chơi Hoạt Họa -- Animation Player" href="animation_player.html" />
-    <link rel="prev" title="Usage" href="multiview/usage.html" /> 
+    <link rel="prev" title="Usage" href="stereoscopy/usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -134,11 +134,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">-- Render Output</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="settings.html">Tùy Chọn cho Đầu Ra -- Output Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Output Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="file_formats.html">File Formats</a></li>
 <li class="toctree-l3"><a class="reference internal" href="audio/index.html">-- Audio Rendering</a></li>
 <li class="toctree-l3"><a class="reference internal" href="metadata.html">Siêu Dữ Liệu -- Metadata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="multiview/index.html">Stereoscopy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stereoscopy/index.html">Stereoscopy</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">-- Rendering Animations</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#workflow">Quy Trình Làm Việc -- Workflow</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#frame-sequence-workflow">-- Frame Sequence Workflow</a></li>
@@ -273,71 +273,58 @@ but gives you more flexibility.</p>
 <p>Here are some guidelines to help you choose an approach.</p>
 <p class="rubric">-- Direct Approach</p>
 <ul class="simple">
-<li>Short segments with total render time &lt; 1 hour.</li>
-<li>Stable power supply.</li>
-<li>Computer not needed for other uses.</li>
+<li><p>Short segments with total render time &lt; 1 hour.</p></li>
+<li><p>Stable power supply.</p></li>
+<li><p>Computer not needed for other uses.</p></li>
 </ul>
 <p class="rubric">-- Frame Sequence Approach</p>
 <ul class="simple">
-<li>Total render time &gt; 1 hour.</li>
-<li>Post-production work needed:
+<li><p>Total render time &gt; 1 hour.</p></li>
+<li><p>Post-production work needed:
 - Color/lighting adjustment
 - Green screen/matte replacement
 - Layering/compositing
-- Multiple formats and sizes of ultimate product</li>
-<li>Intermediate frames/adjustments needed for compression/codec.</li>
-<li>Precise timing (e.g. lip-sync to audio track) needed in parts.</li>
-<li>May need to interrupt rendering to use the computer, and want to be able to resume rendering where you left off.</li>
+- Multiple formats and sizes of ultimate product</p></li>
+<li><p>Intermediate frames/adjustments needed for compression/codec.</p></li>
+<li><p>Precise timing (e.g. lip-sync to audio track) needed in parts.</p></li>
+<li><p>May need to interrupt rendering to use the computer, and want to be able to resume rendering where you left off.</p></li>
 </ul>
 </div>
 <div class="section" id="frame-sequence-workflow">
 <h2>-- Frame Sequence Workflow<a class="headerlink" href="#frame-sequence-workflow" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">First prepare your animation.</p>
-</li>
-<li><p class="first">In the <em>Dimensions</em> panel, choose the render size, Pixel Aspect Ratio, and the Range of Frames to use,
-as well as the frame rate, which should already be set.</p>
-</li>
-<li><p class="first">In the Output panel set up your animation to be rendered out as images,
-generally using a format that does not compromise any quality.</p>
-</li>
-<li><p class="first">Choose the output path and file type in the Output panel as well, for example <code class="docutils literal notranslate"><span class="pre">//render/my-anim-</span></code>.</p>
-</li>
-<li><p class="first">Confirm the range of your animation (frame Start and End).</p>
-</li>
-<li><p class="first">Save your blend-file.</p>
-</li>
-<li><p class="first">Press the big <em>Animation</em> button.
+<li><p>First prepare your animation.</p></li>
+<li><p>In the <em>Dimensions</em> panel, choose the render size, Pixel Aspect Ratio, and the Range of Frames to use,
+as well as the frame rate, which should already be set.</p></li>
+<li><p>In the Output panel set up your animation to be rendered out as images,
+generally using a format that does not compromise any quality.</p></li>
+<li><p>Choose the output path and file type in the Output panel as well, for example <code class="docutils literal notranslate"><span class="pre">//render/my-anim-</span></code>.</p></li>
+<li><p>Confirm the range of your animation (frame Start and End).</p></li>
+<li><p>Save your blend-file.</p></li>
+<li><p>Press the big <em>Animation</em> button.
 Do a long task (like sleeping, playing a video game, or cleaning your driveway)
-while you wait for your computer to finish rendering the frames.</p>
-</li>
-<li><p class="first">Once the animation is finished,
+while you wait for your computer to finish rendering the frames.</p></li>
+<li><p>Once the animation is finished,
 use your OS file explorer to navigate into the output folder (<code class="docutils literal notranslate"><span class="pre">render</span></code> in this example).
 You will see lots of images (<code class="docutils literal notranslate"><span class="pre">.png</span></code> or <code class="docutils literal notranslate"><span class="pre">.exr</span></code>, etc. depending on the format you chose to render)
-that have a sequence number attached to them ranging from 0000 to a max of 9999. These are your single frames.</p>
-</li>
-<li><p class="first">In Blender, now go into the <a class="reference internal" href="../../video_editing/index.html"><span class="doc">Video Sequence editor</span></a>.</p>
+that have a sequence number attached to them ranging from 0000 to a max of 9999. These are your single frames.</p></li>
+<li><p>In Blender, now go into the <a class="reference internal" href="../../video_editing/index.html"><span class="doc">Video Sequence editor</span></a>.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">The <a class="reference internal" href="../../video_editing/index.html"><span class="doc">VSE</span></a> does not support multi-layer EXR files.
+<p class="admonition-title">Cảnh báo</p>
+<p>The <a class="reference internal" href="../../video_editing/index.html"><span class="doc">VSE</span></a> does not support multi-layer EXR files.
 To render to a video format you will have to skip the next three steps and
 instead use an <a class="reference internal" href="../../compositing/types/input/image.html"><span class="doc">Image Input node</span></a>
 in the <a class="reference internal" href="../../compositing/types/input/image.html"><span class="doc">Compositor</span></a>.</p>
 </div>
 </li>
-<li><p class="first">Choose <em>Add Image</em> from the add menu. Select all the frames from your output folder that you want to include
-in your animation (press <kbd class="kbd docutils literal notranslate">A</kbd> to Select All easily). They will be added as a strip to the Sequence editor.</p>
-</li>
-<li><p class="first">Now you can edit the strip and add effects or simply leave it like it is.
-You can add other strips, like an audio strip.</p>
-</li>
-<li><p class="first">Scrub through the animation, checking that you have included all the frames.</p>
-</li>
-<li><p class="first">In the Output panel, choose the container and codec you want (e.g. <code class="docutils literal notranslate"><span class="pre">MPEG</span> <span class="pre">H.264</span></code>) and configure them.
-The video codecs are described on the previous page: <a class="reference internal" href="settings.html"><span class="doc">Output Options</span></a>.</p>
-</li>
-<li><p class="first">Click the <em>Animation</em> render button and Blender will render out the Sequence editor output into your movie.</p>
-</li>
+<li><p>Choose <em>Add Image</em> from the add menu. Select all the frames from your output folder that you want to include
+in your animation (press <kbd class="kbd docutils literal notranslate">A</kbd> to Select All easily). They will be added as a strip to the Sequence editor.</p></li>
+<li><p>Now you can edit the strip and add effects or simply leave it like it is.
+You can add other strips, like an audio strip.</p></li>
+<li><p>Scrub through the animation, checking that you have included all the frames.</p></li>
+<li><p>In the Output panel, choose the container and codec you want (e.g. <code class="docutils literal notranslate"><span class="pre">MPEG</span> <span class="pre">H.264</span></code>) and configure them.
+The video codecs are described on the previous page: <a class="reference internal" href="settings.html"><span class="doc">Output Options</span></a>.</p></li>
+<li><p>Click the <em>Animation</em> render button and Blender will render out the Sequence editor output into your movie.</p></li>
 </ol>
 <p>Why go through all this hassle? Well, first of all, if you render out single frames, you can
 stop the render at any time by pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> in the render window or Image editor.
@@ -352,21 +339,19 @@ with almost no effort whatsoever.</p>
 </div>
 <div class="section" id="hints">
 <h2>Gợi ý -- Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Your computer accidentally turns off in the middle of rendering your movie!</dt>
-<dd><p class="first">Unless your animation renders in a few minutes,
+<dl>
+<dt>Your computer accidentally turns off in the middle of rendering your movie!</dt><dd><p>Unless your animation renders in a few minutes,
 it is best to render the animation as separate image files.
 Instead of rendering directly to a compressed movie file, use a lossless format (e.g. <code class="docutils literal notranslate"><span class="pre">PNG</span></code>).</p>
 <p>This allows you an easy recovery if there is a problem and you have to re-start the rendering,
 since the frames you have already rendered will still be in the output directory.</p>
 <p>Just disable the <em>Overwrite</em> option to start rendering where you left off.</p>
-<p class="last">You can then make a movie out of the separate frames with Blender's Sequence editor
+<p>You can then make a movie out of the separate frames with Blender's Sequence editor
 or use 3rd party encoding software.</p>
 </dd>
-<dt>-- Animation Preview</dt>
-<dd><p class="first">It can be useful to render a subset of the animated sequence,
+<dt>-- Animation Preview</dt><dd><p>It can be useful to render a subset of the animated sequence,
 since only part of an animation may have an error.</p>
-<p class="last">Using an image format for output,
+<p>Using an image format for output,
 you can use the <em>Frame Step</em> option to render every <em>N'th</em> frame.
 Then disable <em>Overwrite</em> and re-render with <em>Frame Step</em> set to 1.</p>
 </dd>
@@ -385,7 +370,7 @@ Then disable <em>Overwrite</em> and re-render with <em>Frame Step</em> set to 1.
         <a href="animation_player.html" class="btn btn-neutral float-right" title="Máy Chơi Hoạt Họa -- Animation Player" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="multiview/usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="stereoscopy/usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

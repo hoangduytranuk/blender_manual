@@ -12,7 +12,7 @@
    fill.rst
    erase.rst
    cutter.rst
-   /interface/controls/buttons/eyedropper.rst
+   eyedropper.rst
    line.rst
    polyline.rst
    arc.rst

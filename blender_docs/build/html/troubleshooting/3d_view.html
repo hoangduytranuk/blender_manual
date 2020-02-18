@@ -232,26 +232,26 @@
 <p>Sometimes when setting a large <a class="reference internal" href="../editors/3dview/properties/sidebar.html#dview-view-clip"><span class="std std-ref">clipping range</span></a>
 will allow you to see both near and far objects,
 but reduces the depth precision resulting in artifacts.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id1">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/troubleshooting_3d-view_graphics-z-fighting-none.png"><img alt="../_images/troubleshooting_3d-view_graphics-z-fighting-none.png" src="../_images/troubleshooting_3d-view_graphics-z-fighting-none.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Model with no clipping artifacts.</span></p>
+<p class="caption"><span class="caption-text">Model with no clipping artifacts.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id2">
+<td><div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../_images/troubleshooting_3d-view_graphics-z-fighting-example.png"><img alt="../_images/troubleshooting_3d-view_graphics-z-fighting-example.png" src="../_images/troubleshooting_3d-view_graphics-z-fighting-example.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Model with clipping artifacts.</span></p>
+<p class="caption"><span class="caption-text">Model with clipping artifacts.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id3">
+<td><div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../_images/troubleshooting_3d-view_graphics-z-fighting-example-editmode.png"><img alt="../_images/troubleshooting_3d-view_graphics-z-fighting-example-editmode.png" src="../_images/troubleshooting_3d-view_graphics-z-fighting-example-editmode.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Mesh with artifacts in Edit Mode.</span></p>
+<p class="caption"><span class="caption-text">Mesh with artifacts in Edit Mode.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -259,8 +259,8 @@ but reduces the depth precision resulting in artifacts.</p>
 </table>
 <p>To avoid this:</p>
 <ul class="simple">
-<li>Increase the near clipping when working on large scenes.</li>
-<li>Decrease the far clipping when objects are not viewed at a distance.</li>
+<li><p>Increase the near clipping when working on large scenes.</p></li>
+<li><p>Decrease the far clipping when objects are not viewed at a distance.</p></li>
 </ul>
 <p>When perspective is disabled only the far Clip End is used, very high values can still give artifacts.</p>
 <p>This is <strong>not</strong> specific to Blender, all OpenGL/DirectX graphics applications have these same limitations.</p>
@@ -277,11 +277,11 @@ The camera will only show objects that fall within the clipping range.</p>
 <div class="section" id="slow-rendering">
 <h3>Slow Rendering<a class="headerlink" href="#slow-rendering" title="Permalink to this headline">¶</a></h3>
 <p>There are a couple of reasons why you may be experiencing a slow viewport.</p>
-<dl class="docutils">
-<dt>-- Old Hardware</dt>
-<dd>Sometimes your hardware, mainly your graphics card, may be too slow to keep up with your model.</dd>
-<dt>-- Upgrade Graphics Driver</dt>
-<dd>In some cases, slow selection is resolved by using updated drivers.</dd>
+<dl class="simple">
+<dt>-- Old Hardware</dt><dd><p>Sometimes your hardware, mainly your graphics card, may be too slow to keep up with your model.</p>
+</dd>
+<dt>-- Upgrade Graphics Driver</dt><dd><p>In some cases, slow selection is resolved by using updated drivers.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="slow-selection">
@@ -289,26 +289,25 @@ The camera will only show objects that fall within the clipping range.</p>
 <p>Blender uses OpenGL for selection, some graphics card drivers are slow at performing this operation.</p>
 <p>This becomes especially problematic on dense geometry.</p>
 <p>Possible Solutions:</p>
-<dl class="docutils">
-<dt>OpenGL Depth Picking (Preferences)</dt>
-<dd><p class="first">See <span class="menuselection">Preferences ‣ Viewport ‣ Selection</span>.</p>
-<p class="last">This option is enabled by default, disabling it may give a better performance at
+<dl>
+<dt>OpenGL Depth Picking (Preferences)</dt><dd><p>See <span class="menuselection">Preferences ‣ Viewport ‣ Selection</span>.</p>
+<p>This option is enabled by default, disabling it may give a better performance at
 the cost of selection accuracy.</p>
 </dd>
-<dt>-- Upgrade Graphics Driver</dt>
-<dd>In some cases, slow selection is resolved by using updated drivers.
-<em>It is generally good to use recent drivers when using 3D software.</em></dd>
-<dt>-- Select Centers (Workaround)</dt>
-<dd>In <em>Object Mode</em>, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while selecting uses the object center point.
-While this can be useful on its own, it has the side effect of not relying on OpenGL selection.</dd>
-<dt>Change Display Mode (Workaround)</dt>
-<dd>Using <em>Wireframe</em> display mode can be used to more quickly select different objects.</dd>
+<dt>-- Upgrade Graphics Driver</dt><dd><p>In some cases, slow selection is resolved by using updated drivers.
+<em>It is generally good to use recent drivers when using 3D software.</em></p>
+</dd>
+<dt>-- Select Centers (Workaround)</dt><dd><p>In <em>Object Mode</em>, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while selecting uses the object center point.
+While this can be useful on its own, it has the side effect of not relying on OpenGL selection.</p>
+</dd>
+<dt>Change Display Mode (Workaround)</dt><dd><p>Using <em>Wireframe</em> display mode can be used to more quickly select different objects.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p>Obviously, the workarounds listed here are not long term solutions,
 but it is handy to know if you are stuck using a system with poor OpenGL support.</p>
-<p class="last">Ultimately, if none of these options work out it may be worth upgrading your hardware.</p>
+<p>Ultimately, if none of these options work out it may be worth upgrading your hardware.</p>
 </div>
 </div>
 </div>
@@ -319,9 +318,9 @@ but it is handy to know if you are stuck using a system with poor OpenGL support
 <p>When navigating your scene, you may accidentally navigate away from your scene
 and find yourself with a blank viewport. There are two ways to fix this:</p>
 <ol class="arabic simple">
-<li>Select an object in the <a class="reference internal" href="../editors/outliner.html"><span class="doc">Outliner</span></a>,
-then zoom to that object with <span class="menuselection">View ‣ Frame Selected</span> or <kbd class="kbd docutils literal notranslate">NumpadPeriod</kbd>.</li>
-<li>Use <kbd class="kbd docutils literal notranslate">Home</kbd> to fit all objects into the 3D View.</li>
+<li><p>Select an object in the <a class="reference internal" href="../editors/outliner.html"><span class="doc">Outliner</span></a>,
+then zoom to that object with <span class="menuselection">View ‣ Frame Selected</span> or <kbd class="kbd docutils literal notranslate">NumpadPeriod</kbd>.</p></li>
+<li><p>Use <kbd class="kbd docutils literal notranslate">Home</kbd> to fit all objects into the 3D View.</p></li>
 </ol>
 </div>
 <div class="section" id="invisible-limit-zooming-in">
@@ -335,15 +334,15 @@ However, this makes it awkward to explore a scene or model an object from the 'i
 <div class="section" id="solutions">
 <h4>-- Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>Use <a class="reference internal" href="../editors/3dview/navigate/navigation.html#dview-nav-zoom-dolly"><span class="std std-ref">View Dolly</span></a>.</li>
-<li>Use <a class="reference internal" href="../editors/3dview/navigate/walk_fly.html#dview-fly-walk"><span class="std std-ref">Walk/Fly modes</span></a>.</li>
-<li>Use <a class="reference internal" href="../editors/preferences/navigation.html#prefs-auto-depth"><span class="std std-ref">Auto Depth</span></a> and <a class="reference internal" href="../editors/preferences/navigation.html#prefs-zoom-mouse-pos"><span class="std std-ref">Zoom to Mouse Position</span></a>.
-These tools will make sure the distance is always the value under the mouse cursor,</li>
-<li>Use <a class="reference internal" href="../editors/3dview/navigate/navigation.html#dview-nav-zoom-region"><span class="std std-ref">Zoom Region</span></a> as it also resets the center point when zooming.</li>
-<li>Center the view around the mouse cursor <kbd class="kbd docutils literal notranslate">Alt-MMB</kbd>.
-This will take the position under the cursor and make it your viewpoint center.</li>
-<li>Use an <abbr title="N-Degrees of Freedom">NDOF</abbr>, also known as a 3D mouse,
-see <a class="reference internal" href="../getting_started/configuration/hardware.html#hardware-ndof"><span class="std std-ref">configuring peripherals</span></a> for more information.</li>
+<li><p>Use <a class="reference internal" href="../editors/3dview/navigate/navigation.html#dview-nav-zoom-dolly"><span class="std std-ref">View Dolly</span></a>.</p></li>
+<li><p>Use <a class="reference internal" href="../editors/3dview/navigate/walk_fly.html#dview-fly-walk"><span class="std std-ref">Walk/Fly modes</span></a>.</p></li>
+<li><p>Use <a class="reference internal" href="../editors/preferences/navigation.html#prefs-auto-depth"><span class="std std-ref">Auto Depth</span></a> and <a class="reference internal" href="../editors/preferences/navigation.html#prefs-zoom-mouse-pos"><span class="std std-ref">Zoom to Mouse Position</span></a>.
+These tools will make sure the distance is always the value under the mouse cursor,</p></li>
+<li><p>Use <a class="reference internal" href="../editors/3dview/navigate/navigation.html#dview-nav-zoom-region"><span class="std std-ref">Zoom Region</span></a> as it also resets the center point when zooming.</p></li>
+<li><p>Center the view around the mouse cursor <kbd class="kbd docutils literal notranslate">Alt-MMB</kbd>.
+This will take the position under the cursor and make it your viewpoint center.</p></li>
+<li><p>Use an <abbr title="N-Degrees of Freedom">NDOF</abbr>, also known as a 3D mouse,
+see <a class="reference internal" href="../getting_started/configuration/hardware.html#hardware-ndof"><span class="std std-ref">configuring peripherals</span></a> for more information.</p></li>
 </ul>
 </div>
 </div>
@@ -358,24 +357,21 @@ selecting vertices/edges/faces where random elements are selected.</p>
 <p>Internally Blender uses <a class="reference internal" href="../glossary/index.html#term-opengl"><span class="xref std std-term">OpenGL</span></a> for selection,
 so the graphics card driver relies on giving correct results.</p>
 <p>Possible Solutions:</p>
-<dl class="docutils">
-<dt>Disable Anti-Aliasing <a class="reference internal" href="../glossary/index.html#term-multisampling"><span class="xref std std-term">Multisampling</span></a></dt>
-<dd><p class="first">This is by far the most common cause of selection issues.</p>
+<dl>
+<dt>Disable Anti-Aliasing <a class="reference internal" href="../glossary/index.html#term-multisampling"><span class="xref std std-term">Multisampling</span></a></dt><dd><p>This is by far the most common cause of selection issues.</p>
 <p>There are known problems with some graphics cards when using multisampling.</p>
 <p>You can disable this option by:</p>
-<ul class="last simple">
-<li>Turning multisampling off in your graphics card driver options.</li>
-<li>Turning <em>Multisampling</em> off in the <a class="reference internal" href="../editors/preferences/viewport.html#prefs-system-multisampling"><span class="std std-ref">System Preferences</span></a>.</li>
+<ul class="simple">
+<li><p>Turning multisampling off in your graphics card driver options.</p></li>
+<li><p>Turning <em>Multisampling</em> off in the <a class="reference internal" href="../editors/preferences/viewport.html#prefs-system-multisampling"><span class="std std-ref">System Preferences</span></a>.</p></li>
 </ul>
 </dd>
-<dt>-- Change Anti-Aliasing Sample Settings</dt>
-<dd><p class="first">Depending on your OpenGL configuration,
+<dt>-- Change Anti-Aliasing Sample Settings</dt><dd><p>Depending on your OpenGL configuration,
 some specific sample settings may work while others fail.</p>
-<p class="last">Unfortunately finding working configuration involves trial &amp; error testing.</p>
+<p>Unfortunately finding working configuration involves trial &amp; error testing.</p>
 </dd>
-<dt>-- Upgrade Graphics Driver</dt>
-<dd><p class="first">As with any OpenGL-related issues, using recent drivers can resolve problems.</p>
-<p class="last">However, it should be noted that this is a fairly common problem and remains unresolved with many drivers.</p>
+<dt>-- Upgrade Graphics Driver</dt><dd><p>As with any OpenGL-related issues, using recent drivers can resolve problems.</p>
+<p>However, it should be noted that this is a fairly common problem and remains unresolved with many drivers.</p>
 </dd>
 </dl>
 </div>

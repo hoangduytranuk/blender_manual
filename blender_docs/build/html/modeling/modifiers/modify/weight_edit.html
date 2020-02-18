@@ -230,20 +230,20 @@
 <p>This modifier is intended to edit the weights of a vertex group.</p>
 <p>The general process is the following, for each vertex:</p>
 <ul class="simple">
-<li>(Optional) It does the mapping, either through one of the predefined functions, or a custom mapping curve.</li>
-<li>It applies the influence factor, and optionally the vertex group or texture mask
-(0.0 means original weight, 1.0 means fully mapped weight).</li>
-<li>It applies back the weight to the vertex, and/or it might optionally remove the vertex
-from the group if its weight is below a given threshold, or add it if it is above a given threshold.</li>
+<li><p>(Optional) It does the mapping, either through one of the predefined functions, or a custom mapping curve.</p></li>
+<li><p>It applies the influence factor, and optionally the vertex group or texture mask
+(0.0 means original weight, 1.0 means fully mapped weight).</p></li>
+<li><p>It applies back the weight to the vertex, and/or it might optionally remove the vertex
+from the group if its weight is below a given threshold, or add it if it is above a given threshold.</p></li>
 </ul>
 <div class="admonition important">
-<p class="first admonition-title">Quan trọng</p>
-<p class="last">This modifier does implicit clamping of weight values in the standard (0.0 to 1.0) range.
+<p class="admonition-title">Quan trọng</p>
+<p>This modifier does implicit clamping of weight values in the standard (0.0 to 1.0) range.
 All values below 0.0 will be set to 0.0, and all values above 1.0 will be set to 1.0.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">You can view the modified weights in Weight Paint Mode.
+<p class="admonition-title">Ghi chú</p>
+<p>You can view the modified weights in Weight Paint Mode.
 This also implies that you will have to disable the <em>Vertex Weight Edit</em> modifier
 if you want to see the original weights of the vertex group you are editing.</p>
 </div>
@@ -251,42 +251,40 @@ if you want to see the original weights of the vertex group you are editing.</p>
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_modify_weight-edit_panel.png" src="../../../_images/modeling_modifiers_modify_weight-edit_panel.png" />
-<p class="caption"><span class="caption-text">The Vertex Weight Edit modifier panel.</span></p>
+<p class="caption"><span class="caption-text">The Vertex Weight Edit modifier panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd>Nhóm điểm đỉnh để tác động.</dd>
-<dt>Trọng Lượng Mặc Định -- Default Weight</dt>
-<dd>The default weight to assign to all vertices not in the given vertex group.</dd>
-<dt>Cộng vào Nhóm -- Group Add</dt>
-<dd>Adds vertices with a final weight over <em>Add Threshold</em> to the vertex group.</dd>
-<dt>Loại Bỏ khỏi Nhóm -- Group Remove</dt>
-<dd>Removes vertices with a final weight below <em>Remove Threshold</em> from the vertex group.</dd>
-<dt>Loại Giảm Dần -- Falloff Type</dt>
-<dd><p class="first">Type of mapping:</p>
-<dl class="last docutils">
-<dt>Tuyến Tính -- Linear</dt>
-<dd>No mapping.</dd>
-<dt>Đồ Thị Tự Chọn -- Custom Curve</dt>
-<dd>Allows the user to manually define the mapping using a curve.</dd>
-<dt>-- Sharp, Smooth, Root and Sphere</dt>
-<dd>These are classical mapping functions, from spikiest to roundest.</dd>
-<dt>Ngẫu Nhiên -- Random</dt>
-<dd>Uses a random value for each vertex.</dd>
-<dt>Làm Tròn Số -- Median Step</dt>
-<dd>Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.</dd>
+<dl>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>Nhóm điểm đỉnh để tác động.</p>
+</dd>
+<dt>Trọng Lượng Mặc Định -- Default Weight</dt><dd><p>The default weight to assign to all vertices not in the given vertex group.</p>
+</dd>
+<dt>Cộng vào Nhóm -- Group Add</dt><dd><p>Adds vertices with a final weight over <em>Add Threshold</em> to the vertex group.</p>
+</dd>
+<dt>Loại Bỏ khỏi Nhóm -- Group Remove</dt><dd><p>Removes vertices with a final weight below <em>Remove Threshold</em> from the vertex group.</p>
+</dd>
+<dt>Loại Giảm Dần -- Falloff Type</dt><dd><p>Type of mapping:</p>
+<dl class="simple">
+<dt>Tuyến Tính -- Linear</dt><dd><p>No mapping.</p>
+</dd>
+<dt>Đồ Thị Tự Chọn -- Custom Curve</dt><dd><p>Allows the user to manually define the mapping using a curve.</p>
+</dd>
+<dt>-- Sharp, Smooth, Root and Sphere</dt><dd><p>These are classical mapping functions, from spikiest to roundest.</p>
+</dd>
+<dt>Ngẫu Nhiên -- Random</dt><dd><p>Uses a random value for each vertex.</p>
+</dd>
+<dt>Làm Tròn Số -- Median Step</dt><dd><p>Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <div class="section" id="influence-mask-options">
 <span id="modeling-modifiers-weight-edit-influence-mask-options"></span><h3>Tùy Chọn về Tác Động/Màn Chắn -- Influence/Mask Options<a class="headerlink" href="#influence-mask-options" title="Permalink to this headline">¶</a></h3>
 <p>Those settings are the same for the three <em>Vertex Weight</em> modifiers.</p>
-<dl class="docutils">
-<dt>Ảnh Hưởng Toàn Cầu -- Global Influence</dt>
-<dd><p class="first">Ảnh hưởng tổng thể của bộ điều chỉnh (0.0 sẽ để nguyên trọng lượng của nhóm điểm đỉnh không thay đổi, 1.0 là ảnh hưởng tiêu chuẩn).</p>
-<div class="last admonition important">
-<p class="first admonition-title">Quan trọng</p>
-<p class="last">Ảnh hưởng chỉ tác động đến trọng lượng, việc cộng thêm/xóa đi các điểm đỉnh vào/khỏi nhóm điểm đỉnh sẽ không tránh được bằng cách đặt giá trị này thành 0.0.</p>
+<dl>
+<dt>Ảnh Hưởng Toàn Cầu -- Global Influence</dt><dd><p>Ảnh hưởng tổng thể của bộ điều chỉnh (0.0 sẽ để nguyên trọng lượng của nhóm điểm đỉnh không thay đổi, 1.0 là ảnh hưởng tiêu chuẩn).</p>
+<div class="admonition important">
+<p class="admonition-title">Quan trọng</p>
+<p>Ảnh hưởng chỉ tác động đến trọng lượng, việc cộng thêm/xóa đi các điểm đỉnh vào/khỏi nhóm điểm đỉnh sẽ không tránh được bằng cách đặt giá trị này thành 0.0.</p>
 </div>
 </dd>
 </dl>
@@ -300,35 +298,35 @@ if you want to see the original weights of the vertex group you are editing.</p>
 <p>Here is an example of various effects achieved using <em>Vertex Weight Edit</em> modifier
 (together with the <a class="reference internal" href="weight_proximity.html"><span class="doc">Vertex Weight Proximity</span></a> modifier)
 to generate weights used by the <a class="reference internal" href="../deform/displace.html"><span class="doc">Displace</span></a> modifier.</p>
-<table border="1" class="docutils" id="id2">
+<table class="docutils align-default" id="id2">
 <caption><span class="caption-text"><em>Curve Map</em> variations.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="100%" />
+<col style="width: 100%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id3">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-edit_mapping-concave.jpg"><img alt="../../../_images/modeling_modifiers_modify_weight-edit_mapping-concave.jpg" src="../../../_images/modeling_modifiers_modify_weight-edit_mapping-concave.jpg" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Concave-type mapping curve.</span></p>
+<p class="caption"><span class="caption-text">Concave-type mapping curve.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><div class="first last figure" id="id4">
+<tr class="row-even"><td><div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-edit_distance-edge.jpg"><img alt="../../../_images/modeling_modifiers_modify_weight-edit_distance-edge.jpg" src="../../../_images/modeling_modifiers_modify_weight-edit_distance-edge.jpg" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">No mapping curve (linear).</span></p>
+<p class="caption"><span class="caption-text">No mapping curve (linear).</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><div class="first last figure" id="id5">
+<tr class="row-odd"><td><div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-edit_mapping-convex.jpg"><img alt="../../../_images/modeling_modifiers_modify_weight-edit_mapping-convex.jpg" src="../../../_images/modeling_modifiers_modify_weight-edit_mapping-convex.jpg" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Convex-type mapping curve.</span></p>
+<p class="caption"><span class="caption-text">Convex-type mapping curve.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<div class="figure" id="id6">
+<div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-edit_exrem-vertices.jpg"><img alt="../../../_images/modeling_modifiers_modify_weight-edit_exrem-vertices.jpg" src="../../../_images/modeling_modifiers_modify_weight-edit_exrem-vertices.jpg" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Vertices with a computed weight below 0.1 removed from the vertex group.</span></p>
+<p class="caption"><span class="caption-text">Vertices with a computed weight below 0.1 removed from the vertex group.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <iframe src="https://player.vimeo.com/video/30188564" style="border: 0; height: 345px; width: 560px">
 </iframe><p><a class="reference external" href="https://wiki.blender.org/wiki/File:ManModifiersWeightVGroupEx.blend">The blend-file</a>, TEST_2 scene.</p>

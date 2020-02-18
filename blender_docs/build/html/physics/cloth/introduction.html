@@ -133,9 +133,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
@@ -221,39 +220,39 @@
 <h1>Giới Thiệu -- Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>Cloth simulation is one of the hardest aspects of computer graphics,
 it is a deceptively simple real-world item that is taken for granted,
-however, it actually has very complex internal and environmental interactions.
+but it actually has very complex internal and environmental interactions.
 Cloth is commonly modeled as 2D mesh to simulate real world objects such as fabrics, flags, banners.
-However, cloth can also be used to model 3D objects such as teddy bears, pillows, balloons, or balls.</p>
+And yet cloth can also be used to model 3D objects such as teddy bears, pillows, balloons, or balls.</p>
 <p>Cloth interacts with and is affected by other moving objects,
 the wind and other forces, as well as a general aerodynamic model,
 all of which is under your control.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id1">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id1">
 <img alt="../../_images/physics_cloth_introduction_example1.jpg" src="../../_images/physics_cloth_introduction_example1.jpg" />
-<p class="caption"><span class="caption-text">Cloth example.</span></p>
+<p class="caption"><span class="caption-text">Cloth example.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id2">
+<td><div class="figure align-default" id="id2">
 <img alt="../../_images/physics_cloth_introduction_oncarved-wood.jpg" src="../../_images/physics_cloth_introduction_oncarved-wood.jpg" />
-<p class="caption"><span class="caption-text">Cloth on carved wooden men (made by motorsep).</span></p>
+<p class="caption"><span class="caption-text">Cloth on carved wooden men (made by motorsep).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id3">
+<td><div class="figure align-default" id="id3">
 <img alt="../../_images/physics_cloth_introduction_example2.jpg" src="../../_images/physics_cloth_introduction_example2.jpg" />
-<p class="caption"><span class="caption-text">Cloth example.</span></p>
+<p class="caption"><span class="caption-text">Cloth example.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 <p>Once Cloth physics have been added to a mesh, a Cloth <a class="reference internal" href="../../modeling/modifiers/index.html"><span class="doc">modifier</span></a>
-will be added to the object's modifier stack automatically. As a modifier then,
+will be added to the object's modifier stack. As a modifier then,
 it can interact with other modifiers, such as <em>Armature</em> and <em>Smooth</em>. In these cases,
 the ultimate shape of the mesh is computed in accordance with the order of the modifier stack.
 For example, you should smooth the cloth <em>after</em> the modifier computes the shape of the cloth.</p>
@@ -270,9 +269,9 @@ thus you can continue working while the simulation is computed. However, it is C
 and depending on the power of your PC and the complexity of the simulation,
 the amount of CPU needed to compute the mesh varies, as does the lag you might notice.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p>Do not jump ahead</p>
-<p class="last">If you set up a cloth simulation but Blender has not computed the shapes for the duration of the simulation,
+<p class="admonition-title">Ghi chú</p>
+<p>Do Not Jump Ahead</p>
+<p>If you set up a cloth simulation but Blender has not computed the shapes for the duration of the simulation,
 and if you jump ahead a lot of frames forward in your animation,
 the cloth simulator may not be able to compute or show you an accurate mesh shape for that frame,
 if it has not previously computed the shape for the previous frame(s).</p>
@@ -281,48 +280,47 @@ if it has not previously computed the shape for the previous frame(s).</p>
 <h2>Quy Trình Làm Việc -- Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h2>
 <p>A general process for working with cloth is to:</p>
 <ol class="arabic simple">
-<li>Model the cloth object as a general starting shape.</li>
-<li>Designate the object as a &quot;cloth&quot; in the <em>Physics</em> tab of the Properties editor.</li>
-<li>Model other deflection objects that will interact with the cloth.
-Ensure the Deflection modifier is last on the modifier stack, after any other mesh deforming modifiers.</li>
-<li>Light the cloth and assign materials and textures, UV unwrapping if desired.</li>
-<li>If desired, give the object particles, such as steam coming off the surface.</li>
-<li>Run the simulation and adjust Options to obtain satisfactory results.
-The Timeline editors VCR controls are great for this step.</li>
-<li>Optionally age the mesh to some point in the simulation to obtain a new default starting shape.</li>
-<li>Make minor edits to the mesh on a frame-by-frame basis to correct minor tears.</li>
+<li><p>Model the cloth object as a general starting shape.</p></li>
+<li><p>Designate the object as a &quot;cloth&quot; in the <em>Physics</em> tab of the Properties editor.</p></li>
+<li><p>Model other deflection objects that will interact with the cloth.
+Ensure the Deflection modifier is last on the modifier stack, after any other mesh deforming modifiers.</p></li>
+<li><p>Light the cloth and assign materials and textures, UV unwrapping if desired.</p></li>
+<li><p>If desired, give the object particles, such as steam coming off the surface.</p></li>
+<li><p>Run the simulation and adjust settings to obtain satisfactory results.
+The Timeline editors playback controls are great for this step.</p></li>
+<li><p>Optionally age the mesh to some point in the simulation to obtain a new default starting shape.</p></li>
+<li><p>Make minor edits to the mesh on a frame-by-frame basis to correct minor tears.</p></li>
 </ol>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">To avoid unstable simulation, ensure that the cloth object does not penetrate any of the deflection objects.</p>
+<p class="admonition-title">Mẹo</p>
+<p>To avoid unstable simulation, make sure that the cloth object does not penetrate any of the deflection objects.</p>
 </div>
 </div>
 <div class="section" id="springs">
 <span id="physics-cloth-introduction-springs"></span><h2>Springs<a class="headerlink" href="#springs" title="Permalink to this headline">¶</a></h2>
 <p>Internally, cloth physics is simulated with virtual springs that connect the vertices of a mesh.
-There are four types of springs that control how cloth bends.
+There are four types of springs that control how the cloth bends.
 These four types are defined below and illustrated in the following image:</p>
 <div class="figure align-center" id="id4">
 <img alt="../../_images/physics_cloth_introduction_springs.png" src="../../_images/physics_cloth_introduction_springs.png" />
 <p class="caption"><span class="caption-text">Illustration of cloth springs; tension springs (blue),
 compression springs (red), shear springs (cyan),
-and angular bending springs (green).</span></p>
+and angular bending springs (green).</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Tension Springs</dt>
-<dd>Control the stiffness of the cloth.</dd>
-<dt>Compression Springs</dt>
-<dd>Control the amount of force required to collapse or compress the cloth.</dd>
-<dt>Shear Springs</dt>
-<dd>Similar to compression springs but control angular deformation.</dd>
-<dt>Angular Bending Springs</dt>
-<dd>Control how resilient the cloth is to folding or crumpling.</dd>
+<dl class="simple">
+<dt>Tension Springs</dt><dd><p>Control the stiffness of the cloth.</p>
+</dd>
+<dt>Compression Springs</dt><dd><p>Control the amount of force required to collapse or compress the cloth.</p>
+</dd>
+<dt>Shear Springs</dt><dd><p>Like compression springs but it controls the angular deformation.</p>
+</dd>
+<dt>Angular Bending Springs</dt><dd><p>Control how resilient the cloth is to folding or crumpling.</p>
+</dd>
 </dl>
-<p>All four of these spring types can be controlled independently in the
-<a class="reference internal" href="settings/physical_properties.html"><span class="doc">Physical Properties</span></a> panel.
-While these settings control surface springs, optionally,
-internal springs can be used for 3D meshes and behave similarly to
-<a class="reference internal" href="../soft_body/index.html"><span class="doc">Soft Bodies</span></a></p>
+<p>All four of these spring types can be controlled independently in
+the <a class="reference internal" href="settings/physical_properties.html"><span class="doc">Physical Properties</span></a> panel. While these settings
+control surface springs, optionally, internal springs can be used for 3D meshes
+and behave similarly to <a class="reference internal" href="../soft_body/index.html"><span class="doc">Soft Bodies</span></a>.</p>
 </div>
 </div>
 

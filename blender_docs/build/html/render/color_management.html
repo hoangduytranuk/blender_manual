@@ -230,7 +230,7 @@ on multiple display devices. It is used both to ensure all parts of the pipeline
 and to make artistic changes like exposure and color grading.</p>
 <div class="figure align-right" id="id1">
 <a class="reference internal image-reference" href="../_images/render_color-management_different-exposures.jpg"><img alt="../_images/render_color-management_different-exposures.jpg" src="../_images/render_color-management_different-exposures.jpg" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Different views and exposures of the same render.</span></p>
+<p class="caption"><span class="caption-text">Different views and exposures of the same render.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Blender's color management is based on the <a class="reference external" href="http://opencolorio.org/">OpenColorIO</a> library.
 By using the same OpenColorIO configuration in multiple applications,
@@ -243,8 +243,8 @@ the same color spaces and transforms will be available for consistent results.</
 are needed for rendering, display and storage of images.
 Rendering and compositing is best done in <em>scene linear</em> color space,
 which corresponds more closely to nature, and makes computations more physically accurate.</p>
-<div class="figure" id="id2">
-<img alt="../_images/render_color-management_linear-workflow.svg" src="../_images/render_color-management_linear-workflow.svg" /><p class="caption"><span class="caption-text">An example of a linear workflow.</span></p>
+<div class="figure align-default" id="id2">
+<img alt="../_images/render_color-management_linear-workflow.svg" src="../_images/render_color-management_linear-workflow.svg" /><p class="caption"><span class="caption-text">An example of a linear workflow.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>If the colors are linear, it means that if in reality, we double the number of photons,
 the color values are also doubled. Put another way,
@@ -267,8 +267,8 @@ only have limited brightness, so we can squeeze the colors to fit in the gamut o
 Besides that, it can also be useful to give the renders a particular look,
 e.g. as if they have been printed on real camera film.
 The default Filmic transform does this.</p>
-<div class="figure" id="id3">
-<img alt="../_images/render_color-management_linear-display-space.svg" src="../_images/render_color-management_linear-display-space.svg" /><p class="caption"><span class="caption-text">Conversion from linear to display device space.</span></p>
+<div class="figure align-default" id="id3">
+<img alt="../_images/render_color-management_linear-display-space.svg" src="../_images/render_color-management_linear-display-space.svg" /><p class="caption"><span class="caption-text">Conversion from linear to display device space.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="image-color-spaces">
@@ -290,79 +290,74 @@ that no color space conversion happens on them.</p>
 <div class="section" id="settings">
 <span id="render-post-color-management"></span><h2>Sắp Đặt -- Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties editor ‣ Render ‣ Color Management</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties editor ‣ Render ‣ Color Management</span></p>
+</dd>
+</dl>
 </div>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="../_images/render_post-process_color-management_panel.png" src="../_images/render_post-process_color-management_panel.png" />
-<p class="caption"><span class="caption-text">Render settings for color management.</span></p>
+<p class="caption"><span class="caption-text">Render settings for color management.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="display">
 <h3>Hiển Thị -- Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Thiết bị Hiển Thị -- Display Device</dt>
-<dd><p class="first">The device that the image is being viewed on.</p>
+<dl>
+<dt>Thiết bị Hiển Thị -- Display Device</dt><dd><p>The device that the image is being viewed on.</p>
 <p>Most computer monitors are configured for the sRGB color space,
 and so when working on a computer usually this option should just be left to the default.
 It would typically be changed when viewing the image on another display device connected to the computer,
 or when writing out image files intended to be displayed on another device.</p>
 <p>Rec709 is commonly used for HDTVs, while XYZ and DCI-P3 are common for digital projectors.</p>
-<p class="last">Color management can be disabled by setting the device to None.</p>
+<p>Color management can be disabled by setting the device to None.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="render">
 <h3>Kết Xuất -- Render<a class="headerlink" href="#render" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Góc Nhìn -- View</dt>
-<dd><p class="first">These are different ways to view the image on the same display device.</p>
-<dl class="last docutils">
-<dt>Standard</dt>
-<dd>Does no extra conversion besides the conversion for the display device. Often used for
+<dl>
+<dt>Góc Nhìn -- View</dt><dd><p>These are different ways to view the image on the same display device.</p>
+<dl class="simple">
+<dt>Standard</dt><dd><p>Does no extra conversion besides the conversion for the display device. Often used for
 non-photorealistic results or video editing where a specific look is already baked into
-the input video.</dd>
-<dt>-- Filmic</dt>
-<dd>For photorealistic results and better handling of high dynamic range colors.
-The contrast can be adjusted by changing the <em>Look</em> option for the Filmic view transform.</dd>
-<dt>Filmic Log</dt>
-<dd>Converts to Filmic log color space. This can be used for export to color grading applications,
-or to inspect the image by flattening out very dark and light areas.</dd>
-<dt>Nguyên Thủy/Thô Sơ -- Raw</dt>
-<dd>Intended for inspecting the image but not for final export.
-Raw gives the image without any color space conversion.</dd>
-<dt>-- False Color</dt>
-<dd>Shows a heat map of image intensities, to visualize the dynamic range.</dd>
+the input video.</p>
+</dd>
+<dt>-- Filmic</dt><dd><p>For photorealistic results and better handling of high dynamic range colors.
+The contrast can be adjusted by changing the <em>Look</em> option for the Filmic view transform.</p>
+</dd>
+<dt>Filmic Log</dt><dd><p>Converts to Filmic log color space. This can be used for export to color grading applications,
+or to inspect the image by flattening out very dark and light areas.</p>
+</dd>
+<dt>Nguyên Thủy/Thô Sơ -- Raw</dt><dd><p>Intended for inspecting the image but not for final export.
+Raw gives the image without any color space conversion.</p>
+</dd>
+<dt>-- False Color</dt><dd><p>Shows a heat map of image intensities, to visualize the dynamic range.</p>
+</dd>
 </dl>
 </dd>
-<dt>Độ Phơi Sáng -- Exposure</dt>
-<dd>Used to control the image brightness (in stops) applied before color space conversion.
-It is calculated as follows: <span class="math notranslate nohighlight">\(output\_value = render\_value × 2^{(exposure)}\)</span></dd>
-<dt>Gamma</dt>
-<dd>Extra gamma correction applied after color space conversion.
+<dt>Độ Phơi Sáng -- Exposure</dt><dd><p>Used to control the image brightness (in stops) applied before color space conversion.
+It is calculated as follows: <span class="math notranslate nohighlight">\(output\_value = render\_value × 2^{(exposure)}\)</span></p>
+</dd>
+<dt>Gamma</dt><dd><p>Extra gamma correction applied after color space conversion.
 Note that the default display transforms already perform the appropriate conversion,
-so this mainly acts as an additional effect for artistic tweaks.</dd>
-<dt>Nhìn/Dáng Vẻ -- Look</dt>
-<dd>Choose an artistic effect from a set of measured film response data
-which roughly emulates the look of certain film types. Applied before color space conversion.</dd>
-<dt>Dùng Đường Cong -- Use Curves</dt>
-<dd>Adjust RGB Curves to control image colors before color space conversion.
-Read more about using the <a class="reference internal" href="../interface/controls/templates/curve.html#ui-curve-widget"><span class="std std-ref">Thành Tố Đường Cong -- Curve Widget</span></a>.</dd>
+so this mainly acts as an additional effect for artistic tweaks.</p>
+</dd>
+<dt>Nhìn/Dáng Vẻ -- Look</dt><dd><p>Choose an artistic effect from a set of measured film response data
+which roughly emulates the look of certain film types. Applied before color space conversion.</p>
+</dd>
+<dt>Dùng Đường Cong -- Use Curves</dt><dd><p>Adjust RGB Curves to control image colors before color space conversion.
+Read more about using the <a class="reference internal" href="../interface/controls/templates/curve.html#ui-curve-widget"><span class="std std-ref">Thành Tố Đường Cong -- Curve Widget</span></a>.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="sequencer">
 <h3>Bộ Phối Hình -- Sequencer<a class="headerlink" href="#sequencer" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Không Gian Màu Sắc -- Color Space</dt>
-<dd>The color space that the Sequencer operates in. By default, the Sequencer operates in sRGB space,
+<dl class="simple">
+<dt>Không Gian Màu Sắc -- Color Space</dt><dd><p>The color space that the Sequencer operates in. By default, the Sequencer operates in sRGB space,
 but it can also be set to work in Linear space like the Compositing nodes, or another color space.
-Different color spaces will give different results for color correction, crossfades, and other operations.</dd>
+Different color spaces will give different results for color correction, crossfades, and other operations.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -375,13 +370,13 @@ for example. Such maps do not actually store colors, just data encoded as colors
 Those images should be marked as <em>Non-Color Data</em>.</p>
 <p>Image data-blocks will always store float buffers in memory in the scene linear color space,
 while a byte buffer in memory and files in a drive are stored in the color space specified with this setting:</p>
-<dl class="docutils">
-<dt>Không Gian Màu Sắc -- Color Space</dt>
-<dd>The color space of the image file on a drive. This depends on the file format,
+<dl class="simple">
+<dt>Không Gian Màu Sắc -- Color Space</dt><dd><p>The color space of the image file on a drive. This depends on the file format,
 for example, PNG or JPEG images are often stored in sRGB, while OpenEXR images are stored in a linear color space.
 Some images such as normal, bump or stencil maps do not strictly contain 'colors',
 and on such values, no color space conversion should ever be applied.
-For such images, the color space should be set to <em>None</em>.</dd>
+For such images, the color space should be set to <em>None</em>.</p>
+</dd>
 </dl>
 <p>By default only renders are displayed and saved with the render view transformations applied.
 These are the Render Result and Viewer image data-blocks,
@@ -391,13 +386,13 @@ Blender cannot detect automatically that this is a render
 (it could be e.g. an image texture or displacement map).
 We need to specify that this is a render and that we want the transformations applied,
 with these two settings:</p>
-<dl class="docutils">
-<dt>Hiển Thị như Bản Kết Xuất -- View as Render</dt>
-<dd>Display the image data-block (not only renders) with view transform, exposure, gamma, RGB curves applied.
-Useful for viewing rendered frames in linear OpenEXR files the same as when rendering them directly.</dd>
-<dt>-- Save as Render</dt>
-<dd>Option in the image save operator to apply the view transform, exposure, gamma, RGB curves.
-This is useful for saving linear OpenEXR to e.g. PNG or JPEG files in display space.</dd>
+<dl class="simple">
+<dt>Hiển Thị như Bản Kết Xuất -- View as Render</dt><dd><p>Display the image data-block (not only renders) with view transform, exposure, gamma, RGB curves applied.
+Useful for viewing rendered frames in linear OpenEXR files the same as when rendering them directly.</p>
+</dd>
+<dt>-- Save as Render</dt><dd><p>Option in the image save operator to apply the view transform, exposure, gamma, RGB curves.
+This is useful for saving linear OpenEXR to e.g. PNG or JPEG files in display space.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="opencolorio-configuration">
@@ -413,24 +408,24 @@ Blender will use the standard OCIO environment variable to read an OpenColorIO c
 other than the default Blender one. More information about how to set up such a workflow
 can be found on the <a class="reference external" href="http://opencolorio.org/">OpenColorIO website</a>.</p>
 <p>Blender currently use the following color space rules:</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">scene_linear</span></code></dt>
-<dd>Color space used for rendering, compositing, and storing all float precision images in memory.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">data</span></code></dt>
-<dd>Color space for non-color data.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">XYZ</span></code></dt>
-<dd>Standard linear XYZ color space. Used for effects such as blackbody emission to convert
-from physical units to the <em>scene_linear</em> color space.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">color_picking</span></code></dt>
-<dd>Defines the distribution of colors in color pickers. It is expected to
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">scene_linear</span></code></dt><dd><p>Color space used for rendering, compositing, and storing all float precision images in memory.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">data</span></code></dt><dd><p>Color space for non-color data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">XYZ</span></code></dt><dd><p>Standard linear XYZ color space. Used for effects such as blackbody emission to convert
+from physical units to the <em>scene_linear</em> color space.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">color_picking</span></code></dt><dd><p>Defines the distribution of colors in color pickers. It is expected to
 be approximately perceptually linear, have the same gamut as the <em>scene_linear</em> color space,
-map 0..1 values to 0..1 values in the scene linear color space for predictable editing of material albedos.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">default_sequencer</span></code></dt>
-<dd>Default color space for the Sequencer, <em>scene_linear</em> if not specified.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">default_byte</span></code></dt>
-<dd>Default color space for byte precision images and files, <em>texture_paint</em> if not specified.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">default_float</span></code></dt>
-<dd>Default color space for float precision images and files, <em>scene_linear</em> if not specified.</dd>
+map 0..1 values to 0..1 values in the scene linear color space for predictable editing of material albedos.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">default_sequencer</span></code></dt><dd><p>Default color space for the Sequencer, <em>scene_linear</em> if not specified.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">default_byte</span></code></dt><dd><p>Default color space for byte precision images and files, <em>texture_paint</em> if not specified.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">default_float</span></code></dt><dd><p>Default color space for float precision images and files, <em>scene_linear</em> if not specified.</p>
+</dd>
 </dl>
 <p>The standard Blender configuration includes support for saving and loading images in
 <a class="reference external" href="https://www.oscars.org/science-technology/sci-tech-projects/aces">ACES</a>

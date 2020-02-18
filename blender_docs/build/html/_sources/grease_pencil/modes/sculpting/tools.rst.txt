@@ -10,7 +10,7 @@ See :doc:`Brush </grease_pencil/modes/sculpting/tool_settings/brush>` for more i
 
 Grease Pencil sculpt tools:
 
-.. figure:: /images/grease-pencil_modes_sculpting_toolbar_brushes.png
+.. figure:: /images/grease-pencil_modes_sculpting_tools_brushes.png
    :align: right
 
    3D View Mode selector: Sculpt Mode.

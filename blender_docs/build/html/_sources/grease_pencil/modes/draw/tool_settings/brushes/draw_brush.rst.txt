@@ -16,7 +16,7 @@ Tool Settings
 Brushes
 -------
 
-.. figure:: /images/grease-pencil_modes_draw_brushes_draw-brush-data-block.png
+.. figure:: /images/grease-pencil_modes_draw_tool-settings_brushes_draw-brush_data-block.png
    :align: right
 
    Brush data-block panel.

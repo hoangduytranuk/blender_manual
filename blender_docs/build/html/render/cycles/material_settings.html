@@ -228,45 +228,40 @@
   <div class="section" id="material-settings">
 <span id="bpy-types-cyclesmaterialsettings"></span><h1>-- Material Settings<a class="headerlink" href="#material-settings" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Material ‣ Settings</span> and <span class="menuselection">Shader Editor ‣ Sidebar ‣ Settings</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Material ‣ Settings</span> and <span class="menuselection">Shader Editor ‣ Sidebar ‣ Settings</span></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="surface">
 <h2>Bề Mặt -- Surface<a class="headerlink" href="#surface" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Lấy Mẫu Vật Đa Trọng -- Multiple Importance Sample</dt>
-<dd><p class="first">By default objects with emitting materials use both direct and indirect light sampling methods,
+<dl>
+<dt>Lấy Mẫu Vật Đa Trọng -- Multiple Importance Sample</dt><dd><p>By default objects with emitting materials use both direct and indirect light sampling methods,
 but in some cases it may lead to less noise overall to disable direct light sampling for some materials.
 This can be done by disabling the <em>Multiple Importance Sample</em> option.
 This is especially useful on large objects that emit little light compared to other light sources.</p>
-<p class="last">This option will only have an influence if the material contains an Emission node; otherwise it will be disabled.</p>
+<p>This option will only have an influence if the material contains an Emission node; otherwise it will be disabled.</p>
 </dd>
-<dt>Bóng Tối Trong Suốt -- Transparent Shadows</dt>
-<dd>Use transparent shadows if it contains a <a class="reference internal" href="../shader_nodes/shader/transparent.html"><span class="doc">Transparent BSDF</span></a>,
-disabling will render faster but will not give accurate shadows.</dd>
+<dt>Bóng Tối Trong Suốt -- Transparent Shadows</dt><dd><p>Use transparent shadows if it contains a <a class="reference internal" href="../shader_nodes/shader/transparent.html"><span class="doc">Transparent BSDF</span></a>,
+disabling will render faster but will not give accurate shadows.</p>
+</dd>
 </dl>
-<span id="bpy-types-cyclesmaterialsettings-displacement"></span><dl class="docutils" id="cycles-materials-settings-displace">
-<dt>Phương Pháp Dời Hình -- Displacement Method</dt>
-<dd><p class="first">Method used to perform <a class="reference internal" href="../materials/components/displacement.html"><span class="doc">Displacement</span></a> on materials.</p>
-<dl class="last docutils">
-<dt>Duy Phép Dời Hình -- Displacement Only</dt>
-<dd>Mesh vertices will be displaced before rendering, modifying the actual mesh.
+<span id="bpy-types-cyclesmaterialsettings-displacement"></span><dl id="cycles-materials-settings-displace">
+<dt>Phương Pháp Dời Hình -- Displacement Method</dt><dd><p>Method used to perform <a class="reference internal" href="../materials/components/displacement.html"><span class="doc">Displacement</span></a> on materials.</p>
+<dl class="simple">
+<dt>Duy Phép Dời Hình -- Displacement Only</dt><dd><p>Mesh vertices will be displaced before rendering, modifying the actual mesh.
 This gives the best quality results, if the mesh is finely subdivided.
-As a result, this method is also the most memory intensive.</dd>
-<dt>-- Bump only</dt>
-<dd>When executing the surface shader, a modified surface normal is used instead of the true normal.
+As a result, this method is also the most memory intensive.</p>
+</dd>
+<dt>-- Bump only</dt><dd><p>When executing the surface shader, a modified surface normal is used instead of the true normal.
 This is a less memory intensive alternative to actual displacement, but only an approximation.
-Surface silhouettes will not be accurate and there will be no self-shadowing of the displacement.</dd>
-<dt>Phép Dời Hình và Độ Gồ Ghề -- Displacement and Bump</dt>
-<dd>Both methods can be combined, to do displacement on a coarser mesh,
-and use bump mapping for the final detail.</dd>
+Surface silhouettes will not be accurate and there will be no self-shadowing of the displacement.</p>
+</dd>
+<dt>Phép Dời Hình và Độ Gồ Ghề -- Displacement and Bump</dt><dd><p>Both methods can be combined, to do displacement on a coarser mesh,
+and use bump mapping for the final detail.</p>
+</dd>
 </dl>
 </dd>
 </dl>

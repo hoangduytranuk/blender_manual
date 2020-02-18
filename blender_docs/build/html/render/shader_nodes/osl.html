@@ -237,15 +237,15 @@ Note that these nodes will only work for CPU rendering;
 there is no support for running OSL code on the GPU.</p>
 <p>To enable it, select <em>Open Shading Language</em> as the shading system in the render settings.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">On Linux, C/C++ compiler tools (in particular <code class="docutils literal notranslate"><span class="pre">/usr/bin/cpp</span></code>)
+<p class="admonition-title">Ghi chú</p>
+<p>On Linux, C/C++ compiler tools (in particular <code class="docutils literal notranslate"><span class="pre">/usr/bin/cpp</span></code>)
 must be installed to compile OSL scripts.</p>
 </div>
 <div class="section" id="script-node">
 <span id="bpy-types-shadernodescript"></span><h2>Nút Tập Lệnh -- Script Node<a class="headerlink" href="#script-node" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../_images/render_shader-nodes_osl_script-node.png" src="../../_images/render_shader-nodes_osl_script-node.png" />
-<p class="caption"><span class="caption-text">Script Node.</span></p>
+<p class="caption"><span class="caption-text">Script Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>OSL was designed for node-based shading,
 and <em>each</em> OSL shader corresponds to <em>one</em> node in a node setup.
@@ -261,26 +261,17 @@ It is also possible to specify a path to a <code class="docutils literal notrans
 with compilation done manually by the user. The third option is to specify just the module name,
 which will be looked up in the shader search path.</p>
 <p>The shader search path is located in the same place as the scripts or configuration path, under:</p>
-<dl class="docutils">
-<dt>Linux</dt>
-<dd><pre class="first last literal-block">
-$HOME/.config/blender/2.82/shaders/
-</pre>
+<dl>
+<dt>Linux</dt><dd><pre class="literal-block">$HOME/.config/blender/2.82/shaders/</pre>
 </dd>
-<dt>Windows</dt>
-<dd><pre class="first last literal-block">
-C:\Users\$user\AppData\Roaming\Blender Foundation\Blender\2.82\shaders\
-</pre>
+<dt>Windows</dt><dd><pre class="literal-block">C:\Users\$user\AppData\Roaming\Blender Foundation\Blender\2.82\shaders\</pre>
 </dd>
-<dt>Hệ Điều Hành Macintosh của Apple -- macOS</dt>
-<dd><pre class="first last literal-block">
-/Users/$USER/Library/Application Support/Blender/2.82/shaders/
-</pre>
+<dt>Hệ Điều Hành Macintosh của Apple -- macOS</dt><dd><pre class="literal-block">/Users/$USER/Library/Application Support/Blender/2.82/shaders/</pre>
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">For use in production, we suggest to use a node group to wrap shader script nodes,
+<p class="admonition-title">Mẹo</p>
+<p>For use in production, we suggest to use a node group to wrap shader script nodes,
 and link that into other blend-files.
 This makes it easier to make changes to the node afterwards as sockets are added or removed,
 without having to update the script nodes in all files.</p>
@@ -315,55 +306,55 @@ see the <a class="reference internal" href="shader/index.html"><span class="doc"
 <div class="section" id="bsdf">
 <h3>BSDF<a class="headerlink" href="#bsdf" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">diffuse(N)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">oren_nayar(N,</span> <span class="pre">roughness)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">diffuse_ramp(N,</span> <span class="pre">colors[8])</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">phong_ramp(N,</span> <span class="pre">exponent,</span> <span class="pre">colors[8])</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">diffuse_toon(N,</span> <span class="pre">size,</span> <span class="pre">smooth)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">glossy_toon(N,</span> <span class="pre">size,</span> <span class="pre">smooth)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">translucent(N)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">reflection(N)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">refraction(N,</span> <span class="pre">ior)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">transparent()</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">microfacet_ggx(N,</span> <span class="pre">roughness)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">microfacet_ggx_aniso(N,</span> <span class="pre">T,</span> <span class="pre">ax,</span> <span class="pre">ay)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">microfacet_ggx_refraction(N,</span> <span class="pre">roughness,</span> <span class="pre">ior)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">microfacet_beckmann(N,</span> <span class="pre">roughness)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">microfacet_beckmann_aniso(N,</span> <span class="pre">T,</span> <span class="pre">ax,</span> <span class="pre">ay)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">microfacet_beckmann_refraction(N,</span> <span class="pre">roughness,</span> <span class="pre">ior)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">ashikhmin_shirley(N,</span> <span class="pre">T,</span> <span class="pre">ax,</span> <span class="pre">ay)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">ashikhmin_velvet(N,</span> <span class="pre">roughness)</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diffuse(N)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oren_nayar(N,</span> <span class="pre">roughness)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diffuse_ramp(N,</span> <span class="pre">colors[8])</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phong_ramp(N,</span> <span class="pre">exponent,</span> <span class="pre">colors[8])</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diffuse_toon(N,</span> <span class="pre">size,</span> <span class="pre">smooth)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glossy_toon(N,</span> <span class="pre">size,</span> <span class="pre">smooth)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">translucent(N)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reflection(N)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">refraction(N,</span> <span class="pre">ior)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transparent()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_ggx(N,</span> <span class="pre">roughness)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_ggx_aniso(N,</span> <span class="pre">T,</span> <span class="pre">ax,</span> <span class="pre">ay)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_ggx_refraction(N,</span> <span class="pre">roughness,</span> <span class="pre">ior)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_beckmann(N,</span> <span class="pre">roughness)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_beckmann_aniso(N,</span> <span class="pre">T,</span> <span class="pre">ax,</span> <span class="pre">ay)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_beckmann_refraction(N,</span> <span class="pre">roughness,</span> <span class="pre">ior)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ashikhmin_shirley(N,</span> <span class="pre">T,</span> <span class="pre">ax,</span> <span class="pre">ay)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ashikhmin_velvet(N,</span> <span class="pre">roughness)</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="hair">
 <h3>Tóc -- Hair<a class="headerlink" href="#hair" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">hair_reflection(N,</span> <span class="pre">roughnessu,</span> <span class="pre">roughnessv,</span> <span class="pre">T,</span> <span class="pre">offset)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">hair_transmission(N,</span> <span class="pre">roughnessu,</span> <span class="pre">roughnessv,</span> <span class="pre">T,</span> <span class="pre">offset)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">principled_hair(N,</span> <span class="pre">absorption,</span> <span class="pre">roughness,</span> <span class="pre">radial_roughness,</span> <span class="pre">coat,</span> <span class="pre">offset,</span> <span class="pre">IOR)</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hair_reflection(N,</span> <span class="pre">roughnessu,</span> <span class="pre">roughnessv,</span> <span class="pre">T,</span> <span class="pre">offset)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hair_transmission(N,</span> <span class="pre">roughnessu,</span> <span class="pre">roughnessv,</span> <span class="pre">T,</span> <span class="pre">offset)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principled_hair(N,</span> <span class="pre">absorption,</span> <span class="pre">roughness,</span> <span class="pre">radial_roughness,</span> <span class="pre">coat,</span> <span class="pre">offset,</span> <span class="pre">IOR)</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="bssrdf">
 <h3>-- BSSRDF<a class="headerlink" href="#bssrdf" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">bssrdf_cubic(N,</span> <span class="pre">radius,</span> <span class="pre">texture_blur,</span> <span class="pre">sharpness)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">bssrdf_gaussian(N,</span> <span class="pre">radius,</span> <span class="pre">texture_blur)</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bssrdf_cubic(N,</span> <span class="pre">radius,</span> <span class="pre">texture_blur,</span> <span class="pre">sharpness)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bssrdf_gaussian(N,</span> <span class="pre">radius,</span> <span class="pre">texture_blur)</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="volume">
 <h3>Thể Tích -- Volume<a class="headerlink" href="#volume" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">henyey_greenstein(g)</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">absorption()</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">henyey_greenstein(g)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absorption()</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="other">
 <h3>Cái/Sắp Đặt Khác -- Other<a class="headerlink" href="#other" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">emission()</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">ambient_occlusion()</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">holdout()</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">background()</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">emission()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ambient_occlusion()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">holdout()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">background()</span></code></p></li>
 </ul>
 </div>
 </div>
@@ -372,55 +363,55 @@ see the <a class="reference internal" href="shader/index.html"><span class="doc"
 <p>Some object, particle and mesh attributes are available to the built-in <code class="docutils literal notranslate"><span class="pre">getattribute()</span></code> function.
 UV maps and vertex colors can be retrieved using their name.
 Other attributes are listed below:</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">geom:generated</span></code></dt>
-<dd>Generated texture coordinates.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:uv</span></code></dt>
-<dd>Default render UV map.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:dupli_generated</span></code></dt>
-<dd>For instances, generated coordinate from duplicator object.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:dupli_uv</span></code></dt>
-<dd>For instances, UV coordinate from duplicator object.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:trianglevertices</span></code></dt>
-<dd>3 vertex coordinates of the triangle.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:numpolyvertices</span></code></dt>
-<dd>Number of vertices in the polygon (always returns three currently).</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:polyvertices</span></code></dt>
-<dd>Vertex coordinates array of the polygon (always three vertices currently).</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:name</span></code></dt>
-<dd>Name of the object.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:is_curve</span></code></dt>
-<dd>Is object a strand or not.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:curve_intercept</span></code></dt>
-<dd>Point along the strand, from root to tip.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:curve_thickness</span></code></dt>
-<dd>Thickness of the strand.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">geom:curve_tangent_normal</span></code></dt>
-<dd>Tangent Normal of the strand.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">path:ray_length</span></code></dt>
-<dd>Ray distance since last hit.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">object:location</span></code></dt>
-<dd>Object location.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">object:index</span></code></dt>
-<dd>Object index number.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">object:random</span></code></dt>
-<dd>Per object random number generated from object index and name.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">material:index</span></code></dt>
-<dd>Material index number.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">particle:index</span></code></dt>
-<dd>Particle instance number.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">particle:age</span></code></dt>
-<dd>Particle age in frames.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">particle:lifetime</span></code></dt>
-<dd>Total lifespan of particle in frames.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">particle:location</span></code></dt>
-<dd>Vị trí của hạt.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">particle:size</span></code></dt>
-<dd>Kích thước của hạt.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">particle:velocity</span></code></dt>
-<dd>Vận tốc của hạt.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">particle:angular_velocity</span></code></dt>
-<dd>Vận tốc góc của hạt.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">geom:generated</span></code></dt><dd><p>Generated texture coordinates.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:uv</span></code></dt><dd><p>Default render UV map.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:dupli_generated</span></code></dt><dd><p>For instances, generated coordinate from duplicator object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:dupli_uv</span></code></dt><dd><p>For instances, UV coordinate from duplicator object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:trianglevertices</span></code></dt><dd><p>3 vertex coordinates of the triangle.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:numpolyvertices</span></code></dt><dd><p>Number of vertices in the polygon (always returns three currently).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:polyvertices</span></code></dt><dd><p>Vertex coordinates array of the polygon (always three vertices currently).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:name</span></code></dt><dd><p>Name of the object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:is_curve</span></code></dt><dd><p>Is object a strand or not.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:curve_intercept</span></code></dt><dd><p>Point along the strand, from root to tip.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:curve_thickness</span></code></dt><dd><p>Thickness of the strand.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:curve_tangent_normal</span></code></dt><dd><p>Tangent Normal of the strand.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">path:ray_length</span></code></dt><dd><p>Ray distance since last hit.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">object:location</span></code></dt><dd><p>Object location.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">object:index</span></code></dt><dd><p>Object index number.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">object:random</span></code></dt><dd><p>Per object random number generated from object index and name.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">material:index</span></code></dt><dd><p>Material index number.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:index</span></code></dt><dd><p>Particle instance number.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:age</span></code></dt><dd><p>Particle age in frames.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:lifetime</span></code></dt><dd><p>Total lifespan of particle in frames.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:location</span></code></dt><dd><p>Vị trí của hạt.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:size</span></code></dt><dd><p>Kích thước của hạt.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:velocity</span></code></dt><dd><p>Vận tốc của hạt.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:angular_velocity</span></code></dt><dd><p>Vận tốc góc của hạt.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="trace">

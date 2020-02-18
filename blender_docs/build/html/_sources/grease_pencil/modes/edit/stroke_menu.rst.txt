@@ -97,12 +97,12 @@ Trims selected stroke to first loop or intersection.
 
 .. list-table::
 
-   * - .. figure:: /images/grease-pencil_modes_edit_stroke_menu_trim-1.png
+   * - .. figure:: /images/grease-pencil_modes_edit_stroke-menu_trim-1.png
           :width: 320px
 
           Original stroke.
 
-     - .. figure:: /images/grease-pencil_modes_edit_stroke_menu_trim-2.png
+     - .. figure:: /images/grease-pencil_modes_edit_stroke-menu_trim-2.png
           :width: 320px
 
           Result of trim operation.
@@ -290,17 +290,17 @@ End
 
 .. list-table::
 
-   * - .. figure:: /images/grease-pencil_modes_edit_stroke_menu_cap-1.png
+   * - .. figure:: /images/grease-pencil_modes_edit_stroke-menu_cap-1.png
           :width: 200px
 
           Stroke ending with rounded caps.
 
-     - .. figure:: /images/grease-pencil_modes_edit_stroke_menu_cap-2.png
+     - .. figure:: /images/grease-pencil_modes_edit_stroke-menu_cap-2.png
           :width: 200px
 
           Stroke ending with flat caps.
 
-     - .. figure:: /images/grease-pencil_modes_edit_stroke_menu_cap-3.png
+     - .. figure:: /images/grease-pencil_modes_edit_stroke-menu_cap-3.png
           :width: 200px
 
           Stroke ending with combined caps.

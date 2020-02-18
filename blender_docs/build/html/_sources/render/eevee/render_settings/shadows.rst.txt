@@ -52,5 +52,5 @@ Light Threshold
 
 .. tip::
 
-   A 512 px cubemap has 6 x 512 x 512 pixels in it.
+   A 512 px cubemap has 6 × 512 × 512 pixels in it.
    Tweaking the *Size* parameters can have a big impact on memory consumption and performance.

@@ -231,53 +231,51 @@ More faces and more particles will mean more individual pieces.</p>
 a <a class="reference external" href="https://wiki.blender.org/wiki/File:Manual_-_Explode_Modifier_-_Exploding_Cube_-_2.5.blend">demo blend-file</a>
 showing a cube with a particle system and <em>Explode</em> modifier.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The <em>Explode</em> modifier must come after the <em>Particle System</em> one in the <a class="reference internal" href="../introduction.html#modifier-stack"><span class="std std-ref">modifier stack</span></a>,
+<p class="admonition-title">Ghi chú</p>
+<p>The <em>Explode</em> modifier must come after the <em>Particle System</em> one in the <a class="reference internal" href="../introduction.html#modifier-stack"><span class="std std-ref">modifier stack</span></a>,
 in order for the former to get required data from the later.</p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_simulate_explode_panel.png" src="../../../_images/modeling_modifiers_simulate_explode_panel.png" />
-<p class="caption"><span class="caption-text">The Explode modifier, with a Particle System above it.</span></p>
+<p class="caption"><span class="caption-text">The Explode modifier, with a Particle System above it.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Vertex Group</dt>
-<dd><p class="first">Vertices in this group may not be affected by the <em>Explode</em> modifier.
+<dl>
+<dt>Vertex Group</dt><dd><p>Vertices in this group may not be affected by the <em>Explode</em> modifier.
 Vertices with full weight are not affected at all,
 while vertices with less weight have a higher chance of being affected.</p>
 <p>Vertices with null weight will be treated like those which do not belong to the group at all,
 and explode normally.</p>
-<dl class="last docutils">
-<dt>Bảo Vệ -- Protect</dt>
-<dd>Clean vertex group edges. Depending on the weights assigned to that vertex group,
+<dl class="simple">
+<dt>Bảo Vệ -- Protect</dt><dd><p>Clean vertex group edges. Depending on the weights assigned to that vertex group,
 either completely protect those faces from being affected by the <em>Explode</em> modifier
 (which would happen if the faces had a weight value of 1),
 or completely remove protection from those faces
-(which would happen if the faces had a weight value of 0).</dd>
+(which would happen if the faces had a weight value of 0).</p>
+</dd>
 </dl>
 </dd>
-<dt>UV của Hệ Thống Hạt -- Particle UV</dt>
-<dd><p class="first">If set, the U value of the coordinates in that <a class="reference internal" href="../../../glossary/index.html#term-uv-map"><span class="xref std std-term">UV map</span></a> will be overwritten
+<dt>UV của Hệ Thống Hạt -- Particle UV</dt><dd><p>If set, the U value of the coordinates in that <a class="reference internal" href="../../../glossary/index.html#term-uv-map"><span class="xref std std-term">UV map</span></a> will be overwritten
 with the age of the particle attached to the matching mesh face
 (in proportion, from 0 for not yet born particles, to 1 for dead ones).</p>
 <p>The V value is set to a constant 0.5 value.</p>
-<p class="last">This allows e.g. to make the color of a fragment (face) vary during it 'explosion' phase,
+<p>This allows e.g. to make the color of a fragment (face) vary during it 'explosion' phase,
 by using a texture with a gradient of colors along its <em>U</em> axis.</p>
 </dd>
-<dt>Cắt Cạnh -- Cut Edges</dt>
-<dd>Split the mesh in pieces based on location of emitted particles, instead of using existing faces.
-This will typically give a splitting that appears more random.</dd>
-<dt>Chưa Được Sinh Tạo -- Unborn</dt>
-<dd>Show faces when their attached particles are unborn.</dd>
-<dt>Hoạt Động -- Alive</dt>
-<dd>Show faces when their attached particles are alive.</dd>
-<dt>Chết -- Dead</dt>
-<dd>Show faces when their attached particles are dead.</dd>
-<dt>Kích Thước -- Size</dt>
-<dd>Scale each face using the size of its attached particle, once that particle is alive.</dd>
-<dt>Làm Tươi Lại -- Refresh</dt>
-<dd>Refresh data in the <em>Explode</em> modifier.</dd>
+<dt>Cắt Cạnh -- Cut Edges</dt><dd><p>Split the mesh in pieces based on location of emitted particles, instead of using existing faces.
+This will typically give a splitting that appears more random.</p>
+</dd>
+<dt>Chưa Được Sinh Tạo -- Unborn</dt><dd><p>Show faces when their attached particles are unborn.</p>
+</dd>
+<dt>Hoạt Động -- Alive</dt><dd><p>Show faces when their attached particles are alive.</p>
+</dd>
+<dt>Chết -- Dead</dt><dd><p>Show faces when their attached particles are dead.</p>
+</dd>
+<dt>Kích Thước -- Size</dt><dd><p>Scale each face using the size of its attached particle, once that particle is alive.</p>
+</dd>
+<dt>Làm Tươi Lại -- Refresh</dt><dd><p>Refresh data in the <em>Explode</em> modifier.</p>
+</dd>
 </dl>
 </div>
 </div>

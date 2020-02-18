@@ -222,49 +222,46 @@
 <span id="bpy-types-movietrackingcamera"></span><h1>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">¶</a></h1>
 <p>This panel contains all settings of the camera used for filming the movie
 which is currently being edited in the Clip editor.</p>
-<dl class="docutils">
-<dt>Camera Presets</dt>
-<dd>Predefined settings can be used here.
+<dl class="simple">
+<dt>Camera Presets</dt><dd><p>Predefined settings can be used here.
 But such settings as distortion coefficients and principal point are not included in the presets and
-should be filled in even if camera presets are used.</dd>
-<dt>Sensor</dt>
-<dd><dl class="first last docutils">
-<dt>Width</dt>
-<dd>Is the width of the CCD sensor in the camera. This value can be found in camera specifications.</dd>
-<dt>Pixel Aspect Ratio</dt>
-<dd>Is the pixel aspect of the CCD sensor. This value can be found in camera specifications,
+should be filled in even if camera presets are used.</p>
+</dd>
+<dt>Sensor</dt><dd><dl class="simple">
+<dt>Width</dt><dd><p>Is the width of the CCD sensor in the camera. This value can be found in camera specifications.</p>
+</dd>
+<dt>Pixel Aspect Ratio</dt><dd><p>Is the pixel aspect of the CCD sensor. This value can be found in camera specifications,
 but can also be guessed. For example, you know that the footage should be 1920×1080,
-but the images themselves are 1280×1080. In this case, the pixel aspect is: 1920 / 1280 = 1.5.</dd>
+but the images themselves are 1280×1080. In this case, the pixel aspect is: 1920 / 1280 = 1.5.</p>
+</dd>
 </dl>
 </dd>
-<dt>Optical Center</dt>
-<dd>Is the optical center of the lens used in the camera. In most cases it is equal to the image center,
+<dt>Optical Center</dt><dd><p>Is the optical center of the lens used in the camera. In most cases it is equal to the image center,
 but it can be different in some special cases. Check camera/lens specifications in such cases.
-To set the optical center to the center of image, there is a <kbd class="kbd docutils literal notranslate">Return</kbd> button below the sliders.</dd>
+To set the optical center to the center of image, there is a <kbd class="kbd docutils literal notranslate">Return</kbd> button below the sliders.</p>
+</dd>
 </dl>
 <div class="section" id="lens">
 <h2>Lens<a class="headerlink" href="#lens" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Focal Length</dt>
-<dd>Is self-explanatory; it is the focal length with which the movie was shot.
-It can be set in millimeters or pixels.</dd>
-<dt>Distortion Model</dt>
-<dd><dl class="first last docutils">
-<dt>Polynomial</dt>
-<dd>Polynomial radial distortion.</dd>
-<dt>Division</dt>
-<dd>It defines high distortions, which makes this model suitable much better for cameras with fisheye lenses.</dd>
+<dl>
+<dt>Focal Length</dt><dd><p>Is self-explanatory; it is the focal length with which the movie was shot.
+It can be set in millimeters or pixels.</p>
+</dd>
+<dt>Distortion Model</dt><dd><dl class="simple">
+<dt>Polynomial</dt><dd><p>Polynomial radial distortion.</p>
+</dd>
+<dt>Division</dt><dd><p>It defines high distortions, which makes this model suitable much better for cameras with fisheye lenses.</p>
+</dd>
 </dl>
 </dd>
-<dt>Coefficients</dt>
-<dd><p class="first">Coefficients are used to compensate for lens distortion when the movie was shot.
+<dt>Coefficients</dt><dd><p>Coefficients are used to compensate for lens distortion when the movie was shot.
 Currently these values can be tweaked by hand only (there are no calibration tools yet)
 using tools available in Distortion mode.
 Basically, just tweak K1 until solving is most accurate for the known focal length
 (but also take grid and Grease Pencil into account to prevent &quot;impossible&quot; distortion).</p>
 <p>The coefficients of the division model work independent from each other and
 positive values will give a barrel distortion.</p>
-<p class="last">K1, K2 and K3</p>
+<p>K1, K2 and K3</p>
 </dd>
 </dl>
 </div>

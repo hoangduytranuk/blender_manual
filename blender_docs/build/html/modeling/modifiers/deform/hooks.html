@@ -246,44 +246,41 @@ or use the <a class="reference internal" href="../../meshes/editing/vertices.htm
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_deform_hooks_panel.png" src="../../../_images/modeling_modifiers_deform_hooks_panel.png" />
-<p class="caption"><span class="caption-text">The Hook modifier.</span></p>
+<p class="caption"><span class="caption-text">The Hook modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Vật Thể -- Object</dt>
-<dd>The name of the object to hook vertices to.</dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd><p class="first">Allows you to define the influence per vertex.</p>
-<p class="last">Useful when you want something other than a spherical field of influence.</p>
+<dl>
+<dt>Vật Thể -- Object</dt><dd><p>The name of the object to hook vertices to.</p>
 </dd>
-<dt>Bán Kính -- Radius</dt>
-<dd>The size of the hooks influence.</dd>
-<dt>Sức Mạnh/Cường Độ -- Strength</dt>
-<dd><p class="first">Adjust this hooks influence on the vertices, were (0.0 to 1.0) (no change to fully follows the hook).</p>
-<p class="last">Since multiple hooks can work on the same vertices, you can weight the influence of a hook using this property.</p>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>Allows you to define the influence per vertex.</p>
+<p>Useful when you want something other than a spherical field of influence.</p>
 </dd>
-<dt>Loại Giảm Dần -- Falloff Type</dt>
-<dd>This can be used to adjust the kind of influence curve that the hook has on the mesh.
-You can also define a custom curve to get a much higher level of control.</dd>
-<dt>Suy Giảm Đồng Đều -- Uniform Falloff</dt>
-<dd><p class="first">This setting is useful when using hooks on scaled objects,
+<dt>Bán Kính -- Radius</dt><dd><p>The size of the hooks influence.</p>
+</dd>
+<dt>Sức Mạnh/Cường Độ -- Strength</dt><dd><p>Adjust this hooks influence on the vertices, were (0.0 to 1.0) (no change to fully follows the hook).</p>
+<p>Since multiple hooks can work on the same vertices, you can weight the influence of a hook using this property.</p>
+</dd>
+<dt>Loại Giảm Dần -- Falloff Type</dt><dd><p>This can be used to adjust the kind of influence curve that the hook has on the mesh.
+You can also define a custom curve to get a much higher level of control.</p>
+</dd>
+<dt>Suy Giảm Đồng Đều -- Uniform Falloff</dt><dd><p>This setting is useful when using hooks on scaled objects,
 especially in cases where non-uniform scale would stretch the result of the hook.</p>
-<p class="last">This is especially useful for lattices, where it is common to use non-uniform scaling.</p>
+<p>This is especially useful for lattices, where it is common to use non-uniform scaling.</p>
 </dd>
 </dl>
 <p>The following settings are only available in Edit Mode:</p>
-<dl class="docutils">
-<dt>Hoàn Lại -- Reset</dt>
-<dd>Recalculate and clear the offset transform of the hook.</dd>
-<dt>Tái Định Trung Tâm -- Recenter</dt>
-<dd>Set the hook center to the 3D cursor position.</dd>
-<dt>Chọn -- Select</dt>
-<dd>Select the vertices affected by this hook.</dd>
-<dt>Chỉ Định -- Assign</dt>
-<dd>Assigns selected vertices to this hook.</dd>
+<dl class="simple">
+<dt>Hoàn Lại -- Reset</dt><dd><p>Recalculate and clear the offset transform of the hook.</p>
+</dd>
+<dt>Tái Định Trung Tâm -- Recenter</dt><dd><p>Set the hook center to the 3D cursor position.</p>
+</dd>
+<dt>Chọn -- Select</dt><dd><p>Select the vertices affected by this hook.</p>
+</dd>
+<dt>Chỉ Định -- Assign</dt><dd><p>Assigns selected vertices to this hook.</p>
+</dd>
 </dl>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">The Hook Modifier stores vertex indices from the original mesh to determine what to affect.
+<p class="admonition-title">Cảnh báo</p>
+<p>The Hook Modifier stores vertex indices from the original mesh to determine what to affect.
 This means that modifiers that generate geometry, like <em>Subdivision Surface</em>,
 should always be put <strong>after</strong> the <em>Hook</em> one in the stack.
 Otherwise, the generated geometry will be left out of the hook's influence.</p>
@@ -291,9 +288,9 @@ Otherwise, the generated geometry will be left out of the hook's influence.</p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_hooks_example.png"><img alt="../../../_images/modeling_modifiers_deform_hooks_example.png" src="../../../_images/modeling_modifiers_deform_hooks_example.png" style="width: 460px;" /></a>
-<p class="caption"><span class="caption-text">Empty used as Hook to deform a subdivided cube.</span></p>
+<p class="caption"><span class="caption-text">Empty used as Hook to deform a subdivided cube.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

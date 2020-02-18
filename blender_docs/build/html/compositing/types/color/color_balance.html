@@ -231,55 +231,52 @@
   <div class="section" id="color-balance-node">
 <span id="bpy-types-compositornodecolorbalance"></span><h1>Nút Cân Bằng Màu -- Color Balance Node<a class="headerlink" href="#color-balance-node" title="Permalink to this headline">¶</a></h1>
 <p>Nút Cân Bằng Màu có thể điều chỉnh màu và giá trị của một hình ảnh.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeColorBalance.png" src="../../../_images/compositing_node-types_CompositorNodeColorBalance.png" />
-<p class="caption"><span class="caption-text">Nút Chỉnh Sửa Màu.</span></p>
+<p class="caption"><span class="caption-text">Nút Chỉnh Sửa Màu.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hệ Số -- Factor</dt>
-<dd>Điều chế lượng ảnh hưởng mà nút tác động đến hình ảnh xuất ra.</dd>
-<dt>Màu Sắc -- Color</dt>
-<dd>Đầu vào hình ảnh tiêu chuẩn.</dd>
+<dl class="simple">
+<dt>Hệ Số -- Factor</dt><dd><p>Điều chế lượng ảnh hưởng mà nút tác động đến hình ảnh xuất ra.</p>
+</dd>
+<dt>Màu Sắc -- Color</dt><dd><p>Đầu vào hình ảnh tiêu chuẩn.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <p>Có hai công thức hiệu chỉnh khác nhau có thể chọn.</p>
-<dl class="docutils">
-<dt>Nâng/Gamma/Gia Tăng -- Lift/Gamma/Gain</dt>
-<dd><dl class="first last docutils">
-<dt>Nâng -- Lift</dt>
-<dd>Tăng giá trị của màu tối.</dd>
-<dt>Gamma</dt>
-<dd>Sẽ điều chỉnh trung sắc (<em>midtones</em>) -- màu ở khoảng giữa điểm sáng nhất và tốt nhất.</dd>
-<dt>Gia Lượng -- Gain</dt>
-<dd>Điều chỉnh các điểm nêu bật.</dd>
+<dl>
+<dt>Nâng/Gamma/Gia Tăng -- Lift/Gamma/Gain</dt><dd><dl class="simple">
+<dt>Nâng -- Lift</dt><dd><p>Tăng giá trị của màu tối.</p>
+</dd>
+<dt>Gamma</dt><dd><p>Sẽ điều chỉnh trung sắc (<em>midtones</em>) -- màu ở khoảng giữa điểm sáng nhất và tốt nhất.</p>
+</dd>
+<dt>Gia Lượng -- Gain</dt><dd><p>Điều chỉnh các điểm nêu bật.</p>
+</dd>
 </dl>
 </dd>
-<dt>Dịch Chuyển/Lũy Thừa/Dốc (ASC-CDL) -- Offset/Power/Slope (ASC-CDL)</dt>
-<dd><dl class="first last docutils">
-<dt>Dịch Chuyển -- Offset</dt>
-<dd><p class="first">Summand. (Adjusts the overall brightness.)</p>
-<dl class="last docutils">
-<dt>Cơ Sở -- Basis</dt>
-<dd>Dịch chuyển bổ sung, cho phép để xác định một giá trị dịch chuyển âm.</dd>
+<dt>Dịch Chuyển/Lũy Thừa/Dốc (ASC-CDL) -- Offset/Power/Slope (ASC-CDL)</dt><dd><dl>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>Summand. (Adjusts the overall brightness.)</p>
+<dl class="simple">
+<dt>Cơ Sở -- Basis</dt><dd><p>Dịch chuyển bổ sung, cho phép để xác định một giá trị dịch chuyển âm.</p>
+</dd>
 </dl>
 </dd>
-<dt>Lũy Thừa -- Power</dt>
-<dd>Over-all exponent. (Adjusts the midtones.)</dd>
-<dt>Độ Dốc -- Slope</dt>
-<dd>Multiplier. (Adjusts the highlights.)</dd>
+<dt>Lũy Thừa -- Power</dt><dd><p>Over-all exponent. (Adjusts the midtones.)</p>
+</dd>
+<dt>Độ Dốc -- Slope</dt><dd><p>Multiplier. (Adjusts the highlights.)</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Màu Sắc -- Color</dt>
-<dd>Hình ảnh đầu ra tiêu chuẩn.</dd>
+<dl class="simple">
+<dt>Màu Sắc -- Color</dt><dd><p>Hình ảnh đầu ra tiêu chuẩn.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="advanced">
@@ -289,11 +286,11 @@
 <p><em>out</em> = (<em>i</em> × <em>s</em> + <em>o</em>)<sup>p</sup></p>
 <p>trong đó:</p>
 <ul class="simple">
-<li><em>out</em>: Giá trị mã điểm ảnh cấp của màu sắc.</li>
-<li><em>i</em>: Giá trị mã hóa điểm ảnh đầu vào (0 đến 1) (từ đen sang trắng).</li>
-<li><em>s</em>: Độ dốc (bất kỳ một số từ 0 trở lên, giá trị danh nghĩa là 1.0).</li>
-<li><em>o</em>: Dịch chuyển (bất kỳ số nào, giá trị danh nghĩa là 0).</li>
-<li><em>p</em>: (bất kỳ một số nào lớn hơn 0, giá trị danh nghĩa là 1.0).</li>
+<li><p><em>out</em>: Giá trị mã điểm ảnh cấp của màu sắc.</p></li>
+<li><p><em>i</em>: Giá trị mã hóa điểm ảnh đầu vào (0 đến 1) (từ đen sang trắng).</p></li>
+<li><p><em>s</em>: Độ dốc (bất kỳ một số từ 0 trở lên, giá trị danh nghĩa là 1.0).</p></li>
+<li><p><em>o</em>: Dịch chuyển (bất kỳ số nào, giá trị danh nghĩa là 0).</p></li>
+<li><p><em>p</em>: (bất kỳ một số nào lớn hơn 0, giá trị danh nghĩa là 1.0).</p></li>
 </ul>
 </div>
 </div>

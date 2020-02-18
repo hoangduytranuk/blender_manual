@@ -231,19 +231,16 @@
   <div class="section" id="adaptive-subdivision">
 <span id="bpy-types-cyclesobjectsettings-dicing-rate"></span><span id="bpy-types-cyclesobjectsettings-use-adaptive-subdivision"></span><span id="render-cycles-settings-object-subdivision"></span><h1>-- Adaptive Subdivision<a class="headerlink" href="#adaptive-subdivision" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Bộ Điều Chỉnh (Modifier) ‣ Phân Hóa Bề Mặt (Subdivision Surface)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Bộ Điều Chỉnh (Modifier) ‣ Phân Hóa Bề Mặt (Subdivision Surface)</span></p>
+</dd>
+</dl>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Implementation not finished yet, marked as an <a class="reference internal" href="../features.html#cycles-experimental-features"><span class="std std-ref">Experimental Feature Set</span></a>.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>Implementation not finished yet, marked as an <a class="reference internal" href="../features.html#cycles-experimental-features"><span class="std std-ref">Experimental Feature Set</span></a>.</p>
 </div>
 <p>When using the <em>Experimental Feature Set</em>
 the <a class="reference internal" href="../../../modeling/modifiers/generate/subdivision_surface.html"><span class="doc">Subdivision Surface Modifier</span></a>
@@ -251,41 +248,39 @@ gets changed to control the subdivision of a mesh at the time of rendering.
 For this, all the other settings are the same except the <em>View</em> and <em>Render</em> settings.
 These previously mentioned settings get removed/renamed and the following settings are added:</p>
 <p class="rubric">Duyệt Thảo -- Preview</p>
-<dl class="docutils">
-<dt>Mức Độ -- Levels</dt>
-<dd>The levels of subdivision to see in the 3D View,
-this works the same as the <em>View</em> setting on the original <em>Subdivision Modifier</em>.</dd>
+<dl class="simple">
+<dt>Mức Độ -- Levels</dt><dd><p>The levels of subdivision to see in the 3D View,
+this works the same as the <em>View</em> setting on the original <em>Subdivision Modifier</em>.</p>
+</dd>
 </dl>
 <p class="rubric">Kết Xuất -- Render</p>
-<dl class="docutils">
-<dt>Tùy Ứng -- Adaptive</dt>
-<dd><p class="first">Use OpenSubdiv to give different subdivision levels to near and far objects automatically.
+<dl>
+<dt>Tùy Ứng -- Adaptive</dt><dd><p>Use OpenSubdiv to give different subdivision levels to near and far objects automatically.
 This allows nearer objects to get more subdivisions and far objects to get less.</p>
-<dl class="last docutils">
-<dt>Tần Số Phân Hóa -- Dicing Rate</dt>
-<dd><p class="first">When using <em>Adaptive</em> the <em>Render Levels</em> property gets changed to <em>Dicing Rate</em>,
+<dl>
+<dt>Tần Số Phân Hóa -- Dicing Rate</dt><dd><p>When using <em>Adaptive</em> the <em>Render Levels</em> property gets changed to <em>Dicing Rate</em>,
 this property is used to multiply the <a class="reference internal" href="../render_settings/subdivision.html#cycles-subdivision-rate"><span class="std std-ref">scene dicing rate</span></a>.</p>
-<div class="last figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/render_cycles_object-settings_adaptive-subdiv_displacement-dicing.png" src="../../../_images/render_cycles_object-settings_adaptive-subdiv_displacement-dicing.png" />
-<p class="caption"><span class="caption-text">Subdivision Off/On, Dicing Rate: 1.0 - 0.3 - 0.05 (monkeys look identical in viewport, no modifiers).</span></p>
+<p class="caption"><span class="caption-text">Subdivision Off/On, Dicing Rate: 1.0 - 0.3 - 0.05 (monkeys look identical in viewport, no modifiers).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
 </dl>
 </dd>
-<dt>Mức Độ -- Levels</dt>
-<dd>The levels of subdivision to see in the final render,
-this works the same as the <em>Render</em> setting on the original <em>Subdivision Modifier</em>.</dd>
+<dt>Mức Độ -- Levels</dt><dd><p>The levels of subdivision to see in the final render,
+this works the same as the <em>Render</em> setting on the original <em>Subdivision Modifier</em>.</p>
+</dd>
 </dl>
 <div class="section" id="known-limitations">
 <h2>Những Hạn Chế Từng Biết Đến -- Known Limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Multi-user object data are currently made single users, leading to increased memory usage.
-For those it is better to use non-adaptive subdivision still.</li>
-<li>Multi-view renders can have some inconsistencies between views.</li>
+<li><p>Multi-user object data are currently made single users, leading to increased memory usage.
+For those it is better to use non-adaptive subdivision still.</p></li>
+<li><p>Multi-view renders can have some inconsistencies between views.</p></li>
 </ul>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">Instances are not tessellated individually.
+<p class="admonition-title">Cảnh báo</p>
+<p>Instances are not tessellated individually.
 Instead, the original object is tessellated and then duplicated on all instances.
 To take advantage of both adaptive subdivision and instancing you should place
 the original object at the position of the instance that is closest from the camera.</p>

@@ -14,7 +14,7 @@ because shorter strokes are more likely to be well approximated by straight line
 Therefore, it is recommended to use this modifier together with one of the splitting options
 (by 2D angle or by 2D length) from the *Strokes* panel.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_geometry_guiding-lines-example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_geometry_guiding-lines_example.png
    :width: 50%
    :align: center
 

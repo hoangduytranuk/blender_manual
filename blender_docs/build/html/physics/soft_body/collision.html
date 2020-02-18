@@ -135,9 +135,8 @@
 <li class="toctree-l3"><a class="reference internal" href="examples.html">Ví Dụ -- Examples</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
@@ -231,30 +230,30 @@ Secondarily, you can use edges and faces to improve the collision calculation.</
 <h2>-- Collisions with Other Objects<a class="headerlink" href="#collisions-with-other-objects" title="Permalink to this headline">¶</a></h2>
 <p>For a soft body to collide with another object there are a few prerequisites:</p>
 <ul class="simple">
-<li>If <em>Collision Collection</em> is set, the object must belong to the collection.</li>
-<li>The collision object has to be a mesh object.</li>
-<li>You have to activate the <em>Collision</em> in the <em>Physics</em> tab for the collision object.
-The collision object may also be a soft body.</li>
+<li><p>If <em>Collision Collection</em> is set, the object must belong to the collection.</p></li>
+<li><p>The collision object has to be a mesh object.</p></li>
+<li><p>You have to activate the <em>Collision</em> in the <em>Physics</em> tab for the collision object.
+The collision object may also be a soft body.</p></li>
 </ul>
 <div class="section" id="examples">
 <h3>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
 <p>A soft body cube colliding with a plane (Fig. <a class="reference internal" href="#fig-softbody-collision-plane1"><span class="std std-ref">A soft body cube colliding with a plane.</span></a>)
 works pretty well, but a soft body plane falls right through a cube
 that it is supposed to collide with (Fig. <a class="reference internal" href="#fig-softbody-collision-plane2"><span class="std std-ref">A soft body plane colliding with a cube, so no interaction at all.</span></a>).</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id1">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id1">
 <span id="fig-softbody-collision-plane1"></span><img alt="../../_images/physics_soft-body_collision_cube-plane-1.png" src="../../_images/physics_soft-body_collision_cube-plane-1.png" />
-<p class="caption"><span class="caption-text">A soft body cube colliding with a plane.</span></p>
+<p class="caption"><span class="caption-text">A soft body cube colliding with a plane.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id2">
+<td><div class="figure align-default" id="id2">
 <span id="fig-softbody-collision-plane2"></span><img alt="../../_images/physics_soft-body_collision_cube-plane-2.png" src="../../_images/physics_soft-body_collision_cube-plane-2.png" />
-<p class="caption"><span class="caption-text">A soft body plane colliding with a cube, so no interaction at all.</span></p>
+<p class="caption"><span class="caption-text">A soft body plane colliding with a cube, so no interaction at all.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -279,8 +278,8 @@ The speed at which the vertex is pulled out of the collision zone is influenced 
 in the <a class="reference internal" href="settings.html#physics-softbody-settings-solver"><span class="std std-ref">Soft Body Solver settings</span></a>.</p>
 <iframe src="https://www.youtube.com/embed/YnerUKP1ptQ" style="border: 0; height: 345px; width: 560px">
 </iframe><div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">Download the <a class="reference external" href="https://en.blender.org/uploads/8/8d/CollidingVertices.blend">blend-file</a>.</p>
+<p class="admonition-title">Xem thêm</p>
+<p>Download the <a class="reference external" href="https://en.blender.org/uploads/8/8d/CollidingVertices.blend">blend-file</a>.</p>
 </div>
 <p>Now let's see what happens if we make vertices heavier and let them travel at a faster speed.
 In the video above, you can see vertices traveling at different speeds.
@@ -297,18 +296,18 @@ intersects with the collision object, the collision zones are not used.</p>
 <h3>-- Good Collisions<a class="headerlink" href="#good-collisions" title="Permalink to this headline">¶</a></h3>
 <p>If the collision you have set up is not behaving properly, you can try the following:</p>
 <ul class="simple">
-<li>The soft body object must have more subdivisions than the collision object.
+<li><p>The soft body object must have more subdivisions than the collision object.
 Add loop cuts to the soft body object in strategic areas that
-you know are most likely to be involved in a collision.</li>
-<li>Check the direction of the face normals.</li>
-<li>If the collision object has sharp spikes, they might penetrate the soft body.</li>
-<li>The resolution of the solver must match the speed at which soft body vertices are traveling.
-Lower the parameter <em>Error Limit</em> and carefully increase <em>Min Step</em>.</li>
-<li><em>Outer</em> and <em>Inner</em> should be large enough, but zones of opposite faces should not overlap,
-or you have forces in opposite directions.</li>
-<li>If you use strong forces you should use large zones.</li>
-<li>Set <em>Choke</em> to a high enough value (all the way up if necessary) if you have difficulties with repelled vertices.</li>
-<li>Colliding faces are difficult to control and need long calculation times. Try not to use them.</li>
+you know are most likely to be involved in a collision.</p></li>
+<li><p>Check the direction of the face normals.</p></li>
+<li><p>If the collision object has sharp spikes, they might penetrate the soft body.</p></li>
+<li><p>The resolution of the solver must match the speed at which soft body vertices are traveling.
+Lower the parameter <em>Error Limit</em> and carefully increase <em>Min Step</em>.</p></li>
+<li><p><em>Outer</em> and <em>Inner</em> should be large enough, but zones of opposite faces should not overlap,
+or you have forces in opposite directions.</p></li>
+<li><p>If you use strong forces you should use large zones.</p></li>
+<li><p>Set <em>Choke</em> to a high enough value (all the way up if necessary) if you have difficulties with repelled vertices.</p></li>
+<li><p>Colliding faces are difficult to control and need long calculation times. Try not to use them.</p></li>
 </ul>
 <p>Often it is better to create a simplified mesh to use as your collision object,
 however, this may be difficult if you are using an animated mesh.</p>

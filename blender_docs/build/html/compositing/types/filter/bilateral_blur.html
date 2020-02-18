@@ -234,103 +234,103 @@
 <span id="bpy-types-compositornodebilateralblur"></span><h1>Nút Nhòe Mờ Song Phương -- Bilateral Blur Node<a class="headerlink" href="#bilateral-blur-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeBilateralblur.png" src="../../../_images/compositing_node-types_CompositorNodeBilateralblur.png" />
-<p class="caption"><span class="caption-text">Nút Nhòe Mờ Song Phương</span></p>
+<p class="caption"><span class="caption-text">Nút Nhòe Mờ Song Phương</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Nút Nhòe Mờ Song Phương thực hiện hiệu ứng nhòe tùy ứng chất lượng cao trên hình ảnh nguồn, cho phép làm nhòe mờ các hình ảnh trong khi giữ nguyên các cạnh sắc nét của chúng.</p>
 <p>Nó có thể được sử dụng cho nhiều mục đích khác nhau như: làm mịn các lượt kết xuất nhiễu để tránh thời gian tính toán dài hơn, chẳng hạn trong trường hợp Tính Hấp Thụ Quang Xạ Môi Trường Dò Tia (ray-traced ambient occlusion), khúc xạ nhòe mờ/phản quang, bóng tối mềm mại, hoặc tạo các hiệu ứng tổng hợp không giống ảnh chụp (non-photorealistic).</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Hình ảnh đầu vào tiêu chuẩn. Nếu chỉ có hình ảnh đầu vào được kết nối mà thôi thì nút sẽ làm nhòe hình ảnh theo các nét viền tồn tại trong hình ảnh nguồn.</dd>
-<dt>Định Vị -- Determinator</dt>
-<dd>Là cái không bắt buộc và nếu phần Định Vị (Determinator) được kết nối vào thì nó sẽ đóng vai trò là nguồn để xác định các cạnh/đường ranh giới cho quá trình làm nhòe mờ trong hình ảnh. Điều này có lợi thế lớn trong trường hợp hình ảnh nguồn quá nhiễu, song các pháp tuyến cùng với sự kết hợp của Bộ Đệm Z (Z-buffer) vẫn có thể xác định được các đường ranh giới/cạnh của các đối tượng một cách chính xác nữa.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Hình ảnh đầu vào tiêu chuẩn. Nếu chỉ có hình ảnh đầu vào được kết nối mà thôi thì nút sẽ làm nhòe hình ảnh theo các nét viền tồn tại trong hình ảnh nguồn.</p>
+</dd>
+<dt>Định Vị -- Determinator</dt><dd><p>Là cái không bắt buộc và nếu phần Định Vị (Determinator) được kết nối vào thì nó sẽ đóng vai trò là nguồn để xác định các cạnh/đường ranh giới cho quá trình làm nhòe mờ trong hình ảnh. Điều này có lợi thế lớn trong trường hợp hình ảnh nguồn quá nhiễu, song các pháp tuyến cùng với sự kết hợp của Bộ Đệm Z (Z-buffer) vẫn có thể xác định được các đường ranh giới/cạnh của các đối tượng một cách chính xác nữa.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Số Lần Lặp Lại -- Iterations</dt>
-<dd>Xác định số lần bộ lọc cần thực hiện thao tác trên hình ảnh. Thực ra, cái này xác định bán kính làm nhòe mờ.</dd>
-<dt>Sigma của Màu -- Color Sigma</dt>
-<dd>Xác định ngưỡng mà sự khác biệt màu sắc trong hình ảnh được coi như là các cạnh.</dd>
-<dt>Sigma của Không Gian -- Space Sigma</dt>
-<dd>Một biến số tinh chỉnh bán kính nhòe mờ.</dd>
+<dl class="simple">
+<dt>Số Lần Lặp Lại -- Iterations</dt><dd><p>Xác định số lần bộ lọc cần thực hiện thao tác trên hình ảnh. Thực ra, cái này xác định bán kính làm nhòe mờ.</p>
+</dd>
+<dt>Sigma của Màu -- Color Sigma</dt><dd><p>Xác định ngưỡng mà sự khác biệt màu sắc trong hình ảnh được coi như là các cạnh.</p>
+</dd>
+<dt>Sigma của Không Gian -- Space Sigma</dt><dd><p>Một biến số tinh chỉnh bán kính nhòe mờ.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu ra tiêu chuẩn của hình ảnh.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu ra tiêu chuẩn của hình ảnh.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bilateral-blur_example-1.png"><img alt="../../../_images/compositing_types_filter_bilateral-blur_example-1.png" src="../../../_images/compositing_types_filter_bilateral-blur_example-1.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Hấp Thụ Quang Xạ Môi Trường mịn hóa song phương (Bilateral smoothed Ambient Occlusion). <a class="reference external" href="https://en.blender.org/uploads/2/2a/Bilateral_blur_example_01.blend">Ví dụ tập tin blend</a></span></p>
+<p class="caption"><span class="caption-text">Hấp Thụ Quang Xạ Môi Trường mịn hóa song phương (Bilateral smoothed Ambient Occlusion). <a class="reference external" href="https://en.blender.org/uploads/2/2a/Bilateral_blur_example_01.blend">Ví dụ tập tin blend</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id3">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bilateral-blur_example-1-render.jpg"><img alt="../../../_images/compositing_types_filter_bilateral-blur_example-1-render.jpg" src="../../../_images/compositing_types_filter_bilateral-blur_example-1-render.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Kết quả kết xuất.</span></p>
+<p class="caption"><span class="caption-text">Kết quả kết xuất.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id4">
+<td><div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bilateral-blur_example-1-composite.jpg"><img alt="../../../_images/compositing_types_filter_bilateral-blur_example-1-composite.jpg" src="../../../_images/compositing_types_filter_bilateral-blur_example-1-composite.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Tổng hợp.</span></p>
+<p class="caption"><span class="caption-text">Tổng hợp.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<div class="figure" id="id5">
+<div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bilateral-blur_example-2.png"><img alt="../../../_images/compositing_types_filter_bilateral-blur_example-2.png" src="../../../_images/compositing_types_filter_bilateral-blur_example-2.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Khúc xạ nhòe mờ giả song phương và bóng tối mịn hóa dò tia. <a class="reference external" href="https://en.blender.org/uploads/e/e4/Bilateral_blur_example_02.blend">Ví dụ tập tin blend</a></span></p>
+<p class="caption"><span class="caption-text">Khúc xạ nhòe mờ giả song phương và bóng tối mịn hóa dò tia. <a class="reference external" href="https://en.blender.org/uploads/e/e4/Bilateral_blur_example_02.blend">Ví dụ tập tin blend</a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id6">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bilateral-blur_example-2-render.jpg"><img alt="../../../_images/compositing_types_filter_bilateral-blur_example-2-render.jpg" src="../../../_images/compositing_types_filter_bilateral-blur_example-2-render.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Kết quả kết xuất.</span></p>
+<p class="caption"><span class="caption-text">Kết quả kết xuất.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id7">
+<td><div class="figure align-default" id="id7">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bilateral-blur_example-2-composite.jpg"><img alt="../../../_images/compositing_types_filter_bilateral-blur_example-2-composite.jpg" src="../../../_images/compositing_types_filter_bilateral-blur_example-2-composite.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Tổng hợp.</span></p>
+<p class="caption"><span class="caption-text">Tổng hợp.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<div class="figure" id="id8">
+<div class="figure align-default" id="id8">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bilateral-blur_example-3.png"><img alt="../../../_images/compositing_types_filter_bilateral-blur_example-3.png" src="../../../_images/compositing_types_filter_bilateral-blur_example-3.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Bóng tối đệm mịn hóa song phương. <a class="reference external" href="https://en.blender.org/uploads/b/ba/Bilateral_blur_example_03.blend">Ví dụ tập tin blend</a></span></p>
+<p class="caption"><span class="caption-text">Bóng tối đệm mịn hóa song phương. <a class="reference external" href="https://en.blender.org/uploads/b/ba/Bilateral_blur_example_03.blend">Ví dụ tập tin blend</a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id9">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id9">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bilateral-blur_example-3-render.jpg"><img alt="../../../_images/compositing_types_filter_bilateral-blur_example-3-render.jpg" src="../../../_images/compositing_types_filter_bilateral-blur_example-3-render.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Kết quả kết xuất.</span></p>
+<p class="caption"><span class="caption-text">Kết quả kết xuất.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id10">
+<td><div class="figure align-default" id="id10">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bilateral-blur_example-3-composite.jpg"><img alt="../../../_images/compositing_types_filter_bilateral-blur_example-3-composite.jpg" src="../../../_images/compositing_types_filter_bilateral-blur_example-3-composite.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Tổng hợp.</span></p>
+<p class="caption"><span class="caption-text">Tổng hợp.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>

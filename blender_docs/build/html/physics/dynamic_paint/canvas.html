@@ -124,9 +124,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Sơn Động Lực -- Dynamic Paint</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="brush.html">Bút Vẽ -- Brush</a></li>
@@ -223,84 +222,74 @@
   <div class="section" id="canvas">
 <span id="bpy-types-dynamicpaintcanvassettings"></span><h1>Toan -- Canvas<a class="headerlink" href="#canvas" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Lý (Physics) ‣ Sơn Động Lực (Dynamic Paint)</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">Toan -- Canvas</td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Vật Lý (Physics) ‣ Sơn Động Lực (Dynamic Paint)</span></p>
+</dd>
+<dt class="field-even">Thể Loại -- Type</dt>
+<dd class="field-even"><p>Toan -- Canvas</p>
+</dd>
+</dl>
 </div>
 <p>The Canvas type makes object receive paint from Dynamic Paint brushes.</p>
 <div class="figure align-right" id="id1">
 <img alt="../../_images/physics_dynamic-paint_canvas_main-panel.png" src="../../_images/physics_dynamic-paint_canvas_main-panel.png" />
-<p class="caption"><span class="caption-text">Canvas main panel.</span></p>
+<p class="caption"><span class="caption-text">Canvas main panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Bề Mặt Sơn -- Paint Surface</dt>
-<dd><p class="first">A <a class="reference internal" href="../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">list</span></a> of Dynamic Paint surfaces.
+<dl>
+<dt>Bề Mặt Sơn -- Paint Surface</dt><dd><p>A <a class="reference internal" href="../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">list</span></a> of Dynamic Paint surfaces.
 These surfaces are basically layers of paint, that work independently from each other.
 You can define individual settings for them and bake them separately.</p>
-<dl class="last docutils">
-<dt>Đang Hoạt Động -- Is Active</dt>
-<dd>The checkbox toggles whether surface is active at all.
-If not selected no calculations are done.</dd>
+<dl class="simple">
+<dt>Đang Hoạt Động -- Is Active</dt><dd><p>The checkbox toggles whether surface is active at all.
+If not selected no calculations are done.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <p>Below you can set surface type and adjust quality and timing settings.</p>
-<dl class="docutils">
-<dt>Định Dạng -- Format</dt>
-<dd><p class="first">Each surface has a certain format and type.
+<dl>
+<dt>Định Dạng -- Format</dt><dd><p>Each surface has a certain format and type.
 Format determines how data is stored and outputted.</p>
-<dl class="last docutils">
-<dt>Điểm Đỉnh -- Vertex</dt>
-<dd>Dynamic Paint operates directly on mesh vertex data.
+<dl class="simple">
+<dt>Điểm Đỉnh -- Vertex</dt><dd><p>Dynamic Paint operates directly on mesh vertex data.
 Results are stored by point cache and can be displayed in viewports.
-However, using vertex level also requires a highly subdivided mesh to work.</dd>
-<dt>Trình Tự Hình Ảnh -- Image Sequences</dt>
-<dd>Dynamic Paint generates UV wrapped image files of defined resolution as output.</dd>
+However, using vertex level also requires a highly subdivided mesh to work.</p>
+</dd>
+<dt>Trình Tự Hình Ảnh -- Image Sequences</dt><dd><p>Dynamic Paint generates UV wrapped image files of defined resolution as output.</p>
+</dd>
 </dl>
 </dd>
-<dt>Chất Lượng -- Quality</dt>
-<dd><dl class="first last docutils">
-<dt>Độ Phân Giải -- Resolution</dt>
-<dd>You can adjust the output image dimensions for the <em>Image Sequences</em> surface type.
+<dt>Chất Lượng -- Quality</dt><dd><dl class="simple">
+<dt>Độ Phân Giải -- Resolution</dt><dd><p>You can adjust the output image dimensions for the <em>Image Sequences</em> surface type.
 For example using 256 will lead to 256×256 image output.
-Doubling the resolution will likely quadruple the baking time and vice versa.</dd>
-<dt>Chống Răng Cưa -- Anti-aliasing</dt>
-<dd><a class="reference internal" href="../../glossary/index.html#term-anti-aliasing"><span class="xref std std-term">Anti-aliasing</span></a> to smooth paint edges using a 5× multisampling method.</dd>
+Doubling the resolution will likely quadruple the baking time and vice versa.</p>
+</dd>
+<dt>Chống Răng Cưa -- Anti-aliasing</dt><dd><p><a class="reference internal" href="../../glossary/index.html#term-anti-aliasing"><span class="xref std std-term">Anti-aliasing</span></a> to smooth paint edges using a 5× multisampling method.</p>
+</dd>
 </dl>
 </dd>
-<dt>Khung Hình -- Frames</dt>
-<dd><dl class="first last docutils">
-<dt>Bắt Đầu, Kết Thúc (Đầu,Cuối) -- Start, End</dt>
-<dd>Defines surface processing start and end frame.</dd>
-<dt>-- Sub-steps</dt>
-<dd>Sub-steps are extra samples between frames. They are usually required when there is a very fast brush.</dd>
+<dt>Khung Hình -- Frames</dt><dd><dl class="simple">
+<dt>Bắt Đầu, Kết Thúc (Đầu,Cuối) -- Start, End</dt><dd><p>Defines surface processing start and end frame.</p>
+</dd>
+<dt>-- Sub-steps</dt><dd><p>Sub-steps are extra samples between frames. They are usually required when there is a very fast brush.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <div class="section" id="surface">
 <h2>Surface<a class="headerlink" href="#surface" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Toan -- Canvas</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Dynamic Paint ‣ Surface</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Thể Loại -- Type</dt>
+<dd class="field-odd"><p>Toan -- Canvas</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Dynamic Paint ‣ Surface</span></p>
+</dd>
+</dl>
 </div>
 <p>From <em>Surface</em> panel you can adjust surface type and related settings.</p>
 <div class="section" id="surface-type">
@@ -308,92 +297,91 @@ Doubling the resolution will likely quadruple the baking time and vice versa.</d
 <p>Each surface has a &quot;type&quot; that defines what surface is used for.</p>
 <div class="section" id="paint">
 <h4>Sơn -- Paint<a class="headerlink" href="#paint" title="Permalink to this headline">¶</a></h4>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../_images/physics_dynamic-paint_canvas_surface-type-paint.jpg"><img alt="../../_images/physics_dynamic-paint_canvas_surface-type-paint.jpg" src="../../_images/physics_dynamic-paint_canvas_surface-type-paint.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Paint Surface.</span></p>
+<p class="caption"><span class="caption-text">Paint Surface.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Paint is the basic surface type that outputs color and wetness values.
 In case of vertex surfaces, results are outputted as vertex colors.</p>
 <p>A wetmap is a black-and-white output that visualizes paint wetness. White being maximum wetness,
 black being completely dry. It is usually used as mask for rendering.
 Some &quot;paint effects&quot; affect wet paint only.</p>
-<dl class="docutils">
-<dt>Khô -- Dry</dt>
-<dd><p class="first">Completely disable drying is useful for indefinitely spreading paint.</p>
-<dl class="last docutils">
-<dt>Độ Khô của Màu -- Color Dry</dt>
-<dd>It can be used to define wetness level when paint colors start to shift to surface &quot;background&quot;.
+<dl>
+<dt>Khô -- Dry</dt><dd><p>Completely disable drying is useful for indefinitely spreading paint.</p>
+<dl class="simple">
+<dt>Độ Khô của Màu -- Color Dry</dt><dd><p>It can be used to define wetness level when paint colors start to shift to surface &quot;background&quot;.
 Lower values can be useful to prevent spreading paint from becoming transparent as it dries,
-while higher values give better results in general.</dd>
+while higher values give better results in general.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="displace">
 <h4>Dời Hình -- Displace<a class="headerlink" href="#displace" title="Permalink to this headline">¶</a></h4>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../_images/physics_dynamic-paint_canvas_surface-type-displace.jpg"><img alt="../../_images/physics_dynamic-paint_canvas_surface-type-displace.jpg" src="../../_images/physics_dynamic-paint_canvas_surface-type-displace.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Displace Surface.</span></p>
+<p class="caption"><span class="caption-text">Displace Surface.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>This type of surface outputs intersection depth from brush objects.</p>
-<dl class="docutils">
-<dt>Tăng Dần -- Incremental</dt>
-<dd>A new displace is added cumulatively on top of an existing displace.</dd>
-<dt>Độ Dời Hình Tối Đa -- Max Displace</dt>
-<dd>The maximum level of intersection depth, larger values will be clamped to this value.</dd>
-<dt>Hệ Số Dời Hình -- Displace Factor</dt>
-<dd>The multiplier for the intersection depth.
-You can use it to adjust final displace strength or use negative values to paint bumps.</dd>
+<dl class="simple">
+<dt>Tăng Dần -- Incremental</dt><dd><p>A new displace is added cumulatively on top of an existing displace.</p>
+</dd>
+<dt>Độ Dời Hình Tối Đa -- Max Displace</dt><dd><p>The maximum level of intersection depth, larger values will be clamped to this value.</p>
+</dd>
+<dt>Hệ Số Dời Hình -- Displace Factor</dt><dd><p>The multiplier for the intersection depth.
+You can use it to adjust final displace strength or use negative values to paint bumps.</p>
+</dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">If the displace output seems too rough it usually helps to add
+<p class="admonition-title">Mẹo</p>
+<p>If the displace output seems too rough it usually helps to add
 a Smooth Modifier after Dynamic Paint in the modifier stack.</p>
 </div>
 </div>
 <div class="section" id="waves">
 <h4>-- Waves<a class="headerlink" href="#waves" title="Permalink to this headline">¶</a></h4>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../_images/physics_dynamic-paint_canvas_surface-type-waves.jpg"><img alt="../../_images/physics_dynamic-paint_canvas_surface-type-waves.jpg" src="../../_images/physics_dynamic-paint_canvas_surface-type-waves.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Waves Surface.</span></p>
+<p class="caption"><span class="caption-text">Waves Surface.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>This surface type produces simulated wave motion. Like displace,
 wave surface also uses brush intersection depth to define brush strength.</p>
 <p>You can use following settings to adjust the motion:</p>
-<dl class="docutils">
-<dt>Mở Ranh Giới -- Open Borders</dt>
-<dd>Allows waves to pass through mesh &quot;edges&quot; instead of reflecting from them.</dd>
-<dt>Thời Gian -- Timescale</dt>
-<dd>Directly adjusts simulation speed without affecting simulation outcome.
-Lower values make simulation go slower and otherwise.</dd>
-<dt>Tốc Độ -- Speed</dt>
-<dd>Affects how fast waves travel on the surface.
+<dl class="simple">
+<dt>Mở Ranh Giới -- Open Borders</dt><dd><p>Allows waves to pass through mesh &quot;edges&quot; instead of reflecting from them.</p>
+</dd>
+<dt>Thời Gian -- Timescale</dt><dd><p>Directly adjusts simulation speed without affecting simulation outcome.
+Lower values make simulation go slower and otherwise.</p>
+</dd>
+<dt>Tốc Độ -- Speed</dt><dd><p>Affects how fast waves travel on the surface.
 This setting is also corresponds to the size of the simulation.
-Half the speed equals surface double as large.</dd>
-<dt>Giảm Chấn -- Damping</dt>
-<dd>Reduces the wave strength over time. Basically adjusts how fast wave disappears.</dd>
-<dt>Đàn Hồi -- Spring</dt>
-<dd>Adjusts the force that pulls water back to &quot;zero level&quot;.</dd>
-<dt>Độ Mịn -- Smoothness</dt>
-<dd>Nội dung cần viết thêm</dd>
+Half the speed equals surface double as large.</p>
+</dd>
+<dt>Giảm Chấn -- Damping</dt><dd><p>Reduces the wave strength over time. Basically adjusts how fast wave disappears.</p>
+</dd>
+<dt>Đàn Hồi -- Spring</dt><dd><p>Adjusts the force that pulls water back to &quot;zero level&quot;.</p>
+</dd>
+<dt>Độ Mịn -- Smoothness</dt><dd><p>Nội dung cần viết thêm</p>
+</dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">In some cases the wave motion gets very unstable around brush.
+<p class="admonition-title">Mẹo</p>
+<p>In some cases the wave motion gets very unstable around brush.
 It usually helps to reduce wave speed, brush &quot;wave factor&quot; or even the resolution of mesh/surface.</p>
 </div>
 </div>
 <div class="section" id="weight">
 <h4>Trọng Lượng -- Weight<a class="headerlink" href="#weight" title="Permalink to this headline">¶</a></h4>
-<div class="figure" id="id5">
+<div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../_images/physics_dynamic-paint_canvas_surface-type-weight.jpg"><img alt="../../_images/physics_dynamic-paint_canvas_surface-type-weight.jpg" src="../../_images/physics_dynamic-paint_canvas_surface-type-weight.jpg" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Weight Surface.</span></p>
+<p class="caption"><span class="caption-text">Weight Surface.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>This is a special surface type only available for vertex format.
 It outputs vertex weight groups that can be used by other Blender modifiers and tools.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">It is usually preferred to use &quot;proximity&quot; based brushes for
+<p class="admonition-title">Mẹo</p>
+<p>It is usually preferred to use &quot;proximity&quot; based brushes for
 weight surfaces to allow smooth falloff between weight values.</p>
 </div>
 </div>
@@ -402,31 +390,28 @@ weight surfaces to allow smooth falloff between weight values.</p>
 <h3>Tùy Chọn Chung -- Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h3>
 <p>For each surface type there are special settings to adjust.
 Most types have the settings <em>Dissolve</em> and <em>Brush</em>:</p>
-<dl class="docutils">
-<dt>Tan Biến -- Dissolve</dt>
-<dd>Used to make the surface smoothly return to its original state during a defined <em>Time</em> period.</dd>
-<dt>Brush Collection</dt>
-<dd>Used to define a specific collection to pick brush objects from.</dd>
-<dt>-- Influence Scale, Radius Scale</dt>
-<dd>For tweaking brush settings individually for each surface.</dd>
+<dl class="simple">
+<dt>Tan Biến -- Dissolve</dt><dd><p>Used to make the surface smoothly return to its original state during a defined <em>Time</em> period.</p>
+</dd>
+<dt>Brush Collection</dt><dd><p>Used to define a specific collection to pick brush objects from.</p>
+</dd>
+<dt>-- Influence Scale, Radius Scale</dt><dd><p>For tweaking brush settings individually for each surface.</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="output">
 <h2>Đầu Ra -- Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Toan -- Canvas</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Dynamic Paint ‣ Output</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Thể Loại -- Type</dt>
+<dd class="field-odd"><p>Toan -- Canvas</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Dynamic Paint ‣ Output</span></p>
+</dd>
+</dl>
 </div>
 <p>From Output panel you can adjust how surface outputs its results.</p>
 <div class="section" id="vertex">
@@ -445,55 +430,48 @@ you can define used UV maps and output file saving directory, filenames and imag
 <div class="section" id="initial-color">
 <h2>Màu Khởi Đầu -- Initial Color<a class="headerlink" href="#initial-color" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Toan -- Canvas</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Dynamic Paint ‣ Initial Color</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Thể Loại -- Type</dt>
+<dd class="field-odd"><p>Toan -- Canvas</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Dynamic Paint ‣ Initial Color</span></p>
+</dd>
+</dl>
 </div>
 <p>Allows you to define the initial color of the canvas. (Todo 2.62)</p>
 <ul class="simple">
-<li>Không Có -- None</li>
-<li>Màu Sắc -- Color</li>
-<li>Chất Liệu UV -- UV Texture</li>
-<li>Màu Điểm Đỉnh -- Vertex Color</li>
+<li><p>Không Có -- None</p></li>
+<li><p>Màu Sắc -- Color</p></li>
+<li><p>Chất Liệu UV -- UV Texture</p></li>
+<li><p>Màu Điểm Đỉnh -- Vertex Color</p></li>
 </ul>
 </div>
 <div class="section" id="effects">
 <h2>Ảnh Hưởng -- Effects<a class="headerlink" href="#effects" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Toan -- Canvas</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Dynamic Paint ‣ Effects</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Thể Loại -- Type</dt>
+<dd class="field-odd"><p>Toan -- Canvas</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Dynamic Paint ‣ Effects</span></p>
+</dd>
+</dl>
 </div>
 <p>This is a special feature for &quot;Paint&quot; type surface.
 It generates animated movement on canvas surface.</p>
-<dl class="docutils">
-<dt>Ảnh Hưởng -- Effects</dt>
-<dd><dl class="first last docutils">
-<dt>Lan Tỏa -- Spread</dt>
-<dd>Paint slowly spreads to surrounding points eventually filling all connected areas.</dd>
-<dt>Nhỏ Giọt -- Drip</dt>
-<dd>Paint moves in specific direction specified by Blender force fields,
-gravity and velocity with user-defined influences.</dd>
-<dt>Co Lại -- Shrink</dt>
-<dd>Painted area slowly shrinks until disappears completely.</dd>
+<dl class="simple">
+<dt>Ảnh Hưởng -- Effects</dt><dd><dl class="simple">
+<dt>Lan Tỏa -- Spread</dt><dd><p>Paint slowly spreads to surrounding points eventually filling all connected areas.</p>
+</dd>
+<dt>Nhỏ Giọt -- Drip</dt><dd><p>Paint moves in specific direction specified by Blender force fields,
+gravity and velocity with user-defined influences.</p>
+</dd>
+<dt>Co Lại -- Shrink</dt><dd><p>Painted area slowly shrinks until disappears completely.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -503,18 +481,15 @@ movement becomes slower until it stops.</p>
 <div class="section" id="cache">
 <h2>Bộ Nhớ Đệm -- Cache<a class="headerlink" href="#cache" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Toan -- Canvas</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Dynamic Paint ‣ Cache</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Thể Loại -- Type</dt>
+<dd class="field-odd"><p>Toan -- Canvas</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Dynamic Paint ‣ Cache</span></p>
+</dd>
+</dl>
 </div>
 <p>This panel is currently only visible for <em>Vertex</em> format surfaces.
 You can use it to adjust and bake point cache.</p>

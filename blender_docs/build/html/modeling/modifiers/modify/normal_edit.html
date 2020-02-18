@@ -231,60 +231,55 @@
 to compute them (quite useful in game development and architecture areas), and mixes back those generated normals
 with existing ones.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This modifier requires custom normals to be enabled, which can be done by
+<p class="admonition-title">Ghi chú</p>
+<p>This modifier requires custom normals to be enabled, which can be done by
 enabling <a class="reference internal" href="../../meshes/structure.html#auto-smooth"><span class="std std-ref">Auto Smooth</span></a> in the <span class="menuselection">Properties ‣ Object Data ‣ Normals</span>.</p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_modify_normal-edit_panel.png" src="../../../_images/modeling_modifiers_modify_normal-edit_panel.png" />
-<p class="caption"><span class="caption-text">Normal Edit Modifier.</span></p>
+<p class="caption"><span class="caption-text">Normal Edit Modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Chế Độ -- Mode</dt>
-<dd><dl class="first last docutils">
-<dt>Tỏa Tròn -- Radial</dt>
-<dd>Aligns normals with the <code class="docutils literal notranslate"><span class="pre">(origin,</span> <span class="pre">vertex_coordinates)</span></code> vector, in other words all normals seems to radiate
-from the given center point, as if they were emitted from an ellipsoid surface.</dd>
-<dt>Định Hướng -- Directional</dt>
-<dd>Makes all normals point (converge) towards a given target object.</dd>
+<dl>
+<dt>Chế Độ -- Mode</dt><dd><dl class="simple">
+<dt>Tỏa Tròn -- Radial</dt><dd><p>Aligns normals with the <code class="docutils literal notranslate"><span class="pre">(origin,</span> <span class="pre">vertex_coordinates)</span></code> vector, in other words all normals seems to radiate
+from the given center point, as if they were emitted from an ellipsoid surface.</p>
+</dd>
+<dt>Định Hướng -- Directional</dt><dd><p>Makes all normals point (converge) towards a given target object.</p>
+</dd>
 </dl>
 </dd>
-<dt>Vật Thể Mục Tiêu -- Target Object</dt>
-<dd><p class="first">Uses this object's origin as reference point when generating normals.</p>
-<p class="last">Optional in <em>Radial</em> mode, mandatory in <em>Directional</em> one.</p>
+<dt>Vật Thể Mục Tiêu -- Target Object</dt><dd><p>Uses this object's origin as reference point when generating normals.</p>
+<p>Optional in <em>Radial</em> mode, mandatory in <em>Directional</em> one.</p>
 </dd>
-<dt>Pháp Tuyến Song Song -- Parallel Normals</dt>
-<dd><p class="first">Makes all normals parallel to the line between both objects' origins,
+<dt>Pháp Tuyến Song Song -- Parallel Normals</dt><dd><p>Makes all normals parallel to the line between both objects' origins,
 instead of converging towards target's origin.</p>
-<p class="last">Only relevant in <em>Directional</em> mode.</p>
+<p>Only relevant in <em>Directional</em> mode.</p>
 </dd>
-<dt>Dịch Chuyển -- Offset</dt>
-<dd><p class="first">Gives modified object's origin an offset before using it to generate normals.</p>
-<p class="last">Only relevant in <em>Radial</em> mode if no <em>Target Object</em> is set,
+<dt>Dịch Chuyển -- Offset</dt><dd><p>Gives modified object's origin an offset before using it to generate normals.</p>
+<p>Only relevant in <em>Radial</em> mode if no <em>Target Object</em> is set,
 and in <em>Directional</em> mode when <em>Parallel Normals</em> is set.</p>
 </dd>
 </dl>
 <div class="section" id="mix-mode">
 <h3>Chế Độ Pha Trộn -- Mix Mode<a class="headerlink" href="#mix-mode" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Chế Độ Pha Trộn -- Mix Mode</dt>
-<dd><p class="first">How to affect existing normals with newly generated ones.</p>
-<p class="last">Note that the <em>Multiply</em> option is <strong>not</strong> a cross product, but a mere component-by-component multiplication.</p>
+<dl>
+<dt>Chế Độ Pha Trộn -- Mix Mode</dt><dd><p>How to affect existing normals with newly generated ones.</p>
+<p>Note that the <em>Multiply</em> option is <strong>not</strong> a cross product, but a mere component-by-component multiplication.</p>
 </dd>
-<dt>Hệ Số Pha Trộn -- Mix Factor</dt>
-<dd>How much of the generated normals get mixed into existing ones.</dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd>Allows per-item fine control of the mix factor. The vertex group influence can be reverted by using the small
-&quot;arrow&quot; button to the right.</dd>
-<dt>Góc Lớn Nhất -- Max Angle</dt>
-<dd>Forbids new generated normals to have an angle to the original normal above that given threshold.
+<dt>Hệ Số Pha Trộn -- Mix Factor</dt><dd><p>How much of the generated normals get mixed into existing ones.</p>
+</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>Allows per-item fine control of the mix factor. The vertex group influence can be reverted by using the small
+&quot;arrow&quot; button to the right.</p>
+</dd>
+<dt>Góc Lớn Nhất -- Max Angle</dt><dd><p>Forbids new generated normals to have an angle to the original normal above that given threshold.
 This is useful to prevent extreme changes, that can even lead to inverting the front/back sides of a face,
-and consequently to ugly shading artifacts.</dd>
-<dt>-- Lock Polygon Normals (padlock icon)</dt>
-<dd>Prevents flipping (reversing front/back sides) of polygons which normal does not match anymore
-the side to which point its corners' custom normals. Can also help avoiding shading issues.</dd>
+and consequently to ugly shading artifacts.</p>
+</dd>
+<dt>-- Lock Polygon Normals (padlock icon)</dt><dd><p>Prevents flipping (reversing front/back sides) of polygons which normal does not match anymore
+the side to which point its corners' custom normals. Can also help avoiding shading issues.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -293,8 +288,8 @@ the side to which point its corners' custom normals. Can also help avoiding shad
 <p>This modifier can be used to quickly generate radial normals for low-poly tree foliage or
 &quot;fix&quot; shading of toon-like rendering by partially bending default normals...</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">More complex normal manipulations can be achieved by copying normals from one mesh to another,
+<p class="admonition-title">Mẹo</p>
+<p>More complex normal manipulations can be achieved by copying normals from one mesh to another,
 see the <a class="reference internal" href="data_transfer.html"><span class="doc">Data Transfer Modifier</span></a>.
 Some shading effects can also make use of
 the <a class="reference internal" href="weighted_normal.html"><span class="doc">Weighted Normals modifier</span></a>.</p>
@@ -302,10 +297,10 @@ the <a class="reference internal" href="weighted_normal.html"><span class="doc">
 </div>
 <div class="section" id="example">
 <h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_normal-edit_example.jpg"><img alt="../../../_images/modeling_modifiers_modify_normal-edit_example.jpg" src="../../../_images/modeling_modifiers_modify_normal-edit_example.jpg" style="width: 680px;" /></a>
 <p class="caption"><span class="caption-text">Examples of editing custom normals to point towards a given direction,
-see <a class="reference external" href="http://download.blender.org/ftp/mont29/persistent_data/sapling_CN.blend">example blend-file</a>.</span></p>
+see <a class="reference external" href="http://download.blender.org/ftp/mont29/persistent_data/sapling_CN.blend">example blend-file</a>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>The left tree mesh has unmodified normals, while on the right one a <em>Normal Edit</em> modifier is used to bend them
 towards the camera. This shading trick is often used in games to fake scattering in trees and other vegetation.</p>

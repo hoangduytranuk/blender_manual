@@ -239,8 +239,8 @@
 <div class="section" id="activation">
 <h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Open Blender and go to Preferences then the Add-ons tab.</li>
-<li>Click Mesh then Loop Tools to enable the script.</li>
+<li><p>Open Blender and go to Preferences then the Add-ons tab.</p></li>
+<li><p>Click Mesh then Loop Tools to enable the script.</p></li>
 </ul>
 </div>
 <div class="section" id="description">
@@ -254,45 +254,44 @@ Both methods can be mixed and you can even Bridge multiple groups at the same ti
 The script will try to make an educated guess on which groups should be connected.</p>
 <p>Bridge shares its settings with the <em>Loft</em> tool, so changing a setting for one of the tools,
 will also change it for the other tool.</p>
-<dl class="docutils">
-<dt>Segments</dt>
-<dd>The number of faces used to bridge the distance between two loops.
+<dl>
+<dt>Segments</dt><dd><p>The number of faces used to bridge the distance between two loops.
 One segment means that only faces will be created.
 Two (or more) segments means that an intermediary line (or lines) of vertices is created,
 so two or more faces can be defined between the loops. If the value is set to zero,
-the script automatically calculates the best amount of segments in order to keep the faces as square as possible.</dd>
-<dt>Minimum Width</dt>
-<dd>This option has no label, but is located directly to the right of the segments setting.
+the script automatically calculates the best amount of segments in order to keep the faces as square as possible.</p>
+</dd>
+<dt>Minimum Width</dt><dd><p>This option has no label, but is located directly to the right of the segments setting.
 The simple explanation: 0% lot of triangles, 100% mostly square faces. There is a bit more to it though.
 It determines when a new vertex has to be created, or when to use the vertex next to it.
 It does this based on the distance between these vertices compared to the distance between
 the vertices in the original loops. So 50% means that if the distance between two vertices
 that will be newly created is smaller than half the distance between two vertices in the original loop,
-they will be merged together, resulting in only a single new vertex. This is also demonstrated in the video above.</dd>
-<dt>Interpolation</dt>
-<dd>This can be set to either cubic or linear. Linear is just a flat interpolation,
-while cubic tries to retain the surface tangents, resulting in more fluid curves.</dd>
-<dt>Strength</dt>
-<dd>The strength option is only available when the interpolation mode is set to cubic.
+they will be merged together, resulting in only a single new vertex. This is also demonstrated in the video above.</p>
+</dd>
+<dt>Interpolation</dt><dd><p>This can be set to either cubic or linear. Linear is just a flat interpolation,
+while cubic tries to retain the surface tangents, resulting in more fluid curves.</p>
+</dd>
+<dt>Strength</dt><dd><p>The strength option is only available when the interpolation mode is set to cubic.
 Setting the strength to zero gives a result very similar to linear interpolation,
 while higher strengths result in more fluid curves.
 Setting a negative strength changes the direction of the curve. Or described in a more visual way:
 it makes deflated volumes inflate and vice versa. The soft limits of this option are set to range from -3 to +3,
 but you can easily assign bigger or smaller values by manually entering a number, instead of using the slider.
-This works just the same as with normal sliders in Blender.</dd>
-<dt>Remove Faces</dt>
-<dd><p class="first">When using a face-selection input, the inner faces will be removed after bridging.</p>
-<p class="last">Because of some limitations in Blender the weight values assigned to
+This works just the same as with normal sliders in Blender.</p>
+</dd>
+<dt>Remove Faces</dt><dd><p>When using a face-selection input, the inner faces will be removed after bridging.</p>
+<p>Because of some limitations in Blender the weight values assigned to
 the Bevel modifier might be slightly altered (by about 0.01) when this option is enabled.</p>
 </dd>
-<dt>Twist</dt>
-<dd>Determines which vertices in both loops are connected to each other.
-This might be used for artistic reasons or to correct a wrong result given by the script.</dd>
-<dt>Reverse</dt>
-<dd>This option should only be used if the script gives a wrong result.
+<dt>Twist</dt><dd><p>Determines which vertices in both loops are connected to each other.
+This might be used for artistic reasons or to correct a wrong result given by the script.</p>
+</dd>
+<dt>Reverse</dt><dd><p>This option should only be used if the script gives a wrong result.
 It reverses the order in which vertices are connected and can fix problems
 when the script gives a result that looks inverted. It's a bit hard to describe,
-but just try it once and you'll immediately understand what it does.</dd>
+but just try it once and you'll immediately understand what it does.</p>
+</dd>
 </dl>
 <div class="section" id="creating-holes">
 <h4>Creating Holes<a class="headerlink" href="#creating-holes" title="Permalink to this headline">¶</a></h4>
@@ -305,30 +304,29 @@ Select two or more faces and run the Bridge tool.</p>
 <p>There are two correct inputs for the circle tool: selecting a single vertex,
 or selecting a closed or open loop of edges.
 You can also have the tool operate on multiple inputs at the same time and mix the input types.</p>
-<dl class="docutils">
-<dt>Method</dt>
-<dd><dl class="first last docutils">
-<dt>Best Fit</dt>
-<dd>When <em>Best Fit</em> is selected a circle is calculated using a non-linear least squares method.
-This basically means that the circle that is calculated with this option best fits the vertices you selected.</dd>
-<dt>Fit Inside</dt>
-<dd>Selecting <em>Fit Inside</em> will calculate the circle in such a way
+<dl class="simple">
+<dt>Method</dt><dd><dl class="simple">
+<dt>Best Fit</dt><dd><p>When <em>Best Fit</em> is selected a circle is calculated using a non-linear least squares method.
+This basically means that the circle that is calculated with this option best fits the vertices you selected.</p>
+</dd>
+<dt>Fit Inside</dt><dd><p>Selecting <em>Fit Inside</em> will calculate the circle in such a way
 that none of the vertices will be moved away from the center of the calculated circle.
-This is useful when you want to retain the topology of the surrounding mesh.</dd>
+This is useful when you want to retain the topology of the surrounding mesh.</p>
+</dd>
 </dl>
 </dd>
-<dt>Flatten</dt>
-<dd>When enabled, the input will be flattened to an optimal plane.
+<dt>Flatten</dt><dd><p>When enabled, the input will be flattened to an optimal plane.
 This includes the center vertex, if the input consisted of a single vertex.
-When disabled the input will be projected onto the existing mesh.</dd>
-<dt>Radius</dt>
-<dd>This overrides the radius calculated by the script.
-Useful if you wish to create several circles of the same size, or if you need more precision.</dd>
-<dt>Regular</dt>
-<dd>When this option is selected, the vertices on the circle will all have the same distance between each other.</dd>
-<dt>Influence</dt>
-<dd>The force of the tool. Zero percent influence means no changes will be made to the mesh.
-100% influence means that the input will be fully transformed into a circle.</dd>
+When disabled the input will be projected onto the existing mesh.</p>
+</dd>
+<dt>Radius</dt><dd><p>This overrides the radius calculated by the script.
+Useful if you wish to create several circles of the same size, or if you need more precision.</p>
+</dd>
+<dt>Regular</dt><dd><p>When this option is selected, the vertices on the circle will all have the same distance between each other.</p>
+</dd>
+<dt>Influence</dt><dd><p>The force of the tool. Zero percent influence means no changes will be made to the mesh.
+100% influence means that the input will be fully transformed into a circle.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="curve">
@@ -339,46 +337,45 @@ You can do this for multiple loops simultaneously to save time.</p>
 <p>The second method is to select one or more entire loops.
 If a full loop is selected, the curve tool won't operate on that loop,
 but on all loops perpendicular to it and use the vertices on the selected loop(s) as control points.</p>
-<dl class="docutils">
-<dt>Interpolation</dt>
-<dd>Cubic gives a smooth curve, calculated using a natural cubic spline algorithm.
-Linear calculates straight lines through the control points.</dd>
-<dt>Restriction</dt>
-<dd>This restricts the movement of the vertices to only one direction.
+<dl class="simple">
+<dt>Interpolation</dt><dd><p>Cubic gives a smooth curve, calculated using a natural cubic spline algorithm.
+Linear calculates straight lines through the control points.</p>
+</dd>
+<dt>Restriction</dt><dd><p>This restricts the movement of the vertices to only one direction.
 Indent only allows movement toward the mesh,
-while extrude only allows movement away from the mesh (in the direction of the normal).</dd>
-<dt>Boundaries</dt>
-<dd>If enabled, the curve won't stretch beyond the input vertices.
-This limits the tool to only a subsection of the mesh.</dd>
-<dt>Regular</dt>
-<dd>This will evenly distribute the vertices along the curve. Sometimes this can create weird results,
+while extrude only allows movement away from the mesh (in the direction of the normal).</p>
+</dd>
+<dt>Boundaries</dt><dd><p>If enabled, the curve won't stretch beyond the input vertices.
+This limits the tool to only a subsection of the mesh.</p>
+</dd>
+<dt>Regular</dt><dd><p>This will evenly distribute the vertices along the curve. Sometimes this can create weird results,
 as an even distribution isn't always possible (since the selected input vertices aren't moved).
-If that is the case, simply uncheck this checkbox.</dd>
-<dt>Influence</dt>
-<dd>The force of the tool. Zero percent influence means no changes will be made to the mesh.
-100% influence means the tool will have the maximum effect.</dd>
+If that is the case, simply uncheck this checkbox.</p>
+</dd>
+<dt>Influence</dt><dd><p>The force of the tool. Zero percent influence means no changes will be made to the mesh.
+100% influence means the tool will have the maximum effect.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="flatten">
 <h3>Flatten<a class="headerlink" href="#flatten" title="Permalink to this headline">¶</a></h3>
 <p>Any selection is considered acceptable input for the flatten tool.</p>
-<dl class="docutils">
-<dt>Plane</dt>
-<dd><p class="first">The method used to calculate the plane on which the input is flattened.</p>
-<dl class="last docutils">
-<dt>Best fit</dt>
-<dd>Calculates a plane so that on average the vertices will have to be moved the least to be flattened.</dd>
-<dt>Normal</dt>
-<dd>Is identical to scaling the input to zero on local Z when the orientation is set to normal (so <kbd class="kbd docutils literal notranslate">G Z Z 0</kbd>).
-It's mainly included for making an easy comparison between the flatten methods.</dd>
-<dt>View</dt>
-<dd>Flattens the input on a plane perpendicular to the viewport angle. So when you run the tool,
-it will appear nothing has changed, but when you rotate the viewport, you'll see what has happened.</dd>
+<dl>
+<dt>Plane</dt><dd><p>The method used to calculate the plane on which the input is flattened.</p>
+<dl class="simple">
+<dt>Best fit</dt><dd><p>Calculates a plane so that on average the vertices will have to be moved the least to be flattened.</p>
+</dd>
+<dt>Normal</dt><dd><p>Is identical to scaling the input to zero on local Z when the orientation is set to normal (so <kbd class="kbd docutils literal notranslate">G Z Z 0</kbd>).
+It's mainly included for making an easy comparison between the flatten methods.</p>
+</dd>
+<dt>View</dt><dd><p>Flattens the input on a plane perpendicular to the viewport angle. So when you run the tool,
+it will appear nothing has changed, but when you rotate the viewport, you'll see what has happened.</p>
+</dd>
 </dl>
 </dd>
-<dt>Influence</dt>
-<dd>The force of the tool. Zero percent influence means no changes will be made to the mesh.
-100% influence means the input will be fully flattened.</dd>
+<dt>Influence</dt><dd><p>The force of the tool. Zero percent influence means no changes will be made to the mesh.
+100% influence means the input will be fully flattened.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="loft">
@@ -389,91 +386,91 @@ and have them bridged consecutively.</p>
 <p>Loft shares its settings with the Bridge tool, so changing a setting for one of the tools,
 will also change it for the other tool. For a full discussion of all the settings take a look at the Bridge settings.
 Below you'll find some specific information for the loft tool.</p>
-<dl class="docutils">
-<dt>Segments</dt>
-<dd>This is identical to the <em>Segments</em> setting of the Bridge tool,
+<dl class="simple">
+<dt>Segments</dt><dd><p>This is identical to the <em>Segments</em> setting of the Bridge tool,
 but setting it to automatic (segments = 0) has an advantage for the loft tool.
 When letting the script determine the number of segments needed,
-it might create different numbers of segments between different loops.</dd>
-<dt>Loop</dt>
-<dd>Connects the first and the last loop to each other.</dd>
+it might create different numbers of segments between different loops.</p>
+</dd>
+<dt>Loop</dt><dd><p>Connects the first and the last loop to each other.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="relax">
 <h3>Relax<a class="headerlink" href="#relax" title="Permalink to this headline">¶</a></h3>
 <p>The input of the relax tool consists of a single (partial) loop.</p>
-<dl class="docutils">
-<dt>Interpolation</dt>
-<dd><p class="first">Determines how the final position of the vertices is calculated.
+<dl>
+<dt>Interpolation</dt><dd><p>Determines how the final position of the vertices is calculated.
 Cubic uses a natural cubic spline to project the vertices on, linear projects the vertices on straight lines.</p>
-<p class="last">A word of caution: when you use the relax tool on a closed loop
+<p>A word of caution: when you use the relax tool on a closed loop
 (a loop where all vertices are connected to two other vertices in the same loop)
 you can better use cubic interpolation instead of the linear.
 If you use linear interpolation, the volume of the loop will quickly diminish.</p>
 </dd>
-<dt>Input</dt>
-<dd><dl class="first last docutils">
-<dt>Selection</dt>
-<dd>When set to <em>Selection</em> the tool will only operate on the selected vertices.</dd>
-<dt>Parallel (all)</dt>
-<dd>Setting it to <em>Parallel (all)</em>, will also include the vertices of all parallel loops.</dd>
+<dt>Input</dt><dd><dl class="simple">
+<dt>Selection</dt><dd><p>When set to <em>Selection</em> the tool will only operate on the selected vertices.</p>
+</dd>
+<dt>Parallel (all)</dt><dd><p>Setting it to <em>Parallel (all)</em>, will also include the vertices of all parallel loops.</p>
+</dd>
 </dl>
 </dd>
-<dt>Iterations</dt>
-<dd>The number of times the tool is run. A higher number gives a smoother result.</dd>
-<dt>Regular</dt>
-<dd>If this option is selected, the vertices will be distributed evenly along the loop.</dd>
+<dt>Iterations</dt><dd><p>The number of times the tool is run. A higher number gives a smoother result.</p>
+</dd>
+<dt>Regular</dt><dd><p>If this option is selected, the vertices will be distributed evenly along the loop.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="space">
 <h3>Space<a class="headerlink" href="#space" title="Permalink to this headline">¶</a></h3>
 <p>The input of the space tool consists of a single (partial) loop.</p>
-<dl class="docutils">
-<dt>Interpolation</dt>
-<dd>Cubic distributes the vertices along a natural cubic spline through,
-while linear projects the vertices on the already existing edges.</dd>
-<dt>Input</dt>
-<dd><dl class="first last docutils">
-<dt>Selection</dt>
-<dd>When set to <em>Selection</em> the tool will only operate on the selected vertices.</dd>
-<dt>Parallel (all)</dt>
-<dd>Setting it to <em>Parallel (all)</em>, will also include the vertices of all parallel loops.</dd>
+<dl class="simple">
+<dt>Interpolation</dt><dd><p>Cubic distributes the vertices along a natural cubic spline through,
+while linear projects the vertices on the already existing edges.</p>
+</dd>
+<dt>Input</dt><dd><dl class="simple">
+<dt>Selection</dt><dd><p>When set to <em>Selection</em> the tool will only operate on the selected vertices.</p>
+</dd>
+<dt>Parallel (all)</dt><dd><p>Setting it to <em>Parallel (all)</em>, will also include the vertices of all parallel loops.</p>
+</dd>
 </dl>
 </dd>
-<dt>Influence</dt>
-<dd>The force of the tool. Zero percent influence means no changes will be made to the mesh.
-100% influence means the tool will have the maximum effect.</dd>
+<dt>Influence</dt><dd><p>The force of the tool. Zero percent influence means no changes will be made to the mesh.
+100% influence means the tool will have the maximum effect.</p>
+</dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
+<p class="admonition-title">Xem thêm</p>
 <p>For an illustrated explanation of all the tool settings visit
 the <a class="reference external" href="http://sites.google.com/site/bartiuscrouch/looptools">script homepage</a>.</p>
-<p class="last">Please see the
+<p>Please see the
 <a class="reference external" href="https://archive.blender.org/wiki/index.php/Extensions:2.6/Py/Scripts/Modeling/LoopTools/">old Wiki</a>
 for the archived original docs.</p>
 </div>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Category:</th><td class="field-body">Mesh</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Mesh modeling toolkit. Several tools to aid modeling.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Location:</th><td class="field-body"><span class="menuselection">3D View ‣ Sidebar ‣ Edit tab</span>, <span class="menuselection">3D View Edit Mode ‣ context menu</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name">File:</th><td class="field-body">mesh_looptools.py</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Bart Crouch</td>
-</tr>
-<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">GPL</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">This add-on is bundled with Blender.</td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Category</dt>
+<dd class="field-odd"><p>Mesh</p>
+</dd>
+<dt class="field-even">Description</dt>
+<dd class="field-even"><p>Mesh modeling toolkit. Several tools to aid modeling.</p>
+</dd>
+<dt class="field-odd">Location</dt>
+<dd class="field-odd"><p><span class="menuselection">3D View ‣ Sidebar ‣ Edit tab</span>, <span class="menuselection">3D View Edit Mode ‣ context menu</span></p>
+</dd>
+<dt class="field-even">File</dt>
+<dd class="field-even"><p>mesh_looptools.py</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Bart Crouch</p>
+</dd>
+<dt class="field-even">License</dt>
+<dd class="field-even"><p>GPL</p>
+</dd>
+<dt class="field-odd">Note</dt>
+<dd class="field-odd"><p>This add-on is bundled with Blender.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>

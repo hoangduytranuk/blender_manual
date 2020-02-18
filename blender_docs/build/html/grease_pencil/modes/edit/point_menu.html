@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
-    <link rel="next" title="Grease Pencil Weight Paint Mode" href="../weight_paint/index.html" />
+    <link rel="next" title="Weight Paint Mode" href="../weight_paint/index.html" />
     <link rel="prev" title="Stroke Menu" href="stroke_menu.html" /> 
 </head>
 
@@ -124,14 +124,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../multiframe.html">Multiframe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../properties/index.html">Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Grease Pencil Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Grease Pencil Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visual_effects/index.html">Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../animation/index.html">Animation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#modes">Modes</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../draw/index.html">Grease Pencil Draw Mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../sculpting/index.html">Grease Pencil Sculpt Mode</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Grease Pencil Edit Mode</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../draw/index.html">Draw Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sculpting/index.html">Sculpt Mode</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Edit Mode</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tools.html">Editing Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="grease_pencil_menu.html">Grease Pencil Menu</a></li>
@@ -139,7 +139,7 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Point Menu</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../weight_paint/index.html">Grease Pencil Weight Paint Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../weight_paint/index.html">Weight Paint Mode</a></li>
 </ul>
 </li>
 </ul>
@@ -205,7 +205,7 @@
         
           <li><a href="../../index.html">Grease Pencil</a> &raquo;</li>
         
-          <li><a href="index.html">Grease Pencil Edit Mode</a> &raquo;</li>
+          <li><a href="index.html">Edit Mode</a> &raquo;</li>
         
       <li>Point Menu</li>
     
@@ -226,78 +226,74 @@
 <div class="section" id="extrude-points">
 <span id="bpy-ops-gpencil-extrude-move"></span><h2>Extrude Points<a class="headerlink" href="#extrude-points" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Point ‣ Extrude Points</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">Toolbar ‣ Extrude</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Hotkey:</th><td class="field-body"><kbd class="kbd docutils literal notranslate">E</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Point ‣ Extrude Points</span></p>
+</dd>
+<dt class="field-odd">Tool</dt>
+<dd class="field-odd"><p><span class="menuselection">Toolbar ‣ Extrude</span></p>
+</dd>
+<dt class="field-even">Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">E</kbd></p>
+</dd>
+</dl>
 </div>
 <p>Extrudes points by duplicating the selected points, which then can be moved.
 The new points stay connected with the original points of the edit line.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Since Grease Pencil strokes can only have one start an end point,
+<p class="admonition-title">Ghi chú</p>
+<p>Since Grease Pencil strokes can only have one start an end point,
 a new stroke will be created when extrude intermediate points in the strokes.</p>
 </div>
 </div>
 <div class="section" id="smooth-points">
 <span id="bpy-ops-gpencil-stroke-smooth"></span><h2>Smooth Points<a class="headerlink" href="#smooth-points" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Point ‣ Smooth Points</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Point ‣ Smooth Points</span></p>
+</dd>
+</dl>
 </div>
 <p>Softens strokes by reducing the differences in the locations of the points along the line,
 while trying to maintain similar values that make the line fluid and smoother.</p>
-<dl class="docutils">
-<dt>Repeat</dt>
-<dd>The number of times to repeat the procedure.</dd>
-<dt>Factor</dt>
-<dd>The amount of the smoothness to apply.</dd>
-<dt>Selected points</dt>
-<dd>When enabled, limits the effect to only the selected points within the stroke.</dd>
-<dt>Position</dt>
-<dd>When enabled, the operator affect the points location.</dd>
-<dt>Thickness</dt>
-<dd>When enabled, the operator affect the points thickness.</dd>
-<dt>Strength</dt>
-<dd>When enabled, the operator affect the points strength (alpha).</dd>
-<dt>UVs</dt>
-<dd>When enabled, the operator affect the UV rotation on the points.</dd>
+<dl class="simple">
+<dt>Repeat</dt><dd><p>The number of times to repeat the procedure.</p>
+</dd>
+<dt>Factor</dt><dd><p>The amount of the smoothness to apply.</p>
+</dd>
+<dt>Selected points</dt><dd><p>When enabled, limits the effect to only the selected points within the stroke.</p>
+</dd>
+<dt>Position</dt><dd><p>When enabled, the operator affect the points location.</p>
+</dd>
+<dt>Thickness</dt><dd><p>When enabled, the operator affect the points thickness.</p>
+</dd>
+<dt>Strength</dt><dd><p>When enabled, the operator affect the points strength (alpha).</p>
+</dd>
+<dt>UVs</dt><dd><p>When enabled, the operator affect the UV rotation on the points.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="merge-points">
 <span id="bpy-ops-gpencil-stroke-merge"></span><h2>Merge Points<a class="headerlink" href="#merge-points" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Point ‣ Merge Points</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Point ‣ Merge Points</span></p>
+</dd>
+</dl>
 </div>
 <p>Combine all selected points into a unique stroke.
 All the selected points will be connected by new edit lines when needed to create the new stroke.</p>
@@ -312,7 +308,7 @@ All the selected points will be connected by new edit lines when needed to creat
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../weight_paint/index.html" class="btn btn-neutral float-right" title="Grease Pencil Weight Paint Mode" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../weight_paint/index.html" class="btn btn-neutral float-right" title="Weight Paint Mode" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="stroke_menu.html" class="btn btn-neutral float-left" title="Stroke Menu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

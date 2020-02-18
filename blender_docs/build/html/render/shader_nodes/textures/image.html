@@ -243,97 +243,96 @@
 <span id="bpy-types-shadernodeteximage"></span><h1>Nút Chất Liệu Hình Ảnh -- Image Texture Node<a class="headerlink" href="#image-texture-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_textures_image_node.png" src="../../../_images/render_shader-nodes_textures_image_node.png" />
-<p class="caption"><span class="caption-text">Image Texture Node.</span></p>
+<p class="caption"><span class="caption-text">Image Texture Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Image Texture</em> is used to add an image file as a texture.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Vectơ -- Vector</dt>
-<dd>Texture coordinate for texture look-up. If this socket is left unconnected,
-UV coordinates from the active UV render layer are used.</dd>
+<dl class="simple">
+<dt>Vectơ -- Vector</dt><dd><p>Texture coordinate for texture look-up. If this socket is left unconnected,
+UV coordinates from the active UV render layer are used.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>-- Image Data-Block</dt>
-<dd>Image data-block used as the image source. Currently not all images supported by Blender can be used by Cycles.
-In particular, generated, packed images or animations are not supported currently.</dd>
-<dt>Không Gian Màu Sắc -- Color Space</dt>
-<dd>Type of data that the image contains, either Color or Non-Color Data.
+<dl>
+<dt>Image</dt><dd><p>Image data-block used as the image source.
+More settings can be found in <span class="menuselection">Sidebar ‣ Item ‣ Properties</span>:
+These include options to control the alpha channel along with addition options for the color space.
+These addition options are documented with the rest of
+<a class="reference internal" href="../../../editors/image/image_settings.html#editors-image-image-settings-common"><span class="std std-ref">Common Image Settings</span></a>.</p>
+</dd>
+<dt>Không Gian Màu Sắc -- Color Space</dt><dd><p>Type of data that the image contains, either Color or Non-Color Data.
 For most color textures the default of Color should be used, but in case of e.g. a bump or alpha map,
-the pixel values should be interpreted as Non-Color Data, to avoid doing any unwanted color space conversions.</dd>
-<dt>Nội Suy -- Interpolation</dt>
-<dd><p class="first">Method to scale images up or down for rendering.</p>
-<dl class="last docutils">
-<dt>Tuyến Tính -- Linear</dt>
-<dd>Regular quality interpolation.</dd>
-<dt>Lập Phương -- Cubic</dt>
-<dd>Smoother, better quality interpolation. For bump maps this should be used to get best results.</dd>
-<dt>Gần Nhất -- Closest</dt>
-<dd>No interpolation, use only closest pixel for rendering pixel art.</dd>
-<dt>Smart <span class="guilabel">Cycles Only</span></dt>
-<dd>Only for Open Shading Language. Use cubic interpolation when scaling up and linear when scaling down,
-for a better performance and sharpness.</dd>
+the pixel values should be interpreted as Non-Color Data, to avoid doing any unwanted color space conversions.</p>
+</dd>
+<dt>Nội Suy -- Interpolation</dt><dd><p>Method to scale images up or down for rendering.</p>
+<dl class="simple">
+<dt>Tuyến Tính -- Linear</dt><dd><p>Regular quality interpolation.</p>
+</dd>
+<dt>Lập Phương -- Cubic</dt><dd><p>Smoother, better quality interpolation. For bump maps this should be used to get best results.</p>
+</dd>
+<dt>Gần Nhất -- Closest</dt><dd><p>No interpolation, use only closest pixel for rendering pixel art.</p>
+</dd>
+<dt>Smart <span class="guilabel">Cycles Only</span></dt><dd><p>Only for Open Shading Language. Use cubic interpolation when scaling up and linear when scaling down,
+for a better performance and sharpness.</p>
+</dd>
 </dl>
 </dd>
-<dt>Phóng Chiếu -- Projection</dt>
-<dd><p class="first">Projection to use for mapping the textures.</p>
-<dl class="last docutils">
-<dt>Bằng Phẳng -- Flat</dt>
-<dd>Uses the XY coordinates for mapping.</dd>
-<dt>Hình Hộp -- Box</dt>
-<dd><p class="first">Maps the image to the six sides of a virtual box, based on the normal,
+<dt>Phóng Chiếu -- Projection</dt><dd><p>Projection to use for mapping the textures.</p>
+<dl>
+<dt>Bằng Phẳng -- Flat</dt><dd><p>Uses the XY coordinates for mapping.</p>
+</dd>
+<dt>Hình Hộp -- Box</dt><dd><p>Maps the image to the six sides of a virtual box, based on the normal,
 using XY, YZ and XYZ coordinates depending on the side.</p>
-<dl class="last docutils">
-<dt>Hòa Trộn -- Blend</dt>
-<dd>For Box mapping, the amount to blend between sides of the box,
+<dl class="simple">
+<dt>Hòa Trộn -- Blend</dt><dd><p>For Box mapping, the amount to blend between sides of the box,
 to get rid of sharp transitions between the different sides.
 Blending is useful to map a procedural-like image texture pattern seamlessly on a model.
-0.0 gives no blending; higher values give a smoother transition.</dd>
+0.0 gives no blending; higher values give a smoother transition.</p>
+</dd>
 </dl>
 </dd>
-<dt>Hình Cầu -- Sphere</dt>
-<dd>Sphere mapping is the best type for mapping a sphere,
+<dt>Hình Cầu -- Sphere</dt><dd><p>Sphere mapping is the best type for mapping a sphere,
 and it is perfect for making planets and similar objects.
-It is often very useful for creating organic objects.</dd>
-<dt>Hình Ống -- Tube</dt>
-<dd>Maps the texture around an object like a label on a bottle.
+It is often very useful for creating organic objects.</p>
+</dd>
+<dt>Hình Ống -- Tube</dt><dd><p>Maps the texture around an object like a label on a bottle.
 The texture is therefore more stretched on the cylinder.
 This mapping is of course very good for making the label on a bottle,
 or assigning stickers to rounded objects. However,
-this is not a cylindrical mapping so the ends of the cylinder are undefined.</dd>
+this is not a cylindrical mapping so the ends of the cylinder are undefined.</p>
+</dd>
 </dl>
 </dd>
-<dt>Nới Rộng/Đuôi -- Extension</dt>
-<dd><p class="first">Extension defines how the image is extrapolated past the original bounds:</p>
-<dl class="last docutils">
-<dt>Lặp Lại -- Repeat</dt>
-<dd>Will repeat the image horizontally and vertically giving tiled-looking result.</dd>
-<dt>Nới/Mở Rộng -- Extend</dt>
-<dd>Will extend the image by repeating pixels on its edges.</dd>
-<dt>Đoạn Phim -- Clip</dt>
-<dd>Clip to the original image size and set all the exterior pixels values to transparent black.</dd>
+<dt>Nới Rộng/Đuôi -- Extension</dt><dd><p>Extension defines how the image is extrapolated past the original bounds:</p>
+<dl class="simple">
+<dt>Lặp Lại -- Repeat</dt><dd><p>Will repeat the image horizontally and vertically giving tiled-looking result.</p>
+</dd>
+<dt>Nới/Mở Rộng -- Extend</dt><dd><p>Will extend the image by repeating pixels on its edges.</p>
+</dd>
+<dt>Đoạn Phim -- Clip</dt><dd><p>Clip to the original image size and set all the exterior pixels values to transparent black.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Màu Sắc -- Color</dt>
-<dd>RGB color from image. If the image has alpha, the color is premultiplied with alpha if the Alpha output is used,
-and unpremultiplied or straight if the Alpha output is not used.</dd>
-<dt>Alpha</dt>
-<dd>Alpha channel from image.</dd>
+<dl class="simple">
+<dt>Màu Sắc -- Color</dt><dd><p>RGB color from image. If the image has alpha, the color is premultiplied with alpha if the Alpha output is used,
+and unpremultiplied or straight if the Alpha output is not used.</p>
+</dd>
+<dt>Alpha</dt><dd><p>Alpha channel from image.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/render_shader-nodes_textures_image_example.jpg" src="../../../_images/render_shader-nodes_textures_image_example.jpg" />
-<p class="caption"><span class="caption-text">Image texture from <a class="reference external" href="http://www.goodtextures.com/">GoodTextures.com</a>.</span></p>
+<p class="caption"><span class="caption-text">Image texture from <a class="reference external" href="http://www.goodtextures.com/">GoodTextures.com</a>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

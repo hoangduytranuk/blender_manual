@@ -222,19 +222,19 @@
 <h1>Track<a class="headerlink" href="#track" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <a class="reference internal image-reference" href="../../../../../_images/movie-clip_tracking_clip_properties_introduction_track-panel.png"><img alt="../../../../../_images/movie-clip_tracking_clip_properties_introduction_track-panel.png" src="../../../../../_images/movie-clip_tracking_clip_properties_introduction_track-panel.png" style="width: 195px;" /></a>
-<p class="caption"><span class="caption-text">Track panel.</span></p>
+<p class="caption"><span class="caption-text">Track panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Name</dt>
-<dd>The track name can be changed with this field.
-Track names are used for linking tracking data to other areas, like a Follow Track constraint.</dd>
-<dt>Enable (eye icon)</dt>
-<dd>This toggle controlled the marker's enabled flag.
-If a marker is disabled, its position is not used either by solver nor by constraints.</dd>
-<dt>Lock (padlock icon)</dt>
-<dd>The toggle controls whether the track is locked. Locked tracks cannot be edited at all.
+<dl class="simple">
+<dt>Name</dt><dd><p>The track name can be changed with this field.
+Track names are used for linking tracking data to other areas, like a Follow Track constraint.</p>
+</dd>
+<dt>Enable (eye icon)</dt><dd><p>This toggle controlled the marker's enabled flag.
+If a marker is disabled, its position is not used either by solver nor by constraints.</p>
+</dd>
+<dt>Lock (padlock icon)</dt><dd><p>The toggle controls whether the track is locked. Locked tracks cannot be edited at all.
 This helps to prevent accidental changes to tracks which are &quot;finished&quot;
-(tracked accurate along the whole footage).</dd>
+(tracked accurate along the whole footage).</p>
+</dd>
 </dl>
 <div class="section" id="track-preview-widget">
 <h2>Track Preview Widget<a class="headerlink" href="#track-preview-widget" title="Permalink to this headline">¶</a></h2>
@@ -253,45 +253,44 @@ preview widget (the area is highlighted with two horizontal lines).</p>
 </div>
 <div class="section" id="further-options">
 <h2>Further Options<a class="headerlink" href="#further-options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Channels</dt>
-<dd>Tracking happens in gray-scale space, so a high contrast between the feature and
+<dl class="simple">
+<dt>Channels</dt><dd><p>Tracking happens in gray-scale space, so a high contrast between the feature and
 its background yields more accurate tracking.
-In such cases disabling some color channels can help.</dd>
-<dt>Grayscale Preview (B/W)</dt>
-<dd>Display the preview image as gray-scale even if all channels are enabled.</dd>
-<dt>Mask Preview (black/white icon)</dt>
-<dd>Applies mask defined by an annotation tool in the preview widget.</dd>
+In such cases disabling some color channels can help.</p>
+</dd>
+<dt>Grayscale Preview (B/W)</dt><dd><p>Display the preview image as gray-scale even if all channels are enabled.</p>
+</dd>
+<dt>Mask Preview (black/white icon)</dt><dd><p>Applies mask defined by an annotation tool in the preview widget.</p>
+</dd>
 </dl>
-<dl class="docutils" id="clip-tracking-weight">
-<dt>Weight</dt>
-<dd><p class="first">When several tracks are used for 3D camera reconstruction, it is possible to assign
+<dl id="clip-tracking-weight">
+<dt>Weight</dt><dd><p>When several tracks are used for 3D camera reconstruction, it is possible to assign
 a reduced weight to some tracks to control their influence on the solution result.
 This parameter can (and often need to) be animated.</p>
 <p>Altering the weights of problem tracking markers can correct or greatly reduce undesirable jumps
 as feature disappear or become difficult to track.</p>
-<p class="last">Another use of Track Weights is when you want to reconstruct a scene from your camera solution.
+<p>Another use of Track Weights is when you want to reconstruct a scene from your camera solution.
 In that case you can first carefully track and solve your scene, and once you're done,
 lock all your markers with <kbd class="kbd docutils literal notranslate">Ctrl-L</kbd>, set the tracker weight in the Extra Settings of
 the tracker settings to zero and use the feature detection to quickly add lots of markers.
 Now track them and solve the scene again. Since their weight is zero
 they will not influence your solution at all, but you will have lots of good reference points in your scene.</p>
 </dd>
-<dt>Stabilization Weight</dt>
-<dd>While <em>Weight</em> parameter is used for 3D reconstruction,
-the <em>Stabilization Weight</em> is used to control 2D stabilization.</dd>
-<dt>Color Presets</dt>
-<dd>The preset for the <em>Custom Color</em>.</dd>
-<dt>Custom Color</dt>
-<dd>This setting overrides the default marker color used in the Clip editor and 3D View,
+<dt>Stabilization Weight</dt><dd><p>While <em>Weight</em> parameter is used for 3D reconstruction,
+the <em>Stabilization Weight</em> is used to control 2D stabilization.</p>
+</dd>
+<dt>Color Presets</dt><dd><p>The preset for the <em>Custom Color</em>.</p>
+</dd>
+<dt>Custom Color</dt><dd><p>This setting overrides the default marker color used in the Clip editor and 3D View,
 and it helps to distinguish different type of features
 (for example, features in the background vs. foreground and so on).
 Color also can be used for &quot;grouping&quot; tracks so a whole group of tracks can be selected by
-color using the Select Grouped operator.</dd>
+color using the Select Grouped operator.</p>
+</dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">To select good points for tracking, use points in the middle of the footage timeline
+<p class="admonition-title">Mẹo</p>
+<p>To select good points for tracking, use points in the middle of the footage timeline
 and track backwards and forwards from there.
 This will provide a greater chance of the marker and point staying in the camera shot.</p>
 </div>

@@ -16,6 +16,7 @@
 import sys
 import os
 
+
 # -----------------------------------------------------------------------------
 # Local Vars
 #
@@ -50,10 +51,7 @@ extensions = [
     'vimeo',
     'sphinx.ext.mathjax',
     'sphinx.ext.intersphinx',
-    '404',
-    #'process_doctree'
-    #'TranslatePO'
-    #'translate_po'
+    '404'
 ]
 
 # Is there a better way to check for PDF building?
@@ -193,6 +191,7 @@ if html_theme == "sphinx_rtd_theme":
     "navigation_depth": 4,
     "canonical_url": "https://docs.blender.org/manual/en/latest/",
     }
+
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.

@@ -222,17 +222,17 @@ access Blender remotely to render something or build scripts that use the comman
 (no need for X server on Linux for example)
 and consequently we can render via a remote shell (typically SSH).</p>
 <ul class="simple">
-<li>See <a class="reference internal" href="arguments.html"><span class="doc">Command Line Arguments</span></a>
+<li><p>See <a class="reference internal" href="arguments.html"><span class="doc">Command Line Arguments</span></a>
 for a full list of arguments
-(for example to specify which scene to render, the end frame number, etc.), or simply run:</li>
-<li>See <a class="reference internal" href="launch/index.html#command-line-launch-index"><span class="std std-ref">Command Line Launching</span></a>
-for specific instructions on launching Blender from the command line.</li>
+(for example to specify which scene to render, the end frame number, etc.), or simply run:</p></li>
+<li><p>See <a class="reference internal" href="launch/index.html#command-line-launch-index"><span class="std std-ref">Command Line Launching</span></a>
+for specific instructions on launching Blender from the command line.</p></li>
 </ul>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender --help
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p>Arguments are executed in the order they are given!</p>
 <p>The following command will not work, since the output and extension are set after Blender is told to render:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -a -x <span class="m">1</span> -o //render
@@ -242,35 +242,35 @@ for specific instructions on launching Blender from the command line.</li>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -x <span class="m">1</span> -o //render -a
 </pre></div>
 </div>
-<p class="last"><strong>Always</strong> position <code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">-a</span></code> as the last arguments.</p>
+<p><strong>Always</strong> position <code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">-a</span></code> as the last arguments.</p>
 </div>
 <div class="section" id="single-image">
 <h2>Đơn Hình Ảnh -- Single Image<a class="headerlink" href="#single-image" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -f <span class="m">10</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">-b</span></code></dt>
-<dd>Render in the background (without UI).</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">file.blend</span></code></dt>
-<dd>Path to the blend-file to render.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">10</span></code></dt>
-<dd>Render only the 10th frame.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-b</span></code></dt><dd><p>Render in the background (without UI).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">file.blend</span></code></dt><dd><p>Path to the blend-file to render.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">10</span></code></dt><dd><p>Render only the 10th frame.</p>
+</dd>
 </dl>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -o /project/renders/frame_##### -F OPEN_EXR -f -2
 </pre></div>
 </div>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">/project/renders/frame_#####</span></code></dt>
-<dd>Path of where to save the rendered image, using five padded zeros for the frame number.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">-F</span> <span class="pre">OPEN_EXR</span></code></dt>
-<dd>Override the image format specified in the blend-file and save to an OpenEXR image.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">-2</span></code></dt>
-<dd>Render only the second last frame.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">/project/renders/frame_#####</span></code></dt><dd><p>Path of where to save the rendered image, using five padded zeros for the frame number.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-F</span> <span class="pre">OPEN_EXR</span></code></dt><dd><p>Override the image format specified in the blend-file and save to an OpenEXR image.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">-2</span></code></dt><dd><p>Render only the second last frame.</p>
+</dd>
 </dl>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">Arguments are case sensitive! <code class="docutils literal notranslate"><span class="pre">-F</span></code> and <code class="docutils literal notranslate"><span class="pre">-f</span></code> are not the same.</p>
+<p class="admonition-title">Cảnh báo</p>
+<p>Arguments are case sensitive! <code class="docutils literal notranslate"><span class="pre">-F</span></code> and <code class="docutils literal notranslate"><span class="pre">-f</span></code> are not the same.</p>
 </div>
 </div>
 <div class="section" id="animation">
@@ -278,21 +278,21 @@ for specific instructions on launching Blender from the command line.</li>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -a
 </pre></div>
 </div>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">-a</span></code></dt>
-<dd>Render the whole animation using all the settings saved in the blend-file.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-a</span></code></dt><dd><p>Render the whole animation using all the settings saved in the blend-file.</p>
+</dd>
 </dl>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender -b file.blend -E CYCLES -s <span class="m">10</span> -e <span class="m">500</span> -t <span class="m">2</span> -a
 </pre></div>
 </div>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">-E</span> <span class="pre">CYCLES</span></code></dt>
-<dd>Use the &quot;Cycles Render&quot; engine.
-For a list of available render engines, run <code class="docutils literal notranslate"><span class="pre">blender</span> <span class="pre">-E</span> <span class="pre">help</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">10</span> <span class="pre">-e</span> <span class="pre">500</span></code></dt>
-<dd>Set the start frame to <code class="docutils literal notranslate"><span class="pre">10</span></code> and the end frame to <code class="docutils literal notranslate"><span class="pre">500</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">2</span></code></dt>
-<dd>Use only two threads.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-E</span> <span class="pre">CYCLES</span></code></dt><dd><p>Use the &quot;Cycles Render&quot; engine.
+For a list of available render engines, run <code class="docutils literal notranslate"><span class="pre">blender</span> <span class="pre">-E</span> <span class="pre">help</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">10</span> <span class="pre">-e</span> <span class="pre">500</span></code></dt><dd><p>Set the start frame to <code class="docutils literal notranslate"><span class="pre">10</span></code> and the end frame to <code class="docutils literal notranslate"><span class="pre">500</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">2</span></code></dt><dd><p>Use only two threads.</p>
+</dd>
 </dl>
 </div>
 </div>

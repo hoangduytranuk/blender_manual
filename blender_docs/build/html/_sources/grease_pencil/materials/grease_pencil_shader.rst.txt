@@ -3,7 +3,7 @@
 Grease Pencil Shader
 ********************
 
-.. figure:: /images/grease-pencil_materials_grease_pencil_shader_panel.png
+.. figure:: /images/grease-pencil_materials_grease-pencil-shader_panel.png
    :align: right
 
    Shader panel with only Stroke component activated.
@@ -98,22 +98,22 @@ Alignment
 
 .. list-table:: Samples of different material strokes mode types and styles.
 
-   * - .. figure:: /images/grease-pencil_shader_stroke-solid-line.png
+   * - .. figure:: /images/grease-pencil_materials_grease-pencil-shader_stroke-solid-line.png
           :width: 130px
 
           Mode Type: Line, Style: Solid.
 
-     - .. figure:: /images/grease-pencil_shader_stroke-texture-line.png
+     - .. figure:: /images/grease-pencil_materials_grease-pencil-shader_stroke-texture-line.png
           :width: 130px
 
           Mode Type: Line, Style: Texture.
 
-     - .. figure:: /images/grease-pencil_shader_stroke-solid-dot.png
+     - .. figure:: /images/grease-pencil_materials_grease-pencil-shader_stroke-solid-dot.png
           :width: 130px
 
           Mode Type: Dot, Style: Solid.
 
-     - .. figure:: /images/grease-pencil_shader_stroke-texture-dot.png
+     - .. figure:: /images/grease-pencil_materials_grease-pencil-shader_stroke-texture-dot.png
           :width: 130px
 
           Mode Type: Dot, Style: Texture.
@@ -251,22 +251,22 @@ Style
 
 .. list-table:: Samples of different material fill styles.
 
-   * - .. figure:: /images/grease-pencil_shader_fill-solid.png
+   * - .. figure:: /images/grease-pencil_materials_grease-pencil-shader_fill-solid.png
           :width: 130px
 
           Style: Solid.
 
-     - .. figure:: /images/grease-pencil_shader_fill-gradient.png
+     - .. figure:: /images/grease-pencil_materials_grease-pencil-shader_fill-gradient.png
           :width: 130px
 
           Style: Gradient.
 
-     - .. figure:: /images/grease-pencil_shader_fill-checkerboard.png
+     - .. figure:: /images/grease-pencil_materials_grease-pencil-shader_fill-checkerboard.png
           :width: 130px
 
           Style: Checkerboard.
 
-     - .. figure:: /images/grease-pencil_shader_fill-texture.png
+     - .. figure:: /images/grease-pencil_materials_grease-pencil-shader_fill-texture.png
           :width: 130px
 
           Style: Texture.

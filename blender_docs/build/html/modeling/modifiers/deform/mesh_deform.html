@@ -236,88 +236,83 @@
 <p>The <em>Mesh Deform</em> modifier allows an arbitrary mesh (of any closed shape)
 to act as a deformation cage around another mesh.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This modifier is reasonably easy to use, but it can be very slow to
+<p class="admonition-title">Ghi chú</p>
+<p>This modifier is reasonably easy to use, but it can be very slow to
 compute the binding (the mapping between the deform mesh cage to the deformed object geometry).</p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_deform_mesh-deform_panel.png" src="../../../_images/modeling_modifiers_deform_mesh-deform_panel.png" />
-<p class="caption"><span class="caption-text">The Mesh Deform modifier.</span></p>
+<p class="caption"><span class="caption-text">The Mesh Deform modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Vật Thể -- Object</dt>
-<dd>The name of the mesh object to be used as the deforming cage.</dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd>An optional vertex group of the object's mesh to restrict the vertices that
-will be affected by this modifier.
-Vertices not in this group will not be deformed.</dd>
-<dt>Invert <code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code></dt>
-<dd><p class="first">Inverts the influence of the selected vertex group, meaning that the group
-now represents vertices that will not be deformed by the modifier.</p>
-<p class="last">The setting reverses the weight values of the group.</p>
+<dl>
+<dt>Vật Thể -- Object</dt><dd><p>The name of the mesh object to be used as the deforming cage.</p>
 </dd>
-<dt>Chuẩn Xác -- Precision</dt>
-<dd><p class="first">Controls the accuracy with which the deform mesh cage alters the deformed object,
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>An optional vertex group of the object's mesh to restrict the vertices that
+will be affected by this modifier.
+Vertices not in this group will not be deformed.</p>
+</dd>
+<dt>Invert <code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code></dt><dd><p>Inverts the influence of the selected vertex group, meaning that the group
+now represents vertices that will not be deformed by the modifier.</p>
+<p>The setting reverses the weight values of the group.</p>
+</dd>
+<dt>Chuẩn Xác -- Precision</dt><dd><p>Controls the accuracy with which the deform mesh cage alters the deformed object,
 when the points on the cage are moved.
 Raising this value higher can greatly increase the time it takes
 to complete the binding calculations,
 but it will get more accurate cage mapping to the deformed object.</p>
-<p class="last">This setting becomes unavailable once a cage has been bound.</p>
+<p>This setting becomes unavailable once a cage has been bound.</p>
 </dd>
-<dt>Năng Động -- Dynamic</dt>
-<dd><p class="first">When activated, other mesh altering features (such as other modifiers and shape keys)
+<dt>Năng Động -- Dynamic</dt><dd><p>When activated, other mesh altering features (such as other modifiers and shape keys)
 are taken into account when binding, increasing deformation quality.</p>
-<p class="last">The setting is deactivated by default to save memory and processing time when binding.
+<p>The setting is deactivated by default to save memory and processing time when binding.
 Like with <em>Precision</em>, this setting is unavailable once a cage has been bound.</p>
 </dd>
-<dt>Kết Buộc -- Bind</dt>
-<dd><p class="first">Links the current vertex positions of both the modified geometry and the deforming <em>Object</em> chosen together.
+<dt>Kết Buộc -- Bind</dt><dd><p>Links the current vertex positions of both the modified geometry and the deforming <em>Object</em> chosen together.
 An unbound <em>Mesh Deform</em> modifier has no effect,
 it must be bound so that altering the shape of the deform mesh cage
 actually alters the shape of the modified object.</p>
-<div class="last admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
 <p>Depending on the settings of the modifier and complexity of the deform mesh cage and/or
 deformed object, it can take a long time for this operation to complete.
 This can result in Blender not responding to user's actions until it has completed.</p>
 <p>It is also possible that Blender will run out of memory and crash.</p>
-<p class="last">To be safe, save your blend-file before proceeding!</p>
+<p>To be safe, save your blend-file before proceeding!</p>
 </div>
 </dd>
-<dt>Tháo Kết Buộc -- Unbind</dt>
-<dd><p class="first">When a deformed object has been associated to a deform mesh cage,
+<dt>Tháo Kết Buộc -- Unbind</dt><dd><p>When a deformed object has been associated to a deform mesh cage,
 it can later be disassociated by clicking the <em>Unbind</em> button which replaced the <em>Bind</em> one.</p>
 <p>When <em>Unbind</em> is clicked, the <em>deforming mesh cage</em> will keep its current shape,
 it will not reset itself back to its initial shape.
 If you need this original shape, you will have to save a copy of it before you alter it.</p>
-<p class="last">The deformed object will, however, reset back to its original shape that it had
+<p>The deformed object will, however, reset back to its original shape that it had
 before it was bound to the deform mesh cage.</p>
 </dd>
 </dl>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
+<p class="admonition-title">Cảnh báo</p>
 <p>Significant changes to the entire cage mesh <em>(such as rotating the cage upside down)</em>
 can cause noticeable artifacts.</p>
-<p class="last">These can be reduced by binding with a higher <em>Precision</em>,
+<p>These can be reduced by binding with a higher <em>Precision</em>,
 however, it is a known limitation with this modifier and cannot be avoided entirely.</p>
 </div>
 </div>
 <div class="section" id="hints">
 <h2>Gợi ý -- Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Ensure that the normals on the cage mesh point to the outside
-(they are used to determine the inside and outside of the cage).</li>
-<li>Besides the outer cage, more faces within the cage, either loose or forming another smaller cage,
+<li><p>Ensure that the normals on the cage mesh point to the outside
+(they are used to determine the inside and outside of the cage).</p></li>
+<li><p>Besides the outer cage, more faces within the cage, either loose or forming another smaller cage,
 can be used for extra control. Such smaller cages may also overlap with the main cage.
-For example, to get extra control over eyes, two small sphere cages could be added around them.</li>
+For example, to get extra control over eyes, two small sphere cages could be added around them.</p></li>
 </ul>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<ul class="last simple">
-<li>The <a class="reference internal" href="lattice.html"><span class="doc">Lattice modifier</span></a>.</li>
-<li><a class="reference external" href="http://graphics.pixar.com/library/HarmonicCoordinatesB/">Original paper</a></li>
+<p class="admonition-title">Xem thêm</p>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="lattice.html"><span class="doc">Lattice modifier</span></a>.</p></li>
+<li><p><a class="reference external" href="http://graphics.pixar.com/library/HarmonicCoordinatesB/">Original paper</a></p></li>
 </ul>
 </div>
 </div>

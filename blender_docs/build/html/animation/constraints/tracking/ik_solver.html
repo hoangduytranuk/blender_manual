@@ -233,8 +233,8 @@ and press <kbd class="kbd docutils literal notranslate">Shift-I</kbd>.</p>
 <p>This constraint is fully documented in
 the <a class="reference internal" href="../../armatures/posing/bone_constraints/index.html#bone-constraints-inverse-kinematics"><span class="std std-ref">Inverse Kinematics</span></a> page, part of the rigging chapter.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The IK constraints are special in that they modify multiple bones.
+<p class="admonition-title">Ghi chú</p>
+<p>The IK constraints are special in that they modify multiple bones.
 For this reason, they ignore their position in the stack and
 always run after all other constraints on the affected bones. To apply constraints after IK,
 it is necessary to first copy the final transformation to a new bone chain,
@@ -242,59 +242,53 @@ e.g. using <a class="reference internal" href="../transform/copy_transforms.html
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Mục Tiêu -- Target</dt>
-<dd><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> used to select the an armature.</dd>
-<dt>Mục Tiêu của Trục Đứng -- Pole Target</dt>
-<dd>Object for pole rotation.</dd>
-<dt>Số Lần Lặp Lại -- Iterations</dt>
-<dd>Maximum number of solving iterations.</dd>
-<dt>Chiều Dài của Dây Chuyền -- Chain Length</dt>
-<dd><p class="first">How many bones are included in the IK effect. Set to 0 to include all bones.</p>
-<dl class="last docutils">
-<dt>Dùng Đuôi -- Use Tail</dt>
-<dd>Include bone's tail as last element in chain.</dd>
-<dt>Kéo Giãn -- Stretch</dt>
-<dd>Enable IK stretching.</dd>
+<dl>
+<dt>Mục Tiêu -- Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> used to select the an armature.</p>
+</dd>
+<dt>Mục Tiêu của Trục Đứng -- Pole Target</dt><dd><p>Object for pole rotation.</p>
+</dd>
+<dt>Số Lần Lặp Lại -- Iterations</dt><dd><p>Maximum number of solving iterations.</p>
+</dd>
+<dt>Chiều Dài của Dây Chuyền -- Chain Length</dt><dd><p>How many bones are included in the IK effect. Set to 0 to include all bones.</p>
+<dl class="simple">
+<dt>Dùng Đuôi -- Use Tail</dt><dd><p>Include bone's tail as last element in chain.</p>
+</dd>
+<dt>Kéo Giãn -- Stretch</dt><dd><p>Enable IK stretching.</p>
+</dd>
 </dl>
 </dd>
-<dt>Trọng Lượng -- Weight</dt>
-<dd><dl class="first last docutils">
-<dt>Vị Trí -- Position</dt>
-<dd>For Tree-IK: Weight of position control for this target.</dd>
-<dt>Rotations</dt>
-<dd>Chain follows rotation of target.</dd>
+<dt>Trọng Lượng -- Weight</dt><dd><dl class="simple">
+<dt>Vị Trí -- Position</dt><dd><p>For Tree-IK: Weight of position control for this target.</p>
+</dd>
+<dt>Rotations</dt><dd><p>Chain follows rotation of target.</p>
+</dd>
 </dl>
 </dd>
-<dt>Mục Tiêu -- Target</dt>
-<dd>Disable for targetless IK.</dd>
-<dt>Xoay Chiều -- Rotation</dt>
-<dd>Chain follows rotation of target.</dd>
+<dt>Mục Tiêu -- Target</dt><dd><p>Disable for targetless IK.</p>
+</dd>
+<dt>Xoay Chiều -- Rotation</dt><dd><p>Chain follows rotation of target.</p>
+</dd>
 </dl>
 <div class="section" id="itasc-solver">
 <h3>Bộ Giải Nhiệm iTaSC -- iTaSC Solver<a class="headerlink" href="#itasc-solver" title="Permalink to this headline">¶</a></h3>
 <p>If the <a class="reference internal" href="../../armatures/posing/bone_constraints/inverse_kinematics/introduction.html#rigging-armatures-posing-bone-constraints-ik-model-itasc"><span class="std std-ref">iTaSC IK Solver</span></a>
 is used, the IK Solver Constraint changes to add these addition parameters.</p>
-<dl class="docutils">
-<dt>Loại IK -- IK Type</dt>
-<dd><dl class="first last docutils">
-<dt>Sao Chép Tư Thế -- Copy Pose</dt>
-<dd><p class="first">Equivalent to the traditional end effector position and orientation constraint:
+<dl>
+<dt>Loại IK -- IK Type</dt><dd><dl>
+<dt>Sao Chép Tư Thế -- Copy Pose</dt><dd><p>Equivalent to the traditional end effector position and orientation constraint:
 the end effector is constrained to take the position, and optionally the orientation,
 of a given target, which is set in the target field.</p>
-<dl class="last docutils">
-<dt>-- Position/Rotation Locking</dt>
-<dd><p class="first">Allows to obtain various effect by not constraining the coordinates along certain axis.</p>
-<blockquote class="last">
-<div><dl class="docutils">
-<dt>Trục Quy Chiếu -- Axis Reference</dt>
-<dd><p class="first">Specifies how to compute the axis coordinates.</p>
-<dl class="last docutils">
-<dt>Xương -- Bone</dt>
-<dd>The coordinates are the position and orientation of the target relative to the bone.</dd>
-<dt>Mục Tiêu -- Target</dt>
-<dd>The opposite of <em>Bone</em>, the coordinates are the position and
-orientation of the tip of the bone relative to the target.</dd>
+<dl>
+<dt>-- Position/Rotation Locking</dt><dd><p>Allows to obtain various effect by not constraining the coordinates along certain axis.</p>
+<blockquote>
+<div><dl>
+<dt>Trục Quy Chiếu -- Axis Reference</dt><dd><p>Specifies how to compute the axis coordinates.</p>
+<dl class="simple">
+<dt>Xương -- Bone</dt><dd><p>The coordinates are the position and orientation of the target relative to the bone.</p>
+</dd>
+<dt>Mục Tiêu -- Target</dt><dd><p>The opposite of <em>Bone</em>, the coordinates are the position and
+orientation of the tip of the bone relative to the target.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -302,29 +296,27 @@ orientation of the tip of the bone relative to the target.</dd>
 </dd>
 </dl>
 </dd>
-<dt>Khoảng Cách -- Distance</dt>
-<dd><p class="first">Specify that the end effector will stay inside, at, or outside a sphere centered on the target object.</p>
-<dl class="last docutils">
-<dt>Chế Độ Giới Hạn -- Limit Mode</dt>
-<dd><dl class="first last docutils">
-<dt>Bên Trong -- Inside</dt>
-<dd>The end effector will stay inside of the distance from the target object.</dd>
-<dt>Bên Ngoài -- Outside</dt>
-<dd>The end effector will stay outside of the distance from the target object.</dd>
-<dt>Trên Mặt -- On Surface</dt>
-<dd>The end effector will stay exactly at the distance from the target object.</dd>
+<dt>Khoảng Cách -- Distance</dt><dd><p>Specify that the end effector will stay inside, at, or outside a sphere centered on the target object.</p>
+<dl class="simple">
+<dt>Chế Độ Giới Hạn -- Limit Mode</dt><dd><dl class="simple">
+<dt>Bên Trong -- Inside</dt><dd><p>The end effector will stay inside of the distance from the target object.</p>
+</dd>
+<dt>Bên Ngoài -- Outside</dt><dd><p>The end effector will stay outside of the distance from the target object.</p>
+</dd>
+<dt>Trên Mặt -- On Surface</dt><dd><p>The end effector will stay exactly at the distance from the target object.</p>
+</dd>
 </dl>
 </dd>
-<dt>Khoảng Cách -- Distance</dt>
-<dd>The radius from the target object.</dd>
+<dt>Khoảng Cách -- Distance</dt><dd><p>The radius from the target object.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The <em>Influence</em> parameter is not implemented if <em>Pole Target</em> is used.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>The <em>Influence</em> parameter is not implemented if <em>Pole Target</em> is used.</p>
 </div>
 <iframe src="https://player.vimeo.com/video/171279647" style="border: 0; height: 345px; width: 560px">
 </iframe></div>

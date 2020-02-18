@@ -243,71 +243,68 @@
 <p>The <em>System</em> section allows you to set graphics card options, memory limits &amp; sound settings.</p>
 <p>If your hardware does not support some of the options described on this page,
 then they will either not show up or be corrected on startup.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../_images/editors_preferences_section_system.png" src="../../_images/editors_preferences_section_system.png" />
-<p class="caption"><span class="caption-text">Preferences System section.</span></p>
+<p class="caption"><span class="caption-text">Preferences System section.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="cycles-render-device">
 <span id="editors-preferences-cycles"></span><h2>Cycles Render Device<a class="headerlink" href="#cycles-render-device" title="Permalink to this headline">¶</a></h2>
 <p>Changes the computing device the <a class="reference internal" href="../../render/cycles/index.html"><span class="doc">Cycles</span></a> render engine uses to render images.
 Cycles can use either the CPU or certain GPU's to render images,
 for more information see the <a class="reference internal" href="../../render/cycles/gpu_rendering.html"><span class="doc">GPU Rendering</span></a> page.</p>
-<dl class="docutils">
-<dt>Không Có -- None</dt>
-<dd>When set to <em>None</em> or when the only option is <em>None</em>:
-the CPU will be used as the computing device for the Cycles Renderer.</dd>
-<dt>CUDA</dt>
-<dd>If the system has a compatible NVIDIA CUDA device, it will show up an option for rendering with Cycles.</dd>
-<dt>Optix</dt>
-<dd>If the system has a compatible NVIDIA Optix device, it will show up an option for rendering with Cycles.</dd>
-<dt>OpenCL</dt>
-<dd>If the system has a compatible AMD OpenCL device, it will show up an option for rendering with Cycles.</dd>
+<dl class="simple">
+<dt>Không Có -- None</dt><dd><p>When set to <em>None</em> or when the only option is <em>None</em>:
+the CPU will be used as the computing device for the Cycles Renderer.</p>
+</dd>
+<dt>CUDA</dt><dd><p>If the system has a compatible Nvidia CUDA device, it will show up an option for rendering with Cycles.</p>
+</dd>
+<dt>Optix</dt><dd><p>If the system has a compatible Nvidia Optix device, it will show up an option for rendering with Cycles.</p>
+</dd>
+<dt>OpenCL</dt><dd><p>If the system has a compatible AMD OpenCL device, it will show up an option for rendering with Cycles.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="memory-limits">
 <h2>Memory &amp; Limits<a class="headerlink" href="#memory-limits" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Undo Steps</dt>
-<dd>Number of Undo steps available.</dd>
-<dt>Undo Memory Limit</dt>
-<dd>Maximum memory usage in Mb (0 is unlimited).</dd>
-<dt>Global Undo</dt>
-<dd><p class="first">This enables Blender to save actions done when you are <strong>not</strong> in <em>Edit Mode</em>.
+<dl>
+<dt>Undo Steps</dt><dd><p>Number of Undo steps available.</p>
+</dd>
+<dt>Undo Memory Limit</dt><dd><p>Maximum memory usage in Mb (0 is unlimited).</p>
+</dd>
+<dt>Global Undo</dt><dd><p>This enables Blender to save actions done when you are <strong>not</strong> in <em>Edit Mode</em>.
 For example, duplicating objects, changing panel settings or switching between modes.</p>
-<div class="last admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
 <p>While disabling this option does save memory,
 it stops the <a class="reference internal" href="../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Redo Panel</span></a>
 from functioning, also preventing tool options from being changed in some cases.</p>
-<p class="last">For typical usage, its best to keep this enabled.</p>
+<p>For typical usage, its best to keep this enabled.</p>
 </div>
 </dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="../../interface/undo_redo.html"><span class="doc">Read more about Undo and Redo options</span></a>.</p>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../interface/undo_redo.html"><span class="doc">Read more about Undo and Redo options</span></a>.</p>
 </div>
-<dl class="docutils">
-<dt>Sequencer Cache Limit</dt>
-<dd>Upper limit of the Sequencer's memory cache (in megabytes).
-For an optimal Clip editor and Sequencer performance, high values are recommended.</dd>
-<dt>Console Scroll-back Lines</dt>
-<dd>The number of lines, buffered in memory of the console window.
-Useful for debugging purposes and command-line rendering.</dd>
-<dt>Texture Time Out</dt>
-<dd><p class="first">Time since last access of a GL texture in seconds, after which it is freed.
+<dl>
+<dt>Sequencer Cache Limit</dt><dd><p>Upper limit of the Sequencer's memory cache (in megabytes).
+For an optimal Clip editor and Sequencer performance, high values are recommended.</p>
+</dd>
+<dt>Console Scroll-back Lines</dt><dd><p>The number of lines, buffered in memory of the console window.
+Useful for debugging purposes and command-line rendering.</p>
+</dd>
+<dt>Texture Time Out</dt><dd><p>Time since last access of a GL texture in seconds, after which it is freed.
 Set this to 0 to keep textures allocated.</p>
-<dl class="last docutils">
-<dt>Garbage Collection Rate</dt>
-<dd>Number of seconds between each run of the GL texture garbage collector.</dd>
+<dl class="simple">
+<dt>Garbage Collection Rate</dt><dd><p>Number of seconds between each run of the GL texture garbage collector.</p>
+</dd>
 </dl>
 </dd>
-<dt>VBO Time Out</dt>
-<dd><p class="first">Time since last access of a GL Vertex buffer object in seconds after which it is freed
+<dt>VBO Time Out</dt><dd><p>Time since last access of a GL Vertex buffer object in seconds after which it is freed
 (set to 0 to keep VBO allocated).</p>
-<dl class="last docutils">
-<dt>Garbage Collection Rate</dt>
-<dd>Number of seconds between each run of the GL Vertex buffer object garbage collector.</dd>
+<dl class="simple">
+<dt>Garbage Collection Rate</dt><dd><p>Number of seconds between each run of the GL Vertex buffer object garbage collector.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -319,35 +316,34 @@ within Blender and are only available with <em>SDL</em> or <em>OpenAL</em>.
 To control these settings for exporting sound
 see the <a class="reference internal" href="../../render/output/file_formats.html#render-output-video-encoding-panel"><span class="std std-ref">Encoding Panel</span></a>
 and <a class="reference internal" href="../../scene_layout/scene/properties.html#data-scenes-audio"><span class="std std-ref">Audio Panel</span></a>.</p>
-<dl class="docutils">
-<dt>Thiết bị Âm Thanh -- Audio Device</dt>
-<dd><p class="first">Sets the audio engine to use to process and output audio.</p>
-<dl class="last docutils">
-<dt>Không Có -- None</dt>
-<dd>No Audio support (audio strips can still be loaded normally).</dd>
-<dt>SDL</dt>
-<dd>Uses Simple Direct Media Layer API from <a class="reference external" href="https://www.libsdl.org">libsdl.org</a>
-to render sounds directly to the sound device output. Very useful for sequencer strips editing.</dd>
-<dt>OpenAL</dt>
-<dd>Provides buffered sound rendering with 3D/spatial support.
-Used for 3D source support by speaker objects.</dd>
+<dl>
+<dt>Thiết bị Âm Thanh -- Audio Device</dt><dd><p>Sets the audio engine to use to process and output audio.</p>
+<dl class="simple">
+<dt>Không Có -- None</dt><dd><p>No Audio support (audio strips can still be loaded normally).</p>
+</dd>
+<dt>SDL</dt><dd><p>Uses Simple Direct Media Layer API from <a class="reference external" href="https://www.libsdl.org">libsdl.org</a>
+to render sounds directly to the sound device output. Very useful for sequencer strips editing.</p>
+</dd>
+<dt>OpenAL</dt><dd><p>Provides buffered sound rendering with 3D/spatial support.
+Used for 3D source support by speaker objects.</p>
+</dd>
 </dl>
 </dd>
-<dt>Kênh -- Channels</dt>
-<dd>Sets the audio channel count. Available options are:
-<em>Mono</em>, <em>Stereo</em>, <em>4 Channels</em>, <em>5.1 Surround</em>, <em>7.1 Surround</em>.</dd>
-<dt>Bộ Đệm Pha Trộn -- Mixing Buffer</dt>
-<dd>Sets the number of samples used by the audio mixing buffer. Available options are:
+<dt>Kênh -- Channels</dt><dd><p>Sets the audio channel count. Available options are:
+<em>Mono</em>, <em>Stereo</em>, <em>4 Channels</em>, <em>5.1 Surround</em>, <em>7.1 Surround</em>.</p>
+</dd>
+<dt>Bộ Đệm Pha Trộn -- Mixing Buffer</dt><dd><p>Sets the number of samples used by the audio mixing buffer. Available options are:
 <em>512</em>, <em>1024</em>, <em>2048</em>, <em>4096</em>, <em>8192</em>, <em>16384</em>, and <em>32768</em>.
 Higher buffer sizes can cause latency issues,
-but if you hear clicks or other problems, try to increase the size.</dd>
-<dt>Tấn Số Mẫu -- Sample Rate</dt>
-<dd>Sets the audio <a class="reference external" href="https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate">sampling rate</a>.
-Available options are: <em>44.1 Khz</em>, <em>48 Khz</em>, <em>96 Khz</em> and <em>192 Khz</em>.</dd>
-<dt>Hình Thái Mẫu -- Sample Format</dt>
-<dd>Sets the audio sample format. Available options are:
+but if you hear clicks or other problems, try to increase the size.</p>
+</dd>
+<dt>Tấn Số Mẫu -- Sample Rate</dt><dd><p>Sets the audio <a class="reference external" href="https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate">sampling rate</a>.
+Available options are: <em>44.1 Khz</em>, <em>48 Khz</em>, <em>96 Khz</em> and <em>192 Khz</em>.</p>
+</dd>
+<dt>Hình Thái Mẫu -- Sample Format</dt><dd><p>Sets the audio sample format. Available options are:
 <em>32 bit float</em>, <em>8 bit Unsigned</em>, <em>16 Bits Signed</em>, <em>24 Bits Signed</em>,
-<em>32 Bits Signed</em>, <em>32 Bits Float</em>, and <em>64 Bits Float</em>.</dd>
+<em>32 Bits Signed</em>, <em>32 Bits Float</em>, and <em>64 Bits Float</em>.</p>
+</dd>
 </dl>
 </div>
 </div>

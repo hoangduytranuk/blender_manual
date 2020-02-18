@@ -239,11 +239,11 @@ This is unlike chain-based rig types that usually consume the whole connected ch
 <p>Copies the bone chain keeping all the parent relations within the chain untouched.
 Useful as a utility rig type for custom rigs.</p>
 <p>Requirement: A chain of at least two connected bones.</p>
-<dl class="docutils">
-<dt>Control (boolean)</dt>
-<dd>When enabled control bones and widgets will be created.</dd>
-<dt>Deform (boolean)</dt>
-<dd>When enabled deform bones will be created.</dd>
+<dl class="simple">
+<dt>Control (boolean)</dt><dd><p>When enabled control bones and widgets will be created.</p>
+</dd>
+<dt>Deform (boolean)</dt><dd><p>When enabled deform bones will be created.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="basic-pivot">
@@ -251,36 +251,33 @@ Useful as a utility rig type for custom rigs.</p>
 <p>Single-bone rig type that creates a 'custom pivot' control for rotating and scaling its child sub-rigs.</p>
 <p>This type of control transforms its children when rotated or scaled, while moving it
 merely changes the pivot point used by rotation or scaling.</p>
-<dl class="docutils">
-<dt>Master Control</dt>
-<dd>When enabled an extra parent control bone with a box widget is created to allow moving the rig.
-It is also required by all other options besides <em>Deform Bone</em>.</dd>
-<dt>Switchable Parent</dt>
-<dd>Generates a mechanism for switching the effective parent of the rig based on the value of a custom property.</dd>
-<dt>Register Parent</dt>
-<dd><p class="first">Registers the rig as a potential parent scope for its child sub-rigs' parent switches.</p>
-<dl class="last docutils">
-<dt>Tags</dt>
-<dd><p class="first">Specifies additional comma-separated tag keywords for the registered parent scope.
+<dl>
+<dt>Master Control</dt><dd><p>When enabled an extra parent control bone with a box widget is created to allow moving the rig.
+It is also required by all other options besides <em>Deform Bone</em>.</p>
+</dd>
+<dt>Switchable Parent</dt><dd><p>Generates a mechanism for switching the effective parent of the rig based on the value of a custom property.</p>
+</dd>
+<dt>Register Parent</dt><dd><p>Registers the rig as a potential parent scope for its child sub-rigs' parent switches.</p>
+<dl>
+<dt>Tags</dt><dd><p>Specifies additional comma-separated tag keywords for the registered parent scope.
 They can be used by other rigs to filter parent choices, or for selecting the default parent.</p>
 <p>Some of the existing tags that are useful here:</p>
-<dl class="last docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">injected</span></code> (special)</dt>
-<dd>The parent scope will be made available for all children of the <em>parent</em> sub-rig,
-rather than just this rig's children.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">held_object</span></code></dt>
-<dd><p class="first">A control for the object held in the character's hand. Preferred by finger IK.</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">injected,held_object</span></code> combination is perfect for such a control.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">injected</span></code> (special)</dt><dd><p>The parent scope will be made available for all children of the <em>parent</em> sub-rig,
+rather than just this rig's children.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">held_object</span></code></dt><dd><p>A control for the object held in the character's hand. Preferred by finger IK.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">injected,held_object</span></code> combination is perfect for such a control.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 </dd>
-<dt>Pivot Control</dt>
-<dd>Disabling this avoids generating the actual custom pivot control, effectively turning this rig type
-into a version of <a class="reference internal" href="#basic-super-copy">basic.super_copy</a> with parent switching support and a different widget.</dd>
-<dt>Deform Bone</dt>
-<dd>When enabled a deform bone will be created.</dd>
+<dt>Pivot Control</dt><dd><p>Disabling this avoids generating the actual custom pivot control, effectively turning this rig type
+into a version of <a class="reference internal" href="#basic-super-copy">basic.super_copy</a> with parent switching support and a different widget.</p>
+</dd>
+<dt>Deform Bone</dt><dd><p>When enabled a deform bone will be created.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="basic-raw-copy">
@@ -292,20 +289,19 @@ fully custom rigging verbatim from the meta-rig.</p>
 <p>This rig type does not add the automatic prefix, thus allowing an appropriate <code class="docutils literal notranslate"><span class="pre">ORG-</span></code>, <code class="docutils literal notranslate"><span class="pre">MCH-</span></code> or <code class="docutils literal notranslate"><span class="pre">DEF-</span></code>
 prefix to be manually included in the meta-rig bone name, or alternatively using no prefix to create
 a control bone.</p>
-<dl class="docutils">
-<dt>Relink Constraints</dt>
-<dd><p class="first">Allows retargeting constraints belonging to the bone to point at bones created in the process
+<dl>
+<dt>Relink Constraints</dt><dd><p>Allows retargeting constraints belonging to the bone to point at bones created in the process
 of generating the rig, thus allowing custom rigging to integrate with generated bones.</p>
 <p>To use this feature, add <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> and the intended target bone name to the constraint name, resulting
 in the <code class="docutils literal notranslate"><span class="pre">...&#64;bone_name</span></code> syntax. After all bones of the rig are generated, the constraint target
 bone will be replaced. If the new bone name is just <code class="docutils literal notranslate"><span class="pre">CTRL</span></code>, <code class="docutils literal notranslate"><span class="pre">MCH</span></code> or <code class="docutils literal notranslate"><span class="pre">DEF</span></code>, this will just
 replace the <code class="docutils literal notranslate"><span class="pre">ORG</span></code> prefix in the existing target bone name. For the Armature constraint you can add
 a <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> suffix for each target, or just one <code class="docutils literal notranslate"><span class="pre">&#64;CTRL</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;MCH</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;DEF</span></code> suffix to update all.</p>
-<dl class="docutils">
-<dt>Parent</dt>
-<dd>If the field is not empty, applies the same name substitution logic to the parent of the bone.</dd>
+<dl class="simple">
+<dt>Parent</dt><dd><p>If the field is not empty, applies the same name substitution logic to the parent of the bone.</p>
+</dd>
 </dl>
-<p class="last">When this feature is enabled, the bone will not be automatically parented to the root bone even
+<p>When this feature is enabled, the bone will not be automatically parented to the root bone even
 if it has no parent; enter <code class="docutils literal notranslate"><span class="pre">root</span></code> in the <em>Parent</em> field if that is necessary.</p>
 </dd>
 </dl>
@@ -314,15 +310,15 @@ if it has no parent; enter <code class="docutils literal notranslate"><span clas
 <h2><code class="docutils literal notranslate"><span class="pre">basic.super_copy</span></code><a class="headerlink" href="#basic-super-copy" title="Permalink to this headline">¶</a></h2>
 <p>Single-bone rig type that simply copies the bone. Useful as utility rig type for
 adding custom features or specific deform bones to your rigs.</p>
-<dl class="docutils">
-<dt>Control (boolean)</dt>
-<dd>When enabled a control bone and widget will be created.</dd>
-<dt>Widget (boolean)</dt>
-<dd>When enabled a circle widget will be created in replacement to the standard.</dd>
-<dt>Deform (boolean)</dt>
-<dd>When enabled a deform bone will be created.</dd>
-<dt>Relink Constraints</dt>
-<dd>Works the same as in the <a class="reference internal" href="#basic-raw-copy">basic.raw_copy</a> rig.</dd>
+<dl class="simple">
+<dt>Control (boolean)</dt><dd><p>When enabled a control bone and widget will be created.</p>
+</dd>
+<dt>Widget (boolean)</dt><dd><p>When enabled a circle widget will be created in replacement to the standard.</p>
+</dd>
+<dt>Deform (boolean)</dt><dd><p>When enabled a deform bone will be created.</p>
+</dd>
+<dt>Relink Constraints</dt><dd><p>Works the same as in the <a class="reference internal" href="#basic-raw-copy">basic.raw_copy</a> rig.</p>
+</dd>
 </dl>
 </div>
 </div>

@@ -13,7 +13,7 @@ Extrude Points
 
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Point --> Extrude Points`
-   :Panel:     :menuselection:`Toolbar --> Extrude`
+   :Tool:      :menuselection:`Toolbar --> Extrude`
    :Hotkey:    :kbd:`E`
 
 Extrudes points by duplicating the selected points, which then can be moved.

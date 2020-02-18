@@ -233,7 +233,7 @@
 <span id="bpy-types-compositornodemoviedistortion"></span><h1>Nút Biến Dạng Phim -- Movie Distortion Node<a class="headerlink" href="#movie-distortion-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeMovieDistortion.png" src="../../../_images/compositing_node-types_CompositorNodeMovieDistortion.png" />
-<p class="caption"><span class="caption-text">Movie Distortion Node.</span></p>
+<p class="caption"><span class="caption-text">Movie Distortion Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the real world, all camera lenses produce some or the other sort of lens distortion.
 But, whatever we render has got no distortion. So, this node helps in removing distortion from movies
@@ -245,33 +245,32 @@ or adding distortion to render to make our render blend in with the movie clip.<
 </div>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào hình ảnh tiêu chuẩn.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào hình ảnh tiêu chuẩn.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Đoạn Phim -- Movie Clip</dt>
-<dd>Used to select the movie clip whose distortion is to be used.
+<dl class="simple">
+<dt>Đoạn Phim -- Movie Clip</dt><dd><p>Used to select the movie clip whose distortion is to be used.
 This can be useful if more than one movie clips are present, each having a different distortion setting.
-For controls see <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a>.</dd>
-<dt>Phương Pháp Biến Dạng -- Distortion Method</dt>
-<dd><dl class="first last docutils">
-<dt>Chưa Biến Dạng -- Undistort</dt>
-<dd>Used to undistort the image received, and is usually used for the raw distorted movie clip.</dd>
-<dt>Bóp Méo -- Distort</dt>
-<dd>Used to distort the image received, and is usually used for rendered images.</dd>
+For controls see <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a>.</p>
+</dd>
+<dt>Phương Pháp Biến Dạng -- Distortion Method</dt><dd><dl class="simple">
+<dt>Chưa Biến Dạng -- Undistort</dt><dd><p>Used to undistort the image received, and is usually used for the raw distorted movie clip.</p>
+</dd>
+<dt>Bóp Méo -- Distort</dt><dd><p>Used to distort the image received, and is usually used for rendered images.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>The image after distorting/undistorting.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>The image after distorting/undistorting.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="distortion-vs-undistortion">
@@ -280,17 +279,17 @@ For controls see <a class="reference internal" href="../../../interface/controls
 there is a difference between these two methods.</p>
 <p>There are two kinds of lens distortion possible and, in simple terms, they can be said as:</p>
 <ol class="arabic simple">
-<li>When the movie clip is bulging out.</li>
-<li>When the movie clip is bulging in.</li>
+<li><p>When the movie clip is bulging out.</p></li>
+<li><p>When the movie clip is bulging in.</p></li>
 </ol>
 <p>For the first case, it is recommended to distort the render and leave the movie clip as it is, because,
 undistorting the movie clip will require extra pixel information, which is not available to Blender.
 Similarly, in the second case, it is recommended to undistort the movie clip and leave the render as it is,
 because, distorting the render will require those extra unavailable pixels.
 Doing the wrong method in the wrong case can create weird results around the edges, such as in the image shown.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/compositing_types_distort_movie-distortion_problems.jpg" src="../../../_images/compositing_types_distort_movie-distortion_problems.jpg" />
-<p class="caption"><span class="caption-text">Problems (notice the edges?)</span></p>
+<p class="caption"><span class="caption-text">Problems (notice the edges?)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

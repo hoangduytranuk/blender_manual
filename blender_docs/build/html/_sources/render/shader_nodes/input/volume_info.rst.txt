@@ -45,7 +45,7 @@ Example
 
    Smoke density.
 
-.. figure:: /images/render_shader-nodes_input_volume-info_example_fire.jpg
+.. figure:: /images/render_shader-nodes_input_volume-info_example-fire.jpg
 
    Computing the color of fire using the *Blackbody* node.
    Since the *Blackbody* node expects its input in Kelvin,

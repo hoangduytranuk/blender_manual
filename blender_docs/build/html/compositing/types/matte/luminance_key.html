@@ -233,7 +233,7 @@
 <span id="bpy-types-compositornodelumamatte"></span><h1>Nút Khóa về Độ Sáng -- Luminance Key Node<a class="headerlink" href="#luminance-key-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeComposite.png" src="../../../_images/compositing_node-types_CompositorNodeComposite.png" />
-<p class="caption"><span class="caption-text">Luminance Key Node.</span></p>
+<p class="caption"><span class="caption-text">Luminance Key Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Luminance Key</em> node determines background objects from foreground objects by
 the difference in the luminance (brightness) levels.</p>
@@ -243,45 +243,44 @@ This node can separate the foreground effect from the background.
 It can also be used for sky replacement for overexposed or gray skies
 that aren't suitable for chroma keying.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">When compositing footage of something that emits light and has a dark background,
+<p class="admonition-title">Mẹo</p>
+<p>When compositing footage of something that emits light and has a dark background,
 like fire, a <a class="reference internal" href="../color/mix.html"><span class="doc">Mix Node</span></a> using a <em>Screen</em> or
 <em>Add</em> operator will produce better results.</p>
 </div>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào hình ảnh tiêu chuẩn.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào hình ảnh tiêu chuẩn.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Giới Hạn -- Limit</dt>
-<dd><dl class="first last docutils">
-<dt>Cao -- High</dt>
-<dd>Determines the lowest values that are considered foreground.
-(Which is supposed to be -- relatively -- light: from this value to 1.0.)</dd>
-<dt>Thấp -- Low</dt>
-<dd>Determines the highest values that are considered to be background objects.
-(Which is supposed to be -- relatively -- dark: from 0.0 to this value.)</dd>
+<dl class="simple">
+<dt>Giới Hạn -- Limit</dt><dd><dl class="simple">
+<dt>Cao -- High</dt><dd><p>Determines the lowest values that are considered foreground.
+(Which is supposed to be -- relatively -- light: from this value to 1.0.)</p>
+</dd>
+<dt>Thấp -- Low</dt><dd><p>Determines the highest values that are considered to be background objects.
+(Which is supposed to be -- relatively -- dark: from 0.0 to this value.)</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Brightness levels between the two values form a gradient of transparency
+<p class="admonition-title">Ghi chú</p>
+<p>Brightness levels between the two values form a gradient of transparency
 between foreground and background objects.</p>
 </div>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Image with an alpha channel adjusted for the keyed selection.</dd>
-<dt>Lớp Lồng -- Matte</dt>
-<dd>Một bản màn chắn alpha trắng-đen của khóa.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Image with an alpha channel adjusted for the keyed selection.</p>
+</dd>
+<dt>Lớp Lồng -- Matte</dt><dd><p>Một bản màn chắn alpha trắng-đen của khóa.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="example">
@@ -294,9 +293,9 @@ How to do this? Color Ramp node to the rescue -- we set the left color to White 
 and the right color to be Black Alpha 0.0. Thus, when the Color Ramp gets in black,
 it spits out white, and vice versa. The reversed mask is shown;
 its white outline is usable as an alpha mask now.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/compositing_types_matte_luminance-key_example.png" src="../../../_images/compositing_types_matte_luminance-key_example.png" />
-<p class="caption"><span class="caption-text">Using Luma Key with a twist.</span></p>
+<p class="caption"><span class="caption-text">Using Luma Key with a twist.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Now to mix, we do not really need the <em>Alpha Over</em> node;
 we can just use the mask as our Factor input. In this kinda weird case,

@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="next" title="-- Audio Rendering" href="audio/index.html" />
-    <link rel="prev" title="Tùy Chọn cho Đầu Ra -- Output Options" href="settings.html" /> 
+    <link rel="prev" title="Output Settings" href="settings.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -134,7 +134,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">-- Render Output</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="settings.html">Tùy Chọn cho Đầu Ra -- Output Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Output Settings</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">File Formats</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#image-output">Image Output</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#video-output">-- Video Output</a></li>
@@ -142,7 +142,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="audio/index.html">-- Audio Rendering</a></li>
 <li class="toctree-l3"><a class="reference internal" href="metadata.html">Siêu Dữ Liệu -- Metadata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="multiview/index.html">Stereoscopy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stereoscopy/index.html">Stereoscopy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="animation.html">-- Rendering Animations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="animation_player.html">Máy Chơi Hoạt Họa -- Animation Player</a></li>
 </ul>
@@ -226,8 +226,8 @@
   <div class="section" id="file-formats">
 <h1>File Formats<a class="headerlink" href="#file-formats" title="Permalink to this headline">¶</a></h1>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="../../files/media/index.html#files-media-index"><span class="std std-ref">-- Media Formats</span></a> for technical information about supported file formats.</p>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../files/media/index.html#files-media-index"><span class="std std-ref">-- Media Formats</span></a> for technical information about supported file formats.</p>
 </div>
 <div class="section" id="image-output">
 <h2>Image Output<a class="headerlink" href="#image-output" title="Permalink to this headline">¶</a></h2>
@@ -241,8 +241,8 @@ and the computers resources are needed for something else.</p>
 <p>Images can then be encoded to a video by adding the rendered image sequence into
 the <a class="reference internal" href="../../video_editing/sequencer/index.html"><span class="doc">Video Sequencer</span></a> and choosing an appropriate <a class="reference internal" href="#video-output">Video Output</a>.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">Rendered image sequences can be played back in the <a class="reference internal" href="animation_player.html#render-output-animation-player"><span class="std std-ref">Animation Player</span></a>.</p>
+<p class="admonition-title">Mẹo</p>
+<p>Rendered image sequences can be played back in the <a class="reference internal" href="animation_player.html#render-output-animation-player"><span class="std std-ref">Animation Player</span></a>.</p>
 </div>
 </div>
 <div class="section" id="video-output">
@@ -250,86 +250,82 @@ the <a class="reference internal" href="../../video_editing/sequencer/index.html
 <div class="section" id="encoding-panel">
 <span id="bpy-types-ffmpegsettings"></span><span id="render-output-video-encoding-panel"></span><h3>-- Encoding Panel<a class="headerlink" href="#encoding-panel" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties editor ‣ Output ‣ Encoding</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties editor ‣ Output ‣ Encoding</span></p>
+</dd>
+</dl>
 </div>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../_images/render_output_file-formats_video-encoding-panel.png" src="../../_images/render_output_file-formats_video-encoding-panel.png" />
-<p class="caption"><span class="caption-text">Encoding panel.</span></p>
+<p class="caption"><span class="caption-text">Encoding panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Here you choose which video container, codec, and compression settings you want to use.
 With all of these compression choices, there is a trade-off between file size,
 compatibility across platforms, and playback quality.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">When you view the <a class="reference internal" href="../../advanced/command_line/introduction.html"><span class="doc">System Console</span></a>,
+<p class="admonition-title">Mẹo</p>
+<p>When you view the <a class="reference internal" href="../../advanced/command_line/introduction.html"><span class="doc">System Console</span></a>,
 you can see some of the output of the encoding process.
 You will see even more output if you execute Blender as <code class="docutils literal notranslate"><span class="pre">blender</span> <span class="pre">-d</span></code>.</p>
 </div>
-<dl class="docutils">
-<dt>Sắp Đặt Sẵn -- Presets</dt>
-<dd>You can use the presets, which choose optimum settings for you for that type of output.</dd>
-<dt>Định Dạng -- Container</dt>
-<dd>Video container or file type. For a list of all available options, see
-<a class="reference internal" href="../../files/media/video_formats.html"><span class="doc">video formats</span></a>.</dd>
-<dt>Tự Động Phân Chia Đầu Ra -- Autosplit Output</dt>
-<dd>If your video is huge and exceeds 2GiB, enable Autosplit Output.
-This will automatically split the output into multiple files after the first file is 2Gig.</dd>
+<dl class="simple">
+<dt>Sắp Đặt Sẵn -- Presets</dt><dd><p>You can use the presets, which choose optimum settings for you for that type of output.</p>
+</dd>
+<dt>Định Dạng -- Container</dt><dd><p>Video container or file type. For a list of all available options, see
+<a class="reference internal" href="../../files/media/video_formats.html"><span class="doc">video formats</span></a>.</p>
+</dd>
+<dt>Tự Động Phân Chia Đầu Ra -- Autosplit Output</dt><dd><p>If your video is huge and exceeds 2GiB, enable Autosplit Output.
+This will automatically split the output into multiple files after the first file is 2Gig.</p>
+</dd>
 </dl>
 <div class="section" id="video">
 <h4>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h4>
-<dl class="docutils">
-<dt>Video Codec</dt>
-<dd>Chooses the method of compression and encoding.
-For a list of all available options see <a class="reference internal" href="../../files/media/video_formats.html"><span class="doc">video formats</span></a>.</dd>
+<dl class="simple">
+<dt>Video Codec</dt><dd><p>Chooses the method of compression and encoding.
+For a list of all available options see <a class="reference internal" href="../../files/media/video_formats.html"><span class="doc">video formats</span></a>.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p>Chuẩn -- Standards</p>
-<p class="last">Some containers and codecs are not compatible with each other,
+<p>Some containers and codecs are not compatible with each other,
 so if you are getting errors check that your container and codec are compatible.
 Like containers and codecs are sometimes not compatible with each other, some codecs
 do not work with arbitrary dimensions. So, try to stick with common dimensions
 or research the limitations of the codec you are trying to use.</p>
 </div>
-<dl class="docutils">
-<dt>-- Output Quality</dt>
-<dd>These are preset <a class="reference external" href="Rate">Rates</a>.</dd>
-<dt>-- Encoding Speed</dt>
-<dd>Presets to change between a fast encode (bigger file size) and more compression (smaller file size).</dd>
-<dt>-- Keyframe Interval</dt>
-<dd>The number of pictures per <a class="reference external" href="https://en.wikipedia.org/wiki/Group_of_pictures">Group of Pictures</a>.
+<dl>
+<dt>-- Output Quality</dt><dd><p>These are preset <a class="reference external" href="Rate">Rates</a>.</p>
+</dd>
+<dt>-- Encoding Speed</dt><dd><p>Presets to change between a fast encode (bigger file size) and more compression (smaller file size).</p>
+</dd>
+<dt>-- Keyframe Interval</dt><dd><p>The number of pictures per <a class="reference external" href="https://en.wikipedia.org/wiki/Group_of_pictures">Group of Pictures</a>.
 Set to 0 for &quot;intra_only&quot;, which disables <a class="reference external" href="https://en.wikipedia.org/wiki/Inter-frame">inter-frame</a> video.
-A higher number generally leads to a smaller file but needs a higher-powered device to replay it.</dd>
-<dt>Khung-B Tối Đa -- Max B-frames</dt>
-<dd><p class="first">Enables the use of <a class="reference internal" href="../../glossary/index.html#term-frame-types"><span class="xref std std-term">B‑frames</span></a>.</p>
-<dl class="last docutils">
-<dt>Khoảng Thời Gian -- Interval</dt>
-<dd>The maximum number of <a class="reference internal" href="../../glossary/index.html#term-frame-types"><span class="xref std std-term">B‑frames</span></a> between non-B-frames.</dd>
+A higher number generally leads to a smaller file but needs a higher-powered device to replay it.</p>
+</dd>
+<dt>Khung-B Tối Đa -- Max B-frames</dt><dd><p>Enables the use of <a class="reference internal" href="../../glossary/index.html#term-frame-types"><span class="xref std std-term">B‑frames</span></a>.</p>
+<dl class="simple">
+<dt>Khoảng Thời Gian -- Interval</dt><dd><p>The maximum number of <a class="reference internal" href="../../glossary/index.html#term-frame-types"><span class="xref std std-term">B‑frames</span></a> between non-B-frames.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="rate">
 <h4>Tốc Độ -- Rate<a class="headerlink" href="#rate" title="Permalink to this headline">¶</a></h4>
-<dl class="docutils">
-<dt>Tần Số Bit -- Bitrate</dt>
-<dd>Sets the average <a class="reference external" href="https://en.wikipedia.org/wiki/Bit_rate">bit rate</a> (quality),
+<dl class="simple">
+<dt>Tần Số Bit -- Bitrate</dt><dd><p>Sets the average <a class="reference external" href="https://en.wikipedia.org/wiki/Bit_rate">bit rate</a> (quality),
 which is the count of binary digits per frame.
-See also: <a class="reference external" href="https://ffmpeg.org/ffmpeg.html#Description">FFmpeg -b:v</a>.</dd>
-<dt>Tốc Độ -- Rate</dt>
-<dd>Video files can use what is called variable bit rate (VBR).
+See also: <a class="reference external" href="https://ffmpeg.org/ffmpeg.html#Description">FFmpeg -b:v</a>.</p>
+</dd>
+<dt>Tốc Độ -- Rate</dt><dd><p>Video files can use what is called variable bit rate (VBR).
 This is used to give some segments of the video less compressing to frames that need more data
-and less to frames with less data. This can be controlled by the <em>Minimum</em> and <em>Maximum</em> values.</dd>
-<dt>Bộ Đệm -- Buffer</dt>
-<dd>The <a class="reference external" href="https://en.wikipedia.org/wiki/Video_buffering_verifier">decoder bitstream buffer</a> size.</dd>
+and less to frames with less data. This can be controlled by the <em>Minimum</em> and <em>Maximum</em> values.</p>
+</dd>
+<dt>Bộ Đệm -- Buffer</dt><dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Video_buffering_verifier">decoder bitstream buffer</a> size.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="mux">
@@ -337,31 +333,31 @@ and less to frames with less data. This can be controlled by the <em>Minimum</em
 <p><a class="reference external" href="http://www.afterdawn.com/glossary/term.cfm/multiplexing">Multiplexing</a>
 is the process of combining separate video and audio streams into a single file,
 similar to packing a video file and MP3 audio file in a zip-file.</p>
-<dl class="docutils">
-<dt>Tốc Độ -- Rate</dt>
-<dd>Maximum bit rate of the multiplexed stream.</dd>
-<dt>Kích Thước Gói -- Packet Size</dt>
-<dd>Reduces data fragmentation or muxer overhead depending on the source.</dd>
+<dl class="simple">
+<dt>Tốc Độ -- Rate</dt><dd><p>Maximum bit rate of the multiplexed stream.</p>
+</dd>
+<dt>Kích Thước Gói -- Packet Size</dt><dd><p>Reduces data fragmentation or muxer overhead depending on the source.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="audio">
 <span id="bpy-types-ffmpegsettings-audio"></span><span id="render-output-video-encoding-audio"></span><h4>Âm Thanh -- Audio<a class="headerlink" href="#audio" title="Permalink to this headline">¶</a></h4>
-<dl class="docutils">
-<dt>Bộ Hóa Giải Mã Âm Thanh -- Audio Codec</dt>
-<dd>Audio format to use. For a list of all available options, see
-<a class="reference internal" href="../../files/media/video_formats.html"><span class="doc">video formats</span></a>.</dd>
-<dt>Tần Số Bit -- Bitrate</dt>
-<dd>For each codec, you can control the bit rate (quality) of the sound in the movie.
+<dl class="simple">
+<dt>Bộ Hóa Giải Mã Âm Thanh -- Audio Codec</dt><dd><p>Audio format to use. For a list of all available options, see
+<a class="reference internal" href="../../files/media/video_formats.html"><span class="doc">video formats</span></a>.</p>
+</dd>
+<dt>Tần Số Bit -- Bitrate</dt><dd><p>For each codec, you can control the bit rate (quality) of the sound in the movie.
 Higher bit rates are bigger files that stream worse but sound better.
-Use powers of 2 for compatibility.</dd>
-<dt>Thể Tích -- Volume</dt>
-<dd>Sets the output volume of the audio.</dd>
+Use powers of 2 for compatibility.</p>
+</dd>
+<dt>Thể Tích -- Volume</dt><dd><p>Sets the output volume of the audio.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="tips">
 <h4>Ngọn -- Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h4>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
+<p class="admonition-title">Mẹo</p>
 <p>The choice of video format depends on what you are planning to do.</p>
 <p>It's not recommended to render directly to a video format in the first instance.
 If a problem occurs while rendering, the file might become unplayable and you will
@@ -370,18 +366,18 @@ of static images such as the default PNG format or the higher-quality OpenEXR
 (which can retain HDR pixel data), you can combine them as
 an <a class="reference internal" href="../../video_editing/sequencer/strips/movie_image.html"><span class="doc">Image Strip</span></a>
 in the Video Sequence Editor (VSE). This way, you can easily:</p>
-<ul class="last simple">
-<li>Restart the rendering from the place (the frame) where any problem occurred.</li>
-<li>Try out different video encoding options in seconds,
-rather than minutes or hours as encoding is usually much faster than rendering the 3D scene.</li>
-<li>Enjoy the rest of the features of the VSE, such as adding
+<ul class="simple">
+<li><p>Restart the rendering from the place (the frame) where any problem occurred.</p></li>
+<li><p>Try out different video encoding options in seconds,
+rather than minutes or hours as encoding is usually much faster than rendering the 3D scene.</p></li>
+<li><p>Enjoy the rest of the features of the VSE, such as adding
 <a class="reference internal" href="../../video_editing/sequencer/strips/movie_image.html"><span class="doc">Image Strips</span></a>
-from previous renders, audio, video clips, etc.</li>
+from previous renders, audio, video clips, etc.</p></li>
 </ul>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">You shouldn't post-process a lossy-compressed file as the compression artifacts may become visible.
+<p class="admonition-title">Mẹo</p>
+<p>You shouldn't post-process a lossy-compressed file as the compression artifacts may become visible.
 Lossy compression should be reserved as a final 'delivery format'.</p>
 </div>
 </div>
@@ -400,7 +396,7 @@ Lossy compression should be reserved as a final 'delivery format'.</p>
         <a href="audio/index.html" class="btn btn-neutral float-right" title="-- Audio Rendering" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="settings.html" class="btn btn-neutral float-left" title="Tùy Chọn cho Đầu Ra -- Output Options" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="settings.html" class="btn btn-neutral float-left" title="Output Settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

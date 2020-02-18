@@ -91,7 +91,7 @@ Properties
 ^^^^^^^^^^
 
 Mix
-   The Blend types could be selected in the select menu.
+   The Blend mode can be selected in the select menu.
    See :term:`Color Blend Modes` for details on each blending mode.
 Clamp
    Limit the highest color value to not exceed 1.0.

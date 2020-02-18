@@ -124,9 +124,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../cloth/index.html">-- Cloth Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Forces</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../gravity.html">Trọng Lực -- Gravity</a></li>
@@ -221,18 +220,15 @@
   <div class="section" id="texture">
 <h1>Chất Liệu -- Texture<a class="headerlink" href="#texture" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Vật Lý (Physics) ‣ Trường Lực (Force Fields)</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Thể Loại -- Type:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">Chất Liệu -- Texture</td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Vật Lý (Physics) ‣ Trường Lực (Force Fields)</span></p>
+</dd>
+<dt class="field-even">Thể Loại -- Type</dt>
+<dd class="field-even"><p>Chất Liệu -- Texture</p>
+</dd>
+</dl>
 </div>
 <p>You can use a <em>Texture</em> force field to create an arbitrarily complicated force field,
 which force in the three directions is color coded. Red is coding for the X axis,
@@ -242,47 +238,46 @@ a value larger than 0.5 acceleration in negative axis direction (like -Z),
 a value smaller than 0.5 acceleration in positive axis direction (like +Z).</p>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>-- Texture mode</dt>
-<dd><p class="first">This sets the way a force vector is derived from the texture.</p>
-<dl class="last docutils">
-<dt>Đỏ, Lục, Lam -- RGB</dt>
-<dd>Uses the color components directly as the force vector components in the color encoded directions.
+<dl>
+<dt>-- Texture mode</dt><dd><p>This sets the way a force vector is derived from the texture.</p>
+<dl class="simple">
+<dt>Đỏ, Lục, Lam -- RGB</dt><dd><p>Uses the color components directly as the force vector components in the color encoded directions.
 You need an RGB texture for this, e.g. an image or a color ramp.
-So a <em>Blend</em> texture without a color ramp would not suffice.</dd>
-<dt>Độ Dốc -- Gradient</dt>
-<dd>Calculates the force vector as the 3D gradient of the intensity (grayscale) of the texture.
-The gradient vector always points to the direction of increasing brightness.</dd>
-<dt>Quăn -- Curl</dt>
-<dd>Calculates the force vector from the curl of the 3D-RGB texture (rotation of RGB vectors).
+So a <em>Blend</em> texture without a color ramp would not suffice.</p>
+</dd>
+<dt>Độ Dốc -- Gradient</dt><dd><p>Calculates the force vector as the 3D gradient of the intensity (grayscale) of the texture.
+The gradient vector always points to the direction of increasing brightness.</p>
+</dd>
+<dt>Quăn -- Curl</dt><dd><p>Calculates the force vector from the curl of the 3D-RGB texture (rotation of RGB vectors).
 This also works only with a color texture. It can be used for example to create a nice looking
-turbulence force with a color clouds texture with Perlin noise.</dd>
+turbulence force with a color clouds texture with Perlin noise.</p>
+</dd>
 </dl>
 </dd>
-<dt>-- Nabla</dt>
-<dd>It is the offset used to calculate the partial derivatives needed
-for <em>Gradient</em> and <em>Curl</em> texture modes.</dd>
-<dt>-- Use Object Coordinates</dt>
-<dd>Uses the emitter object coordinates (and rotation &amp; scale) as the texture space the particles use.
-Allows for moving force fields, that have their coordinates bound to the location coordinates of an object.</dd>
-<dt>Tọa Độ của Chất Liệu Gốc -- Root Texture Coordinates</dt>
-<dd>This is useful for hair as it uses the texture force calculated for
-the particle root position for all parts of the hair strand.</dd>
-<dt>2 Chiều -- 2D</dt>
-<dd>The <em>2D</em> button disregards the particles Z coordinate
-and only uses particles X &amp; Y as the texture coordinates.</dd>
+<dt>-- Nabla</dt><dd><p>It is the offset used to calculate the partial derivatives needed
+for <em>Gradient</em> and <em>Curl</em> texture modes.</p>
+</dd>
+<dt>-- Use Object Coordinates</dt><dd><p>Uses the emitter object coordinates (and rotation &amp; scale) as the texture space the particles use.
+Allows for moving force fields, that have their coordinates bound to the location coordinates of an object.</p>
+</dd>
+<dt>Tọa Độ của Chất Liệu Gốc -- Root Texture Coordinates</dt><dd><p>This is useful for hair as it uses the texture force calculated for
+the particle root position for all parts of the hair strand.</p>
+</dd>
+<dt>2 Chiều -- 2D</dt><dd><p>The <em>2D</em> button disregards the particles Z coordinate
+and only uses particles X &amp; Y as the texture coordinates.</p>
+</dd>
 </dl>
 <p>Remember that only procedural texture are truly 3D.</p>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>A single colored texture (0.5, 0.0, 0.5) creates a force in the direction of the positive Y axis,
-e.g. hair is orientated to the Y axis.</li>
-<li>A blend texture with color ramp can be used to created a force &quot;plane&quot;. E.g. on the left side (0.5, 0.5, 0.5),
+<li><p>A single colored texture (0.5, 0.0, 0.5) creates a force in the direction of the positive Y axis,
+e.g. hair is orientated to the Y axis.</p></li>
+<li><p>A blend texture with color ramp can be used to created a force &quot;plane&quot;. E.g. on the left side (0.5, 0.5, 0.5),
 on the right side (1.0, 0.5, 0.5) you have a force plane perpendicular to XY (i.e. parallel to Z).
-If you use an object for the coordinates, you can use the object to push particles around.</li>
-<li>An animated wood texture can be used to create a wave like motion.</li>
+If you use an object for the coordinates, you can use the object to push particles around.</p></li>
+<li><p>An animated wood texture can be used to create a wave like motion.</p></li>
 </ul>
 <iframe src="https://player.vimeo.com/video/182778301" style="border: 0; height: 345px; width: 560px">
 </iframe></div>

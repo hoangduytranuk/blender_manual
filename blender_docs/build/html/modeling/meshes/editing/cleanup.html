@@ -240,107 +240,94 @@
 <div class="section" id="decimate-geometry">
 <span id="bpy-ops-mesh-decimate"></span><h2>Tiêu Hao Hình Học -- Decimate Geometry<a class="headerlink" href="#decimate-geometry" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Tiêu Hao Hình Học (Decimate Geometry)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Tiêu Hao Hình Học (Decimate Geometry)</span></p>
+</dd>
+</dl>
 </div>
 <p>The Decimate Geometry tool allows you to reduce
 the vertex/face count of a mesh with minimal shape changes.</p>
-<dl class="docutils">
-<dt>Tỷ Số -- Ratio</dt>
-<dd>Ratio of triangles to reduce to.</dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd><p class="first">Use the active vertex group as an influence.</p>
-<dl class="last docutils">
-<dt>Trọng Lượng -- Weight</dt>
-<dd>Strength of the vertex group.</dd>
-<dt>Đảo Nghịch -- Invert</dt>
-<dd>Inverts the vertex group.</dd>
+<dl>
+<dt>Tỷ Số -- Ratio</dt><dd><p>Ratio of triangles to reduce to.</p>
+</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>Use the active vertex group as an influence.</p>
+<dl class="simple">
+<dt>Trọng Lượng -- Weight</dt><dd><p>Strength of the vertex group.</p>
+</dd>
+<dt>Đảo Nghịch -- Invert</dt><dd><p>Inverts the vertex group.</p>
+</dd>
 </dl>
 </dd>
-<dt>Đối Xứng -- Symmetry</dt>
-<dd>Maintain symmetry on either the <em>X</em>, <em>Y</em>, or <em>Z</em> axis.</dd>
+<dt>Đối Xứng -- Symmetry</dt><dd><p>Maintain symmetry on either the <em>X</em>, <em>Y</em>, or <em>Z</em> axis.</p>
+</dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">This tool works similar to the <a class="reference internal" href="../../modifiers/generate/decimate.html"><span class="doc">Decimate Modifier</span></a>.</p>
+<p class="admonition-title">Xem thêm</p>
+<p>This tool works similar to the <a class="reference internal" href="../../modifiers/generate/decimate.html"><span class="doc">Decimate Modifier</span></a>.</p>
 </div>
 </div>
 <div class="section" id="fill-holes">
 <h2>Lấp Lỗ -- Fill Holes<a class="headerlink" href="#fill-holes" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Lấp Lỗ (Fill Holes)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Lấp Lỗ (Fill Holes)</span></p>
+</dd>
+</dl>
 </div>
 <p>This tool can take a large selection and detect the holes in the mesh, filling them in.</p>
 <p>This is different from the face creation operator in three important respects:</p>
 <ol class="arabic simple">
-<li>Holes are detected, so there is no need to manually find and select the edges around the holes.</li>
-<li>Holes can have a limit for the number of sides (so only quads or tris are filled in for example).</li>
-<li>Mesh data is copied from surrounding geometry (UVs, vertex colors, multi-res, all layers),
-since manually creating this data is very time-consuming.</li>
+<li><p>Holes are detected, so there is no need to manually find and select the edges around the holes.</p></li>
+<li><p>Holes can have a limit for the number of sides (so only quads or tris are filled in for example).</p></li>
+<li><p>Mesh data is copied from surrounding geometry (UVs, vertex colors, multi-res, all layers),
+since manually creating this data is very time-consuming.</p></li>
 </ol>
 </div>
 <div class="section" id="make-planar-faces">
 <h2>Tạo Bề Mặt Bằng Phẳng -- Make Planar Faces<a class="headerlink" href="#make-planar-faces" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Tạo Bề Mặt Bằng Phẳng (Make Planar Faces)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Tạo Bề Mặt Bằng Phẳng (Make Planar Faces)</span></p>
+</dd>
+</dl>
 </div>
 <p>The <em>Make Planar Faces</em> iteratively flattens faces.
 This can happen with faces over three vertices and
 it is a common convention that faces should be kept planar.</p>
-<dl class="docutils">
-<dt>Hệ Số -- Factor</dt>
-<dd>Distance to move the vertices each iteration.</dd>
-<dt>Số Lần Lặp Lại -- Iterations</dt>
-<dd>Number of times to repeat the operation.</dd>
+<dl class="simple">
+<dt>Hệ Số -- Factor</dt><dd><p>Distance to move the vertices each iteration.</p>
+</dd>
+<dt>Số Lần Lặp Lại -- Iterations</dt><dd><p>Number of times to repeat the operation.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="split-non-planar-faces">
 <h2>Phân Chia các Bề Mặt Không Phẳng -- Split Non-Planar Faces<a class="headerlink" href="#split-non-planar-faces" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Phân Chia các Bề Mặt Không Phẳng (Split Non-Planar Faces)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Phân Chia các Bề Mặt Không Phẳng (Split Non-Planar Faces)</span></p>
+</dd>
+</dl>
 </div>
 <p>This tool avoids ambiguous areas of geometry by splitting non-flat faces when they are bent
 beyond a given limit.</p>
@@ -348,18 +335,15 @@ beyond a given limit.</p>
 <div class="section" id="split-concave-faces">
 <h2>Phân Chia các Bề Mặt Lõm -- Split Concave Faces<a class="headerlink" href="#split-concave-faces" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Phân Chia các Bề Mặt Lõm (Split Concave Faces)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Phân Chia các Bề Mặt Lõm (Split Concave Faces)</span></p>
+</dd>
+</dl>
 </div>
 <p>This tool can be used to convert any <a class="reference internal" href="../../../glossary/index.html#term-concave-face"><span class="xref std std-term">concave face</span></a> to convex
 by splitting the concave into two or more convex faces.</p>
@@ -367,42 +351,36 @@ by splitting the concave into two or more convex faces.</p>
 <div class="section" id="delete-loose-geometry">
 <h2>-- Delete Loose Geometry<a class="headerlink" href="#delete-loose-geometry" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Xóa Rời Rạc (Delete Loose)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Xóa Rời Rạc (Delete Loose)</span></p>
+</dd>
+</dl>
 </div>
 <p>This tool removes disconnected vertices and edges (optionally faces).</p>
 </div>
 <div class="section" id="degenerate-dissolve">
 <h2>Hòa Tan Suy Biến -- Degenerate Dissolve<a class="headerlink" href="#degenerate-dissolve" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Chế Độ Biên Soạn -- Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Hòa Tan Suy Biến (Degenerate Dissolve)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Khung Lưới (Mesh) ‣ Dọn Dẹp (Clean up) ‣ Hòa Tan Suy Biến (Degenerate Dissolve)</span></p>
+</dd>
+</dl>
 </div>
 <p>This tool collapses / removes geometry which you typically will not want.</p>
 <ul class="simple">
-<li>Edges with no length.</li>
-<li>Faces with no areas (faces on a point or thin faces).</li>
-<li>Face corners with no area.</li>
+<li><p>Edges with no length.</p></li>
+<li><p>Faces with no areas (faces on a point or thin faces).</p></li>
+<li><p>Face corners with no area.</p></li>
 </ul>
 </div>
 </div>

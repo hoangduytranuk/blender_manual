@@ -236,12 +236,12 @@ the <em>Shrinkwrap</em> option is only shown in the <em>Add Constraint to Active
 when the selected inactive object is a mesh.</p>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Mục Tiêu -- Target</dt>
-<dd><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> used to select the constraint's target, which <em>must</em> be a mesh object,
-and is not functional (red state) when it has none.</dd>
-<dt>Khoảng Cách -- Distance</dt>
-<dd>This number field controls the offset of the owner from the shrunk computed position on the target's surface.</dd>
+<dl class="simple">
+<dt>Mục Tiêu -- Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> used to select the constraint's target, which <em>must</em> be a mesh object,
+and is not functional (red state) when it has none.</p>
+</dd>
+<dt>Khoảng Cách -- Distance</dt><dd><p>This number field controls the offset of the owner from the shrunk computed position on the target's surface.</p>
+</dd>
 </dl>
 <div class="section" id="shrinkwrap-type">
 <h3>Kiểu Co-Bọc -- Shrinkwrap Type<a class="headerlink" href="#shrinkwrap-type" title="Permalink to this headline">¶</a></h3>
@@ -255,30 +255,28 @@ This is the default and most commonly useful option.</p>
 <div class="section" id="projection">
 <h4>Phóng Chiếu -- Projection<a class="headerlink" href="#projection" title="Permalink to this headline">¶</a></h4>
 <p>The target's surface point is determined by projecting the owner's origin along a given axis.</p>
-<dl class="docutils">
-<dt>-- Projection Axis</dt>
-<dd><p class="first">This axis is controlled by the radio buttons that show up when you select this type.
+<dl>
+<dt>-- Projection Axis</dt><dd><p>This axis is controlled by the radio buttons that show up when you select this type.
 This mean the projection axis can only be aligned with one of the three axes, or their opposites.
 When the projection of the owner's origin along the selected direction does not hit the target's surface,
 the owner's location is left unchanged.</p>
-<p class="last">+X, +Y, +Z, -X, -Y, -Z</p>
+<p>+X, +Y, +Z, -X, -Y, -Z</p>
 </dd>
-<dt>Không Gian Trục -- Axis Space</dt>
-<dd>Coordinate space in which the axis direction is specified.</dd>
-<dt>-- Projection Distance</dt>
-<dd>Distance cutoff after which projection is assumed to have failed, leaving the location unchanged.</dd>
-<dt>-- Face Culling</dt>
-<dd><p class="first">This radio button allows you to prevent any projection over the &quot;front side&quot;
+<dt>Không Gian Trục -- Axis Space</dt><dd><p>Coordinate space in which the axis direction is specified.</p>
+</dd>
+<dt>-- Projection Distance</dt><dd><p>Distance cutoff after which projection is assumed to have failed, leaving the location unchanged.</p>
+</dd>
+<dt>-- Face Culling</dt><dd><p>This radio button allows you to prevent any projection over the &quot;front side&quot;
 (respectively the &quot;back side&quot;) of the target's faces. The &quot;side&quot; of a face is determined
 by its normal (front being the side &quot;from where&quot; the normal &quot;originates&quot;).</p>
-<p class="last">Off, Front, Back</p>
+<p>Off, Front, Back</p>
 </dd>
-<dt>-- Project Opposite</dt>
-<dd>In addition to the selected projection axis, project in the opposite direction and
-choose the closest hit.</dd>
-<dt>Đảo Ngược Chiều Loại Bỏ -- Invert Cull</dt>
-<dd>When used with <em>Project Opposite</em> and <em>Face Culling</em>, it inverts the <em>Front</em> or <em>Back</em> cull choice
-for the opposite direction.</dd>
+<dt>-- Project Opposite</dt><dd><p>In addition to the selected projection axis, project in the opposite direction and
+choose the closest hit.</p>
+</dd>
+<dt>Đảo Ngược Chiều Loại Bỏ -- Invert Cull</dt><dd><p>When used with <em>Project Opposite</em> and <em>Face Culling</em>, it inverts the <em>Front</em> or <em>Back</em> cull choice
+for the opposite direction.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="nearest-vertex">
@@ -302,21 +300,21 @@ that emit normals in all perpendicular directions. Ignores flat shading and auto
 <p>Most Shrinkwrap types support an additional setting to control how the owner is moved to
 the target point selected by the methods described above. Some of the choices
 only differ if <em>Distance</em> is not zero.</p>
-<dl class="docutils">
-<dt>Trên Mặt -- On Surface</dt>
-<dd>The owner location is always changed. The offset is applied along the projection line
+<dl class="simple">
+<dt>Trên Mặt -- On Surface</dt><dd><p>The owner location is always changed. The offset is applied along the projection line
 connecting the original owner location and selected target point towards
-the original position.</dd>
-<dt>Bên Ngoài Bề Mặt -- Outside Surface</dt>
-<dd>Like <em>On Surface</em>, but the offset is always applied towards the outside of the target.</dd>
-<dt>Bên Trên Bề Mặt -- Above Surface</dt>
-<dd>Like <em>On Surface</em>, but the offset is applied along the smooth normal of the target.</dd>
-<dt>Bên Trong -- Inside</dt>
-<dd>The owner is not moved if it is already inside the target.
-Offset shrinks the allowed volume towards the inside along the projection line.</dd>
-<dt>Bên Ngoài -- Outside</dt>
-<dd>The owner is not moved if it is already outside the target.
-Offset expands the exclusion volume towards the outside along the projection line.</dd>
+the original position.</p>
+</dd>
+<dt>Bên Ngoài Bề Mặt -- Outside Surface</dt><dd><p>Like <em>On Surface</em>, but the offset is always applied towards the outside of the target.</p>
+</dd>
+<dt>Bên Trên Bề Mặt -- Above Surface</dt><dd><p>Like <em>On Surface</em>, but the offset is applied along the smooth normal of the target.</p>
+</dd>
+<dt>Bên Trong -- Inside</dt><dd><p>The owner is not moved if it is already inside the target.
+Offset shrinks the allowed volume towards the inside along the projection line.</p>
+</dd>
+<dt>Bên Ngoài -- Outside</dt><dd><p>The owner is not moved if it is already outside the target.
+Offset expands the exclusion volume towards the outside along the projection line.</p>
+</dd>
 </dl>
 <p>The <em>Inside</em> and <em>Outside</em> options can be used for very crude collision detection.
 The inside vs outside determination is done based on the target normal and

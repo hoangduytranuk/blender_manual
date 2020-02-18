@@ -33,6 +33,8 @@ Holding :kbd:`Ctrl` shows the other side of the same axis.
 Holding :kbd:`Shift` aligns the view relative to the active selection.
 So you can for example, view a rotated objects side, or align the view to the active face in mesh Edit Mode.
 
+The view can also be aligned by holding :kbd:`Alt-MMB` and moving the mouse towards the view to align to.
+
 
 Align View Menu
 ===============

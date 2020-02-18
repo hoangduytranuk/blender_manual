@@ -243,68 +243,66 @@ wireframe dynamically via the given modifier options.</p>
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_generate_wireframe_panel.png" src="../../../_images/modeling_modifiers_generate_wireframe_panel.png" />
-<p class="caption"><span class="caption-text">The Wireframe modifier.</span></p>
+<p class="caption"><span class="caption-text">The Wireframe modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Độ Dày -- Thickness</dt>
-<dd>The depth or size of the wireframes.</dd>
-<dt>Dịch Chuyển -- Offset</dt>
-<dd>A value between (-1 to 1) to change whether the wireframes are
+<dl>
+<dt>Độ Dày -- Thickness</dt><dd><p>The depth or size of the wireframes.</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>A value between (-1 to 1) to change whether the wireframes are
 generated inside or outside of the original mesh.
-Set to zero, <em>Offset</em> will center the wireframes around the original edges.</dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd><p class="first">Restrict the modifier to only this vertex group.</p>
-<dl class="last docutils">
-<dt>Đảo Nghịch -- Invert</dt>
-<dd>Inverts the vertex group weights.</dd>
-<dt>Hệ Số -- Factor</dt>
-<dd>Percentage that the vertex has influence over the final wireframe result.</dd>
+Set to zero, <em>Offset</em> will center the wireframes around the original edges.</p>
+</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>Restrict the modifier to only this vertex group.</p>
+<dl class="simple">
+<dt>Đảo Nghịch -- Invert</dt><dd><p>Inverts the vertex group weights.</p>
+</dd>
+<dt>Hệ Số -- Factor</dt><dd><p>Percentage that the vertex has influence over the final wireframe result.</p>
+</dd>
 </dl>
 </dd>
-<dt>Miết Nếp Gấp của Cạnh -- Crease Edges</dt>
-<dd><p class="first">This option is intended for usage with
+<dt>Miết Nếp Gấp của Cạnh -- Crease Edges</dt><dd><p>This option is intended for usage with
 the <a class="reference internal" href="subdivision_surface.html"><span class="doc">Subdivision</span></a> modifier.
 Enable this option to crease edges on their junctions and prevent large curved intersections.</p>
-<dl class="last docutils">
-<dt>Trọng Lượng Nếp Gấp -- Crease Weight</dt>
-<dd>Define how much crease (0 to 1, nothing to full) the junctions should receive.</dd>
+<dl class="simple">
+<dt>Trọng Lượng Nếp Gấp -- Crease Weight</dt><dd><p>Define how much crease (0 to 1, nothing to full) the junctions should receive.</p>
+</dd>
 </dl>
 </dd>
-<dt>Chiều Dày Đều Đặn -- Even Thickness</dt>
-<dd>Maintain thickness by adjusting for sharp corners. Sometimes improves quality but also increases computation time.</dd>
-<dt>Chiều Dày Tương Đối -- Relative Thickness</dt>
-<dd>Determines the edge thickness by the length of the edge. Longer edges will be thicker.</dd>
-<dt>Ranh Giới -- Boundary</dt>
-<dd>Creates wireframes on mesh island boundaries.</dd>
-<dt>Thay Thế Bản Gốc -- Replace Original</dt>
-<dd>If this option is enabled, the original mesh is replaced by the generated wireframe.
-If not, the wireframe is generated on top of it.</dd>
-<dt>Dịch Chuyển của Nguyên Liệu -- Material Offset</dt>
-<dd>Uses the chosen material index as the material for the wireframe;
-this is applied as an offset from the first material.</dd>
+<dt>Chiều Dày Đều Đặn -- Even Thickness</dt><dd><p>Maintain thickness by adjusting for sharp corners. Sometimes improves quality but also increases computation time.</p>
+</dd>
+<dt>Chiều Dày Tương Đối -- Relative Thickness</dt><dd><p>Determines the edge thickness by the length of the edge. Longer edges will be thicker.</p>
+</dd>
+<dt>Ranh Giới -- Boundary</dt><dd><p>Creates wireframes on mesh island boundaries.</p>
+</dd>
+<dt>Thay Thế Bản Gốc -- Replace Original</dt><dd><p>If this option is enabled, the original mesh is replaced by the generated wireframe.
+If not, the wireframe is generated on top of it.</p>
+</dd>
+<dt>Dịch Chuyển của Nguyên Liệu -- Material Offset</dt><dd><p>Uses the chosen material index as the material for the wireframe;
+this is applied as an offset from the first material.</p>
+</dd>
 </dl>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">Wireframe thickness is an approximation. While <em>Even Thickness</em> should yield good results in many cases,
+<p class="admonition-title">Cảnh báo</p>
+<p>Wireframe thickness is an approximation. While <em>Even Thickness</em> should yield good results in many cases,
 skinny faces can cause ugly spikes. In this case you can either reduce the extreme angles in the geometry
 or disable the <em>Even Thickness</em> option.</p>
 </div>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_wireframe_result.jpg"><img alt="../../../_images/modeling_modifiers_generate_wireframe_result.jpg" src="../../../_images/modeling_modifiers_generate_wireframe_result.jpg" style="width: 420px;" /></a>
-<p class="caption"><span class="caption-text">Wireframes on a displaced plane.</span></p>
+<p class="caption"><span class="caption-text">Wireframes on a displaced plane.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>In this example, the wireframes carry a second (dark) material while the displaced plane uses its original one.</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_wireframe_example-weights.png"><img alt="../../../_images/modeling_modifiers_generate_wireframe_example-weights.png" src="../../../_images/modeling_modifiers_generate_wireframe_example-weights.png" style="width: 420px;" /></a>
-<p class="caption"><span class="caption-text">Vertex group weighting.</span></p>
+<p class="caption"><span class="caption-text">Vertex group weighting.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>The weights of the vertex group gradually change from 0 to 1.</p>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_wireframe_example-crease.png"><img alt="../../../_images/modeling_modifiers_generate_wireframe_example-crease.png" src="../../../_images/modeling_modifiers_generate_wireframe_example-crease.png" style="width: 420px;" /></a>
-<p class="caption"><span class="caption-text">Wireframe and Subdivision Surface modifier.</span></p>
+<p class="caption"><span class="caption-text">Wireframe and Subdivision Surface modifier.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>Cube with enabled <em>Crease Edges</em> option. The <em>Crease Weight</em> is set to 0, 0.5 and 1.</p>
 </div>

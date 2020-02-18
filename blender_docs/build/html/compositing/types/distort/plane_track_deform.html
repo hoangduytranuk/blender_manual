@@ -233,7 +233,7 @@
 <span id="bpy-types-compositornodeplanetrackdeform"></span><h1>Nút Biến Dạng Giám Sát Mặt Phẳng -- Plane Track Deform Node<a class="headerlink" href="#plane-track-deform-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodePlaneTrackDeform.png" src="../../../_images/compositing_node-types_CompositorNodePlaneTrackDeform.png" />
-<p class="caption"><span class="caption-text">Plane Track Deform Node.</span></p>
+<p class="caption"><span class="caption-text">Plane Track Deform Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The Plane Track Deform Node is used to incorporate the special &quot;plane track&quot; in your composite by checking areas
 which are planes, and replacing their footage with some other image.</p>
@@ -244,50 +244,48 @@ should be made in the <em>Movie Clip Editor</em>.</p>
 </div>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Image to put in place of the plane track, and thus, override that area in the movie clip.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Image to put in place of the plane track, and thus, override that area in the movie clip.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Đoạn Phim -- Movie Clip</dt>
-<dd>Used to select the movie clip whose plane track to use.
-For controls see <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a>.</dd>
-<dt>Vật Thể -- Object</dt>
-<dd>Used to select the object to which the plane track is linked.</dd>
-<dt>Giám Sát/Rãnh -- Track</dt>
-<dd>Used to select the plane track to use.</dd>
-<dt>Làm Nhòe Chuyển Động -- Motion Blur</dt>
-<dd><p class="first">Specify whether to use blur caused by motion of the plane track or not.</p>
-<dl class="last docutils">
-<dt>Lượng Mẫu Vật -- Samples</dt>
-<dd><p class="first">Set the number of samples to take for each frame.
+<dl>
+<dt>Đoạn Phim -- Movie Clip</dt><dd><p>Used to select the movie clip whose plane track to use.
+For controls see <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a>.</p>
+</dd>
+<dt>Vật Thể -- Object</dt><dd><p>Used to select the object to which the plane track is linked.</p>
+</dd>
+<dt>Giám Sát/Rãnh -- Track</dt><dd><p>Used to select the plane track to use.</p>
+</dd>
+<dt>Làm Nhòe Chuyển Động -- Motion Blur</dt><dd><p>Specify whether to use blur caused by motion of the plane track or not.</p>
+<dl>
+<dt>Lượng Mẫu Vật -- Samples</dt><dd><p>Set the number of samples to take for each frame.
 The higher this number, the smoother the blur effect,
 but the longer the render, as each virtual intermediate frame has to be rendered.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Samples are taken only from the <em>next</em> frame, not the previous one.
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Samples are taken only from the <em>next</em> frame, not the previous one.
 Therefore the blurred object will appear to be slightly ahead of how it would look without motion blur.</p>
 </div>
 </dd>
-<dt>Màn Trập -- Shutter</dt>
-<dd>Time (in frames) the shutter is open.
+<dt>Màn Trập -- Shutter</dt><dd><p>Time (in frames) the shutter is open.
 If you are rendering at 24 fps, and the Shutter is set to 0.5,
 the time in between frames is 41.67 ms,
-so the shutter is open for half that, 20.83 ms.</dd>
+so the shutter is open for half that, 20.83 ms.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>The output by perspective wrapping the image to that plane track.</dd>
-<dt>Mặt Phẳng -- Plane</dt>
-<dd>Produces a black-and-white mask of the plane track.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>The output by perspective wrapping the image to that plane track.</p>
+</dd>
+<dt>Mặt Phẳng -- Plane</dt><dd><p>Produces a black-and-white mask of the plane track.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
@@ -295,17 +293,17 @@ so the shutter is open for half that, 20.83 ms.</dd>
 <div class="section" id="using-image-output">
 <h3>Sử Dụng Đầu Ra Hình Ảnh -- Using Image Output<a class="headerlink" href="#using-image-output" title="Permalink to this headline">¶</a></h3>
 <p>This can simply be achieved by using the Alpha Over node.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/compositing_types_distort_plane-track-deform_example-image-output.png" src="../../../_images/compositing_types_distort_plane-track-deform_example-image-output.png" />
-<p class="caption"><span class="caption-text">Image output.</span></p>
+<p class="caption"><span class="caption-text">Image output.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="using-plane-output">
 <h3>Sử Dụng Đầu Ra Mặt Phẳng -- Using Plane Output<a class="headerlink" href="#using-plane-output" title="Permalink to this headline">¶</a></h3>
 <p>This can be achieved by mixing the movie clip and the image by using the plane output as the factor.</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="../../../_images/compositing_types_distort_plane-track-deform_example-plane-output.png" src="../../../_images/compositing_types_distort_plane-track-deform_example-plane-output.png" />
-<p class="caption"><span class="caption-text">Plane output.</span></p>
+<p class="caption"><span class="caption-text">Plane output.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -314,9 +312,9 @@ so the shutter is open for half that, 20.83 ms.</dd>
 <p>Using Image output scales, moves, and skews the input image according to the track
 while using the original image and mixing it with the movie clip using Plane output as factor
 will display the part of the image that lies inside that mask. This image shows the difference:</p>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="../../../_images/compositing_types_distort_plane-track-deform_output-comparison.png" src="../../../_images/compositing_types_distort_plane-track-deform_output-comparison.png" />
-<p class="caption"><span class="caption-text">Comparison between image output and original image (see Viewer nodes carefully).</span></p>
+<p class="caption"><span class="caption-text">Comparison between image output and original image (see Viewer nodes carefully).</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

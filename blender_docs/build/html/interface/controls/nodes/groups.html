@@ -219,34 +219,31 @@
 <h1>Nhóm Nút -- Node Groups<a class="headerlink" href="#node-groups" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/interface_controls_nodes_groups_node-group-example.png" src="../../../_images/interface_controls_nodes_groups_node-group-example.png" />
-<p class="caption"><span class="caption-text">Ví dụ về nhóm nút.</span></p>
+<p class="caption"><span class="caption-text">Ví dụ về nhóm nút.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Việc nhóm các nút có thể đơn giản hóa một cây nút bằng cách cho phép việc tạo một thực thể và ẩn dấu các phần của cây. Cả hai loại nút, nút chất liệu và nút tổng hợp, đều có thể nhóm lại được.</p>
 <p>Nói một cách khái niệm, việc nhóm các nút lại cho phép bạn chỉ định một <em>tập hợp</em> các nút mà bạn có thể coi như là một đơn nút. Các nhóm nút tương tự như các hàm trong lập trình vậy. Sau đó, bạn có thể tái sử dụng chúng bên trong, cái mà sau đó được gọi là Nhóm Nút (NodeGroups)hoặc trong các tập tin blend khác, khi chèn thêm vào, được gọi là Cây Nút (NodeTrees).</p>
 <p>Một ví dụ: Nếu bạn đã tạo một nguyên liệu mà bạn muốn sử dụng với các yếu tố đầu vào khác nhau, ví dụ: màu khuếch tán: nhựa màu đỏ, nhựa màu xanh lá cây, thì bạn có thể tạo các nguyên liệu riêng biệt bằng nút <em>Biến thành Đơn Người Dùng</em> (<em>Make Single User</em>) cho mỗi màu khác nhau, với bản sao của phần cây mô tả vật liệu nhựa. Nếu bạn muốn chỉnh sửa nguyên liệu, thì bạn cần phải chỉnh sửa lại tất cả các nguyên liệu. Một phương pháp tốt hơn để tái sử dụng là tạo các nhóm nút, chỉ cho lộ ra các tham số đầu vào (ví dụ: màu khuếch tán) (<em>diffuse color</em>).</p>
 <p>Các nhóm nút lồng nhau cũng được hỗ trợ nữa, chẳng hạn, một nhóm nút có thể được chèn vào hoặc được tạo bên trong một nhóm nút khác.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Các nhóm nút đệ quy sẽ bị cấm hoạt động đối với toàn bộ hệ thống nút hiện tại, nhằm ngăn chặn sự đệ quy vô hạn. Một nhóm nút không bao giờ có thể chứa chính bản thân nó (hoặc nhóm khác có chứa chính bản thân nó).</p>
+<p class="admonition-title">Ghi chú</p>
+<p>Các nhóm nút đệ quy sẽ bị cấm hoạt động đối với toàn bộ hệ thống nút hiện tại, nhằm ngăn chặn sự đệ quy vô hạn. Một nhóm nút không bao giờ có thể chứa chính bản thân nó (hoặc nhóm khác có chứa chính bản thân nó).</p>
 </div>
 <div class="section" id="make-group">
 <h2>Tạo Nhóm -- Make Group<a class="headerlink" href="#make-group" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Node ‣ Make Group</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-G</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Node ‣ Make Group</span></p>
+</dd>
+<dt class="field-odd">Phím Tắt -- Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Ctrl-G</kbd></p>
+</dd>
+</dl>
 </div>
 <p>To create a node group, select the nodes you want to include, then
 press <kbd class="kbd docutils literal notranslate">Ctrl-G</kbd>, <span class="menuselection">Group ‣ Make Group</span>.
@@ -258,49 +255,46 @@ When appending node groups from one blend-file to another,
 Blender does not make a distinction between material node groups or composite node groups,
 so it is recommended to use some naming convention that will allow you to easily distinguish between the two types.</p>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
+<p class="admonition-title">Mẹo</p>
 <p>What <strong>not</strong> to include in node groups:</p>
 <p>Hãy nhớ rằng điều thiết yếu là một nhóm phải là một thành phần phần mềm dễ tái sử dụng, khép kín. Nhóm nút nguyên liệu <strong>không nên</strong> bao gồm:</p>
-<dl class="last docutils">
-<dt>Nút Đầu Vào -- Input nodes</dt>
-<dd>If you include a source node in your group,
+<dl class="simple">
+<dt>Nút Đầu Vào -- Input nodes</dt><dd><p>If you include a source node in your group,
 you will end up having the source node appearing <em>twice</em>: once inside the group,
-and once outside the group in the new material node tree.</dd>
-<dt>Nút Đầu Ra -- Output node</dt>
-<dd>Nếu bạn bao gồm một nút đầu ra trong nhóm thì bạn sẽ không có một ổ cắm đầu ra có <em>từ</em> (ra khỏi) nhóm!</dd>
+and once outside the group in the new material node tree.</p>
+</dd>
+<dt>Nút Đầu Ra -- Output node</dt><dd><p>Nếu bạn bao gồm một nút đầu ra trong nhóm thì bạn sẽ không có một ổ cắm đầu ra có <em>từ</em> (ra khỏi) nhóm!</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="edit-group">
 <h2>Biên Soạn Nhóm -- Edit Group<a class="headerlink" href="#edit-group" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Node ‣ Edit Group</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Tiêu Đề -- Header:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Chuyển về Cây Nút Phụ Huynh (Go to Parent Node Tree)</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Tab</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Tab</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Node ‣ Edit Group</span></p>
+</dd>
+<dt class="field-odd">Tiêu Đề -- Header</dt>
+<dd class="field-odd"><p><span class="menuselection">Chuyển về Cây Nút Phụ Huynh (Go to Parent Node Tree)</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Tab</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-Tab</kbd></p>
+</dd>
+</dl>
 </div>
 <p>With a node group selected, <kbd class="kbd docutils literal notranslate">Tab</kbd> expands the node to a frame, and the individual nodes within
 it are shown. You can move them around, play with their individual controls, re-thread them internally, etc.
 just like you can if they were a normal part of the editor view. You will not be able, though,
 to thread them to a node outside the group; you have to use the external sockets on the side of the node group.
 While <kbd class="kbd docutils literal notranslate">Tab</kbd> can be used to both enter and exit a group, <kbd class="kbd docutils literal notranslate">Ctrl-Tab</kbd> only exits.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_glass-group.png"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_glass-group.png" src="../../../_images/render_cycles_optimizations_reducing-noise_glass-group.png" style="width: 620px;" /></a>
-<p class="caption"><span class="caption-text">Ví dụ về nhóm nút mở rộng.</span></p>
+<p class="caption"><span class="caption-text">Ví dụ về nhóm nút mở rộng.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="interface">
 <h3>Giao Diện -- Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
@@ -312,21 +306,19 @@ While <kbd class="kbd docutils literal notranslate">Tab</kbd> can be used to bot
 <div class="section" id="panel">
 <h4>Bảng -- Panel<a class="headerlink" href="#panel" title="Permalink to this headline">¶</a></h4>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Sidebar region ‣ Node ‣ Interface</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Sidebar region ‣ Node ‣ Interface</span></p>
+</dd>
+</dl>
 </div>
 <div class="figure align-right" id="id3">
 <img alt="../../../_images/interface_controls_nodes_groups_interface-panel.png" src="../../../_images/interface_controls_nodes_groups_interface-panel.png" />
-<p class="caption"><span class="caption-text">The interface panel for editing groups.</span></p>
+<p class="caption"><span class="caption-text">The interface panel for editing groups.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>Sockets can be added, re-ordered, or removed, descriptive names can be added and
 the details of the input data value defined here.</p>
@@ -342,32 +334,28 @@ if the group has a large number of sockets.</p>
 <div class="section" id="ungroup">
 <h2>Rã Nhóm -- Ungroup<a class="headerlink" href="#ungroup" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Nhóm (Group) ‣ Rã Nhóm (Ungroup)</span></td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Alt-G</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Nhóm (Group) ‣ Rã Nhóm (Ungroup)</span></p>
+</dd>
+<dt class="field-odd">Phím Tắt -- Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Alt-G</kbd></p>
+</dd>
+</dl>
 </div>
 <p>The <kbd class="kbd docutils literal notranslate">Alt-G</kbd> tool removes the group and places the individual nodes into your editor workspace.
 No internal connections are lost, and now you can thread internal nodes to other nodes in your workspace.</p>
-<dl class="docutils">
-<dt>Separate <kbd class="kbd docutils literal notranslate">P</kbd></dt>
-<dd><p class="first">Separate selected nodes from the node group.</p>
-<dl class="last docutils">
-<dt>Sao Chép -- Copy</dt>
-<dd>Copy to parent node tree, keep group intact.</dd>
-<dt>Di Chuyển -- Move</dt>
-<dd>Move to parent node tree, remove from group.</dd>
+<dl>
+<dt>Separate <kbd class="kbd docutils literal notranslate">P</kbd></dt><dd><p>Separate selected nodes from the node group.</p>
+<dl class="simple">
+<dt>Sao Chép -- Copy</dt><dd><p>Copy to parent node tree, keep group intact.</p>
+</dd>
+<dt>Di Chuyển -- Move</dt><dd><p>Move to parent node tree, remove from group.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -375,18 +363,15 @@ No internal connections are lost, and now you can thread internal nodes to other
 <div class="section" id="group-insert">
 <h2>Chèn Thêm vào Nhóm -- Group Insert<a class="headerlink" href="#group-insert" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><span class="menuselection">Nhóm (Group) ‣ Chèn Thêm vào Nhóm (Group Insert)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Nhóm (Group) ‣ Chèn Thêm vào Nhóm (Group Insert)</span></p>
+</dd>
+</dl>
 </div>
 <p>Selecting a set of nodes, ending with the destination group node,
 and pressing <span class="menuselection">Group ‣ Group Insert</span> will move those nodes into that group.
@@ -398,21 +383,18 @@ The node group must be edited to contain a single <em>Group Input</em> and a sin
 <div class="section" id="appending-node-groups">
 <h2>Bổ Sung Nhóm Nút -- Appending Node Groups<a class="headerlink" href="#appending-node-groups" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Trình Biên Soạn -- Editor:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">Topbar</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Chế Độ -- Mode:</th><td class="field-body">Toàn Bộ các Chế Độ -- All Modes</td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Tập Tin (File) ‣ Kết Nối/Bổ Sung (Link/Append)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Topbar</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Tập Tin (File) ‣ Kết Nối/Bổ Sung (Link/Append)</span></p>
+</dd>
+</dl>
 </div>
 <p>Once you have appended a Node Tree to your blend-file, you can make use of it in a node editor by
 pressing <kbd class="kbd docutils literal notranslate">Shift-A</kbd>, <span class="menuselection">Add ‣ Group</span>, then selecting the appended group.

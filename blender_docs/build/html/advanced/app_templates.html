@@ -235,27 +235,25 @@ without disrupting your existing settings and installation.</p>
 <div class="section" id="details">
 <h3>Chi Tiết -- Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h3>
 <p>An application template may define its own:</p>
-<dl class="docutils">
-<dt>Tập Tin Khởi Động -- Startup File</dt>
-<dd>The default file to load with this template.</dd>
-<dt>Preferences</dt>
-<dd><p class="first">Only certain preferences from a template are used:</p>
-<ul class="last simple">
-<li>Themes.</li>
-<li>Add-ons.</li>
-<li>Keymaps.</li>
-<li>Viewport lighting.</li>
+<dl class="simple">
+<dt>Tập Tin Khởi Động -- Startup File</dt><dd><p>The default file to load with this template.</p>
+</dd>
+<dt>Preferences</dt><dd><p>Only certain preferences from a template are used:</p>
+<ul class="simple">
+<li><p>Themes.</p></li>
+<li><p>Add-ons.</p></li>
+<li><p>Keymaps.</p></li>
+<li><p>Viewport lighting.</p></li>
 </ul>
 </dd>
-<dt>Màn Hình Chào Đón -- Splash Screen</dt>
-<dd>Templates may provide their own splash screen image.</dd>
-<dt>Tập Lệnh Python -- Python Scripts</dt>
-<dd><p class="first">While templates have access to the same functionality as any other scripts,
+<dt>Màn Hình Chào Đón -- Splash Screen</dt><dd><p>Templates may provide their own splash screen image.</p>
+</dd>
+<dt>Tập Lệnh Python -- Python Scripts</dt><dd><p>While templates have access to the same functionality as any other scripts,
 typical operations include:</p>
-<ul class="last simple">
-<li>Modifying and replacing parts of the user interface.</li>
-<li>Defining new menus, keymaps and tools.</li>
-<li>Defining a custom add-on path for template specific add-ons.</li>
+<ul class="simple">
+<li><p>Modifying and replacing parts of the user interface.</p></li>
+<li><p>Defining new menus, keymaps and tools.</p></li>
+<li><p>Defining a custom add-on path for template specific add-ons.</p></li>
 </ul>
 </dd>
 </dl>
@@ -265,24 +263,21 @@ won't overwrite your default startup file.</p>
 <div class="section" id="directory-layout">
 <h3>Bố Trí của Thư Mục -- Directory Layout<a class="headerlink" href="#directory-layout" title="Permalink to this headline">¶</a></h3>
 <p>Templates may be located in one of two locations within the <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory.</p>
-<dl class="docutils">
-<dt>Địa Điểm của Khuôn Mẫu -- Template locations:</dt>
-<dd><div class="first last line-block">
+<dl>
+<dt>Địa Điểm của Khuôn Mẫu -- Template locations:</dt><dd><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">{BLENDER_USER_SCRIPTS}/startup/bl_app_templates_user</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">{BLENDER_SYSTEM_SCRIPTS}/startup/bl_app_templates_system</span></code></div>
 </div>
 </dd>
 </dl>
 <p>User configuration is stored in a subdirectory:</p>
-<dl class="docutils">
-<dt>Không có khuôn mẫu -- Without a template:</dt>
-<dd><div class="first last line-block">
+<dl>
+<dt>Không có khuôn mẫu -- Without a template:</dt><dd><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">./config/startup.blend</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">./config/userpref.blend</span></code></div>
 </div>
 </dd>
-<dt>Có khuôn mẫu -- With a template:</dt>
-<dd><div class="first last line-block">
+<dt>Có khuôn mẫu -- With a template:</dt><dd><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">./config/{APP_TEMPLATE_ID}/startup.blend</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">./config/{APP_TEMPLATE_ID}/userpref.blend</span></code></div>
 </div>
@@ -302,28 +297,26 @@ that opens Blender with a specific app template:</p>
 <div class="section" id="template-contents">
 <h2>Nội Dung của Bản Mẫu -- Template Contents<a class="headerlink" href="#template-contents" title="Permalink to this headline">¶</a></h2>
 <p>Each of the following files can be used for application templates but are optional.</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">startup.blend</span></code></dt>
-<dd>Factory startup file to use for this template.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">userpref.blend</span></code></dt>
-<dd><p class="first">Factory preferences file to use for this template.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">startup.blend</span></code></dt><dd><p>Factory startup file to use for this template.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">userpref.blend</span></code></dt><dd><p>Factory preferences file to use for this template.</p>
 <p>When omitted preferences are shared with the default Blender configuration.</p>
-<p class="last"><em>(As noted previously, this is only used for a subset of preferences).</em></p>
+<p><em>(As noted previously, this is only used for a subset of preferences).</em></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">splash.png</span></code>, <code class="docutils literal notranslate"><span class="pre">splash_2x.png</span></code></dt>
-<dd><p class="first">Splash screen to override Blender's default artwork (not including header text).</p>
-<p class="last">Must be <code class="docutils literal notranslate"><span class="pre">501x250</span></code> and <code class="docutils literal notranslate"><span class="pre">1002x500</span></code> (used for HiDPI monitors).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">splash.png</span></code>, <code class="docutils literal notranslate"><span class="pre">splash_2x.png</span></code></dt><dd><p>Splash screen to override Blender's default artwork (not including header text).</p>
+<p>Must be <code class="docutils literal notranslate"><span class="pre">501x250</span></code> and <code class="docutils literal notranslate"><span class="pre">1002x500</span></code> (used for HiDPI monitors).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></dt>
-<dd>A Python script which must contain <code class="docutils literal notranslate"><span class="pre">register</span></code> and <code class="docutils literal notranslate"><span class="pre">unregister</span></code> functions.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></dt><dd><p>A Python script which must contain <code class="docutils literal notranslate"><span class="pre">register</span></code> and <code class="docutils literal notranslate"><span class="pre">unregister</span></code> functions.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<p class="admonition-title">Ghi chú</p>
 <p>Bundled blend-files <code class="docutils literal notranslate"><span class="pre">startup.blend</span></code> and <code class="docutils literal notranslate"><span class="pre">userpref.blend</span></code> are considered <em>Factory Settings</em>
 and are never overwritten.</p>
 <p>The user may save their own startup/preferences while using this template
 which will be stored in their user configuration.</p>
-<p class="last">The original template settings can be loaded using: <em>Load Template Factory Settings</em>
+<p>The original template settings can be loaded using: <em>Load Template Factory Settings</em>
 from the file menu in much the same way <em>Load Factory Settings</em> works.</p>
 </div>
 </div>
@@ -334,21 +327,19 @@ they simply have access to the same API's available for add-ons and any other sc
 <p>As noted above, you may optionally have an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> in your app template.</p>
 <p>This has the following advantages:</p>
 <ul>
-<li><p class="first">Changes can be made to the startup or preferences, without having to distribute a blend-file.</p>
-</li>
-<li><p class="first">Changes can be made dynamically.</p>
+<li><p>Changes can be made to the startup or preferences, without having to distribute a blend-file.</p></li>
+<li><p>Changes can be made dynamically.</p>
 <p>You could for example -- configure the template to check the number of processors, operating system and memory,
 then set values based on this.</p>
 </li>
-<li><p class="first">You may enable add-ons associated with your template.</p>
-</li>
+<li><p>You may enable add-ons associated with your template.</p></li>
 </ul>
 <p>On activation a <code class="docutils literal notranslate"><span class="pre">register</span></code> function is called, <code class="docutils literal notranslate"><span class="pre">unregister</span></code> is called when another template is selected.</p>
 <p>As these only run once, any changes to defaults must be made via handler.</p>
 <p>Two handlers you're likely to use are:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">bpy.app.handlers.load_factory_preferences_post</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">bpy.app.handlers.load_factory_startup_post</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bpy.app.handlers.load_factory_preferences_post</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bpy.app.handlers.load_factory_startup_post</span></code></p></li>
 </ul>
 <p>These allow you to define your own &quot;factory settings&quot;, which the user may change,
 just as Blender has it's own defaults when first launched.</p>

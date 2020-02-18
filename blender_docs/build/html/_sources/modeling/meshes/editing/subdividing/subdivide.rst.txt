@@ -8,7 +8,7 @@ Subdivide
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Subdivide`
+   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Subdivide`
    :Menu:      :menuselection:`Mesh --> Edges --> Subdivide`
 
 Subdividing splits selected edges and faces by cutting them in half or more,
@@ -35,7 +35,9 @@ This process follows a few rules, depending on the settings:
     it is then subdivided in four smaller triangles.
   - If the face is a quad, first the two opposite edges are subdivided as described above.
     Then, the "middle" edge is subdivided, affecting its new "sub-quad" as described above for only one edge.
-- When four edges of a face (a quad) are selected, the face is subdivided into four smaller quads.
+- When a face of a :term:`quad` is selected, the face is subdivided into four smaller quads.
+- When a face of an :term:`n-gon` is selected,
+  the individual edges will be subdivided but the face will stay unsubdivided.
 
 
 Options

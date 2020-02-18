@@ -136,9 +136,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
@@ -223,15 +222,12 @@
   <div class="section" id="rigid-body-world">
 <span id="bpy-ops-rigidbody-world"></span><span id="bpy-types-rigidbodyworld"></span><h1>Thế Giới Thân Cứng -- Rigid Body World<a class="headerlink" href="#rigid-body-world" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Cảnh (Scene) ‣ Thế Giới Thân Cứng (Rigid Body World)</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Cảnh (Scene) ‣ Thế Giới Thân Cứng (Rigid Body World)</span></p>
+</dd>
+</dl>
 </div>
 <p>The <em>Rigid Body World</em> is a group of rigid body objects,
 which holds settings that apply to all rigid bodies in this simulation.</p>
@@ -244,69 +240,65 @@ with the <em>Groups</em> panel in the <em>Object</em> tab.</p>
 if they are in the collection specified in the <em>Collection</em> field of the <em>Rigid Body World</em> panel in the <em>Scene</em> tab.</p>
 <div class="section" id="settings">
 <h2>Sắp Đặt -- Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Thế Giới Thân Cứng -- Rigid Body World</dt>
-<dd>Enable/disable evaluation of the rigid body simulation based on the rigid body objects
-participating in the specified group of Rigid Body World.</dd>
-<dt>Xóa Thế Giới Thân Cứng -- Remove Rigid Body World</dt>
-<dd>Remove rigid body simulation from the current scene.</dd>
-<dt>Collection</dt>
-<dd>Containing rigid body objects participating in this simulation.</dd>
-<dt>Ràng Buộc -- Constraints</dt>
-<dd>Containing rigid body object constraints participating in the simulation.</dd>
+<dl class="simple">
+<dt>Thế Giới Thân Cứng -- Rigid Body World</dt><dd><p>Enable/disable evaluation of the rigid body simulation based on the rigid body objects
+participating in the specified group of Rigid Body World.</p>
+</dd>
+<dt>Xóa Thế Giới Thân Cứng -- Remove Rigid Body World</dt><dd><p>Remove rigid body simulation from the current scene.</p>
+</dd>
+<dt>Collection</dt><dd><p>Containing rigid body objects participating in this simulation.</p>
+</dd>
+<dt>Ràng Buộc -- Constraints</dt><dd><p>Containing rigid body object constraints participating in the simulation.</p>
+</dd>
 </dl>
 <p>Simulation quality and timing settings:</p>
-<dl class="docutils">
-<dt>Tốc Độ -- Speed</dt>
-<dd>Can be used to speed up/slow down the simulation.</dd>
-<dt>Phân Tách Xung Lực -- Split Impulse</dt>
-<dd>Enable/disable reducing extra velocity that can build up when objects collide
+<dl class="simple">
+<dt>Tốc Độ -- Speed</dt><dd><p>Can be used to speed up/slow down the simulation.</p>
+</dd>
+<dt>Phân Tách Xung Lực -- Split Impulse</dt><dd><p>Enable/disable reducing extra velocity that can build up when objects collide
 (lowers the simulation stability a little so use only when necessary).
 Limits the force with which objects are separated on collision, generally produces nicer
-results, but makes the simulation less stable (especially when stacking many objects).</dd>
-<dt>Số Bước Mỗi Giây -- Steps Per Second</dt>
-<dd>Number of simulation steps made per second (higher values are more accurate but slower).
-This only influences the accuracy and not the speed of the simulation.</dd>
-<dt>Số Lần Lặp Lại Giải Nghiệm -- Solver Iterations</dt>
-<dd>Amount of constraint solver iterations made per simulation step (higher values are more accurate but slower).
-Increasing this makes constraints and object stacking more stable.</dd>
+results, but makes the simulation less stable (especially when stacking many objects).</p>
+</dd>
+<dt>Số Bước Mỗi Giây -- Steps Per Second</dt><dd><p>Number of simulation steps made per second (higher values are more accurate but slower).
+This only influences the accuracy and not the speed of the simulation.</p>
+</dd>
+<dt>Số Lần Lặp Lại Giải Nghiệm -- Solver Iterations</dt><dd><p>Amount of constraint solver iterations made per simulation step (higher values are more accurate but slower).
+Increasing this makes constraints and object stacking more stable.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="rigid-body-cache">
 <h2>Bộ Nhớ Đệm Thân Cứng -- Rigid Body Cache<a class="headerlink" href="#rigid-body-cache" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Scene ‣ Rigid Body World ‣ Cache</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Scene ‣ Rigid Body World ‣ Cache</span></p>
+</dd>
+</dl>
 </div>
 <p>The <em>Cache</em> sub-panel specifies the frame range in which the simulation is active.
 Can be used to bake the simulation.</p>
-<dl class="docutils">
-<dt>Đầu/Cuối -- Start/End</dt>
-<dd>First and last frame of the simulation.</dd>
-<dt>Nướng -- Bake</dt>
-<dd><p class="first">Calculates the simulation and protects the cache. You need to be in <em>Object Mode</em> to bake.</p>
-<dl class="last docutils">
-<dt>Phóng Thích Nướng -- Free Bake</dt>
-<dd>Active after the baking of simulation. Clears the baked cache.</dd>
+<dl>
+<dt>Đầu/Cuối -- Start/End</dt><dd><p>First and last frame of the simulation.</p>
+</dd>
+<dt>Nướng -- Bake</dt><dd><p>Calculates the simulation and protects the cache. You need to be in <em>Object Mode</em> to bake.</p>
+<dl class="simple">
+<dt>Phóng Thích Nướng -- Free Bake</dt><dd><p>Active after the baking of simulation. Clears the baked cache.</p>
+</dd>
 </dl>
 </dd>
-<dt>-- Calculate to Frame</dt>
-<dd>Bake physics to current frame.</dd>
-<dt>Bộ Nhớ Đệm Hiện Tại thành Nướng -- Current Cache to Bake</dt>
-<dd>Bake from Cache.</dd>
-<dt>Nướng Tất Cả các Động Năng -- Bake All Dynamics</dt>
-<dd>Bake all physics.</dd>
-<dt>Phóng Thích Tất Cả các Nướng -- Free All Bakes</dt>
-<dd>Free all baked caches of all objects in the current scene.</dd>
-<dt>Cập Nhật Tất Cả vào Khung Hình -- Update All To Frame</dt>
-<dd>Update cache to current frame.</dd>
+<dt>-- Calculate to Frame</dt><dd><p>Bake physics to current frame.</p>
+</dd>
+<dt>Bộ Nhớ Đệm Hiện Tại thành Nướng -- Current Cache to Bake</dt><dd><p>Bake from Cache.</p>
+</dd>
+<dt>Nướng Tất Cả các Động Năng -- Bake All Dynamics</dt><dd><p>Bake all physics.</p>
+</dd>
+<dt>Phóng Thích Tất Cả các Nướng -- Free All Bakes</dt><dd><p>Free all baked caches of all objects in the current scene.</p>
+</dd>
+<dt>Cập Nhật Tất Cả vào Khung Hình -- Update All To Frame</dt><dd><p>Update cache to current frame.</p>
+</dd>
 </dl>
 <p>If you have not saved the blend-file, the cache is created in memory,
 so save your file first or the cache may be lost.</p>
@@ -314,15 +306,12 @@ so save your file first or the cache may be lost.</p>
 <div class="section" id="rigid-body-field-weights">
 <h2>Trọng Lượng Trường của Thân Cứng -- Rigid Body Field Weights<a class="headerlink" href="#rigid-body-field-weights" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Scene ‣ Rigid Body World ‣ Field Weights</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Scene ‣ Rigid Body World ‣ Field Weights</span></p>
+</dd>
+</dl>
 </div>
 <p>As other physics dynamics systems, rigid body simulation are also influenced by external force effectors.</p>
 </div>

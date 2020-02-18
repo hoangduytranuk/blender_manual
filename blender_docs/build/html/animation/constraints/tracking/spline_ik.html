@@ -235,16 +235,16 @@ and spines, as well as inorganic items such as ropes.</p>
 <p>To set up <em>Spline IK</em>, it is necessary to have a chain of
 connected bones and a curve to constrain these bones to:</p>
 <ul class="simple">
-<li>With the last bone in the chain selected,
-add a <em>Spline IK</em> constraint from the <em>Bone Constraints</em> tab in the <em>Properties Editor</em>.</li>
-<li>Set the 'Chain Length' setting to the number of bones in the chain
+<li><p>With the last bone in the chain selected,
+add a <em>Spline IK</em> constraint from the <em>Bone Constraints</em> tab in the <em>Properties Editor</em>.</p></li>
+<li><p>Set the 'Chain Length' setting to the number of bones in the chain
 (starting from and including the selected bone)
-that should be influenced by the curve.</li>
-<li>Finally, set <em>Target</em> to the curve that should control the curve.</li>
+that should be influenced by the curve.</p></li>
+<li><p>Finally, set <em>Target</em> to the curve that should control the curve.</p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">The IK constraints are special in that they modify multiple bones.
+<p class="admonition-title">Ghi chú</p>
+<p>The IK constraints are special in that they modify multiple bones.
 For this reason, they ignore their position in the stack and always run after
 all other constraints on the affected bones. To apply constraints after IK,
 it is necessary to first copy the final transformation to a new bone chain,
@@ -252,59 +252,57 @@ e.g. using <a class="reference internal" href="../transform/copy_transforms.html
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Target</dt>
-<dd><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> used to select the target curve.</dd>
+<dl class="simple">
+<dt>Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> used to select the target curve.</p>
+</dd>
 </dl>
 <div class="section" id="spline-fitting">
 <h3>Spline Fitting<a class="headerlink" href="#spline-fitting" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Chain Length</dt>
-<dd>How many bones are included in the chain.</dd>
-<dt>Even Division</dt>
-<dd>Ignore the relative length of the bones when fitting to the curve.</dd>
-<dt>Chain Offset</dt>
-<dd>Retain the offset of the root joint from the start point of the curve.</dd>
+<dl class="simple">
+<dt>Chain Length</dt><dd><p>How many bones are included in the chain.</p>
+</dd>
+<dt>Even Division</dt><dd><p>Ignore the relative length of the bones when fitting to the curve.</p>
+</dd>
+<dt>Chain Offset</dt><dd><p>Retain the offset of the root joint from the start point of the curve.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="chain-scaling">
 <h3>Chain Scaling<a class="headerlink" href="#chain-scaling" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Use Curve Radius</dt>
-<dd>Average radius of the endpoints is used to tweak the X and Z
-scaling of the bones, on top of the X and Z scale mode.</dd>
-<dt>Y Scale Mode</dt>
-<dd><p class="first">Specifies how the length of a bone is scaled when it is fitted to the curve,
+<dl>
+<dt>Use Curve Radius</dt><dd><p>Average radius of the endpoints is used to tweak the X and Z
+scaling of the bones, on top of the X and Z scale mode.</p>
+</dd>
+<dt>Y Scale Mode</dt><dd><p>Specifies how the length of a bone is scaled when it is fitted to the curve,
 in addition to the effects of target curve object scale and curvature.</p>
-<dl class="last docutils">
-<dt>None</dt>
-<dd>The bone is reset to its rest pose length.</dd>
-<dt>Fit Curve</dt>
-<dd>The bones are stretched to cover the entire length of the curve.</dd>
-<dt>Bone Original</dt>
-<dd>The original Y axis scale of the bone is used.</dd>
+<dl class="simple">
+<dt>None</dt><dd><p>The bone is reset to its rest pose length.</p>
+</dd>
+<dt>Fit Curve</dt><dd><p>The bones are stretched to cover the entire length of the curve.</p>
+</dd>
+<dt>Bone Original</dt><dd><p>The original Y axis scale of the bone is used.</p>
+</dd>
 </dl>
 </dd>
-<dt>XZ Scale Mode</dt>
-<dd><p class="first">Scaling that a bone undergoes in the other two directions.</p>
-<dl class="last docutils">
-<dt>None</dt>
-<dd>Do not scale the X and Z axes.</dd>
-<dt>Bone Original</dt>
-<dd>Use the original scaling of the bones.</dd>
-<dt>Inverse Scale</dt>
-<dd>Scale of the X and Z axes is the inverse of the Y scale.</dd>
-<dt>Volume Preservation</dt>
-<dd>Similar to the <a class="reference internal" href="stretch_to.html#constraints-stretch-to-volume-preservation"><span class="std std-ref">Stretch To</span></a> constraint.</dd>
+<dt>XZ Scale Mode</dt><dd><p>Scaling that a bone undergoes in the other two directions.</p>
+<dl class="simple">
+<dt>None</dt><dd><p>Do not scale the X and Z axes.</p>
+</dd>
+<dt>Bone Original</dt><dd><p>Use the original scaling of the bones.</p>
+</dd>
+<dt>Inverse Scale</dt><dd><p>Scale of the X and Z axes is the inverse of the Y scale.</p>
+</dd>
+<dt>Volume Preservation</dt><dd><p>Similar to the <a class="reference internal" href="stretch_to.html#constraints-stretch-to-volume-preservation"><span class="std std-ref">Stretch To</span></a> constraint.</p>
+</dd>
 </dl>
 </dd>
-<dt>Use Original Scale</dt>
-<dd>Specifies that <em>Inverse Scale</em> or <em>Volume Preservation</em> should be applied on top of
-the original scaling of the bones, like in the Stretch To constraint.</dd>
+<dt>Use Original Scale</dt><dd><p>Specifies that <em>Inverse Scale</em> or <em>Volume Preservation</em> should be applied on top of
+the original scaling of the bones, like in the Stretch To constraint.</p>
+</dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">This subject is seen in-depth in the
+<p class="admonition-title">Xem thêm</p>
+<p>This subject is seen in-depth in the
 <a class="reference internal" href="../../armatures/posing/bone_constraints/inverse_kinematics/spline_ik.html"><span class="doc">Armature Posing section</span></a>.</p>
 </div>
 <iframe src="https://player.vimeo.com/video/171282278" style="border: 0; height: 345px; width: 560px">

@@ -47,7 +47,7 @@ Image
    Replace
       Replaces the current image throughout the blend-file with another image.
    Reload
-      Reload the image from the file on disk.
+      Reload the image from the file on drive.
    Edit Externally
       Using the *Edit Externally* tool Blender will open an external image editor,
       as specified in the *Preferences* and load in the image to be edited.
@@ -75,11 +75,11 @@ Image
       Packs the image into the blend-file.
       See :ref:`pack-unpack-data`.
    Unpack
-      Unpack the image to disk.
+      Unpack the image to a drive.
 
    .. important::
 
-      Rendered images are not automatically saved, they have to be saved to disk manually.
+      Rendered images are not automatically saved, they have to be saved to drive manually.
 
 
 Controls

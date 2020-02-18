@@ -251,7 +251,7 @@
 <span id="bpy-types-shadernodesubsurfacescattering"></span><h1>Tán Xạ Dưới Bề Mặt -- Subsurface Scattering<a class="headerlink" href="#subsurface-scattering" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_shader_sss_node.png" src="../../../_images/render_shader-nodes_shader_sss_node.png" />
-<p class="caption"><span class="caption-text">Subsurface Scattering Shader.</span></p>
+<p class="caption"><span class="caption-text">Subsurface Scattering Shader.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Subsurface Scattering</em> node is used to add simple subsurface multiple scattering,
 for materials such as skin, wax, marble, milk and others. For these materials,
@@ -262,24 +262,23 @@ for skin, red colors scatter further, which gives distinctive red-colored shadow
 and a soft appearance.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Màu Sắc -- Color</dt>
-<dd>Về màu sắc của bề mặt, hoặc về thể chất mà nói, xác suất ánh sáng được phản xạ cho mỗi bước sóng.</dd>
-<dt>Tỷ Lệ -- Scale</dt>
-<dd>Global scale factor for the scattering radius.</dd>
-<dt>Bán Kính -- Radius</dt>
-<dd>Average distance that light scatters below the surface.
+<dl class="simple">
+<dt>Màu Sắc -- Color</dt><dd><p>Về màu sắc của bề mặt, hoặc về thể chất mà nói, xác suất ánh sáng được phản xạ cho mỗi bước sóng.</p>
+</dd>
+<dt>Tỷ Lệ -- Scale</dt><dd><p>Global scale factor for the scattering radius.</p>
+</dd>
+<dt>Bán Kính -- Radius</dt><dd><p>Average distance that light scatters below the surface.
 Higher radius gives a softer appearance, as light bleeds into shadows and through the object.
 The scattering distance is specified separately for the RGB channels,
 to render materials such as skin where red light scatters deeper.
-The X, Y and Z values are mapped to the R, G and B values, respectively.</dd>
-<dt>Độ Sắc/Nhọn -- Sharpness</dt>
-<dd>Used only with <em>Cubic</em> falloff.
-Values increasing from 0 to 1 prevents softening of sharp edges and reduces unwanted darkening.</dd>
-<dt>Pháp Tuyến -- Normal</dt>
-<dd>Pháp tuyến sử dụng cho việc tô bóng; nếu không có gì kết nối thì pháp tuyến tô bóng mặc định sẽ được sử dụng.</dd>
-<dt>Làm Nhòe Chất Liệu -- Texture Blur</dt>
-<dd>How much of the texture will be blurred along with the lighting,
+The X, Y and Z values are mapped to the R, G and B values, respectively.</p>
+</dd>
+<dt>Độ Sắc/Nhọn -- Sharpness</dt><dd><p>Used only with <em>Cubic</em> falloff.
+Values increasing from 0 to 1 prevents softening of sharp edges and reduces unwanted darkening.</p>
+</dd>
+<dt>Pháp Tuyến -- Normal</dt><dd><p>Pháp tuyến sử dụng cho việc tô bóng; nếu không có gì kết nối thì pháp tuyến tô bóng mặc định sẽ được sử dụng.</p>
+</dd>
+<dt>Làm Nhòe Chất Liệu -- Texture Blur</dt><dd><p>How much of the texture will be blurred along with the lighting,
 mixing the texture at the incoming and outgoing points on the surface.
 Note that the right choice depends on the texture.
 Consider for example a texture created from a photograph of skin,
@@ -287,50 +286,50 @@ in this case the colors will already be pre-blurred and texture blur could be se
 Even for hand-painted textures, no blurring or minimal blurring might be appropriate,
 as a texture artist would likely paint in softening already.
 One would usually not even know what an unblurred skin texture looks like; we always see it blurred.
-For a procedural texture on the other hand this option would likely have a higher value.</dd>
+For a procedural texture on the other hand this option would likely have a higher value.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Phương Pháp -- Method</dt>
-<dd><p class="first">Rendering method to simulate subsurface scattering.</p>
-<dl class="last docutils">
-<dt>Christensen-Burley</dt>
-<dd>Is an approximation to physically-based volume scattering.
-Gives less blurry results than Cubic and Gaussian functions.</dd>
-<dt>Random Walk <span class="guilabel">Cycles Only</span></dt>
-<dd>Provides the most accurate results for thin and curved objects.
+<dl>
+<dt>Phương Pháp -- Method</dt><dd><p>Rendering method to simulate subsurface scattering.</p>
+<dl class="simple">
+<dt>Christensen-Burley</dt><dd><p>Is an approximation to physically-based volume scattering.
+Gives less blurry results than Cubic and Gaussian functions.</p>
+</dd>
+<dt>Random Walk <span class="guilabel">Cycles Only</span></dt><dd><p>Provides the most accurate results for thin and curved objects.
 This comes at the cost of increased render time or noise for more dense media like skin,
 but also better geometry detail preservation.
 Random Walk uses true volumetric scattering inside the mesh,
 which means that it works best for closed meshes.
-Overlapping faces and holes in the mesh can cause problems.</dd>
-<dt>Lập Phương -- Cubic</dt>
-<dd>Is a sharp falloff useful for many simple materials. The function is <span class="math notranslate nohighlight">\((radius - x)^3\)</span>.</dd>
-<dt>Gaus -- Gaussian</dt>
-<dd>Gives a smoother falloff following a normal distribution,
+Overlapping faces and holes in the mesh can cause problems.</p>
+</dd>
+<dt>Lập Phương -- Cubic</dt><dd><p>Is a sharp falloff useful for many simple materials. The function is <span class="math notranslate nohighlight">\((radius - x)^3\)</span>.</p>
+</dd>
+<dt>Gaus -- Gaussian</dt><dd><p>Gives a smoother falloff following a normal distribution,
 which is particularly useful for more advanced materials that use measured
 data that was fitted to one or more such Gaussian functions.
 The function is <span class="math notranslate nohighlight">\(e^{-8x^2/ radius^2}\)</span>,
 such that the radius roughly matches the maximum falloff distance.
-To match a given measured variance <em>v</em>, set <span class="math notranslate nohighlight">\(radius = sqrt(16 × v)\)</span>.</dd>
+To match a given measured variance <em>v</em>, set <span class="math notranslate nohighlight">\(radius = sqrt(16 × v)\)</span>.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>BSSRDF</dt>
-<dd><abbr title="Bidirectional subsurface scattering distribution function">BSSRDF</abbr> shader output.</dd>
+<dl class="simple">
+<dt>BSSRDF</dt><dd><p><abbr title="Bidirectional subsurface scattering distribution function">BSSRDF</abbr> shader output.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/render_shader-nodes_shader_sss_example.jpg" src="../../../_images/render_shader-nodes_shader_sss_example.jpg" />
-<p class="caption"><span class="caption-text">Random Walk subsurface scattering.</span></p>
+<p class="caption"><span class="caption-text">Random Walk subsurface scattering.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

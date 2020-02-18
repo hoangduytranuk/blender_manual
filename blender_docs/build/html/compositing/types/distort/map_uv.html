@@ -233,44 +233,44 @@
 <span id="bpy-types-compositornodemapuv"></span><h1>Nút Ánh Xạ UV -- Map UV Node<a class="headerlink" href="#map-uv-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeMapUV.png" src="../../../_images/compositing_node-types_CompositorNodeMapUV.png" />
-<p class="caption"><span class="caption-text">Map UV node.</span></p>
+<p class="caption"><span class="caption-text">Map UV node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>With this node objects can be &quot;re-textured&quot; after they have been rendered.</p>
 <p>To apply a texture to individual enumerated objects
 the <a class="reference internal" href="../converter/id_mask.html"><span class="doc">ID Mask Node</span></a> could be used.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>The new 2D texture.</dd>
-<dt>UV</dt>
-<dd>The input for UV render pass.
-See <a class="reference internal" href="../../../render/layers/passes.html"><span class="doc">Cycles render passes</span></a>.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>The new 2D texture.</p>
+</dd>
+<dt>UV</dt><dd><p>The input for UV render pass.
+See <a class="reference internal" href="../../../render/layers/passes.html"><span class="doc">Cycles render passes</span></a>.</p>
+</dd>
 </dl>
 <div class="admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">To store the UV pass a multi-layer OpenEXR format could be used.</p>
+<p class="admonition-title">Gợi ý</p>
+<p>To store the UV pass a multi-layer OpenEXR format could be used.</p>
 </div>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Alpha</dt>
-<dd>Alpha threshold is used to fade out pixels on boundaries.</dd>
+<dl class="simple">
+<dt>Alpha</dt><dd><p>Alpha threshold is used to fade out pixels on boundaries.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>The resulting image is the input image texture distorted to match the UV coordinates.
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>The resulting image is the input image texture distorted to match the UV coordinates.
 That image can then be overlay mixed with the original image to paint
 the texture on top of the original. Adjust alpha and the mix factor to control
-how much the new texture overlays the old.</dd>
+how much the new texture overlays the old.</p>
+</dd>
 </dl>
 <div class="admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">When painting the new texture,
+<p class="admonition-title">Gợi ý</p>
+<p>When painting the new texture,
 it helps to have the UV maps for the original objects in the scene,
 it is recommended to keep those UV texture outlines around even, when shooting is done.</p>
 </div>
@@ -283,9 +283,9 @@ During rendering, we enabled the UV layer in the Properties editor
 <span class="menuselection">Render Layer ‣ Passes</span>. Using a Mix node (&quot;Overlay&quot; in figure),
 we mix that new UV texture over the original face.
 We can use this grid texture to help in any motion tracking that we need to do.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_distort_map-uv_example-1.png"><img alt="../../../_images/compositing_types_distort_map-uv_example-1.png" src="../../../_images/compositing_types_distort_map-uv_example-1.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-text">Adding a grid UV textures for motion tracking.</span></p>
+<p class="caption"><span class="caption-text">Adding a grid UV textures for motion tracking.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the next example, we overlay a logo on top of a mesh composed of two intersecting cubes,
 and we ensure that we Enable the Alpha premultiply button on the Mix node.
@@ -293,13 +293,13 @@ The logo is used as additional UV texture on top of the existing texture. Other 
 the possibility that there was used an unauthorized product box during the initial animation,
 and it is needed to substitute in a different product sponsor after rendering.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">Due to limits of this node, it is not recommended to rush pre-production rendering under
+<p class="admonition-title">Gợi ý</p>
+<p>Due to limits of this node, it is not recommended to rush pre-production rendering under
 the guise of &quot;fixing it later&quot;.</p>
 </div>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_distort_map-uv_example-2.png"><img alt="../../../_images/compositing_types_distort_map-uv_example-2.png" src="../../../_images/compositing_types_distort_map-uv_example-2.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-text">Adding UV textures in post-production.</span></p>
+<p class="caption"><span class="caption-text">Adding UV textures in post-production.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

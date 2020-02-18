@@ -240,64 +240,58 @@ It can also use another object as the mirror center, then use that object's loca
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_generate_mirror_panel.png" src="../../../_images/modeling_modifiers_generate_mirror_panel.png" />
-<p class="caption"><span class="caption-text">The Mirror modifier.</span></p>
+<p class="caption"><span class="caption-text">The Mirror modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Trục -- Axis</dt>
-<dd><p class="first">The X, Y, Z axis along which to mirror, i.e. the axis perpendicular to the mirror plane of symmetry.</p>
+<dl>
+<dt>Trục -- Axis</dt><dd><p>The X, Y, Z axis along which to mirror, i.e. the axis perpendicular to the mirror plane of symmetry.</p>
 <p>To understand how the axis applies to the mirror direction, if you were to mirror on the X axis,
 the positive X values of the original mesh would become the negative X values on the mirrored side.</p>
-<p class="last">You can select more than one of these axes. And will then get more mirrored copies.
+<p>You can select more than one of these axes. And will then get more mirrored copies.
 With one axis you get a single mirror, with two axes four mirrors, and with all three axes eight mirrors.</p>
 </dd>
-<dt>Bisect</dt>
-<dd>If the mesh is already on both sides of the mirror plane, it is cut by that plane,
-and only one side (the &quot;negative&quot; one by default) is kept to perform the mirror process.</dd>
-<dt>Flip</dt>
-<dd>When <em>Bisect</em> is enabled on an axis, you can use this setting to switch the side kept and mirrored
-(i.e. when it is enabled, the &quot;positive&quot; side will be kept, instead of the &quot;negative&quot; one).</dd>
-<dt>Vật Thể Đối Xứng -- Mirror Object</dt>
-<dd><p class="first">An <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Object Selector</span></a> to select an object (usually an empty),
+<dt>Bisect</dt><dd><p>If the mesh is already on both sides of the mirror plane, it is cut by that plane,
+and only one side (the &quot;negative&quot; one by default) is kept to perform the mirror process.</p>
+</dd>
+<dt>Flip</dt><dd><p>When <em>Bisect</em> is enabled on an axis, you can use this setting to switch the side kept and mirrored
+(i.e. when it is enabled, the &quot;positive&quot; side will be kept, instead of the &quot;negative&quot; one).</p>
+</dd>
+<dt>Vật Thể Đối Xứng -- Mirror Object</dt><dd><p>An <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Object Selector</span></a> to select an object (usually an empty),
 which position and rotation will be used to define mirror planes
 (instead of using the ones from the modified object).</p>
-<p class="last">You can animate it to animate the mirror effect.</p>
+<p>You can animate it to animate the mirror effect.</p>
 </dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Groups</dt>
-<dd><p class="first">Try to mirror existing vertex groups.</p>
+<dt>Nhóm Điểm Đỉnh -- Vertex Groups</dt><dd><p>Try to mirror existing vertex groups.</p>
 <p>A very nice feature, but one that has very specific prerequisites:</p>
-<ul class="last simple">
-<li>The vertex groups you want to mirror must be named following the usual left/right pattern
-(i.e. suffixed by something like &quot;.R&quot;, &quot;.right&quot;, &quot;.L&quot;, etc.).</li>
-<li>The mirror side vertex group must already exist (it will not be created automatically).
-It must also be completely empty (no vertices assigned to it).</li>
+<ul class="simple">
+<li><p>The vertex groups you want to mirror must be named following the usual left/right pattern
+(i.e. suffixed by something like &quot;.R&quot;, &quot;.right&quot;, &quot;.L&quot;, etc.).</p></li>
+<li><p>The mirror side vertex group must already exist (it will not be created automatically).
+It must also be completely empty (no vertices assigned to it).</p></li>
 </ul>
 </dd>
-<dt>Hội Nhập -- Merge</dt>
-<dd>Where a vertex is in the same place (within the <em>Merge Limit</em> distance) as its mirror
-it will be merged with the mirrored vertex.</dd>
-<dt>Giới Hạn Hội Nhập -- Merge Limit</dt>
-<dd>The maximum distance between a vertex and its mirror copy at which they are merged together
-(being snapped on the mirror plane). Needs <em>Merge</em> to be enabled.</dd>
-<dt>Xén -- Clipping</dt>
-<dd><p class="first">Prevents vertices from moving through the mirror plane(s) while the user is transforming them in Edit Mode.</p>
+<dt>Hội Nhập -- Merge</dt><dd><p>Where a vertex is in the same place (within the <em>Merge Limit</em> distance) as its mirror
+it will be merged with the mirrored vertex.</p>
+</dd>
+<dt>Giới Hạn Hội Nhập -- Merge Limit</dt><dd><p>The maximum distance between a vertex and its mirror copy at which they are merged together
+(being snapped on the mirror plane). Needs <em>Merge</em> to be enabled.</p>
+</dd>
+<dt>Xén -- Clipping</dt><dd><p>Prevents vertices from moving through the mirror plane(s) while the user is transforming them in Edit Mode.</p>
 <p>If it is enabled but vertices are beyond the mirror plane and outside of the <em>Merge Limit</em>,
 the vertices will not be merged. But as soon as the vertices are within <em>Merge Limit</em>
 they are snapped together and cannot be moved beyond the mirror plane.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Vertices on the mirror plane will be unable to move away from the mirror plane
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Vertices on the mirror plane will be unable to move away from the mirror plane
 as long as <em>Clipping</em> is enabled.
 You must disable it to be able to move the vertices along the mirror axis again.</p>
 </div>
 </dd>
-<dt>-- Flip UV</dt>
-<dd><p class="first">The <em>Flip U</em> and <em>Flip V</em> options allows you to mirror the UV texture coordinates across the middle of the image.</p>
-<p class="last">E.g. if you have a vertex with UV coordinates of (0.3, 0.9),
+<dt>-- Flip UV</dt><dd><p>The <em>Flip U</em> and <em>Flip V</em> options allows you to mirror the UV texture coordinates across the middle of the image.</p>
+<p>E.g. if you have a vertex with UV coordinates of (0.3, 0.9),
 its mirror copy will have UV coordinates of (0.7, 0.1).</p>
 </dd>
-<dt>-- UV Offsets</dt>
-<dd><p class="first">Amount to shift mirrored UVs on the U/V axes.</p>
-<p class="last">It's useful for baking (as overlapping UVs can cause artifacts to appear in the baked map),
+<dt>-- UV Offsets</dt><dd><p>Amount to shift mirrored UVs on the U/V axes.</p>
+<p>It's useful for baking (as overlapping UVs can cause artifacts to appear in the baked map),
 so the UVs can be moved outside the image and not used for baking, but still be used for display.</p>
 </dd>
 </dl>

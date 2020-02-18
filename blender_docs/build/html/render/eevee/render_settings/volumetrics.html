@@ -141,7 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Nguyên Liệu -- Materials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../world.html">Thế Giới -- World</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../lighting.html">Light Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../lightprobes/index.html">-- Light Probes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../light_probes/index.html">Light Probes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../limitations.html">Những Giới Hạn -- Limitations</a></li>
 </ul>
 </li>
@@ -240,51 +240,48 @@
 The texture dimensions can be tweaked using the <em>Tile Size</em> and <em>Samples</em> parameters.</p>
 <p>Object volumes have some <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">limitations</span></a>.</p>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ Render ‣ Volumetrics</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Render ‣ Volumetrics</span></p>
+</dd>
+</dl>
 </div>
-<dl class="docutils">
-<dt>Bắt Đầu -- Start</dt>
-<dd>Start distance of the volumetric effect.</dd>
-<dt>Kết Thúc -- End</dt>
-<dd>End distance of the volumetric effect.</dd>
-<dt>Kích Thước Ô -- Tile Size</dt>
-<dd>Controls the quality of the volumetric effects. Lower size increases video memory usage and quality.
-This is the size in pixels of a volumetric cell.</dd>
-<dt>Lượng Mẫu Vật -- Samples</dt>
-<dd>Number of samples to compute volumetric effects. Higher count increases video memory usage and quality.
-These samples are distributed along the view depth (view Z axis).</dd>
-<dt>Phân Phối -- Distribution</dt>
-<dd>Blend between linear and exponential sample distribution. Higher values puts more samples near the camera.</dd>
+<dl class="simple">
+<dt>Bắt Đầu -- Start</dt><dd><p>Start distance of the volumetric effect.</p>
+</dd>
+<dt>Kết Thúc -- End</dt><dd><p>End distance of the volumetric effect.</p>
+</dd>
+<dt>Kích Thước Ô -- Tile Size</dt><dd><p>Controls the quality of the volumetric effects. Lower size increases video memory usage and quality.
+This is the size in pixels of a volumetric cell.</p>
+</dd>
+<dt>Lượng Mẫu Vật -- Samples</dt><dd><p>Number of samples to compute volumetric effects. Higher count increases video memory usage and quality.
+These samples are distributed along the view depth (view Z axis).</p>
+</dd>
+<dt>Phân Phối -- Distribution</dt><dd><p>Blend between linear and exponential sample distribution. Higher values puts more samples near the camera.</p>
+</dd>
 </dl>
 <div class="section" id="volumetric-lighting">
 <span id="bpy-types-sceneeevee-volumetric-light"></span><h2>-- Volumetric Lighting<a class="headerlink" href="#volumetric-lighting" title="Permalink to this headline">¶</a></h2>
 <p>Let the volume scattering scatter light in the scene.
 Unnecessary if no Volume Scatter is present in the scene.</p>
-<dl class="docutils">
-<dt>-- Light Clamping</dt>
-<dd>Clamp light contribution of the volume scattering effect. Reduces flickering and noise.
-Set to 0.0 to disable clamping.</dd>
+<dl class="simple">
+<dt>-- Light Clamping</dt><dd><p>Clamp light contribution of the volume scattering effect. Reduces flickering and noise.
+Set to 0.0 to disable clamping.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="volumetric-shadows">
 <span id="bpy-types-sceneeevee-volumetric-shadow"></span><h2>-- Volumetric Shadows<a class="headerlink" href="#volumetric-shadows" title="Permalink to this headline">¶</a></h2>
 <p>Approximate light absorption of the surrounding volume objects. This makes the volumes more opaque to light.
 This is a very expensive option and has limitations (link).</p>
-<dl class="docutils">
-<dt>Mẫu Vật Bóng Tối -- Shadow Samples</dt>
-<dd>Number of samples to compute volumetric shadowing.</dd>
+<dl class="simple">
+<dt>Mẫu Vật Bóng Tối -- Shadow Samples</dt><dd><p>Number of samples to compute volumetric shadowing.</p>
+</dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Limitations</span></a>.</p>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Limitations</span></a>.</p>
 </div>
 </div>
 </div>

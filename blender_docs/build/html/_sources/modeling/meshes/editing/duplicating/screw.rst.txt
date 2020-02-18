@@ -8,7 +8,7 @@ Screw Tool
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Screw`
+   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Screw`
 
 The *Screw* tool combines a repetitive *Spin* with a translation,
 to generate a screw-like, or spiral-shaped, object. Use this tool to create screws, springs,

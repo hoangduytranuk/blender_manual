@@ -13,5 +13,5 @@
    materials/index.rst
    world.rst
    lighting.rst
-   lightprobes/index.rst
+   light_probes/index.rst
    limitations.rst

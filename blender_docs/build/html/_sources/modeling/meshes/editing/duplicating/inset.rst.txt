@@ -8,7 +8,7 @@ Inset Faces
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Inset Faces`
+   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Inset Faces`
    :Menu:      :menuselection:`Mesh --> Faces --> Inset Faces`
    :Hotkey:    :kbd:`I`
 

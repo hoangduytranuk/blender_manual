@@ -133,7 +133,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../world.html">Thế Giới -- World</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../lighting.html">Light Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../lightprobes/index.html">-- Light Probes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../light_probes/index.html">Light Probes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../limitations.html">Những Giới Hạn -- Limitations</a></li>
 </ul>
 </li>
@@ -228,15 +228,12 @@
   <div class="section" id="material-settings">
 <h1>-- Material Settings<a class="headerlink" href="#material-settings" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Bảng -- Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ Material ‣ Options</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Material ‣ Options</span></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="backface-culling">
 <h2>Backface Culling<a class="headerlink" href="#backface-culling" title="Permalink to this headline">¶</a></h2>
@@ -247,24 +244,24 @@
 <p>After calculating the color of a surface, the blend mode defines how it is added to the color buffer.
 Depending on this, the final color will be different.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Alpha Blending is considered a &quot;Transparent&quot; blend mode
+<p class="admonition-title">Ghi chú</p>
+<p>Alpha Blending is considered a &quot;Transparent&quot; blend mode
 and has implications regarding screen space effects.</p>
 </div>
-<dl class="docutils">
-<dt>Đục -- Opaque</dt>
-<dd>The previous color will be overwritten by the surface color.
-The alpha component is ignored. This is the fastest option.</dd>
-<dt>Cắt Bằng Alpha -- Alpha Clip</dt>
-<dd>The previous color will be overwritten by the surface color,
-but only if the alpha value is above the clip threshold.</dd>
-<dt>-- Alpha Hashed</dt>
-<dd>The previous color will be overwritten by the surface color,
+<dl class="simple">
+<dt>Đục -- Opaque</dt><dd><p>The previous color will be overwritten by the surface color.
+The alpha component is ignored. This is the fastest option.</p>
+</dd>
+<dt>Cắt Bằng Alpha -- Alpha Clip</dt><dd><p>The previous color will be overwritten by the surface color,
+but only if the alpha value is above the clip threshold.</p>
+</dd>
+<dt>-- Alpha Hashed</dt><dd><p>The previous color will be overwritten by the surface color,
 but only if the alpha value is above a random clip threshold.
 This statistical approach is noisy but is able to approximate alpha blending without any sorting problem.
-Increasing the sample count in the render settings will reduce the resulting noise.</dd>
-<dt>-- Alpha Blending</dt>
-<dd>Use alpha blending to overlay the surface color on top of the previous color.</dd>
+Increasing the sample count in the render settings will reduce the resulting noise.</p>
+</dd>
+<dt>-- Alpha Blending</dt><dd><p>Use alpha blending to overlay the surface color on top of the previous color.</p>
+</dd>
 </dl>
 <div class="section" id="sorting-problem">
 <h3>-- Sorting Problem<a class="headerlink" href="#sorting-problem" title="Permalink to this headline">¶</a></h3>
@@ -273,17 +270,17 @@ the order in which the color blending happens is important as it can change the 
 As of now Eevee does not support per-fragment (pixel) sorting or per-triangle sorting.
 Only per-object sorting is available and is automatically done on all transparent surfaces based on object origin.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This per-object sorting has already a cost and having thousands of
+<p class="admonition-title">Ghi chú</p>
+<p>This per-object sorting has already a cost and having thousands of
 these objects in a scene will greatly degrade performance.</p>
 </div>
-<dl class="docutils">
-<dt>-- Show Backside</dt>
-<dd>If enabled, all transparent fragments will be rendered.
+<dl class="simple">
+<dt>-- Show Backside</dt><dd><p>If enabled, all transparent fragments will be rendered.
 If disabled, only the front-most surface fragments will be rendered.
 Disable this option to ensure correct appearance of transparency from any point of view.
 Then using <em>Alpha Blending</em> this option should be disabled because with <em>Alpha Blending</em>,
-the order in which triangles are sorted is important.</dd>
+the order in which triangles are sorted is important.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -294,23 +291,23 @@ Eevee does not support colored shadow maps.</p>
 <p>Half transparent shadows can be produced by using hashed transparent shadows and
 a larger Soft value on the shadow map.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This option does not change the behavior of contact shadows which are traced using the depth buffer.
+<p class="admonition-title">Ghi chú</p>
+<p>This option does not change the behavior of contact shadows which are traced using the depth buffer.
 If the material is writing to the depth buffer
 (in other words, if the blend mode is set to either <em>Opaque</em>, <em>Alpha Clip</em> or <em>Alpha Hashed</em>),
 contact shadows will be casted by the surface material regardless of the <em>Transparent Shadow</em> type.</p>
 </div>
-<dl class="docutils">
-<dt>Không Có -- None</dt>
-<dd>The surface will not cast any shadow.</dd>
-<dt>Đục -- Opaque</dt>
-<dd>The surface will cast shadows like an opaque surface.</dd>
-<dt>Đoạn Phim -- Clip</dt>
-<dd>The surface will cast shadows like an opaque surface,
-but only areas where the alpha value is above the clip threshold.</dd>
-<dt>-- Hashed</dt>
-<dd>The surface will cast shadows like an opaque surface,
-but only areas where the alpha value is above a random threshold.</dd>
+<dl class="simple">
+<dt>Không Có -- None</dt><dd><p>The surface will not cast any shadow.</p>
+</dd>
+<dt>Đục -- Opaque</dt><dd><p>The surface will cast shadows like an opaque surface.</p>
+</dd>
+<dt>Đoạn Phim -- Clip</dt><dd><p>The surface will cast shadows like an opaque surface,
+but only areas where the alpha value is above the clip threshold.</p>
+</dd>
+<dt>-- Hashed</dt><dd><p>The surface will cast shadows like an opaque surface,
+but only areas where the alpha value is above a random threshold.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="screen-space-refraction">
@@ -324,15 +321,14 @@ Surfaces that use Screen Space Refraction will not appear in Screen Space Reflec
 Surfaces that use Screen Space Refraction will not cast Ambient Occlusion onto other surfaces.</p>
 <p>If this option is disabled or if the Screen Space Refraction raytrace fails,
 the refracted ray will use the color of the nearest probe.</p>
-<dl class="docutils">
-<dt>-- Screen Space Refraction</dt>
-<dd>Enables screen space refraction.</dd>
-<dt>-- Refraction Depth</dt>
-<dd><p class="first">If Refraction Depth is not 0.0, all refraction BSDFs in the shader will act as if
+<dl>
+<dt>-- Screen Space Refraction</dt><dd><p>Enables screen space refraction.</p>
+</dd>
+<dt>-- Refraction Depth</dt><dd><p>If Refraction Depth is not 0.0, all refraction BSDFs in the shader will act as if
 the object is a thin slab of the refraction material having this thickness.
 This will model a second refraction event that will double the absorption color and
 start the refraction ray after this second event.</p>
-<p class="last">This option greatly increases the quality of thin glass objects.</p>
+<p>This option greatly increases the quality of thin glass objects.</p>
 </dd>
 </dl>
 </div>

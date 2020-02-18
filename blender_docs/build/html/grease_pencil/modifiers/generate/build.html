@@ -124,7 +124,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../multiframe.html">Multiframe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../properties/index.html">Properties</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Grease Pencil Modifiers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Generate</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="array.html">Array Modifier</a></li>
@@ -139,9 +139,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Grease Pencil Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visual_effects/index.html">Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../animation/index.html">Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#modes">Modes</a></li>
 </ul>
 </li>
@@ -206,7 +206,7 @@
         
           <li><a href="../../index.html">Grease Pencil</a> &raquo;</li>
         
-          <li><a href="../index.html">Grease Pencil Modifiers</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
         
           <li><a href="index.html">Generate</a> &raquo;</li>
         
@@ -232,24 +232,21 @@ create the effect of animating lines being drawn or erased.</p>
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/grease-pencil_modifiers_generate_build_panel.png" src="../../../_images/grease-pencil_modifiers_generate_build_panel.png" />
-<p class="caption"><span class="caption-text">The Build modifier.</span></p>
+<p class="caption"><span class="caption-text">The Build modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Mode</dt>
-<dd><p class="first">Determines how many strokes are being animated at a time.</p>
-<dl class="last docutils">
-<dt>Sequential</dt>
-<dd>Strokes appear/disappear one after the other, but only a single one changes at a time.</dd>
-<dt>Concurrent</dt>
-<dd><p class="first">Multiple stroke appear/disappear at a time.</p>
+<dl>
+<dt>Mode</dt><dd><p>Determines how many strokes are being animated at a time.</p>
+<dl>
+<dt>Sequential</dt><dd><p>Strokes appear/disappear one after the other, but only a single one changes at a time.</p>
+</dd>
+<dt>Concurrent</dt><dd><p>Multiple stroke appear/disappear at a time.</p>
 <p>If enabled you can set the <em>Time Alignment</em>.</p>
-<dl class="last docutils">
-<dt>Time Alignment</dt>
-<dd><dl class="first last docutils">
-<dt>Align Start</dt>
-<dd>All stroke start at the same time (i.e. shorter strokes finish earlier).</dd>
-<dt>Align End</dt>
-<dd>All stroke end at the same time (i.e. shorter strokes start later).</dd>
+<dl class="simple">
+<dt>Time Alignment</dt><dd><dl class="simple">
+<dt>Align Start</dt><dd><p>All stroke start at the same time (i.e. shorter strokes finish earlier).</p>
+</dd>
+<dt>Align End</dt><dd><p>All stroke end at the same time (i.e. shorter strokes start later).</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -260,31 +257,30 @@ create the effect of animating lines being drawn or erased.</p>
 <div class="section" id="transition">
 <h3>Transition<a class="headerlink" href="#transition" title="Permalink to this headline">¶</a></h3>
 <p>Determines the animation type to build the strokes.</p>
-<dl class="docutils">
-<dt>Grow</dt>
-<dd>Shows points in the order they occur in each stroke, from first to last stroke.
-(Simulating lines being drawn.)</dd>
-<dt>Shrink</dt>
-<dd>Hide points from the end of each stroke to the start, from last to first stroke.
-(Simulating lines being erased.)</dd>
-<dt>Fade</dt>
-<dd>Hide points in the order they occur in each stroke, from first to last stroke.
-(Simulating ink fading or vanishing after getting drawn.)</dd>
+<dl class="simple">
+<dt>Grow</dt><dd><p>Shows points in the order they occur in each stroke, from first to last stroke.
+(Simulating lines being drawn.)</p>
+</dd>
+<dt>Shrink</dt><dd><p>Hide points from the end of each stroke to the start, from last to first stroke.
+(Simulating lines being erased.)</p>
+</dd>
+<dt>Fade</dt><dd><p>Hide points in the order they occur in each stroke, from first to last stroke.
+(Simulating ink fading or vanishing after getting drawn.)</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="frame-range">
 <h3>Frame Range<a class="headerlink" href="#frame-range" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Start Delay</dt>
-<dd>Number of frames after each Grease Pencil keyframe before the modifier has any effects.</dd>
-<dt>Length</dt>
-<dd>Maximum number of frames that the build effect can run for.
-(Unless another Grease Pencil keyframe occurs before this time has elapsed.)</dd>
-<dt>Restrict Frame range</dt>
-<dd><p class="first">If enabled, only modify strokes during the specified frame range.</p>
-<dl class="last docutils">
-<dt>Start/End</dt>
-<dd>Determines the start and end frame for the build effect.</dd>
+<dl>
+<dt>Start Delay</dt><dd><p>Number of frames after each Grease Pencil keyframe before the modifier has any effects.</p>
+</dd>
+<dt>Length</dt><dd><p>Maximum number of frames that the build effect can run for.
+(Unless another Grease Pencil keyframe occurs before this time has elapsed.)</p>
+</dd>
+<dt>Restrict Frame range</dt><dd><p>If enabled, only modify strokes during the specified frame range.</p>
+<dl class="simple">
+<dt>Start/End</dt><dd><p>Determines the start and end frame for the build effect.</p>
+</dd>
 </dl>
 </dd>
 </dl>

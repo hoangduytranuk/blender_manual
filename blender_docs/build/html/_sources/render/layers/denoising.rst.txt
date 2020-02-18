@@ -66,7 +66,7 @@ Strength
    Lower values preserve more detail, but aren't as smooth.
 Feature Strength
    Controls removal of noisy and redundant image feature passes before the actual denoising.
-   This is required in some cases like :abbr:`DoF (Depth of Field)` or Motion Blur to avoid splotchy results,
+   This is required in some cases like :abbr:`DoF (Depth of Field)` or motion blur to avoid splotchy results,
    but might cause fine texture/geometrical detail to be lost.
    Lower values preserve more detail, but aren't as smooth.
 Relative Filter

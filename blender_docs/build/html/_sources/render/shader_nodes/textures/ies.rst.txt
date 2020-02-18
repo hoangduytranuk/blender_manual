@@ -25,7 +25,7 @@ Mode
    Internal
       Use IES profile from a file embedded in a text data-block in the blend-file, for easy distribution.
    External
-      Load IES profile from a file on disk.
+      Load IES profile from a file on the drive.
 
 Outputs
 =======

@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
@@ -223,53 +223,49 @@
   <div class="section" id="active-spline">
 <h1>Active Spline<a class="headerlink" href="#active-spline" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Mode:</th><td class="field-body">Edit Mode</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Menu:</th><td class="field-body"><span class="menuselection">Properties ‣ Curve ‣ Active Spline</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Properties ‣ Curve ‣ Active Spline</span></p>
+</dd>
+</dl>
 </div>
 <p>The <em>Active Spline</em> panel is used in Edit Mode to control properties of the currently selected spline.</p>
 <div class="figure align-center" id="id1">
-<img alt="../../../_images/modeling_surfaces_properties_active-spline-panel.png" src="../../../_images/modeling_surfaces_properties_active-spline-panel.png" />
-<p class="caption"><span class="caption-text">Active Spline panel.</span></p>
+<img alt="../../../_images/modeling_surfaces_properties_active-spline_panel.png" src="../../../_images/modeling_surfaces_properties_active-spline_panel.png" />
+<p class="caption"><span class="caption-text">Active Spline panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Cyclic U/V</dt>
-<dd>Like curves, surfaces can be closed (cyclical) or open, independently in both directions,
+<dl>
+<dt>Cyclic U/V</dt><dd><p>Like curves, surfaces can be closed (cyclical) or open, independently in both directions,
 allowing you to easily create a tube, torus or sphere shape,
 and they can be viewed as &quot;solids&quot; in <em>Edit Mode</em>.
-This can be set per interpolation axis.</dd>
-<dt>Bézier U</dt>
-<dd>Makes the surface act like a Bézier curve.
+This can be set per interpolation axis.</p>
+</dd>
+<dt>Bézier U</dt><dd><p>Makes the surface act like a Bézier curve.
 The control points act like <em>Free</em> handles of a Bézier curve.
 Depending on the <em>Order</em>, 3 or 4 control points form one spline segment.
 This can be set per interpolation axis.
-<em>Cyclic</em> and <em>Endpoint</em> must be disabled for this option to work.</dd>
-<dt>Endpoint U/V</dt>
-<dd><p class="first">Makes the surface contact the end control points.
+<em>Cyclic</em> and <em>Endpoint</em> must be disabled for this option to work.</p>
+</dd>
+<dt>Endpoint U/V</dt><dd><p>Makes the surface contact the end control points.
 This can be set per interpolation axis.
 <em>Cyclic</em> must be disabled for this option to work.</p>
 <div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../../../_images/modeling_surfaces_properties_endpoint.png"><img alt="../../../_images/modeling_surfaces_properties_endpoint.png" src="../../../_images/modeling_surfaces_properties_endpoint.png" style="width: 50%;" /></a>
-<p class="caption"><span class="caption-text">Endpoint U.</span></p>
+<p class="caption"><span class="caption-text">Endpoint U.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the image below, the U interpolation axis is labeled as &quot;U&quot;
 and the V interpolation axis is labeled as &quot;V&quot;.
 The U's interpolation axis has been set to <em>Endpoint</em>
 and as such the surface now extends to the outer edges from
 E1 to E2 along the U interpolation axis.</p>
-<p class="last">To cause the surface to extend to all edges,
+<p>To cause the surface to extend to all edges,
 <em>Endpoint</em> would be set for the V's axis as well.</p>
 </dd>
-<dt>Order U/V</dt>
-<dd><p class="first">This property is the same as with <a class="reference internal" href="../../curves/properties/active_spline.html#modeling-curve-order"><span class="std std-ref">NURBS Curves</span></a>;
+<dt>Order U/V</dt><dd><p>This property is the same as with <a class="reference internal" href="../../curves/properties/active_spline.html#modeling-curve-order"><span class="std std-ref">NURBS Curves</span></a>;
 it specifies how much the control points are taken into account for calculating the curve of the surface shape.
 For high Orders 1 the surface pulls away from the control points,
 creating a smoother surface by assuming that the <em>Resolution U/V</em> is high enough.
@@ -277,20 +273,20 @@ For lowest Orders 2 the surface follows the control points,
 creating a surface that tends to follow the grid cage.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-surface-intro-order"></span><a class="reference internal image-reference" href="../../../_images/modeling_surfaces_properties_order.png"><img alt="../../../_images/modeling_surfaces_properties_order.png" src="../../../_images/modeling_surfaces_properties_order.png" style="width: 50%;" /></a>
-<p class="caption"><span class="caption-text">Order 2 and Order 4 surface.</span></p>
+<p class="caption"><span class="caption-text">Order 2 and Order 4 surface.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>For illustration purposes, in both Fig. <a class="reference internal" href="#fig-surface-intro-order"><span class="std std-ref">Order 2 and Order 4 surface.</span></a>,
 the knot vectors were set to <em>Endpoint</em>, causing the surface to extend to all edges.</p>
-<p class="last">You can set independently the order for each interpolation axis,
+<p>You can set independently the order for each interpolation axis,
 and like curves, it <strong>cannot</strong> be lower than 2,
 and higher than 6 or the number of control points on the relevant axis.</p>
 </dd>
-<dt>Resolution U/V</dt>
-<dd>Alters the <a class="reference internal" href="shape.html#bpy-types-curve-resolution-v"><span class="std std-ref">resolution</span></a>
+<dt>Resolution U/V</dt><dd><p>Alters the <a class="reference internal" href="shape.html#bpy-types-curve-resolution-v"><span class="std std-ref">resolution</span></a>
 of each segment by changing the number of subdivisions.
-This can be set per interpolation axis.</dd>
-<dt>Smooth</dt>
-<dd>Use <a class="reference internal" href="../../meshes/editing/normals.html#modeling-meshes-editing-normals-shading"><span class="std std-ref">Smooth Shading</span></a> for any 3D geometry.</dd>
+This can be set per interpolation axis.</p>
+</dd>
+<dt>Smooth</dt><dd><p>Use <a class="reference internal" href="../../meshes/editing/normals.html#modeling-meshes-editing-normals-shading"><span class="std std-ref">Smooth Shading</span></a> for any 3D geometry.</p>
+</dd>
 </dl>
 </div>
 

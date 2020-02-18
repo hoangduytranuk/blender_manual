@@ -28,7 +28,7 @@ Object Mode
    :class: refbox
 
    :Mode:      Object Mode
-   :Menu:      Via the |prop-edit-icon| icon in the header.
+   :Header:    Via the |prop-edit-icon| icon in the header.
    :Hotkey:    :kbd:`O`
 
 Proportional Editing is typically used in *Edit Mode*, however, it can also be used in *Object Mode*.

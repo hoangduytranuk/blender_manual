@@ -1,4 +1,6 @@
 .. _render-cycles-settings-scene-simplify:
+.. _bpy.types.RenderSettings.simplify_subdivision:
+.. _bpy.types.CyclesRenderSettings.texture_limit:
 
 ********
 Simplify
@@ -8,11 +10,6 @@ Simplify
    :class: refbox
 
    :Menu:      :menuselection:`Render --> Simplify`
-
-
-.. _bpy.types.RenderSettings.simplify_subdivision:
-.. _bpy.types.CyclesRenderSettings.texture_limit:
-
 
 .. rubric:: Common Settings
 
@@ -28,15 +25,10 @@ AO Bounces
    This can reduce noise in interior scenes with little visual difference.
 
 
-.. _bpy.types.SmokeDomainSettings.use_high_resolution:
-.. _render-cycles-simplify-viewport:
-
 Viewport
 ========
 
-Use High-resolution Smoke
-   Shows a :ref:`higher resolution <smoke-high-resolution>`
-   version of :doc:`Smoke Simulations </physics/smoke/index>` in the viewport.
+See Common Settings above.
 
 
 Render

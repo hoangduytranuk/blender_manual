@@ -237,7 +237,7 @@
 <h1>Nút Thời Gian -- Time Node<a class="headerlink" href="#time-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../../_images/compositing_node-types_CompositorNodeTime.png" src="../../../../_images/compositing_node-types_CompositorNodeTime.png" />
-<p class="caption"><span class="caption-text">Nút Thời Gian.</span></p>
+<p class="caption"><span class="caption-text">Nút Thời Gian.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Time node</em> generates a factor value (from 0.0 to 1.0)
 that changes according to the curve as time progresses through the <em>Timeline</em>.</p>
@@ -247,37 +247,36 @@ that changes according to the curve as time progresses through the <em>Timeline<
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Đường Cong -- Curve</dt>
-<dd><p class="first">Giá trị Y được xác định bởi đường cong là hệ số đầu ra. Đối với các điều khiển về đường cong, xin hãy xem mục: <a class="reference internal" href="../../../../interface/controls/templates/curve.html#ui-curve-widget"><span class="std std-ref">Thành tố điều khiển đường cong -- Curve widget</span></a>.</p>
-<div class="last admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">Đảo lật đường cong ngược lại sẽ đảo ngược thời gian cung cấp ở đầu vào, song làm như vậy sẽ khó quan sát và dễ gây ra sự lãng quên trong quá trình thiết lập nút.</p>
+<dl>
+<dt>Đường Cong -- Curve</dt><dd><p>Giá trị Y được xác định bởi đường cong là hệ số đầu ra. Đối với các điều khiển về đường cong, xin hãy xem mục: <a class="reference internal" href="../../../../interface/controls/templates/curve.html#ui-curve-widget"><span class="std std-ref">Thành tố điều khiển đường cong -- Curve widget</span></a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Đảo lật đường cong ngược lại sẽ đảo ngược thời gian cung cấp ở đầu vào, song làm như vậy sẽ khó quan sát và dễ gây ra sự lãng quên trong quá trình thiết lập nút.</p>
 </div>
 </dd>
-<dt>Bắt Đầu, Kết Thúc (Đầu,Cuối) -- Start, End</dt>
-<dd>Khung hình mở đầu và khung hình kết thúc trong phạm vi thời gian quyết định các giá trị đầu ra rằng chúng sẽ kéo dài bao lâu. Phạm vi này trở thành trục X của biểu đồ. Đầu vào về thời gian (<em>time input</em>) có thể được đảo ngược bằng cách xác định khung hình bắt đầu lớn hơn khung hình kết thúc.</dd>
+<dt>Bắt Đầu, Kết Thúc (Đầu,Cuối) -- Start, End</dt><dd><p>Khung hình mở đầu và khung hình kết thúc trong phạm vi thời gian quyết định các giá trị đầu ra rằng chúng sẽ kéo dài bao lâu. Phạm vi này trở thành trục X của biểu đồ. Đầu vào về thời gian (<em>time input</em>) có thể được đảo ngược bằng cách xác định khung hình bắt đầu lớn hơn khung hình kết thúc.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hệ Số -- Factor</dt>
-<dd>A speed of time factor (from 0.00 to 1.00) relative to the frame rate
+<dl class="simple">
+<dt>Hệ Số -- Factor</dt><dd><p>A speed of time factor (from 0.00 to 1.00) relative to the frame rate
 defined in the <a class="reference internal" href="../../../../render/output/settings.html#render-tab-dimensions"><span class="std std-ref">Render Dimensions Panel</span></a>.
-The factor changes according to the defined curve.</dd>
+The factor changes according to the defined curve.</p>
+</dd>
 </dl>
 <div class="admonition hint">
-<p class="first admonition-title">Gợi ý</p>
+<p class="admonition-title">Gợi ý</p>
 <p>Giá trị xuất ở đầu ra -- Output values</p>
-<p class="last">Nút <a class="reference internal" href="../../../../compositing/types/vector/map_value.html"><span class="doc">Ánh Xạ Giá Trị -- Map Value</span></a> có thể được sử dụng để ánh xạ đầu ra sang thành một giá trị thích hợp hơn. Đôi khi, với các đường cong, nút Thời gian có thể xuất ra một số lớn hơn 1, hoặc nhỏ hơn 0. Để bảo toàn, xin hãy sử dụng chức năng hạn định (<em>clamping</em>) của nút Ánh Xạ Giá Trị  để giới hạn đầu ra.</p>
+<p>Nút <a class="reference internal" href="../../../../compositing/types/vector/map_value.html"><span class="doc">Ánh Xạ Giá Trị -- Map Value</span></a> có thể được sử dụng để ánh xạ đầu ra sang thành một giá trị thích hợp hơn. Đôi khi, với các đường cong, nút Thời gian có thể xuất ra một số lớn hơn 1, hoặc nhỏ hơn 0. Để bảo toàn, xin hãy sử dụng chức năng hạn định (<em>clamping</em>) của nút Ánh Xạ Giá Trị  để giới hạn đầu ra.</p>
 </div>
 </div>
 <div class="section" id="example">
 <h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../../_images/compositing_types_input_time_example.png" src="../../../../_images/compositing_types_input_time_example.png" />
-<p class="caption"><span class="caption-text">Những điều khiển về thời gian, từ trái sang phải: Vô Hiệu (<em>no effect</em>), Làm Chậm Lại (<em>slow down</em>), Đứng Im (<em>freeze</em>), Tăng Tốc (<em>accelerate</em>), Đảo Ngược (<em>reverse</em>).</span></p>
+<p class="caption"><span class="caption-text">Những điều khiển về thời gian, từ trái sang phải: Vô Hiệu (<em>no effect</em>), Làm Chậm Lại (<em>slow down</em>), Đứng Im (<em>freeze</em>), Tăng Tốc (<em>accelerate</em>), Đảo Ngược (<em>reverse</em>).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

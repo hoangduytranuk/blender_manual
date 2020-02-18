@@ -64,6 +64,15 @@ Stroke Method :kbd:`E`
          To confirm and execute the curved stroke,
          press :kbd:`Return` or use the Draw Curve button.
 
+Spacing Distance :guilabel:`Sculpt Mode Only`:
+   Method used to calculate the distance to generate a new brush step.
+
+   View
+      Calculates the brush spacing relative to the view.
+   Scene
+      Calculates the brush spacing relative to the scene using the stroke location.
+      This avoids artifacts when sculpting across curved surfaces.
+
 Adjust Strength for Spacing
    Attenuate the brush strength according to spacing.
    Available for the *Space*, *Line*, and *Curve* stroke methods.

@@ -28,7 +28,7 @@ See :doc:`User Interface </interface/index>` for documentation on the general in
    3dview/index.rst
    image/index.rst
    uv/index.rst
-   shader_editor/index.rst
+   shader_editor.rst
    Compositor <../compositing/index.rst>
    texture_node/index.rst
    Video Sequencer </video_editing/index.rst>

@@ -252,78 +252,75 @@ you to visualize your changes in Edit Mode.</p>
 <h4>Thu Lại -- Collapse<a class="headerlink" href="#collapse" title="Permalink to this headline">¶</a></h4>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_generate_decimate_panel-collapse.png" src="../../../_images/modeling_modifiers_generate_decimate_panel-collapse.png" />
-<p class="caption"><span class="caption-text">The Decimate modifier in Collapse mode.</span></p>
+<p class="caption"><span class="caption-text">The Decimate modifier in Collapse mode.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Merges vertices together progressively, taking the shape of the mesh into account.</p>
-<dl class="docutils">
-<dt>Tỷ Số -- Ratio</dt>
-<dd><p class="first">The ratio of faces to keep after decimation.</p>
+<dl>
+<dt>Tỷ Số -- Ratio</dt><dd><p>The ratio of faces to keep after decimation.</p>
 <ul class="simple">
-<li>On 1.0: the mesh is unchanged.</li>
-<li>On 0.5: edges have been collapsed such that half the number of faces remain (see note below).</li>
-<li>On 0.0: all faces have been removed.</li>
+<li><p>On 1.0: the mesh is unchanged.</p></li>
+<li><p>On 0.5: edges have been collapsed such that half the number of faces remain (see note below).</p></li>
+<li><p>On 0.0: all faces have been removed.</p></li>
 </ul>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
 <p>Although the <em>Ratio</em> is directly proportional to the number of remaining faces,
 triangles are used when calculating the ratio.</p>
 <p>This means that if your mesh contains quads or other polygons,
 the number of remaining faces will be larger than expected,
 because those will remain unchanged if their edges are not collapsed.</p>
-<p class="last">This is only true if the <em>Triangulate</em> option is disabled.</p>
+<p>This is only true if the <em>Triangulate</em> option is disabled.</p>
 </div>
 </dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd><p class="first">A vertex group that controls what parts of the mesh are decimated.</p>
-<dl class="last docutils">
-<dt>Hệ Số -- Factor</dt>
-<dd>The amount of influence the <em>Vertex Group</em> has on the decimation.</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>A vertex group that controls what parts of the mesh are decimated.</p>
+<dl class="simple">
+<dt>Hệ Số -- Factor</dt><dd><p>The amount of influence the <em>Vertex Group</em> has on the decimation.</p>
+</dd>
 </dl>
 </dd>
-<dt>Tam Giác Hóa -- Triangulate</dt>
-<dd>Keeps any resulting triangulated geometry from the decimation process.</dd>
-<dt>Đối Xứng -- Symmetry</dt>
-<dd>Maintains symmetry on a single axis.</dd>
+<dt>Tam Giác Hóa -- Triangulate</dt><dd><p>Keeps any resulting triangulated geometry from the decimation process.</p>
+</dd>
+<dt>Đối Xứng -- Symmetry</dt><dd><p>Maintains symmetry on a single axis.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="un-subdivide">
 <h4>Phi Phân Hóa -- Un-Subdivide<a class="headerlink" href="#un-subdivide" title="Permalink to this headline">¶</a></h4>
 <div class="figure align-right" id="id2">
 <img alt="../../../_images/modeling_modifiers_generate_decimate_panel-un-subdivide.png" src="../../../_images/modeling_modifiers_generate_decimate_panel-un-subdivide.png" />
-<p class="caption"><span class="caption-text">The Decimate modifier in Un-Subdivide mode.</span></p>
+<p class="caption"><span class="caption-text">The Decimate modifier in Un-Subdivide mode.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>It can be thought of as the reverse of subdivide.
 It attempts to remove edges that were the result of a subdivide operation.
 It is intended for meshes with a mainly grid-based topology (without giving uneven geometry).
 If additional editing has been done after the subdivide operation, the results may be unexpected.</p>
-<dl class="docutils">
-<dt>Số Lần Lặp Lại -- Iterations</dt>
-<dd>The number of times to perform the un-subdivide operation.
-Two iterations is the same as one subdivide operation, so you will usually want to use even numbers.</dd>
+<dl class="simple">
+<dt>Số Lần Lặp Lại -- Iterations</dt><dd><p>The number of times to perform the un-subdivide operation.
+Two iterations is the same as one subdivide operation, so you will usually want to use even numbers.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="planar">
 <h4>Mặt Phẳng -- Planar<a class="headerlink" href="#planar" title="Permalink to this headline">¶</a></h4>
 <div class="figure align-right" id="id3">
 <img alt="../../../_images/modeling_modifiers_generate_decimate_panel-planar.png" src="../../../_images/modeling_modifiers_generate_decimate_panel-planar.png" />
-<p class="caption"><span class="caption-text">The Decimate modifier in Planar mode.</span></p>
+<p class="caption"><span class="caption-text">The Decimate modifier in Planar mode.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>It reduces details on forms comprised of mainly flat surfaces.</p>
-<dl class="docutils">
-<dt>Giới Hạn Góc -- Angle Limit</dt>
-<dd>Dissolve geometry which form angles (between surfaces) higher than this setting.</dd>
-<dt>Toàn Bộ Ranh Giới -- All Boundaries</dt>
-<dd>When enabled, all vertices along the boundaries of faces are dissolved.
-This can give nicer results when using a high <em>Angle Limit</em>.</dd>
-<dt>Phân Giới -- Delimit</dt>
-<dd><p class="first">Prevent dissolving geometry in certain places.</p>
-<dl class="last docutils">
-<dt>Pháp Tuyến -- Normal</dt>
-<dd>Does not dissolve edges on the borders of areas where the face normals are reversed.</dd>
-<dt>Nguyên Liệu -- Material</dt>
-<dd>Does not dissolve edges on the borders of where different materials are assigned.</dd>
-<dt>Đường Khâu -- Seam</dt>
-<dd>Does not dissolve edges marked as seams.</dd>
+<dl>
+<dt>Giới Hạn Góc -- Angle Limit</dt><dd><p>Dissolve geometry which form angles (between surfaces) higher than this setting.</p>
+</dd>
+<dt>Toàn Bộ Ranh Giới -- All Boundaries</dt><dd><p>When enabled, all vertices along the boundaries of faces are dissolved.
+This can give nicer results when using a high <em>Angle Limit</em>.</p>
+</dd>
+<dt>Phân Giới -- Delimit</dt><dd><p>Prevent dissolving geometry in certain places.</p>
+<dl class="simple">
+<dt>Pháp Tuyến -- Normal</dt><dd><p>Does not dissolve edges on the borders of areas where the face normals are reversed.</p>
+</dd>
+<dt>Nguyên Liệu -- Material</dt><dd><p>Does not dissolve edges on the borders of where different materials are assigned.</p>
+</dd>
+<dt>Đường Khâu -- Seam</dt><dd><p>Does not dissolve edges marked as seams.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -331,9 +328,9 @@ This can give nicer results when using a high <em>Angle Limit</em>.</dd>
 </div>
 <div class="section" id="further-options">
 <h3>Tùy Chọn Khác -- Further Options<a class="headerlink" href="#further-options" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Số Lượng Bề Mặt -- Face Count</dt>
-<dd>This label shows the number of remaining faces as a result of applying the <em>Decimate</em> modifier.</dd>
+<dl class="simple">
+<dt>Số Lượng Bề Mặt -- Face Count</dt><dd><p>This label shows the number of remaining faces as a result of applying the <em>Decimate</em> modifier.</p>
+</dd>
 </dl>
 </div>
 </div>

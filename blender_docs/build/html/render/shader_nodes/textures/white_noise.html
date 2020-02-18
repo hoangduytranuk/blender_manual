@@ -246,41 +246,40 @@ The seed can be a number, a 2D vector, a 3D vector, or a 4D vector; depending on
 The output number ranges between zero and one.</p>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_node.png" src="../../../_images/render_shader-nodes_textures_white-noise_node.png" />
-<p class="caption"><span class="caption-text">White Noise Texture Node.</span></p>
+<p class="caption"><span class="caption-text">White Noise Texture Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="inputs">
 <h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <p>The inputs are dynamic, they become available if needed depending on the node properties.</p>
-<dl class="docutils">
-<dt>Vector</dt>
-<dd>Vector used as seed in 2D, 3D, and 4D dimensions.</dd>
-<dt>W</dt>
-<dd>Value used as seed in 1D and 4D dimensions.</dd>
+<dl class="simple">
+<dt>Vector</dt><dd><p>Vector used as seed in 2D, 3D, and 4D dimensions.</p>
+</dd>
+<dt>W</dt><dd><p>Value used as seed in 1D and 4D dimensions.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Dimensions</dt>
-<dd><p class="first">The dimensions of the space to evaluate the noise in.</p>
-<dl class="last docutils">
-<dt>1D</dt>
-<dd>The <em>W</em> input is used as seed.</dd>
-<dt>2D</dt>
-<dd>The X and Y components of the <em>Vector</em> input are used as seed.</dd>
-<dt>3D</dt>
-<dd>The <em>Vector</em> input is used as seed.</dd>
-<dt>4D</dt>
-<dd>Both the <em>Vector</em> input and the <em>W</em> input are used as seed.</dd>
+<dl>
+<dt>Dimensions</dt><dd><p>The dimensions of the space to evaluate the noise in.</p>
+<dl class="simple">
+<dt>1D</dt><dd><p>The <em>W</em> input is used as seed.</p>
+</dd>
+<dt>2D</dt><dd><p>The X and Y components of the <em>Vector</em> input are used as seed.</p>
+</dd>
+<dt>3D</dt><dd><p>The <em>Vector</em> input is used as seed.</p>
+</dd>
+<dt>4D</dt><dd><p>Both the <em>Vector</em> input and the <em>W</em> input are used as seed.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Value</dt>
-<dd>Output random value.</dd>
+<dl class="simple">
+<dt>Value</dt><dd><p>Output random value.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="notes">
@@ -289,35 +288,35 @@ The output number ranges between zero and one.</p>
 Consequently, bad precision may have significant impact on the output.
 Usually, we can mitigate this issue by:</p>
 <ul class="simple">
-<li>Eliminating the problematic seed value. If the problematic seed value is constant,
-it should be eliminated by choosing a lower dimension or multiplying it by zero.</li>
-<li>Adding an arbitrary value to the seed. The issue might only happen at certain boundaries,
-like unit boundaries, so simply adding an arbitrary value might solve the issue.</li>
-<li>Taking the absolute value of the seed. In computing, zero may be positive or negative,
-so taking the absolute values unifies the zero into a single value.</li>
+<li><p>Eliminating the problematic seed value. If the problematic seed value is constant,
+it should be eliminated by choosing a lower dimension or multiplying it by zero.</p></li>
+<li><p>Adding an arbitrary value to the seed. The issue might only happen at certain boundaries,
+like unit boundaries, so simply adding an arbitrary value might solve the issue.</p></li>
+<li><p>Taking the absolute value of the seed. In computing, zero may be positive or negative,
+so taking the absolute values unifies the zero into a single value.</p></li>
 </ul>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_issue.png" src="../../../_images/render_shader-nodes_textures_white-noise_issue.png" />
-<p class="caption"><span class="caption-text">Precision issue due to signed zeros on the Z axis.</span></p>
+<p class="caption"><span class="caption-text">Precision issue due to signed zeros on the Z axis.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_solution1.png" src="../../../_images/render_shader-nodes_textures_white-noise_solution1.png" />
-<p class="caption"><span class="caption-text">Mitigating the issue by eliminating the Z axis.</span></p>
+<p class="caption"><span class="caption-text">Mitigating the issue by eliminating the Z axis.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_solution2.png" src="../../../_images/render_shader-nodes_textures_white-noise_solution2.png" />
-<p class="caption"><span class="caption-text">Mitigating the issue by adding an arbitrary value.</span></p>
+<p class="caption"><span class="caption-text">Mitigating the issue by adding an arbitrary value.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure" id="id5">
+<div class="figure align-default" id="id5">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_solution3.png" src="../../../_images/render_shader-nodes_textures_white-noise_solution3.png" />
-<p class="caption"><span class="caption-text">Mitigating the issue by taking the absolute value.</span></p>
+<p class="caption"><span class="caption-text">Mitigating the issue by taking the absolute value.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id6">
+<div class="figure align-default" id="id6">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_solution1.png" src="../../../_images/render_shader-nodes_textures_white-noise_solution1.png" />
-<p class="caption"><span class="caption-text">Generating cell noise using the <em>Snap</em> vector operation and the <em>White Noise</em> node.</span></p>
+<p class="caption"><span class="caption-text">Generating cell noise using the <em>Snap</em> vector operation and the <em>White Noise</em> node.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

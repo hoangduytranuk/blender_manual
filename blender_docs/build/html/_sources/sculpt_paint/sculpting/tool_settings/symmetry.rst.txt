@@ -7,7 +7,7 @@ Symmetry
    :class: refbox
 
    :Mode:      Sculpt Mode
-   :Panel:     :menuselection:`Toolbar --> Tool --> Symmetry`
+   :Tool:      :menuselection:`Toolbar --> Tool --> Symmetry`
 
 Mirror
    See :doc:`/sculpt_paint/brush/symmetry`.

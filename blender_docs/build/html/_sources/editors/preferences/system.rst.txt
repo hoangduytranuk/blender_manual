@@ -27,9 +27,9 @@ None
    When set to *None* or when the only option is *None*:
    the CPU will be used as the computing device for the Cycles Renderer.
 CUDA
-   If the system has a compatible NVIDIA CUDA device, it will show up an option for rendering with Cycles.
+   If the system has a compatible Nvidia CUDA device, it will show up an option for rendering with Cycles.
 Optix
-   If the system has a compatible NVIDIA Optix device, it will show up an option for rendering with Cycles.
+   If the system has a compatible Nvidia Optix device, it will show up an option for rendering with Cycles.
 OpenCL
    If the system has a compatible AMD OpenCL device, it will show up an option for rendering with Cycles.
 

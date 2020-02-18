@@ -241,9 +241,9 @@ which usually lasts just a fraction of a second, depending on the <em>frame rate
 As animation is composed of incremental changes spanning multiple frames,
 usually these properties are <strong>not</strong> manually modified <em>frame-by-frame</em>, because:</p>
 <ul class="simple">
-<li>It would take ages!</li>
-<li>It would be very difficult to get smooth variations of the property
-(unless you compute mathematical functions and type a precise value for each frame, which would be crazy).</li>
+<li><p>It would take ages!</p></li>
+<li><p>It would be very difficult to get smooth variations of the property
+(unless you compute mathematical functions and type a precise value for each frame, which would be crazy).</p></li>
 </ul>
 <p>This is why nearly all direct animation is done using <em>interpolation</em>.</p>
 <p>The idea is simple: you define a few Keyframes, which are multiple frames apart.
@@ -251,13 +251,13 @@ Between these keyframes, the properties' values are computed (interpolated)
 by Blender and filled in. Thus, the animators' workload is significantly reduced.</p>
 <div class="figure align-right" id="id1">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_f-curves-concept.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_f-curves-concept.png" src="../../../_images/editors_graph-editor_fcurves_introduction_f-curves-concept.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Example of an interpolation.</span></p>
+<p class="caption"><span class="caption-text">Example of an interpolation.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>For example, if you have:</p>
 <ul class="simple">
-<li>A control point of value 0 at frame 0,</li>
-<li>another one of value 10 at frame 25,</li>
-<li>and you use linear interpolation, then, at frame 5 we get a value of 2.</li>
+<li><p>A control point of value 0 at frame 0,</p></li>
+<li><p>another one of value 10 at frame 25,</p></li>
+<li><p>and you use linear interpolation, then, at frame 5 we get a value of 2.</p></li>
 </ul>
 <p>The same goes for all intermediate frames: with just two points,
 you get a smooth increase from (0 to 10) along the 25 frames.
@@ -270,25 +270,25 @@ there are some important differences.</p>
 <p>For obvious reasons, a property represented by a curve
 cannot have more than <strong>one</strong> value at a given time, hence:</p>
 <ul class="simple">
-<li>When you move a control point ahead of a control point that was previously ahead of the point that you are moving,
-the two control points switch their order in the edited curve, to avoid that the curve goes back in time.</li>
-<li>For the above reason, it is impossible to have a closed F-curve.</li>
+<li><p>When you move a control point ahead of a control point that was previously ahead of the point that you are moving,
+the two control points switch their order in the edited curve, to avoid that the curve goes back in time.</p></li>
+<li><p>For the above reason, it is impossible to have a closed F-curve.</p></li>
 </ul>
-<table border="1" class="docutils" id="chuyen-doi-giua-2-diem-dieu-khien-duong-cong-khong-the-quay-tro-nguoc-dong-thoi-gian">
-<caption><span class="caption-text">Chuyển đổi giữa 2 điểm điều khiển: đường cong không thể quay trở ngược dòng thời gian!</span><a class="headerlink" href="#chuyen-doi-giua-2-diem-dieu-khien-duong-cong-khong-the-quay-tro-nguoc-dong-thoi-gian" title="Permalink to this table">¶</a></caption>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Chuyển đổi giữa 2 điểm điều khiển: đường cong không thể quay trở ngược dòng thời gian!</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id2">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id3">
 <img alt="../../../_images/editors_graph-editor_fcurves_introduction_moving1.png" src="../../../_images/editors_graph-editor_fcurves_introduction_moving1.png" />
-<p class="caption"><span class="caption-text">Trước khi di chuyển khung khóa thứ hai.</span></p>
+<p class="caption"><span class="caption-text">Trước khi di chuyển khung khóa thứ hai.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id3">
+<td><div class="figure align-default" id="id4">
 <img alt="../../../_images/editors_graph-editor_fcurves_introduction_moving2.png" src="../../../_images/editors_graph-editor_fcurves_introduction_moving2.png" />
-<p class="caption"><span class="caption-text">Sau khi di chuyển khung khóa thứ hai.</span></p>
+<p class="caption"><span class="caption-text">Sau khi di chuyển khung khóa thứ hai.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -301,54 +301,47 @@ the two control points switch their order in the edited curve, to avoid that the
 <div class="section" id="interpolation-mode">
 <span id="editors-graph-fcurves-settings-interpolation"></span><h3>Chế Độ Nội Suy -- Interpolation Mode<a class="headerlink" href="#interpolation-mode" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khóa (Key) ‣ Chế Độ Nội Suy (Interpolation Mode)</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">T</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Khóa (Key) ‣ Chế Độ Nội Suy (Interpolation Mode)</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">T</kbd></p>
+</dd>
+</dl>
 </div>
 <p>Mode for the <a class="reference internal" href="../../../glossary/index.html#term-interpolation"><span class="xref std std-term">Interpolation</span></a> between the current and next keyframe.</p>
 <div class="section" id="interpolation">
 <h4>Nội Suy -- Interpolation<a class="headerlink" href="#interpolation" title="Permalink to this headline">¶</a></h4>
-<dl class="docutils">
-<dt>Đồng Đều -- Constant</dt>
-<dd><p class="first">There is no interpolation at all. The curve holds the value of its last keyframe,
+<dl>
+<dt>Đồng Đều -- Constant</dt><dd><p>There is no interpolation at all. The curve holds the value of its last keyframe,
 giving a discrete (stairway) &quot;curve&quot;.
 Usually only used during the initial &quot;blocking&quot; stage in pose-to-pose animation workflows.</p>
-<div class="last figure" id="id4">
+<div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_constant.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_constant.png" src="../../../_images/editors_graph-editor_fcurves_introduction_constant.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Constant.</span></p>
+<p class="caption"><span class="caption-text">Constant.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Tuyến Tính -- Linear</dt>
-<dd><p class="first">This simple interpolation creates a straight segment, giving a non-continuous line.
+<dt>Tuyến Tính -- Linear</dt><dd><p>This simple interpolation creates a straight segment, giving a non-continuous line.
 It can be useful when using only two keyframes and the <em>Extrapolation</em> extend mode,
 to easily get an infinite straight line (i.e. a linear curve).</p>
-<div class="last figure" id="id5">
+<div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_linear.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_linear.png" src="../../../_images/editors_graph-editor_fcurves_introduction_linear.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Linear.</span></p>
+<p class="caption"><span class="caption-text">Linear.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Đường Cong Bézier -- Bézier</dt>
-<dd><p class="first">The more powerful and useful interpolation, and the default one.
+<dt>Đường Cong Bézier -- Bézier</dt><dd><p>The more powerful and useful interpolation, and the default one.
 It gives nicely smoothed curves, i.e. smooth animations!</p>
-<div class="last figure" id="id6">
+<div class="figure align-default" id="id7">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_clean1.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" src="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Bézier.</span></p>
+<p class="caption"><span class="caption-text">Bézier.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Remember that some F-curves can only take discrete values,
+<p class="admonition-title">Ghi chú</p>
+<p>Remember that some F-curves can only take discrete values,
 in which case they are always shown as if constant interpolated, whatever option you chose.</p>
 </div>
 </div>
@@ -359,18 +352,18 @@ The &quot;Robert Penner easing equations&quot; (basically, equations which defin
 one keyframe transitions to another) which reduce the amount of manual work (inserting and tweaking keyframes)
 to achieve certain common effects. For example, snappy movements.</p>
 <ul class="simple">
-<li>Tuyến Tính -- Linear</li>
-<li>Sin -- Sinusoidal</li>
-<li>Bậc Hai -- Quadratic</li>
-<li>Lập Phương -- Cubic</li>
-<li>Bậc Bốn -- Quartic</li>
-<li>Bậc Năm -- Quintic</li>
-<li>Lũy Thừa -- Exponential</li>
-<li>Vòng Tròn -- Circular</li>
+<li><p>Tuyến Tính -- Linear</p></li>
+<li><p>Sin -- Sinusoidal</p></li>
+<li><p>Bậc Hai -- Quadratic</p></li>
+<li><p>Lập Phương -- Cubic</p></li>
+<li><p>Bậc Bốn -- Quartic</p></li>
+<li><p>Bậc Năm -- Quintic</p></li>
+<li><p>Lũy Thừa -- Exponential</p></li>
+<li><p>Vòng Tròn -- Circular</p></li>
 </ul>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">For more info and a few live demos, see <a class="reference external" href="http://easings.net">http://easings.net</a> and
+<p class="admonition-title">Xem thêm</p>
+<p>For more info and a few live demos, see <a class="reference external" href="http://easings.net">http://easings.net</a> and
 <a class="reference external" href="http://www.robertpenner.com/easing/">http://www.robertpenner.com/easing/</a></p>
 </div>
 </div>
@@ -378,31 +371,29 @@ to achieve certain common effects. For example, snappy movements.</p>
 <h4>Hiệu Ứng Năng Động -- Dynamic Effects<a class="headerlink" href="#dynamic-effects" title="Permalink to this headline">¶</a></h4>
 <p>These additional easing types imitate (fake) physics-based effects like bouncing/springing effects.
 The corresponding settings can be found in the <span class="menuselection">Sidebar region ‣ Active Keyframe panel</span>.</p>
-<dl class="docutils">
-<dt>Đàn Hồi -- Elastic</dt>
-<dd><p class="first">Exponentially decaying sine wave, like an elastic band.
+<dl>
+<dt>Đàn Hồi -- Elastic</dt><dd><p>Exponentially decaying sine wave, like an elastic band.
 This is like bending a stiff pole stuck to some surface,
 and watching it rebound and settle back to its original state.</p>
-<dl class="last docutils">
-<dt>Biên Độ -- Amplitude</dt>
-<dd>The amplitude property controls how strongly the oscillation diverges from the basic curve.
+<dl class="simple">
+<dt>Biên Độ -- Amplitude</dt><dd><p>The amplitude property controls how strongly the oscillation diverges from the basic curve.
 At 0.0, there is no oscillation (i.e. it just snaps to the B-value like an extreme exponential transition),
-and at 1.0 a profile similar to the one shown in the icon occurs.</dd>
-<dt>Chu Kỳ -- Period</dt>
-<dd>The period property controls the frequency with which oscillations occur.
-Higher values result in denser oscillations.</dd>
+and at 1.0 a profile similar to the one shown in the icon occurs.</p>
+</dd>
+<dt>Chu Kỳ -- Period</dt><dd><p>The period property controls the frequency with which oscillations occur.
+Higher values result in denser oscillations.</p>
+</dd>
 </dl>
 </dd>
-<dt>Nẩy -- Bounce</dt>
-<dd>Exponentially decaying parabolic bounce, like when objects collide.
-e.g. for Bouncing balls, etc.</dd>
-<dt>Sau/Lưng/Quay Lại -- Back</dt>
-<dd><p class="first">Cubic easing with overshoot and settle.
+<dt>Nẩy -- Bounce</dt><dd><p>Exponentially decaying parabolic bounce, like when objects collide.
+e.g. for Bouncing balls, etc.</p>
+</dd>
+<dt>Sau/Lưng/Quay Lại -- Back</dt><dd><p>Cubic easing with overshoot and settle.
 Use this one when you want a bit of an overshoot coming into the next keyframe,
 or perhaps for some wind-up anticipation.</p>
-<dl class="last docutils">
-<dt>Sau/Lưng/Quay Lại -- Back</dt>
-<dd>The back property controls the size and direction (i.e. above/below the curve) of the overshoot.</dd>
+<dl class="simple">
+<dt>Sau/Lưng/Quay Lại -- Back</dt><dd><p>The back property controls the size and direction (i.e. above/below the curve) of the overshoot.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -411,66 +402,56 @@ or perhaps for some wind-up anticipation.</p>
 <div class="section" id="easing-type">
 <span id="editors-graph-fcurves-settings-easing"></span><h3>Thể Loại Chậm Rãi -- Easing Type<a class="headerlink" href="#easing-type" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Khóa (Key) ‣ Thể Loại Chậm Rãi (Easing Type)</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Ctrl-E</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Khóa (Key) ‣ Thể Loại Chậm Rãi (Easing Type)</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Ctrl-E</kbd></p>
+</dd>
+</dl>
 </div>
 <p>The Easing Type controls which end of the segment between the two keyframes that the easing effects apply to.</p>
-<dl class="docutils">
-<dt>Tự Động Chậm Rãi -- Automatic Easing</dt>
-<dd>The most commonly expected of the below behaviors is used.
-For the transitional effects, this is basically <em>ease in</em>, while for the physics effects it is <em>ease out</em>.</dd>
-<dt>Nới Vào -- Ease In</dt>
-<dd>Effect builds up to the second keyframe.</dd>
-<dt>Nới Ra -- Ease Out</dt>
-<dd>Hiệu ứng mờ dần ra khỏi khung khóa đầu tiên</dd>
-<dt>Nới Vào và Ra -- Ease In Out</dt>
-<dd>Ảnh hưởng xảy ra ở hai đầu của phân đoạn.</dd>
+<dl class="simple">
+<dt>Tự Động Chậm Rãi -- Automatic Easing</dt><dd><p>The most commonly expected of the below behaviors is used.
+For the transitional effects, this is basically <em>ease in</em>, while for the physics effects it is <em>ease out</em>.</p>
+</dd>
+<dt>Nới Vào -- Ease In</dt><dd><p>Effect builds up to the second keyframe.</p>
+</dd>
+<dt>Nới Ra -- Ease Out</dt><dd><p>Hiệu ứng mờ dần ra khỏi khung khóa đầu tiên</p>
+</dd>
+<dt>Nới Vào và Ra -- Ease In Out</dt><dd><p>Ảnh hưởng xảy ra ở hai đầu của phân đoạn.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="extrapolation">
 <span id="editors-graph-fcurves-settings-extrapolation"></span><h3>Ngoại Suy -- Extrapolation<a class="headerlink" href="#extrapolation" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Kênh (Channel) ‣ Chế Độ Ngoại Suy (Extrapolation Mode)</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">Shift-E</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Kênh (Channel) ‣ Chế Độ Ngoại Suy (Extrapolation Mode)</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Shift-E</kbd></p>
+</dd>
+</dl>
 </div>
 <p>Extrapolation defines the behavior of a curve before the first and after the last keyframes.</p>
 <p>There are two basic extrapolation modes:</p>
-<dl class="docutils">
-<dt>Đồng Đều -- Constant</dt>
-<dd><p class="first">The default one, curves before their first keyframe and after their last one have a constant value
+<dl>
+<dt>Đồng Đều -- Constant</dt><dd><p>The default one, curves before their first keyframe and after their last one have a constant value
 (the one of these first and last keyframes).</p>
-<div class="last figure" id="id7">
+<div class="figure align-default" id="id8">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_extrapolate1.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_extrapolate1.png" src="../../../_images/editors_graph-editor_fcurves_introduction_extrapolate1.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Constant extrapolation.</span></p>
+<p class="caption"><span class="caption-text">Constant extrapolation.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Tuyến Tính -- Linear</dt>
-<dd><p class="first">Curves ends are straight lines (linear), as defined by the slope of their first and last keyframes.</p>
-<div class="last figure" id="id8">
+<dt>Tuyến Tính -- Linear</dt><dd><p>Curves ends are straight lines (linear), as defined by the slope of their first and last keyframes.</p>
+<div class="figure align-default" id="id9">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_extrapolate2.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_extrapolate2.png" src="../../../_images/editors_graph-editor_fcurves_introduction_extrapolate2.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Linear extrapolation.</span></p>
+<p class="caption"><span class="caption-text">Linear extrapolation.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
 </dl>
@@ -480,19 +461,15 @@ are located in the <a class="reference internal" href="modifiers.html"><span cla
 <div class="section" id="handle-types">
 <span id="editors-graph-fcurves-settings-handles"></span><h3>Loại Tay Cầm -- Handle Types<a class="headerlink" href="#handle-types" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
-<p class="first admonition-title">Tham Chiếu -- Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Trình Đơn -- Menu:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><span class="menuselection">Key ‣ Handle Type</span></td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">Phím Tắt -- Hotkey:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><kbd class="kbd docutils literal notranslate">V</kbd></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Key ‣ Handle Type</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">V</kbd></p>
+</dd>
+</dl>
 </div>
 <p>When using Bézier-interpolated curves it is possible to control the slope of the curve at the control points.
 This is done via the curve point <em>handles</em>; you can set the type of handle to use
@@ -504,43 +481,38 @@ The neighboring control points have the most influence of the slope,
 and points further away have a smaller influence. This can be controlled per F-curve with
 the <a class="reference internal" href="properties.html#graph-editor-auto-handle-smoothing"><span class="std std-ref">Auto Handle Smoothing</span></a> properties.</p>
 <p>By using the other, non-automatic modes, you have full manual control over the slope.</p>
-<dl class="docutils">
-<dt>Tự Động -- Automatic</dt>
-<dd><p class="first">Handle positions are automatically chosen to produce smooth curves.</p>
-<div class="last figure" id="id9">
+<dl>
+<dt>Tự Động -- Automatic</dt><dd><p>Handle positions are automatically chosen to produce smooth curves.</p>
+<div class="figure align-default" id="id10">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_auto.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_auto.png" src="../../../_images/editors_graph-editor_fcurves_introduction_auto.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Auto handles.</span></p>
+<p class="caption"><span class="caption-text">Auto handles.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Tự Động Hạn Định -- Auto Clamped</dt>
-<dd><p class="first">Automatic handles clamped to prevent overshoots and
+<dt>Tự Động Hạn Định -- Auto Clamped</dt><dd><p>Automatic handles clamped to prevent overshoots and
 changes in the curve direction between keyframes (S-shapes).</p>
-<div class="last figure" id="id10">
+<div class="figure align-default" id="id11">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_autoclamped.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_autoclamped.png" src="../../../_images/editors_graph-editor_fcurves_introduction_autoclamped.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Auto clamped handles.</span></p>
+<p class="caption"><span class="caption-text">Auto clamped handles.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Vectơ -- Vector</dt>
-<dd><p class="first">Creates automatic linear interpolation between keyframes. The segments remain linear when
+<dt>Vectơ -- Vector</dt><dd><p>Creates automatic linear interpolation between keyframes. The segments remain linear when
 keyframe centers are moved. However, when the handles are moved, the handle type switches to <em>Free</em>.</p>
-<div class="last figure" id="id11">
+<div class="figure align-default" id="id12">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_vector.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_vector.png" src="../../../_images/editors_graph-editor_fcurves_introduction_vector.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Vector handles.</span></p>
+<p class="caption"><span class="caption-text">Vector handles.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Thẳng Hàng -- Aligned</dt>
-<dd><p class="first">The two handles of the curve point are locked together to always point in exactly opposite directions.
+<dt>Thẳng Hàng -- Aligned</dt><dd><p>The two handles of the curve point are locked together to always point in exactly opposite directions.
 This results in a curve that is always smooth at the control point.</p>
-<div class="last figure" id="id12">
+<div class="figure align-default" id="id13">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_aligned.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_aligned.png" src="../../../_images/editors_graph-editor_fcurves_introduction_aligned.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Aligned handles.</span></p>
+<p class="caption"><span class="caption-text">Aligned handles.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
-<dt>Tự Do -- Free</dt>
-<dd><p class="first">The handles can be moved completely independently, and thus can result in a sharp change of direction.</p>
-<div class="last figure" id="id13">
+<dt>Tự Do -- Free</dt><dd><p>The handles can be moved completely independently, and thus can result in a sharp change of direction.</p>
+<div class="figure align-default" id="id14">
 <a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_free.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_free.png" src="../../../_images/editors_graph-editor_fcurves_introduction_free.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Free handles.</span></p>
+<p class="caption"><span class="caption-text">Free handles.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
 </dl>

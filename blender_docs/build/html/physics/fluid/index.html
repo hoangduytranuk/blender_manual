@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Mô Phỏng Chất Lỏng -- Fluid Simulation &mdash; Blender Manual</title>
+  <title>Fluid &mdash; Blender Manual</title>
   
 
   
@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="next" title="Giới Thiệu -- Introduction" href="introduction.html" />
-    <link rel="prev" title="-- Particle Edit Mode" href="../particles/mode.html" /> 
+    <link rel="prev" title="Ví Dụ -- Examples" href="../soft_body/examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -124,15 +124,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloth/index.html">-- Cloth Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Mô Phỏng Chất Lỏng -- Fluid Simulation</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fluid</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="types/index.html">-- Fluid Types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="baking.html">Nướng -- Baking</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">-- Fluid Appendix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="type/index.html">Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material.html">Materials</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../smoke/index.html">-- Smoke Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../particles/index.html">-- Particles System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collision.html">-- Collisions</a></li>
@@ -198,7 +196,7 @@
         
           <li><a href="../index.html">Vật Lý -- Physics</a> &raquo;</li>
         
-      <li>Mô Phỏng Chất Lỏng -- Fluid Simulation</li>
+      <li>Fluid</li>
     
     
 		<li class="wy-breadcrumbs-aside">
@@ -212,33 +210,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="fluid-simulation">
-<span id="fluid-simulation-index"></span><span id="bpy-ops-fluid"></span><span id="bpy-types-sphfluidsettings"></span><span id="bpy-types-fluidmeshvertex"></span><span id="bpy-types-fluidsettings"></span><span id="bpy-types-fluidsimulationmodifier"></span><h1>Mô Phỏng Chất Lỏng -- Fluid Simulation<a class="headerlink" href="#fluid-simulation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="fluid">
+<h1>Fluid<a class="headerlink" href="#fluid" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#liquid-simulations">Liquid Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#gas-simulations">Gas Simulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#workflow">Quy Trình Làm Việc -- Workflow</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="types/index.html">-- Fluid Types</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="types/introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types/domain.html">-- Fluid Domain</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types/fluid_object.html">-- Fluid Object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types/obstacle.html">-- Fluid Obstacle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types/flow.html">-- Fluid Inflow / Outflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types/particle.html">Hạt Chất Lỏng -- Fluid Particle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types/control.html">-- Fluid Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="type/index.html">Type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="type/domain/index.html">Domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/flow.html">Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/effector.html">Effector</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="baking.html">Nướng -- Baking</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="baking.html#bake-button">-- Bake Button</a></li>
-<li class="toctree-l2"><a class="reference internal" href="baking.html#bake-directory">-- Bake Directory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="baking.html#notes">Ghi Chú -- Notes</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">-- Fluid Appendix</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="appendix.html#hints">Gợi ý -- Hints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="appendix.html#limitations-workarounds">-- Limitations &amp; Workarounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="material.html">Materials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="material.html#smoke-material">Smoke Material</a></li>
 </ul>
 </li>
 </ul>
@@ -256,7 +245,7 @@
         <a href="introduction.html" class="btn btn-neutral float-right" title="Giới Thiệu -- Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../particles/mode.html" class="btn btn-neutral float-left" title="-- Particle Edit Mode" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../soft_body/examples.html" class="btn btn-neutral float-left" title="Ví Dụ -- Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

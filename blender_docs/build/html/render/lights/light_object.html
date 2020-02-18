@@ -224,37 +224,34 @@
   <div class="section" id="light-objects">
 <h1>Light Objects<a class="headerlink" href="#light-objects" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">Properties ‣ Light</span> and <span class="menuselection">Shader Editor ‣ Sidebar ‣ Settings</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Light</span> and <span class="menuselection">Shader Editor ‣ Sidebar ‣ Settings</span></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="common-settings">
 <h2>Common Settings<a class="headerlink" href="#common-settings" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Type</dt>
-<dd>Defines the light shape.</dd>
-<dt>Color</dt>
-<dd>Color tint of the emitted light.</dd>
+<dl class="simple">
+<dt>Type</dt><dd><p>Defines the light shape.</p>
+</dd>
+<dt>Color</dt><dd><p>Color tint of the emitted light.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="renderer-settings">
 <span id="bpy-types-pointlight"></span><span id="light-type-point"></span><h2>Renderer Settings<a class="headerlink" href="#renderer-settings" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="../eevee/lighting.html"><span class="doc">Eevee specific settings</span></a></li>
-<li><a class="reference internal" href="../cycles/light_settings.html"><span class="doc">Cycles specific settings</span></a></li>
+<li><p><a class="reference internal" href="../eevee/lighting.html"><span class="doc">Eevee specific settings</span></a></p></li>
+<li><p><a class="reference internal" href="../cycles/light_settings.html"><span class="doc">Cycles specific settings</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="point-light">
 <h2>Point Light<a class="headerlink" href="#point-light" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <a class="reference internal image-reference" href="../../_images/render_lights_light-object_viewport-BI.png"><img alt="../../_images/render_lights_light-object_viewport-BI.png" src="../../_images/render_lights_light-object_viewport-BI.png" style="width: 260px;" /></a>
-<p class="caption"><span class="caption-text">Point light.</span></p>
+<p class="caption"><span class="caption-text">Point light.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Point</em> light is an omni-directional point of light,
 that is, a point radiating the same amount of light in all directions.
@@ -265,53 +262,52 @@ It can be used as simple model of e.g. a light bulb.</p>
 <p>Light intensity/energy decays based on (among other variables)
 distance from the <em>Point</em> light to the object. In other words,
 surfaces that are further away will be rendered darker.</p>
-<dl class="docutils">
-<dt>Power</dt>
-<dd>Power of the light in Watts. Higher values increase the intensity of the light.
-Negative values can be set, but should be avoided for predictable and physically based result.</dd>
-<dt>Size</dt>
-<dd>When larger than zero, light will be emitted from a spherical surfaces with the specified radius.
-Lights with larger size have softer shadows and specular highlights.</dd>
+<dl class="simple">
+<dt>Power</dt><dd><p>Power of the light in Watts. Higher values increase the intensity of the light.
+Negative values can be set, but should be avoided for predictable and physically based result.</p>
+</dd>
+<dt>Size</dt><dd><p>When larger than zero, light will be emitted from a spherical surfaces with the specified radius.
+Lights with larger size have softer shadows and specular highlights.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="spot-light">
 <span id="bpy-types-spotlight"></span><span id="light-type-spot"></span><h2>Spot Light<a class="headerlink" href="#spot-light" title="Permalink to this headline">¶</a></h2>
 <p>A <em>Spot</em> light emits a cone-shaped beam of light from the tip of the cone,
 in a given direction.</p>
-<dl class="docutils">
-<dt>Power</dt>
-<dd>Power of the light in Watts. Higher values increase the intensity of the light.
-Negative values can be set, but should be avoided for predictable and physically based result.</dd>
-<dt>Size</dt>
-<dd>When larger than zero, light will be emitted from a spherical surfaces with the specified radius.
-Lights with larger size have softer shadows and specular highlights.</dd>
+<dl class="simple">
+<dt>Power</dt><dd><p>Power of the light in Watts. Higher values increase the intensity of the light.
+Negative values can be set, but should be avoided for predictable and physically based result.</p>
+</dd>
+<dt>Size</dt><dd><p>When larger than zero, light will be emitted from a spherical surfaces with the specified radius.
+Lights with larger size have softer shadows and specular highlights.</p>
+</dd>
 </dl>
 <div class="section" id="spot-shape">
 <h3>Spot Shape<a class="headerlink" href="#spot-shape" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><div class="figure" id="id2">
+<div><div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../_images/render_lights_light-object_terms-BI.png"><img alt="../../_images/render_lights_light-object_terms-BI.png" src="../../_images/render_lights_light-object_terms-BI.png" style="width: 610px;" /></a>
-<p class="caption"><span class="caption-text">Changing the Spot options also changes the appearance of the spotlight as displayed in the 3D View.</span></p>
+<p class="caption"><span class="caption-text">Changing the Spot options also changes the appearance of the spotlight as displayed in the 3D View.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div></blockquote>
-<dl class="docutils">
-<dt>Size</dt>
-<dd><p class="first">The size of the outer cone of a <em>Spot</em>,
+<dl>
+<dt>Size</dt><dd><p>The size of the outer cone of a <em>Spot</em>,
 which largely controls the circular area a <em>Spot</em> light covers.
 This slider in fact controls the angle at the top of the lighting cone,
 and can be between (1.0 to 180.0).</p>
-<table border="1" class="last docutils" id="id3">
+<table class="docutils align-default" id="id3">
 <caption><span class="caption-text">Changing the spot <em>Size</em> option.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/render_lights_light-object_size45-BI.png"><img alt="../../_images/render_lights_light-object_size45-BI.png" src="../../_images/render_lights_light-object_size45-BI.png" style="width: 320px;" /></a>
 </div>
 </td>
-<td><div class="first last figure">
+<td><div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/render_lights_light-object_size60-BI.png"><img alt="../../_images/render_lights_light-object_size60-BI.png" src="../../_images/render_lights_light-object_size60-BI.png" style="width: 320px;" /></a>
 </div>
 </td>
@@ -319,8 +315,7 @@ and can be between (1.0 to 180.0).</p>
 </tbody>
 </table>
 </dd>
-<dt>Blend</dt>
-<dd><p class="first">The <em>Blend</em> slider controls the inner cone of the <em>Spot</em>.
+<dt>Blend</dt><dd><p>The <em>Blend</em> slider controls the inner cone of the <em>Spot</em>.
 The <em>Blend</em> value can be between (0.0 to 1.0).
 The value is proportional and represents that amount of space that the inner cone should
 occupy inside the outer cone <em>Size</em>.</p>
@@ -335,16 +330,16 @@ Setting <em>Blend</em> to 0.0 results in very sharp spotlight edges, without any
 the larger the circular gap between the two, the more gradual the light fades between <em>Blend</em> and <em>Size</em>.</p>
 <p><em>Blend</em> and <em>Size</em> only control the <em>Spot</em> light cone's aperture and softness (&quot;radial&quot; falloff);
 they do not control the shadow's softness as shown below.</p>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../_images/render_lights_light-object_shadow-spotlight-BI.png"><img alt="../../_images/render_lights_light-object_shadow-spotlight-BI.png" src="../../_images/render_lights_light-object_shadow-spotlight-BI.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Render showing the soft edge spotlighted area and the sharp/hard object shadow.</span></p>
+<p class="caption"><span class="caption-text">Render showing the soft edge spotlighted area and the sharp/hard object shadow.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<p class="last">Notice in the picture above that the object's shadow is sharp as a result of the ray tracing,
+<p>Notice in the picture above that the object's shadow is sharp as a result of the ray tracing,
 whereas the spotlight edges are soft.
 If you want other items to cast soft shadows within the <em>Spot</em> area, you will need to alter other shadow settings.</p>
 </dd>
-<dt>Show Cone</dt>
-<dd>Displays a transparent cone in 3D View to visualize which objects are contained in it.</dd>
+<dt>Show Cone</dt><dd><p>Displays a transparent cone in 3D View to visualize which objects are contained in it.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -355,33 +350,32 @@ For example, a TV screen, office neon lights, a window,
 or a cloudy sky are just a few types of area light. The area light produces shadows with
 soft borders by sampling a light along a grid the size of which is defined by the user.
 This is in direct contrast to point-like artificial lights which produce sharp borders.</p>
-<dl class="docutils">
-<dt>Power</dt>
-<dd>Power of the light in Watts. Higher values increase the intensity of the light.
-Negative values can be set, but should be avoided for predictable and physically based result.</dd>
-<dt>Shape</dt>
-<dd><p class="first">Shape of the light.</p>
-<dl class="docutils">
-<dt>Rectangle</dt>
-<dd>The shape of the light can be represented as a rectangle and changed with the &quot;X&quot; and &quot;Y&quot; values.</dd>
-<dt>Square</dt>
-<dd>The shape of the light can be represented as a square and changed with the <em>Size</em> property.</dd>
-<dt>Disk</dt>
-<dd>The shape of the light can be represented as a disk and changed with the <em>Size</em> property.</dd>
-<dt>Ellipse</dt>
-<dd>The shape of the light can be represented as an ellipse and changed with the X and Y values.</dd>
+<dl>
+<dt>Power</dt><dd><p>Power of the light in Watts. Higher values increase the intensity of the light.
+Negative values can be set, but should be avoided for predictable and physically based result.</p>
+</dd>
+<dt>Shape</dt><dd><p>Shape of the light.</p>
+<dl class="simple">
+<dt>Rectangle</dt><dd><p>The shape of the light can be represented as a rectangle and changed with the &quot;X&quot; and &quot;Y&quot; values.</p>
+</dd>
+<dt>Square</dt><dd><p>The shape of the light can be represented as a square and changed with the <em>Size</em> property.</p>
+</dd>
+<dt>Disk</dt><dd><p>The shape of the light can be represented as a disk and changed with the <em>Size</em> property.</p>
+</dd>
+<dt>Ellipse</dt><dd><p>The shape of the light can be represented as an ellipse and changed with the X and Y values.</p>
+</dd>
 </dl>
-<div class="last admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">Choosing the appropriate shape for your <em>Area</em> light will enhance the believability of your scene.
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Choosing the appropriate shape for your <em>Area</em> light will enhance the believability of your scene.
 For example, you may have an indoor scene and would like to simulate light entering through a window.
 You could place a <em>Rectangular</em> area light in a window (vertical) or from neons (horizontal)
 with proper ratio for <em>Size X</em> and <em>Size Y</em>. For the simulation of the light emitted by
 a TV screen, a vertical <em>Square</em> area light would be better in most cases.</p>
 </div>
 </dd>
-<dt>Size / Size X / Size Y</dt>
-<dd>Dimensions for the <em>Square</em> or <em>Rectangle</em>.</dd>
+<dt>Size / Size X / Size Y</dt><dd><p>Dimensions for the <em>Square</em> or <em>Rectangle</em>.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="sun-light">
@@ -391,18 +385,18 @@ A sun light can be very handy for a uniform clear daylight open-space illuminati
 the <em>Sun</em> light is represented by an encircled black dot with rays emitting from it,
 plus a dashed line indicating the direction of the light.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">This direction can be changed by rotating the <em>Sun</em> light, like any other object,
+<p class="admonition-title">Ghi chú</p>
+<p>This direction can be changed by rotating the <em>Sun</em> light, like any other object,
 but because the light is emitted from a location considered infinitely far away,
 the location of a <em>Sun</em> light does not affect the rendered result.</p>
 </div>
-<dl class="docutils">
-<dt>Strength</dt>
-<dd>Strength of the lights in Watts per square meter.</dd>
-<dt>Angle</dt>
-<dd>The size of the sun light according to its
+<dl class="simple">
+<dt>Strength</dt><dd><p>Strength of the lights in Watts per square meter.</p>
+</dd>
+<dt>Angle</dt><dd><p>The size of the sun light according to its
 <a class="reference external" href="https://en.wikipedia.org/wiki/Angular_diameter#Use_in_astronomy">angular diameter</a>
-as seen from earth.</dd>
+as seen from earth.</p>
+</dd>
 </dl>
 </div>
 </div>

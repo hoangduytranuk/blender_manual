@@ -102,15 +102,21 @@ Rotation Mode
    The Rotation mode of the 3D Cursor.
 
 
+.. _bpy.types.SpaceView3D.use_local_collections:
+
 Collections
 -----------
 
 The *Collections* panel shows a list of collections
 and can be used to control the visibility of collections in the viewport.
-Collections can be hidden in the viewport by clicking on the eye icon.
-
 If a collection contains objects, there is a circle to the left of the collection name.
 If a collection is empty, there is no circle to the left of the collection name.
+
+Local Collections
+   Allows the list of visible collections to be controlled per viewport rather than globally.
+
+Hide in Viewport (Eye Icon)
+   Collections can be hidden in the viewport by clicking on the eye icon.
 
 By clicking directly on the collection names,
 it "isolates" the collection by hiding all other collections,

@@ -19,7 +19,7 @@ The Guides can be activated with the button next to the selector (grid icon).
 Guide Types
 ===========
 
-.. figure:: /images/grease-pencil_modes_draw_guides-selector.png
+.. figure:: /images/grease-pencil_modes_draw_guides_selector.png
    :align: right
 
    Guide selector activated in the 3D View header.
@@ -84,22 +84,22 @@ Examples
 
 .. list-table:: Examples of strokes using different types of Guides.
 
-   * - .. figure:: /images/grease-pencil_modes_draw_guide-circular.png
+   * - .. figure:: /images/grease-pencil_modes_draw_guides_circular.png
           :width: 200px
 
           Circular Guides.
 
-     - .. figure:: /images/grease-pencil_modes_draw_guide-radial.png
+     - .. figure:: /images/grease-pencil_modes_draw_guides_radial.png
           :width: 200px
 
           Radial Guides.
 
-     - .. figure:: /images/grease-pencil_modes_draw_guide-parallel.png
+     - .. figure:: /images/grease-pencil_modes_draw_guides_parallel.png
           :width: 200px
 
           Parallel Guides (30° Angle).
 
-     - .. figure:: /images/grease-pencil_modes_draw_guide-grid.png
+     - .. figure:: /images/grease-pencil_modes_draw_guides_grid.png
           :width: 200px
 
           Grid Guides.

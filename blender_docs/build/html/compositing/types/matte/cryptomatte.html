@@ -233,7 +233,7 @@
 <h1>Cryptomatte<a class="headerlink" href="#cryptomatte" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeCryptomatte.png" src="../../../_images/compositing_node-types_CompositorNodeCryptomatte.png" />
-<p class="caption"><span class="caption-text">Cryptomatte Node.</span></p>
+<p class="caption"><span class="caption-text">Cryptomatte Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The Cryptomatte node uses the Cryptomatte standard to efficiently create mattes for compositing.
 Cycles outputs the required render passes, which can then be used in the Compositor
@@ -242,47 +242,47 @@ or another Compositor with Cryptomatte support to create masks for specified obj
 and mattes will be anti-aliased and take into account effects like motion blur and transparency.</p>
 <div class="section" id="inputs">
 <h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Image</dt>
-<dd>Standard image input.</dd>
-<dt>Crypto Passes</dt>
-<dd>Each crypto layer will be given its own render pass;
+<dl class="simple">
+<dt>Image</dt><dd><p>Standard image input.</p>
+</dd>
+<dt>Crypto Passes</dt><dd><p>Each crypto layer will be given its own render pass;
 each of these render passes must be connected to one of these crypto layer inputs.
-By default there are only four layers, see <a class="reference internal" href="#adding-removing-layers">Adding/Removing Layers</a> to add more.</dd>
+By default there are only four layers, see <a class="reference internal" href="#adding-removing-layers">Adding/Removing Layers</a> to add more.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Add/Remove</dt>
-<dd>Adds/Removes an object or material from matte, by picking a color from the <em>Pick</em> output.</dd>
-<dt>Matte ID</dt>
-<dd>List of object and material crypto IDs to include in matte.
+<dl class="simple">
+<dt>Add/Remove</dt><dd><p>Adds/Removes an object or material from matte, by picking a color from the <em>Pick</em> output.</p>
+</dd>
+<dt>Matte ID</dt><dd><p>List of object and material crypto IDs to include in matte.
 This can be used for example to quickly clear all mattes by deleting the text
-or used to copy-and-paste crypto IDs from other software.</dd>
+or used to copy-and-paste crypto IDs from other software.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Image</dt>
-<dd>A colored output of the input image with the matte applied to only include selected layers.</dd>
-<dt>Matte</dt>
-<dd>A black-and-white alpha mask of the all the selected crypto layers.</dd>
-<dt>Pick</dt>
-<dd>A colored representation of the Cryptomatte pass which can be used
-with a Viewer node to select which crypto passes are used to create the matte image.</dd>
+<dl class="simple">
+<dt>Image</dt><dd><p>A colored output of the input image with the matte applied to only include selected layers.</p>
+</dd>
+<dt>Matte</dt><dd><p>A black-and-white alpha mask of the all the selected crypto layers.</p>
+</dd>
+<dt>Pick</dt><dd><p>A colored representation of the Cryptomatte pass which can be used
+with a Viewer node to select which crypto passes are used to create the matte image.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Enable Cryptomatte Object render pass in the Passes panel, and render.</li>
-<li>In the compositing nodes, create a Cryptomatte node and
-link the Render Layer matching Image and Cryptomatte passes to it.</li>
-<li>Attach a Viewer node to the Pick output of the Cryptomatte node.</li>
-<li>Use the Cryptomatte Add/Remove button to sample objects in the Pick Viewer node.</li>
-<li>Use the Matte output of the Cryptomatte node to get the alpha mask.</li>
+<li><p>Enable Cryptomatte Object render pass in the Passes panel, and render.</p></li>
+<li><p>In the compositing nodes, create a Cryptomatte node and
+link the Render Layer matching Image and Cryptomatte passes to it.</p></li>
+<li><p>Attach a Viewer node to the Pick output of the Cryptomatte node.</p></li>
+<li><p>Use the Cryptomatte Add/Remove button to sample objects in the Pick Viewer node.</p></li>
+<li><p>Use the Matte output of the Cryptomatte node to get the alpha mask.</p></li>
 </ol>
 <div class="section" id="adding-removing-layers">
 <h3>Adding/Removing Layers<a class="headerlink" href="#adding-removing-layers" title="Permalink to this headline">¶</a></h3>
@@ -297,7 +297,7 @@ These operators will add/remove layers from the bottom of the pass inputs.</p>
 <p>In the example below, you can see the pass output on the right side.
 On the left side you can see a couple of objects that were selected through the <em>Cryptomatte</em> node.
 Notice how the cube on the left has a sphere shaped cut-out from a sphere that was not selected in the node.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/compositing_types_matte_cryptomatte_example.png" src="../../../_images/compositing_types_matte_cryptomatte_example.png" />
 </div>
 </div>

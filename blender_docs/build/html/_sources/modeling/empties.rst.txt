@@ -97,6 +97,8 @@ Display
 
             It's often useful to disable this so reference images don't
             *get in the way* when viewing a model.
+      Display Only Axis Aligned
+         Only displays the image contents when the view is aligned with the object's local axis.
 
    Size
       Controls the size of the empties visualization. This does not change its scale, but functions as an offset.

@@ -253,42 +253,42 @@ but also means that it is difficult to find some light paths that may contribute
 Light rays will be sent either according to the surface BRDF,
 or in the direction of known light sources.</p>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">For more details, see
+<p class="admonition-title">Xem thêm</p>
+<p>For more details, see
 the <a class="reference internal" href="../render_settings/light_paths.html"><span class="doc">Light Paths</span></a> and
 <a class="reference internal" href="../render_settings/sampling.html"><span class="doc">Sampling</span></a> documentation.</p>
 </div>
 </div>
-<div class="section" id="where-noise-comes-from">
-<h2>-- Where Noise Comes From<a class="headerlink" href="#where-noise-comes-from" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-source-of-the-noise">
+<h2>The Source of the Noise<a class="headerlink" href="#the-source-of-the-noise" title="Permalink to this headline">¶</a></h2>
 <p>To understand where noise can come from, take for example the scene below.
 When we trace a light ray into the location marked by the white circle on a red dot,
 the second image below gives an impression of what the diffuse shader &quot;sees&quot;.</p>
 <p>To find the light that is reflected from this surface,
 we need to find the average color from all these pixels.
 Note the glossy highlight on the sphere,
-and the bright spot the light casts on the nearby wall. These hotspots are 100x brighter than
+and the bright spot the light casts on the nearby wall. These hotspots are much brighter than
 other parts of the image and will contribute significantly to the lighting of this pixel.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id1">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-reference.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-reference.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-reference.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">The scene.</span></p>
+<p class="caption"><span class="caption-text">The scene.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id2">
+<td><div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_fisheye.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_fisheye.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_fisheye.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Irradiance at the shading point.</span></p>
+<p class="caption"><span class="caption-text">Irradiance at the shading point.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id3">
+<td><div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-hotspot.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-hotspot.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-hotspot.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">The detected highlights.</span></p>
+<p class="caption"><span class="caption-text">The detected highlights.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -306,26 +306,26 @@ This will not give the same exact result,
 but often it's close enough when viewed through a diffuse or soft glossy reflection.
 Below is an example of using <a class="reference internal" href="../render_settings/light_paths.html#render-cycles-integrator-filter-glossy"><span class="std std-ref">Glossy Filter</span></a>
 and <a class="reference internal" href="../../shader_nodes/color/light_falloff.html"><span class="doc">Light Falloff</span></a>.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id4">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-blur-reference.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-blur-reference.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-blur-reference.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Using Glossy Filter &amp; Light Falloff.</span></p>
+<p class="caption"><span class="caption-text">Using Glossy Filter &amp; Light Falloff.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id5">
+<td><div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-blur.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-blur.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-blur.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Irradiance at the shading point.</span></p>
+<p class="caption"><span class="caption-text">Irradiance at the shading point.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id6">
+<td><div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-blur-hotspot.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-blur-hotspot.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_fisheye-blur-hotspot.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">The detected highlights.</span></p>
+<p class="caption"><span class="caption-text">The detected highlights.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -341,26 +341,26 @@ Section that uses <em>fewer</em> bounces for different shader types.
 Diffuse surfaces typically can get away with fewer bounces,
 while glossy surfaces need a few more,
 and transmission shaders such as glass usually need the most.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id7">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id7">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_0bounce.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_0bounce.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_0bounce.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">No bounces.</span></p>
+<p class="caption"><span class="caption-text">No bounces.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id8">
+<td><div class="figure align-default" id="id8">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_2bounce.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_2bounce.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_2bounce.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Two bounces at max.</span></p>
+<p class="caption"><span class="caption-text">Two bounces at max.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id9">
+<td><div class="figure align-default" id="id9">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_4bounce.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_4bounce.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_4bounce.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Four bounces at max.</span></p>
+<p class="caption"><span class="caption-text">Four bounces at max.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -382,26 +382,26 @@ viewed through a soft glossy or diffuse reflection.
 There is a <a class="reference internal" href="../render_settings/light_paths.html#render-cycles-integrator-no-caustics"><span class="std std-ref">No Caustics</span></a>
 option to disable glossy behind a diffuse reflection entirely.
 Many renderers will typically disable caustics by default.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id10">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id10">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_reference.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_reference.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_reference.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Default settings.</span></p>
+<p class="caption"><span class="caption-text">Default settings.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id11">
+<td><div class="figure align-default" id="id11">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_no-caustics.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_no-caustics.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_no-caustics.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Caustics disabled.</span></p>
+<p class="caption"><span class="caption-text">Caustics disabled.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id12">
+<td><div class="figure align-default" id="id12">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_filter-glossy.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_filter-glossy.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_filter-glossy.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Filter Glossy greater than zero.</span></p>
+<p class="caption"><span class="caption-text">Filter Glossy greater than zero.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -422,20 +422,20 @@ this value goes to infinity and we can get very bright spots in the image.
 These are mostly a problem for indirect lighting, where the probability of hitting such
 a small but extremely bright spot is low and so happens only rarely.
 This is a typical recipe for fireflies.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id13">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id13">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_falloff-hard.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_falloff-hard.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_falloff-hard.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Hard Falloff.</span></p>
+<p class="caption"><span class="caption-text">Hard Falloff.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id14">
+<td><div class="figure align-default" id="id14">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_falloff-soft.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_falloff-soft.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_falloff-soft.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Soft Falloff.</span></p>
+<p class="caption"><span class="caption-text">Soft Falloff.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -459,20 +459,20 @@ but often it is clear that a somewhat glowing object may be only contributing li
 while a mesh light used as a light would need this option enabled.
 Here is an example where the emissive spheres contribute little to the lighting,
 and the image renders with slightly less noise by disabling Multiple Importance on them.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id15">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id15">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_sample-lamp.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_sample-lamp.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_sample-lamp.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Multiple Importance off.</span></p>
+<p class="caption"><span class="caption-text">Multiple Importance off.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id16">
+<td><div class="figure align-default" id="id16">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_no-sample-lamp.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_no-sample-lamp.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_no-sample-lamp.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Multiple Importance on.</span></p>
+<p class="caption"><span class="caption-text">Multiple Importance on.</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -492,27 +492,27 @@ and a Transparent BSDF when viewed <em>indirectly</em>. The Transparent BSDF can
 transparent shadows to find light sources straight through surfaces,
 and will give properly-colored shadows, but without the caustics.
 The Light Path node is used to determine when to use which of the two shaders.</p>
-<div class="figure" id="id17">
+<div class="figure align-default" id="id17">
 <img alt="../../../_images/render_cycles_optimizations_reducing-noise_glass-group.png" src="../../../_images/render_cycles_optimizations_reducing-noise_glass-group.png" />
-<p class="caption"><span class="caption-text">Optimized glass shader.</span></p>
+<p class="caption"><span class="caption-text">Optimized glass shader.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
 </div>
 <p>Above we can see the node setup used for the glass transparency trick;
 on the left the render has too much shadow due to missing caustics,
 and on the right the render with the trick.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id18">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id18">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_glass-too-much-shadow.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_glass-too-much-shadow.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_glass-too-much-shadow.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Default Glas BSDF.</span></p>
+<p class="caption"><span class="caption-text">Default Glas BSDF.</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id19">
+<td><div class="figure align-default" id="id19">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_glass-trick.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_glass-trick.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_glass-trick.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Optimized Glass Shader.</span></p>
+<p class="caption"><span class="caption-text">Optimized Glass Shader.</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -525,10 +525,10 @@ and on the right the render with the trick.</p>
 or door opening, it is difficult for the integrator to find its way to them.
 To fix this, use <a class="reference internal" href="../light_settings.html#render-cycles-lights-area-portals"><span class="std std-ref">Light Portals</span></a>.
 You then will need to modify its shape to match that of the opening that you are trying to fill.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/render_cycles_light-settings_portals2.jpg" src="../../../_images/render_cycles_light-settings_portals2.jpg" />
 </div>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/render_cycles_light-settings_portals.jpg" src="../../../_images/render_cycles_light-settings_portals.jpg" />
 </div>
 </div>
@@ -541,20 +541,20 @@ To use this enable <a class="reference internal" href="../../layers/denoising.ht
 in the <em>Render Layers</em> tab of the Properties editor.</p>
 <p>Below is an example render by
 <a class="reference external" href="http://blog.thepixelary.com/post/160451378592/denoising-in-cycles-tested">The Pixelary</a>.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id20">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id20">
 <img alt="../../../_images/render_layers_denoising_example1.jpg" src="../../../_images/render_layers_denoising_example1.jpg" />
-<p class="caption"><span class="caption-text">Example render before denoising.</span></p>
+<p class="caption"><span class="caption-text">Example render before denoising.</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id21">
+<td><div class="figure align-default" id="id21">
 <img alt="../../../_images/render_layers_denoising_example2.jpg" src="../../../_images/render_layers_denoising_example2.jpg" />
-<p class="caption"><span class="caption-text">Example render after denoising.</span></p>
+<p class="caption"><span class="caption-text">Example render after denoising.</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -570,20 +570,20 @@ to a maximum value with the integrator <a class="reference internal" href="../re
 which might be useful to preserve for camera effects such as bloom or glare.
 To mitigate this conundrum it's often useful to clamp only indirect bounces,
 leaving highlights directly visible to the camera untouched.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id22">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id22">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_no-clamp.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_no-clamp.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_no-clamp.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">No Clamp (0).</span></p>
+<p class="caption"><span class="caption-text">No Clamp (0).</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id23">
+<td><div class="figure align-default" id="id23">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_clamp4.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_clamp4.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_clamp4.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">With Clamp set to 4.</span></p>
+<p class="caption"><span class="caption-text">With Clamp set to 4.</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>

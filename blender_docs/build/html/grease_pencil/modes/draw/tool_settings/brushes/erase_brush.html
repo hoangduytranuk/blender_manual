@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Grease Pencil</a><ul class="current">
@@ -124,12 +124,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../selecting.html">Selecting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../multiframe.html">Multiframe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../properties/index.html">Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../modifiers/index.html">Grease Pencil Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../visual_effects/index.html">Grease Pencil Visual Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../materials/index.html">Grease Pencil Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../animation/index.html">Grease Pencil Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../visual_effects/index.html">Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../animation/index.html">Animation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html#modes">Modes</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Grease Pencil Draw Mode</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Draw Mode</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../tools.html">Drawing Tools</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html">Tools Settings</a></li>
@@ -138,9 +138,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../guides.html">Guides</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../sculpting/index.html">Grease Pencil Sculpt Mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../edit/index.html">Grease Pencil Edit Mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../weight_paint/index.html">Grease Pencil Weight Paint Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sculpting/index.html">Sculpt Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../edit/index.html">Edit Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../weight_paint/index.html">Weight Paint Mode</a></li>
 </ul>
 </li>
 </ul>
@@ -206,7 +206,7 @@
         
           <li><a href="../../../../index.html">Grease Pencil</a> &raquo;</li>
         
-          <li><a href="../../index.html">Grease Pencil Draw Mode</a> &raquo;</li>
+          <li><a href="../../index.html">Draw Mode</a> &raquo;</li>
         
           <li><a href="../index.html">Tools Settings</a> &raquo;</li>
         
@@ -236,75 +236,69 @@ You can create many brushes, each with unique settings to get different effects 
 <div class="section" id="brushes">
 <h3>Brushes<a class="headerlink" href="#brushes" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-right" id="id1">
-<img alt="../../../../../_images/grease-pencil_modes_draw_brushes_erase-brush-data-block.png" src="../../../../../_images/grease-pencil_modes_draw_brushes_erase-brush-data-block.png" />
-<p class="caption"><span class="caption-text">Brush data-block panel.</span></p>
+<img alt="../../../../../_images/grease-pencil_modes_draw_tool-settings_brushes_erase-brush_data-block.png" src="../../../../../_images/grease-pencil_modes_draw_tool-settings_brushes_erase-brush_data-block.png" />
+<p class="caption"><span class="caption-text">Brush data-block panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Brush</dt>
-<dd><p class="first">The <a class="reference internal" href="../../../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> to select a preset brush type or a custom brush.</p>
-<dl class="last docutils">
-<dt>Add Brush</dt>
-<dd>When you add a brush, the new brush is a clone of the current one.</dd>
-<dt>Custom Icon</dt>
-<dd><p class="first">Allows definition of a custom brush icon.</p>
-<dl class="last docutils">
-<dt>Image Path</dt>
-<dd>Defines the path to the image to use as custom icon.</dd>
+<dl>
+<dt>Brush</dt><dd><p>The <a class="reference internal" href="../../../../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> to select a preset brush type or a custom brush.</p>
+<dl>
+<dt>Add Brush</dt><dd><p>When you add a brush, the new brush is a clone of the current one.</p>
+</dd>
+<dt>Custom Icon</dt><dd><p>Allows definition of a custom brush icon.</p>
+<dl class="simple">
+<dt>Image Path</dt><dd><p>Defines the path to the image to use as custom icon.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">In order to save in a blend-user a custom brush, tick Fake User.</p>
+<p class="admonition-title">Ghi chú</p>
+<p>In order to save in a blend-user a custom brush, tick Fake User.</p>
 </div>
 </div>
 <div class="section" id="brush-settings">
 <h3>Brush Settings<a class="headerlink" href="#brush-settings" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Radius</dt>
-<dd><p class="first">The radius of the brush in pixels.</p>
+<dl>
+<dt>Radius</dt><dd><p>The radius of the brush in pixels.</p>
 <p><kbd class="kbd docutils literal notranslate">F</kbd> allows you to change the brush size interactively by dragging the mouse/pen or
 by typing a number then confirm.</p>
-<dl class="last docutils">
-<dt>Use Pressure (pressure sensitivity icon)</dt>
-<dd>Uses stylus pressure to control how strong the effect is.</dd>
-<dt>Occlude Eraser (overlapping squares icon)</dt>
-<dd>Erase only strokes visible and not occluded by geometry.</dd>
+<dl class="simple">
+<dt>Use Pressure (pressure sensitivity icon)</dt><dd><p>Uses stylus pressure to control how strong the effect is.</p>
+</dd>
+<dt>Occlude Eraser (overlapping squares icon)</dt><dd><p>Erase only strokes visible and not occluded by geometry.</p>
+</dd>
 </dl>
 </dd>
-<dt>Mode</dt>
-<dd><p class="first">Determines how the erase tool behaves.</p>
-<dl class="last docutils">
-<dt>Soft/Hard</dt>
-<dd><p class="first">To simulate a raster type eraser, this eraser type
+<dt>Mode</dt><dd><p>Determines how the erase tool behaves.</p>
+<dl>
+<dt>Soft/Hard</dt><dd><p>To simulate a raster type eraser, this eraser type
 affects the strength and thickness of the strokes before actually delete a point.</p>
-<dl class="last docutils">
-<dt>Strength</dt>
-<dd><p class="first">Control how much will affect the eraser the stroke transparency (alpha).</p>
+<dl>
+<dt>Strength</dt><dd><p>Control how much will affect the eraser the stroke transparency (alpha).</p>
 <p>You can change the brush strength interactively by pressing <kbd class="kbd docutils literal notranslate">Shift-F</kbd>
 in the 3D View and then moving the mouse/pen and then <kbd class="kbd docutils literal notranslate">LMB</kbd>.
 You can also enter the size numerically.</p>
-<dl class="last docutils">
-<dt>Use Pressure (pressure sensitivity icon)</dt>
-<dd>Uses stylus pressure to control how strong the effect is.</dd>
+<dl class="simple">
+<dt>Use Pressure (pressure sensitivity icon)</dt><dd><p>Uses stylus pressure to control how strong the effect is.</p>
+</dd>
 </dl>
 </dd>
-<dt>Affect Stroke Strength</dt>
-<dd>The amount of deletion of the stroke strength (alpha) while erasing.</dd>
-<dt>Affect Stroke Thickness</dt>
-<dd>The amount of deletion of the stroke thickness while erasing.</dd>
+<dt>Affect Stroke Strength</dt><dd><p>The amount of deletion of the stroke strength (alpha) while erasing.</p>
+</dd>
+<dt>Affect Stroke Thickness</dt><dd><p>The amount of deletion of the stroke thickness while erasing.</p>
+</dd>
 </dl>
 </dd>
-<dt>Point</dt>
-<dd>Delete one point at a time.</dd>
-<dt>Stroke</dt>
-<dd>Delete an entire stroke.</dd>
+<dt>Point</dt><dd><p>Delete one point at a time.</p>
+</dd>
+<dt>Stroke</dt><dd><p>Delete an entire stroke.</p>
+</dd>
 </dl>
 </dd>
-<dt>Display Cursor</dt>
-<dd>Shows the brush shape in the viewport.</dd>
+<dt>Display Cursor</dt><dd><p>Shows the brush shape in the viewport.</p>
+</dd>
 </dl>
 </div>
 </div>

@@ -234,74 +234,70 @@ the stabilizer tends to push the image out of the visible area.
 This can be compensated by animating the parameters for the intentional,
 &quot;expected&quot; camera movement.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">To <em>activate</em> the 2D stabilizer, you need to set the toggle in the panel,
+<p class="admonition-title">Ghi chú</p>
+<p>To <em>activate</em> the 2D stabilizer, you need to set the toggle in the panel,
 and additionally you need to enable <em>Show Stable</em> in the <em>Clip Display</em> pop-over.</p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <a class="reference internal image-reference" href="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_panel_panel.png"><img alt="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_panel_panel.png" src="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_panel_panel.png" style="width: 213px;" /></a>
-<p class="caption"><span class="caption-text">2D Stabilization panel.</span></p>
+<p class="caption"><span class="caption-text">2D Stabilization panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Khung Hình Đối Chiếu -- Anchor Frame</dt>
-<dd>Reference point to anchor stabilization:
+<dl>
+<dt>Khung Hình Đối Chiếu -- Anchor Frame</dt><dd><p>Reference point to anchor stabilization:
 other frames will be adjusted relative to this frame's position, orientation and scale.
-You might want to select a frame number where your main subject is featured in an optimal way.</dd>
-<dt>Thể Loại Ổn Định Hóa -- Stabilization Type</dt>
-<dd><dl class="first last docutils">
-<dt>Xoay Chiều -- Rotation</dt>
-<dd>In addition to location, stabilizes detected rotation around the <em>rotation pivot point</em>,
-which is the weighted average of all location tracking points.</dd>
-<dt>Tỷ Lệ -- Scale</dt>
-<dd>Compensates any scale changes relative to center of rotation.</dd>
+You might want to select a frame number where your main subject is featured in an optimal way.</p>
+</dd>
+<dt>Thể Loại Ổn Định Hóa -- Stabilization Type</dt><dd><dl class="simple">
+<dt>Xoay Chiều -- Rotation</dt><dd><p>In addition to location, stabilizes detected rotation around the <em>rotation pivot point</em>,
+which is the weighted average of all location tracking points.</p>
+</dd>
+<dt>Tỷ Lệ -- Scale</dt><dd><p>Compensates any scale changes relative to center of rotation.</p>
+</dd>
 </dl>
 </dd>
-<dt>Giám Sát Ổn Định Hóa -- Tracks For Stabilization</dt>
-<dd><dl class="first last docutils">
-<dt>Vị Trí -- Location</dt>
-<dd>List of tracks to be used to compensate for camera jumps, or location movement.</dd>
-<dt>Xoay Chiều, Tỷ Lệ -- Rotation/Scale</dt>
-<dd>List of tracks to be used to compensate for camera tilts and scale changes.</dd>
+<dt>Giám Sát Ổn Định Hóa -- Tracks For Stabilization</dt><dd><dl class="simple">
+<dt>Vị Trí -- Location</dt><dd><p>List of tracks to be used to compensate for camera jumps, or location movement.</p>
+</dd>
+<dt>Xoay Chiều, Tỷ Lệ -- Rotation/Scale</dt><dd><p>List of tracks to be used to compensate for camera tilts and scale changes.</p>
+</dd>
 </dl>
 </dd>
-<dt>Tự Động Đổi Tỷ Lệ -- Autoscale</dt>
-<dd><p class="first">Finds smallest scale factor which, when applied to the footage,
+<dt>Tự Động Đổi Tỷ Lệ -- Autoscale</dt><dd><p>Finds smallest scale factor which, when applied to the footage,
 would eliminate all empty black borders near the image boundaries.</p>
-<dl class="last docutils">
-<dt>Lớn Nhất -- Max</dt>
-<dd>Limits the amount of automatic scaling.</dd>
+<dl class="simple">
+<dt>Lớn Nhất -- Max</dt><dd><p>Limits the amount of automatic scaling.</p>
+</dd>
 </dl>
 </dd>
-<dt>Vị Trí X/Y Dự Tính -- Expected Position X/Y</dt>
-<dd>Known relative offset of original shot, will be subtracted, e.g. for panning shots.</dd>
-<dt>Xoay Chiều Dự Tính -- Expected Rotation</dt>
-<dd>Rotation present on original shot, will be compensated, e.g. for deliberate tilting.</dd>
-<dt>Độ Thu-Phóng Dự Tính -- Expected Zoom</dt>
-<dd>Explicitly scale resulting frame to compensate zoom of original shot.</dd>
-<dt>Tác Động/Ảnh Hưởng -- Influence</dt>
-<dd>The amount of transformation applied to the footage can be controlled.
+<dt>Vị Trí X/Y Dự Tính -- Expected Position X/Y</dt><dd><p>Known relative offset of original shot, will be subtracted, e.g. for panning shots.</p>
+</dd>
+<dt>Xoay Chiều Dự Tính -- Expected Rotation</dt><dd><p>Rotation present on original shot, will be compensated, e.g. for deliberate tilting.</p>
+</dd>
+<dt>Độ Thu-Phóng Dự Tính -- Expected Zoom</dt><dd><p>Explicitly scale resulting frame to compensate zoom of original shot.</p>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>The amount of transformation applied to the footage can be controlled.
 In some cases it is not necessary to fully compensate camera jumps.
 The amount of stabilization applied to the footage can be controlled.
 In some cases you may not want to fully compensate some of the camera's jumps.
 Please note that these &quot;* <em>Influence</em>&quot; parameters do control only the <em>compensation movements</em>
-calculated by the stabilizer, not the deliberate movements added through the &quot;<em>Expected</em> *&quot;-parameters.</dd>
-<dt>Nội Suy -- Interpolate</dt>
-<dd><p class="first">The stabilizer calculates compensation movements with sub-pixel accuracy.
+calculated by the stabilizer, not the deliberate movements added through the &quot;<em>Expected</em> *&quot;-parameters.</p>
+</dd>
+<dt>Nội Suy -- Interpolate</dt><dd><p>The stabilizer calculates compensation movements with sub-pixel accuracy.
 Consequently, a resulting image pixel needs to be derived from several adjacent source footage pixels.
 Unfortunately, any interpolation causes some minor degree of softening and loss of image quality.</p>
-<dl class="last docutils">
-<dt>Gần Nhất -- Nearest</dt>
-<dd>No interpolation, uses nearest neighboring pixel.
+<dl class="simple">
+<dt>Gần Nhất -- Nearest</dt><dd><p>No interpolation, uses nearest neighboring pixel.
 No interpolation, use nearest neighboring pixel.
 This setting basically retains the original image's sharpness.
 The downside is we also retain residual movement below the size of one pixel,
-and compensation movements are done in 1 pixel steps, which might be noticeable as irregular jumps.</dd>
-<dt>Song Tuyến Tính -- Bilinear</dt>
-<dd>Simple linear interpolation between adjacent pixels.</dd>
-<dt>Song Lập Phương -- Bicubic</dt>
-<dd>Highest quality interpolation, most expensive to calculate.</dd>
+and compensation movements are done in 1 pixel steps, which might be noticeable as irregular jumps.</p>
+</dd>
+<dt>Song Tuyến Tính -- Bilinear</dt><dd><p>Simple linear interpolation between adjacent pixels.</p>
+</dd>
+<dt>Song Lập Phương -- Bicubic</dt><dd><p>Highest quality interpolation, most expensive to calculate.</p>
+</dd>
 </dl>
 </dd>
 </dl>

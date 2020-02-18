@@ -220,23 +220,21 @@
 <h1>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/sculpt-paint_weight-paint_options_options-panel.png" src="../../../_images/sculpt-paint_weight-paint_options_options-panel.png" />
-<p class="caption"><span class="caption-text">Paint options.</span></p>
+<p class="caption"><span class="caption-text">Paint options.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The weight paint options change the overall brush behavior:</p>
-<dl class="docutils">
-<dt>Auto Normalize</dt>
-<dd><p class="first">Ensures that all deforming vertex groups add up to one while painting.
+<dl>
+<dt>Auto Normalize</dt><dd><p>Ensures that all deforming vertex groups add up to one while painting.
 When this option is turned off, then all weights of a vertex can have any value between 0 and 1.
 However, when vertex groups are used as deform groups for character animation
 then Blender always interprets the weight values relative to each other.
 That is, Blender always does a normalization over all deform bones.
 Hence in practice it is not necessary to maintain a strict normalization and
 further normalizing weights should not affect animation at all.</p>
-<p class="last">This option works most intuitively when used to maintain normalization while
+<p>This option works most intuitively when used to maintain normalization while
 painting on top of weights that are already normalized with some other tool.</p>
 </dd>
-<dt>Multi-Paint</dt>
-<dd><p class="first">Paint on all selected vertex groups simultaneously, in a way that preserves their relative influence.
+<dt>Multi-Paint</dt><dd><p>Paint on all selected vertex groups simultaneously, in a way that preserves their relative influence.
 This can be useful when tweaking weights in an area that is affected by more than three bones at once,
 e.g. certain areas on a character's face.</p>
 <p>This option is only useful in the <em>Armature</em> tab, where you can select multiple vertex groups
@@ -250,33 +248,33 @@ vertices that do not have any weight assigned to the relevant vertex groups.
 For this reason it also does not allow reducing the weight all the way to zero.
 When used with <em>X Mirror</em>, it only guarantees completely a symmetrical result
 if weights are initially symmetrical.</p>
-<div class="last admonition tip">
-<p class="first admonition-title">Mẹo</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
 <p>While Multi-Paint cannot directly paint on zero-weight vertices,
 it is possible to use the <em>Smooth Weight</em> tool to copy a reasonable non-zero weight distribution
 from adjacent vertices without leaving Multi-Paint mode or changing bone selection.</p>
-<p class="last">To do that, enable vertex selection, select target vertices, and apply one iteration of
+<p>To do that, enable vertex selection, select target vertices, and apply one iteration of
 the tool using vertex groups from <em>Selected Pose Bones</em> with low Factor.
 After that simply paint on top to set the desired collective weight.</p>
 </div>
 </dd>
-<dt>Restrict</dt>
-<dd>This option limits the influence of painting to vertices (even with weight 0)
-belonging to the selected vertex group.</dd>
-<dt>X Mirror</dt>
-<dd>Use the X Mirror option for mirrored painting on groups that have symmetrical names,
+<dt>Restrict</dt><dd><p>This option limits the influence of painting to vertices (even with weight 0)
+belonging to the selected vertex group.</p>
+</dd>
+<dt>X Mirror</dt><dd><p>Use the X Mirror option for mirrored painting on groups that have symmetrical names,
 like with extension &quot;.R&quot;/ &quot;.L&quot; or &quot;_R&quot; / &quot;_L&quot;. If a group has no mirrored counterpart,
 it will paint symmetrically on the active group itself.
 You can read more about the naming convention in
 <a class="reference internal" href="../../../animation/armatures/bones/editing/naming.html#armature-editing-naming-conventions"><span class="std std-ref">Editing Armatures: Naming conventions</span></a>.
-The convention for armatures/bones apply here as well.</dd>
-<dt>Topology Mirror</dt>
-<dd>Use topology-based mirroring, for when both sides of a mesh have matching mirrored topology.
-See <a class="reference internal" href="../../../modeling/meshes/editing/mesh_options.html#modeling-meshes-editing-topology-mirror"><span class="std std-ref">here</span></a> for more information.</dd>
+The convention for armatures/bones apply here as well.</p>
+</dd>
+<dt>Topology Mirror</dt><dd><p>Use topology-based mirroring, for when both sides of a mesh have matching mirrored topology.
+See <a class="reference internal" href="../../../modeling/meshes/editing/mesh_options.html#modeling-meshes-editing-topology-mirror"><span class="std std-ref">here</span></a> for more information.</p>
+</dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">See the <a class="reference internal" href="../../brush/cursor.html#sculpt-paint-brush-display"><span class="std std-ref">Brush Display</span></a> options.</p>
+<p class="admonition-title">Xem thêm</p>
+<p>See the <a class="reference internal" href="../../brush/cursor.html#sculpt-paint-brush-display"><span class="std std-ref">Brush Display</span></a> options.</p>
 </div>
 </div>
 

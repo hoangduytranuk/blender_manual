@@ -228,9 +228,9 @@ introduces related terms and concepts, describes the available interface control
 and finally gives some hints about usage in practice.</p>
 <p>Typical usage scenarios of the stabilizer:</p>
 <ul class="simple">
-<li>Fix minor deficiencies (shaky tripod, jerk in camera movement).</li>
-<li>&quot;Poor man's steadycam&quot; (when a real steadycam was not available, affordable or applicable).</li>
-<li>As a preparation for masking, matching and rotoscoping.</li>
+<li><p>Fix minor deficiencies (shaky tripod, jerk in camera movement).</p></li>
+<li><p>&quot;Poor man's steadycam&quot; (when a real steadycam was not available, affordable or applicable).</p></li>
+<li><p>As a preparation for masking, matching and rotoscoping.</p></li>
 </ul>
 <p>It is not uncommon for 2D stabilization to have to deal with somewhat imperfect and flawed footage.</p>
 <div class="section" id="how-it-works">
@@ -243,8 +243,8 @@ much more elaborate movements.</p>
 <p>This simplified model underlying the 2D stabilization as implemented here assumes movement
 by an affine-linear transform:</p>
 <ul class="simple">
-<li>The camera is pushed up/down/sideways by some translation component.</li>
-<li>The image is then tilted and scaled around a pivot point (rotation center).</li>
+<li><p>The camera is pushed up/down/sideways by some translation component.</p></li>
+<li><p>The image is then tilted and scaled around a pivot point (rotation center).</p></li>
 </ul>
 <p>To compensate movement according to this simplified model, the 2D stabilizer proceeds in two steps.
 First we try to detect the translation offset from the weighted average of all <em>translation</em> tracking points.
@@ -267,19 +267,19 @@ Moreover, when the footage contains perspective induced movements, symmetrically
 and below the horizon can be used to cancel out spurious movement and get stabilization to the focal area in between.</p>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_introduction_perspective.jpg"><img alt="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_introduction_perspective.jpg" src="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_introduction_perspective.jpg" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Diverging movements caused by perspective.</span></p>
+<p class="caption"><span class="caption-text">Diverging movements caused by perspective.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Tracks can be added in two groups:</p>
 <ol class="arabic simple">
-<li>First of all is the list of tracks to be used to compensate for jumps in the camera location.
+<li><p>First of all is the list of tracks to be used to compensate for jumps in the camera location.
 From all the tracking points added to this group, we calculate a weighted average.
 We then try to keep this average location constant during the whole shot.
-Thus it is a good idea to use tracking markers close to and centered around the most important subject.</li>
-<li>A second selection of tracks is used to keep the rotation and scale of the image constant.
+Thus it is a good idea to use tracking markers close to and centered around the most important subject.</p></li>
+<li><p>A second selection of tracks is used to keep the rotation and scale of the image constant.
 You may use the same tracks for both selections. But usually it is best to use tracking points with large distance
 from the image center, and symmetrically, on both sides, to capture the angular movements more precisely.
 Similar to the &quot;location&quot; case, we calculate an average angular contribution and then try
-to keep this value constant during the whole shot.</li>
+to keep this value constant during the whole shot.</p></li>
 </ol>
 </div>
 <div class="section" id="footage-image-and-canvas">
@@ -310,11 +310,11 @@ thus following the originally intended panning movement. Of course, this time, w
 newly added panning movement in a smooth and clean way.</p>
 <div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_introduction_panning.jpg"><img alt="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_introduction_panning.jpg" src="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_introduction_panning.jpg" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Stabilizing a panning shot.</span></p>
+<p class="caption"><span class="caption-text">Stabilizing a panning shot.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-right" id="id3">
 <a class="reference internal image-reference" href="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_introduction_canvas.jpg"><img alt="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_introduction_canvas.jpg" src="../../../../../_images/movie-clip_tracking_clip_properties_stabilization_introduction_canvas.jpg" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Restoring the expected camera movement.</span></p>
+<p class="caption"><span class="caption-text">Restoring the expected camera movement.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>To allow for such a compensation and to reintroduce deliberate panning, or tilting and zoom of the resulting image,
 the stabilizer offers a dedicated set of controls: <em>Expected position</em>, <em>Expected rotation</em> and <em>Expected scale</em>.

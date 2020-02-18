@@ -236,20 +236,20 @@
 <span id="bpy-types-triangulatemodifier"></span><h1>Bộ Điều Chỉnh Tam Giác Hóa -- Triangulate Modifier<a class="headerlink" href="#triangulate-modifier" title="Permalink to this headline">¶</a></h1>
 <p>The <em>Triangulate</em> modifier converts all faces in a mesh (quads and polygons) to triangular faces.
 It fulfills the exact same function as the <a class="reference internal" href="../../meshes/editing/faces.html#bpy-ops-mesh-quads-convert-to-tris"><span class="std std-ref">Triangulate</span></a> tool in Edit Mode.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id1">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_triangulate_before.png"><img alt="../../../_images/modeling_modifiers_generate_triangulate_before.png" src="../../../_images/modeling_modifiers_generate_triangulate_before.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Mesh before Triangulate modifier.</span></p>
+<p class="caption"><span class="caption-text">Mesh before Triangulate modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id2">
+<td><div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_triangulate_after.png"><img alt="../../../_images/modeling_modifiers_generate_triangulate_after.png" src="../../../_images/modeling_modifiers_generate_triangulate_after.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Mesh after Triangulate modifier.</span></p>
+<p class="caption"><span class="caption-text">Mesh after Triangulate modifier.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -259,37 +259,35 @@ It fulfills the exact same function as the <a class="reference internal" href=".
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id3">
 <img alt="../../../_images/modeling_modifiers_generate_triangulate_panel.png" src="../../../_images/modeling_modifiers_generate_triangulate_panel.png" />
-<p class="caption"><span class="caption-text">The Triangulate modifier.</span></p>
+<p class="caption"><span class="caption-text">The Triangulate modifier.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Phương Pháp Tứ Giác -- Quad Method</dt>
-<dd><dl class="first last docutils">
-<dt>Làm Đẹp -- Beauty</dt>
-<dd>Split the quads in nice triangles, slower method.</dd>
-<dt>Cố Định -- Fixed</dt>
-<dd>Split the quads on their 1st and 3rd vertices.</dd>
-<dt>So Le Cố Định -- Fixed Alternate</dt>
-<dd>Split the quads on their 2nd and 4th vertices.</dd>
-<dt>Đường Chéo Ngắn Nhất -- Shortest Diagonal</dt>
-<dd>Split the quads based on the diagonal distance between their vertices.</dd>
+<dl class="simple">
+<dt>Phương Pháp Tứ Giác -- Quad Method</dt><dd><dl class="simple">
+<dt>Làm Đẹp -- Beauty</dt><dd><p>Split the quads in nice triangles, slower method.</p>
+</dd>
+<dt>Cố Định -- Fixed</dt><dd><p>Split the quads on their 1st and 3rd vertices.</p>
+</dd>
+<dt>So Le Cố Định -- Fixed Alternate</dt><dd><p>Split the quads on their 2nd and 4th vertices.</p>
+</dd>
+<dt>Đường Chéo Ngắn Nhất -- Shortest Diagonal</dt><dd><p>Split the quads based on the diagonal distance between their vertices.</p>
+</dd>
 </dl>
 </dd>
-<dt>N-gon Method</dt>
-<dd><dl class="first last docutils">
-<dt>Làm Đẹp -- Beauty</dt>
-<dd>Arrange the new triangles nicely, slower method.</dd>
-<dt>Clip</dt>
-<dd>Split the polygons using an ear-clipping algorithm
-(gives similar results to the tessellation used for the viewport rendering).</dd>
+<dt>N-gon Method</dt><dd><dl class="simple">
+<dt>Làm Đẹp -- Beauty</dt><dd><p>Arrange the new triangles nicely, slower method.</p>
+</dd>
+<dt>Clip</dt><dd><p>Split the polygons using an ear-clipping algorithm
+(gives similar results to the tessellation used for the viewport rendering).</p>
+</dd>
 </dl>
 </dd>
-<dt>Keep Normals</dt>
-<dd>When using <a class="reference internal" href="../../meshes/structure.html#modeling-meshes-normals-custom"><span class="std std-ref">custom normals</span></a>,
-try to preserve the same shading as before triangulation.</dd>
-<dt>Minimum Vertices</dt>
-<dd>Minimum number of vertices a face must have to be triangulated.
+<dt>Keep Normals</dt><dd><p>When using <a class="reference internal" href="../../meshes/structure.html#modeling-meshes-normals-custom"><span class="std std-ref">custom normals</span></a>,
+try to preserve the same shading as before triangulation.</p>
+</dd>
+<dt>Minimum Vertices</dt><dd><p>Minimum number of vertices a face must have to be triangulated.
 For example, setting this value to 5, will prevent triangulation of <a class="reference internal" href="../../../glossary/index.html#term-quad"><span class="xref std std-term">quads</span></a>
-and only triangulate <a class="reference internal" href="../../../glossary/index.html#term-n-gon"><span class="xref std std-term">N-gons</span></a>.</dd>
+and only triangulate <a class="reference internal" href="../../../glossary/index.html#term-n-gon"><span class="xref std std-term">N-gons</span></a>.</p>
+</dd>
 </dl>
 </div>
 </div>

@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -248,7 +248,7 @@
 <span id="bpy-types-shadernodegeometry"></span><h1>-- Geometry Node<a class="headerlink" href="#geometry-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_input_geometry_node.png" src="../../../_images/render_shader-nodes_input_geometry_node.png" />
-<p class="caption"><span class="caption-text">Geometry Node.</span></p>
+<p class="caption"><span class="caption-text">Geometry Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <em>Geometry</em> node gives geometric information about the current shading point.
 All vector coordinates are in <em>World Space</em>. For volume shaders,
@@ -263,34 +263,33 @@ only the position and incoming vector are available.</p>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Vị Trí -- Position</dt>
-<dd>Position of the shading point.</dd>
-<dt>Pháp Tuyến -- Normal</dt>
-<dd>Shading normal at the surface (includes smooth normals and bump mapping).</dd>
-<dt>Tiếp Tuyến -- Tangent</dt>
-<dd>Tangent at the surface.</dd>
-<dt>Pháp Tuyến Thực -- True Normal</dt>
-<dd>Geometry or flat normal of the surface.</dd>
-<dt>Hướng Nhìn Vào -- Incoming</dt>
-<dd>Vector pointing towards the point the shading point is being viewed from.</dd>
-<dt>Tham Số -- Parametric</dt>
-<dd>Parametric coordinates of the shading point on the surface.
+<dl>
+<dt>Vị Trí -- Position</dt><dd><p>Position of the shading point.</p>
+</dd>
+<dt>Pháp Tuyến -- Normal</dt><dd><p>Shading normal at the surface (includes smooth normals and bump mapping).</p>
+</dd>
+<dt>Tiếp Tuyến -- Tangent</dt><dd><p>Tangent at the surface.</p>
+</dd>
+<dt>Pháp Tuyến Thực -- True Normal</dt><dd><p>Geometry or flat normal of the surface.</p>
+</dd>
+<dt>Hướng Nhìn Vào -- Incoming</dt><dd><p>Vector pointing towards the point the shading point is being viewed from.</p>
+</dd>
+<dt>Tham Số -- Parametric</dt><dd><p>Parametric coordinates of the shading point on the surface.
 To area lights it outputs its UV coordinates in planar mapping and
-in spherical coordinates to point lights.</dd>
-<dt>Trở Mặt -- Backfacing</dt>
-<dd>1.0 if the face is being viewed from the back side, 0.0 for the front side.</dd>
-<dt>Pointiness <span class="guilabel">Cycles Only</span></dt>
-<dd>An approximation of the curvature of the mesh per vertex.
+in spherical coordinates to point lights.</p>
+</dd>
+<dt>Trở Mặt -- Backfacing</dt><dd><p>1.0 if the face is being viewed from the back side, 0.0 for the front side.</p>
+</dd>
+<dt>Pointiness <span class="guilabel">Cycles Only</span></dt><dd><p>An approximation of the curvature of the mesh per vertex.
 Lighter values indicate convex angles, darker values indicate concave angles.
-It allows you to do effects like dirt maps and wear-off effects.</dd>
-<dt>Random Per Island <span class="guilabel">Cycles Only</span></dt>
-<dd><p class="first">A random value for each connected component (island) of the mesh.
+It allows you to do effects like dirt maps and wear-off effects.</p>
+</dd>
+<dt>Random Per Island <span class="guilabel">Cycles Only</span></dt><dd><p>A random value for each connected component (island) of the mesh.
 It is useful to add variations to meshes composed of separated units
 like tree leaves, wood planks, or curves of multiple splines.</p>
-<div class="last figure" id="id2">
-<img alt="../../../_images/render_shader-nodes_input_geometry_example_random_per_island.png" src="../../../_images/render_shader-nodes_input_geometry_example_random_per_island.png" />
-<p class="caption"><span class="caption-text">Get a random value for each instance of the mesh when using an Array modifier.</span></p>
+<div class="figure align-default" id="id2">
+<img alt="../../../_images/render_shader-nodes_input_geometry_example-random-per-island.png" src="../../../_images/render_shader-nodes_input_geometry_example-random-per-island.png" />
+<p class="caption"><span class="caption-text">Get a random value for each instance of the mesh when using an Array modifier.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
 </dl>

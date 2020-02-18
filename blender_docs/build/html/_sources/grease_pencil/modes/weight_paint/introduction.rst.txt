@@ -24,7 +24,7 @@ Starting to paint on a strokes automatically adds weights to the active vertex g
 Weight Paint
 ============
 
-.. figure:: /images/grease-pencil_modes_weight_paint_introduction_mode-selector.png
+.. figure:: /images/grease-pencil_modes_weight-paint_introduction_mode-selector.png
 
    3D View Mode selector: Weight Paint Mode.
 

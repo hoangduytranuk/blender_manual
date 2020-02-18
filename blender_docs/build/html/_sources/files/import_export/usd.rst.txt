@@ -71,11 +71,6 @@ Use Settings for
    Determines the whether to use *Viewport* or *Render* visibility of collection, modifiers,
    or any other property that can be set for both the *Viewport* and *Render*.
 
-.. note::
-
-   Regardless of the options selected above, objects that are inside
-   a :ref:`Holdout collection <editors-outliner-restriction-columns>` are always excluded from the export.
-
 
 Experimental
 ------------

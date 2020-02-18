@@ -54,6 +54,6 @@ Random Per Island :guilabel:`Cycles Only`
    It is useful to add variations to meshes composed of separated units
    like tree leaves, wood planks, or curves of multiple splines.
 
-   .. figure:: /images/render_shader-nodes_input_geometry_example_random_per_island.png
+   .. figure:: /images/render_shader-nodes_input_geometry_example-random-per-island.png
 
       Get a random value for each instance of the mesh when using an Array modifier.

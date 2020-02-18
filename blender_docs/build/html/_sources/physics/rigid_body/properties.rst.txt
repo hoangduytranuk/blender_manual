@@ -63,8 +63,8 @@ Rigid Body Collisions
       Rigid Body Collisions panel.
 
 
-Collision Shapes
-----------------
+Shape
+-----
 
 The Shape option determines the collision shape of the object.
 
@@ -106,8 +106,8 @@ Mesh
    Allows to simulate concave objects, but is rather slow and unstable.
 
 
-Mesh Source
------------
+Source
+------
 
 Users can now specify the mesh *Source* for *Mesh* bases collision shapes:
 
@@ -125,28 +125,15 @@ Final
 Surface Response
 ----------------
 
-.. admonition:: Reference
-   :class: refbox
-
-   :Panel:     :menuselection:`Physics --> Rigid Body --> Surface Response`
-
 Friction
    Resistance of object to movement. Specifies how much velocity is lost when objects collide with each other.
 Bounciness
    Tendency of object to bounce after colliding with another (0 to 1) (rigid to perfectly elastic).
    Specifies how much objects can bounce after collisions.
 
-Collision Groups
-   Allows rigid body collisions allocate on different groups (maximum 20).
-
 
 Sensitivity
 -----------
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Panel:     :menuselection:`Physics --> Rigid Body --> Sensitivity`
 
 Margin
    Threshold of distance near surface where collisions are still considered (best results when non-zero).
@@ -168,6 +155,12 @@ The margin is *not embedded* for these shapes:
 - Cone
 - Active Triangle Mesh
 - Passive Triangle Mesh: Can be set to 0 most of the time.
+
+
+Collections
+-----------
+
+Allows rigid body collisions allocate on different groups (maximum 20).
 
 
 Dynamics

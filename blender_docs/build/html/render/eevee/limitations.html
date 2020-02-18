@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="next" title="Cycles" href="../cycles/index.html" />
-    <link rel="prev" title="Mặt Phẳng Phản Quang -- Reflection Planes" href="lightprobes/reflection_planes.html" /> 
+    <link rel="prev" title="Reflection Planes" href="light_probes/reflection_planes.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -128,7 +128,7 @@
 <li class="toctree-l3"><a class="reference internal" href="materials/index.html">Nguyên Liệu -- Materials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="world.html">Thế Giới -- World</a></li>
 <li class="toctree-l3"><a class="reference internal" href="lighting.html">Light Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lightprobes/index.html">-- Light Probes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light_probes/index.html">Light Probes</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Những Giới Hạn -- Limitations</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cameras">Máy Quay Phim -- Cameras</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#lights">Nguồn Sáng -- Lights</a></li>
@@ -242,57 +242,57 @@ may be impossible to implement into Eevee's architecture without compromising pe
 <div class="section" id="cameras">
 <h2>Máy Quay Phim -- Cameras<a class="headerlink" href="#cameras" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Only perspective and orthographic projections are currently supported.</li>
+<li><p>Only perspective and orthographic projections are currently supported.</p></li>
 </ul>
 </div>
 <div class="section" id="lights">
 <h2>Nguồn Sáng -- Lights<a class="headerlink" href="#lights" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Only 128 active lights can be supported by Eevee in a scene.</li>
-<li>Only 8 Shadowed sun lights can be supported at the same time.</li>
-<li>As of now, lights can only have one color and do not support light node trees.</li>
+<li><p>Only 128 active lights can be supported by Eevee in a scene.</p></li>
+<li><p>Only 8 Shadowed sun lights can be supported at the same time.</p></li>
+<li><p>As of now, lights can only have one color and do not support light node trees.</p></li>
 </ul>
 </div>
 <div class="section" id="light-probes">
 <h2>-- Light Probes<a class="headerlink" href="#light-probes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Eevee only supports up to 128 active Reflection Cubemaps.</li>
-<li>Eevee only supports up to 64 active Irradiance Volumes.</li>
-<li>Eevee only supports up to 16 active Reflection Planes inside the view frustum.</li>
+<li><p>Eevee only supports up to 128 active Reflection Cubemaps.</p></li>
+<li><p>Eevee only supports up to 64 active Irradiance Volumes.</p></li>
+<li><p>Eevee only supports up to 16 active Reflection Planes inside the view frustum.</p></li>
 </ul>
 </div>
 <div class="section" id="indirect-lighting">
 <h2>Áng Sáng Gián Tiếp -- Indirect Lighting<a class="headerlink" href="#indirect-lighting" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Volumetrics don't receive light from Irradiance Volumes but do receive world's diffuse lighting.</li>
-<li>Eevee does not support &quot;specular to diffuse&quot; light bounces nor &quot;specular to specular&quot; light bounces.</li>
-<li>All specular lighting is turned off during baking.</li>
+<li><p>Volumetrics don't receive light from Irradiance Volumes but do receive world's diffuse lighting.</p></li>
+<li><p>Eevee does not support &quot;specular to diffuse&quot; light bounces nor &quot;specular to specular&quot; light bounces.</p></li>
+<li><p>All specular lighting is turned off during baking.</p></li>
 </ul>
 </div>
 <div class="section" id="shadows">
 <span id="eevee-limitations-shadows"></span><h2>Shadows<a class="headerlink" href="#shadows" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Only 128 active lights can be supported by Eevee in a scene.</li>
-<li>Only 8 Shadowed sun lights can be supported at the same time.</li>
+<li><p>Only 128 active lights can be supported by Eevee in a scene.</p></li>
+<li><p>Only 8 Shadowed sun lights can be supported at the same time.</p></li>
 </ul>
 </div>
 <div class="section" id="volumetrics">
 <span id="eevee-limitations-volumetrics"></span><h2>Thể Tích -- Volumetrics<a class="headerlink" href="#volumetrics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Only single scattering is supported.</li>
-<li>Volumetrics are rendered only for the camera &quot;rays&quot;. They don't appear in reflections/refractions and probes.</li>
-<li>Volumetrics don't receive light from Irradiance Volumes but does receive world's diffuse lighting.</li>
-<li>Volumetric shadowing does only work on other volumetrics. They won't cast shadows on solid objects in the scene.</li>
-<li>Volumetric shadowing does only work for volumes inside the view frustum.</li>
-<li>Volumetric lighting does not respect the lights shapes. They are treated as point lights.</li>
+<li><p>Only single scattering is supported.</p></li>
+<li><p>Volumetrics are rendered only for the camera &quot;rays&quot;. They don't appear in reflections/refractions and probes.</p></li>
+<li><p>Volumetrics don't receive light from Irradiance Volumes but does receive world's diffuse lighting.</p></li>
+<li><p>Volumetric shadowing does only work on other volumetrics. They won't cast shadows on solid objects in the scene.</p></li>
+<li><p>Volumetric shadowing does only work for volumes inside the view frustum.</p></li>
+<li><p>Volumetric lighting does not respect the lights shapes. They are treated as point lights.</p></li>
 </ul>
 </div>
 <div class="section" id="depth-of-field">
 <span id="eevee-limitations-dof"></span><h2>Depth of Field<a class="headerlink" href="#depth-of-field" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Rendered at half resolution which can create blocky pixel artifacts on tiny features that are nearly in focus.</li>
-<li>The near and far defocus buffers are in fact one single continuous texture. This can make some bleeding
-appear on the left and right size of the image. This can be fixed by using the <em>overscan</em> feature.</li>
+<li><p>Rendered at half resolution which can create blocky pixel artifacts on tiny features that are nearly in focus.</p></li>
+<li><p>The near and far defocus buffers are in fact one single continuous texture. This can make some bleeding
+appear on the left and right size of the image. This can be fixed by using the <em>overscan</em> feature.</p></li>
 </ul>
 </div>
 <div class="section" id="screen-space-effects">
@@ -304,87 +304,85 @@ However, only what is in inside the view can be considered when computing these 
 Also, since it only uses one layer of depth, only the front-most pixel distance is known.</p>
 <p>These limitations creates a few problems:</p>
 <ul class="simple">
-<li>The screen space effects disappear when reaching the screen border.
-This can be partially fixed by using the <em>overscan</em> feature.</li>
-<li>Screen space effects lack deep information (or the thickness of objects).
-This is why most effects have a thickness parameter to control how to consider potential intersected pixels.</li>
-<li>Blended surfaces are not considered by these effects.
-They are not part of the depth prepass and do not appear in the depth buffer.</li>
+<li><p>The screen space effects disappear when reaching the screen border.
+This can be partially fixed by using the <em>overscan</em> feature.</p></li>
+<li><p>Screen space effects lack deep information (or the thickness of objects).
+This is why most effects have a thickness parameter to control how to consider potential intersected pixels.</p></li>
+<li><p>Blended surfaces are not considered by these effects.
+They are not part of the depth prepass and do not appear in the depth buffer.</p></li>
 </ul>
 <div class="section" id="ambient-occlusion">
 <span id="eevee-limitations-ao"></span><h3>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion<a class="headerlink" href="#ambient-occlusion" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Objects are treated as infinitely thick, producing overshadowing if the <em>Distance</em> is really large.</li>
+<li><p>Objects are treated as infinitely thick, producing overshadowing if the <em>Distance</em> is really large.</p></li>
 </ul>
 </div>
 <div class="section" id="screen-space-reflections">
 <span id="eevee-limitations-reflections"></span><h3>Phản Quang trong Không Gian Màn Hình -- Screen Space Reflections<a class="headerlink" href="#screen-space-reflections" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Only one glossy BSDF can emit screen space reflections.</li>
-<li>The evaluated BSDF is currently arbitrarily chosen.</li>
-<li>Screen Space Reflections will reflect transparent objects and objects using Screen Space Refraction
-but without accurate positioning due to the one layer depth buffer.</li>
+<li><p>Only one glossy BSDF can emit screen space reflections.</p></li>
+<li><p>The evaluated BSDF is currently arbitrarily chosen.</p></li>
+<li><p>Screen Space Reflections will reflect transparent objects and objects using Screen Space Refraction
+but without accurate positioning due to the one layer depth buffer.</p></li>
 </ul>
 </div>
 <div class="section" id="screen-space-refraction">
 <h3>-- Screen Space Refraction<a class="headerlink" href="#screen-space-refraction" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Only one refraction event is correctly modeled.</li>
-<li>Only opaque and alpha hashed materials can be refracted.</li>
+<li><p>Only one refraction event is correctly modeled.</p></li>
+<li><p>Only opaque and alpha hashed materials can be refracted.</p></li>
 </ul>
 </div>
 <div class="section" id="subsurface-scattering">
 <span id="eevee-limitations-sss"></span><h3>Subsurface Scattering<a class="headerlink" href="#subsurface-scattering" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Only one BSSRDF can produce screen space subsurface scattering.</li>
-<li>The evaluated BSSRDF is currently arbitrarily chosen.</li>
-<li>A maximum of 254 different surfaces can use subsurface scattering.</li>
-<li>Only scaling is adjustable per pixel. Individual RGB radii are adjustable in the socket default value.</li>
-<li>Input radiance from each surfaces are not isolated during the blurring,
-leading to light leaking from surface to surface.</li>
+<li><p>Only one BSSRDF can produce screen space subsurface scattering.</p></li>
+<li><p>The evaluated BSSRDF is currently arbitrarily chosen.</p></li>
+<li><p>A maximum of 254 different surfaces can use subsurface scattering.</p></li>
+<li><p>Only scaling is adjustable per pixel. Individual RGB radii are adjustable in the socket default value.</p></li>
+<li><p>Input radiance from each surfaces are not isolated during the blurring,
+leading to light leaking from surface to surface.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="materials">
 <span id="eevee-limitations-materials"></span><h2>Nguyên Liệu -- Materials<a class="headerlink" href="#materials" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Refractions</dt>
-<dd><p class="first">Refraction is faked by sampling the same reflection probe used by the Glossy BSDFs,
+<dl>
+<dt>Refractions</dt><dd><p>Refraction is faked by sampling the same reflection probe used by the Glossy BSDFs,
 but using the refracted view direction instead of the reflected view direction.
 Only the first refraction event is modeled correctly.
 An approximation of the second refraction event can be used for relatively thin objects using Refraction Depth.
 Using Screen Space refraction will refract what is visible inside the view,
 and use the nearest probe if there is no hit.</p>
-<p class="last">Screen Space Reflections and Ambient Occlusion are not compatible with Screen Space Refraction;
+<p>Screen Space Reflections and Ambient Occlusion are not compatible with Screen Space Refraction;
 they will be disabled on the surfaces that use it.
 Surfaces that use Screen Space Refraction will not appear in Screen Space Reflections at the right place.
 Surfaces that use Screen Space Refraction will not cast Ambient Occlusion onto other surfaces.</p>
 </dd>
-<dt>Bump Mapping</dt>
-<dd><p class="first">As of now, bump mapping is supported using OpenGL derivatives which are the same for each block of 2x2 pixels.
+<dt>Bump Mapping</dt><dd><p>As of now, bump mapping is supported using OpenGL derivatives which are the same for each block of 2×2 pixels.
 This means the bump output value will appear pixelated.
 It is recommended to use normal mapping instead.</p>
-<div class="last admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last">If you absolutely need to render using Bump nodes,
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>If you absolutely need to render using Bump nodes,
 render at twice the target resolution and downscale the final output.</p>
 </div>
 </dd>
-<dt>Volume Objects</dt>
-<dd>Object volume shaders will affect the whole bounding box of the object.
-The shape of the volume must be adjusted using procedural texturing inside the shader.</dd>
+<dt>Volume Objects</dt><dd><p>Object volume shaders will affect the whole bounding box of the object.
+The shape of the volume must be adjusted using procedural texturing inside the shader.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="shader-nodes">
 <h2>Nút Tô Bóng -- Shader Nodes<a class="headerlink" href="#shader-nodes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>All BSDF's are using approximations to achieve realtime performance
-so there will always be small differences between Cycles and Eevee.</li>
-<li>Some utility nodes are not yet compatible with Eevee (e.g. Sky Texture node).</li>
+<li><p>All BSDF's are using approximations to achieve realtime performance
+so there will always be small differences between Cycles and Eevee.</p></li>
+<li><p>Some utility nodes are not yet compatible with Eevee (e.g. Sky Texture node).</p></li>
 </ul>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last">For a full list of unsupported nodes see <a class="reference internal" href="materials/nodes_support.html"><span class="doc">Nodes Support</span></a>.</p>
+<p class="admonition-title">Xem thêm</p>
+<p>For a full list of unsupported nodes see <a class="reference internal" href="materials/nodes_support.html"><span class="doc">Nodes Support</span></a>.</p>
 </div>
 </div>
 <div class="section" id="memory-management">
@@ -430,7 +428,7 @@ multiple <abbr title="Graphic Processing Unit, also known as Graphics Card">GPU<
         <a href="../cycles/index.html" class="btn btn-neutral float-right" title="Cycles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="lightprobes/reflection_planes.html" class="btn btn-neutral float-left" title="Mặt Phẳng Phản Quang -- Reflection Planes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="light_probes/reflection_planes.html" class="btn btn-neutral float-left" title="Reflection Planes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

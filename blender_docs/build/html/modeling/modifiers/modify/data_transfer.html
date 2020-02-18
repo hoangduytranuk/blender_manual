@@ -232,82 +232,79 @@ Data types include vertex groups, UV maps, vertex colors, custom normals...</p>
 <p>Transfer works by generating a mapping between source mesh's items (vertices, edges, etc.)
 and destination ones, either on a one-to-one basis, or mapping several source items
 to a single destination one, using interpolation.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_data-transfer_normals-example.jpg"><img alt="../../../_images/modeling_modifiers_modify_data-transfer_normals-example.jpg" src="../../../_images/modeling_modifiers_modify_data-transfer_normals-example.jpg" style="width: 680px;" /></a>
 <p class="caption"><span class="caption-text">Transferring normals between objects,
-<a class="reference external" href="https://en.blender.org/uploads/a/ad/Data_Transfer_Normal_Torus.blend">see example blend-file</a>.</span></p>
+<a class="reference external" href="https://en.blender.org/uploads/a/ad/Data_Transfer_Normal_Torus.blend">see example blend-file</a>.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id2">
 <img alt="../../../_images/modeling_modifiers_modify_data-transfer_panel.png" src="../../../_images/modeling_modifiers_modify_data-transfer_panel.png" />
-<p class="caption"><span class="caption-text">Data Transfer Modifier.</span></p>
+<p class="caption"><span class="caption-text">Data Transfer Modifier.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Vật Thể Nguồn -- Source Object</dt>
-<dd><p class="first">Mesh object to copy data from.</p>
-<p class="last">If the button to the right of the field is unset, the source and destination geometry
+<dl>
+<dt>Vật Thể Nguồn -- Source Object</dt><dd><p>Mesh object to copy data from.</p>
+<p>If the button to the right of the field is unset, the source and destination geometry
 are considered in global space when generating the mapping, otherwise they are evaluated
 in local space (i.e. as if both object's origins were at the same place).</p>
 </dd>
-<dt>Khoảng Cách Tối Đa -- Max Distance</dt>
-<dd><p class="first">When the &quot;pressure stylus&quot; icon button to the right is enabled,
+<dt>Khoảng Cách Tối Đa -- Max Distance</dt><dd><p>When the &quot;pressure stylus&quot; icon button to the right is enabled,
 this is the maximum distance between source and destination to get a successful mapping.
 If a destination item cannot find a source one within that range, then it will get no transferred data.</p>
-<p class="last">This allows to transfer a small sub-detailed mesh onto a more complete one
+<p>This allows to transfer a small sub-detailed mesh onto a more complete one
 (e.g. from a &quot;hand&quot; mesh towards a &quot;full body&quot; one).</p>
 </dd>
-<dt>Bán Kính của Tia Xạ -- Ray Radius</dt>
-<dd>For ray-casting-based mapping methods, the radius of the cast rays.
+<dt>Bán Kính của Tia Xạ -- Ray Radius</dt><dd><p>For ray-casting-based mapping methods, the radius of the cast rays.
 Especially important for 1D and 2D items (i.e. vertices and edges),
-without some width there would be nearly no ray-casting matches...</dd>
-<dt>Chế Độ Pha Trộn -- Mix Mode</dt>
-<dd><p class="first">Controls how destination data are affected:</p>
-<dl class="last docutils">
-<dt>Toàn Bộ -- All</dt>
-<dd>Replaces everything in destination (note that <em>Mix Factor</em> is still used).</dd>
-<dt>Trên Giới Hạn -- Above Threshold</dt>
-<dd>Only replaces destination value if it's above given threshold <em>Mix Factor</em>.
+without some width there would be nearly no ray-casting matches...</p>
+</dd>
+<dt>Chế Độ Pha Trộn -- Mix Mode</dt><dd><p>Controls how destination data are affected:</p>
+<dl class="simple">
+<dt>Toàn Bộ -- All</dt><dd><p>Replaces everything in destination (note that <em>Mix Factor</em> is still used).</p>
+</dd>
+<dt>Trên Giới Hạn -- Above Threshold</dt><dd><p>Only replaces destination value if it's above given threshold <em>Mix Factor</em>.
 How that threshold is interpreted depends on the data type,
-note that for boolean values this option fakes a logical AND.</dd>
-<dt>Dưới Giới Hạn -- Below Threshold</dt>
-<dd>Only replaces destination value if it's below given threshold <em>Mix Factor</em>.
+note that for boolean values this option fakes a logical AND.</p>
+</dd>
+<dt>Dưới Giới Hạn -- Below Threshold</dt><dd><p>Only replaces destination value if it's below given threshold <em>Mix Factor</em>.
 How that threshold is interpreted depends on the data type,
-note that for boolean values this option fakes a logical OR.</dd>
-<dt>-- Mix, Add, Subtract, Multiply</dt>
-<dd>Apply that operation, using mix factor to control how much of source or destination value to use.
-Only available for a few types (vertex groups, vertex colors).</dd>
+note that for boolean values this option fakes a logical OR.</p>
+</dd>
+<dt>-- Mix, Add, Subtract, Multiply</dt><dd><p>Apply that operation, using mix factor to control how much of source or destination value to use.
+Only available for a few types (vertex groups, vertex colors).</p>
+</dd>
 </dl>
 </dd>
-<dt>Hệ Số Pha Trộn -- Mix Factor</dt>
-<dd>How much of the transferred data gets mixed into existing one (not supported by all data types).</dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd>Allows per-item fine control of the mix factor. Vertex group influence can be reverted using the small
-&quot;arrow&quot; button to the right.</dd>
-<dt>Sinh Tạo Tầng Dữ Liệu -- Generate Data Layers</dt>
-<dd>This modifier cannot generate needed data layers itself. Once the set of source data to transfer is selected,
-this button shall be used to generate matching destination layers, if needed.</dd>
+<dt>Hệ Số Pha Trộn -- Mix Factor</dt><dd><p>How much of the transferred data gets mixed into existing one (not supported by all data types).</p>
+</dd>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>Allows per-item fine control of the mix factor. Vertex group influence can be reverted using the small
+&quot;arrow&quot; button to the right.</p>
+</dd>
+<dt>Sinh Tạo Tầng Dữ Liệu -- Generate Data Layers</dt><dd><p>This modifier cannot generate needed data layers itself. Once the set of source data to transfer is selected,
+this button shall be used to generate matching destination layers, if needed.</p>
+</dd>
 </dl>
 <div class="section" id="selection-of-data-to-transfer">
 <h3>-- Selection of Data to Transfer<a class="headerlink" href="#selection-of-data-to-transfer" title="Permalink to this headline">¶</a></h3>
 <p>To keep the size of the modifier reasonable, the kind of items to be affected must be selected first
 (vertices, edges, face corners and/or faces).</p>
-<dl class="docutils">
-<dt>Thể Loại Ánh Xạ -- Mapping Type</dt>
-<dd>How is generated the mapping between those source and destination items. Each type has its own options,
-see <a class="reference internal" href="#geometry-mapping">Geometry Mapping</a> below for details.</dd>
-<dt>Loại Dữ Liệu -- Data Types</dt>
-<dd>The left column of toggle buttons, to select which data types to transfer.</dd>
-<dt>-- Multi-layers Data Types Options</dt>
-<dd>In those cases (vertex groups, vertex colors, UVs), one can select which source layers to transfer
+<dl class="simple">
+<dt>Thể Loại Ánh Xạ -- Mapping Type</dt><dd><p>How is generated the mapping between those source and destination items. Each type has its own options,
+see <a class="reference internal" href="#geometry-mapping">Geometry Mapping</a> below for details.</p>
+</dd>
+<dt>Loại Dữ Liệu -- Data Types</dt><dd><p>The left column of toggle buttons, to select which data types to transfer.</p>
+</dd>
+<dt>-- Multi-layers Data Types Options</dt><dd><p>In those cases (vertex groups, vertex colors, UVs), one can select which source layers to transfer
 (usually, either all of them, or a single specified one), and how to affect destination
 (either by matching names, matching order/position,
-or, if a single source is selected, by specifying manually the destination layer).</dd>
-<dt>Mức Tinh Chỉnh Hải Đảo -- Islands Handling Refinement</dt>
-<dd>This setting only affects UV transfer currently. It allows to avoid a given destination face to get
+or, if a single source is selected, by specifying manually the destination layer).</p>
+</dd>
+<dt>Mức Tinh Chỉnh Hải Đảo -- Islands Handling Refinement</dt><dd><p>This setting only affects UV transfer currently. It allows to avoid a given destination face to get
 UV coordinates from different source UV islands. Keeping it at 0.0 means no island handling at all.
 Typically, small values like 0.02 are enough to get good results, but if you are mapping from
-a very high-poly source towards a very low-poly destination, you may have to raise it quite significantly.</dd>
+a very high-poly source towards a very low-poly destination, you may have to raise it quite significantly.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -324,103 +321,93 @@ if the source data selection is modified.</p>
 In this process a destination vertex/edge/...
 gets a part of the source mesh assigned with functions as its data source.
 It is crucial to understand this topic well to get good results with this modifier.</p>
-<dl class="docutils">
-<dt>Cấu Trúc Liên Kết -- Topology</dt>
-<dd>The simplest option, expects both meshes to have identical number of items, and match them by order (indices).
-Useful e.g. between meshes that were identical copies, and got deformed differently.</dd>
-<dt>-- One-To-One Mappings</dt>
-<dd><p class="first">Those always select only one source item for each destination one, often based on shortest distance.</p>
-<dl class="last docutils">
-<dt>Điểm Đỉnh -- Vertices</dt>
-<dd><dl class="first last docutils">
-<dt>Đỉnh Gần Nhất -- Nearest Vertex</dt>
-<dd>Uses source's nearest vertex.</dd>
-<dt>Điểm Đỉnh của Cạnh Gần Nhất -- Nearest Edge Vertex</dt>
-<dd>Uses source's nearest vertex of source's nearest edge.</dd>
-<dt>Điểm Đỉnh của Bề Mặt Gần Nhất -- Nearest Face Vertex</dt>
-<dd>Uses source's nearest vertex of source's nearest face.</dd>
+<dl>
+<dt>Cấu Trúc Liên Kết -- Topology</dt><dd><p>The simplest option, expects both meshes to have identical number of items, and match them by order (indices).
+Useful e.g. between meshes that were identical copies, and got deformed differently.</p>
+</dd>
+<dt>-- One-To-One Mappings</dt><dd><p>Those always select only one source item for each destination one, often based on shortest distance.</p>
+<dl>
+<dt>Điểm Đỉnh -- Vertices</dt><dd><dl class="simple">
+<dt>Đỉnh Gần Nhất -- Nearest Vertex</dt><dd><p>Uses source's nearest vertex.</p>
+</dd>
+<dt>Điểm Đỉnh của Cạnh Gần Nhất -- Nearest Edge Vertex</dt><dd><p>Uses source's nearest vertex of source's nearest edge.</p>
+</dd>
+<dt>Điểm Đỉnh của Bề Mặt Gần Nhất -- Nearest Face Vertex</dt><dd><p>Uses source's nearest vertex of source's nearest face.</p>
+</dd>
 </dl>
 </dd>
-<dt>Cạnh -- Edges</dt>
-<dd><dl class="first last docutils">
-<dt>Điểm Đỉnh Gần Nhất -- Nearest Vertices</dt>
-<dd>Uses source's edge which vertices are nearest from destination edge's vertices.</dd>
-<dt>Cạnh Gần Nhất -- Nearest Edge</dt>
-<dd>Uses source's nearest edge (using edge's midpoints).</dd>
-<dt>Cạnh Bề Mặt Gần Nhất -- Nearest Face Edge</dt>
-<dd>Uses source's nearest edge of source's nearest face (using edge's midpoints).</dd>
+<dt>Cạnh -- Edges</dt><dd><dl class="simple">
+<dt>Điểm Đỉnh Gần Nhất -- Nearest Vertices</dt><dd><p>Uses source's edge which vertices are nearest from destination edge's vertices.</p>
+</dd>
+<dt>Cạnh Gần Nhất -- Nearest Edge</dt><dd><p>Uses source's nearest edge (using edge's midpoints).</p>
+</dd>
+<dt>Cạnh Bề Mặt Gần Nhất -- Nearest Face Edge</dt><dd><p>Uses source's nearest edge of source's nearest face (using edge's midpoints).</p>
+</dd>
 </dl>
 </dd>
-<dt>-- Face Corners</dt>
-<dd><p class="first">A face corner is not a real item by itself, it's some kind of split vertex attached to a specific face.
+<dt>-- Face Corners</dt><dd><p>A face corner is not a real item by itself, it's some kind of split vertex attached to a specific face.
 Hence both vertex (location) and face (normal, ...) aspects are used to match them together.</p>
-<dl class="last docutils">
-<dt>-- Nearest Corner and Best Matching Normal</dt>
-<dd>Uses source's corner having the most similar <em>split</em> normal with destination one,
-from those sharing the nearest source's vertex.</dd>
-<dt>-- Nearest Corner and Best Matching Face Normal</dt>
-<dd>Uses source's corner having the most similar <em>face</em> normal with destination one,
-from those sharing the nearest source's vertex.</dd>
-<dt>-- Nearest Corner of Nearest Face</dt>
-<dd>Uses source's nearest corner of source's nearest face.</dd>
-</dl>
+<dl class="simple">
+<dt>-- Nearest Corner and Best Matching Normal</dt><dd><p>Uses source's corner having the most similar <em>split</em> normal with destination one,
+from those sharing the nearest source's vertex.</p>
 </dd>
-<dt>Bề Mặt -- Faces</dt>
-<dd><dl class="first last docutils">
-<dt>Bề Mặt Gần Nhất -- Nearest Face</dt>
-<dd>Uses source's nearest face.</dd>
-<dt>Pháp Tuyến Tương Đồng Nhất -- Best Normal-Matching</dt>
-<dd>Uses source's face which normal is most similar with destination one.</dd>
-</dl>
+<dt>-- Nearest Corner and Best Matching Face Normal</dt><dd><p>Uses source's corner having the most similar <em>face</em> normal with destination one,
+from those sharing the nearest source's vertex.</p>
+</dd>
+<dt>-- Nearest Corner of Nearest Face</dt><dd><p>Uses source's nearest corner of source's nearest face.</p>
 </dd>
 </dl>
 </dd>
-<dt>-- Interpolated Mappings</dt>
-<dd><p class="first">Those use several source items for each destination one, interpolating their data during the transfer.</p>
-<dl class="last docutils">
-<dt>Điểm Đỉnh -- Vertices</dt>
-<dd><dl class="first last docutils">
-<dt>Cạnh Gần Nhất Được Nội Suy -- Nearest Edge Interpolated</dt>
-<dd>Uses nearest point on nearest source's edge, interpolates data from both source edge's vertices.</dd>
-<dt>Bề Mặt Gần Nhất Được Nội Suy -- Nearest Face Interpolated</dt>
-<dd>Uses nearest point on nearest source's face, interpolates data from all that source face's vertices.</dd>
-<dt>Bề Mặt Dự Phóng Được Nội Suy -- Projected Face Interpolated</dt>
-<dd>Uses point of face on source hit by projection of destination vertex along its own normal,
-interpolates data from all that source face's vertices.</dd>
+<dt>Bề Mặt -- Faces</dt><dd><dl class="simple">
+<dt>Bề Mặt Gần Nhất -- Nearest Face</dt><dd><p>Uses source's nearest face.</p>
+</dd>
+<dt>Pháp Tuyến Tương Đồng Nhất -- Best Normal-Matching</dt><dd><p>Uses source's face which normal is most similar with destination one.</p>
+</dd>
 </dl>
 </dd>
-<dt>Cạnh -- Edges</dt>
-<dd><dl class="first last docutils">
-<dt>Cạnh Dự Phóng Nội Suy -- Projected Edge Interpolated</dt>
-<dd>This is a sampling process. Several rays are cast from along the destination's edge
+</dl>
+</dd>
+<dt>-- Interpolated Mappings</dt><dd><p>Those use several source items for each destination one, interpolating their data during the transfer.</p>
+<dl>
+<dt>Điểm Đỉnh -- Vertices</dt><dd><dl class="simple">
+<dt>Cạnh Gần Nhất Được Nội Suy -- Nearest Edge Interpolated</dt><dd><p>Uses nearest point on nearest source's edge, interpolates data from both source edge's vertices.</p>
+</dd>
+<dt>Bề Mặt Gần Nhất Được Nội Suy -- Nearest Face Interpolated</dt><dd><p>Uses nearest point on nearest source's face, interpolates data from all that source face's vertices.</p>
+</dd>
+<dt>Bề Mặt Dự Phóng Được Nội Suy -- Projected Face Interpolated</dt><dd><p>Uses point of face on source hit by projection of destination vertex along its own normal,
+interpolates data from all that source face's vertices.</p>
+</dd>
+</dl>
+</dd>
+<dt>Cạnh -- Edges</dt><dd><dl class="simple">
+<dt>Cạnh Dự Phóng Nội Suy -- Projected Edge Interpolated</dt><dd><p>This is a sampling process. Several rays are cast from along the destination's edge
 (interpolating both edge's vertex normals), and if enough of them hit a source's edge,
-all hit source edges' data are interpolated into destination one.</dd>
+all hit source edges' data are interpolated into destination one.</p>
+</dd>
 </dl>
 </dd>
-<dt>-- Face Corners</dt>
-<dd><p class="first">A face corner is not a real item by itself, it's some kind of split vertex attached to a specific face.
+<dt>-- Face Corners</dt><dd><p>A face corner is not a real item by itself, it's some kind of split vertex attached to a specific face.
 Hence both vertex (location) and face (normal, ...) aspects are used to match them together.</p>
-<dl class="last docutils">
-<dt>Bề Mặt Gần Nhất Được Nội Suy -- Nearest Face Interpolated</dt>
-<dd>Uses nearest point of nearest source's face, interpolates data from all that source face's corners.</dd>
-<dt>Bề Mặt Dự Phóng Được Nội Suy -- Projected Face Interpolated</dt>
-<dd>Uses point of face on source hit by projection of destination corner along its own normal,
-interpolates data from all that source face's corners.</dd>
+<dl class="simple">
+<dt>Bề Mặt Gần Nhất Được Nội Suy -- Nearest Face Interpolated</dt><dd><p>Uses nearest point of nearest source's face, interpolates data from all that source face's corners.</p>
+</dd>
+<dt>Bề Mặt Dự Phóng Được Nội Suy -- Projected Face Interpolated</dt><dd><p>Uses point of face on source hit by projection of destination corner along its own normal,
+interpolates data from all that source face's corners.</p>
+</dd>
 </dl>
 </dd>
-<dt>Bề Mặt -- Faces</dt>
-<dd><dl class="first last docutils">
-<dt>Bề Mặt Dự Phóng Được Nội Suy -- Projected Face Interpolated</dt>
-<dd>This is a sampling process. Several rays are cast from the whole destination's face (along its own normal),
-and if enough of them hit a source's face, all hit source faces' data are interpolated into destination one.</dd>
+<dt>Bề Mặt -- Faces</dt><dd><dl class="simple">
+<dt>Bề Mặt Dự Phóng Được Nội Suy -- Projected Face Interpolated</dt><dd><p>This is a sampling process. Several rays are cast from the whole destination's face (along its own normal),
+and if enough of them hit a source's face, all hit source faces' data are interpolated into destination one.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">Xem thêm</p>
-<p class="last"><a class="reference internal" href="../../meshes/editing/data_transfer.html"><span class="doc">Data Transfer Operator</span></a></p>
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../meshes/editing/data_transfer.html"><span class="doc">Data Transfer Operator</span></a></p>
 </div>
 </div>
 </div>

@@ -18,7 +18,7 @@ Cache capacity can be set in :doc:`System tab </editors/preferences/system>` of 
 In this panel you can set up types of images that will be cached for all strips.
 
 Cache Raw
-   Cache raw images read from disk, for faster tweaking of strip parameters at the cost of memory usage.
+   Cache raw images read from drive, for faster tweaking of strip parameters at the cost of memory usage.
 Cache Preprocessed
    Cache preprocessed images, for faster tweaking of effects at the cost of memory usage.
 Cache Composite
@@ -50,7 +50,7 @@ Enable Strip Cache
    Enable overriding the cache defaults.
    When disabled, *Cache Settings* will be used.
 Cache Raw
-   Cache raw images read from disk, for faster tweaking of strip parameters at the cost of memory usage.
+   Cache raw images read from drive, for faster tweaking of strip parameters at the cost of memory usage.
 Cache Preprocessed
    Cache preprocessed images, for faster tweaking of effects at the cost of memory usage.
 Cache Composite

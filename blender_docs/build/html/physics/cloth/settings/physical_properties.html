@@ -137,9 +137,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Fluid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">-- Particles System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Mô Phỏng Chất Lỏng -- Fluid Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../smoke/index.html">-- Smoke Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../collision.html">-- Collisions</a></li>
@@ -226,125 +225,118 @@
   <div class="section" id="physical-properties">
 <h1>Physical Properties<a class="headerlink" href="#physical-properties" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
-<p class="first admonition-title">Reference</p>
-<table class="last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Panel:</th><td class="field-body"><span class="menuselection">Physics ‣ Cloth ‣ Physical Properties</span></td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Physics ‣ Cloth ‣ Physical Properties</span></p>
+</dd>
+</dl>
 </div>
-<dl class="docutils">
-<dt>Mass</dt>
-<dd>The mass of the cloth material.</dd>
-<dt>Air Viscosity</dt>
-<dd>Air has some thickness which slows falling things down.</dd>
-<dt>Bending Model</dt>
-<dd><dl class="first last docutils">
-<dt>Linear</dt>
-<dd>Cloth model with linear bending springs (old).</dd>
-<dt>Angular</dt>
-<dd>Cloth model with angular bending springs.</dd>
+<dl class="simple">
+<dt>Mass</dt><dd><p>The mass of the cloth material.</p>
+</dd>
+<dt>Air Viscosity</dt><dd><p>Air has some thickness which slows falling things down.</p>
+</dd>
+<dt>Bending Model</dt><dd><dl class="simple">
+<dt>Linear</dt><dd><p>Cloth model with linear bending springs (old).</p>
+</dd>
+<dt>Angular</dt><dd><p>Cloth model with angular bending springs.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <div class="section" id="stiffness">
 <h2>Stiffness<a class="headerlink" href="#stiffness" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Tension</dt>
-<dd>How much the material resists stretching.</dd>
-<dt>Compression</dt>
-<dd>How much the material resists compression.</dd>
-<dt>Structural</dt>
-<dd>Overall stiffness of the cloth (only in linear bending model).</dd>
-<dt>Shear</dt>
-<dd>How much the material resists shearing.</dd>
-<dt>Bending</dt>
-<dd>Wrinkle coefficient. Higher creates more large folds.</dd>
+<dl class="simple">
+<dt>Tension</dt><dd><p>How much the material resists stretching.</p>
+</dd>
+<dt>Compression</dt><dd><p>How much the material resists compression.</p>
+</dd>
+<dt>Structural</dt><dd><p>Overall stiffness of the cloth (only in linear bending model).</p>
+</dd>
+<dt>Shear</dt><dd><p>How much the material resists shearing.</p>
+</dd>
+<dt>Bending</dt><dd><p>Wrinkle coefficient. Higher creates more large folds.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="damping">
 <h2>Damping<a class="headerlink" href="#damping" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Tension</dt>
-<dd>Amount of damping in stretching behavior.</dd>
-<dt>Compression</dt>
-<dd>Amount of damping in compression behavior.</dd>
-<dt>Structural</dt>
-<dd>Amount of damping in stretching behavior (only in linear bending model).</dd>
-<dt>Shear</dt>
-<dd>Amount of damping in shearing behavior.</dd>
-<dt>Bending</dt>
-<dd>Amount of damping in bending behavior.</dd>
+<dl class="simple">
+<dt>Tension</dt><dd><p>Amount of damping in stretching behavior.</p>
+</dd>
+<dt>Compression</dt><dd><p>Amount of damping in compression behavior.</p>
+</dd>
+<dt>Structural</dt><dd><p>Amount of damping in stretching behavior (only in linear bending model).</p>
+</dd>
+<dt>Shear</dt><dd><p>Amount of damping in shearing behavior.</p>
+</dd>
+<dt>Bending</dt><dd><p>Amount of damping in bending behavior.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="internal-springs">
 <span id="bpy-types-clothsettings-vertex-group-intern"></span><span id="bpy-types-clothsettings-internal-compression"></span><span id="bpy-types-clothsettings-internal-tension"></span><span id="bpy-types-clothsettings-internal-spring"></span><h2>Internal Springs<a class="headerlink" href="#internal-springs" title="Permalink to this headline">¶</a></h2>
 <p>As stated in the introduction, cloth physics are simulated through <a class="reference internal" href="../introduction.html#physics-cloth-introduction-springs"><span class="std std-ref">Springs</span></a>
-connecting vertices on the surface of a mesh.
-However, these springs only interact on the surface and only apply to 2D surfaces.
-3D or <em>Internal Springs</em> can be used to make a mesh behave similarly to a
-<a class="reference internal" href="../../soft_body/index.html"><span class="doc">Soft Body</span></a>.
-Internal springs can be enabled by toggling the checkbox in the <em>Internal Springs</em> panel header.</p>
-<dl class="docutils">
-<dt>Max Spring Creation Length</dt>
-<dd>The maximum length an internal spring can have during creation.
+connecting vertices on the surface of a mesh. But these springs only interact on the surface
+and only apply to 2D surfaces. 3D or <em>Internal Springs</em> can be used to make a mesh behave similarly to
+a <a class="reference internal" href="../../soft_body/index.html"><span class="doc">Soft Body</span></a>. Internal springs can be enabled by toggling the checkbox in
+the <em>Internal Springs</em> panel header.</p>
+<dl class="simple">
+<dt>Max Spring Creation Length</dt><dd><p>The maximum length an internal spring can have during creation.
 If the distance between internal points is greater than this,
 no internal spring will be created between these points.
-A length of zero means that there is no length limit</dd>
-<dt>Max Creation Diversion</dt>
-<dd>The maximum angle that is allowed to use to connect the internal points can diverge from the vertex normal.</dd>
-<dt>Check Surface Normals</dt>
-<dd>Requires the points the internal springs connect to have opposite normal directions.</dd>
-<dt>Tension</dt>
-<dd>How much the material resists stretching.</dd>
-<dt>Compression</dt>
-<dd>How much the material resists compression.</dd>
-<dt>Vertex Group</dt>
-<dd>The <em>Tension</em> and <em>Compression</em> of internal springs can be controlled via a
-<a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/index.html"><span class="doc">Vertex Group</span></a>
-to specify which the portions of the mesh have internal springs or the spring strength.</dd>
-<dt>Max Tension</dt>
-<dd>Maximum tension stiffness value.</dd>
-<dt>Max Compression</dt>
-<dd>Maximum Compression stiffness value.</dd>
+A length of zero means that there is no length limit.</p>
+</dd>
+<dt>Max Creation Diversion</dt><dd><p>The maximum angle that is allowed to use to connect the internal points can diverge from the vertex normal.</p>
+</dd>
+<dt>Check Surface Normals</dt><dd><p>Requires the points the internal springs connect to have opposite normal directions.</p>
+</dd>
+<dt>Tension</dt><dd><p>How much the material resists stretching.</p>
+</dd>
+<dt>Compression</dt><dd><p>How much the material resists compression.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>The <em>Tension</em> and <em>Compression</em> of internal springs can be controlled via
+a <a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/index.html"><span class="doc">Vertex Group</span></a> to
+specify which the portions of the mesh have internal springs or the spring strength.</p>
+</dd>
+<dt>Max Tension</dt><dd><p>Maximum tension stiffness value.</p>
+</dd>
+<dt>Max Compression</dt><dd><p>Maximum Compression stiffness value.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="pressure">
 <span id="bpy-types-clothsettings-vertex-group-pressure"></span><span id="bpy-types-clothsettings-pressure-factor"></span><span id="bpy-types-clothsettings-target-volume"></span><span id="bpy-types-clothsettings-use-pressure-volume"></span><span id="bpy-types-clothsettings-use-pressure"></span><h2>Pressure<a class="headerlink" href="#pressure" title="Permalink to this headline">¶</a></h2>
-<p>Cloth pressure allows the simulation of soft shelled objects
+<p>Cloth pressure allows the simulation of soft-shelled objects
 such as balloons or balls that are filled with some sort of fluid.
 This fluid can be seen either as a gas or a liquid however, both are generalized as &quot;fluids&quot;.
 Cloth pressure can be enabled by toggling the checkbox in the <em>Pressure</em> panel header.</p>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">Non manifold meshes will work with cloth pressure however,
+<p class="admonition-title">Ghi chú</p>
+<p><a class="reference internal" href="../../../glossary/index.html#term-non-manifold"><span class="xref std std-term">Non-manifold</span></a> meshes will work with cloth pressure however,
 pressure will escape out of the mesh holes and cause drifting or propulsion forces.
-One way to get around this is by using the <em>Vertex Group</em> to exclude the non manifold portions of the mesh.</p>
+One way to get around this is by using the <em>Vertex Group</em> to exclude the non-manifold portions of the mesh.</p>
 </div>
-<dl class="docutils">
-<dt>Pressure</dt>
-<dd>The uniform pressure that is constantly applied to the mesh.
+<dl>
+<dt>Pressure</dt><dd><p>The uniform pressure that is constantly applied to the mesh.
 This value can be negative to simulate implosions
-or any other case where an object has outside pressure pushing inwards.</dd>
-<dt>Custom Volume</dt>
-<dd><p class="first">Use the <em>Target Volume</em> parameter as the initial volume for the cloth.
+or any other case where an object has outside pressure pushing inwards.</p>
+</dd>
+<dt>Custom Volume</dt><dd><p>Use the <em>Target Volume</em> parameter as the initial volume for the cloth.
 This avoids having to use the <em>Pressure</em> to first inflate the object.</p>
-<dl class="last docutils">
-<dt>Target Volume</dt>
-<dd>The mesh volume where the inner/outer pressure will be the same.
-If set to zero the volume will not contribute to the total pressure.</dd>
+<dl class="simple">
+<dt>Target Volume</dt><dd><p>The mesh volume where the inner/outer pressure will be the same.
+If set to zero the volume will not contribute to the total pressure.</p>
+</dd>
 </dl>
 </dd>
-<dt>Factor</dt>
-<dd>Scalar control over the overall pressure.</dd>
-<dt>Vertex Group</dt>
-<dd><p class="first">Cloth pressure can be controlled via a <a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/index.html"><span class="doc">Vertex Group</span></a>
+<dt>Factor</dt><dd><p>Scalar control over the overall pressure.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>Cloth pressure can be controlled via a <a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/index.html"><span class="doc">Vertex Group</span></a>
 to specify which the portions of the mesh to apply pressure.
 Zero weight means no pressure while a weight of one means full pressure.</p>
-<p class="last">Note, Faces with a vertex that has zero weight will be excluded from the <em>Target Volume</em> calculation.</p>
+<p>Note, faces with a vertex that has zero weight will be excluded from the <em>Target Volume</em> calculation.</p>
 </dd>
 </dl>
 </div>

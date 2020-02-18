@@ -134,7 +134,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">-- Render Output</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../settings.html">Tùy Chọn cho Đầu Ra -- Output Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../settings.html">Output Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../file_formats.html">File Formats</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">-- Audio Rendering</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
@@ -142,7 +142,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../metadata.html">Siêu Dữ Liệu -- Metadata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../multiview/index.html">Stereoscopy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stereoscopy/index.html">Stereoscopy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../animation.html">-- Rendering Animations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../animation_player.html">Máy Chơi Hoạt Họa -- Animation Player</a></li>
 </ul>
@@ -227,9 +227,9 @@
             
   <div class="section" id="speaker">
 <span id="bpy-ops-object-speaker"></span><span id="bpy-types-speaker"></span><h1>Loa -- Speaker<a class="headerlink" href="#speaker" title="Permalink to this headline">¶</a></h1>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../../_images/render_output_audio_speaker_objects.png" src="../../../_images/render_output_audio_speaker_objects.png" />
-<p class="caption"><span class="caption-text">Speaker objects.</span></p>
+<p class="caption"><span class="caption-text">Speaker objects.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The speaker object is used to give sound in the 3D View.
 After adding the object, the various settings can be changed in the Properties editor.</p>
@@ -237,28 +237,27 @@ After adding the object, the various settings can be changed in the Properties e
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="sound">
 <h3>Âm Thanh -- Sound<a class="headerlink" href="#sound" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>Mở -- Open</dt>
-<dd><p class="first">The <a class="reference internal" href="../../../interface/controls/templates/data_block.html"><span class="doc">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> for loading audio files.
+<dl>
+<dt>Mở -- Open</dt><dd><p>The <a class="reference internal" href="../../../interface/controls/templates/data_block.html"><span class="doc">Trình Đơn Khối Dữ Liệu -- Data-Block Menu</span></a> for loading audio files.
 There are two properties you can check when loading a sound:</p>
-<dl class="last docutils">
-<dt>Bộ Nhớ Đệm -- Cache</dt>
-<dd>This means the whole sound will be decoded and the raw audio data will be buffered in memory,
+<dl class="simple">
+<dt>Bộ Nhớ Đệm -- Cache</dt><dd><p>This means the whole sound will be decoded and the raw audio data will be buffered in memory,
 which results in faster playback, but uses quite a lot of memory. So this should be used
-for short sound effects that get played more often, but not for longer audio files such as music.</dd>
-<dt>Mono</dt>
-<dd>For any 3D audio or panning effects the sound source has to be single channel,
+for short sound effects that get played more often, but not for longer audio files such as music.</p>
+</dd>
+<dt>Mono</dt><dd><p>For any 3D audio or panning effects the sound source has to be single channel,
 otherwise it's assumed that the 3D audio and panning information is already present in the multichannel file.
-Enable this if you want to use those effects for a file with multiple channels.</dd>
+Enable this if you want to use those effects for a file with multiple channels.</p>
+</dd>
 </dl>
 </dd>
-<dt>Giải Hoạt -- Mute</dt>
-<dd>Toggles whether or not the sound can be heard.</dd>
-<dt>Thể Tích -- Volume</dt>
-<dd>Adjust the loudness of the sound.</dd>
-<dt>Cao Độ -- Pitch</dt>
-<dd>Can be used to bend the pitch of the sound to be either deeper or higher.
-This basically changes the playback speed of the sound which also results in a pitch change.</dd>
+<dt>Giải Hoạt -- Mute</dt><dd><p>Toggles whether or not the sound can be heard.</p>
+</dd>
+<dt>Thể Tích -- Volume</dt><dd><p>Adjust the loudness of the sound.</p>
+</dd>
+<dt>Cao Độ -- Pitch</dt><dd><p>Can be used to bend the pitch of the sound to be either deeper or higher.
+This basically changes the playback speed of the sound which also results in a pitch change.</p>
+</dd>
 </dl>
 <div class="section" id="playback-time">
 <h4>-- Playback Time<a class="headerlink" href="#playback-time" title="Permalink to this headline">¶</a></h4>
@@ -274,28 +273,26 @@ When you add a speaker object such a strip will be added at the current frame.</
 <h3>Khoảng Cách -- Distance<a class="headerlink" href="#distance" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-right" id="id2">
 <img alt="../../../_images/render_output_audio_speaker_properties.png" src="../../../_images/render_output_audio_speaker_properties.png" />
-<p class="caption"><span class="caption-text">Speaker properties.</span></p>
+<p class="caption"><span class="caption-text">Speaker properties.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Distance attenuation relevant settings.</p>
-<dl class="docutils">
-<dt>Thể Tích -- Volume</dt>
-<dd><dl class="first last docutils">
-<dt>-- Minimum/Maximum</dt>
-<dd>No matter how far away/close the object is, the distance-based volume won't be lower/higher than this value.</dd>
-<dt>Độ Suy Giảm -- Attenuation</dt>
-<dd>How strong the distance affects the volume.
+<dl class="simple">
+<dt>Thể Tích -- Volume</dt><dd><dl class="simple">
+<dt>-- Minimum/Maximum</dt><dd><p>No matter how far away/close the object is, the distance-based volume won't be lower/higher than this value.</p>
+</dd>
+<dt>Độ Suy Giảm -- Attenuation</dt><dd><p>How strong the distance affects the volume.
 This factor sets the strength of the distance-based volume change,
-depending on the chosen distance model (see <a class="reference internal" href="../../../scene_layout/scene/properties.html#data-scenes-audio"><span class="std std-ref">scene settings</span></a>).</dd>
+depending on the chosen distance model (see <a class="reference internal" href="../../../scene_layout/scene/properties.html#data-scenes-audio"><span class="std std-ref">scene settings</span></a>).</p>
+</dd>
 </dl>
 </dd>
-<dt>Khoảng Cách -- Distance</dt>
-<dd><dl class="first last docutils">
-<dt>Tối Đa -- Maximum</dt>
-<dd>If the object is farther away than this distance, this distance is used to calculate the distance-based volume.
-Influence of this value also depends on the distance model.</dd>
-<dt>Tham Chiếu -- Reference</dt>
-<dd>The distance at which the volume is 100% (1.0). Set this value to the distance used for recording the sound.
-Usually sound effects recordings should be made exactly 1 m away from sound to get an accurate volume.</dd>
+<dt>Khoảng Cách -- Distance</dt><dd><dl class="simple">
+<dt>Tối Đa -- Maximum</dt><dd><p>If the object is farther away than this distance, this distance is used to calculate the distance-based volume.
+Influence of this value also depends on the distance model.</p>
+</dd>
+<dt>Tham Chiếu -- Reference</dt><dd><p>The distance at which the volume is 100% (1.0). Set this value to the distance used for recording the sound.
+Usually sound effects recordings should be made exactly 1 m away from sound to get an accurate volume.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -310,19 +307,17 @@ so 360° mean the cone is fully open and there's no directionality anymore.
 Inside the inner cone the volume is 100% (1.0),
 outside the outer cone the volume is, whatever one sets for the outer cone volume
 and the volume between those two cones, linearly interpolated between this two volumes.</p>
-<dl class="docutils">
-<dt>Góc Độ -- Angle</dt>
-<dd><dl class="first last docutils">
-<dt>Bên Ngoài -- Outer</dt>
-<dd>Angle of the outer cone in degrees. Outside this cone, the volume is equal to the <em>Outer</em> volume.</dd>
-<dt>Bên Trong -- Inner</dt>
-<dd>Angle of the inner cone in degrees. Inside the cone, the volume is 100%.</dd>
+<dl class="simple">
+<dt>Góc Độ -- Angle</dt><dd><dl class="simple">
+<dt>Bên Ngoài -- Outer</dt><dd><p>Angle of the outer cone in degrees. Outside this cone, the volume is equal to the <em>Outer</em> volume.</p>
+</dd>
+<dt>Bên Trong -- Inner</dt><dd><p>Angle of the inner cone in degrees. Inside the cone, the volume is 100%.</p>
+</dd>
 </dl>
 </dd>
-<dt>Thể Tích -- Volume</dt>
-<dd><dl class="first last docutils">
-<dt>Bên Ngoài -- Outer</dt>
-<dd>Volume outside the outer cone.</dd>
+<dt>Thể Tích -- Volume</dt><dd><dl class="simple">
+<dt>Bên Ngoài -- Outer</dt><dd><p>Volume outside the outer cone.</p>
+</dd>
 </dl>
 </dd>
 </dl>

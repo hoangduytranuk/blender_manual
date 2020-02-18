@@ -21,7 +21,7 @@ in which the newly created strokes are drawn.
 Placement Options
 =================
 
-.. figure:: /images/grease-pencil_modes_draw_stroke_placement-selector.png
+.. figure:: /images/grease-pencil_modes_draw_stroke-placement_selector.png
    :align: right
 
    Stroke Placement selector on 3D View header.
@@ -57,22 +57,22 @@ Examples
 
 .. list-table:: Stroke using different Stroke Placements.
 
-   * - .. figure:: /images/grease-pencil_modes_draw_stroke_placement-origin.png
+   * - .. figure:: /images/grease-pencil_modes_draw_stroke-placement_origin.png
           :width: 200px
 
           Origin.
 
-     - .. figure:: /images/grease-pencil_modes_draw_stroke_placement-3D-cursor.png
+     - .. figure:: /images/grease-pencil_modes_draw_stroke-placement_3D-cursor.png
           :width: 200px
 
           3D Cursor.
 
-     - .. figure:: /images/grease-pencil_modes_draw_stroke_placement-surface.png
+     - .. figure:: /images/grease-pencil_modes_draw_stroke-placement_surface.png
           :width: 200px
 
           Surface.
 
-     - .. figure:: /images/grease-pencil_modes_draw_stroke_placement-stroke.png
+     - .. figure:: /images/grease-pencil_modes_draw_stroke-placement_stroke.png
           :width: 200px
 
           Stroke.

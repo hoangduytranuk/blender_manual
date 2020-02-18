@@ -12,7 +12,7 @@ Brushes
    :class: refbox
 
    :Mode:      Sculpt Mode
-   :Panel:     :menuselection:`Toolbar --> Tools --> Brushes`
+   :Tool:      :menuselection:`Toolbar --> Tools --> Brushes`
 
 For painting/sculpting modes each brush type is exposed as a tool,
 the brush can be changed from the tool setting.

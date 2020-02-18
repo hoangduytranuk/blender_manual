@@ -20,11 +20,11 @@ Supported Hardware
 Blender supports two different technologies to render on the GPU depending on the particular GPU manufacture.
 
 
-NVIDIA
+Nvidia
 ------
 
 :abbr:`CUDA (Compute Unified Device Architecture)` and Optix
-are supported for GPU rendering with NVIDIA graphics cards.
+are supported for GPU rendering with Nvidia graphics cards.
 
 
 CUDA
@@ -32,7 +32,7 @@ CUDA
 
 CUDA requires graphics cards with compute capability 3.0 and higher.
 To make sure your GPU is supported,
-see the `list of NVIDIA graphics cards <https://developer.nvidia.com/cuda-gpus>`__
+see the `list of Nvidia graphics cards <https://developer.nvidia.com/cuda-gpus>`__
 with the compute capabilities and supported graphics cards.
 CUDA GPU rendering is supported on Windows, macOS, and Linux.
 
@@ -45,7 +45,7 @@ Optix
 For RTX graphics cards with hardware ray tracing support (e.g. Turing), Optix can be used for better performance.
 Optix support is still experimental and does not yet support all features, see below for details.
 
-Optix requires Geforce or Quadro RTX graphics card with recent NVIDIA drivers, and is supported on Windows and Linux.
+Optix requires Geforce or Quadro RTX graphics card with recent Nvidia drivers, and is supported on Windows and Linux.
 
 
 AMD
@@ -118,10 +118,10 @@ Would multiple GPUs increase available memory?
 No, each GPU can only access its own memory.
 
 
-What renders faster, NVIDIA or AMD, CUDA or OpenCL?
+What renders faster, Nvidia or AMD, CUDA or OpenCL?
 ---------------------------------------------------
 
-Currently NVIDIA with CUDA is rendering fastest, but this really depends on the hardware you buy.
+Currently Nvidia with CUDA is rendering fastest, but this really depends on the hardware you buy.
 Currently, CUDA and OpenCL are about the same in the newest mid-range GPUs.
 However, CUDA is fastest in the respect of high-end GPUs.
 
@@ -129,7 +129,7 @@ However, CUDA is fastest in the respect of high-end GPUs.
 Error Messages
 ==============
 
-In case of problems, be sure to install the official graphics drivers from the NVIDIA or AMD website,
+In case of problems, be sure to install the official graphics drivers from the Nvidia or AMD website,
 or through the package manager on Linux.
 
 
@@ -174,7 +174,7 @@ not the 32-bit version.
 CUDA Error: Kernel compilation failed
 -------------------------------------
 
-This error may happen if you have a new NVIDIA graphics card that is not yet supported by
+This error may happen if you have a new Nvidia graphics card that is not yet supported by
 the Blender version and CUDA toolkit you have installed.
 In this case Blender may try to dynamically build a kernel for your graphics card and fail.
 
@@ -201,7 +201,7 @@ and this is usually smaller than that of the CPU. See above for more details.
    For example, 8k, 4k, 2k, and 1k image textures take up respectively 256MB, 64MB, 16MB and 4MB of memory.
 
 
-The NVIDIA OpenGL driver lost connection with the display driver
+The Nvidia OpenGL driver lost connection with the display driver
 ----------------------------------------------------------------
 
 If a GPU is used for both display and rendering,

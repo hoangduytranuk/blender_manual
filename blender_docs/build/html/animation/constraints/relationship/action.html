@@ -250,68 +250,64 @@ with the target's <em>X</em> property at 1.0
 the owner will be as if in frame 50 of the linked action, etc.</p>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Mục Tiêu -- Target</dt>
-<dd><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.</dd>
-<dt>Xương -- Bone</dt>
-<dd>When target is an armature object, use this field to select the target bone.</dd>
-<dt>Kênh Biến Hóa -- Transform Channel</dt>
-<dd>This selector controls which transform property
-(location, rotation or scale along/around one of its axes) from the target to use as &quot;action driver&quot;.</dd>
-<dt>Không Gian của Mục Tiêu -- Target Space</dt>
-<dd>This constraint allows you to choose in which space to evaluate its target's transform properties.</dd>
-<dt>-- To Action</dt>
-<dd><p class="first">Select the name of the action you want to use.</p>
-<div class="last admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">Even though it might not be in red state (UI refresh problems...),
+<dl>
+<dt>Mục Tiêu -- Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> sử dụng để chọn mục tiêu ràng buộc. Không hoạt động (trạng thái màu đỏ) khi không có gì.</p>
+</dd>
+<dt>Xương -- Bone</dt><dd><p>When target is an armature object, use this field to select the target bone.</p>
+</dd>
+<dt>Kênh Biến Hóa -- Transform Channel</dt><dd><p>This selector controls which transform property
+(location, rotation or scale along/around one of its axes) from the target to use as &quot;action driver&quot;.</p>
+</dd>
+<dt>Không Gian của Mục Tiêu -- Target Space</dt><dd><p>This constraint allows you to choose in which space to evaluate its target's transform properties.</p>
+</dd>
+<dt>-- To Action</dt><dd><p>Select the name of the action you want to use.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Even though it might not be in red state (UI refresh problems...),
 this constraint is obviously not functional when this field does not contain a valid action.</p>
 </div>
 </dd>
-<dt>Hành Động của Vật Thể -- Object Action</dt>
-<dd>Bones <strong>only</strong>, when enabled,
+<dt>Hành Động của Vật Thể -- Object Action</dt><dd><p>Bones <strong>only</strong>, when enabled,
 this option will make the constrained bone use the &quot;object&quot; part of the linked action,
-instead of the &quot;same-named pose&quot; part. This allows you to apply the action of an object to a bone.</dd>
-<dt>-- Target Range Min/Max</dt>
-<dd><p class="first">The lower and upper bounds of the driving transform property value.</p>
-<div class="last admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
+instead of the &quot;same-named pose&quot; part. This allows you to apply the action of an object to a bone.</p>
+</dd>
+<dt>-- Target Range Min/Max</dt><dd><p>The lower and upper bounds of the driving transform property value.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
 <p>Unfortunately, here again we find the constraint's limitations:</p>
-<ul class="last simple">
-<li>When using a rotation property as &quot;driver&quot;,
-these values are &quot;mapped back&quot; to the (-180.0 to 180.0) range.</li>
-<li>When using a scale property as &quot;driver&quot;, these values are limited to null or positive values.</li>
+<ul class="simple">
+<li><p>When using a rotation property as &quot;driver&quot;,
+these values are &quot;mapped back&quot; to the (-180.0 to 180.0) range.</p></li>
+<li><p>When using a scale property as &quot;driver&quot;, these values are limited to null or positive values.</p></li>
 </ul>
 </div>
 </dd>
-<dt>-- Action Range Start/End</dt>
-<dd><p class="first">The starting and ending frames of the action to be mapped.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<ul class="last simple">
-<li>These values must be strictly positive.</li>
-<li>By default, both values are set to 0, which disables the mapping
-(i.e. the owner just gets the properties defined at frame 0 of the linked action...).</li>
+<dt>-- Action Range Start/End</dt><dd><p>The starting and ending frames of the action to be mapped.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<ul class="simple">
+<li><p>These values must be strictly positive.</p></li>
+<li><p>By default, both values are set to 0, which disables the mapping
+(i.e. the owner just gets the properties defined at frame 0 of the linked action...).</p></li>
 </ul>
 </div>
 </dd>
-<dt>Mix</dt>
-<dd><p class="first">Specifies how the keyframed transformation from the action is combined with the existing transformation.</p>
-<dl class="last docutils">
-<dt>Before Original</dt>
-<dd>The action transformation is added before the existing transformation, as if it was
+<dt>Mix</dt><dd><p>Specifies how the keyframed transformation from the action is combined with the existing transformation.</p>
+<dl class="simple">
+<dt>Before Original</dt><dd><p>The action transformation is added before the existing transformation, as if it was
 applied to an imaginary parent of the constraint owner. Scale is handled like in
 the <a class="reference internal" href="../../armatures/bones/properties/relations.html#bone-relations-inherit-settings"><span class="std std-ref">Aligned Inherit Scale</span></a> mode of bones
-to avoid creating shear.</dd>
-<dt>After Original</dt>
-<dd>The action transformation is added after the existing transformation, as if it was
+to avoid creating shear.</p>
+</dd>
+<dt>After Original</dt><dd><p>The action transformation is added after the existing transformation, as if it was
 applied locally to an imaginary child of the constraint owner. Scale is handled like
 in the <a class="reference internal" href="../../armatures/bones/properties/relations.html#bone-relations-inherit-settings"><span class="std std-ref">Aligned Inherit Scale</span></a> mode of bones
-to avoid creating shear.</dd>
-<dt>After Original (Full Scale)</dt>
-<dd>The action transformation is added after the existing transformation, as if it was
+to avoid creating shear.</p>
+</dd>
+<dt>After Original (Full Scale)</dt><dd><p>The action transformation is added after the existing transformation, as if it was
 applied locally to an imaginary child of the constraint owner with ordinary parenting.
-This mode can create shear and is thus not recommended for use.</dd>
+This mode can create shear and is thus not recommended for use.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -319,25 +315,25 @@ This mode can create shear and is thus not recommended for use.</dd>
 <div class="section" id="notes">
 <h2>Ghi Chú -- Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>When the object or bone already has Action constraints, the next constraint using
+<li><p>When the object or bone already has Action constraints, the next constraint using
 a newly keyframed action should be added before all others in order to get
-the same final combined transformation. This fact is not affected by the Mix mode.</li>
-<li>Unlike usual, you can have a <em>Start</em> value higher than the <em>End</em> one,
+the same final combined transformation. This fact is not affected by the Mix mode.</p></li>
+<li><p>Unlike usual, you can have a <em>Start</em> value higher than the <em>End</em> one,
 or a <em>Min</em> one higher than a <em>Max</em> one: this will reverse the mapping of the action
-(i.e. it will be &quot;played&quot; reversed...), unless you have both sets reversed, obviously!</li>
-<li>When using a <em>Constraint</em> action, it is the constraint <em>channel's names</em>
+(i.e. it will be &quot;played&quot; reversed...), unless you have both sets reversed, obviously!</p></li>
+<li><p>When using a <em>Constraint</em> action, it is the constraint <em>channel's names</em>
 that are used to determine to which constraints of the owner apply the action.
 E.g. if you have a constraint channel named &quot;trackto_empt1&quot;,
 its keyed <em>Influence</em> and/or <em>Head/Tail</em> values (the only ones you can key)
-will be mapped to the ones of the owner's constraint named &quot;trackto_empt1&quot;.</li>
-<li>Similarly, when using a <em>Pose</em> action
+will be mapped to the ones of the owner's constraint named &quot;trackto_empt1&quot;.</p></li>
+<li><p>Similarly, when using a <em>Pose</em> action
 (which is obviously only meaningful and working when constraining a bone!),
 it is the bone's name that is used to determine which bone <em>channel's names</em> from the action to use
 (e.g. if the constrained bone is named &quot;arm&quot;, it will use and only use the action's bone channel named &quot;arm&quot;...).
 Unfortunately, using a <em>Pose</em> action on a whole armature object
-(to affect all the keyed bones in the action at once) will not work...</li>
-<li>Note also that you can use the <a class="reference internal" href="../../armatures/properties/pose_library.html"><span class="doc">pose library feature</span></a> to
-create/edit a <em>Pose</em> action data-block... just remember that in this situation, there is one pose per frame!</li>
+(to affect all the keyed bones in the action at once) will not work...</p></li>
+<li><p>Note also that you can use the <a class="reference internal" href="../../armatures/properties/pose_library.html"><span class="doc">pose library feature</span></a> to
+create/edit a <em>Pose</em> action data-block... just remember that in this situation, there is one pose per frame!</p></li>
 </ul>
 <iframe src="https://player.vimeo.com/video/171554048" style="border: 0; height: 345px; width: 560px">
 </iframe></div>

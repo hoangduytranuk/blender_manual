@@ -243,63 +243,65 @@
 <span id="bpy-types-shadernodetexenvironment"></span><h1>-- Environment Texture Node<a class="headerlink" href="#environment-texture-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_textures_environment_node.png" src="../../../_images/render_shader-nodes_textures_environment_node.png" />
-<p class="caption"><span class="caption-text">Environment Texture Node.</span></p>
+<p class="caption"><span class="caption-text">Environment Texture Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The Node <em>Environmental Texture</em> is used to light your scene using an environment map image file as a texture.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Vectơ -- Vector</dt>
-<dd>Texture coordinate for texture look-up. If this socket is left unconnected,
-the image is mapped as environment with the Z axis as up.</dd>
+<dl class="simple">
+<dt>Vectơ -- Vector</dt><dd><p>Texture coordinate for texture look-up. If this socket is left unconnected,
+the image is mapped as environment with the Z axis as up.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>-- Image Data-Block</dt>
-<dd>Image data-block used as the image source.</dd>
-<dt>Không Gian Màu Sắc -- Color Space</dt>
-<dd>Type of data that the image contains, either Color or Non-Color Data.
+<dl>
+<dt>Image</dt><dd><p>Image data-block used as the image source.
+Additional settings can be found in <span class="menuselection">Sidebar ‣ Item ‣ Properties</span>:
+These include options to control the alpha channel along with addition options for the color space.
+These addition options are documented with the rest of
+<a class="reference internal" href="../../../editors/image/image_settings.html#editors-image-image-settings-common"><span class="std std-ref">Common Image Settings</span></a>.</p>
+</dd>
+<dt>Không Gian Màu Sắc -- Color Space</dt><dd><p>Type of data that the image contains, either Color or Non-Color Data.
 For most color textures the default of Color should be used, but in case of e.g. a bump or alpha map,
-the pixel values should be interpreted as Non-Color Data, to avoid doing any unwanted color space conversions.</dd>
-<dt>-- Texture Interpolation</dt>
-<dd><p class="first">Interpolation method used for the environment texture. The following interpolations are available:</p>
-<dl class="last docutils">
-<dt>Tuyến Tính -- Linear</dt>
-<dd>Regular quality interpolation.</dd>
-<dt>Gần Nhất -- Closest</dt>
-<dd>No interpolation, use closest pixel.</dd>
-<dt>Lập Phương -- Cubic</dt>
-<dd>Smoother, better quality interpolation.</dd>
-<dt>-- Smart</dt>
-<dd>Bicubic when magnifying, otherwise Bilinear is used.
-This is only available for <a class="reference internal" href="../osl.html"><span class="doc">OSL</span></a>.</dd>
+the pixel values should be interpreted as Non-Color Data, to avoid doing any unwanted color space conversions.</p>
+</dd>
+<dt>-- Texture Interpolation</dt><dd><p>Interpolation method used for the environment texture. The following interpolations are available:</p>
+<dl class="simple">
+<dt>Tuyến Tính -- Linear</dt><dd><p>Regular quality interpolation.</p>
+</dd>
+<dt>Gần Nhất -- Closest</dt><dd><p>No interpolation, use closest pixel.</p>
+</dd>
+<dt>Lập Phương -- Cubic</dt><dd><p>Smoother, better quality interpolation.</p>
+</dd>
+<dt>-- Smart</dt><dd><p>Bicubic when magnifying, otherwise Bilinear is used.
+This is only available for <a class="reference internal" href="../osl.html"><span class="doc">OSL</span></a>.</p>
+</dd>
 </dl>
 </dd>
-<dt>-- Projection Method</dt>
-<dd><p class="first">Allows you to use different types of environmental maps. The following methods are supported:</p>
-<dl class="last docutils">
-<dt>Vuông Góc Đều -- Equirectangular</dt>
-<dd>Projection from an Equirectangular photo.</dd>
-<dt>Địa Cầu Gương -- Mirror Ball</dt>
-<dd>Projection from an orthographic photo or mirror ball.</dd>
+<dt>-- Projection Method</dt><dd><p>Allows you to use different types of environmental maps. The following methods are supported:</p>
+<dl class="simple">
+<dt>Vuông Góc Đều -- Equirectangular</dt><dd><p>Projection from an Equirectangular photo.</p>
+</dd>
+<dt>Địa Cầu Gương -- Mirror Ball</dt><dd><p>Projection from an orthographic photo or mirror ball.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Màu Sắc -- Color</dt>
-<dd>RGB color from the image.</dd>
+<dl class="simple">
+<dt>Màu Sắc -- Color</dt><dd><p>RGB color from the image.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/render_shader-nodes_textures_environment_example.jpg"><img alt="../../../_images/render_shader-nodes_textures_environment_example.jpg" src="../../../_images/render_shader-nodes_textures_environment_example.jpg" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">HDR image from <a class="reference external" href="http://www.openfootage.net/?p=986">OpenFootage.net</a>.</span></p>
+<p class="caption"><span class="caption-text">HDR image from <a class="reference external" href="http://www.openfootage.net/?p=986">OpenFootage.net</a>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

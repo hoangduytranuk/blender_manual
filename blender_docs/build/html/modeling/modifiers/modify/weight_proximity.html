@@ -231,13 +231,13 @@
 based on the distance between the object (or its vertices),
 and another target object (or its geometry).</p>
 <div class="admonition warning">
-<p class="first admonition-title">Cảnh báo</p>
-<p class="last">This modifier does implicit clamping of weight values in the standard (0.0 to 1.0) range.
+<p class="admonition-title">Cảnh báo</p>
+<p>This modifier does implicit clamping of weight values in the standard (0.0 to 1.0) range.
 All values below 0.0 will be set to 0.0, and all values above 1.0 will be set to 1.0.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">You can view the modified weights in Weight Paint Mode.
+<p class="admonition-title">Ghi chú</p>
+<p>You can view the modified weights in Weight Paint Mode.
 This also implies that you will have to disable the <em>Vertex Weight Proximity</em> modifier
 if you want to see the original weights of the vertex group you are editing.</p>
 </div>
@@ -245,60 +245,57 @@ if you want to see the original weights of the vertex group you are editing.</p>
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_modify_weight-proximity_panel.png" src="../../../_images/modeling_modifiers_modify_weight-proximity_panel.png" />
-<p class="caption"><span class="caption-text">The Vertex Weight Proximity modifier panel.</span></p>
+<p class="caption"><span class="caption-text">The Vertex Weight Proximity modifier panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="docutils">
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt>
-<dd>Nhóm điểm đỉnh để tác động.</dd>
-<dt>Vật Thể Mục Tiêu -- Target Object</dt>
-<dd>The object from which to compute distances.</dd>
-<dt>-- Proximity mode</dt>
-<dd><dl class="first last docutils">
-<dt>-- Object Distance</dt>
-<dd>Use the distance between the modified mesh object and the target object as
-weight for all vertices in the affected vertex group.</dd>
-<dt>-- Geometry Distance</dt>
-<dd><p class="first">Use the distance between each vertex and the target object, or its geometry.</p>
-<dl class="docutils">
-<dt>Điểm Đỉnh -- Vertex</dt>
-<dd>This will set each vertex's weight from its distance to the nearest vertex of the target object.</dd>
-<dt>Cạnh -- Edge</dt>
-<dd>This will set each vertex's weight from its distance to the nearest edge of the target object.</dd>
-<dt>Bề Mặt -- Face</dt>
-<dd>This will set each vertex's weight from its distance to the nearest face of the target object.</dd>
+<dl>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>Nhóm điểm đỉnh để tác động.</p>
+</dd>
+<dt>Vật Thể Mục Tiêu -- Target Object</dt><dd><p>The object from which to compute distances.</p>
+</dd>
+<dt>-- Proximity mode</dt><dd><dl>
+<dt>-- Object Distance</dt><dd><p>Use the distance between the modified mesh object and the target object as
+weight for all vertices in the affected vertex group.</p>
+</dd>
+<dt>-- Geometry Distance</dt><dd><p>Use the distance between each vertex and the target object, or its geometry.</p>
+<dl class="simple">
+<dt>Điểm Đỉnh -- Vertex</dt><dd><p>This will set each vertex's weight from its distance to the nearest vertex of the target object.</p>
+</dd>
+<dt>Cạnh -- Edge</dt><dd><p>This will set each vertex's weight from its distance to the nearest edge of the target object.</p>
+</dd>
+<dt>Bề Mặt -- Face</dt><dd><p>This will set each vertex's weight from its distance to the nearest face of the target object.</p>
+</dd>
 </dl>
-<div class="last admonition note">
-<p class="first admonition-title">Ghi chú</p>
-<p class="last">If you enable more than one of them, the shortest distance will be used.
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>If you enable more than one of them, the shortest distance will be used.
 If the target object has no geometry (e.g. an empty or camera),
 it will use the location of the object itself.</p>
 </div>
 </dd>
 </dl>
 </dd>
-<dt>Thấp Nhất -- Lowest</dt>
-<dd>Distance mapping to 0.0 weight.</dd>
-<dt>Cao Nhất -- Highest</dt>
-<dd>Distance mapping to 1.0 weight.</dd>
+<dt>Thấp Nhất -- Lowest</dt><dd><p>Distance mapping to 0.0 weight.</p>
+</dd>
+<dt>Cao Nhất -- Highest</dt><dd><p>Distance mapping to 1.0 weight.</p>
+</dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">Mẹo</p>
-<p class="last"><em>Lowest</em> can be set above <em>Highest</em> to reverse the mapping.</p>
+<p class="admonition-title">Mẹo</p>
+<p><em>Lowest</em> can be set above <em>Highest</em> to reverse the mapping.</p>
 </div>
-<dl class="docutils">
-<dt>Loại Giảm Dần -- Falloff Type</dt>
-<dd><p class="first">Type of mapping:</p>
-<dl class="last docutils">
-<dt>Tuyến Tính -- Linear</dt>
-<dd>No mapping.</dd>
-<dt>Đồ Thị Tự Chọn -- Custom Curve</dt>
-<dd>Allows the user to manually define the mapping using a curve.</dd>
-<dt>-- Sharp, Smooth, Root and Sphere</dt>
-<dd>These are classical mapping functions, from spikiest to roundest.</dd>
-<dt>Ngẫu Nhiên -- Random</dt>
-<dd>Uses a random value for each vertex.</dd>
-<dt>Làm Tròn Số -- Median Step</dt>
-<dd>Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.</dd>
+<dl>
+<dt>Loại Giảm Dần -- Falloff Type</dt><dd><p>Type of mapping:</p>
+<dl class="simple">
+<dt>Tuyến Tính -- Linear</dt><dd><p>No mapping.</p>
+</dd>
+<dt>Đồ Thị Tự Chọn -- Custom Curve</dt><dd><p>Allows the user to manually define the mapping using a curve.</p>
+</dd>
+<dt>-- Sharp, Smooth, Root and Sphere</dt><dd><p>These are classical mapping functions, from spikiest to roundest.</p>
+</dd>
+<dt>Ngẫu Nhiên -- Random</dt><dd><p>Uses a random value for each vertex.</p>
+</dd>
+<dt>Làm Tròn Số -- Median Step</dt><dd><p>Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.</p>
+</dd>
 </dl>
 </dd>
 </dl>

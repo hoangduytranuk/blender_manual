@@ -32,7 +32,7 @@ Scale X and Scale Y
 Rotation Angle
    The rotation angle.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_geometry_2d-transform-example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_geometry_2d-transform_example.png
    :width: 50%
    :align: center
 

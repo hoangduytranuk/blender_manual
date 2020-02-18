@@ -76,15 +76,15 @@ Selected nodes' outputs will be merged using Mix, Math, Mix Shader or Add Shader
 depending on types of selected nodes.
 
 Add :kbd:`Shift-Ctrl-=`
-   Sets blend type or math operation to Add. When shaders are selected an Add Shader will be used.
+   Sets the blend mode or math operation to Add. When shaders are selected an Add Shader will be used.
 Multiply :kbd:`Shift-Ctrl-8`
-   Multiply blend type or math operation.
+   Multiply blend mode or math operation.
 Subtract :kbd:`Ctrl-Minus`
-   Subtract blend type or math operation.
+   Subtract blend mode or math operation.
 Divide :kbd:`Ctrl-Slash`
-   Divide blend type or math operation.
+   Divide blend mode or math operation.
 Mix :kbd:`Ctrl-0`
-   Mix blend type or when shaders are selected a Mix Shader node will be used.
+   Mix blend mode or when shaders are selected a Mix Shader node will be used.
 Greater than :kbd:`Shift-Ctrl-Comma`
    Greater than math operation.
 Less than :kbd:`Shift-Ctrl-Period`
@@ -138,7 +138,7 @@ Using :kbd:`Shift-Ctrl` with proper keys will force to use Math node for merging
 no matter what types of nodes are selected.
 
 
-Batch Change Blend Type / Math Operation
+Batch Change Blend Mode / Math Operation
 ----------------------------------------
 
 .. admonition:: Reference
@@ -147,10 +147,10 @@ Batch Change Blend Type / Math Operation
    :Hotkey:    :kbd:`Alt-Up`, :kbd:`Alt-Down`, :kbd:`Alt-0`, :kbd:`Shift-Alt-=`, :kbd:`Alt-Minus`,
                :kbd:`Shift-Alt-8`, :kbd:`Alt-Slash`, :kbd:`Shift-Alt-Comma`, :kbd:`Shift-Alt-Period`
 
-Select Mix nodes or Math nodes and change their blend type or math operation at the same time.
-Use keys specified above. They will change blend type or operation accordingly to:
+Select Mix nodes or Math nodes and change their blend mode or math operation at the same time.
+Use keys specified above. They will change the blend mode or operation accordingly to:
 Mix, Add, Subtract, Divide, Less than, Greater than.
-Use :kbd:`Alt-Up` or  :kbd:`Alt-Down` to go through all available blend types or math operations.
+Use :kbd:`Alt-Up` or  :kbd:`Alt-Down` to go through all available blend modes or math operations.
 
 
 Change Mix Factor

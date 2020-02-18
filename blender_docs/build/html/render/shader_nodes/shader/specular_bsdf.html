@@ -259,50 +259,48 @@ It has far fewer parameters and supports less features. Both might be merged int
 The result may not be physically plausible because there is no energy conservation.</p>
 <div class="section" id="inputs">
 <h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Base Color</dt>
-<dd>Diffuse surface color. For conductor materials (metals) it should be black.</dd>
-<dt>Specular Color</dt>
-<dd><p class="first">Amount of specular reflection. Specifies facing (along normal)
+<dl>
+<dt>Base Color</dt><dd><p>Diffuse surface color. For conductor materials (metals) it should be black.</p>
+</dd>
+<dt>Specular Color</dt><dd><p>Amount of specular reflection. Specifies facing (along normal)
 reflectivity. Conductor materials (metals) can have colored specular reflection.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
 <p>To compute this value for a realistic material with a known index of
 refraction, you may use this special case of the Fresnel formula:
 <span class="math notranslate nohighlight">\(specular = ((ior - 1)/(ior + 1))^2\)</span></p>
 <p>For example:</p>
-<ul class="last simple">
-<li>water: ior = 1.33, specular = 0.25</li>
-<li>glass: ior = 1.5, specular = 0.5</li>
-<li>diamond: ior = 2.417, specular = 2.15</li>
+<ul class="simple">
+<li><p>water: ior = 1.33, specular = 0.25</p></li>
+<li><p>glass: ior = 1.5, specular = 0.5</p></li>
+<li><p>diamond: ior = 2.417, specular = 2.15</p></li>
 </ul>
 </div>
 </dd>
-<dt>Roughness</dt>
-<dd><p class="first">Specifies microfacet roughness of the surface for diffuse and specular reflection.</p>
-<div class="last admonition hint">
-<p class="first admonition-title">Gợi ý</p>
-<p class="last">When converting from the older <em>Glossy BSDF</em> node, use the square root of the original value.</p>
+<dt>Roughness</dt><dd><p>Specifies microfacet roughness of the surface for diffuse and specular reflection.</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>When converting from the older <em>Glossy BSDF</em> node, use the square root of the original value.</p>
 </div>
 </dd>
-<dt>Emissive Color</dt>
-<dd>Color of the emitted light. This light is added to the BSDF result.</dd>
-<dt>Transparency</dt>
-<dd>Transparency factor. This is the inverse of the alpha channel (1 - alpha) you find in an image.
+<dt>Emissive Color</dt><dd><p>Color of the emitted light. This light is added to the BSDF result.</p>
+</dd>
+<dt>Transparency</dt><dd><p>Transparency factor. This is the inverse of the alpha channel (1 - alpha) you find in an image.
 Use an Invert node to convert alpha to transparency.
-This will only have an effect if the material uses a blend mode other than opaque.</dd>
-<dt>Normal</dt>
-<dd>Controls the normals of the base layers.</dd>
-<dt>Clearcoat</dt>
-<dd>Extra white specular layer on top of others.
-This is useful for materials like car paint and the like.</dd>
-<dt>Clearcoat Roughness:</dt>
-<dd>Roughness of clearcoat specular.</dd>
-<dt>Clearcoat Normal</dt>
-<dd>Controls the normals of the <em>Clearcoat</em> layer.</dd>
-<dt>Ambient Occlusion</dt>
-<dd>Amount of occlusion to apply to indirect lighting. Usually a bake ambient occlusion map.
-The final occlusion factor is the minimum of this input and the runtime ambient occlusion effect.</dd>
+This will only have an effect if the material uses a blend mode other than opaque.</p>
+</dd>
+<dt>Normal</dt><dd><p>Controls the normals of the base layers.</p>
+</dd>
+<dt>Clearcoat</dt><dd><p>Extra white specular layer on top of others.
+This is useful for materials like car paint and the like.</p>
+</dd>
+<dt>Clearcoat Roughness:</dt><dd><p>Roughness of clearcoat specular.</p>
+</dd>
+<dt>Clearcoat Normal</dt><dd><p>Controls the normals of the <em>Clearcoat</em> layer.</p>
+</dd>
+<dt>Ambient Occlusion</dt><dd><p>Amount of occlusion to apply to indirect lighting. Usually a bake ambient occlusion map.
+The final occlusion factor is the minimum of this input and the runtime ambient occlusion effect.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
@@ -311,9 +309,9 @@ The final occlusion factor is the minimum of this input and the runtime ambient 
 </div>
 <div class="section" id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>BSDF</dt>
-<dd>Standard shader output.</dd>
+<dl class="simple">
+<dt>BSDF</dt><dd><p>Standard shader output.</p>
+</dd>
 </dl>
 </div>
 </div>

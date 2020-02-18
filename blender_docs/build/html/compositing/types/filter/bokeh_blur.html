@@ -234,7 +234,7 @@
 <span id="bpy-types-compositornodebokehblur"></span><h1>Nút Nhòe Mờ Bokeh -- Bokeh Blur Node<a class="headerlink" href="#bokeh-blur-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeBokehBlur.png" src="../../../_images/compositing_node-types_CompositorNodeBokehBlur.png" />
-<p class="caption"><span class="caption-text">Nút Nhòe Mờ Bokeh.</span></p>
+<p class="caption"><span class="caption-text">Nút Nhòe Mờ Bokeh.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The Bokeh Blur node generates a bokeh type blur similar to Defocus.
 Unlike defocus an in-focus region is defined in the Compositor.
@@ -243,31 +243,31 @@ the <a class="reference internal" href="../input/bokeh_image.html"><span class="
 <p>Một số tối ưu hóa hiệu suất thi hành cũng tồn tại, ví như sự hỗ trợ trong OpenCL, với sự hạn chế khu vực tính toán và chắn lọc (masking).</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu vào hình ảnh tiêu chuẩn.</dd>
-<dt>Nhòe Bokeh -- Bokeh</dt>
-<dd>Đây là một đầu vào cung cấp cho nút <a class="reference internal" href="../input/bokeh_image.html"><span class="doc">Hình Nhòe Bokeh -- Bokeh Image</span></a>.</dd>
-<dt>Kích Thước -- Size</dt>
-<dd>Kích thước khống chế lượng nhòe mờ. Kích thước (Size) có thể là một giá trị duy nhất trên toàn bộ hình ảnh, hoặc một giá trị biến được kiểm soát bởi một hình ảnh ở đầu vào. Để sử dụng phương thức thứ hai thì tùy chọn Kích Thước Biến Thiên (Variable Size) phải được chọn. Xin xem các ví dụ ở phần dưới đây để biết thêm về cách sử dụng phương pháp này.</dd>
-<dt>Khung Hộp Viền -- Bounding Box</dt>
-<dd>Cái này có thể được sử dụng với một nút lớp lồng <a class="reference internal" href="../matte/box_mask.html"><span class="doc">Màn Chắn Hình Hộp -- Box Mask</span></a> hoặc với một nút đầu vào <a class="reference internal" href="../input/mask.html"><span class="doc">Màn Chắn -- Mask</span></a> Điều này có thể hữu ích, ví dụ, khi phát triển một hệ thống nút bằng cách cho phép chỉ một khu vực nhỏ của hình ảnh được thanh lọc, do đó tiết kiệm thời gian tổng hợp, sau mỗi lần điều chỉnh.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào hình ảnh tiêu chuẩn.</p>
+</dd>
+<dt>Nhòe Bokeh -- Bokeh</dt><dd><p>Đây là một đầu vào cung cấp cho nút <a class="reference internal" href="../input/bokeh_image.html"><span class="doc">Hình Nhòe Bokeh -- Bokeh Image</span></a>.</p>
+</dd>
+<dt>Kích Thước -- Size</dt><dd><p>Kích thước khống chế lượng nhòe mờ. Kích thước (Size) có thể là một giá trị duy nhất trên toàn bộ hình ảnh, hoặc một giá trị biến được kiểm soát bởi một hình ảnh ở đầu vào. Để sử dụng phương thức thứ hai thì tùy chọn Kích Thước Biến Thiên (Variable Size) phải được chọn. Xin xem các ví dụ ở phần dưới đây để biết thêm về cách sử dụng phương pháp này.</p>
+</dd>
+<dt>Khung Hộp Viền -- Bounding Box</dt><dd><p>Cái này có thể được sử dụng với một nút lớp lồng <a class="reference internal" href="../matte/box_mask.html"><span class="doc">Màn Chắn Hình Hộp -- Box Mask</span></a> hoặc với một nút đầu vào <a class="reference internal" href="../input/mask.html"><span class="doc">Màn Chắn -- Mask</span></a> Điều này có thể hữu ích, ví dụ, khi phát triển một hệ thống nút bằng cách cho phép chỉ một khu vực nhỏ của hình ảnh được thanh lọc, do đó tiết kiệm thời gian tổng hợp, sau mỗi lần điều chỉnh.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Kích Thước Biến Thiên -- Variable Size</dt>
-<dd>Cho phép bán kính nhòe mờ thay đổi, nếu đầu vào Kích Thước (Size) là một hình ảnh.</dd>
-<dt>Độ nhòe mờ tối đa -- Max blur</dt>
-<dd>Độ nhòe mờ tối đa được dùng để hoạt động như một công cụ tối ưu hóa, bằng cách giới hạn số lượng điểm ảnh mà tính nhòe mờ được tính toán.</dd>
+<dl class="simple">
+<dt>Kích Thước Biến Thiên -- Variable Size</dt><dd><p>Cho phép bán kính nhòe mờ thay đổi, nếu đầu vào Kích Thước (Size) là một hình ảnh.</p>
+</dd>
+<dt>Độ nhòe mờ tối đa -- Max blur</dt><dd><p>Độ nhòe mờ tối đa được dùng để hoạt động như một công cụ tối ưu hóa, bằng cách giới hạn số lượng điểm ảnh mà tính nhòe mờ được tính toán.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Hình Ảnh -- Image</dt>
-<dd>Đầu ra tiêu chuẩn của hình ảnh.</dd>
+<dl class="simple">
+<dt>Hình Ảnh -- Image</dt><dd><p>Đầu ra tiêu chuẩn của hình ảnh.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="examples">
@@ -275,29 +275,29 @@ the <a class="reference internal" href="../input/bokeh_image.html"><span class="
 <p>Sau đây là ba ví dụ về phương pháp kích thước đầu vào có thể được sử dụng.</p>
 <p>Một hình ảnh alpha <a class="reference internal" href="../converter/id_mask.html"><span class="doc">Chắn lọc ID -- ID masked</span></a> Có thể được sử dụng để nền thì nhòe mờ trong khi các đối tượng ở đằng trước vẫn nằm trong trường ảnh, rõ nét. Để tránh được các cạnh bất bình thường thì nên sử dụng <a class="reference internal" href="dilate_erode.html"><span class="doc">Nút Giãn Ra -- Dilate Node</span></a>.</p>
 <p>Lượt về Z có thể được biểu thị bằng nút <a class="reference internal" href="../vector/map_value.html"><span class="doc">Ánh Xạ Giá Trị -- Map Value</span></a> và một nút <a class="reference internal" href="../converter/color_ramp.html"><span class="doc">Dốc Màu -- Color Ramp</span></a> như được đặc tả trong bài <a class="reference internal" href="../input/render_layers.html"><span class="doc">Các Tầng Lớp Kết Xuất -- Render Layers</span></a>. Một nút <a class="reference internal" href="../converter/math.html"><span class="doc">Toán -- Math</span></a> <em>Nhân (multiply)</em> có thể được sử dụng tiếp theo dốc màu, hòng để những giá trị nhòe mờ lớn hơn 1 có thể sử dụng được cho những vật nằm ngoài trường ảnh.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bokeh-blur_example-1.png"><img alt="../../../_images/compositing_types_filter_bokeh-blur_example-1.png" src="../../../_images/compositing_types_filter_bokeh-blur_example-1.png" style="width: 640px;" /></a>
-<p class="caption"><span class="caption-text">Lượt về Z được sử dụng.</span></p>
+<p class="caption"><span class="caption-text">Lượt về Z được sử dụng.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Một hình ảnh thang độ xám được tạo ra một cách thủ công có thể được sử dụng để xác định các vùng sắc nét và nhòe mờ của một hình ảnh có sẵn. Một lần nữa, một Nút Nhân (Multiply Node) có thể được sử dụng hầu cho giá trị nhòe mờ lớn hơn 1 được sử dụng.</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_filter_bokeh-blur_example-2.png"><img alt="../../../_images/compositing_types_filter_bokeh-blur_example-2.png" src="../../../_images/compositing_types_filter_bokeh-blur_example-2.png" style="width: 640px;" /></a>
-<p class="caption"><span class="caption-text">Hình ảnh được sử dụng.</span></p>
+<p class="caption"><span class="caption-text">Hình ảnh được sử dụng.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure" id="id4">
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id4">
 <img alt="../../../_images/compositing_types_filter_bokeh-blur_example-1-render.jpg" src="../../../_images/compositing_types_filter_bokeh-blur_example-1-render.jpg" />
-<p class="caption"><span class="caption-text">Lượt về Z được sử dụng.</span></p>
+<p class="caption"><span class="caption-text">Lượt về Z được sử dụng.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
-<td><div class="first last figure" id="id5">
+<td><div class="figure align-default" id="id5">
 <img alt="../../../_images/compositing_types_filter_bokeh-blur_example-2-render.jpg" src="../../../_images/compositing_types_filter_bokeh-blur_example-2-render.jpg" />
-<p class="caption"><span class="caption-text">Hình ảnh được sử dụng.</span></p>
+<p class="caption"><span class="caption-text">Hình ảnh được sử dụng.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>

@@ -226,9 +226,9 @@ They are particularly useful for modeling organic soft parts and muscles
 where there is a need for more control over the resulting shape
 than what can be achieved with combination of rotation and scale.</p>
 <p>Shape keys can be applied on object types with vertices like mesh, curve, surface and lattice.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../../_images/animation_shape-keys_introduction_example.png" src="../../_images/animation_shape-keys_introduction_example.png" />
-<p class="caption"><span class="caption-text">Example of a mesh with different shape keys applied.</span></p>
+<p class="caption"><span class="caption-text">Example of a mesh with different shape keys applied.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h2>
@@ -267,39 +267,34 @@ that would otherwise produce a double effect.</p>
 <span id="animation-shapekeys-relative-vs-absolute"></span><h2>Relative or Absolute Shape Keys<a class="headerlink" href="#relative-or-absolute-shape-keys" title="Permalink to this headline">¶</a></h2>
 <p>A mesh (curve, surface or lattice) has a stack of shape keys.
 The stack may be of <em>Relative</em> or <em>Absolute</em> type.</p>
-<dl class="docutils">
-<dt>Tương Đối -- Relative</dt>
-<dd><p class="first">Mainly used for muscles, limb joints, and facial animation.</p>
+<dl>
+<dt>Tương Đối -- Relative</dt><dd><p>Mainly used for muscles, limb joints, and facial animation.</p>
 <p>Each shape is defined relative to the Basis or to another specified shape key.</p>
 <p>The resulting effect visible in the 3D Viewport, also called <em>Mix</em>,
 is the cumulative effect of each shape with its current value.
 Starting with the Basis shape, the result is obtained by <strong>adding</strong>
 each shape's weighted <strong>relative</strong> offset to its reference key.</p>
-<dl class="last docutils">
-<dt>Value</dt>
-<dd><p class="first">Represents the weight of the blend between a shape key and its reference key.</p>
-<p class="last">A value of 0.0 denotes 100% influence of the reference key and 1.0 of the shape key.
+<dl>
+<dt>Value</dt><dd><p>Represents the weight of the blend between a shape key and its reference key.</p>
+<p>A value of 0.0 denotes 100% influence of the reference key and 1.0 of the shape key.
 Blender can extrapolate the blend between the two shapes above 1.0 and below 0.0.</p>
 </dd>
-<dt>Basis</dt>
-<dd><p class="first">Basis is the name given to the first (top-most) key in the stack.</p>
-<p class="last">The Basis shape represents the state of the object's vertices in their original position.
+<dt>Basis</dt><dd><p>Basis is the name given to the first (top-most) key in the stack.</p>
+<p>The Basis shape represents the state of the object's vertices in their original position.
 It has no weight value and it is not keyable.
 This is the default <em>Reference Key</em> when creating other shapes.</p>
 </dd>
 </dl>
 </dd>
-<dt>Tuyệt Đối -- Absolute</dt>
-<dd><p class="first">Mainly used to deform the objects into different shapes over time.</p>
+<dt>Tuyệt Đối -- Absolute</dt><dd><p>Mainly used to deform the objects into different shapes over time.</p>
 <p>Each shape defines how the object's shape will be at <em>Evaluation Time</em> specified in its <em>Value</em>.</p>
 <p>The resulting shape, or <em>Mix</em>, is the interpolation of the previous and next shape
 given the current <em>Evaluation Time</em>.</p>
-<dl class="last docutils">
-<dt>Value</dt>
-<dd>Represents the <em>Evaluation Time</em> at which that shape key will be active.</dd>
-<dt>Basis</dt>
-<dd><p class="first">Basis is the name given to the first (topmost) key in the stack.</p>
-<p class="last">The Basis shape represents the state of the object's vertices in their original position.</p>
+<dl>
+<dt>Value</dt><dd><p>Represents the <em>Evaluation Time</em> at which that shape key will be active.</p>
+</dd>
+<dt>Basis</dt><dd><p>Basis is the name given to the first (topmost) key in the stack.</p>
+<p>The Basis shape represents the state of the object's vertices in their original position.</p>
 </dd>
 </dl>
 </dd>

@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quy Trình Bài Trí -- Layout Workflow &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/uv/workflows/layout.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../../search.html" />
+    <link rel="next" title="UDIMs" href="udims.html" />
+    <link rel="prev" title="Workflows" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+          
+
+          
+            
+            <img src="../../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">Khung Lưới -- Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../toolbar/index.html">Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../primitives.html">Hình Cơ Bản -- Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../selecting.html">Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Biên Soạn -- Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basics/index.html">-- Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../vertices.html">Công Cụ Điểm Đỉnh -- Vertex Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../edges.html">-- Edge Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../faces.html">-- Face Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../normals.html">Pháp Tuyến -- Normals</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">UV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transform/index.html">Biến Hóa -- Transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../duplicating/index.html">-- Duplicating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../subdividing/index.html">Chia Nhỏ -- Subdividing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cleanup.html">Dọn Dẹp -- Clean up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../misc.html">-- Miscellaneous Editing Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data_transfer.html">Thuyên Chuyển Dữ Liệu -- Data Transfer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mesh_options.html">Tùy Chọn về Khung Lưới -- Mesh Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../mesh_analysis.html">Phân Tích Khung Lưới -- Mesh Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../curves/index.html">Đường Cong -- Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../metas/index.html">Siêu Cầu -- Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../empties.html">-- Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Blender 2.82 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Khung Lưới -- Meshes</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Biên Soạn -- Editing</a> &raquo;</li>
+        
+          <li><a href="../index.html">UV</a> &raquo;</li>
+        
+          <li><a href="index.html">Workflows</a> &raquo;</li>
+        
+      <li>Quy Trình Bài Trí -- Layout Workflow</li>
+    
+    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/editing/uv/workflows/layout.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="layout-workflow">
+<h1>Quy Trình Bài Trí -- Layout Workflow<a class="headerlink" href="#layout-workflow" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="transferring-uv-maps">
+<h2>Transferring UV Maps<a class="headerlink" href="#transferring-uv-maps" title="Permalink to this headline">¶</a></h2>
+<p>You can copy a UV map from one mesh to another mesh provided both meshes have the same geometry/vertex order.
+This is useful for example when you want to recreate a UV map from an earlier version of your model with intact UVs.
+This works by:</p>
+<ol class="arabic simple">
+<li><p>Select the target mesh (to which you want to copy the UV map).</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift</kbd> select the source mesh (that contains the intact UV map).</p></li>
+<li><p><span class="menuselection">Object menu ‣ Make Links... ‣ Transfer UV Layouts</span> (Shortcut: <kbd class="kbd docutils literal notranslate">Ctrl-L</kbd> ...).</p></li>
+</ol>
+<p>The target mesh will now have a UV map that matches the original mesh.</p>
+</div>
+<div class="section" id="multiple-uv-maps">
+<h2>Multiple UV Maps<a class="headerlink" href="#multiple-uv-maps" title="Permalink to this headline">¶</a></h2>
+<p>You are not limited to one UV map per mesh.
+You can have multiple UV maps for parts of the mesh by creating new UV maps.
+This can be done by clicking the <em>Add</em> button next to <a class="reference internal" href="../uv_texture_spaces.html#uv-maps-panel"><span class="std std-ref">UV maps list</span></a>
+and unwrapping a different part of the mesh. UV maps always include the whole mesh.</p>
+</div>
+<div class="section" id="optimizing-the-uv-layout">
+<h2>Tối Ưu Hóa Bài Trí của UV -- Optimizing the UV Layout<a class="headerlink" href="#optimizing-the-uv-layout" title="Permalink to this headline">¶</a></h2>
+<p>When you have unwrapped, possibly using seams, your UV layout may be quite disorganized and chaotic.
+You may need to proceed with the following tasks: Orientation of the UV mapping,
+arranging the UV maps, stitching several maps together.</p>
+<p>The next step is to work with the UV layouts that you have created through the unwrap process.
+If you do add faces or subdivide existing faces when a model is already unwrapped,
+Blender will add those new faces for you. In this fashion,
+you can use the UV texture image to guide additional geometry changes.</p>
+<p>When arranging, keep in mind that the entire view is your workspace,
+but only the UV coordinates within the grid are mapped to the image.
+So, you can put pieces off to the side while you arrange them.
+Also, each UV unwrap is its own linked set of coordinates.</p>
+<p>You can lay them on top of one another, and they will onion skin
+(the bottom one will show through the top one). To move only one though,
+<kbd class="kbd docutils literal notranslate">RMB</kbd> select one of the UV coordinates,
+and use <span class="menuselection">Select ‣ Linked UVs</span>, <kbd class="kbd docutils literal notranslate">Ctrl-L</kbd>
+to select connected UVs, not box select because UVs from both will be selected.</p>
+<div class="section" id="combining-uv-maps">
+<h3>Tổng Hợp các Ánh Xạ UV -- Combining UV Maps<a class="headerlink" href="#combining-uv-maps" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default" id="id1">
+<img alt="../../../../../_images/modeling_meshes_editing_uv_layout-workflow_combining-uv-maps-1.png" src="../../../../../_images/modeling_meshes_editing_uv_layout-workflow_combining-uv-maps-1.png" />
+<p class="caption"><span class="caption-text">Bad unwrap, note ear and neck.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Very often you will unwrap an object, such as the face example we have been using,
+and get it &quot;mostly right&quot; but with parts of the mesh that did not unwrap properly,
+or are horribly confusing. The picture to the right shows an initial unwrap of the face using
+the Unwrap from sphere option. The issues are with the ear; it is just a mush of UVs,
+and the neck, it is stretched and folded under. Too much work to clean up.</p>
+<div class="figure align-default" id="id2">
+<img alt="../../../../../_images/modeling_meshes_editing_uv_layout-workflow_combining-uv-maps-2.png" src="../../../../../_images/modeling_meshes_editing_uv_layout-workflow_combining-uv-maps-2.png" />
+<p class="caption"><span class="caption-text">Unwrap face only, without ear or neck.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>We can tell that the ear would unwrap nicely with just a straightforward projection from
+the side view, and the neck with a tubular unwrap.
+So, our general approach will be to unwrap different parts of the object (face, ears, and so on)
+using different unwrap tool,
+selecting each tool according to which one works best for that part. So let us begin:
+We select only the &quot;face&quot; faces, unwrap them using the <em>Sphere</em> projection, and scale and
+rotate them somewhat to fit logically within the image area of the UV Editor.</p>
+<div class="figure align-default" id="id3">
+<img alt="../../../../../_images/modeling_meshes_editing_uv_layout-workflow_combining-uv-maps-3.png" src="../../../../../_images/modeling_meshes_editing_uv_layout-workflow_combining-uv-maps-3.png" />
+<p class="caption"><span class="caption-text">Unwrap ear only, using the <em>Project From View</em>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Once we are satisfied with the face, it is time to turn our attention to the ear. First, unselect
+the faces you were working with. Their UVs will disappear from the UV Editor, but they are still there,
+just not shown. (To verify this, you can select a few faces in 3D View and it will show up in the UV Editor.)</p>
+<p>To work on the ear, in the 3D View, we now select only the &quot;ear&quot; faces.
+You can use vertex groups to select the ear faces. Selecting sub-meshes is easy too,
+since they are not connected to the rest of the mesh.
+Simply selecting linked vertices will select that entire submesh. Basically,
+since you are in Edit Mode, all the selecting/deselecting features are available to you.</p>
+<p>Now unwrap the ear again using the <em>Project</em> tool from side view,
+and scale and rotate them somewhat (discussed in the next section),
+and place them off to the side. You can do this repetitively, using different unwrapping algorithms;
+each re-apply just puts those UVs for the selected faces somewhere else.
+Choose the tool for each part that gives you the best fit and
+most logical layout for subsequent painting of that part.</p>
+<p>When all parts of the mesh have been unwrapped using the various methods,
+you should end up with something that looks like the example to the right.
+All sections of the mesh have been mapped,
+and all those maps are laid out in the same UV texture map. Congratulations! From here,
+it is a simple matter of &quot;stitching&quot; (discussed in the next section)
+to construct the entire UV map as a single map.</p>
+<div class="figure align-default" id="id4">
+<img alt="../../../../../_images/modeling_meshes_editing_uv_layout-workflow_combining-uv-maps-4.png" src="../../../../../_images/modeling_meshes_editing_uv_layout-workflow_combining-uv-maps-4.png" />
+<p class="caption"><span class="caption-text">UV maps arranged together and stitched.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>When you have completed arranging and stitching, you will end up with a consolidated UV map,
+like that shown to the right, arranged such that a single image will cover, or paint,
+all of the mesh that needs detailed painting.
+All the detailed instructions on how to do this are contained in the next section.
+The point of this paragraph is to show you the ultimate goal.
+Note that the mesh shown is Mirrored along the Z axis,
+so the right side of the face is virtual; it is an exact copy of the right,
+so only one set of UVs actually exist. (If more realism is desired,
+the Mirror Modifier would be applied, resulting in a physical mirror and a complete head.
+You could then make both side physically different by editing one side and not the other.
+Unwrapping would produce a full set of UVs (for each side)
+and painting could thus be different for each side of the face, which is more realistic).</p>
+</div>
+<div class="section" id="iteration-refinement">
+<h3>Iteration &amp; Refinement<a class="headerlink" href="#iteration-refinement" title="Permalink to this headline">¶</a></h3>
+<p>At least for common people, we just do not &quot;get it right the first time.&quot; It takes building on
+an idea and iterating our creative process until we reach that magical milestone called &quot;Done&quot;.
+In software development, this is called the 'spiral methodology'.</p>
+<p>Applied to computer graphics, we cycle between modeling, texturing, animating,
+and then back to making some modifications to mesh, UV mapping, tweaking the animation,
+adding a bone or two, finding out we need a few more faces, so back to modeling, etc.
+We continue going round and round like this until we either run out of time, money,
+or patience, or, in some rare cases, are actually happy with our results.</p>
+</div>
+</div>
+<div class="section" id="refining-the-layout">
+<h2>Tinh Chỉnh Bài Trí -- Refining the Layout<a class="headerlink" href="#refining-the-layout" title="Permalink to this headline">¶</a></h2>
+<p>Refinement comes into play when we finally look at our character,
+and realize that we need more detail in a particular spot. For example,
+areas around the eyes might need crow's feet, or we need to add a logo to the vest.
+As you start to edit the image,
+you realize that there just are not enough pixels available to paint the detail that you want.</p>
+<p>Your only choice is to expand the size (scale out) that UV face.
+Using the <em>Minimize Stretch</em> or <em>Scale</em> tools,
+you expand the UV faces around the eyes or chest, allocating more pixels to those areas,
+but at the same time taking away pixels (detail) from something else,
+like the back of the head. After refining the UV map,
+you then edit the image so that it looks right and contains the details you want.</p>
+<div class="section" id="reusing-textures">
+<h3>Tái Dụng Chất Liệu -- Reusing Textures<a class="headerlink" href="#reusing-textures" title="Permalink to this headline">¶</a></h3>
+<p>Another consideration is the need to conserve resources. Each image file is loaded in memory.
+If you can reuse the same image on different meshes, it saves memory. So, for example,
+you might want to have a generic face painting, and use that on different characters,
+but alter the UV map and shape and props (sunglasses) to differentiate.</p>
+<p>You might want to have a &quot;faded blue jeans&quot; texture,
+and unwrap just the legs of characters to use that image.
+It would be good to have a generic skin image, and use that for character's hands, feet, arms,
+legs, and neck. When modeling a fantasy sword,
+a small image for a piece of the sword blade would suffice,
+and you would <em>Reset Unwrap</em> the sword faces to reuse that image down the length of the blade.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="udims.html" class="btn btn-neutral float-right" title="UDIMs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Workflows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.82 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

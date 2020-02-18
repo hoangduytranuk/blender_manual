@@ -32,8 +32,8 @@ Tile size X/Y
    The size of the tiles for rendering.
 
    Depending on what device you are using for rendering, different tile sizes can give faster renders.
-   For CPU rendering smaller tiles sizes (like 32 x 32) tend to be faster, while for
-   :doc:`GPU rendering </render/cycles/gpu_rendering>` larger tile sizes give a better performance (like 256 x 256).
+   For CPU rendering smaller tiles sizes (like 32 × 32) tend to be faster, while for
+   :doc:`GPU rendering </render/cycles/gpu_rendering>` larger tile sizes give a better performance (like 256 × 256).
 
 Progressive Refine
    Instead of rendering each tile until it has finished every sample, refine the whole image progressively.

@@ -63,7 +63,7 @@ and the other constraints will make far more sense.
 
 .. TODO Add the 4x4 transform matrix vs. the transform panel.
 
-   Also note that constraints internally work using 4x4 transformation matrices only.
+   Also note that constraints internally work using 4×4 transformation matrices only.
    When you use settings for specific rotation or scaling constraining,
    this information is being derived from the matrix only,
    not from settings in a *Bone* or *Object*. Especially for combining

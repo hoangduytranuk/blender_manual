@@ -1,8 +1,8 @@
 .. _bpy.types.MaterialGPencilStyle:
 
-###########################
-  Grease Pencil Materials
-###########################
+#############
+  Materials
+#############
 
 .. toctree::
    :maxdepth: 2

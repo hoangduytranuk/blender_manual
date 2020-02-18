@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>-- Irradiance Volumes &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/eevee/light_probes/irradiance_volumes.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="-- Reflection Cubemaps" href="reflection_cubemaps.html" />
+    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Eevee</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render_settings/index.html">Render Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Nguyên Liệu -- Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../world.html">Thế Giới -- World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting.html">Light Settings</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">-- Light Probes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">-- Irradiance Volumes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reflection_cubemaps.html">-- Reflection Cubemaps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reflection_planes.html">Mặt Phẳng Phản Quang -- Reflection Planes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../limitations.html">Những Giới Hạn -- Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cycles/index.html">Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Phong Cách Tự Do -- Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">-- Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.82 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+        
+          <li><a href="../index.html">Eevee</a> &raquo;</li>
+        
+          <li><a href="index.html">-- Light Probes</a> &raquo;</li>
+        
+      <li>-- Irradiance Volumes</li>
+    
+    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/eevee/light_probes/irradiance_volumes.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="irradiance-volumes">
+<h1>-- Irradiance Volumes<a class="headerlink" href="#irradiance-volumes" title="Permalink to this headline">¶</a></h1>
+<p>Diffuse indirect lighting is stored in volumetric arrays.
+These arrays are defined by the user using Irradiance Volume objects.
+They control how arrays are placed in the world as well as their resolution.</p>
+<p>Lighting is computed at the dot positions visible when the Irradiance Volume object is selected.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../render_settings/indirect_lighting.html"><span class="doc">Indirect Lighting</span></a>.</p>
+</div>
+<p>If Ambient Occlusion is enabled, it will be applied onto diffuse indirect lighting.
+If both Ambient Occlusion and &quot;Bent Normals&quot; are enabled
+the indirect lighting will be sampled from the least occluded direction and appear more correct.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Dữ Liệu Vật Thể (Object Data) ‣ Thăm Dò (Probe)</span></p>
+</dd>
+</dl>
+</div>
+<dl>
+<dt>Khoảng Cách -- Distance</dt><dd><p>A probe object only influences the lighting of nearby surfaces.
+This influence zone is defined by the Distance parameter and object scaling.
+The influence distance varies is a bit, depending on the probe type.</p>
+<p>For Irradiance Volumes, the influence inside the volume is always 100%.
+The influence decays only outside of the volume until
+the distance to the volume reaches the Distance parameter value (in local space).</p>
+</dd>
+<dt>Suy Giảm Dần -- Falloff</dt><dd><p>Percentage of the influence distance during which the influence of a probe fades linearly.</p>
+</dd>
+<dt>Cường Độ -- Intensity</dt><dd><p>Intensity factor of the recorded lighting.
+Making this parameter anything other than 1.0 is not physically correct. Use it for tweaking or artistic purposes.</p>
+</dd>
+<dt>Độ Phân Giải -- Resolution</dt><dd><p>Spatial resolution for Irradiance Volumes is determined per probe.
+The local volume is divided into a regular grid of the specified dimensions.
+One irradiance sample will be computed for each cell in this grid.</p>
+</dd>
+<dt>Xén -- Clipping</dt><dd><p>Defines the near and far clip distances when capturing the scene.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Clipping distances are applied at the samples positions and <em>not</em> at the grid origin.</p>
+</div>
+</dd>
+<dt>Tầm Nhìn của Tổ Hợp -- Visibility Collection</dt><dd><p>In some cases, it is useful to limit which objects appear in the light probe's captured lighting.
+For instance, an object that is too close to a capture point might be better excluded.
+This is what the visibility collection does.
+Only objects that are in this collection will be visible when this probes captures the scene.</p>
+<p>There is also an option to invert this behavior and effectively hide the objects in this collection.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>This is only a filtering option. That means that if an object is not visible at render time
+it won't be visible during the probe render.</p>
+</div>
+</dd>
+</dl>
+<div class="section" id="visibility">
+<h2>Ẩn/Hiện -- Visibility<a class="headerlink" href="#visibility" title="Permalink to this headline">¶</a></h2>
+<p>For every grid point a small Variance Shadow Map is rendered.
+This visibility cubemap is used to reduce light leaking behind occluders.
+You can tweak the size of this map inside the render settings and
+tweak the bias and blur factors per grid inside the Probe Properties tab.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Thiên Lệch -- Bias</dt><dd><p>Reduces self-shadowing.</p>
+</dd>
+<dt>Thiên lệch Rò Rỉ -- Bleed Bias</dt><dd><p>Increases the &quot;contrast&quot; of the depth test result.</p>
+</dd>
+<dt>Làm Nhòe -- Blur</dt><dd><p>Amount of blur to apply when filtering the visibility shadow map.
+Does not increase runtime cost but has a small effect on baking time.</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="blending">
+<h2>Pha Trộn -- Blending<a class="headerlink" href="#blending" title="Permalink to this headline">¶</a></h2>
+<p>The lighting values from an Irradiance Volume will fade outwards until the volume bounds are reached.
+They will fade into the world's lighting or another Irradiance Volume's lighting.</p>
+<p>If multiple Irradiance Volumes overlap, smaller (in volume) ones will always have more priority.</p>
+<p>If an object is not inside any Irradiance Volume, or if the indirect lighting has not been baked,
+the world's diffuse lighting will be used to shade it.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<ul class="simple">
+<li><p>When lighting indoor environments, try to align grids with the room shape.</p></li>
+<li><p>Try not to put too much resolution in empty areas or areas with a low amount of lighting variation.</p></li>
+<li><p>You can fix bad samples by adding a smaller grid near the problematic area.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="resolution">
+<h2>Độ Phân Giải -- Resolution<a class="headerlink" href="#resolution" title="Permalink to this headline">¶</a></h2>
+<p>Spatial resolution for Irradiance Volumes is determined per probe.
+The local volume is divided into a regular grid of the specified dimensions.
+One irradiance sample will be computed for each cell in this grid.</p>
+</div>
+<div class="section" id="viewport-display">
+<h2>Hiển Thị của Khung Nhìn -- Viewport Display<a class="headerlink" href="#viewport-display" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Show the influence bounds in the 3D View. The inner sphere is where the falloff starts.</p>
+</dd>
+<dt>Xén -- Clipping</dt><dd><p>Show the clipping distance in the 3D View.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="reflection_cubemaps.html" class="btn btn-neutral float-right" title="-- Reflection Cubemaps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.82 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

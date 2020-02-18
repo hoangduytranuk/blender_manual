@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 23:52+0000\n"
+"POT-Creation-Date: 2020-02-17 14:40-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,431 +16,430 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../manual/render/shader_nodes/osl.rst:4
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:4
 msgid "Open Shading Language"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:6
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:6
 msgid ":guilabel:`Cycles Only`"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:8
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:8
 msgid "It is also possible to create your own nodes using `Open Shading Language <https://github.com/imageworks/OpenShadingLanguage>`__ (OSL). Note that these nodes will only work for CPU rendering; there is no support for running OSL code on the GPU."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:13
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:13
 msgid "To enable it, select *Open Shading Language* as the shading system in the render settings."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:17
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:17
 msgid "On Linux, C/C++ compiler tools (in particular ``/usr/bin/cpp``) must be installed to compile OSL scripts."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:24
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:24
 msgid "Script Node"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:29
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:29
 msgid "Script Node."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:31
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:31
 msgid "OSL was designed for node-based shading, and *each* OSL shader corresponds to *one* node in a node setup. To add an OSL shader, add a script node and link it to a text data-block or an external file. Input and output sockets will be created from the shader parameters on clicking the update button in the Node or the Text editor."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:37
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:37
 msgid "OSL shaders can be linked to the node in a few different ways. With the *Internal* mode, a text data-block is used to store the OSL shader, and the OSO bytecode is stored in the node itself. This is useful for distributing a blend-file with everything packed into it."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:41
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:41
 msgid "The *External* mode can be used to specify a ``.osl`` file from a drive, and this will then be automatically compiled into a ``.oso`` file in the same directory. It is also possible to specify a path to a ``.oso`` file, which will then be used directly, with compilation done manually by the user. The third option is to specify just the module name, which will be looked up in the shader search path."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:47
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:47
 msgid "The shader search path is located in the same place as the scripts or configuration path, under:"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:49
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:49
 msgid "Linux"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:51
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:51
 msgid "Windows"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:54
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:54
 msgid "macOS"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:58
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:58
 msgid "For use in production, we suggest to use a node group to wrap shader script nodes, and link that into other blend-files. This makes it easier to make changes to the node afterwards as sockets are added or removed, without having to update the script nodes in all files."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:65
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:65
 msgid "Writing Shaders"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:67
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:67
 msgid "For more details on how to write shaders, see the `OSL specification <https://github.com/imageworks/OpenShadingLanguage/blob/master/src/doc/osl-languagespec.pdf>`__. Here is a simple example:"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:84
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:84
 msgid "Closures"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:86
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:86
 msgid "OSL is different from, for example, RSL or GLSL, in that it does not have a light loop. There is no access to lights in the scene, and the material must be built from closures that are implemented in the renderer itself. This is more limited, but also makes it possible for the renderer to do optimizations and ensure all shaders can be importance sampled."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:92
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:92
 msgid "The available closures in Cycles correspond to the shader nodes and their sockets; for more details on what they do and the meaning of the parameters, see the :doc:`shader nodes manual </render/shader_nodes/shader/index>`."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:98
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:98
 msgid "BSDF"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:100
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:100
 msgid "``diffuse(N)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:101
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:101
 msgid "``oren_nayar(N, roughness)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:102
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:102
 msgid "``diffuse_ramp(N, colors[8])``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:103
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:103
 msgid "``phong_ramp(N, exponent, colors[8])``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:104
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:104
 msgid "``diffuse_toon(N, size, smooth)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:105
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:105
 msgid "``glossy_toon(N, size, smooth)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:106
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:106
 msgid "``translucent(N)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:107
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:107
 msgid "``reflection(N)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:108
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:108
 msgid "``refraction(N, ior)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:109
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:109
 msgid "``transparent()``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:110
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:110
 msgid "``microfacet_ggx(N, roughness)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:111
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:111
 msgid "``microfacet_ggx_aniso(N, T, ax, ay)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:112
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:112
 msgid "``microfacet_ggx_refraction(N, roughness, ior)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:113
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:113
 msgid "``microfacet_beckmann(N, roughness)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:114
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:114
 msgid "``microfacet_beckmann_aniso(N, T, ax, ay)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:115
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:115
 msgid "``microfacet_beckmann_refraction(N, roughness, ior)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:116
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:116
 msgid "``ashikhmin_shirley(N, T, ax, ay)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:117
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:117
 msgid "``ashikhmin_velvet(N, roughness)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:121
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:121
 msgid "Hair"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:123
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:123
 msgid "``hair_reflection(N, roughnessu, roughnessv, T, offset)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:124
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:124
 msgid "``hair_transmission(N, roughnessu, roughnessv, T, offset)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:125
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:125
 msgid "``principled_hair(N, absorption, roughness, radial_roughness, coat, offset, IOR)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:129
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:129
 msgid "BSSRDF"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:131
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:131
 msgid "``bssrdf_cubic(N, radius, texture_blur, sharpness)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:132
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:132
 msgid "``bssrdf_gaussian(N, radius, texture_blur)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:136
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:136
 msgid "Volume"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:138
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:138
 msgid "``henyey_greenstein(g)``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:139
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:139
 msgid "``absorption()``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:143
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:143
 msgid "Other"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:145
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:145
 msgid "``emission()``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:146
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:146
 msgid "``ambient_occlusion()``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:147
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:147
 msgid "``holdout()``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:148
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:148
 msgid "``background()``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:152
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:152
 msgid "Attributes"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:154
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:154
 msgid "Some object, particle and mesh attributes are available to the built-in ``getattribute()`` function. UV maps and vertex colors can be retrieved using their name. Other attributes are listed below:"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:158
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:158
 msgid "``geom:generated``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:159
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:159
 msgid "Generated texture coordinates."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:160
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:160
 msgid "``geom:uv``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:161
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:161
 msgid "Default render UV map."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:162
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:162
 msgid "``geom:dupli_generated``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:163
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:163
 msgid "For instances, generated coordinate from duplicator object."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:164
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:164
 msgid "``geom:dupli_uv``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:165
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:165
 msgid "For instances, UV coordinate from duplicator object."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:166
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:166
 msgid "``geom:trianglevertices``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:167
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:167
 msgid "3 vertex coordinates of the triangle."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:168
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:168
 msgid "``geom:numpolyvertices``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:169
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:169
 msgid "Number of vertices in the polygon (always returns three currently)."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:170
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:170
 msgid "``geom:polyvertices``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:171
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:171
 msgid "Vertex coordinates array of the polygon (always three vertices currently)."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:172
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:172
 msgid "``geom:name``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:173
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:173
 msgid "Name of the object."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:174
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:174
 msgid "``geom:is_curve``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:175
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:175
 msgid "Is object a strand or not."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:176
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:176
 msgid "``geom:curve_intercept``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:177
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:177
 msgid "Point along the strand, from root to tip."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:178
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:178
 msgid "``geom:curve_thickness``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:179
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:179
 msgid "Thickness of the strand."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:180
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:180
 msgid "``geom:curve_tangent_normal``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:181
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:181
 msgid "Tangent Normal of the strand."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:182
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:182
 msgid "``path:ray_length``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:183
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:183
 msgid "Ray distance since last hit."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:184
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:184
 msgid "``object:location``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:185
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:185
 msgid "Object location."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:186
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:186
 msgid "``object:index``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:187
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:187
 msgid "Object index number."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:188
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:188
 msgid "``object:random``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:189
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:189
 msgid "Per object random number generated from object index and name."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:190
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:190
 msgid "``material:index``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:191
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:191
 msgid "Material index number."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:192
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:192
 msgid "``particle:index``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:193
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:193
 msgid "Particle instance number."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:194
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:194
 msgid "``particle:age``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:195
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:195
 msgid "Particle age in frames."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:196
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:196
 msgid "``particle:lifetime``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:197
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:197
 msgid "Total lifespan of particle in frames."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:198
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:198
 msgid "``particle:location``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:199
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:199
 msgid "Location of the particle."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:200
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:200
 msgid "``particle:size``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:201
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:201
 msgid "Size of the particle."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:202
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:202
 msgid "``particle:velocity``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:203
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:203
 msgid "Velocity of the particle."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:206
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:206
 msgid "``particle:angular_velocity``"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:205
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:205
 msgid "Angular velocity of the particle."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:209
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:209
 msgid "Trace"
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:211
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:211
 msgid "We support the ``trace(point pos, vector dir, ...)`` function, to trace rays from the OSL shader. The \"shade\" parameter is not supported currently, but attributes can be retrieved from the object that was hit using the ``getmessage(\"trace\", ..)`` function. See the OSL specification for details on how to use this."
 msgstr ""
 
-#: ../../manual/render/shader_nodes/osl.rst:217
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/osl.rst:217
 msgid "This function cannot be used instead of lighting; the main purpose is to allow shaders to \"probe\" nearby geometry, for example to apply a projected texture that can be blocked by geometry, apply more \"wear\" to exposed geometry, or make other ambient occlusion-like effects."
 msgstr ""
-
