@@ -1,0 +1,19 @@
+#!/bin/bash
+cd $DOC_DIR
+latest_file=$(find . -type f -name "*.po" -printf '%T@ %P\n' | sort -n | awk '{print $2}' | tail -1)
+DATE_FROM="\"PO-Revision-Date.*$"
+DATE_NOW=$(timenow.py)
+DATE_NOW=$(echo $DATE_NOW | sed "s/+/\+/g")
+DATE_TO="\"PO-Revision-Date: $DATE_NOW\\n\""
+function replaceTime(){
+    input_file=$1
+    command="sed -e \"s/$DATE_FROM/$DATE_TO/g\" $input_file"
+    echo $command
+    $command
+}
+#stat --printf="%y %n\n" $(ls -tr $(find * -type f))
+#find PATH -type f -printf "%T@ %p\n"| sort -nr
+#OFS="$IFS";IFS=$'\n';stat --printf="%y %n\n" $(ls -tr $(find . -type f));IFS="$OFS"; //filenames with spaces
+#find . -type f -name "*.po" -exec stat --format '%Y :%y %n' "{}" \; | sort -nr | cut -d: -f2- | head
+
+replaceTime $latest_file

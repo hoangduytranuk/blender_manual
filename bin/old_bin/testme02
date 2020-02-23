@@ -1,0 +1,19 @@
+#!/bin/bash -f
+hello(){ 
+var1=$1; 
+var2=$2; 
+echo "v1=$var1, v2=$var2"; 
+}
+
+hello this that;
+
+cutString=$(echo "<a href=about.html>" | sed 's/<a href=//g');
+echo "cutString is \"$cutString\"";
+var3=` test -z $cutString `;
+echo "var3=\"$var3\"";
+
+if [[ -n $cutString ]] ; then
+	echo "on";
+else
+	echo "off";
+fi

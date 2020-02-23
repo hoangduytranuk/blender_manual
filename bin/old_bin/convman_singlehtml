@@ -1,0 +1,15 @@
+#!/bin/bash
+DOC_DIR=$1
+
+function makeViDocumentation(){
+    echo "making documentation for Vietnamese";
+    cd $DOC_DIR
+    make clean
+    make -d --trace -b singlehtml -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
+}
+
+if [ -z $DOC_DIR ]; then
+    DOC_DIR=$BLENDER_MAN_EN
+fi
+
+makeViDocumentation

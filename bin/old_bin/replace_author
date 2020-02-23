@@ -1,0 +1,79 @@
+#!/bin/bash -x
+DATE_TIME_NOW=""
+function timeNow(){
+    date_bin=/usr/bin/date
+    GMT_hour=$(TZ=GMT $date_bin +"%H")
+    LOCAL_hour=$($date_bin +"%H")
+    DIFF_hour=$((LOCAL_hour-GMT_hour))
+    ADD_ON=$(printf "%02d%02d" $DIFF_hour 0)
+    current_date=$($date_bin +"%F %H:%M:%S")
+    DATE_TIME_NOW="$current_date+$ADD_ON"
+}
+
+BLENDER_STUFF=$HOME/blender-stuff
+DOC_DIR=$BLENDER_STUFF/blender_docs/locale/vi
+YEAR_FROM="2017"
+YEAR_TO="2018"
+YEAR_DOUBLE_FROM="2018, 2018"
+YEAR_DOUBLE_TO="2018"
+AUTHOR_FROM="phan <phahoatho@gmail.com>"
+AUTHOR_TO="Hoang Duy Tran <hoangduytran1960@gmail.com>"
+COUNTRY_FROM=": français <"
+COUNTRY_TO=": UK <"
+LANGUAGE_FROM="Language: fr"
+LANGUAGE_TO="Language: vi"
+DATE_FROM="PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE"
+FIRST_AUTHOR_FROM="FIRST AUTHOR <EMAIL@ADDRESS>"
+FIRST_AUTHOR_TO="$AUTHOR_TO"
+LAST_TRANSLATOR_FROM="Last-Translator: FULL NAME <EMAIL@ADDRESS>"
+LAST_TRANSLATOR_TO="Last-Translator: $AUTHOR_TO"
+LANGUAGE_TEAM_FROM="Language-Team: LANGUAGE <LL@li.org>"
+LANGUAGE_TEAM_TO="Language-Team: Vietnamese, UK <bf-docboard@blender.org>"
+LIST_FILE=$HOME/list.txt
+TEMP_FILE=$HOME/temp.txt
+
+function replaceSingleFile(){
+    doc_file=$1
+    sed -i "s/$YEAR_FROM/$YEAR_TO/g; s/$YEAR_DOUBLE_FROM/$YEAR_DOUBLE_TO/g; s/$AUTHOR_FROM/$AUTHOR_TO/g; s/$COUNTRY_FROM/$COUNTRY_TO/g; s/$LANGUAGE_FROM/$LANGUAGE_TO/g; s/$FIRST_AUTHOR_FROM/$FIRST_AUTHOR_TO/g; s/$LAST_TRANSLATOR_FROM/$LAST_TRANSLATOR_TO/g; s/$LANGUAGE_TEAM_FROM/$LANGUAGE_TEAM_TO/g;  s/$DATE_FROM/$DATE_TO/g; " $doc_file
+}
+
+function replaceMultipleFiles(){
+    cd $DOC_DIR
+#    find . -type f ! -path "*.mo" ! -path "./.svn/*" ! -path "./build/*" | xargs grep -H -c "gmail" | grep 0$ | cut -d ':' -f1 > $LIST_FILE
+#    find $DOC_DIR -type f ! -path "*.mo" ! -path "./.svn/*" ! -path "./build/*" ! -path "./local/*" | xargs grep -H -c 'gmail' | grep 0$ | cut -d ':' -f1 > $LIST_FILE
+#    find . -type f ! -path "*.mo" ! -path "./.svn/*" ! -path "./build/*" | xargs grep -H -c 'gmail' | grep 0$ | cut -d ':' -f1 > $LIST_FILE
+
+    doc_list=$(find . -type f ! -path "*.mo" ! -path "./.svn/*" ! -path "./build/*")
+    #cat $LIST_FILE
+    #doc_list=$(find . -type f  ! -path "*.po")
+    #echo $doc_list
+    #s/$DATE_FROM/$DATE_TO/g;
+    DATE_TO="PO-Revision-Date: $DATE_TIME_NOW"
+    for doc_file in $doc_list; do
+        echo "replacing $doc_file"
+        replaceSingleFile $doc_file
+    done
+}
+
+function isEmptyDir(){
+    dir=$1
+    [ -d $dir ] && [ "$( ls -A $dir)" ] && echo $NOT_EMPTY || echo $EMPTY;
+}
+
+function runNow(){
+    timeNow
+    echo "\$\1 = $1"
+    echo "\$\2 = $2"
+    case "$1" in
+        -single | -s)
+        echo "replace single on $2"
+        replaceSingleFile $2
+        ;;
+        -multiple | -m)
+        echo "replace multiples "
+        replaceMultipleFiles
+        ;;
+    esac
+}
+
+runNow $1 $2 $3

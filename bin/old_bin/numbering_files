@@ -1,0 +1,47 @@
+#!/bin/bash
+prefix="Image"
+ext="jpg";
+pngExt="png";
+
+main(){
+fileList=$(ls $prefix*.$ext);
+for file in $fileList;
+do
+	fullName=$file;
+	nameWithoutExt=$(echo $fullName | cut -d '.' -f 1);
+	nameWithoutPrefix=$(echo $nameWithoutExt | sed "s/${prefix}//g");
+	nameWithoutUnderscore=$(echo $nameWithoutPrefix | cut -d '_' -f 1);
+	number=$nameWithoutUnderscore;
+	new_number=$(printf "%03d" $number 2>/dev/null);
+	nameRemainder=${nameWithoutPrefix#${number}};
+	newName="$prefix$new_number$nameRemainder.$ext";
+	newPNGName="$prefix$new_number$nameRemainder.$pngExt";
+	
+	renameFiles $file $newName;
+	convertJPGToPNG $newName $newPNGName;  
+done
+}
+
+renameFiles(){
+	oldName=$1;
+	newName=$2;
+
+	if [[ ! -f $newName ]]; then
+		echo "moving $oldName to $newName";
+		mv $oldName $newName;
+	fi
+}
+
+convertJPGToPNG(){
+	jpgName=$1;
+	pngName=$2;
+	if [[ ! -f $pngName ]]; then
+		echo "convert $jpgName to $pngName";
+		convert $jpgName $pngName;
+	fi
+}
+
+main;
+
+
+
