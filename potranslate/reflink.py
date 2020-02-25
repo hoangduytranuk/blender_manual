@@ -900,10 +900,15 @@ class RefList(dict):
         if is_ignore:
             print("dumpRefItem Ignoring:", orig_text)
             return
-
+        
         trans = ref_item.getTranslation()
         txt = (trans if trans is not None else "")
-        entry = {orig_text:trans}
+        entry={orig_text:txt}
+        # is_the_same = (cm.isTextuallySimilar(orig_text, txt, is_absolute=True))        
+        # if is_the_same:
+        #     print("dumpRefItem Ignoring, similar:", entry)
+        #     return
+
         storage_dict.update(entry)
 
     def dumpRefRecord(self, ref_item: RefRecord, storage_dict:dict):

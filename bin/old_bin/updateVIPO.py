@@ -16,7 +16,7 @@ import io
 
 
 
-:
+
 #from common import Common as cm
 from babel.messages.catalog import Message
 from bisect import bisect_left

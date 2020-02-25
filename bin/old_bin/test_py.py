@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-sys.path.append("/home/htran/bin/python")
+sys.path.append("/Users/hoangduytran/bin/old_bin/python")
 
 from collections import OrderedDict, defaultdict
 #from stack import Stack
@@ -13,7 +13,7 @@ import re
 from difflib import SequenceMatcher as SM
 #from fuzzywuzzy import fuzz as fz
 from pprint import pprint
-from bs4 import BeautifulSoup as BS
+#from bs4 import BeautifulSoup as BS
 import os
 import html
 from queue import Queue as Q
@@ -22,6 +22,10 @@ from collections import Counter
 
 #from subprocess import PIPE, Popen, run
 import subprocess as sub
+
+from sphinx_intl import catalog as c
+from babel.messages.catalog import Message
+from babel.messages import pofile
 
 #import AdvancedHTMLParser as AH
 #from sphinx_intl import catalog as c
@@ -2330,8 +2334,28 @@ class test(object):
             self.writeTextFile(changed_file, data)
             print("Wrote changed to:", changed_file)
 
+    def test_0037(self):
+        p_list=[
+            #r'^()$',
+            r'^([\/])$',
+            r'^([\w][:])([\]?)?$',
+        ]
+        p = r'^(([\w]+|[~\.]|[\.]{2})[:]?)?([\/]([^\/]+)?)+)?(.[\w]{2,5})?$'
+        sp = re.compile(p)
+
+        vipo_dic_path = "/Users/hoangduytran/blender_manual/gui/2.80/po/vi.po"
+        po_cat = c.load_po(vipo_dic_path)
+        for m in po_cat:
+            k = m.id
+            v = m.string
+            entry={k:v}
+            is_path = (sp.search(k) is not None)
+            if is_path:
+                print("PATH:", entry)
+
     def run(self):
-        self.test_0036()
+        #self.test_0037()
+        print("Tesing Python")
 
 
 x = test()

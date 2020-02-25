@@ -79,8 +79,10 @@ class Ignore:
     PATH = r'([a-zA-Z][:]?)?'
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     ignore_list = [
+        r"^([\d]+)(px|khz)?$", # 1024x2048
+        r"^([\d]+[x][\d]+)$", # 1024x2048
         r'^(\|[\w]+([\-][\w]+)?.*(:kbd\:.*Alt-Backspace).*)$',  # |dagger|: ``|``, :kbd:`Alt-Backspace`, ``-``
-        r'^(\<([^\<\>]+)\>)$', # <something>
+        # r'^(\<([^\<\>]+)\>)$', # <something>
         #r"^((Ctrl|Alt|Shift)?[\-](F[\d]+)?)$",  # Ctrl|Alt|Shif-F1-12
         # r'^([\*]?[\-]?[\d]+[\.][\w]{2,5})$', # *-0001.jpg
         #r'^(' + r'([\+\-]?[\w]{1})([\,][\s]([\+\-]?[\w]))*' + r')$',
@@ -117,43 +119,43 @@ class Ignore:
         r"^(\.[\w]{2,5})$",  # .jpg, .so
         r"^(htt[ps][^\S]+)$",
         r"^(jpg|png|int)$",
-        r"^(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|TEMP|TMP|Retina|PYTHONHOME|Mem)$",
-        r"^(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|in|ft|m|yd|dm|st|pi))$",
+        r"^(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|PYTHONHOME|Mem)$",
+        r"^(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|ft|m|yd|dm|st|pi))$",
         r"^(mov|location[0]|cd|ch|hm|asin|um|tan|self|atan|atan2||sRGB)$",
         r"^(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD)$",
         r"^Alembic([\s\W|abc]+)$",
-        r"^(Alpha|Alt|Apple macOS|Arch Linux|Ascii|Ashikhmin-Shirley)$",
-        r"^(AVIJPEG|AVIRAW|BMP|DDS|DPX|IRIS|IRIZ|JACK|JP2|RAWTGA|TGA|TIFF|[+-]<frame>|)$",
+        r"^(Alpha|Alt|Apple macOS|Arch Linux|Ashikhmin-Shirley)$",
+        r"^(AVIJPEG|AVIRAW|BMP|DDS|DPX|IRIZ|JACK|JP2|RAWTGA|TGA|TIFF|[+-]<frame>|)$",
         r"^(B\-Spline|BSDF|BSSRDF|BU|BVH|Babel|Bezier|Bindcode|Bit[s]?|BkSpace|Bksp)$",
-        r"^(Blackman\-Harris|Blosc|Boolean|Byte\([s]*\)|Bytecode|Bézier)$",
+        r"^(Blackman\-Harris|Blosc|Byte\([s]*\)|Bytecode|Bézier)$",
         r"^Blender\([\s\d\.]+\)$",
-        r"^(CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Christensen\-Burley|Cineon|Collada|Cineon.*DPX)$",
+        r"^(CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Christensen\-Burley|Cineon|Collada)$",
         r"^(Ctrl|Cycles|Cycles:)$",
         r"^(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del(ta)?|de)$",
-        r"^(Diffusion|[^\w]+log.*wm.*)$",
+        r"^([^\w]+log.*wm.*)$",
         r"^(Djv|Doppler|Dots\/BU|Dpi|DWAA)$",
         r"^(EWA|Epsilon|Esc|exr|FBX|FELINE|FFT|FSAA|Flash|FrameCycler|Français)$",
         r"^((GGX|GLSL|GPU)[s:]|Gamma([s:])|Ge2Kwy5EGE0|Gizmo[s:]|GPL|GGX|GLSL)$",
-        r"^(H\.264|HDR[I]?|HS[VL]+|Hosek \/ Wilkie|HuffYUV)$",
+        r"^(H\.264|HDR[I]?|Hosek \/ Wilkie|HuffYUV)$",
         r"^(ID|Ins|JPEG 2000)$",
         r"^(K1, K2|Kirsch|komi3D)$",
-        r"^(Laplace|Laplacian|Laptops|Lennard\-Jones|LimbNode|Linux|Log|Look[\s]?Dev(HDRIs)?)$",
-        r"^MPEG([\-|\d]+)*(.*)$",
-        r"^(MIS|MIP|MPlayer|(MS|Microsoft)?[-]?Windows|Makefile|Makefile|Manhattan|MatCap[s]?|Matroska|Mega|Minkowski|Mitch|Mono|Musgrave)$",
+        r"^(Laplace|Laplacian|Lennard\-Jones|LimbNode|Linux|Log|Look[\s]?Dev(HDRIs)?)$",
+        r"^MPEG([\-|\d]+)$",
+        r"^(MIS|MPlayer|(MS|Microsoft)?[-]?Windows|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski|Mitch|Mono|Musgrave)$",
         r"^(NDOF|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn)$",
-        r"^(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|GL|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR)$",
+        r"^(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR)$",
         r"^PAINT_GPENCILEDIT_GPENCILSCULPT_.*$",
-        r"^(P(CM|LY|NG)|PYTHON(PATH)?|Pack Bits|Page[\s]?(Down|Up)|Pause|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2)$",
+        r"^(P(CM|LY|NG)|PYTHON(PATH)?|Pack Bits|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2)$",
         r"^(QuickTime|quasi\-)$",
-        r"^(RGB[\w]?)$",
+        # r"^(RGB[\w]?)$",
         r"^(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch)$",
         r"^(RK4|RRT|Redhat\/Fedora|RLE)$",
-        r"^(SDL|SSE[\d]+|STL|SVG|ShaderFX|Shift|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)$",
+        r"^(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)$",
         r"^(Tab|Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|TAR-)$",
         r"^(URL|UV[s:]?|U & V|Uber)$",
         r"^(VD16|VP9|VRML2|Verlet|Vorbis|Voronoi([\s]F[\d]([-]F[\d])?)?|)$",
         r"^(WEBM \/ VP9|Web(3D|M)|Win(tab)?|Windows Ink|WGT-)$",
-        r"^(X(/Y|YZ)?|Xvid|XYZ Euler|XY|XZ)$",
+        r"^(X(/Y|YZ)?|Xvid|XY|XZ)$",
         r"^(Y(CC)?|YCbCr|Z(ip)?|ZIPS)$",
         r"^[\-]*\d+(\.[\w]{2,5})$",  # -0001.jpg
         r"^[\W]{1}$",
@@ -174,13 +176,13 @@ class Ignore:
         r"^(git([\s]+[^\`]+)?|glTF 2\.0)$",
         r"^(hm|html|iTaSC|jpeg|SubRip)$",
         r"^(kConstantScope|kUniformScope|kUnknownScope|kVaryingScope|kVertexScope|kFacevaryingScope|kbd)$",
-        r"^(macOS|mathutils|menuselection|microfacet_ggx\(N, roughness\)|microfacet_ggx_aniso\(N, T, ax, ay\))$",
+        r"^(mathutils|menuselection|microfacet_ggx\(N, roughness\)|microfacet_ggx_aniso\(N, T, ax, ay\))$",
         r"^(microfacet_ggx_refraction\(N, roughness, ior\)|mode=\'RENDER\'|mp[\d]+|msgstr)$",
         r"^(oren_nayar\(N, roughness\)|wm\.operators\.\*|var all_langs \=(.*)|)$",
         r"^(Poedit|PIP|pagedown|pageup|pgdown|pgup|pip[\d]?|pot|print\(\)|unregister|)$",
         r"^(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)$",
         r"^(rig_ui|roaoao|rotation_[xyz]|resolution_[xyz]|reflection\(N\)|rest_mat|rst|refraction\(N, ior\))$",
-        r"^(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sin\(x\) \/ x|sqrt|sqrt\([\d]?\)|svn [^\`]+(?<![\.]{3})|svn)$",
+        r"^(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sin\(x\) \/ x|sqrt|sqrt\([\d]?\)|svn)$",
         r"^(tab|TortoiseSVN|timeline\-playback|ui\-data\-block|view3d\-viewport\-shading|var[\s]+|wav)$",
         "",
         "",
@@ -263,16 +265,19 @@ class Ignore:
         is_ignore_word = Ignore.isIgnoredWord(msg)
         is_dos_command = Ignore.isDosCommand(msg)
         is_ignore_start = Ignore.isIgnoredIfStartsWith(msg)
-        is_ignore_path = Ignore.isFilePath(msg)
+        #is_ignore_path = Ignore.isFilePath(msg)
 
-        is_ignore = (is_ignore_word or is_dos_command or is_ignore_start or is_ignore_path)
+        is_ignore = (is_ignore_word or 
+                    is_dos_command or 
+                    is_ignore_start)
+                    #         or is_ignore_path)
         # is_ignore = (is_ignore_word or is_dos_command or is_ignore_start)
         if is_ignore:
             #_("checking for ignore")
             dict_ignore = {"is_ignore_word": is_ignore_word,
                            "is_dos_command": is_dos_command,
                            "is_ignore_start": is_ignore_start,
-                           "is_ignore_path": is_ignore_path
+                           #"is_ignore_path": is_ignore_path
                            }
             _("IGNORING:", msg)
             pp(dict_ignore)
@@ -339,8 +344,11 @@ class Ignore:
         return False
 
     REF_LINK_WITHOUT_REFWORD = re.compile(r'\<([^<]+)\>')
-
     PATH_CHAR = re.compile(r'[\\\/]')
+    file_path_pattern_list=[
+        #r'^$',
+        r'^(([\w]+|[~\.]|[\.]{2})[:]?)?([/]([^\]+)?)+)$',
+    ]
     def isFilePath(text_line : str):
         if (text_line is None) or (len(text_line) == 0):
             return False

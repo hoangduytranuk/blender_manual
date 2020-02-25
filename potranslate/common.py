@@ -9,6 +9,7 @@ from pprint import pprint, pformat
 #import logging
 
 DEBUG=True
+DIC_INCLUDE_LOWER_CASE_SET=False
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
@@ -46,7 +47,7 @@ class Common:
     # debug_file = "about/contribute/build/windows"
     # debug_file = "about/contribute/build/macos"
     # debug_file = "about/contribute/guides/maintenance_guide"
-    debug_file = "about/contribute/guides/markup_guide" # debugging :abbr:, ``:kbd:`LMB```, ``*Mirror*``, ``:menuselection:`3D View --> Add --> Mesh --> Monkey```
+    # debug_file = "about/contribute/guides/markup_guide" # debugging :abbr:, ``:kbd:`LMB```, ``*Mirror*``, ``:menuselection:`3D View --> Add --> Mesh --> Monkey```
     # debug_file = "about/contribute/install/windows"
     # debug_file = "about/license" # (online) or URL (in print) to manual
     # debug_file = "addons/3d_view/3d_navigation" # debugging :menuselection:
@@ -465,7 +466,7 @@ class Common:
             raise e
         return u_case
 
-    def isTextuallySimilar(from_txt, to_txt):
+    def isTextuallySimilar(from_txt, to_txt, is_absolute=False):
         from_list = Common.WORD_ONLY_FIND.findall(from_txt.lower())
         to_list = Common.WORD_ONLY_FIND.findall(to_txt.lower())
 
@@ -481,7 +482,14 @@ class Common:
         # to_len = len(to_set)
         considering_match = (float(common_len) >= (float(from_len) * 0.5))  # matching more than 50%
 
-        is_considered_the_same = (common_set == from_set) or (common_set == to_set) or considering_match
+        is_considered_the_same = (common_set == from_set) or (common_set == to_set)
+        if not is_absolute:
+            is_considered_the_same = (is_considered_the_same or considering_match)
+        
+        if is_considered_the_same:
+            entry={from_set: to_set}
+            print("isTextuallySimilar:", entry)
+
         return is_considered_the_same
 
 

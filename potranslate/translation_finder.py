@@ -1,11 +1,17 @@
 import sys
 sys.path.append('/Users/hoangduytran/PycharmProjects/potranslate')
 
+import io
+
 from common import Common as cm
 from common import _, pp
 from ignore import Ignore as ig
 import json
 from collections import OrderedDict, defaultdict
+from sphinx_intl import catalog as c
+from babel.messages.catalog import Message
+from babel.messages import pofile
+from common import DEBUG, DIC_INCLUDE_LOWER_CASE_SET
 
 class TranslationFinder:
 
@@ -75,25 +81,129 @@ class TranslationFinder:
 
         self.dic_list = defaultdict(int) # for general purposes
 
+        self.cleanDictList(self.master_dic_list)
+
+    def cleanDictList(self, dic_list):
+        remove_keys=[]
+        for k, v in dic_list.items():
+            is_remove = (k is None) or (len(k) == 0) or ig.isIgnored(k)
+            if is_remove:
+                entry={k:v}
+                print("cleanDictList removing:", entry)
+                remove_keys.append(k)
+        for k in remove_keys:
+            del dic_list[k]
+
+    def updateDicUsingDic(self, source_dict, target_dict):    
+        target_change_count = 0
+
+        for k, source_v in source_dict.items():
+            is_in_target = (k in target_dict)
+            if not is_in_target:
+                continue
+            
+            target_v = target_dict[k]
+            is_v_diff = (source_v != target_v)
+            if not is_v_diff:
+                continue
+
+            from_entry = {k:target_v}
+            to_entry={k:source_v}
+            print("updateDicUsingDic from:", from_entry, "to", to_entry)
+            target_dict.update(to_entry)
+            target_change_count += 1
+
+        is_changed = (target_change_count > 0)    
+        if is_changed:
+            print("updateDicUsingDic, changed count:", target_change_count)
+        return target_change_count
+
+    def updatePOUsingDic(self, pofile, dic, is_testing=True):
+        po_cat = c.load_po(pofile)
+        changed = False
+        for m in po_cat:
+            k = m.id
+            is_in_dict = (k in dic)
+            if not is_in_dict:
+                continue
+
+            po_v = m.string
+            dic_v = dic[k]
+
+            is_value_diff = (po_v != dic_v)
+            if not is_value_diff:
+                continue
+
+            from_entry={k:po_v}
+            to_entry = {k:dic_v}
+            print("updatePOUsingDic, from:", from_entry, "to:", to_entry)
+            m.string = dic_v
+            changed = True
+            
+        if changed and (not is_testing):
+            self.dump_po(pofile, po_cat)
+
+    def mergePODict(self):
+        po_cat = c.load_po(self.vipo_dic_path)
+        po_dic = self.poCatToDic(po_cat)
+        self.master_dic_list.update(po_dic)
+
+    def addEntryToDic(self, k, v, dict_list, keep_orig=False):
+        valid = (k is not None) and \
+                (len(k) > 0) and \
+                (v is not None) and \
+                (len(v) > 0))
+        if not valid:
+            return False
+        
+        if keep_orig:
+            v = ("{} -- {}".format(v, k) if (k is not in v) else v)
+
+        entry = {k:v}
+        dict_list.update(entry)
+        if DIC_INCLUDE_LOWER_CASE_SET:
+            k_lower = k.lower()
+            is_same = (k_lower == k)
+            if not is_same:
+                entry = {k_lower:v}
+                self.master_dic_list.update(entry)
+        return True
+
+    def loadPOAsDic(self, po_path):
+        po_cat = c.load_po(po_path)
+        po_dic = self.poCatToDic(po_cat)
+        return po_dic
+
     def poCatToDic(self, po_cat):
         po_cat_dic = defaultdict(OrderedDict)
         for index, m in enumerate(po_cat):
-            context = (m.context if m.context else "")
+            #context = (m.context if m.context else "")
             #print("context:{}".format(context))
-            k = (m.id, context)
-            lower_k = (m.id.lower(), context.lower())
+            #k = (m.id, context)
+            k = m.id
+            is_ignore = (ig.isIgnored(k))
+            if is_ignore:
+                continue
+            
+            v = m.string
+            has_translation = (not m.fuzzy) and (v is not None) and (len(v) > 0)
+            if not has_translation:
+                continue
 
-            is_same_key = (k == lower_k)
-
-            v = m
             entry={k:v}
             po_cat_dic.update(entry)
+
             #print("poCatToDic:", k, v)
-            if not is_same_key:
-                lower_entry = {lower_k:v}
-                po_cat_dic.update(lower_entry)
+            if DIC_INCLUDE_LOWER_CASE_SET:
+                #lower_k = (m.id.lower(), context.lower())
+                lower_k = m.id.lower()
+                is_same_key = (k == lower_k)
+                if not is_same_key:
+                    lower_entry = {lower_k:v}
+                    po_cat_dic.update(lower_entry)
 
         return po_cat_dic
+
 
     def setupKBDDicList(self):
         kbd_l_case = dict((k.lower(), v) for k,v in TranslationFinder.KEYBOARD_TRANS_DIC.items())
@@ -104,7 +214,8 @@ class TranslationFinder:
             file_path = (self.master_dic_file if (file_name is None) else file_name)
             dic = (self.master_dic_list if (dict_list is None) else dict_list)
 
-            dic = cm.removeLowerCaseDic(dic)
+            if DIC_INCLUDE_LOWER_CASE_SET:
+                dic = cm.removeLowerCaseDic(dic)
 
             with open(file_path, 'w', newline='\n', encoding='utf8') as out_file:
                 json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
@@ -120,20 +231,33 @@ class TranslationFinder:
             file_path = (self.json_dic_file if (file_name == None) else file_name)
             with open(file_path) as in_file:
                 local_dic = json.load(in_file)
-                if local_dic:
-                    _("Loaded:{}".format(len(local_dic)))
-                else:
-                    raise Exception("dic [{}] is EMPTY. Not expected!", file_path)
+
+            if local_dic:                    
+                _("Loaded:{}".format(len(local_dic)))
+
+                if DIC_INCLUDE_LOWER_CASE_SET:
+                    #local_dic = self.removeJSONDicNoTranslation(local_dic)
+                    dic_lower_set=dict((k.lower(),v) for k,v in local_dic.items())
+                    local_dic.update(dic_lower_set)
+                    _("after cleaned:{}".format(len(local_dic)))
+
+            else:
+                raise Exception("dic [{}] is EMPTY. Not expected!", file_path)
         except Exception as e:
             _("Exception readDictionary Length of read dictionary:")
             _(e)
             raise e
 
-        #local_dic = self.removeJSONDicNoTranslation(local_dic)
-        dic_lower_set=dict((k.lower(),v) for k,v in local_dic.items())
-        local_dic.update(dic_lower_set)
-        _("after cleaned:{}".format(len(local_dic)))
         return local_dic
+
+    def dump_po(self, filename, catalog):
+        dirname = os.path.dirname(filename)
+        if not os.path.exists(dirname):
+            os.makedirs(dirname)
+
+        # Because babel automatically encode strings, file should be open as binary mode.
+        with io.open(filename, 'wb') as f:
+            pofile.write_po(f, catalog, width=4096)
 
     def isInList(self, msg, find_list, is_lower=False):
         trans = None

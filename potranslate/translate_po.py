@@ -17,6 +17,7 @@ print(sys.path)
 
 import os
 import re
+
 print("import fine so far")
 from ignore import Ignore as ig
 from common import Common as cm
@@ -52,6 +53,24 @@ def doctree_resolved(app, doctree, docname):
     local_path = os.path.dirname(os.path.abspath(__file__))
     blender_docs_path = os.path.dirname(local_path)
 
+    locale_vi_path = "locale/vi/LC_MESSAGES"
+
+    po_path = os.path.join(blender_docs_path, os.path.join(locale_vi_path, po_file_path))
+
+    if not os.path.isfile(po_path):
+        raise Exception("po_path:", po_path, " NOT FOUND!")
+        exit(0)
+
+    # with open(po_path, "r") as f:
+    #     data = f.read()
+    # data_list=data.split('\n')
+    # pp(data)
+    # exit(0)
+
+
+    #loading local po file to get translation if any
+    po_dic = trans_finder.loadPOAsDic(po_path)
+
     rst_output_location = os.path.join(blender_docs_path, build_dir)
     output_path = os.path.join(rst_output_location, po_file_path)
 
@@ -86,15 +105,39 @@ def doctree_resolved(app, doctree, docname):
         # MAYBE !!! should partitioning sentences at the punctuation mark's boundaries, so you can
         # retrieve sentence level translations. Done for none ref-links text parts.
 
-        ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-        ref_list.parseMessage()
-        ref_list.translateRefList()
-        #_(ref_list)
-        ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+        is_empty = (len(msg) == 0)
+        is_ignored = is_empty or ig.isIgnored(msg)
+        if is_ignored:
+            print("IGNORED:", msg)
+            continue
+
+        has_translation = (msg in po_dic)
+        if has_translation:
+            tran = po_dic[msg]
+            is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+            if is_added:
+                entry = (msg, tran)
+                print("found in PO, added entry:", entry)
+            else:
+                has_translation = (msg in trans_finder.master_dic_list)
+                if has_translation:
+                    tran = trans_finder.master_dic_list[msg]
+                    is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+                    if is_added:
+                        entry = (msg, tran)
+                        print("found in master_dic_list, added entry:", entry)
+                    else:
+                        ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+                        ref_list.parseMessage()
+                        ref_list.translateRefList()
+                        #_(ref_list)
+                        ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+
+
 
 
 def builder_inited(app):
-    pass
+    trans_finder.mergePODict()
 
 def env_updated(app, env):
     pass
@@ -134,9 +177,13 @@ def build_finished(app, exeption):
     #     loc_dic_list.update(entry)
 
     # sorted_list = sorted(loc_dic_list.items(), key=dicListGetKey)
+    
+
     file_name = "/Users/hoangduytran/ref_dict_0001.json"
     # dic = cm.removeLowerCaseDic(loc_dic_list)
     dic = trans_finder.master_dic_backup_list
+    dic.update(trans_finder.master_dic_list)
+
     # dic = trans_finder.dic_list
     has_dic = (len(dic) > 0)
     if not has_dic:
