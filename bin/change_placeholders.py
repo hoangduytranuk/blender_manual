@@ -16,6 +16,7 @@
 #
 import os
 import re
+import locale
 import datetime
 from time import gmtime, strftime, time
 from pytz import timezone
@@ -23,6 +24,9 @@ from argparse import ArgumentParser
 from subprocess import PIPE, Popen, run
 from math import fabs
 from pprint import pprint as pp
+from sphinx_intl import catalog as c
+from babel.messages import pofile
+import enum
 
 #Leave the variables here to make them obvious and easier to change
 YOUR_NAME = "Hoang Duy Tran"
@@ -30,6 +34,12 @@ YOUR_EMAIL = "hoangduytran1960@gmail.com"
 YOUR_ID = "{} <{}>".format(YOUR_NAME, YOUR_EMAIL)
 YOUR_TRANSLATION_TEAM = "London, UK <{}>".format(YOUR_EMAIL)
 YOUR_LANGUAGE_CODE = "vi"
+TIME_ZONE='Europe/London' # this value can be optained using the code 'import pytz; for entry in pytz.all_timezones(); print(entry)'
+
+#header default values, for internal uses only
+default_first_author = "FIRST AUTHOR"
+default_mail_address = "MAIL@ADDRESS"
+default_year = ", YEAR."
 
 class ListPathEvent:
     def __init__(self):
@@ -141,38 +151,32 @@ class BasicIO:
                 callback.setVars(dirpath, dirnames, filenames)
                 callback.run()
 
+#  def __init__(self, locale=None, domain=None, header_comment=DEFAULT_HEADER,
+#                  project=None, version=None, copyright_holder=None,
+#                  msgid_bugs_address=None, creation_date=None,
+#                  revision_date=None, last_translator=None, language_team=None,
+#                  charset=None, fuzzy=True):
+
+# from babel.dates import UTC
+# created = datetime(1990, 4, 1, 15, 30, tzinfo=UTC)
+# revised = datetime(1990, 8, 3, 12, 0, tzinfo=UTC)
+#  >>> catalog = Catalog(locale='de_DE', project='Foobar', version='1.0',
+#     ...                   creation_date=created, revision_date=revised,
+#     ...                   last_translator='John Doe <jd@example.com>',
+#     ...                   language_team='de_DE <de@example.com>')
 
 class ChangePlaceHolder:
+
     CONVERT_M = 60
     CONVERT_H = CONVERT_M * 60
     CONVERT_D = CONVERT_H * 24
     CONVERT_W = CONVERT_D * 7
 
-    def __init__(self):
-        #the replace string for revision date, which include the time_now value
-        self.po_revision_date_value="PO-Revision-Date: {}".format(self.getTimeNow())
-
-        #the list of pattern to find and the value strings to be replaced
-        self.pattern_list= {
-            r"FIRST AUTHOR.*SS\>":YOUR_ID,
-            r"Last-Translator.*\>":"Last-Translator: {}".format(YOUR_ID),
-            r"PO-Revision-Date.*[\d]{4}":self.po_revision_date_value,
-            r"PO-Revision-Date: YEAR.*ZONE":self.po_revision_date_value,
-            r"Language-Team:.*\\n":"Language-Team: {}".format(YOUR_TRANSLATION_TEAM)
-        }
-
-        #This is for the language line. This line is required by POEdit, if you're using it for editing PO files.
-        #Inserting this line before the MIME-Version.
-        self.re_language_code=r'Language:.*{}'.format(YOUR_LANGUAGE_CODE)
-        self.language_code=r'"Language: {}\\n"\n'.format(YOUR_LANGUAGE_CODE)
-        self.pattern_insert={
-            r"\"MIME-Version":"{}\"MIME-Version".format(self.language_code)
-        }
+    def __init__(self):       
 
         self.PO_MSGID_MSGSTR = re.compile(r'msgid.*\nmsgstr', re.MULTILINE)
         self.RE_COMMENTED_LINE= r'^#~.*$'
         self.TIME_INPUT_PATTERN=re.compile(r'[\d]+[smhdw]')
-        self.REVISION_DATE_PATTERN = r'PO-Revision-Date.*[\d]{4}'
 
         self.basic_io = BasicIO()
 
@@ -180,11 +184,8 @@ class ChangePlaceHolder:
         self.specific_file = None
         self.specific_time = False
 
-    def setVars(self, specific_file: str, specific_dir, dry_run, list_dir_only, specific_time, change_modi_time):
+    def setVars(self, specific_file: str, specific_dir, dir_force_mode, dry_run, list_dir_only, specific_time, change_modi_time):
         self.specific_file = specific_file
-        print("setVars: specific_file, specific_dir, dry_run, list_dir_only, specific_time, change_modi_time")
-        print("setVars:", specific_file, specific_dir, dry_run, list_dir_only, specific_time, change_modi_time)
-        # exit(0)
         has_file = (self.specific_file is not None)
         if has_file:
             is_file_there = os.path.isfile(self.specific_file)
@@ -200,10 +201,8 @@ class ChangePlaceHolder:
 
         self.dry_run: bool = (True if dry_run else False)
         self.list_dir_only: bool = (True if list_dir_only else False)
+        self.dir_force_mode = (True if dir_force_mode else False)
 
-        # print("self.list_dir_only:", self.list_dir_only)
-        # print("self.dry_run:", self.dry_run)
-        # exit(0)
         self.specific_time = self.specificTimeToSeconds(specific_time)
         self.modi_time = (True if change_modi_time else False)
 
@@ -228,6 +227,7 @@ class ChangePlaceHolder:
             digits = int(digit_part)
             digits = fabs(digits)
         except Exception as e:
+            print(e)
             print("Input data is invalid:", period_string)
             print("Unable to convert input [{}] into number of seconds".format(period_string))
             raise Exception("Period must be: digits + 's|h|d|w' (seconds|minutes|hours|days|week), e.g. 30s, 5m, 2h, 1d, 1w etc..")
@@ -253,7 +253,7 @@ class ChangePlaceHolder:
         return formatted_dt
 
     def shellCommandRun(self, command):
-        print("shellCommandRun: [{}]".format(command))
+        # print("shellCommandRun: [{}]".format(command))
         result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True, shell=True)
         return result.stdout
 
@@ -271,8 +271,12 @@ class ChangePlaceHolder:
         git_cmd = "git status | grep \'modified\' | awk \'{ print $2 }\' | grep \".po$\""
         svn_cmd = "svn status | grep \"^M\" | awk \'{ print $2 }\' | grep \".po$\""
         # normal_cmd = "find {} -name \"*.po\" -mtime -1 -print".format(directory)  # files modified last 24 hours
-        normal_cmd = "find {} -name \"*.po\" -mtime -5 -print".format(directory)  # files modified last 5 days
+        # normal_cmd = "find {} -name \"*.po\" -mtime -100 -print".format(directory)  # files modified last 1 days
 
+        if self.dir_force_mode:
+            has_git = False
+            has_svn = False
+        
         file_list=[]
         msg = ""
         if has_git:
@@ -286,10 +290,7 @@ class ChangePlaceHolder:
         else:
             msg = "other"
             file_list = self.getLatestPOFiles(self.specific_dir)
-            #output = self.shellCommandRun(normal_cmd)
-            #file_list = output.split()
-        # print("findChangedFiles:", msg)
-        # pp(file_list)
+
         return file_list
 
 
@@ -333,41 +334,92 @@ class ChangePlaceHolder:
 
 
     def replaceAndReport(self, changed_file):
-        changed = False
-        data = self.basic_io.readTextFile(changed_file)
-        for k, v in self.pattern_list.items():
-            # print("k:[{}], v:[{}]".format(k, v))
-            is_change_modi_time = ('')
-            has_data_been_set = (re.search(v, data) != None)
-            if has_data_been_set:
-                continue
 
-            is_modi_time_pattern = (self.REVISION_DATE_PATTERN == k)
-            if is_modi_time_pattern:
-                is_change_moditime =  (self.modi_time == True)
-                if not is_change_moditime:
-                    current_modified_time=re.search(k, data)
-                    print("NOT changing the modified time:", current_modified_time, " to current time:", v)
-                    continue
+        # these lines are taken from /Library/Python/3.7/site-packages/babel/messages/catalog.py
+        # put here for references
+        #
+        # self.domain = domain
+        # self.locale = locale
+        # self._header_comment = header_comment
+        # self._messages = OrderedDict()
 
-            data, number_of_changes = re.subn(k, v, data)
-            if number_of_changes > 0:
-                changed = True
-                print("Pattern: [{}], replaced with: [{}]".format(k, v))
+        # self.project = project or 'PROJECT'
+        # self.version = version or 'VERSION'
+        # self.copyright_holder = copyright_holder or 'ORGANIZATION'
+        # self.msgid_bugs_address = msgid_bugs_address or 'EMAIL@ADDRESS'
 
-        #replace language code
-        has_language_code = (re.search(self.re_language_code, data) != None)
-        if not has_language_code:
-            for k, v in self.pattern_insert.items():
-                data, number_of_changes = re.subn(k, v, data)
-                if number_of_changes > 0:
-                    changed = True
-                    print("Pattern: [{}], replaced with: [{}]".format(k, v))
+        # self.last_translator = last_translator or 'FULL NAME <EMAIL@ADDRESS>'
+        # """Name and email address of the last translator."""
+        # self.language_team = language_team or 'LANGUAGE <LL@li.org>'
+        # """Name and email address of the language team."""
 
+        # self.charset = charset or 'utf-8'
 
-        if changed and not self.dry_run:
-            self.basic_io.writeTextFile(changed_file, data)
-            print("Wrote changes to:", changed_file)
+        # if creation_date is None:
+        #   creation_date = datetime.now(LOCALTZ)
+        # elif isinstance(creation_date, datetime) and not creation_date.tzinfo:
+        #   creation_date = creation_date.replace(tzinfo=LOCALTZ)
+        # self.creation_date = creation_date
+        # if revision_date is None:
+        #   revision_date = 'YEAR-MO-DA HO:MI+ZONE'
+        # elif isinstance(revision_date, datetime) and not revision_date.tzinfo:
+        #   revision_date = revision_date.replace(tzinfo=LOCALTZ)
+        # self.revision_date = revision_date
+        # self.fuzzy = fuzzy
+
+        # self.obsolete = OrderedDict()  # Dictionary of obsolete messages
+        # self._num_plurals = None
+        # self._plural_expr = None
+
+        cat_changed = False
+        header_changed = False
+        in_po_cat = c.load_po(changed_file)
+
+        local_time=timezone(TIME_ZONE)
+        time_now =local_time.localize(datetime.datetime.now())        
+        if self.modi_time:
+            change_time = time_now.strftime('%Y-%m-%d %H:%M%z')
+            print("PO-Revision-Date:", change_time)
+            in_po_cat.revision_date = time_now
+            cat_changed = True
+
+        is_you_last_translator = (YOUR_ID in in_po_cat.last_translator)
+        if not is_you_last_translator:
+            print("Last-Translator:", YOUR_ID)
+            in_po_cat.last_translator=YOUR_ID
+            cat_changed = True
+
+        is_language_team_already_set = (YOUR_TRANSLATION_TEAM in in_po_cat.language_team)
+        if not is_language_team_already_set:
+            print("Language-Team:", YOUR_TRANSLATION_TEAM)
+            in_po_cat.language_team=YOUR_TRANSLATION_TEAM
+            cat_changed = True
+
+        header = in_po_cat._get_header_comment()
+
+        is_you_already_first_author = (YOUR_NAME in header) and (default_first_author not in header)
+        if not is_you_already_first_author:
+            print("FIRST AUTHOR <EMAIL@ADDRESS>", YOUR_ID)
+            header = header.replace(default_first_author, YOUR_NAME)        
+            header = header.replace(default_mail_address, YOUR_EMAIL)
+
+            is_year_set = (header.find(default_year) < 0)
+            if not is_year_set:
+                year = time_now.strftime('%Y')
+                print(default_year, year)
+                actual_year = ", {}.".format(year)
+                header = header.replace(default_year, actual_year)
+            header_changed = True        
+            in_po_cat.header_comment = header
+
+        changed = (cat_changed or header_changed)
+        if changed:
+            if self.dry_run:
+                print("Processing file:", changed_file)
+                print("-" * 80)
+            else:
+                self.basic_io.writeTextFile(changed_file, data)
+                print("Wrote changes to:", changed_file)
 
     def replaceAllChangedFiles(self, file_list):
         valid = (file_list is not None) and (len(file_list) > 0)
@@ -375,10 +427,10 @@ class ChangePlaceHolder:
             return
 
         for f in file_list:
-            print("Processing file:", f)
+            # print("Processing file:", f)
             self.removeCommentedLineInSingleFile(f)
             self.replaceAndReport(f)
-            print("-" * 80)
+            #print("-" * 80)
 
     def listFile(self, file_name):
         print("file:", file_name)
@@ -402,7 +454,7 @@ class ChangePlaceHolder:
             self.replaceAndReport(self.specific_file)
         else:
             os.chdir(self.specific_dir)
-            cwd = os.getcwd()
+            # cwd = os.getcwd()
 
             file_list = self.findChangedFiles(self.specific_dir)
             if self.list_dir_only:
@@ -416,6 +468,7 @@ parser = ArgumentParser()
 #parser.add_argument("-c", "--clean", dest="clean_action", help="Clean before MAKE.", action='store_const', const=True)
 parser.add_argument("-f", "--file", dest="specific_file", help="Perform replacements on a specific file")
 parser.add_argument("-d", "--dir", dest="specific_dir", help="Directory where changed files are searched for replacements")
+parser.add_argument("-D", "--Dir", dest="specific_dir_force", help="Directory where changed files are searched for replacements, FORCE mode", action='store_const', const=True)
 parser.add_argument("-r", "--dry", dest="dry_run", help="Listing out possible changes but do not commit changes", action='store_const', const=True)
 parser.add_argument("-l", "--list", dest="list_dir_only", help="Listing files out only, do not perform any operations", action='store_const', const=True)
 parser.add_argument("-m", "--mod_time", dest="change_modified_time", help="Change modification time to time of the system now. Default False, to avoid overwriting previously stamped time.", action='store_const', const=True)
@@ -423,5 +476,12 @@ parser.add_argument("-t", "--mtime", dest="modified_time_period", help="Time per
 args = parser.parse_args()
 
 x = ChangePlaceHolder()
-x.setVars(args.specific_file, args.specific_dir, args.dry_run, args.list_dir_only, args.modified_time_period, args.change_modified_time)
+x.setVars(  args.specific_file, 
+            args.specific_dir, 
+            args.specific_dir_force,
+            args.dry_run, 
+            args.list_dir_only, 
+            args.modified_time_period, 
+            args.change_modified_time
+            )
 x.run()

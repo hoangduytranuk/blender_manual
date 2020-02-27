@@ -7,6 +7,7 @@ from collections import OrderedDict, defaultdict
 import datetime
 from time import gmtime, strftime
 from pytz import timezone
+import locale
 import math
 import re
 #from Levenshtein import distance
@@ -15,6 +16,7 @@ from difflib import SequenceMatcher as SM
 from pprint import pprint
 #from bs4 import BeautifulSoup as BS
 import os
+import io
 import html
 from queue import Queue as Q
 from pyparsing import *
@@ -24,8 +26,9 @@ from collections import Counter
 import subprocess as sub
 
 from sphinx_intl import catalog as c
-from babel.messages.catalog import Message
 from babel.messages import pofile
+from babel.messages.catalog import Message, Catalog
+
 
 #import AdvancedHTMLParser as AH
 #from sphinx_intl import catalog as c
@@ -2353,8 +2356,68 @@ class test(object):
             if is_path:
                 print("PATH:", entry)
 
+
+    def dump_po(self, filename, catalog):
+        dirname = os.path.dirname(filename)
+        if not os.path.exists(dirname):
+            os.makedirs(dirname)
+
+        print("dump_po", filename, catalog)
+        # Because babel automatically encode strings, file should be open as binary mode.
+        with io.open(filename, 'wb') as f:
+            pofile.write_po(f, catalog, width=4096)
+
+    def test_0038(self):
+        # def __init__(self, locale=None, domain=None, header_comment=DEFAULT_HEADER,
+        #          project=None, version=None, copyright_holder=None,
+        #          msgid_bugs_address=None, creation_date=None,
+        #          revision_date=None, last_translator=None, language_team=None,
+        #          charset=None, fuzzy=True):        
+
+        local_time=timezone('Europe/London')
+        #local_time=timezone('en_GB')
+        loc_dt=local_time.localize(datetime.datetime.now())        
+        new_cat = Catalog( \
+                    locale=locale.getlocale()[0], \
+                    project="Blender 2.80 Manual", \
+                    version="2.8", \
+                    language_team="London, UK <hoangduytran1960@gmail.com", \
+                    last_translator="Hoang Duy Tran <hoangduytran1960@googlemail.com>",
+                    revision_date=loc_dt
+                    )
+        #print("creation_date", new_cat.creation_date)
+        #print("revision_date", new_cat.revision_date)
+        #pp(new_cat)               
+        new_cat.add("my name", string="Hoang Duy Tran")
+        out_po_path="/Users/hoangduytran/testing.po"     
+
+        in_po_path="/Users/hoangduytran/index.po"
+        in_po_cat = c.load_po(in_po_path)
+        in_po_cat.revision_date = loc_dt
+        in_po_cat.copyright_holder="HIEP DUY TRAN"
+        in_po_cat.last_translator="Hiep Duy Tran <hiepduytran1959@gmail.com>"
+        in_po_cat.language_team="Australia, Brisbane <hiepduytran1959@gmail.com>"
+        in_po_cat.language = "Italian"
+        in_po_cat.language_code = "it"
+        header = in_po_cat._get_header_comment()
+        header = header.replace("FIRST AUTHOR", "Hiep Duy Tran")
+        header = header.replace("MAIL@ADDRESS", "hiepduytran1959@gmail.com")
+
+        year = loc_dt.strftime('%Y')
+        #header = header.replace("YEAR", year)
+        header = header.replace("2018", year)
+        in_po_cat.header_comment = header
+
+        #FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+
+        print(header)
+        print("-" * 80)
+        #pp(in_po_cat)
+
+        self.dump_po(out_po_path, in_po_cat)
+
     def run(self):
-        #self.test_0037()
+        self.test_0038()
         print("Tesing Python")
 
 
