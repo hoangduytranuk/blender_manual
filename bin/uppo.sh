@@ -1,5 +1,4 @@
-cd $BLENDER_MAN_EN
-cd locale/vi
+cd $BLENDER_MAN_EN/locale/vi
 svn cleanup
 svn update
 cd $BLENDER_MAN_EN
