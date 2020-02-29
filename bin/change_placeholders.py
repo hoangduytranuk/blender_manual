@@ -95,7 +95,7 @@ class findFileByExtension(ListPathEvent):
         path = os.path.join(self.dirpath, name)
         return os.path.getmtime(path)
 
-    def getListSorted(self, key_function, is_reversed=False):
+    def getListSorted(self, key_function=None, is_reversed=False):
         #print("getListSorted:", self.result)
         sorted_list = sorted(self.result, key=key_function, reverse=is_reversed)
         return sorted_list
@@ -418,7 +418,8 @@ class ChangePlaceHolder:
                 print("Processing file:", changed_file)
                 print("-" * 80)
             else:
-                self.basic_io.writeTextFile(changed_file, data)
+                #self.basic_io.writeTextFile(changed_file, data)
+                c.dump_po(changed_file, in_po_cat)
                 print("Wrote changes to:", changed_file)
 
     def replaceAllChangedFiles(self, file_list):

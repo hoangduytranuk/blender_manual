@@ -38,7 +38,6 @@ except ImportError:
 
 trans_finder = tf()
 
-
 def doctree_resolved(app, doctree, docname):
     debug_file = cm.debug_file
     if debug_file:
@@ -67,77 +66,109 @@ def doctree_resolved(app, doctree, docname):
     # pp(data)
     # exit(0)
 
+    # #trans_finder.cleanupPOFile(po_path, is_dry_run=False)
+    # replace_dict = {
+    #     #r'':r''
+    #    #r'Language-Team.*MIME-Version':r'Language-Team: London, UK <hoangduytran1960@gmail.com>\\n"\n"Plural-Forms: nplurals=1; plural=0\\n"\n"MIME-Version',
+    #    r'Language-Team.*MIME-Version':r'Something'
+    # }
+    # trans_finder.replacePOText(po_path, replace_dict, is_dry_run=True)
 
-    #loading local po file to get translation if any
-    po_dic = trans_finder.loadPOAsDic(po_path)
+    # cm.file_count += 1
+    # is_pausing = (cm.file_count == (cm.total_files / 10))
+    # if is_pausing:
+    #     nb = input("Press any key to continue:")
+    #     cm.file_count = 0
 
-    rst_output_location = os.path.join(blender_docs_path, build_dir)
-    output_path = os.path.join(rst_output_location, po_file_path)
 
-    #_("#" * 80)
-    _("filename: {}".format(output_path))
+    # #loading local po file to get translation if any
+    # #po_dic = trans_finder.loadPOAsDic(po_path)
 
-    for node, msg in extract_messages(doctree):
-        # msg = unescape(msg).strip()
-        msg = msg.strip()
-        _("=" * 80)
-        #_("msgid:[{}]".format(msg))
+    # rst_output_location = os.path.join(blender_docs_path, build_dir)
+    # output_path = os.path.join(rst_output_location, po_file_path)
 
-        is_inline = isinstance(node, nodes.inline)
-        is_emphasis = isinstance(node, nodes.emphasis)
-        is_title = isinstance(node, nodes.title)
-        is_term = isinstance(node, nodes.term)
-        is_rubric = isinstance(node, nodes.rubric)
-        is_field_name = isinstance(node, nodes.field_name)
-        is_reference = isinstance(node, nodes.reference)
-        is_strong = isinstance(node, nodes.strong)
 
-        is_keep_original = (is_inline or
-                            is_emphasis or
-                            is_title or
-                            is_term or
-                            is_rubric or
-                            is_field_name or
-                            is_reference or
-                            is_strong
-                            )
+    # #_("#" * 80)
+    # _("filename: {}".format(output_path))
 
-        # MAYBE !!! should partitioning sentences at the punctuation mark's boundaries, so you can
-        # retrieve sentence level translations. Done for none ref-links text parts.
+    # for node, msg in extract_messages(doctree):
+    #     # msg = unescape(msg).strip()
+    #     msg = msg.strip()
+    #     _("=" * 80)
+    #     #_("msgid:[{}]".format(msg))
 
-        is_empty = (len(msg) == 0)
-        is_ignored = is_empty or ig.isIgnored(msg)
-        if is_ignored:
-            print("IGNORED:", msg)
-            continue
+    #     #clean up po file
 
-        has_translation = (msg in po_dic)
-        if has_translation:
-            tran = po_dic[msg]
-            is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-            if is_added:
-                entry = (msg, tran)
-                print("found in PO, added entry:", entry)
-            else:
-                has_translation = (msg in trans_finder.master_dic_list)
-                if has_translation:
-                    tran = trans_finder.master_dic_list[msg]
-                    is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-                    if is_added:
-                        entry = (msg, tran)
-                        print("found in master_dic_list, added entry:", entry)
-                    else:
-                        ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-                        ref_list.parseMessage()
-                        ref_list.translateRefList()
-                        #_(ref_list)
-                        ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+
+    #     is_inline = isinstance(node, nodes.inline)
+    #     is_emphasis = isinstance(node, nodes.emphasis)
+    #     is_title = isinstance(node, nodes.title)
+    #     is_term = isinstance(node, nodes.term)
+    #     is_rubric = isinstance(node, nodes.rubric)
+    #     is_field_name = isinstance(node, nodes.field_name)
+    #     is_reference = isinstance(node, nodes.reference)
+    #     is_strong = isinstance(node, nodes.strong)
+
+    #     is_keep_original = (is_inline or
+    #                         is_emphasis or
+    #                         is_title or
+    #                         is_term or
+    #                         is_rubric or
+    #                         is_field_name or
+    #                         is_reference or
+    #                         is_strong
+    #                         )
+
+    #     # MAYBE !!! should partitioning sentences at the punctuation mark's boundaries, so you can
+    #     # retrieve sentence level translations. Done for none ref-links text parts.
+
+    #     is_empty = (len(msg) == 0)
+    #     is_ignored = is_empty or ig.isIgnored(msg)
+    #     if is_ignored:
+    #         # print("IGNORED:", msg)
+    #         continue
+
+
+    #     #clean up po
+
+
+    #     msg = "The *Bake Action* tool will apply interpolated frames into individual keyframes. This can be useful for adding deviation to a cyclic action like a :term:`walk cycle`. This can also useful for keyframe animations created from drivers or constraints."
+    #     ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+    #     ref_list.parseMessage()
+    #     ref_list.translateRefList()
+    #     #_(ref_list)
+    #     ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+
+    #     return
+        
+    #     has_translation = (msg in po_dic)
+    #     if has_translation:
+    #         tran = po_dic[msg]
+    #         is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+    #         if is_added:
+    #             entry = (msg, tran)
+    #             print("found in PO, added entry:", entry)
+    #         else:
+    #             has_translation = (msg in trans_finder.master_dic_list)
+    #             if has_translation:
+    #                 tran = trans_finder.master_dic_list[msg]
+    #                 is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+    #                 if is_added:
+    #                     entry = (msg, tran)
+    #                     print("found in master_dic_list, added entry:", entry)
+    #                 else:
+    #                     ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+    #                     ref_list.parseMessage()
+    #                     ref_list.translateRefList()
+    #                     #_(ref_list)
+    #                     ref_list.dumpRefList(trans_finder.master_dic_backup_list)
 
 
 
 
 def builder_inited(app):
-    trans_finder.mergePODict()
+    #trans_finder.mergePODict()
+    pass
 
 def env_updated(app, env):
     pass
@@ -178,6 +209,7 @@ def build_finished(app, exeption):
 
     # sorted_list = sorted(loc_dic_list.items(), key=dicListGetKey)
     
+    return
 
     file_name = "/Users/hoangduytran/ref_dict_0001.json"
     # dic = cm.removeLowerCaseDic(loc_dic_list)

@@ -575,6 +575,7 @@ class RefList(dict):
                 has_kbd = origin_entry.getRefType() == RefType.KBD
                 has_doc = origin_entry.getRefType() == RefType.DOC
                 has_ref = origin_entry.getRefType() == RefType.REF
+                has_term = origin_entry.getRefType() == RefType.TERM
 
                 uri_ref : RefList = self.findOnePattern(txt, cm.LINK_WITH_URI)
                 has_uri = (not uri_ref.isEmpty())
@@ -760,26 +761,27 @@ class RefList(dict):
             _(e)
             raise e
 
-    def translateRefItem(self, ref_item: RefItem, original_type=RefType.TEXT):
+    def translateRefItem(self, ref_item: RefItem, orig: RefItem):
         valid = (ref_item is not None)
         if not valid:
             return
-        orig_text = ref_item.getText()
-        valid = (orig_text is not None) and (len(orig_text) > 0)
+        non_tran_txt = ref_item.getText()
+        valid = (non_tran_txt is not None) and (len(non_tran_txt) > 0)
         if not valid:
             return
 
-        # is_debug = ("Ctrl-MMB" in orig_text)
+        # is_debug = ("Ctrl-MMB" in non_tran_txt)
         # if is_debug:
         #     _("translateRefItem original_type:", original_type)
 
+        original_type = orig.getRefType()
         is_keyboard = (original_type == RefType.KBD)
         if is_keyboard:
             # keyboard will return original if not there
-            tran = self.tf.translateKeyboard(orig_text)
+            tran = self.tf.translateKeyboard(non_tran_txt)
             ref_item.setTranlation(tran)
         else:
-            tran, is_fuzzy, is_ignore = self.tf.translate(orig_text)
+            tran, is_fuzzy, is_ignore = self.tf.translate(non_tran_txt)
 
             if is_ignore:
                 ref_item.setTranlation("", TranslationState.IGNORED)
@@ -787,17 +789,24 @@ class RefList(dict):
 
             is_ref_type = (original_type != RefType.TEXT)
             is_menu_type = (original_type == RefType.MENUSELECTION)
+            is_term_type = (original_type == RefType.TERM)
 
-            if is_menu_type:
+            if is_term_type:
+                # :term:`something` will need to be on its own, so translation is attached at the back
+                orig_text = orig.getText()
+                tran_text = (tran if tran else "")
+                tran = "{} (*{}*)".format(orig_text, tran_text)
+                _("translateRefItem: TERM item, translated as:", tran)
+            elif is_menu_type:
                 if tran:
-                    tran = "{} ({})".format(tran, orig_text)
+                    tran = "{} ({})".format(tran, non_tran_txt)
                 else:
-                    tran = "({})".format(orig_text)
+                    tran = "({})".format(non_tran_txt)
             elif is_ref_type:
                 if tran:
-                    tran = "{} -- {}".format(tran, orig_text)
+                    tran = "{} -- {}".format(tran, non_tran_txt)
                 else:
-                    tran = "-- {}".format(orig_text)
+                    tran = "-- {}".format(non_tran_txt)
 
             if tran:
                 tran_state = (TranslationState.FUZZY if is_fuzzy else TranslationState.ACCEPTABLE)
@@ -831,12 +840,12 @@ class RefList(dict):
             is_item = isinstance(item, RefItem)
             is_record = isinstance(item, RefRecord)
             if is_record:
-                self.translateRefRecord(item)
+                self.translateRefRecord(item, orig)
                 self.transferTranslation(item.getOrigin(), orig)
                 # # attach translation to orig using original
                 # print("attach translation from REFRECORD to original:", item.getOrigin(), "=>", orig)
             else:
-                self.translateRefItem(item, original_type= original_ref_type)
+                self.translateRefItem(item, orig)
                 self.transferTranslation(item, orig)
                 # # attach translation to orig using ref
                 # print("attach translation from REFITEM to original:", item, "=>", orig)
@@ -878,7 +887,9 @@ class RefList(dict):
                     tr = "{} -- {}".format(tr, self.msg)
                 else:
                     tr = "-- {}".format(self.msg)
-            self.setTranslation(tr, state=TranslationState.ACCEPTABLE)
+
+            tran_state = (TranslationState.FUZZY if must_mark else TranslationState.ACCEPTABLE)
+            self.setTranslation(tr, state=tran_state)
             ## fixing links in current translation here
 
         #_("FINALLY self.translation :", self.getTranslation())

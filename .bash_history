@@ -1,273 +1,3 @@
-~/bin/old_bin/change_placeholders.py -d $PWD -r -m
-~/bin/old_bin/change_placeholders.py -d $PWD -r -m
-~/bin/old_bin/change_placeholders.py -d $PWD -m
-~/bin/old_bin/change_placeholders.py -d $PWD -r -m
-~/bin/old_bin/change_placeholders.py -d $PWD -m
-pwd
-cd $BLENDER_MAN_EN
-convman
-convman
-convman
-convman
-ls
-pwd
-ls
-exit
-cd /Volumes/BACKUP/
-ls
-cd backup_mint/
-ls
-cd home/
-ls
-cd 20190616_htran/
-ls
-cd Pictures/
-ls
-cd ..
-convman
-convman
-convman
-convman
-pwd
-cd $BLENDER_MAN_VI
-vi LC_MESSAGES/getting_started/about/history.po
-svn status
-cd ..
-pwd
-cd vi
-ll
-~/bin/old_bin/change_placeholders.py -d $PWD -r
-~/bin/old_bin/change_placeholders.py --help
-~/bin/old_bin/change_placeholders.py -d $PWD -m
-~/bin/old_bin/change_placeholders.py -d $PWD
-~/bin/old_bin/change_placeholders.py -d $PWD
-~/bin/old_bin/change_placeholders.py -d $PWD -m
-svn status
-svn commit -am "Flatten text for easier to navigate while translating. Updated translations to history.po and scene_layout/index.po"
-svn commit -m "Flatten text for easier to navigate while translating. Updated translations to history.po and scene_layout/index.po"
-pwd
-cd ..
-ll
-cd ..
-ll
-cd locale/vi
-svn info
-cd ../..
-pwd
-mv locale/ old_locale
-svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale/vi locale/vi
-vi locale/vi/LC_MESSAGES/video_editing/sequencer/strips/introduction.po
-cd /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/
-find . -name *.po -exec grep 'PROJECT VERSION' /dev/null {} \;
-find . -name '*.po' -exec grep 'PROJECT VERSION' /dev/null {} \;
-cd /Volumes/KINGSTON_120GB/
-ls
-cd linux_home/
-ls
-cd Documents/
-ls
-cp -a po_dictionary_sorted_translated_0001_nodot.json ~/Documents/
-convman
-convman
-convman
-convman
-pwd
-cp -a /Volumes/SSD_HOME_232GB/20190616_htran/ .
-cp -a /Volumes/SSD_HOME_232GB/htran/ .
-touch test.txt
-exit
-cd /Volumes/WD_4657_49_GB_001/
-ll
-cp -a /Volumes/SSD_HOME_232GB/20190616_htran/ .
-sudo -s
-cd
-ls
-cd blender_docs
-ls
-rm -fr old_locale/
-ls
-cd ..
-ls
-/Users/hoangduytran/bin/convpo ; exit;
-vi .bashrc
-reloadbashrc 
-ls -al
-vi .bash_profile 
-reloadbashrc 
-msgfmt
-ls
-env
-cmake
-cd
-mkdir ~/blender-git
-cd blender-git
-git clone https://git.blender.org/blender.git
-pwd
-cd blender/
-make update
-ll
-make update
-msgfmt
-ruby
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
-sudo brew install gettext
-brew install gettext
-brew search
-nano
-cd $BLENDER_MAN_VI
-cd
-nano
-tca 
-evn | grep BLEND
-env | grep BLEND
-cd $BLENDER_GITHUB_MANUAL 
-ll
-cd ..
-ll
-cd ..
-ll
-cd -
-ls
-cd gui
-ll
-cd 2.80/
-ll
-cd po
-ll
-ln -s $PWD ~/po
-cd
-cd po
-vi vi.po
-convman
-convman
-convman
-cd $BLENDER_MAN_VI
-svn status
-svn status
-convman
-convman
-convman
-convman
-convman
-convman
-convman
-convman
-convman
-convman
-dmesg
-sudo dmesg
-sudo dmesg | tail
-sudo dmesg | tail
-sudo dmesg | tail
-sudo dmesg | tail
-clear
-cd $BLENDER_MAN_VI
-pwd
-cd /Volumes/KINGSTON_120GB/
-cd linux_home/
-pwd
-ls
-rsync -arP ~/Documents/ ./Documents/
-rsync -arP ~/Pictures/ ./Pictures/
-ll
-rsync ~/
-ll ~/
-rsync -arP ~/blender_docs/ ./blender_docs/
-PWD
-l
-rsync -arP ~/blender-git/ ~/blender-git/
-rsync -arP ~/blender-git/ ./blender-git/
-ll ~/
-rsync -arP ~/blender_docs_backup/ ./blender_docs_backup/
-ll ~/
-rsync -arP ~/blender_manual/ ./blender_manual/
-ll ~/
-rsync -arP ~/PycharmProjects/ ./PycharmProjects/
-rsync -arP ~/bin/ ./bin/
-ll
-ll ~/
-rsync -arP ~/.bash* .
-ll
-cat .bashrc
-convman
-convman
-convman
-convman
-convman
-convman
-convman
-convman
-convman
-cd $BLENDER_MAN_VI
-pwd
-svn status
-cp ~/bin/old_bin/change_placeholders.py ~/bin
-change_placeholders.py -d $PWD -r
-change_placeholders.py -d $PWD -r
-change_placeholders.py -d $PWD -r
-change_placeholders.py -d $PWD -r
-cp ~/bin/old_bin/change_placeholders.py ~/bin/
-change_placeholders.py -d $PWD -r
-change_placeholders.py -d $PWD -r
-change_placeholders.py -d $PWD -r
-change_placeholders.py -d $PWD
-change_placeholders.py -d $PWD -m
-svn commit -m "Updating translations for three files"
-convman
-convman
-pwd
-cd $BLENDER_MAN_VI 
-svn status
-svn update .
-change_placeholders.py -d $PWD -r
-change_placeholders.py -d $PWD
-cd $BLENDER_MAN_EN
-convman
-convman
-cd $BLENDER_MAN_VI
-svn status
-svn commit -m "Corrected the wrong dates fro 2.80 in history.po"
-convman
-convman
-pưd
-pwd
-ls
-cd Documents/
-ls
-pwd
-cd
-cd blender_manual/
-pwd
-ll
-cd gui/
-ls
-cd 2.80/
-ls
-cd po/
-ll
-pwd
-cd /Users/hoangduytran/Library/Containers/com.wdc.WDDesktop.WDDesktopFinderSync/Data/volumes/c3254b9b-feb8-47f5-bdd6-48b41f0de658/Hoang\'s\ My\ Cloud\ Home 
-ll
-cd SSD_HOME_232GB/
-rsync -arP /Volumes/SSD_HOME_232GB/htran/ ./htran/
-rsync -arP /Volumes/SSD_HOME_232GB/htran/bin/ ./htran/bin/
-ifconfig
-ifconfig
-ping yahoo.co.uk
-ifconfig | more
-clear
-ifconfig | more
-cd /Users/hoangduytran/Library/Containers/com.wdc.WDDesktop.WDDesktopFinderSync/Data/volumes/c3254b9b-feb8-47f5-bdd6-48b41f0de658/Hoang\'s\ My\ Cloud\ Home 
-ll
-cd SSD_HOME_232GB/
-ll
-rsync -arP /Volumes/SSD_HOME_232GB/htran/ ./htran/
-rsync -arP /Volumes/SSD_HOME_232GB/htran/Documents/ ./htran/Documents/
-ll
-cd htran/
-ls
-pwd
-ll
 cd ..
 ll
 cd htran
@@ -498,3 +228,273 @@ reloadbashrc
 viewpo
 alias
 viewpovi
+findrst.sh "<Missing ID block>"
+findrst.sh "\<Missing ID block\>"
+findrst.sh "Missing ID block"
+cd blender_docs/exts/
+ll
+script ~/log.txt
+cd $BLENDER_MAN_EN
+make update_po
+sphinx-build -t builder_html -b gettext  -j "8" manual build/locale
+cd locale/
+ll
+rm -fr locale/
+cd ..
+pưd
+pwd
+sphinx-intl --config=manual/conf.py update --pot-dir=build/locale --language="vi"
+/usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 50381 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
+cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 50395 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
+cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 50755 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
+cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 50768 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
+cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 50801 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
+cd $BLENDER_MAN_VI
+cd $BLENDER_MAN_EN
+svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale/vi locale/vi
+pwd
+cp locale/vi/LC_MESSAGES/getting_started/about/community.po ~/
+cd
+cp community.po community_orig.po 
+more community.po 
+chmod u+x ~/bin/old_bin/replace_text_in_po.sh 
+replace_text_in_po.sh 
+replace_text_in_po.sh 
+replace_text_in_po.sh 
+replace_text_in_po.sh 
+replace_text_in_po.sh 
+cd ~/bin/old_bin
+grep "encoding" *.py
+gettext
+gettext
+gettext
+exit
+gettext
+exit
+gettext
+exit
+gettext
+exit
+cd $BLENDER_MAN_EN
+ll
+mv locale/ ~/locale_old
+cd ~/locale_old/
+svn info
+ll
+cd vi
+svn info
+which bash
+man sed
+gettext
+history | grep script
+script ~/log.txt
+vi ~/log.txt
+vi ~/log.txt
+script ~/log.txt
+script ~/log.txt
+script ~/log.txt
+gettext
+gettext
+gettext
+gettext
+cd $BLENDER_MAN_VI
+svn status
+svn commit -m "Corrected errors in the header part"
+ 
+ll
+ls -altr
+change_placeholders.py -f ~/community.po -r
+change_placeholders.py -f ~/community.po -r
+change_placeholders.py -f ~/community.po -r
+change_placeholders.py -f ~/community.po -r
+change_placeholders.py -f ~/community.po -r
+change_placeholders.py -f ~/community.po
+ll
+cp community_orig.po community.po 
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/getting_started/about/community.po ~/community_orig.po 
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/getting_started/about/community.po ~/community.po 
+change_placeholders.py -f ~/community.po -r
+change_placeholders.py -f ~/community.po
+change_placeholders.py -f ~/community.po
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/getting_started/configuration/index.po ~/index_old.po 
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/getting_started/configuration/index.po ~/index.po 
+change_placeholders.py -f ~/index.po -r
+change_placeholders.py -f ~/index.po
+change_placeholders.py -f ~/index.po
+change_placeholders.py -f ~/index.po
+cp ~/index_old.po ~/index.po
+change_placeholders.py -f ~/index.po
+cp ~/index_old.po ~/index.po
+change_placeholders.py -f ~/index.po
+change_placeholders.py -D $BLENDER_MAN_VI -r
+change_placeholders.py -d $BLENDER_MAN_VI -r
+change_placeholders.py -d $BLENDER_MAN_VI -r
+clear
+change_placeholders.py -d $BLENDER_MAN_VI -r
+change_placeholders.py -d $BLENDER_MAN_VI -m
+change_placeholders.py -d $BLENDER_MAN_VI -r
+change_placeholders.py -d $BLENDER_MAN_VI
+change_placeholders.py -D $BLENDER_MAN_VI -r
+change_placeholders.py -D $BLENDER_MAN_VI -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/getting_started/about/index.po ~/index_old.po
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/getting_started/about/index.po ~/index.po
+change_placeholders.py -f ~/index.po -r
+change_placeholders.py -f ~/index.po
+change_placeholders.py -d $BLENDER_MAN_VI -D -m
+change_placeholders.py -d $BLENDER_MAN_VI -D -m
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+findrst.sh "there are some common options like"
+findrst.sh "there are some common options like"
+test_py.py 
+cat ~/testing.po
+cat ~/testing.po
+test_py.py 
+ll *.po
+cat index.po
+test_py.py 
+test_py.py 
+test_py.py 
+test_py.py 
+ll ~/testing.po
+cat testing.po
+test_py.py 
+ll ~/testing.po
+cat testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+test_py.py ; cat ~/testing.po
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -m -r
+change_placeholders.py -d $BLENDER_MAN_VI -m -r
+findpy.sh "class Catalog"
+change_placeholders.py -d $BLENDER_MAN_VI -m -r
+python3
+python3 -c 'import pytz; for entry in pytz.all_timezones(); print(entry);'
+python3 -c 'import pytz; \for entry in pytz.all_timezones(); print(entry);'
+cd ~/bin
+git status
+change_placeholders.py -d $BLENDER_MAN_VI -D -m
+vi community.po 
+findrst.sh "everywhere(not"
+findrst.sh "everywhere\(not"
+findrst.sh "When using volume rendering"
+cd
+ll *.po
+cp community_orig.po community.po
+change_placeholders.py -f ~/community.po -r
+change_placeholders.py -d $BLENDER_MAN_VI -D -r
+change_placeholders.py -f ~/community.po -r -m
+change_placeholders.py -f ~/community.po -m
+cp -a /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/compositing/properties.po ~/
+cp properties.po properties_old.po 
+change_
+change_placeholders.py -f ~/properties.po -r -m
+change_placeholders.py -f ~/properties.po -m
+vi ~/properties.po
+change_placeholders.py -f ~/properties.po -m
+change_placeholders.py -f ~/properties.po -m
+change_placeholders.py -f ~/properties.po -m
+rsync -arP ~/bin/ /Users/hoangduytran/blender_manual/bin/
+env | grep python
+env | grep PY
+python3
+python
+python3
+mv ~/bin/find_po.py ~/bin/findtext.py
+chmod u+x ~/bin/findtext.py 
+findtext.py --help
+findtext.py -p 'arrow' -o -r -p
+findtext.py -p 'arrow' -o -r -p
+findtext.py -p "arrow" -o -r -p
+findtext.py -p "arrow" -o -r -c
+findtext.py -p "arrow" -o -r -c
+findtext.py -p "arrow" -o -r -c
+findtext.py -p "arrow" -o -r -c
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+env | grep LOCAL_PYTHON_3
+env | grep LOCAL_PYTHON_3
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o | more
+findtext.py -p "arrow" -o | more
+findtext.py -p "arrow" -o | more
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "arrow" -o
+findtext.py -p "Arrow" -o
+findtext.py -p "Arrow" -o -c
+findtext.py -p "ARRow" -o -c
+findtext.py -p "ARRow.*MENU" -o -c
+findtext.py -p "ARRow.*MENU" -o -c
+findtext.py -p "ARRow.*MENU" -o -c
+findtext.py -p "ARRow.*MENU" -o 
+findtext.py -p "ARRow.*MENU" -o -c
+findtext.py -p "ARRow.*MENU" -o -c
+findtext.py -p "ARRow.*MENU" -o -r
+findtext.py -p "ARRow.*MENU" -o -r -y
+findtext.py -p "ARRow.*MENU"  -y
+findtext.py -p "class Catalog" -y
+findtext.py -p "class Catalog" -y
+findtext.py -p "class Catalog" -y
+findtext.py -p "class Catalog" -y
+findtext.py -p "class Catalog:" -y
+findtext.py -p "When inside a 3D viewport" -y
+findtext.py -p "inside a 3D viewport" -y
+findtext.py -p "3D viewport" -y
+findtext.py -p "viewport" -y
+alias
+cd
+vi .aliasrc 
+reloadbashrc 
+updatepo 
+svn help
+pwd
+cd ..
+ll
+cd
+vi .aliasrc 
+reloadbashrc 
+cd $BLENDER_MAN_EN
+ll
+cd tools_maintenance/
+ll
+vi update_po.sh
+svn --help
+svn help cleanup

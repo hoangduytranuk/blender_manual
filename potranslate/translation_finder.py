@@ -2,7 +2,8 @@ import sys
 sys.path.append('/Users/hoangduytran/PycharmProjects/potranslate')
 
 import io
-
+import os
+import re
 from common import Common as cm
 from common import _, pp
 from ignore import Ignore as ig
@@ -46,6 +47,7 @@ class TranslationFinder:
         "Backslash": "Dấu Chéo Ngược (Backslash)",
         r"\bSlash\b": "Dấu Chéo (Slash)",
         "AccentGrave": "Dấu Huyền (AccentGrave)",
+        "Delete": "Xóa (Delete)",
         "Period": "Dấu Chấm (Period)",
         "PageDown": "Trang Xuống (PageDown)",
         "PageUp": "Trang Lên (PageUp)",
@@ -81,7 +83,71 @@ class TranslationFinder:
 
         self.dic_list = defaultdict(int) # for general purposes
 
-        self.cleanDictList(self.master_dic_list)
+        #self.cleanDictList(self.master_dic_list)
+
+    def replacePOText(self, po_file, rep_list, is_dry_run=True):
+        _("replacePOText:", po_file, rep_list, is_dry_run)
+        data = None
+        with open(po_file, "r") as f:
+            data = f.read()
+        
+        changed = False
+        for k, v in rep_list.items():
+            data, change_count = re.subn(k, v, data, flags=re.M)
+            is_changed = (change_count > 0)
+            if is_changed:
+                print("CHANGED", change_count, k, "=>", v)
+                changed = True
+        
+        if changed:
+            print(data)
+            print("file:", po_file)
+            print("Data has changed:", change_count)
+            if not is_dry_run:
+                with open(po_file, "w", encoding="utf-8") as f:
+                    f.write(data)
+
+    def cleanupPOFile(self, po_file, is_dry_run=True):
+        
+        po_cat = c.load_po(po_file)
+        changed = False
+        word_only = re.compile(r'([\w]+)')
+        c.dump_po(po_file, po_cat)
+        
+        # for m in po_cat:
+        #     k = m.id
+        #     v = m.string
+        #     has_v = (v is not None) and (len(v) > 0)
+        #     if not has_v:
+        #         continue
+            
+        #     is_k_empty = (len(k) == 0)
+        #     if not is_k_empty:
+        #         continue
+
+            # m.flags.add('fuzzy')
+            # changed = True
+            # k_list = word_only.findall(k)
+            # v_list = word_only.findall(v)
+            # k_set = set(k_list)
+            # v_set = set(v_list)
+
+            # is_fuzzy = m.fuzzy
+            # is_cleanable = (len(k_set) == len(v_set)) and (k_set == v_set) or is_fuzzy
+            # if is_cleanable:
+            #     if m.fuzzy:
+            #         m.flags = set() # clear the fuzzy flags
+
+            #     set_entry=(k_set, v_set)
+            #     string_entry=(k, v)
+            #     _("cleanupPOFile - set_entry", set_entry)
+            #     _("cleanupPOFile - string_entry", string_entry)
+            #     m.string = ""
+            #     changed = True
+        if changed:
+            _("cleanupPOFile", po_file)
+            if (not is_dry_run):
+                self.dump_po(po_file, po_cat)
 
     def cleanDictList(self, dic_list):
         remove_keys=[]
@@ -89,7 +155,7 @@ class TranslationFinder:
             is_remove = (k is None) or (len(k) == 0) or ig.isIgnored(k)
             if is_remove:
                 entry={k:v}
-                print("cleanDictList removing:", entry)
+                # print("cleanDictList removing:", entry)
                 remove_keys.append(k)
         for k in remove_keys:
             del dic_list[k]
@@ -152,12 +218,18 @@ class TranslationFinder:
         valid = (k is not None) and \
                 (len(k) > 0) and \
                 (v is not None) and \
-                (len(v) > 0))
+                (len(v) > 0)
         if not valid:
             return False
         
         if keep_orig:
-            v = ("{} -- {}".format(v, k) if (k is not in v) else v)
+            repeat_form = "{} -- {}".format(v, k)
+            normal_form = v
+            has_original_in_tran = (k in v)
+            if has_original_in_tran:
+                v = normal_form
+            else:
+                v = repeat_form
 
         entry = {k:v}
         dict_list.update(entry)

@@ -34,7 +34,8 @@ def _(*args, **kwargs):
 
 class Common:
     s = "( c>5 or (p==4 and c<4) )"
-
+    total_files = 1358
+    file_count = 0
     # It's pyparsing.printables without ()
     CHAR_NO_ARCHED_BRAKETS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'*+,-./:;<=>?@[\]^_`{|}~'
 
@@ -42,12 +43,14 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
+    debug_file = "getting_started/about/community"
+    #debug_file = "animation/actions"
     # debug_file = "video_editing/sequencer/strips/transitions/wipe" # :ref:`easings <editors-graph-fcurves-settings-easing>`
     # debug_file = "about/contribute/editing"
     # debug_file = "about/contribute/build/windows"
     # debug_file = "about/contribute/build/macos"
     # debug_file = "about/contribute/guides/maintenance_guide"
-    # debug_file = "about/contribute/guides/markup_guide" # debugging :abbr:, ``:kbd:`LMB```, ``*Mirror*``, ``:menuselection:`3D View --> Add --> Mesh --> Monkey```
+    # debug_file = "about/contribute/guides/markup_guide" # debugging :term: :abbr:, ``:kbd:`LMB```, ``*Mirror*``, ``:menuselection:`3D View --> Add --> Mesh --> Monkey```
     # debug_file = "about/contribute/install/windows"
     # debug_file = "about/license" # (online) or URL (in print) to manual
     # debug_file = "addons/3d_view/3d_navigation" # debugging :menuselection:
