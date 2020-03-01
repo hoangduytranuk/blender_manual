@@ -79,6 +79,9 @@ class Ignore:
     PATH = r'([a-zA-Z][:]?)?'
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     ignore_list = [
+        r'^:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|Tab|F(\d+)))[\`]$', #:kbd:`Shift-Ctrl-R`
+        r'^([\w]+)\/$', # rendering/
+        r'(^([\`]+)?[^\`]+)\.([\w]{2,5})([\`]+)?$', #file name
         r"^([\d]+)(px|khz)?$", # 1024x2048
         r"^([\d]+[x][\d]+)$", # 1024x2048
         r'^(\|[\w]+([\-][\w]+)?.*(:kbd\:.*Alt-Backspace).*)$',  # |dagger|: ``|``, :kbd:`Alt-Backspace`, ``-``
@@ -119,7 +122,7 @@ class Ignore:
         r"^(\.[\w]{2,5})$",  # .jpg, .so
         r"^(htt[ps][^\S]+)$",
         r"^(jpg|png|int)$",
-        r"^(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|PYTHONHOME|Mem)$",
+        r"^(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|Mem)$",
         r"^(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|ft|m|yd|dm|st|pi))$",
         r"^(mov|location[0]|cd|ch|hm|asin|um|tan|self|atan|atan2||sRGB)$",
         r"^(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD)$",
@@ -145,7 +148,7 @@ class Ignore:
         r"^(NDOF|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn)$",
         r"^(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR)$",
         r"^PAINT_GPENCILEDIT_GPENCILSCULPT_.*$",
-        r"^(P(CM|LY|NG)|PYTHON(PATH)?|Pack Bits|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2)$",
+        r"^(P(CM|LY|NG)|Pack Bits|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2)$",
         r"^(QuickTime|quasi\-)$",
         # r"^(RGB[\w]?)$",
         r"^(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch)$",
@@ -193,6 +196,11 @@ class Ignore:
         # "bpy", "bpy", "bl_info", "dx",
         #"", "", "", "", "",
         # "", "", "", "", "", "", "", "", "", "", "", "", "",
+        "Demohero, uriel, meta-androcto",
+        "Vladimir Spivak (cwolf3d)",
+        "Nuke (\.chan)",
+        "Houdini",
+        "Nuke",
     ]
 
     keep_list = [
@@ -254,6 +262,7 @@ class Ignore:
 
     def isIgnored(msg):
 
+        
         is_keep = Ignore.isKeep(msg)
         if is_keep:
             return False
@@ -279,8 +288,8 @@ class Ignore:
                            "is_ignore_start": is_ignore_start,
                            #"is_ignore_path": is_ignore_path
                            }
-            _("IGNORING:", msg)
-            pp(dict_ignore)
+            #_("IGNORING:", msg)
+            # pp(dict_ignore)
         return is_ignore
 
     def isIgnoredIfStartsWith(text_line : str):
@@ -290,7 +299,7 @@ class Ignore:
         for x in Ignore.ignore_start_with_list:
             is_starts_with = (text_line.lower().startswith(x.lower()))
             if is_starts_with:
-                _("isIgnoredIfStartsWith:", x)
+                #_("isIgnoredIfStartsWith:", x)
                 return True
         else:
             return False
@@ -325,7 +334,7 @@ class Ignore:
                 m = re.compile(pattern, flags=re.I)
                 is_found = (m.search(text_line) is not None)
                 if is_found:
-                    _("[{}] matched [{}]".format(text_line, pattern))
+                    #_("[{}] matched [{}]".format(text_line, pattern))
                     return True
         except Exception as e:
             _(e)

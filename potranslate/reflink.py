@@ -3,6 +3,7 @@ sys.path.append('/Users/hoangduytran/PycharmProjects/potranslate')
 
 from common import Common as cm
 from common import _, pp
+from ignore import Ignore as ig
 
 #from pyparsing import nestedExpr
 from enum import Enum
@@ -115,8 +116,15 @@ class RefItem:
         return self.translation
 
     def setTranlation(self, tran, state=TranslationState.ACCEPTABLE):
-        self.translation = tran
-        self.setTranslationState(state)
+        is_ignored = ig.isIgnored(self.getText())
+        is_same = cm.isTextuallySame(self.getText(), tran)
+        is_ignored_all = (is_ignored or is_same)
+        if is_ignored_all:
+            tran = ""
+            state = TranslationState.IGNORED
+        else:
+            self.translation = tran
+            self.setTranslationState(state)
 
     def getValues(self):
         return self.start, self.end, self.text
@@ -292,8 +300,13 @@ class RefList(dict):
         return self.translation
 
     def setTranslation(self, tran, state=TranslationState.ACCEPTABLE):
-        self.translation = tran
-        self.translation_state = state
+        if ig.isIgnored(self.msg):
+            self.setTranslation("")
+            self.translation_state = TranslationState.IGNORED
+        else:
+            self.translation = tran
+            self.translation_state = state
+                
 
     def getType(self, xtype):
         for x in RefList.type_blk_list:
@@ -774,12 +787,24 @@ class RefList(dict):
         # if is_debug:
         #     _("translateRefItem original_type:", original_type)
 
+        # msg = ref_item.getText()
+        # is_ignore = ig.isIgnored(msg)
+        # if is_ignore:
+        #     ref_item.setTranlation("")
+        #     ref_item.setTranslationState(TranslationState.IGNORED)
+        #     print("IGNORE translateRefItem", msg)
+        #     return        
+
         original_type = orig.getRefType()
         is_keyboard = (original_type == RefType.KBD)
         if is_keyboard:
             # keyboard will return original if not there
             tran = self.tf.translateKeyboard(non_tran_txt)
-            ref_item.setTranlation(tran)
+            is_same = cm.isTextuallySame(tran, non_tran_txt)
+            if (is_same):
+                ref_item.setTranlation("", TranslationState.IGNORED)
+            else:
+                ref_item.setTranlation(tran, TranslationState.ACCEPTABLE)
         else:
             tran, is_fuzzy, is_ignore = self.tf.translate(non_tran_txt)
 
@@ -814,7 +839,7 @@ class RefList(dict):
                 #_("translateRefItem ref_item:", ref_item)
                 #_(orig_text, "=>" ,ref_item.getTranslation(), " tran_state:", ref_item.getTranslationState())
 
-    def translateRefRecord(self, record: RefRecord):
+    def translateRefRecord(self, record: RefRecord, orig: RefItem):
         valid = (record is not None)
         if not valid:
             return
@@ -866,7 +891,7 @@ class RefList(dict):
         rev_key_list = reversed(sorted(key_list))
         for k in rev_key_list:
             v: RefRecord = self[k]
-            self.translateRefRecord(v)
+            self.translateRefRecord(v, to_item)
             self.transferTranslation(v.getOrigin(), to_item)
             #_("IN LOOP to_item:", to_item)
 

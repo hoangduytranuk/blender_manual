@@ -49,11 +49,18 @@ class TranslationFinder:
         "AccentGrave": "Dấu Huyền (AccentGrave)",
         "Delete": "Xóa (Delete)",
         "Period": "Dấu Chấm (Period)",
+        "Comma": "Dấu Phẩy (Comma)",                
         "PageDown": "Trang Xuống (PageDown)",
         "PageUp": "Trang Lên (PageUp)",
         "PgDown": "Trang Xuống (PgDown)",
         "PgUp": "Trang Lên (PgUp)",
         "OSKey": "Phím Hệ Điều hành (OSKey)",
+        "Slash": "Dấu Chéo (Slash)",
+        "Backslash": "Dấu Chéo Ngược (Backslash)",
+        "Minus": "Dấu Trừ (Minus)",
+        "Plus": "Dấu Cộng (Plus)",
+        "Down": "Xuống (Down)",
+        "Up": "Lên (Up)",        
         "MMB": "NCG (MMB)",
         "LMB": "NCT (LMB)",
         "RMB": "NCP (RMB)",
@@ -63,8 +70,10 @@ class TranslationFinder:
     def __init__(self):
         self.update_dic = 0
         self.update_po_file = None
-        self.master_dic_file = "/Users/hoangduytran/Documents/po_dictionary_sorted_translated_0001_nodot.json"
-        self.master_dic_backup_file = "/Users/hoangduytran/Documents/po_dictionary_sorted_translated_0002_new.json"
+        # self.master_dic_file = "/Users/hoangduytran/Documents/po_dictionary_sorted_translated_0001_nodot.json"
+        #self.master_dic_file = "/Users/hoangduytran/ref_dict_0001.json"
+        self.master_dic_backup_file = "/Users/hoangduytran/ref_dict_0003.json"
+        self.master_dic_file = "/Users/hoangduytran/ref_dict_0002.json"
         self.master_dic_backup_list = defaultdict(OrderedDict)
 
         self.master_dic_list = self.loadJSONDic(file_name=self.master_dic_file)
@@ -82,8 +91,16 @@ class TranslationFinder:
         self.setupKBDDicList()
 
         self.dic_list = defaultdict(int) # for general purposes
-
+        # ßself.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
+        
         #self.cleanDictList(self.master_dic_list)
+
+    def loadVIPOtoBackupDic(self, dict_to_update, file_name):
+        po_cat = c.load_po(self.vipo_dic_path)
+        po_cat_dic = self.poCatToDic(po_cat)
+        dict_to_update.update(po_cat_dic)
+        self.writeJSONDic(dict_to_update, file_name=file_name)
+        exit(0)
 
     def replacePOText(self, po_file, rep_list, is_dry_run=True):
         _("replacePOText:", po_file, rep_list, is_dry_run)
@@ -338,7 +355,7 @@ class TranslationFinder:
             # if is_debug:
             #     print("DEBUG")
             #
-            orig_msg = str(msg)
+            #orig_msg = str(msg)
             if is_lower:
                 msg = msg.lower()
             trans = find_list[msg]
@@ -355,6 +372,15 @@ class TranslationFinder:
     def findTranslation(self, msg):
         trans = None
 
+        ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
+        if (len(ex_ga_msg) > 0):
+            print("findTranslation - ex_ga_msg", msg, ex_ga_msg)
+            msg = ex_ga_msg[0]
+
+        is_ignore = ig.isIgnored(msg)
+        if (is_ignore):
+            return None
+        
         orig_msg = str(msg)
         begin_with_punctuations = (cm.BEGIN_PUNCTUAL.search(msg) is not None)
         ending_with_punctuations = (cm.ENDS_PUNCTUAL.search(msg) is not None)
@@ -368,6 +394,8 @@ class TranslationFinder:
         if not trans:
             list_name = "self.master_dic_list LOWER"
             trans = self.isInList(msg, self.master_dic_list, is_lower=True)
+
+        #print("Using", list_name)
 
         has_tran = not (trans is None)
         has_len = (has_tran and (len(trans) > 0))
@@ -384,7 +412,7 @@ class TranslationFinder:
         return trans
 
     def findTranslationByFragment(self, msg):
-        orig_msg = str(msg)
+        # orig_msg = str(msg)
         trans_list = []
         trans = str(msg)
 

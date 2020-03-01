@@ -43,8 +43,8 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
-    debug_file = "getting_started/about/community"
-    #debug_file = "animation/actions"
+    # debug_file = "getting_started/about/community"
+    # debug_file = "animation/actions"
     # debug_file = "video_editing/sequencer/strips/transitions/wipe" # :ref:`easings <editors-graph-fcurves-settings-easing>`
     # debug_file = "about/contribute/editing"
     # debug_file = "about/contribute/build/windows"
@@ -57,11 +57,9 @@ class Common:
     # debug_file = "addons/add_curve/index"
     # debug_file = "addons/add_curve/ivy_gen"
     # debug_file = "addons/import_export/anim_nuke_chan"
-    # debug_file = "addons/import_export/io_scene_gltf2" # either (a) make it the active Action on the object, (b) create a single-strip NLA track, or (c)
-    # debug_file = "addons/import_export/io_scene_x3d"
     # debug_file = "addons/node/node_wrangler"
     # debug_file = "addons/object/carver"
-    # debug_file = "advanced/command_line/arguments"
+    # debug_file = "advanced/command_line/arguments" # trouble some file
     # debug_file = "advanced/command_line/introduction"
     # debug_file = "advanced/command_line/launch/macos"
     # debug_file = "animation/armatures/bones/editing/properties"
@@ -161,6 +159,22 @@ class Common:
     KEYBOARD_TYPE = re.compile(r'^([\`]*:kbd:[\`]+([^\`]+)[\`]+)$')
     KEYBOARD_SEP = re.compile(r'[^\-]+')
     SPECIAL_TERM = re.compile(r'^[\`\*\"\'\(]+(.*)[\`\*\"\'\)]+$')
+    ALPHA_NUMERICAL = re.compile(r'[\w]+')
+    EXCLUDE_GA= re.compile(r'^[\`]+?([^\`]+)[\`]+?$')
+    OPTION_FLAG=re.compile(r'^[\-]{2}([^\`]+)')
+
+    def hasOriginal(msg, tran):
+        orig_list = Common.ALPHA_NUMERICAL.findall(msg)
+        orig_set = "".join(orig_list)
+
+        tran_list = Common.ALPHA_NUMERICAL.findall(tran)
+        tran_set = "".join(tran_list)
+    
+        has_orig = (orig_set in tran_set)
+        #print("orig_set:", orig_set)
+        #print("tran_set:", tran_set)
+        #print("has_orig:", has_orig)
+        return has_orig
 
     def isSpecialTerm(msg: str):
         is_special = (Common.SPECIAL_TERM.search(msg) is not None)
@@ -496,17 +510,17 @@ class Common:
         return is_considered_the_same
 
 
-    def isTextuallySame(from_txt, to_txt):
+    def isTextuallySame(from_txt:str, to_txt:str):
+
         from_list = Common.WORD_ONLY_FIND.findall(from_txt.lower())
         to_list = Common.WORD_ONLY_FIND.findall(to_txt.lower())
 
         # convert list to set of words, non-repeating
-        to_set = set(to_list)
-        from_set = set(from_list)
+        to_set = "".join(to_list)
+        from_set = "".join(from_list)
 
-        # perform set intersection to find common set
-        common_set = to_set.intersection(from_set)
-        is_same = (common_set == from_set)
+        # perform set intersection to find common set        
+        is_same = (to_set == from_set)
         return is_same
 
     def isTextuallySubsetOf(msg, tran):

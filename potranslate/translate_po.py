@@ -18,7 +18,7 @@ print(sys.path)
 import os
 import re
 
-print("import fine so far")
+# print("import fine so far")
 from ignore import Ignore as ig
 from common import Common as cm
 from common import DEBUG, _, pp
@@ -29,16 +29,36 @@ from ignore import Ignore as ig
 from collections import OrderedDict, defaultdict
 import json
 from reflink import RefList, RefRecord, RefItem
+from sphinx_intl import catalog as c
 from pyparsing import *
+from babel.messages.catalog import Message, Catalog
+import locale
+import datetime
+from time import gmtime, strftime, time
+from pytz import timezone
 
 try:
     import html
 except ImportError:
     html = None
 
+YOUR_NAME = "Hoang Duy Tran"
+YOUR_EMAIL = "hoangduytran1960@gmail.com"
+YOUR_ID = "{} <{}>".format(YOUR_NAME, YOUR_EMAIL)
+YOUR_TRANSLATION_TEAM = "London, UK <{}>".format(YOUR_EMAIL)
+YOUR_LANGUAGE_CODE = "vi"
+TIME_ZONE='Europe/London'
 trans_finder = tf()
 
 def doctree_resolved(app, doctree, docname):
+
+    def getTimeNow(self):
+        local_time=timezone('Europe/London')
+        fmt='%Y-%m-%d %H:%M%z'
+        loc_dt=local_time.localize(datetime.datetime.now())
+        formatted_dt=loc_dt.strftime(fmt)
+        return formatted_dt
+
     debug_file = cm.debug_file
     if debug_file:
         is_debug_file = (debug_file in docname)
@@ -83,85 +103,160 @@ def doctree_resolved(app, doctree, docname):
 
     # #loading local po file to get translation if any
     # #po_dic = trans_finder.loadPOAsDic(po_path)
+    current_po_cat : Catalog = c.load_po(po_path)
+    rst_output_location = os.path.join(blender_docs_path, build_dir)    
+    output_path = os.path.join(rst_output_location, po_file_path)
 
-    # rst_output_location = os.path.join(blender_docs_path, build_dir)
-    # output_path = os.path.join(rst_output_location, po_file_path)
+    local_time=timezone(TIME_ZONE)
+    time_now =local_time.localize(datetime.datetime.now())      
 
+    local_locale = locale.getlocale()[0]
+    current_header = current_po_cat._get_header_comment()
+    new_po_cat = Catalog(
+                locale="vi", 
+                header_comment=current_header,
+                project="Blender 2.8 Manual",
+                version="2.8",
+                copyright_holder=YOUR_ID,
+                creation_date=current_po_cat.creation_date,
+                revision_date=time_now,
+                last_translator=YOUR_ID,
+                language_team=YOUR_TRANSLATION_TEAM,
+                charset="UTF-8"
+                )
 
     # #_("#" * 80)
     # _("filename: {}".format(output_path))
 
-    # for node, msg in extract_messages(doctree):
-    #     # msg = unescape(msg).strip()
-    #     msg = msg.strip()
-    #     _("=" * 80)
-    #     #_("msgid:[{}]".format(msg))
+    for node, msg in extract_messages(doctree):
+        # msg = unescape(msg).strip()
+        msg = msg.strip()
+        _("=" * 80)
+        #_("msgid:[{}]".format(msg))
 
-    #     #clean up po file
-
-
-    #     is_inline = isinstance(node, nodes.inline)
-    #     is_emphasis = isinstance(node, nodes.emphasis)
-    #     is_title = isinstance(node, nodes.title)
-    #     is_term = isinstance(node, nodes.term)
-    #     is_rubric = isinstance(node, nodes.rubric)
-    #     is_field_name = isinstance(node, nodes.field_name)
-    #     is_reference = isinstance(node, nodes.reference)
-    #     is_strong = isinstance(node, nodes.strong)
-
-    #     is_keep_original = (is_inline or
-    #                         is_emphasis or
-    #                         is_title or
-    #                         is_term or
-    #                         is_rubric or
-    #                         is_field_name or
-    #                         is_reference or
-    #                         is_strong
-    #                         )
-
-    #     # MAYBE !!! should partitioning sentences at the punctuation mark's boundaries, so you can
-    #     # retrieve sentence level translations. Done for none ref-links text parts.
-
-    #     is_empty = (len(msg) == 0)
-    #     is_ignored = is_empty or ig.isIgnored(msg)
-    #     if is_ignored:
-    #         # print("IGNORED:", msg)
-    #         continue
+        #clean up po file
 
 
-    #     #clean up po
+        is_inline = isinstance(node, nodes.inline)
+        is_emphasis = isinstance(node, nodes.emphasis)
+        is_title = isinstance(node, nodes.title)
+        is_term = isinstance(node, nodes.term)
+        is_rubric = isinstance(node, nodes.rubric)
+        is_field_name = isinstance(node, nodes.field_name)
+        is_reference = isinstance(node, nodes.reference)
+        is_strong = isinstance(node, nodes.strong)
+
+        is_keep_original = (is_inline or
+                            is_emphasis or
+                            is_title or
+                            is_term or
+                            is_rubric or
+                            is_field_name or
+                            is_reference or
+                            is_strong
+                            )
+
+        # MAYBE !!! should partitioning sentences at the punctuation mark's boundaries, so you can
+        # retrieve sentence level translations. Done for none ref-links text parts.
+
+        # is_empty = (len(msg) == 0)
+        # is_ignored = is_empty or ig.isIgnored(msg)
+        # if is_ignored:
+        #     # print("IGNORED:", msg)
+        #     continue
 
 
-    #     msg = "The *Bake Action* tool will apply interpolated frames into individual keyframes. This can be useful for adding deviation to a cyclic action like a :term:`walk cycle`. This can also useful for keyframe animations created from drivers or constraints."
-    #     ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-    #     ref_list.parseMessage()
-    #     ref_list.translateRefList()
-    #     #_(ref_list)
-    #     ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+        #clean up po
 
-    #     return
+
+        # msg = "The *Bake Action* tool will apply interpolated frames into individual keyframes. This can be useful for adding deviation to a cyclic action like a :term:`walk cycle`. This can also useful for keyframe animations created from drivers or constraints."
+        # ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+        # ref_list.parseMessage()
+        # ref_list.translateRefList()
+        # #_(ref_list)
+        # ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+
+        # return
         
-    #     has_translation = (msg in po_dic)
-    #     if has_translation:
-    #         tran = po_dic[msg]
-    #         is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-    #         if is_added:
-    #             entry = (msg, tran)
-    #             print("found in PO, added entry:", entry)
-    #         else:
-    #             has_translation = (msg in trans_finder.master_dic_list)
-    #             if has_translation:
-    #                 tran = trans_finder.master_dic_list[msg]
-    #                 is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-    #                 if is_added:
-    #                     entry = (msg, tran)
-    #                     print("found in master_dic_list, added entry:", entry)
-    #                 else:
-    #                     ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-    #                     ref_list.parseMessage()
-    #                     ref_list.translateRefList()
-    #                     #_(ref_list)
-    #                     ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+        # has_translation = (msg in po_dic)
+        # if has_translation:
+        #     tran = po_dic[msg]
+        #     is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+        #     if is_added:
+        #         entry = (msg, tran)
+        #         print("found in PO, added entry:", entry)
+        #     else:
+        #         has_translation = (msg in trans_finder.master_dic_list)
+        #         if has_translation:
+        #             tran = trans_finder.master_dic_list[msg]
+        #             is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+        #             if is_added:
+        #                 entry = (msg, tran)
+        #                 print("found in master_dic_list, added entry:", entry)
+        #             else:
+        #                 ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+        #                 ref_list.parseMessage()
+        #                 ref_list.translateRefList()
+        #                 #_(ref_list)
+        #                 ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+
+        orig_msg = str(msg)
+        ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
+        if (len(ex_ga_msg) > 0):
+            msg = ex_ga_msg[0]
+
+        is_ignore = ig.isIgnored(msg)
+        msg = orig_msg
+        if not is_ignore:
+            has_translation = (msg in trans_finder.master_dic_list)
+            if has_translation:
+                tran = trans_finder.master_dic_list[msg]
+                if is_keep_original:
+                    if tran:                        
+                        has_orig = cm.hasOriginal(msg, tran)
+                        if not has_orig:
+                            tran = "{} -- {}".format(tran, msg)
+                    else:
+                        tran = "-- {}".format(msg)
+                print("Origianl translation:",msg, "=>", tran)
+            else:
+                ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+                ref_list.parseMessage()
+                ref_list.translateRefList()
+                tran = ref_list.getTranslation()
+                
+                print("ref_list translation:",msg, "=>", tran)
+                is_same = cm.isTextuallySame(msg, tran)
+                if is_same:
+                    tran = None                
+                
+        else:
+            tran = None
+        
+        if tran is not None:
+            is_same = cm.isTextuallySame(msg, tran)
+            if not is_same:
+                new_po_cat.add(msg, string=tran)
+                if not is_ignore:
+                    entry={msg:tran}
+                    trans_finder.master_dic_backup_list.update(entry)
+        else:
+            new_po_cat.add(msg, string="")
+            if not is_ignore:
+                entry={msg:""}            
+                trans_finder.master_dic_backup_list.update(entry)
+
+    
+        
+        print("msgid \"", msg, "\"")
+        if tran is not None:
+            print("msgstr \"", tran, "\"")
+        else:
+            print("msgstr \"\"")
+
+    print("Output to the path:", new_po_cat, output_path)
+    c.dump_po(output_path, new_po_cat)
+
 
 
 
@@ -209,17 +304,17 @@ def build_finished(app, exeption):
 
     # sorted_list = sorted(loc_dic_list.items(), key=dicListGetKey)
     
-    return
+    # return
 
-    file_name = "/Users/hoangduytran/ref_dict_0001.json"
+    #file_name = "/Users/hoangduytran/ref_dict_0001.json"
     # dic = cm.removeLowerCaseDic(loc_dic_list)
-    dic = trans_finder.master_dic_backup_list
-    dic.update(trans_finder.master_dic_list)
+    # dic = trans_finder.master_dic_backup_list
+    # dic.update(trans_finder.master_dic_list)
 
     # dic = trans_finder.dic_list
-    has_dic = (len(dic) > 0)
-    if not has_dic:
-        return
+    # has_dic = (len(dic) > 0)
+    # if not has_dic:
+    #     return
 
 
     #clean_dic = trans_finder.removeIgnoredEntries(dic)
@@ -227,6 +322,8 @@ def build_finished(app, exeption):
     #pp(dic)
     #exit(0)
     #sorted_list = sorted(dic.items(), key=lambda x: x[1])
+    dic = trans_finder.master_dic_backup_list
+    file_name = trans_finder.master_dic_backup_file
     print("Writing dictionary to:", file_name)
     with open(file_name, 'w', newline='\n', encoding='utf8') as out_file:
         json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
