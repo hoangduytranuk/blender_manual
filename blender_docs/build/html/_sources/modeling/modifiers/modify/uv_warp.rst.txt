@@ -25,6 +25,12 @@ From, To
    The two objects used to define the transformation. See `Usage`_ below.
 Vertex Group
    The vertex group can be used to scale the influence of the transformation per vertex.
+
+   Invert ``<->``
+      Inverts the influence of the selected vertex group, meaning that the group
+      now represents vertices that will not be deformed by the modifier.
+
+      The setting reverses the weight values of the group.
 UV Map
    Which UV map to modify.
    Defaults to the active rendering layer.

@@ -3,7 +3,7 @@
 Axis Locking
 ************
 
-.. figure:: /images/scene-layout_object_editing_transform_control_precision_axis-locking_z-axis.png
+.. figure:: /images/scene-layout_object_editing_transform_control_axis-locking_z-axis.png
    :width: 200px
    :align: right
 
@@ -34,7 +34,7 @@ The axis of movement can be changed at any time during transformation by typing 
 Pointing
 --------
 
-.. figure:: /images/scene-layout_object_editing_transform_control_precision_axis-locking_scale-mmb.png
+.. figure:: /images/scene-layout_object_editing_transform_control_axis-locking_scale-mmb.png
 
    Axis constraint in action.
 
@@ -77,7 +77,7 @@ Plane Locking
    :Hotkey:    :kbd:`Shift-X`, :kbd:`Shift-Y`, :kbd:`Shift-Z` or :kbd:`Shift-MMB`
                after moving the mouse in the desired direction.
 
-.. figure:: /images/scene-layout_object_editing_transform_control_precision_axis-locking_plane-locking.png
+.. figure:: /images/scene-layout_object_editing_transform_control_axis-locking_plane-locking.png
    :width: 200px
    :align: right
 
@@ -116,22 +116,22 @@ The current mode will be displayed in the left-hand side of the *3D View header*
 
 .. list-table:: Axis locking modes.
 
-   * - .. figure:: /images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-1.png
+   * - .. figure:: /images/scene-layout_object_editing_transform_control_axis-locking_modes-1.png
           :width: 320px
 
           Z axis locking in Global orientation.
 
-     - .. figure:: /images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-2.png
+     - .. figure:: /images/scene-layout_object_editing_transform_control_axis-locking_modes-2.png
           :width: 320px
 
           Z axis locking in Local orientation.
 
-     - .. figure:: /images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-3.png
+     - .. figure:: /images/scene-layout_object_editing_transform_control_axis-locking_modes-3.png
           :width: 320px
 
           Z axis locking in Global orientation with vertex selection.
 
-     - .. figure:: /images/scene-layout_object_editing_transform_control_precision_axis-locking_locking-modes-4.png
+     - .. figure:: /images/scene-layout_object_editing_transform_control_axis-locking_modes-4.png
           :width: 320px
 
           Z axis locking in Normal orientation with vertex selection.

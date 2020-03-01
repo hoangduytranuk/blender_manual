@@ -5,7 +5,7 @@ Bolt Factory
 
 This add-on creates bolts and nuts with options for bolt/nut, bit type and head type.
 
-.. figure:: /images/addons_add_mesh_boltfactory.jpg
+.. figure:: /images/addons_add-mesh_boltfactory_example.jpg
    :align: center
    :width: 640px
 

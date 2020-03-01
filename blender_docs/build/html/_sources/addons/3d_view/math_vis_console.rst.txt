@@ -34,7 +34,7 @@ The following types are supported:
 Usage
 =====
 
-.. figure:: /images/addons_3dview_math_vis.jpg
+.. figure:: /images/addons_3d-view_math-vis-console_example.jpg
    :align: center
    :width: 680px
 

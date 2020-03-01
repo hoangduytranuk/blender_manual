@@ -1,4 +1,5 @@
 .. _bpy.types.Mesh.*customdata:
+.. _bpy.ops.mesh.customdata:
 .. _modeling_meshes_properties_custom-data:
 
 ***********

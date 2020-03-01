@@ -85,7 +85,7 @@ on a shared layer (particles, soft bodies, and cloth).
    (not the cloth object).
 
    .. TODO2.8:
-      .. figure:: /images/physics_cloth_settings_collisions_stack.png
+      .. figure:: /images/physics_collision_stack.png
 
          Collision stack.
 

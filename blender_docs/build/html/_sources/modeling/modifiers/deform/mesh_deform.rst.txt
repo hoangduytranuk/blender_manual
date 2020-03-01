@@ -29,11 +29,11 @@ Vertex Group
    will be affected by this modifier.
    Vertices not in this group will not be deformed.
 
-Invert ``<->``
-   Inverts the influence of the selected vertex group, meaning that the group
-   now represents vertices that will not be deformed by the modifier.
+   Invert ``<->``
+      Inverts the influence of the selected vertex group, meaning that the group
+      now represents vertices that will not be deformed by the modifier.
 
-   The setting reverses the weight values of the group.
+      The setting reverses the weight values of the group.
 
 Precision
    Controls the accuracy with which the deform mesh cage alters the deformed object,

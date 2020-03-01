@@ -19,7 +19,7 @@ UnMeta Strip :kbd:`Ctrl-Alt-G`
    Separating (ungrouping) the Meta strip restores the strips to their relative positions and channels.
    This can be used if you choose to delete a Meta strip and want to keep the strips inside.
 
-.. figure:: /images/sequencer_sequencer_meta_example.png
+.. figure:: /images/video-editing_sequencer_meta_example.png
    :align: center
 
    Example of Meta strips.

@@ -11,7 +11,6 @@ Introduction
    :Menu:      :menuselection:`Edit --> Preferences...`
    :Hotkey:    :kbd:`F4`, :kbd:`P`
 
-
 This chapter explains how to change Blender's default configuration with the *Preferences* editor.
 
 The Blender *Preferences* contains settings to control how Blender behaves.

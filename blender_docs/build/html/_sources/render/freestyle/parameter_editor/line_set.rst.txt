@@ -149,7 +149,6 @@ You can see the black contour lines and the blue lines that are made with edge m
 
           Render with Edge Marks enabled.
 
-
 What are edge marks good for?
 
 - When you need to render marks on an almost-flat plane, when other edge types cannot detect any line.

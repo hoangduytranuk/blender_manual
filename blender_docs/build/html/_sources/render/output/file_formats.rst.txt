@@ -63,7 +63,7 @@ Container
    :doc:`video formats </files/media/video_formats>`.
 Autosplit Output
    If your video is huge and exceeds 2GiB, enable Autosplit Output.
-   This will automatically split the output into multiple files after the first file is 2Gig.
+   This will automatically split the output into multiple files after the first file is 2GiB in size.
 
 
 Video

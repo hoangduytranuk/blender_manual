@@ -8,13 +8,14 @@ Liquid Simulations
 
 Fluid physics are used to simulate physical properties of liquids especially water.
 While creating a scene in Blender, certain objects can be marked to become a part of the fluid simulation.
-These can include but not limited to, being a fluid or as an obstacle.
 For a fluid simulation you have to have a domain to define the space that the simulation takes up.
-In the domain settings you will be able to define the global simulation parameters (such as viscosity and gravity).
+In the domain settings you will be able to define the global simulation parameters (such as viscosity
+and gravity).
 
-.. figure:: /images/physics_fluid_introduction_example.jpg
+.. figure:: /images/physics_fluid_introduction_liquid-example.png
+   :align: center
 
-   Example of a fluid simulation.
+   Example of a liquid simulation.
 
 
 Gas Simulations
@@ -26,15 +27,16 @@ It simulates the fluid movement of air and generates animated :term:`voxel`
 textures representing the density, heat, and velocity of other fluids or suspended particles
 (e.g. smoke) which can be used for rendering.
 
-.. figure:: /images/physics_smoke_types_domain_note-on-resolution.jpg
+.. figure:: /images/physics_fluid_introduction_fire-example.png
+   :align: center
 
-   Example of a smoke simulation.
+   Example of a fire simulation.
 
-Gases/smoke are emitted inside of a :doc:`Domain </physics/fluid/type/domain/index>`
+Gases or smoke are emitted inside of a :doc:`Domain </physics/fluid/type/domain/index>`
 from a mesh object or particle system.
-The smoke movement is controlled by airflow inside the domain,
-which can be influenced by :doc:`Effector </physics/fluid/type/effector>` objects.
-Smoke will also be affected by the scene's gravity and :doc:`force fields </physics/forces/force_fields/index>`.
+The smoke movement is controlled by airflow inside the domain, which can be influenced by
+:doc:`Effector </physics/fluid/type/effector>` objects. Smoke will also be affected by the scene's
+gravity and :doc:`force fields </physics/forces/force_fields/index>`.
 Airflow inside the domain can affect other physics simulations via the *Smoke Flow* force field.
 
 
@@ -56,4 +58,6 @@ one :doc:`Flow </physics/fluid/type/flow>` object are required to create a fluid
 .. note::
 
    There is a :ref:`Quick Fluid and Quick Smoke <bpy.ops.object.quick>` tools
-   which will automatically create a domain object with a basic liquid/smoke/fire material.
+   which will automatically create a domain object with a basic material.
+   There is a *Quick Liquid* and *Quick Smoke* which will automatically create a domain object with
+   a basic liquid or smoke and fire material.

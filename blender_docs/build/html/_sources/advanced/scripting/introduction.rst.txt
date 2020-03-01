@@ -27,7 +27,6 @@ Links that are useful while writing scripts:
 - `API Introduction <https://www.blender.org/api/current/info_quickstart.html>`__
   -- A short introduction to get you started with the API. Contains examples.
 
-
 Links that deal with distributing your scripts:
 
 - `Sharing scripts <https://wiki.blender.org/wiki/Process/Addons>`__

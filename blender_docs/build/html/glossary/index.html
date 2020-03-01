@@ -80,7 +80,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
@@ -146,7 +146,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Blender 2.82 Manual</a>
+          <a href="../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -348,6 +348,11 @@ When rendering is complete, the buffers are switched.</p>
 </dd>
 <dt id="term-edge-ring">Vành Đai Cạnh -- Edge Ring</dt><dd><p>Đường đi của tất cả các <cite>cạnh</cite> -- <a class="reference internal" href="#term-edge"><span class="xref std std-term">edges</span></a> -- dọc theo một <cite>vòng mặt</cite> -- <a class="reference internal" href="#term-face-loop"><span class="xref std std-term">face loop</span></a> -- có chung hai bề mặt trực thuộc vành đai ấy.</p>
 </dd>
+<dt id="term-elastic">Elastic</dt><dd><p>Objects that are able to spontaneously return to their original shape
+after all outside forces are removed from the object.</p>
+</dd>
+<dt id="term-elasticity">Elasticity</dt><dd><p>The amount a material is elastic versus inelastic.</p>
+</dd>
 <dt id="term-empty">Vật Thể Rỗng -- Empty</dt><dd><p>Một <cite>Vật Thể</cite> -- <a class="reference internal" href="#term-object"><span class="xref std std-term">Object</span></a> -- không có bất kỳ một <cite>Điểm Đỉnh</cite> -- <a class="reference internal" href="#term-vertices"><span class="xref std std-term">Vertices</span></a>, một <cite>Cạnh</cite> -- <a class="reference internal" href="#term-edge"><span class="xref std std-term">Edges</span></a> -- hoặc một <cite>Bề Mặt</cite> -- <a class="reference internal" href="#term-face"><span class="xref std std-term">Faces</span></a> -- nào cả.</p>
 </dd>
 <dt id="term-euler">Euler (tên họ của nhà toán học Leonhard Euler, người Thụy Sĩ) -- Euler</dt><dt id="term-euler-rotation">Xoay Euler -- Euler Rotation</dt><dd><p>Rotation method where rotations are applied to each of the X, Y, Z axes in a specific order.</p>
@@ -425,7 +430,7 @@ in <a class="reference internal" href="#term-pose-mode"><span class="xref std st
 <dt id="term-light-bounces">Sự Nẩy Bật của Ánh Sáng -- Light Bounces</dt><dd><p>Refers to the reflection or transmission of a light ray upon interaction with a material.
 See also <a class="reference internal" href="../render/cycles/render_settings/light_paths.html"><span class="doc">Light Paths</span></a>.</p>
 </dd>
-<dt id="term-local-space">Không Gian Địa Phương -- Local Space</dt><dd><p>Một hệ tọa độ 3D bắt nguồn (đối với các vật thể) tại <cite>Tọa Độ Gốc Của Vật Thể</cite> -- <a class="reference internal" href="#term-object-origin"><span class="xref std std-term">Object Origin</span></a> -- hoặc (đối với các Xương) tại <cite>Đầu</cite> -- <a class="reference internal" href="#term-head"><span class="xref std std-term">Head</span></a> -- của <cite>Xương</cite> -- <a class="reference internal" href="#term-bone"><span class="xref std std-term">Bone</span></a>.</p>
+<dt id="term-local-space">Không Gian Địa Phương -- Local Space</dt><dd><p>Một hệ tọa độ 3D bắt nguồn (đối với các vật thể) tại `` -- <span class="xref std std-term">Tọa Độ Gốc Của Vật Thể — Object Origin</span> -- hoặc (đối với các Xương) tại <cite>Đầu</cite> -- <a class="reference internal" href="#term-head"><span class="xref std std-term">Head</span></a> -- của <cite>Xương</cite> -- <a class="reference internal" href="#term-bone"><span class="xref std std-term">Bone</span></a>.</p>
 <p>Tương phản với <cite>Không Gian Thế Giới</cite> -- <a class="reference internal" href="#term-world-space"><span class="xref std std-term">World Space</span></a>.</p>
 </dd>
 <dt id="term-luminance">Độ Sáng/Tối -- Luminance</dt><dd><p>Cường độ ánh sáng trong kênh hình ảnh/mô hình, hoặc phát ra từ bề mặt trên mỗi <a class="reference external" href="https://en.wikipedia.org/wiki/Square_(unit)">Đơn vị vuông -- Square (unit)</a> , theo một hướng đã cho.</p>
@@ -646,7 +651,8 @@ The smaller of the two ends when displayed as an <a class="reference internal" h
 <dt id="term-weight-painting">Sơn Trọng Lượng -- Weight Painting</dt><dd><p>Assigning <a class="reference internal" href="#term-vertices"><span class="xref std std-term">vertices</span></a> to a <a class="reference internal" href="#term-vertex-group"><span class="xref std std-term">vertex group</span></a> with a weight of 0.0 - 1.0.</p>
 </dd>
 <dt id="term-white-point">Điểm Trắng -- White Point</dt><dd><p>Giá trị tham chiếu cho ánh sáng trắng, được xác định bởi những gì xảy ra khi tất cả các màu cơ bản của mô hình màu cụ thể nào đó, được kết hợp đồng đều.</p>
-<p>Một điểm trắng được xác định bởi một bộ các nguồn sáng theo tiêu chuẩn CIE (International Commission on Illumination : Ủy ban Quốc tế về Sự Chiếu Sáng) tương ứng với nhiệt độ của một màu. Ví dụ, D65 tương ứng với ánh sáng 6500K (độ Kelvin), D70 tương ứng với 7000K và vân vân.</p>
+<p>A white point is defined by a set of CIE illuminates which correspond to a color temperature.
+For example, D65 corresponds to 6500 K light, D70 corresponding to 7000 K and so on.</p>
 </dd>
 <dt id="term-world-space">Không Gian Thế Giới -- World Space</dt><dd><p>Một hệ tọa độ 3D bắt nguồn tại một điểm trên tọa độ gốc của thế giới. Tương phản với <em>Không Gian Địa Phương</em> -- <a class="reference internal" href="#term-local-space"><span class="xref std std-term">Local Space</span></a>.</p>
 </dd>
@@ -692,7 +698,7 @@ The smaller of the two ends when displayed as an <a class="reference internal" h
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

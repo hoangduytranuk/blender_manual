@@ -1,4 +1,3 @@
-.. _bpy.types.FluidDomainSettings.cache:
 
 *****
 Cache
@@ -10,90 +9,112 @@ Cache
    :Panel:     :menuselection:`Physics --> Fluid --> Cache`
    :Type:      Domain
 
-The *Cache* panel is used to :term:`Bake <Baking>` the fluid simulation
-and stores the outcome of a simulation so it does not need to be recalculated.
+The *Cache* panel is used to :term:`Bake <Baking>` the fluid simulation and stores the outcome of
+a simulation so it does not need to be recalculated.
 
-Baking takes a **lot** of compute power (hence time).
-Depending on the scene, it might be preferable to bake overnight.
+Baking takes a **lot** of compute power (hence time). Depending on the scene, it is recommended
+to allocate enough time for the baking process.
 
 If the mesh has modifiers, the rendering settings are used for exporting the mesh to the fluid solver.
-Depending on the setting, calculation times and memory use might exponentially increase.
-For example, when using a moving mesh with *Subdivision Surface* as an obstacle,
-it might help to decrease simulation time by switching it off, or to a low subdivision level.
-When the setup/rig is correct, you can always increase settings to yield a more realistic result.
+Depending on the setting, calculation times and memory use might exponentially increase. For example,
+when using a moving mesh with *Subdivision Surface* as an obstacle, it might help to decrease simulation
+time by switching it off, or to a low subdivision level. When the setup/rig is correct, you can always
+increase settings to yield a more realistic result.
 
-.. seealso::
+.. note::
 
-   For other options see the :doc:`General Baking </physics/baking>` docs for more information.
+   Fluid simulations use their own cache. All other physics simulations make use of
+   the :doc:`General Baking </physics/baking>` operators.
 
-Type
-   Todo.
+.. _bpy.types.FluidDomainSettings.cache_directory:
 
 Cache Directory
-   Directory and file prefix to store baked surface meshes.
+   Directory to store baked simulation files in. Inside this directory each simulation type
+   (i.e. mesh, particles, noise) will have its own directory containing the simulation data.
+
+.. _bpy.types.FluidDomainSettings.cache_type:
+
+Type
+   The type of the cache determines how the cache can be baked.
+
+   Modular
+      In this mode the cache is baked step by step. The bake operators for this type can be found in
+      the other panels within the domain settings. It is possible to cancel and resume bake jobs when
+      using this type.
+
+   Final
+      This mode bakes the cache considering all selected settings at once. The bake operator for this
+      type can be found in the cache panel.
+
+   Replay
+      The cache is baked as the simulation is being played in the viewport.
+
+.. _bpy.types.FluidDomainSettings.cache_frame_start:
 
 Start
    Frame on which to start the simulation.
+
+.. _bpy.types.FluidDomainSettings.cache_frame_end:
+
 End
    Frame on which to stop the simulation.
 
    .. note::
 
-      The simulation is only calculated for positive frames
-      between the *Start* and *End* frames of the *Cache* panel, whether you bake or not.
-      So if you want a simulation that is longer than the default frame range you have to change the *End* frame.
+      The simulation is only calculated for positive frames between the *Start* and *End* frames
+      of the *Cache* panel. So if you want a simulation that is longer than the default frame range
+      you have to change the *End* frame.
+
+.. _bpy.types.FluidDomainSettings.cache_data_format:
 
 Data File Format
-   File format that the cache data is to be stored.
+   File format for the data simulation files. Data simulation files store the information of the most basic grids
+   that are needed for a fluid simulation (e.g. velocity, density).
 
    Uni Cache
-      Blender's own caching format.
+      Blender's own caching format with some compression.
+
+   Raw Cache
+      Blender's own caching format without any compression.
+
    OpenVDB
       Advanced and efficient storage method developed by
       `DreamWorks Animation <http://www.dreamworksanimation.com/>`__.
 
-      The simulation fields can be found in the ``.vdb`` files under the following names:
+      All grids are stored in separate ``.vdb`` files. Thus every file contains just one simulation field or grid.
 
-      - "color"
-      - "density"
-      - "heat"
-      - "heat old" (the temperature at the previous frame)
-      - "flame"
-      - "fuel"
-      - "react" (reaction coordinates, used for fire)
-      - "velocity"
-      - "shadow" (the shadows of the volume computed for viewport rendering)
-      - "texture coordinates" (used for turbulence)
-
-      .. Compression
-      ..    Method of data compression.
-      ..
-      ..    Zip
-      ..       Efficient but slower compression method.
-      ..    Blosc
-      ..       Multi-threaded compression with about the same quality and size as ``Zip``.
-      ..    None
-      ..       Do not compress the data.
-      ..
-      .. Data Depth
-      ..    Bit depth for writing all scalar (including vectors), lower values reduce the file size of the cache.
-      ..
-      ..    Float (Half)
-      ..       Half float (16 bit data). Gives less data with the benefit of smaller file sizes.
-      ..    Float (Full)
-      ..       Full float (32 bit data). Gives more data at the cost of larger file sizes.
+.. _bpy.types.FluidDomainSettings.cache_particle_format:
 
 Particle File Format :guilabel:`Liquids Only`
-   File format that the cache data is to be stored.
+   File format for the particle cache files.
+
+   Uni Cache
+      Blender's own caching format with some compression.
+
+.. _bpy.types.FluidDomainSettings.cache_mesh_format:
+
 Mesh File Format :guilabel:`Liquids Only`
-   File format that the cache data is to be stored.
+   File format for the mesh cache files.
+
+   Binary Object
+      Mesh data files with some compression.
+
+   Object
+      Simple, standard data format for mesh data.
+
+.. _bpy.ops.fluid.bake_all:
+.. _bpy.ops.fluid.free_all:
 
 Bake All, Free All
-   Perform the actual fluid simulation. Blender will continue to work normally,
-   except the progress will be displayed in the status bar.
-   Pressing :kbd:`Esc` or the "X" button next to the status bar will abort the simulation.
+   This option is only available when using the :ref:`Final <bpy.types.FluidDomainSettings.cache_type>` cache type.
+   *Bake All* will run the simulation considering all parameters from
+   the settings (i.e. it will bake all steps that can be baked individually with
+   the :ref:`Modular <bpy.types.FluidDomainSettings.cache_type>` cache type at once).
+
+   The progress will be displayed in the status bar. Pressing :kbd:`Esc` will abort the simulation.
 
    Once the simulation has been baked, the cache can be deleted by pressing *Free All*.
+   It is not possible to pause or resume a *Bake All* process as only the most essential cache files are stored on drive.
 
 
 .. _bpy.types.FluidDomainSettings.export_manta_script:
@@ -102,4 +123,6 @@ Advanced
 ========
 
 Export Mantaflow Script
-   Todo.
+   Export the simulation as a standalone Mantaflow script when baking the scene (exported on "Bake Data").
+   Usually, only developers and advanced users who know how to use the Mantaflow GUI will
+   make use of this functionality.

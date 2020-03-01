@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -224,8 +224,120 @@
            <div itemprop="articleBody">
             
   <div class="section" id="particles">
-<span id="bpy-types-fluiddomainsettings-particle-scale"></span><span id="bpy-types-fluiddomainsettings-sndparticle"></span><span id="bpy-types-fluiddomainsettings-use-bubble-particles"></span><span id="bpy-types-fluiddomainsettings-use-foam-particles"></span><span id="bpy-types-fluiddomainsettings-use-spray-particles"></span><h1>Particles<a class="headerlink" href="#particles" title="Permalink to this headline">¶</a></h1>
-<p>Todo.</p>
+<h1>Particles<a class="headerlink" href="#particles" title="Permalink to this headline">¶</a></h1>
+<dl class="simple" id="bpy-types-fluiddomainsettings-use-spray-particles">
+<dt>Spray</dt><dd><p>Create spray particles during the secondary particle simulation. Spray particles are those that
+appear to fly through the air above the liquid surface when there is a bigger splash.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-use-foam-particles">
+<dt>Foam</dt><dd><p>Create foam particles during the secondary particle simulation. Foam particles are those that
+solely move on the liquid surface.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-use-bubble-particles">
+<dt>Bubbles</dt><dd><p>Create bubble particles during the secondary particle simulation. Bubble particles are those that
+move below the liquid surface.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Enabling a secondary particle type will also create a particle system for that type of particles.
+Disabling a particle type will delete this particle system including its settings.</p>
+</div>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-combined-export">
+<dt>Combined Export</dt><dd><p>Select particle types that should go into the same particle system. This option has no effect
+on the outcome of the simulation. It only changes the way particle systems are allocated in
+the particle settings.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-particle-scale">
+<dt>Upres Factor</dt><dd><p>Factor by which to enhance the resolution of the particle simulation. The scaling factor is coupled
+to the <a class="reference internal" href="../settings.html#bpy-types-fluiddomainsettings-resolution-max"><span class="std std-ref">Resolution Divisions</span></a> (i.e. the particle
+simulation is this times bigger than the base simulation).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-potential-max-wavecrest">
+<dt>Wave Crest Potential Maximum</dt><dd><p>Upper clamping threshold for marking fluid cells as wave crests. A higher value results in less
+marked cells.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-potential-min-wavecrest">
+<dt>Wave Crest Potential Minimum</dt><dd><p>Lower clamping threshold for marking fluid cells as wave crests. A lower value results in more
+marked cells.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-potential-max-trappedair">
+<dt>Trapped Air Potential Maximum</dt><dd><p>Upper clamping threshold for marking fluid cells where air is trapped.
+A higher value results in less marked cells.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-potential-min-trappedair">
+<dt>Trapped Air Potential Minimum</dt><dd><p>Lower clamping threshold for marking fluid cells where air is trapped.
+A lower value results in more marked cells.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-potential-max-energy">
+<dt>Kinetic Energy Potential Maximum</dt><dd><p>Upper clamping threshold for marking fluid cells where air is trapped.
+A higher value results in less marked cells.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-potential-min-energy">
+<dt>Kinetic Energy Potential Minimum</dt><dd><p>Lower clamping threshold that indicates the fluid speed where cells start to emit particles.
+A lower
+values result in generally more particles.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-potential-radius">
+<dt>Potential Radius</dt><dd><p>Radius to compute potential for each cell. Higher values are slower but create smoother potential grids.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-update-radius">
+<dt>Particle Update Radius</dt><dd><p>Radius to compute position update for each particle.
+Higher values are slower but particles move less chaotic.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-sampling-wavecrest">
+<dt>Wave Crest Particle Sampling</dt><dd><p>Maximum number of particles generated per wave crest cell per frame.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-sampling-trappedair">
+<dt>Trapper Air Particle Sampling</dt><dd><p>Maximum number of particles generated per trapped air cell per frame.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-life-max">
+<dt>Particle Life Maximum</dt><dd><p>Highest possible particle lifetime.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-life-min">
+<dt>Particle Life Minimum</dt><dd><p>Lowest possible particle lifetime.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-bubble-buoyancy">
+<dt>Bubble Buoyancy</dt><dd><p>Amount of buoyancy force that rises bubbles. A high value results in bubble movement mainly upwards.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-bubble-drag">
+<dt>Bubble Drag</dt><dd><p>Amount of drag force that moves bubbles along with the fluid. A high value results in bubble movement
+mainly along with the fluid.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-sndparticle-boundary">
+<dt>Particles in Boundary</dt><dd><dl class="simple">
+<dt>Delete</dt><dd><p>Delete secondary particles that are inside obstacles or left the domain.</p>
+</dd>
+<dt>Push Out</dt><dd><p>Push secondary particles that left the domain back into the domain.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<span id="bpy-ops-fluid-bake-particles"></span><dl id="bpy-ops-fluid-free-particles">
+<dt>Bake Particles, Free Particles</dt><dd><p>This option is only available when using the <a class="reference internal" href="../cache.html#bpy-types-fluiddomainsettings-cache-type"><span class="std std-ref">Modular</span></a> cache type.</p>
+<p>The progress will be displayed in the status bar. Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> will pause the simulation.</p>
+<p>Once the simulation has been baked, the cache can be deleted by pressing <em>Free Particles</em>.
+It is possible to pause or resume a <em>Bake Particles</em> process.</p>
+</dd>
+</dl>
 </div>
 
 
@@ -265,7 +377,7 @@
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

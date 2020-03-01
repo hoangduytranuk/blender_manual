@@ -8,7 +8,6 @@ Geometry
 
    Geometry panel.
 
-
 Offset
    Moves the extrusion parallel to the curve normals.
 

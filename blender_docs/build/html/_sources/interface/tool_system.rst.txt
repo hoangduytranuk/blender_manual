@@ -28,7 +28,7 @@ Toolbar
 
    :Hotkey:    :kbd:`T`
 
-.. figure:: /images/interface_tool_system_buttons-popup.png
+.. figure:: /images/interface_tool-system_buttons-popup.png
    :align: right
 
    Button with pop-up menu indicator.

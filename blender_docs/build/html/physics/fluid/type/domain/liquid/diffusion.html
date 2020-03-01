@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -224,7 +224,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="diffusion">
-<span id="bpy-types-fluiddomainsettings-surface-tension"></span><span id="bpy-types-fluiddomainsettings-domain-size"></span><span id="bpy-types-fluiddomainsettings-viscosity-exponent"></span><span id="bpy-types-fluiddomainsettings-viscosity-base"></span><span id="bpy-ops-fluid-preset"></span><h1>Diffusion<a class="headerlink" href="#diffusion" title="Permalink to this headline">¶</a></h1>
+<span id="bpy-ops-fluid-preset"></span><h1>Diffusion<a class="headerlink" href="#diffusion" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -236,16 +236,16 @@
 </dd>
 </dl>
 </div>
-<p>Todo.</p>
+<p>Viscosity (todo).</p>
 <dl>
-<dt>Viscosity Presets</dt><dd><p>The &quot;thickness&quot; of the fluid and actually the force needed to move an object of a certain surface area through it
-at a certain speed.</p>
-<p>For manual entry, please note that the normal real-world viscosity (the so-called dynamic viscosity)
-is measured in Pascal-seconds (Pa.s), or in Poise units (P, equal to 0.1 Pa.s),
-and commonly centiPoise units (cP, equal to 0.001 Pa.s).
-Blender, on the other hand, uses the kinematic viscosity
-which is dynamic viscosity in Pa.s, divided by the density in kg.m<sup>-3</sup>, unit m<sup>2</sup>.s<sup>-1</sup>.
-The table below gives some examples of fluids together with their dynamic and kinematic viscosities.</p>
+<dt>Viscosity Presets</dt><dd><p>The viscosity refers to the &quot;thickness&quot; of the fluid and actually the force needed to
+move an object of a certain surface area through it at a certain speed.</p>
+<p>For manual entry, please note that the normal real-world viscosity
+(the so-called dynamic viscosity) is measured in Pascal-seconds (Pa.s),
+or in Poise units (P, equal to 0.1 Pa.s), and commonly centiPoise units (cP, equal to 0.001 Pa.s).</p>
+<p>Blender, on the other hand, uses the kinematic viscosity which is dynamic viscosity in Pa.s,
+divided by the density in kg.m<sup>-3</sup>, unit m<sup>2</sup>.s<sup>-1</sup>.</p>
+<p>The table below gives some examples of fluids together with their dynamic and kinematic viscosities.</p>
 <table class="docutils align-default" id="id1">
 <caption><span class="caption-text">Blender viscosity unit conversion.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -260,7 +260,7 @@ The table below gives some examples of fluids together with their dynamic and ki
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Water (20° C)</p></td>
+<tr class="row-even"><td><p>Water (20 °C)</p></td>
 <td><p>1.002×10<sup>0</sup> (1.002)</p></td>
 <td><p>1.002×10<sup>-6</sup> (0.000001002)</p></td>
 </tr>
@@ -268,7 +268,7 @@ The table below gives some examples of fluids together with their dynamic and ki
 <td><p>5.0×10<sup>2</sup> (500)</p></td>
 <td><p>5.0×10<sup>-5</sup> (0.00005)</p></td>
 </tr>
-<tr class="row-even"><td><p>Honey (20° C)</p></td>
+<tr class="row-even"><td><p>Honey (20 °C)</p></td>
 <td><p>1.0×10<sup>4</sup> (10,000)</p></td>
 <td><p>2.0×10<sup>-3</sup> (0.002)</p></td>
 </tr>
@@ -286,32 +286,44 @@ The table below gives some examples of fluids together with their dynamic and ki
 </tr>
 </tbody>
 </table>
-<p>Manual entries are specified by a floating point number and an exponent.
-These floating point and exponent entry fields (scientific notation)
-simplify entering very small or large numbers. The viscosity of water at room temperature is 1.002 cP,
-or 0.001002 Pa.s; the density of water is about 1000 kg.m<sup>-3</sup>, which gives a kinematic viscosity of
-0.000001002 m<sup>2</sup>.s<sup>-1</sup> -- so the entry would be 1.002 times 10 to the minus six
-(1.002×10<sup>-6</sup> in scientific notation). Hot glass and melting iron are fluids, but very thick;
-you should enter something like 1.0×10<sup>0</sup> (= 1.0) as its kinematic viscosity
-(indicating a value of 1.0×10<sup>6</sup>cP).</p>
+<p>Manual entries are specified by a floating point number and an exponent. These floating point and
+exponent entry fields (scientific notation) simplify entering very small or large numbers.</p>
+<p>The viscosity of water at room temperature is 1.002 cP, or 0.001002 Pa.s; the density of water is
+about 1000 kg.m<sup>-3</sup>, which gives a kinematic viscosity of 0.000001002 m<sup>2</sup>.s<sup>-1</sup> --
+so the entry would be 1.002 times 10 to the minus six (1.002×10<sup>-6</sup> in scientific notation).</p>
+<p>Hot glass and melting iron are fluids, but very thick; you should enter something like
+1.0×10<sup>0</sup> (= 1.0) as its kinematic viscosity (indicating a value of 1.0×10<sup>6</sup>cP).</p>
 <p>Note that the simulator is not suitable for non-fluids, such as materials that do not &quot;flow&quot;.
 Simply setting the viscosity to very large values will not result in rigid body behavior,
 but might cause instabilities.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>Viscosity varies</p>
+<p>Viscosity Varies</p>
 <p>The default values in Blender are considered typical for those types of fluids and &quot;look right&quot; when animated.
 However, actual viscosity of some fluids,
 especially sugar-laden fluids like chocolate syrup and honey, depend highly on temperature and concentration.
-Oil viscosity varies by SAE rating.
-Glass at room temperature is basically a solid, but glass at 1500 degrees Celsius flows (nearly) like water.</p>
+Oil viscosity varies by <abbr title="Society of Automobile Engineers">SAE</abbr> rating.
+Glass at room temperature is basically a solid, but glass at 1500 °C flows (nearly) like water.</p>
 </div>
 </dd>
-<dt>Real World Size</dt><dd><p>Size of the domain object in the real world in meters.
-If you want to create a mug of coffee, this might be 10 cm (0.1 meters), while a swimming pool might be 10m.
-The size set here defines the longest side of the domain bounding box.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-viscosity-base">
+<dt>Base</dt><dd><p>The base of the viscosity value (e.g. 1.002 in the case of water (20 °C)).</p>
 </dd>
-<dt>Surface Tension</dt><dd><p>Todo.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-viscosity-exponent">
+<dt>Exponent</dt><dd><p>The exponent of the viscosity value that will be multiplied by 10<sup>-6</sup>
+(e.g. 6 in the case of water (20 °C)).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-domain-size">
+<dt>Real World Size</dt><dd><p>Size of the domain object in the real world in meters. If you want to create a mug of coffee,
+this might be 10 cm (0.1 meters), while a swimming pool might be 10 m. The size set here defines
+the longest side of the domain bounding box.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-surface-tension">
+<dt>Surface Tension</dt><dd><p>Surface tension in grid units. Higher value will produce liquids with greater surface tension.</p>
 </dd>
 </dl>
 </div>
@@ -353,7 +365,7 @@ The size set here defines the longest side of the domain bounding box.</p>
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

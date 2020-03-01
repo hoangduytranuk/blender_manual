@@ -62,7 +62,6 @@ Normals
    Normal Swizzle
       Axis to bake into the red, green and blue channel.
 
-
    For materials the same spaces can be chosen in the image texture options
    next to the existing *Normal Map* setting. For correct results,
    the setting here should match the setting used for baking.

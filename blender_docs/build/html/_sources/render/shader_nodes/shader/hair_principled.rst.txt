@@ -114,7 +114,7 @@ Melanin Redness
       .. math::
 
          \sigma_{a} =
-         eumelanin * \left[\begin{matrix}   0.506 \\ 0.841 \\ 1.653 \\ \end{matrix}\right] +
+         eumelanin   * \left[\begin{matrix} 0.506 \\ 0.841 \\ 1.653 \\ \end{matrix}\right] +
          pheomelanin * \left[\begin{matrix} 0.343 \\ 0.733 \\ 1.924 \\ \end{matrix}\right]
 
 .. figure:: /images/render_shader-nodes_shader_hair-principled_demo-melanin-redness.jpg

@@ -42,11 +42,11 @@ Locations
    In the examples below, a comparison of the scaling and rotation of objects,
    when *Location* is enabled (middle) and disabled (right).
 
-   .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_index_rotate.png
+   .. figure:: /images/scene-layout_object_editing_transform_control_options_rotate.png
 
       Rotation example.
 
-   .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_index_scale.png
+   .. figure:: /images/scene-layout_object_editing_transform_control_options_scale.png
 
       Scaling example.
 

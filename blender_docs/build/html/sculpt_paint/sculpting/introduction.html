@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Sculpting &amp; Painting</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
@@ -165,7 +165,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Blender 2.82 Manual</a>
+          <a href="../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -222,24 +222,66 @@ instead of dealing with individual elements (vertices, edges, and faces),
 an area of the model is altered using a brush.
 In other words, instead of selecting a group of vertices,
 Sculpt Mode manipulates geometry in the brush region of influence.</p>
+<div class="figure align-default" id="id1">
+<img alt="../../_images/sculpt-paint_sculpting_introduction_example.jpg" src="../../_images/sculpt-paint_sculpting_introduction_example.jpg" />
+<p class="caption"><span class="caption-text">Sculpting Mode Example.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <div class="section" id="sculpt-mode">
 <h2>Chế Độ Điêu Khắc -- Sculpt Mode<a class="headerlink" href="#sculpt-mode" title="Permalink to this headline">¶</a></h2>
 <p>Sculpt Mode is selected from the mode menu of the 3D View header.
 Once Sculpt Mode is activated, the Toolbar of the 3D View will change to
-Sculpt Mode specific panels. The panels will be <em>Brush</em>, <em>Texture</em>, <em>Stroke</em>,
-<em>Falloff</em>, <em>Display</em>, <em>Dyntopo</em>, <em>Symmetry</em>, and <em>Options</em>.
-A red circle will appear and follow the location of the cursor in the 3D View.</p>
+Sculpt Mode specific panels. A red circle will appear and
+follow the location of the cursor in the 3D View.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
 <p>To have a predictable brush behavior, apply the scale of your mesh.</p>
 </div>
-<div class="figure align-default" id="id1">
-<img alt="../../_images/sculpt-paint_sculpting_introduction_mode-selector.png" src="../../_images/sculpt-paint_sculpting_introduction_mode-selector.png" />
-<p class="caption"><span class="caption-text">3D View Mode selector: Sculpt Mode.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-default" id="id2">
-<img alt="../../_images/sculpt-paint_sculpting_introduction_brush-circle.png" src="../../_images/sculpt-paint_sculpting_introduction_brush-circle.png" />
-<p class="caption"><span class="caption-text">The cursor in Sculpt Mode.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<div class="section" id="the-brush">
+<h2>The Brush<a class="headerlink" href="#the-brush" title="Permalink to this headline">¶</a></h2>
+<p>Sculpt Mode uses a similar brush to other the other <a class="reference internal" href="../brush/introduction.html"><span class="doc">painting modes</span></a>,
+but it is slightly more advanced. All the normal brush controls still apply,
+and it functions exactly the same, however, the brush for sculpting is displayed in 3D.
+This means that the brush will follow the contours of the mesh and the radius is displayed
+by orienting the brush to match the meshes <a class="reference internal" href="../../glossary/index.html#term-normal"><span class="xref std std-term">normal</span></a>.
+How closely the cursor follows the curvature of the mesh can be changed in
+the <a class="reference internal" href="tool_settings/brush_settings.html"><span class="doc">Brush Settings</span></a>.</p>
+<p>The brush can also change depending on the currently active <a class="reference internal" href="tools.html"><span class="doc">tool</span></a>
+to better display how that tool works.</p>
+</div>
+<div class="section" id="pivot-point">
+<h2>Pivot Point<a class="headerlink" href="#pivot-point" title="Permalink to this headline">¶</a></h2>
+<p>Like Object and Edit mode Sculpt mode also has a <a class="reference internal" href="../../glossary/index.html#term-pivot-point"><span class="xref std std-term">Pivot Point</span></a>,
+this is because the basic move, scale, rotate transforms are also possible in sculpt mode.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../scene_layout/object/editing/transform/control/pivot_point/index.html"><span class="doc">Object and Edit Mode Pivot</span></a></p>
+</div>
+<div class="section" id="set-pivot">
+<span id="bpy-ops-sculpt-set-pivot-position"></span><h3>Set Pivot<a class="headerlink" href="#set-pivot" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Chế Độ Điêu Khắc -- Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Sculpt ‣ Set Pivot</span></p>
+</dd>
+</dl>
+</div>
+<dl class="simple">
+<dt>Origin</dt><dd><p>Sets the pivot to the origin of the sculpt</p>
+</dd>
+<dt>Unmasked</dt><dd><p>Sets the pivot position to the average position of the unmasked vertices</p>
+</dd>
+<dt>Mask border</dt><dd><p>Sets the pivot position to the center of the border of the mask</p>
+</dd>
+<dt>Active vertex</dt><dd><p>Sets the pivot position to the active vertex position</p>
+</dd>
+<dt>Surface</dt><dd><p>Sets the pivot position to the surface under the cursor</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -281,7 +323,7 @@ A red circle will appear and follow the location of the cursor in the 3D View.</
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

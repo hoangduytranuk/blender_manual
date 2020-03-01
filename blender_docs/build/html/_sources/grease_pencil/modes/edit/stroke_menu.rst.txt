@@ -82,6 +82,7 @@ Sample
       Smaller values will require more points to recreate the stroke,
       while larger values will result in fewer points needed to recreate the curve.
 
+
 .. _bpy.ops.gpencil.stroke_trim:
 
 Trim
@@ -144,7 +145,6 @@ Move to Layer
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Stroke --> Move to Layer`
    :Hotkey:    :kbd:`M`
-
 
 A pop-up menu to move the stroke to a different layer.
 You can choose the layer to move the selected strokes to

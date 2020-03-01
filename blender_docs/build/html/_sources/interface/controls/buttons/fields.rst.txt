@@ -6,7 +6,7 @@ Fields
 Text & Search Fields
 ====================
 
-.. figure:: /images/interface_controls_buttons_buttons_text-search.png
+.. figure:: /images/interface_controls_buttons_fields_text-search.png
    :align: right
 
    A text and a search field.
@@ -21,7 +21,7 @@ For text fields with an icon and pop-ups, see :ref:`ui-data-id`.
 Number Fields
 =============
 
-.. figure:: /images/interface_controls_buttons_number_number-button.png
+.. figure:: /images/interface_controls_buttons_fields_number-button.png
    :align: right
 
    Number fields.
@@ -58,7 +58,7 @@ Keyboard Input
 Multi-Value Editing
 -------------------
 
-.. figure:: /images/interface_controls_buttons_number_multi-value-edit.png
+.. figure:: /images/interface_controls_buttons_fields_multi-value-edit.png
    :align: right
 
    Multi-value editing.
@@ -140,7 +140,7 @@ Examples of valid usage of length units include:
 Color Fields
 ============
 
-.. figure:: /images/interface_controls_buttons_buttons_color.png
+.. figure:: /images/interface_controls_buttons_fields_color.png
    :align: right
    :figwidth: 129px
 

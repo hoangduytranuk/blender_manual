@@ -22,7 +22,7 @@ Especially for exporting from Blender materials, the node system must follow som
    The wrapper is designed to be as symmetrical as possible
    (i.e. it is expected to give reproducible results across several import/export cycles).
 
-.. figure:: /images/addons_io_node_shaders_info-example.png
+.. figure:: /images/addons_import-export_node-shaders-info_example.png
    :align: center
 
    A typical setup of shader nodes that is can be exported.

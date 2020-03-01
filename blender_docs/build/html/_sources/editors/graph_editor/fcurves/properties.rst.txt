@@ -37,7 +37,7 @@ Auto Handle Smoothing
    Selects the method used to compute :ref:`automatic Bézier handles <editors-graph-fcurves-settings-handles>`
    (*Automatic*, *Auto Clamped*, *Vector*).
 
-   .. figure:: /images/editors_graph-editor_fcurves_properties_auto_smoothing.png
+   .. figure:: /images/editors_graph-editor_fcurves_properties_auto-smoothing.png
       :align: center
 
       Handle smoothing mode comparison. Yellow: *None*, Cyan: *Continuous Acceleration*.

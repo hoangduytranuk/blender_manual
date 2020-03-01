@@ -30,7 +30,7 @@ Interface
 
 Located in the :menuselection:`Properties editor --> Materials --> Material Library VX`.
 
-.. figure:: /images/addons_materials_matlibvx_ui.jpg
+.. figure:: /images/addons_materials_material-library_ui.jpg
    :align: right
    :width: 330px
 

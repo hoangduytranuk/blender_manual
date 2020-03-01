@@ -50,21 +50,21 @@ For deselecting items, use :kbd:`MMB`, or :kbd:`Shift-LMB`.
 
    * - .. _fig-mesh-select-basics-start:
 
-       .. figure:: /images/editors_3dview_toolbar_select-box_border-select1.png
+       .. figure:: /images/interface_selecting_border-select1.png
           :width: 200px
 
           Start.
 
      - .. _fig-mesh-select-basics-selecting:
 
-       .. figure:: /images/editors_3dview_toolbar_select-box_border-select2.png
+       .. figure:: /images/interface_selecting_border-select2.png
           :width: 200px
 
           Selecting.
 
      - .. _fig-mesh-select-basics-complete:
 
-       .. figure:: /images/editors_3dview_toolbar_select-box_border-select3.png
+       .. figure:: /images/interface_selecting_border-select3.png
           :width: 200px
 
           Complete.
@@ -91,17 +91,17 @@ or use the :kbd:`NumpadPlus` and :kbd:`NumpadMinus` keys.
 
 .. list-table:: Circle Select example.
 
-   * - .. figure:: /images/editors_3dview_toolbar_select-circle_circle-select1.png
+   * - .. figure:: /images/interface_selecting_circle-select1.png
           :width: 320px
 
           Start.
 
-     - .. figure:: /images/editors_3dview_toolbar_select-circle_circle-select2.png
+     - .. figure:: /images/interface_selecting_circle-select2.png
           :width: 320px
 
           Selecting.
 
-     - .. figure:: /images/editors_3dview_toolbar_select-circle_circle-select3.png
+     - .. figure:: /images/interface_selecting_circle-select3.png
           :width: 320px
 
           Dragging.
@@ -127,17 +127,17 @@ from the current position back to the starting point.
 
 .. list-table:: An example of using the *Lasso Select tool* in *Vertex Select Mode*.
 
-   * - .. figure:: /images/editors_3dview_toolbar_select-lasso_lasso-select1.png
+   * - .. figure:: /images/interface_selecting_lasso-select1.png
           :width: 200px
 
           Start.
 
-     - .. figure:: /images/editors_3dview_toolbar_select-lasso_lasso-select2.png
+     - .. figure:: /images/interface_selecting_lasso-select2.png
           :width: 200px
 
           Selecting.
 
-     - .. figure:: /images/editors_3dview_toolbar_select-lasso_lasso-select3.png
+     - .. figure:: /images/interface_selecting_lasso-select3.png
           :width: 200px
 
           Complete.

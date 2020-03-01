@@ -33,7 +33,6 @@ remains exactly the same every time.
 
    Two different caches stored simultaneously.
 
-
 Caches List
    Blender allows for storing and managing multiple caches at once for the same physics object.
    You can manage the caches with this :ref:`list view <ui-list-view>`.
@@ -124,8 +123,8 @@ Cache Step
       Using a cache step greater than one will result in a smaller cache,
       but the result may differ from the original simulation.
 
-.. _physics-bake:
 
+.. _physics-bake:
 
 Baking
 ======

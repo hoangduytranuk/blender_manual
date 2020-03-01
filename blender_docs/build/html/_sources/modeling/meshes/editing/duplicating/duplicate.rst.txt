@@ -9,8 +9,7 @@ Duplicate
    :class: refbox
 
    :Mode:      Edit Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Duplicate`
-   :Menu:      :menuselection:`Mesh --> Add Duplicate`
+   :Menu:      :menuselection:`Mesh --> Duplicate`
    :Hotkey:    :kbd:`Shift-D`
 
 This tool simply duplicates the selected elements,

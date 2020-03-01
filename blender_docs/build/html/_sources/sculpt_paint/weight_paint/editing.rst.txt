@@ -9,7 +9,7 @@ Editing Weights
    :Mode:      Edit Mode and Weight Paint Mode
    :Menu:      :menuselection:`Weights`
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_panel.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_panel.png
    :align: right
 
    Weight Paint Tools.
@@ -58,7 +58,7 @@ For each vertex, this tool makes sure that the sum of the weights across
 all vertex groups is equal to 1. This tool normalizes all of the vertex groups,
 except for locked groups, which keep their weight values untouched.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_normalize.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_normalize.png
    :align: right
 
    Normalize All options.
@@ -75,7 +75,7 @@ Normalize
 This tool only works on the active vertex group. All vertices keep their relative weights,
 but the entire set of weights is scaled up such that the highest weight value is 1.0.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_normalize-example.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_normalize-example.png
 
    Normalize example.
 
@@ -90,11 +90,11 @@ to the opposite side. Only mirroring along local X axis is supported.
 Those vertices that have no corresponding vertex on the other side will not be affected.
 But note, the weights are not transferred to the corresponding opposite bone weight group.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_mirror-example.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_mirror-example.png
 
    Mirror example.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_mirror.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_mirror.png
    :align: right
 
    Mirror options.
@@ -147,11 +147,11 @@ Examples:
 - Original 0.5 remains 0.5
 - Original 0.0 converts to 1.0
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_invert-example.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_invert-example.png
 
    Invert.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_invert.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_invert.png
    :align: right
 
    Invert options.
@@ -183,11 +183,11 @@ so all blue parts are cleaned out.
 Note, the images use the *Show Zero weights* Active option
 so that unreferenced Weights are shown in Black.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_clean-example.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_clean-example.png
 
    Clean example.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_clean.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_clean.png
    :align: right
 
    Clean options.
@@ -213,7 +213,7 @@ This operator uses a process known as `Quantization <https://en.wikipedia.org/wi
 which takes the input weights and clamps each weight to a number of steps between (0 - 1),
 so there is no longer a smooth gradient between values.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_quantize-example.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_quantize-example.png
 
    Quantize example (Steps = 2).
 
@@ -234,11 +234,11 @@ with this tool you can raise or lower the overall "heat" of the weight group.
 
    No weight will ever be set to values above 1.0 or below 0.0 regardless of the settings.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_levels-example.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_levels-example.png
 
    Levels example.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_levels.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_levels.png
    :align: right
 
    Levels options.
@@ -272,7 +272,7 @@ Smooth
 Blends the weights of selected vertices with adjacent unselected vertices.
 This tool only works in vertex select mode.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_smooth-example-1.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_smooth-example-1.png
 
 To understand what the tool really does, let us take a look at a simple example.
 The selected vertex is connected to four adjacent vertices
@@ -288,7 +288,7 @@ This value is multiplied by the factor given in the Operator options (see below)
 - If the factor is 1.0 then the calculated average weight is taken (0.25 here).
 - Dragging the factor from 0 to 1 gradually changes from the old value to the calculated average.
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_smooth-example-2.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_smooth-example-2.png
 
 Now let us see what happens when we select all
 but one of the neighbors of the selected vertex as well.
@@ -312,7 +312,7 @@ then we see different results for each of the selected vertices:
   So the average weight is 0, thus the selected vertex color has not changed at all
   (it was already blue before Smooth was applied).
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_smooth-example-3.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_smooth-example-3.png
 
 Finally let us look at a practical example.
 The middle edge loop has been selected
@@ -323,7 +323,7 @@ and it will be used for blending the left side to the right side of the area.
 - Thus when the *Factor* is set to 1.0 then the edge loop turns to
   green and finally does blend the cold side (right) to the hot side (left).
 
-.. figure:: /images/sculpt-paint_weight-paint_weight-tools_smooth.png
+.. figure:: /images/sculpt-paint_weight-paint_editing_smooth.png
    :align: right
 
    Smooth options.

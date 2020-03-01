@@ -10,7 +10,6 @@ Fluid
    :Panel:     :menuselection:`Particle System --> Physics`
    :Type:      Fluid
 
-
 .. TODO2.8:
    .. figure:: /images/physics_particles_emitter_physics_fluid_panel.png
 

@@ -42,7 +42,6 @@ with the above mentioned configuration applied as follows:
 
 .. list-table::
 
-
    * - .. _fig-meta-intro-underlying:
 
        .. figure:: /images/modeling_metas_properties_underlying-structure.png

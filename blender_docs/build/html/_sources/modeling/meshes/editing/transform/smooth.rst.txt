@@ -5,15 +5,14 @@
 Smooth
 ******
 
-Smooth Vertex
-=============
+Smooth Vertices
+===============
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Edit Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Deform: Smooth Vertex`
-   :Menu:      :menuselection:`Mesh --> Vertices --> Smooth Vertex`
+   :Menu:      :menuselection:`Vertex --> Smooth Vertices`
 
 This tool smooths the selected vertices by averaging the angles between the faces.
 After using the tool, options appear in the *Toolbar*:

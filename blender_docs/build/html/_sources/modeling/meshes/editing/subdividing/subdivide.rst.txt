@@ -8,7 +8,6 @@ Subdivide
    :class: refbox
 
    :Mode:      Edit Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Subdivide`
    :Menu:      :menuselection:`Mesh --> Edges --> Subdivide`
 
 Subdividing splits selected edges and faces by cutting them in half or more,

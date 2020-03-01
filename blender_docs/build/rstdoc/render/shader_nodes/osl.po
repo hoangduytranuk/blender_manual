@@ -1,0 +1,467 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.79 Manual
+# package.
+# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.8 Manual 2.8\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-06-17 17:01+1000\n"
+"PO-Revision-Date: 2020-03-01 04:03+0000\n"
+"Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\n"
+"Language: vi\n"
+"Language-Team: London, UK <hoangduytran1960@gmail.com>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+msgid "Open Shading Language"
+msgstr "Ngôn Ngữ Tô Bóng Mở -- Open Shading Language"
+
+msgid ":guilabel:`Cycles Only`"
+msgstr ":guilabel:`Duy Cycles -- Cycles Only`"
+
+msgid ""
+"It is also possible to create your own nodes using `Open Shading Language"
+" <https://github.com/imageworks/OpenShadingLanguage>`__ (OSL). Note that "
+"these nodes will only work for CPU rendering; there is no support for "
+"running OSL code on the GPU."
+msgstr ""
+"It is also possible to create your own nodes using `Ngôn Ngữ Tô Bóng Mở "
+"-- Open Shading Language "
+"<https://github.com/imageworks/OpenShadingLanguage>`__ (OSL -- OSL). Note"
+" that these nodes will only work for CPU rendering; there is no support "
+"for running OSL code on the GPU."
+
+msgid ""
+"To enable it, select *Open Shading Language* as the shading system in the"
+" render settings."
+msgstr ""
+"To enable it, select *Ngôn Ngữ Tô Bóng Mở* as the shading system in the "
+"render settings."
+
+msgid ""
+"On Linux, C/C++ compiler tools (in particular ``/usr/bin/cpp``) must be "
+"installed to compile OSL scripts."
+msgstr ""
+"On Linux, C/C++ compiler tools (in particular ``/usr/bin/cpp -- "
+"/usr/bin/cpp``) must be installed to compile OSL scripts."
+
+msgid "Script Node"
+msgstr "Nút Tập Lệnh -- Script Node"
+
+msgid "Script Node."
+msgstr "Nút Tập Lệnh."
+
+msgid ""
+"OSL was designed for node-based shading, and *each* OSL shader "
+"corresponds to *one* node in a node setup. To add an OSL shader, add a "
+"script node and link it to a text data-block or an external file. Input "
+"and output sockets will be created from the shader parameters on clicking"
+" the update button in the Node or the Text editor."
+msgstr ""
+"OSL was designed for node-based shading, and *each -- each* OSL shader "
+"corresponds to *một* node in a node setup. To add an OSL shader, add a "
+"script node and link it to a text data-block or an external file. Input "
+"and output sockets will be created from the shader parameters on clicking"
+" the update button in the Node or the Text editor."
+
+msgid ""
+"OSL shaders can be linked to the node in a few different ways. With the "
+"*Internal* mode, a text data-block is used to store the OSL shader, and "
+"the OSO bytecode is stored in the node itself. This is useful for "
+"distributing a blend-file with everything packed into it."
+msgstr ""
+"OSL shaders can be linked to the node in a few different ways. With the "
+"*Nội Bộ* mode, a text data-block is used to store the OSL shader, and the"
+" OSO bytecode is stored in the node itself. This is useful for "
+"distributing a blend-file with everything packed into it."
+
+msgid ""
+"The *External* mode can be used to specify a ``.osl`` file from a drive, "
+"and this will then be automatically compiled into a ``.oso`` file in the "
+"same directory. It is also possible to specify a path to a ``.oso`` file,"
+" which will then be used directly, with compilation done manually by the "
+"user. The third option is to specify just the module name, which will be "
+"looked up in the shader search path."
+msgstr ""
+"The *Bên Ngoài* mode can be used to specify a ``.osl`` file from a drive,"
+" and this will then be automatically compiled into a ``.oso`` file in the"
+" same directory. It is also possible to specify a path to a ``.oso`` "
+"file, which will then be used directly, with compilation done manually by"
+" the user. The third option is to specify just the module name, which "
+"will be looked up in the shader search path."
+
+msgid ""
+"The shader search path is located in the same place as the scripts or "
+"configuration path, under:"
+msgstr ""
+"The bộ tô bóng tìm kiếm đường/đi/dẫn là nằm/tìm thấy ở vị trí vào the "
+"tương đồng/giống chỗ tựa như the tập lệnh hoặc configuration "
+"đường/đi/dẫn, under:"
+
+msgid "Linux"
+msgstr ""
+
+msgid "Windows"
+msgstr ""
+
+msgid "macOS"
+msgstr "Hệ Điều Hành Macintosh của Apple -- macOS"
+
+msgid ""
+"For use in production, we suggest to use a node group to wrap shader "
+"script nodes, and link that into other blend-files. This makes it easier "
+"to make changes to the node afterwards as sockets are added or removed, "
+"without having to update the script nodes in all files."
+msgstr ""
+"Dành Cho/Đối Với/Để sử dụng vào production, we suggest tới sử dụng a nút "
+"nhóm tới nhắc lại/đảo chiều bộ tô bóng tập lệnh nút, và kết nối đó/mà "
+"vào/trở thành cái/sắp đặt khác blend-files. Cái/Điều Này làm cho it "
+"easier tới tạo changes tới the nút afterwards tựa như ổ cắm là cộng thêm "
+"hoặc loại/xóa bỏ, without having tới cập nhật the tập lệnh nút vào toàn "
+"bộ tập tin."
+
+msgid "Writing Shaders"
+msgstr "Viết/Ghi Bộ Tô Bóng -- Writing Shaders"
+
+msgid ""
+"For more details on how to write shaders, see the `OSL specification "
+"<https://github.com/imageworks/OpenShadingLanguage/blob/master/src/doc"
+"/osl-languagespec.pdf>`__. Here is a simple example:"
+msgstr ""
+"For more details on how to write shaders, see the `OSL specification -- "
+"OSL specification "
+"<https://github.com/imageworks/OpenShadingLanguage/blob/master/src/doc"
+"/osl-languagespec.pdf>`__. Here is a simple example:"
+
+msgid "Closures"
+msgstr "Closures -- Closures"
+
+msgid ""
+"OSL is different from, for example, RSL or GLSL, in that it does not have"
+" a light loop. There is no access to lights in the scene, and the "
+"material must be built from closures that are implemented in the renderer"
+" itself. This is more limited, but also makes it possible for the "
+"renderer to do optimizations and ensure all shaders can be importance "
+"sampled."
+msgstr ""
+"OSL là khác từ, dành cho/đối với/để ví dụ, RSL hoặc GLSL, vào đó/mà it "
+"does đảo nghịch có a nguồn/ánh sáng tuần hoàn. Kia/Có là no access tới "
+"nguồn/ánh sáng vào the cảnh, và the nguyên vật liệu nhất định được/là "
+"built từ closures đó/mà là implemented vào the renderer bản thân. "
+"Cái/Điều Này là nhiều/lớn hơn limited, but also làm cho it có thể dành "
+"cho/đối với/để the renderer tới làm optimizations và ensure toàn bộ bộ tô"
+" bóng có thể được/là importance sampled."
+
+msgid ""
+"The available closures in Cycles correspond to the shader nodes and their"
+" sockets; for more details on what they do and the meaning of the "
+"parameters, see the :doc:`shader nodes manual "
+"</render/shader_nodes/shader/index>`."
+msgstr ""
+"The available closures in Cycles correspond to the shader nodes and their"
+" sockets; for more details on what they do and the meaning of the "
+"parameters, see the :doc:`bộ tô bóng nút thủ công/sách hướng dẫn sử dụng "
+"-- shader nodes manual </render/shader_nodes/shader/index>`."
+
+msgid "BSDF"
+msgstr ""
+
+msgid "``diffuse(N)``"
+msgstr ""
+
+msgid "``oren_nayar(N, roughness)``"
+msgstr ""
+
+msgid "``diffuse_ramp(N, colors[8])``"
+msgstr ""
+
+msgid "``phong_ramp(N, exponent, colors[8])``"
+msgstr ""
+
+msgid "``diffuse_toon(N, size, smooth)``"
+msgstr ""
+
+msgid "``glossy_toon(N, size, smooth)``"
+msgstr ""
+
+msgid "``translucent(N)``"
+msgstr ""
+
+msgid "``reflection(N)``"
+msgstr ""
+
+msgid "``refraction(N, ior)``"
+msgstr ""
+
+msgid "``transparent()``"
+msgstr ""
+
+msgid "``microfacet_ggx(N, roughness)``"
+msgstr ""
+
+msgid "``microfacet_ggx_aniso(N, T, ax, ay)``"
+msgstr ""
+
+msgid "``microfacet_ggx_refraction(N, roughness, ior)``"
+msgstr ""
+
+msgid "``microfacet_beckmann(N, roughness)``"
+msgstr ""
+
+msgid "``microfacet_beckmann_aniso(N, T, ax, ay)``"
+msgstr ""
+
+msgid "``microfacet_beckmann_refraction(N, roughness, ior)``"
+msgstr ""
+
+msgid "``ashikhmin_shirley(N, T, ax, ay)``"
+msgstr ""
+
+msgid "``ashikhmin_velvet(N, roughness)``"
+msgstr ""
+
+msgid "Hair"
+msgstr "Tóc -- Hair"
+
+msgid "``hair_reflection(N, roughnessu, roughnessv, T, offset)``"
+msgstr ""
+
+msgid "``hair_transmission(N, roughnessu, roughnessv, T, offset)``"
+msgstr ""
+
+msgid ""
+"``principled_hair(N, absorption, roughness, radial_roughness, coat, "
+"offset, IOR)``"
+msgstr ""
+
+msgid "BSSRDF"
+msgstr ""
+
+msgid "``bssrdf_cubic(N, radius, texture_blur, sharpness)``"
+msgstr ""
+
+msgid "``bssrdf_gaussian(N, radius, texture_blur)``"
+msgstr ""
+
+msgid "Volume"
+msgstr "Âm Lượng/Thể Tích -- Volume"
+
+msgid "``henyey_greenstein(g)``"
+msgstr ""
+
+msgid "``absorption()``"
+msgstr ""
+
+msgid "Other"
+msgstr "Cái/Sắp Đặt Khác -- Other"
+
+msgid "``emission()``"
+msgstr ""
+
+msgid "``ambient_occlusion()``"
+msgstr ""
+
+msgid "``holdout()``"
+msgstr ""
+
+msgid "``background()``"
+msgstr ""
+
+msgid "Attributes"
+msgstr "Thuộc Tính -- Attributes"
+
+msgid ""
+"Some object, particle and mesh attributes are available to the built-in "
+"``getattribute()`` function. UV maps and vertex colors can be retrieved "
+"using their name. Other attributes are listed below:"
+msgstr ""
+"Some vật thể, hạt và khung lưới thuộc tính là khả dụng tới the built-in "
+"``getattribute()`` hàm. UV ánh xạ và điểm đỉnh màu sắc có thể được/là "
+"retrieved sử dụng/dùng của chúng/họ tên. Cái/Sắp Đặt Khác thuộc tính là "
+"listed below:"
+
+msgid "``geom:generated``"
+msgstr ""
+
+msgid "Generated texture coordinates."
+msgstr "Do Máy Sinh Tạo chất liệu tọa độ."
+
+msgid "``geom:uv``"
+msgstr ""
+
+msgid "Default render UV map."
+msgstr "Mặc Định kết xuất UV ánh xạ."
+
+msgid "``geom:dupli_generated``"
+msgstr ""
+
+msgid "For instances, generated coordinate from duplicator object."
+msgstr ""
+"Dành Cho/Đối Với/Để instances, do máy sinh tạo coordinate từ duplicator "
+"vật thể."
+
+msgid "``geom:dupli_uv``"
+msgstr ""
+
+msgid "For instances, UV coordinate from duplicator object."
+msgstr "Dành Cho/Đối Với/Để instances, UV coordinate từ duplicator vật thể."
+
+msgid "``geom:trianglevertices``"
+msgstr ""
+
+msgid "3 vertex coordinates of the triangle."
+msgstr "3 điểm đỉnh tọa độ của the tam giác."
+
+msgid "``geom:numpolyvertices``"
+msgstr ""
+
+msgid "Number of vertices in the polygon (always returns three currently)."
+msgstr ""
+"Số/Lượng của điểm đỉnh vào the chỉ số của đa giác (luôn luôn returns ba "
+"currently)."
+
+msgid "``geom:polyvertices``"
+msgstr ""
+
+msgid "Vertex coordinates array of the polygon (always three vertices currently)."
+msgstr ""
+"Điểm Đỉnh tọa độ mảng của the chỉ số của đa giác (luôn luôn ba điểm đỉnh "
+"currently)."
+
+msgid "``geom:name``"
+msgstr ""
+
+msgid "Name of the object."
+msgstr "Tên của the vật thể."
+
+msgid "``geom:is_curve``"
+msgstr ""
+
+msgid "Is object a strand or not."
+msgstr "Là vật thể a sợi hoặc đảo nghịch."
+
+msgid "``geom:curve_intercept``"
+msgstr ""
+
+msgid "Point along the strand, from root to tip."
+msgstr "Điểm/Chấm dọc theo the sợi, từ gốc/phép căn tới đỉnh."
+
+msgid "``geom:curve_thickness``"
+msgstr ""
+
+msgid "Thickness of the strand."
+msgstr "Độ Dày của the sợi."
+
+msgid "``geom:curve_tangent_normal``"
+msgstr ""
+
+msgid "Tangent Normal of the strand."
+msgstr "Tiếp Tuyến/Tang Pháp Tuyến/B.Thg của the sợi."
+
+msgid "``path:ray_length``"
+msgstr ""
+
+msgid "Ray distance since last hit."
+msgstr "Ray khoảng cách since cuối hit."
+
+msgid "``object:location``"
+msgstr ""
+
+msgid "Object location."
+msgstr "Vị Trí của Vật Thể."
+
+msgid "``object:index``"
+msgstr ""
+
+msgid "Object index number."
+msgstr "Vật Thể chỉ số số/lượng."
+
+msgid "``object:random``"
+msgstr ""
+
+msgid "Per object random number generated from object index and name."
+msgstr "Per vật thể ngẫu nhiên số/lượng do máy sinh tạo từ vật thể chỉ số và tên."
+
+msgid "``material:index``"
+msgstr ""
+
+msgid "Material index number."
+msgstr "Nguyên Vật Liệu chỉ số số/lượng."
+
+msgid "``particle:index``"
+msgstr ""
+
+msgid "Particle instance number."
+msgstr "Hạt instance số/lượng."
+
+msgid "``particle:age``"
+msgstr ""
+
+msgid "Particle age in frames."
+msgstr "Hạt tuổi vào khung hình."
+
+msgid "``particle:lifetime``"
+msgstr ""
+
+msgid "Total lifespan of particle in frames."
+msgstr "Tổng Cộng lifespan của hạt vào khung hình."
+
+msgid "``particle:location``"
+msgstr ""
+
+msgid "Location of the particle."
+msgstr "Vị trí của hạt."
+
+msgid "``particle:size``"
+msgstr ""
+
+msgid "Size of the particle."
+msgstr "Kích thước của hạt."
+
+msgid "``particle:velocity``"
+msgstr ""
+
+msgid "Velocity of the particle."
+msgstr "Vận tốc của hạt."
+
+msgid "``particle:angular_velocity``"
+msgstr ""
+
+msgid "Angular velocity of the particle."
+msgstr "Vận tốc góc của hạt."
+
+msgid "Trace"
+msgstr "Truy Nguyên -- Trace"
+
+msgid ""
+"We support the ``trace(point pos, vector dir, ...)`` function, to trace "
+"rays from the OSL shader. The \"shade\" parameter is not supported "
+"currently, but attributes can be retrieved from the object that was hit "
+"using the ``getmessage(\"trace\", ..)`` function. See the OSL "
+"specification for details on how to use this."
+msgstr ""
+"We support the ``trace(point pos, vector dir, ...)`` function, to trace "
+"rays from the OSL shader. The \"shade -- shade\" parameter is not "
+"supported currently, but attributes can be retrieved from the object that"
+" was hit using the ``getmessage(\"trace\", ..)`` function. See the OSL "
+"specification for details on how to use this."
+
+msgid ""
+"This function cannot be used instead of lighting; the main purpose is to "
+"allow shaders to \"probe\" nearby geometry, for example to apply a "
+"projected texture that can be blocked by geometry, apply more \"wear\" to"
+" exposed geometry, or make other ambient occlusion-like effects."
+msgstr ""
+"This function cannot be used instead of lighting; the main purpose is to "
+"allow shaders to \"bộ dò ánh sáng\" nearby geometry, for example to apply"
+" a projected texture that can be blocked by geometry, apply more \"wear "
+"-- wear\" to exposed geometry, or make other ambient occlusion-like "
+"effects."
+

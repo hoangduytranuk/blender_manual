@@ -256,6 +256,6 @@ the one control point and using :ref:`bpy.ops.curve.select_row` to select the re
 control points. Then, using `Delete`_ *Vertices*,
 the selected row of control points is erased, resulting in the image below (right).
 
-.. figure:: /images/modeling_surfaces_editing_deleting.png
+.. figure:: /images/modeling_surfaces_editing_surface_deleting.png
 
    Before and after.

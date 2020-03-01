@@ -8,7 +8,7 @@ Polyline Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Draw Tools --> Polyline`
+   :Tool:      :menuselection:`Toolbar --> Polyline`
 
 The Polyline tool create multiple straight lines.
 

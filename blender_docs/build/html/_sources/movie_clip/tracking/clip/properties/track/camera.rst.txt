@@ -21,7 +21,7 @@ Sensor
 Optical Center
    Is the optical center of the lens used in the camera. In most cases it is equal to the image center,
    but it can be different in some special cases. Check camera/lens specifications in such cases.
-   To set the optical center to the center of image, there is a :kbd:`Return` button below the sliders.
+   To set the optical center to the center of image, there is a *Set Center* button below the sliders.
 
 
 Lens

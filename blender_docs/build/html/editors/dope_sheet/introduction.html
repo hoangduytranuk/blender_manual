@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
-    <link rel="next" title="Trình Biên Soạn Hành Động -- Action Editor" href="action.html" />
+    <link rel="next" title="Editing" href="editing.html" />
     <link rel="prev" title="Bảng Hành Động -- Dope Sheet" href="index.html" /> 
 </head>
 
@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -117,7 +117,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../3dview/index.html">3D Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../image/index.html">Image Editor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../uv/index.html">UV Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../shader_editor/index.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_editor.html">Shader Editor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../compositing/index.html">Compositor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../texture_node/index.html">Nút Chất Liệu -- Texture Nodes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../video_editing/index.html">Video Sequencer</a></li>
@@ -128,9 +128,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#main-region">Main Region</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="action.html">Trình Biên Soạn Hành Động -- Action Editor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="grease_pencil.html">Bút Chì Dầu -- Grease Pencil</a></li>
-<li class="toctree-l3"><a class="reference internal" href="shape_key.html">Hình Mẫu -- Shape Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="editing.html">Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#modes">Modes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../timeline.html">Timeline</a></li>
@@ -146,7 +145,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../preferences/index.html">Preferences</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -178,7 +177,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Blender 2.82 Manual</a>
+          <a href="../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -375,11 +374,6 @@ place the Playhead between two keyframes and press <kbd class="kbd docutils lite
 <p>Here you find the menus, a first group of controls related to the editor &quot;mode&quot;,
 a second one concerning the action data-blocks, and a few other tools
 (like the copy/paste buttons, and snapping type).</p>
-<dl class="simple">
-<dt>Summary</dt><dd><p>Toggles the &quot;Dope Sheet Summary&quot; channel at the top of the <a class="reference internal" href="#channels-region">Channels Region</a>.
-This is used to give an overview of all the channels by combining all the actions into one channel.</p>
-</dd>
-</dl>
 <div class="section" id="view-menu">
 <span id="dope-sheet-view-menu"></span><h4>View Menu<a class="headerlink" href="#view-menu" title="Permalink to this headline">¶</a></h4>
 <div class="figure align-right" id="id5">
@@ -424,7 +418,7 @@ Shows pose markers owned by the active action instead of the scene ones.</p>
 Converts selected scene markers in pose markers, assigning them to the active action.</p>
 </dd>
 </dl>
-<p>For more information and the description of the other marker tools
+<p>For more information and the description of the other marker tools,
 see <a class="reference internal" href="../../animation/markers.html#animation-markers-editing"><span class="std std-ref">Editing Markers</span></a>.</p>
 </div>
 <div class="section" id="key-menu">
@@ -434,6 +428,35 @@ see <a class="reference internal" href="../../animation/markers.html#animation-m
 </dd>
 </dl>
 <p>See <a class="reference internal" href="../graph_editor/fcurves/index.html"><span class="doc">F-Curve</span></a>.</p>
+</div>
+<div class="section" id="filters">
+<span id="bpy-types-dopesheet-show-summary"></span><h4>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h4>
+<dl>
+<dt>Only Selected</dt><dd><p>Only include keyframes related to the selected objects and data.</p>
+</dd>
+<dt>Display Hidden</dt><dd><p>Include keyframes from objects/bones that are not visible.</p>
+</dd>
+<dt>Show Errors</dt><dd><p>Only include curves and drivers that are disabled or have errors.
+Useful for debugging.</p>
+</dd>
+<dt>F-Curve Name Filter</dt><dd><p>Fuzzy/Multi-Word name filtering matches word snippets/partial words,
+instead of having to match everything. It breaks down the search string based on white-space placement.
+e.g. &quot;lo ro&quot; will filter all location and rotation, while &quot;lc rt&quot; will <em>not</em> work.</p>
+</dd>
+<dt>Filter by Type</dt><dd><p>Filter curves by property type.</p>
+</dd>
+<dt>Filtering Collection</dt><dd><p>Select a collection to only show keyframes from objects contained in that collection.</p>
+</dd>
+<dt>Sort Data-Blocks</dt><dd><p>Objects data-blocks appear in alphabetical order, so that it is easier to find where they occur
+(as well as helping to keep the animation of related objects together in the NLA for instance).</p>
+<p>If you find that your playback speed suffers from this being enabled
+(it should only really be an issue when working with lots of objects in the scene),
+you can turn this off.</p>
+</dd>
+<dt>Summary</dt><dd><p>Toggles the &quot;Dope Sheet Summary&quot; channel at the top of the <a class="reference internal" href="#channels-region">Channels Region</a>.
+This is used to give an overview of all the channels by combining all the actions into one channel.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -447,7 +470,7 @@ see <a class="reference internal" href="../../animation/markers.html#animation-m
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="action.html" class="btn btn-neutral float-right" title="Trình Biên Soạn Hành Động -- Action Editor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="editing.html" class="btn btn-neutral float-right" title="Editing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Bảng Hành Động -- Dope Sheet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -476,7 +499,7 @@ see <a class="reference internal" href="../../animation/markers.html#animation-m
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

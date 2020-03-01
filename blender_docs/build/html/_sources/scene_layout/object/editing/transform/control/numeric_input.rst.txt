@@ -19,7 +19,7 @@ Scale :kbd:`S`
 
 You can see the numbers you enter in the 3D Viewport footer.
 
-.. figure:: /images/scene-layout_object_editing_transform_control_precision_numeric-input_footer.png
+.. figure:: /images/scene-layout_object_editing_transform_control_numeric-input_footer.png
    :align: center
 
    Numeric input displayed in the footer.

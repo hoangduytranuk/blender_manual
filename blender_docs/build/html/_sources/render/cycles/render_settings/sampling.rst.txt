@@ -124,7 +124,6 @@ Sample All Indirect Lights
 
    Visible only when using *Branched Path Tracing*.
 
-
 .. _render-cycles-integrator-layer-samples:
 
 Layer Samples

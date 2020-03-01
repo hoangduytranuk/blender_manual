@@ -9,7 +9,7 @@ Knife Tool
    :class: refbox
 
    :Mode:      Edit Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Knife/Select`
+   :Tool:      :menuselection:`Toolbar --> Knife`
    :Hotkey:    :kbd:`K` or :kbd:`Shift-K`
 
 The Knife tool can be used to interactively subdivide (cut up)

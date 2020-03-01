@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -222,7 +222,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="settings">
-<span id="bpy-types-fluiddomainsettings-gravity"></span><span id="bpy-types-fluiddomainsettings-timesteps-min"></span><span id="bpy-types-fluiddomainsettings-timesteps-max"></span><span id="bpy-types-fluiddomainsettings-use-adaptive-timesteps"></span><span id="bpy-types-fluiddomainsettings-cfl-condition"></span><span id="bpy-types-fluiddomainsettings-time-scale"></span><span id="bpy-types-fluiddomainsettings-resolution-max"></span><span id="bpy-types-fluiddomainsettings-domain-type"></span><h1>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
+<h1>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -249,12 +249,14 @@ then select <em>Domain</em> as the fluid <em>Type</em>.</p>
 but the fluid simulator will use the shape's <a class="reference internal" href="../../../../glossary/index.html#term-bounding-box"><span class="xref std std-term">bounding box</span></a> as the domain bounds.
 In other words, the actual shape of the domain will still be rectangular.</p>
 </div>
-<dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-domain-type">
 <dt>Domain Type</dt><dd><p>A fluid domain can control either liquid or gas flows. Liquid domains take all liquid flow
 objects that intersect with the domain into consideration. Gas domains consider all
 intersecting <em>Smoke</em>, <em>Fire</em>, and <em>Smoke + Fire</em> flow objects. It is not possible to change
 the domain type dynamically.</p>
 </dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-resolution-max">
 <dt>Resolution Divisions</dt><dd><p>The fluid domain is subdivided into many &quot;cells&quot; called <a class="reference internal" href="../../../../glossary/index.html#term-voxel"><span class="xref std std-term">voxels</span></a>
 which make up &quot;pixels&quot; of fluid. This setting controls the number of subdivisions in the domain.
 Higher numbers of subdivisions are one way of creating higher resolution fluids.</p>
@@ -263,10 +265,14 @@ larger domains will need more divisions to get an equivalent resolution to a sma
 To help with this, the <em>Resolution Divisions</em> can be previewed with a small cube
 shown in the 3D Viewport, to show the size of these divisions.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-time-scale">
 <dt>Time Scale</dt><dd><p>Controls the speed of the simulation. Low values result in a &quot;slow motion&quot; simulation,
 while higher values can be used to advance the simulation faster
-(useful for generating fluids for use in still renders).</p>
+(good for generating fluids to be used in still renders).</p>
 </dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-cfl-condition">
 <dt>CFL Number</dt><dd><p>Determines the maximum velocity per grid cell and is measured in grid cells per time step.
 Fluid is only allowed to move up to this velocity in one time step. If this threshold is
 exceeded the solver will subdivide the simulation step.</p>
@@ -276,18 +282,24 @@ Smaller CFL numbers result in more simulation steps per frame, longer simulation
 but more accurate behavior at high velocities (e.g. fast fluid flow colliding
 with obstacle).</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-use-adaptive-timesteps">
 <dt>Use Adaptive Time Steps</dt><dd><p>Lets the solver automatically decide when to perform multiple simulation steps per frame.
 It takes into account the maximum and minimum number of time steps,
 the current <em>Frame Rate</em>, and the <em>Time Scale</em>.</p>
-<dl class="simple">
-<dt>Timesteps Maximum</dt><dd><p>Maximum number of allowed time steps per frame. If needed, the solver will divide
-a simulation step up to this number of substeps.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-timesteps-max">
+<dt>Timesteps Maximum</dt><dd><p>Maximum number of allowed time steps per frame. If needed, the solver will divide
+a simulation step up to this number of sub-steps.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-timesteps-min">
 <dt>Timesteps Minimum</dt><dd><p>Minimum number of allowed time steps per frame. The solver will always perform at least
 this number of simulation steps per frame.</p>
 </dd>
 </dl>
-</dd>
+<dl class="simple" id="bpy-types-fluiddomainsettings-gravity">
 <dt>Gravity</dt><dd><p>By default the fluid solver will use the global scene gravity. This behavior can be disabled
 in the scene settings. Disabling the global gravity will enable the fluid gravity options.</p>
 </dd>
@@ -305,12 +317,11 @@ in the scene settings. Disabling the global gravity will enable the fluid gravit
 </dd>
 </dl>
 </div>
-<p>Controls which sides of the domain will allow fluid to &quot;pass through&quot; the domain,
-making it disappear without influencing the rest of the simulation,
-and which sides will deflect fluids.</p>
+<p>Controls which sides of the domain will allow fluid &quot;pass through&quot; the domain, making it disappear
+without influencing the rest of the simulation, and which sides will deflect fluids.</p>
 </div>
 <div class="section" id="smoke">
-<span id="bpy-types-fluiddomainsettings-vorticity"></span><span id="bpy-types-fluiddomainsettings-beta"></span><span id="bpy-types-fluiddomainsettings-alpha"></span><h2>Smoke<a class="headerlink" href="#smoke" title="Permalink to this headline">¶</a></h2>
+<h2>Smoke<a class="headerlink" href="#smoke" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -322,7 +333,7 @@ and which sides will deflect fluids.</p>
 </dd>
 </dl>
 </div>
-<dl class="simple">
+<dl class="simple" id="bpy-types-fluiddomainsettings-alpha">
 <dt>Buoyancy Density</dt><dd><p>Buoyant force based on smoke density.</p>
 <ul class="simple">
 <li><p>Values above 0 will cause the smoke to rise (simulating smoke which is lighter than ambient air).</p></li>
@@ -330,10 +341,10 @@ and which sides will deflect fluids.</p>
 </ul>
 </dd>
 </dl>
-<dl id="smoke-domain-heat">
+<dl id="bpy-types-fluiddomainsettings-beta">
 <dt>Buoyancy Heat</dt><dd><p>Controls how much smoke is affected by temperature.
 The effect this setting has on smoke depends on the per flow object
-<a class="reference internal" href="../flow.html#physics-fluid-flow-init-temp"><span class="std std-ref">Initial Temperature</span></a>:</p>
+<a class="reference internal" href="../flow.html#bpy-types-fluidflowsettings-temperature"><span class="std std-ref">Initial Temperature</span></a>:</p>
 <ul class="simple">
 <li><p>Values above 0 will result in the smoke rising when the flow object <em>Initial Temperature</em> is
 set to a positive value, and smoke sinking when the flow object <em>Initial Temperature</em> is
@@ -342,31 +353,50 @@ set to a negative value.</p></li>
 i.e. smoke emitted from flow objects with a positive <em>Initial Temperature</em> will sink,
 and smoke from flow objects with a negative <em>Initial Temperature</em> will rise.</p></li>
 </ul>
-<p>Note that smoke from multiple flow objects with different temperatures
-will mix and warm up/cool down until an equilibrium is reached.</p>
+<p>Note that smoke from multiple flow objects with different temperatures will mix and warm up or
+cool down until an equilibrium is reached.</p>
 </dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-vorticity">
 <dt>Vorticity</dt><dd><p>Controls the amount of turbulence in the smoke. Higher values will make lots of small swirls,
 while lower values make smoother shapes.</p>
-<div class="figure align-center" id="id1">
-<img alt="../../../../_images/physics_smoke_types_domain_vorticity.jpg" src="../../../../_images/physics_smoke_types_domain_vorticity.jpg" />
-<p class="caption"><span class="caption-text">Comparison of different amounts of vorticity. The domain on the left has a vorticity of 3,
-while the domain on the right has a vorticity of 0.01.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Comparison of different amounts of vorticity.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
+<img alt="../../../../_images/physics_fluid_type_domain_settings_vorticity-off.png" src="../../../../_images/physics_fluid_type_domain_settings_vorticity-off.png" />
+<p class="caption"><span class="caption-text">Domain with a vorticity of 0.0.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
+</td>
+<td><div class="figure align-default" id="id3">
+<img alt="../../../../_images/physics_fluid_type_domain_settings_vorticity-on.png" src="../../../../_images/physics_fluid_type_domain_settings_vorticity-on.png" />
+<p class="caption"><span class="caption-text">Domain with a vorticity of 0.2.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 </dd>
 </dl>
 <div class="section" id="dissolve">
-<span id="bpy-types-fluiddomainsettings-use-dissolve-smoke-log"></span><span id="bpy-types-fluiddomainsettings-dissolve-speed"></span><span id="bpy-types-fluiddomainsettings-use-dissolve-smoke"></span><h3>Dissolve<a class="headerlink" href="#dissolve" title="Permalink to this headline">¶</a></h3>
+<span id="bpy-types-fluiddomainsettings-use-dissolve-smoke"></span><h3>Dissolve<a class="headerlink" href="#dissolve" title="Permalink to this headline">¶</a></h3>
 <p>Allow smoke to dissipate over time.</p>
-<dl class="simple">
+<dl class="simple" id="bpy-types-fluiddomainsettings-dissolve-speed">
 <dt>Time</dt><dd><p>Speed of smoke's dissipation in frames.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-use-dissolve-smoke-log">
 <dt>Slow</dt><dd><p>Dissolve smoke in a logarithmic fashion. Dissolves quickly at first, but lingers longer.</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="section" id="fire">
-<span id="bpy-types-fluiddomainsettings-flame-smoke-color"></span><span id="bpy-types-fluiddomainsettings-flame-ignition"></span><span id="bpy-types-fluiddomainsettings-flame-max-temp"></span><span id="bpy-types-fluiddomainsettings-flame-vorticity"></span><span id="bpy-types-fluiddomainsettings-flame-smoke"></span><span id="bpy-types-fluiddomainsettings-burning-rate"></span><h2>Fire<a class="headerlink" href="#fire" title="Permalink to this headline">¶</a></h2>
+<h2>Fire<a class="headerlink" href="#fire" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -378,24 +408,36 @@ while the domain on the right has a vorticity of 0.01.</span><a class="headerlin
 </dd>
 </dl>
 </div>
-<dl class="simple">
+<dl class="simple" id="bpy-types-fluiddomainsettings-burning-rate">
 <dt>Reaction Speed</dt><dd><p>How fast fuel burns. Larger values result in smaller flames (fuel burns before it can go very far),
 smaller values result in larger flames (fuel has time to flow farther before being fully consumed).</p>
 </dd>
-<dt>Flame Smoke</dt><dd><p>Amount of extra smoke created automatically to simulate burnt fuel.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-flame-smoke">
+<dt>Flame Smoke</dt><dd><p>Amount of extra smoke created automatically to simulate burnt fuel. This smoke is best visible
+when using a &quot;Fire + Smoke&quot; <a class="reference internal" href="../flow.html#bpy-types-fluidflowsettings-flow-type"><span class="std std-ref">Flow Object</span></a>.</p>
 </dd>
-<dt>Vorticity</dt><dd><p>Extra vorticity for flames.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-flame-vorticity">
+<dt>Vorticity</dt><dd><p>Vorticity for flames in addition to the global fluid
+<a class="reference internal" href="#bpy-types-fluiddomainsettings-vorticity"><span class="std std-ref">Vorticity</span></a>.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-flame-max-temp">
 <dt>Temperature Maximum</dt><dd><p>Maximum temperature of flames. Larger values result in faster rising flames.</p>
 </dd>
-<dt>Minimum</dt><dd><p>Minimum temperature of flames.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-flame-ignition">
+<dt>Minimum</dt><dd><p>Minimum temperature of flames. Larger values result in faster rising flames.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-flame-smoke-color">
 <dt>Flame Color</dt><dd><p>Color of flame created by burnt fuel.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="liquid">
-<span id="bpy-types-fluiddomainsettings-fractions-threshold"></span><span id="bpy-types-fluiddomainsettings-use-fractions"></span><span id="bpy-types-fluiddomainsettings-particle-randomness"></span><span id="bpy-types-fluiddomainsettings-particle-number"></span><span id="bpy-types-fluiddomainsettings-particle-min"></span><span id="bpy-types-fluiddomainsettings-particle-max"></span><span id="bpy-types-fluiddomainsettings-particle-radius"></span><span id="bpy-types-fluiddomainsettings-flip-ratio"></span><span id="bpy-types-fluiddomainsettings-simulation-method"></span><span id="bpy-types-fluiddomainsettings-use-flip-particles"></span><h2>Liquid<a class="headerlink" href="#liquid" title="Permalink to this headline">¶</a></h2>
+<span id="bpy-types-fluiddomainsettings-use-flip-particles"></span><h2>Liquid<a class="headerlink" href="#liquid" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -415,15 +457,19 @@ The fluid simulation will make use of all the fields without an attached particl
 <p class="admonition-title">Ghi chú</p>
 <p>Disabling the liquid checkbox will delete the attached particle system and its settings.</p>
 </div>
-<dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-simulation-method">
 <dt>Simulation Method</dt><dd><p>Determines the particle simulation method. Currently, FLIP is the only option to choose from.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-flip-ratio">
 <dt>FLIP Ratio</dt><dd><p>How much FLIP velocity to use when updating liquid particle velocities. A value of 1.0
 will result in a completely FLIP based simulation. Completely FLIP based simulations
 produce more chaotic splashes and are preferable when simulating greater quantities of liquid.
 When using smaller values the behavior will be less turbulent and splashes are more subtle.
 This is optimal when simulating scenes where the liquid is supposed to be on a small scale.</p>
 </dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-particle-radius">
 <dt>Particle Radius</dt><dd><p>The radius of one liquid particle in grid cells units. This value describes how much area is covered
 by a particle and thus determines how much area around it can be considered as liquid.
 A greater radius will let particles cover more area. This will result in more grids cell being tagged
@@ -432,6 +478,8 @@ as liquid instead of just being empty.</p>
 a good idea to adjust this value. That is, when liquid seems to disappear this value needs to be increased.
 The inverse applies when too much liquid is being produced.</p>
 </dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-particle-max">
 <dt>Particles Maximum</dt><dd><p>The maximum number of liquid particles per grid cell. During a simulation the number of liquid
 particles in a cell can fluctuate: Particles can flow into other cells or can get deleted
 if they move outside the narrow band. Resampling will add new particles considering this maximum.</p>
@@ -439,12 +487,18 @@ if they move outside the narrow band. Resampling will add new particles consider
 many particles there can be in your simulation (one needs to take grid resolution into account too).
 This can be useful before baking and when planning a simulation.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-particle-min">
 <dt>Particles Minimum</dt><dd><p>The minimum number of liquid particles per grid cell. Similarly to the maximum particle threshold,
 this value ensures that there are at least a certain amount of particles per cell.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-particle-number">
 <dt>Particle Sampling</dt><dd><p>Factor that is used when sampling particles. A higher value will sample more particles.
 Note that particle resampling occurs at every simulation step.</p>
 </dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-particle-band-width">
 <dt>Narrow Band Width</dt><dd><p>Controls the width in grid cell units of the narrow band that liquid particles are allowed to flow in.
 A high value will result in a thicker band and can result in an inflow region completely filled
 with particles. Unless the goal of the simulation is to visualize the liquid particles it is
@@ -453,19 +507,39 @@ recommended to not increase the band width significantly as more particles slow 
 In all other cases it is best to keep the narrow band as thin as possible since the liquid surface
 contains most details and simulating particles inside the liquid is not an optimal use of computing resources.</p>
 </dd>
-<dt>Particle Randomness</dt><dd><p>New particles are sampled with some randomness attached to their position. This field
-controls this randomness. Higher values will sample the liquid particles more randomly in
-inflow regions. With a value of 0.0 all new particles will be sampled uniformly inside
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>The narrow band is an implementation of <a class="reference external" href="https://www.in.tum.de/cg/research/publications/2016/narrow-band-flip-for-liquid-simulations/">Narrow Band FLIP for Liquid Simulations</a>.</p>
+</div>
+<dl id="bpy-types-fluiddomainsettings-particle-randomness">
+<dt>Particle Randomness</dt><dd><p>New particles are sampled with some randomness attached to their position.
+This field controls this randomness. Higher values will sample the liquid particles more
+randomly in inflow regions. With a value of 0.0 all new particles will be sampled uniformly inside
 their corresponding grid cells.</p>
-<p>When trying to create laminar inflows (little randomness) or more turbulent flows
-(greater randomness) this value can be useful.</p>
+<p>When trying to create a laminar inflow (with little randomness) or more turbulent flows
+(with greater randomness) this value can be useful.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-use-fractions">
 <dt>Fractional Obstacles</dt><dd><p>Enables finer resolution in fluid / obstacle regions (second order obstacles).
 This option reduces the &quot;stepping effect&quot; that results when an obstacles lies inclined inside the domain.
 It also makes liquid flow more smoothly over an obstacle.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-fractions-threshold">
 <dt>Obstacle-Fluid Threshold</dt><dd><p>Value to control the smoothness of the fractional obstacle option. Smaller value reduce
 the &quot;stepping effect&quot; but may result particles sticking to the obstacle.</p>
+</dd>
+</dl>
+<span id="bpy-ops-fluid-bake-data"></span><dl id="bpy-ops-fluid-free-data">
+<dt>Bake Data, Free Data</dt><dd><p>This option is only available when using the <a class="reference internal" href="cache.html#bpy-types-fluiddomainsettings-cache-type"><span class="std std-ref">Modular</span></a> cache type.
+<em>Bake Data</em> simulates and stores the base of the fluid simulation on drive.
+Both gas and liquid simulations can add refinements on top of this
+(e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both).</p>
+<p>The progress will be displayed in the status bar. Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> will pause the simulation.</p>
+<p>Once the simulation has been baked, the cache can be deleted by pressing <em>Free Data</em>.
+It is possible to pause or resume a <em>Bake All</em> process.</p>
 </dd>
 </dl>
 </div>
@@ -508,7 +582,7 @@ the &quot;stepping effect&quot; but may result particles sticking to the obstacl
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

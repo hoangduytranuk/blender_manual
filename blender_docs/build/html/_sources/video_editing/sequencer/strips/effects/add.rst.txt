@@ -34,6 +34,6 @@ Example
 
 .. _fig-sequencer-strips-effects-add:
 
-.. figure:: /images/sequencer_sequencer_strips_effects_add_example.png
+.. figure:: /images/video-editing_sequencer_strips_effects_add_example.png
 
    Add Effect.

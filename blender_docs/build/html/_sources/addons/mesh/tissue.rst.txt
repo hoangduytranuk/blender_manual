@@ -19,7 +19,7 @@ Description
 Tessellate
 ----------
 
-The *Tessellate*  tool allows the user to copy a selected object (Component) on the faces of
+The *Tessellate* tool allows the user to copy a selected object (Component) on the faces of
 the active object (Generator), adapting its bounding box to the shape of quad faces.
 Once the *Tessellate* button was pressed, then more options will appear in the tool parameters.
 Update allows you to update the active the Tessellated mesh according to Component and Generator changes.

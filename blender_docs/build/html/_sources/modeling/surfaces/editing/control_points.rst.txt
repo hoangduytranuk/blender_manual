@@ -55,13 +55,13 @@ and then using :ref:`bpy.ops.curve.select_row` to select the rest of the control
 
    * - .. _fig-surface-edit-select-point:
 
-       .. figure:: /images/modeling_surfaces_editing_selecting-point.png
+       .. figure:: /images/modeling_surfaces_editing_control-points_selecting-point.png
 
           Selecting control point.
 
      - .. _fig-surface-edit-select-row:
 
-       .. figure:: /images/modeling_surfaces_editing_selecting-row.png
+       .. figure:: /images/modeling_surfaces_editing_control-points_selecting-row.png
 
           Select Control Point Row.
 
@@ -71,7 +71,7 @@ That is because the *new* extruded surface section is bunched up there as well.
 
 .. _fig-surface-edit-extruding:
 
-.. figure:: /images/modeling_surfaces_editing_extruding.png
+.. figure:: /images/modeling_surfaces_editing_control-points_extruding.png
 
    Extruding.
 
@@ -127,13 +127,13 @@ Fig. :ref:`fig-surface-edit-join-complete` is the result of joining the two curv
 
    * - .. _fig-surface-edit-join-ready:
 
-       .. figure:: /images/modeling_surfaces_editing_joining-ready.png
+       .. figure:: /images/modeling_surfaces_editing_control-points_joining-ready.png
 
           Joining ready.
 
      - .. _fig-surface-edit-join-complete:
 
-       .. figure:: /images/modeling_surfaces_editing_joining-complete.png
+       .. figure:: /images/modeling_surfaces_editing_control-points_joining-complete.png
 
           Joining complete.
 

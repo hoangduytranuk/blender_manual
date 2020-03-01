@@ -8,6 +8,7 @@ clicking in the UV editor. You can also manually adjust its position in the Side
 The range by default is from 0 to 256 starting from the lower left corner.
 By enabling :ref:`Pixel Coordinates <bpy.types.SpaceUVEditor.show_pixel_coords>`, the range changes from 0 to 1.
 
+
 2D View
 =======
 
@@ -31,4 +32,4 @@ Display Other Objects
 Display Texture Paint UVs
    Hides the UVs in Paint Mode.
 Frame Selected
-   Change view so that all selected uv vertices are visible.
+   Change view so that all selected UV vertices are visible.

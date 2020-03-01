@@ -8,7 +8,7 @@ Cutter Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Draw Tools --> Cutter`
+   :Tool:      :menuselection:`Toolbar --> Cutter`
 
 The Cutter tool delete points in between intersecting strokes.
 

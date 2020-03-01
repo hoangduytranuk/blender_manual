@@ -3,7 +3,7 @@
 Brush Settings
 **************
 
-.. figure:: /images/sculpt-paint_weight-paint_tools_brush-panel.png
+.. figure:: /images/sculpt-paint_weight-paint_tool-settings_brush-settings_brush-panel.png
    :align: right
    :width: 200
 

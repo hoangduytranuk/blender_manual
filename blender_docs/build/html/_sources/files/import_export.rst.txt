@@ -28,4 +28,4 @@ these can be enabled in the Preferences through the use of :doc:`Add-ons </edito
 .. seealso::
 
    More information on the add-ons to import/export these file types
-   can be found :ref:`in the add-ons section <addons-io>`.
+   can be found in the :ref:`add-ons section <addons-io>`.

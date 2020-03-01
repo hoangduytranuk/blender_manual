@@ -31,7 +31,7 @@ err_trap () {
 trap err_trap ERR
 
 # Python needs utf
-export LANG="en_US.UTF8"
+export LANG="en_US.UTF-8"
 
 # Ensure we're in the repo's base:
 BASEDIR="$(dirname $0)"
@@ -42,13 +42,13 @@ ROOTDIR="$(pwd)"
 
 # All directories containing '.svn' (the parent directory).
 # SVN_DIRS_ALL="$(find locale/ -name '.svn' -printf '%h\n')"
-SVN_DIRS_ALL="$(find locale/ -name '.svn' -print)"
+SVN_DIRS_ALL="$(find locale -name '.svn' -print)"
 # Update the locale dir:
-for SVNDIR in "$SVN_DIRS_ALL"; do
-  svn cleanup "$SVNDIR"
-  svn up "$SVNDIR"
-done
-unset SVNDIR
+# for SVNDIR in "$SVN_DIRS_ALL"; do
+#   svn cleanup "$SVNDIR"
+#   svn up "$SVNDIR"
+# done
+# unset SVNDIR
 
 # Create PO files:
 rm -rf build/locale
@@ -58,7 +58,8 @@ make gettext
 # Update PO files
 #
 # note, this can be slow so (multi-process)
-for PO_LANG in $(find locale/ -maxdepth 1 -mindepth 1 -type d -not -iwholename '*.svn*' -printf '%f\n' | sort); do
+#for PO_LANG in $(find locale/ -maxdepth 1 -mindepth 1 -type d -not -iwholename '*.svn*' -printf '%f\n' | sort); do
+for PO_LANG in $(find locale -maxdepth 1 -mindepth 1 -type d -not -iwholename '*.svn*' -print | sort); do
 	sphinx-intl --config=manual/conf.py update --pot-dir=build/locale --language="$PO_LANG" &
 done
 unset PO_LANG

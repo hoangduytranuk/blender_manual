@@ -36,7 +36,7 @@ Endpoint U/V
    This can be set per interpolation axis.
    *Cyclic* must be disabled for this option to work.
 
-   .. figure:: /images/modeling_surfaces_properties_endpoint.png
+   .. figure:: /images/modeling_surfaces_properties_active-spline_endpoint.png
       :align: center
       :width: 50%
 
@@ -60,7 +60,7 @@ Order U/V
 
    .. _fig-surface-intro-order:
 
-   .. figure:: /images/modeling_surfaces_properties_order.png
+   .. figure:: /images/modeling_surfaces_properties_active-spline_order.png
       :align: center
       :width: 50%
 

@@ -6,12 +6,12 @@ Library Overrides
 Library Overrides is the new system designed to replace and
 supersede :doc:`Proxies</files/linked_libraries/library_proxies>`.
 Most types of linked data-blocks can be overridden, and the properties of those overrides
-can then be edited. When the library data change, unmodified properties of the override one
+can then be edited. When the library data changes, unmodified properties of the overridden one
 will be updated accordingly.
 
 .. note::
 
-   **It is considered as experimental**, and current proxy system will be kept alongside for a few releases.
+   **It is considered as experimental**, and the current proxy system will be kept alongside for a few releases.
    Automatic conversion from proxies to library overrides *is not planned*,
    there will be a manual operator to do that, but results on complex characters are not guaranteed.
 
@@ -68,12 +68,12 @@ and override all those needed to allow posing/animation of a character.
 Editing an Override
 ===================
 
-Essentially, and override is edited the same way as a regular local data-block.
+Essentially, an override is edited the same way as a regular local data-block.
 You can use operators on them, edit their properties from various editors, etc.
 
-There are some limitations however, most notably Edit Mode is not allowed currently for override.
+There are some limitations however, most notably Edit Mode is not allowed currently for overrides.
 
-In most cases, as soon as you edit a property, you can see that it's overridden by it's teal blue
+In most cases, as soon as you edit a property, you can see that it's overridden by its teal blue
 outline/background (like the yellow/green/purple colors of animated/driven ones).
 
 You can also animate overrides, animated properties just replace/supersede overrides then.

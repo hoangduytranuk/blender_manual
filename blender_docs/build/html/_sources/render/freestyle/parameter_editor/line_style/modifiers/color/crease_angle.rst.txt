@@ -17,7 +17,7 @@ Min Angle and Max Angle
    Out-of-range crease angle values will be clamped by
    the Min and Max angles and their corresponding property values.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_properties_color-crease-angle-example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_color_crease-angle_example.png
    :align: center
    :width: 50%
 

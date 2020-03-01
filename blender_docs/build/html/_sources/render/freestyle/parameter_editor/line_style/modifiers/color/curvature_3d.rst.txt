@@ -26,7 +26,7 @@ Min Curvature and Max Curvature
    it will take the start point of the mapping, and conversely,
    if it is at *Max Curvature* or more from the target, it will take the end-point value of the mapping.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_properties_color-curvature-3d-example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_color_curvature-3d_example.png
    :align: center
    :width: 50%
 

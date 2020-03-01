@@ -171,24 +171,29 @@ View Controls
 
    View controls.
 
-Show Only Selected (mouse cursor icon)
+Show Only Selected
    Only include curves related to the selected objects and data.
-Show Hidden (dashed object icon)
+Show Hidden
    Include curves from objects/bones that are not visible.
-Show Only Errors (warning triangle icon)
+Show Only Errors
    Only include curves and drivers that are disabled or have errors.
    Useful for debugging.
+
 Filter popover (funnel icon)
    Only include curves with keywords contained in the search field.
 
-   Multi-Word (az icon)
+   Multi-Word
       Fuzzy/Multi-Word name filtering matches word snippets/partial words,
       instead of having to match everything. It breaks down the search string based on white-space placement.
       e.g. "lo ro" will filter all location and rotation, while "lc rt" will *not* work.
+
    Type Filter
       Filter curves by property type.
 
-   Data-block Sort (az icon)
+   Filtering Collection
+      Select a collection to only show keyframes from objects contained in that collection.
+
+   Sort Data-Blocks
       Objects data-blocks appear in alphabetical order, so that it is easier to find where they occur
       (as well as helping to keep the animation of related objects together in the NLA for instance).
 

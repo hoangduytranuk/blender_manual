@@ -36,7 +36,7 @@ Default Fade
 Example
 =======
 
-.. figure:: /images/sequencer_sequencer_strips_effects_cross_example.png
+.. figure:: /images/video-editing_sequencer_strips_transitions_cross_example.png
 
    Cross Effect.
 

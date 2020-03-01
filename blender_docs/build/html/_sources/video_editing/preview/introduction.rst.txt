@@ -11,7 +11,7 @@ You can adjust the view by zooming in with :kbd:`NumpadPlus` and zoom out with :
 Header
 ======
 
-.. figure:: /images/sequencer_preview_introduction_header.png
+.. figure:: /images/video-editing_preview_introduction_header.png
 
    Sequencer Display header.
 

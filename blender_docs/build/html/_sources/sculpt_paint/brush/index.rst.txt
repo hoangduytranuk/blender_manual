@@ -3,7 +3,6 @@
   Brush
 #########
 
-
 .. toctree::
    :maxdepth: 2
 

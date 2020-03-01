@@ -16,7 +16,7 @@ Activation
 Interface
 =========
 
-.. figure:: /images/addons_lighting_trilights_ui.jpg
+.. figure:: /images/addons_lighting_trilighting_ui.jpg
    :align: right
    :width: 270px
 

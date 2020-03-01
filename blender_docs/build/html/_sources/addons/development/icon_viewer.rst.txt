@@ -5,7 +5,7 @@ Icon Viewer
 
 An add-on that will help you to find an icon for your script and copy its name to the clipboard.
 
-.. figure:: /images/addons_dev_iconview.jpg
+.. figure:: /images/addons_development_icon-viewer_ui.jpg
    :align: center
    :width: 700px
 

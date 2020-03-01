@@ -11,7 +11,7 @@ Spin
    :class: refbox
 
    :Mode:      Edit Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Spin`
+   :Tool:      :menuselection:`Toolbar --> Spin`
    :Hotkey:    :kbd:`Alt-R`
 
 The *Spin* tool extrudes (or duplicates it if the selection is manifold) the selected elements,

@@ -8,7 +8,7 @@ Draw Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Draw Tools --> Draw`
+   :Tool:      :menuselection:`Toolbar --> Draw`
 
 The Draw tool allows you to draw free-hand strokes.
 

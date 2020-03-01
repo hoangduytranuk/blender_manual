@@ -38,6 +38,12 @@ Vertex Group
    If set, restrict the effect to the only vertices in that vertex group.
    This allows for selective, real-time smoothing, by painting vertex weights.
 
+   Invert ``<->``
+      Inverts the influence of the selected vertex group, meaning that the group
+      now represents vertices that will not be deformed by the modifier.
+
+      The setting reverses the weight values of the group.
+
 
 Algorithm
 =========

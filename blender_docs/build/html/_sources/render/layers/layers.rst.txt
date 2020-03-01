@@ -59,12 +59,10 @@ Render Single Layer
 
       This option is ignored when rendering from the command line.
 
-
 .. seealso::
 
    Additional options shown in this panel are different for each render engine.
-   See :doc:`Render Passes </render/layers/passes>` for the options per render
-   engine.
+   See :doc:`Render Passes </render/layers/passes>` for the options per render engine.
 
 
 Usage

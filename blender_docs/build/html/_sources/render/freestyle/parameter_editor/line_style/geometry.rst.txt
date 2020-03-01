@@ -12,7 +12,7 @@ displace or deform them in various ways.
 
 As with other modifier stacks in Blender, they are applied from top to bottom.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_tabs_geometry.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_geometry_tab.png
    :align: center
    :width: 50%
 

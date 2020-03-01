@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Sculpting &amp; Painting</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
@@ -165,7 +165,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -259,18 +259,20 @@ to match the denseness of polygons after the remesh operation.</p>
 </dl>
 </dd>
 <dt>Adaptivity</dt><dd><p>Reduces the final face count by simplifying geometry where detail is not needed.
-This introduce triangulation to faces that do not require as much detail.
+This introduce triangulation to faces that do not need as much detail.
 Note, an <em>Adaptivity</em> value greater than zero disables <em>Fix Poles</em>.</p>
 </dd>
-<dt>Fix Poles</dt><dd><p>Todo 2.81.</p>
+<dt>Fix Poles</dt><dd><p>Tries to produce less <a class="reference internal" href="../../../glossary/index.html#term-pole"><span class="xref std std-term">Poles</span></a> at the cost of some performance to produce a better topological flow.</p>
 </dd>
 <dt>Smooth Normals</dt><dd><p>Applies the <a class="reference internal" href="../../../modeling/meshes/editing/normals.html#bpy-ops-object-shade-smooth"><span class="std std-ref">Smooth Normals</span></a> operator to the resulting mesh.</p>
 </dd>
-<dt>Preserve Volume</dt><dd><p>Todo 2.81.</p>
+<dt>Preserve Volume</dt><dd><p>Tells the algorithm to try to preserve the original volume of the mesh.
+Enabling this could make the operator slower depending on the complexity of the mesh.</p>
 </dd>
-<dt>Preserve Paint Mask</dt><dd><p>Todo 2.81.</p>
+<dt>Preserve Paint Mask</dt><dd><p>Reprojects the <a class="reference internal" href="../hide_mask.html#sculpt-mask-menu"><span class="std std-ref">paint mask</span></a> onto the new mesh.</p>
 </dd>
-<dt>Voxel Remesh</dt><dd><p>Todo 2.81.</p>
+<dt>Voxel Remesh</dt><dd><p>Performs the remeshing operation to create a new manifold mesh based on the volume of the current mesh.
+Performing this will lose all mesh object data layers associated with the original mesh.</p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -279,7 +281,7 @@ Note, an <em>Adaptivity</em> value greater than zero disables <em>Fix Poles</em>
 <ul class="simple">
 <li><p>Remeshing only works on the original mesh data and
 ignores generated geometry from modifiers, shape keys, rigging, etc.</p></li>
-<li><p>Remeshing will not work with the <span class="xref std std-doc">/modeling/modifiers/generate/multiresolution&gt;</span></p></li>
+<li><p>Remeshing will not work with the <a class="reference internal" href="../../../modeling/modifiers/generate/multiresolution.html"><span class="doc">-- Multiresolution Modifier</span></a>.</p></li>
 </ul>
 </div>
 <div class="admonition seealso">
@@ -325,7 +327,7 @@ ignores generated geometry from modifiers, shape keys, rigging, etc.</p></li>
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

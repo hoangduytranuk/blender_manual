@@ -120,7 +120,6 @@ In this example, a shape key is used to improve the deformation at the elbow of 
    Left: Skeletal mesh deformation without correction.
    Right: Corrective shape key applied
 
-
 Setup
    #. Add a mesh (in this example, a cylinder with loop cuts).
    #. Add an armature with a chain of bones.
@@ -129,11 +128,9 @@ Setup
    (Note: to parent the mesh to the armature: select the mesh first,
    then the armature and use :kbd:`Ctrl-P` to parent with auto weights.)
 
-
 Experiment with posing the armature and observe the deformation at the joint.
 To fix intersection problems or angles that look unsatisfactory,
 you can associate a :doc:`Shape Key </animation/shape_keys/index>` with a pose.
-
 
 Shape Key
    #. Pose the armature such that the problems are visible.
@@ -149,10 +146,8 @@ Shape Key
       (Note: be careful to apply edits only to your shape and not to
       the original mesh or other existing keys.)
 
-
 Once you are satisfied with how the deformation looks for the problematic pose,
 you'll need to configure a driver to activate the shape smoothly when entering that position.
-
 
 Driver
    #. Add a driver to the *Value* of the shape key you've created.
@@ -186,7 +181,6 @@ Driver
       #. To verify that the driver behaves correctly, deselect the option to
          only show drivers for selected objects. This way, you can pose the armature
          and keep an eye on the driver.
-
 
    Method 2 -- Rotational difference to a target bone
       This method requires an additional *target* or *corrective* bone, but it
@@ -228,31 +222,28 @@ See also :ref:`relative shape keys mix additively <animation-shapekeys-relative-
 Shape Keys
    Add two shape keys to a mesh, besides the *Basis*.
 
-
 .. list-table::
 
    * - .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-basis.png
           :width: 200px
 
-          Basis
+          Basis.
 
      - .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-key1.png
           :width: 200px
 
-          Key 1: top faces moved up by 1m
+          Key 1: top faces moved up by 1 m.
 
      - .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-key2.png
           :width: 200px
 
-          Key 2: inner top moved up by 1m
-
+          Key 2: inner top moved up by 1 m.
 
 Drivers
    Add an armature with a single bone to control the shape keys.
    The goal is to activate the keys in succession as this bone moves up.
 
    .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-result.png
-
 
    As shown in the picture above, when the bone is halfway up, both *Key 1* and *Key 2* have an influence.
    It is a matter of preference if *Key 1* should be at its maximum *Value* before *Key 2* starts to become active,
@@ -283,7 +274,6 @@ Drivers
             Possible values are *Key 1*: :math:`y = 0.0 + 0.6x` and *Key 2*: :math:`y = -0.5 + 0.6x`.
 
             .. figure:: /images/animation_drivers_workflow-examples_chained-shape-keys-driver-setup.png
-
 
             Note that the functions go outside the range [0.0 , 1.0] for the shape keys' *Value*,
             but that has no effect because *Value* is clamped in a *Range* in the *Shape Keys* panel.

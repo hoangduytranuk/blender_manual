@@ -8,7 +8,7 @@ Curve Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Draw Tools --> Curve`
+   :Tool:      :menuselection:`Toolbar --> Curve`
 
 The Curve tool create complex Bézier style curves.
 

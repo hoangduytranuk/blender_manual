@@ -11,7 +11,7 @@ Display
 
 You can set the editors display options in this panel.
 
-.. figure:: /images/editors_image_display-panel_panel.png
+.. figure:: /images/editors_image_view-tab_panel.png
    :align: right
 
    Display panel.

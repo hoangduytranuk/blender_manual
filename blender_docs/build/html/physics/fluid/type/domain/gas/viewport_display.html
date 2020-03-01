@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -224,39 +224,105 @@
            <div itemprop="articleBody">
             
   <div class="section" id="viewport-display">
-<span id="bpy-types-fluiddomainsettings-slice-per-voxel"></span><span id="bpy-types-fluiddomainsettings-slice-depth"></span><span id="bpy-types-fluiddomainsettings-slice-axis"></span><span id="bpy-types-fluiddomainsettings-axis-slice-method"></span><span id="bpy-types-fluiddomainsettings-slice-method"></span><span id="bpy-types-fluiddomainsettings-display"></span><h1>Viewport Display<a class="headerlink" href="#viewport-display" title="Permalink to this headline">¶</a></h1>
-<p>Todo.</p>
+<h1>Viewport Display<a class="headerlink" href="#viewport-display" title="Permalink to this headline">¶</a></h1>
+<dl class="simple" id="bpy-types-fluiddomainsettings-display-thickness">
+<dt>Thickness</dt><dd><p>Factor that scales the thickness of the grid that is currently being displayed.</p>
+</dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-slice-method">
+<dt>Slicing</dt><dd><p>How to slice the volume for viewport rendering.</p>
 <dl class="simple">
-<dt>Thickness</dt><dd><p>Todo.</p>
+<dt>View</dt><dd><p>Slice the volume parallel to the view plane.</p>
 </dd>
-<dt>Slicing</dt><dd><p>Todo.</p>
+<dt>Axis</dt><dd><p>Slice the volume parallel to the major axis.</p>
 </dd>
-<dt>Method</dt><dd><p>Todo.</p>
+</dl>
 </dd>
-<dt>Axis</dt><dd><p>Todo.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-axis-slice-method">
+<dt>Method</dt><dd><dl class="simple">
+<dt>Full</dt><dd><p>Slice the whole domain object.</p>
 </dd>
-<dt>Position</dt><dd><p>Todo.</p>
+<dt>Single</dt><dd><p>Perform a single slice of the domain object.</p>
 </dd>
-<dt>Slice Per Voxel</dt><dd><p>Todo.</p>
+</dl>
 </dd>
-<dt>Interpolation</dt><dd><p>Todo.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-slice-axis">
+<dt>Axis</dt><dd><dl class="simple">
+<dt>Auto</dt><dd><p>Adjust slice direction according to the view direction.</p>
+</dd>
+<dt>X/Y/Z</dt><dd><p>Slice along the X/Y/Z axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-slice-depth">
+<dt>Position</dt><dd><p>Position of the slice relative to the length of the respective domain side.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-slice-per-voxel">
+<dt>Slice Per Voxel</dt><dd><p>Determines how many slices per voxel should be generated.</p>
+</dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-display-interpolation">
+<dt>Interpolation</dt><dd><p>Interpolation method to use for the visualization of the fluid grid.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Linear</dt><dd><p>Linear interpolation between voxels. Gives good smoothness and speed.</p>
+</dd>
+<dt>Cubic</dt><dd><p>Cubic interpolation between voxels. Gives smoothed high quality interpolation, but is slower.</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd>
 </dl>
 <div class="section" id="color-mapping">
-<span id="bpy-types-fluiddomainsettings-coba-field"></span><span id="bpy-types-fluiddomainsettings-use-color-ramp"></span><h2>Color Mapping<a class="headerlink" href="#color-mapping" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
-<dl class="simple">
-<dt>Field</dt><dd><p>Todo.</p>
+<span id="bpy-types-fluiddomainsettings-use-color-ramp"></span><h2>Color Mapping<a class="headerlink" href="#color-mapping" title="Permalink to this headline">¶</a></h2>
+<p>Use a specific color map for the visualization of the simulation field.
+This comes in handy during debugging or when making more advanced
+adjustments to the simulation. For instance, if the actual color of
+a fire simulation is barely visible in the viewport then changing
+the color profile can help to see the real size of the flame.</p>
+<dl id="bpy-types-fluiddomainsettings-coba-field">
+<dt>Field</dt><dd><p>The simulation field used in the display options (e.g. density, fuel, heat).</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Comparison of a fire simulation with and without color mapping.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
+<img alt="../../../../../_images/physics_fluid_type_domain_gas_viewport-display_colormapping-1.png" src="../../../../../_images/physics_fluid_type_domain_gas_viewport-display_colormapping-1.png" />
+<p class="caption"><span class="caption-text">Slice view of &quot;fire&quot; grid without color mapping.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id3">
+<img alt="../../../../../_images/physics_fluid_type_domain_gas_viewport-display_colormapping-2.png" src="../../../../../_images/physics_fluid_type_domain_gas_viewport-display_colormapping-2.png" />
+<p class="caption"><span class="caption-text">Slice view of &quot;fire&quot; grid with color mapping.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 </dd>
 </dl>
 </div>
 <div class="section" id="debug-velocity">
-<span id="bpy-types-fluiddomainsettings-vector-scale"></span><span id="bpy-types-fluiddomainsettings-vector-display-type"></span><span id="bpy-types-fluiddomainsettings-show-velocity"></span><h2>Debug Velocity<a class="headerlink" href="#debug-velocity" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
-<dl class="simple">
-<dt>Display As</dt><dd><p>Todo.</p>
+<span id="bpy-types-fluiddomainsettings-show-velocity"></span><h2>Debug Velocity<a class="headerlink" href="#debug-velocity" title="Permalink to this headline">¶</a></h2>
+<p>Visualization options for the velocity field.</p>
+<dl class="simple" id="bpy-types-fluiddomainsettings-vector-display-type">
+<dt>Display As</dt><dd><dl class="simple">
+<dt>Streamlines</dt><dd><p>Choose to display the velocity vectors as &quot;Streamlines&quot;.</p>
 </dd>
-<dt>Scale</dt><dd><p>Todo.</p>
+<dt>Needle</dt><dd><p>Choose to display the velocity vectors as &quot;Needles&quot;.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-vector-scale">
+<dt>Scale</dt><dd><p>Scale the velocity vectors by this size in the viewport.</p>
 </dd>
 </dl>
 </div>
@@ -299,7 +365,7 @@
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

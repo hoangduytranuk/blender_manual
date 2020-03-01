@@ -8,7 +8,7 @@ As well as images and movies the VSE can also edit audio tracks.
 You can add Waveform Audio format ``WAV``, ``mp3`` and other audio formats files from your drive,
 or from sound encoded within a movie, and mix them using an F-curve as a volume control.
 
-.. figure:: /images/sequencer_sequencer_strips_sound_editing.png
+.. figure:: /images/video-editing_sequencer_strips_sound_editing.png
 
    Example of sound editing.
 

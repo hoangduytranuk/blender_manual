@@ -3,7 +3,7 @@
 Brush Settings
 **************
 
-.. figure:: /images/sculpt-paint_texture-paint_tools_brush-settings.png
+.. figure:: /images/sculpt-paint_texture-paint_tool-settings_brush-settings_popover.png
    :align: right
 
    Brush settings.

@@ -54,6 +54,6 @@ This strip has no options.
 Example
 =======
 
-.. figure:: /images/sequencer_sequencer_strips_effects_multiply_example.png
+.. figure:: /images/video-editing_sequencer_strips_effects_multiply_example.png
 
    Multiply Effect.

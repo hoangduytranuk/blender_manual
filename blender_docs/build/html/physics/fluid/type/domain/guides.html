@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -222,7 +222,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="guides">
-<span id="bpy-types-fluiddomainsettings-guide-parent"></span><span id="bpy-types-fluiddomainsettings-guide-source"></span><span id="bpy-types-fluiddomainsettings-guide-vel-factor"></span><span id="bpy-types-fluiddomainsettings-guide-beta"></span><span id="bpy-types-fluiddomainsettings-guide-alpha"></span><span id="bpy-types-fluiddomainsettings-use-guide"></span><h1>Guides<a class="headerlink" href="#guides" title="Permalink to this headline">¶</a></h1>
+<span id="bpy-types-fluiddomainsettings-use-guide"></span><h1>Guides<a class="headerlink" href="#guides" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -239,37 +239,60 @@ but also seek to preserve the physically accurate flow of the fluid.
 The <em>Guides</em> panel allows you to adjust guiding forces globally, i.e. for the entire domain.
 Enabling the guides hints the fluid solver to use the more accurate,
 but also computationally more expensive pressure solving step.</p>
-<div class="admonition note">
-<p class="admonition-title">Ghi chú</p>
 <p>Even when there are no guiding objects baked or there is no guiding domain attached,
 the fluid solver will still perform the more expensive pressure guiding algorithm
-if guiding is enabled.</p>
+if guiding is enabled. It is
+therefore recommended to only enable <em>Guides</em> when there is a clear intention to use guiding in the
+simulation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>Fluid guiding is an implementation of
+<a class="reference external" href="https://ge.in.tum.de/publications/2017-cgf-eckert/">Primal-Dual Optimization for Fluids</a>.</p>
 </div>
-<dl class="simple">
+<dl class="simple" id="bpy-types-fluiddomainsettings-guide-alpha">
 <dt>Weight</dt><dd><p>Controls the lag of the guiding. A larger value (also known as the 'alpha' guiding value)
 results in a greater lag.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-guide-beta">
 <dt>Size</dt><dd><p>This setting determines the size of the vortices that the guiding produces.
 A greater guiding size (also known as the blur radius or 'beta' guiding value)
 results in larger vortices.</p>
 </dd>
 </dl>
-<iframe src="https://www.youtube.com/embed/92--xX6q7w0" style="border: 0; height: 345px; width: 560px">
-</iframe><dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-guide-vel-factor">
 <dt>Velocity Factor</dt><dd><p>All guiding velocities are multiplied by this factor. That is, every cell of the guiding grid,
 which has the same size as the domain object, is multiplied by this factor.</p>
 </dd>
-<dt>Velocity Source</dt><dd><p>Guiding velocities can either come from objects that move inside the domain
-or from other fluid domains. Former need to be declared as fluid <em>Effector</em> objects
-and baked, usually after animating them by hand. Latter can be selected with
-the selection tool but need to be baked already.</p>
-<p>Once effector objects have been baked it is not possible to change the fluid domain resolution anymore.
-When using another fluid domain as the guiding source,
-this domain can have a different resolution and may also be of a different type
-(e.g. the guiding domain is of type <em>Gas</em> while the actual domain with the guiding effect
-in it is of type <em>Liquid</em>).</p>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-guide-source">
+<dt>Velocity Source</dt><dd><p>Guiding velocities can either come from objects that move inside the domain or from other fluid
+domains.</p>
+<dl>
+<dt>Effector</dt><dd><p>All effector objects inside the domain will be considered for the global guiding velocity grid.
+Once effector objects have been baked it is not possible to change the fluid domain resolution
+anymore.</p>
 </dd>
+<dt>Domain</dt><dd><p>When using another fluid domain as the guiding velocity source this domain may have a different
+resolution and may also be of a different type (e.g. the guiding domain is of type <em>Gas</em>
+while the actual domain with the guiding effect in it is of type <em>Liquid</em>).</p>
+<p>In order to use a domain as the velocity source, this domain needs to be baked already.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-guide-parent">
 <dt>Guide parent</dt><dd><p>When using <em>Domain</em> as the velocity source, this field serves to select the guiding domain object.</p>
+</dd>
+</dl>
+<span id="bpy-ops-fluid-bake-guides"></span><dl id="bpy-ops-fluid-free-guides">
+<dt>Bake Guides, Free Guides</dt><dd><p>This option is only available when using the <a class="reference internal" href="cache.html#bpy-types-fluiddomainsettings-cache-type"><span class="std std-ref">Modular</span></a> cache type
+and when using <em>Effector</em> as the <a class="reference internal" href="#bpy-types-fluiddomainsettings-guide-source"><span class="std std-ref">Velocity Source</span></a>.
+<em>Bake Guides</em> writes vertex velocities of effector objects to drive.
+It is meant to be used before baking the fluid simulation.</p>
+<p>The progress will be displayed in the status bar. Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> will pause the simulation.</p>
+<p>Once the simulation has been baked, the cache can be deleted by pressing <em>Free Guides</em>.
+It is possible to pause or resume a <em>Bake Guides</em> process.</p>
 </dd>
 </dl>
 </div>
@@ -311,7 +334,7 @@ in it is of type <em>Liquid</em>).</p>
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

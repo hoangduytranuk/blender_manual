@@ -55,6 +55,12 @@ From radius
 Vertex Group
    If set, restrict the effect to the only vertices in that vertex group.
    This allows selective, real-time casting, by painting vertex weights.
+
+   Invert ``<->``
+      Inverts the influence of the selected vertex group, meaning that the group
+      now represents vertices that will not be deformed by the modifier.
+
+      The setting reverses the weight values of the group.
 Control Object
    The name of an object to control the effect.
    The location of this object's origin defines the center of the projection.

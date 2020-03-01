@@ -114,7 +114,7 @@ Opening Images
 ==============
 
 Relative Path
-   Sets the file path to be relative to the currently open blend-file.
+   Sets the file path to be relative to the currently opened blend-file.
 
    See :ref:`files-blend-relative_paths`.
 Detect Sequences

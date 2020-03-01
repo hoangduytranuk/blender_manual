@@ -11,3 +11,4 @@
    inset.rst
    spin.rst
    screw.rst
+   poly_build.rst

@@ -40,7 +40,7 @@ will only show the background, and an *Opacity* of 1.0 will completely override 
 Example
 =======
 
-.. figure:: /images/sequencer_sequencer_strips_effects_alpha-over-under-overdrop_example.png
+.. figure:: /images/video-editing_sequencer_strips_effects_alpha-over-under-overdrop_example.png
 
    Alpha Over Effect.
 

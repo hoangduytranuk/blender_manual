@@ -64,7 +64,7 @@ Stroke Method :kbd:`E`
          To confirm and execute the curved stroke,
          press :kbd:`Return` or use the Draw Curve button.
 
-Spacing Distance :guilabel:`Sculpt Mode Only`:
+Spacing Distance :guilabel:`Sculpt Mode Only`
    Method used to calculate the distance to generate a new brush step.
 
    View

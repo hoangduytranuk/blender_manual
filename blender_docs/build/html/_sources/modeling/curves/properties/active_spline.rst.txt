@@ -25,11 +25,11 @@ Cyclic U
 
    .. list-table::
 
-      * - .. figure:: /images/modeling_curves_properties_data_nurbs-default.png
+      * - .. figure:: /images/modeling_curves_properties_active-spline_nurbs-default.png
 
              Default NURBS curve.
 
-        - .. figure:: /images/modeling_curves_properties_data_nurbs-cyclic.png
+        - .. figure:: /images/modeling_curves_properties_active-spline_nurbs-cyclic.png
 
              A NURBS curve with Cyclic applied.
 
@@ -43,7 +43,7 @@ Smooth
 Poly
 ====
 
-.. figure:: /images/modeling_curves_properties_data_active-spline-panel-poly.png
+.. figure:: /images/modeling_curves_properties_active-spline_panel-poly.png
 
    Active Spline panel: Poly Spline.
 
@@ -59,7 +59,7 @@ Smooth
 Bézier
 ======
 
-.. figure:: /images/modeling_curves_properties_data_active-spline-panel-bezier.png
+.. figure:: /images/modeling_curves_properties_active-spline_panel-bezier.png
    :align: center
 
    Active Spline panel: Bézier Spline.
@@ -90,7 +90,7 @@ While you cannot edit the knot vectors directly,
 you can influence them through the *Endpoint* and *Bézier* options in the Active Spline panel.
 Note that, the *Endpoint* and *Bézier* settings only apply to open NURBS curves.
 
-.. figure:: /images/modeling_curves_properties_data_active-spline-panel-nurbs.png
+.. figure:: /images/modeling_curves_properties_active-spline_panel-nurbs.png
    :align: center
 
    Active Spline: NURBS Spline.
@@ -109,11 +109,11 @@ Endpoint U
 
    .. list-table::
 
-      * - .. figure:: /images/modeling_curves_properties_data_nurbs-default.png
+      * - .. figure:: /images/modeling_curves_properties_active-spline_nurbs-default.png
 
              Default NURBS curve.
 
-        - .. figure:: /images/modeling_curves_properties_data_nurbs-endpoint.png
+        - .. figure:: /images/modeling_curves_properties_active-spline_nurbs-endpoint.png
 
              A NURBS curve with Endpoint enabled.
 
@@ -127,11 +127,11 @@ Order U
 
    .. list-table::
 
-      * - .. figure:: /images/modeling_curves_properties_data_nurbs-default.png
+      * - .. figure:: /images/modeling_curves_properties_active-spline_nurbs-default.png
 
              NURBS curves with orders of 4.
 
-        - .. figure:: /images/modeling_curves_properties_data_nurbs-order.png
+        - .. figure:: /images/modeling_curves_properties_active-spline_nurbs-order.png
 
              NURBS curves with orders of 2.
 

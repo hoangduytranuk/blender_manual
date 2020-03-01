@@ -80,7 +80,6 @@ To give an example, here is the simplest possible add-on::
    is a function to unload anything setup by ``register``,
    this is called when the add-on is disabled.
 
-
 Notice this add-on does not do anything related to Blender
 (the :mod:`blender_api:bpy` module is not imported for example).
 
@@ -218,14 +217,11 @@ can be run in the same way as described in the `previous section <Write the Add-
 When the add-on is enabled, Blender executes the code and runs the ``register()`` function.
 When the add-on is disabled, Blender runs the ``unregister()`` function.
 
-
 .. note::
 
    The destination of the add-on depends on your Blender configuration.
    When installing an add-on the source and destination paths are printed in the console.
-   You can also find add-on path locations by running this in the Python Console.
-
-   .. code-block:: python
+   You can also find add-on path locations by running this in the Python Console::
 
       import addon_utils
       print(addon_utils.paths())
@@ -414,7 +410,6 @@ For this example we'll add to an existing menu.
 
 To find the identifier of a menu, first enable *Python Tooltips* in the preferences.
 Then you can hover your mouse over the menu item and the identifier is displayed.
-
 
 The method used for adding a menu item is to append a draw function into an existing class::
 

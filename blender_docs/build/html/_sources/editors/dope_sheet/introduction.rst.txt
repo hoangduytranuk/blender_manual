@@ -153,10 +153,6 @@ Here you find the menus, a first group of controls related to the editor "mode",
 a second one concerning the action data-blocks, and a few other tools
 (like the copy/paste buttons, and snapping type).
 
-Summary
-   Toggles the "Dope Sheet Summary" channel at the top of the `Channels Region`_.
-   This is used to give an overview of all the channels by combining all the actions into one channel.
-
 
 .. _dope-sheet-view-menu:
 
@@ -209,7 +205,7 @@ Make Markers Local
    Available in :doc:`Action </editors/dope_sheet/action>` and :doc:`Shape Key </editors/dope_sheet/shape_key>` modes.
    Converts selected scene markers in pose markers, assigning them to the active action.
 
-For more information and the description of the other marker tools
+For more information and the description of the other marker tools,
 see :ref:`Editing Markers <animation-markers-editing>`.
 
 
@@ -220,3 +216,40 @@ Keyframe Type :kbd:`R`
    Sets the :ref:`keyframe-type` of the selected keyframes.
 
 See :doc:`F-Curve </editors/graph_editor/fcurves/index>`.
+
+
+.. _bpy.types.DopeSheet.show_summary:
+
+Filters
+^^^^^^^
+
+Only Selected
+   Only include keyframes related to the selected objects and data.
+Display Hidden
+   Include keyframes from objects/bones that are not visible.
+Show Errors
+   Only include curves and drivers that are disabled or have errors.
+   Useful for debugging.
+
+F-Curve Name Filter
+   Fuzzy/Multi-Word name filtering matches word snippets/partial words,
+   instead of having to match everything. It breaks down the search string based on white-space placement.
+   e.g. "lo ro" will filter all location and rotation, while "lc rt" will *not* work.
+
+Filter by Type
+   Filter curves by property type.
+
+Filtering Collection
+   Select a collection to only show keyframes from objects contained in that collection.
+
+Sort Data-Blocks
+   Objects data-blocks appear in alphabetical order, so that it is easier to find where they occur
+   (as well as helping to keep the animation of related objects together in the NLA for instance).
+
+   If you find that your playback speed suffers from this being enabled
+   (it should only really be an issue when working with lots of objects in the scene),
+   you can turn this off.
+
+Summary
+   Toggles the "Dope Sheet Summary" channel at the top of the `Channels Region`_.
+   This is used to give an overview of all the channels by combining all the actions into one channel.

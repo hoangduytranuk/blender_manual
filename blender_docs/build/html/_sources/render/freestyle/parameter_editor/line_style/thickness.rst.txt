@@ -5,7 +5,7 @@ Thickness
 
 Controls the thickness of the Freestyle strokes.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_tabs_thickness.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_thickness_tab.png
    :align: center
    :width: 50%
 

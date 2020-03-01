@@ -34,6 +34,15 @@ To
    The object defining the destination transformation of the warp.
 Preserve Volume
    Enables volume preservation when rotating one of the transforms.
+Vertex Group
+   The name of a vertex group which is used to control the influence of the modifier.
+   If left empty, the modifier affects all vertices equally.
+
+   Invert ``<->``
+      Inverts the influence of the selected vertex group, meaning that the group
+      now represents vertices that will not be deformed by the modifier.
+
+      The setting reverses the weight values of the group.
 Strength
    Sets how strong the effect is.
 Radius
@@ -42,9 +51,9 @@ Falloff Type
    Sets the way the strength of the warp change as it goes from the center of the transform to the *Radius* value.
    See :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`
    for descriptions of the falloff types.
-
-You can finely control which vertices are affected by the warp, and to what extent,
-using a vertex group and/or a texture.
+Texture
+   You can finely control which vertices are affected by the warp,
+   and to what extent, using a texture.
 
 See :ref:`common masking options <modifiers-common-options-masking>` for a complete reference.
 

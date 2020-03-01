@@ -18,7 +18,7 @@ with marker position with a dashed line.
 
 :kbd:`S` scales the whole marker.
 The whole pattern area only will be scaled by pressing :kbd:`S` twice;
-The Pattern can also be rotated using the :kbd:`R` button which, depending on the used pivot point,
+The Pattern can also be rotated using the :kbd:`R` key which, depending on the used pivot point,
 will either rotate patterns around their own centers or rotate the whole markers around e.g. the median point.
 
 To match the perspective transformation of a marker on a plane, the individual corners must be edited manually.

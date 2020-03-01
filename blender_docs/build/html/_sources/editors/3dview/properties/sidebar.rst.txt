@@ -115,7 +115,7 @@ If a collection is empty, there is no circle to the left of the collection name.
 Local Collections
    Allows the list of visible collections to be controlled per viewport rather than globally.
 
-Hide in Viewport (Eye Icon)
+Hide in Viewport (eye icon)
    Collections can be hidden in the viewport by clicking on the eye icon.
 
 By clicking directly on the collection names,

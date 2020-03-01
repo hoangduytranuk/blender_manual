@@ -44,6 +44,12 @@ Object
    The name of the curve object that will affect the deformed object.
 Vertex Group
    If set, restrict the effect to the only vertices in that vertex group.
+
+   Invert ``<->``
+      Inverts the influence of the selected vertex group, meaning that the group
+      now represents vertices that will not be deformed by the modifier.
+
+      The setting reverses the weight values of the group.
 Deformation Axis X/Y/Z/-X/-Y/-Z
    This is the axis that the curve deforms along.
 

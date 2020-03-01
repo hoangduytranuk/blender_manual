@@ -14,7 +14,6 @@ Viewport Display Panel
 
       The Display panel.
 
-
 Display As
    This controls the way the bones appear in 3D View; you have four different visualizations you can select.
 

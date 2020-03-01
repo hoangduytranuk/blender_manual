@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kiến Tạo Mô Hình -- Modeling</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
@@ -182,7 +182,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -251,12 +251,21 @@ the <a class="reference internal" href="../../../scene_layout/object/editing/tra
 <img alt="../../../_images/modeling_modifiers_deform_warp_panel.png" src="../../../_images/modeling_modifiers_deform_warp_panel.png" />
 <p class="caption"><span class="caption-text">The Warp modifier.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<dl class="simple">
+<dl>
 <dt>Từ -- From</dt><dd><p>The object defining the origin transformation of the warp.</p>
 </dd>
 <dt>Tới -- To</dt><dd><p>The object defining the destination transformation of the warp.</p>
 </dd>
 <dt>Duy Trì Thể Tích -- Preserve Volume</dt><dd><p>Enables volume preservation when rotating one of the transforms.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>The name of a vertex group which is used to control the influence of the modifier.
+If left empty, the modifier affects all vertices equally.</p>
+<dl>
+<dt>Invert <code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code></dt><dd><p>Inverts the influence of the selected vertex group, meaning that the group
+now represents vertices that will not be deformed by the modifier.</p>
+<p>The setting reverses the weight values of the group.</p>
+</dd>
+</dl>
 </dd>
 <dt>Sức Mạnh/Cường Độ -- Strength</dt><dd><p>Sets how strong the effect is.</p>
 </dd>
@@ -266,9 +275,10 @@ the <a class="reference internal" href="../../../scene_layout/object/editing/tra
 See <a class="reference internal" href="../../../scene_layout/object/editing/transform/control/proportional_edit.html"><span class="doc">Proportional Editing</span></a>
 for descriptions of the falloff types.</p>
 </dd>
+<dt>Texture</dt><dd><p>You can finely control which vertices are affected by the warp,
+and to what extent, using a texture.</p>
+</dd>
 </dl>
-<p>You can finely control which vertices are affected by the warp, and to what extent,
-using a vertex group and/or a texture.</p>
 <p>See <a class="reference internal" href="../common_options.html#modifiers-common-options-masking"><span class="std std-ref">common masking options</span></a> for a complete reference.</p>
 </div>
 <div class="section" id="usage">
@@ -327,7 +337,7 @@ This allows you to deform parts of the mesh without having to make a vertex grou
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

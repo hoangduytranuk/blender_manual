@@ -51,11 +51,11 @@ Perspective
 
          * - .. figure:: /images/render_cameras_traintracks-perspective-BI.jpg
 
-                Perspective camera with 35mm focal length.
+                Perspective camera with 35 mm focal length.
 
            - .. figure:: /images/render_cameras_traintracks-perspective-telephoto-BI.jpg
 
-                Perspective camera with 210mm focal length instead of 35mm.
+                Perspective camera with 210 mm focal length instead of 35 mm.
 
       Lens Unit
          The focal length can be set either in terms of millimeters or the actual :term:`Field of View` as an angle.

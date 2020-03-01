@@ -20,6 +20,6 @@ Size Y
 Example
 =======
 
-.. figure:: /images/sequencer_sequencer_strips_effects_blur_example.png
+.. figure:: /images/video-editing_sequencer_strips_effects_blur_example.png
 
    Gaussian Blur Effect.

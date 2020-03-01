@@ -97,7 +97,6 @@ Development
 
 Only visible when :ref:`Developer Extras <prefs-interface-dev-extras>` are enabled.
 
-
 I18n Branches
    The path to the ``/branches`` directory of your local svn-translation copy, to allow translating from the UI.
 

@@ -24,7 +24,7 @@ Menu Integration is main tools into the Edit Mode context menu, selection tools 
 - Mesh Cut Faces: by Stanislav Blinov (Stan Pancakes)
 - Vertex/Edge/Face Context Menu: by Stanislav Blinov (Stan Pancakes)
 - Edge Roundifier: by Piotr Komisarczyk (komi3D), PKHG
-- PKHG Face Extrude: by PKHG, based of Geodesic Domes add-on "faces function"
+- PKHG Face Extrude: by PKHG, based on Geodesic Domes add-on "faces function"
 - Set Edges Length: by "Giuseppe De Marco [BlenderLab] inspired by NirenYang"
 - Edge Tools: by Paul Marshall (brikbot)
 - Extrude and Reshape: by Germano Cavalcante (mano-wii)

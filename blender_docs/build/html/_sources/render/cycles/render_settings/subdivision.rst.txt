@@ -16,7 +16,6 @@ Subdivision
 
 These settings are used to control :doc:`Adaptive Subdivision </render/cycles/object_settings/adaptive_subdiv>`.
 
-
 Render
    Size of :term:`micropolygons` in pixels.
 Preview

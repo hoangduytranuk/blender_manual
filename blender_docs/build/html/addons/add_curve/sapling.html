@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -180,7 +180,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Blender 2.82 Manual</a>
+          <a href="../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -243,17 +243,17 @@ The method is presented by Jason Weber &amp; Joseph Penn in their paper &quot;Cr
 <div class="section" id="interface">
 <h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="../../_images/addons_add_curve_sapling.jpg"><img alt="../../_images/addons_add_curve_sapling.jpg" src="../../_images/addons_add_curve_sapling.jpg" style="width: 640px;" /></a>
+<a class="reference internal image-reference" href="../../_images/addons_add-curve_sapling_example.jpg"><img alt="../../_images/addons_add-curve_sapling_example.jpg" src="../../_images/addons_add-curve_sapling_example.jpg" style="width: 640px;" /></a>
 </div>
 <p>Located in the <span class="menuselection">3D View ‣ Add ‣ Curve</span> menu.</p>
 </div>
 <div class="section" id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
-<p>Once the tree is created there are eight settings to build your tree.</p>
-<p>When creating your tree it's often best to use the settings in order until your familiar with them.</p>
+<p>Once the tree is created there are eight settings to build your tree.
+When creating your tree it's often best to use the settings in order until your familiar with them.</p>
 <div class="section" id="geometry">
 <h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
-<dl class="simple">
+<dl>
 <dt>Bevel</dt><dd><p>This determines whether the curve should be shown with its full thickness or only the underlying curve.
 Disabled by default to permit rapid feedback on parameter changes.</p>
 </dd>
@@ -268,8 +268,10 @@ Vector type results in fewer vertices but straight segments.
 Auto type smooths the segments but requires more expensive geometry.</p>
 </dd>
 <dt>Shape</dt><dd><p>Governs the distribution of branches in order to effect the overall shape of the tree.</p>
-</dd>
+<dl class="simple">
 <dt>Custom Shape</dt><dd><p>Customize the branch shape along the branch length.</p>
+</dd>
+</dl>
 </dd>
 <dt>Secondary Splits</dt><dd><p>Change the style of secondary branches.</p>
 </dd>
@@ -280,14 +282,17 @@ Auto type smooths the segments but requires more expensive geometry.</p>
 <dt>Random Seed</dt><dd><p>Sets the basis on which all random values for the tree are generated.
 This can be changed to allow different trees with the same basic parameters to be generated.</p>
 </dd>
-<dt>Tree Scale</dt><dd><p>The underlying size of the tree in Blender units.</p>
-</dd>
+<dt>Tree Scale:</dt><dd><p>The underlying size of the tree in Blender units.</p>
+<dl class="simple">
 <dt>Scale Variation</dt><dd><p>The maximum amount that the scale of the tree can vary (up or down) from the value of <em>Scale</em>.</p>
 </dd>
 <dt>Radius Scale</dt><dd><p>The scale of the radius at the base of the tree.</p>
 </dd>
 <dt>Radius Variation</dt><dd><p>The maximum amount that the radius scale of the tree can vary (up or down) from the value of <em>Radius Scale</em>.</p>
 </dd>
+</dl>
+</dd>
+<dt>Preset:</dt><dd><dl class="simple">
 <dt>Preset Name</dt><dd><p>The name of the preset to be exported. This will export all current properties of the tree to
 the Sapling preset folder as a py-file.</p>
 </dd>
@@ -298,26 +303,26 @@ the Sapling preset folder as a py-file.</p>
 <dt>Limit Import</dt><dd><p>This can be used to restrict what geometry is created when a preset is imported.
 If selected, only two levels of branches and no leaves will be generated.</p>
 </dd>
-<dt>Branch splitting</dt><dd><p>There are many variables to explore with branch splitting.</p>
+</dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="branch-radius">
 <h3>Branch Radius<a class="headerlink" href="#branch-radius" title="Permalink to this headline">¶</a></h3>
-<p>This sub menu contains the settings for the branch radius.</p>
-<p>You can adjust the bevel and taper of the branches here.</p>
+<p>This sub menu contains the settings for the branch radius.
+You can adjust the bevel and taper of the branches here.</p>
 </div>
 <div class="section" id="branch-splitting">
 <h3>Branch Splitting<a class="headerlink" href="#branch-splitting" title="Permalink to this headline">¶</a></h3>
-<p>This sub menu contains the settings for branch splitting.</p>
-<p>You can adjust how the branches form and split here.</p>
-<p>Settings include levels, height and angle of the split.</p>
+<p>This sub menu contains the settings for branch splitting.
+You can adjust how the branches form and split here.
+Settings include levels, height and angle of the split.</p>
 </div>
 <div class="section" id="branch-growth">
 <h3>Branch Growth<a class="headerlink" href="#branch-growth" title="Permalink to this headline">¶</a></h3>
-<p>This sub menu contains the settings for branch growth.</p>
-<p>You can adjust how the branches grow here.</p>
-<p>Settings include length, angle and curvature.</p>
+<p>This sub menu contains the settings for branch growth.
+You can adjust how the branches grow here.
+Settings include length, angle and curvature.</p>
 </div>
 <div class="section" id="pruning">
 <h3>Pruning<a class="headerlink" href="#pruning" title="Permalink to this headline">¶</a></h3>
@@ -338,8 +343,8 @@ If selected, only two levels of branches and no leaves will be generated.</p>
 </div>
 <div class="section" id="armature">
 <h3>Armature<a class="headerlink" href="#armature" title="Permalink to this headline">¶</a></h3>
-<p>This sub menu contains the settings to add an armature to your tree.</p>
-<p>It's not recommended to use this function on highly complex trees as it may take time to compute.</p>
+<p>This sub menu contains the settings to add an armature to your tree.
+It's not recommended to use this function on highly complex trees as it may take time to compute.</p>
 <ol class="arabic simple">
 <li><p>Turn of leaves and prune if you have them on.</p></li>
 <li><p>Press the <em>Use Armature</em> checkbox to add the armature to the tree.</p></li>
@@ -350,8 +355,8 @@ If selected, only two levels of branches and no leaves will be generated.</p>
 </div>
 <div class="section" id="animation">
 <h3>Animation<a class="headerlink" href="#animation" title="Permalink to this headline">¶</a></h3>
-<p>This sub menu contains the settings to animate your tree.</p>
-<p>It's recommended to finalize all your settings now.</p>
+<p>This sub menu contains the settings to animate your tree.
+It's recommended to finalize all your settings now.</p>
 <ol class="arabic simple">
 <li><p>You will need to have an armature already created above.</p></li>
 <li><p>Press the <em>Armature Animation</em> checkbox to add the animation to the tree.</p></li>
@@ -432,7 +437,7 @@ If selected, only two levels of branches and no leaves will be generated.</p>
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

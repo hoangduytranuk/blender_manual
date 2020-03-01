@@ -7,7 +7,7 @@ Individual menu Activation. 13 individual menus to choose from.
 Based on Pie menus from sebastian_k, pitiwazou, italic, saidenka, meta-androcto.
 Since there are many hotkey changes each menu can be deactivated in the add-on's preferences.
 
-.. figure:: /images/addons_interface_piemenu.jpg
+.. figure:: /images/addons_interface_viewport-pies_preferences.jpg
    :align: right
    :width: 220px
 

@@ -79,8 +79,8 @@ Menu & Panel Identifiers
 To find the ``name`` of a menu,
 enable the preference :menuselection:`Interface --> Display --> Python Tooltips`.
 
-Then hover the cursor over the popover button or menu item,
-for sub-menus you will need to use the back arrow to prevent the sub-menu from opening and gaining focus.
+Then hover the cursor over the popover button or menu item.
+For sub-menus you will need to use the back arrow to prevent the sub-menu from opening and gaining focus.
 
 
 Key Bindings for Properties

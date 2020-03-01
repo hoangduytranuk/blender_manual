@@ -21,7 +21,7 @@ In the reverse case properties of the materials, which are multi-components
 If used with the *Split by Material* option in the *Stroke* tab,
 the result will not be blurred between materials along the strokes.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_properties_color-material-example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_color_material_example.png
    :width: 50%
    :align: center
 

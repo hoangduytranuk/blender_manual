@@ -335,4 +335,3 @@ Set Face Strength
 
 Use the submenu to pick one of *Weak*, *Medium*, or *Strong*.
 Then this tool changes the Face Strength of currently selected faces to the chosen face strength.
-

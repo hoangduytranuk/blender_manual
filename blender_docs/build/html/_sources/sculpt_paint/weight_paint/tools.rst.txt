@@ -56,7 +56,7 @@ Gradient
    this is useful at times when painting gradual changes in weight becomes difficult.
    Blends the weights of selected vertices with unselected vertices.
 
-   .. figure:: /images/sculpt-paint_weight-paint_weight-tools_gradient.png
+   .. figure:: /images/sculpt-paint_weight-paint_tools_gradient.png
 
       Example of the Gradient tool being used with selected vertices.
 

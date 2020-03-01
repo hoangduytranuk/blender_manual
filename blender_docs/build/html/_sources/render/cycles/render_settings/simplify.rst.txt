@@ -11,6 +11,7 @@ Simplify
 
    :Menu:      :menuselection:`Render --> Simplify`
 
+
 .. rubric:: Common Settings
 
 Max Subdivision

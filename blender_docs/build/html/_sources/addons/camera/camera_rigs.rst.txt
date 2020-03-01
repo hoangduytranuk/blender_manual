@@ -3,7 +3,7 @@
 Add Camera Rigs
 ***************
 
-.. figure:: /images/addons_camera_rigs.png
+.. figure:: /images/addons_camera_camera-rigs_ui.png
    :align: center
 
 This script was designed to add some extended functionality to a camera by creating control rig
@@ -59,7 +59,7 @@ The default collection name and the widget prefix can be set in the preferences 
 (This will not change the name of any existing widgets or collection,
 only ones that are created after you change the setting.)
 
-.. figure:: /images/addons_camera_rigs_user_prefs.png
+.. figure:: /images/addons_camera_camera-rigs_prefs.png
    :align: center
 
 
@@ -90,7 +90,7 @@ Tracking (Aim Lock)
    This slider controls the Track To constraint on the control bone.
    Turn it off and the bone will not point to the aim bone anymore.
 
-.. figure:: /images/addons_camera_rigs_crane_arm.png
+.. figure:: /images/addons_camera_camera-rigs_crane-arm.png
    :align: center
    :width: 240px
 

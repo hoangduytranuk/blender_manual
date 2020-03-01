@@ -3,7 +3,7 @@
 Dynamic Sky
 ***********
 
-.. figure:: /images/addons_lighting_dynamic_sky.jpg
+.. figure:: /images/addons_lighting_dynamic-sky_example.jpg
    :align: center
    :width: 650px
 
@@ -24,7 +24,7 @@ Activation
 Interface
 =========
 
-.. figure:: /images/addons_lighting_dynamic_sky_ui.jpg
+.. figure:: /images/addons_lighting_dynamic-sky_ui.jpg
    :align: right
    :width: 220px
 

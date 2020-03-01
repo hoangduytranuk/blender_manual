@@ -57,7 +57,7 @@ Radius
 Mode
    Determines how the erase tool behaves.
 
-   Soft/Hard
+   Dissolve
       To simulate a raster type eraser, this eraser type
       affects the strength and thickness of the strokes before actually delete a point.
 

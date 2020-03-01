@@ -97,7 +97,7 @@ Instantiate :kbd:`L`
 Thickness :kbd:`D`
    To change the thickness of the pattern. Then move your mouse on the horizontal axis.
 Axis Locking :kbd:`Ctrl`
-   Hold :kbd:`Ctrl`  to constraint axis.
+   Hold :kbd:`Ctrl` to constraint axis.
 
 Brush Type :kbd:`T`
    Difference

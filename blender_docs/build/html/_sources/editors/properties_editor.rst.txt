@@ -62,7 +62,7 @@ Object Data
 -----------
 
 The main tab of that category (often the only one) always has the same name, *Object Data*,
-but its icon will change based of the actual type of the active object.
+but its icon will change based on the actual type of the active object.
 
 
 .. rubric:: Geometry Objects:

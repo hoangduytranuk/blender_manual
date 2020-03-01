@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -221,9 +221,8 @@
             
   <div class="section" id="effector">
 <h1>Effector<a class="headerlink" href="#effector" title="Permalink to this headline">¶</a></h1>
-<p>Effector objects are used to deflect fluids and influence of the fluid flow.
-To define any mesh object as an effector object,
-add fluid physics by clicking <em>Fluid</em> in the <span class="menuselection">Properties ‣ Physics</span> tab.
+<p>Effector objects are used to deflect fluids and influence the fluid flow. To define any mesh object
+as an effector object, add fluid physics by clicking <em>Fluid</em> in <span class="menuselection">Properties ‣ Physics</span>.
 Then select <em>Effector</em> as the fluid <em>Type</em>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Mẹo</p>
@@ -238,31 +237,43 @@ The influence individual force types have can be
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
 <dt class="field-odd">Panel</dt>
-<dd class="field-odd"><p><span class="menuselection">Physics ‣ Fluid -- Settings</span></p>
+<dd class="field-odd"><p><span class="menuselection">Physics ‣ Fluid ‣ Settings</span></p>
 </dd>
 <dt class="field-even">Type</dt>
 <dd class="field-even"><p>Effector</p>
 </dd>
 </dl>
 </div>
-<dl>
-<dt>Effector Type</dt><dd><p>Todo.</p>
-<dl>
-<dt>Collision</dt><dd><p>Todo.</p>
+<dl id="bpy-types-fluideffectorsettings-effector-type">
+<dt>Effector Type</dt><dd><dl>
+<dt>Collision</dt><dd><p>Objects of this type will collide with fluid.</p>
 </dd>
-<dt>Guide</dt><dd><p>Todo.</p>
-<dl>
-<dt>Velocity Factor</dt><dd><p>Todo.</p>
+<dt>Guide</dt><dd><p>The velocity of objects of this type will be used when baking the guiding.
+So fluid guiding objects should move and have some velocity.</p>
+<dl class="simple" id="bpy-types-fluideffectorsettings-velocity-factor">
+<dt>Velocity Factor</dt><dd><p>Multiply the guiding object velocities by this factor. This is useful when working with
+multiple guiding objects and some of them should have higher or smaller velocities.</p>
 </dd>
-<dt>Guide Mode</dt><dd><p>Todo.</p>
+</dl>
+<dl id="bpy-types-fluideffectorsettings-guide-mode">
+<dt>Guide Mode</dt><dd><p>The mode describes how guiding velocities should be written into the global guiding velocity
+field of the domain.</p>
 <dl class="simple">
-<dt>Maximize</dt><dd><p>Todo.</p>
+<dt>Maximize</dt><dd><p>The guiding object will compare the existing velocity in the global velocity field with
+its own velocity. If its absolute value is greater than the absolute value in the velocity
+field the guiding velocity will be kept.</p>
 </dd>
-<dt>Minimize</dt><dd><p>Todo.</p>
+<dt>Minimize</dt><dd><p>A guiding object will compare the existing velocity in the global velocity field with its
+own velocity. If its absolute value is smaller than the absolute value in the velocity
+field the guiding velocity will be kept.</p>
 </dd>
-<dt>Override</dt><dd><p>Todo.</p>
+<dt>Override</dt><dd><p>The most intuitive option. A guiding object will always
+write its own current velocity into the global guiding velocity field.
+Values in the velocity field from a previous frame or guiding object
+will be overridden.</p>
 </dd>
-<dt>Averaged</dt><dd><p>Todo.</p>
+<dt>Averaged</dt><dd><p>A guiding object will write the average of its own current velocity and the existing
+guiding velocity at that cell into the global guiding velocity field.</p>
 </dd>
 </dl>
 </dd>
@@ -270,10 +281,16 @@ The influence individual force types have can be
 </dd>
 </dl>
 </dd>
+</dl>
+<dl id="bpy-types-fluideffectorsettings-use-plane-init">
 <dt>Is Planar</dt><dd><p>Defines the effector as either a single dimension object i.e. a plane or the mesh is <a class="reference internal" href="../../../glossary/index.html#term-non-manifold"><span class="xref std std-term">non-manifold</span></a>.
 This ensures that the fluid simulator will give the most accurate results for these types of meshes.</p>
+<p>A <a class="reference internal" href="../../../glossary/index.html#term-manifold"><span class="xref std std-term">manifold</span></a> mesh can also be declared as planar. The fluid solver will then ignore the volume
+inside the mesh and just emit fluid from the mesh sides.</p>
 </dd>
-<dt>Surface Thickness</dt><dd><p>Todo.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluideffectorsettings-surface-distance">
+<dt>Surface Thickness</dt><dd><p>Additional area around the effector that will be considered as an effector.</p>
 </dd>
 </dl>
 </div>
@@ -316,7 +333,7 @@ This ensures that the fluid simulator will give the most accurate results for th
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

@@ -23,7 +23,7 @@ Append and Link
 changes made there will be reflected in the referencing file the next time it is reloaded.
 But linked data is not editable (to some extent, see :ref:`object-proxy`).
 
-*Append* makes a full copy of the data into your blend-file, without keeping any reference to original one.
+*Append* makes a full copy of the data into your blend-file, without keeping any reference to the original one.
 You can make further edits to your local copy of the data,
 but changes in the external source file will not be reflected in the referencing file.
 
@@ -91,7 +91,6 @@ Broken Library
 
 While loading a blend-file, if Blender cannot find a library,
 it will create placeholder data-blocks to replace missing linked ones.
-
 That way, references to the missing data is not lost, and by relocating the missing library,
 the lost data can be automatically restored.
 
@@ -144,7 +143,6 @@ Circular Dependencies
 ---------------------
 
 In general, dependencies should not go in both directions.
-
 Attempting to link or append data which links back to the current file will likely result in missing links.
 
 
@@ -153,7 +151,6 @@ Object Rigid Body Constraints
 
 When linking objects *directly* into a blend-file, the *Rigid Body* settings
 **will not** be linked in since they are associated with their scene's world.
-
 As an alternative, you could link in the entire scene and set it as a :ref:`Background Set <scene-background-set>`.
 
 

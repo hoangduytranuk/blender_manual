@@ -63,7 +63,6 @@ Linked Duplicates
    :class: refbox
 
    :Mode:      Object Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Edit --> Duplicate Linked`
    :Menu:      :menuselection:`Object --> Duplicate Linked`
    :Hotkey:    :kbd:`Alt-D`
 

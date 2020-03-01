@@ -46,7 +46,7 @@ Image
 Example
 =======
 
-.. figure:: /images/render_output_multiview_usage_compositor.png
+.. figure:: /images/render_output_stereoscopy_usage_compositor.png
 
    Compositor, Backdrop and Split Viewer Node.
 

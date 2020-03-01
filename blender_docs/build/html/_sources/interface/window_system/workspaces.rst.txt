@@ -40,7 +40,7 @@ and contains the following :doc:`/editors/index`:
 - Properties editor on bottom right.
 - Timeline on bottom left.
 
-.. figure:: /images/interface_window-system_introduction_layout-workspace.png
+.. figure:: /images/interface_window-system_workspaces_layout.png
    :align: center
 
    Blender's Layout Workspace with four editors.

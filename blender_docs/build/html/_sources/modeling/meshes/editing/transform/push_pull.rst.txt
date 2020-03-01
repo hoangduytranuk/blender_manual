@@ -9,8 +9,8 @@ Push/Pull
    :class: refbox
 
    :Mode:      Object and Edit Modes
-   :Tool:      :menuselection:`Toolbar --> Tools --> Transform --> Push/Pull`
-   :Menu:      :menuselection:`Object/Mesh --> Transform --> Push Pull`
+   :Tool:      :menuselection:`Toolbar --> Shrink/Flatten --> Push/Pull`
+   :Menu:      :menuselection:`Object/Mesh --> Transform --> Push/Pull`
 
 .. figure:: /images/modeling_meshes_editing_transform_push-pull_operator-panel.png
    :align: right

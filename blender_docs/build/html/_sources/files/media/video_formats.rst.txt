@@ -44,7 +44,7 @@ AVI Raw
 FFmpeg video
    FFmpeg codec compression. Which codecs are available depends on the operating system and FFmpeg version.
    This options allows for a lot of different encodings, some presets are available
-   (to the right of the *Encoding* sub-panel) to help getting started.
+   (to the right of the *Encoding* sub-panel) to help with getting started.
    This option is also the only one allowing to export audio.
 
 
@@ -99,7 +99,7 @@ FFmpeg Containers
 FFmpeg Video Codecs
 ===================
 
-Those options are not available with all :ref:`Containers <files-video-containers>`.
+These options are not available with all :ref:`Containers <files-video-containers>`.
 
 No Video
    For audio-only encoding.
@@ -130,7 +130,7 @@ No Video
    Inherits many of the features of MPEG-1 and MPEG-2 and other related standards, and adds new features.
 `PNG <https://en.wikipedia.org/wiki/Portable_Network_Graphics>`__
    Lossless, this stores each frame as an independent image in the video stream.
-   Compression will be poor, but as every frame is fully safe-contend, scrubbing and editing can be simpler.
+   Compression will be poor, but as every frame is fully self-contained, scrubbing and editing can be simpler.
    Supports an alpha channel.
 `QT rle / QT Animation <https://en.wikipedia.org/wiki/QuickTime_Animation>`__
    Original format of QuickTime videos. Supports an alpha channel.

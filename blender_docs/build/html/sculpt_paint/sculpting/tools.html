@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Sculpting &amp; Painting</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
@@ -165,7 +165,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Blender 2.82 Manual</a>
+          <a href="../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -217,7 +217,7 @@
   <div class="section" id="sculpting-tools">
 <h1>Sculpting Tools<a class="headerlink" href="#sculpting-tools" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right">
-<img alt="../../_images/sculpt-paint_sculpting_toolbar_index_brushes.png" src="../../_images/sculpt-paint_sculpting_toolbar_index_brushes.png" />
+<img alt="../../_images/sculpt-paint_sculpting_tools_brushes.png" src="../../_images/sculpt-paint_sculpting_tools_brushes.png" />
 </div>
 <dl>
 <dt>Draw <kbd class="kbd docutils literal notranslate">X</kbd></dt><dd><p>Moves vertices inward or outward,
@@ -248,11 +248,11 @@ will reset the depth and paint on top of the previous stroke.</p>
 except that vertices in <em>Inflate</em> mode are displaced in the direction of their own normals.</p>
 </dd>
 <dt>Blob</dt><dd><p>Pushes mesh outward or inward into a spherical shape with settings to
-control the amount of pinching at the edge of the sphere.</p>
+control the amount of magnification at the edge of the sphere.</p>
 </dd>
 <dt>Crease <kbd class="kbd docutils literal notranslate">Shift-C</kbd></dt><dd><p>Creates sharp indents or ridges by pushing or pulling the mesh, while pinching the vertices together.</p>
 </dd>
-<dt>Smooth <kbd class="kbd docutils literal notranslate">S</kbd></dt><dd><p>As the name suggests, eliminates irregularities in the area of the mesh within the brush's
+<dt>Smooth <kbd class="kbd docutils literal notranslate">S</kbd></dt><dd><p>Eliminates irregularities in the area of the mesh within the brush's
 influence by smoothing the positions of the vertices.</p>
 </dd>
 <dt>Flatten <kbd class="kbd docutils literal notranslate">Shift-T</kbd></dt><dd><p>The <em>Flatten</em> brush determines an &quot;area plane&quot;
@@ -293,19 +293,50 @@ and the angle they form instead of the cursor while performing the stroke.</p>
 </dd>
 </dl>
 </dd>
-<dt>Pinch/Magnify <kbd class="kbd docutils literal notranslate">P</kbd></dt><dd><p>Pulls vertices towards the center of the brush.
+<dt>Pinch <kbd class="kbd docutils literal notranslate">P</kbd></dt><dd><p>Pulls vertices towards the center of the brush.
 The inverse setting is <em>Magnify</em>, in which vertices are pushed away from the center of the brush.</p>
 </dd>
-<dt>Grab <kbd class="kbd docutils literal notranslate">G</kbd></dt><dd><p>Used to drag a group of points around. Unlike the other brushes,
+<dt>Grab <kbd class="kbd docutils literal notranslate">G</kbd></dt><dd><p>Used to drag a group of vertices around. Unlike the other brushes,
 <em>Grab</em> does not modify different points as the brush is dragged across the model.
 Instead, <em>Grab</em> selects a group of vertices on mouse-down, and pulls them to follow the mouse.
 The effect is similar to moving a group of vertices in Edit Mode with Proportional Editing enabled,
 except that <em>Grab</em> can make use of other Sculpt Mode options (like textures and symmetry).</p>
+<dl>
+<dt>Grab Active Vertex</dt><dd><p>Snaps the maximum strength of the brush to the highlighted active vertex,
+making it easier to manipulate low poly models or meshes with subdivision surfaces.</p>
+<p>Enabling <em>Grab Active Vertex</em> also enables a dynamic mesh preview which
+generates a preview of vertices connected to om the active vertex.
+This helps to visualize the real geometry that is being manipulating while sculpting with active modifiers.</p>
+</dd>
+</dl>
+</dd>
+<dt>Elastic Deform</dt><dd><p>Used to simulate realistic deformations such as grabbing or twisting of <a class="reference internal" href="../../glossary/index.html#term-elastic"><span class="xref std std-term">Elastic</span></a> objects.
+For example, this tool works great for modeling the shape of flesh like objects such as humans or animals.
+When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, the brush deforms vertices along the normal of the active vertex.</p>
+<dl>
+<dt>Deformation</dt><dd><p>The surface alteration that is used in the brush.</p>
+<dl class="simple">
+<dt>Grab</dt><dd><p>Used to drag a group of vertices around.</p>
+</dd>
+<dt>Bi-scale Grab</dt><dd><p>Similar to <em>Grab</em> but the falloff is more localized to the center of the brush.</p>
+</dd>
+<dt>Tri-scale Grab</dt><dd><p>Similar to <em>Bi-scale Grab</em> but the falloff is more localized to the center of the brush.</p>
+</dd>
+<dt>Scale</dt><dd><p>Displaces vertices away from the active vertex.</p>
+</dd>
+<dt>Twist</dt><dd><p>Vertices are rotated around the active vertex.</p>
+</dd>
+</dl>
+</dd>
+<dt>Volume Preservation</dt><dd><p>Poisson ratio for elastic deformation.
+Higher values preserve volume more, but also lead to more bulging.</p>
+</dd>
+</dl>
 </dd>
 <dt>Snake Hook <kbd class="kbd docutils literal notranslate">K</kbd></dt><dd><p>Pulls vertices along with the movement of the brush to create long, snake-like forms.</p>
 <dl class="simple">
-<dt>Pinch</dt><dd><p>The <em>Snake Hook</em> brush tends to loose volume along the stroke,
-with pinch &gt; 0.5 it's possible to sculpt shapes without loosing volume.</p>
+<dt>Magnify</dt><dd><p>The <em>Snake Hook</em> brush tends to loose volume along the stroke,
+with <em>Magnify</em> value greater than 0.5 it's possible to sculpt shapes without loosing volume.</p>
 </dd>
 <dt>Rake</dt><dd><p>A factor to support moving the mesh with rotation following the cursor's motion.</p>
 </dd>
@@ -360,15 +391,44 @@ See also the options of the <a class="reference internal" href="hide_mask.html#s
 </dd>
 </dl>
 </dd>
-<dt>Mesh Filter</dt><dd><p>Todo</p>
+<dt>Mesh Filter</dt><dd><p>Applies a deformation to all vertices in the mesh at the same time.
+To use this tool, simply click and drag away from the object to have a positive effect
+and click and drag towards the mesh to have a negative effect.</p>
 <dl class="simple">
 <dt>Filter Type</dt><dd><dl class="simple">
+<dt>Smooth</dt><dd><p>Eliminates irregularities of the mesh by making the positions of the vertices more uniform.
+This filter works similar to the <em>Smooth Brush</em>.</p>
+</dd>
+<dt>Scale</dt><dd><p>Increases the size of the mesh.
+This filter works similar to the <a class="reference internal" href="../../scene_layout/object/editing/transform/basics.html#bpy-ops-transform-resize"><span class="std std-ref">Scale Transform</span></a>.</p>
+</dd>
+<dt>Inflate</dt><dd><p>Displaces vertices uniformly along their normal.
+This filter works similar to the <em>Inflate Brush</em>.</p>
+</dd>
+<dt>Sphere</dt><dd><p>Morphs the mesh to progressively look more like a sphere.
+This filter works similar to the <a class="reference internal" href="../../modeling/meshes/editing/transform/to_sphere.html#bpy-ops-transform-tosphere"><span class="std std-ref">To Sphere Transform</span></a>.</p>
+</dd>
+<dt>Random</dt><dd><p>Randomly moves vertices along the vertex normal.
+This filter works similar to the <a class="reference internal" href="../../scene_layout/object/editing/transform/tools.html#bpy-ops-object-randomize-transform"><span class="std std-ref">Randomize Transform</span></a>.</p>
+</dd>
 <dt>Relax</dt><dd><p>Tries to create an even distribution of quads without deforming the volume of the mesh.
-This works the same as the <em>Relax</em> mode of the <em>Slide Relax</em> brush.</p>
+This filter works the same as the <em>Relax</em> mode of the <em>Slide Relax</em> brush.</p>
 </dd>
 </dl>
 </dd>
+<dt>Strength</dt><dd><p>The amount of effect the filter has on the mesh.</p>
+</dd>
+<dt>Deformation Axis</dt><dd><p>Apply the deformation only on the selected axis.</p>
+</dd>
 </dl>
+</dd>
+<dt>Move</dt><dd><p>Translation tool.</p>
+</dd>
+<dt>Rotate</dt><dd><p>Rotation tool.</p>
+</dd>
+<dt>Scale</dt><dd><p>Scale tool.</p>
+</dd>
+<dt>Transform</dt><dd><p>Tool to adjust the objects translation, rotations and scale.</p>
 </dd>
 <dt><a class="reference internal" href="../../interface/annotate_tool.html#tool-annotate"><span class="std std-ref">Annotate</span></a></dt><dd><p>Draw free-hand annotation.</p>
 <dl class="simple">
@@ -420,7 +480,7 @@ This works the same as the <em>Relax</em> mode of the <em>Slide Relax</em> brush
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

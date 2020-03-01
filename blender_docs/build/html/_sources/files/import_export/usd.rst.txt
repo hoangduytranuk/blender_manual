@@ -25,7 +25,7 @@ This means that the following meshes can be exported:
 - Arbitrarily animated meshes; here the topology does change.
   An example is the result of a fluid simulation, where splashes of fluid can break off the main body.
 
-.. figure:: /images/universal_scene_description_example.png
+.. figure:: /images/files_import-export_usd_example.png
 
    Shot from `Spring <https://cloud.blender.org/p/spring/>`__ exported to USD and opened in USDView.
 

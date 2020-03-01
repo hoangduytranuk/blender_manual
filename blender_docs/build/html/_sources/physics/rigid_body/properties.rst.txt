@@ -197,4 +197,3 @@ Deactivation
    Angular Velocity
       Specifies the angular deactivation velocity below which the rigid body is deactivated and simulation stops
       simulating object.
-

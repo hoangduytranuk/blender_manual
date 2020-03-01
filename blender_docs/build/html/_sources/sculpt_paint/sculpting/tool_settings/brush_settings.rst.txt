@@ -1,3 +1,5 @@
+.. _bpy.types.Brush.normal_radius_factor:
+.. _bpy.types.Brush.auto_smooth_factor:
 
 **************
 Brush Settings
@@ -51,7 +53,10 @@ Direction :kbd:`Ctrl`
    Brush direction toggle, *Add* raises geometry towards the brush,
    *Subtract* lowers geometry away from the brush. This setting can be toggled with :kbd:`Ctrl` while sculpting.
 Normal Radius
-   Todo.
+   The ratio between the brush radius and the radius that is going to be used to sample
+   the normal i.e. take the average of multiple normals. This influences the brush orientation;
+   increasing this value causes the brush to follow a smooth version of the mesh,
+   while a small value causes the brush to closely follow the contours of the mesh.
 Autosmooth
    Sets the amount of smoothing to be applied to each stroke.
 Topology

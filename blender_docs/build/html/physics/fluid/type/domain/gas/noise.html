@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -224,7 +224,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="noise">
-<span id="bpy-types-fluiddomainsettings-noise"></span><h1>Noise<a class="headerlink" href="#noise" title="Permalink to this headline">¶</a></h1>
+<span id="bpy-types-fluiddomainsettings-use-noise"></span><h1>Noise<a class="headerlink" href="#noise" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -232,48 +232,116 @@
 <dd class="field-odd"><p>Domain</p>
 </dd>
 <dt class="field-even">Panel</dt>
-<dd class="field-even"><p><span class="menuselection">Physics ‣ Smoke ‣ High Resolution</span></p>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Fluid ‣ Noise</span></p>
 </dd>
 </dl>
 </div>
-<p>Adding noise to the gas simulation creates a finer detailed looking simulation
-while using a relatively low <em>Resolution Divisions</em>. This allows animators to quickly set up
-a low resolution simulation and later add details without changing the overall fluid motion.</p>
+<p>Adding noise to the gas simulation creates a finer detailed looking simulation on top of the base.
+This makes it possible to add more details to gases (i.e. fire or smoke or both) without changing
+the overall fluid motion.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>Fluid noise is an implementation of <a class="reference external" href="http://www.cs.cornell.edu/~tedkim/WTURB/">Wavelet Turbulence for Fluid Simulation</a>.</p>
+</div>
+<p>Besides enabling parts of the interface, checking <em>Noise</em> lets the cache know
+which simulation data to read. If, for example, <em>Noise</em> is enabled but
+there is no noise simulation data to read it will show an empty domain.
+The checkbox does not reset the cache and can be used to switch
+the view between base resolution and noise view.</p>
+<dl class="simple" id="bpy-types-fluiddomainsettings-noise-scale">
+<dt>Upres Factor</dt><dd><p>Factor by which to enhance the resolution of the noise. The scaling factor is coupled
+to the <a class="reference internal" href="../settings.html#bpy-types-fluiddomainsettings-resolution-max"><span class="std std-ref">Resolution Divisions</span></a>.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-noise-type">
+<dt>Method</dt><dd><p>The method used to create the noise. &quot;Wavelet&quot; turbulence is currently the only method available.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-noise-strength">
+<dt>Strength</dt><dd><p>Strength of the noise. Higher values result in more turbulent vortices.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-noise-pos-scale">
+<dt>Scale</dt><dd><p>Scale of the noise. Greater values result in larger vortices.</p>
+</dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-noise-time-anim">
+<dt>Time</dt><dd><p>Animation time of the noise. This value has an influence on where the noise field is evaluated.
+It can be used as a seed to give wavelet noise a slightly different look in two domains that are
+otherwise the same.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Smoke plume with varying animation time. While the fluid motion of all four smoke
+plumes are alike each example has a unique look.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
+<img alt="../../../../../_images/physics_fluid_type_domain_gas_noise_timeanim-0-1.png" src="../../../../../_images/physics_fluid_type_domain_gas_noise_timeanim-0-1.png" />
+<p class="caption"><span class="caption-text">Animation Time: 0.1</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id3">
+<img alt="../../../../../_images/physics_fluid_type_domain_gas_noise_timeanim-1-0.png" src="../../../../../_images/physics_fluid_type_domain_gas_noise_timeanim-1-0.png" />
+<p class="caption"><span class="caption-text">Animation Time: 1.0</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="figure align-default" id="id4">
+<img alt="../../../../../_images/physics_fluid_type_domain_gas_noise_timeanim-2-5.png" src="../../../../../_images/physics_fluid_type_domain_gas_noise_timeanim-2-5.png" />
+<p class="caption"><span class="caption-text">Animation Time: 2.5</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id5">
+<img alt="../../../../../_images/physics_fluid_type_domain_gas_noise_timeanim-10-0.png" src="../../../../../_images/physics_fluid_type_domain_gas_noise_timeanim-10-0.png" />
+<p class="caption"><span class="caption-text">Animation Time: 10.0</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>Fluid noise is an implementation of
-<a class="reference external" href="https://web.archive.org/web/20140911163550/https://graphics.ethz.ch/research/physics_animation_fabrication/simulation/turb.php">Turbulence for Fluid Simulation</a>.</p>
+<p><em>Resolution Divisions</em> and <em>Upres Factor</em> are not equivalent.
+By using different combinations of these resolution settings,
+you can obtain a variety of different styles of smoke.</p>
 </div>
-<dl>
-<dt>Upres Factor</dt><dd><p>Factor by which to enhance the resolution of the noise.</p>
-</dd>
-<dt>Strength</dt><dd><p>Strength of the noise.</p>
-<div class="figure align-default" id="id1">
-<a class="reference internal image-reference" href="../../../../../_images/physics_smoke_types_domain_high-resolution-strength.jpg"><img alt="../../../../../_images/physics_smoke_types_domain_high-resolution-strength.jpg" src="../../../../../_images/physics_smoke_types_domain_high-resolution-strength.jpg" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">From left to right, the domains' high resolution strengths are set to 0, 2, and 6.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Comparison of fire simulations with and without noise at the same grid
+resolution.</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id7">
+<img alt="../../../../../_images/physics_fluid_type_domain_gas_noise_base-res-1.png" src="../../../../../_images/physics_fluid_type_domain_gas_noise_base-res-1.png" />
+<p class="caption"><span class="caption-text">Resolution Division: 200, without noise</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
-</dd>
-<dt>Scale</dt><dd><p>Todo.</p>
-</dd>
-<dt>Time</dt><dd><p>Todo.</p>
+</td>
+<td><div class="figure align-default" id="id8">
+<img alt="../../../../../_images/physics_fluid_type_domain_gas_noise_base-res-2.png" src="../../../../../_images/physics_fluid_type_domain_gas_noise_base-res-2.png" />
+<p class="caption"><span class="caption-text">Resolution Divisions: 100, Noise scale: 2.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Low division simulations with lots of <em>Upres Factor</em> divisions generally appear smaller in
+real-world scale and can be used to achieve pyroclastic plumes such as in the following image:</p>
+<div class="figure align-center">
+<img alt="../../../../../_images/physics_fluid_type_domain_gas_noise_note-resolution.jpg" src="../../../../../_images/physics_fluid_type_domain_gas_noise_note-resolution.jpg" />
+</div>
 </dd>
 </dl>
-<div class="section" id="smoke-noise-vs-high-resolution-divisions">
-<h2>Smoke Noise vs. High Resolution Divisions<a class="headerlink" href="#smoke-noise-vs-high-resolution-divisions" title="Permalink to this headline">¶</a></h2>
-<p><em>Upres Factor</em> and <em>Resolution Divisions</em> are not equivalent.
-By using different combinations of these resolution settings, you can get a variety of different styles of smoke.</p>
-<div class="figure align-center" id="id2">
-<img alt="../../../../../_images/physics_smoke_types_domain_high-resolution-comparison.jpg" src="../../../../../_images/physics_smoke_types_domain_high-resolution-comparison.jpg" />
-<p class="caption"><span class="caption-text">Comparison between a domain with 24 <em>Resolution Divisions</em> and 4 <em>Upres Factor</em> (left),
-and a domain with 100 <em>Resolution Divisions</em> and 1 <em>Upres Factor</em> division (right).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<p>Low division simulations with lots of <em>Upres Factor</em> divisions generally appear
-smaller in real-world scale, with many smaller details (larger flames, etc.).
-They can be used to create pyroclastic plumes such as in the following image:</p>
-<div class="figure align-center">
-<img alt="../../../../../_images/physics_smoke_types_domain_note-on-resolution.jpg" src="../../../../../_images/physics_smoke_types_domain_note-on-resolution.jpg" />
-</div>
-</div>
+<span id="bpy-ops-fluid-bake-noise"></span><dl id="bpy-ops-fluid-free-noise">
+<dt>Bake Noise, Free Noise</dt><dd><p>This option is only available when using the <a class="reference internal" href="../cache.html#bpy-types-fluiddomainsettings-cache-type"><span class="std std-ref">Modular</span></a> cache type.</p>
+<p>The progress will be displayed in the status bar. Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> will pause the simulation.</p>
+<p>Once the simulation has been baked, the cache can be deleted by pressing <em>Free Noise</em>.
+It is possible to pause or resume a <em>Bake Noise</em> process.</p>
+</dd>
+</dl>
 </div>
 
 
@@ -313,7 +381,7 @@ They can be used to create pyroclastic plumes such as in the following image:</p
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

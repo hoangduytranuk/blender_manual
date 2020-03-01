@@ -48,7 +48,7 @@ This mode is good for:
 
 .. list-table::
 
-   * - .. figure:: /images/sequencer_preview_display-mode_luma-waveform-example-1.png
+   * - .. figure:: /images/video-editing_preview_display-mode_luma-waveform-example-1.png
 
           The various horizontal lines in the Luma waveform
           match the uniform-colored lines of the picture. Note that the 'gray 20%'
@@ -56,7 +56,7 @@ This mode is good for:
           The two lines drawing an "X" are from the two linear tone shades (white --> black and black --> white).
           Finally, the broken line matches the complex tone shade at the bottom of the picture.
 
-     - .. figure:: /images/sequencer_preview_display-mode_luma-waveform-example-2.png
+     - .. figure:: /images/video-editing_preview_display-mode_luma-waveform-example-2.png
 
           The curves are quite visible. We found a luma of 80-100% for the sky,
           a luma around 40% for the sea, and a luma of 10-20% for the mountains,
@@ -106,11 +106,11 @@ This mode is good for:
   you can see in the U/V plot if you distort the color.
 - If you do color-matching on a by hand basis you can match the angle you see of different channels monitors.
 
-.. figure:: /images/sequencer_preview_display-mode_example.jpg
+.. figure:: /images/video-editing_preview_display-mode_example.jpg
 
    Example image.
 
-.. figure:: /images/sequencer_preview_display-mode_vectorscope.png
+.. figure:: /images/video-editing_preview_display-mode_vectorscope.png
 
    Example of a Chroma Vectorscope Preview.
 
@@ -126,10 +126,10 @@ image would have most of its information toward the left side of the graph.
 Use this mode to balance out the tonal range in an image.
 A well balanced image should have nice and smooth distribution of color values.
 
-.. figure:: /images/sequencer_preview_display-mode_example.jpg
+.. figure:: /images/video-editing_preview_display-mode_example.jpg
 
    Example image.
 
-.. figure:: /images/sequencer_preview_display-mode_histogram.png
+.. figure:: /images/video-editing_preview_display-mode_histogram.png
 
    Example of Histogram Preview.

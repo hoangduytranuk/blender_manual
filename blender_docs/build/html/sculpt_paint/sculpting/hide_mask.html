@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Sculpting &amp; Painting</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
@@ -165,7 +165,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Blender 2.82 Manual</a>
+          <a href="../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -242,17 +242,17 @@ Hiding is shared between Edit Mode and Sculpt Mode
 <dl class="simple">
 <dt>Hiển Thị Toàn Bộ <kbd class="kbd docutils literal notranslate">Alt-H</kbd> -- Show All <kbd class="kbd docutils literal notranslate">Alt-H</kbd></dt><dd><p>Reveal all hidden parts.</p>
 </dd>
+<dt>Show Bounding Box <kbd class="kbd docutils literal notranslate">Shift-H</kbd></dt><dd><p>To reveal a hidden part of a mesh inside the selection.</p>
+</dd>
 <dt>Ẩn Giấu Khung Hộp Viền <kbd class="kbd docutils literal notranslate">H</kbd> -- Hide Bounding Box <kbd class="kbd docutils literal notranslate">H</kbd></dt><dd><p>To hide a part of a mesh inside the selection.
 This works similar to <a class="reference internal" href="../../interface/selecting.html#tool-select-box"><span class="std std-ref">Box Select</span></a> tool.</p>
-</dd>
-<dt>Show Bounding Box <kbd class="kbd docutils literal notranslate">Shift-H</kbd></dt><dd><p>To reveal a hidden part of a mesh inside the selection.</p>
 </dd>
 <dt>Ẩn Giấu cái Đã Chắn -- Hide Masked</dt><dd><p>Hides all masked vertices.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="mask">
-<span id="sculpt-mask-menu"></span><h2>Màn Chắn -- Mask<a class="headerlink" href="#mask" title="Permalink to this headline">¶</a></h2>
+<span id="bpy-ops-paint-mask"></span><span id="sculpt-mask-menu"></span><h2>Màn Chắn -- Mask<a class="headerlink" href="#mask" title="Permalink to this headline">¶</a></h2>
 <p>Masking to control which areas of the mesh are influenced by sculpting.</p>
 <div class="figure align-default" id="id1">
 <img alt="../../_images/sculpt-paint_sculpting_hide-mask_example.jpg" src="../../_images/sculpt-paint_sculpting_hide-mask_example.jpg" />
@@ -263,8 +263,9 @@ This works similar to <a class="reference internal" href="../../interface/select
 <p>In order to edit the mask, select the <em>Mask Brush</em> from the Brush panel.</p>
 </div>
 <div class="section" id="editing">
-<h3>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h3>
-<p>Masks can be edited across the entire model:</p>
+<span id="bpy-ops-sculpt-dirty-mask"></span><span id="bpy-ops-mesh-paint-mask-slice"></span><span id="bpy-ops-sculpt-mask-expand"></span><span id="bpy-ops-sculpt-mask-filter"></span><span id="bpy-ops-paint-mask-lasso-gesture"></span><span id="bpy-ops-paint-mask-flood-fill"></span><h3>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h3>
+<p>Masks can be edited across the entire model.
+Using <kbd class="kbd docutils literal notranslate">A</kbd> opens a pie menu to choose different operations.</p>
 <dl>
 <dt>Đảo Nghịch Màn Chắn <kbd class="kbd docutils literal notranslate">Ctrl-I</kbd> -- Invert Mask <kbd class="kbd docutils literal notranslate">Ctrl-I</kbd></dt><dd><p>Inverts an existing mask.</p>
 </dd>
@@ -282,6 +283,42 @@ Hold <kbd class="kbd docutils literal notranslate">Shift</kbd> to clear the mask
 apply the <em>Lasso Mask</em>, and then invert the mask back.</p>
 </div>
 </dd>
+<dt>Mask Filters</dt><dd><p>Mask filters are operations that are applied to the whole paint mask.</p>
+<dl class="simple">
+<dt>Type</dt><dd><dl class="simple">
+<dt>Smooth/Sharpen Mask</dt><dd><p>Modifies the crispness of the mask edge.</p>
+</dd>
+<dt>Grow/Shrink Mask</dt><dd><p>Modifies the size of the mask.</p>
+</dd>
+<dt>Increase/Decrease Contrast</dt><dd><p>Modifies the contrast of the mask.</p>
+</dd>
+</dl>
+</dd>
+<dt>Iterations</dt><dd><p>The number of times that the filter is going to be applied</p>
+</dd>
+<dt>Auto Iteration Count</dt><dd><p>Use a automatic number of iterations based on the number of vertices of the sculpt.</p>
+</dd>
+</dl>
+</dd>
+<dt>Expand Mask by Topology <kbd class="kbd docutils literal notranslate">Shift-A</kbd></dt><dd><p>Creates a mask radiating outwards from the active vertex in a uniform manner.</p>
+</dd>
+<dt>Expand Mask by Curvature <kbd class="kbd docutils literal notranslate">Shift-Alt-A</kbd></dt><dd><p>Creates a mask radiating outwards from the active vertex while following the curvature of the mesh.</p>
+</dd>
+<dt>Mask Extract</dt><dd><p>Creates a duplicate mesh object based on masked geometry.</p>
+<dl class="simple">
+<dt>Threshold</dt><dd><p>Minimum mask value to consider the vertex valid to extract a face from the original mesh.</p>
+</dd>
+<dt>Add Boundary Loop</dt><dd><p>Creates and extra boundary loop on the edges of the geometry,
+making it ready for adding a subdivision surface modifier later.</p>
+</dd>
+<dt>Smooth Iterations</dt><dd><p>Smooth iterations applied to the extracted mesh.</p>
+</dd>
+<dt>Project to Sculpt</dt><dd><p>Project the extracted mesh on to the original sculpt object.</p>
+</dd>
+<dt>Extract as Solid</dt><dd><p>Adds a <a class="reference internal" href="../../modeling/modifiers/generate/solidify.html"><span class="doc">Solidify Modifier</span></a> to the newly created mesh object.</p>
+</dd>
+</dl>
+</dd>
 <dt>Mask Slice</dt><dd><p>Removes the masked vertices from the mesh.</p>
 <dl class="simple">
 <dt>Threshold</dt><dd><p>Minimum mask value to consider the vertex valid to extract a face from the original mesh</p>
@@ -292,10 +329,12 @@ apply the <em>Lasso Mask</em>, and then invert the mask back.</p>
 </dd>
 </dl>
 </dd>
+<dt>Dirty Mask</dt><dd><p>Generates a mask based on the geometry cavity and pointiness.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="displaying">
-<h3>Displaying<a class="headerlink" href="#displaying" title="Permalink to this headline">¶</a></h3>
+<span id="bpy-types-view3doverlay-sculpt-mode-mask-opacity"></span><span id="bpy-types-sculpt-show-mask"></span><h3>Displaying<a class="headerlink" href="#displaying" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
 <p class="admonition-title">Tham Chiếu -- Reference</p>
 <dl class="field-list simple">
@@ -311,7 +350,7 @@ apply the <em>Lasso Mask</em>, and then invert the mask back.</p>
 In the overlay popover, the opacity of the mask overlay can be adjusted to make it more or less visible on the mesh.</p>
 </div>
 <div class="section" id="clearing-mask-data">
-<span id="sculpt-mask-clear-data"></span><h3>-- Clearing Mask Data<a class="headerlink" href="#clearing-mask-data" title="Permalink to this headline">¶</a></h3>
+<span id="sculpt-mask-clear-data"></span><span id="bpy-ops-mesh-customdata-mask-clear"></span><h3>-- Clearing Mask Data<a class="headerlink" href="#clearing-mask-data" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
 <p class="admonition-title">Tham Chiếu -- Reference</p>
 <dl class="field-list simple">
@@ -366,7 +405,7 @@ this can speed-up sculpting if the mask is no longer being used.</p>
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

@@ -11,7 +11,7 @@ The *Path Animation* settings can be used to determine how child objects move al
    This feature is deprecated, but still available.
    A more future-proof method is the :doc:`/animation/constraints/relationship/follow_path`.
 
-.. figure:: /images/modeling_curves_properties_data_path-animation-panel.png
+.. figure:: /images/modeling_curves_properties_path-animation_panel.png
    :align: center
 
    Path Animation panel.
@@ -51,10 +51,10 @@ This example shows you how setup a *Path Animation*.
 
 .. list-table::
 
-   * - .. figure:: /images/modeling_curves_properties_data_path-animation-example-1.png
+   * - .. figure:: /images/modeling_curves_properties_path-animation_example-1.png
 
           Monkey parented to the Bézier Circle.
 
-     - .. figure:: /images/modeling_curves_properties_data_path-animation-example-2.png
+     - .. figure:: /images/modeling_curves_properties_path-animation_example-2.png
 
           The final result.

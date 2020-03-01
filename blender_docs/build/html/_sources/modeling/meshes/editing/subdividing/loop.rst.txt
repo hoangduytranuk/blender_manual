@@ -13,7 +13,7 @@ Loop Cut and Slide
    :class: refbox
 
    :Mode:      Edit Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Loop Cut and Slide`
+   :Tool:      :menuselection:`Toolbar --> Loop Cut`
    :Hotkey:    :kbd:`Ctrl-R`
 
 *Loop Cut and Slide* splits a loop of faces by inserting a new edge loop intersecting the chosen edge.
@@ -136,7 +136,7 @@ Offset Edge Slide
    :class: refbox
 
    :Mode:      Edit Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Mesh Tools --> Add: Offset Edge Slide`
+   :Tool:      :menuselection:`Toolbar --> Edge Slide`
    :Hotkey:    :kbd:`Shift-Ctrl-R`
 
 Add two edge loops on either side of selected loops.

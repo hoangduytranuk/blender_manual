@@ -40,7 +40,7 @@ micropolygon displacement (HGPOV), etc.
 Activation
 ==========
 
-- Of course, don't forget to `download <http://www.povray.org/download/>`__  and install POV-Ray itself!
+- Of course, don't forget to `download <http://www.povray.org/download/>`__ and install POV-Ray itself!
 - Open Blender and go to Preferences then the Add-ons tab.
 - Click Render then POV-3.7 to enable the script.
 

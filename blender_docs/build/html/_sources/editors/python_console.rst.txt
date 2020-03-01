@@ -161,7 +161,6 @@ bpy.context
 
 .. figure:: /images/editors_python-console_bpy-context.png
 
-
 ``bpy.context.mode``
    Will print the current 3D View mode (Object, Edit, Sculpt, etc.).
 
@@ -191,7 +190,6 @@ The data type of object's location::
 Now that is a lot of data that you have access to::
 
    dir(bpy.context.object.location)
-
 
 ``bpy.context.selected_objects``
    Will give access to a list of all selected objects.

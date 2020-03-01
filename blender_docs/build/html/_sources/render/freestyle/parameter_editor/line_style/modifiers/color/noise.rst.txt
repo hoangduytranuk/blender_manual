@@ -24,7 +24,7 @@ Asymmetric
    For the Noise shader however, a meaningful (and good-looking) result
    can be created by assigning different values to either side of the backbone.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_properties_thickness-noise-example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_color_noise_thickness-noise-example.png
    :align: center
    :width: 50%
 

@@ -21,7 +21,7 @@ Located in the :menuselection:`3D View --> Sidebar --> Edit tab`.
 
 This add-on is split into sub panels with each panel having it's own specific set of tools.
 
-.. figure:: /images/addons_add_curve_curve_tools_ui.jpg
+.. figure:: /images/addons_add-curve_curve-tools_ui.jpg
    :align: right
    :width: 220px
 
@@ -82,7 +82,7 @@ Convert Selected Faces to Bézier
 Convert Bézier to Surface
    Convert the selected curve to a NURBS surface.
 
-.. figure:: /images/addons_add_curve_curve_tools_utils.jpg
+.. figure:: /images/addons_add-curve_curve-tools_utils.jpg
    :align: right
    :width: 220px
 

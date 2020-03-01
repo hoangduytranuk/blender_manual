@@ -62,7 +62,6 @@ Surface
    :Type:      Canvas
    :Panel:     :menuselection:`Physics --> Dynamic Paint --> Surface`
 
-
 .. TODO2.8:
    .. figure:: /images/physics_dynamic-paint_canvas_advanced-panel.png
 
@@ -257,7 +256,6 @@ Effects
 
    :Type:      Canvas
    :Panel:     :menuselection:`Physics --> Dynamic Paint --> Effects`
-
 
 .. TODO2.8:
    .. figure:: /images/physics_dynamic-paint_canvas_effects-panel.png

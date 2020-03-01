@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -221,11 +221,11 @@
             
   <div class="section" id="flow">
 <h1>Flow<a class="headerlink" href="#flow" title="Permalink to this headline">¶</a></h1>
-<p>Fluid <em>Flow</em> types are used to add or remove fluid to a domain object.
-Flow objects should be contained within the domain's <a class="reference internal" href="../../../glossary/index.html#term-bounding-box"><span class="xref std std-term">bounding box</span></a> in order to work.</p>
-<p>To define any mesh object as a <em>Flow</em> object, add Fluid physics by clicking <em>Fluid</em>
-in the <span class="menuselection">Properties ‣ Physics</span> tab. Then select <em>Flow</em> as the fluid <em>Type</em>.
-Now you should have a default fluid flow source object.</p>
+<p>Fluid <em>Flow</em> types are used to add or remove fluid to a domain object. Flow objects should be
+contained within the domain's <a class="reference internal" href="../../../glossary/index.html#term-bounding-box"><span class="xref std std-term">bounding box</span></a> in order to work.</p>
+<p>To define any mesh object as a <em>Flow</em> object, add Fluid physics by clicking <em>Fluid</em> in
+<span class="menuselection">Properties ‣ Physics</span>. Then select <em>Flow</em> as the fluid <em>Type</em>. Now you should have
+a default fluid flow source object.</p>
 <div class="section" id="settings">
 <span id="bpy-types-fluidflowsettings"></span><h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
@@ -239,20 +239,23 @@ Now you should have a default fluid flow source object.</p>
 </dd>
 </dl>
 </div>
-<dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-flow-type">
 <dt>Flow Type</dt><dd><dl class="simple">
 <dt>Smoke</dt><dd><p>Emit only smoke.</p>
 </dd>
 <dt>Fire + Smoke</dt><dd><p>Emit both fire and smoke.</p>
 </dd>
-<dt>Fire</dt><dd><p>Emit only fire. Note that the domain will automatically create some smoke to simulate smoke left by burnt fuel.</p>
+<dt>Fire</dt><dd><p>Emit only fire. Note that the domain will automatically create some smoke to simulate smoke
+left by burnt fuel.</p>
 </dd>
 <dt>Liquid</dt><dd><p>Emit liquid.</p>
 </dd>
 </dl>
 </dd>
+</dl>
+<dl id="bpy-types-fluidflowsettings-flow-behavior">
 <dt>Flow Behavior</dt><dd><p>Controls if the Flow object either adds (<em>Inflow</em>), removes (<em>Outflow</em>),
-or turn the mesh itself into fluid (<em>Geometry</em>).</p>
+or turns the mesh itself into fluid (<em>Geometry</em>).</p>
 <dl>
 <dt>Inflow</dt><dd><p>This object will emit fluid into the simulation, like a water tap or base of a fire.</p>
 <dl class="simple">
@@ -268,99 +271,149 @@ and the area where the fluid disappears will follow the object as it moves aroun
 </dd>
 <dt>Geometry</dt><dd><p>All regions of this object that are inside the domain bounding box will be used as
 actual fluid in the simulation. You can place more than one fluid object inside the domain.
-Also make sure that the surface normals are pointing outwards or else they will not simulate properly.
-In contrast to domain objects, the actual mesh geometry is used for fluid objects.</p>
+Also make sure that the surface normals are pointing outwards or else they will not simulate
+properly. In contrast to domain objects, the actual mesh geometry is used for fluid objects.</p>
 </dd>
 </dl>
 </dd>
-<dt>Sampling Substeps</dt><dd><p>Number of subframes used to reduce gaps in emission of smoke from fast-moving sources.</p>
-<div class="figure align-default" id="id1">
-<img alt="../../../_images/physics_smoke_types_flow-object_subframes.jpg" src="../../../_images/physics_smoke_types_flow-object_subframes.jpg" />
-<p class="caption"><span class="caption-text">Example showing two fast-moving sources.
-The object on the left uses 0 subframes, while the one on the right uses 6.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</dl>
+<dl id="bpy-types-fluidflowsettings-subframes">
+<dt>Sampling Substeps</dt><dd><p>Number of sub-steps used to reduce gaps in emission of fluid from fast-moving sources.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Comparison of smoke inflow quickly rising upwards at different sub-step rates.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
+<img alt="../../../_images/physics_fluid_type_flow_substep-off.png" src="../../../_images/physics_fluid_type_flow_substep-off.png" />
+<p class="caption"><span class="caption-text">Sampling sub-steps: 0.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
+</td>
+<td><div class="figure align-default" id="id3">
+<img alt="../../../_images/physics_fluid_type_flow_substep-on.png" src="../../../_images/physics_fluid_type_flow_substep-on.png" />
+<p class="caption"><span class="caption-text">Sampling sub-steps: 3.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note that these emission sub-steps occur at every simulation step and not per frame.
+The simulation step count is controlled by the adaptive time stepping.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-smoke-color">
 <dt>Smoke Color</dt><dd><p>The color of emitted smoke. When smoke of different colors are mixed they will blend together,
 eventually settling into a new combined color.</p>
-<div class="figure align-default" id="id2">
-<img alt="../../../_images/physics_smoke_types_flow-object_color-blending.jpg" src="../../../_images/physics_smoke_types_flow-object_color-blending.jpg" />
-<p class="caption"><span class="caption-text">Color blending example.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-</dd>
-<dt>Absolute Density</dt><dd><p>Maximum density of smoke allowed within range of the source.</p>
 </dd>
 </dl>
-<dl id="physics-fluid-flow-init-temp">
+<dl class="simple" id="bpy-types-fluidflowsettings-use-absolute">
+<dt>Absolute Density</dt><dd><p>If this checkbox is enabled, the emitter will only produce more smoke or fire if there is space for
+it in the emitter region. Otherwise smoke or fire will always be produced and add up.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-temperature">
 <dt>Initial Temperature</dt><dd><p>Difference between the temperature of emitted smoke and the domain's ambient temperature.
-This setting's effect on smoke depends on the domain's <a class="reference internal" href="domain/settings.html#smoke-domain-heat"><span class="std std-ref">Initial Temperature</span></a>.</p>
+This setting's effect on smoke depends on the domain's <a class="reference internal" href="domain/settings.html#bpy-types-fluiddomainsettings-beta"><span class="std std-ref">Heat Buoyancy</span></a>.</p>
 </dd>
-<dt>Density</dt><dd><p>Amount of smoke to emit at once.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-density">
+<dt>Density</dt><dd><p>Amount of smoke to emit at once. Larger values result in more density being produced.</p>
 </dd>
+</dl>
+<dl id="bpy-types-fluidflowsettings-fuel-amount">
 <dt>Fuel</dt><dd><p>Amount of &quot;fuel&quot; being burned per second. Larger values result in larger flames,
 smaller values result in smaller flames:</p>
-<div class="figure align-default" id="id3">
-<img alt="../../../_images/physics_smoke_types_flow-object_flame-rate.jpg" src="../../../_images/physics_smoke_types_flow-object_flame-rate.jpg" />
-<p class="caption"><span class="caption-text">Example showing two fire sources.
-The object on the left has a <em>Flame Rate</em> of 5, while the one on the right has 0.3.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Comparison of flames with varying fuel rates.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id5">
+<img alt="../../../_images/physics_fluid_type_flow_fuelrate-0-5.png" src="../../../_images/physics_fluid_type_flow_fuelrate-0-5.png" />
+<p class="caption"><span class="caption-text">Fuel: 0.5.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
+</td>
+<td><div class="figure align-default" id="id6">
+<img alt="../../../_images/physics_fluid_type_flow_fuelrate-1-0.png" src="../../../_images/physics_fluid_type_flow_fuelrate-1-0.png" />
+<p class="caption"><span class="caption-text">Fuel: 1.0.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-density-vertex-group">
 <dt>Vertex Group</dt><dd><p>When set, use the specified <a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/vertex_groups.html"><span class="doc">Vertex Group</span></a>
 to control where smoke is emitted.</p>
 </dd>
 </dl>
 <div class="section" id="flow-source">
-<span id="bpy-types-fluidflowsettings-particle-size"></span><span id="bpy-types-fluidflowsettings-use-particle-size"></span><span id="bpy-types-fluidflowsettings-particle-system"></span><span id="bpy-types-fluidflowsettings-volume-density"></span><span id="bpy-types-fluidflowsettings-surface-distance"></span><span id="bpy-types-fluidflowsettings-use-plane-init"></span><span id="bpy-types-fluidflowsettings-flow-source"></span><h3>Flow Source<a class="headerlink" href="#flow-source" title="Permalink to this headline">¶</a></h3>
-<dl>
+<span id="bpy-types-fluidflowsettings-use-particle-size"></span><h3>Flow Source<a class="headerlink" href="#flow-source" title="Permalink to this headline">¶</a></h3>
+<dl id="bpy-types-fluidflowsettings-flow-source">
 <dt>Flow Source</dt><dd><p>This setting defines the method used to emit fluid.</p>
 <dl>
-<dt>Mesh</dt><dd><p>Emit smoke/fire directly from the object's mesh.</p>
-<dl class="simple">
+<dt>Mesh</dt><dd><p>Emit fluid directly from the object's mesh.</p>
+<dl class="simple" id="bpy-types-fluidflowsettings-use-plane-init">
 <dt>Is Planar</dt><dd><p>Defines the effector as either a single dimension object i.e. a plane or the mesh is <a class="reference internal" href="../../../glossary/index.html#term-non-manifold"><span class="xref std std-term">non-manifold</span></a>.
 This ensures that the fluid simulator will give the most accurate results for these types of meshes.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-surface-distance">
 <dt>Surface Emission</dt><dd><p>Maximum distance in <a class="reference internal" href="../../../glossary/index.html#term-voxel"><span class="xref std std-term">voxels</span></a> from the surface of the mesh in which fluid is emitted.
 Since this setting uses voxels to determine the distance,
 results will vary depending on the domain's resolution.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-volume-density">
 <dt>Volume Emission</dt><dd><p>Amount of fluid to emit inside the emitter mesh, where 0 is none and 1 is the full amount.
 Note that emitting fluid based on volume may have unpredictable results
 if your mesh is <a class="reference internal" href="../../../glossary/index.html#term-non-manifold"><span class="xref std std-term">non-manifold</span></a>.</p>
 </dd>
 </dl>
 </dd>
-<dt>Particle System <span class="guilabel">Fire or Smoke Only</span>:</dt><dd><p>Emit smoke/fire from a particle system on the flow object.
-Note that only <em>Emitter</em> type particle systems can add smoke.
-See <a class="reference internal" href="../../particles/introduction.html"><span class="doc">Particles</span></a> for information on how to create a particle system.</p>
-<p>With this option selected, there is a box to select a particle system and one additional setting, <em>Set Size</em>.</p>
-<blockquote>
-<div><dl>
-<dt>Set Size</dt><dd><p>When this setting is enabled, it allows the <em>Size</em> setting to define
-the maximum distance in voxels at which particles can emit smoke,
-similar to the <em>Surface Emission</em> setting for mesh sources.</p>
+</dl>
+<dl id="bpy-types-fluidflowsettings-particle-system">
+<dt>Particle System <span class="guilabel">Fire or Smoke Only</span>:</dt><dd><p>Create smoke or fire from a particle system on the flow object.
+which can be select with a <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a>.</p>
+<p>Note that only <em>Emitter</em> type particle systems can add smoke.
+See <a class="reference internal" href="../../particles/introduction.html"><span class="doc">Particles</span></a> for information on
+how to create a particle system.</p>
+<dl>
+<dt>Set Size</dt><dd><p>When this setting is enabled, it allows the <em>Size</em> setting to define the maximum distance in voxels
+at which particles can emit smoke, similar to the <em>Surface Emission</em> setting for mesh sources.</p>
 <p>When disabled, particles will fill the nearest <a class="reference internal" href="../../../glossary/index.html#term-voxel"><span class="xref std std-term">voxel</span></a> with smoke.</p>
 </dd>
 </dl>
-</div></blockquote>
 </dd>
 </dl>
 </dd>
 </dl>
 </div>
 <div class="section" id="initial-velocity">
-<span id="bpy-types-fluidflowsettings-velocity"></span><span id="bpy-types-fluidflowsettings-use-initial-velocity"></span><h3>Initial Velocity<a class="headerlink" href="#initial-velocity" title="Permalink to this headline">¶</a></h3>
+<span id="bpy-types-fluidflowsettings-use-initial-velocity"></span><h3>Initial Velocity<a class="headerlink" href="#initial-velocity" title="Permalink to this headline">¶</a></h3>
 <p>When enabled, the fluid will inherit the momentum of the flow source.</p>
-<dl class="simple">
+<dl class="simple" id="bpy-types-fluidflowsettings-velocity-factor">
 <dt>Source</dt><dd><p>Factor for the inherited velocity. A value of 1 will emit fluid moving at the same speed as the source.</p>
 </dd>
-<dt>Normal</dt><dd><p>When using a <em>Geometry Flow Source</em>,
-this option controls how much velocity fluid is given along the source's <a class="reference internal" href="../../../glossary/index.html#term-normal"><span class="xref std std-term">normal</span></a>.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-velocity-normal">
+<dt>Normal</dt><dd><p>When using a <em>Geometry Flow Source</em>, this option controls how much velocity fluid is given along
+the source's <a class="reference internal" href="../../../glossary/index.html#term-normal"><span class="xref std std-term">normal</span></a>.</p>
 </dd>
-<dt>Initial X, Y, Z</dt><dd><p>Controls how much velocity is given in a particular axis.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-velocity-coord">
+<dt>Initial X, Y, Z</dt><dd><p>Initial velocity along X, Y, Z coordinates. Can be used in addition to the initial velocity along
+the <a class="reference internal" href="#bpy-types-fluidflowsettings-velocity-normal"><span class="std std-ref">Normal</span></a>.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="texture">
-<span id="bpy-types-fluidflowsettings-texture"></span><span id="bpy-types-fluidflowsettings-noise-texture"></span><span id="bpy-types-fluidflowsettings-use-texture"></span><h3>Texture<a class="headerlink" href="#texture" title="Permalink to this headline">¶</a></h3>
+<span id="bpy-types-fluidflowsettings-use-texture"></span><h3>Texture<a class="headerlink" href="#texture" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -374,20 +427,22 @@ this option controls how much velocity fluid is given along the source's <a clas
 </div>
 <p>When enabled, use the specified texture and settings to control where on
 the mesh smoke or fire can be emitted from. These settings have no effect on <em>Outflow Flow Behavior</em>.</p>
-<dl class="simple">
+<dl class="simple" id="bpy-types-fluidflowsettings-noise-texture">
 <dt>Texture</dt><dd><p>A <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> selector to choose the <a class="reference internal" href="../../../render/materials/legacy_textures/index.html"><span class="doc">Texture</span></a>.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-texture-map-type">
 <dt>Mapping</dt><dd><p>Controls whether to use <a class="reference internal" href="../../../modeling/meshes/editing/uv/uv_texture_spaces.html#properties-texture-space"><span class="std std-ref">Generated UVs</span></a> or manual UV mapping.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-texture-size">
 <dt>Size</dt><dd><p>Overall texture scale.</p>
 </dd>
+</dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-texture-offset">
 <dt>Offset</dt><dd><p>Translates the texture along the Z axis.</p>
 </dd>
 </dl>
-<div class="figure align-center" id="id4">
-<img alt="../../../_images/physics_smoke_types_flow-object_texture-usecase.jpg" src="../../../_images/physics_smoke_types_flow-object_texture-usecase.jpg" />
-<p class="caption"><span class="caption-text">Example of using a texture to control smoke flow.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
 </div>
 </div>
 </div>
@@ -429,7 +484,7 @@ the mesh smoke or fire can be emitted from. These settings have no effect on <em
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

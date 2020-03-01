@@ -46,6 +46,7 @@ Transmission
 Volume
    Maximum number of volume scattering bounces.
 
+
 .. _render-cycles-integrator-clamp-samples:
 
 Clamp
@@ -84,7 +85,6 @@ Reflective Caustics
    This option can be unchecked, to disable reflective caustics.
 Refractive Caustics
    The same as above, but for refractive caustics.
-
 
 .. _render-cycles-integrator-filter-glossy:
 

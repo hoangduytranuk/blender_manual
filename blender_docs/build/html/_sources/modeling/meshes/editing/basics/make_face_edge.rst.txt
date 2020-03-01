@@ -158,4 +158,4 @@ Dissolve Existing Faces
 When you have a region of existing faces, creating a face on this selection
 will remove the shared vertices and edges, creating a single face.
 
-This is simply a convenience for accessing :ref:`modeling-mesh-deleting-dissolve-faces`.
+This is simply a convenience for accessing :ref:`bpy.ops.mesh.dissolve_faces`.

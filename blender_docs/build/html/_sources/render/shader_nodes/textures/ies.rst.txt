@@ -4,7 +4,8 @@
 IES Texture Node
 ****************
 
-The *IES Texture* is used to match real world lights based on IES files.
+The *IES Texture* is used to match real world lights based on IES files
+(:abbr:`IES (Illuminating Engineering Society of North America)`).
 IES files store the directional intensity distribution of light sources.
 
 
@@ -26,6 +27,7 @@ Mode
       Use IES profile from a file embedded in a text data-block in the blend-file, for easy distribution.
    External
       Load IES profile from a file on the drive.
+
 
 Outputs
 =======

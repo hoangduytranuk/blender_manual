@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -224,17 +224,159 @@
            <div itemprop="articleBody">
             
   <div class="section" id="mesh">
-<span id="bpy-types-fluiddomainsettings-mesh-concave-lower"></span><span id="bpy-types-fluiddomainsettings-mesh-concave-upper"></span><span id="bpy-types-fluiddomainsettings-mesh-smoothen-neg"></span><span id="bpy-types-fluiddomainsettings-mesh-smoothen-pos"></span><span id="bpy-types-fluiddomainsettings-mesh-generator"></span><span id="bpy-types-fluiddomainsettings-use-speed-vectors"></span><span id="bpy-types-fluiddomainsettings-mesh-particle-radius"></span><span id="bpy-types-fluiddomainsettings-mesh-scale"></span><span id="bpy-types-fluiddomainsettings-use-mesh"></span><h1>Mesh<a class="headerlink" href="#mesh" title="Permalink to this headline">¶</a></h1>
-<p>Todo.</p>
-<dl>
-<dt>Use Speed Vectors</dt><dd><p>If this checkbox is enabled, speed vectors are generated and stored on drive.
-They can be used to compute image-based motion blur with the compositing nodes.</p>
+<span id="bpy-types-fluiddomainsettings-use-mesh"></span><h1>Mesh<a class="headerlink" href="#mesh" title="Permalink to this headline">¶</a></h1>
+<p>The liquid mesh is, besides the liquid particles, another way to visualize the liquid simulation.
+It is generated directly from the liquid particles and often uses a higher resolution than
+the base <a class="reference internal" href="../settings.html#bpy-types-fluiddomainsettings-resolution-max"><span class="std std-ref">Resolution Divisions</span></a>.</p>
+<p>Besides enabling parts of the interface, checking <em>Mesh</em> lets the cache know
+which simulation data to read. If, for example, <em>Mesh</em> is enabled but
+there is no mesh simulation data to read it will show the original domain.
+The checkbox does not reset the cache and can be used to switch the view between
+the original domain and the baked liquid mesh.</p>
+<p>It is important to keep in mind that the shape of the mesh depends on a combination of <em>all</em> these
+parameters. E.g. changing the <a class="reference internal" href="../settings.html#bpy-types-fluiddomainsettings-resolution-max"><span class="std std-ref">Particle Radius</span></a>
+will lead to a different interpretation of the concavity values.</p>
+<dl class="simple" id="bpy-types-fluiddomainsettings-mesh-scale">
+<dt>Upres Factor</dt><dd><p>Factor by which to enhance the resolution of the mesh. The scaling factor is coupled to
+the <a class="reference internal" href="../settings.html#bpy-types-fluiddomainsettings-resolution-max"><span class="std std-ref">Resolution Divisions</span></a>
+(i.e. the mesh is this times bigger than the base simulation).</p>
 </dd>
-<dt>Bake Mesh, Free Mesh</dt><dd><p>Todo.</p>
-<p>After a domain has been baked, it changes to the liquid mesh.
-To reselect the domain so that you can bake it again after you have made changes,
-go to any frame and select <kbd class="kbd docutils literal notranslate">RMB</kbd> the fluid mesh.
-Then you can click the <em>Bake</em> button again to recompute the fluid flows inside that domain.</p>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-mesh-particle-radius">
+<dt>Particle Radius</dt><dd><p>The radius of one liquid particle in grid cells units. This value describes how much area is covered
+by a particle and thus determines how much area around it can be considered as liquid.
+A greater radius will let particles cover more area. This will result in meshes covering more
+volume around liquid particles.</p>
+<p>This property refers to the same <a class="reference internal" href="../settings.html#bpy-types-fluiddomainsettings-particle-radius"><span class="std std-ref">Particle Radius</span></a>
+described in the liquid domain settings. Yet for the mesh, it is useful to interpret
+the particle radius on its own. For one, the mesh can have a resolution different from the base
+resolution through the <a class="reference internal" href="#bpy-types-fluiddomainsettings-mesh-scale"><span class="std std-ref">Upres Factor</span></a>. For another,
+it is often desirable to be able to control the mesh size around a single liquid particle.</p>
+</dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-use-speed-vectors">
+<dt>Use Speed Vectors</dt><dd><p>If this checkbox is enabled, speed vectors (mesh vertex velocities) are generated and stored on
+drive. They can be used to compute image-based motion blur with the compositing nodes.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Comparison of a liquid splash with and without motion blur (rendered with Cycles).</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_motionblur-on.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_motionblur-on.png" />
+<p class="caption"><span class="caption-text">Motion blur enabled.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id3">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_motionblur-off.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_motionblur-off.png" />
+<p class="caption"><span class="caption-text">Motion blur disabled.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-mesh-generator">
+<dt>Mesh Generator</dt><dd><p>The mesh generator method determines the accuracy of the mesh. The <em>Final</em> option produces a higher
+quality mesh and provides more configuration option than the <em>Preview</em> option which in turn is
+faster but not as smooth.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-mesh-smoothen-pos">
+<dt>Smoothing Positive</dt><dd><p>Positive mesh smoothing iterations. Higher values will make the mesh outline increasingly smooth.
+Yet higher values can prevent small details (e.g. smaller liquid drops) from getting meshed.</p>
+</dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-mesh-smoothen-neg">
+<dt>Smoothing Negative</dt><dd><p>Negative mesh smoothing iterations. Higher values will make the mesh outline sharper.
+High values will preserve details, however, the mesh outline will become more ragged
+(e.g. a single mesh particle will become less rounded and have more flat sides).</p>
+<div class="figure align-center" id="id4">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_smoothing-comparison.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_smoothing-comparison.png" />
+<p class="caption"><span class="caption-text">Comparison of a liquid drop hitting a surface (viewed from top) with varying smoothing values.
+Left: 1, 1 (Smoothing Positive, Smoothing Negative). Middle: 10, 1. Right: 1, 10.
+Note the slightly sharper corners in the right splash (compared to the left one).</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-mesh-concave-upper">
+<dt>Concavity Upper</dt><dd><p>Upper mesh concavity bound. High values tend to smoothen and fill out concave regions.</p>
+</dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-mesh-concave-lower">
+<dt>Concavity Lower</dt><dd><p>Lower mesh concavity bound. High values tend to smoothen and fill out concave regions.</p>
+<p>Using a lower concavity which is greater the upper concavity can result in distorted, non-manifold meshes.
+Unless the artist sees value in this kind of mesh, such concavity value combinations should be avoided.</p>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Crown splash with varying upper and lower concavity settings. Note that setting
+the concavity values to the same value produces a very granular mesh.</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id6">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-01.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-01.png" />
+<p class="caption"><span class="caption-text">Upper: 1.0, Lower: 0.0.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id7">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-02.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-02.png" />
+<p class="caption"><span class="caption-text">Upper: 1.0, Lower: 0.5.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id8">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-03.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-03.png" />
+<p class="caption"><span class="caption-text">Upper: 1.0, Lower: 1.0.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="figure align-default" id="id9">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-04.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-04.png" />
+<p class="caption"><span class="caption-text">Upper: 1.5, Lower: 0.0.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id10">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-05.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-05.png" />
+<p class="caption"><span class="caption-text">Upper: 1.5, Lower: 0.5.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id11">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-06.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-06.png" />
+<p class="caption"><span class="caption-text">Upper: 1.5, Lower: 1.0.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="figure align-default" id="id12">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-07.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-07.png" />
+<p class="caption"><span class="caption-text">Upper: 2.0, Lower: 0.0.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id13">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-08.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-08.png" />
+<p class="caption"><span class="caption-text">Upper: 2.0, Lower: 0.5.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id14">
+<img alt="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-09.png" src="../../../../../_images/physics_fluid_type_domain_liquid_mesh_concavity-09.png" />
+<p class="caption"><span class="caption-text">Upper: 2.0, Lower: 1.0.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<span id="bpy-ops-fluid-bake-mesh"></span><dl id="bpy-ops-fluid-free-mesh">
+<dt>Bake Mesh, Free Mesh</dt><dd><p>This option is only available when using the <a class="reference internal" href="../cache.html#bpy-types-fluiddomainsettings-cache-type"><span class="std std-ref">Modular</span></a>
+cache type.</p>
+<p>The progress will be displayed in the status bar. Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> will abort the simulation.</p>
+<p>Once the simulation has been baked, the cache can be deleted by pressing <em>Free Mesh</em>.
+It is possible to pause or resume a <em>Bake Mesh</em> process.</p>
 </dd>
 </dl>
 </div>
@@ -276,7 +418,7 @@ Then you can click the <em>Bake</em> button again to recompute the fluid flows i
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

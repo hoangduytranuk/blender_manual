@@ -22,7 +22,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar -->  Color Palette or Weight Palette` depending on the mode.
+Located in the :menuselection:`3D View --> Sidebar --> Color Palette or Weight Palette` depending on the mode.
 Located in the :menuselection:`Image editor --> Sidebar --> Color Palette` while in Paint Mode.
 
 

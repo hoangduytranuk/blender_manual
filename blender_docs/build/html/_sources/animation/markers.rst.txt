@@ -275,7 +275,7 @@ and select a marker to bind the active camera to.
 If no marker is selected when the operator is preformed, a marker will be added.
 When an object is bound to a marker, the marker will be renamed to the name of the active object.
 These markers also have a camera icon next to the left of the name
-to easily distinguish them from other informative markers
+to easily distinguish them from other informative markers.
 
 These markers can be moved to change the frame at which
 the active camera is changed to the object the marker is bound to.

@@ -7,7 +7,7 @@ Image Panel
 ===========
 
 .. TODO2.8
-   .. figure:: /images/editors_uv-image_image_image-settings_movie-image-panel.png
+   .. figure:: /images/editors_image_image-settings_movie-image-panel.png
       :align: right
 
       Image panel.

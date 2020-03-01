@@ -35,6 +35,7 @@ Python
    When :ref:`Developer Extras <prefs-interface-dev-extras>` are enabled,
    a Python expression is displayed for :ref:`scripting <scripting-index>` (usually an operator or property).
 
+
 .. _help-manual-access:
 
 Context-Sensitive Manual Access
@@ -44,7 +45,7 @@ Context-Sensitive Manual Access
    :class: refbox
 
    :Mode:      All modes
-   :Menu:      :kbd:`RMB`, :menuselection:`Online Manual`
+   :Menu:      :menuselection:`Context menu --> Online Manual`
    :Hotkey:    :kbd:`Alt-F1`
 
 You may want to access help for a tool or area from within Blender.

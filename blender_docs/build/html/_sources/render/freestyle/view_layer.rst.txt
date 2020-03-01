@@ -11,7 +11,7 @@ View Layer Properties
 
 There is only one view map per view layer. It controls the edge detection parameters.
 
-.. figure:: /images/render_freestyle_view-map_freestyle-panel.png
+.. figure:: /images/render_freestyle_view-layer_freestyle-panel.png
    :align: center
    :width: 50%
 

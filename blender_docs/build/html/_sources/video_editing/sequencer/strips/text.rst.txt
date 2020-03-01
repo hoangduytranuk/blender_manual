@@ -49,6 +49,6 @@ Wrap Width
 Example
 =======
 
-.. figure:: /images/sequencer_sequencer_strips_effects_text_example.png
+.. figure:: /images/video-editing_sequencer_strips_text_example.png
 
    Text Effect.

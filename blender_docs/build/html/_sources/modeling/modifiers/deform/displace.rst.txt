@@ -50,6 +50,12 @@ Vertex Group
    The name of a vertex group which is used to control the influence of the modifier.
    If left empty, the modifier affects all vertices equally.
 
+   Invert ``<->``
+      Inverts the influence of the selected vertex group, meaning that the group
+      now represents vertices that will not be deformed by the modifier.
+
+      The setting reverses the weight values of the group.
+
 Midlevel
    The texture value which will be treated as no displacement by the modifier.
    Texture values below this value will result in negative displacement along the selected direction,

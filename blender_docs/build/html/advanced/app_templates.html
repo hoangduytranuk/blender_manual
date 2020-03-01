@@ -80,7 +80,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
@@ -166,7 +166,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Blender 2.82 Manual</a>
+          <a href="../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -220,17 +220,17 @@
 <p>Application templates are a feature that allows you to define a re-usable configuration
 that can be selected to replace the default configuration,
 without requiring a separate Blender installation or overwriting your personal settings.</p>
-<p>Application templates can be selected from the splash screen or <span class="menuselection">File ‣ New</span> sub-menu.</p>
-<p>When there are no templates found the menu will not be displayed on the splash screen.</p>
-<p>New application templates can be installed from the <a class="reference internal" href="../interface/window_system/topbar.html#topbar-app-menu"><span class="std std-ref">App Menu</span></a>.</p>
-<p>If you would like to keep the current application template active on restarting Blender, save your preferences.</p>
+<p>Application templates can be selected from the splash screen or <span class="menuselection">File ‣ New</span> sub-menu.
+When there are no templates found the menu will not be displayed on the splash screen.</p>
+<p>New application templates can be installed from the <a class="reference internal" href="../interface/window_system/topbar.html#topbar-app-menu"><span class="std std-ref">App Menu</span></a>.
+If you would like to keep the current application template active on restarting Blender, save your preferences.</p>
 <div class="section" id="motivation">
 <h3>Động Lực -- Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
 <p>In some cases it's not enough to write a single script or add-on,
 and expect someone to replace their preferences and startup file, install scripts and change their keymap.</p>
 <p>The goal of application templates is to support switching to a customized configuration
-without disrupting your existing settings and installation.</p>
-<p>This means people can build their own <em>applications</em> on top of Blender that can be easily distributed.</p>
+without disrupting your existing settings and installation.
+This means people can build their own <em>applications</em> on top of Blender that can be easily distributed.</p>
 </div>
 <div class="section" id="details">
 <h3>Chi Tiết -- Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h3>
@@ -300,12 +300,12 @@ that opens Blender with a specific app template:</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">startup.blend</span></code></dt><dd><p>Factory startup file to use for this template.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">userpref.blend</span></code></dt><dd><p>Factory preferences file to use for this template.</p>
-<p>When omitted preferences are shared with the default Blender configuration.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">userpref.blend</span></code></dt><dd><p>Factory preferences file to use for this template.
+When omitted preferences are shared with the default Blender configuration.</p>
 <p><em>(As noted previously, this is only used for a subset of preferences).</em></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">splash.png</span></code>, <code class="docutils literal notranslate"><span class="pre">splash_2x.png</span></code></dt><dd><p>Splash screen to override Blender's default artwork (not including header text).</p>
-<p>Must be <code class="docutils literal notranslate"><span class="pre">501x250</span></code> and <code class="docutils literal notranslate"><span class="pre">1002x500</span></code> (used for HiDPI monitors).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">splash.png</span></code>, <code class="docutils literal notranslate"><span class="pre">splash_2x.png</span></code></dt><dd><p>Splash screen to override Blender's default artwork (not including header text).
+Must be <code class="docutils literal notranslate"><span class="pre">501x250</span></code> and <code class="docutils literal notranslate"><span class="pre">1002x500</span></code> (used for HiDPI monitors).</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></dt><dd><p>A Python script which must contain <code class="docutils literal notranslate"><span class="pre">register</span></code> and <code class="docutils literal notranslate"><span class="pre">unregister</span></code> functions.</p>
 </dd>
@@ -324,8 +324,8 @@ from the file menu in much the same way <em>Load Factory Settings</em> works.</p
 <h2>Template Scripts<a class="headerlink" href="#template-scripts" title="Permalink to this headline">¶</a></h2>
 <p>While app templates can use Python scripts,
 they simply have access to the same API's available for add-ons and any other scripts.</p>
-<p>As noted above, you may optionally have an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> in your app template.</p>
-<p>This has the following advantages:</p>
+<p>As noted above, you may optionally have an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> in your app template.
+This has the following advantages:</p>
 <ul>
 <li><p>Changes can be made to the startup or preferences, without having to distribute a blend-file.</p></li>
 <li><p>Changes can be made dynamically.</p>
@@ -335,8 +335,8 @@ then set values based on this.</p>
 <li><p>You may enable add-ons associated with your template.</p></li>
 </ul>
 <p>On activation a <code class="docutils literal notranslate"><span class="pre">register</span></code> function is called, <code class="docutils literal notranslate"><span class="pre">unregister</span></code> is called when another template is selected.</p>
-<p>As these only run once, any changes to defaults must be made via handler.</p>
-<p>Two handlers you're likely to use are:</p>
+<p>As these only run once, any changes to defaults must be made via handler.
+Two handlers you're likely to use are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">bpy.app.handlers.load_factory_preferences_post</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bpy.app.handlers.load_factory_startup_post</span></code></p></li>
@@ -436,7 +436,7 @@ just as Blender has it's own defaults when first launched.</p>
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

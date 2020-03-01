@@ -5,7 +5,7 @@ Alpha
 
 In this tab you control the alpha (transparency) of your strokes.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_tabs_alpha.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_alpha_tab.png
    :align: center
    :width: 50%
 

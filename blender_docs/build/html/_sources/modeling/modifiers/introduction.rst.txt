@@ -59,7 +59,7 @@ Type
    An icon as a quick visual reference of the modifier's type.
 Name
    Every modifier has a unique name per object. Two modifiers on one object must have unique names,
-   but two modifiers on different objects can have the same name. The default name is based off the modifier type.
+   but two modifiers on different objects can have the same name. The default name is based on the modifier type.
 Render (camera icon)
    Toggle visibility of the modifier's effect in the render.
 Show in Viewport (screen icon)

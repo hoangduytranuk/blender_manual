@@ -21,11 +21,10 @@ but the basics given here are actually vital for understanding the following cha
 
 Animation is typically achieved with the use of :doc:`keyframes </animation/keyframes/introduction>`.
 
-
 .. seealso:: Related Sections
 
-   - :doc:`Physical Simulation </physics/introduction>`.
-   - :doc:`Motion Tracking </movie_clip/index>`.
+   - :doc:`Physical Simulation </physics/introduction>`
+   - :doc:`Motion Tracking </movie_clip/index>`
 
 
 .. _animation-state-colors:

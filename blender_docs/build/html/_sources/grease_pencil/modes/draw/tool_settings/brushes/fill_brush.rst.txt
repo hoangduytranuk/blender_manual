@@ -77,6 +77,7 @@ Ignore Transparent strokes
    Threshold
       Threshold value to consider a material transparent.
 
+
 Cursor
 ------
 

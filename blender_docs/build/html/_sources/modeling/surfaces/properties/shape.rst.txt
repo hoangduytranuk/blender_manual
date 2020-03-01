@@ -3,7 +3,7 @@
 Shape
 *****
 
-.. figure:: /images/modeling_surfaces_properties_resolution-panel.png
+.. figure:: /images/modeling_surfaces_properties_shape_resolution-panel.png
    :align: center
 
    Shape panel.
@@ -23,19 +23,19 @@ Render U/V
 
    .. list-table::
 
-      * - .. figure:: /images/modeling_surfaces_properties_resolution-1x1-wire.png
+      * - .. figure:: /images/modeling_surfaces_properties_shape_resolution-1x1-wire.png
 
              Resolution 1×1.
 
-        - .. figure:: /images/modeling_surfaces_properties_resolution-3x3-wire.png
+        - .. figure:: /images/modeling_surfaces_properties_shape_resolution-3x3-wire.png
 
              Resolution 3×3.
 
-      * - .. figure:: /images/modeling_surfaces_properties_resolution-1x1.png
+      * - .. figure:: /images/modeling_surfaces_properties_shape_resolution-1x1.png
 
              Resolution of 1 for both U and V.
 
-        - .. figure:: /images/modeling_surfaces_properties_resolution-3x3.png
+        - .. figure:: /images/modeling_surfaces_properties_shape_resolution-3x3.png
 
              Resolution of 3 for both U and V.
 

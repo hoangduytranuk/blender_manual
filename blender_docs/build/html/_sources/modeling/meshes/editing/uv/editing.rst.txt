@@ -26,8 +26,8 @@ Transforms
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View Mode and Mask Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Transform`
+   :Mode:      Edit Mode and Mask Mode
+   :Tool:      :menuselection:`Toolbar --> Move, Rotate, Scale, Transform`
    :Menu:      :menuselection:`UVs --> Transform`
 
 - Move :kbd:`G`
@@ -53,7 +53,7 @@ UV Options
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View Mode and Mask Mode
+   :Mode:      Edit Mode and Mask Mode
    :Menu:      :menuselection:`UVs`
 
 Live Unwrap
@@ -83,8 +83,7 @@ Pin & Unpin
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> UV Unwrap: Pin/Unpin`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Pin/Unpin`
    :Hotkey:    :kbd:`P`, :kbd:`Alt-P`
 
@@ -112,8 +111,7 @@ Seams
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> UV Unwrap: Mark/Clear Seam`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Mark/Clear Seam`
 
 See :doc:`/modeling/meshes/editing/uv/unwrapping/seams`.
@@ -128,8 +126,7 @@ Pack Islands
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> Pack Islands`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Pack Islands`
    :Hotkey:    :kbd:`Ctrl-P`
 
@@ -148,8 +145,7 @@ Average Island Scale
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> Average Island Scale`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Average Island Scale`
    :Hotkey:    :kbd:`Ctrl-A`
 
@@ -165,8 +161,7 @@ Minimize Stretch
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> Minimize Stretch`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Minimize Stretch`
    :Hotkey:    :kbd:`Ctrl-V`
 
@@ -181,8 +176,7 @@ Stitch
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> Stitch`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Stitch`
    :Hotkey:    :kbd:`V`
 
@@ -197,8 +191,7 @@ Copy Mirrored UV Coordinates
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> Copy Mirrored UV Coordinates`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Copy Mirrored UV Coordinates`
 
 Copies UVs from one side of the mirrored mesh to the other.
@@ -216,8 +209,7 @@ Mirror
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Align --> Mirror X/Y`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Mirror`
    :Hotkey:    :kbd:`Ctrl-M`
 
@@ -236,7 +228,7 @@ Snap
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Snap`
    :Hotkey:    :kbd:`Shift-S`
 
@@ -267,8 +259,7 @@ Weld
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> Weld`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Weld/Align --> Weld`,
    :Hotkey:    :kbd:`W`
 
@@ -283,8 +274,7 @@ Merge UVs by Distance
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> Merge UVs by Distance`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Weld/Align --> Merge UVs by Distance`
 
 The *Merge UVs by Distance* tool will merge selected UVs within the specified *Margin*.
@@ -298,8 +288,7 @@ Straighten/Align
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> UV Align --> Straighten/Align`
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Weld/Align --> Straighten/Align`,
    :Hotkey:    :kbd:`W`
 
@@ -317,7 +306,7 @@ Proportional Editing
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
+   :Mode:      Edit Mode
    :Header:    :menuselection:`Proportional Editing`
    :Menu:      :menuselection:`UVs --> Proportional Editing`
    :Hotkey:    :kbd:`O`
@@ -333,7 +322,7 @@ Show/Hide Faces
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Show/Hide Faces`
 
 - Reveal Hidden :kbd:`Alt-H`
@@ -347,7 +336,7 @@ Export UV Layout
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      View mode
+   :Mode:      Edit Mode
    :Menu:      :menuselection:`UVs --> Export UV Layout`
 
 This is an :doc:`add-on </addons/import_export/mesh_uv_layout>` activated by default.

@@ -13,7 +13,7 @@ Orientation
    Hence, the thickest strokes will be the vertical ones i.e. stroke's direction is aligned with the angle, and
    the thinnest will be the horizontal ones i.e. stroke's direction is perpendicular to the angle.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_properties_thickness-calligraphy-example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_modifiers_thickness_calligraphy_example.png
    :width: 50%
    :align: center
 

@@ -5,7 +5,7 @@ Color
 
 In this tab you control the color of your strokes.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_tabs_color.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_color_tab.png
    :align: center
    :width: 50%
 

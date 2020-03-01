@@ -7,8 +7,8 @@ Move, Rotate, Scale
    :class: refbox
 
    :Mode:      Edit Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Transform`
-   :Menu:      :menuselection:`Mesh --> Transform --> Move, Rotate, Scale, ...`
+   :Tool:      :menuselection:`Toolbar --> Move, Rotate, Scale`
+   :Menu:      :menuselection:`Mesh --> Transform --> Move, Rotate, Scale`
    :Hotkey:    :kbd:`G`, :kbd:`R`, :kbd:`S`
 
 Once you have a selection of one or more elements, you can move :kbd:`G`,

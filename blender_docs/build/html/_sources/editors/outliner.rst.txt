@@ -217,13 +217,12 @@ View Menu
 
 The view menu is part of the context menu and supported in all the Outliner elements.
 
-Show Active
-   Centers the Tree View to selected object :kbd:`Period`.
-Show Hierarchy
-   To collapse all levels of the tree :kbd:`Home`.
-Show/Hide One Level
+Show Active :kbd:`Period`
+   Centers the Tree View to selected object.
+Show Hierarchy :kbd:`Home`
+   To collapse all levels of the tree.
+Show/Hide One Level :kbd:`NumpadPlus`/ :kbd:`NumpadMinus`
    Expand one level down in the tree :kbd:`NumpadPlus` and :kbd:`NumpadMinus` to collapse.
-
 
 .. note::
 

@@ -45,7 +45,7 @@ Stroke Options
    :Panel:     :menuselection:`Sidebar --> Tool --> Curve Stroke`
    :Menu:      :menuselection:`Tool Settings --> Curve Stroke`
 
-.. figure:: /images/modeling_curves_editing_draw_curve-stroke-panel.png
+.. figure:: /images/modeling_curves_editing_other_curve-stroke-panel.png
    :align: right
 
    Curve Stroke panel.

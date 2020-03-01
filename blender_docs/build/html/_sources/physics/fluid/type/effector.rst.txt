@@ -3,9 +3,8 @@
 Effector
 ********
 
-Effector objects are used to deflect fluids and influence of the fluid flow.
-To define any mesh object as an effector object,
-add fluid physics by clicking *Fluid* in the :menuselection:`Properties --> Physics` tab.
+Effector objects are used to deflect fluids and influence the fluid flow. To define any mesh object
+as an effector object, add fluid physics by clicking *Fluid* in :menuselection:`Properties --> Physics`.
 Then select *Effector* as the fluid *Type*.
 
 .. tip::
@@ -24,33 +23,61 @@ Settings
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Physics --> Fluid -- Settings`
+   :Panel:     :menuselection:`Physics --> Fluid --> Settings`
    :Type:      Effector
 
-Effector Type
-   Todo.
+.. _bpy.types.FluidEffectorSettings.effector_type:
 
+Effector Type
    Collision
-      Todo.
+      Objects of this type will collide with fluid.
+
    Guide
-      Todo.
+      The velocity of objects of this type will be used when baking the guiding.
+      So fluid guiding objects should move and have some velocity.
+
+      .. _bpy.types.FluidEffectorSettings.velocity_factor:
 
       Velocity Factor
-         Todo.
+         Multiply the guiding object velocities by this factor. This is useful when working with
+         multiple guiding objects and some of them should have higher or smaller velocities.
+
+      .. _bpy.types.FluidEffectorSettings.guide_mode:
+
       Guide Mode
-         Todo.
+         The mode describes how guiding velocities should be written into the global guiding velocity
+         field of the domain.
 
          Maximize
-            Todo.
+            The guiding object will compare the existing velocity in the global velocity field with
+            its own velocity. If its absolute value is greater than the absolute value in the velocity
+            field the guiding velocity will be kept.
+
          Minimize
-            Todo.
+            A guiding object will compare the existing velocity in the global velocity field with its
+            own velocity. If its absolute value is smaller than the absolute value in the velocity
+            field the guiding velocity will be kept.
+
          Override
-            Todo.
+            The most intuitive option. A guiding object will always
+            write its own current velocity into the global guiding velocity field.
+            Values in the velocity field from a previous frame or guiding object
+            will be overridden.
+
          Averaged
-            Todo.
+            A guiding object will write the average of its own current velocity and the existing
+            guiding velocity at that cell into the global guiding velocity field.
+
+.. _bpy.types.FluidEffectorSettings.use_plane_init:
 
 Is Planar
    Defines the effector as either a single dimension object i.e. a plane or the mesh is :term:`non-manifold`.
    This ensures that the fluid simulator will give the most accurate results for these types of meshes.
+
+   A :term:`manifold` mesh can also be declared as planar. The fluid solver will then ignore the volume
+   inside the mesh and just emit fluid from the mesh sides.
+
+.. _bpy.types.FluidEffectorSettings.surface_distance:
+
 Surface Thickness
-   Todo.
+   Additional area around the effector that will be considered as an effector.

@@ -105,7 +105,6 @@ the :doc:`Wave </modeling/modifiers/deform/wave>` modifier.
 
           Using Saturation.
 
-
 .. _fig-modifier-vertex-weight-custom:
 
 .. list-table:: Custom mapping curve with a Vertex Weight Edit modifier.

@@ -59,7 +59,6 @@ Loop
    Help working on loop animations showing the first keyframe/frame
    as ghost when you are on the last frame of your animation.
 
-
 .. figure:: /images/grease-pencil_properties_onion-skinning_example.png
 
    An example of Onion Skinning activated.

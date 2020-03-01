@@ -13,11 +13,9 @@ that can be selected to replace the default configuration,
 without requiring a separate Blender installation or overwriting your personal settings.
 
 Application templates can be selected from the splash screen or :menuselection:`File --> New` sub-menu.
-
 When there are no templates found the menu will not be displayed on the splash screen.
 
 New application templates can be installed from the :ref:`topbar-app_menu`.
-
 If you would like to keep the current application template active on restarting Blender, save your preferences.
 
 
@@ -29,7 +27,6 @@ and expect someone to replace their preferences and startup file, install script
 
 The goal of application templates is to support switching to a customized configuration
 without disrupting your existing settings and installation.
-
 This means people can build their own *applications* on top of Blender that can be easily distributed.
 
 
@@ -70,7 +67,6 @@ Template locations:
    | ``{BLENDER_USER_SCRIPTS}/startup/bl_app_templates_user``
    | ``{BLENDER_SYSTEM_SCRIPTS}/startup/bl_app_templates_system``
 
-
 User configuration is stored in a subdirectory:
 
 Without a template:
@@ -103,14 +99,12 @@ Each of the following files can be used for application templates but are option
    Factory startup file to use for this template.
 ``userpref.blend``
    Factory preferences file to use for this template.
-
    When omitted preferences are shared with the default Blender configuration.
 
    *(As noted previously, this is only used for a subset of preferences).*
 
 ``splash.png``, ``splash_2x.png``
    Splash screen to override Blender's default artwork (not including header text).
-
    Must be ``501x250`` and ``1002x500`` (used for HiDPI monitors).
 ``__init__.py``
    A Python script which must contain ``register`` and ``unregister`` functions.
@@ -134,7 +128,6 @@ While app templates can use Python scripts,
 they simply have access to the same API's available for add-ons and any other scripts.
 
 As noted above, you may optionally have an ``__init__.py`` in your app template.
-
 This has the following advantages:
 
 - Changes can be made to the startup or preferences, without having to distribute a blend-file.
@@ -148,7 +141,6 @@ This has the following advantages:
 On activation a ``register`` function is called, ``unregister`` is called when another template is selected.
 
 As these only run once, any changes to defaults must be made via handler.
-
 Two handlers you're likely to use are:
 
 - ``bpy.app.handlers.load_factory_preferences_post``

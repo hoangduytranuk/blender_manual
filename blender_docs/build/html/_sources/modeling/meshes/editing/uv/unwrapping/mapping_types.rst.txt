@@ -18,7 +18,6 @@ Mapping Types
 
    :Editor:    UV Editor
    :Mode:      View mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> UV Tools --> UV Unwrap: Unwrap`
    :Menu:      :menuselection:`UVs --> Unwrap`
    :Hotkey:    :kbd:`E`
 

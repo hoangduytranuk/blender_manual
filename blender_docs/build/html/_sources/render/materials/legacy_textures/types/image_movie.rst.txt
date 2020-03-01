@@ -60,6 +60,7 @@ You could of course change the UV map for one side of the face to slightly offse
 but it might be noticeable.
 Ears are another example where images or section of an image can be mapped to similar faces.
 
+
 Options
 =======
 
@@ -192,7 +193,6 @@ MIP Map
       Used in conjunction with mip-mapping, it enables the mip-map to be made smaller based on color similarities.
       In game engines, you want your textures, especially your mip-map textures,
       to be as small as possible to increase rendering speed and frame rate.
-
 
 Filter
    The filter size used in rendering, and also by the options *Mip Map* and *Interpolation*.

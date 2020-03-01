@@ -32,6 +32,12 @@ Vertex Group
 
    Useful when you want something other than a spherical field of influence.
 
+   Invert ``<->``
+      Inverts the influence of the selected vertex group, meaning that the group
+      now represents vertices that will not be deformed by the modifier.
+
+      The setting reverses the weight values of the group.
+
 Radius
    The size of the hooks influence.
 Strength

@@ -5,7 +5,7 @@ Texture
 
 Assigns a texture to the Freestyle stroke.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_tabs_texture.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_texture_tab.png
    :align: center
    :width: 50%
 
@@ -26,7 +26,7 @@ Nodes
 UV Along Stroke Node
 --------------------
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_nodes_uv-along-stroke_node.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_texture_uv-along-stroke-node.png
    :align: right
 
    UV Along Stroke Node.
@@ -65,7 +65,7 @@ UV
 Line Style Output Node
 ----------------------
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_nodes_output_node.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_texture_output-node.png
    :align: right
 
    Line Style Output Node.
@@ -116,7 +116,7 @@ Since the Alpha Factor is set to one, the texture image replaces the base alpha 
 On the other hand, the Mix blend mode is selected in the Line Style Output node with the Color Factor set to zero,
 so that the gradient line color specified in the active line style is applied along strokes.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_nodes_uv-along-stroke_example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_texture_uv-along-stroke-example.png
 
    Example of Line Style Nodes
    (`blend-file <https://wiki.blender.org/wiki/File:Blender_272_textured_strokes_in_cycles.blend>`__).

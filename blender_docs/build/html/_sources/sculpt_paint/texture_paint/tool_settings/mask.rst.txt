@@ -4,7 +4,7 @@
 Mask
 ****
 
-.. figure:: /images/sculpt-paint_texture-paint_slots-mask_mask-panel.png
+.. figure:: /images/sculpt-paint_texture-paint_tool-settings_mask_panel.png
    :align: right
 
    Mask settings.

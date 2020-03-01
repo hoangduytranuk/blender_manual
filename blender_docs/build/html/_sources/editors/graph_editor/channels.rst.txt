@@ -111,7 +111,7 @@ Hide Unselected :kbd:`Shift-H`
 Reveal Curves :kbd:`Alt-H`
    Show all previous hidden curves.
 Move...
-   This allows you to move top-level channels up/down :kbd:`Shift-PageUp`, :kbd:`Shift-PageDown`,
-   or directly to the top/bottom :kbd:`Shift-Ctrl-PageUp`, :kbd:`Shift-Ctrl-PageDown`.
+   This allows you to move selected channels up/down :kbd:`PageUp`, :kbd:`PageDown`,
+   or directly to the top/bottom :kbd:`Shift-PageUp`, :kbd:`Shift-PageDown`.
 Revive Disabled F-Curves
    Clears "disabled" tag from all F-curves to get broken F-curves working again.

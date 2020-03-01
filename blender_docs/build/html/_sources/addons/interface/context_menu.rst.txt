@@ -3,7 +3,7 @@
 Dynamic Context Menu
 ********************
 
-.. figure:: /images/addons_interface_dynamic_menu.jpg
+.. figure:: /images/addons_interface_context-menu_ui.jpg
    :align: right
 
 Dynamic Context Menu provides access to many of the menus found in the 3D View header.

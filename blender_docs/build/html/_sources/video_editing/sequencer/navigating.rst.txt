@@ -6,7 +6,7 @@ Navigating
 Header
 ======
 
-.. figure:: /images/sequencer_sequencer_navigating_header.png
+.. figure:: /images/video-editing_sequencer_navigating_header.png
    :align: center
 
    Video Sequencer Header.

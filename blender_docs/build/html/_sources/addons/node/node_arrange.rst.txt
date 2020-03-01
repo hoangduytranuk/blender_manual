@@ -19,6 +19,12 @@ Interface
 Located in the :menuselection:`node editors --> Sidebar --> Arrange tab`.
 
 
+Description
+===========
+
+- To Do
+
+
 Usage
 =====
 
@@ -33,11 +39,3 @@ Todo.
    :Location: :menuselection:`node editor --> Sidebar --> Trees`
    :File: node_arrange.py
    :Author: JuhaW
-
-
-
-
-Description
-===========
-
-- To Do

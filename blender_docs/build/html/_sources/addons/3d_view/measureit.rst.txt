@@ -19,7 +19,7 @@ Activation
 Interface
 =========
 
-.. figure:: /images/addons_3dview_measureit.jpg
+.. figure:: /images/addons_3d-view_measureit_example.jpg
    :align: center
    :width: 640px
 

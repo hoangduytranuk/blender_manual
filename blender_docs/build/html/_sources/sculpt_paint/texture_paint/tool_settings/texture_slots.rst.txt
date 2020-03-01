@@ -5,7 +5,7 @@
 Texture Slots
 *************
 
-.. figure:: /images/sculpt-paint_texture-paint_slots-mask_slots-panel.png
+.. figure:: /images/sculpt-paint_texture-paint_tool-settings_texture-slots_panel.png
    :align: right
 
    Texture Slots settings.

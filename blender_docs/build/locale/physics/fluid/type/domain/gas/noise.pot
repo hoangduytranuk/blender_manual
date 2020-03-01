@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
-# This file is distributed under the same license as the Blender 2.82 Manual package.
+# This file is distributed under the same license as the Blender 2.83 Manual package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Blender 2.82 Manual 2.82\n"
+"Project-Id-Version: Blender 2.83 Manual 2.83\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-17 14:40-0800\n"
+"POT-Creation-Date: 2020-03-01 04:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,62 +37,113 @@ msgid "Panel"
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:11
-msgid ":menuselection:`Physics --> Smoke --> High Resolution`"
+msgid ":menuselection:`Physics --> Fluid --> Noise`"
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:13
-msgid "Adding noise to the gas simulation creates a finer detailed looking simulation while using a relatively low *Resolution Divisions*. This allows animators to quickly set up a low resolution simulation and later add details without changing the overall fluid motion."
+msgid "Adding noise to the gas simulation creates a finer detailed looking simulation on top of the base. This makes it possible to add more details to gases (i.e. fire or smoke or both) without changing the overall fluid motion."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:19
-msgid "Fluid noise is an implementation of `Turbulence for Fluid Simulation <https://web.archive.org/web/20140911163550/https://graphics.ethz.ch/research/physics_animation_fabrication/simulation/turb.php>`__."
+msgid "Fluid noise is an implementation of `Wavelet Turbulence for Fluid Simulation <http://www.cs.cornell.edu/~tedkim/WTURB/>`__."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:24
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:22
+msgid "Besides enabling parts of the interface, checking *Noise* lets the cache know which simulation data to read. If, for example, *Noise* is enabled but there is no noise simulation data to read it will show an empty domain. The checkbox does not reset the cache and can be used to switch the view between base resolution and noise view."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:32
 msgid "Upres Factor"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:25
-msgid "Factor by which to enhance the resolution of the noise."
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:31
+msgid "Factor by which to enhance the resolution of the noise. The scaling factor is coupled to the :ref:`Resolution Divisions <bpy.types.FluidDomainSettings.resolution_max>`."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:32
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:37
+msgid "Method"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:37
+msgid "The method used to create the noise. \"Wavelet\" turbulence is currently the only method available."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:42
 msgid "Strength"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:27
-msgid "Strength of the noise."
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:42
+msgid "Strength of the noise. Higher values result in more turbulent vortices."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:32
-msgid "From left to right, the domains' high resolution strengths are set to 0, 2, and 6."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:34
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:47
 msgid "Scale"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:35
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:37
-msgid "Todo."
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:47
+msgid "Scale of the noise. Greater values result in larger vortices."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:38
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:96
 msgid "Time"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:41
-msgid "Smoke Noise vs. High Resolution Divisions"
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:43
-msgid "*Upres Factor* and *Resolution Divisions* are not equivalent. By using different combinations of these resolution settings, you can get a variety of different styles of smoke."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:49
-msgid "Comparison between a domain with 24 *Resolution Divisions* and 4 *Upres Factor* (left), and a domain with 100 *Resolution Divisions* and 1 *Upres Factor* division (right)."
-msgstr ""
-
 #: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:52
-msgid "Low division simulations with lots of *Upres Factor* divisions generally appear smaller in real-world scale, with many smaller details (larger flames, etc.). They can be used to create pyroclastic plumes such as in the following image:"
+msgid "Animation time of the noise. This value has an influence on where the noise field is evaluated. It can be used as a seed to give wavelet noise a slightly different look in two domains that are otherwise the same."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:56
+msgid "Smoke plume with varying animation time. While the fluid motion of all four smoke plumes are alike each example has a unique look."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:61
+msgid "Animation Time: 0.1"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:65
+msgid "Animation Time: 1.0"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:69
+msgid "Animation Time: 2.5"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:73
+msgid "Animation Time: 10.0"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:77
+msgid "*Resolution Divisions* and *Upres Factor* are not equivalent. By using different combinations of these resolution settings, you can obtain a variety of different styles of smoke."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:81
+msgid "Comparison of fire simulations with and without noise at the same grid resolution."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:86
+msgid "Resolution Division: 200, without noise"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:90
+msgid "Resolution Divisions: 100, Noise scale: 2."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:92
+msgid "Low division simulations with lots of *Upres Factor* divisions generally appear smaller in real-world scale and can be used to achieve pyroclastic plumes such as in the following image:"
+msgstr ""
+
+#: <generated>:1
+msgid "Bake Noise, Free Noise"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:102
+msgid "This option is only available when using the :ref:`Modular <bpy.types.FluidDomainSettings.cache_type>` cache type."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:104
+msgid "The progress will be displayed in the status bar. Pressing :kbd:`Esc` will pause the simulation."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/physics/fluid/type/domain/gas/noise.rst:106
+msgid "Once the simulation has been baked, the cache can be deleted by pressing *Free Noise*. It is possible to pause or resume a *Bake Noise* process."
 msgstr ""

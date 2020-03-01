@@ -3,7 +3,7 @@
 Shape
 *****
 
-.. figure:: /images/modeling_curves_properties_data_curves-shape-panel.png
+.. figure:: /images/modeling_curves_properties_shape_curves-shape-panel.png
    :align: center
 
    Shape panel.
@@ -23,11 +23,11 @@ Resolution Preview/Render U
 
    .. list-table::
 
-      * - .. figure:: /images/modeling_curves_properties_data_shape-resolution-3.png
+      * - .. figure:: /images/modeling_curves_properties_shape_resolution-3.png
 
              Curves with a resolution of 3.
 
-        - .. figure:: /images/modeling_curves_properties_data_shape-resolution-12.png
+        - .. figure:: /images/modeling_curves_properties_shape_resolution-12.png
 
              Curves with a resolution of 12.
 
@@ -39,11 +39,11 @@ Twist Method
 
    .. list-table::
 
-      * - .. figure:: /images/modeling_curves_properties_data_shape-resolution-12.png
+      * - .. figure:: /images/modeling_curves_properties_shape_resolution-12.png
 
              Curves with a twist of Minimum.
 
-        - .. figure:: /images/modeling_curves_properties_data_shape-twisting.png
+        - .. figure:: /images/modeling_curves_properties_shape_twisting.png
 
              Curves with a twist of Tangent.
 
@@ -57,11 +57,11 @@ Fill Mode
 
    .. list-table::
 
-      * - .. figure:: /images/modeling_curves_properties_data_shape-fill-half.png
+      * - .. figure:: /images/modeling_curves_properties_shape_fill-half.png
 
              Curves with a fill of Half.
 
-        - .. figure:: /images/modeling_curves_properties_data_shape-fill-full.png
+        - .. figure:: /images/modeling_curves_properties_shape_fill-full.png
 
              Curves with a fill of Full.
 

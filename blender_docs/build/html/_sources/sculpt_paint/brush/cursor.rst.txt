@@ -17,7 +17,7 @@ Cursor
    :Header:    :menuselection:`Tool Settings --> Brush Settings --> Cursor`
    :Panel:     :menuselection:`Sidebar --> Tool --> Brush Settings --> Cursor`
 
-.. figure:: /images/sculpt-paint_brush_display_panel.png
+.. figure:: /images/sculpt-paint_brush_cursor_panel.png
    :align: right
 
    Cursor options.

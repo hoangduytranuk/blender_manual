@@ -196,6 +196,7 @@ Display Mode
 Lock Interface
    Lock interface during rendering in favor of giving more memory to the renderer.
 
+
 .. _topbar-window:
 
 Window Menu

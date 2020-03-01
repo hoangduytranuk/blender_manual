@@ -23,5 +23,4 @@ Performance is highly dependent on the number of BSDF nodes present in the node 
 
    Prefer using the Principled BSDF instead of multiple BSDF nodes because Eevee is optimized for it.
 
-
 .. seealso:: :ref:`Limitations <eevee-limitations-materials>`.

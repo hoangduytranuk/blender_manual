@@ -60,7 +60,7 @@ Operations
 
 The *Batch Rename* has several sub Operations to change the data names.
 The default operation is *Find/Replace* however, other operations can be added
-to modify the data names farther.
+to modify the data names further.
 
 
 Find/Replace
@@ -124,7 +124,7 @@ End
 Change Case
 ^^^^^^^^^^^
 
-*Change Case* modifies the case of names to be on of the following:
+*Change Case* modifies the case of names to be one of the following:
 
 Upper Case
    Changes all text to be in upper case, e.g. ``cube.001`` becomes ``CUBE.001``.

@@ -8,7 +8,7 @@ by removing the ones longer/shorter than some threshold,
 chaining lines into a single stroke or breaking a stroke into several ones based on angles,
 dashed pattern, etc.
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_tabs_stroke.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_strokes_tab.png
    :align: center
    :width: 50%
 
@@ -113,7 +113,7 @@ Square
    A square centered on the end point of the line
    (hence, like the circle, the drawn end of the line is slightly extended compared to its computed value).
 
-.. figure:: /images/render_freestyle_parameter-editor_line-style_tabs_stroke-caps-example.png
+.. figure:: /images/render_freestyle_parameter-editor_line-style_strokes_caps-example.png
    :align: center
 
    Line caps example.

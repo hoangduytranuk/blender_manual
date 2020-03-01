@@ -8,7 +8,7 @@ Arc Tool
    :class: refbox
 
    :Mode:      Draw Mode
-   :Tool:      :menuselection:`Toolbar --> Tools --> Draw Tools --> Arc`
+   :Tool:      :menuselection:`Toolbar --> Arc`
 
 The Arc tool create simple arcs.
 

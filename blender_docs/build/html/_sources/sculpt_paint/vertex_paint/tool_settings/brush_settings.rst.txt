@@ -3,7 +3,7 @@
 Brush Settings
 **************
 
-.. figure:: /images/sculpt-paint_vertex-paint_tools_tab.png
+.. figure:: /images/sculpt-paint_vertex-paint_tool-settings_brush-settings_tab.png
    :align: right
 
    Vertex Painting options.

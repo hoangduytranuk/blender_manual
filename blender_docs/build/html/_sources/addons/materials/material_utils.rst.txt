@@ -25,7 +25,7 @@ Located in the 3D View :kbd:`Shift-Q` hotkey.
 
 Located in the :menuselection:`Properties editor --> Materials --> Specials`.
 
-.. figure:: /images/addons_materials_mat_utils.jpg
+.. figure:: /images/addons_materials_material-utils_example.jpg
    :align: right
    :width: 350px
 

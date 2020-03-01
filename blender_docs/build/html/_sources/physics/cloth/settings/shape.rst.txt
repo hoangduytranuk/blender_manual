@@ -8,7 +8,7 @@ Shape
 
    :Panel:     :menuselection:`Physics --> Cloth --> Shape`
 
-.. figure:: /images/physics_cloth_settings_cloth-settings_pinning.png
+.. figure:: /images/physics_cloth_settings_shape_pinning.png
 
    Cloth Shape.
 

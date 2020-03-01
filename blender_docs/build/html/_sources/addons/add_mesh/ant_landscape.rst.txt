@@ -16,7 +16,7 @@ Activation
 Interface
 =========
 
-.. figure:: /images/addons_add_mesh_landscape_ui.jpg
+.. figure:: /images/addons_add-mesh_ant-landscape_ui.jpg
    :align: right
    :width: 220px
 

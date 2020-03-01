@@ -102,8 +102,7 @@ Double Click Speed
 Tablet
 ======
 
-
-Tablet API (Windows Only)
+Tablet API (Windows only)
    Select the native Windows Ink or older Wintab system for pressure sensitivity.
    Blender automatically selects the API for your operating system and tablet,
    however in case of problems this can be set manually.

@@ -21,7 +21,7 @@ Interface
 
 Located in the :menuselection:`3D View --> Sidebar --> Edit tab`.
 
-.. figure:: /images/addons_add_curve_shapekey_ui.jpg
+.. figure:: /images/addons_add-curve_assign-shape-keys_ui.jpg
    :align: right
    :width: 220px
 

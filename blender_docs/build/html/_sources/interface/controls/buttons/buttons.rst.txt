@@ -24,7 +24,7 @@ Button may show an icon, text, or both.
 Checkboxes & Toggle Buttons
 ===========================
 
-.. figure:: /images/interface_controls_buttons_toggle-radio_checkbox.png
+.. figure:: /images/interface_controls_buttons_buttons_checkbox.png
    :align: right
    :figwidth: 155px
 
@@ -47,7 +47,7 @@ This works for checkboxes, toggles and to select a radio button value.
 Radio Buttons
 =============
 
-.. figure:: /images/interface_controls_buttons_toggle-radio_radio.png
+.. figure:: /images/interface_controls_buttons_buttons_radio.png
    :align: right
 
    Radio buttons.

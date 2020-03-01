@@ -49,6 +49,6 @@ Default Fade
 Example
 =======
 
-.. figure:: /images/sequencer_sequencer_strips_effects_wipe_example.png
+.. figure:: /images/video-editing_sequencer_strips_transitions_wipe_example.png
 
    Wipe Effect.

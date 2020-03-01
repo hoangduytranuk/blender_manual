@@ -105,4 +105,4 @@ Adding Nodes
    :Menu:      :menuselection:`Add`
    :Hotkey:    :kbd:`Shift-A`
 
-Nodes are added via the :menuselection:`Add` menu or using the :kbd:`Shift-A` shortcut.
+Nodes are added via the *Add* menu or using the :kbd:`Shift-A` shortcut.

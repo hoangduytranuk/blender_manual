@@ -10,7 +10,7 @@ Render Properties
 
 Freestyle can be activated with the checkbox in the header of the Freestyle panel in the *Render* tab.
 
-.. figure:: /images/render_freestyle_core_freestyle-panel.png
+.. figure:: /images/render_freestyle_render_freestyle-panel.png
    :align: center
    :width: 50%
 

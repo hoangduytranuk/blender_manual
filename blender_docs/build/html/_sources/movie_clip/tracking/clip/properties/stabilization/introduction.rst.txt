@@ -78,8 +78,8 @@ Tracks can be added in two groups:
    to keep this value constant during the whole shot.
 
 
-Footage, Image and Canvas
--------------------------
+Footage, Image & Canvas
+-----------------------
 
 When talking about the movement stabilization of video, we have to distinguish several frames of reference.
 The image elements featured by the footage move around irregularly within the footage's original image boundaries --

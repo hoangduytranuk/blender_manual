@@ -21,7 +21,7 @@ Located in the :menuselection:`3D View --> Sidebar --> Edit tab`.
 
 The default setting in the interface is Choose Tool, here you pick what trace methods and functions.
 
-.. figure:: /images/addons_add_curve_btrace_ui.jpg
+.. figure:: /images/addons_add-curve_btracer_ui.jpg
    :align: right
    :width: 220px
 

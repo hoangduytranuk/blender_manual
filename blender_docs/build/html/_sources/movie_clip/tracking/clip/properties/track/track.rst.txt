@@ -3,7 +3,7 @@
 Track
 *****
 
-.. figure:: /images/movie-clip_tracking_clip_properties_introduction_track-panel.png
+.. figure:: /images/movie-clip_tracking_clip_properties_track_track_panel.png
    :align: right
    :width: 195px
 

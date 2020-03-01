@@ -26,7 +26,6 @@ Install from Zip
 
 After downloading Blender for macOS, uncompress the file and drag ``Blender.app`` into the Applications folder.
 
-
 .. tip:: How to Make a Portable Installation
 
    To keep all configuration files and installed add-ons inside the Blender application bundle,

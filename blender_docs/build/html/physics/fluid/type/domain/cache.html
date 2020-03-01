@@ -80,7 +80,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> Blender 2.82 Manual
+            <a href="../../../../index.html" class="icon icon-home"> Blender 2.83 Manual
           
 
           
@@ -114,7 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn -- Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
@@ -168,7 +168,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">Blender 2.82 Manual</a>
+          <a href="../../../../index.html">Blender 2.83 Manual</a>
         
       </nav>
 
@@ -222,7 +222,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="cache">
-<span id="bpy-types-fluiddomainsettings-cache"></span><h1>Cache<a class="headerlink" href="#cache" title="Permalink to this headline">¶</a></h1>
+<h1>Cache<a class="headerlink" href="#cache" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -234,70 +234,103 @@
 </dd>
 </dl>
 </div>
-<p>The <em>Cache</em> panel is used to <a class="reference internal" href="../../../../glossary/index.html#term-baking"><span class="xref std std-term">Bake</span></a> the fluid simulation
-and stores the outcome of a simulation so it does not need to be recalculated.</p>
-<p>Baking takes a <strong>lot</strong> of compute power (hence time).
-Depending on the scene, it might be preferable to bake overnight.</p>
+<p>The <em>Cache</em> panel is used to <a class="reference internal" href="../../../../glossary/index.html#term-baking"><span class="xref std std-term">Bake</span></a> the fluid simulation and stores the outcome of
+a simulation so it does not need to be recalculated.</p>
+<p>Baking takes a <strong>lot</strong> of compute power (hence time). Depending on the scene, it is recommended
+to allocate enough time for the baking process.</p>
 <p>If the mesh has modifiers, the rendering settings are used for exporting the mesh to the fluid solver.
-Depending on the setting, calculation times and memory use might exponentially increase.
-For example, when using a moving mesh with <em>Subdivision Surface</em> as an obstacle,
-it might help to decrease simulation time by switching it off, or to a low subdivision level.
-When the setup/rig is correct, you can always increase settings to yield a more realistic result.</p>
-<div class="admonition seealso">
-<p class="admonition-title">Xem thêm</p>
-<p>For other options see the <a class="reference internal" href="../../../baking.html"><span class="doc">General Baking</span></a> docs for more information.</p>
-</div>
-<dl>
-<dt>Type</dt><dd><p>Todo.</p>
-</dd>
-<dt>Cache Directory</dt><dd><p>Directory and file prefix to store baked surface meshes.</p>
-</dd>
-<dt>Start</dt><dd><p>Frame on which to start the simulation.</p>
-</dd>
-<dt>End</dt><dd><p>Frame on which to stop the simulation.</p>
+Depending on the setting, calculation times and memory use might exponentially increase. For example,
+when using a moving mesh with <em>Subdivision Surface</em> as an obstacle, it might help to decrease simulation
+time by switching it off, or to a low subdivision level. When the setup/rig is correct, you can always
+increase settings to yield a more realistic result.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>The simulation is only calculated for positive frames
-between the <em>Start</em> and <em>End</em> frames of the <em>Cache</em> panel, whether you bake or not.
-So if you want a simulation that is longer than the default frame range you have to change the <em>End</em> frame.</p>
+<p>Fluid simulations use their own cache. All other physics simulations make use of
+the <a class="reference internal" href="../../../baking.html"><span class="doc">General Baking</span></a> operators.</p>
 </div>
+<dl class="simple" id="bpy-types-fluiddomainsettings-cache-directory">
+<dt>Cache Directory</dt><dd><p>Directory to store baked simulation files in. Inside this directory each simulation type
+(i.e. mesh, particles, noise) will have its own directory containing the simulation data.</p>
 </dd>
-<dt>Data File Format</dt><dd><p>File format that the cache data is to be stored.</p>
-<dl>
-<dt>Uni Cache</dt><dd><p>Blender's own caching format.</p>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-cache-type">
+<dt>Type</dt><dd><p>The type of the cache determines how the cache can be baked.</p>
+<dl class="simple">
+<dt>Modular</dt><dd><p>In this mode the cache is baked step by step. The bake operators for this type can be found in
+the other panels within the domain settings. It is possible to cancel and resume bake jobs when
+using this type.</p>
 </dd>
-<dt>OpenVDB</dt><dd><p>Advanced and efficient storage method developed by
-<a class="reference external" href="http://www.dreamworksanimation.com/">DreamWorks Animation</a>.</p>
-<p>The simulation fields can be found in the <code class="docutils literal notranslate"><span class="pre">.vdb</span></code> files under the following names:</p>
-<ul class="simple">
-<li><p>&quot;color&quot;</p></li>
-<li><p>&quot;density&quot;</p></li>
-<li><p>&quot;heat&quot;</p></li>
-<li><p>&quot;heat old&quot; (the temperature at the previous frame)</p></li>
-<li><p>&quot;flame&quot;</p></li>
-<li><p>&quot;fuel&quot;</p></li>
-<li><p>&quot;react&quot; (reaction coordinates, used for fire)</p></li>
-<li><p>&quot;velocity&quot;</p></li>
-<li><p>&quot;shadow&quot; (the shadows of the volume computed for viewport rendering)</p></li>
-<li><p>&quot;texture coordinates&quot; (used for turbulence)</p></li>
-</ul>
+<dt>Final</dt><dd><p>This mode bakes the cache considering all selected settings at once. The bake operator for this
+type can be found in the cache panel.</p>
+</dd>
+<dt>Replay</dt><dd><p>The cache is baked as the simulation is being played in the viewport.</p>
 </dd>
 </dl>
 </dd>
-<dt>Particle File Format <span class="guilabel">Liquids Only</span></dt><dd><p>File format that the cache data is to be stored.</p>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-cache-frame-start">
+<dt>Start</dt><dd><p>Frame on which to start the simulation.</p>
 </dd>
-<dt>Mesh File Format <span class="guilabel">Liquids Only</span></dt><dd><p>File format that the cache data is to be stored.</p>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-cache-frame-end">
+<dt>End</dt><dd><p>Frame on which to stop the simulation.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The simulation is only calculated for positive frames between the <em>Start</em> and <em>End</em> frames
+of the <em>Cache</em> panel. So if you want a simulation that is longer than the default frame range
+you have to change the <em>End</em> frame.</p>
+</div>
 </dd>
-<dt>Bake All, Free All</dt><dd><p>Perform the actual fluid simulation. Blender will continue to work normally,
-except the progress will be displayed in the status bar.
-Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> or the &quot;X&quot; button next to the status bar will abort the simulation.</p>
-<p>Once the simulation has been baked, the cache can be deleted by pressing <em>Free All</em>.</p>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-cache-data-format">
+<dt>Data File Format</dt><dd><p>File format for the data simulation files. Data simulation files store the information of the most basic grids
+that are needed for a fluid simulation (e.g. velocity, density).</p>
+<dl>
+<dt>Uni Cache</dt><dd><p>Blender's own caching format with some compression.</p>
+</dd>
+<dt>Raw Cache</dt><dd><p>Blender's own caching format without any compression.</p>
+</dd>
+<dt>OpenVDB</dt><dd><p>Advanced and efficient storage method developed by
+<a class="reference external" href="http://www.dreamworksanimation.com/">DreamWorks Animation</a>.</p>
+<p>All grids are stored in separate <code class="docutils literal notranslate"><span class="pre">.vdb</span></code> files. Thus every file contains just one simulation field or grid.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-cache-particle-format">
+<dt>Particle File Format <span class="guilabel">Liquids Only</span></dt><dd><p>File format for the particle cache files.</p>
+<dl class="simple">
+<dt>Uni Cache</dt><dd><p>Blender's own caching format with some compression.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-cache-mesh-format">
+<dt>Mesh File Format <span class="guilabel">Liquids Only</span></dt><dd><p>File format for the mesh cache files.</p>
+<dl class="simple">
+<dt>Binary Object</dt><dd><p>Mesh data files with some compression.</p>
+</dd>
+<dt>Object</dt><dd><p>Simple, standard data format for mesh data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<span id="bpy-ops-fluid-bake-all"></span><dl id="bpy-ops-fluid-free-all">
+<dt>Bake All, Free All</dt><dd><p>This option is only available when using the <a class="reference internal" href="#bpy-types-fluiddomainsettings-cache-type"><span class="std std-ref">Final</span></a> cache type.
+<em>Bake All</em> will run the simulation considering all parameters from
+the settings (i.e. it will bake all steps that can be baked individually with
+the <a class="reference internal" href="#bpy-types-fluiddomainsettings-cache-type"><span class="std std-ref">Modular</span></a> cache type at once).</p>
+<p>The progress will be displayed in the status bar. Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> will abort the simulation.</p>
+<p>Once the simulation has been baked, the cache can be deleted by pressing <em>Free All</em>.
+It is not possible to pause or resume a <em>Bake All</em> process as only the most essential cache files are stored on drive.</p>
 </dd>
 </dl>
 <div class="section" id="advanced">
 <span id="bpy-types-fluiddomainsettings-export-manta-script"></span><h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Export Mantaflow Script</dt><dd><p>Todo.</p>
+<dt>Export Mantaflow Script</dt><dd><p>Export the simulation as a standalone Mantaflow script when baking the scene (exported on &quot;Bake Data&quot;).
+Usually, only developers and advanced users who know how to use the Mantaflow GUI will
+make use of this functionality.</p>
 </dd>
 </dl>
 </div>
@@ -340,7 +373,7 @@ Pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> or the &quot;X&
 <ul id="versionwrap" role="presentation">
    <li style="float:left" role="presentation">
 		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
-		2.82 
+		2.83 
 		</span>
 		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
 			<li role="presentation">Loading...</li>

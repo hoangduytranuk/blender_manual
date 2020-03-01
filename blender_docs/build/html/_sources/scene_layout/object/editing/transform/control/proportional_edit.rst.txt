@@ -1,7 +1,5 @@
-
 .. |prop-edit-icon| image::
    /images/editors_3dview_object_editing_transform_control_proportional-edit_header.png
-
 
 *****************
 Proportional Edit
@@ -81,13 +79,10 @@ the points surrounding your selection will adjust their positions accordingly.
 Options
 -------
 
-.. list-table::
+.. figure:: /images/scene-layout_object_editing_transform_control_proportional-edit_tool.png
+   :width: 250px
 
-   * - .. figure:: /images/scene-layout_object_editing_transform_control_proportional-edit_tool.png
-          :width: 250px
-
-          Proportional Editing tool.
-
+   Proportional Editing tool.
 
 The *Proportional Editing* mode menu is on the 3D View header.
 

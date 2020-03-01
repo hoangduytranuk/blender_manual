@@ -14,7 +14,7 @@ To use the VSE, you load multiple video clips and lay them end-to-end (or in som
 inserting fades and transitions to link the end of one clip to the beginning of another.
 Finally, you can add audio and synchronize the timing of the video sequence to match it.
 
-.. figure:: /images/sequencer_introduction_screen-layout.png
+.. figure:: /images/video-editing_introduction_screen-layout.png
 
    Default Video Editing screen layout.
 
@@ -22,7 +22,7 @@ Finally, you can add audio and synchronize the timing of the video sequence to m
 View Types
 ==========
 
-.. figure:: /images/sequencer_introduction_types.png
+.. figure:: /images/video-editing_introduction_types.png
    :align: right
 
 The Video Sequence Editor has three view types for the main view:
