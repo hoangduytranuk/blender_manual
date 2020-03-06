@@ -1,0 +1,19 @@
+#!/bin/bash
+DIR=$1;
+MAXDEPTH=$2
+CMD="";
+echo $DIR;
+echo $MAXDEPTH;
+if [ -n "$DIR" ]; then
+  CMD="$CMD $DIR";
+fi
+if [ -n "$MAXDEPTH" ]; then
+  CMD="$CMD -maxdepth $MAXDEPTH";
+fi
+find $CMD | while read -r FILE
+do
+  old_file=$FILE;
+  new_file=$(echo $old_file | tr ':' '_' | tr ' ' '_');
+#  echo "moving $old_file to $new_file";
+  mv -v "$old_file" "$new_file";
+done

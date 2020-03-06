@@ -1,0 +1,47 @@
+#!/bin/bash
+cmd_file=localgitcopychangedfilescmd
+fromdir=$BLENDER_SVN_LOCAL/trunk
+ex_po=$fromdir/po/vi.po
+ex_blend_mo=$fromdir/locale/vi/LC_MESSAGES/blender.mo
+todir=$BLENDER_HOME/trunk
+ex_to_po=$todir/po/vi.po
+ex_to_blend_mo=$todir/locale/vi/LC_MESSAGES/blender.mo
+md5exec=/usr/bin/md5sum
+sumfile=md5list
+newlist=newfilelist
+currentdir=$PWD
+echo "" > $newlist
+echo "" > $sumfile
+echo "" > $cmd_file
+chmod u+x $cmd_file
+find $fromdir  -type f  ! -path "$ex_po" ! -path "$ex_blend_mo" -exec $md5exec {} \; > $sumfile
+#cat $sumfile | grep "vi"
+#cat $sumfile
+#exit
+for newfile in $(find $todir -type f ! -path "$ex_to_po" ! -path "$ex_to_blend_mo"  -print | tee $newlist); 
+do
+#    cat $newlist | grep "vi"
+#    exit
+    #obtain the MD5SUM report but cut out the file part, keep only the md5sum
+    newsum=$($md5exec $newfile | cut -d " " -f1);    
+#    echo "newsum = $newsum";
+    if  grep -q -i "$newsum" $sumfile; then
+        echo "NO CHANGE: $newfile";    
+    else      
+#        echo "CHANGED: $newfile";
+        lessdir=${newfile#$todir}; #cut out the $todir part, leaving only the remaining path within the directory
+        oldfile=$fromdir$lessdir;  #appending the remaining path to the $fromdir to form the complete path of supposed file
+#        echo "lessdir: $lessdir";loca
+#        echo "oldfile: $oldfile";
+        #check to see if the $oldfile DOES actually exists
+        if [ -f $oldfile ]; then 
+            newdir=$(dirname $newfile);
+            COPYCMD="cp -a $oldfile $newdir";
+            echo $COPYCMD | tee -a $cmd_file;
+#            $COPYCMD;
+        else
+            echo "ERROR!!! Cannot find the old file: $oldfile";
+        fi
+    fi
+done
+cd $currentdir

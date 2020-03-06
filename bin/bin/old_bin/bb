@@ -1,0 +1,26 @@
+#!/bin/bash
+HTML_FILE=$1
+parse_one_file()
+{
+	lines=$(cat $1 | 
+			sed 's/>[ \t]*</>\n</g' | 				#breaking >< to separate line
+			sed 's/[ \t]*//' | 						#remove spaces like trim
+			grep "=" | 								#only use lines with =
+			grep -i 'href\|img\|background')		#only use lines with href
+	IFS=' '
+	echo $lines | 
+	while read _LINE_
+	do
+#		echo "Processing $_LINE_"
+#		parse_one_line $_LINE_
+		echo $_LINE_ | awk '{split($0, parts, "HREF"); print parts[2];}'
+	done
+}
+
+parse_one_line()
+{	
+	
+	echo $1 | awk '{split($0, parts, "="); print parts[2];}'
+}
+
+parse_one_file $HTML_FILE

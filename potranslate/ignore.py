@@ -79,7 +79,16 @@ class Ignore:
     PATH = r'([a-zA-Z][:]?)?'
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     ignore_list = [
-        r'^:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|Tab|F(\d+)))[\`]$', #:kbd:`Shift-Ctrl-R`
+        #r'^()$',
+        #r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
+        #r'^(HS[VL][\s]?[\/]?[\s]?)+$', #HSV/HSL
+        r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
+        r'^(GPL[\s\w][\d][+])$',
+        r'^(A \(Alpha\))$',
+        r'^(([+-]\w)(,\s)?)+$', #"+X, +Y, +Z, -X, -Y, -Z",
+        r'^(:[\w]+:)([\`]+([\/][\w]+[\/]?)*[\`]+)', # :doc:`/something/somethingelse`
+        r'^(:ref:)([\`]+(\w+[-]?)+[\`]+)[\.]?$',
+        r'^(:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|Tab|F(\d+)))[\`](,\s|\s-\s)?)+$', #:kbd:`Shift-Ctrl-R`
         r'^([\w]+)\/$', # rendering/
         r'(^([\`]+)?[^\`]+)\.([\w]{2,5})([\`]+)?$', #file name
         r"^([\d]+)(px|khz)?$", # 1024x2048
@@ -132,7 +141,7 @@ class Ignore:
         r"^(B\-Spline|BSDF|BSSRDF|BU|BVH|Babel|Bezier|Bindcode|Bit[s]?|BkSpace|Bksp)$",
         r"^(Blackman\-Harris|Blosc|Byte\([s]*\)|Bytecode|Bézier)$",
         r"^Blender\([\s\d\.]+\)$",
-        r"^(CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Christensen\-Burley|Cineon|Collada)$",
+        r"^(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Christensen\-Burley|Cineon|Collada)$",
         r"^(Ctrl|Cycles|Cycles:)$",
         r"^(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del(ta)?|de)$",
         r"^([^\w]+log.*wm.*)$",
@@ -141,7 +150,7 @@ class Ignore:
         r"^((GGX|GLSL|GPU)[s:]|Gamma([s:])|Ge2Kwy5EGE0|Gizmo[s:]|GPL|GGX|GLSL)$",
         r"^(H\.264|HDR[I]?|Hosek \/ Wilkie|HuffYUV)$",
         r"^(ID|Ins|JPEG 2000)$",
-        r"^(K1, K2|Kirsch|komi3D)$",
+        r"^(KDE|K1, K2|Kirsch|komi3D)$",
         r"^(Laplace|Laplacian|Lennard\-Jones|LimbNode|Linux|Log|Look[\s]?Dev(HDRIs)?)$",
         r"^MPEG([\-|\d]+)$",
         r"^(MIS|MPlayer|(MS|Microsoft)?[-]?Windows|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski|Mitch|Mono|Musgrave)$",
@@ -197,10 +206,17 @@ class Ignore:
         #"", "", "", "", "",
         # "", "", "", "", "", "", "", "", "", "", "", "", "",
         "Demohero, uriel, meta-androcto",
+        "Antonio Vazquez (antonioya)",
         "Vladimir Spivak (cwolf3d)",
-        "Nuke (\.chan)",
+        "Nuke (.chan)",
         "Houdini",
         "Nuke",
+        "./",
+        #"A (Alpha)",
+        "(*x*\\ :sup:",
+        #"+X, +Y, +Z, -X, -Y, -Z",
+        #"",
+        #"",
     ]
 
     keep_list = [
@@ -212,11 +228,17 @@ class Ignore:
         "BLENDER_VERSION",
         "MPEG Preseek",
         "0 or 1",
+        "anti-aliases",
+        "anti-aliased",
+        "anti-aliasing",
         "reflect/refract",
         "scattering/absorbtion",
         "inside/outside",
         "Dots/BU",
-        "",
+        "Model by © 2016 pokedstudio.com",
+        "Video: From Blender 1.60 to 2.50",
+        #"",
+        #"",
     ]
 
     keep_contains_list = [
@@ -262,7 +284,16 @@ class Ignore:
 
     def isIgnored(msg):
 
-        
+        is_empty = (msg is None) or (len(msg) == 0)
+        if is_empty:
+            return True
+
+        orig_msg = str(msg)
+        ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
+        if (len(ex_ga_msg) > 0):
+            msg = ex_ga_msg[0]
+            print("GA trimmed from:", orig_msg, msg)
+
         is_keep = Ignore.isKeep(msg)
         if is_keep:
             return False
@@ -276,8 +307,8 @@ class Ignore:
         is_ignore_start = Ignore.isIgnoredIfStartsWith(msg)
         #is_ignore_path = Ignore.isFilePath(msg)
 
-        is_ignore = (is_ignore_word or 
-                    is_dos_command or 
+        is_ignore = (is_ignore_word or
+                    is_dos_command or
                     is_ignore_start)
                     #         or is_ignore_path)
         # is_ignore = (is_ignore_word or is_dos_command or is_ignore_start)
@@ -288,8 +319,8 @@ class Ignore:
                            "is_ignore_start": is_ignore_start,
                            #"is_ignore_path": is_ignore_path
                            }
-            #_("IGNORING:", msg)
-            # pp(dict_ignore)
+            _("IGNORING:", msg)
+            pp(dict_ignore)
         return is_ignore
 
     def isIgnoredIfStartsWith(text_line : str):

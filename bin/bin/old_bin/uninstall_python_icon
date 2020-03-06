@@ -1,0 +1,9 @@
+#!/bin/bash
+xdg-icon-resourcepng_list="48 64 72 96 128 192 256 512"; 
+for i in $png_list; 
+do 
+	fn="python_icon.png"; 
+	cmd="xdg-icon-resource uninstall --mode user --context mimetypes --size $i $fn"; 
+	$cmd; 
+done
+

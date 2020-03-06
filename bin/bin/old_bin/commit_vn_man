@@ -1,0 +1,7 @@
+#!/bin/bash -x
+cd $BLENDER_MAN_VI
+#today_date=$(/usr/bin/date +%F)
+#svn add --force * --auto-props --parents --depth infinity -q
+#svn commit --username hoangduytran -m "$today_date -- $1"
+change_placeholders.py -d $PWD -t 1d
+svn commit -m "$1"

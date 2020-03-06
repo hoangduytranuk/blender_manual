@@ -4,7 +4,8 @@ sys.path.append('/Users/hoangduytran/PycharmProjects/potranslate')
 from common import Common as cm
 from common import _, pp
 from ignore import Ignore as ig
-
+from collections import defaultdict, OrderedDict
+from translation_finder import TranslationFinder
 #from pyparsing import nestedExpr
 from enum import Enum
 
@@ -36,6 +37,12 @@ class TextStyle(Enum):
     RAW=4
 
 class RefType(Enum):
+    GA="\`"
+    ARCH_BRACKET="()"
+    AST_QUOTE="*"
+    DBL_QUOTE = "\""
+    SNG_QUOTE = "'"
+    MM = ":MM:"
     ABBR=":abbr:"
     CLASS=":class:"
     DOC = ":doc:"
@@ -50,17 +57,32 @@ class RefType(Enum):
     TERM=":term:"
     TEXT="generic_text"
 
+# :MM:
+# :abbr:
+# :class:
+# :doc:
+# :guilabel:
+# :kbd:
+# :linenos:
+# :math:
+# :menuselection:
+# :minute:
+# :mod:
+# :ref:
+# :sup:
+# :term:
+
 class RefItem:
 
-    def __init__(self, start=-1, end=-1, txt=None):
+    def __init__(self, start=-1, end=-1, txt=None, ref_type=RefType.TEXT, keep_orig=False):
         self.start:int = start
         self.end:int = end
         self.text:str = txt
         self.translation:str = None
         self.old_translation: str = None
         self.translation_state:TranslationState = TranslationState.ACCEPTABLE
-        self.translation_include_original: bool = False
-        self.reftype:RefType = RefType.TEXT
+        self.translation_include_original: bool = keep_orig
+        self.reftype:RefType = ref_type
         self.text_style:TextStyle = TextStyle.NORMAL
 
     def __repr__(self):
@@ -116,8 +138,9 @@ class RefItem:
         return self.translation
 
     def setTranlation(self, tran, state=TranslationState.ACCEPTABLE):
-        is_ignored = ig.isIgnored(self.getText())
-        is_same = cm.isTextuallySame(self.getText(), tran)
+        orig = self.getText()
+        is_ignored = ig.isIgnored(orig)
+        is_same = cm.isTextuallySame(orig, tran)
         is_ignored_all = (is_ignored or is_same)
         if is_ignored_all:
             tran = ""
@@ -151,7 +174,7 @@ class RefRecord:
         self.origin: RefItem = origin
         self.reflist: list = reflist
         self.pattern: str = pat
-        self.setOriginType()
+        #self.setOriginType()
 
     def __repr__(self):
         result = ""
@@ -270,18 +293,14 @@ class RefRecord:
         return is_empty
 
 
-class RefList(dict):
-    type_blk_list = [RefType.ABBR, RefType.CLASS, RefType.DOC, RefType.GUILABEL, RefType.KBD,
-                     RefType.LINENOS, RefType.MATH, RefType.MENUSELECTION, RefType.MOD,
-                     RefType.REF, RefType.SUP, RefType.TERM]
-
+class RefList(defaultdict):
     def __init__(self, msg=None, pat=None, translation_finder=None, keep_orig=False):
         self.msg = msg
         self.translation = None
         self.translation_state = TranslationState.FUZZY
         self.pattern = pat
         self.keep_original = keep_orig
-        self.tf = translation_finder
+        self.tf : TranslationFinder = translation_finder
 
     def __repr__(self):
         result = ""
@@ -306,10 +325,10 @@ class RefList(dict):
         else:
             self.translation = tran
             self.translation_state = state
-                
+
 
     def getType(self, xtype):
-        for x in RefList.type_blk_list:
+        for x in RefType:
             x_value = x.value
             has_type = (x_value == xtype)
             if has_type:
@@ -418,7 +437,7 @@ class RefList(dict):
         else:
             return None
 
-    def findOnePattern(self, msg, pattern, start_loc=0):
+    def findOnePattern(self, msg, pattern, reftype, keep_original, start_loc=0):
         valid_msg = (msg is not None) and (len(msg) > 0)
         valid_pattern = (pattern is not None)
         valid = valid_msg and valid_pattern
@@ -435,8 +454,9 @@ class RefList(dict):
                 s, e, orig = origin
                 o_ss = s + start_loc
                 o_ee = o_ss + len(orig)
-                ref_item = RefItem(o_ss, o_ee, orig)
-                v = RefRecord(origin=ref_item, reflist=[], pat=pattern)
+                orig_ref_item = RefItem(o_ss, o_ee, orig, ref_type=reftype, keep_orig=keep_original)
+
+                v = RefRecord(origin=orig_ref_item, reflist=None, pat=pattern)
                 entry={o_ss:v}
                 result_list.update(entry)
 
@@ -444,6 +464,7 @@ class RefList(dict):
                 if not has_breakdown:
                     continue
 
+                new_ref_list = []
                 for ss, ee, g in breakdown:
                     if not g:
                         continue
@@ -451,9 +472,14 @@ class RefList(dict):
                     #ss = i_s + s # using setence index
                     ss = i_s # using sub pattern index
                     ee = ss + len(g)
-
-                    ref_item = RefItem(ss, ee, g)
-                    v.appendRefItem(ref_list_item = ref_item)
+                    xtype = self.getType(g)
+                    is_text = (xtype == RefType.TEXT)
+                    if not is_text:
+                        orig_ref_item.setRefType(xtype)
+                    else:
+                        ref_item = RefItem(ss, ee, g, keep_orig=keep_original) # should this take default reftype.TEXT????
+                        new_ref_list.append(ref_item)
+                v.reflist = new_ref_list
 
         except Exception as e:
             _("RefList.findPattern()")
@@ -465,7 +491,7 @@ class RefList(dict):
     def isEmpty(self):
         is_empty = (len(self) == 0)
         return is_empty
-    
+
     def inRange(self, item : RefRecord):
         valid = (item is not None)
         if not valid:
@@ -510,8 +536,8 @@ class RefList(dict):
         return loc_keep_list
 
     def findPattern(self, pattern_list, start_loc=0):
-        for p in pattern_list:
-            one_list : RefList = self.findOnePattern(self.msg, p, start_loc=start_loc)
+        for p, ref_type, keep_orig in pattern_list:
+            one_list : RefList = self.findOnePattern(self.msg, p, ref_type, keep_orig, start_loc=start_loc)
             is_empty = (len(one_list) == 0)
             if is_empty:
                 continue
@@ -537,204 +563,45 @@ class RefList(dict):
             _("ref_text:", txt)
 
 
-    def finalizeList(self):
-        if self.isEmpty():
-            return {}
-
-        # is_debug = ("This can be used with different" in self.msg)
-        # if is_debug:
-        #     _("DEBUG")
-
-        k: int = -1
-        v: RefRecord = None
-        v_len = -1
-        entry_list = RefList(msg=self.msg)
-        try:
-            for k, v in self.items():
-                v_len = -1
-                xtype = None
-                xtype = text_entry = None
-
-                new_record : RefRecord = RefRecord(origin=v.getOrigin(), reflist=[])
-                entry_list.update({k: new_record})
-                origin_entry = v.getOrigin()
-                v_len = len(v.getRefList())
-
-                if v_len == 0:
-                    text_entry = origin_entry
-                elif v_len == 1:
-                    text_entry = v.getRefItemByIndex(0)
-                elif v_len == 2:  # :kbd:,
-                    type_entry : RefItem = v.getRefItemByIndex(0)
-                    text_entry : RefItem = v.getRefItemByIndex(1)
-                    xtype = type_entry.text
-
-                    xs, xe, xtxt = type_entry.getValues()
-                    enum_type = self.getType(xtxt)
-                    origin_entry.setRefType(enum_type)
-                else:
-                    raise Exception("Impossible List, there are more items than expected!")
-
-                # is_debug = ("Screen Space Ambient Occlusion" in self.msg)
-                # if is_debug:
-                #     print("DEBUG")
-
-                txt = text_entry.text
-
-                # has_xtype = (xtype is not None)
-                has_xtype = origin_entry.getRefType() != RefType.TEXT
-                has_menu = origin_entry.getRefType() == RefType.MENUSELECTION
-                has_abbr = origin_entry.getRefType() == RefType.ABBR
-                has_kbd = origin_entry.getRefType() == RefType.KBD
-                has_doc = origin_entry.getRefType() == RefType.DOC
-                has_ref = origin_entry.getRefType() == RefType.REF
-                has_term = origin_entry.getRefType() == RefType.TERM
-
-                uri_ref : RefList = self.findOnePattern(txt, cm.LINK_WITH_URI)
-                has_uri = (not uri_ref.isEmpty())
-
-                if has_uri and not (has_abbr or has_menu or has_doc):
-                    origin_entry.setRefType(RefType.REF)
-                    uri_rec : RefRecord = uri_ref.getRecordByIndex(0)
-                    uri_ref_rec : RefItem = uri_rec.getRefItemByIndex(0)
-                    # orig_uri_entry : RefItem = v.getRefItemByIndex(0)
-                    ttxt = uri_ref_rec.text
-                    ss = text_entry.start + uri_ref_rec.start
-                    ee = ss + len(ttxt)
-
-                    # otxt = origin_entry.text
-                    # tts = self.msg[:ss]
-                    # tte = self.msg[ee:]
-                    # ttx = tts + ttxt + tte
-
-                    entry: RefItem = RefItem(start=ss, end=ee, txt=ttxt)
-                    new_record.appendRefItem(ref_list_item=entry)
-                    #new_record.appendRefItem(ref_list_item=entry)
-                elif has_xtype:
-                    if has_abbr:
-                        abbr_rec: RefRecord = None
-                        abbr_list = self.findOnePattern(txt, cm.LINK_WITH_URI)
-                        abbr_rec = abbr_list.getRecordByIndex(0)
-                        abbr_txt_entry : RefItem = abbr_rec.getRefItemByIndex(1)
-                        orig_abbr_entry: RefItem = v.getRefItemByIndex(1)
-                        o_s, o_e = orig_abbr_entry.getLocation()
-
-                        ttxt = abbr_txt_entry.text
-                        #ss = orig_abbr_entry.start + abbr_txt_entry.start
-                        ss = o_s + abbr_txt_entry.start
-                        ee = ss + len(ttxt)
-
-                        # otxt = origin_entry.text
-                        # tts = self.msg[:ss]
-                        # tte = self.msg[ee:]
-                        # ttx = tts + ttxt + tte
-
-                        entry : RefItem = RefItem(start=ss, end=ee, txt=ttxt)
-                        new_record.appendRefItem(ref_list_item=entry)
-                    elif has_menu:
-
-                        menu_list = self.findOnePattern(txt, cm.MENU_PART)
-                        orig_mnu_entry: RefItem = v.getRefItemByIndex(1)
-                        vv: RefRecord = None
-                        for k, vv in menu_list.items():
-                            menu_txt_entry = vv.getOrigin()
-                            ttxt = menu_txt_entry.text
-                            ss = orig_mnu_entry.start + menu_txt_entry.start
-                            #ss = o_s + menu_txt_entry.start
-                            ee = ss + len(ttxt)
-
-                            # otxt = origin_entry.text
-                            # tts = self.msg[:ss]
-                            # tte = self.msg[ee:]
-                            # ttx = tts + ttxt + tte
-
-                            entry : RefItem = RefItem(start=ss, end=ee, txt=ttxt)
-                            new_record.appendRefItem(ref_list_item=entry)
-                    elif has_doc:
-
-                        # is_debug = ("Be sure to check the" in self.msg)
-                        # if is_debug:
-                        #     _("DEBUG")
-
-                        uri_rec: RefRecord = uri_ref.getRecordByIndex(0)
-                        if not uri_rec:
-                            # for: :doc:`/about/contribute/guides/writing_guide`
-                            new_record.appendRefItem(ref_list_item=text_entry)
-                            continue
-
-                        uri_ref_rec: RefItem = uri_rec.getRefItemByIndex(0)
-                        orig_uri_entry: RefItem = v.getRefItemByIndex(1)
-
-                        ttxt = uri_ref_rec.text
-                        ss = orig_uri_entry.start + uri_ref_rec.start
-                        ee = ss + len(ttxt)
-
-                        new_text_entry=RefItem(start=ss, end=ee, txt=ttxt)
-                        new_record.appendRefItem(ref_list_item=new_text_entry)
-                    else:
-                        new_record.appendRefItem(ref_list_item=text_entry)
-                else:
-                    new_record.appendRefItem(ref_list_item=text_entry)
-
-        except Exception as e:
-            _(self)
-            _("k, v, v_len")
-            _(k, v, v_len)
-            raise e
-
-        self.clear()
-        self.update(entry_list)
-
-
     def parseMessage(self):
         # is_debug = ("Box Deselect:" in msg)
         # if is_debug:
         #     _("DEBUG")
 
-        self.findPattern([cm.GA_REF, cm.AST_QUOTE, cm.DBL_QUOTE, cm.SNG_QUOTE])
-        has_ref = (len(self) > 0)
-        if not has_ref:
-            trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
-            if is_ignore:
-                self.translation = ""
-                self.translation_state = TranslationState.IGNORED
-                return
-
-            valid = (trans is not None)
-            if not valid:
-                self.translation = ""
-                self.translation_state = TranslationState.ACCEPTABLE
-                return
-
-            if self.keep_original:
-                tran_text = "{} -- {}".format(trans, self.msg)
-            else:
-                tran_text = trans
-
-            self.translation = tran_text
-            self.translation_state = is_fuzzy
-            return
-
-        self.finalizeList()
-
-        arched_bracket_list = cm.parseMessageWithDelimiterPair('(', ')', self.msg)
-        has_record = (len(arched_bracket_list) > 0)
+        # entry include: (pattern, ref_type, include_original)
+        pattern_list=[
+            (cm.GA_REF, RefType.GA, True), # this will have to further classified as progress
+            (cm.AST_QUOTE, RefType.AST_QUOTE, True),
+            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
+            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
+        ]
+        self.findPattern(pattern_list)
+        has_record = (len(self) > 0)
         if has_record:
-            for s, e, txt in arched_bracket_list:
-                result_list: RefList = self.findOnePattern(txt, cm.ARCH_BRAKET_MULTI, start_loc=s)
-                for k, v in result_list.items():
-                    orig = v.getOrigin()
-                    o_s, o_e, o_txt = orig.getValues()
-                    sub_ref_list = RefList(msg=o_txt)
-                    sub_ref_list.findPattern([cm.GA_REF, cm.AST_QUOTE, cm.DBL_QUOTE, cm.SNG_QUOTE])
-                    has_sub_ref = (len(sub_ref_list) > 0)
-                    if has_sub_ref:
-                        sub_ref_list.finalizeList()
-                        v.getRefList().clear()
-                        for kk, vv in sub_ref_list.items():
-                            v.getRefList().append(vv)
-                    ref_list_entry = {o_s:v}
-                    self.update(ref_list_entry)
+            sorted_list = sorted(list(self.items()))
+            list_type = type(sorted_list)
+            self.clear()
+            self.update(sorted_list)
+            _("Sorted")
+
+        # arched_bracket_list = cm.parseMessageWithDelimiterPair('(', ')', self.msg)
+        # has_record = (len(arched_bracket_list) > 0)
+        # if has_record:
+        #     for s, e, txt in arched_bracket_list:
+        #         result_list: RefList = self.findOnePattern(txt, cm.ARCH_BRAKET_MULTI, start_loc=s)
+        #         for k, v in result_list.items():
+        #             orig = v.getOrigin()
+        #             o_s, o_e, o_txt = orig.getValues()
+        #             sub_ref_list = RefList(msg=o_txt)
+        #             sub_ref_list.findPattern(pattern_list)
+        #             has_sub_ref = (len(sub_ref_list) > 0)
+        #             if has_sub_ref:
+        #                 # sub_ref_list.finalizeList()
+        #                 v.getRefList().clear()
+        #                 for kk, vv in sub_ref_list.items():
+        #                     v.getRefList().append(vv)
+        #             ref_list_entry = {o_s:v}
+        #             self.update(ref_list_entry)
 
         # sorted_list = sorted(self.items(), key=lambda t: t[0])
         # self.clear()
@@ -742,138 +609,113 @@ class RefList(dict):
 
         # pp(self.items())
         # remove redundancies
-        self.removeRedundancies()
+        # self.removeRedundancies()
 
-    def transferTranslation(self, from_item: RefItem, to_item: RefItem):
-        ll = rr = from_tran = None
-        try:
-            from_tran = from_item.getTranslation()
-            if not from_tran:
-                return
+    def mergeTranslationToOrigin(self, ref_rec:RefRecord):
+        orig_item : RefItem = ref_rec.getOrigin()
+        ref_list = ref_rec.getRefList()
+        has_ref_list = (ref_list is not None) and (len(ref_list) > 0)
+        if not has_ref_list:
+            return
 
-            from_tran_state = from_item.getTranslationState()
-            f_s, f_e, f_txt = from_item.getValues()
+        tran_txt = str(orig_item.getText())
+        ref_item : RefItem = None
+        for ref_item in reversed(ref_list):
+            tran_state = ref_item.translation_state
+            is_ignore = (tran_state == TranslationState.IGNORED)
+            if is_ignore:
+                continue
 
-            to_translation = to_item.getTranslation()
-            has_tran = to_translation and (len(to_translation) > 0)
+            s, e = ref_item.getLocation()
+            o_txt = ref_item.getText()
+            tran = ref_item.getTranslation()
+            has_translation = (tran is not None) and (len(tran) > 0)
+            if not has_translation:
+                continue
+
+            tran_txt = tran_txt[:s] + tran + tran_txt[e:]
+
+        is_same = (tran_txt == orig_item.getText())
+        if is_same:
+            tran_txt = ""
+        orig_item.setTranlation(tran_txt)
+
+
+    def transferTranslation(self, msg):
+        tran = str(msg)
+        v:RefRecord = None
+        for k, v in reversed(list(self.items())):
+            self.mergeTranslationToOrigin(v)
+            os, oe = v.getOriginLocation()
+            otran = v.getOrigin().getTranslation()
+            has_tran = (otran is not None) and (len(otran) > 0)
             if not has_tran:
-                to_tran = str(to_item.getText())
-                to_item.setTranlation(to_tran)
-                to_translation = to_tran
+                continue
 
-            ll = to_translation[:f_s]
-            rr = to_translation[f_e:]
-            tran = ll + from_tran + rr
-            to_item.setTranlation(tran, state=from_tran_state)
-        except Exception as e:
-            _("from_item", from_item)
-            _("to_item", to_item)
-            _("ll", ll)
-            _("rr", rr)
-            _("from_tran", from_tran)
-            _(e)
-            raise e
+            tran = tran[:os] + otran + tran[oe:]
+        return tran
 
-    def translateRefItem(self, ref_item: RefItem, orig: RefItem):
+    def translateRefItem(self, ref_item: RefItem, ref_type):
         valid = (ref_item is not None)
         if not valid:
             return
-        non_tran_txt = ref_item.getText()
-        valid = (non_tran_txt is not None) and (len(non_tran_txt) > 0)
-        if not valid:
+
+        ref_txt = ref_item.getText()
+        is_debug = ("alias" in ref_txt.lower())
+        if is_debug:
+            _("DEBUG")
+
+        is_ignore = ig.isIgnored(ref_txt)
+        if is_ignore:
+            ref_item.setTranlation(None, state=TranslationState.IGNORED)
             return
 
-        # is_debug = ("Ctrl-MMB" in non_tran_txt)
-        # if is_debug:
-        #     _("translateRefItem original_type:", original_type)
-
-        # msg = ref_item.getText()
-        # is_ignore = ig.isIgnored(msg)
-        # if is_ignore:
-        #     ref_item.setTranlation("")
-        #     ref_item.setTranslationState(TranslationState.IGNORED)
-        #     print("IGNORE translateRefItem", msg)
-        #     return        
-
-        original_type = orig.getRefType()
-        is_keyboard = (original_type == RefType.KBD)
-        if is_keyboard:
-            # keyboard will return original if not there
-            tran = self.tf.translateKeyboard(non_tran_txt)
-            is_same = cm.isTextuallySame(tran, non_tran_txt)
-            if (is_same):
-                ref_item.setTranlation("", TranslationState.IGNORED)
-            else:
-                ref_item.setTranlation(tran, TranslationState.ACCEPTABLE)
+        is_kbd = (ref_type == RefType.KBD)
+        is_abbr = (ref_type == RefType.ABBR)
+        is_menu = (ref_type == RefType.MENUSELECTION)
+        if is_kbd:
+            tran = self.tf.translateKeyboard(ref_txt)
+        elif is_abbr:
+            tran = self.tf.translateAbbrev(ref_txt)
+        elif is_menu:
+            tran = self.tf.translateMenuSelection(ref_txt)
         else:
-            tran, is_fuzzy, is_ignore = self.tf.translate(non_tran_txt)
+            tran = self.tf.translateRefWithLink(ref_txt)
+        has_tran = (tran is not None)
+        if has_tran:
+            ref_item.setTranlation(tran, state=TranslationState.ACCEPTABLE)
+        else:
+            ref_item.setTranlation("", state=TranslationState.ACCEPTABLE)
 
-            if is_ignore:
-                ref_item.setTranlation("", TranslationState.IGNORED)
-                return
 
-            is_ref_type = (original_type != RefType.TEXT)
-            is_menu_type = (original_type == RefType.MENUSELECTION)
-            is_term_type = (original_type == RefType.TERM)
-
-            if is_term_type:
-                # :term:`something` will need to be on its own, so translation is attached at the back
-                orig_text = orig.getText()
-                tran_text = (tran if tran else "")
-                tran = "{} (*{}*)".format(orig_text, tran_text)
-                _("translateRefItem: TERM item, translated as:", tran)
-            elif is_menu_type:
-                if tran:
-                    tran = "{} ({})".format(tran, non_tran_txt)
-                else:
-                    tran = "({})".format(non_tran_txt)
-            elif is_ref_type:
-                if tran:
-                    tran = "{} -- {}".format(tran, non_tran_txt)
-                else:
-                    tran = "-- {}".format(non_tran_txt)
-
-            if tran:
-                tran_state = (TranslationState.FUZZY if is_fuzzy else TranslationState.ACCEPTABLE)
-                ref_item.setTranlation(tran, state=tran_state)
-                #_("translateRefItem ref_item:", ref_item)
-                #_(orig_text, "=>" ,ref_item.getTranslation(), " tran_state:", ref_item.getTranslationState())
-
-    def translateRefRecord(self, record: RefRecord, orig: RefItem):
+    def translateRefRecord(self, record: RefRecord):
         valid = (record is not None)
         if not valid:
             return
 
         orig: RefItem = record.getOrigin()
         orig_text = orig.getText()
-        orig_trans, is_fuzzy, is_ignore = self.tf.translate(orig_text) # find the whole piece first to see if it's there
-        if is_ignore:
-            orig.setTranlation("")
-            orig.setTranslationState(TranslationState.IGNORED)
+        has_ref_list = (record.reflist is not None) and (len(record.reflist) > 0)
+        if not has_ref_list:
+            orig_trans, is_fuzzy = self.tf.translate(orig_text) # find the whole piece first to see if it's there
+            has_orig_tran = (orig_trans is not None) and (orig_trans != orig_text)
+            if has_orig_tran:
+                orig.translation = orig_trans
+                orig.translation_state = TranslationState.ACCEPTABLE
             return
 
-        has_orig_tran = (orig_trans is not None) and (not is_fuzzy)
-        if has_orig_tran:
-            orig.translation = orig_trans
-            orig.translation_state = TranslationState.ACCEPTABLE
-            # should clean out all ref list
-            return
-
-        original_ref_type = orig.getRefType()
+        # translate the ref_list
+        ref_type = orig.getRefType()
         ref_list: list = record.getRefList()
         for item in reversed(ref_list):
-            is_item = isinstance(item, RefItem)
-            is_record = isinstance(item, RefRecord)
-            if is_record:
-                self.translateRefRecord(item, orig)
-                self.transferTranslation(item.getOrigin(), orig)
-                # # attach translation to orig using original
-                # print("attach translation from REFRECORD to original:", item.getOrigin(), "=>", orig)
-            else:
-                self.translateRefItem(item, orig)
-                self.transferTranslation(item, orig)
-                # # attach translation to orig using ref
-                # print("attach translation from REFITEM to original:", item, "=>", orig)
+            is_math = (ref_type == RefType.MATH)
+            is_class = (ref_type == RefType.CLASS)
+            is_sup = (ref_type == RefType.SUP)
+            is_ignore = (is_math or is_class or is_sup)
+            if is_ignore:
+                continue
+
+            self.translateRefItem(item, ref_type)
 
     def translateRefList(self):
         valid = (len(self) > 0)
@@ -884,42 +726,29 @@ class RefList(dict):
         # if is_debug:
         #     _("DEBUG")
 
-        self.translation = str(self.msg)
-        to_item = RefItem(start=0, end=len(self.msg), txt=self.translation)
-
-        key_list = self.keys()
-        rev_key_list = reversed(sorted(key_list))
-        for k in rev_key_list:
-            v: RefRecord = self[k]
-            self.translateRefRecord(v, to_item)
-            self.transferTranslation(v.getOrigin(), to_item)
-            #_("IN LOOP to_item:", to_item)
-
-        #_("FINALLY to_item:", to_item)
-        self.setTranslation(to_item.getTranslation(), state=to_item.getTranslationState())
-
-        tr = self.getTranslation()
-        has_translation = (tr is not None) and (tr != self.msg)
-        if not has_translation:
-            tr, must_mark, is_ignore = self.tf.translate(self.msg)
-            has_translation = (tr is not None) and (not is_ignore)
-            if is_ignore:
-                self.setTranslation("", state=TranslationState.IGNORED)
-                return
-
-            if self.keep_original:
-                if has_translation:
-                    tr = "{} -- {}".format(tr, self.msg)
+        has_ref = (len(self) > 0)
+        if not has_ref:
+            trans, is_fuzzy = self.tf.translate(self.msg)
+            valid = (trans is not None)
+            if valid:
+                if self.keep_original:
+                    tran_text = "{} -- {}".format(trans, self.msg)
                 else:
-                    tr = "-- {}".format(self.msg)
+                    tran_text = trans
+            else:
+                tran = ""
 
-            tran_state = (TranslationState.FUZZY if must_mark else TranslationState.ACCEPTABLE)
-            self.setTranslation(tr, state=tran_state)
-            ## fixing links in current translation here
+            self.translation = tran_text
+            self.translation_state = is_fuzzy
+            return
 
-        #_("FINALLY self.translation :", self.getTranslation())
-        #_(self.getTranslation())
+        for k, ref_item in reversed(list(self.items())):
+            self.translateRefRecord(ref_item)
 
+        tran = self.transferTranslation(self.msg)
+        has_tran = (tran is not None) and (len(tran) > 0)
+        if has_tran:
+            self.setTranslation(tran)
 
     def dumpRefItem(self, ref_item: RefItem, storage_dict:dict):
         valid = (ref_item is not None)
@@ -934,17 +763,17 @@ class RefList(dict):
         state = ref_item.translation_state
         is_ignore = (state == TranslationState.IGNORED)
         if is_ignore:
-            print("dumpRefItem Ignoring:", orig_text)
+            _("dumpRefItem Ignoring:", orig_text)
             return
-        
+
         trans = ref_item.getTranslation()
         txt = (trans if trans is not None else "")
         entry={orig_text:txt}
-        # is_the_same = (cm.isTextuallySimilar(orig_text, txt, is_absolute=True))        
+        # is_the_same = (cm.isTextuallySimilar(orig_text, txt, is_absolute=True))
         # if is_the_same:
         #     print("dumpRefItem Ignoring, similar:", entry)
         #     return
-
+        _("dumpRefItem:", entry)
         storage_dict.update(entry)
 
     def dumpRefRecord(self, ref_item: RefRecord, storage_dict:dict):

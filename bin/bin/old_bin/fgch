@@ -1,0 +1,9 @@
+#!/bin/bash -x
+cd $BLENDER_HOME
+sfile="$2";
+sfind="$1";
+for c in $(git log -G "$sfind" --format=%H -- "$sfile");
+do
+    git --no-pager grep -e "$sfind" -n $c -- "$sfile";
+    echo;
+done

@@ -9,7 +9,7 @@ from pprint import pprint, pformat
 #import logging
 
 DEBUG=True
-DIC_INCLUDE_LOWER_CASE_SET=False
+DIC_INCLUDE_LOWER_CASE_SET=True
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
@@ -43,6 +43,12 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
+    # debug_file="interface/window_system/topbar"
+    # debug_file = "advanced/app_templates"
+    # debug_file = "modeling/empties"
+    # debug_file = "animation/armatures/posing/editing"
+    # debug_file = "index"
+    # debug_file = "animation/constraints/relationship/shrinkwrap"
     # debug_file = "getting_started/about/community"
     # debug_file = "animation/actions"
     # debug_file = "video_editing/sequencer/strips/transitions/wipe" # :ref:`easings <editors-graph-fcurves-settings-easing>`
@@ -88,7 +94,7 @@ class Common:
     # debug_file = "sculpt_paint/sculpting/hide_mask"
     # debug_file = "sculpt_paint/weight_paint/editing"
     # debug_file = "video_editing/sequencer/properties/strip"
-    # debug_file = "video_editing/sequencer/strips/movie_image"
+    debug_file = "video_editing/sequencer/strips/movie_image"
 
     KBD='kbd'
     MNU='menuselection'
@@ -150,6 +156,8 @@ class Common:
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
     MENU_PART = re.compile(r'(?![\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
+    MENU_PART_1 = re.compile(r'(?!\s)([^\->])+(?<!\s)')
+    MENU_SEP = re.compile(r'[\s]?[\-]{2}\>[\s]?')
 
     WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
 
@@ -160,8 +168,17 @@ class Common:
     KEYBOARD_SEP = re.compile(r'[^\-]+')
     SPECIAL_TERM = re.compile(r'^[\`\*\"\'\(]+(.*)[\`\*\"\'\)]+$')
     ALPHA_NUMERICAL = re.compile(r'[\w]+')
-    EXCLUDE_GA= re.compile(r'^[\`]+?([^\`]+)[\`]+?$')
+    EXCLUDE_GA= re.compile(r'^[\`\'\"\*\(]+?([^\`\`\'\"\*\(\)]+)[\`\`\'\"\*\)]+?$')
     OPTION_FLAG=re.compile(r'^[\-]{2}([^\`]+)')
+    FILLER_CHAR='¶'
+    NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
+    NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
+    ABBR_TEXT = re.compile(r'[\(]([^\)]+)[\)]')
+
+    REF_LINK = re.compile(r'[\s]?[\<]([^\<\>]+)[\>][\s]?')
+    PURE_PATH = re.compile(r'^(([\/\\][\w]+)([\/\\][\w]+)*)+[\/\\]?$')
+    PURE_REF = re.compile(r'^([\w]+([\-][\w]+)+)+$')
+    API_REF = re.compile(r'^blender_api:.*$')
 
     def hasOriginal(msg, tran):
         orig_list = Common.ALPHA_NUMERICAL.findall(msg)
@@ -169,7 +186,7 @@ class Common:
 
         tran_list = Common.ALPHA_NUMERICAL.findall(tran)
         tran_set = "".join(tran_list)
-    
+
         has_orig = (orig_set in tran_set)
         #print("orig_set:", orig_set)
         #print("tran_set:", tran_set)
@@ -262,6 +279,24 @@ class Common:
             _(e)
         return None, None
 
+
+    def findInvert(pattern, text):
+        found_list={}
+        tt = str(text)
+        # fill in the place of pattern with a filler (FILLER_CHAR), length of found pattern
+        for orig, bkdown in Common.patternMatchAll(pattern, text):
+            s, e, txt = orig
+            filler = str(Common.FILLER_CHAR * len(txt))
+            tt = tt[:s] + filler + tt[e:]
+        # tt is not contains 'word....another word...and an another word' (... represents the filler)
+        # now find with NOT '[^\FILLER_CHAR]+'
+        for orig, bkdown in Common.patternMatchAll(Common.NEGATE_FIND_WORD, tt):
+            s, e, txt = orig
+            entry={s:orig}
+            found_list.update(entry)
+        return found_list
+
+
     def getListOfLocation(find_list):
         loc_list = {}
         for k, v in find_list.items():
@@ -338,117 +373,9 @@ class Common:
         pp(entry_list)
         return entry_list
 
-    def getTextListForURI(text_entry, uri_list):
-        # print("getTextListForURI", text_entry, uri_list)
-        entry_list = []
-        for uri_k, uri_v in uri_list.items():
-            uri_orig_text, uri_text, uri_link = uri_v
-            tes, tee, text = text_entry
-            uris, urie, uritext = uri_text
-            uss = tes + uris
-            use = uss + len(uritext)
-            entry = (uss, use, uritext)
-            entry_list.append(entry)
-        return entry_list
-
-    def getTextListForABBR(text_entry):
-        entry_list = []
-
-        s, e, txt = text_entry
-        abbr_list = Common.patternMatchAll(Common.LINK_WITH_URI, txt)
-        has_abbr = (len(abbr_list) > 0)
-        if has_abbr:
-            for abbr_k, abbr_v in abbr_list.items():
-                abbr_orig_text, abbr_text, abbr_full_text = abbr_v
-
-                tes, tee, text = text_entry
-                abbr_s, abbr_e, abbr_entry_text = abbr_full_text
-
-                _("abbr_s, abbr_e, abbr_entry_text")
-                _(abbr_s, abbr_e, abbr_entry_text)
-
-                abr_s = tes + abbr_s
-                abr_e = s + len(abbr_entry_text)
-                entry = (abr_s, abr_e, abbr_entry_text)
-                entry_list.append(entry)
-        _("exit from entry_list:", entry_list)
-        return entry_list
-
     def isListEmpty(list_elem):
         is_empty = (list_elem is None) or (len(list_elem) == 0)
         return is_empty
-
-    def refEntry(ref_list):
-        entry_list = {}
-        is_empty = Common.isListEmpty(ref_list)
-        if is_empty:
-            return entry_list
-
-        k, v = None, None
-        v_len = -1
-        s = e = ss = se = xs = xe = 0
-        txt = xtype = origin_entry = type_entry = text_entry = None
-        try:
-            for k, v in ref_list.items():
-                orig = v[0]
-                o_s, o_e, o_txt = orig
-
-                is_menu_or_keyboard = (Common.MENU_KEYBOARD.search(o_txt) is not None)
-                has_commond_keyboard = Common.NORMAL_KEYBOARD_COMBINATION.search(o_txt)
-                if has_commond_keyboard:
-                    continue
-
-                key = o_s
-                entry={o_s:[(o_s, o_e, o_txt)]}
-                entry_list.update(entry)
-                v_len = len(v)
-                s, e, txt, xtype = None, None, None, None
-                if (v_len == 1):
-                    s, e, txt = orig
-                    text_entry = (s, e, txt)
-                elif (v_len == 2):
-                    origin_entry, text_entry = v
-                    s, e, txt = text_entry
-                elif (v_len == 3):  # :kbd:,
-                    origin_entry, type_entry, text_entry = v
-                    xs, xe, xtype = type_entry
-                    s, e, txt = text_entry
-                else:
-                    raise Exception("Impossible List, there are more items than expected!")
-
-                has_xtype = (xtype is not None)
-                has_menu = has_xtype and ("menuselection" in xtype)
-                has_abbr = has_xtype and ("abbr" in xtype)
-                has_kbd = has_xtype and ("kbd" in xtype)
-                uri_list = Common.patternMatchAll(Common.LINK_WITH_URI, txt)
-
-                has_uri = not Common.isListEmpty(uri_list)
-                if has_uri and not (has_abbr or has_menu):
-                    _("has_uri and not has_abbr")
-                    uri_entry_list = Common.getTextListForURI(text_entry, uri_list)
-                    entry_list[key].append(uri_entry_list)
-                elif has_xtype:
-                    if has_abbr:
-                        _("has_abbr")
-                        abbr_list = Common.getTextListForABBR(text_entry)
-                        entry_list[key].append(abbr_list)
-                        pp(entry_list[key])
-                    elif has_menu:
-                        _("has_menu")
-                        menu_text_list = Common.getTextListForMenu(text_entry)
-                        entry_list[key].append(menu_text_list)
-                        pp(menu_text_list)
-                    else:
-                        _("has_xtype but NOT ABBR OR MENU:", text_entry)
-                        entry_list[key].append([text_entry])
-                else:
-                    entry_list[key].append([text_entry])
-        except Exception as e:
-            _(ref_list)
-            _("k, v, v_len")
-            _(k, v, v_len)
-            raise e
-        return entry_list
 
     def removeLowerCaseDic(dic_list):
         l_case = {}
@@ -502,7 +429,7 @@ class Common:
         is_considered_the_same = (common_set == from_set) or (common_set == to_set)
         if not is_absolute:
             is_considered_the_same = (is_considered_the_same or considering_match)
-        
+
         if is_considered_the_same:
             entry={from_set: to_set}
             print("isTextuallySimilar:", entry)
@@ -512,6 +439,13 @@ class Common:
 
     def isTextuallySame(from_txt:str, to_txt:str):
 
+        is_valid = (from_txt is not None) and (to_txt is not None)
+        is_both_none = (from_txt is None) and (to_txt is None)
+        if is_both_none:
+            return True
+        if not is_valid:
+            return False
+
         from_list = Common.WORD_ONLY_FIND.findall(from_txt.lower())
         to_list = Common.WORD_ONLY_FIND.findall(to_txt.lower())
 
@@ -519,7 +453,7 @@ class Common:
         to_set = "".join(to_list)
         from_set = "".join(from_list)
 
-        # perform set intersection to find common set        
+        # perform set intersection to find common set
         is_same = (to_set == from_set)
         return is_same
 

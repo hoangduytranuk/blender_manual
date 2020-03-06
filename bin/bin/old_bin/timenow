@@ -1,0 +1,10 @@
+#!/bin/bash
+date_bin=/usr/bin/date
+# GMT_hour=$(TZ=GMT $date_bin +"%H")
+# LOCAL_hour=$($date_bin +"%H")
+# DIFF_hour=$(echo "$LOCAL_hour-$GMT_hour" | bc)
+# ADD_ON=$(printf "%02d%02d" $DIFF_hour 0)
+current_date=$($date_bin +"%F %H:%M%z")
+#actual_format="$current_date+$ADD_ON"
+#echo $actual_format
+echo $current_date

@@ -1,0 +1,13 @@
+#!/bin/bash
+BLENDER_STUFF=$HOME/blender-stuff
+DOC_DIR=$BLENDER_STUFF/blender_docs
+TESTING_FILE=$HOME/testing.txt
+
+function makeViDocumentation(){
+    echo "making documentation for Vietnamese";
+    cd $DOC_DIR
+    rm -f $TESTING_FILE
+    make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
+}
+
+makeViDocumentation

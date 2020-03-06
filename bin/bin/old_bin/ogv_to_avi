@@ -1,0 +1,6 @@
+#!/bin/bash -x
+input_file=$1
+output_file=`echo $1 | sed 's/\.ogv/\.avi/g'`
+#/usr/bin/mencoder $input_file -ovc lavc -oac mp3lame -o $output_file
+/usr/bin/mencoder -profile mpeg4-hq $input_file -o $output_file
+

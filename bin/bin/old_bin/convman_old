@@ -1,0 +1,10 @@
+#!/bin/bash
+DOC_DIR=$1
+
+function makeViDocumentation(){
+    echo "making documentation for Vietnamese";
+    cd $DOC_DIR
+    make -d --trace -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
+}
+
+makeViDocumentation

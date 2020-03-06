@@ -1,0 +1,32 @@
+#!/bin/bash -x
+is_test=$1
+BK_HOME=/media/htran/BK_3TB/Linux/home/htran
+WD_HOME=/media/htran/WD_4657_49_GB_001/linux_data
+LOCAL=$HOME
+LOCATIONS=(Pictures Documents Downloads)
+FLAGS=("-arvn" "-arP")
+#echo $1
+case $1 in
+	-T | -t | -test )
+		flag=${FLAGS[0]};
+#		echo "flag is $flag"
+#		exit 1
+		;;
+	*)
+		flag=${FLAGS[1]};
+#		echo "flag is $flag"
+#		exit 1
+		;;
+esac
+
+for loc in $LOCATIONS; 
+do
+	rsync $flag $HOME/$loc/ $BK_HOME/$loc/;
+	rsync $flag $HOME/$loc/ $WD_HOME/$loc/;
+done
+#rsync $flag ~/Pictures/ $BK_HOME/Pictures
+#rsync $flag ~/Pictures/ $WD_HOME/Pictures/
+#rsync $flag ~/Documents/ $BK_HOME/Documents
+#rsync $flag ~/Documents/ $WD_HOME/Documents
+rsync $flag ~/Downloads/ $BK_HOME/Downloads
+rsync $flag ~/Downloads/ $WD_HOME/Downloads

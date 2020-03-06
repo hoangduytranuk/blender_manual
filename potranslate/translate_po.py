@@ -61,7 +61,7 @@ def doctree_resolved(app, doctree, docname):
 
     debug_file = cm.debug_file
     if debug_file:
-        is_debug_file = (debug_file in docname)
+        is_debug_file = (debug_file == docname)
         if not is_debug_file:
             return
 
@@ -102,18 +102,18 @@ def doctree_resolved(app, doctree, docname):
 
 
     # #loading local po file to get translation if any
-    # #po_dic = trans_finder.loadPOAsDic(po_path)
+    po_dic = trans_finder.loadPOAsDic(po_path)
     current_po_cat : Catalog = c.load_po(po_path)
-    rst_output_location = os.path.join(blender_docs_path, build_dir)    
+    rst_output_location = os.path.join(blender_docs_path, build_dir)
     output_path = os.path.join(rst_output_location, po_file_path)
 
     local_time=timezone(TIME_ZONE)
-    time_now =local_time.localize(datetime.datetime.now())      
+    time_now =local_time.localize(datetime.datetime.now())
 
     local_locale = locale.getlocale()[0]
     current_header = current_po_cat._get_header_comment()
     new_po_cat = Catalog(
-                locale="vi", 
+                locale="vi",
                 header_comment=current_header,
                 project="Blender 2.8 Manual",
                 version="2.8",
@@ -125,13 +125,13 @@ def doctree_resolved(app, doctree, docname):
                 charset="UTF-8"
                 )
 
-    # #_("#" * 80)
-    # _("filename: {}".format(output_path))
+    _("#" * 80)
+    _("filename: {}".format(output_path))
 
     for node, msg in extract_messages(doctree):
         # msg = unescape(msg).strip()
         msg = msg.strip()
-        _("=" * 80)
+        #_("=" * 80)
         #_("msgid:[{}]".format(msg))
 
         #clean up po file
@@ -177,85 +177,94 @@ def doctree_resolved(app, doctree, docname):
         # ref_list.dumpRefList(trans_finder.master_dic_backup_list)
 
         # return
-        
-        # has_translation = (msg in po_dic)
-        # if has_translation:
-        #     tran = po_dic[msg]
-        #     is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-        #     if is_added:
-        #         entry = (msg, tran)
-        #         print("found in PO, added entry:", entry)
-        #     else:
-        #         has_translation = (msg in trans_finder.master_dic_list)
-        #         if has_translation:
-        #             tran = trans_finder.master_dic_list[msg]
-        #             is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-        #             if is_added:
-        #                 entry = (msg, tran)
-        #                 print("found in master_dic_list, added entry:", entry)
-        #             else:
-        #                 ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-        #                 ref_list.parseMessage()
-        #                 ref_list.translateRefList()
-        #                 #_(ref_list)
-        #                 ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+
+        msg = ":abbr:`IES (Illuminating Engineering Society of North America)`, :abbr:`TL;DR (Too long; didn't read.)`, use *Crop* and/or *Offset* in the Input panel to move and select a region of the image within the output. When you use *Crop* or *Offset*, the auto-scaling will be disabled and you can manually re-scale by adding the Transform effect. ``TEXT``, ``MTEXT``, **1.30 -- April 1998:**, also :kbd:`Shift-W` :menuselection:`--> (Deform, ...)`, **Always** position ``-f`` or ``-a`` as the last arguments. *Push/Pull*, ``/tmp``, 1.0×10\ :sup:`15`, :class:`blender_api:bpy.types.KeyMapItem`, :doc:`3D View Alignment </editors/3dview/navigate/align>`, :kbd:`Alt-MMB`, :menuselection:`Armature --> Transform --> Align Bones`, :menuselection:`... --> Show/Hide`, :menuselection:`Add`, :ref:`Knife <tool-mesh-knife>`, :ref:`3dview-nav-zoom-region`. :ref:`Push/Pull <tool-transform-push_pull>`, :term:`non-manifold`,  :term:`Anti-aliasing`, :term:`Color Space`. :term:`Camera Projections <projection>`"
+
+        ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+        ref_list.parseMessage()
+        ref_list.translateRefList()
+        # _(ref_list)
+        #ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+        return
 
         orig_msg = str(msg)
-        ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
-        if (len(ex_ga_msg) > 0):
-            msg = ex_ga_msg[0]
 
         is_ignore = ig.isIgnored(msg)
-        msg = orig_msg
-        if not is_ignore:
-            has_translation = (msg in trans_finder.master_dic_list)
-            if has_translation:
-                tran = trans_finder.master_dic_list[msg]
-                if is_keep_original:
-                    if tran:                        
-                        has_orig = cm.hasOriginal(msg, tran)
-                        if not has_orig:
-                            tran = "{} -- {}".format(tran, msg)
-                    else:
-                        tran = "-- {}".format(msg)
-                print("Origianl translation:",msg, "=>", tran)
-            else:
-                ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-                ref_list.parseMessage()
-                ref_list.translateRefList()
-                tran = ref_list.getTranslation()
-                
-                print("ref_list translation:",msg, "=>", tran)
-                is_same = cm.isTextuallySame(msg, tran)
-                if is_same:
-                    tran = None                
-                
-        else:
+        if is_ignore:
             tran = None
-        
-        if tran is not None:
-            is_same = cm.isTextuallySame(msg, tran)
-            if not is_same:
-                new_po_cat.add(msg, string=tran)
-                if not is_ignore:
-                    entry={msg:tran}
-                    trans_finder.master_dic_backup_list.update(entry)
         else:
-            new_po_cat.add(msg, string="")
-            if not is_ignore:
-                entry={msg:""}            
-                trans_finder.master_dic_backup_list.update(entry)
+            # print("Not ignore:", msg)
+            is_added = False
+            has_translation = (msg in po_dic)
+            if has_translation:
+                tran = po_dic[msg]
+                is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+                if is_added:
+                    entry = (msg, tran)
+                    print("found in PO, added entry:", entry)
+            else:
+                has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
+                if has_translation:
+                    tran = trans_finder.master_dic_list[msg]
+                    is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+                    if is_added:
+                        entry = (msg, tran)
+                        print("found in master_dic_list, added entry:", entry)
+                else:
+                    ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+                    ref_list.parseMessage()
+                    ref_list.translateRefList()
+                    #_(ref_list)
+                    ref_list.dumpRefList(trans_finder.master_dic_backup_list)
 
-    
-        
-        print("msgid \"", msg, "\"")
-        if tran is not None:
-            print("msgstr \"", tran, "\"")
-        else:
-            print("msgstr \"\"")
+        exit(0)
+        # if not is_ignore:
+        #     has_translation = (msg in trans_finder.master_dic_list)
+        #     if has_translation:
+        #         tran = trans_finder.master_dic_list[msg]
+        #         if is_keep_original:
+        #             if tran:
+        #                 has_orig = cm.hasOriginal(msg, tran)
+        #                 if not has_orig:
+        #                     tran = "{} -- {}".format(tran, msg)
+        #             else:
+        #                 tran = "-- {}".format(msg)
+        #         print("Origianl translation:",msg, "=>", tran)
+        #     else:
+        #         ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+        #         ref_list.parseMessage()
+        #         ref_list.translateRefList()
+        #         tran = ref_list.getTranslation()
 
-    print("Output to the path:", new_po_cat, output_path)
-    c.dump_po(output_path, new_po_cat)
+        #         print("ref_list translation:",msg, "=>", tran)
+        #         is_same = cm.isTextuallySame(msg, tran)
+        #         if is_same:
+        #             tran = None
+
+        # else:
+        #     tran = None
+
+        # if tran is not None:
+        #     is_same = cm.isTextuallySame(msg, tran)
+        #     if not is_same:
+        #         new_po_cat.add(msg, string=tran)
+        #         if not is_ignore:
+        #             entry={msg:tran}
+        #             trans_finder.master_dic_backup_list.update(entry)
+        # else:
+        #     new_po_cat.add(msg, string="")
+        #     if not is_ignore:
+        #         entry={msg:""}
+        #         trans_finder.master_dic_backup_list.update(entry)
+
+    #     print("msgid \"", msg, "\"")
+    #     if tran is not None:
+    #         print("msgstr \"", tran, "\"")
+    #     else:
+    #         print("msgstr \"\"")
+
+    # print("Output to the path:", new_po_cat, output_path)
+    # c.dump_po(output_path, new_po_cat)
 
 
 
@@ -303,7 +312,7 @@ def build_finished(app, exeption):
     #     loc_dic_list.update(entry)
 
     # sorted_list = sorted(loc_dic_list.items(), key=dicListGetKey)
-    
+
     # return
 
     #file_name = "/Users/hoangduytran/ref_dict_0001.json"
@@ -327,10 +336,10 @@ def build_finished(app, exeption):
     print("Writing dictionary to:", file_name)
     with open(file_name, 'w', newline='\n', encoding='utf8') as out_file:
         json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
-    
+
     # with open(file_name, "r") as f:
     #     data = json.load(f)
-    
+
     # pp(data)
 
     # for k, v in data.items():

@@ -1,0 +1,37 @@
+source_path="/home/hdt/java/Bible/src"
+#echo $#
+number_of_argument=$#;
+#echo $number_of_argument;
+version=""
+local_path="";
+file_pattern="";
+search_string="";
+if [[ $number_of_argument -gt 2 ]]; then
+	version="$1";
+	local_path="$2";
+	search_string="$3";
+else
+	version="-v";
+	local_path="$1";
+	search_string="$2";
+fi
+echo "local_path=$local_path";
+echo "search_string=$search_string";
+
+if [[ $version != "." ]]; then
+	case "$version" in
+	-vn,-v) version="vietnamese_bible" ;;
+	-en,-e) version="basic_english_bible" ;;
+	-kjv,-k) version="kjv_bible";;
+	esac
+fi
+
+if [[ -d $version ]]; then
+	source_path="$source_path/$version";
+	cd $source_path;
+fi
+
+
+
+find . -name "*.htm" -exec grep -i "\"$search_string\"" {} {} \;
+

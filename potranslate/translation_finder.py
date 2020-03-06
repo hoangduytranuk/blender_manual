@@ -49,7 +49,7 @@ class TranslationFinder:
         "AccentGrave": "Dấu Huyền (AccentGrave)",
         "Delete": "Xóa (Delete)",
         "Period": "Dấu Chấm (Period)",
-        "Comma": "Dấu Phẩy (Comma)",                
+        "Comma": "Dấu Phẩy (Comma)",
         "PageDown": "Trang Xuống (PageDown)",
         "PageUp": "Trang Lên (PageUp)",
         "PgDown": "Trang Xuống (PgDown)",
@@ -60,7 +60,7 @@ class TranslationFinder:
         "Minus": "Dấu Trừ (Minus)",
         "Plus": "Dấu Cộng (Plus)",
         "Down": "Xuống (Down)",
-        "Up": "Lên (Up)",        
+        "Up": "Lên (Up)",
         "MMB": "NCG (MMB)",
         "LMB": "NCT (LMB)",
         "RMB": "NCP (RMB)",
@@ -71,9 +71,9 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         # self.master_dic_file = "/Users/hoangduytran/Documents/po_dictionary_sorted_translated_0001_nodot.json"
-        #self.master_dic_file = "/Users/hoangduytran/ref_dict_0001.json"
+        self.master_dic_file = "/Users/hoangduytran/ref_dict_0001.json"
         self.master_dic_backup_file = "/Users/hoangduytran/ref_dict_0003.json"
-        self.master_dic_file = "/Users/hoangduytran/ref_dict_0002.json"
+        #self.master_dic_file = "/Users/hoangduytran/ref_dict_0002.json"
         self.master_dic_backup_list = defaultdict(OrderedDict)
 
         self.master_dic_list = self.loadJSONDic(file_name=self.master_dic_file)
@@ -92,8 +92,10 @@ class TranslationFinder:
 
         self.dic_list = defaultdict(int) # for general purposes
         # ßself.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
-        
+
         #self.cleanDictList(self.master_dic_list)
+        #self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=True)
+        #exit(0)
 
     def loadVIPOtoBackupDic(self, dict_to_update, file_name):
         po_cat = c.load_po(self.vipo_dic_path)
@@ -107,7 +109,7 @@ class TranslationFinder:
         data = None
         with open(po_file, "r") as f:
             data = f.read()
-        
+
         changed = False
         for k, v in rep_list.items():
             data, change_count = re.subn(k, v, data, flags=re.M)
@@ -115,7 +117,7 @@ class TranslationFinder:
             if is_changed:
                 print("CHANGED", change_count, k, "=>", v)
                 changed = True
-        
+
         if changed:
             print(data)
             print("file:", po_file)
@@ -125,19 +127,19 @@ class TranslationFinder:
                     f.write(data)
 
     def cleanupPOFile(self, po_file, is_dry_run=True):
-        
+
         po_cat = c.load_po(po_file)
         changed = False
         word_only = re.compile(r'([\w]+)')
         c.dump_po(po_file, po_cat)
-        
+
         # for m in po_cat:
         #     k = m.id
         #     v = m.string
         #     has_v = (v is not None) and (len(v) > 0)
         #     if not has_v:
         #         continue
-            
+
         #     is_k_empty = (len(k) == 0)
         #     if not is_k_empty:
         #         continue
@@ -177,14 +179,13 @@ class TranslationFinder:
         for k in remove_keys:
             del dic_list[k]
 
-    def updateDicUsingDic(self, source_dict, target_dict):    
+    def updateDicUsingDic(self, source_dict, target_dict):
         target_change_count = 0
-
         for k, source_v in source_dict.items():
             is_in_target = (k in target_dict)
             if not is_in_target:
                 continue
-            
+
             target_v = target_dict[k]
             is_v_diff = (source_v != target_v)
             if not is_v_diff:
@@ -196,16 +197,27 @@ class TranslationFinder:
             target_dict.update(to_entry)
             target_change_count += 1
 
-        is_changed = (target_change_count > 0)    
+        is_changed = (target_change_count > 0)
         if is_changed:
             print("updateDicUsingDic, changed count:", target_change_count)
         return target_change_count
 
     def updatePOUsingDic(self, pofile, dic, is_testing=True):
+        ignore=[
+            "Volume",
+        ]
         po_cat = c.load_po(pofile)
         changed = False
         for m in po_cat:
             k = m.id
+
+            is_k_empty = (len(k) == 0)
+            if is_k_empty:
+                continue
+
+            if k in ignore:
+                continue
+
             is_in_dict = (k in dic)
             if not is_in_dict:
                 continue
@@ -222,7 +234,7 @@ class TranslationFinder:
             print("updatePOUsingDic, from:", from_entry, "to:", to_entry)
             m.string = dic_v
             changed = True
-            
+
         if changed and (not is_testing):
             self.dump_po(pofile, po_cat)
 
@@ -238,7 +250,7 @@ class TranslationFinder:
                 (len(v) > 0)
         if not valid:
             return False
-        
+
         if keep_orig:
             repeat_form = "{} -- {}".format(v, k)
             normal_form = v
@@ -273,7 +285,7 @@ class TranslationFinder:
             is_ignore = (ig.isIgnored(k))
             if is_ignore:
                 continue
-            
+
             v = m.string
             has_translation = (not m.fuzzy) and (v is not None) and (len(v) > 0)
             if not has_translation:
@@ -321,7 +333,7 @@ class TranslationFinder:
             with open(file_path) as in_file:
                 local_dic = json.load(in_file)
 
-            if local_dic:                    
+            if local_dic:
                 _("Loaded:{}".format(len(local_dic)))
 
                 if DIC_INCLUDE_LOWER_CASE_SET:
@@ -351,11 +363,12 @@ class TranslationFinder:
     def isInList(self, msg, find_list, is_lower=False):
         trans = None
         try:
-            # is_debug = ("Mode" in msg)
-            # if is_debug:
-            #     print("DEBUG")
-            #
+            is_debug = ("alias" in msg.lower())
+            if is_debug:
+                print("DEBUG")
+
             #orig_msg = str(msg)
+
             if is_lower:
                 msg = msg.lower()
             trans = find_list[msg]
@@ -380,7 +393,7 @@ class TranslationFinder:
         is_ignore = ig.isIgnored(msg)
         if (is_ignore):
             return None
-        
+
         orig_msg = str(msg)
         begin_with_punctuations = (cm.BEGIN_PUNCTUAL.search(msg) is not None)
         ending_with_punctuations = (cm.ENDS_PUNCTUAL.search(msg) is not None)
@@ -441,17 +454,14 @@ class TranslationFinder:
     def translate(self, msg):
         must_mark = False
 
-        is_ignore = ig.isIgnored(msg)
-        if is_ignore:
-            return None, must_mark, is_ignore
-
         trans = self.findTranslation(msg)
         if not trans:
             trans = self.findTranslationByFragment(msg)
             must_mark = True
-        return (trans, must_mark, is_ignore)
+        return (trans, must_mark)
 
     def translateKeyboard(self, msg):
+        orig = str(msg)
         trans = str(msg)
 
         for orig, breakdown in cm.patternMatchAll(cm.KEYBOARD_SEP, msg):
@@ -465,7 +475,79 @@ class TranslationFinder:
             rr = trans[e:]
             trans = ll + tr + rr
 
+        is_the_same = (orig == trans)
+        if is_the_same:
+            trans = None
         return trans
+
+    def translateRefWithLink(self, msg): # for things like :doc:`something <link>`, and :term:`something <link>`
+        is_pure_path = (cm.PURE_PATH.search(msg) is not None)
+        is_pure_ref = (cm.PURE_REF.search(msg) is not None)
+        is_api_ref = (cm.API_REF.search(msg) is not None)
+        is_keep = (ig.isKeep(msg))
+        is_keep_contain = (ig.isKeepContains(msg))
+        is_ignore = (is_pure_path or is_pure_ref or is_api_ref) and (not(is_keep or is_keep_contain))
+        if is_ignore:
+            return None
+
+        tran_txt = str(msg)
+        has_ref_link = (cm.REF_LINK.search(msg) is not None)
+        if has_ref_link:
+            found_list = cm.findInvert(cm.REF_LINK, msg)
+            for k, v in reversed(list(found_list.items())):
+                s, e, orig_txt = v
+                tran, is_fuzzy = self.translate(orig_txt)
+                tran_found = (tran and tran != orig_txt)
+                if tran_found:
+                    tran = "{} -- {}".format(tran, orig_txt)
+                else:
+                    tran = "-- {}".format(orig_txt)
+                tran_txt = tran_txt[:s] + tran + tran_txt[e:]
+        else:
+            orig_txt = msg
+            tran, is_fuzzy = self.translate(orig_txt)
+            tran_found = (tran and tran != orig_txt)
+            if tran_found:
+                tran_txt = "{} -- {}".format(tran, orig_txt)
+            else:
+                tran_txt = "-- {}".format(orig_txt)
+        return tran_txt
+
+    def translateMenuSelection(self, msg):
+        tran_txt = str(msg)
+        word_list = cm.findInvert(cm.MENU_SEP, msg)
+        for k, v in reversed(list(word_list.items())):
+            s, e, orig = v
+            tran, is_fuzzy = self.translate(orig)
+            is_tran_valid = (tran and (tran != orig))
+            if is_tran_valid:
+                entry = "{} ({})".format(tran, orig)
+            else:
+                entry = "({})".format(orig)
+            tran_txt = tran_txt[:s] + entry + tran_txt[e:]
+
+        return tran_txt
+
+    def translateAbbrev(self, msg):
+        tran_txt = str(msg)
+        for orig, breakdown in cm.patternMatchAll(cm.ABBR_TEXT, tran_txt):
+            os, oe, otxt = orig
+            has_breakdown = (breakdown and len(breakdown) > 0)
+            if not has_breakdown:
+                continue
+
+            for bs, be, btxt in breakdown:
+                tran, is_fuzzy = self.translate(btxt)
+                valid = (tran and (tran != btxt))
+                if valid:
+                    entry = "{} -- {}".format(btxt, tran)
+                else:
+                    entry = "-- {}".format(btxt)
+                s = os + bs
+                e = oe + be
+                tran_txt = tran_txt[:s] + entry + tran_txt[e:]
+
+        return tran_txt
 
     def removeIgnoredEntries(self, dic_list):
         valid = (dic_list is not None) and (len(dic_list) > 0)
