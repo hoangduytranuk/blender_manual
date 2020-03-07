@@ -43,7 +43,7 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
-    # debug_file="interface/window_system/topbar"
+    debug_file="interface/window_system/topbar"
     # debug_file = "advanced/app_templates"
     # debug_file = "modeling/empties"
     # debug_file = "animation/armatures/posing/editing"

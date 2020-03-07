@@ -174,18 +174,18 @@ def doctree_resolved(app, doctree, docname):
         # ref_list.parseMessage()
         # ref_list.translateRefList()
         # #_(ref_list)
-        # ref_list.dumpRefList(trans_finder.master_dic_backup_list)
-
+        # # ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+        #
         # return
 
-        msg = ":abbr:`IES (Illuminating Engineering Society of North America)`, :abbr:`TL;DR (Too long; didn't read.)`, use *Crop* and/or *Offset* in the Input panel to move and select a region of the image within the output. When you use *Crop* or *Offset*, the auto-scaling will be disabled and you can manually re-scale by adding the Transform effect. ``TEXT``, ``MTEXT``, **1.30 -- April 1998:**, also :kbd:`Shift-W` :menuselection:`--> (Deform, ...)`, **Always** position ``-f`` or ``-a`` as the last arguments. *Push/Pull*, ``/tmp``, 1.0×10\ :sup:`15`, :class:`blender_api:bpy.types.KeyMapItem`, :doc:`3D View Alignment </editors/3dview/navigate/align>`, :kbd:`Alt-MMB`, :menuselection:`Armature --> Transform --> Align Bones`, :menuselection:`... --> Show/Hide`, :menuselection:`Add`, :ref:`Knife <tool-mesh-knife>`, :ref:`3dview-nav-zoom-region`. :ref:`Push/Pull <tool-transform-push_pull>`, :term:`non-manifold`,  :term:`Anti-aliasing`, :term:`Color Space`. :term:`Camera Projections <projection>`"
+        # msg = ":abbr:`IES (Illuminating Engineering Society of North America)`, :abbr:`TL;DR (Too long; didn't read.)`, use *Crop* and/or *Offset* in the Input panel to move and select a region of the image within the output. When you use *Crop* or *Offset*, the auto-scaling will be disabled and you can manually re-scale by adding the Transform effect. ``TEXT``, ``MTEXT``, **1.30 -- April 1998:**, also :kbd:`Shift-W` :menuselection:`--> (Deform, ...)`, **Always** position ``-f`` or ``-a`` as the last arguments. *Push/Pull*, ``/tmp``, 1.0×10\ :sup:`15`, :class:`blender_api:bpy.types.KeyMapItem`, :doc:`3D View Alignment </editors/3dview/navigate/align>`, :kbd:`Alt-MMB`, :menuselection:`Armature --> Transform --> Align Bones`, :menuselection:`... --> Show/Hide`, :menuselection:`Add`, :ref:`Knife <tool-mesh-knife>`, :ref:`3dview-nav-zoom-region`. :ref:`Push/Pull <tool-transform-push_pull>`, :term:`non-manifold`,  :term:`Anti-aliasing`, :term:`Color Space`. :term:`Camera Projections <projection>`"
 
-        ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-        ref_list.parseMessage()
-        ref_list.translateRefList()
-        # _(ref_list)
-        #ref_list.dumpRefList(trans_finder.master_dic_backup_list)
-        return
+        # ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+        # ref_list.parseMessage()
+        # ref_list.translateRefList()
+        # # _(ref_list)
+        # #ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+        # return
 
         orig_msg = str(msg)
 
@@ -214,10 +214,16 @@ def doctree_resolved(app, doctree, docname):
                     ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
                     ref_list.parseMessage()
                     ref_list.translateRefList()
-                    #_(ref_list)
-                    ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+                    tran = ref_list.getTranslation()
+                    is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+                    if is_added:
+                        entry = (msg, tran)
+                        print("found in RefList, added entry:", entry)
 
-        exit(0)
+                    #_(ref_list)
+                    # ref_list.dumpRefList(trans_finder.master_dic_backup_list)
+
+        # exit(0)
         # if not is_ignore:
         #     has_translation = (msg in trans_finder.master_dic_list)
         #     if has_translation:
@@ -244,18 +250,10 @@ def doctree_resolved(app, doctree, docname):
         # else:
         #     tran = None
 
-        # if tran is not None:
-        #     is_same = cm.isTextuallySame(msg, tran)
-        #     if not is_same:
-        #         new_po_cat.add(msg, string=tran)
-        #         if not is_ignore:
-        #             entry={msg:tran}
-        #             trans_finder.master_dic_backup_list.update(entry)
-        # else:
-        #     new_po_cat.add(msg, string="")
-        #     if not is_ignore:
-        #         entry={msg:""}
-        #         trans_finder.master_dic_backup_list.update(entry)
+        if tran is not None:
+            new_po_cat.add(msg, string=tran)
+        else:
+            new_po_cat.add(msg, string="")
 
     #     print("msgid \"", msg, "\"")
     #     if tran is not None:
@@ -263,8 +261,8 @@ def doctree_resolved(app, doctree, docname):
     #     else:
     #         print("msgstr \"\"")
 
-    # print("Output to the path:", new_po_cat, output_path)
-    # c.dump_po(output_path, new_po_cat)
+    print("Output to the path:", new_po_cat, output_path)
+    c.dump_po(output_path, new_po_cat)
 
 
 

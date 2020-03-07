@@ -562,6 +562,35 @@ class RefList(defaultdict):
             _("original:", orig_txt)
             _("ref_text:", txt)
 
+    def findTextOutsideRefs(self):
+        has_ref = (len(self) > 0)
+        if not has_ref:
+            return
+
+        temp_msg = str(self.msg)
+        v:RefRecord = None
+        # 1. Find where found pattern occured, fill it with a blank
+        for k, v in reversed(list(self.items())):
+            orig = v.getOrigin()
+            os, oe, otxt = orig.getValues()
+            blind = str(cm.FILLER_CHAR * len(otxt))
+            temp_msg = temp_msg[:os] + blind + temp_msg[oe:]
+
+        # 2. Remove text outside blank areas
+        for origin, bkdown in cm.patternMatchAll(cm.NEGATE_FIND_WORD, temp_msg):
+            is_end = (origin is None)
+            if is_end:
+                break
+
+            s, e, orig = origin
+            o_ss = s
+            o_ee = o_ss + len(orig)
+            orig_ref_item = RefItem(o_ss, o_ee, orig)
+
+            v = RefRecord(origin=orig_ref_item, reflist=None)
+            entry={o_ss:v}
+            self.update(entry)
+
 
     def parseMessage(self):
         # is_debug = ("Box Deselect:" in msg)
@@ -576,6 +605,8 @@ class RefList(defaultdict):
             (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
         ]
         self.findPattern(pattern_list)
+        self.findTextOutsideRefs()
+
         has_record = (len(self) > 0)
         if has_record:
             sorted_list = sorted(list(self.items()))
@@ -750,55 +781,6 @@ class RefList(defaultdict):
         if has_tran:
             self.setTranslation(tran)
 
-    def dumpRefItem(self, ref_item: RefItem, storage_dict:dict):
-        valid = (ref_item is not None)
-        if not valid:
-            return
 
-        orig_text = ref_item.getText()
-        valid = (orig_text is not None) and (len(orig_text) > 0)
-        if not valid:
-            return
-
-        state = ref_item.translation_state
-        is_ignore = (state == TranslationState.IGNORED)
-        if is_ignore:
-            _("dumpRefItem Ignoring:", orig_text)
-            return
-
-        trans = ref_item.getTranslation()
-        txt = (trans if trans is not None else "")
-        entry={orig_text:txt}
-        # is_the_same = (cm.isTextuallySimilar(orig_text, txt, is_absolute=True))
-        # if is_the_same:
-        #     print("dumpRefItem Ignoring, similar:", entry)
-        #     return
-        _("dumpRefItem:", entry)
-        storage_dict.update(entry)
-
-    def dumpRefRecord(self, ref_item: RefRecord, storage_dict:dict):
-        valid = (ref_item is not None)
-        if not valid:
-            return
-
-        orig_item: RefItem = ref_item.getOrigin()
-        ref_list: list = ref_item.getRefList()
-        for item in ref_list:
-            is_item = isinstance(item, RefItem)
-            is_record = isinstance(item, RefRecord)
-            if is_record:
-                self.dumpRefRecord(item, storage_dict)
-            else:
-                self.dumpRefItem(item, storage_dict)
-        else:
-            self.dumpRefItem(orig_item, storage_dict)
-
-    def dumpRefList(self, dump_dict: dict):
-        for k, v in self.items():
-            self.dumpRefRecord(v, dump_dict)
-        list_item = RefItem(start=0, end=0, txt=self.msg)
-        list_item.setTranlation(self.getTranslation())
-        list_item.setTranslationState(self.translation_state)
-        self.dumpRefItem(list_item, dump_dict)
 
 

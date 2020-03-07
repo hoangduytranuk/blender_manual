@@ -91,10 +91,10 @@ class TranslationFinder:
         self.setupKBDDicList()
 
         self.dic_list = defaultdict(int) # for general purposes
-        # ßself.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
+        # self.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
 
         #self.cleanDictList(self.master_dic_list)
-        #self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=True)
+        #self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
         #exit(0)
 
     def loadVIPOtoBackupDic(self, dict_to_update, file_name):
@@ -242,6 +242,8 @@ class TranslationFinder:
         po_cat = c.load_po(self.vipo_dic_path)
         po_dic = self.poCatToDic(po_cat)
         self.master_dic_list.update(po_dic)
+
+
 
     def addEntryToDic(self, k, v, dict_list, keep_orig=False):
         valid = (k is not None) and \
