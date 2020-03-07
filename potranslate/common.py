@@ -43,7 +43,9 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
-    debug_file="interface/window_system/topbar"
+    # debug_file = "video_editing/introduction"
+    # debug_file = "about/contribute/index"
+    # debug_file="interface/window_system/topbar"
     # debug_file = "advanced/app_templates"
     # debug_file = "modeling/empties"
     # debug_file = "animation/armatures/posing/editing"
@@ -94,7 +96,7 @@ class Common:
     # debug_file = "sculpt_paint/sculpting/hide_mask"
     # debug_file = "sculpt_paint/weight_paint/editing"
     # debug_file = "video_editing/sequencer/properties/strip"
-    debug_file = "video_editing/sequencer/strips/movie_image"
+    # debug_file = "video_editing/sequencer/strips/movie_image"
 
     KBD='kbd'
     MNU='menuselection'
@@ -460,13 +462,11 @@ class Common:
     def isTextuallySubsetOf(msg, tran):
         msg_list = Common.WORD_ONLY_FIND.findall(msg.lower())
         tran_list = Common.WORD_ONLY_FIND.findall(tran.lower())
-
-        # convert list to set of words, non-repeating
-        tran_set = set(tran_list)
-        msg_set = set(msg_list)
+        msg_str = "".join(msg_list)
+        tran_str = "".join(tran_list)
 
         # perform set intersection to find common set
-        is_subset = msg_set.issubset(tran_set)
+        is_subset = (msg_str in tran_str)
         return is_subset
 
     def alterValue(orig_value, alter_value=0, op=None):

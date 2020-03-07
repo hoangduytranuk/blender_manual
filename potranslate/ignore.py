@@ -85,7 +85,7 @@ class Ignore:
         r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
         r'^(GPL[\s\w][\d][+])$',
         r'^(A \(Alpha\))$',
-        r'^(([+-]\w)(,\s)?)+$', #"+X, +Y, +Z, -X, -Y, -Z",
+        #r'^(([+-]+\w)(,\s)?)+$', #"+X, +Y, +Z, -X, -Y, -Z",
         r'^(:[\w]+:)([\`]+([\/][\w]+[\/]?)*[\`]+)', # :doc:`/something/somethingelse`
         r'^(:ref:)([\`]+(\w+[-]?)+[\`]+)[\.]?$',
         r'^(:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|Tab|F(\d+)))[\`](,\s|\s-\s)?)+$', #:kbd:`Shift-Ctrl-R`

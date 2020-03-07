@@ -180,7 +180,17 @@ def doctree_resolved(app, doctree, docname):
 
         # msg = ":abbr:`IES (Illuminating Engineering Society of North America)`, :abbr:`TL;DR (Too long; didn't read.)`, use *Crop* and/or *Offset* in the Input panel to move and select a region of the image within the output. When you use *Crop* or *Offset*, the auto-scaling will be disabled and you can manually re-scale by adding the Transform effect. ``TEXT``, ``MTEXT``, **1.30 -- April 1998:**, also :kbd:`Shift-W` :menuselection:`--> (Deform, ...)`, **Always** position ``-f`` or ``-a`` as the last arguments. *Push/Pull*, ``/tmp``, 1.0×10\ :sup:`15`, :class:`blender_api:bpy.types.KeyMapItem`, :doc:`3D View Alignment </editors/3dview/navigate/align>`, :kbd:`Alt-MMB`, :menuselection:`Armature --> Transform --> Align Bones`, :menuselection:`... --> Show/Hide`, :menuselection:`Add`, :ref:`Knife <tool-mesh-knife>`, :ref:`3dview-nav-zoom-region`. :ref:`Push/Pull <tool-transform-push_pull>`, :term:`non-manifold`,  :term:`Anti-aliasing`, :term:`Color Space`. :term:`Camera Projections <projection>`"
 
+        # has_translation = (msg in po_dic)
+        # if has_translation:
+        #     current_tran = po_dic[msg]
+        #     ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+        #     ref_list.transferTranslatedRefs(msg, current_tran)
+        # else:
+        #     print("Not transfer:", msg)
+
         # ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+        #
+        # ref_list.transferTranslatedRefs(msg, )
         # ref_list.parseMessage()
         # ref_list.translateRefList()
         # # _(ref_list)
@@ -202,6 +212,9 @@ def doctree_resolved(app, doctree, docname):
                 if is_added:
                     entry = (msg, tran)
                     print("found in PO, added entry:", entry)
+                dup_msg_in_tran = (is_keep_original) and (msg not in tran)
+                if dup_msg_in_tran:
+                    tran = "{} -- {}".format(tran, msg)
             else:
                 has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
                 if has_translation:
@@ -210,6 +223,10 @@ def doctree_resolved(app, doctree, docname):
                     if is_added:
                         entry = (msg, tran)
                         print("found in master_dic_list, added entry:", entry)
+
+                    dup_msg_in_tran = (is_keep_original) and (msg not in tran)
+                    if dup_msg_in_tran:
+                        tran = "{} -- {}".format(tran, msg)
                 else:
                     ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
                     ref_list.parseMessage()
@@ -220,49 +237,21 @@ def doctree_resolved(app, doctree, docname):
                         entry = (msg, tran)
                         print("found in RefList, added entry:", entry)
 
-                    #_(ref_list)
-                    # ref_list.dumpRefList(trans_finder.master_dic_backup_list)
-
-        # exit(0)
-        # if not is_ignore:
-        #     has_translation = (msg in trans_finder.master_dic_list)
-        #     if has_translation:
-        #         tran = trans_finder.master_dic_list[msg]
-        #         if is_keep_original:
-        #             if tran:
-        #                 has_orig = cm.hasOriginal(msg, tran)
-        #                 if not has_orig:
-        #                     tran = "{} -- {}".format(tran, msg)
-        #             else:
-        #                 tran = "-- {}".format(msg)
-        #         print("Origianl translation:",msg, "=>", tran)
-        #     else:
-        #         ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-        #         ref_list.parseMessage()
-        #         ref_list.translateRefList()
-        #         tran = ref_list.getTranslation()
-
-        #         print("ref_list translation:",msg, "=>", tran)
-        #         is_same = cm.isTextuallySame(msg, tran)
-        #         if is_same:
-        #             tran = None
-
-        # else:
-        #     tran = None
 
         if tran is not None:
             new_po_cat.add(msg, string=tran)
         else:
             new_po_cat.add(msg, string="")
 
-    #     print("msgid \"", msg, "\"")
-    #     if tran is not None:
-    #         print("msgstr \"", tran, "\"")
-    #     else:
-    #         print("msgstr \"\"")
+        # print("msgid \"", msg, "\"")
+        # if tran is not None:
+        #     print("msgstr \"", tran, "\"")
+        # else:
+        #     print("msgstr \"\"")
 
     print("Output to the path:", new_po_cat, output_path)
-    c.dump_po(output_path, new_po_cat)
+    #c.dump_po(output_path, new_po_cat)
+    c.dump_po(output_path, new_po_cat, line_width=4096)
 
 
 
