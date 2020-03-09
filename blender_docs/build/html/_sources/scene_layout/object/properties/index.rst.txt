@@ -8,7 +8,7 @@
 
    introduction.rst
    transforms.rst
-   relations/index.rst
+   relations.rst
    /scene_layout/collections/index.rst
    instancing/index.rst
    visibility.rst

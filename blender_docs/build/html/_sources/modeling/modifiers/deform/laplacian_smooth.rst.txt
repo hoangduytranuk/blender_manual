@@ -1,14 +1,14 @@
 .. _bpy.types.LaplacianSmoothModifier:
 
 *************************
-Laplacian Smooth Modifier
+Smooth Laplacian Modifier
 *************************
 
-The *Laplacian Smooth* modifier allows you to reduce noise on a mesh's surface with minimal changes to its shape.
+The *Smooth Laplacian* modifier allows you to reduce noise on a mesh's surface with minimal changes to its shape.
 
 It can also exaggerate the shape using a negative *Factor*.
 
-The *Laplacian Smooth* is useful for objects that have been reconstructed from
+The *Smooth Laplacian* is useful for objects that have been reconstructed from
 the real world and contain undesirable noise. It removes noise while still
 preserving desirable geometry as well as the shape of the original model.
 
@@ -21,10 +21,10 @@ Options
 .. figure:: /images/modeling_modifiers_deform_laplacian-smooth_panel.png
    :align: right
 
-   The Laplacian Smooth modifier.
+   The Smooth Laplacian modifier.
 
 Repeat
-   Repetitions allow you to run the Laplacian smoothing multiple times.
+   Repetitions allow you to run the smoothing operation multiple times.
    Each repetition causes the flow curvature of the mesh to be recalculated again,
    and as a result it removes more noise with every new iteration using a small *Factor* < 1.0.
 
@@ -363,7 +363,7 @@ Vertex Group
         - .. figure:: /images/modeling_modifiers_deform_laplacian-smooth_camel-vertex3.jpg
              :width: 130px
 
-    Invert ``<->``
+   Invert ``<->``
       Inverts the influence of the selected vertex group, meaning that the group
       now represents vertices that will not be deformed by the modifier.
 

@@ -3,16 +3,9 @@
 .. _bpy.types.Object.scale:
 .. _bpy.types.Object.dimensions:
 
-********************
-Transform Properties
-********************
-
-Each object stores its position, orientation, and scale values.
-These may need to be manipulated numerically, reset, or applied.
-
-
-Transform Panel
-===============
+*********
+Transform
+*********
 
 .. admonition:: Reference
    :class: refbox
@@ -23,14 +16,12 @@ Transform Panel
 
 The *Transform* panel in the Sidebar region allows you to view and
 manually/numerically control the position, rotation, and other properties of an object, in *Object Mode*.
+Each object stores its position, orientation, and scale values.
+These may need to be manipulated numerically, reset, or applied.
 In *Edit Mode*. It mainly allows you to enter precise coordinates for a vertex,
 or median position for a group of vertices (including an edge/face). As each type of object has a different set of
 options in its *Transform* panel in *Edit Mode*,
 see their respective descriptions in the :doc:`Modeling chapter </modeling/index>`.
-
-
-Options in Object Mode
-----------------------
 
 Use this panel to either edit or display the object's transform properties such as position,
 rotation and/or scaling. These fields change the object's origin and then affect the aspect
@@ -71,24 +62,22 @@ Dimensions
    The size of the object's bounding box
    (aligned with the local axes -- think of a cardboard box just big enough to hold the object).
 
-
 .. _bpy.types.Object.lock:
 
 Transform Properties Locking
-----------------------------
+   When the toggle is locked, the corresponding transformation value
+   can not be changed in any interactive operation.
+   However, the value can still be changed using non-interactive operations,
+   like editing the corresponding number field or using Python.
 
-When the toggle is locked, the corresponding transformation value can not be changed in any interactive operation.
-However, the value can still be changed using non-interactive operations,
-like editing the corresponding number field or using Python.
+   For example, if you locked the *Location X* property
+   then you cannot use the 3D gizmo to move the object along the global X axis.
+   However, you can still move it using the *Location X* number field.
+   Consider the locking feature as a rigid constraint only changeable from the panel.
 
-For example, if you locked the *Location X* property then you cannot use the 3D gizmo to
-move the object along the global X axis.
-However, you can still move it using the *Location X* number field.
-Consider the locking feature as a rigid constraint only changeable from the panel.
-
-To lock a property, click the padlock icon next to the button.
-The button is unlocked if the icon shows an open padlock,
-and it is locked if the icon appears as a closed padlock.
+   To lock a property, click the padlock icon next to the button.
+   The button is unlocked if the icon shows an open padlock,
+   and it is locked if the icon appears as a closed padlock.
 
 
 .. _bpy.types.Object.delta:
@@ -99,10 +88,6 @@ Delta Transforms
 
 Delta Transforms are simply transformations that are applied on top of the transforms described above.
 They can be found in the :menuselection:`Properties Editor --> Object --> Delta Transforms`.
-
-
-Usage
------
 
 Delta Transforms are particularly useful in animations. For example,
 you can animate an object with the primary transforms then move them around with Delta Transforms.

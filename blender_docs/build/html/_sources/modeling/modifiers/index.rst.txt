@@ -63,17 +63,17 @@ Deform
 
    deform/armature.rst
    deform/cast.rst
-   deform/corrective_smooth.rst
    deform/curve.rst
    deform/displace.rst
    deform/hooks.rst
-   deform/laplacian_smooth.rst
    deform/laplacian_deform.rst
    deform/lattice.rst
    deform/mesh_deform.rst
    deform/shrinkwrap.rst
    deform/simple_deform.rst
    deform/smooth.rst
+   deform/corrective_smooth.rst
+   deform/laplacian_smooth.rst
    deform/surface_deform.rst
    deform/warp.rst
    deform/wave.rst

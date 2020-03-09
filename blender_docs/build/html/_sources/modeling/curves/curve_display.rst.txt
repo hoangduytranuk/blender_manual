@@ -9,7 +9,7 @@ Curve Display
    :Mode:      Edit Mode
    :Panel:     :menuselection:`3D Viewport --> Viewport Overlays --> Curve Edit Mode`
 
-When in Edit Mode, curves have special :doc:`overlays </editors/3dview/controls/overlays>`
+When in Edit Mode, curves have special :doc:`overlays </editors/3dview/display/overlays>`
 to control how curves are displayed in the 3D Viewport.
 
 Handles

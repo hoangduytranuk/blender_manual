@@ -7,6 +7,5 @@
 .. toctree::
    :maxdepth: 2
 
-   introduction.rst
-   license.rst
    contribute/index.rst
+   license.rst

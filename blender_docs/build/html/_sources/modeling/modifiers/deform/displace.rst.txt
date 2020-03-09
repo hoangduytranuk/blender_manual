@@ -58,7 +58,7 @@ Vertex Group
 
 Midlevel
    The texture value which will be treated as no displacement by the modifier.
-   Texture values below this value will result in negative displacement along the selected direction,
+   Texture values below this threshold will result in negative displacement along the selected direction,
    while texture values above it will result in positive displacement.
 
    :math:`displacement = texture_value - Midlevel`

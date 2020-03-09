@@ -17,7 +17,7 @@ This modifier is a bit tricky to understand at first.
 It requires two points, specified by the two target objects' origins.
 The "from" point designates a point in space that is pulled toward the "to" point.
 It is akin to using
-the :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>` in Edit Mode.
+the :doc:`Proportional Editing </editors/3dview/controls/proportional_editing>` in Edit Mode.
 
 
 Options
@@ -49,7 +49,7 @@ Radius
    Sets the distance from the transforms that can be warped by the transform handles.
 Falloff Type
    Sets the way the strength of the warp change as it goes from the center of the transform to the *Radius* value.
-   See :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`
+   See :doc:`Proportional Editing </editors/3dview/controls/proportional_editing>`
    for descriptions of the falloff types.
 Texture
    You can finely control which vertices are affected by the warp,
@@ -63,7 +63,7 @@ Usage
 
 The *Warp* modifier can be awkward to use sometimes, and its use case is rather small,
 But there are a few still. For example, it can be used to have
-an interactive :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`
+an interactive :doc:`Proportional Editing </editors/3dview/controls/proportional_editing>`
 that can be used for animations.
 
 Another way to use this modifier is similar to

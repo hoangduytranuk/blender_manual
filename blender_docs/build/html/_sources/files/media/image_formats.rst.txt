@@ -121,7 +121,7 @@ Detect Sequences
    Automatically looks for image sequences in the selected images (based on the file name).
    Disable this when you do want to get single images that are part of a sequence.
 Detect UDIMs
-   Automatically looks for :doc:`UDIM </modeling/meshes/editing/uv/workflows/udims>`
+   Automatically looks for :doc:`UDIM </modeling/meshes/uv/workflows/udims>`
    tiles in the directory of the selected image; if matches are found they are loaded into Blender as UDIMs.
    This works by detecting if the filename has a ``.xxxx`` (four digit number) before the file extension.
 

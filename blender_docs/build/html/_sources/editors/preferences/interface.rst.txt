@@ -50,9 +50,6 @@ Developer Extras
       Experimental Tab
          Work in progress features can be enabled here which are currently being tested.
 
-Large Cursors
-   Use large mouse cursors when available.
-
 
 Editors
 =======

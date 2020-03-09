@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
-    <link rel="next" title="Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier" href="corrective_smooth.html" />
+    <link rel="next" title="Bộ Điều Chỉnh Đường Cong -- Curve Modifier" href="curve.html" />
     <link rel="prev" title="Bộ Điều Chỉnh Cốt -- Armature Modifier" href="armature.html" /> 
 </head>
 
@@ -131,17 +131,17 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="armature.html">Bộ Điều Chỉnh Cốt -- Armature Modifier</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="curve.html">Bộ Điều Chỉnh Đường Cong -- Curve Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="displace.html">Bộ Điều Chỉnh Dời Hình -- Displace Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hooks.html">Bộ Điều Chỉnh Móc -- Hook Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="laplacian_deform.html">Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="lattice.html">Bộ Điều Chỉnh Giàn Lưới -- Lattice Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">-- Mesh Deform Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shrinkwrap.html">Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="simple_deform.html">-- Simple Deform Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="smooth.html">Bộ Điều Chỉnh Làm Mịn -- Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Smooth Corrective Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Smooth Laplacian Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="surface_deform.html">-- Surface Deform Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="warp.html">Bộ Điều Chỉnh Làm Cong -- Warp Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="wave.html">Bộ Điều Chỉnh Tạo Sóng -- Wave Modifier</a></li>
@@ -235,7 +235,7 @@
 <span id="bpy-types-castmodifier"></span><h1>Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier<a class="headerlink" href="#cast-modifier" title="Permalink to this headline">¶</a></h1>
 <p>The <em>Cast</em> modifier shifts the shape of a mesh, curve,
 surface or lattice, towards any of a few predefined shapes (sphere, cylinder, cuboid).</p>
-<p>It is equivalent to the <a class="reference internal" href="../../meshes/editing/transform/to_sphere.html#tool-transform-to-sphere"><span class="std std-ref">To Sphere</span></a> tool in Edit Mode,
+<p>It is equivalent to the <a class="reference internal" href="../../meshes/editing/mesh/transform/to_sphere.html#tool-transform-to-sphere"><span class="std std-ref">To Sphere</span></a> tool in Edit Mode,
 and what other programs call &quot;Spherify&quot; or &quot;Spherize&quot;, but, as written above,
 it is not limited to casting to a sphere.</p>
 <div class="admonition tip">
@@ -247,7 +247,7 @@ since the cast shape sometimes needs smoothing to look nicer or even to fix shad
 <p class="admonition-title">Ghi chú</p>
 <p>For performance reasons, this modifier only works with local coordinates.
 If the modified object looks wrong, you may need to apply its
-<a class="reference internal" href="../../../scene_layout/object/editing/transform/clear_apply.html#bpy-ops-object-transform-apply"><span class="std std-ref">transformations</span></a>, especially when casting to a cylinder.</p>
+<a class="reference internal" href="../../../scene_layout/object/editing/apply.html#bpy-ops-object-transform-apply"><span class="std std-ref">transformations</span></a>, especially when casting to a cylinder.</p>
 </div>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -312,7 +312,7 @@ Bottom: Same as above, but now only X axis is enabled.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="corrective_smooth.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="curve.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Đường Cong -- Curve Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="armature.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Cốt -- Armature Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

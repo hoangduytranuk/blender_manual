@@ -98,7 +98,7 @@ Grab :kbd:`G`
    Used to drag a group of vertices around. Unlike the other brushes,
    *Grab* does not modify different points as the brush is dragged across the model.
    Instead, *Grab* selects a group of vertices on mouse-down, and pulls them to follow the mouse.
-   The effect is similar to moving a group of vertices in Edit Mode with Proportional Editing enabled,
+   The effect is like moving a group of vertices in Edit Mode with Proportional Editing enabled,
    except that *Grab* can make use of other Sculpt Mode options (like textures and symmetry).
 
    Grab Active Vertex
@@ -106,11 +106,11 @@ Grab :kbd:`G`
       making it easier to manipulate low poly models or meshes with subdivision surfaces.
 
       Enabling *Grab Active Vertex* also enables a dynamic mesh preview which
-      generates a preview of vertices connected to om the active vertex.
+      generates a preview of vertices connected to the active vertex.
       This helps to visualize the real geometry that is being manipulating while sculpting with active modifiers.
 
 Elastic Deform
-   Used to simulate realistic deformations such as grabbing or twisting of :term:`Elastic` objects.
+   Used to simulate realistic deformations such as grabbing or twisting of :term:`elastic` objects.
    For example, this tool works great for modeling the shape of flesh like objects such as humans or animals.
    When pressing :kbd:`Ctrl`, the brush deforms vertices along the normal of the active vertex.
 
@@ -120,9 +120,9 @@ Elastic Deform
       Grab
          Used to drag a group of vertices around.
       Bi-scale Grab
-         Similar to *Grab* but the falloff is more localized to the center of the brush.
+         Like *Grab* but the falloff is more localized to the center of the brush.
       Tri-scale Grab
-         Similar to *Bi-scale Grab* but the falloff is more localized to the center of the brush.
+         Like *Bi-scale Grab* but the falloff is more localized to the center of the brush.
       Scale
          Displaces vertices away from the active vertex.
       Twist
@@ -210,7 +210,7 @@ Mesh Filter
          Displaces vertices uniformly along their normal.
          This filter works similar to the *Inflate Brush*.
       Sphere
-         Morphs the mesh to progressively look more like a sphere.
+         Morphs the mesh progressively into a sphere.
          This filter works similar to the :ref:`To Sphere Transform <bpy.ops.transform.tosphere>`.
       Random
          Randomly moves vertices along the vertex normal.

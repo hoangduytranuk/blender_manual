@@ -17,7 +17,7 @@ it should transform and/or deform is called the "skinning" process...
 
 In Blender, you have two main skinning types:
 
-#. You can :doc:`Parent/Constrain Objects to Bones </scene_layout/object/properties/relations/parents>` --
+#. You can :doc:`Parent/Constrain Objects to Bones </scene_layout/object/editing/parent>` --
    then, when you transform the bones in *Pose Mode*, their "children" objects are also transformed,
    exactly as with a standard parent/children relationship...
    The "children" are **never** deformed when using this method.

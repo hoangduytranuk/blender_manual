@@ -9,7 +9,7 @@ Blender has the ability to encapsulate (incorporate)
 various kinds of data within the blend-file that is normally saved outside of the blend-file.
 For example, an image texture that is an external image file can be put "inside" the blend-file.
 This allows sharing a full project as a single file,
-instead of e.g. an archive containing the blend-file and all of its dependencies.
+instead of e.g. an archive containing the blend-file and all its dependencies.
 
 You know that a data is packed when you see a little "gift box" icon displayed next to its path.
 
@@ -102,8 +102,10 @@ Remove Pack
 Create <local file path>
    Unpack the file at the proposed path, which is local to the current blend-file.
 Use <original file path> (differs)|(identical)
-   If the original file path still exists, mark it as unpacked. Note that it won't be automatically reloaded from the drive.
-   *(differs)* or *(identical)* show difference status between packed version and the one on-drive.
+   If the original file path still exists, mark it as unpacked.
+   Note that it won't be automatically reloaded from the drive.
+   *(differs)* or *(identical)* show difference status between the packed version
+   and the one on-drive.
 Overwrite <original file path>
    If the original file path still exists but differs from the packed version,
    mark it as unpacked and overwrite the on-drive file with the packed version.

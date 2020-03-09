@@ -16,6 +16,7 @@
    3d_cursor.rst
    selecting.rst
    controls/index.rst
+   display/index.rst
    toolbar/index.rst
    properties/index.rst
    viewport_render.rst

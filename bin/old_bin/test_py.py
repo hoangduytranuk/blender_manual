@@ -58,6 +58,12 @@ MENU_TYPE = re.compile(r'^([\`]*:menuselection:[\`]+([^\`]+)[\`]+)$')
 KEYBOARD_TYPE = re.compile(r'^([\`]*:kbd:[\`]+([^\`]+)[\`]+)$')
 KEYBOARD_SEP = re.compile(r'[^\-]+')
 
+FILLER_CHAR='¶'
+NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
+NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
+
+
+
 DEBUG=True
 
 
@@ -1688,28 +1694,35 @@ class test(object):
         print(f_list)
 
     def patternMatchAll(self, pat, text):
-        original=[]
-        break_down=[]
         try:
-            for i, m in enumerate(pat.finditer(text)):
+            # itor = pat.finditer(text)
+            # print("itor", type(itor))
+            # print("dir", dir(itor))
+
+            for m in pat.finditer(text):
+                original = ()
+                break_down = []
+
                 s = m.start()
                 e = m.end()
                 orig = m.group(0)
-                original.append((s, e, orig))
+                original = (s, e, orig)
 
-                for i, g in enumerate(m.groups()):
+                for g in m.groups():
                     if g:
                         i_s = orig.find(g)
                         ss = i_s + s
                         ee = ss + len(g)
                         v=(ss, ee, g)
                         break_down.append(v)
+                yield original, break_down
+
         except Exception as e:
             _("patternMatchAll")
             _("pattern:", pat)
             _("text:", text)
             _(e)
-        return original, break_down
+        return None, None
 
     #def patternMatchAll(self, pat, text):
         #find_list= defaultdict(OrderedDict)
@@ -2372,11 +2385,11 @@ class test(object):
         #          project=None, version=None, copyright_holder=None,
         #          msgid_bugs_address=None, creation_date=None,
         #          revision_date=None, last_translator=None, language_team=None,
-        #          charset=None, fuzzy=True):        
+        #          charset=None, fuzzy=True):
 
         local_time=timezone('Europe/London')
         #local_time=timezone('en_GB')
-        loc_dt=local_time.localize(datetime.datetime.now())        
+        loc_dt=local_time.localize(datetime.datetime.now())
         new_cat = Catalog( \
                     locale=locale.getlocale()[0], \
                     project="Blender 2.80 Manual", \
@@ -2387,9 +2400,9 @@ class test(object):
                     )
         #print("creation_date", new_cat.creation_date)
         #print("revision_date", new_cat.revision_date)
-        #pp(new_cat)               
+        #pp(new_cat)
         new_cat.add("my name", string="Hoang Duy Tran")
-        out_po_path="/Users/hoangduytran/testing.po"     
+        out_po_path="/Users/hoangduytran/testing.po"
 
         in_po_path="/Users/hoangduytran/index.po"
         in_po_cat = c.load_po(in_po_path)
@@ -2416,9 +2429,117 @@ class test(object):
 
         self.dump_po(out_po_path, in_po_cat)
 
+    def test_0039(self):
+        t=" -->"
+        #t = "this"
+        #t='--> (Deform, ...)'
+        #t='this --> and --> that'
+        FILLER_CHAR='•'
+        MENU_SEP = re.compile(r'[\s]?[\-]{2}\>[\s]?')
+        word_list=[]
+        found_list=defaultdict(OrderedDict)
+        for orig, bkdown in self.patternMatchAll(MENU_SEP, t):
+            s, e, txt = orig
+            entry={s:(s, e, txt)}
+            found_list.update(entry)
+        is_empty = (len(found_list) == 0)
+        has_word = (is_empty and len(t) > 0)
+        if has_word:
+            word_list.append(t)
+            # pp(word_list)
+            return word_list
+        elif not has_word and is_empty:
+            return word_list
+
+        # pp(found_list)
+        max = len(t)
+        s = e = max
+        ss = ee = 0
+        for k, v in reversed(list(found_list.items())):
+            print("working start:", s, e, v)
+            ss, ee, txt = v
+            s = ee - 1
+            valid = (s < e) and (s >= 0) and (e <= max)  and (s != ss) and (e != ee)
+            if valid:
+                entry = (s, e, t[s:e])
+                word_list.append(entry)
+            e = ss + 1
+            print("working end:", s, e, v)
+        print("end:", s, e)
+        print("ss, ee", ss, ee)
+        s = 0
+        valid = (s < e) and (s >= 0) and (e <= max) and (s != ss) and (e != ee)
+        if valid:
+            entry = (s, e, t[s:e])
+            word_list.append(entry)
+        pp(word_list)
+
+    def findInvert(self, pattern, text):
+        found_list={}
+        tt = str(text)
+        # fill in the place of pattern with a filler (FILLER_CHAR), length of found pattern
+        for orig, bkdown in self.patternMatchAll(pattern, text):
+            s, e, txt = orig
+            filler = str(FILLER_CHAR * len(txt))
+            tt = tt[:s] + filler + tt[e:]
+        # tt is not contains 'word....another word...and an another word' (... represents the filler)
+        # now find with NOT '[^\FILLER_CHAR]+'
+        for orig, bkdown in self.patternMatchAll(NEGATE_FIND_WORD, tt):
+            s, e, txt = orig
+            entry={s:orig}
+            found_list.update(entry)
+        return found_list
+
+    def test_0040(self):
+        t=" -->"
+        #t = "this"
+        #t='--> (Deform, ...)'
+        t='this --> and --> that is this'
+        FILLER_CHAR='•'
+        MENU_SEP = re.compile(r'[\s]?(\-\-\>)[\s]?')
+        word_list=[]
+        found_list=defaultdict(OrderedDict)
+        tt = str(t)
+        for orig, bkdown in self.patternMatchAll(MENU_SEP, t):
+            s, e, txt = orig
+            filler = str(FILLER_CHAR * len(txt))
+            tt = tt[:s] + filler + tt[e:]
+        print(tt)
+        NEGATE = r"[^\\" + FILLER_CHAR + r"]+"
+        FIND_WORD=re.compile(NEGATE)
+        for orig, bkdown in self.patternMatchAll(FIND_WORD, tt):
+            s, e, txt = orig
+            entry={s:orig}
+            found_list.update(entry)
+        # found_list = FIND_WORD.findall(tt)
+        #pp(found_list)
+
+        for k, v in reversed(list(found_list.items())):
+            print(k, v)
+
+    def test_0041(self):
+        ABBR_TEXT = re.compile(r'[\(]([^\)]+)[\)]')
+        REF_LINK = re.compile(r'[\s]?[\<]([^\>]+)[\>][\s]?')
+        PURE_PATH = re.compile(r'^(([\/\\][\w]+)([\/\\][\w]+)*)+[\/\\]?$')
+        PURE_REF = re.compile(r'^([\w]+([\-][\w]+)+)+$')
+
+        REF_LINK = re.compile(r'[\s]?[\<]([^\<\>]+)[\>][\s]?')
+
+        t = 'pack islands operator <editors-uv-editing-layout-pack_islands>'
+        #t = 'modeling-text-character'
+        t = 'modeling text'
+        #t = '/about/contribute/build/index'
+        #t = 'about/something'
+        #t = '"limit" ones </animation/constraints/transform/limit_location>'
+        #print(PURE_PATH.search(t))
+        print(REF_LINK.search(t))
+        #found = self.findInvert(REF_LINK, t)
+        #pp(found)
+
+
     def run(self):
-        self.test_0038()
-        print("Tesing Python")
+        self.test_0041()
+        # print("Tesing Python")
 
 
 x = test()

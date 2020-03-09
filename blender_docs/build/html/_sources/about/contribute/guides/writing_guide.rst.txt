@@ -7,15 +7,19 @@ Writing Style Guide
 Primary Goals
 =============
 
-The main goals for this manual are as follows.
+The main goals for this manual are as follows:
 
 User Focused
+   The manual is written for people educated in computer graphics,
+   who understand the basics of 3D and/or know other 3D software.
    While some areas of computer graphics are highly technical,
    this manual shall be kept understandable by non-technical users.
 Complete
-   So there is a canonical source of truth for each of Blender's key areas.
-   This does not mean we have to document every small detail,
-   but users should not have to rely on searching elsewhere to find the purpose of key features.
+   The manual provides detailed functional description of all features, tools and options in Blender.
+   While there is a canonical source of truth for each of Blender's key areas,
+   this does not mean we have to document every small detail.
+   The manual should provide information on what a feature is, how to use it, and its purpose.
+   Additional background information should be provided when necessary give deeper understanding of a 3D pipeline.
 Concise
    Computer graphics is an incredibly interesting field,
    there are many rules, exceptions to the rules and interesting details.

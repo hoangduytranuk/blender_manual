@@ -8,7 +8,7 @@ The *Hook* modifier is used to deform a mesh, curve or lattice using another obj
 (usually an empty or a bone but it can be any object).
 As an object specified as hook moves, it pulls vertices or control points from the geometry with it.
 You can think of it as animated
-:doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`.
+:doc:`Proportional Editing </editors/3dview/controls/proportional_editing>`.
 
 While hooks do not give you the fine control over vertices movement that shape keys do,
 they have the advantage that you can select vertices directly for manipulation.

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Transform Orientation &mdash; Blender Manual</title>
+  <title>Transform Orientations &mdash; Blender Manual</title>
   
 
   
@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
-    <link rel="next" title="Object Type Visibility" href="visibility.html" />
+    <link rel="next" title="Điểm Tựa -- Pivot Point" href="pivot_point/index.html" />
     <link rel="prev" title="Controls" href="index.html" /> 
 </head>
 
@@ -122,13 +122,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../3d_cursor.html">Con Trỏ 3D -- 3D Cursor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../selecting.html">Selecting</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Controls</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Transform Orientation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="visibility.html">Object Type Visibility</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gizmo.html">Viewport Gizmos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overlays.html">Viewport Overlays</a></li>
-<li class="toctree-l4"><a class="reference internal" href="shading.html">Viewport Shading</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Transform Orientations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pivot_point/index.html">Điểm Tựa -- Pivot Point</a></li>
+<li class="toctree-l4"><a class="reference internal" href="snapping.html">Bám Dính -- Snapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proportional_editing.html">Chỉnh Sửa Cân Đối -- Proportional Edit</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../display/index.html">Display</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../toolbar/index.html">Toolbar</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Tính Chất -- Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../viewport_render.html">Viewport Render</a></li>
@@ -224,7 +224,7 @@
         
           <li><a href="index.html">Controls</a> &raquo;</li>
         
-      <li>Transform Orientation</li>
+      <li>Transform Orientations</li>
     
     
 		<li class="wy-breadcrumbs-aside">
@@ -238,33 +238,120 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="transform-orientation">
-<h1>Transform Orientation<a class="headerlink" href="#transform-orientation" title="Permalink to this headline">¶</a></h1>
-<p>In the Transform orientation pop-over it is possible to select and
-configure transformation orientations.</p>
-<p>Default transform orientations are:</p>
+  <span class="target" id="bpy-types-spaceview3d-transform-orientation"><span id="bpy-types-transformorientation"></span></span><div class="section" id="transform-orientations">
+<h1>Transform Orientations<a class="headerlink" href="#transform-orientations" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Object and Edit Modes</p>
+</dd>
+<dt class="field-even">Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Sidebar region ‣ Transform Orientations</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Comma</kbd></p>
+</dd>
+</dl>
+</div>
+<p><em>Transform Orientations</em> affect the behavior of
+<a class="reference internal" href="../../../scene_layout/object/editing/transform/basics.html"><span class="doc">Transformations</span></a>: <em>Location</em>, <em>Rotation</em>, and <em>Scale</em>.
+You will see an effect on
+the <a class="reference internal" href="../../../scene_layout/object/editing/transform/control/gizmos.html"><span class="doc">Object Gizmo</span></a>
+(the widget in the center of the selection), as well as on transformation constraints,
+<a class="reference internal" href="../../../scene_layout/object/editing/transform/control/axis_locking.html"><span class="doc">Axis Locking</span></a>.</p>
+<p>For example, when you press <kbd class="kbd docutils literal notranslate">X</kbd>, during the execution of the operation,
+it will constrain the transformation to the <em>Global</em> X axis.
+But if you press <kbd class="kbd docutils literal notranslate">X</kbd> a second time it will constrain to your <em>Transform Orientation</em>'s X axis.</p>
+<div class="figure align-default" id="id1">
+<img alt="../../../_images/scene-layout_object_editing_transform_control_orientations_menu.png" src="../../../_images/scene-layout_object_editing_transform_control_orientations_menu.png" />
+<p class="caption"><span class="caption-text">Transform Orientations selector.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>The Orientations options can be set through the <em>Transform Orientation</em> selector in a 3D View header.</p>
+<p>In addition to the five preset options,
+you can define your own custom orientation (see <a class="reference internal" href="#custom-orientations">Custom Orientations</a> below).</p>
+<div class="section" id="orientations">
+<h2>Orientations<a class="headerlink" href="#orientations" title="Permalink to this headline">¶</a></h2>
 <dl>
 <dt>Global</dt><dd><p>Align the transformation axes to world space.</p>
+<p>The <a class="reference internal" href="../startup_scene.html"><span class="doc">Axis</span></a> in the top right corner of the viewport,
+and the <em>Grid Floor</em>, shows the axes of world coordinate system.</p>
 </dd>
-<dt>Local</dt><dd><p>Align the transformation axes to the selected objects' local space.</p>
+<dt>Local</dt><dd><p>Align the transformation axes to the selected objects' space.</p>
+<p>When an object is rotated, the direction of the <em>Local</em> gizmo
+matches to the object's rotation relative to the global axes.
+While the <em>Global</em> gizmo always correspond to world coordinates.</p>
 </dd>
-<dt>Normal</dt><dd><p>Align the transformation axes to average normal of selected elements.</p>
+<dt>Normal</dt><dd><p>Align the transformation axes so that the Z axis of the gizmo will match the average
+<a class="reference internal" href="../../../modeling/meshes/editing/mesh/normals.html"><span class="doc">Normal</span></a> of the selected element.
+If multiple elements are selected, it will orient towards the average of those normals.</p>
+<p>In <em>Object Mode</em>, this is equivalent to <em>Local</em> orientation.</p>
 </dd>
-<dt>Gimbal</dt><dd><p>Align each axis to the Euler rotation axis as used for input.</p>
+<dt>Gimbal</dt><dd><p>Align each axis to the Euler rotation axis as used for input.
+Uses a <a class="reference internal" href="../../../glossary/index.html#term-gimbal"><span class="xref std std-term">Gimbal</span></a> behavior that can be changed
+depending on the current <a class="reference internal" href="../../../scene_layout/object/properties/transforms.html#rotation-modes"><span class="std std-ref">Rotation Mode</span></a>.</p>
 </dd>
-<dt>View</dt><dd><p>Align the transformation axes to the window.</p>
+<dt>View</dt><dd><p>Align the transformation axes to the window of the 3D Viewport:</p>
+<ul class="simple">
+<li><p>Y: Up/Down</p></li>
+<li><p>X: Left/Right</p></li>
+<li><p>Z: Towards/Away from the screen</p></li>
+</ul>
 </dd>
 <dt>Cursor</dt><dd><p>Align the transformation axes to the 3D cursor.</p>
 </dd>
-<dt>Add <code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>With the plus button a new transformation orientation can be created from the selected object.</p>
+</dl>
+<div class="section" id="custom-orientations">
+<h3>Custom Orientations<a class="headerlink" href="#custom-orientations" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Object and Edit Modes</p>
+</dd>
+<dt class="field-even">Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Sidebar region ‣ Transform Orientations</span></p>
+</dd>
+</dl>
+</div>
+<p>You can define custom transform orientations, using object or mesh elements. Custom transform
+orientations defined from objects use the <em>Local</em> orientation of the object whereas those
+defined from selected mesh elements (vertices, edges, faces)
+use the <em>Normal</em> orientation of the selection.</p>
+<div class="figure align-default" id="id2">
+<img alt="../../../_images/scene-layout_object_editing_transform_control_orientations_custom.png" src="../../../_images/scene-layout_object_editing_transform_control_orientations_custom.png" />
+<p class="caption"><span class="caption-text">Transform Orientations panel.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The <em>Transform Orientations</em> panel, found in the header of the 3D View,
+can be used to manage transform orientations: selecting the active orientation,
+adding (&quot;+&quot; icon), deleting (&quot;X&quot; icon) and rename custom orientations.</p>
+<p>The default name for these orientations comes from whatever you have selected.
+If an edge, it will be titled, &quot;Edge&quot;, if an object,
+it will take that object's name, etc.</p>
+<div class="section" id="create-orientation">
+<h4>Create Orientation<a class="headerlink" href="#create-orientation" title="Permalink to this headline">¶</a></h4>
+<p>To create a custom orientation, select the object or mesh element(s) and
+click the &quot;+&quot; button on the <em>Transform Orientations</em> panel.</p>
+<div class="figure align-default" id="id3">
+<img alt="../../../_images/scene-layout_object_editing_transform_control_orientations_custom-name.png" src="../../../_images/scene-layout_object_editing_transform_control_orientations_custom-name.png" />
+<p class="caption"><span class="caption-text">Create Orientation <a class="reference internal" href="../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Just after creating the orientation,
+the <em>Create Orientation</em> <a class="reference internal" href="../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel gives a few options:</p>
 <dl class="simple">
-<dt>Name</dt><dd><p>A name can be specified.</p>
+<dt>Name</dt><dd><p>Text field for naming the new orientation.</p>
 </dd>
-<dt>Delete <code class="docutils literal notranslate"><span class="pre">X</span></code></dt><dd><p>It is also possible to remove these custom transform orientations.</p>
+<dt>Use View</dt><dd><p>The new orientation will be aligned to the view space.</p>
+</dd>
+<dt>Use after creation</dt><dd><p>If checked it leaves the newly created orientation active.</p>
+</dd>
+<dt>Overwrite previous</dt><dd><p>If the new orientation is given an existing name, a suffix will be added to it to avoid overwriting the old one,
+unless <em>Overwrite previous</em> is checked, in which case it will be overwritten.</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -275,7 +362,7 @@ configure transformation orientations.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="visibility.html" class="btn btn-neutral float-right" title="Object Type Visibility" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pivot_point/index.html" class="btn btn-neutral float-right" title="Điểm Tựa -- Pivot Point" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Controls" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

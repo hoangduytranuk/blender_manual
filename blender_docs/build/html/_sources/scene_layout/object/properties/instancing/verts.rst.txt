@@ -166,4 +166,4 @@ make sure they are all selected and go to :menuselection:`Object --> Join`, :kbd
 
 .. seealso::
 
-   Other duplication methods are listed :doc:`here </scene_layout/object/editing/duplication>`.
+   Other duplication methods are listed :doc:`here </scene_layout/object/editing/duplicate>`.

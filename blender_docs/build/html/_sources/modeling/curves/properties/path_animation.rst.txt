@@ -45,9 +45,9 @@ This example shows you how setup a *Path Animation*.
    It will automatically animate *Evaluation Time* and activate *Follow* option
    in the *Path Animation* panel.
 #. Select the monkey and
-   :doc:`Clear Origin </scene_layout/object/editing/transform/clear_apply>` to reset its offset.
+   :doc:`Clear Origin </scene_layout/object/editing/clear>` to reset its offset.
 #. You can change the orientation of the monkey by changing
-   the :doc:`Tracking Axis </scene_layout/object/properties/relations/extras>`.
+   the :doc:`Tracking Axis </scene_layout/object/properties/relations>`.
 
 .. list-table::
 

@@ -125,4 +125,4 @@ Advanced
 Export Mantaflow Script
    Export the simulation as a standalone Mantaflow script when baking the scene (exported on "Bake Data").
    Usually, only developers and advanced users who know how to use the Mantaflow GUI will
-   make use of this functionality.
+   make use of this functionality. Use a :ref:`Debug Value <bpy.ops.wm.debug_menu>` of ``3001`` to enable.

@@ -364,7 +364,7 @@ change the *Source Layers Selection* option to *By Name*.
 
    This tool uses the generic "data transfer", but transfers from all selected objects to active one.
    Please refer to
-   the :doc:`Data Transfer </modeling/meshes/editing/data_transfer>` docs for options details and explanations.
+   the :doc:`Data Transfer </scene_layout/object/editing/relations>` docs for options details and explanations.
 
 
 Prepare the Copy

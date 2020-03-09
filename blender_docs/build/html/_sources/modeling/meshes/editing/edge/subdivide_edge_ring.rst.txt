@@ -1,0 +1,15 @@
+
+*******************
+Subdivide Edge-Ring
+*******************
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Panel:     :menuselection:`Mesh --> Edges --> Subdivide Edge-Ring`
+
+Take an edge ring, and subdivide with interpolation options.
+
+Options
+   See :ref:`Bridge Edge Loops <modeling-meshes-editing-bridge-edge-loops>`.

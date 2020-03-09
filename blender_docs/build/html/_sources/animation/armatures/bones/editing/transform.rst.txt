@@ -17,7 +17,7 @@ We will not detail here the various transformations of bones, nor things like ax
 as they are common to most object editing, and already described in
 the :doc:`mesh section </scene_layout/object/editing/transform/control/index>`.
 The same goes for mirroring,
-as it is nearly the same as with :doc:`mesh editing </modeling/meshes/editing/transform/mirror>`.
+as it is nearly the same as with :doc:`mesh editing </modeling/meshes/editing/mesh/mirror>`.
 Just keep in mind that bones' roots and tips behave more or less like meshes' vertices,
 and bones themselves act like edges in a mesh.
 

@@ -178,7 +178,7 @@ Abrupt normal changes can produce ugly black gouges even though
 these flipped normals are not an issue for the shape itself.
 
 A quick way to fix this is to use Blender's
-:doc:`Recalculate Normals </modeling/meshes/editing/normals>` operation in Edit Mode.
+:doc:`Recalculate Normals </modeling/meshes/editing/mesh/normals>` operation in Edit Mode.
 
 If you still have some ugly black gouges you will have to
-:doc:`manually flip the normals </modeling/meshes/editing/normals>`.
+:doc:`manually flip the normals </modeling/meshes/editing/mesh/normals>`.

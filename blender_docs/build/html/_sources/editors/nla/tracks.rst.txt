@@ -82,22 +82,3 @@ then save and reload the file.
 
 Also, note that since these are NLA strips, you can reuse these as normal NLA strips simply by un-muting
 (and renaming) the NLA track they live in. You may also want to move it above all the other stashed-action tracks.
-
-
-Remove Empty Animation Data
-===========================
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Menu:      :menuselection:`Edit --> Remove Empty Animation Data`
-
-This operator removes AnimData data-blocks (restricted to only those
-which are visible in the animation editor where it is run from) which are "empty"
-(i.e. that is, have no active action, drivers, and NLA tracks or strips).
-
-It is sometimes possible to end up with a lot of data-blocks which have old and
-unused Animation Data containers still attached.
-This most commonly happens when doing motion graphics work
-(i.e. when some linked-in objects may have previously been used to develop a set of reusable assets),
-and is particularly distracting in the NLA Editor.

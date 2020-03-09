@@ -4,10 +4,10 @@
 UV Warp Modifier
 ****************
 
-The *UV Warp* modifier uses two objects to define a transformation which is applied to the chosen UV map.
-
+The *UV Warp* modifier transforms an object's UV map based on values or two objects.
 Its purpose is to give you direct control over the object's UVs in the 3D View,
-allowing you to directly move, rotate and scale existing UV coordinates using controller objects or bones.
+allowing you to directly move, rotate, and scale existing UV coordinates
+using defined values or a controller object or bone.
 
 
 Options
@@ -18,11 +18,19 @@ Options
 
 UV Center
    The center point of the UV map to use when applying scale or rotation.
-   With (0, 0) at the bottom left and (1, 1) at the top right. Defaults to (0.5, 0.5).
+   With (0, 0) at the bottom left and (1, 1) at the top right.
 UV Axis
    The axes to use when mapping the 3D coordinates into 2D.
 From, To
    The two objects used to define the transformation. See `Usage`_ below.
+
+Offset
+   Amount to move the UV map.
+Scale
+   Amount to scale the UV map.
+Rotate
+   Amount to rotate the UV map.
+
 Vertex Group
    The vertex group can be used to scale the influence of the transformation per vertex.
 
@@ -32,8 +40,7 @@ Vertex Group
 
       The setting reverses the weight values of the group.
 UV Map
-   Which UV map to modify.
-   Defaults to the active rendering layer.
+   Which UV map to modify; if not set it defaults to the active rendering layer.
 
 
 Usage

@@ -65,8 +65,8 @@ Random Seed
    This can be changed to allow different trees with the same basic parameters to be generated.
 
 Tree Scale:
-   The underlying size of the tree in Blender units.
-
+   Scale
+      The underlying size of the tree in Blender units.
    Scale Variation
       The maximum amount that the scale of the tree can vary (up or down) from the value of *Scale*.
    Radius Scale

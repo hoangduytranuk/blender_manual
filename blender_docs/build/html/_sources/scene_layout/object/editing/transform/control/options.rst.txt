@@ -51,5 +51,5 @@ Locations
       Scaling example.
 
 Parents
-   Transforms :doc:`Parent Objects </scene_layout/object/properties/relations/parents>`
+   Transforms :doc:`Parent Objects </scene_layout/object/editing/parent>`
    while leaving their children objects unaffected.

@@ -52,13 +52,19 @@ class FlatPOText:
 
     def run(self):
         #exit(0)
-        self.po_file_list = self.getPOFileList()
-        for po_file in self.po_file_list:
-            po_doc = c.load_po(po_file)
-            if self.dry_run:
-                print("File to be flatted:", po_file)
-            else:
-                self.dump_po(po_file, po_doc)
+        try:
+            self.po_file_list = self.getPOFileList()
+            for po_file in self.po_file_list:
+                po_doc = c.load_po(po_file)
+                if self.dry_run:
+                    print("File to be flatted:", po_file)
+                else:
+                    #self.dump_po(po_file, po_doc)
+                    c.dump_po(po_file, po_doc)
+        except Exception as e:
+            print(e)
+            print(po_file)
+
 
 parser = ArgumentParser()
 parser.add_argument("-d", "--dir", dest="po_dir", help="Directory where PO files resided.")

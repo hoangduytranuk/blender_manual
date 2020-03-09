@@ -14,7 +14,7 @@ This option limits the transformation to the specified axis.
 :doc:`Transformations (translation/scale/rotation) </scene_layout/object/editing/transform/introduction>`
 in *Object Mode* and *Edit Mode* (as well as extrusions in *Edit Mode*)
 can be locked to a particular axis relative to
-the current :doc:`transform orientation </scene_layout/object/editing/transform/control/orientations>`.
+the current :doc:`transform orientation </editors/3dview/controls/orientation>`.
 By locking a transformation to a particular axis you are restricting transformations to a single dimension.
 
 
@@ -102,7 +102,7 @@ A second key press of the *same* key constrains movement to the current transfor
 Finally, a third key press of the same key removes constraints.
 
 The orientation can be set
-in the :doc:`Transform Orientation </scene_layout/object/editing/transform/control/orientations>`
+in the :doc:`Transform Orientation </editors/3dview/controls/orientation>`
 selector of the 3D View header.
 
 .. or independent in the :ref:`ui-undo-redo-adjust-last-operation` panel?

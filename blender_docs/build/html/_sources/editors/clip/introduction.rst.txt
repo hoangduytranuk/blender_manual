@@ -53,7 +53,7 @@ Modes
    - :doc:`Masking </movie_clip/masking/index>`
 
 Pivot Point
-   See :doc:`Pivot Points </scene_layout/object/editing/transform/control/pivot_point/index>`.
+   See :doc:`Pivot Points </editors/3dview/controls/pivot_point/index>`.
 
 .. _clip-editor-clip-display-label:
 

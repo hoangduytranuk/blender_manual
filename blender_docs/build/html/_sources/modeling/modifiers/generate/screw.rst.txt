@@ -4,7 +4,7 @@
 Screw Modifier
 **************
 
-The *Screw* modifier is similar to the :doc:`Screw </modeling/meshes/editing/duplicating/screw>` tool
+The *Screw* modifier is similar to the :doc:`Screw </modeling/meshes/editing/misc/screw>` tool
 in the *Toolbar*, in that it takes a profile object, a mesh or a curve, to create a helix-like shape.
 
 .. figure:: /images/modeling_modifiers_generate_screw_align.png

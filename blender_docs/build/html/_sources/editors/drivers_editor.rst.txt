@@ -126,7 +126,7 @@ Auto Snap
    - Nearest Marker
 
 Proportional Editing :kbd:`O`
-   See :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`.
+   See :doc:`Proportional Editing </editors/3dview/controls/proportional_editing>`.
 
 
 Sidebar Region

@@ -6,7 +6,7 @@ Weighted Normal Modifier
 
 This modifier changes the custom normals of a mesh, using various selectable methods.
 This can be useful to make some faces appear very flat during shading, among other effects.
-See :doc:`Normals </modeling/meshes/editing/normals>` for a description of normals
+See :doc:`Normals </modeling/meshes/editing/mesh/normals>` for a description of normals
 and custom normals.
 
 .. note::
@@ -57,7 +57,7 @@ Keep Sharp
 
 Face Influence
    Use face weights (weak, medium, or strong) as assigned by
-   the :doc:`Set Strength </modeling/meshes/editing/normals>` tool or
+   the :doc:`Set Strength </modeling/meshes/editing/mesh/normals>` tool or
    by the *Set Strength* mode of a :doc:`Bevel </modeling/modifiers/generate/bevel>` modifier.
 
    For example, if three faces meet at a vertex and have the face weights weak, medium, and strong,

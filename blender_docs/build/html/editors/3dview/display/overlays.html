@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="vi" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="vi" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Viewport Overlays &mdash; Blender Manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/3dview/display/overlays.html"/>
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/version_switch.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/">
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/">
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/">
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/">
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/">
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/">
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/">
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/">
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/">
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/">
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/">
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/">
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/">
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/">
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/">
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/">
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="next" title="Viewport Shading" href="shading.html" />
+    <link rel="prev" title="Viewport Gizmos" href="gizmo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Blender 2.83 Manual
+          
+
+          
+            
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng -- User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Trình Biên Soạn -- Editors</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3D Viewport</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../startup_scene.html">Cảnh Khởi Đầu -- Startup Scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Chế Độ Vật Thể -- Object Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../navigate/index.html">Điều Hướng -- Navigating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3d_cursor.html">Con Trỏ 3D -- 3D Cursor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../controls/index.html">Controls</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Display</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="visibility.html">Object Type Visibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gizmo.html">Viewport Gizmos</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Viewport Overlays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shading.html">Viewport Shading</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../toolbar/index.html">Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../viewport_render.html">Viewport Render</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../compositing/index.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texture_node/index.html">Nút Chất Liệu -- Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../video_editing/index.html">Video Sequencer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dope_sheet/index.html">Bảng Hành Động -- Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../timeline.html">Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../graph_editor/index.html">Trình Biên Soạn Đồ Thị -- Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editor.html">Trình Biên Soạn Văn Bản -- Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_console.html">Bàn Giao Tiếp Python -- Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outliner.html">Mục Lục -- Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../properties_editor.html">Trình Biên Soạn Tính Chất -- Properties Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preferences/index.html">Preferences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh và Vật Thể — Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý -- Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng Hợp -- Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Files &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Thông tin về bản Hướng Dẫn Sử Dụng này -- About this Manual</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 2.83 Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Trình Biên Soạn -- Editors</a> &raquo;</li>
+        
+          <li><a href="../index.html">3D Viewport</a> &raquo;</li>
+        
+          <li><a href="index.html">Display</a> &raquo;</li>
+        
+      <li>Viewport Overlays</li>
+    
+    
+		<li class="wy-breadcrumbs-aside">
+			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/3dview/display/overlays.rst" class="fa fa-edit"> Edit Page</a>
+		</li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="viewport-overlays">
+<h1>Viewport Overlays<a class="headerlink" href="#viewport-overlays" title="Permalink to this headline">¶</a></h1>
+<p>Using the Viewport Overlays pop-over settings for the overlays can be configured.
+There is a switch to turn off all overlays for the 3D View.</p>
+<p>The options that are visible in the pop-over depend on the mode that the 3D View is in.</p>
+<div class="section" id="object-mode">
+<h2>Object Mode<a class="headerlink" href="#object-mode" title="Permalink to this headline">¶</a></h2>
+<p>The next options are always present, independent the current mode.</p>
+<div class="section" id="guides">
+<h3>Guides<a class="headerlink" href="#guides" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>Grid</dt><dd><p>Show grid in orthographic side view.</p>
+</dd>
+<dt>Floor</dt><dd><p>Show the ground plane.</p>
+<dl class="simple">
+<dt>X/Y/Z</dt><dd><p>Show the X and/or Y and/or Z axis line.</p>
+</dd>
+</dl>
+</dd>
+<dt>Scale</dt><dd><p>The distance between lines in the grid/floor.</p>
+</dd>
+<dt>Subdivision</dt><dd><p>The number of subdivisions between grid lines.</p>
+</dd>
+<dt>Text Info</dt><dd><p>Show text overlay.</p>
+</dd>
+<dt>HDRI Preview</dt><dd><p>Show two sphere, one glossy and one diffuse,
+to preview HDRIs used in <em>Material Preview</em> and <em>Rendered</em> shading modes.</p>
+</dd>
+<dt>3D Cursor</dt><dd><p>Show the 3D Cursor overlay.</p>
+</dd>
+<dt>Annotations</dt><dd><p>Show the annotation overlay.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="objects">
+<h3>Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt>Extra</dt><dd><p>Show details of objects including empty wires, cameras and other visual guides.</p>
+</dd>
+<dt>Relationship Lines</dt><dd><p>Show dashed lines indicating parents or constraint relationships.</p>
+</dd>
+<dt>Outline Selected</dt><dd><p>Show an outline highlight around selected objects.</p>
+</dd>
+<dt>Bones</dt><dd><p>Show Bones. Disable to only show their motion path.</p>
+</dd>
+<dt>Motion Paths</dt><dd><p>Show the motion path overlay.</p>
+</dd>
+<dt>Origin</dt><dd><p>Show the object origin of the active object.</p>
+</dd>
+<dt>Origin (All)</dt><dd><p>Show the object origin of all objects.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="geometry">
+<h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>Wireframe</dt><dd><p>Show the face edges overlay.</p>
+<dl class="simple">
+<dt>Wireframe</dt><dd><p>Adjust the number of wires to display. 1.0 means show all wires.</p>
+</dd>
+</dl>
+</dd>
+<dt>Face Orientation</dt><dd><p>Show the face orientation overlay. In the face orientation overlay
+all faces where the face normal points towards the camera are colored blue.
+All faces where the face normal points away from the camera are colored red.
+With this overlay, it is easy to detect the orientation of the face normals.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="motion-tracking">
+<h3>Motion Tracking<a class="headerlink" href="#motion-tracking" title="Permalink to this headline">¶</a></h3>
+<p>Show the motion tracking overlay.</p>
+<dl class="simple">
+<dt>Camera Path</dt><dd><p>Show the reconstruction camera path.</p>
+</dd>
+<dt>Marker Names</dt><dd><p>Show the names for reconstructed track objects.</p>
+</dd>
+<dt>Tracks</dt><dd><p>Change the display of the reconstructed tracks.</p>
+<ul class="simple">
+<li><p>Plain Axes</p></li>
+<li><p>Arrows</p></li>
+<li><p>Single Arrow</p></li>
+<li><p>Circle</p></li>
+<li><p>Cube</p></li>
+<li><p>Sphere</p></li>
+<li><p>Cone</p></li>
+</ul>
+</dd>
+<dt>Size</dt><dd><p>Change the display size of the reconstructed tracks.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="mesh-edit-mode">
+<span id="dview-overlay-mesh-edit-mode"></span><h2>Mesh Edit Mode<a class="headerlink" href="#mesh-edit-mode" title="Permalink to this headline">¶</a></h2>
+<p>The next options are available when in Edit Mesh Mode.</p>
+<dl>
+<dt>Edges</dt><dd><p>Highlighted selected and partially selected edges.</p>
+<p><em>Only affects vertex and face selection mode (as edges are always highlighted in edge-selection mode).</em></p>
+</dd>
+<dt>Faces</dt><dd><p>Highlight faces using a face overlay that applies to both selected and unselected faces.</p>
+<p><em>Affects all selection modes.</em></p>
+</dd>
+<dt>Center</dt><dd><p>Show face-center points in solid shading modes.</p>
+<p><em>Only affects face-select mode.</em></p>
+</dd>
+<dt>Creases</dt><dd><p>Display edges marked with a crease
+for the <a class="reference internal" href="../../../modeling/modifiers/generate/subdivision_surface.html"><span class="doc">Subdivision Surface Modifier</span></a>.</p>
+</dd>
+<dt>Sharp</dt><dd><p>Display sharp edges, used with the Edge Split modifier.</p>
+</dd>
+<dt>Bevel</dt><dd><p>Display weights created for the <a class="reference internal" href="../../../modeling/modifiers/generate/bevel.html"><span class="doc">Bevel Modifier</span></a>.</p>
+</dd>
+<dt>Seams</dt><dd><p>Display the UV unwrapping seams.</p>
+</dd>
+<dt>Edge Marks and Face Marks</dt><dd><p>Used by Freestyle.</p>
+</dd>
+</dl>
+<div class="section" id="shading">
+<h3>Shading<a class="headerlink" href="#shading" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>Hidden Wire</dt><dd><p>Show only front-facing wireframes.
+This is useful for a re-topology workflow.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Optimally this could be combined with the <em>X-Ray</em> display setting.</p>
+</div>
+</dd>
+<dt>Vertex Groups Weights</dt><dd><p>Display weights in Edit Mode.</p>
+<dl>
+<dt>Zero Weights</dt><dd><p>To display unreferenced and zero weighted areas in black.
+This helps to identify areas with very low weights that have been painted onto.</p>
+<dl class="simple">
+<dt>None</dt><dd><p>Vertices are displayed in the usual way.</p>
+</dd>
+<dt>Active</dt><dd><p>Show in black vertices with no weights in the active group.</p>
+</dd>
+<dt>All</dt><dd><p>The vertex is shown in black if it has zero weight in all groups.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="mesh-analysis">
+<h3>Mesh Analysis<a class="headerlink" href="#mesh-analysis" title="Permalink to this headline">¶</a></h3>
+<p>Show the mesh analysis overlay.</p>
+<p>See: <a class="reference internal" href="../../../modeling/meshes/mesh_analysis.html#modeling-mesh-analysis"><span class="std std-ref">Phân Tích Khung Lưới -- Mesh Analysis</span></a>.</p>
+</div>
+<div class="section" id="measurement">
+<h3>Measurement<a class="headerlink" href="#measurement" title="Permalink to this headline">¶</a></h3>
+<p>Numerical measures of the selected elements on screen as part of the text info overlay.
+The <a class="reference internal" href="../../../scene_layout/scene/properties.html#data-scenes-props-units"><span class="std std-ref">Đơn Vị -- Units</span></a> can be set in the Scene properties.</p>
+<dl class="simple">
+<dt>Edge Length</dt><dd><p>Show the length of selected edges.</p>
+</dd>
+<dt>Edge Angle</dt><dd><p>Show the angle of selected edges between two faces.</p>
+</dd>
+<dt>Face Area</dt><dd><p>Show the area of selected faces.</p>
+</dd>
+<dt>Face Angle</dt><dd><p>Show the angle of selected face corners.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Geometry connected to the selection is shown while transforming,
+allowing you to move a vertex and see the connected edge lengths for example.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>These values respect <a class="reference internal" href="../../../modeling/meshes/editing/mesh/transform/basic.html#modeling-mesh-transform-panel"><span class="std std-ref">Global/Local</span></a>.</p>
+<p>Use <em>Global</em> if you want the Object's scale to be applied to the measurements.</p>
+</div>
+</div>
+<div class="section" id="normals">
+<span id="mesh-display-normals"></span><h3>Normals<a class="headerlink" href="#normals" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Display vertex normals</p></li>
+<li><p>Display face normals at vertices (split normals)</p></li>
+<li><p>Display face normals</p></li>
+</ul>
+<dl class="simple">
+<dt>Size</dt><dd><p>The size to show the selected normals.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="developer">
+<h3>Developer<a class="headerlink" href="#developer" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt>Indices</dt><dd><p>Display the indices of selected vertices, edges and faces.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="freestyle">
+<h3>Freestyle<a class="headerlink" href="#freestyle" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt>Edge Marks</dt><dd><p>Display Freestyle edge marks, used with the Freestyle renderer.</p>
+</dd>
+<dt>Face Marks</dt><dd><p>Display Freestyle face marks, used with the Freestyle renderer.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="sculpt-mode">
+<h2>Sculpt Mode<a class="headerlink" href="#sculpt-mode" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Mask</dt><dd><p>Show mask as overlay on object. The opacity of the overlay can be controlled.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="vertex-paint">
+<h2>Vertex Paint<a class="headerlink" href="#vertex-paint" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Opacity</dt><dd><p>The opacity of the overlay.</p>
+</dd>
+<dt>Show Wire</dt><dd><p>Use wireframe display in paint modes.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="weight-paint">
+<h2>Weight Paint<a class="headerlink" href="#weight-paint" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt>Opacity</dt><dd><p>The opacity of the overlay.</p>
+</dd>
+<dt>Zero Weights</dt><dd><p>To display unreferenced and zero weighted areas in black.
+This helps to identify areas with very low weights that have been painted onto.</p>
+<dl class="simple">
+<dt>None</dt><dd><p>Vertices are displayed in the usual way.</p>
+</dd>
+<dt>Active</dt><dd><p>Show in black vertices with no weights in the active group.</p>
+</dd>
+<dt>All</dt><dd><p>The vertex is shown in black if it has zero weight in all groups.</p>
+</dd>
+</dl>
+</dd>
+<dt>Show Weight Contours</dt><dd><p>Show contour lines formed by points with the same interpolated weight.</p>
+</dd>
+<dt>Show Wire</dt><dd><p>Use wireframe display in paint modes.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="texture-paint">
+<h2>Texture Paint<a class="headerlink" href="#texture-paint" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Opacity</dt><dd><p>The opacity of the overlay.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="pose-mode">
+<h2>Pose Mode<a class="headerlink" href="#pose-mode" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Fade Geometry</dt><dd><p>Show the bones on top and face other geometry to the back.
+The opacity can be controlled with the slider.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="grease-pencil">
+<span id="dview-overlay-grease-pencil"></span><h2>Grease Pencil<a class="headerlink" href="#grease-pencil" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt>Onion Skin</dt><dd><p>Show ghosts of the keyframes before and after the current frame.</p>
+</dd>
+<dt>Canvas</dt><dd><p>Display a grid over Grease Pencil drawing plane. The opacity of the grid can be controlled with a slider.</p>
+</dd>
+<dt>Fade 3D Objects</dt><dd><p>Cover all viewport except the active Grease Pencil object with a full color layer to improve visibility
+while drawing over complex scenes. Include or not other Grease Pencil objects can be toggle
+and the opacity factor can be controlled with the slider.</p>
+</dd>
+<dt>Fade Layers</dt><dd><p>Decrease the opacity of all the layers in the object other than the active one.
+The opacity factor can be controlled with the slider.</p>
+<dl class="simple">
+<dt>Fade Grease Pencil Objects</dt><dd><p>Fades all Grease Pencil objects, except the active object.</p>
+</dd>
+</dl>
+</dd>
+<dt>Edit Lines</dt><dd><p>Show edit lines when editing strokes.</p>
+</dd>
+<dt>Show Edit Lines only in Multiframe</dt><dd><p>Only show edit lines while in multiframe edition.</p>
+</dd>
+<dt>Vertex Opacity</dt><dd><p>Opacity for edit vertices (points).</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="shading.html" class="btn btn-neutral float-right" title="Viewport Shading" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gizmo.html" class="btn btn-neutral float-left" title="Viewport Gizmos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li style="float:left" role="presentation">
+		<span id="version-dropdown" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		2.83 
+		</span>
+		<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+   <li style="float:right" role="presentation">
+		<span id="lang-dropdown" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-dropdown" aria-hidden="true">
+			<li role="presentation">Loading...</li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1418081-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>

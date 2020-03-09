@@ -40,7 +40,7 @@ You can reuse images if you map those areas of the meshes that "look alike" to a
 uses the common image.
 
 When using file textures, it is very important that you have
-:doc:`Mapped the UVs </modeling/meshes/editing/uv/unwrapping/index>`
+:doc:`Mapped the UVs </modeling/meshes/uv/unwrapping/index>`
 of the mesh, and they are laid out appropriately.
 
 You do not have to UV map the *entire* mesh.

@@ -9,7 +9,7 @@ The *Hook* Modifier is used to deform stroke points using another object
 
 As the hook moves, it pulls points from the strokes with it.
 You can think of it as animated
-:doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`.
+:doc:`Proportional Editing </editors/3dview/controls/proportional_editing>`.
 
 
 Options

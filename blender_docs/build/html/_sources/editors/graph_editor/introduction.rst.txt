@@ -217,7 +217,7 @@ F-Curve Controls
    F-Curve controls.
 
 Proportional Editing :kbd:`O`
-   See :doc:`Proportional Editing </scene_layout/object/editing/transform/control/proportional_edit>`.
+   See :doc:`Proportional Editing </editors/3dview/controls/proportional_editing>`.
 Auto Snap
    Auto snap the keyframes for transformations.
 

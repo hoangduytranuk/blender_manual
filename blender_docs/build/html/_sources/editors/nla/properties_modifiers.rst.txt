@@ -1,30 +1,27 @@
 
-**********************
-Properties & Modifiers
-**********************
-
+**********
 Properties
-==========
+**********
 
-Strip properties can be accessed via the NLA Sidebar region.
-
-
-Animation Data
---------------
+Edited Action
+=============
 
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Sidebar region --> Animations --> Animation Data`
+   :Panel:     :menuselection:`Sidebar --> Edited Action`
 
 .. figure:: /images/editors_nla_properties-modifiers_animation-data-panel.png
 
-   Animation Data panel.
+   Edited Action panel.
 
 Action
    A :ref:`Data-Block <ui-data-block>` menu that allows you to edit actions shown in the action track.
    See also the Action Editor's :ref:`Action <dopesheet-action-action>`.
-Action Extrapolation
+
+.. _bpy.types.AnimData.action_extrapolation:
+
+Extrapolation
    Action to take for gaps past the strip extents.
 
    Hold
@@ -34,9 +31,9 @@ Action Extrapolation
    Nothing
       Affects only the region of the strip itself. This can be set on any strip.
 
-.. _nla-blend-modes:
+.. _bpy.types.AnimData.action_blend_type:
 
-Action Blending
+Blending
    Affects how the property values directly produced by the strip are combined with
    the result of evaluating the stack below. The bottom-most strip is blended on top of
    the default values of the properties.
@@ -75,53 +72,66 @@ Action Blending
          and *Insert Single Keyframe* is forced to insert all four keys.
          Other types of channels can still be keyed individually.
 
-Action Influence
+.. _bpy.types.AnimData.action_influence:
+
+Influence
    Amount the active Action contributes to the result of the NLA stack.
 
 
-Active Track
-------------
+Strip
+=====
 
-.. admonition:: Reference
-   :class: refbox
-
-   :Panel:     :menuselection:`Sidebar region --> Animations --> Active Track`
+.. _bpy.types.NlaStrip.name:
 
 Name
    Name of the track which the strip currently belongs to.
+
+.. _bpy.types.NlaStrip.mute:
+
+Mute
+   Toggles NLA strip evaluation, the strip outline will be dashed.
 
 
 Active Strip
 ------------
 
+.. admonition:: Reference
+   :class: refbox
+
+   :Panel:     :menuselection:`Sidebar --> Strip --> Active Strip`
+
 .. figure:: /images/editors_nla_properties-modifiers_active-strip-panel.png
 
    Active Strip panel.
 
-Options of the strip itself.
-
-Name
-   Renames the strips.
-Type
-   Will either say "Action Clip", "Transition", or "Meta", according to the three types of strips.
-Strip Extents
+Frame Start/End
    The boundaries of the strip itself. Note that this will stretch the duration of the Action,
    it will not cause greater or fewer keyframes from the Actions to play (see below for that option).
 Extrapolation
-   See *Action Extrapolation* above.
+   See :ref:`Extrapolation <bpy.types.AnimData.action_extrapolation>`.
 Blending
-   See *Action Blending* above.
+   See :ref:`Blending <bpy.types.AnimData.action_blend_type>`.
+Blend In
+   Set the frame that represents when this strip will have full influence.
+Out
+   Set the last frame of this strip's full influence.
 Auto Blend In/Out
    Creates a ramp starting at the overlap of the strips. The first strip has full control,
    and it ramps linearly giving the second strip full control by the end of the overlapping time period.
-Blend In
-   Set the frame that represents when this strip will have full influence.
-Blend Out
-   Set the last frame of this strip's full influence.
-Muted
-   Mute a single strip (like muting the track, above). Causes the track outline to be dashed.
+
 Reversed
    Cause this strip to be played completely backwards.
+Cyclic Strip Time
+   Cycle the animated time within the action start and end.
+
+Animated Influence
+   Enabling alteration of the degree of influence this strip has as a keyframable value.
+   If influence isn't animated, the strips will fade linearly, during the overlap.
+
+   These can be found in the Dope Sheet or Graph Editors under the *NLA Control Curves* and
+   look like group channels. They appear before all the groups/F-curves for that channel.
+Animated Strip Time
+   Same as *Animated Influence*, but with *Strip Time*.
 
 
 Action Clip
@@ -141,52 +151,31 @@ This represents the 'object data' of the strip. Much like the transform values o
 Action
    A reference to the Action contained within the strip.
    Can be changed to replace the current strip's value with another Action.
-Action Extents
+Frame Start/End
    How much of the Action to use.
 
    For instance, it is common to set the first and last keyframe of an Action to be the same keyframes.
    The problem with this is if you loop the animation,
    there is a slight hitch where the same keyframes are played twice.
-   To fix this, simply reduce the *End Frame* one.
+   To fix this, simply reduce the *End Frame*.
 
-   Note: If you select values that are above or below the actual keyframe count of the Action,
-   then the F-curve Extrapolation will be applied.
-   Which can be changed in the Graph Editor, under :menuselection:`Channel --> Extrapolation Mode`.
+   .. note::
+
+      If you select values that are above or below the actual keyframe count of the Action,
+      then the :ref:`F-curve Extrapolation <editors-graph-fcurves-settings-extrapolation>` will be applied.
+
 Sync Length
-   Causes the "Start" and "End" Frames, above, to be reset to the first and last keyframed frames of the Action.
-Sync Action Length "Now"
-   Causes the "Start" and "End" Frames, above, to be reset to the first and last keyframed frames of the Action.
-Playback Settings
-   Scale
-      Stretches strip, another way of increasing the *Strip Extents: End Frame*, above.
-   Repeat
-      Also expands the strip, but by looping from the first keyframe and going forward.
+   Causes the "Start" and "End" Frames, above, to be reset to the
+   first and last keyframed frames of the Action.
 
+   Now
+      Causes the "Start" and "End" Frames, above, to be reset
+      to the first and last keyframed frames of the Action.
 
-Evaluation
-----------
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Panel:     :menuselection:`Sidebar region --> Animations --> Evaluation`
-
-.. figure:: /images/editors_nla_properties-modifiers_evaluation-panel.png
-
-   Evaluation panel.
-
-This determines the degree of influence the strip has, and over what time.
-
-Animated Influence
-   Enabling alteration of the degree of influence this strip has as a keyframable value.
-   If influence isn't animated, the strips will fade linearly, during the overlap.
-
-   These can be found in the Dope Sheet or Graph Editors under the *NLA Control Curves* and
-   look like group channels. They appear before all the groups/F-curves for that channel.
-Animated Strip
-   Same as *Animated Influence*, but with *Strip Time*.
-Cyclic Strip Time
-   Cycle the animated time within the action start and end.
+Playback Scale
+   Stretches strip, another way of increasing the *Strip Extents: End Frame*, above.
+Repeat
+   Also expands the strip, but by looping from the first keyframe and going forward.
 
 
 Modifiers

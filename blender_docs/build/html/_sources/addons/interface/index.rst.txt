@@ -3,7 +3,7 @@
   Interface
 #############
 
-These add-ons add custom elements and menu's to the user interface.
+These add-ons add custom elements and menus to the user interface.
 
 .. toctree::
    :maxdepth: 1

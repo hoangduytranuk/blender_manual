@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier &mdash; Blender Manual</title>
+  <title>Smooth Laplacian Modifier &mdash; Blender Manual</title>
   
 
   
@@ -65,8 +65,8 @@
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
-    <link rel="next" title="Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier" href="laplacian_deform.html" />
-    <link rel="prev" title="Bộ Điều Chỉnh Móc -- Hook Modifier" href="hooks.html" /> 
+    <link rel="next" title="-- Surface Deform Modifier" href="surface_deform.html" />
+    <link rel="prev" title="Smooth Corrective Modifier" href="corrective_smooth.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -131,17 +131,17 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="armature.html">Bộ Điều Chỉnh Cốt -- Armature Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="cast.html">Bộ Điều Chỉnh Đúc Khuôn -- Cast Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Bộ Điều Chỉnh Dùng Sự Làm Mịn để Sửa Lỗi -- Corrective Smooth Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="curve.html">Bộ Điều Chỉnh Đường Cong -- Curve Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="displace.html">Bộ Điều Chỉnh Dời Hình -- Displace Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hooks.html">Bộ Điều Chỉnh Móc -- Hook Modifier</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="laplacian_deform.html">Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="lattice.html">Bộ Điều Chỉnh Giàn Lưới -- Lattice Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">-- Mesh Deform Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shrinkwrap.html">Bộ Điều Chỉnh Co Bọc -- Shrinkwrap Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="simple_deform.html">-- Simple Deform Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="smooth.html">Bộ Điều Chỉnh Làm Mịn -- Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Smooth Corrective Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Smooth Laplacian Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="surface_deform.html">-- Surface Deform Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="warp.html">Bộ Điều Chỉnh Làm Cong -- Warp Modifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="wave.html">Bộ Điều Chỉnh Tạo Sóng -- Wave Modifier</a></li>
@@ -217,7 +217,7 @@
         
           <li><a href="../index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
         
-      <li>Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier</li>
+      <li>Smooth Laplacian Modifier</li>
     
     
 		<li class="wy-breadcrumbs-aside">
@@ -231,11 +231,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="laplacian-smooth-modifier">
-<span id="bpy-types-laplaciansmoothmodifier"></span><h1>Bộ Điều Chỉnh Làm Mịn Laplace -- Laplacian Smooth Modifier<a class="headerlink" href="#laplacian-smooth-modifier" title="Permalink to this headline">¶</a></h1>
-<p>The <em>Laplacian Smooth</em> modifier allows you to reduce noise on a mesh's surface with minimal changes to its shape.</p>
+  <div class="section" id="smooth-laplacian-modifier">
+<span id="bpy-types-laplaciansmoothmodifier"></span><h1>Smooth Laplacian Modifier<a class="headerlink" href="#smooth-laplacian-modifier" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Smooth Laplacian</em> modifier allows you to reduce noise on a mesh's surface with minimal changes to its shape.</p>
 <p>It can also exaggerate the shape using a negative <em>Factor</em>.</p>
-<p>The <em>Laplacian Smooth</em> is useful for objects that have been reconstructed from
+<p>The <em>Smooth Laplacian</em> is useful for objects that have been reconstructed from
 the real world and contain undesirable noise. It removes noise while still
 preserving desirable geometry as well as the shape of the original model.</p>
 <p>This modifier is based on a curvature flow <em>Laplace Beltrami</em> operator in a diffusion equation.</p>
@@ -243,10 +243,10 @@ preserving desirable geometry as well as the shape of the original model.</p>
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_panel.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_panel.png" />
-<p class="caption"><span class="caption-text">The Laplacian Smooth modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">The Smooth Laplacian modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <dl>
-<dt>Lặp Lại -- Repeat</dt><dd><p>Repetitions allow you to run the Laplacian smoothing multiple times.
+<dt>Lặp Lại -- Repeat</dt><dd><p>Repetitions allow you to run the smoothing operation multiple times.
 Each repetition causes the flow curvature of the mesh to be recalculated again,
 and as a result it removes more noise with every new iteration using a small <em>Factor</em> &lt; 1.0.</p>
 <p>When on 0, no smoothing is done.</p>
@@ -625,6 +625,80 @@ You can use that option to reduce that effect.</p>
 </dd>
 <dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>A vertex group name, to constrain the effect to a group of vertices only.
 Allows for selective, real-time smoothing or enhancing, by painting vertex weights.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Original Geometry</p></th>
+<th class="head"><p>No Group Chosen</p></th>
+<th class="head"><p>Trọng Lượng Điểm Đỉnh -- Vertex Weights</p></th>
+<th class="head"><p>Kết Quả -- Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_repeat0.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_lambda.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-paint.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-paint.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-paint.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-wgroup.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-wgroup.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_femme-wgroup.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis.png" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xyz.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xyz.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-axis-xyz.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-paint.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-paint.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-paint.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-wgroup.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-wgroup.png" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_t-wgroup.png" style="width: 130px;" /></a>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-repeat0.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex1.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex1.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex1.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex2.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex2.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex2.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+<td><div class="figure align-default">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex3.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex3.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-smooth_camel-vertex3.jpg" style="width: 130px;" /></a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Invert <code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code></dt><dd><p>Inverts the influence of the selected vertex group, meaning that the group
+now represents vertices that will not be deformed by the modifier.</p>
+<p>The setting reverses the weight values of the group.</p>
+</dd>
+</dl>
 </dd>
 <dt>Bình Thường Hóa -- Normalized</dt><dd><p>When enabled, the results will depend on face sizes. When disabled, geometry spikes may occur.</p>
 <table class="docutils align-default">
@@ -719,10 +793,10 @@ before executing the modifier on the entire model.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="laplacian_deform.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="surface_deform.html" class="btn btn-neutral float-right" title="-- Surface Deform Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="hooks.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Móc -- Hook Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="corrective_smooth.html" class="btn btn-neutral float-left" title="Smooth Corrective Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

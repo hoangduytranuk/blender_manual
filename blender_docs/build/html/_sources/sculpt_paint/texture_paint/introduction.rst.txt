@@ -43,7 +43,7 @@ Once you have unwrapped your model to a UV map, you can begin the texturing
 process. You cannot paint on a mesh in Texture Paint Mode
 without **first** unwrapping your mesh, **and** doing one of the following steps. Either:
 
-See: :doc:`Applying Image </modeling/meshes/editing/uv/applying_image>`.
+See: :doc:`Applying Image </modeling/meshes/uv/applying_image>`.
 
 After you have done one of these two things,
 you can modify the image using the Texture Paint Mode:

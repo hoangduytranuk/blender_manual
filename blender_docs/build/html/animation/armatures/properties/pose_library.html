@@ -245,8 +245,12 @@ They are not generally used as actions, but can be converted to and from.</p>
 </dd>
 <dt>-- Pose Libraries</dt><dd><p>A <a class="reference internal" href="../../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">List view</span></a> of poses for the active Pose Library.</p>
 <dl>
-<dt>Cộng Thêm <code class="docutils literal notranslate"><span class="pre">+</span></code> -- Add <code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>If a pose is added, a <a class="reference internal" href="../../markers.html#marker-pose-add"><span class="std std-ref">pose marker</span></a> is created.
-Keys are only stored for selected bones. If no bones are selected, all bones are keyed.</p>
+<dt>Cộng Thêm <code class="docutils literal notranslate"><span class="pre">+</span></code> -- Add <code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>If a pose is added, a <a class="reference internal" href="../../markers.html#marker-pose-add"><span class="std std-ref">pose marker</span></a> is created.</p>
+<p>The <a class="reference internal" href="../../keyframes/keying_sets.html#whole-character-keying-set"><span class="std std-ref">Whole Character keying set</span></a> is used to
+determine which bones to key. If any bones are selected, only keyframes for
+those bones are added, otherwise all bones in the keying set are keyed.
+Bones that are ignored by the <em>Whole Character</em> keying set are always ignored,
+regardless of their selection state.</p>
 <dl class="simple">
 <dt>Thêm Cái Mới -- Add New</dt><dd><p>Adds a new pose to the active Pose Library with the current pose of the armature.</p>
 </dd>

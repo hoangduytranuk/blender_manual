@@ -227,9 +227,10 @@
             
   <div class="section" id="uv-warp-modifier">
 <span id="bpy-types-uvwarpmodifier"></span><h1>-- UV Warp Modifier<a class="headerlink" href="#uv-warp-modifier" title="Permalink to this headline">¶</a></h1>
-<p>The <em>UV Warp</em> modifier uses two objects to define a transformation which is applied to the chosen UV map.</p>
-<p>Its purpose is to give you direct control over the object's UVs in the 3D View,
-allowing you to directly move, rotate and scale existing UV coordinates using controller objects or bones.</p>
+<p>The <em>UV Warp</em> modifier transforms an object's UV map based on values or two objects.
+Its purpose is to give you direct control over the object's UVs in the 3D View,
+allowing you to directly move, rotate, and scale existing UV coordinates
+using defined values or a controller object or bone.</p>
 <div class="section" id="options">
 <h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right">
@@ -237,11 +238,17 @@ allowing you to directly move, rotate and scale existing UV coordinates using co
 </div>
 <dl>
 <dt>Tâm UV -- UV Center</dt><dd><p>The center point of the UV map to use when applying scale or rotation.
-With (0, 0) at the bottom left and (1, 1) at the top right. Defaults to (0.5, 0.5).</p>
+With (0, 0) at the bottom left and (1, 1) at the top right.</p>
 </dd>
 <dt>-- UV Axis</dt><dd><p>The axes to use when mapping the 3D coordinates into 2D.</p>
 </dd>
 <dt>Từ, Tới -- From, To</dt><dd><p>The two objects used to define the transformation. See <a class="reference internal" href="#usage">Usage</a> below.</p>
+</dd>
+<dt>Offset</dt><dd><p>Amount to move the UV map.</p>
+</dd>
+<dt>Scale</dt><dd><p>Amount to scale the UV map.</p>
+</dd>
+<dt>Rotate</dt><dd><p>Amount to rotate the UV map.</p>
 </dd>
 <dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>The vertex group can be used to scale the influence of the transformation per vertex.</p>
 <dl>
@@ -251,8 +258,7 @@ now represents vertices that will not be deformed by the modifier.</p>
 </dd>
 </dl>
 </dd>
-<dt>Ánh Xạ UV -- UV Map</dt><dd><p>Which UV map to modify.
-Defaults to the active rendering layer.</p>
+<dt>Ánh Xạ UV -- UV Map</dt><dd><p>Which UV map to modify; if not set it defaults to the active rendering layer.</p>
 </dd>
 </dl>
 </div>

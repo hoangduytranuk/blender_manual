@@ -44,7 +44,9 @@ Resolution Divisions
 
    Since the resolution is defined in terms of "subdivisions",
    larger domains will need more divisions to get an equivalent resolution to a small domain.
-   To help with this, the *Resolution Divisions* can be previewed with a small cube
+   For example, a one meter cube with 64 *Resolution Divisions* will need 128 divisions to match a 2 meter cube.
+   The dimension used as the base division is the longest dimension of the objects bounding box.
+   To help visualize the voxel size, the *Resolution Divisions* can be previewed with a small cube
    shown in the 3D Viewport, to show the size of these divisions.
 
 .. _bpy.types.FluidDomainSettings.time_scale:

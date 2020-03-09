@@ -17,6 +17,8 @@ from sphinx_intl import catalog as c
 from babel.messages import pofile
 import enum
 
+INVERT_SEP='•••'
+
 class ListPathEvent:
     def __init__(self):
         self.dirpath = None
@@ -139,16 +141,105 @@ class FindFilesHasPattern:
         self.basic_io = BasicIO()
         self.found_lines_dic = {}
 
-    def setVars(self, find_pattern, find_po, find_rst, find_py, case_sensitive, before_lines, after_lines):
+    def setVars(self,
+            find_pattern,
+            find_file,
+            find_po,
+            find_rst,
+            find_py,
+            case_sensitive,
+            before_lines,
+            after_lines,
+            only_match,
+            show_line_number,
+            invert_match
+            ):
+        self.find_file = (find_file if (find_file and os.path.isfile(find_file)) else None)
         self.find_po = (True if find_po else False)
         self.find_rst = (True if find_rst else False)
         self.find_py = (True if find_py else False)
         self.case_sensitive = (True if case_sensitive else False)
 
         flag = (re.I if not self.case_sensitive else 0)
+        #self.input_pattern = find_pattern
         self.find_pattern = re.compile(r'{}'.format(find_pattern), flags=flag)
         self.from_line = (int(before_lines) if before_lines else -1)
         self.to_line = (int(after_lines) if after_lines else -1)
+        self.only_match = (True if only_match else False)
+        self.show_line_number = (True if show_line_number else False)
+        self.invert_match = (True if invert_match else False)
+
+    def patternMatchAll(self, pat, text):
+        try:
+            # itor = pat.finditer(text)
+            # print("itor", type(itor))
+            # print("dir", dir(itor))
+
+            for m in pat.finditer(text):
+                original = ()
+                break_down = []
+
+                s = m.start()
+                e = m.end()
+                orig = m.group(0)
+                original = (s, e, orig)
+
+                for g in m.groups():
+                    if g:
+                        i_s = orig.find(g)
+                        ss = i_s + s
+                        ee = ss + len(g)
+                        v=(ss, ee, g)
+                        break_down.append(v)
+                yield original, break_down
+
+        except Exception as e:
+            _("patternMatchAll")
+            _("pattern:", pat)
+            _("text:", text)
+            _(e)
+        return None, None
+
+    # def finInvert(self, pattern, text):
+    #     invert_list=[]
+    #     pro_list=[]
+    #     for orig, breakdown in self.patternMatchAll(pattern, text):
+    #         pro_list.append(orig)
+    #     is_empty = (len(pro_list) == 0)
+    #     if is_empty:
+    #         invert_list.append(text)
+    #     else:
+    #         max = len(text)
+    #         inc_list=[]
+    #         s = e = 0
+    #         for ss, ee, ex_txt in pro_list:
+    #             e = ss-1
+    #             valid= (s < e) and (s >= 0) and (e <= max)
+    #             if (valid):
+    #                 inc_txt = text[s:e]
+    #                 entry=(s, e, inc_txt)
+    #                 inc_list.append(entry)
+    #             s = ee+1
+    #         e = max
+    #         valid=(s < e) and (s >= 0) and (e <= max)
+    #         if (valid):
+    #             inc_txt = text[s:e]
+    #             entry=(s, e, inc_txt)
+    #             inc_list.append(entry)
+
+    #     return invert_list
+
+    def getAllMatchedWordFromLine(self, pattern, text_line):
+        list_of_matches=[]
+        for origin, breakdown in self.patternMatchAll(pattern, text_line):
+            is_end = (origin is None)
+            if is_end:
+                break
+
+            s, e, orig = origin
+            list_of_matches.append(orig)
+        return list_of_matches
+
 
     def find(self):
         po_dir = os.environ['BLENDER_MAN_VI']
@@ -164,30 +255,33 @@ class FindFilesHasPattern:
         py_dir = os.environ['LOCAL_PYTHON_3']
         if py_dir:
             print("py_dir:", py_dir)
-        
+
         po_file_list=None
         rst_file_list=None
         py_file_list=None
         search_file_list=[]
 
-        if (self.find_po):
-            po_file_list = self.getFileList(po_dir, "po")
-            #print("po_file_list")
-            ##pp(po_file_list)
-            search_file_list.extend(po_file_list)            
+        if self.find_file:
+            search_file_list.append(self.find_file)
+        else:
+            if (self.find_po):
+                po_file_list = self.getFileList(po_dir, "po")
+                #print("po_file_list")
+                ##pp(po_file_list)
+                search_file_list.extend(po_file_list)
 
-        if (self.find_rst):
-            rst_file_list = self.getFileList(rst_dir, "rst")
-            #print("rst_file_list")
-            ##pp(rst_file_list)
-            search_file_list.extend(rst_file_list)
+            if (self.find_rst):
+                rst_file_list = self.getFileList(rst_dir, "rst")
+                #print("rst_file_list")
+                ##pp(rst_file_list)
+                search_file_list.extend(rst_file_list)
 
-        if (self.find_py):
-            py_file_list = self.getFileList(py_dir, "py")
-            #print("py_file_list")
-            ##pp(py_file_list)
-            search_file_list.extend(py_file_list)
-        
+            if (self.find_py):
+                py_file_list = self.getFileList(py_dir, "py")
+                #print("py_file_list")
+                ##pp(py_file_list)
+                search_file_list.extend(py_file_list)
+
         has_file = (len(search_file_list) > 0)
         if not has_file:
             print("No files to search! Terminate.")
@@ -200,12 +294,12 @@ class FindFilesHasPattern:
                 # print("searching in:", f, "for", self.find_pattern)
                 self.findPatternInFile(f)
             except Exception as e:
-                print("Exception:", e, " file:", f)                
-    
+                print("Exception:", e, " file:", f)
+
     def listingRange(self, data_list, found_index):
         has_from_line = (self.from_line >= 0)
         has_to_line = (self.to_line >= 0)
-        
+
         max_lines = len(data_list)
         if has_from_line:
             min_range = [0, found_index - self.from_line]
@@ -225,23 +319,49 @@ class FindFilesHasPattern:
         #print("found_index", found_index, "from_line", from_line, "to_line", to_line)
         for index in range(from_line, to_line):
             text_line = data_list[index]
-            entry = {index: text_line}
+            if self.only_match:
+                if self.invert_match:
+                    replaced_line=self.find_pattern.sub(INVERT_SEP, text_line)
+                    match_list = replaced_line.split(INVERT_SEP)
+                else:
+                    match_list = self.getAllMatchedWordFromLine(self.find_pattern, text_line)
+                match_text = "\n".join(match_list)
+            else:
+                match_text = text_line
+
+            entry = {index: match_text}
             self.found_lines_dic.update(entry)
             #print(index, text_line)
 
 
     def reportFind(self, data):
         data_list = data.split('\n')
-        
+
         for line_no, data_line in enumerate(data_list):
-            is_found = (self.find_pattern.search(data_line) != None)
+            if self.invert_match:
+                if self.only_match:
+                    # print('invert_match and only match')
+                    replaced_line=self.find_pattern.sub(INVERT_SEP, data_line)
+                    exc_list = replaced_line.split(INVERT_SEP)
+                    is_found = (len(exc_list) > 0)
+                else:
+                    # print('invert_match and normal')
+                    is_found = (self.find_pattern.search(data_line) == None)
+            else:
+                # print('NOT invert')
+                is_found = (self.find_pattern.search(data_line) != None)
+
             if is_found:
                 #print(line_no, data_line)
                 self.listingRange(data_list, line_no)
-        
+
         has_result = (len(self.found_lines_dic) > 0)
         if has_result:
-            pp(self.found_lines_dic)
+            if self.show_line_number:
+                pp(self.found_lines_dic)
+            else:
+                for k, v in self.found_lines_dic.items():
+                    print(v)
 
     def findPatternInFile(self, file_path):
         data = self.basic_io.readTextFile(file_path)
@@ -282,9 +402,26 @@ parser.add_argument("-y", "--py", dest="find_py", help="Find in $LOCAL_PYTHON_3.
 parser.add_argument("-c", "--case", dest="case_sensitive", help="Find with case sensitive.", action='store_const', const=True)
 parser.add_argument("-A", "--after", dest="after_lines", help="Listing this number of lines AFTER the found lines as well.")
 parser.add_argument("-B", "--before", dest="before_lines", help="Listing this number of line BEFORE the found lines as well.")
+parser.add_argument("-f", "--file", dest="find_file", help="Find in a specific file only.")
+parser.add_argument("-l", "--line", dest="show_line_number", help="Showing matched line number next to the found text.", action='store_const', const=True)
+parser.add_argument("-v", "--invert_match", dest="invert_match", help="Invert match, find text DOESN'T match the input pattern.", action='store_const', const=True)
+parser.add_argument("-O", "--only_match", dest="only_match", help="Listing only the matched part of the text.", action='store_const', const=True)
 
 args = parser.parse_args()
 
 x = FindFilesHasPattern()
-x.setVars(args.find_pattern, args.find_po, args.find_rst, args.find_py, args.case_sensitive, args.before_lines, args.after_lines)
+x.setVars(
+    args.find_pattern,
+    args.find_file,
+    args.find_po,
+    args.find_rst,
+    args.find_py,
+    args.case_sensitive,
+    args.before_lines,
+    args.after_lines,
+    args.only_match,
+    args.show_line_number,
+    args.invert_match
+    )
+
 x.run()

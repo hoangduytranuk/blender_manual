@@ -65,7 +65,7 @@ then holding the shortcut key for precision control.
 
    All of the precision controls detailed on the page can be combined with
    the :doc:`Axis Locking </scene_layout/object/editing/transform/control/axis_locking>` controls and
-   used with the different :doc:`Pivot Points </scene_layout/object/editing/transform/control/pivot_point/index>`.
+   used with the different :doc:`Pivot Points </editors/3dview/controls/pivot_point/index>`.
 
 
 Snapping
@@ -111,7 +111,7 @@ Holding :kbd:`Ctrl` will cause size changes in increments of 0.1 units.
    Note that if you have a :ref:`Snap Element <transform-snap-element>` option enabled,
    holding :kbd:`Ctrl` will cause the selection to snap to the nearest element.
 
-   Read more about :doc:`snapping </scene_layout/object/editing/transform/control/snap>`.
+   Read more about :doc:`snapping </editors/3dview/controls/snapping>`.
 
 
 Precision

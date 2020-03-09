@@ -120,7 +120,7 @@ Enabling the *Auto Smooth* setting adds an extra parameter to define a sharp edg
 the *Angle* threshold between two neighbor faces, above which the edge will always be considered as sharp.
 
 *Auto Smooth* also enables *Custom Split Normals* handling, which can be either defined (and edited)
-as a :doc:`mesh data layer </modeling/meshes/editing/normals>`, or generated on the fly by modifiers.
+as a :doc:`mesh data layer </modeling/meshes/editing/mesh/normals>`, or generated on the fly by modifiers.
 In any case, when a mesh gets custom normals, they always supersede the default ones computed by *Auto Smooth*.
 
 Sharp edges may still be used by the custom normals modifiers to compute their normals,
@@ -185,7 +185,7 @@ To select a custom normal associated with a particular vertex and face:
 
 .. seealso::
 
-   :doc:`Editing Normals </modeling/meshes/editing/normals>`.
+   :doc:`Editing Normals </modeling/meshes/editing/mesh/normals>`.
 
 
 Importing Custom Split Normals

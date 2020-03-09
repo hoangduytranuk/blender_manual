@@ -242,7 +242,7 @@ and gives a smooth &quot;organic&quot; look to the object.</p>
 <p>As with any modifier, order of execution (position in the <a class="reference internal" href="../introduction.html#modifier-stack"><span class="std std-ref">modifier stack</span></a>)
 has an important bearing on the results.</p>
 <p>Keep in mind that this is a different operation than its companion,
-<a class="reference internal" href="../../meshes/editing/normals.html#modeling-meshes-editing-normals-shading"><span class="std std-ref">Smooth Shading</span></a>.
+<a class="reference internal" href="../../meshes/editing/mesh/normals.html#modeling-meshes-editing-normals-shading"><span class="std std-ref">Smooth Shading</span></a>.
 You can see the difference between the two in the grid image below.</p>
 <div class="figure align-default" id="id1">
 <img alt="../../../_images/modeling_modifiers_generate_subdivision-surface_grid.png" src="../../../_images/modeling_modifiers_generate_subdivision-surface_grid.png" />
@@ -270,7 +270,7 @@ the <a class="reference external" href="http://graphics.pixar.com/opensubdiv/doc
 <dt>Catmull-Clark</dt><dd><p>The default option, subdivides and smooths the surfaces. According to its <a class="reference external" href="https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface">Wikipedia page</a>, the &quot;arbitrary-looking formula was chosen by Catmull and Clark based on the aesthetic appearance of the resulting surfaces rather than on a mathematical derivation.</p>
 </dd>
 <dt>Đơn Giản -- Simple</dt><dd><p>Only subdivides the surfaces, without any smoothing
-(the same as the <a class="reference internal" href="../../meshes/editing/subdividing/subdivide.html#bpy-ops-mesh-subdivide"><span class="std std-ref">Subdivide</span></a> operator, in Edit Mode).
+(the same as the <a class="reference internal" href="../../meshes/editing/edge/subdivide.html#bpy-ops-mesh-subdivide"><span class="std std-ref">Subdivide</span></a> operator, in Edit Mode).
 Can be used, for example, to increase base mesh resolution when using displacement maps.</p>
 </dd>
 </dl>
@@ -354,7 +354,7 @@ A higher value makes the edge &quot;stronger&quot; and more resistant to the smo
 </div>
 <p>The <em>Subdivision Surface</em> modifier demonstrates why good, clean topology is so important.
 As you can see in the figure, the it has a drastic effect on a default cube.
-Until you add in additional loops (with e.g. <a class="reference internal" href="../../meshes/editing/subdividing/loop.html#bpy-ops-mesh-loopcut-slide"><span class="std std-ref">Loop Cut and Slide</span></a>),
+Until you add in additional loops (with e.g. <a class="reference internal" href="../../meshes/tools/loop.html#bpy-ops-mesh-loopcut-slide"><span class="std std-ref">Loop Cut and Slide</span></a>),
 the shape is almost unrecognizable as a cube.</p>
 <p>A mesh with deliberate topology has good placement of edge loops, which allow the placement of more loops
 (or their removal) to control the sharpness/smoothness of the resultant mesh.</p>
@@ -389,9 +389,9 @@ shares the overall normal orientation of that original face.</p>
 <p>Abrupt normal changes can produce ugly black gouges even though
 these flipped normals are not an issue for the shape itself.</p>
 <p>A quick way to fix this is to use Blender's
-<a class="reference internal" href="../../meshes/editing/normals.html"><span class="doc">Recalculate Normals</span></a> operation in Edit Mode.</p>
+<a class="reference internal" href="../../meshes/editing/mesh/normals.html"><span class="doc">Recalculate Normals</span></a> operation in Edit Mode.</p>
 <p>If you still have some ugly black gouges you will have to
-<a class="reference internal" href="../../meshes/editing/normals.html"><span class="doc">manually flip the normals</span></a>.</p>
+<a class="reference internal" href="../../meshes/editing/mesh/normals.html"><span class="doc">manually flip the normals</span></a>.</p>
 </div>
 </div>
 </div>

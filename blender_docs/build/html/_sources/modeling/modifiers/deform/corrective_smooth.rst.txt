@@ -1,10 +1,10 @@
 .. _bpy.types.CorrectiveSmoothModifier:
 
 **************************
-Corrective Smooth Modifier
+Smooth Corrective Modifier
 **************************
 
-The *Corrective Smooth* modifier is used to reduce highly distorted areas of a mesh by smoothing the deformations.
+The *Smooth Corrective* modifier is used to reduce highly distorted areas of a mesh by smoothing the deformations.
 
 This is typically useful *after* an :doc:`Armature modifier </modeling/modifiers/deform/armature>`,
 where distortion around joints may be hard to avoid, even with careful weight painting.
@@ -25,7 +25,7 @@ Options
 .. figure:: /images/modeling_modifiers_deform_corrective-smooth_panel.png
    :align: right
 
-   The Corrective Smooth modifier.
+   The Smooth Corrective modifier.
 
 Factor
    The factor to control the smoothing amount.

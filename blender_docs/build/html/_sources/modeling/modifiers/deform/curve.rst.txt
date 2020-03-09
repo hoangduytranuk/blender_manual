@@ -50,8 +50,10 @@ Vertex Group
       now represents vertices that will not be deformed by the modifier.
 
       The setting reverses the weight values of the group.
-Deformation Axis X/Y/Z/-X/-Y/-Z
+Deformation Axis
    This is the axis that the curve deforms along.
+
+   X/Y/Z/-X/-Y/-Z
 
 
 Example

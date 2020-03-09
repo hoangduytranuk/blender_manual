@@ -232,7 +232,7 @@ Version/Revision Milestones
 `2.74 <https://www.blender.org/download/releases/2-74/>`__ -- March 2015:
    Support for custom normals, viewport compositing and improvements to hair dynamics.
 `2.75 <https://www.blender.org/download/releases/2-75/>`__ -- July 2015:
-   Integrated stereo/multi-view pipeline, Corrective Smooth modifier and new developmental dependency graph.
+   Integrated stereo/multi-view pipeline, Smooth Corrective modifier and new developmental dependency graph.
 `2.76 <https://www.blender.org/download/releases/2-76/>`__ -- November 2015:
    Pixar OpenSubdiv support, Viewport and File Browser performance boost,
    node auto-offset, and a text effect strip for the Sequencer.

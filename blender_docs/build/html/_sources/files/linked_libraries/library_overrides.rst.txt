@@ -4,7 +4,7 @@ Library Overrides
 *****************
 
 Library Overrides is the new system designed to replace and
-supersede :doc:`Proxies</files/linked_libraries/library_proxies>`.
+supersede :doc:`Proxies </files/linked_libraries/library_proxies>`.
 Most types of linked data-blocks can be overridden, and the properties of those overrides
 can then be edited. When the library data changes, unmodified properties of the overridden one
 will be updated accordingly.

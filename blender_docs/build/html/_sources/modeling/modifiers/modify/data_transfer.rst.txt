@@ -197,4 +197,4 @@ Interpolated Mappings
 
 .. seealso::
 
-   :doc:`Data Transfer Operator </modeling/meshes/editing/data_transfer>`
+   :doc:`Data Transfer Operator </scene_layout/object/editing/relations>`

@@ -343,7 +343,7 @@ and mattes will be anti-aliased and take into account effects like motion blur a
 <dt>Nguyên Liệu -- Material</dt><dd><p>Render cryptomatte material pass, for isolating materials in compositing.</p>
 </dd>
 <dt>Tài Nguyên -- Asset</dt><dd><p>Render cryptomatte asset pass, for isolating groups of objects with the same
-<a class="reference internal" href="../../scene_layout/object/properties/relations/parents.html"><span class="doc">parent</span></a> in compositing.</p>
+<a class="reference internal" href="../../scene_layout/object/editing/parent.html"><span class="doc">parent</span></a> in compositing.</p>
 </dd>
 <dt>Mức Độ -- Levels</dt><dd><p>Đặt số vật thể đơn nhất có thể phân biệt tại mỗi điểm ảnh.</p>
 </dd>
@@ -396,20 +396,35 @@ A <em>Value</em> variable can be used for any single numerical value.</p>
 </dd>
 </dl>
 </div>
+<p>Passes can be used to split rendered images into colors and light to edit them individually,
+and also to extract data such as depth or normals.</p>
 <div class="section" id="id1">
 <h3>Lượt về Ánh Sáng -- Lighting Passes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
 <dt>Tổng Hợp -- Combined</dt><dd><p>The final combination of render passes with everything included.</p>
 </dd>
-<dt>Subsurface Direct</dt><dd><p>Direct lighting from subsurface BSDFs. We define direct lighting as coming from lights, emitting surfaces,
-the background, or ambient occlusion after a single reflection or transmission off a surface.
+<dt>Diffuse Light</dt><dd><p>Direct lighting from diffuse BSDFs. We define lighting as coming from lights,
+the background, or ambient occlusion off a surface.
 BSDF color is not included in this pass.</p>
 </dd>
-<dt>Subsurface Color</dt><dd><p>Color weights of subsurface BSDFs. These weights are the color input socket for BSDF nodes,
+<dt>Màu Khuếch Tán -- Diffuse Color</dt><dd><p>Color weights of diffuse BSDFs. These weights are the color input socket for BSDF nodes,
 modified by any Mix and Add Shader nodes.</p>
+</dd>
+<dt>Specular Light, Color</dt><dd><p>Same as above, but for specular BSDFs.</p>
+</dd>
+<dt>Phát Xạ -- Emission</dt><dd><p>Emission from directly visible surfaces.</p>
+</dd>
+<dt>Môi Trường -- Environment</dt><dd><p>Emission from the directly visible background. When the film is set to transparent,
+this can be used to get the environment color and composite it back in.</p>
+</dd>
+<dt>Ngả Bóng Tối -- Shadow</dt><dd><p>Shadows from light objects. Mostly useful for compositing objects with shadow into existing footage.</p>
 </dd>
 <dt>Tính Hấp Thụ Quang Xạ Môi Trường -- Ambient Occlusion</dt><dd><p>Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e.
 it gives a 'normalized' value between 0 and 1.</p>
+</dd>
+<dt>Volume Transmittance</dt><dd><p>The transmittance pass from volume objects or world.</p>
+</dd>
+<dt>Volume Scattering</dt><dd><p>The scattering pass from volume objects or world.</p>
 </dd>
 </dl>
 </div>
@@ -423,6 +438,31 @@ it gives a 'normalized' value between 0 and 1.</p>
 <dt>Pháp Tuyến -- Normal</dt><dd><p>Surface normal used for shading.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="effect-passes">
+<h3>Effect Passes<a class="headerlink" href="#effect-passes" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt>Bloom</dt><dd><p>The influence of the Bloom effect.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h3>Tổng Hợp -- Combining<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>The passes can be combined to produce the final image as follows:</p>
+<div class="figure align-default">
+<img alt="../../_images/render_layers_passes_eevee_combine.svg" src="../../_images/render_layers_passes_eevee_combine.svg" /></div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Limitations:</p>
+<ul class="simple">
+<li><p>Alpha blended materials are not rendered in render passes except the combined pass.
+Use the <em>Alpha Clip</em> or <em>Alpha Hashed</em> as <a class="reference internal" href="../eevee/materials/settings.html#bpy-types-material-blend-method"><span class="std std-ref">Blending Mode</span></a>
+to render transparent materials in render passes.</p></li>
+<li><p>Depth of field is not rendered in render passes except the combined pass.
+It is possible to add the depth of field back in the Compositor using
+the <a class="reference internal" href="../../compositing/types/filter/defocus.html#bpy-types-compositornodedefocus"><span class="std std-ref">Defocus node</span></a>.</p></li>
+</ul>
+</div>
 </div>
 </div>
 </div>

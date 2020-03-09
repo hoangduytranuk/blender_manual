@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
-    <link rel="next" title="Tính Chất và Bộ Điều Chỉnh -- Properties &amp; Modifiers" href="properties_modifiers.html" />
+    <link rel="next" title="Editing" href="editing.html" />
     <link rel="prev" title="Giám Sát -- Tracks" href="tracks.html" /> 
 </head>
 
@@ -130,11 +130,14 @@
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tracks.html">Giám Sát -- Tracks</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Dải Phim -- Strips</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#types">Thể Loại -- Types</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#editing">Biên Soạn -- Editing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#action-strips">Dải Hành Động -- Action Strips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transition-strips">Dải Chuyển Cảnh -- Transition Strips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sound-clip-strips">Dải Âm Thanh -- Sound Clip Strips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#meta-strips">Dải Siêu -- Meta Strips</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="properties_modifiers.html">Tính Chất và Bộ Điều Chỉnh -- Properties &amp; Modifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="editing.html">Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties_modifiers.html">Tính Chất -- Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../text_editor.html">Trình Biên Soạn Văn Bản -- Text Editor</a></li>
@@ -229,15 +232,13 @@
             
   <div class="section" id="strips">
 <span id="bpy-types-nlastrip"></span><h1>Dải Phim -- Strips<a class="headerlink" href="#strips" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="types">
-<h2>Thể Loại -- Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
 <p>There are four kinds of strips: Action, Transition, Sound clip and Meta.</p>
 <div class="section" id="action-strips">
-<h3>Dải Hành Động -- Action Strips<a class="headerlink" href="#action-strips" title="Permalink to this headline">¶</a></h3>
+<h2>Dải Hành Động -- Action Strips<a class="headerlink" href="#action-strips" title="Permalink to this headline">¶</a></h2>
 <p>An Action Strip is a container of keyframe data of an action. Any action used by the NLA first must be turned into an Action strip. This is done so by clicking the Push Down action button see above. Alternatively, you can go to <span class="menuselection">Cộng Thêm (Add) ‣ Dải Hành Động (Action Strip)</span>.</p>
 </div>
 <div class="section" id="transition-strips">
-<h3>Dải Chuyển Cảnh -- Transition Strips<a class="headerlink" href="#transition-strips" title="Permalink to this headline">¶</a></h3>
+<h2>Dải Chuyển Cảnh -- Transition Strips<a class="headerlink" href="#transition-strips" title="Permalink to this headline">¶</a></h2>
 <p>Transitions interpolate between Actions. They must be placed in between other strips. Select two or more strips on the same track, and go to <span class="menuselection">Cộng Thêm (Add) ‣ Chuyển Cảnh/Tiếp (Transition)</span>.</p>
 <div class="figure align-default" id="id1">
 <img alt="../../_images/editors_nla_strips_basics-transition.png" src="../../_images/editors_nla_strips_basics-transition.png" />
@@ -245,11 +246,11 @@
 </div>
 </div>
 <div class="section" id="sound-clip-strips">
-<h3>Dải Âm Thanh -- Sound Clip Strips<a class="headerlink" href="#sound-clip-strips" title="Permalink to this headline">¶</a></h3>
+<h2>Dải Âm Thanh -- Sound Clip Strips<a class="headerlink" href="#sound-clip-strips" title="Permalink to this headline">¶</a></h2>
 <p>Controls when a speaker plays a sound clip. <span class="menuselection">Cộng Thêm (Add) ‣ Đoạn Âm Thanh (Sound Clip)</span>.</p>
 </div>
 <div class="section" id="meta-strips">
-<h3>Dải Siêu -- Meta Strips<a class="headerlink" href="#meta-strips" title="Permalink to this headline">¶</a></h3>
+<h2>Dải Siêu -- Meta Strips<a class="headerlink" href="#meta-strips" title="Permalink to this headline">¶</a></h2>
 <p>Meta strips group strips together as a whole, so you can move them as one.
 If you find yourself moving a lot of strips together, you can group them into a Meta strip.
 A Meta strip can be moved and duplicated like a normal strip.</p>
@@ -297,115 +298,6 @@ A Meta strip can be moved and duplicated like a normal strip.</p>
 </div>
 </div>
 </div>
-<div class="section" id="editing">
-<h2>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="start-tweaking-strips-action">
-<h3>Bắt Đầu Hiệu Chỉnh Hành Động trong Dải Phim -- Start Tweaking Strips Action<a class="headerlink" href="#start-tweaking-strips-action" title="Permalink to this headline">¶</a></h3>
-<div class="refbox admonition">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
-<dl class="field-list simple">
-<dt class="field-odd">Trình Đơn -- Menu</dt>
-<dd class="field-odd"><p><span class="menuselection">Biên Soạn (Edit) ‣ Bắt Đầu Tinh Chỉnh Hành Động trong Dải Phim (Start Tweaking Strips Action)</span></p>
-</dd>
-<dt class="field-even">Phím Tắt -- Hotkey</dt>
-<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Tab</kbd></p>
-</dd>
-</dl>
-</div>
-<p>The contents of Action strips can be edited, but you must be in <em>Tweak Mode</em> to do so.
-The keyframes of the action can then be edited in the Dope Sheet.</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><div class="figure align-default" id="id4">
-<a class="reference internal image-reference" href="../../_images/editors_nla_strips_nla-mode.png"><img alt="../../_images/editors_nla_strips_nla-mode.png" src="../../_images/editors_nla_strips_nla-mode.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Strip in NLA mode.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-</td>
-<td><div class="figure align-default" id="id5">
-<a class="reference internal image-reference" href="../../_images/editors_nla_strips_edit-mode.png"><img alt="../../_images/editors_nla_strips_edit-mode.png" src="../../_images/editors_nla_strips_edit-mode.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Strip in Tweak mode.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-<p>When you finished editing the strip, simply go to <span class="menuselection">Biên Soạn (Edit) ‣ Tinh Chỉnh Dải Hành Động (Tweaking Strips Action)</span> or press <kbd class="kbd docutils literal notranslate">Tab</kbd>.</p>
-</div>
-<div class="section" id="start-editing-stashed-action">
-<h3>Bắt Đầu Biên Soạn Hành Động đã Cất Giấu -- Start Editing Stashed Action<a class="headerlink" href="#start-editing-stashed-action" title="Permalink to this headline">¶</a></h3>
-<div class="refbox admonition">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
-<dl class="field-list simple">
-<dt class="field-odd">Trình Đơn -- Menu</dt>
-<dd class="field-odd"><p><span class="menuselection">Biên Soạn (Edit) ‣ Bắt Đầu Biên Soạn Hành Động đã Cất Giấu (Start Editing Stashed Action)</span></p>
-</dd>
-<dt class="field-even">Phím Tắt -- Hotkey</dt>
-<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Shift-Tab</kbd></p>
-</dd>
-</dl>
-</div>
-<p>It will enter and exit Tweak Mode as usual, but will also make sure that the action can be edited in isolation
-(by flagging the NLA track that the action strip comes from as being &quot;solo&quot;).
-This is useful for editing stashed actions, without the rest of the NLA Stack interfering.</p>
-</div>
-<div class="section" id="duplicate">
-<h3>Sao Chép -- Duplicate<a class="headerlink" href="#duplicate" title="Permalink to this headline">¶</a></h3>
-<div class="refbox admonition">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
-<dl class="field-list simple">
-<dt class="field-odd">Trình Đơn -- Menu</dt>
-<dd class="field-odd"><p><span class="menuselection">Biên Soạn (Edit) ‣ Sao Chép (Duplicate)</span></p>
-</dd>
-<dt class="field-even">Phím Tắt -- Hotkey</dt>
-<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Shift-D</kbd></p>
-</dd>
-</dl>
-</div>
-<p>Creates a new instance of the selected strips with a copy of the action.</p>
-</div>
-<div class="section" id="linked-duplicate">
-<h3>Bản Sao Chép Kết Nối -- Linked Duplicate<a class="headerlink" href="#linked-duplicate" title="Permalink to this headline">¶</a></h3>
-<div class="refbox admonition">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
-<dl class="field-list simple">
-<dt class="field-odd">Trình Đơn -- Menu</dt>
-<dd class="field-odd"><p><span class="menuselection">Biên Soạn (Edit) ‣ Bản Sao Chép Kết Nối (Linked Duplicate)</span></p>
-</dd>
-<dt class="field-even">Phím Tắt -- Hotkey</dt>
-<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Alt-D</kbd></p>
-</dd>
-</dl>
-</div>
-<p>The contents of one Action strip can be instanced multiple times. To instance another strip, select a strip, go to <span class="menuselection">Biên Soạn (Edit) ‣ Bản Sao Chép Kết Nối (Linked Duplicate)</span>. It will uses the same action as the selected strips.</p>
-<p>Now, when any strip is tweaked, the others will change too.
-If a strip other than the original is tweaked,
-the original will turn to red.</p>
-<div class="figure align-default" id="id6">
-<img alt="../../_images/editors_nla_strips_linked-strip-edit.png" src="../../_images/editors_nla_strips_linked-strip-edit.png" />
-<p class="caption"><span class="caption-text">Linked duplicated strip being edited.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="make-single-user">
-<h3>Biến Thành Đơn Người Dùng -- Make Single User<a class="headerlink" href="#make-single-user" title="Permalink to this headline">¶</a></h3>
-<div class="refbox admonition">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
-<dl class="field-list simple">
-<dt class="field-odd">Trình Đơn -- Menu</dt>
-<dd class="field-odd"><p><span class="menuselection">Biên Soạn (Edit) ‣ Biến Thành Đơn Người Dùng (Make Single User)</span></p>
-</dd>
-<dt class="field-even">Phím Tắt -- Hotkey</dt>
-<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
-</dd>
-</dl>
-</div>
-<p>This tool ensures that none of the selected strips use an action which is also used by any other strips.</p>
-</div>
-</div>
-</div>
 
 
            </div>
@@ -415,7 +307,7 @@ the original will turn to red.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="properties_modifiers.html" class="btn btn-neutral float-right" title="Tính Chất và Bộ Điều Chỉnh -- Properties &amp; Modifiers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="editing.html" class="btn btn-neutral float-right" title="Editing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="tracks.html" class="btn btn-neutral float-left" title="Giám Sát -- Tracks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

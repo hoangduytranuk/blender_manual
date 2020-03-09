@@ -99,7 +99,7 @@ the edge or face that is to be the axis for mirroring.
 This can be tricky when attempted visually.
 
 A good technique to achieve an exact position is
-to select the edge, then :doc:`snap </scene_layout/object/editing/transform/control/snap>` *Cursor to Selection*.
+to select the edge, then :doc:`snap </editors/3dview/controls/snapping>` *Cursor to Selection*.
 This will position the 3D Cursor in the center of the edge.
 Finally, use the :ref:`Set Origin <bpy.ops.object.origin_set>` menu, and select *Origin to 3D Cursor*.
 This will move the object's origin (and thus, the mirror plane) to where the 3D cursor is located,

@@ -60,7 +60,7 @@ Operations
 
 The *Batch Rename* has several sub Operations to change the data names.
 The default operation is *Find/Replace* however, other operations can be added
-to modify the data names further.
+to change the data names further.
 
 
 Find/Replace

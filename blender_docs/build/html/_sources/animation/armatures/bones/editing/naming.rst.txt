@@ -51,10 +51,10 @@ This will enable you to use some tools that will probably save you time and effo
    Examples of valid separators:
 
    - (nothing): handLeft --> handRight
-   - ``_`` (underscore): hand\ **_**\L --> hand\ **_**\R
-   - ``.`` (dot): hand\ **.**\l --> hand\ **.**\r
-   - ``-`` (dash): hand\ **-**\l --> hand\ **-**\r
-   - `` `` (space): hand LEFT --> hand RIGHT
+   - "_" (underscore): hand\ **_**\L --> hand\ **_**\R
+   - "." (dot): hand\ **.**\l --> hand\ **.**\r
+   - "-" (dash): hand\ **-**\l --> hand\ **-**\r
+   - " " (space): hand LEFT --> hand RIGHT
 
    .. note::
 

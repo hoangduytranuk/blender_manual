@@ -127,7 +127,7 @@ No Video
 `MPEG-2 <https://en.wikipedia.org/wiki/MPEG-2>`__
    See :ref:`Containers <files-video-containers>`.
 `MPEG-4(DivX) <https://en.wikipedia.org/wiki/MPEG-4>`__
-   Inherits many of the features of MPEG-1 and MPEG-2 and other related standards, and adds new features.
+   Inherits many of the features of MPEG-1, MPEG-2 and other related standards, but also adds new features.
 `PNG <https://en.wikipedia.org/wiki/Portable_Network_Graphics>`__
    Lossless, this stores each frame as an independent image in the video stream.
    Compression will be poor, but as every frame is fully self-contained, scrubbing and editing can be simpler.

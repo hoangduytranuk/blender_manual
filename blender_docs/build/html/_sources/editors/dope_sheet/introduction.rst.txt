@@ -226,7 +226,7 @@ Filters
 Only Selected
    Only include keyframes related to the selected objects and data.
 Display Hidden
-   Include keyframes from objects/bones that are not visible.
+   Include keyframes from objects or bones that are not visible.
 Show Errors
    Only include curves and drivers that are disabled or have errors.
    Useful for debugging.
@@ -244,7 +244,7 @@ Filtering Collection
 
 Sort Data-Blocks
    Objects data-blocks appear in alphabetical order, so that it is easier to find where they occur
-   (as well as helping to keep the animation of related objects together in the NLA for instance).
+   (as well as helping to keep the animation of related objects together in the NLA editor for instance).
 
    If you find that your playback speed suffers from this being enabled
    (it should only really be an issue when working with lots of objects in the scene),

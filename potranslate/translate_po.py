@@ -250,8 +250,8 @@ def doctree_resolved(app, doctree, docname):
         #     print("msgstr \"\"")
 
     print("Output to the path:", new_po_cat, output_path)
-    #c.dump_po(output_path, new_po_cat)
-    c.dump_po(output_path, new_po_cat, line_width=4096)
+    c.dump_po(output_path, new_po_cat)
+    #c.dump_po(output_path, new_po_cat, line_width=4096)
 
 
 
