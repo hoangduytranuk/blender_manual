@@ -1,9 +1,0 @@
-#!/bin/bash -x
-DOC_DIR=$BLENDER_MAN_EN_DEV
-$HOME/bin/change_placeholders.py -d $DOC_DIR -t 30m
-cd $DOC_DIR
-time_now=$(timenow)
-#commit_text="$time_now - $1"
-commit_text=$1
-svn commit -m "$commit_text"
-

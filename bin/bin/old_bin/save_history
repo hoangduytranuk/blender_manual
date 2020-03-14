@@ -1,7 +1,0 @@
-#!/bin/bash
-file_to_save_to="$HOME/Documents/$1"
-temp_file="$HOME/Documents/history_temp.txt"
-history | awk '{ {printf "%04d", $1}; $1=""; print $0}' | sort >> $file_to_save_to
-#cat $file_to_save_to | sort -u >> $temp_file
-#mv $temp_file $file_to_save_to
-#cat $file_to_save_to

@@ -1,1 +1,0 @@
-cmd.exe /c copy %1+nul %1 /by

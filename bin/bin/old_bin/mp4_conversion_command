@@ -1,3 +1,0 @@
-mencoder $1 -of lavf -lavfopts format=mp4 -oac mp3lame -lameopts cbr:br=128 -ovc x264 -x264encopts bitrate=1000 -o $2
-
-/usr/bin/ffmpeg -i "$1" -codec:v libx264 -quality good -cpu-used 0 -profile:v baseline -level 30 -y -maxrate 2000k -bufsize 2000k -threads 4 -codec:a copy -b:a 128k "$2"

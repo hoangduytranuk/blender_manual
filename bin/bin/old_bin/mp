@@ -1,9 +1,0 @@
-#!/bin/bash
-FIND_FILES="*.png";
-ls $FIND_FILES | while read -r FILE
-do
-  old_file=$FILE;
-  new_file=$(echo $old_file | tr ':' '_' | tr ' ' '_');
-#  echo "moving $old_file to $new_file";
-  mv -v -n "$old_file" "$new_file";
-done
