@@ -208,34 +208,55 @@ def doctree_resolved(app, doctree, docname):
             has_translation = (msg in po_dic)
             if has_translation:
                 tran = po_dic[msg]
-                is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-                if is_added:
-                    entry = (msg, tran)
-                    print("found in PO, added entry:", entry)
-                dup_msg_in_tran = (is_keep_original) and (msg not in tran)
-                if dup_msg_in_tran:
-                    tran = "{} -- {}".format(tran, msg)
             else:
                 has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
                 if has_translation:
                     tran = trans_finder.master_dic_list[msg]
-                    is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-                    if is_added:
-                        entry = (msg, tran)
-                        print("found in master_dic_list, added entry:", entry)
+            has_translation = (tran is not None)
+            if has_translation:
+                ref_list = RefList(keep_orig=is_keep_original)
+                ref_list.correctRefs(msg, tran)
+                # ref_list.transferTranslatedRefs(msg, tran)
+                # print("tran old:", {msg:tran})
+                # print("tran new:", {msg:ref_list.getTranslation()})
 
-                    dup_msg_in_tran = (is_keep_original) and (msg not in tran)
-                    if dup_msg_in_tran:
-                        tran = "{} -- {}".format(tran, msg)
-                else:
-                    ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-                    ref_list.parseMessage()
-                    ref_list.translateRefList()
-                    tran = ref_list.getTranslation()
-                    is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-                    if is_added:
-                        entry = (msg, tran)
-                        print("found in RefList, added entry:", entry)
+        # is_ignore = ig.isIgnored(msg)
+        # if is_ignore:
+        #     tran = None
+        # else:
+        #     # print("Not ignore:", msg)
+        #     is_added = False
+        #     has_translation = (msg in po_dic)
+        #     if has_translation:
+        #         tran = po_dic[msg]
+        #         is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+        #         if is_added:
+        #             entry = (msg, tran)
+        #             print("found in PO, added entry:", entry)
+        #         dup_msg_in_tran = (is_keep_original) and (msg not in tran)
+        #         if dup_msg_in_tran:
+        #             tran = "{} -- {}".format(tran, msg)
+        #     else:
+        #         has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
+        #         if has_translation:
+        #             tran = trans_finder.master_dic_list[msg]
+        #             is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+        #             if is_added:
+        #                 entry = (msg, tran)
+        #                 print("found in master_dic_list, added entry:", entry)
+        #
+        #             dup_msg_in_tran = (is_keep_original) and (msg not in tran)
+        #             if dup_msg_in_tran:
+        #                 tran = "{} -- {}".format(tran, msg)
+        #         else:
+        #             ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
+        #             ref_list.parseMessage()
+        #             ref_list.translateRefList()
+        #             tran = ref_list.getTranslation()
+        #             is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
+        #             if is_added:
+        #                 entry = (msg, tran)
+        #                 print("found in RefList, added entry:", entry)
 
 
         if tran is not None:
@@ -249,8 +270,8 @@ def doctree_resolved(app, doctree, docname):
         # else:
         #     print("msgstr \"\"")
 
-    print("Output to the path:", new_po_cat, output_path)
-    c.dump_po(output_path, new_po_cat)
+    # print("Output to the path:", new_po_cat, output_path)
+    # c.dump_po(output_path, new_po_cat)
     #c.dump_po(output_path, new_po_cat, line_width=4096)
 
 
@@ -258,6 +279,9 @@ def doctree_resolved(app, doctree, docname):
 
 
 def builder_inited(app):
+    #trans_finder.loadVIPOtoDic(trans_finder.master_dic_list, trans_finder.master_dic_file, is_testing=True)
+    #trans_finder.updateMasterDic(is_testing=True)
+    #exit(0)
     #trans_finder.mergePODict()
     pass
 
@@ -318,11 +342,12 @@ def build_finished(app, exeption):
     #pp(dic)
     #exit(0)
     #sorted_list = sorted(dic.items(), key=lambda x: x[1])
-    dic = trans_finder.master_dic_backup_list
-    file_name = trans_finder.master_dic_backup_file
-    print("Writing dictionary to:", file_name)
-    with open(file_name, 'w', newline='\n', encoding='utf8') as out_file:
-        json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
+
+    # dic = trans_finder.master_dic_backup_list
+    # file_name = trans_finder.master_dic_backup_file
+    # print("Writing dictionary to:", file_name)
+    # with open(file_name, 'w', newline='\n', encoding='utf8') as out_file:
+    #     json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
 
     # with open(file_name, "r") as f:
     #     data = json.load(f)

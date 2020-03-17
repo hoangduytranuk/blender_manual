@@ -16,6 +16,7 @@ from pprint import pprint as pp
 from sphinx_intl import catalog as c
 from babel.messages import pofile
 import enum
+import chardet
 
 INVERT_SEP='•••'
 
@@ -147,6 +148,7 @@ class FindFilesHasPattern:
             find_po,
             find_rst,
             find_py,
+            find_src,
             case_sensitive,
             before_lines,
             after_lines,
@@ -158,6 +160,7 @@ class FindFilesHasPattern:
         self.find_po = (True if find_po else False)
         self.find_rst = (True if find_rst else False)
         self.find_py = (True if find_py else False)
+        self.find_src = (True if find_src else False)
         self.case_sensitive = (True if case_sensitive else False)
 
         flag = (re.I if not self.case_sensitive else 0)
@@ -256,6 +259,10 @@ class FindFilesHasPattern:
         if py_dir:
             print("py_dir:", py_dir)
 
+        src_dir = os.environ['BLENDER_SRC']
+        if src_dir:
+            print("src_dir:", src_dir)
+
         po_file_list=None
         rst_file_list=None
         py_file_list=None
@@ -265,22 +272,43 @@ class FindFilesHasPattern:
             search_file_list.append(self.find_file)
         else:
             if (self.find_po):
-                po_file_list = self.getFileList(po_dir, "po")
+                po_file_list = self.getFileList(po_dir, ".po")
                 #print("po_file_list")
                 ##pp(po_file_list)
                 search_file_list.extend(po_file_list)
 
             if (self.find_rst):
-                rst_file_list = self.getFileList(rst_dir, "rst")
+                rst_file_list = self.getFileList(rst_dir, ".rst")
                 #print("rst_file_list")
                 ##pp(rst_file_list)
                 search_file_list.extend(rst_file_list)
 
             if (self.find_py):
-                py_file_list = self.getFileList(py_dir, "py")
+                py_file_list = self.getFileList(py_dir, ".py")
                 #print("py_file_list")
                 ##pp(py_file_list)
                 search_file_list.extend(py_file_list)
+
+            if (self.find_src):
+                py_list = self.getFileList(src_dir, ".py")
+                cc_list = self.getFileList(src_dir, ".cc")
+                cpp_list = self.getFileList(src_dir, ".cpp")
+                c_list = self.getFileList(src_dir, ".c")
+                h_list = self.getFileList(src_dir, ".h")
+                #print("py_file_list")
+                ##pp(py_file_list)
+                #pp(py_list)
+                #pp(cc_list)
+                if py_list:
+                    search_file_list.extend(py_list)
+                if cc_list:
+                    search_file_list.extend(cc_list)
+                if cpp_list:
+                    search_file_list.extend(cpp_list)
+                if c_list:
+                    search_file_list.extend(c_list)
+                if (h_list):
+                    search_file_list.extend(h_list)
 
         has_file = (len(search_file_list) > 0)
         if not has_file:
@@ -398,6 +426,7 @@ parser = ArgumentParser()
 parser.add_argument("-p", "--pattern", dest="find_pattern", help="Pattern to find.")
 parser.add_argument("-o", "--po", dest="find_po", help="Find in $BLENDER_MAN_VI/LC_MESSAGES.", action='store_const', const=True)
 parser.add_argument("-r", "--rst", dest="find_rst", help="Find in $BLENDER_MAN_EN/manual.", action='store_const', const=True)
+parser.add_argument("-s", "--src", dest="find_src", help="Find in $BLENDER_ae.", action='store_const', const=True)
 parser.add_argument("-y", "--py", dest="find_py", help="Find in $LOCAL_PYTHON_3.", action='store_const', const=True)
 parser.add_argument("-c", "--case", dest="case_sensitive", help="Find with case sensitive.", action='store_const', const=True)
 parser.add_argument("-A", "--after", dest="after_lines", help="Listing this number of lines AFTER the found lines as well.")
@@ -416,6 +445,7 @@ x.setVars(
     args.find_po,
     args.find_rst,
     args.find_py,
+    args.find_src,
     args.case_sensitive,
     args.before_lines,
     args.after_lines,

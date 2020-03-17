@@ -292,7 +292,7 @@ class Ignore:
         ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
         if (len(ex_ga_msg) > 0):
             msg = ex_ga_msg[0]
-            print("GA trimmed from:", orig_msg, msg)
+            _("GA trimmed from:", orig_msg, msg)
 
         is_keep = Ignore.isKeep(msg)
         if is_keep:
@@ -365,7 +365,7 @@ class Ignore:
                 m = re.compile(pattern, flags=re.I)
                 is_found = (m.search(text_line) is not None)
                 if is_found:
-                    #_("[{}] matched [{}]".format(text_line, pattern))
+                    _("[{}] matched [{}]".format(text_line, pattern))
                     return True
         except Exception as e:
             _(e)

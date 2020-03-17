@@ -91,18 +91,70 @@ class TranslationFinder:
         self.setupKBDDicList()
 
         self.dic_list = defaultdict(int) # for general purposes
+
+        self.loadVIPOtoDic(self.master_dic_list, self.master_dic_file, is_testing=False)
         # self.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
 
         #self.cleanDictList(self.master_dic_list)
         #self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
-        #exit(0)
+        exit(0)
 
-    def loadVIPOtoBackupDic(self, dict_to_update, file_name):
+
+    def updateMasterDic(self, is_testing=True):
+        from_dic_path = "/Users/hoangduytran/ref_dict_0002.json"
+        from_dic_list = self.loadJSONDic(file_name=from_dic_path)
+        changed_count = self.updateDicUsingDic(from_dic_list, self.master_dic_list)
+        is_changed = (changed_count > 0)
+        if is_changed:
+            print("Changed:", changed_count)
+
+        is_writing_changes = (is_changed and not is_testing)
+        if is_writing_changes:
+            print("Writing changes to:", self.master_dic_file)
+            self.writeJSONDic(dict_list=self.master_dic_list, file_name=self.master_dic_file)
+
+    def addEntry(self, msg, tran):
+
+        entry = {msg: tran}
+        print("addEntry - adding:", entry)
+        #self.master_dic_list.update(entry)
+        return True
+
+    def loadVIPOtoDic(self, dict_to_update, file_name, is_testing=True):
+
+        DIC_INCLUDE_LOWER_CASE_SET = False
+        ignore = [
+            "volume",
+            "Volume",
+        ]
+        changed = False
         po_cat = c.load_po(self.vipo_dic_path)
         po_cat_dic = self.poCatToDic(po_cat)
-        dict_to_update.update(po_cat_dic)
-        self.writeJSONDic(dict_to_update, file_name=file_name)
-        exit(0)
+        for k, v in po_cat_dic.items():
+            is_ignore = (k in ignore)
+            if is_ignore:
+                continue
+
+            # print("examine:", k, v)
+            update = True
+            is_in_old_dic = (k in dict_to_update)
+            if is_in_old_dic:
+                old_v = dict_to_update[k]
+                is_same = (old_v == v)
+                if is_same:
+                    continue
+            else:
+                #print("NOT IN DIC:", k, v)
+                entry={k:v}
+                dict_to_update.update(entry)
+                if is_testing:
+                    print("Updating entry:", entry)
+                else:
+                    changed = True
+
+        if changed:
+            _("Written to file:", file_name)
+            self.writeJSONDic(dict_to_update, file_name=file_name)
 
     def replacePOText(self, po_file, rep_list, is_dry_run=True):
         _("replacePOText:", po_file, rep_list, is_dry_run)
@@ -115,13 +167,13 @@ class TranslationFinder:
             data, change_count = re.subn(k, v, data, flags=re.M)
             is_changed = (change_count > 0)
             if is_changed:
-                print("CHANGED", change_count, k, "=>", v)
+                _("CHANGED", change_count, k, "=>", v)
                 changed = True
 
         if changed:
-            print(data)
-            print("file:", po_file)
-            print("Data has changed:", change_count)
+            _(data)
+            _("file:", po_file)
+            _("Data has changed:", change_count)
             if not is_dry_run:
                 with open(po_file, "w", encoding="utf-8") as f:
                     f.write(data)
@@ -174,7 +226,7 @@ class TranslationFinder:
             is_remove = (k is None) or (len(k) == 0) or ig.isIgnored(k)
             if is_remove:
                 entry={k:v}
-                # print("cleanDictList removing:", entry)
+                # _("cleanDictList removing:", entry)
                 remove_keys.append(k)
         for k in remove_keys:
             del dic_list[k]
@@ -182,24 +234,20 @@ class TranslationFinder:
     def updateDicUsingDic(self, source_dict, target_dict):
         target_change_count = 0
         for k, source_v in source_dict.items():
+
             is_in_target = (k in target_dict)
-            if not is_in_target:
-                continue
+            if is_in_target:
+                target_v = target_dict[k]
+                is_same_v = (source_v == target_v)
+                if is_same_v:
+                    continue
 
-            target_v = target_dict[k]
-            is_v_diff = (source_v != target_v)
-            if not is_v_diff:
-                continue
-
-            from_entry = {k:target_v}
-            to_entry={k:source_v}
-            print("updateDicUsingDic from:", from_entry, "to", to_entry)
-            target_dict.update(to_entry)
+            from_entry={k:source_v}
+            to_entry={k:target_v}
+            target_dict.update(from_entry)
+            _("Replacing:", to_entry)
+            _("With:", from_entry)
             target_change_count += 1
-
-        is_changed = (target_change_count > 0)
-        if is_changed:
-            print("updateDicUsingDic, changed count:", target_change_count)
         return target_change_count
 
     def updatePOUsingDic(self, pofile, dic, is_testing=True):
@@ -231,17 +279,18 @@ class TranslationFinder:
 
             from_entry={k:po_v}
             to_entry = {k:dic_v}
-            print("updatePOUsingDic, from:", from_entry, "to:", to_entry)
+            _("updatePOUsingDic, from:", from_entry, "to:", to_entry)
             m.string = dic_v
             changed = True
 
         if changed and (not is_testing):
             self.dump_po(pofile, po_cat)
 
-    def mergePODict(self):
+    def mergeVIPODict(self):
         po_cat = c.load_po(self.vipo_dic_path)
         po_dic = self.poCatToDic(po_cat)
         self.master_dic_list.update(po_dic)
+
 
 
 
@@ -280,13 +329,17 @@ class TranslationFinder:
     def poCatToDic(self, po_cat):
         po_cat_dic = defaultdict(OrderedDict)
         for index, m in enumerate(po_cat):
+            is_first_entry = (index == 0)
+            if is_first_entry:
+                continue
+
             #context = (m.context if m.context else "")
-            #print("context:{}".format(context))
+            #_("context:{}".format(context))
             #k = (m.id, context)
             k = m.id
-            is_ignore = (ig.isIgnored(k))
-            if is_ignore:
-                continue
+            # is_ignore = (ig.isIgnored(k))
+            # if is_ignore:
+            #     continue
 
             v = m.string
             has_translation = (not m.fuzzy) and (v is not None) and (len(v) > 0)
@@ -296,7 +349,7 @@ class TranslationFinder:
             entry={k:v}
             po_cat_dic.update(entry)
 
-            #print("poCatToDic:", k, v)
+            #_("poCatToDic:", k, v)
             if DIC_INCLUDE_LOWER_CASE_SET:
                 #lower_k = (m.id.lower(), context.lower())
                 lower_k = m.id.lower()
@@ -342,7 +395,7 @@ class TranslationFinder:
                     #local_dic = self.removeJSONDicNoTranslation(local_dic)
                     dic_lower_set=dict((k.lower(),v) for k,v in local_dic.items())
                     local_dic.update(dic_lower_set)
-                    _("after cleaned:{}".format(len(local_dic)))
+                    _("after loaded lowercase:{}".format(len(local_dic)))
 
             else:
                 raise Exception("dic [{}] is EMPTY. Not expected!", file_path)
@@ -362,25 +415,26 @@ class TranslationFinder:
         with io.open(filename, 'wb') as f:
             pofile.write_po(f, catalog, width=4096)
 
-    def isInList(self, msg, find_list, is_lower=False):
+    def isInList(self, msg, is_lower=False):
         trans = None
+
         try:
             is_debug = ("alias" in msg.lower())
             if is_debug:
-                print("DEBUG")
+                _("DEBUG")
 
             #orig_msg = str(msg)
 
             if is_lower:
                 msg = msg.lower()
-            trans = find_list[msg]
+            trans = self.master_dic_list[msg]
             return trans
         except Exception as e:
             # if msg:
-            #     print(msg)
+            #     _(msg)
             # if find_list:
-            #     print("dic len={}".format(len(find_list)))
-            # print("is_lower:", is_lower)
+            #     _("dic len={}".format(len(find_list)))
+            # _("is_lower:", is_lower)
             #raise e
             return None
 
@@ -389,7 +443,7 @@ class TranslationFinder:
 
         ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
         if (len(ex_ga_msg) > 0):
-            print("findTranslation - ex_ga_msg", msg, ex_ga_msg)
+            _("findTranslation - ex_ga_msg", msg, ex_ga_msg)
             msg = ex_ga_msg[0]
 
         is_ignore = ig.isIgnored(msg)
@@ -405,12 +459,12 @@ class TranslationFinder:
             msg = cm.ENDS_PUNCTUAL.sub("", msg)
 
         list_name = "self.master_dic_list"
-        trans = self.isInList(msg, self.master_dic_list)
+        trans = self.isInList(msg)
         if not trans:
             list_name = "self.master_dic_list LOWER"
-            trans = self.isInList(msg, self.master_dic_list, is_lower=True)
+            trans = self.isInList(msg, is_lower=True)
 
-        #print("Using", list_name)
+        #_("Using", list_name)
 
         has_tran = not (trans is None)
         has_len = (has_tran and (len(trans) > 0))
@@ -562,25 +616,22 @@ class TranslationFinder:
         for k, v in dic_list.items():
             is_ignore = (ig.isIgnored(k))
             if is_ignore:
-                print("mark for removal:", k, v)
+                _("mark for removal:", k, v)
                 remove_key.append(k)
 
 
             # remove null from v
             has_value = (v is not None)
             if not has_value:
-                print("mark due to blanking value:", k, v)
+                _("mark due to blanking value:", k, v)
                 blank_key.append(k)
 
         for k in blank_key:
-            print("actually blanking:", k)
+            _("actually blanking:", k)
             entry={k:""}
             dic_list.update(entry)
 
         # run through the keys and remove entry from the dic_list
         for k in remove_key:
-            print("acutally removing:", k)
+            _("acutally removing:", k)
             del dic_list[k]
-
-
-

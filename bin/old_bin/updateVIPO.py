@@ -98,6 +98,9 @@ class UpdateVIPO:
 
 
     def binarySearch(self, sorted_list, po_entry, is_lcase=False):
+        '''
+        :arg
+        '''
         #found_item = Algo.binarySearch(self.block_list, msgid_entry, cmp=self.compareMSGID)
         is_debug = False
         is_debug_on = False
@@ -170,8 +173,8 @@ class UpdateVIPO:
 
         changed = False
         for index, item in enumerate(po_pot_dict.items()):
-            # if index == 0:
-            #     continue
+            if index == 0:
+                continue
 
             k, v = item
             is_ignore = (k in ignore_list)

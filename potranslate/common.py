@@ -9,7 +9,7 @@ from pprint import pprint, pformat
 #import logging
 
 DEBUG=True
-DIC_INCLUDE_LOWER_CASE_SET=True
+DIC_INCLUDE_LOWER_CASE_SET=False
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
@@ -51,7 +51,7 @@ class Common:
     # debug_file = "animation/armatures/posing/editing"
     # debug_file = "index"
     # debug_file = "animation/constraints/relationship/shrinkwrap"
-    # debug_file = "getting_started/about/community"
+    debug_file = "getting_started/about/community"
     # debug_file = "animation/actions"
     # debug_file = "video_editing/sequencer/strips/transitions/wipe" # :ref:`easings <editors-graph-fcurves-settings-easing>`
     # debug_file = "about/contribute/editing"
@@ -155,6 +155,7 @@ class Common:
     AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
     DBL_QUOTE = re.compile(r'[\"]+(?![\s\.\,\`]+)([^\"]+)[\"]+(?<!([\s\.\,]))')
     SNG_QUOTE = re.compile(r'[\']+(?![\`\s\.(s|re|ll|t)]+)([^\']+)[\']+')
+    DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
     MENU_PART = re.compile(r'(?![\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
@@ -412,31 +413,21 @@ class Common:
             raise e
         return u_case
 
-    def isTextuallySimilar(from_txt, to_txt, is_absolute=False):
+    def isTextuallySimilar(from_txt, to_txt):
         from_list = Common.WORD_ONLY_FIND.findall(from_txt.lower())
         to_list = Common.WORD_ONLY_FIND.findall(to_txt.lower())
 
         # convert list to set of words, non-repeating
-        to_set = set(to_list)
-        from_set = set(from_list)
+        to_set = "".join(to_list)
+        from_set = "".join(from_list)
 
-        # perform set intersection to find common set
-        common_set = to_set.intersection(from_set)
-
-        common_len = len(common_set)
-        from_len = len(from_set)
-        # to_len = len(to_set)
-        considering_match = (float(common_len) >= (float(from_len) * 0.5))  # matching more than 50%
-
-        is_considered_the_same = (common_set == from_set) or (common_set == to_set)
-        if not is_absolute:
-            is_considered_the_same = (is_considered_the_same or considering_match)
-
-        if is_considered_the_same:
-            entry={from_set: to_set}
-            print("isTextuallySimilar:", entry)
-
-        return is_considered_the_same
+        is_similar = (to_set in from_set) or (from_set in to_set)
+        if not is_similar:
+            from_set = set(from_set)
+            to_set = set(to_set)
+            intersect_set = from_set.intersection(to_set)
+            is_similar = (intersect_set == from_set) or (intersect_set == to_set)
+        return is_similar
 
 
     def isTextuallySame(from_txt:str, to_txt:str):
@@ -538,5 +529,3 @@ class Common:
             sorted_loc_list = []
             sorted_loc_list = sorted(loc_list, key=lambda x: x[0])
             return sorted_loc_list
-
-
