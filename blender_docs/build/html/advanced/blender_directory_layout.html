@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Blender&#39;s Directory Layout &mdash; Blender Manual</title>
+  <title>Bố Trí Thư Mục của Blender -- Blender&#39;s Directory Layout &mdash; Blender Manual</title>
   
 
   
@@ -133,7 +133,7 @@
 <li class="toctree-l2"><a class="reference internal" href="keymap_editing.html">Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="limits.html">Giới Hạn Làm Việc -- Working Limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="operators.html">Thao Tác/Toán Tử -- Operators</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Blender's Directory Layout</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bố Trí Thư Mục của Blender -- Blender's Directory Layout</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#platform-dependent-paths">Những Đường Dẫn Phụ Thuộc Nền Tảng (Hệ Điều Hành) -- Platform Dependent Paths</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#linux">Linux</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#macos">Hệ Điều Hành Macintosh của Apple -- macOS</a></li>
@@ -198,7 +198,7 @@
         
           <li><a href="index.html">Cao Cấp -- Advanced</a> &raquo;</li>
         
-      <li>Blender's Directory Layout</li>
+      <li>Bố Trí Thư Mục của Blender -- Blender's Directory Layout</li>
     
     
 		<li class="wy-breadcrumbs-aside">
@@ -213,27 +213,22 @@
            <div itemprop="articleBody">
             
   <div class="section" id="blender-s-directory-layout">
-<span id="blender-directory-layout"></span><h1>Blender's Directory Layout<a class="headerlink" href="#blender-s-directory-layout" title="Permalink to this headline">¶</a></h1>
-<p>This page documents the different directories used by Blender
-<em>(which can be helpful for troubleshooting)</em>.</p>
-<p>There are three different directories Blender may use,
-their exact locations are platform dependent.</p>
+<span id="blender-directory-layout"></span><h1>Bố Trí Thư Mục của Blender -- Blender's Directory Layout<a class="headerlink" href="#blender-s-directory-layout" title="Permalink to this headline">¶</a></h1>
+<p>Trang này sẽ viết về các thư mục khác nhau được sử dụng bởi Blender <em>(tức những cái có thể trở nên hữu dụng trong việc xử lý sự cố )</em></p>
+<p>Có ba thư mục khác nhau mà Blender có thể sử dụng. Vị trí chính xác của chúng ở đâu còn tùy thuộc vào hệ điều hành sử dụng nữa.</p>
 <dl class="field-list simple">
 <dt class="field-odd">ĐỊA PHƯƠNG -- LOCAL</dt>
-<dd class="field-odd"><p>Vị trí của cấu hình và dữ liệu sử dụng trong khi phần mềm đang hoạt động (dành cho gói độc lập).</p>
+<dd class="field-odd"><p>Đây là địa phương của cấu hình và dữ liệu sử dụng trong khi phần mềm đang hoạt động (dành cho gói độc lập -- self-contained bundle).</p>
 </dd>
 <dt class="field-even">NGƯỜI DÙNG -- USER</dt>
-<dd class="field-even"><p>Location of configuration files (typically in the user's home directory).</p>
+<dd class="field-even"><p>Đây là địa phương của các tập tin cấu hình (thường nằm trong thư mục chính (thư mục nhà riêng - home directory) của người dùng).</p>
 </dd>
 <dt class="field-odd">HỆ THỐNG -- SYSTEM</dt>
-<dd class="field-odd"><p>Vị trí của dữ liệu sử dụng thời gian chạy (lúc đang hoạt động) để cài đặt trên toàn hệ thống (có thể chỉ đọc mà thôi).</p>
+<dd class="field-odd"><p>Đây là địa phương của dữ liệu sử dụng trong thời gian chạy (lúc đang hoạt động), dành cho sự cài đặt trên toàn hệ thống (có thể chỉ cho phép đọc mà thôi).</p>
 </dd>
 </dl>
-<p>Để cài đặt hệ thống, cả hai thư mục <strong>SYSTEM</strong> và <strong>USER</strong> đều cần thiết.</p>
-<p>For locally extracted Blender distributions, the user configuration and run-time data are
-kept in the same subdirectory, allowing multiple Blender versions to run without conflict,
-ignoring the <strong>USER</strong> and <strong>SYSTEM</strong> files.
-This requires you to create a folder named <code class="docutils literal notranslate"><span class="pre">config</span></code> in the <strong>LOCAL</strong> directory.</p>
+<p>Để cài đặt hệ thống thì cả hai thư mục <strong>HỆ THỐNG -- SYSTEM</strong> và <strong>NGƯỜI DÙNG -- USER</strong> đều cần thiết cho việc này.</p>
+<p>Đối với các bản phân phối Blender được trích xuất cục bộ (giải nén địa phương, như bản zip), cấu hình người dùng và dữ liệu hoạt động (<em>dữ liệu sử dụng trong thời gian chạy</em>) được lưu giữ trong cùng thư mục nhánh, cho phép nhiều phiên bản Blender cùng hoạt động một lúc mà không gây ra xung đột. Chúng sẽ bỏ qua các tập tin <strong>NGƯỜI DÙNG -- USER</strong> và <strong>HỆ THỐNG -- SYSTEM</strong>. Cái này đòi hỏi bạn phải tạo một thư mục, và đặt tin nó với cái tên là <code class="docutils literal notranslate"><span class="pre">cấu</span> <span class="pre">hình</span> <span class="pre">--</span> <span class="pre">config</span></code>, nội bên trong thư mục  <strong>ĐỊA PHƯƠNG -- LOCAL</strong>.</p>
 <div class="section" id="platform-dependent-paths">
 <h2>Những Đường Dẫn Phụ Thuộc Nền Tảng (Hệ Điều Hành) -- Platform Dependent Paths<a class="headerlink" href="#platform-dependent-paths" title="Permalink to this headline">¶</a></h2>
 <p>Dưới đây là các vị trí mặc định cho mỗi hệ thống:</p>
@@ -252,12 +247,11 @@ This requires you to create a folder named <code class="docutils literal notrans
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>The path ./2.83/ is relative to the Blender executable and
-is used for self-contained bundles distributed by official blender.org builds.</p>
+<p>Đường dẫn <a href="#id1"><span class="problematic" id="id2">|THƯ MỤC LẮP ĐẶT -- INSTALLDIR|</span></a> nằm tương đối với bản thực thi Blender (bản nhị phân, thi hành được) và được sử dụng cho các gói độc lập (<em>self-contained bundles</em>), được phân phối qua các phiên bản do blender.org xây dựng.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>Đường dẫn <strong>USER</strong> (<em>NGƯỜI DÙNG</em>) sẽ sử dụng biến môi trường <code class="docutils literal notranslate"><span class="pre">$XDG_CONFIG_HOME</span></code> nếu nó được thiết lập:</p>
+<p>Đường dẫn <strong>NGƯỜI DÙNG -- USER</strong> sẽ sử dụng biến môi trường <code class="docutils literal notranslate"><span class="pre">THƯ_MỤC_NHÀ_CHỨA_CẤU</span> <span class="pre">HÌNH_của_XDG</span> <span class="pre">--</span> <span class="pre">$XDG_CONFIG_HOME</span></code>, nếu nó được đã thiết lập:</p>
 <pre class="literal-block">$XDG_CONFIG_HOME/blender/2.83/</pre>
 </div>
 </div>
@@ -276,8 +270,7 @@ is used for self-contained bundles distributed by official blender.org builds.</
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>macOS stores the Blender binary in <code class="docutils literal notranslate"><span class="pre">./Blender.app/Contents/MacOS/Blender</span></code>.
-The local path to data and config is:</p>
+<p>Hệ Điều Hành macOS của Apple lưu bản Blender nhị phân vào thư mục <code class="docutils literal notranslate"><span class="pre">./Blender.app/Contents/MacOS/Blender</span></code>.  Đường dẫn địa phương tới dữ liệu và cấu hình là:</p>
 <pre class="literal-block">./Blender.app/Contents/Resources/2.83/</pre>
 </div>
 </div>
@@ -298,64 +291,62 @@ The local path to data and config is:</p>
 </div>
 <div class="section" id="path-layout">
 <h2>Bố Trí Đường Dẫn -- Path Layout<a class="headerlink" href="#path-layout" title="Permalink to this headline">¶</a></h2>
-<p>Đây là cách bố trí đường dẫn được sử dụng trong các thư mục được mô tả ở trên.</p>
+<p>Đây là sự bố trí đường dẫn được sử dụng trong các thư mục, như đã được mô tả ở trên.</p>
 <p>Trong đó <code class="docutils literal notranslate"><span class="pre">./config/startup.blend</span></code> có thể nằm tại <code class="docutils literal notranslate"><span class="pre">~/.blender/|BLENDER_VERSION|/config/startup.blend</span></code> chẳng hạn.</p>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">./autosave/</span> <span class="pre">...</span></code></dt><dd><p>Autosave blend-file location. (Windows only, temp directory used for other systems.)</p>
-<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">LOCAL,</span> <span class="pre">USER</span></code>.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./autosave/</span> <span class="pre">...</span></code></dt><dd><p>Địa điểm của tập tin lưu tự động blend. (Chỉ trong Windows thôi, thư mục tạm thời (<em>temp directory</em>) là để sử dụng cho các hệ thống khác)</p>
+<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">ĐỊA</span> <span class="pre">PHƯƠNG</span> <span class="pre">--</span> <span class="pre">LOCAL,</span>&#160; <span class="pre">NGƯỜI</span> <span class="pre">DÙNG</span> <span class="pre">--</span> <span class="pre">USER</span></code>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">./config/</span> <span class="pre">...</span></code></dt><dd><p>Mặc định &amp; thông tin về phiên sử dụng.</p>
-<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">LOCAL,</span> <span class="pre">USER</span></code>.</p>
+<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">ĐỊA</span> <span class="pre">PHƯƠNG</span> <span class="pre">--</span> <span class="pre">LOCAL,</span>&#160; <span class="pre">NGƯỜI</span> <span class="pre">DÙNG</span> <span class="pre">--</span> <span class="pre">USER</span></code>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">./config/startup.blend</span></code></dt><dd><p>Tập tin mặc định để nạp nạp vào bộ nhớ khi khởi động.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">./config/userpref.blend</span></code></dt><dd><p>Các tùy chọn mặc định để nạp vào bộ nhớ khi khởi động.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./config/bookmarks.txt</span></code></dt><dd><p>Các dấu trang cho Trình Duyệt Tập Tin (Những thư mục được đánh dấu, ghi lại).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./config/bookmarks.txt</span></code></dt><dd><p>Các dấu trang cho Trình Duyệt Tập Tin (Những thư mục được đánh dấu, ghi nhớ lại).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./config/recent-files.txt</span></code></dt><dd><p>Trình đơn liệt kê tập tin sử dụng gần đây nhất</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./config/recent-files.txt</span></code></dt><dd><p>Trình đơn liệt kê tập tin sử dụng gần đây nhất.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./datafiles/</span> <span class="pre">...</span></code></dt><dd><p>Những tập tin sử dụng trong khi phần mềm đang chạy</p>
-<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">LOCAL,</span> <span class="pre">USER,</span> <span class="pre">SYSTEM</span></code>.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./datafiles/</span> <span class="pre">...</span></code></dt><dd><p>Những tập tin sử dụng trong khi phần mềm đang chạy.</p>
+<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">ĐỊA</span> <span class="pre">PHƯƠNG</span> <span class="pre">--</span> <span class="pre">LOCAL,</span> <span class="pre">NGƯỜI</span> <span class="pre">DÙNG</span> <span class="pre">--</span> <span class="pre">USER,</span> <span class="pre">HỆ</span> <span class="pre">THỐNG</span> <span class="pre">--</span> <span class="pre">SYSTEM</span></code>.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./datafiles/locale/{language}/</span></code></dt><dd><p>Các tập tin ngôn ngữ tĩnh biên dịch trước dành cho sự phiên dịch Giao Diện Người Dùng</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./datafiles/locale/{language}/</span></code></dt><dd><p>Các tập tin ngôn ngữ tĩnh, đã được biên dịch trước, dành cho việc phiên dịch Giao Diện Người Dùng.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">./scripts/</span> <span class="pre">...</span></code></dt><dd><p>Các tập lệnh Python cho giao diện người dùng và các công cụ.</p>
-<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">LOCAL,</span> <span class="pre">USER,</span> <span class="pre">SYSTEM</span></code>.</p>
+<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">ĐỊA</span> <span class="pre">PHƯƠNG</span> <span class="pre">--</span> <span class="pre">LOCAL,</span> <span class="pre">NGƯỜI</span> <span class="pre">DÙNG</span> <span class="pre">--</span> <span class="pre">USER,</span> <span class="pre">HỆ</span> <span class="pre">THỐNG</span> <span class="pre">--</span> <span class="pre">SYSTEM</span></code>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons/*.py</span></code></dt><dd><p>Python add-ons which may be enabled in the Preferences include import/export format support,
 render engine integration and many handy utilities.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons/modules/*.py</span></code></dt><dd><p>Modules for add-ons to use
-(added to Python's <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons/modules/*.py</span></code></dt><dd><p>Những mô-đun mà các trình bổ sung sử dụng (được cộng thêm vào trong <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> (<em>đường dẫn hệ thống cho các thư viện</em>) của Python).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons_contrib/*.py</span></code></dt><dd><p>Một thư mục cho các trình bổ sung được sử dụng cho các tiện ích bổ sung do cộng đồng quản lý (phải được tạo một cách thủ công).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons_contrib/*.py</span></code></dt><dd><p>Đây là một thư mục dành cho các trình bổ sung và được sử dụng cho các tiện ích do cộng đồng quản lý (phải do mình tạo một cách thủ công).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons_contrib/modules/*.py</span></code></dt><dd><p>Modules for <code class="docutils literal notranslate"><span class="pre">addons_contrib</span></code> to use
-(added to Python's <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons_contrib/modules/*.py</span></code></dt><dd><p>Các mô-đun dành cho <code class="docutils literal notranslate"><span class="pre">addons_contrib</span></code> sử dụng (được cộng thêm vào trong <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> của Python).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./scripts/modules/*.py</span></code></dt><dd><p>Các mô đun Python chứa các API cốt lõi của chúng ta và các hàm tiện ích cho các tập lệnh khác để nhập khẩu (đã được thêm vào `` sys.path`` của Python).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/modules/*.py</span></code></dt><dd><p>Các mô đun Python chứa các API cốt lõi của chúng ta và các hàm tiện ích cho các tập lệnh khác để nhập khẩu (được cộng thêm vào trong <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> của Python).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./scripts/startup/*.py</span></code></dt><dd><p>Các tập lệnh được nhập tự động khi khởi động.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/startup/*.py</span></code></dt><dd><p>Các tập lệnh được nhập tự động khi phần mềm khởi động.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">./scripts/presets/{preset}/*.py</span></code></dt><dd><p>Những sắp đặt sẵn được sử dụng để lưu trữ các cài đặt do người dùng xác định cho vải, các định dạng kết xuất, v.v.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/presets/{preset}/*.py</span></code></dt><dd><p>Những sắp đặt sẵn được sử dụng để lưu trữ các cài đặt do người dùng xác định cho vải, cho các định dạng kết xuất, v.v.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">./scripts/templates_py/*.py</span></code></dt><dd><p>Các tập lệnh mẫu có thể được truy cập từ <span class="menuselection">Trình Biên Soạn Văn Bản (Text Editor) ‣ Khuôn Mẫu (Templates) ‣ Python</span>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">./scripts/templates_osl/*.osl</span></code></dt><dd><p>Ví dụ về các bộ tô bóng OSL, có thể được truy cập từ <span class="menuselection">Trình Biên Soạn Văn Bản (Text Editor) ‣ Khuôn Mẫu (Templates) ‣ Ngôn Ngữ Tô Bóng Mở (Open Shading Language)</span>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">./python/</span> <span class="pre">...</span></code></dt><dd><p>Bản phân phối có kèm Python.</p>
-<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">LOCAL,</span> <span class="pre">SYSTEM</span></code>.</p>
+<p>Thứ tự lùng tìm: <code class="docutils literal notranslate"><span class="pre">ĐỊA</span> <span class="pre">PHƯƠNG</span> <span class="pre">--</span> <span class="pre">LOCAL,</span> <span class="pre">HỆ</span> <span class="pre">THỐNG</span> <span class="pre">--</span> <span class="pre">SYSTEM</span></code>.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="temporary-directory">
 <span id="temp-dir"></span><h2>Thư Mục Tạm Thời -- Temporary Directory<a class="headerlink" href="#temporary-directory" title="Permalink to this headline">¶</a></h2>
-<p>Thư mục tạm thời được sử dụng để lưu trữ các tập tin khác nhau trong thời gian phần mềm đang hoạt động (bao gồm các lớp kết xuất, bộ nhớ đệm  cache vật lý, bộ nhớ sao chép và bản ghi sự cố).</p>
+<p>Thư mục tạm thời được sử dụng để lưu trữ các tập tin khác nhau trong thời gian phần mềm đang hoạt động (bao gồm các lớp kết xuất, bộ nhớ đệm vật lý, bộ đệm để sao chép và dán, và bản ghi chép sự cố sập đổ).</p>
 <p>Thư mục tạm thời được chọn dựa trên mức độ ưu tiên sau:</p>
 <ul class="simple">
-<li><p>Tùy Chọn Người Dùng (xin xem mục <a class="reference internal" href="../editors/preferences/file_paths.html#prefs-file-paths"><span class="std std-ref">File Paths</span></a>).</p></li>
-<li><p>Environment variables (<code class="docutils literal notranslate"><span class="pre">TEMP</span></code> on Windows, <code class="docutils literal notranslate"><span class="pre">TMP</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">TMP_DIR</span></code> on other platforms).</p></li>
+<li><p>Tùy Chọn Người Dùng, tạm thời đổi thành <strong>Cấu Hình</strong>, (xin xem mục <a class="reference internal" href="../editors/preferences/file_paths.html#prefs-file-paths"><span class="std std-ref">File Paths</span></a>).</p></li>
+<li><p>Biến số môi trường (<code class="docutils literal notranslate"><span class="pre">TEMP</span> <span class="pre">--</span> <span class="pre">TẠM</span> <span class="pre">THỜI</span> <span class="pre">(viết</span> <span class="pre">tắt</span> <span class="pre">của</span> <span class="pre">TEMPORARY)</span></code> trên Windows, <code class="docutils literal notranslate"><span class="pre">TMP</span> <span class="pre">--</span> <span class="pre">TẠM</span> <span class="pre">THỜI</span> <span class="pre">(viết</span> <span class="pre">tắt</span> <span class="pre">của</span> <span class="pre">TEMP)</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">TMP_DIR</span> <span class="pre">--</span> <span class="pre">THƯ</span> <span class="pre">MỤC</span> <span class="pre">TẠM</span> <span class="pre">THỜI</span> <span class="pre">(viết</span> <span class="pre">tắt</span> <span class="pre">của</span> <span class="pre">TEMPORARY</span> <span class="pre">DIRECTORY)</span></code> trên các hệ điều hành khác).</p></li>
 <li><p>Thư mục <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code>.</p></li>
 </ul>
 </div>

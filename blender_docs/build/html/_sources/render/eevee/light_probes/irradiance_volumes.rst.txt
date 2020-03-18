@@ -25,7 +25,7 @@ the indirect lighting will be sampled from the least occluded direction and appe
 Distance
    A probe object only influences the lighting of nearby surfaces.
    This influence zone is defined by the Distance parameter and object scaling.
-   The influence distance varies is a bit, depending on the probe type.
+   The influence distance varies a bit, depending on the probe type.
 
    For Irradiance Volumes, the influence inside the volume is always 100%.
    The influence decays only outside of the volume until

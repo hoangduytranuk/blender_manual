@@ -150,7 +150,7 @@ Collections
 -----------
 
 Collections are a way Blender uses to organize scenes.
-Collections contain objects and everything thing else in a scene.
+Collections contain objects and everything else in a scene.
 They can include collections themselves and are fully recursive.
 
 .. seealso::

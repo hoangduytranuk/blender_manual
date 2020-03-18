@@ -1,0 +1,431 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.82 Manual
+# package.
+# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.82 Manual 2.82\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-06 22:21-0500\n"
+"PO-Revision-Date: 2020-02-26 21:13+0000\n"
+"Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\n"
+"Language: vi\n"
+"Language-Team: London, UK <hoangduytran1960@gmail.com>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:4
+msgid "Settings"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:6
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:108
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:121
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:190
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:235
+msgid "Reference"
+msgstr ""
+
+msgid "Panel"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:9
+msgid ":menuselection:`Physics --> Fluid --> Settings`"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:10
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:193
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:238
+msgid "Domain"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:12
+msgid "The domain object contains the entire simulation. Fluid simulations cannot leave the domain, it will either collide with the edge or disappear, depending on the domain's settings."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:15
+msgid "Keep in mind that large domains need higher resolutions and longer bake times. You will want to make it just large enough that the simulation will fit inside it, but not so large that it takes too long to compute the simulation."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:19
+msgid "To create a domain, add a cube and transform it until it encloses the area where you want the simulation to take place. Translation, rotation, and scaling are all allowed. To turn it into a fluid domain, click *Fluid* in the :menuselection:`Properties --> Physics` tab, then select *Domain* as the fluid *Type*."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:26
+msgid "You *can* use other shapes of mesh objects as domain objects, but the fluid simulator will use the shape's :term:`bounding box` as the domain bounds. In other words, the actual shape of the domain will still be rectangular."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:36
+msgid "Domain Type"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:33
+msgid "A fluid domain can control either liquid or gas flows. Liquid domains take all liquid flow objects that intersect with the domain into consideration. Gas domains consider all intersecting *Smoke*, *Fire*, and *Smoke + Fire* flow objects. It is not possible to change the domain type dynamically."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:50
+msgid "Resolution Divisions"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:41
+msgid "The fluid domain is subdivided into many \"cells\" called :term:`voxels <voxel>` which make up \"pixels\" of fluid. This setting controls the number of subdivisions in the domain. Higher numbers of subdivisions are one way of creating higher resolution fluids."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:45
+msgid "Since the resolution is defined in terms of \"subdivisions\", larger domains will need more divisions to get an equivalent resolution to a small domain. For example, a one meter cube with 64 *Resolution Divisions* will need 128 divisions to match a 2 meter cube. The dimension used as the base division is the longest dimension of the objects bounding box. To help visualize the voxel size, the *Resolution Divisions* can be previewed with a small cube shown in the 3D Viewport, to show the size of these divisions."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:57
+msgid "Time Scale"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:55
+msgid "Controls the speed of the simulation. Low values result in a \"slow motion\" simulation, while higher values can be used to advance the simulation faster (good for generating fluids to be used in still renders)."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:70
+msgid "CFL Number"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:62
+msgid "Determines the maximum velocity per grid cell and is measured in grid cells per time step. Fluid is only allowed to move up to this velocity in one time step. If this threshold is exceeded the solver will subdivide the simulation step."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:66
+msgid "In general, greater CFL (Courant–Friedrichs–Lewy) numbers will minimize the number of simulation steps and the computation time. Yet it will yield less physically accurate behavior for fast fluid flows. Smaller CFL numbers result in more simulation steps per frame, longer simulation times but more accurate behavior at high velocities (e.g. fast fluid flow colliding with obstacle)."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:77
+msgid "Use Adaptive Time Steps"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:75
+msgid "Lets the solver automatically decide when to perform multiple simulation steps per frame. It takes into account the maximum and minimum number of time steps, the current *Frame Rate*, and the *Time Scale*."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:83
+msgid "Timesteps Maximum"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:82
+msgid "Maximum number of allowed time steps per frame. If needed, the solver will divide a simulation step up to this number of sub-steps."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:89
+msgid "Timesteps Minimum"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:88
+msgid "Minimum number of allowed time steps per frame. The solver will always perform at least this number of simulation steps per frame."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:96
+msgid "Gravity"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:94
+msgid "By default the fluid solver will use the global scene gravity. This behavior can be disabled in the scene settings. Disabling the global gravity will enable the fluid gravity options."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:106
+msgid "Border Collisions"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:111
+msgid ":menuselection:`Physics --> Fluid --> Settings --> Border Collisions`"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:112
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:125
+msgid "Domain (Gas)"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:114
+msgid "Controls which sides of the domain will allow fluid \"pass through\" the domain, making it disappear without influencing the rest of the simulation, and which sides will deflect fluids."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:119
+msgid "Smoke"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:124
+msgid ":menuselection:`Physics --> Fluid --> Settings --> Smoke`"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:133
+msgid "Buoyancy Density"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:130
+msgid "Buoyant force based on smoke density."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:132
+msgid "Values above 0 will cause the smoke to rise (simulating smoke which is lighter than ambient air)."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:133
+msgid "Values below 0 will cause smoke to sink (simulating smoke which is heavier than ambient air)."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:150
+msgid "Buoyancy Heat"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:138
+msgid "Controls how much smoke is affected by temperature. The effect this setting has on smoke depends on the per flow object :ref:`Initial Temperature <bpy.types.FluidFlowSettings.temperature>`:"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:142
+msgid "Values above 0 will result in the smoke rising when the flow object *Initial Temperature* is set to a positive value, and smoke sinking when the flow object *Initial Temperature* is set to a negative value."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:145
+msgid "Values below 0 will result in the opposite of positive values, i.e. smoke emitted from flow objects with a positive *Initial Temperature* will sink, and smoke from flow objects with a negative *Initial Temperature* will rise."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:149
+msgid "Note that smoke from multiple flow objects with different temperatures will mix and warm up or cool down until an equilibrium is reached."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:167
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:212
+msgid "Vorticity"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:155
+msgid "Controls the amount of turbulence in the smoke. Higher values will make lots of small swirls, while lower values make smoother shapes."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:158
+msgid "Comparison of different amounts of vorticity."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:162
+msgid "Domain with a vorticity of 0.0."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:166
+msgid "Domain with a vorticity of 0.2."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:172
+msgid "Dissolve"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:174
+msgid "Allow smoke to dissipate over time."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:179
+msgid "Time"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:179
+msgid "Speed of smoke's dissipation in frames."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:185
+msgid "Slow"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:184
+msgid "Dissolve smoke in a logarithmic fashion. Dissolves quickly at first, but lingers longer."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:188
+msgid "Fire"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:194
+msgid ":menuselection:`Physics --> Fluid --> Settings --> Fire`"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:200
+msgid "Reaction Speed"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:199
+msgid "How fast fuel burns. Larger values result in smaller flames (fuel burns before it can go very far), smaller values result in larger flames (fuel has time to flow farther before being fully consumed)."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:206
+msgid "Flame Smoke"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:205
+msgid "Amount of extra smoke created automatically to simulate burnt fuel. This smoke is best visible when using a \"Fire + Smoke\" :ref:`Flow Object <bpy.types.FluidFlowSettings.flow_type>`."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:211
+msgid "Vorticity for flames in addition to the global fluid :ref:`Vorticity <bpy.types.FluidDomainSettings.vorticity>`."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:217
+msgid "Temperature Maximum"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:217
+msgid "Maximum temperature of flames. Larger values result in faster rising flames."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:222
+msgid "Minimum"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:222
+msgid "Minimum temperature of flames. Larger values result in faster rising flames."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:228
+msgid "Flame Color"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:227
+msgid "Color of flame created by burnt fuel."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:233
+msgid "Liquid"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:239
+msgid ":menuselection:`Physics --> Fluid --> Settings --> Liquid`"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:241
+msgid "Liquid settings control the behavior of the particles which the simulation consists of. Enabling the liquid checkbox will automatically create a particle system for the simulation. This particle system visualizes the flow of the simulation. Visualizing the liquid particles is optional. The fluid simulation will make use of all the fields without an attached particle system too."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:248
+msgid "Disabling the liquid checkbox will delete the attached particle system and its settings."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:253
+msgid "Simulation Method"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:253
+msgid "Determines the particle simulation method. Currently, FLIP is the only option to choose from."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:262
+msgid "FLIP Ratio"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:258
+msgid "How much FLIP velocity to use when updating liquid particle velocities. A value of 1.0 will result in a completely FLIP based simulation. Completely FLIP based simulations produce more chaotic splashes and are preferable when simulating greater quantities of liquid. When using smaller values the behavior will be less turbulent and splashes are more subtle. This is optimal when simulating scenes where the liquid is supposed to be on a small scale."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:274
+msgid "Particle Radius"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:267
+msgid "The radius of one liquid particle in grid cells units. This value describes how much area is covered by a particle and thus determines how much area around it can be considered as liquid. A greater radius will let particles cover more area. This will result in more grids cell being tagged as liquid instead of just being empty."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:272
+msgid "Whenever the simulation appears to leak or gain volume in an undesired, non physically accurate way it is a good idea to adjust this value. That is, when liquid seems to disappear this value needs to be increased. The inverse applies when too much liquid is being produced."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:285
+msgid "Particles Maximum"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:279
+msgid "The maximum number of liquid particles per grid cell. During a simulation the number of liquid particles in a cell can fluctuate: Particles can flow into other cells or can get deleted if they move outside the narrow band. Resampling will add new particles considering this maximum."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:283
+msgid "This value sets the upper threshold of particles per cell. It is also a good way to estimate how many particles there can be in your simulation (one needs to take grid resolution into account too). This can be useful before baking and when planning a simulation."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:291
+msgid "Particles Minimum"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:290
+msgid "The minimum number of liquid particles per grid cell. Similarly to the maximum particle threshold, this value ensures that there are at least a certain amount of particles per cell."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:297
+msgid "Particle Sampling"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:296
+msgid "Factor that is used when sampling particles. A higher value will sample more particles. Note that particle resampling occurs at every simulation step."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:309
+msgid "Narrow Band Width"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:302
+msgid "Controls the width in grid cell units of the narrow band that liquid particles are allowed to flow in. A high value will result in a thicker band and can result in an inflow region completely filled with particles. Unless the goal of the simulation is to visualize the liquid particles it is recommended to not increase the band width significantly as more particles slow down the simulation."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:307
+msgid "In some situations increasing this value can help create volume when the simulation appears to leak. In all other cases it is best to keep the narrow band as thin as possible since the liquid surface contains most details and simulating particles inside the liquid is not an optimal use of computing resources."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:313
+msgid "The narrow band is an implementation of `Narrow Band FLIP for Liquid Simulations <https://www.in.tum.de/cg/research/publications/2016/narrow-band-flip-for-liquid-simulations/>`__."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:325
+msgid "Particle Randomness"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:319
+msgid "New particles are sampled with some randomness attached to their position. This field controls this randomness. Higher values will sample the liquid particles more randomly in inflow regions. With a value of 0.0 all new particles will be sampled uniformly inside their corresponding grid cells."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:324
+msgid "When trying to create a laminar inflow (with little randomness) or more turbulent flows (with greater randomness) this value can be useful."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:332
+msgid "Fractional Obstacles"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:330
+msgid "Enables finer resolution in fluid / obstacle regions (second order obstacles). This option reduces the \"stepping effect\" that results when an obstacles lies inclined inside the domain. It also makes liquid flow more smoothly over an obstacle."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:338
+msgid "Obstacle-Fluid Threshold"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:337
+msgid "Value to control the smoothness of the fractional obstacle option. Smaller value reduce the \"stepping effect\" but may result particles sticking to the obstacle."
+msgstr ""
+
+#: <generated>:1
+msgid "Bake Data, Free Data"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:344
+msgid "This option is only available when using the :ref:`Modular <bpy.types.FluidDomainSettings.cache_type>` cache type. *Bake Data* simulates and stores the base of the fluid simulation on drive. Both gas and liquid simulations can add refinements on top of this (e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both)."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:349
+msgid "The progress will be displayed in the status bar. Pressing :kbd:`Esc` will pause the simulation."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/physics/fluid/type/domain/settings.rst:351
+msgid "Once the simulation has been baked, the cache can be deleted by pressing *Free Data*. It is possible to pause or resume a *Bake All* process."
+msgstr ""
+
+#~ msgid "Since the resolution is defined in terms of \"subdivisions\", larger domains will need more divisions to get an equivalent resolution to a small domain. To help with this, the *Resolution Divisions* can be previewed with a small cube shown in the 3D Viewport, to show the size of these divisions."
+#~ msgstr ""
+

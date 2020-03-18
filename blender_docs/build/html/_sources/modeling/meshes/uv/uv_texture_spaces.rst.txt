@@ -32,7 +32,6 @@ Add ``+``
 
 .. _bpy.types.*texspace:
 .. _bpy.types.Mesh.texture_mesh:
-.. _bpy.types.Curve.use_uv_as_generated:
 .. _bpy.ops.curve.match_texture_space:
 .. _properties-texture-space:
 
@@ -61,8 +60,6 @@ Auto Texture Space
 Texture Mesh
    Use another mesh for texture indices, the vertex of the two objects must be perfectly aligned.
    Otherwise the UV map will be distorted. Note that, this is only for mesh objects.
-Use UV for Mapping
-   Use UV values as generated texture coordinates. Note that, this is only for curve objects.
 Match Texture Space
    Modifies the *Location* and *Size* to match the objects bounding box.
    This disables Auto Texture Space. Note that, this is only for curve objects.
