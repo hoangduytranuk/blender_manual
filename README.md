@@ -511,12 +511,35 @@ Trong đó:
     ```bash
         change_placeholders.sh
     ```
-
     trong thư mục nhánh
 
     ```bash
         blender_docs/toos_maintenance
     ```
+    
+	- Mình khuyên các bạn sử dụng bản tập lệnh Python này thì hơn:
+		[change_placeholders.py](https://github.com/hoangduytranuk/blender_manual/blob/master/bin/change_placeholders.py)
+		+ Đưa nó vào thư mục '$HOME/bin' của nhà mình.
+		
+		+ Dùng lệnh:
+		
+			```
+				chmod u+x $HOME/bin/change_placeholders.py			```
+			
+		để biến nó thành một tập lệnh 'khả thi hành' trong dòng lệnh.
+		
+		+ Chạy lệnh:
+		
+			```
+				change_placeholders.py --help
+			```
+			
+		để xem các biến số mình cần phải điền và các tham số (trong tiếng Anh)
+		
+		+ Nhớ dùng một trình biên soạn văn bản nào đó mà mình hay sử dụng, như 'kwrite' hoặc 'kate' và biên soạn nội dung của tập lệnh này, đổi các giá trị với tên và e-mail của tôi, cùng vùng `TIME_ZONE`, xem thông tin về các vùng thời gian ở đây [danh sách các vùng thời gian của pytz -- list of pytz time zones](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568), và đổi tên, cùng chi tiết của đội phiên dịch của mình trong biến số `YOUR_TRANSLATION_TEAM`.
+			
+			 
+		
 
 + Sao lấy một bản vào thư mục **bin** địa phương của bạn và thay tất cả các giá trị đề cập trong tập tin với các chi tiết cụ thể của mình, rồi sau mỗi lần thay đổi một tập tin phiên dịch, bạn nên thực hiện các lệnh sau:
 
@@ -609,7 +632,7 @@ Trong khi làm việc, việc tái thi hành lệnh đã làm trước đây s�
                     os.system("make clean")
                     os.system("find locale/vi/LC_MESSAGES -type f -name \"*.mo\" -exec rm -f {} {} \;")
 
-                os.system("make -d --trace -w -B -e SPHINXOPTS=\"-D language='vi'\" 2>&1")
+                os.system("sphinx-build -b html -D language='vi' ./manual \"build/html\"")
 
         parser = ArgumentParser()
         parser.add_argument("-c", "--clean", dest="clean_action", help="Xóa sạch các thư mục trước khi thi hành MAKE.", action='store_true')
@@ -1053,6 +1076,8 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
     ```
 
     Nhớ là sau khi chạy lệnh **refresh_unikey.sh** ở dòng lệnh thì phải bấm `Ctrl+Spacebar` hai lần đề nó chuyển sang tiếng Anh, rồi tiếng Việt. Cách làm này sẽ giảm thiểu việc chúng ta phải vào trình đơn và dùng lệnh **import**.
+
++ Hệ Điều Hành macOS (Catalina chẳng hạn) thực hiện chức năng 'Text Replacement' tốt hơn rất nhiều. Vào trong `System References` và bấm vào nút `Keyboard`, chọn mục 'Text' và điền các từ viết tắt vào đó thì hơn. Cái hay của macOS là nó sẽ dùng kết nối mạng cập nhật các thay đổi này, và những gì bạn điền ở đây, trên điện thoại cầm tay, bạn cũng có cùng một bản. Rất tiện lợi nếu bạn sử dụng `Notes` để sao chép và dán các dòng mình muốn hoặc đã phiên dịch, tiện lợi cho việc làm việc trong những lúc đi trên đường, có thời gian rỗi rãi.
 
 
 ### Sử dụng microphone và chức năng dịch giọng nói đánh thành chữ của Google
