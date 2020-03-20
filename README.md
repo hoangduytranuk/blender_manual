@@ -1077,7 +1077,7 @@ Cái này đã nói đến ở [trên](#google-machine-translation) rồi, vào 
 
     Nhớ là sau khi chạy lệnh **refresh_unikey.sh** ở dòng lệnh thì phải bấm `Ctrl+Spacebar` hai lần đề nó chuyển sang tiếng Anh, rồi tiếng Việt. Cách làm này sẽ giảm thiểu việc chúng ta phải vào trình đơn và dùng lệnh **import**.
 
-+ Hệ Điều Hành macOS (Catalina chẳng hạn) thực hiện chức năng 'Text Replacement' tốt hơn rất nhiều. Vào trong `System References` và bấm vào nút `Keyboard`, chọn mục 'Text' và điền các từ viết tắt vào đó thì hơn. Cái hay của macOS là nó sẽ dùng kết nối mạng cập nhật các thay đổi này, và những gì bạn điền ở đây, trên điện thoại cầm tay, bạn cũng có cùng một bản. Rất tiện lợi nếu bạn sử dụng `Notes` để sao chép và dán các dòng mình muốn hoặc đã phiên dịch, tiện lợi cho việc làm việc trong những lúc đi trên đường, có thời gian rỗi rãi.
++ Hệ Điều Hành macOS (Catalina chẳng hạn) thực hiện chức năng 'Text Replacement' tốt hơn rất nhiều. Vào trong `System References` và bấm vào nút `Keyboard`, chọn mục 'Text' và điền các từ viết tắt vào đó thì hơn. Cái hay của macOS là nó sẽ dùng kết nối mạng cập nhật các thay đổi này, và những gì bạn điền ở đây, trên điện thoại cầm tay, bạn cũng có cùng một bản. Rất tiện lợi nếu bạn sử dụng `Notes` để sao chép và dán các dòng mình muốn hoặc đã phiên dịch, tiện lợi cho việc làm việc trong những lúc đi trên đường, có thời gian rỗi rãi. Bạn còn có thể sử dụng bản mà tôi hiện sử dụng để tránh phải điền các từ vào bằng cách lấy tập tin [Text Substitutions.plist](https://github.com/hoangduytranuk/blender_manual/blob/master/Text%20Substitutions.plist) xuống máy, kéo nó và thả vào hộp `Text`.
 
 
 ### Sử dụng microphone và chức năng dịch giọng nói đánh thành chữ của Google
@@ -1252,7 +1252,9 @@ Chúng ta phải cài đặt 'Chrome' bản chính, như hướng dẫn [ở đ�
     + [2.79 - vi.po](https://github.com/hoangduytranuk/blender_manual/blob/master/gui/2.79/locale/vi/LC_MESSAGES/blender.mo)
     + [2.80 - vi.po](https://github.com/hoangduytranuk/blender_manual/blob/master/gui/2.80/locale/vi/LC_MESSAGES/blender.mo)
 
-    Sau đó là các dòng đầu đề đã dịch, song để biết được dòng nào là dòng tiêu đề, đề mục, tức những dòng được in đậm ở trang HTML, thì chúng ta phải dựa vào khả năng phân tích nội dung bản RST của phần mềm Sphinx. Quan sát cho thấy các dòng được bao quanh bởi các đấu đánh:
+	+ **Xin xem các tập lệnh tôi sử dụng trong thư mục [potranslate](https://github.com/hoangduytranuk/blender_manual/tree/master/potranslate). Cách làm thay đổi rất nhiều so với cách diễn giải dưới đây**.
+	
+	+ Sau đó là các dòng đầu đề đã dịch, song để biết được dòng nào là dòng tiêu đề, đề mục, tức những dòng được in đậm ở trang HTML, thì chúng ta phải dựa vào khả năng phân tích nội dung bản RST của phần mềm Sphinx. Quan sát cho thấy các dòng được bao quanh bởi các đấu đánh:
     + title
     + field_list
     + term
