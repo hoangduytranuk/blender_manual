@@ -1,4 +1,7 @@
+[toc]
+
 # Đề án phiên dịch bản hướng dẫn sử dụng Blender (_Blender Reference Manual_)
+
 
 ## Lấy bản phiên dịch giao diện *blender.mo* cho:
 - Phiên bản [2.79](gui/2.79/locale/vi/LC_MESSAGES/blender.mo)
