@@ -1,5 +1,3 @@
-[toc]
-
 # Đề án phiên dịch bản hướng dẫn sử dụng Blender (_Blender Reference Manual_)
 
 
