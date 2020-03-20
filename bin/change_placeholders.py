@@ -269,7 +269,7 @@ class ChangePlaceHolder:
         has_svn = os.path.isdir(svn_dir)
 
         git_cmd = "git status | grep \'modified\' | awk \'{ print $2 }\' | grep \".po$\""
-        svn_cmd = "svn status | grep \"^M\" | awk \'{ print $2 }\' | grep \".po$\""
+        svn_cmd = "svn status | grep \'^[MA]\' | awk \'{ print $2 }\' | grep \".po$\""
         # normal_cmd = "find {} -name \"*.po\" -mtime -1 -print".format(directory)  # files modified last 24 hours
         # normal_cmd = "find {} -name \"*.po\" -mtime -100 -print".format(directory)  # files modified last 1 days
 
