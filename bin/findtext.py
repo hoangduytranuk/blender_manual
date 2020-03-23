@@ -18,18 +18,38 @@ from babel.messages import pofile
 from enum import Enum
 import chardet
 
+CURRENT_FILE_NAME = None
+FILE_NAME_SHOWED = False
+INVERT_SEP='•'
 DEBUG = True
+
+def setfilename(file_name):
+    global CURRENT_FILE_NAME
+    CURRENT_FILE_NAME = file_name
+
+def showfilename():
+    global FILE_NAME_SHOWED
+    if not FILE_NAME_SHOWED:
+        print(CURRENT_FILE_NAME)
+        print("="*80)
+        FILE_NAME_SHOWED=True
+
+def resetfilenameshowed():
+    global FILE_NAME_SHOWED
+    FILE_NAME_SHOWED=False
+
+
 def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
+    showfilename()
     if DEBUG:
         pprint(object, stream=stream, indent=indent, width=width, depth=depth, *args, compact=compact)
         print('-' * 30)
 
 def _(*args, **kwargs):
+    showfilename()
     if DEBUG:
         print(args, kwargs)
         print('-' * 30)
-
-INVERT_SEP='•••'
 
 class LetterCase(Enum):
     NO_CHANGE="No Change",
@@ -333,13 +353,13 @@ class FindFilesHasPattern:
             if (self.find_rst):
                 rst_file_list = self.getFileList(rst_dir, ".rst")
                 _("rst_file_list")
-                pp(rst_file_list)
+                cm.pp(rst_file_list)
                 search_file_list.extend(rst_file_list)
 
             if (self.find_py):
                 py_file_list = self.getFileList(py_dir, ".py")
                 _("py_file_list")
-                pp(py_file_list)
+                cm.pp(py_file_list)
                 search_file_list.extend(py_file_list)
 
             if (self.find_src):
@@ -373,11 +393,13 @@ class FindFilesHasPattern:
 
         # _("SEARCHING:")
         for f in search_file_list:
-            _("processing:", f, "for", self.find_pattern)
+            #_("processing:", f, "for", self.find_pattern)
+            setfilename(f)
             if is_replace:
                 self.replaceInPOFile(f)
             else:
                 self.findPatternInFile(f)
+            resetfilenameshowed()
 
     def listingRange(self, data_list, found_index):
         has_from_line = (self.from_line >= 0)
@@ -442,7 +464,9 @@ class FindFilesHasPattern:
 
         has_result = (len(self.found_lines_dic) > 0)
         if has_result:
+            showfilename()
             if self.show_line_number:
+
                 pp(self.found_lines_dic)
             else:
                 for k, v in self.found_lines_dic.items():
@@ -510,9 +534,10 @@ class FindFilesHasPattern:
             if has_changed:
                 m.string = new_translation
                 changed = True
-                _("Replaced:")
-                _(f'old msgstr \"{old_translation}\"')
-                _(f'new msgstr \"{new_translation}\"')
+                cm.showfilename()
+                print("Replaced:")
+                print(f'old msgstr \"{old_translation}\"')
+                print(f'new msgstr \"{new_translation}\"')
 
         is_writing_changes = (changed and not self.testing_only)
         if is_writing_changes:
@@ -587,5 +612,4 @@ x.setVars(
     args.debugging
     )
 
-DEBUG=(True if args.debugging else False)
 x.run()
