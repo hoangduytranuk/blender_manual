@@ -227,12 +227,12 @@
 <img alt="../../../_images/compositing_node-types_CompositorNodeComposite.png" src="../../../_images/compositing_node-types_CompositorNodeComposite.png" />
 <p class="caption"><span class="caption-text">Nút Tổng Hợp.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>Nút Tổng Hợp là nơi kết quả đầu ra từ Trình Tổng Hợp (<em>Compositor</em>) được kết nối với trình kết xuất (<em>renderer</em>). Nút này được cập nhật sau mỗi lần kết xuất, nhưng cũng phản ánh các thay đổi trong cây nút (với điều kiện ít nhất một nút đầu vào hoàn tất đã được kết nối).</p>
+<p>Nút Tổng Hợp là nơi kết quả đầu ra từ Trình Tổng Hợp (<em>Compositor</em>) được kết nối với trình kết xuất (<em>renderer</em>). Nút này được cập nhật sau mỗi lần kết xuất, song nó cũng đồng thời phản ảnh các thay đổi trong cây nút nữa (với điều kiện ít nhất một nút đầu vào đã hoàn tất được kết nối vào).</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <p>Việc kết nối một nút nào đó với nút Tổng Hợp (<em>Composite</em>) sẽ cung cấp kết quả của cây trước nút đó vào trình Tổng Hợp (<em>Compositor</em>).</p>
 <dl class="simple">
-<dt>Hình Ảnh -- Image</dt><dd><p>Hình ảnh RGB. Mặc định là màu đen, do đó, nếu nút này không được kết nối vào đâu cả thì nó sẽ cho một hình ảnh trống (<em>blank image</em>).</p>
+<dt>Hình Ảnh -- Image</dt><dd><p>Hình ảnh RGB. Mặc định là màu đen, cho nên, nếu nút này không được kết nối vào đâu cả thì nó sẽ cho một hình ảnh trống (<em>blank image</em>).</p>
 </dd>
 <dt>Alpha</dt><dd><p>Kênh Alpha.</p>
 </dd>
@@ -243,7 +243,7 @@
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Dùng Alpha -- Use Alpha</dt><dd><p>Kênh alpha sử dụng, màu sắc được xử lý như alpha <em>nhân trước</em> (<em>premultiplied</em>). Nếu bị tắt thì kênh alpha sẽ được đặt thành giá trị 1 và màu sẽ được xử lý như alpha <em>thẳng</em> (<em>straight</em>), tức là kênh màu không thay đổi.</p>
+<dt>Dùng Alpha -- Use Alpha</dt><dd><p>Kênh alpha, màu sắc đã sử dụng sẽ được xử lý như alpha <em>nhân trước -- premultiplied</em>. Nếu bị tắt đi thì kênh alpha sẽ được đặt thành giá trị 1, và các màu sắc sẽ được xử lý như alpha <em>thẳng -- straight</em>, tức là các kênh màu sẽ không thay đổi.</p>
 </dd>
 </dl>
 </div>
@@ -252,7 +252,7 @@
 <p>Nút này không có ổ cắm đầu ra.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>Nếu nhiều nút Tổng Hợp (<em>Composite</em>) được thêm vào thì chỉ nút hiện đang hoạt động (được chọn cuối cùng, nêu bật với tiêu đề hơi tối hơn một chút) là được sử dụng mà thôi.</p>
+<p>Nếu nhiều nút Tổng Hợp (<em>Composite</em>), được thêm vào cùng một lúc, thì chỉ nút hiện đang hoạt động (được chọn cuối cùng, nêu bật với tiêu đề hơi tối hơn một chút) là được sử dụng mà thôi.</p>
 </div>
 </div>
 </div>

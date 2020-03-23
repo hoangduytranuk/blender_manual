@@ -129,7 +129,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../output/index.html">Nút Đầu Ra -- Output Nodes</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Nút Màu Sắc -- Color Nodes</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="alpha_over.html">Nút Alpha Chồng Lên -- Alpha Over Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="bright_contrast.html">Nút Độ Sáng/Tương Phản -- Bright/Contrast Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bright_contrast.html">Nút Độ Sáng/Độ Tương Phản -- Bright/Contrast Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="color_balance.html">Nút Cân Bằng Màu -- Color Balance Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="color_correction.html">Nút Chỉnh Sửa Màu -- Color Correction Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gamma.html">Nút Gamma -- Gamma Node</a></li>
@@ -234,7 +234,7 @@
 <img alt="../../../_images/compositing_node-types_CompositorNodeMixRGB.png" src="../../../_images/compositing_node-types_CompositorNodeMixRGB.png" />
 <p class="caption"><span class="caption-text">Nút Hòa Trộn.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p><em>Nút Hòa Trộn</em> hòa nhập các hình ảnh bằng cách hoạt động trên các điểm ảnh riêng biệt và tương đồng của hai hình ảnh đầu vào. Được gọi là &quot;Hòa Trộn RGB -- MixRGB&quot; trong ngữ cảnh của bộ tô bóng và chất liệu.</p>
+<p><em>Nút Hòa Trộn -- Mix Node</em> hòa nhập các hình ảnh bằng cách hoạt động trên các điểm ảnh riêng biệt và tương đồng của hai hình ảnh đầu vào. Nó được gọi là &quot;Hòa Trộn RGB -- MixRGB&quot; trong ngữ cảnh của bộ tô bóng và chất liệu.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
@@ -249,13 +249,10 @@
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <dl>
-<dt>Hòa Trộn -- Mix</dt><dd><p>The Blend modes can be selected in the select menu.
-See <a class="reference internal" href="../../../glossary/index.html#term-color-blend-modes"><span class="xref std std-term">Color Blend Modes</span></a> for details on each blending mode.</p>
-<p>Add, Subtract, Multiply, Screen, Divide, Difference,
-Darken, Lighten, Overlay, Color Dodge, Color Burn,
-Hue, Saturation, Value, Color, Soft Light, Linear Light</p>
+<dt>Hòa Trộn -- Mix</dt><dd><p>Chúng ta có thể chọn các chế độ hòa trộn (<em>Blend modes</em>) trong trình đơn chọn lựa. Xin xem thêm về <a class="reference internal" href="../../../glossary/index.html#term-color-blend-modes"><span class="xref std std-term">Color Blend Modes</span></a> để biết thêm chi tiết về từng chế độ hoà trộn một.</p>
+<p>Cộng (<em>Add</em>), Trừ (<em>Subtract</em>), Nhân (<em>Multiply</em>), Màn Hình (<em>Screen</em>), Chia (<em>Divide</em>), Hiệu (<em>Difference</em>), Làm Tối (<em>Darken</em>), Làm Sáng (<em>Lighten</em>), Phủ Chồng (<em>Overlay</em>), Né Tránh Màu (<em>Color Dodge</em>), Đốt Màu (<em>Color Burn</em>), Sắc Thái (<em>Hue</em>), Độ Bão Hòa (<em>Saturation</em>), Giá Trị (<em>Value</em>), Màu Sắc (<em>Color</em>), Ánh Sáng Mềm Mại (<em>Soft Light</em>), Ánh Sáng Tuyến Tính (<em>Linear Light</em>)</p>
 </dd>
-<dt>Dùng Alpha -- Use Alpha</dt><dd><p>Nếu được kích hoạt, bằng cách bấm vào biểu tượng <em>Màu và Alpha</em>, kênh Alpha của hình ảnh thứ hai sẽ được sử dụng để hòa trộn. Khi bị giải hoạt (tắt), bản mặc định, nền biểu tượng sẽ có màu xám nhạt. Kênh alpha của hình ảnh nền (<em>base image</em>) sẽ luôn luôn được sử dụng.</p>
+<dt>Dùng Alpha -- Use Alpha</dt><dd><p>Nếu được kích hoạt, bằng cách bấm vào biểu tượng <em>Màu và Alpha -- Color and Alpha</em>, kênh Alpha của hình ảnh thứ hai sẽ được sử dụng để hòa trộn. Khi bị giải hoạt (tắt đi), chế độ mặc định, thì nền biểu tượng sẽ có màu xám nhạt. Kênh alpha của hình ảnh nền (<em>base image</em>) sẽ luôn luôn được sử dụng.</p>
 </dd>
 <dt>Hạn Định -- Clamp</dt><dd><p>Giới hạn giá trị màu cao nhất không vượt quá 1.</p>
 </dd>
@@ -274,15 +271,15 @@ Hue, Saturation, Value, Color, Soft Light, Linear Light</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_mix_blend-modes.png"><img alt="../../../_images/compositing_types_color_mix_blend-modes.png" src="../../../_images/compositing_types_color_mix_blend-modes.png" style="width: 700px;" /></a>
 </div>
-<p>Một số giải thích về các phương pháp trộn ở trên có thể giúp bạn sử dụng nút Hòa Trộn một cách hiệu quả:</p>
+<p>Một số giải thích về các phương pháp trộn ở trên có thể giúp bạn sử dụng nút Hòa Trộn (<em>Mix node</em>) một cách hiệu quả:</p>
 <dl class="simple">
-<dt>Cộng Thêm -- Add</dt><dd><p>Việc cộng thêm màu xanh lam vào xanh lam sẽ giữ cho màu là xanh lam, nhưng việc thêm màu xanh lam vào màu đỏ sẽ tạo ra màu tím. Màu trắng vốn dĩ đã có màu xanh lam ở mức cao nhất, nên nó vẫn trắng. Sử dụng điều này để dịch chuyển màu của hình ảnh. Thêm sắc lam vào sẽ làm cho hình ảnh cảm thấy lạnh hơn.</p>
+<dt>Cộng Thêm -- Add</dt><dd><p>Việc cộng thêm màu xanh lam vào xanh lam sẽ giữ cho màu vẫn là xanh lam, nhưng việc thêm màu xanh lam vào màu đỏ sẽ tạo ra màu tím. Màu trắng vốn dĩ đã có màu xanh lam ở mức cao nhất, nên nó vẫn trắng. Chúng ta sử dụng điều này để dịch chuyển màu của hình ảnh. Cho thêm sắc lam vào sẽ làm cho hình ảnh cảm thấy lạnh hơn đi.</p>
 </dd>
-<dt>Trừ Khấu -- Subtract</dt><dd><p>Lấy màu lam ra khỏi màu trắng sẽ để lại màu đỏ và xanh lục, tức khi kết hợp lại trở nên màu vàng. Lấy xanh lam ra khỏi màu tím sẽ để lại màu đỏ. Sử dụng điều này để giảm độ bão hòa của một hình ảnh. Lấy màu vàng đi để làm cho một hình ảnh xanh hơn và cảm giác buồn hơn.</p>
+<dt>Trừ Khấu -- Subtract</dt><dd><p>Lấy màu Lam ra khỏi màu trắng sẽ để lại màu Đỏ và xanh Lục, tức khi kết hợp lại thì trở nên màu Vàng. Lấy xanh Lam ra khỏi màu Tím sẽ để lại màu Đỏ. Chúng ta có thể sử dụng điều này để giảm độ bão hòa của một hình ảnh đi. Lấy màu vàng đi để làm cho một hình ảnh xanh hơn và cảm giác buồn chán hơn.</p>
 </dd>
-<dt>Nhân -- Multiply</dt><dd><p>Màu đen (0,00) nhân với bất cứ cái gì cũng sẽ thành màu đen mà thôi. Bất cứ màu nhân với trắng (1.00) sẽ cho chính màu ấy. Sử dụng tính năng này để loại bỏ những bẩn thỉu (<em>garbage</em>) hoặc để tô màu một hình ảnh đen trắng.</p>
+<dt>Nhân -- Multiply</dt><dd><p>Màu đen (0,00) nhân với bất cứ cái gì cũng sẽ thành màu đen mà thôi. Bất cứ màu nào nhân với trắng (1.00) cũng sẽ cho chính màu ấy. Sử dụng tính năng này, chúng ta có thể loại bỏ những bẩn thỉu (<em>garbage</em>) đi, hoặc để tô màu một hình ảnh đen trắng.</p>
 </dd>
-<dt>Sắc Thái -- Hue</dt><dd><p>Hiển thị cho bạn thấy lượng một màu có trong hình ảnh, bỏ qua tất cả các màu trừ những gì đã được chọn: tạo một ảnh đơn sắc (kiểu 'Đen &amp; Sắc Thái').</p>
+<dt>Sắc Thái -- Hue</dt><dd><p>Hiển thị cho bạn thấy lượng màu có trong hình ảnh, bỏ qua tất cả các màu, ngoại trừ những gì đã được chọn: tạo một hình ảnh đơn sắc (kiểu 'Đen &amp; Sắc Thái -- Black &amp; Hue').</p>
 </dd>
 <dt>Hòa Trộn -- Mix</dt><dd><p>Kết hợp hai hình ảnh lại với nhau, lấy trung bình của cả hai cái.</p>
 </dd>
