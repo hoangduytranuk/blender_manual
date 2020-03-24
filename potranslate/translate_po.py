@@ -48,6 +48,8 @@ YOUR_ID = "{} <{}>".format(YOUR_NAME, YOUR_EMAIL)
 YOUR_TRANSLATION_TEAM = "London, UK <{}>".format(YOUR_EMAIL)
 YOUR_LANGUAGE_CODE = "vi"
 TIME_ZONE='Europe/London'
+
+RUNNING_APP_ENVIRON_KEY='EXEC_TRANSLATE_PO'
 trans_finder = tf()
 
 def doctree_resolved(app, doctree, docname):
@@ -58,6 +60,10 @@ def doctree_resolved(app, doctree, docname):
         loc_dt=local_time.localize(datetime.datetime.now())
         formatted_dt=loc_dt.strftime(fmt)
         return formatted_dt
+
+    # is_running = runAppOrNot()
+    # if not is_running:
+    #     return
 
     debug_file = cm.debug_file
     if debug_file:
@@ -104,6 +110,7 @@ def doctree_resolved(app, doctree, docname):
     # #loading local po file to get translation if any
     po_dic = trans_finder.loadPOAsDic(po_path)
     current_po_cat : Catalog = c.load_po(po_path)
+
     rst_output_location = os.path.join(blender_docs_path, build_dir)
     output_path = os.path.join(rst_output_location, po_file_path)
 
@@ -129,10 +136,9 @@ def doctree_resolved(app, doctree, docname):
     _("filename: {}".format(output_path))
 
     for node, msg in extract_messages(doctree):
-        # msg = unescape(msg).strip()
         msg = msg.strip()
-        #_("=" * 80)
-        #_("msgid:[{}]".format(msg))
+        _("=" * 80)
+        _("msgid:[{}]".format(msg))
 
         #clean up po file
 
@@ -197,29 +203,53 @@ def doctree_resolved(app, doctree, docname):
         # #ref_list.dumpRefList(trans_finder.master_dic_backup_list)
         # return
 
+        msg = "LimbNode' FBX node, a regular joint between two bones..."
+        tran = None
         orig_msg = str(msg)
 
         is_ignore = ig.isIgnored(msg)
         if is_ignore:
-            tran = None
+            continue
         else:
             # print("Not ignore:", msg)
             is_added = False
             has_translation = (msg in po_dic)
             if has_translation:
                 tran = po_dic[msg]
+                print("Got translation from PO file")
             else:
                 has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
                 if has_translation:
                     tran = trans_finder.master_dic_list[msg]
+                    print("Got translation from MASTER_DIC_LIST")
+
             has_translation = (tran is not None)
-            if has_translation:
-                ref_list = RefList(keep_orig=is_keep_original)
-                ref_list.correctRefs(msg, tran)
+            if not has_translation:
+                ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
+                ref_list.parseMessage()
+                ref_list.translateRefList()
+                tran = ref_list.getTranslation()
+                print("Got translation from REF_LIST")
+                # ref_list.correctRefs(msg, tran)
                 # ref_list.transferTranslatedRefs(msg, tran)
                 # print("tran old:", {msg:tran})
                 # print("tran new:", {msg:ref_list.getTranslation()})
 
+            change_trans_list={
+                "Sắc Thái":"Sắc Màu",
+                "Sắc Thể":"Sắc Màu",
+                "Sắc thái":"Sắc màu",
+                "Sắc thể":"Sắc màu",
+                "sắc thái":"sắc màu",
+                "sắc thể":"sắc màu",
+            }
+
+            has_translation = (tran is not None)
+            if has_translation:
+                for k, v in change_trans_list.items():
+                    if k in tran:
+                        tran = tran.replace(k, v)
+                        print(f'Translation CHANGED:", k, "=>", v, "in tran\n[{tran}]')
         # is_ignore = ig.isIgnored(msg)
         # if is_ignore:
         #     tran = None
@@ -264,11 +294,11 @@ def doctree_resolved(app, doctree, docname):
         else:
             new_po_cat.add(msg, string="")
 
-        # print("msgid \"", msg, "\"")
-        # if tran is not None:
-        #     print("msgstr \"", tran, "\"")
-        # else:
-        #     print("msgstr \"\"")
+        print("msgid \"", msg, "\"")
+        if tran is not None:
+            print("msgstr \"", tran, "\"")
+        else:
+            print("msgstr \"\"")
 
     # print("Output to the path:", new_po_cat, output_path)
     # c.dump_po(output_path, new_po_cat)
@@ -276,7 +306,15 @@ def doctree_resolved(app, doctree, docname):
 
 
 
-
+def runAppOrNot():
+    is_running = (RUNNING_APP_ENVIRON_KEY in os.environ)
+    if not is_running:
+        return False
+    value = os.environ[RUNNING_APP_ENVIRON_KEY]
+    is_running = (value == "YES")
+    if not is_running:
+        return False
+    return True
 
 def builder_inited(app):
     #trans_finder.loadVIPOtoDic(trans_finder.master_dic_list, trans_finder.master_dic_file, is_testing=True)

@@ -72,7 +72,7 @@ class RefType(Enum):
 # :sup:
 # :term:
 
-class RefItem(TranslationFinder):
+class RefItem:
 
     def __init__(self, start=-1, end=-1, txt=None, ref_type=RefType.TEXT, keep_orig=False):
         self.start:int = start
@@ -243,7 +243,7 @@ class RefItem(TranslationFinder):
 
         return entry_list
 
-class RefRecord (TranslationFinder):
+class RefRecord:
     def __init__(self, origin:RefItem = None, reflist: list = [], pat=None):
         self.origin: RefItem = origin
         self.reflist: list = reflist
@@ -380,13 +380,14 @@ class RefRecord (TranslationFinder):
     #     for s, e, txt in self.getRefList():
 
 
-class RefList(defaultdict, TranslationFinder):
-    def __init__(self, msg=None, pat=None, keep_orig=False):
+class RefList(defaultdict):
+    def __init__(self, msg=None, pat=None, keep_orig=False, tf=None):
         self.msg = msg
         self.translation = None
         self.translation_state = TranslationState.FUZZY
         self.pattern = pat
         self.keep_original = keep_orig
+        self.tf = tf
 
     def __repr__(self):
         result = ""
@@ -412,7 +413,6 @@ class RefList(defaultdict, TranslationFinder):
             _('set translation:', self.msg, "=>", tran)
             self.translation = tran
             self.translation_state = state
-
 
     def getType(self, xtype):
         for x in RefType:
@@ -625,7 +625,7 @@ class RefList(defaultdict, TranslationFinder):
     def findPattern(self, pattern_list, start_loc=0):
         for p, ref_type, keep_orig in pattern_list:
             one_list : RefList = self.findOnePattern(self.msg, p, ref_type, keep_orig, start_loc=start_loc)
-            is_empty = (len(one_list) == 0)
+            is_empty = (one_list is None) or (len(one_list) == 0)
             if is_empty:
                 continue
 
@@ -672,7 +672,7 @@ class RefList(defaultdict, TranslationFinder):
             s, e, orig = origin
             o_ss = s
             o_ee = o_ss + len(orig)
-            orig_ref_item = RefItem(o_ss, o_ee, orig, tran_finder=self.tf)
+            orig_ref_item = RefItem(o_ss, o_ee, orig)
 
             v = RefRecord(origin=orig_ref_item, reflist=None)
             entry={o_ss:v}
@@ -839,7 +839,7 @@ class RefList(defaultdict, TranslationFinder):
             self.update(sorted_list)
             _("Sorted")
         else:
-            tran, is_fuzzy = self.translate(self.msg)
+            tran, is_fuzzy = self.tf.translate(self.msg)
             has_tran = (tran is not None)
             if has_tran and self.keep_original:
                 tran = "{} -- {}".format(tran, self.msg)
@@ -940,13 +940,13 @@ class RefList(defaultdict, TranslationFinder):
         is_abbr = (ref_type == RefType.ABBR)
         is_menu = (ref_type == RefType.MENUSELECTION)
         if is_kbd:
-            tran = self.translateKeyboard(ref_txt)
+            tran = self.tf.translateKeyboard(ref_txt)
         elif is_abbr:
-            tran = self.translateAbbrev(ref_txt)
+            tran = self.tf.translateAbbrev(ref_txt)
         elif is_menu:
-            tran = self.translateMenuSelection(ref_txt)
+            tran = self.tf.translateMenuSelection(ref_txt)
         else:
-            tran = self.translateRefWithLink(ref_txt)
+            tran = self.tf.translateRefWithLink(ref_txt)
         has_tran = (tran is not None)
         if has_tran:
             ref_item.setTranlation(tran, state=TranslationState.ACCEPTABLE)
@@ -994,7 +994,7 @@ class RefList(defaultdict, TranslationFinder):
 
         has_ref = (len(self) > 0)
         if not has_ref:
-            trans, is_fuzzy = self.translate(self.msg)
+            trans, is_fuzzy = self.tf.translate(self.msg)
             valid = (trans is not None)
             if valid:
                 if self.keep_original:

@@ -78,6 +78,7 @@ class Ignore:
     #PATH = r'(([a-zA-Z][:]?)?) ([\\\/]+)(([\w-_]+)?)*)'
     PATH = r'([a-zA-Z][:]?)?'
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
+    runtime_ignore_list = None
     ignore_list = [
         #r'^()$',
         #r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
@@ -352,21 +353,30 @@ class Ignore:
         return False
 
     NUMBERS = re.compile(r"^(([\d]+)([\,\.]?[\s]?[\d]+)*)+$")
+
     def isIgnoredWord(text_line : str):
         if (text_line is None) or (len(text_line) == 0):
             return True
 
-        pattern = None
-        try:
+        is_create_runtime_ignore_list = (Ignore.runtime_ignore_list == None)
+        if is_create_runtime_ignore_list:
+            Ignore.runtime_ignore_list = []
             for pattern in Ignore.ignore_list:
                 if len(pattern) == 0:
                     continue
 
                 m = re.compile(pattern, flags=re.I)
+                Ignore.runtime_ignore_list.append(m)
+
+
+        pattern = None
+        try:
+            for m in Ignore.runtime_ignore_list:
                 is_found = (m.search(text_line) is not None)
                 if is_found:
-                    _("[{}] matched [{}]".format(text_line, pattern))
                     return True
+            else:
+                return False
         except Exception as e:
             _(e)
             _("isIgnoredWord ERROR:", text_line, " pattern:", pattern)
@@ -389,6 +399,7 @@ class Ignore:
         #r'^$',
         r'^(([\w]+|[~\.]|[\.]{2})[:]?)?([/]([^\]+)?)+)$',
     ]
+    
     def isFilePath(text_line : str):
         if (text_line is None) or (len(text_line) == 0):
             return False

@@ -14,6 +14,56 @@ from babel.messages.catalog import Message
 from babel.messages import pofile
 from common import DEBUG, DIC_INCLUDE_LOWER_CASE_SET
 
+class CaseInsensitiveDict(dict):
+
+    class Key(str):
+        def __init__(self, key):
+            str.__init__(key)
+
+        def __hash__(self):
+            k = self.lower()
+            hash_value = hash(k)
+            _(f'key:{k}, hash_value:{hash_value}')
+            return hash_value
+
+        def __eq__(self, other):
+            local = self.lower()
+            extern = self.lower()
+            cond = (local == extern)
+            _(f'local:{local} extern:{extern}')
+            return cond
+
+
+    def __init__(self, data=None):
+        super(CaseInsensitiveDict, self).__init__()
+        if data is None:
+            data = {}
+        for key, val in data.items():
+            self[key] = val
+
+    def __contains__(self, key):
+        key = self.Key(key)
+        is_there = super(CaseInsensitiveDict, self).__contains__(key)
+        _(f'__contains__:{key}, is_there:{is_there}')
+        return is_there
+
+    def __setitem__(self, key, value):
+        key = self.Key(key)
+        super(CaseInsensitiveDict, self).__setitem__(key, value)
+
+    def __getitem__(self, key):
+        key = self.Key(key)
+        return super(CaseInsensitiveDict, self).__getitem__(key)
+
+
+
+    # def __setitem__(self, key, value):
+    #     key = CaseInsensitiveKey(key)
+    #     super(CaseInsensitiveDict, self).__setitem__(key, value)
+    # def __getitem__(self, key):
+    #     key = CaseInsensitiveKey(key)
+    #     return super(CaseInsensitiveDict, self).__getitem__(key)
+
 class TranslationFinder:
 
     KEYBOARD_TRANS_DIC = {
@@ -77,6 +127,10 @@ class TranslationFinder:
         self.master_dic_backup_list = defaultdict(OrderedDict)
 
         self.master_dic_list = self.loadJSONDic(file_name=self.master_dic_file)
+        test_again = ('make' in self.master_dic_list)
+        if test_again:
+            test_again_trans = (self.master_dic_list['make'])
+            _(f'test_again_trans: make = {test_again_trans}')
 
         self.vipo_dic_path = "/Users/hoangduytran/blender_manual/gui/2.80/po/vi.po"
         self.vipo_dic_list = None # not used
@@ -92,12 +146,12 @@ class TranslationFinder:
 
         self.dic_list = defaultdict(int) # for general purposes
 
-        self.loadVIPOtoDic(self.master_dic_list, self.master_dic_file, is_testing=False)
+        # self.loadVIPOtoDic(self.master_dic_list, self.master_dic_file, is_testing=False)
         # self.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
 
-        #self.cleanDictList(self.master_dic_list)
-        #self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
-        exit(0)
+        # self.cleanDictList(self.master_dic_list)
+        # self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
+        # exit(0)
 
 
     def updateMasterDic(self, is_testing=True):
@@ -291,9 +345,6 @@ class TranslationFinder:
         po_dic = self.poCatToDic(po_cat)
         self.master_dic_list.update(po_dic)
 
-
-
-
     def addEntryToDic(self, k, v, dict_list, keep_orig=False):
         valid = (k is not None) and \
                 (len(k) > 0) and \
@@ -370,8 +421,8 @@ class TranslationFinder:
             file_path = (self.master_dic_file if (file_name is None) else file_name)
             dic = (self.master_dic_list if (dict_list is None) else dict_list)
 
-            if DIC_INCLUDE_LOWER_CASE_SET:
-                dic = cm.removeLowerCaseDic(dic)
+            # if DIC_INCLUDE_LOWER_CASE_SET:
+            #     dic = cm.removeLowerCaseDic(dic)
 
             with open(file_path, 'w', newline='\n', encoding='utf8') as out_file:
                 json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
@@ -384,56 +435,67 @@ class TranslationFinder:
     def loadJSONDic(self, file_name=None):
         local_dic = None
         try:
-            file_path = (self.json_dic_file if (file_name == None) else file_name)
+            file_path = (self.master_dic_file if (file_name is None) else file_name)
+            dic = None
             with open(file_path) as in_file:
-                local_dic = json.load(in_file)
+                dic = json.load(in_file)
 
-            if local_dic:
-                _("Loaded:{}".format(len(local_dic)))
+            lower_dic = {}
+            if dic:
+                for k, v in dic.items():
+                    entry = {k.lower():v}
+                    _(entry)
+                    lower_dic.update(entry)
+            dic = lower_dic
+            test_find = ('make' in dic)
+            _(f"test_find: make is {test_find}")
+            if test_find:
+                tran = dic['make']
+                _(f"test_find: make = {tran}")
+            # insensitive_dic = CaseInsensitiveDict(dic)
+            # ln = len(insensitive_dic)
+            # _(f'loaded:{ln}')
+            #pp(insensitive_dic)
 
-                if DIC_INCLUDE_LOWER_CASE_SET:
-                    #local_dic = self.removeJSONDicNoTranslation(local_dic)
-                    dic_lower_set=dict((k.lower(),v) for k,v in local_dic.items())
-                    local_dic.update(dic_lower_set)
-                    _("after loaded lowercase:{}".format(len(local_dic)))
-
-            else:
-                raise Exception("dic [{}] is EMPTY. Not expected!", file_path)
+            # if dic:
+            #     _("Loaded:{}".format(len(dic)))
+            #
+            #     if DIC_INCLUDE_LOWER_CASE_SET:
+            #         #local_dic = self.removeJSONDicNoTranslation(local_dic)
+            #         dic_lower_set=dict((k.lower(),v) for k,v in dic.items())
+            #         dic.update(dic_lower_set)
+            #         _("after loaded lowercase:{}".format(len(dic)))
+            # else:
+            #     raise Exception("dic [{}] is EMPTY. Not expected!", file_path)
         except Exception as e:
             _("Exception readDictionary Length of read dictionary:")
             _(e)
             raise e
 
-        return local_dic
+        return dic
+        #return insensitive_dic
 
-    def dump_po(self, filename, catalog):
-        dirname = os.path.dirname(filename)
-        if not os.path.exists(dirname):
-            os.makedirs(dirname)
-
-        # Because babel automatically encode strings, file should be open as binary mode.
-        with io.open(filename, 'wb') as f:
-            pofile.write_po(f, catalog, width=4096)
-
+    # def dump_po(self, filename, catalog):
+    #     dirname = os.path.dirname(filename)
+    #     if not os.path.exists(dirname):
+    #         os.makedirs(dirname)
+    #
+    #     # Because babel automatically encode strings, file should be open as binary mode.
+    #     with io.open(filename, 'wb') as f:
+    #         pofile.write_po(f, catalog, width=4096)
+    #
     def isInList(self, msg, is_lower=False):
         trans = None
 
         try:
-            is_debug = ("alias" in msg.lower())
-            if is_debug:
-                _("DEBUG")
-
-            #orig_msg = str(msg)
-
             if is_lower:
                 msg = msg.lower()
             trans = self.master_dic_list[msg]
+            _(f'isInList:[{msg}], {is_lower}, [{trans}]')
             return trans
         except Exception as e:
             # if msg:
             #     _(msg)
-            # if find_list:
-            #     _("dic len={}".format(len(find_list)))
             # _("is_lower:", is_lower)
             #raise e
             return None
@@ -441,6 +503,7 @@ class TranslationFinder:
     def findTranslation(self, msg):
         trans = None
 
+        _("findTranslation:", msg)
         ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
         if (len(ex_ga_msg) > 0):
             _("findTranslation - ex_ga_msg", msg, ex_ga_msg)
@@ -449,6 +512,10 @@ class TranslationFinder:
         is_ignore = ig.isIgnored(msg)
         if (is_ignore):
             return None
+
+        is_debug = ('...' in msg.lower())
+        if is_debug:
+            _('DEBUG')
 
         orig_msg = str(msg)
         begin_with_punctuations = (cm.BEGIN_PUNCTUAL.search(msg) is not None)
@@ -459,12 +526,12 @@ class TranslationFinder:
             msg = cm.ENDS_PUNCTUAL.sub("", msg)
 
         list_name = "self.master_dic_list"
-        trans = self.isInList(msg)
-        if not trans:
-            list_name = "self.master_dic_list LOWER"
-            trans = self.isInList(msg, is_lower=True)
+        trans = self.isInList(msg, is_lower=True)
+        # if not trans:
+        #     list_name = "self.master_dic_list LOWER"
+        #     trans = self.isInList(msg, is_lower=True)
 
-        #_("Using", list_name)
+        _("Using", list_name)
 
         has_tran = not (trans is None)
         has_len = (has_tran and (len(trans) > 0))
@@ -478,6 +545,10 @@ class TranslationFinder:
                 trans = orig_msg.replace(msg, trans)
         else:
             trans = None
+        if trans is not None:
+            _("found:", msg, trans)
+        else:
+            _("NOT found:", msg)
         return trans
 
     def findTranslationByFragment(self, msg):

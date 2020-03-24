@@ -9,7 +9,7 @@ from pprint import pprint, pformat
 #import logging
 
 DEBUG=True
-DIC_INCLUDE_LOWER_CASE_SET=False
+DIC_INCLUDE_LOWER_CASE_SET=True
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
@@ -43,6 +43,7 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
+    debug_file = "video_editing/sequencer/strips/effects/subtract"
     # debug_file = "video_editing/introduction"
     # debug_file = "about/contribute/index"
     # debug_file="interface/window_system/topbar"
@@ -51,7 +52,7 @@ class Common:
     # debug_file = "animation/armatures/posing/editing"
     # debug_file = "index"
     # debug_file = "animation/constraints/relationship/shrinkwrap"
-    debug_file = "getting_started/about/community"
+    # debug_file = "getting_started/about/community"
     # debug_file = "animation/actions"
     # debug_file = "video_editing/sequencer/strips/transitions/wipe" # :ref:`easings <editors-graph-fcurves-settings-easing>`
     # debug_file = "about/contribute/editing"
