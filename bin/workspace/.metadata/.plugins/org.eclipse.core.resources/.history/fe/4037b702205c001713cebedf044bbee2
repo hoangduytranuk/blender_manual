@@ -1,0 +1,157 @@
+#!/usr/bin/python
+# coding: utf-8
+
+import difflib
+import sys
+import re
+
+'''
+Created on 31 Jan 2017
+
+@author: Hoang Duy Tran <hoangduytran1960@googlemail.com>
+'''
+from pluginregister import RegisteredImplementation
+
+class MergingTwoFiles(RegisteredImplementation):
+    
+    en_line_pattern = None
+        
+    def distanceToNextMatch(self, orig_list, orig_current_index, new_list, new_current_index, is_target_original):
+        source_list = (new_list if (is_target_original) else orig_list)
+        target_list = (orig_list if (is_target_original) else new_list)
+        source_count = len(source_list)
+        
+        source_current_index = (new_current_index if (is_target_original) else orig_current_index)
+        target_current_index = (orig_current_index if (is_target_original) else new_current_index)
+        
+        distance = 0
+        
+        target_current_text_line = target_list[target_current_index]
+        print("target_current_text_line: {}".format(target_current_text_line))        
+        for i in xrange(source_current_index, source_count-1):
+            source_current_text_line = source_list[i]            
+            is_same = (source_current_text_line == target_current_text_line)
+            distance += (0 if (is_same) else 1)
+            print("source_current_text_line:{}".format(source_current_text_line))                        
+            if (is_same):
+                print("is_same found @ line:{}".format(i))
+                break
+            
+        return distance
+    
+    
+    def balanceList(self, src_orig_list, orig_current_line_index, target_orig_list, new_current_line_index):
+        #fixing the imbalance, find out which list need to insert or remove
+        missing_count = self.distanceToNextMatch(src_orig_list, orig_current_line_index, target_orig_list, new_current_line_index, True)
+        is_del_new = (missing_count > 0)
+        if (not is_del_new):
+            missing_count = self.distanceToNextMatch(src_orig_list, orig_current_line_index, target_orig_list, new_current_line_index, False)
+        print("missing_count:{}\nis_del_new:{}".format(missing_count, is_del_new))
+        
+        next_line_index = new_current_line_index + 1
+        if (is_del_new): #delete lines from new
+            remove_new_line_index = new_current_line_index
+            for i in xrange(0, missing_count):                
+                text_line_to_be_removed = src_orig_list[remove_new_line_index]
+                print('remove_new_line_index: {} text_line_to_be_removed: {}'.format(remove_new_line_index, text_line_to_be_removed))
+                target_orig_list.pop(remove_new_line_index)                
+        else:#insert original lines into new list 
+            next_line_index = new_current_line_index + missing_count + 1
+            #insert from original to new_list 
+            for i in xrange(0, missing_count):
+                insert_new_line_index = new_current_line_index + i
+                text_line_to_be_insert = src_orig_list[orig_current_line_index + i]
+                print("insert_new_line_index:", insert_new_line_index, " text_line_to_be_insert:", text_line_to_be_insert)
+                target_orig_list.insert(insert_new_line_index, text_line_to_be_insert)
+        
+        #debugging printing last 5 lines to max missing_count lines
+        spacing=5
+        numb_lines_to_print = (spacing * 2 if (is_del_new) else missing_count+2)
+        self.printListSection(target_orig_list, new_current_line_index-spacing, numb_lines_to_print)
+        return next_line_index
+        
+        
+    
+    def merging_msgstr_lines(self, target_index_list, target_orig_list, src_index_list, src_orig_list):
+                                
+        change_count = 0
+        target_index = src_index = 0
+        target_count = len(target_index_list)        
+        src_count = len(src_index_list)
+        loop_count = max(target_count, src_count)
+        
+        for count in xrange(0, loop_count-1):
+            valid = (target_index < target_count and src_index < src_count)
+            if not valid:
+                break
+            target_line_index = target_index_list[target_index]
+            src_line_index = src_index_list[src_index]
+            target_text_line = target_orig_list[target_line_index]
+            src_text_line = src_orig_list[src_line_index]
+
+            #print("original:")
+            #print(src_text_line)
+            #print("new:")
+            #print(target_text_line)
+            
+            is_similar = (target_text_line.lower() == src_text_line.lower())
+            is_identical = (target_text_line == src_text_line)
+            if (is_similar and not is_identical):
+                self.reportBoth("is_similar and not is_identical", src_line_index, src_text_line, target_line_index, target_text_line)
+                target_orig_list[target_line_index] = src_text_line
+            elif not is_similar:
+                self.reportBoth("not similar", src_line_index, src_text_line, target_line_index, target_text_line)
+                msg_old = "original:\n" + str(src_line_index+1) + ":" + src_text_line 
+                msg_new = "new     :\n" + str(target_line_index+1) + ":" + target_text_line
+                #new_start_index = self.balanceList(src_orig_list, src_line_index, target_orig_list, target_line_index)
+                #target_index_list = self.findWord(self.en_line_pattern, target_orig_list)                
+                #self.merging_msgstr_lines(target_index_list, target_orig_list, src_index_list, src_orig_list, new_start_index)            
+                raise Exception(msg_old + msg_new)    
+            else: #both are the same
+                msgstr_pattern = "^msgstr.*$"
+                matcher = re.compile(msgstr_pattern, re.IGNORECASE)
+
+                src_msgstr_text_line = src_orig_list[src_line_index+1]
+                target_msgstr_text_line = target_orig_list[target_line_index+1]
+                                
+                is_valid_src = matcher.match(src_msgstr_text_line)
+                is_valid_target = matcher.match(target_msgstr_text_line)
+                is_valid = (is_valid_src and is_valid_target)
+                if (is_valid) :
+                    self.reportBoth("replacing", src_line_index+1, src_msgstr_text_line, target_line_index+1, target_msgstr_text_line)
+                    target_orig_list[target_line_index+1] = src_msgstr_text_line 
+                    print ('replaced: {}, {}'.format(target_line_index+1, target_orig_list[target_line_index+1]))
+                else :
+                    self.reportBoth("not similar", src_line_index+1, src_msgstr_text_line, target_line_index+1, target_msgstr_text_line)
+                    #msg_old = "source:" + str(src_line_index+1) + ":" + src_msgstr_text_line 
+                    #msg_new = "target:" + str(target_line_index+1) + ":" + target_msgstr_text_line                    
+                    #raise Exception(msg_old + msg_new)
+                                     
+            target_index += 1
+            src_index += 1
+                    
+     
+         
+    def run(self):
+        src_path = self.po_file_path
+        #input_en_new_path = self.my_home + "/blender-git/blender/release/datafiles/locale/po/vi.po"
+        #input_en_orig_path = self.my_home + "/Downloads/orig/blender-2.78a/release/datafiles/locale/po/vi.po"
+        #target_path = self.my_home + "/blender-git/blender/release/datafiles/locale/po/vi.po"
+        target_path = self.my_home + "/blender-2.78a/release/datafiles/locale/po/vi/vi.po"
+        
+        src_list = self.load(src_path)
+        target_list = self.load(target_path)
+
+        self.en_line_pattern = "^msgstr.*$"
+        index_src_list = self.findWord(self.en_line_pattern, src_list)
+        index_target_list = self.findWord(self.en_line_pattern, target_list)
+        
+        #self.merging_msgstr_lines(index_target_list, target_list, index_src_list, src_list)
+        #output_path = self.my_home+"/myvi.po"
+        #self.save(output_path, target_list)
+        
+    
+    
+if __name__ == '__main__':
+    x = MergingTwoFiles()
+    x.run()

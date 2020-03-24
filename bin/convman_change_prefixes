@@ -1,0 +1,89 @@
+#!/bin/bash -x
+#BLENDER_STUFF=$HOME/blender-stuff
+DOC_DIR=$BLENDER_HOME/blender_docs/locale/vi/LC_MESSAGES
+#DOC_DIR=$HOME/test/blender_docs/locale/vi/LC_MESSAGES
+TESTING_FILE=$HOME/testing.txt
+NAME="Hoang Duy Tran"
+EMAIL="<hoangduytran1960@googlemail.com>"
+TEAM="London, UK"
+YEAR="2018"
+TIME_NOW=`$HOME/bin/timenow`
+FIND_LANGUAGE="Language: vi"
+FROM_LANGUAGE_VI="MIME-Version"
+TO_LANGUAGE_VI="Language: vi\\\n\"\n\"MIME-Version"
+
+function changeFile(){
+    INPUT_FILE=$1
+    FROM_PATTERN=$2
+    TO_PATTERN=$3
+    sed -i "s/$FROM_PATTERN/$TO_PATTERN/g" $INPUT_FILE
+}
+function changeFirstAuthor(){
+    from="FIRST AUTHOR <EMAIL@ADDRESS>"
+    to="$NAME $EMAIL"
+    file=$1
+    changeFile "${file}" "${from}" "${to}"
+}
+
+
+function changeRevisionTime(){
+    from="YEAR-MO-DA HO:MI+ZONE"
+    to="$TIME_NOW"
+    file=$1
+    changeFile "${file}" "${from}" "${to}"
+}
+
+function changeLastTranslator(){
+    from="FULL NAME <EMAIL@ADDRESS>"
+    to="$NAME $EMAIL"
+    file=$1
+    changeFile "${file}" "${from}" "${to}"
+}
+
+function changeLanguageTeam(){
+    from="LANGUAGE <LL@li.org>"
+    to="$TEAM $EMAIL"
+    file=$1
+    changeFile "${file}" "${from}" "${to}"
+}
+
+function insertVietnameseLanguageIndicator(){
+    from="$FROM_LANGUAGE_VI"
+    to="$TO_LANGUAGE_VI"
+    file=$1
+    changeFile "${file}" "${from}" "${to}"
+}
+
+function changePrefixesViDocumentation(){
+    cd $DOC_DIR
+    file_list=$(find . -type f -name "*.po")
+    for file in $file_list; do
+        echo "Set Vietnamese Translation: $file";
+        changeFirstAuthor $file
+        changeRevisionTime $file
+        changeLastTranslator $file
+        changeLanguageTeam $file
+        insertVietnameseLanguageIndicator $file
+#        exit
+    done
+}
+
+function insertTranslationLanguageVietnamese(){
+    echo "insert Translation Language Vietnamese";
+    cd $DOC_DIR
+    file_list=$(find . -type f -name "*.po")
+    for file in $file_list; do
+        isInFile=$(cat $file | grep -c "${FIND_LANGUAGE}")
+        if [ $isInFile -eq 0 ]; then
+            #string not in file
+            echo "need replace $file"
+            insertVietnameseLanguageIndicator $file
+        else
+            #string IS IN the file at least once
+            echo "ignore this file $file"
+        fi
+#        exit
+    done
+}
+changePrefixesViDocumentation
+#insertTranslationLanguageVietnamese

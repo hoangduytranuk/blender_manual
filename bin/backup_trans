@@ -1,0 +1,38 @@
+##!/bin/bash -x
+#!/bin/bash
+BLENDER_STUFF=$HOME/blender-stuff
+BACKUP_DRIVE=$HOME/tmp/BACKUP/backup_blender_stuff/interface
+
+BACKUP_DIR_1=$BACKUP_DRIVE/001
+BACKUP_DIR_2=$BACKUP_DRIVE/002
+BACKUP_DIR_3=$BACKUP_DRIVE/003
+
+function createBackupDirsIfNeeded(){
+#    rm -fr $BACKUP_DIR
+    [ ! -d $BACKUP_DIR_1 ] && mkdir -p $BACKUP_DIR_1
+    [ ! -d $BACKUP_DIR_2 ] && mkdir -p $BACKUP_DIR_2
+    [ ! -d $BACKUP_DIR_3 ] && mkdir -p $BACKUP_DIR_3
+}
+
+function isEmptyDir(){
+    dir=$1
+    [ -d $dir ] && [ "$( ls -A $dir)" ] && echo $NOT_EMPTY || echo $EMPTY;
+}
+
+function archiveChangesFromSourceToTarget(){
+    from_dir=$1
+    to_dir=$2
+    rsync -aqH $from_dir/ $to_dir/
+}
+
+function backupGenerations(){
+    echo "Backup Generations";
+    archiving_dir=$1
+    archiveChangesFromSourceToTarget $BACKUP_DIR_2 $BACKUP_DIR_3
+    archiveChangesFromSourceToTarget $BACKUP_DIR_1 $BACKUP_DIR_2
+    archiveChangesFromSourceToTarget $BLENDER_HOME $BACKUP_DIR_1
+}
+
+
+createBackupDirsIfNeeded
+backupGenerations
