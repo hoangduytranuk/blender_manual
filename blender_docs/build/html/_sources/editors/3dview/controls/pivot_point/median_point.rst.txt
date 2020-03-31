@@ -40,8 +40,8 @@ In Edit Mode,
 the median point is determined via the part of the selection that has the most elements.
 For example, in the Fig. :ref:`fig-view3d-median-point-edit-mode`,
 when there are two cubes with an equal number of vertices,
-the median point lies directly between the two cubes. However,
-if we subdivide one cube multiple times so that it has many more vertices,
+the median point lies directly between the two cubes.
+But if you subdivide one cube multiple times so that it has many more vertices,
 you can see that the median point has shifted to the region with the most vertices.
 
 .. _fig-view3d-median-point-edit-mode:

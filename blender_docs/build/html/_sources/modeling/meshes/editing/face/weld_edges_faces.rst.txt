@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.face_split_by_edges:
 
 *********************
 Weld Edges into Faces

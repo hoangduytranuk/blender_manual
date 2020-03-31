@@ -1,8 +1,8 @@
 .. _bpy.ops.mesh.screw:
 
-**********
-Screw Tool
-**********
+*****
+Screw
+*****
 
 .. admonition:: Reference
    :class: refbox
@@ -13,8 +13,8 @@ The *Screw* tool combines a repetitive *Spin* with a translation,
 to generate a screw-like, or spiral-shaped, object. Use this tool to create screws, springs,
 or shell-shaped structures (Sea shells, Wood Screw Tips, Special profiles, etc.).
 
-The main difference between the Screw Tool and the :doc:`Screw Modifier </modeling/modifiers/generate/screw>`
-is that the Screw Tool can calculate the angular progressions using the basic profile angle automatically.
+The main difference between the Screw tool and the :doc:`Screw Modifier </modeling/modifiers/generate/screw>`
+is that the Screw tool can calculate the angular progressions using the basic profile angle automatically.
 It can also adjust the Axis angular vector without using a second modifier
 (for example, using the Screw Modifier with a Bevel Modifier, Curve Modifier, etc.),
 resulting in a much cleaner approach for vertex distribution and usage.
@@ -23,7 +23,7 @@ This tool works using open or closed profiles, as well as profiles closed with f
 You can use profiles like an open-edge part that is a part of a complete piece,
 as well as a closed circle or a half-cut sphere, which will also close the profile end.
 
-You can see some examples of Meshes generated with the *Screw* tool
+You can see some examples of meshes generated with the *Screw* tool
 in Fig. :ref:`fig-mesh-screw-wood` and Fig. :ref:`fig-mesh-screw-spring`.
 
 .. list-table::
@@ -44,11 +44,11 @@ in Fig. :ref:`fig-mesh-screw-wood` and Fig. :ref:`fig-mesh-screw-spring`.
 Usage
 =====
 
-This tool works only with Meshes.
-In *Edit Mode*, the button for the *Screw* tool operation is located in the *Mesh Tools* Panel,
+This tool works only with meshes.
+In *Edit Mode*, the button for the *Screw* tool operation is located in the *Mesh Tools* panel,
 :menuselection:`Toolbar --> Mesh Tools --> Add: Screw`.
 To use this tool, you need to create at least one open profile or line to be used as a vector for the height,
-angular vector and to give Blender a direction.
+and an angular vector to specify a direction.
 
 The *Screw* tool uses two points given by the open line to create an initial vector to calculate the height
 and basic angle of the translation vector that is added to the "Spin" for each full rotation (see examples below).
@@ -75,9 +75,8 @@ You need only to ensure that at least one reference line has two "free" ends.
 If two open Lines are given, Blender will not determine which of them is the vector,
 and will then show you an error message,
 ``"You have to select a string of connected vertices too"``.
-You need to select all of the profile vertices that will participate in the *Screw*
-Tool operation; if they are not properly selected,
-Blender will also show you the same message.
+You need to select all of the profile vertices that will participate in the *Screw* tool operation;
+if they are not properly selected, Blender will also show you the same message.
 
 Note that the open line is always extruded, so if you only use it to "guide" the screw,
 you will have to delete it after the tool completion
@@ -101,7 +100,7 @@ and at the place where you clicked to start performing the operation
 
 .. figure:: /images/modeling_meshes_editing_duplicating_screw_error-msg-tool.png
 
-   Error message when clicking in the Screw Tool with an incorrect or bad selection.
+   Error message when clicking in the Screw tool with an incorrect or bad selection.
 
 You may have as many profiles as you like (like circles, squares, and so on)
 -- Note that, not all vertices in a profile need to be in the same plane,
@@ -110,7 +109,7 @@ selected closed islands, but they have to be closed profiles because Blender wil
 only one open profile for the translation, height and angular vector.
 Some closed meshes that overlap themselves may not screw correctly
 (for example: Half UV Sphere works fine,
-but more than half could cause the Screw Tool to have wrong behavior or errors),
+but more than half could cause the Screw tool to have wrong behavior or errors),
 and profiles that are closed with faces (like a cone or half sphere)
 will be closed automatically at their ends, like if you were extruding a region.
 
@@ -124,11 +123,9 @@ Options
 
 This tool is an interactive and modal tool, and only works in *Edit Mode*.
 
-Once you click in the *Screw* tool in the Mesh Tools Panel,
-Blender will enter in the *Screw* interactive mode, and the :ref:`ui-undo-redo-adjust-last-operation` Panel
-at the end of the Mesh Tools Panel will be replaced so you can adjust the values explained below.
-To show the Mesh Tools Panel,
-use the shortcut :kbd:`T` in the Edit Mode of the 3D Viewport.
+Once you click in the *Screw* tool in the Mesh Tools panel,
+Blender will enter in the *Screw* interactive mode, and the :ref:`ui-undo-redo-adjust-last-operation` panel
+at the end of the Mesh Tools panel will be replaced so you can adjust the values explained below.
 
 Once you perform any other operation,
 Blender leaves the interactive mode and accepts all of the values. Because it is modal,
@@ -141,8 +138,8 @@ The basic location of the cursor at the point of view (using Global coordinates)
 will determine around which axis the selection is extruded and spun at first
 (see Fig. :ref:`fig-mesh-screw-transform-panel`).
 Blender will copy the cursor location coordinates to
-the values present in the *Center* values of the *Screw* interactive Panel.
-Depending on the Global View position, Blender will automatically add a value of 1 to one of the Axis Vectors,
+the values present in the *Center* values of the *Screw* interactive panel.
+Depending on the Global View position, Blender will automatically add a value of 1 to one of the *Axis* vectors,
 giving the profiles a starting direction for the Screw Operation and also giving a direction for the extrusions.
 (See examples below.)
 
@@ -160,15 +157,14 @@ Continuous operations without changing the selection will repeat the operation c
 
 .. figure:: /images/modeling_meshes_editing_duplicating_screw_interactive-panel.png
 
-   Screw Tools :ref:`ui-undo-redo-adjust-last-operation` Panel (Edit Mode).
+   Screw tools :ref:`ui-undo-redo-adjust-last-operation` panel (in Edit Mode).
 
 Center
    These number fields specify the center of the spin. When the tool is called for the first time,
-   it will copy the XYZ location (Global Coordinates)
+   it will copy the XYZ location (global coordinates)
    of the cursor presently in the 3D View to start the operation.
-   You can specify the cursor coordinates using the Transform Panel in 3D View,
-   using shortcut :kbd:`T` to toggle the Panel, and typing in the 3D Cursor Location coordinates.
-   You can adjust these coordinates interactively and
+   You can specify the cursor coordinates using the Transform panel in 3D View,
+   and typing in the 3D Cursor Location coordinates. You can adjust these coordinates interactively and
    specify another place for the spin center during the interactive session.
    (See Fig. :ref:`fig-mesh-screw-interactive-panel`.)
 Steps
@@ -210,7 +206,7 @@ The Spring Example
 #. Change the view from *User Orthographic* to *Front Orthographic*, using the shortcut :kbd:`Numpad1`.
    You will see the X (red) and Z (blue) coordinate lines.
 #. In case you have moved the cursor by clicking anywhere in the screen, again place the cursor at the Center,
-   using the shortcut :kbd:`Shift-S` choosing *Cursor to Center* or the Transform Panel,
+   using the shortcut :kbd:`Shift-S` choosing *Cursor to Center* or the Transform panel,
    placing the cursor at (0, 0, 0) typing directly into the Cursor 3D Location.
 #. Add a circle using shortcut :kbd:`Shift-A` :menuselection:`--> Mesh --> Circle`.
 #. Rotate this circle using the shortcut :kbd:`R X 9 0` and :kbd:`Return`.
@@ -220,7 +216,7 @@ The Spring Example
    (clicking on the red arrow shown with the object and moving while using shortcut :kbd:`Ctrl`
    until the info in the bottom left corner of the 3D Viewport displays ``D. -3.0000 (3.0000) Global``),
    or press the shortcut :kbd:`G X Minus 3` and :kbd:`Return`.
-   You can use the Transform Panel, and type :kbd:`Minus 3` and :kbd:`Return` in the Location too.
+   You can use the Transform panel, and type :kbd:`Minus 3` and :kbd:`Return` in the Location too.
    (See the Fig. :ref:`fig-mesh-screw-circle`.)
 #. You will have to scale the circle using the shortcut :kbd:`S Period 5`, then :kbd:`Return`.
 #. Now enter *Edit Mode* using shortcut :kbd:`Tab`.
@@ -237,12 +233,12 @@ The following steps explain how to create a height vector:
 #. Press :kbd:`Ctrl` and left-click :kbd:`LMB` near the circle,
    in more or less at the light gray line of the square above the circle,
    and, while still pressing :kbd:`Ctrl`, left-click :kbd:`LMB` again in the gray line below the circle.
-   You have created two vertices and an Edge, which Blender will use as the first height and angle vector.
-#. Now, in the Transform Panel, in the median, clicking in the Global coordinates,
+   You have created two vertices and an edge, which Blender will use as the first height and angle vector.
+#. Now, in the Transform panel, in the median, clicking in the Global coordinates,
    for the XYZ coordinates, put (-2, 0, -1).
 #. :kbd:`RMB` click on the other vertex,
    and again, set its XYZ coordinates to (-2, 0, 1).
-   This will create a straight vertical line with 2 units of Height.
+   This will create a straight vertical line with 2 units of height.
 #. Deselect and select everything again with the shortcut :kbd:`A`.
    (See Fig. :ref:`fig-mesh-screw-profile`.)
 #. Again, place the cursor at the center. (Repeat step 2.)
@@ -250,17 +246,17 @@ The following steps explain how to create a height vector:
    the Spring for another exercise; :kbd:`LMB` click on *File*,
    located in the header of the Info editor, (at the top left side), and choose *Save as*.
    You can name it e.g. "screw spring example.blend".
-#. Click Screw and adjust the Steps and Turns as you like and you have a nice spring,
+#. Click Screw and adjust the *Steps* and *Turns* as you like and you have a nice spring,
    but now here comes the interesting part!
 
 
-Clockwise and Counterclockwise using the Spring Example
--------------------------------------------------------
+Clockwise & Counterclockwise using the Spring Example
+-----------------------------------------------------
 
-Still in the interactive session of the *Screw Tool*,
-you will see that the Z axis Value of the *Screw* Panel is set to 1.000.
+Still in the interactive session of the *Screw* tool,
+you will see that the Z axis Value of the *Screw* panel is set to 1.000.
 :kbd:`LMB` click in the middle of the Value and set this value to -1.000.
-At first, the Spring was being constructed in a Counterclockwise direction,
+At first, the spring was being constructed in a counterclockwise direction,
 and you reverted the operation 180 degrees in the Z axis. This is because you have
 changed the angular vector of the height you have given to Blender to the opposite direction
 (remember, -90 to 90 = 180 degrees ?). See Fig. :ref:`fig-mesh-screw-clock`.
@@ -277,23 +273,22 @@ changed the angular vector of the height you have given to Blender to the opposi
 
           Flipped to Clockwise direction.
 
-It is also important to note that this vector is related to the same height vector axis used
-for the extrusion and you have created a parallel line with the Z axis, so,
-the sensibility of this vector is in practical sense reactive only to negative and positive values
-because it is aligned with the extrusion axis. Blender will clamp the positive and negative to
-its maximum values to make the extrusion follow a direction,
-even if the profile starts reverted. The same rule applies to other Global axes when creating
-the Object for the *Screw* Tool; this means if you create your Object using the Top View
-(Shortcut :kbd:`Numpad7`) with a straight parallel line following another axis
+It is also important to note that this vector is related to the same height vector axis used for
+the extrusion and you have created a parallel line with the Z axis, so, the sensibility of
+this vector is in practical sense reactive only to negative and positive values because
+it is aligned with the extrusion axis. Blender will clamp the positive and negative to
+its maximum values to make the extrusion follow a direction, even if the profile starts reverted.
+The same rule applies to other global axes when creating the object for the *Screw* tool; this means
+if you create your object using the Top View with a straight parallel line following another axis
 (for the Top View, the Y axis), the vector that gives the height for extrusion will also
 change abruptly from negative to positive and vice versa to give the extrusion a direction,
-and you will have to tweak the corresponding Axis accordingly to achieve the Clockwise and
-Counterclockwise effect.
+and you will have to tweak the corresponding axis accordingly to achieve the clockwise
+and counterclockwise effect.
 
 .. note:: Vectors that are not Parallel with Blender Axis
 
    The high sensibility for the vector does not apply to vectors that
-   give the Screw Tool a starting angle (e.g. any non-parallel vector),
+   give the Screw tool a starting angle (e.g. any non-parallel vector),
    meaning Blender will not need to clamp the values to stabilize a direction for the extrusion,
    as the inclination of the vector will be clear for Blender and
    you will have the full degree of freedom to change the vectors.
@@ -309,10 +304,10 @@ Still using the spring example, you can change the remaining vector for the angl
 related to the extrusion axis of the spring. Bending the spring with the remaining
 vectors and creating a profile that will also open and/or close because of the change in
 starting angular vector values. What really is changed is the starting angle of
-the profile prior to the extrusions. It means that Blender will connect each of the circles
+the profile before the extrusions. It means that Blender will connect each of the circles
 inclined with the vector you have given.
-The images below show two bent Meshes using the axis vectors and the spring example.
-See Fig. :ref:`fig-mesh-screw-angle`. These two Meshes generated
+The images below show two bent meshes using the axis vectors and the spring example.
+See Fig. :ref:`fig-mesh-screw-angle`. These two meshes generated
 with the *Screw* tool were created using the Top Orthographic View.
 
 .. _fig-mesh-screw-angle:
@@ -401,9 +396,9 @@ The generated mesh looks like a medieval ramp!
 
 As you can see, the Screw spindles are perfectly assembled with each other,
 and they follow a straight line from top to bottom.
-You can also change the Clockwise and Counterclockwise direction using this example,
+You can also change the clockwise and counterclockwise direction using this example,
 to create right and left screw spindles.
-At this point, you can give the screw another dimension, changing the Center of the Spin Extrusion,
+At this point, you can give the screw another dimension, changing the *Center* of the spin extrusion,
 making it more suitable to your needs or calculating a perfect screw and
 merging its vertices with a cylinder, modeling its head, etc.
 
@@ -449,4 +444,4 @@ As you can see in Fig. :ref:`fig-mesh-screw-start-mesh`,
 Blender follows the basic angular vector of the profile, and
 the profile basic angle determines whether the extruded subsequent configured turns will open or
 close the resulting mesh following this angle. The vector of the extrusion angle is determined
-by the starting and ending Vertex of the profile.
+by the starting and ending vertex of the profile.

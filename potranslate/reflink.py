@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/hoangduytran/PycharmProjects/potranslate')
+sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 
 from common import Common as cm
 from common import _, pp
@@ -963,7 +963,7 @@ class RefList(defaultdict):
         orig_text = orig.getText()
         has_ref_list = (record.reflist is not None) and (len(record.reflist) > 0)
         if not has_ref_list:
-            orig_trans, is_fuzzy = self.translate(orig_text) # find the whole piece first to see if it's there
+            orig_trans, is_fuzzy = self.tf.translate(orig_text) # find the whole piece first to see if it's there
             has_orig_tran = (orig_trans is not None) and (orig_trans != orig_text)
             if has_orig_tran:
                 orig.translation = orig_trans

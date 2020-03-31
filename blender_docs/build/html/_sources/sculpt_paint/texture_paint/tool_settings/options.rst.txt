@@ -1,6 +1,6 @@
-.. _bpy.types.ImagePaint.use_backface_culling:
 .. _bpy.types.ImagePaint.dither:
 .. _bpy.types.ImagePaint.use_occlude:
+.. _bpy.types.ImagePaint.use_backface_culling:
 
 *******
 Options
@@ -21,14 +21,6 @@ Backface Culling
 
    See the :ref:`Brush Display <sculpt-paint-brush-display>` options.
 
-
-.. _bpy.types.Paint.use_cavity:
-
-Cavity Mask
-===========
-
-Cavity masking means that the brush will be masked if there is a cavity or a hill
-on the mesh surface depending on the mesh options. The cavity algorithm is vertex-based.
 
 
 .. _bpy.types.ImagePaint.screen_grab_size:

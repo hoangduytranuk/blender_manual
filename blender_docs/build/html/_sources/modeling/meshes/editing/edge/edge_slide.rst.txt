@@ -33,7 +33,7 @@ Correct UVs
 
 
 Usage
------
+=====
 
 By default, the position of vertices on the edge loop move as a percentage of the distance
 between their original position and the adjacent edge loop, regardless of the edges' lengths.
@@ -52,7 +52,7 @@ between their original position and the adjacent edge loop, regardless of the ed
 
 
 Even Mode
-^^^^^^^^^
+---------
 
 *Even* mode keeps the shape of the selected edge loop the same as one of the edge loops adjacent to it,
 rather than sliding a percentage along each perpendicular edge.
@@ -83,7 +83,7 @@ conforming to the shape of one of the bounding edge loops.
 
 
 Limitations & Workarounds
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 
 There are restrictions on the type of edge selections that can be operated upon.
 Invalid selections are:

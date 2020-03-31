@@ -21,10 +21,9 @@ Mirror
 ------
 
 The *Mirror* option of the *Mesh Options* panel allows you to transform
-vertices symmetrically according to the chosen axis. When you transform
-an element (vertex, edge or face), if there is its exact axis-mirrored counterpart
-(in local space),it will be transformed accordingly, through a symmetry along
-the chosen axis.
+vertices symmetrically according to the chosen axis. When you transform an element
+(vertex, edge or face), if there is its exact axis-mirrored counterpart (in local space),
+it will be transformed accordingly, through a symmetry along the chosen axis.
 
 .. note::
 

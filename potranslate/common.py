@@ -43,7 +43,7 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
-    debug_file = "video_editing/sequencer/strips/effects/subtract"
+    # debug_file = "video_editing/sequencer/strips/effects/subtract"
     # debug_file = "video_editing/introduction"
     # debug_file = "about/contribute/index"
     # debug_file="interface/window_system/topbar"

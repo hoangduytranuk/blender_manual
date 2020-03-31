@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Grease Pencil</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../object.html">Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../structure.html">Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
@@ -223,27 +224,44 @@
             
   <div class="section" id="tint-modifier">
 <span id="bpy-types-tintgpencilmodifier"></span><h1>Tint Modifier<a class="headerlink" href="#tint-modifier" title="Permalink to this headline">¶</a></h1>
-<p>The <em>Tint</em> Modifier colorize the original stroke with a tint color.</p>
+<p>The <em>Tint</em> Modifier colorize the original stroke or fill with a selected color.</p>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/grease-pencil_modifiers_color_tint_panel.png" src="../../../_images/grease-pencil_modifiers_color_tint_panel.png" />
 <p class="caption"><span class="caption-text">Tint Modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
+<div class="section" id="uniform">
+<h3>Uniform<a class="headerlink" href="#uniform" title="Permalink to this headline">¶</a></h3>
 <dl>
 <dt>Color</dt><dd><p>Defines the tint color for mixing with the original color.</p>
 </dd>
-<dt>Factor</dt><dd><p>Controls the amount for the color mixing.</p>
-<p>A value of 0 respect the original strokes color,
+<dt>Strength</dt><dd><p>Controls the amount for the color mixing.</p>
+<p>A value of 0 respect the original strokes vertex color,
 a value of 1.0 totally replace the original color with the tint color.</p>
 <p>A shift greater than 1.0 will make the points alpha less transparent than originally (2.0 is fully opaque).</p>
 </dd>
-<dt>Create Materials</dt><dd><p>When applied, the modifier will create a new material that will keep the color transformation.</p>
+</dl>
+</div>
+<div class="section" id="gradient">
+<h3>Gradient<a class="headerlink" href="#gradient" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>Colors</dt><dd><p>Defines the tint gradient color for mixing with the original vertex color.</p>
+</dd>
+<dt>Object</dt><dd><p>A <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> to select an object (usually an empty),
+which position and rotation will be used to define the center of the effect.</p>
+</dd>
+<dt>Radius</dt><dd><p>Defines the maximum distance of the effect.</p>
+</dd>
+<dt>Strength</dt><dd><p>Controls the amount for the color mixing.</p>
+<p>A value of 0 respect the original strokes vertex color,
+a value of 1.0 totally replace the original color with the tint color.</p>
 </dd>
 <dt>Mode</dt><dd><p>The color transformation will be applied on the stroke and/or the fill color.</p>
-<p>Both, Stroke, Fill</p>
+<p>Stroke and Fill, Stroke, Fill</p>
 </dd>
 </dl>
+</div>
 <div class="section" id="influence-filters">
 <h3>Influence Filters<a class="headerlink" href="#influence-filters" title="Permalink to this headline">¶</a></h3>
 <p>See <a class="reference internal" href="../introduction.html#grease-pencil-modifier-influence-filters"><span class="std std-ref">Influence Filters</span></a>.</p>
@@ -252,7 +270,7 @@ a value of 1.0 totally replace the original color with the tint color.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Tint sample.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">Tint uniform color sample.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
@@ -261,17 +279,43 @@ a value of 1.0 totally replace the original color with the tint color.</p>
 <tbody>
 <tr class="row-odd"><td><div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_color_tint_factor-0.png"><img alt="../../../_images/grease-pencil_modifiers_color_tint_factor-0.png" src="../../../_images/grease-pencil_modifiers_color_tint_factor-0.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Color Mix Factor: 0 (original color).</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Strength: 0 (original color).</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 <td><div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_color_tint_factor-05.png"><img alt="../../../_images/grease-pencil_modifiers_color_tint_factor-05.png" src="../../../_images/grease-pencil_modifiers_color_tint_factor-05.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Color Mix Factor: 0.5.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Strength: 0.5.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 <td><div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_color_tint_factor-1.png"><img alt="../../../_images/grease-pencil_modifiers_color_tint_factor-1.png" src="../../../_images/grease-pencil_modifiers_color_tint_factor-1.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Color Mix Factor: 1.0 (fully tinted).</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Strength: 1.0 (fully tinted).</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Tint gradient color sample.</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id7">
+<a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_color_tint_gradient-01.png"><img alt="../../../_images/grease-pencil_modifiers_color_tint_gradient-01.png" src="../../../_images/grease-pencil_modifiers_color_tint_gradient-01.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Radius: 1, Strength: 1.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id8">
+<a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_color_tint_gradient-02.png"><img alt="../../../_images/grease-pencil_modifiers_color_tint_gradient-02.png" src="../../../_images/grease-pencil_modifiers_color_tint_gradient-02.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Radius: 5, Strength: 1.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id9">
+<a class="reference internal image-reference" href="../../../_images/grease-pencil_modifiers_color_tint_gradient-03.png"><img alt="../../../_images/grease-pencil_modifiers_color_tint_gradient-03.png" src="../../../_images/grease-pencil_modifiers_color_tint_gradient-03.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text">Radius: 10, Strength: 1.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>

@@ -104,7 +104,7 @@ Instead of evaluating the value and discarding the expression,
 a driver is added to the property with the expression entered.
 
 The expression ``#frame`` is a quick way to access map a value to the current frame,
-but more complex expressions are also supported ``#fmod(frame, 24) / 24`` for example.
+but more complex expressions are also supported, ``#fmod(frame, 24) / 24`` for example.
 
 This is simply a convenient shortcut to add drivers which can also be added via the :kbd:`RMB` menu.
 
@@ -150,4 +150,4 @@ The color field stores a color value shown in its background.
 Clicking :kbd:`LMB` on color fields opens the :doc:`/interface/controls/templates/color_picker`.
 Color fields with an alpha channel are divided in half: on the left the color is shown without an alpha channel and
 on the right the color with an alpha channel shown over a checker pattern.
-Colors can be copied to other color fields by dragged and dropped to another color field.
+Colors can be copied to other color fields by dragging and dropping to another color field.

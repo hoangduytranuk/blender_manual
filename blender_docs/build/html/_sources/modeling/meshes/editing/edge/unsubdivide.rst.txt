@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.unsubdivide:
 .. _mesh-unsubdivide:
 
 ************

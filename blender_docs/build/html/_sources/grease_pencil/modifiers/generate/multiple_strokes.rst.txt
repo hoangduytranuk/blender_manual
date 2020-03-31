@@ -15,7 +15,7 @@ Options
 
    The Multiple Strokes modifier.
 
-Duplications
+Duplicates
    The number of additional strokes.
 
 Distance
@@ -24,7 +24,7 @@ Distance
 Offset
    Control the offset position (inner or outer) for duplicate strokes.
 
-Enable Fading
+Enable Fade
    When activated, the duplicate strokes fades out using their opacity or thickness.
 
    Center
@@ -35,12 +35,6 @@ Enable Fading
 
    Opacity
       Fade influence on strokes opacity.
-
-Angle Splitting
-   When activated, divide the resulting duplicate strokes at certain angles.
-
-      Angle
-         Angle to split the strokes.
 
 
 Influence Filters

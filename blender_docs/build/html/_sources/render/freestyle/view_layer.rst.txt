@@ -40,6 +40,12 @@ View Map Cache
    (possibly in different scenes through the Compositor),
    then the cached view map for one view layer is replaced by a new view map
    for another view layer and hence no performance gain is expected.
+
+As Render Pass
+   Freestyle lines will not immediately be visible on top of the render image.
+   Instead, Freestyle lines are rendered as a :doc:`Render Pass </render/layers/passes>`
+   which can be composited with the rendered image with an Alpha Over node.
+
 Face Smoothness
    Takes *Smooth Shading* into account for edges calculation.
 Crease Angle

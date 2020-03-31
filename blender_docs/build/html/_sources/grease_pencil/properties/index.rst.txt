@@ -9,6 +9,7 @@
 
    data.rst
    layers.rst
+   masks.rst
    onion_skinning.rst
    strokes.rst
-   display.rst
+   display.rst   

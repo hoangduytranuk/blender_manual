@@ -25,7 +25,7 @@ while visually keeping the object data in-place.
 The object origin point is moved to the global origin, the rotation is cleared and scale values are set to 1.
 
 For simple cases you won't notice any difference the 3D View or rendered output,
-however modifiers and constraints may depend on object transformation.
+yet modifiers and constraints may depend on object transformation.
 
 .. warning:: Armature Objects
 
@@ -83,7 +83,7 @@ All Transforms to Deltas
    Converts all primary transformations to delta transforms.
 Animated Transform to Deltas
    Converts the primary transformation animations
-   (animations done to the translation, scale, and, rotation values) to delta transforms.
+   (of the translation, scale, and, rotation values) to delta transforms.
 
 
 Options

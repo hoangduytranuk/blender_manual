@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.extrude_edges_move:
 
 *************
 Extrude Edges

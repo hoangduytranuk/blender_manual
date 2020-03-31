@@ -6,7 +6,7 @@ Convert To
 **********
 
 Curve from Mesh/Text
---------------------
+====================
 
 .. admonition:: Reference
    :class: refbox
@@ -21,7 +21,7 @@ smooth segments as described in :ref:`curve-convert-type`.
 
 
 Mesh from Curve/Metaball/Surface/Text
--------------------------------------
+=====================================
 
 .. admonition:: Reference
    :class: refbox
@@ -35,7 +35,7 @@ Note that it also keeps the faces and volumes created by closed and extruded cur
 
 
 Grease Pencil from Curve
-------------------------
+========================
 
 .. admonition:: Reference
    :class: refbox

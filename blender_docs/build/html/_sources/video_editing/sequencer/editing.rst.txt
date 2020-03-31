@@ -12,7 +12,7 @@ Move
    :Menu:      :menuselection:`Strip --> Transform --> Move`
    :Hotkey:    :kbd:`G`
 
-Pressing :kbd:`G` moves the all selected strip(s).
+Pressing :kbd:`G` moves all the selected strip(s).
 Move your mouse horizontally (left/right) to change the strip's position in time.
 Move vertically (up/down) to change channels.
 

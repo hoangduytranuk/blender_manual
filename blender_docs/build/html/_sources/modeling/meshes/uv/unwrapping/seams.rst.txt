@@ -12,7 +12,7 @@ Introduction
    Simple seam on a cylinder.
 
 For many cases, using the Unwrap calculations of Cube, Cylinder, Sphere,
-or best fit will produce a good UV layout. However, for more complex meshes,
+or best fit will produce a good UV layout. But for more complex meshes,
 especially those with lots of indentations, you may want to define a *seam* to limit and
 guide any of the unwrapping processes.
 

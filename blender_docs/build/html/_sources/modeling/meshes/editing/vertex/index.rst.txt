@@ -16,6 +16,7 @@
    rip_vertices_extend.rst
    slide_vertices.rst
    smooth_vertices.rst
+   laplacian_smooth.rst
    blend_shape.rst
    propagate_shapes.rst
    merge_vertices.rst

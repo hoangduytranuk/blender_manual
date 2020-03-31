@@ -17,15 +17,15 @@ Make Parent
    :Hotkey:    :kbd:`Ctrl-P`
 
 When modeling a complex object, such as a watch,
-you may choose to model the different parts as separate objects. However,
-all of the parts may be attached to each other. In these cases,
+you may choose to model the different parts as separate objects.
+Yet all the parts may be attached to each other. In these cases,
 you want to designate one object as the parent of all the children. Movement,
 rotation or scaling of the parent also affects the children.
 
-To parent objects, select at least two objects (select the child objects first,
-and select the parent object last), and press :kbd:`Ctrl-P`.
-The *Set Parent To* menu will pop up allowing you to select from one of several
-possible different parenting types.
+To parent objects, select at least two objects
+(select the child objects first, and select the parent object last),
+and press :kbd:`Ctrl-P`. The *Set Parent To* menu will pop up allowing
+you to select from one of several possible different parenting types.
 Selecting one of the entries in *Set Parent To* confirms,
 and the child/children to parent relationship is created.
 
@@ -41,10 +41,9 @@ when the :kbd:`Ctrl-P` shortcut is used.
 
 For parenting without `Parent Inverse`_, use the :kbd:`Shift-Ctrl-P` shortcut instead.
 
-Moving, rotating or scaling the parent will also usually move/rotate/scale the child/children.
-However, moving/rotating/scaling the child/children of the parent will not result in the parent
-moving/rotating/scaling. In other words,
-the direction of influence is from parent to child and not child to parent.
+Moving, rotating or scaling the parent will also usually transform the child/children.
+Yet transforming the child/children of the parent will not affect the parent.
+In other words, the direction of influence is from parent to child and not child to parent.
 
 In general when using :kbd:`Ctrl-P` or :menuselection:`3D View Header --> Object --> Parent`
 to parent objects, the child objects can only have one parent object.
@@ -155,7 +154,7 @@ parent object that the child object keep any previous transformations
 it got from the old parent object; If instead when changing the parent object of the Monkey
 from "EmptyA" to "EmptyB" we had chosen parenting type *Object (Keep Transform)*,
 the Monkey would keep its scale information it obtained from the old parent "EmptyA"
-when it is assigned to the new parent "EmptyB";
+when it is assigned to the new parent "EmptyB".
 
 .. figure:: /images/scene-layout_object_properties_relations_parents_keep-transform-d.png
 
@@ -234,9 +233,9 @@ Notice that the child object does not move to the new location of the pose bone.
 .. note::
 
    When using :kbd:`Ctrl-P` to set parents, choosing "Bone" or "Bone Relative"
-   will respectively clear and set the bone's "Relative Parenting" option. Since
-   "Relative Parenting" is an option that is set per bone, this influences all
-   child objects of that bone at once.
+   will respectively clear and set the bone's "Relative Parenting" option.
+   Since "Relative Parenting" is an option that is set per bone, this influences
+   all child objects of that bone at once.
 
 
 Vertex Parent
@@ -291,7 +290,7 @@ The nearest vertices will be used from each object which is typically what you w
      - .. figure:: /images/scene-layout_object_properties_relations_parents_object-mode-example-3.png
           :width: 320px
 
-          Re-scaling the parent icosphere in Object Mode means the child cubes are also rescaled as expected.
+          Scaling the parent icosphere in Object Mode means the child cubes are also scaled as expected.
 
 The parent context menu item means users can rapidly set up a large number of vertex parent
 relationships,

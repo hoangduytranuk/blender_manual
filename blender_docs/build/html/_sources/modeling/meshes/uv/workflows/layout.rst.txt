@@ -75,7 +75,7 @@ So, our general approach will be to unwrap different parts of the object (face, 
 using different unwrap tool,
 selecting each tool according to which one works best for that part. So let us begin:
 We select only the "face" faces, unwrap them using the *Sphere* projection, and scale and
-rotate them somewhat to fit logically within the image area of the UV Editor.
+rotate them a bit to fit logically within the image area of the UV Editor.
 
 .. figure:: /images/modeling_meshes_editing_uv_workflows_layout_combining-uv-maps-3.png
 
@@ -92,7 +92,7 @@ Simply selecting linked vertices will select that entire submesh. Basically,
 since you are in Edit Mode, all the selecting/deselecting features are available to you.
 
 Now unwrap the ear again using the *Project* tool from side view,
-and scale and rotate them somewhat (discussed in the next section),
+and scale and rotate them a bit (discussed in the next section),
 and place them off to the side. You can do this repetitively, using different unwrapping algorithms;
 each re-apply just puts those UVs for the selected faces somewhere else.
 Choose the tool for each part that gives you the best fit and
@@ -131,10 +131,10 @@ an idea and iterating our creative process until we reach that magical milestone
 In software development, this is called the 'spiral methodology'.
 
 Applied to computer graphics, we cycle between modeling, texturing, animating,
-and then back to making some modifications to mesh, UV mapping, tweaking the animation,
+and then back to making modifications to mesh, UV mapping, tweaking the animation,
 adding a bone or two, finding out we need a few more faces, so back to modeling, etc.
 We continue going round and round like this until we either run out of time, money,
-or patience, or, in some rare cases, are actually happy with our results.
+or patience, or, in rare cases, are actually happy with our results.
 
 
 Refining the Layout
@@ -149,7 +149,7 @@ you realize that there just are not enough pixels available to paint the detail 
 Your only choice is to expand the size (scale out) that UV face.
 Using the *Minimize Stretch* or *Scale* tools,
 you expand the UV faces around the eyes or chest, allocating more pixels to those areas,
-but at the same time taking away pixels (detail) from something else,
+but at the same time taking away pixels (detail) from somewhere else,
 like the back of the head. After refining the UV map,
 you then edit the image so that it looks right and contains the details you want.
 

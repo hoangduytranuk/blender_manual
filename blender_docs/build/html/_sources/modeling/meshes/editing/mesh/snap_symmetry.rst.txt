@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.symmetry_snap:
 
 ****************
 Snap to Symmetry

@@ -249,6 +249,26 @@ To enable hair physics, click the checkbox beside <em>Hair Dynamics</em>.</p>
 <p>If you use motion blur in your animation,
 you will need to bake one extra frame past the last frame which you will be rendering.</p>
 </div>
+<div class="section" id="collisions">
+<h2>Collisions<a class="headerlink" href="#collisions" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Quality</dt><dd><p>A general setting for how fine and good a simulation you wish.
+Higher numbers take more time but ensure less tears and penetrations through the cloth.</p>
+</dd>
+<dt>Distance</dt><dd><p>The distance another object must get to the cloth for
+the simulation to repel the cloth out of the way.
+Smaller values might cause errors but provide some speed-up while
+larger will give unrealistic results if too large and can be slow.
+It is best to find a good in between value.</p>
+</dd>
+<dt>Impulse Clamping</dt><dd><p>Prevents explosions in tight and complicated collision situations
+by restricting the amount of movement after a collision.</p>
+</dd>
+<dt>Collision Collection</dt><dd><p>Only objects that are a part of this <a class="reference internal" href="../../../scene_layout/collections/index.html"><span class="doc">Collection</span></a>
+can collide with the cloth. Note that these objects must also have Collision physics enabled.</p>
+</dd>
+</dl>
+</div>
 <div class="section" id="structure">
 <h2>Cấu Trúc -- Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">

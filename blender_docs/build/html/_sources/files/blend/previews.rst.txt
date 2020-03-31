@@ -21,8 +21,8 @@ that will allow your system file browser to show those previews as file thumbnai
 Data-Blocks Previews
 ====================
 
-Blender will automatically generate previews for some type of data, mainly the ones related with shading
-(images, textures, materials, lights, worlds).
+Blender will automatically generate previews for some type of data, mainly the ones related to shading
+(like images, textures, materials, lights and world shaders).
 
 It can also store previews for scenes, collections and objects, but those need to be generated manually.
 

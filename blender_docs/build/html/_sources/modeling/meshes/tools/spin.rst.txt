@@ -18,7 +18,7 @@ The *Spin* tool extrudes (or duplicates it if the selection is manifold) the sel
 rotating around a specific point and axis.
 
 Use the tool to create the sort of objects that you would produce on a lathe
-(this tool is often called a "lathe"-tool or a "sweep"-tool in the literature, for this reason).
+(this tool is often called "lathe" tool or "sweep" tool in the literature, for this reason).
 In fact, it does a sort of circular extrusion of your selected elements,
 centered on the 3D cursor, and around the axis perpendicular to the working view...
 

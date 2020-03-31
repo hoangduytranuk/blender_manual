@@ -24,8 +24,8 @@ options in its *Transform* panel in *Edit Mode*,
 see their respective descriptions in the :doc:`Modeling chapter </modeling/index>`.
 
 Use this panel to either edit or display the object's transform properties such as position,
-rotation and/or scaling. These fields change the object's origin and then affect the aspect
-of all of its *vertices* and faces.
+rotation and/or scaling. These fields change the object's origin and then affect the aspect of
+all its *vertices* and faces.
 
 .. figure:: /images/scene-layout_object_properties_transforms_panel.png
    :align: right
@@ -67,12 +67,12 @@ Dimensions
 Transform Properties Locking
    When the toggle is locked, the corresponding transformation value
    can not be changed in any interactive operation.
-   However, the value can still be changed using non-interactive operations,
+   But the value can still be changed using non-interactive operations,
    like editing the corresponding number field or using Python.
 
    For example, if you locked the *Location X* property
    then you cannot use the 3D gizmo to move the object along the global X axis.
-   However, you can still move it using the *Location X* number field.
+   But you can still move it using the *Location X* number field.
    Consider the locking feature as a rigid constraint only changeable from the panel.
 
    To lock a property, click the padlock icon next to the button.

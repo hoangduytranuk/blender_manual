@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/hoangduytran/PycharmProjects/potranslate')
+sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 
 import io
 import os
@@ -121,7 +121,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         # self.master_dic_file = "/Users/hoangduytran/Documents/po_dictionary_sorted_translated_0001_nodot.json"
-        self.master_dic_file = "/Users/hoangduytran/ref_dict_0001.json"
+        self.master_dic_file = "/Users/hoangduytran/blender_manual/ref_dict_0001.json"
         self.master_dic_backup_file = "/Users/hoangduytran/ref_dict_0003.json"
         #self.master_dic_file = "/Users/hoangduytran/ref_dict_0002.json"
         self.master_dic_backup_list = defaultdict(OrderedDict)
@@ -444,14 +444,14 @@ class TranslationFinder:
             if dic:
                 for k, v in dic.items():
                     entry = {k.lower():v}
-                    _(entry)
+                    # _(entry)
                     lower_dic.update(entry)
             dic = lower_dic
-            test_find = ('make' in dic)
-            _(f"test_find: make is {test_find}")
-            if test_find:
-                tran = dic['make']
-                _(f"test_find: make = {tran}")
+            # test_find = ('make' in dic)
+            # _(f"test_find: make is {test_find}")
+            # if test_find:
+            #     tran = dic['make']
+            #     _(f"test_find: make = {tran}")
             # insensitive_dic = CaseInsensitiveDict(dic)
             # ln = len(insensitive_dic)
             # _(f'loaded:{ln}')

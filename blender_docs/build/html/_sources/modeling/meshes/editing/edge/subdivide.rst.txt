@@ -42,7 +42,7 @@ This process follows a few rules, depending on the settings:
 Options
 =======
 
-These options are available in the *Tool Panel* after running the tool;
+These options are available in the *Tool* panel after running the tool:
 
 Number of Cuts
    Specifies the number of cuts per edge to make.
@@ -220,7 +220,7 @@ Two Adjacent Quad Edges
    * - .. figure:: /images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert.png
           :width: 250px
 
-          Innervert cut type.
+          Inner vertices cut type.
 
      - .. figure:: /images/modeling_meshes_editing_subdividing_subdivide_two-edges-quad-innervert-tri.png
           :width: 250px
@@ -282,8 +282,8 @@ Quad/Four Edges
           Quad/Tri Mode.
 
 
-Multicut
---------
+Multiple Cuts
+-------------
 
 .. list-table::
 

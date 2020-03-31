@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.extrude_vertices_move:
 
 ****************
 Extrude Vertices

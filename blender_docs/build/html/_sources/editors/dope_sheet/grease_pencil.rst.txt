@@ -28,14 +28,13 @@ Layers (gray)
    Opacity
       Controls the layers :ref:`Opacity <bpy.types.GPencilLayer.opacity>`.
    Mask (mask icon)
-      When the mask is enabled, all the layers below the current one function as a single mask.
-      This mask hide any pixel in the current layer outside the mask created by the underlying layers.
+      Toggle the :doc:`Masks </grease_pencil/properties/masks>` visibility.
    Onion Skinning (onion skin icon)
       Toggle the use the layer for :doc:`Onion Skinning </grease_pencil/properties/onion_skinning>`.
-   Lock Animation (checkbox icon)
-      Toggles playback of animation or keep the channel static.
    Viewport/Render Visibility (eye icon)
       Toggle layer visibility in the viewport and in render.
+   Lock Animation (checkbox icon)
+      Toggles playback of animation or keep the channel static.
    Lock (padlock icon)
       Toggle layer from being editable.
 
@@ -47,9 +46,6 @@ Layer Move
    Moves the selected layer/channel up or down in the evaluation stack.
 Layer Add/Remove
    Adds/removes Grease Pencil layers/channels.
-Active Only
-   Only show the Grease Pencil data-blocks attached to the current scene and the objects within it.
-
 
 Insert Keyframe
 ---------------

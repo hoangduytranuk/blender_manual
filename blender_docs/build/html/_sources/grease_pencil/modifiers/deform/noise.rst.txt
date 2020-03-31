@@ -19,11 +19,20 @@ Options
 
    Noise Modifier.
 
-Factor
-   Strength of the noise effect.
+Position
+   Strength of the noise effect over the point location.
 
-   Random Value
-      When enabled, the strength of the noise uses a random value.
+Strength
+   Strength of the noise effect over the point strength (opacity).
+
+Thickness
+   Strength of the noise effect over the point thickness.
+
+UV
+   Strength of the noise effect over the point UV rotation.
+
+Random Value
+   When enabled, the noise uses a random value over time.
 
    Step
       Number of frames before using a new random value.
@@ -31,23 +40,8 @@ Factor
    Seed
       :term:`Seed` used by the pseudo-random number generator.
 
-Full Stroke
-   When enabled, the effect is applied to the stroke as a whole instead of points individually.
-
-Move Extremes
-   When disabled, the effect does not affect the stroke start and end points.
-
-Affect
-   Combination of stroke/points properties that will be affected by the noise factor.
-
-   Position
-      Noise affect the point location.
-   Strength
-      Noise affect the point strength (opacity).
-   Thickness
-      Noise affect the point thickness.
-   UV
-      Noise affect the point UV rotation.
+Noise Scale
+   Control the noise frequency scale.
 
 
 Influence Filters

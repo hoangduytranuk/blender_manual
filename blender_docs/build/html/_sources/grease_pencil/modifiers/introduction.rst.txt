@@ -57,13 +57,17 @@ Influence Filters
 
 Most of the modifiers share some special properties that restrict the effect only to certain items.
 
-Vertex Group
-   Restricts the effect only to a vertex group.
+Layer
+   Restricts the effect only to one layer or to any layers that share the same pass index.
 
 Material
    Restricts the effect only to material that share the same material or pass index.
 
-Layer
-   Restricts the effect only to one layer or to any layers that share the same pass index.
+Vertex Group
+   Restricts the effect only to a vertex group.
+
+Custom Curve
+   When enabled, use a custom curve to shape the effect along the strokes
+   from start to end points.
 
 The Invert toggle ``<->`` allows you to reverse the filters behavior.

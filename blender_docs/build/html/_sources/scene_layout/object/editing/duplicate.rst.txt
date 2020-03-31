@@ -15,19 +15,19 @@ This will create a visually-identical copy of the selected object(s).
 The copy is created at the same position as the original object and
 you are automatically placed in move mode. See the examples below.
 
-This copy is a new object, which shares some data-blocks with the original object
+This copy is a new object, which shares data-blocks with the original object
 (by default, all the materials, textures, and F-curves), but which has copied others,
-like the mesh, for example. This is why this form of duplication is sometimes called "shallow link",
+like the mesh, for example. That is why this form of duplication is sometimes called "shallow link",
 because not all data-blocks are shared; some of them are "hard copied"!
 
 .. tip::
 
-   You can choose which types of data-block will be linked or copied
-   when duplicating: in the :ref:`Preferences <prefs-editing-duplicate-data>`.
+   You can choose which types of data-block will be linked or copied when duplicating
+   in the :ref:`Preferences <prefs-editing-duplicate-data>`.
 
 
 Examples
---------
+========
 
 .. figure:: /images/scene-layout_object_editing_duplication_example.png
 

@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.rip_edge_move:
 .. _tool-mesh-rip_edge:
 
 ***********************

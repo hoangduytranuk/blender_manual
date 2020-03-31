@@ -10,7 +10,7 @@ Edges can have several different attributes that affect how certain other tools 
 .. _bpy.ops.transform.edge_crease:
 
 Edge Crease
------------
+===========
 
 .. admonition:: Reference
    :class: refbox
@@ -34,7 +34,7 @@ To clear the crease edge property, enter a value of -1.
 .. _bpy.ops.transform.edge_bevelweight:
 
 Edge Bevel Weight
------------------
+=================
 
 .. admonition:: Reference
    :class: refbox
@@ -60,8 +60,8 @@ this operator alters the average weight of the edges.
 
 .. _bpy.ops.mesh.mark_seam:
 
-Mark Seam and Clear Seam
-------------------------
+Mark Seam & Clear Seam
+======================
 
 .. admonition:: Reference
    :class: refbox
@@ -71,13 +71,13 @@ Mark Seam and Clear Seam
 
 Seams are a way to create separations, "islands", in UV maps.
 See the :ref:`UV Mapping section <editors-uv-index>` for more details.
-These operators set or unset this flag for selected edges.
+These operators set or unset this mark for selected edges.
 
 
 .. _bpy.ops.mesh.mark_sharp:
 
-Mark Sharp and Clear Sharp
---------------------------
+Mark Sharp & Clear Sharp
+========================
 
 .. admonition:: Reference
    :class: refbox
@@ -85,7 +85,7 @@ Mark Sharp and Clear Sharp
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Edge --> Mark Sharp/Clear Sharp`
 
-The *Sharp* flag is used by the :ref:`split normals <auto-smooth>`
+The *Sharp* mark is used by the :ref:`split normals <auto-smooth>`
 and the :doc:`Edge Split </modeling/modifiers/generate/edge_split>` modifier,
-which are part of the smoothing/customized shading techniques.
+which are part of the smoothing or customized shading techniques.
 As seams, it is a property of edges, and these operators set or unset it for selected ones.

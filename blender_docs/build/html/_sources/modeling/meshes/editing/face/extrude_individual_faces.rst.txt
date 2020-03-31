@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.extrude_faces_move:
 .. _tool-mesh-extrude_individual:
 
 ************************

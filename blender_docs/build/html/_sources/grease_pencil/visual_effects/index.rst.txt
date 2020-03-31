@@ -20,7 +20,6 @@ Types
    colorize.rst
    flip.rst
    glow.rst
-   light.rst
    pixelate.rst
    rim.rst
    shadow.rst

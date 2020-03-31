@@ -25,9 +25,6 @@ Radius
 Angle
    Rotation angle of the swirl. A value of 0 shows no swirl.
 
-Transparent
-   When enabled, the object is fully transparent outside the radius of the swirl.
-
 
 Example
 =======

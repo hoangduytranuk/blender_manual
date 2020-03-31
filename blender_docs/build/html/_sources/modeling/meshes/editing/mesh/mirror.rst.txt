@@ -14,8 +14,8 @@ The Mirror tool mirrors a selection across a selected axis.
 
 The Mirror tool in *Edit Mode* is similar to
 :doc:`Mirroring in Object Mode </scene_layout/object/editing/mirror>`.
-It is exactly equivalent to scaling by -1 vertices,
-edges or faces around one chosen pivot point and in the direction of one chosen axis, only it is faster/handier.
+It is exactly equivalent to scaling vertices by -1 around one chosen pivot point
+and in the direction of one chosen axis, only it is faster/handier.
 
 After this tool becomes active, select an axis to mirror the selection
 by pressing :kbd:`X`, :kbd:`Y`, or :kbd:`Z`.
@@ -31,7 +31,7 @@ For each transformation orientation,
 you can choose one of its axes along which the mirroring will occur.
 
 As you can see, the possibilities are infinite and the freedom complete:
-you can position the pivot point at any location around which we want the mirroring to occur,
+You can position the pivot point at any location around which we want the mirroring to occur,
 choose one transformation orientation and then one axis on it.
 
 

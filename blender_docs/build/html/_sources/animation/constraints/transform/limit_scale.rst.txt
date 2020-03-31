@@ -5,7 +5,7 @@ Limit Scale Constraint
 **********************
 
 An object or bone can be scaled along the X, Y and Z axes.
-This constraint restricts the amount of allowed scalings along each axis,
+This constraint restricts the amount of allowed scaling along each axis,
 through lower and upper bounds.
 
 .. important::

@@ -31,7 +31,7 @@ Rim Color
 Mask Color
    Defines a color to keep unaltered.
 
-Mode
+Blend
    The mask blending operation to perform. See :term:`Color Blend Modes`.
 
 Blur

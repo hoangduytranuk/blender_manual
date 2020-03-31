@@ -130,7 +130,6 @@
 <li class="toctree-l4 current"><a class="reference internal" href="index.html">Edge Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../face/index.html">Face Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../uv.html">UV Tools</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../misc/index.html">Misc</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Tính Chất -- Properties</a></li>
@@ -231,7 +230,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="bevel-edges">
-<span id="tool-mesh-bevel"></span><h1>Bevel Edges<a class="headerlink" href="#bevel-edges" title="Permalink to this headline">¶</a></h1>
+<span id="tool-mesh-bevel"></span><span id="bpy-ops-mesh-bevel"></span><h1>Bevel Edges<a class="headerlink" href="#bevel-edges" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -354,7 +353,7 @@ Similarly as <em>Segments</em> it can be set with mouse movements and numeric in
 <dt>Clamp Overlap <kbd class="kbd docutils literal notranslate">C</kbd></dt><dd><p>Limits the width of each beveled edge so that edges cannot cause
 overlapping intersections with other geometry.</p>
 </dd>
-<dt>Loop Slide</dt><dd><p>If there are unbeveled edges along with beveled edges into a vertex,
+<dt>Loop Slide</dt><dd><p>If there are un-beveled edges along with beveled edges into a vertex,
 the bevel tries to slide along those edges when possible.
 Turning the option off can lead to more even bevel widths.</p>
 </dd>
@@ -462,13 +461,14 @@ Inner miters are shown in the following diagram, where two inner miters are on t
 </dd>
 <dt>Spread</dt><dd><p>The value used to spread extra vertices apart for <em>Outer</em> and <em>Inner Miters</em>.</p>
 </dd>
-<dt>Intersection Method <kbd class="kbd docutils literal notranslate">N</kbd></dt><dd><p>When more than two beveled edges meet at a vertex, a mesh is created as a way to complete the
-intersection between the generated geometry. This option controls the method used to create that mesh.</p>
+<dt>Intersection Method <kbd class="kbd docutils literal notranslate">N</kbd></dt><dd><p>When more than two beveled edges meet at a vertex, a mesh is created as
+a way to complete the intersection between the generated geometry.
+This option controls the method used to create that mesh.</p>
 <dl>
-<dt>Grid Fill</dt><dd><p>The default method for building intersections, useful when a smooth continuation of the bevel
-profile is desired. Without <em>Custom Profile</em> enabled, the curve of the profile continues through
-the intersection, but with a custom profile it just creates a smooth grid within the
-intersection's boundary.</p>
+<dt>Grid Fill</dt><dd><p>The default method for building intersections, useful when a smooth continuation of
+the bevel profile is desired. Without <em>Custom Profile</em> enabled, the curve of the profile
+continues through the intersection, but with a custom profile it just creates a smooth grid within
+the intersection's boundary.</p>
 </dd>
 <dt>Cutoff</dt><dd><p>Creates a cutoff face at the end of each beveled edge coming into the vertex. This is most
 useful for custom profiles when the new intersection is too complex for a smooth grid fill.</p>
@@ -529,14 +529,14 @@ allowing the bevel to add volume to the mesh rather than just removing it.</p>
 <p>The <em>Profile</em> slider is still useful when miters are enabled
 because it still controls the shape of the miter profiles.</p>
 </div>
-<p>Sampling</p>
-<blockquote>
-<div><p>Samples will first be added to each control point, then if there are enough samples,
+<dl class="simple">
+<dt>Sampling</dt><dd><p>Samples will first be added to each control point, then if there are enough samples,
 they will be divided evenly between the edges. The <em>Sample Straight Edges</em> option toggles whether
 the samples are added to edges with sharp control points on either side. If there aren't enough samples
 to give each edge the same number of samples, they will just be added to the most curved edges,
 so it is recommended to use at least as many segments as there are control points.</p>
-</div></blockquote>
+</dd>
+</dl>
 </dd>
 </dl>
 </div>

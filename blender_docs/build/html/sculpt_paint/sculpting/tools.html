@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sculpting Tools &mdash; Blender Manual</title>
+  <title>Tools &mdash; Blender Manual</title>
   
 
   
@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="next" title="Tool Settings" href="tool_settings/index.html" />
-    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+    <link rel="prev" title="Toolbar" href="toolbar.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -123,9 +123,11 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#modes">Chế Độ -- Modes</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Điều Khắc -- Sculpting</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Sculpting Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolbar.html">Toolbar</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tool_settings/index.html">Tool Settings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="adaptive.html">-- Adaptive Sculpting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="editing.html">Editing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="hide_mask.html">-- Hiding &amp; Masking</a></li>
 </ul>
 </li>
@@ -200,7 +202,7 @@
         
           <li><a href="index.html">Điều Khắc -- Sculpting</a> &raquo;</li>
         
-      <li>Sculpting Tools</li>
+      <li>Tools</li>
     
     
 		<li class="wy-breadcrumbs-aside">
@@ -214,25 +216,101 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sculpting-tools">
-<h1>Sculpting Tools<a class="headerlink" href="#sculpting-tools" title="Permalink to this headline">¶</a></h1>
-<div class="figure align-right">
-<img alt="../../_images/sculpt-paint_sculpting_tools_brushes.png" src="../../_images/sculpt-paint_sculpting_tools_brushes.png" />
-</div>
-<dl>
-<dt>Draw <kbd class="kbd docutils literal notranslate">X</kbd></dt><dd><p>Moves vertices inward or outward,
-based the average normal of the vertices contained within the drawn brush stroke.</p>
+  <div class="section" id="tools">
+<h1>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="draw">
+<h2>Draw<a class="headerlink" href="#draw" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Draw Sharp</dt><dd><p>Similar to the <em>Draw</em> brush however, it deforms the mesh from the original coordinates
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Draw</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">X</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Moves vertices inward or outward,
+based the average normal of the vertices contained within the drawn brush stroke.</p>
+</div>
+<div class="section" id="draw-sharp">
+<h2>Draw Sharp<a class="headerlink" href="#draw-sharp" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Draw Sharp</span></p>
+</dd>
+</dl>
+</div>
+<p>Similar to the <em>Draw</em> brush however, it deforms the mesh from the original coordinates
 and uses the <em>Sharper</em> <a class="reference internal" href="../brush/falloff.html"><span class="doc">Falloff</span></a>.
 This is useful for creating cloth wrinkles, stylized hair or hard surface edges.</p>
+</div>
+<div class="section" id="clay">
+<h2>Clay<a class="headerlink" href="#clay" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Clay <kbd class="kbd docutils literal notranslate">C</kbd></dt><dd><p>Similar to the <em>Draw</em> brush, but includes settings to adjust the plane on which the brush acts.
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Clay</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">C</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Similar to the <em>Draw</em> brush, but includes settings to adjust the plane on which the brush acts.
 It behaves like a combination of the <em>Flatten</em> and <em>Draw</em> brushes.</p>
+</div>
+<div class="section" id="clay-strips">
+<span id="bpy-types-brush-tip-roundness"></span><h2>Clay Strips<a class="headerlink" href="#clay-strips" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Clay Strips</dt><dd><p>Similar to the <em>Clay</em> brush, but it uses a cube to define the brush area of influence rather than a sphere.</p>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Clay Strips</span></p>
 </dd>
-<dt>Layer <kbd class="kbd docutils literal notranslate">L</kbd></dt><dd><p>This brush is similar to <em>Draw</em>, except that the height of the displacement layer is capped.
+</dl>
+</div>
+<p>Similar to the <em>Clay</em> brush, but it uses a cube to define the brush area of influence rather than a sphere.</p>
+<dl class="simple">
+<dt>Tip Roundness</dt><dd><p>Factor to control how round the brush is, a value of zero will make the brush square.
+Note, the <a class="reference internal" href="../brush/falloff.html"><span class="doc">Brush Falloff</span></a>
+is only applied to the rounded portions of the brush.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="layer">
+<h2>Layer<a class="headerlink" href="#layer" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Layer</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">L</kbd></p>
+</dd>
+</dl>
+</div>
+<p>This brush is similar to <em>Draw</em>, except that the height of the displacement layer is capped.
 This creates the appearance of a solid layer being drawn.
 This brush does not draw on top of itself; a brush stroke intersects itself.
 Releasing the mouse button and starting a new stroke
@@ -243,43 +321,163 @@ will reset the depth and paint on top of the previous stroke.</p>
 <dt>Set Persistent Base</dt><dd><p>This button resets the base so that you can add another layer.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="inflate">
+<h2>Inflate<a class="headerlink" href="#inflate" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Inflate <kbd class="kbd docutils literal notranslate">I</kbd></dt><dd><p>Similar to <em>Draw</em>,
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Inflate</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">I</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Similar to <em>Draw</em>,
 except that vertices in <em>Inflate</em> mode are displaced in the direction of their own normals.</p>
+</div>
+<div class="section" id="blob">
+<h2>Blob<a class="headerlink" href="#blob" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Blob</dt><dd><p>Pushes mesh outward or inward into a spherical shape with settings to
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Blob</span></p>
+</dd>
+</dl>
+</div>
+<p>Pushes mesh outward or inward into a spherical shape with settings to
 control the amount of magnification at the edge of the sphere.</p>
+</div>
+<div class="section" id="crease">
+<h2>Crease<a class="headerlink" href="#crease" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Crease <kbd class="kbd docutils literal notranslate">Shift-C</kbd></dt><dd><p>Creates sharp indents or ridges by pushing or pulling the mesh, while pinching the vertices together.</p>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Crease</span></p>
 </dd>
-<dt>Smooth <kbd class="kbd docutils literal notranslate">S</kbd></dt><dd><p>Eliminates irregularities in the area of the mesh within the brush's
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Shift-C</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Creates sharp indents or ridges by pushing or pulling the mesh, while pinching the vertices together.</p>
+</div>
+<div class="section" id="smooth">
+<h2>Smooth<a class="headerlink" href="#smooth" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Smooth</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">S</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Eliminates irregularities in the area of the mesh within the brush's
 influence by smoothing the positions of the vertices.</p>
+</div>
+<div class="section" id="flatten">
+<h2>Flatten<a class="headerlink" href="#flatten" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Flatten <kbd class="kbd docutils literal notranslate">Shift-T</kbd></dt><dd><p>The <em>Flatten</em> brush determines an &quot;area plane&quot;
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Flatten</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Shift-T</kbd></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Flatten</em> brush determines an &quot;area plane&quot;
 located by default at the average height above/below the vertices within the brush area.
 The vertices are then pulled towards this plane.
 The inverse of the <em>Flatten</em> brush is the <em>Contrast</em> brush
 which pushes vertices up or down away from the brush plane.</p>
+</div>
+<div class="section" id="fill">
+<h2>Fill<a class="headerlink" href="#fill" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Fill</dt><dd><p>Works like the Flatten brush, but only brings vertices below the brush plane upwards.</p>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Fill</span></p>
+</dd>
+</dl>
+</div>
+<p>Works like the Flatten brush, but only brings vertices below the brush plane upwards.</p>
 <dl class="simple">
+<dt>Area Radius</dt><dd><p>Ratio between the brush radius and the radius that is going to be used to sample the area center.</p>
+</dd>
 <dt>Invert to Scrape</dt><dd><p>When enabled, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while sculpting
 changes the brush behavior to be the same as the <em>Scrape</em> brush.
 When disabled, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while sculpting,
 will push vertices below the cursor downward.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="scrape">
+<h2>Scrape<a class="headerlink" href="#scrape" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Scrape</dt><dd><p>The <em>Scrape</em> brush works like the <em>Flatten</em> brush, but only brings vertices above the plane downwards.</p>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Scrape</span></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Scrape</em> brush works like the <em>Flatten</em> brush, but only brings vertices above the plane downwards.</p>
 <dl class="simple">
+<dt>Area Radius</dt><dd><p>Ratio between the brush radius and the radius that is going to be used to sample the area center.</p>
+</dd>
 <dt>Invert to Fill</dt><dd><p>When enabled, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while sculpting
 changes the brush behavior to be the same as the <em>Fill</em> brush.
 When disabled, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while sculpting,
 will push vertices above the cursor up away from the cursor.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="multiplane-scrape">
+<h2>Multiplane Scrape<a class="headerlink" href="#multiplane-scrape" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Multiplane Scrape</dt><dd><p>Scrapes the mesh with two angled planes at the same time, producing a sharp edge between them.
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Multiplane Scrape</span></p>
+</dd>
+</dl>
+</div>
+<p>Scrapes the mesh with two angled planes at the same time, producing a sharp edge between them.
 This is useful for creating edges when sculpting hard surface objects.</p>
 <dl class="simple">
 <dt>Plane Angle</dt><dd><p>The angle between the two planes of the brush, pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd> inverts the angle.</p>
@@ -292,13 +490,45 @@ When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, it locks
 and the angle they form instead of the cursor while performing the stroke.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="pinch">
+<h2>Pinch<a class="headerlink" href="#pinch" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Pinch <kbd class="kbd docutils literal notranslate">P</kbd></dt><dd><p>Pulls vertices towards the center of the brush.
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Pinch</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">P</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Pulls vertices towards the center of the brush.
 The inverse setting is <em>Magnify</em>, in which vertices are pushed away from the center of the brush.</p>
+</div>
+<div class="section" id="grab">
+<h2>Grab<a class="headerlink" href="#grab" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Grab <kbd class="kbd docutils literal notranslate">G</kbd></dt><dd><p>Used to drag a group of vertices around. Unlike the other brushes,
-<em>Grab</em> does not modify different points as the brush is dragged across the model.
-Instead, <em>Grab</em> selects a group of vertices on mouse-down, and pulls them to follow the mouse.
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Grab</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">G</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Used to drag a group of vertices around. <em>Grab</em> selects a group of vertices on mouse-down,
+and pulls them to follow the mouse. And unlike other brushes,
+<em>Grab</em> does not move different vertices as the brush is dragged across the model.
 The effect is like moving a group of vertices in Edit Mode with Proportional Editing enabled,
 except that <em>Grab</em> can make use of other Sculpt Mode options (like textures and symmetry).</p>
 <dl>
@@ -309,8 +539,21 @@ generates a preview of vertices connected to the active vertex.
 This helps to visualize the real geometry that is being manipulating while sculpting with active modifiers.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="elastic-deform">
+<h2>Elastic Deform<a class="headerlink" href="#elastic-deform" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Elastic Deform</dt><dd><p>Used to simulate realistic deformations such as grabbing or twisting of <a class="reference internal" href="../../glossary/index.html#term-elastic"><span class="xref std std-term">elastic</span></a> objects.
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Elastic Deform</span></p>
+</dd>
+</dl>
+</div>
+<p>Used to simulate realistic deformations such as grabbing or twisting of <a class="reference internal" href="../../glossary/index.html#term-elastic"><span class="xref std std-term">elastic</span></a> objects.
 For example, this tool works great for modeling the shape of flesh like objects such as humans or animals.
 When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, the brush deforms vertices along the normal of the active vertex.</p>
 <dl>
@@ -332,8 +575,24 @@ When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, the brus
 Higher values preserve volume more, but also lead to more bulging.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="snake-hook">
+<h2>Snake Hook<a class="headerlink" href="#snake-hook" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Snake Hook <kbd class="kbd docutils literal notranslate">K</kbd></dt><dd><p>Pulls vertices along with the movement of the brush to create long, snake-like forms.</p>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Snake Hook</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">K</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Pulls vertices along with the movement of the brush to create long, snake-like forms.</p>
 <dl class="simple">
 <dt>Magnify</dt><dd><p>The <em>Snake Hook</em> brush tends to loose volume along the stroke,
 with <em>Magnify</em> value greater than 0.5 it's possible to sculpt shapes without loosing volume.</p>
@@ -341,11 +600,37 @@ with <em>Magnify</em> value greater than 0.5 it's possible to sculpt shapes with
 <dt>Rake</dt><dd><p>A factor to support moving the mesh with rotation following the cursor's motion.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="thumb">
+<h2>Thumb<a class="headerlink" href="#thumb" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Thumb</dt><dd><p>Similar to the <em>Nudge</em> brush, this one flattens the mesh in the brush area,
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Thumb</span></p>
+</dd>
+</dl>
+</div>
+<p>Similar to the <em>Nudge</em> brush, this one flattens the mesh in the brush area,
 while moving it in the direction of the brush stroke.</p>
+</div>
+<div class="section" id="pose">
+<span id="bpy-types-brush-use-pose-ik-anchored"></span><h2>Pose<a class="headerlink" href="#pose" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Pose</dt><dd><p>This brush is used to pose a model simulating an armature-like deformation.
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Pose</span></p>
+</dd>
+</dl>
+</div>
+<p>This brush is used to pose a model simulating an armature-like deformation.
 The pivot point for rotation is calculated automatically based
 on the radius of the brush and the topology of the model.
 When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, the pose brush applies a twist rotation
@@ -360,23 +645,93 @@ This is useful to manipulate areas with a lot of complex shapes like fingers.</p
 <dt>Pose IK Segments</dt><dd><p>Controls how many <a class="reference internal" href="../../animation/armatures/posing/bone_constraints/index.html#bone-constraints-inverse-kinematics"><span class="std std-ref">IK bones</span></a>
 are going to be created for posing.</p>
 </dd>
+<dt>Keep Anchor Point</dt><dd><p>Keeps the position of the last segment in the IK chain fixed</p>
+</dd>
 </dl>
+</div>
+<div class="section" id="nudge">
+<h2>Nudge<a class="headerlink" href="#nudge" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Nudge</dt><dd><p>Moves vertices in the direction of the brush stroke.</p>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Nudge</span></p>
 </dd>
-<dt>Rotate</dt><dd><p>Rotates vertices within the brush in the direction the cursor is moved. The initial drag direction
+</dl>
+</div>
+<p>Moves vertices in the direction of the brush stroke.</p>
+</div>
+<div class="section" id="rotate">
+<h2>Rotate<a class="headerlink" href="#rotate" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Rotate</span></p>
+</dd>
+</dl>
+</div>
+<p>Rotates vertices within the brush in the direction the cursor is moved. The initial drag direction
 is the zero angle and by rotating around the center you can create a vortex effect.</p>
+</div>
+<div class="section" id="slide-relax">
+<h2>Slide Relax<a class="headerlink" href="#slide-relax" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Slide Relax</dt><dd><p>This brush slides the topology of the mesh in the direction of the stroke
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Slide Relax</span></p>
+</dd>
+</dl>
+</div>
+<p>This brush slides the topology of the mesh in the direction of the stroke
 without changing the geometrical shape of the mesh.
 When pressing <kbd class="kbd docutils literal notranslate">Shift</kbd>, the brush enters <em>Relax</em> mode
 which tries to create an even distribution of quads without deforming the volume of the mesh.</p>
+</div>
+<div class="section" id="simplify">
+<h2>Simplify<a class="headerlink" href="#simplify" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Simplify</dt><dd><p>This brush collapses short edges (as defined by the detail size) whether or
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Simplify</span></p>
+</dd>
+</dl>
+</div>
+<p>This brush collapses short edges (as defined by the detail size) whether or
 not the <em>Collapse Short Edges</em> option is enabled.
 This brush has no effect if dynamic topology is not enabled.</p>
+</div>
+<div class="section" id="mask">
+<h2>Mask<a class="headerlink" href="#mask" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Mask <kbd class="kbd docutils literal notranslate">M</kbd></dt><dd><p>Lets you select mesh parts to be unaffected by other brushes by painting vertex colors.
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Mask</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">M</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Lets you select mesh parts to be unaffected by other brushes by painting vertex colors.
 The mask values are shown as gray-scale.
 I.e. the darker a masked area is, the less effect sculpting on it will have.
 See also the options of the <a class="reference internal" href="hide_mask.html#sculpt-mask-menu"><span class="std std-ref">Màn Chắn -- Mask</span></a> menu.</p>
@@ -390,9 +745,22 @@ See also the options of the <a class="reference internal" href="hide_mask.html#s
 </dl>
 </dd>
 </dl>
+</div>
+<div class="section" id="mesh-filter">
+<h2>Mesh Filter<a class="headerlink" href="#mesh-filter" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Mesh Filter</dt><dd><p>Applies a deformation to all vertices in the mesh at the same time.
-To use this tool, simply click and drag away from the object to have a positive effect
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Mesh Filter</span></p>
+</dd>
+</dl>
+</div>
+<p>Applies a deformation to all vertices in the mesh at the same time.
+To use this tool, click and drag away from the object to have a positive effect
 and click and drag towards the mesh to have a negative effect.</p>
 <dl class="simple">
 <dt>Filter Type</dt><dd><dl class="simple">
@@ -421,26 +789,67 @@ This filter works the same as the <em>Relax</em> mode of the <em>Slide Relax</em
 <dt>Deformation Axis</dt><dd><p>Apply the deformation only on the selected axis.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="move">
+<h2>Move<a class="headerlink" href="#move" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
 </dd>
-<dt>Move</dt><dd><p>Translation tool.</p>
-</dd>
-<dt>Rotate</dt><dd><p>Rotation tool.</p>
-</dd>
-<dt>Scale</dt><dd><p>Scale tool.</p>
-</dd>
-<dt>Transform</dt><dd><p>Tool to adjust the objects translation, rotations and scale.</p>
-</dd>
-<dt><a class="reference internal" href="../../interface/annotate_tool.html#tool-annotate"><span class="std std-ref">Annotate</span></a></dt><dd><p>Draw free-hand annotation.</p>
-<dl class="simple">
-<dt>Annotate Line</dt><dd><p>Draw straight line annotation.</p>
-</dd>
-<dt>Annotate Polygon</dt><dd><p>Draw a polygon annotation.</p>
-</dd>
-<dt>Annotate Eraser</dt><dd><p>Erase previous drawn annotations.</p>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Move</span></p>
 </dd>
 </dl>
+</div>
+<p>Translation tool.</p>
+</div>
+<div class="section" id="id1">
+<h2>Rotate<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Rotate</span></p>
 </dd>
 </dl>
+</div>
+<p>Rotation tool.</p>
+</div>
+<div class="section" id="scale">
+<h2>Scale<a class="headerlink" href="#scale" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Scale</span></p>
+</dd>
+</dl>
+</div>
+<p>Scale tool.</p>
+</div>
+<div class="section" id="transform">
+<h2>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Transform</span></p>
+</dd>
+</dl>
+</div>
+<p>Tool to adjust the objects translation, rotations and scale.</p>
+</div>
 </div>
 
 
@@ -454,7 +863,7 @@ This filter works the same as the <em>Relax</em> mode of the <em>Slide Relax</em
         <a href="tool_settings/index.html" class="btn btn-neutral float-right" title="Tool Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="toolbar.html" class="btn btn-neutral float-left" title="Toolbar" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

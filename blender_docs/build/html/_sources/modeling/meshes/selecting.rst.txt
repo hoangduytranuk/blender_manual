@@ -387,8 +387,7 @@ Edge Selection Mode:
       *Seam* is a true/false setting used in :ref:`UV texturing <editors-uv-index>`.
    Sharpness
       Selects all edges that have the same *Sharp* state as those already selected.
-      *Sharp* is a true/false setting (a flag) used by
-      the :doc:`Edge Split Modifier </modeling/modifiers/generate/edge_split>`.
+      *Sharp* is a mark used by the :doc:`Edge Split Modifier </modeling/modifiers/generate/edge_split>`.
 
 Face Selection Mode:
    Material

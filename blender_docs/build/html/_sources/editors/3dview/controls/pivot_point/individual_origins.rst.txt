@@ -53,5 +53,5 @@ In Edit Mode
    Scaling with non-touching faces around Individual Origins (middle) and the Median Point (right).
 
 When you rotate or scale the touching faces/edges,
-they are treated as a single element, and retain the shape of the group.
+they are treated as a single element, and keep the shape of the group.
 Each group is transformed independently around its median point.

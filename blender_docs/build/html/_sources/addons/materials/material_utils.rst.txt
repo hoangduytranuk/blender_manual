@@ -82,7 +82,7 @@ Further comprehensive documentation can be found in the co-author's
    :class: refbox
 
    :Category:  Material
-   :Description: Menu of material tools (assign, select..) in the 3D View.
+   :Description: Menu of material tools (assign, select...) in the 3D View.
    :Location: 3D View :kbd:`Shift-Q`
    :File: materials_utils folder
    :Author: MichaleW, ChrisHinde

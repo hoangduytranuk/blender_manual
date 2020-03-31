@@ -232,8 +232,8 @@
             
   <div class="section" id="properties">
 <h1>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="active-f-curve-panel">
-<h2>Bảng Đường Cong-F Đang Hoạt Động -- Active F-Curve Panel<a class="headerlink" href="#active-f-curve-panel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="active-f-curve">
+<h2>Active F-Curve<a class="headerlink" href="#active-f-curve" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="admonition-title">Tham Chiếu -- Reference</p>
 <dl class="field-list simple">
@@ -250,9 +250,11 @@
 <dl>
 <dt>Tên Kênh -- Channel Name</dt><dd><p>Kiểu ID + Tên kênh (Địa điểm X).</p>
 </dd>
-<dt>Đường Dẫn RNA -- RNA Path</dt><dd><p>Đường dẫn tới tính chất RNA + chỉ số mảng.</p>
+<dt>Đường Dẫn RNA -- RNA Path</dt><dd><p>RNA Path to property.</p>
 </dd>
-<dt>Chế Độ Màu -- Color Mode</dt><dd><p>Color Mode for the active F-curve.</p>
+<dt>RNA Array Index</dt><dd><p>Index to the specific property affected by F-Curve if applicable.</p>
+</dd>
+<dt>Display Color</dt><dd><p>The method used to determine the color of the F-Curve shown in the Graph Editor.</p>
 <dl class="simple">
 <dt>Tự Động Cầu Vồng Hóa -- Auto Rainbow</dt><dd><p>Increment the hue of the F-curve color based on the channel index.</p>
 </dd>
@@ -264,7 +266,7 @@
 </dd>
 </dl>
 <dl id="graph-editor-auto-handle-smoothing">
-<dt>-- Auto Handle Smoothing</dt><dd><p>Selects the method used to compute <a class="reference internal" href="introduction.html#editors-graph-fcurves-settings-handles"><span class="std std-ref">automatic Bézier handles</span></a>
+<dt>Handle Smoothing</dt><dd><p>Selects the method used to compute <a class="reference internal" href="introduction.html#editors-graph-fcurves-settings-handles"><span class="std std-ref">automatic Bézier handles</span></a>
 (<em>Automatic</em>, <em>Auto Clamped</em>, <em>Vector</em>).</p>
 <div class="figure align-center" id="id2">
 <img alt="../../../_images/editors_graph-editor_fcurves_properties_auto-smoothing.png" src="../../../_images/editors_graph-editor_fcurves_properties_auto-smoothing.png" />
@@ -301,8 +303,8 @@ smoothing may not outweigh the workflow disruption from more extensive change pr
 </dd>
 </dl>
 </div>
-<div class="section" id="active-keyframe-panel">
-<h2>Bảng Khung Khóa Đang Hoạt Động -- Active Keyframe Panel<a class="headerlink" href="#active-keyframe-panel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="active-keyframe">
+<h2>Active Keyframe<a class="headerlink" href="#active-keyframe" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="admonition-title">Tham Chiếu -- Reference</p>
 <dl class="field-list simple">
@@ -318,51 +320,17 @@ smoothing may not outweigh the workflow disruption from more extensive change pr
 <dl>
 <dt>Nội Suy -- Interpolation</dt><dd><p>Set the forward <a class="reference internal" href="introduction.html#editors-graph-fcurves-settings-interpolation"><span class="std std-ref">Chế Độ Nội Suy -- Interpolation Mode</span></a> for the active keyframe.</p>
 </dd>
-<dt>Chậm Rãi -- Easing</dt><dd><p>Xin xem mục <a class="reference internal" href="introduction.html#editors-graph-fcurves-settings-easing"><span class="std std-ref">Thể Loại Chậm Rãi -- Easing Type</span></a>.</p>
+<dt>Key Value</dt><dd><p>Đặt giá trị cho khung khóa đang hoạt động.</p>
 </dd>
-<dt>Khóa -- Key</dt><dd><dl class="simple">
 <dt>Khung Hình -- Frame</dt><dd><p>Đặt khung hình cho khung khóa đang hoạt động.</p>
 </dd>
-<dt>Giá Trị -- Value</dt><dd><p>Đặt giá trị cho khung khóa đang hoạt động.</p>
-</dd>
-</dl>
-</dd>
-<dt>Tay Cầm Trái/Phải -- Left/Right Handle</dt><dd><p>Đặt vị trí của tay cầm nội suy trái/phải cho khung khóa đang hoạt động.</p>
+<dt>Left/Right Handle X/Y</dt><dd><p>Đặt vị trí của tay cầm nội suy trái/phải cho khung khóa đang hoạt động.</p>
 <dl class="simple">
-<dt>Loại Tay Cầm -- Handle Type</dt><dd><p>Xin xem mục <a class="reference internal" href="introduction.html#editors-graph-fcurves-settings-handles"><span class="std std-ref">Loại Tay Cầm -- Handle Types</span></a>.</p>
+<dt>Type</dt><dd><p>Xin xem mục <a class="reference internal" href="introduction.html#editors-graph-fcurves-settings-handles"><span class="std std-ref">Loại Tay Cầm -- Handle Types</span></a>.</p>
 </dd>
 </dl>
 </dd>
 </dl>
-</div>
-<div class="section" id="view-properties">
-<span id="graph-editor-view-properties"></span><span id="bpy-types-spacegrapheditor-show-cursor"></span><h2>Tính Chất của Góc Nhìn -- View Properties<a class="headerlink" href="#view-properties" title="Permalink to this headline">¶</a></h2>
-<div class="refbox admonition">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
-<dl class="field-list simple">
-<dt class="field-odd">Bảng -- Panel</dt>
-<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ View ‣ View Properties</span></p>
-</dd>
-</dl>
-</div>
-<div class="figure align-right" id="id4">
-<img alt="../../../_images/editors_graph-editor_fcurves_properties_view-panel.png" src="../../../_images/editors_graph-editor_fcurves_properties_view-panel.png" />
-<p class="caption"><span class="caption-text">Các tính chất của góc nhìn.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-<dl class="simple">
-<dt>Hiển Thị Con Trỏ -- Show Cursor</dt><dd><p>Bật/Tắt tầm nhìn của <a class="reference internal" href="../introduction.html#graph-editor-2d-cursor"><span class="std std-ref">Con Trỏ 2D</span></a>.</p>
-</dd>
-<dt>Con Trỏ từ Lựa Chọn -- Cursor from Selection</dt><dd><p>Đặt con trỏ 2D tại trung điểm của các khung hình được chọn.</p>
-</dd>
-<dt>Vị Trí Con Trỏ -- Cursor Location</dt><dd><p>Di chuyển con trỏ tới khung hình (giá trị X) và giá trị chỉ định (giá trị Y).</p>
-</dd>
-<dt>Vào Khóa -- To Keys</dt><dd><p>Áp dụng vị trí hiện tại của con trỏ 2D vào các khung khóa đã được chọn.</p>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">Xem thêm</p>
-<p><a class="reference internal" href="../introduction.html#graph-view-menu"><span class="std std-ref">Trình Đơn Góc Nhìn -- View Menu</span></a> của trình biên soạn đồ thị.</p>
-</div>
 </div>
 </div>
 

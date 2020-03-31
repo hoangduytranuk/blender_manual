@@ -12,3 +12,4 @@ These add-ons relate to drawing in the 3D Viewport or manipulating the 3D View.
    math_vis_console.rst
    measureit.rst
    stored_views.rst
+   vr_scene_inspection.rst

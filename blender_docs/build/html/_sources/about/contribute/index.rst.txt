@@ -8,7 +8,7 @@ The Blender Manual is a community driven effort to which anyone can contribute.
 Whether you like to fix a tiny spelling mistake or rewrite an entire chapter,
 your help with the Blender manual is most welcome!
 
-If you find a error in the documentation, please `report the problem
+If you find an error in the documentation, please `report the problem
 <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>`__
 
 Get involved in discussions through the any of the project `Contacts`_

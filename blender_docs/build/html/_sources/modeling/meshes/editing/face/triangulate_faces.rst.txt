@@ -1,4 +1,4 @@
-..  _bpy.ops.mesh.quads_convert_to_tris:
+.. _bpy.ops.mesh.quads_convert_to_tris:
 
 *****************
 Triangulate Faces

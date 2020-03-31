@@ -27,19 +27,29 @@ Brush
    Add Brush
       When you add a brush, the new brush is a clone of the current one.
 
-   Custom Icon
-      Allows definition of a custom brush icon.
+   Brush Specials
+      Reset Brush
+        Reset the current brush to its default settings.
 
-      Image Path
-         Defines the path to the image to use as custom icon.
+      Reset All Brushes
+         Reset all brushes to their default settings.
+
+      Custom Icon
+         Allows definition of a custom brush icon.
+
+         Image Path
+            Defines the path to the image to use as custom icon.
 
 .. note::
 
-   In order to save a custom brush, activate *Fake User*.
+   In order to save a custom brush in a blend-user, enable *Fake User*.
 
 
 Brush Settings
 ==============
+
+Material
+   Data-block selector for the :doc:`material </grease_pencil/materials/introduction>`.
 
 Radius
    The radius of the brush in pixels.
@@ -84,7 +94,7 @@ Angle
    Factor
       Amount of thickness reduction when the stroke is perpendicular to the *Angle* value.
 
-Border Opacity Factor
+Hardness
    Amount of transparency (alpha) to apply from the border of the point to the center.
    Works only when the brush is using stroke materials of *Dot* or *Box* style.
 
@@ -110,41 +120,14 @@ Smooth
    Iterations
       The number of smoothing iterations to apply to the stroke.
 
-Smooth Thickness
-   Strength of smoothing process on the points thickness along the stroke.
-
-   Iterations
-      The number of smoothing iterations to apply to the stroke.
-
 Subdivision Steps
    Number of subdivisions to apply to newly created strokes.
-
-   Randomness
-      Amount of randomness to apply on the points location after subdivision.
 
 Simplify
    Reduces final points numbers in the stroke with an adaptive algorithm.
 
 Trim Strokes End
    Automatically trim intersection strokes ends.
-
-
-.. _grease-pencil-draw-brushes-stabilizer:
-.. _bpy.types.BrushGpencilSettings.use_settings_stabilizer:
-.. _bpy.types.Brush.smooth_stroke:
-
-Stabilize Stroke
-^^^^^^^^^^^^^^^^
-
-*Stabilize Stroke* helps to reduce jitter of the strokes while drawing by
-delaying and correcting the location of points.
-You can toggle the use of *Stabilize Stroke* using the checkbox in the section panel header.
-
-Radius
-   Minimum distance from the last point before the stroke continues.
-Factor
-   A smooth factor, where higher values result in smoother strokes but the drawing sensation
-   feels like as if you were pulling the stroke.
 
 
 .. _bpy.types.BrushGpencilSettings.use_settings_random:
@@ -171,6 +154,23 @@ Jitter
    Use Pressure (pressure sensitivity icon)
       Uses the stylus pressure to control how strong the effect is.
 
+
+.. _grease-pencil-draw-brushes-stabilizer:
+.. _bpy.types.BrushGpencilSettings.use_settings_stabilizer:
+.. _bpy.types.Brush.smooth_stroke:
+
+Stabilize Stroke
+^^^^^^^^^^^^^^^^
+
+*Stabilize Stroke* helps to reduce jitter of the strokes while drawing by
+delaying and correcting the location of points.
+You can toggle the use of *Stabilize Stroke* using the checkbox in the section panel header.
+
+Radius
+   Minimum distance from the last point before the stroke continues.
+Factor
+   A smooth factor, where higher values result in smoother strokes but the drawing sensation
+   feels like as if you were pulling the stroke.
 
 Curves
 ------

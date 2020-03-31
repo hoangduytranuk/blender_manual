@@ -15,6 +15,7 @@
    screen_space_reflections.rst
    motion_blur
    volumetrics.rst
+   performance.rst
    shadows.rst
    indirect_lighting.rst
    film.rst

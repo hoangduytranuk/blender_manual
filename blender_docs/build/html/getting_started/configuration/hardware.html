@@ -119,6 +119,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Cấu Hình Thiết Bị Ngoại Vi -- Configuring Peripherals</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#displays">Hiển Thị -- Displays</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#input-devices">Thiết Bị Đầu Vào -- Input Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#head-mounted-displays-virtual-reality">Head-Mounted Displays (Virtual Reality)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="defaults.html">Mặc Định -- Defaults</a></li>
@@ -295,6 +296,91 @@
 <p class="admonition-title">Xem thêm</p>
 <p>Xin xem bài <a class="reference internal" href="../../editors/preferences/input.html"><span class="doc">Cấu Hình Đầu Vào -- Input Preference</span></a> để biết thêm thông tin về cách cấu hình các thiết bị ngoại vi.</p>
 </div>
+</div>
+</div>
+<div class="section" id="head-mounted-displays-virtual-reality">
+<span id="hardware-head-mounted-displays"></span><h2>Head-Mounted Displays (Virtual Reality)<a class="headerlink" href="#head-mounted-displays-virtual-reality" title="Permalink to this headline">¶</a></h2>
+<p><abbr title="Head-Mounted Displays">HMDs</abbr> make it possible to place users in an interactive, virtual environment.
+Attached to the head, they track head movements to project a seemingly surrounding world onto small
+screens in front of the user's eyes. If the system works well, they experience the virtual environment as
+if they were really inside of it.</p>
+<div class="section" id="supported-platforms">
+<h3>Supported Platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this headline">¶</a></h3>
+<p>Virtual reality support in Blender is implemented through the multi-platform OpenXR standard.
+This standard is new and therefore support for it is still limited.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">OpenXR compatible platforms.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Platform</p></th>
+<th class="head"><p>Operating System</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.microsoft.com/windows/windows-mixed-reality">Windows Mixed Reality</a></p></td>
+<td><p>Windows</p></td>
+<td><p>Requires the Windows 10 May 2019 Update (1903)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.oculus.com/">Oculus Rift</a></p></td>
+<td><p>Windows</p></td>
+<td><p><a class="reference external" href="https://developer.oculus.com/blog/prototype-openxr-for-oculus/">Prototype Release</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://monado.dev/">Monado</a></p></td>
+<td><p>GNU/Linux</p></td>
+<td><p><em>Not</em> recommended for general use yet</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="getting-started">
+<h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<p>The following subsections describe how an HMD can be set up for usage with the <a class="reference internal" href="#supported-platforms">supported platforms</a>.
+If this is not done, Blender will report an error when trying to start a virtual reality session.</p>
+<div class="section" id="windows-mixed-reality">
+<h4>Windows Mixed Reality<a class="headerlink" href="#windows-mixed-reality" title="Permalink to this headline">¶</a></h4>
+<p>To check if a PC meets the requirements to run Windows Mixed Reality, Microsoft offers
+the <a class="reference external" href="https://www.microsoft.com/en-us/p/windows-mixed-reality-pc-check/9nzvl19n7cnc">Windows Mixed Reality PC Check</a>
+application.</p>
+<ul class="simple">
+<li><p>Make sure the Windows 10 May 2019 Update (1903) is installed.</p></li>
+<li><p>If the system meets all requirements, the Mixed Reality Portal should already be installed.
+It is also available in
+the <a class="reference external" href="https://www.microsoft.com/en-us/p/mixed-reality-portal/9ng1h8b3zc7m">Microsoft Store</a>.
+On first use it will guide through some setup steps.</p></li>
+<li><p>Launch the Mixed Reality Portal. Click the menu button <code class="docutils literal notranslate"><span class="pre">...</span></code> in the lower left corner.
+In the menu it opens, select the <em>Set up OpenXR</em>. Windows Mixed Reality is now ready to be used with OpenXR.</p></li>
+</ul>
+<p>For more information, refer to Windows'
+<a class="reference external" href="https://docs.microsoft.com/windows/mixed-reality/openxr#getting-started-with-openxr-for-windows-mixed-reality-headsets">Getting Started Guide for Windows Mixed Reality and OpenXR</a>.</p>
+</div>
+<div class="section" id="oculus-rift">
+<h4>Oculus Rift<a class="headerlink" href="#oculus-rift" title="Permalink to this headline">¶</a></h4>
+<p>Oculus only provides prototype OpenXR support. To use it, Blender has to be started in
+a special way, as described below.</p>
+<ul class="simple">
+<li><p>Download and install the <a class="reference external" href="https://www.oculus.com/setup/">Oculus Rift software</a>.</p></li>
+<li><p>Start Blender by double clicking the <code class="docutils literal notranslate"><span class="pre">blender_oculus</span></code> script inside the installation directory.
+It will open a command-line window with further information.</p></li>
+</ul>
+</div>
+<div class="section" id="monado">
+<h4>Monado<a class="headerlink" href="#monado" title="Permalink to this headline">¶</a></h4>
+<p>Monado is a <a class="reference internal" href="../about/license.html"><span class="doc">free and open source</span></a> XR platform for Linux. It is not yet ready for
+production usage and should only be used for testing purposes.</p>
+<p><a class="reference external" href="https://launchpad.net/~monado-xr/+archive/ubuntu/monado">There are packages available</a> for Debian based
+distributions. For others it has to be compiled from source, which in this case is not recommended for people with
+little experience in compiling software. Follow the <a class="reference external" href="https://gitlab.freedesktop.org/monado/monado/-/blob/master/README.md">Getting Started Guides</a> from Monado to do so nevertheless.</p>
+</div>
+</div>
+<div class="section" id="completing-the-setup">
+<h3>Completing the Setup<a class="headerlink" href="#completing-the-setup" title="Permalink to this headline">¶</a></h3>
+<p>Inside Blender, the <a class="reference internal" href="../../addons/3d_view/vr_scene_inspection.html"><span class="doc">VR Scene Inspection add-on</span></a>
+needs to be enabled to access virtual reality features.</p>
 </div>
 </div>
 </div>

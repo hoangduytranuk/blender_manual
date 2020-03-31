@@ -234,24 +234,24 @@
 <img alt="../../../_images/compositing_node-types_CompositorNodeCurveRGB.png" src="../../../_images/compositing_node-types_CompositorNodeCurveRGB.png" />
 <p class="caption"><span class="caption-text">Nút Đường Cong RGB.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>The <em>Đường Cong RGB</em> cho phép hiệu chỉnh màu cho mỗi kênh màu và điều chỉnh mức trong ngữ cảnh của quá trình tổng hợp.</p>
+<p>The <em>Đường Cong RGB -- RGB Curves Node</em> cho phép hiệu chỉnh màu của mỗi kênh màu, và điều chỉnh mức của chúng trong ngữ cảnh của quá trình tổng hợp.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Hệ Số -- Factor</dt><dd><p>Điều chế lượng ảnh hưởng mà nút tác động đến hình ảnh xuất ra.</p>
+<dt>Hệ Số -- Factor</dt><dd><p>Điều chế lượng ảnh hưởng mà nút sẽ tác động đến hình ảnh xuất ở đầu ra.</p>
 </dd>
 <dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào hình ảnh tiêu chuẩn.</p>
 </dd>
-<dt>Mức Độ Đen -- Black Level</dt><dd><p>Xác định màu đầu vào được ánh xạ (tuyến tính) sang màu màu đen.</p>
+<dt>Mức Độ Đen -- Black Level</dt><dd><p>Xác định màu nào ở đầu vào sẽ được ánh xạ (một cách tuyến tính) thành màu đen (<em>màu nào được kể là màu đen</em>).</p>
 </dd>
-<dt>Mức Độ Trắng -- White Level</dt><dd><p>Xác định màu đầu vào được ánh xạ (tuyến tính) sang màu trắng.</p>
+<dt>Mức Độ Trắng -- White Level</dt><dd><p>Xác định màu nào ở đầu vào sẽ được ánh xạ (tuyến tính) thành màu trắng (<em>màu nào sẽ được kể là màu trắng</em>).</p>
 </dd>
 </dl>
 <div class="lead docutils container">
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Mẹo</p>
-<p>Để xác định mức độ thì hãy sử dụng <span class="xref std std-ref">Ống Hút -- eyedropper</span> để chọn mẫu vật về màu sắc của hình ảnh được hiển thị.</p>
+<p>Để xác định các mức độ thì bạn hãy sử dụng <span class="xref std std-ref">Ống Hút Chấm Màu -- eyedropper</span> để chọn một mẫu vật màu sắc của hình ảnh được hiển thị.</p>
 </div>
 </div>
 <div class="section" id="properties">
@@ -260,8 +260,8 @@
 <dt>Sắc Thái -- Tone</dt><dd><p>Tiêu Chuẩn</p>
 <p>Tựa Phim</p>
 </dd>
-<dt>Kênh -- Channel</dt><dd><p>Bấm vào một trong các kênh để hiển thị đường cong cho mỗi kênh.</p>
-<p>T (RGB Tổng hợp -- Combined RGB), R (Đỏ -- Red), G (Lục -- Green), B (Lam -- Blue), L (Độ Sáng -- Luminance)</p>
+<dt>Kênh -- Channel</dt><dd><p>Bấm vào một trong các kênh để hiển thị đường cong dành cho mỗi kênh.</p>
+<p>C (RGB Kết Hợp -- Combined RGB), R (Đỏ -- Red), G (Lục -- Green), B (Lam -- Blue), L (Độ Sáng -- Luminance)</p>
 </dd>
 <dt>Đường Cong -- Curve</dt><dd><p>Đường cong Bézier thay đổi mức độ của đầu vào ở (trục X) để tạo ra mức đầu ra ở (trục Y). Xin hãy xem mục <a class="reference internal" href="../../../interface/controls/templates/curve.html#ui-curve-widget"><span class="std std-ref">Thành Tố Đường Cong -- Curve widget</span></a> để biết thêm thông tin về các điều khiển của đường cong.</p>
 </dd>
@@ -279,7 +279,7 @@
 <p>Dưới đây là một số đường cong phổ biến mà bạn có thể sử dụng để đạt được các hiệu ứng mong muốn.</p>
 <div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_rgb-curves_example-common-use.png"><img alt="../../../_images/compositing_types_color_rgb-curves_example-common-use.png" src="../../../_images/compositing_types_color_rgb-curves_example-common-use.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Từ trái sang phải: 1. Hừng Sáng Bóng Tối (<em>Lighten shadows</em>) 2. Âm Bản (<em>Negative</em>) 3. Giảm độ Tương Phản (<em>Decrease contrast</em>) 4. Áp Phích Hóa (<em>Posterize</em>).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Từ trái sang phải: 1. Làm Hừng Sáng Bóng Tối (<em>Lighten shadows</em>) 2. Âm Bản (<em>Negative</em>) 3. Giảm độ Tương Phản (<em>Decrease contrast</em>) 4. Áp Phích Hóa (<em>Posterize</em>).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="color-correction-using-curves">
 <h3>Chỉnh Màu bằng Đường Cong -- Color Correction using Curves<a class="headerlink" href="#color-correction-using-curves" title="Permalink to this headline">¶</a></h3>
@@ -288,20 +288,20 @@
 <p class="caption"><span class="caption-text">Chỉnh màu bằng đường cong.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>Trong ví dụ này, hình ảnh có quá nhiều màu đỏ trong đó, vì vậy chúng ta đưa nó qua nút <em>Đường Cong RGB -- RGB Curves</em> và giảm kênh Đỏ (<em>Red</em>) xuống.</p>
-<p>Ngoài ra, hãy đọc các ví dụ về các đường cong Làm Tối (<em>Darken</em>) và  Nâng Cao Độ Tương Phản (<em>Contrast Enhancement</em>) lên <a class="reference internal" href="mix.html"><span class="doc">tại đây</span></a>.</p>
+<p>Đồng thời, xin hãy đọc các ví dụ về các đường cong Làm Tối (<em>Darken</em>) và  Nâng Cao Độ Tương Phản (<em>Contrast Enhancement</em>) lên <a class="reference internal" href="mix.html"><span class="doc">tại đây</span></a>.</p>
 </div>
 <div class="section" id="color-correction-using-black-white-levels">
-<h3>Chỉnh màu sắc bằng cách sử dụng các Mức Đen/Trắng -- Color Correction using Black/White Levels<a class="headerlink" href="#color-correction-using-black-white-levels" title="Permalink to this headline">¶</a></h3>
+<h3>Chỉnh Màu Sắc bằng cách sử dụng các Mức Đen/Trắng -- Color Correction using Black/White Levels<a class="headerlink" href="#color-correction-using-black-white-levels" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_rgb-curves_black-white-levels.png"><img alt="../../../_images/compositing_types_color_rgb-curves_black-white-levels.png" src="../../../_images/compositing_types_color_rgb-curves_black-white-levels.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">Chỉnh màu sắc bằng cách sử dụng các Mức Đen/Trắng.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<p>Điều chỉnh các đường cong RGB để hiệu chỉnh màu sắc, một cách thủ công, có thể là một việc khó khăn. Có một phương pháp khác để hiệu chỉnh màu sắc, bằng cách sử dụng các cấp độ đen và trắng, mà chúng ta có thể sử dụng được.</p>
-<p>Trong ví dụ này, Mức Độ Trắng (<em>White Level</em>) được đặt là màu của một điểm sáng chói trong cát, và Mức Độ Đen (<em>Black Level</em>) bằng màu ở trung tâm của mắt con cá. Để làm được điều này một cách hiệu quả, tốt nhất là hãy mở Trình Biên Soạn UV/Hình Ảnh (<em>UV/Image editor</em>) và hiển thị hình ảnh nguồn đã được cung cấp. Sau đó, bạn có thể sử dụng công cụ chọn mức độ màu (<em>ống hút -- color picker</em>) để dễ dàng chọn các màu phù hợp từ hình ảnh nguồn ở đầu vào, cho phóng to vào mức độ của điểm ảnh nếu cần. Mình còn có thể tinh chỉnh kết quả đạt được bằng các đường cong Đỏ,Lục,Lam (R, G, B) như trong ví dụ trước đây.</p>
-<p>Đường cong cho C (Combined: Kết hợp cả 3 kênh) được sử dụng để bù trừ độ tương phản bị tăng lên, một tác dụng phụ của việc điều chỉnh Mức Độ Đen và Trắng.</p>
+<p>Điều chỉnh các đường cong RGB để hiệu chỉnh màu sắc, một cách thủ công, có thể là một việc khá khó khăn. Có một phương pháp khác để hiệu chỉnh màu sắc nữa, là cách sử dụng các Cấp Độ Đen và Trắng, tức cái lẽ ra, lại là mục đích chính của chúng.</p>
+<p>Trong ví dụ này, Mức Độ Trắng (<em>White Level</em>) được đặt là màu của một điểm sáng chói trong cát, và Mức Độ Đen (<em>Black Level</em>) bằng màu ở trung tâm của mắt con cá. Để làm được điều này một cách hiệu quả, tốt nhất là hãy mở Trình Biên Soạn UV/Hình Ảnh (<em>UV/Image editor</em>) và hiển thị hình ảnh nguồn đã được cung cấp. Sau đó, bạn có thể sử dụng công cụ chọn mức độ màu (<em>ống hút chấm màu -- color picker</em>) để dễ dàng chọn các màu phù hợp từ hình ảnh nguồn ở đầu vào, cho phóng to vào mức độ của điểm ảnh nếu cần. Mình còn có thể tinh chỉnh kết quả đạt được bằng các đường cong Đỏ,Lục,Lam (R, G, B) như trong ví dụ trước đây.</p>
+<p>Đường cong cho C (Combined: Kết hợp cả 3 kênh) được sử dụng để bù trừ độ tương phản bị tăng lên do tác dụng phụ của việc điều chỉnh Mức Độ Đen và Trắng gây ra.</p>
 </div>
 <div class="section" id="effects">
-<h3>Ảnh Hưởng -- Effects<a class="headerlink" href="#effects" title="Permalink to this headline">¶</a></h3>
+<h3>Hiệu Ứng -- Effects<a class="headerlink" href="#effects" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_rgb-curves_ex.png"><img alt="../../../_images/compositing_types_color_rgb-curves_ex.png" src="../../../_images/compositing_types_color_rgb-curves_ex.png" style="width: 620px;" /></a>
 <p class="caption"><span class="caption-text">Thay đổi màu sắc bằng cách đảo ngược kênh màu đỏ.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>

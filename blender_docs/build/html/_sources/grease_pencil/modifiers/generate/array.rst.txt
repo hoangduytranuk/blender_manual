@@ -4,7 +4,7 @@
 Array Modifier
 **************
 
-The *Array* modifier creates an array of copies of the strokes, with each copy being offset from
+The *Array* modifier creates an array of copies of the base object, with each copy being offset from
 the previous one in any of a number of possible ways.
 
 Useful for creating complex repetitive drawings.
@@ -22,66 +22,54 @@ Options
    The Array modifier.
 
 Count
-   Total number of items.
+   Total number of copies.
 
 
 Offset
 ------
 
-Offset
-   Distance between items. X, Y and Z distances can be specified.
+Constant Offset
+   Adds a constant translation component to the duplicate object's offset.
+   X, Y and Z constant components can be specified.
 
    X, Y, Z
+
+Relative Offset
+   Adds a translation equal to the object's bounding box size along each axis,
+   multiplied by a scaling factor, to the offset. X, Y and Z scaling factors can be specified.
+
+   X, Y, Z
+
 Object Offset
-   Use the location or rotation of another *Object* to determine the distance
-   and rotational change between the arrayed items.
+   Adds a transformation taken from an object (relative to the current object) to the offset.
+   It is good practice to use an empty object centered or near to the initial object.
+
+Random Offset
+   Add random offset values to the copies.
+
+   X, Y, Z
+
+Random Rotation
+   Add random rotation values to the copies.
+
+   X, Y, Z
+
+Random Scale
+   Add random scale values to the copies.
+
+   X, Y, Z
+
+Seed
+   Seed used by the pseudo-random number generator.
+
+Material Override
+   Index of the material to use on duplicated strokes (0 use strokes original materials).
 
 .. note::
 
    The *Depth Order* is used in the Grease Pencil object has an influence on
    the strokes visualization when using the Array modifier.
    See :doc:`Depth Order </grease_pencil/properties/strokes>` for more information.
-
-
-Shift
------
-
-Shift
-   A shift on the X, Y and Z axes can be specified.
-
-   X, Y, Z
-
-
-Rotation
---------
-
-Rotation
-   Changes in rotation to apply to the duplicated items.
-
-   X, Y, Z
-Random factor
-   Toggle button and random value to apply to the rotation.
-
-
-Scale
------
-
-Scale
-   Changes in scale to apply to the duplicated items.
-
-   X, Y, Z
-Random factor
-   Toggle button and random value to apply to the scale.
-
-
-Material
---------
-
-Material Index
-   Index of the material to use on duplicated strokes (0 use strokes original materials).
-
-Keep original stroke on top
-   Maintains the original strokes used in the array on top of the duplicated ones.
 
 
 Influence Filters

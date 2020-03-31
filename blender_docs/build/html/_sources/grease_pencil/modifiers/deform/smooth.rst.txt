@@ -20,8 +20,8 @@ Options
 Factor
    Strength of the smooth effect.
 
-Step
-   Number of times to apply the smooth effect.
+Repeat
+   The number of smoothing iterations, equivalent to executing the Smooth tool multiple times.
    High values can reduce the animation performance (FPS).
 
 Affect

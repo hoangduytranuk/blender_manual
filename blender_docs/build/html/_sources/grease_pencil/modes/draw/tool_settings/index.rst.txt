@@ -11,6 +11,7 @@
    draw.rst
    fill.rst
    erase.rst
+   tint.rst
    cutter.rst
    eyedropper.rst
    line.rst

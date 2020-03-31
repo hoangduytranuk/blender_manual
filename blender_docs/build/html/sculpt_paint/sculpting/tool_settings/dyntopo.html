@@ -123,9 +123,11 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#modes">Chế Độ -- Modes</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">Điều Khắc -- Sculpting</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tools.html">Sculpting Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../toolbar.html">Toolbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tools/index.html">Tools</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="index.html">Tool Settings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../adaptive.html">-- Adaptive Sculpting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../editing.html">Editing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../hide_mask.html">-- Hiding &amp; Masking</a></li>
 </ul>
 </li>
@@ -239,21 +241,6 @@ rather than just adding details onto a modeled base mesh.</p>
 <p>Dyntopo can be toggled with the checkbox in the header or with <kbd class="kbd docutils literal notranslate">Ctrl-D</kbd>.
 With dynamic topology active, most brushes will subdivide the mesh during the stroke.</p>
 <dl>
-<dt>Detail Type</dt><dd><p>Dyntopo uses three different detail methods to create dynamic detail to an object.</p>
-<dl class="simple">
-<dt>Relative Detail</dt><dd><p>This method uses a detail size based on the number of pixels, and in turn
-will create topology in that size. Zoom out big details, zoom in small fine details.</p>
-</dd>
-<dt>Constant Detail</dt><dd><p>To keep detail uniform across the entire object, Constant Detail can be used.
-The Detail is based on the percentage of a single unit.</p>
-</dd>
-<dt>Brush Detail</dt><dd><p>Giving more control over the topology, with this method you can create topology
-based on the brush size. You can increase and lower topology by simply resizing
-the brush itself. The detail size is based the size of the brush itself, where
-100% will create topology the size of the brush ring itself.</p>
-</dd>
-</dl>
-</dd>
 <dt>Detail Size/Percentage, Resolution <kbd class="kbd docutils literal notranslate">Shift-D</kbd></dt><dd><p>Each Detail Type's detail is set here. Depending on the Detail Type being used
 this property will rather show as a pixel count (px), or percentage.</p>
 <dl class="simple">
@@ -262,9 +249,7 @@ by clicking the pipette icon next to the detail setting and then clicking on the
 </dd>
 </dl>
 </dd>
-<dt>Detail Refine Method</dt><dd><p>When using Dynamic Topology, a certain method will be used to tell how topology
-is handled. Setting the option will determine which of the methods will be used when
-altering the topology.</p>
+<dt>Refine Method</dt><dd><p>Setting the option will determine which of the methods will be used when altering the topology.</p>
 <dl class="simple">
 <dt>Subdivide Edges</dt><dd><p>Just like the Subdivide tool, this method will only subdivide topology
 to match the detail given.</p>
@@ -277,19 +262,26 @@ the detail size, and collapsing topology.</p>
 </dd>
 </dl>
 </dd>
+<dt>Detailing</dt><dd><p>Dyntopo uses three different detail methods to create dynamic detail to an object.</p>
+<dl class="simple">
+<dt>Relative Detail</dt><dd><p>This method uses a detail size based on the number of pixels, and in turn
+will create topology in that size. Zoom out big details, zoom in small fine details.</p>
+</dd>
+<dt>Constant Detail</dt><dd><p>To keep detail uniform across the entire object, Constant Detail can be used.
+The Detail is based on the percentage of a single unit.</p>
+</dd>
+<dt>Brush Detail</dt><dd><p>Giving more control over the topology, with this method you can create topology
+based on the brush size. You can increase and lower topology by resizing the brush itself.
+The detail size is based the size of the brush itself,
+where full detail will create topology the size of the brush radius itself.</p>
+</dd>
+</dl>
+</dd>
 <dt>Smooth Shading</dt><dd><p>Toggles whether mesh faces are smooth or flat-shaded.
 In dynamic-topology mode all faces have the same type of shading.</p>
 </dd>
-<dt>Optimize</dt><dd><p>If sculpting begins to slow down while dynamic topology is enabled,
-use the <em>Optimize</em> button to recalculate the sculpt BVH.</p>
-</dd>
-<dt>Detail Flood Fill</dt><dd><p>When using Constant Detail mode, this option is made available, allowing
-you to fill the entire object with a uniform detail, based on the detail size.</p>
-</dd>
-<dt>Direction</dt><dd><p>Determines which direction the model will be symmetrized.</p>
-</dd>
-<dt>Symmetrize</dt><dd><p>Uses direction orientation to symmetrize. Since Dyntopo adds details dynamically
-it may happen that the model goes asymmetric, so this a good tool for that.</p>
+<dt>Detail Flood Fill</dt><dd><p>When using <em>Constant</em> or <em>Manual</em> <em>Detailing</em>, this option is made available,
+allowing you to fill the entire object with a uniform detail, based on the detail size.</p>
 </dd>
 </dl>
 <p class="rubric" id="bpy-types-brush-topology-rake-factor">Topology Rake</p>

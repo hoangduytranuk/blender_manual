@@ -47,6 +47,22 @@ Render
 Viewport
    Number of samples for viewport rendering.
 
+.. _render-cycles-settings-viewport-denoising:
+
+Viewport Denoising
+   Removes noise while previewing scenes in *Rendered* mode in the 3D Viewport.
+   Denoising can also be enabled for the final render in the
+   :ref:`View Layer Properties <render-layers-denoising-optix>`.
+   The sample value which denoising can be applied on to can be configured in the
+   :ref:`Viewport Performance <render_cycles_settings_perfomance_viewport>` properties.
+
+   None
+      Do not denoise the 3D Viewport.
+   OptiX AI-Accelerated
+      Uses an artificial intelligence algorithm to remove noise from renders.
+      It is based on the :ref:`render-cycles-gpu-optix` acceleration engine
+      and therefore has the same GPU requirements as rendering with Optix.
+
 
 Sub Samples
 ===========

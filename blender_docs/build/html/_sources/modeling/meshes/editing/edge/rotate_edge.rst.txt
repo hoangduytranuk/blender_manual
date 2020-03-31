@@ -11,7 +11,7 @@ Rotate Edge
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Edge --> Rotate Edge CW / Rotate Edge CCW`
 
-Rotating an edge clockwise (CW) or counter-clockwise (CCW) spins an edge between two faces around their vertices.
+Rotating an edge clockwise (CW) or counterclockwise (CCW) spins an edge between two faces around their vertices.
 This is very useful for restructuring a mesh's topology.
 
 The tool operates on selected edges or the shared edge between selected faces.

@@ -116,9 +116,9 @@ Custom Orientations
    :Mode:      Object and Edit Modes
    :Panel:     :menuselection:`Sidebar region --> Transform Orientations`
 
-You can define custom transform orientations, using object or mesh elements. Custom transform
-orientations defined from objects use the *Local* orientation of the object whereas those
-defined from selected mesh elements (vertices, edges, faces)
+You can define custom transform orientations, using object or mesh elements.
+Custom transform orientations defined from objects use the *Local* orientation of the object
+whereas those defined from selected mesh elements (vertices, edges, faces)
 use the *Normal* orientation of the selection.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_orientations_custom.png
@@ -129,8 +129,8 @@ The *Transform Orientations* panel, found in the header of the 3D View,
 can be used to manage transform orientations: selecting the active orientation,
 adding ("+" icon), deleting ("X" icon) and rename custom orientations.
 
-The default name for these orientations comes from whatever you have selected.
-If an edge, it will be titled, "Edge", if an object,
+The default name for these orientations is derived from what you have selected.
+If it's an edge, it will be titled, "Edge", if it's an object,
 it will take that object's name, etc.
 
 
@@ -151,8 +151,8 @@ Name
    Text field for naming the new orientation.
 Use View
    The new orientation will be aligned to the view space.
-Use after creation
+Use After Creation
    If checked it leaves the newly created orientation active.
-Overwrite previous
+Overwrite Previous
    If the new orientation is given an existing name, a suffix will be added to it to avoid overwriting the old one,
-   unless *Overwrite previous* is checked, in which case it will be overwritten.
+   unless *Overwrite Previous* is checked, in which case it will be overwritten.

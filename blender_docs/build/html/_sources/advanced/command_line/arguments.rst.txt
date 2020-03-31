@@ -137,6 +137,8 @@ Python Options
 ``--python-exit-code`` ``<code>``
    Set the exit-code in [0..255] to exit if a Python exception is raised
    (only for scripts executed from the command line), zero disables.
+``--python-use-system-env``
+   Allow Python to use system environment variables such as ``PYTHONPATH``.
 ``--addons`` ``<addon(s)>``
    Comma separated list of add-ons (no spaces).
 
@@ -215,6 +217,11 @@ Debug Options
    Enable GPU memory stats in status bar.
 ``--debug-wm``
    Enable debug messages for the window manager, shows all operators in search, shows keymap errors.
+``--debug-xr``
+   Enable debug messages for virtual reality contexts.
+   Enables the OpenXR API validation layer, (OpenXR) debug messages and general information prints.
+``--debug-xr-time``
+   Enable debug messages for virtual reality frame rendering times.
 ``--debug-all``
    Enable all debug messages.
 ``--debug-io``
@@ -234,8 +241,8 @@ Misc Options
 ``--app-template`` ``<template>``
    Set the application template (matching the directory name), use ``default`` for none.
 ``--factory-startup``
-   Skip reading the startup.blend in the user's home directory.
-``--enable-library-override``
+   Skip reading the startup.blend in the users home directory.
+``--disable-library-override``
    Enable Library Override features in the UI.
 ``--enable-event-simulate``
    Enable event simulation testing feature ``bpy.types.Window.event_simulate``.
@@ -272,8 +279,10 @@ Other Options
    Print this help text and exit (windows only).
 ``--debug-freestyle``
    Enable debug messages for Freestyle.
+``--debug-ghost``
+   Enable debug messages for event handling.
 ``--verbose`` ``<verbose>``
-   Set logging verbosity level.
+   Set logging verbosity level for debug messages which supports it.
 
 
 Argument Parsing

@@ -43,8 +43,8 @@ This may take a little getting used to, the basics are listed below controls are
 - The distance of the mouse cursor to the 3D cursor controls how sharp the bend will be.
 - The relative angle of the mouse cursor to the initial axis defines the bend angle.
 
-If this seems overly complicated, it's probably best to try the tool where it becomes quickly apparent
-how the tool reacts to your input.
+If this seems overly complicated, it's probably best to try the tool
+where it becomes quickly apparent how the tool reacts to your input.
 
 Bend Angle
    The amount of rotation.

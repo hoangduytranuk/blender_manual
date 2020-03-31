@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.shape_propagate_to_all:
 
 *******************
 Propagate to Shapes

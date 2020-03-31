@@ -228,8 +228,8 @@
 <div class="figure align-center">
 <img alt="../../_images/addons_camera_camera-rigs_ui.png" src="../../_images/addons_camera_camera-rigs_ui.png" />
 </div>
-<p>This script was designed to add some extended functionality to a camera by creating control rig
-with custom shapes and UI to easily access the cameras settings from the 3D View.</p>
+<p>This add-on extends the functionality of a camera by creating control rigs with widgets
+and adds a panel to quickly access the camera's settings from the 3D View.</p>
 <div class="section" id="activation">
 <h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -239,34 +239,77 @@ with custom shapes and UI to easily access the cameras settings from the 3D View
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>After activating the add-on, it will place two menu items in the <span class="menuselection">Add ‣ Camera</span> menu.
-They are Dolly Rig and Crane Rig.</p>
-<p>Both rigs are very similar except the &quot;Crane Rig&quot; has two extra adjustable bones (Arm Height and Arm Length)
+<p>After activating the add-on, it will place three menu items in the <span class="menuselection">Add ‣ Camera</span> menu.
+They are Dolly Rig, Crane Rig and 2D Camera Rig.</p>
+<p>The first two rigs are very similar except the &quot;Crane Rig&quot; has two extra adjustable bones (Arm Height and Arm Length)
 to make it easier to achieve a cinematic crane shot.</p>
+<p>The 2D Camera Rig is mostly useful for 2D shots, when the camera is static and
+the action happens in front of it (like a theater stage).</p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>Add a <span class="menuselection">Add ‣ Camera ‣ Dolly Camera Rig or Crane Camera Rig</span>.
+<p>Add a <span class="menuselection">Add ‣ Camera ‣ Dolly Camera Rig, Crane Camera Rig or 2D Camera Rig</span>.
 This will build the rig at the cursor location, add a new camera, making it the new active scene camera.</p>
 <p>When the Rig is selected, the camera properties will be displayed in the Sidebar.</p>
 </div>
-<div class="section" id="rigs">
-<h2>Rigs<a class="headerlink" href="#rigs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="d-rigs-dolly-crane">
+<h2>3D Rigs (Dolly &amp; Crane)<a class="headerlink" href="#d-rigs-dolly-crane" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Root bone</dt><dd><p>This is the parent of the entire rig.</p>
+<dt>Root Bone</dt><dd><p>This is the parent of the entire rig.</p>
 </dd>
-<dt>Control bone</dt><dd><p>This is the bone (named <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>) that will translate the camera around. By default it will track to the aim bone.</p>
+<dt>Control Bone</dt><dd><p>This is the bone (named <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>) that will translate the camera around. By default it will track to the aim bone.</p>
 </dd>
-<dt>Aim bone</dt><dd><p>The camera will point at this bone (named <code class="docutils literal notranslate"><span class="pre">Aim</span></code>).
+<dt>Aim Bone</dt><dd><p>The camera will point at this bone (named <code class="docutils literal notranslate"><span class="pre">Aim</span></code>).
 You can also tilt the camera by rotating the aim on the Y axis.</p>
 </dd>
 </dl>
 </div>
+<div class="section" id="d-rig">
+<h2>2D Rig<a class="headerlink" href="#d-rig" title="Permalink to this headline">¶</a></h2>
+<p>This rig is mainly designed to function like a rostrum camera (stage camera), aiming at one direction.
+With it, you can frame the action by moving two of the corners of the camera, instead of moving
+and rotating it. It produces smooth movements that would be hard to achieve without it,
+by using complex drivers to calculate the appropriate camera settings.</p>
+<p>The following video shows a comparison of an animated camera movement
+without (top) and with (bottom) the help of the rig.
+As you can see in the lower left corner, you can achieve a smoother camera movement, without the frame moving around.</p>
+<iframe src="https://player.vimeo.com/video/280727941" style="border: 0; height: 480px; width: 800px">
+</iframe><dl class="simple">
+<dt>Root Bone</dt><dd><p>This is the parent of the entire rig.
+It is the only bone that you should rotate to aim approximately at the action.</p>
+</dd>
+<dt>Left_corner and Right_corner Bones</dt><dd><p>These are the most important bones in this rig.
+You can move them to quickly set and animate a framing.
+The camera will adjust its parameters to adapt to this framing (focal length, rotation / shift).
+They should always be at the same height (Y axis in the camera's coordinate system).</p>
+</dd>
+<dt>Camera Bone</dt><dd><p>You can move the camera around, and it will compensate its settings to frame the two corners.
+For instance, if you leave the corners fixed on both sides of the subject and move the camera forward,
+you will achieve an efficient dolly zoom effect.</p>
+</dd>
+</dl>
+<div class="section" id="modes">
+<h3>Modes<a class="headerlink" href="#modes" title="Permalink to this headline">¶</a></h3>
+<p>There are two modes of operation for the 2D rig: Rotation and Shift.
+You can switch between the two modes in the add-on's <a class="reference internal" href="#interface">Interface</a>.</p>
+<p>Rotation is the default mode, and will rotate the camera to aim at and keep the corners in its frame.
+Shift mode, on the other hand, uses the Shift properties on the Camera to achieve a cropping effect instead of a pan.</p>
+</div>
+<div class="section" id="limitations">
+<h3>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>When moving the corners too far to the side in rotation mode, perspective makes the rig much less accurate.</p></li>
+<li><p>Rotation mode is unsupported for orthographic cameras.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="interface">
+<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="widgets">
-<h2>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
-<p>When the rig(s) are built, the add-on will create a collection for all the custom bone shapes
-called (named <code class="docutils literal notranslate"><span class="pre">WDGTS_camera</span></code>). When the custom shapes (widgets) are built
-they will use the prefix <code class="docutils literal notranslate"><span class="pre">WDGTS_camera</span></code>. If you have more than one rig in the scene,
+<h3>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h3>
+<p>When a rig is built, the add-on will create a collection for all the custom bone shapes
+called (named <code class="docutils literal notranslate"><span class="pre">Widgets</span></code>). When the custom shapes (widgets) are built
+they will use the prefix <code class="docutils literal notranslate"><span class="pre">WGT-</span></code>. If you have more than one rig in the scene,
 it will use the same widgets in the same collection rather than duplicating them.
 The default collection name and the widget prefix can be set in the preferences of the add-on.
 (This will not change the name of any existing widgets or collection,
@@ -275,10 +318,21 @@ only ones that are created after you change the setting.)</p>
 <img alt="../../_images/addons_camera_camera-rigs_prefs.png" src="../../_images/addons_camera_camera-rigs_prefs.png" />
 </div>
 </div>
-<div class="section" id="ui">
-<h2>UI<a class="headerlink" href="#ui" title="Permalink to this headline">¶</a></h2>
-<p>The UI will display most of the useful camera settings.
-I will only explain the added features here, for more information check out the <a class="reference internal" href="../../render/cameras.html"><span class="doc">Cameras</span></a>.</p>
+<div class="section" id="panel">
+<h3>Panel<a class="headerlink" href="#panel" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Panel</dt>
+<dd class="field-even"><p><span class="menuselection">3D View ‣ Sidebar ‣ Item ‣ Camera Rig</span></p>
+</dd>
+</dl>
+</div>
+<p>The panel will display the most used camera settings.
+Only the added features will be explain here, for more information refer to the <a class="reference internal" href="../../render/cameras.html"><span class="doc">Cameras</span></a> section.</p>
 <dl>
 <dt>Add DOF Empty</dt><dd><p>The <em>Add DOF Empty</em> button will automatically add an empty at the location of the aim bone and
 make it the depth of field (DOF) object.</p>
@@ -303,39 +357,40 @@ Turn it off and the bone will not point to the aim bone anymore.</p>
 <dl class="simple">
 <dt>Crane Rig Height, Arm Length</dt><dd><p>The <em>Arm Height</em> and <em>Arm Length</em> sliders at the bottom of the UI show the Y axis scale of the relevant bone.
 By default, both the height and the arm length are at 1 unit in size.
-These values only show in the UI when a crane rig is selected, they are also animatable.</p>
+These values only show in the interface when a crane rig is selected, they are also animatable.</p>
+</dd>
+<dt>Rotation/Shift</dt><dd><p>The Rotation/Shift slider lets you switch between Rotation and Shift <a class="reference internal" href="#modes">Modes</a> for the 2D Camera rig.
+You can also choose an intermediate value to have a bit of both.</p>
 </dd>
 </dl>
+</div>
 </div>
 <div class="section" id="multiple-cameras">
 <h2>Multiple Cameras<a class="headerlink" href="#multiple-cameras" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to add as many rigs as your scene needs.
 The <em>Make Camera Active</em> will appear if the camera attached to the selected rig is <strong>not</strong> the active camera.
-By pressing this, it will make this camera the active one.
-If you wish to switch active cameras during an animation, check out the <a class="reference internal" href="#camera-switching">Camera Switching</a> section below.</p>
-</div>
+By pressing this, it will make this camera the active one.</p>
 <div class="section" id="camera-switching">
-<h2>Camera Switching<a class="headerlink" href="#camera-switching" title="Permalink to this headline">¶</a></h2>
+<h3>Camera Switching<a class="headerlink" href="#camera-switching" title="Permalink to this headline">¶</a></h3>
 <p>If you wish to switch cameras during an animation you can do this with the <em>Add Marker and Bind</em> button.
 This uses Blender's built-in camera binding tool to a Timeline marker.
 When pressed, it will add a marker to the Timeline and bind it to the camera controlled by the selected rig.
 Go to another frame, select a different camera rig and press it again.
 Now you have two markers and when you scrub the time line you will see the active camera switch accordingly.
 (repeat this process as many times as needed)
-This markers can then also be dragged around in the time to change the frame in which they will switch.</p>
+These markers can then also be dragged around in the timeline to change the frame at which they will switch.</p>
+</div>
 </div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
-<p>If the Aim tracking is not functioning check that you have &quot;Auto Run Python Scripts&quot; enabled in the Preferences
-<span class="menuselection">Preferences ‣ Save &amp; Load ‣ Auto Run Python Scripts</span>.</p>
-<p>If the UI stops working, perhaps you have parented an object to the rig?
-At the moment If you parent an object to the rig with a name
-that precedes the camera name alphabetically, the UI can't load.
-E.g. The Default camera name for the Dolly is &quot;Dolly Camera&quot;. If you parent an object called &quot;E&quot; it will work.
-But an object called &quot;A&quot; will fail.</p>
+<p>If the Aim tracking or 2D rig are not functioning, check that you have &quot;Auto Run Python Scripts&quot;
+enabled in the Preferences <span class="menuselection">Preferences ‣ Save &amp; Load ‣ Auto Run Python Scripts</span>.</p>
 <div class="admonition seealso">
 <p class="admonition-title">Xem thêm</p>
-<p>The <a class="reference external" href="https://github.com/waylow/add_camera_rigs">Author's Github Repository</a>.</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://github.com/waylow/add_camera_rigs">author's Github repository</a>.</p></li>
+<li><p>A <a class="reference external" href="http://lacuisine.tech/blog/2018/07/19/2d-camera-rig/">blog post</a> explaining the 2D rig by its authors.</p></li>
+</ul>
 </div>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
@@ -353,7 +408,7 @@ But an object called &quot;A&quot; will fail.</p>
 <dd class="field-even"><p>camera_dolly_crane_rigs.py</p>
 </dd>
 <dt class="field-odd">Author</dt>
-<dd class="field-odd"><p>Wayne Dixon, Brian Raschko, Kris Wittig</p>
+<dd class="field-odd"><p>Wayne Dixon, Brian Raschko, Kris Wittig, Damien Picard, Flavio Perez</p>
 </dd>
 <dt class="field-even">Maintainer</dt>
 <dd class="field-even"><p>to do</p>

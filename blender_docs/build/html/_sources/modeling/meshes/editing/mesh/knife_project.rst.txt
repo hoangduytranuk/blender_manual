@@ -28,7 +28,7 @@ Now, enter *Edit Mode* and press *Knife Project* (found in the Toolbar).
 
 
 Examples
---------
+========
 
 .. list-table::
 

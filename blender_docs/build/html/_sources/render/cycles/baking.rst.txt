@@ -75,8 +75,8 @@ Emit
 Environment
    Bakes the environment (i.e. the world surface shader defined for the scene) onto
    the selected object(s) as seen by rays cast from the world origin.
-Diffuse, Glossy, Transmission, Subsurface
-   Bakes the diffuse, glossiness, transmission of subsurface pass of a material.
+Diffuse, Glossy, Transmission
+   Bakes the diffuse, glossiness, or transmission pass of a material.
 
    - If only color is selected you get the pass color,
      which is a property of the surface and independent of sampling refinement.

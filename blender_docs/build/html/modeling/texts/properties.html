@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="next" title="-- Empties" href="../empties.html" />
-    <link rel="prev" title="Text Layout" href="layout.html" /> 
+    <link rel="prev" title="Editing" href="editing.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -123,14 +123,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Siêu Cầu -- Metaball</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Văn Bản -- Text</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="selecting_editing.html">Lựa Chọn &amp; Biên Soạn -- Selecting &amp; Editing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="layout.html">Text Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selecting.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="editing.html">Editing</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Tính Chất -- Properties</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#shape">Hình Dạng -- Shape</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#texture-space">Không Gian Chất Liệu -- Texture Space</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#geometry">Hình Dạng -- Geometry</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#font">Phông -- Font</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#paragraph-text-boxes">Paragraph &amp; Text Boxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#paragraph">Paragraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#text-boxes">Text Boxes</a></li>
 </ul>
 </li>
 </ul>
@@ -295,6 +296,34 @@ which means that usually it will follow their outlines
 </dd>
 </dl>
 </div>
+<p>Blender comes with a <em>built-in</em> font by default that is displayed in
+each of the four font style data-block menus.
+The <em>built-in</em> font is always present and shows in this list as &quot;Bfont&quot;.
+The data-block menu contains a list displaying the currently loaded fonts.
+Select one for each font style.</p>
+<p>To load a different <em>Font</em>, click one of the <em>Load</em> buttons
+in the <em>Font</em> panel and navigate to a font file.
+The <a class="reference internal" href="../../editors/file_browser.html"><span class="doc">File Browser</span></a> will give all valid fonts a capital &quot;F&quot; icon.</p>
+<p>If you select a font that is unsupported by Blender, you will get the error <code class="docutils literal notranslate"><span class="pre">Not</span> <span class="pre">a</span> <span class="pre">valid</span> <span class="pre">font</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Location of Fonts on Unix</p>
+<p>Fonts are typically located under <code class="docutils literal notranslate"><span class="pre">/usr/lib/fonts</span></code>, or some variant like <code class="docutils literal notranslate"><span class="pre">/usr/lib/X11/fonts</span></code>,
+but not always. They may be in other locations as well,
+such as <code class="docutils literal notranslate"><span class="pre">/usr/share/local</span></code> or <code class="docutils literal notranslate"><span class="pre">/usr/local/share</span></code>, and possibly related sub-trees.</p>
+</div>
+<p>Remember that the same font will be applied to all chars with same style in a text,
+but that a separate font is required for each style.
+For example, you will need to load an <em>Italics</em> font in order to make characters or words italic.
+Once the font is loaded you can apply that font &quot;Style&quot; to the selected characters or the whole object.
+In all, you would need to load a minimum of four different types of fonts to represent each style
+(Normal, Italics, Bold, Bold &amp; Italics).</p>
+<p>It is important to understand, that Blender does not care what font
+you load for &quot;normal&quot;, &quot;bold&quot;, etc., styles.
+This is how you can have up to four different fonts in use in the same text,
+but you have to choose between different styles of a same font, or different fonts.
+Blender has a number of typographic controls for changing the style and layout of text,
+found in the <em>Font</em> panel.</p>
 <dl>
 <dt>-- Bold</dt><dd><p>Toggled with the <em>Bold</em> button before typing.
 Text can also be set to <strong>bold</strong> by selecting it then using the <em>Bold</em> entry in the <em>Text</em> menu of the 3D View.</p>
@@ -368,9 +397,158 @@ then using the <em>Underline</em> entry in the <em>Text</em> menu of the <em>3D 
 </dl>
 </div>
 </div>
-<div class="section" id="paragraph-text-boxes">
-<h2>Paragraph &amp; Text Boxes<a class="headerlink" href="#paragraph-text-boxes" title="Permalink to this headline">¶</a></h2>
-<p>Those panels control the general <a class="reference internal" href="layout.html"><span class="doc">layout of the text</span></a> in the object.</p>
+<div class="section" id="paragraph">
+<h2>Paragraph<a class="headerlink" href="#paragraph" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>All</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Properties editor ‣ Font ‣ Paragraph</span></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Paragraph</em> Panel has settings for the alignment and spacing of text.</p>
+<div class="figure align-default" id="id3">
+<img alt="../../_images/modeling_texts_layout_paragraph-settings.png" src="../../_images/modeling_texts_layout_paragraph-settings.png" />
+<p class="caption"><span class="caption-text">The Paragraph panel.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="alignment">
+<h3>Alignment<a class="headerlink" href="#alignment" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>Horizontal Alignment</dt><dd><dl class="simple">
+<dt>Left</dt><dd><p>Aligns text to the left of the frames when using them,
+else uses the origin of the text object as the starting point of the text (which grows to the right).</p>
+</dd>
+<dt>Center</dt><dd><p>Centers text in the frames when using them,
+else uses the origin of the text object as the mid-point of the text
+(which grows equally to the left and right).</p>
+</dd>
+<dt>Right</dt><dd><p>Aligns text to the right of the frames when using them,
+else uses the origin of the text object as the ending point of the text (which grows to the left).</p>
+</dd>
+<dt>Justify</dt><dd><p>Only flushes a line when it is terminated by a word-wrap (<strong>not</strong> by a newline),
+and uses <em>white-space</em> instead of <em>character spacing</em> (kerning) to fill lines.</p>
+</dd>
+<dt>Flush</dt><dd><p>Always flushes the line, even when it is still being typed-in.
+It uses character spacing (kerning) to fill lines.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Both <em>Justify</em> and <em>Flush</em> only work within frames.</p>
+</div>
+</dd>
+<dt>Vertical Alignment</dt><dd><dl>
+<dt>Top Base-Line</dt><dd><ul class="simple">
+<li><p>With text boxes, aligns the 'top' base-line of the text to the top of the frames.</p></li>
+<li><p>With no text box, aligns the actual base-line of the text to the origin of the object,
+and grows to the bottom.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>That difference of reference point in the first line
+depending on usage of boxes or not is indeed confusing.</p>
+</div>
+</dd>
+<dt>Top</dt><dd><ul class="simple">
+<li><p>With text boxes, aligns the top of the text to the top of the frames.</p></li>
+<li><p>With no text box, aligns the top of the text to the origin of the object, and grows to the bottom.</p></li>
+</ul>
+</dd>
+<dt>Center</dt><dd><ul class="simple">
+<li><p>With text boxes, centers the text in the frames.</p></li>
+<li><p>With no text box, centers the text on the origin of the object,
+and grows in both top and bottom directions equally.</p></li>
+</ul>
+</dd>
+<dt>Bottom</dt><dd><ul class="simple">
+<li><p>With text boxes, align the bottom of the text to the bottom of the frames.</p></li>
+<li><p>With no text box, align the bottom of the text to the origin of the object, and grows to the top.</p></li>
+</ul>
+</dd>
+<dt>Bottom Base-Line</dt><dd><ul class="simple">
+<li><p>With text boxes, aligns the base-line of the text to the bottom of the frames.</p></li>
+<li><p>With no text box, aligns the base-line of the text to the origin of the object, and grows to the top.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="spacing">
+<h3>Spacing<a class="headerlink" href="#spacing" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>Character Spacing</dt><dd><p>A factor by which space between each character (kerning) is scaled in width.</p>
+<p>In Edit Mode in the <em>3D View</em>, you can also control individual kerning
+at text cursor position by pressing <kbd class="kbd docutils literal notranslate">Alt-Left</kbd> / <kbd class="kbd docutils literal notranslate">Alt-Right</kbd> to decrease/increase it.</p>
+</dd>
+<dt>Word Spacing</dt><dd><p>A factor by which white-space between words is scaled in width.</p>
+</dd>
+<dt>Line Spacing</dt><dd><p>A factor by which the vertical space between lines is scaled.</p>
+</dd>
+<dt>Offset X/Y</dt><dd><p>These settings control the X and Y offset of the text position within the object.
+This applies relatively to the object's origin, either to the whole text or, when using text boxes, to each frame.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="text-boxes">
+<span id="bpy-types-textbox"></span><h2>Text Boxes<a class="headerlink" href="#text-boxes" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>All</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Properties editor ‣ Font ‣ Text Boxes</span></p>
+</dd>
+</dl>
+</div>
+<p>Text boxes (or frames) allow you to distribute the text among rectangular areas within a single text object.
+An arbitrary number of freely positionable and re-sizable text frames are allowed per text object.</p>
+<p>The text flows continuously from the lowest-numbered frame to the highest-numbered frame with text
+inside each frame word-wrapped.
+It flows between frames when a lower-numbered frame cannot fit any more text.
+If the last frame is reached, text overflows out of it (by default, see options below).</p>
+<div class="figure align-default" id="id4">
+<img alt="../../_images/modeling_texts_layout_frame-upperpanel-area.png" src="../../_images/modeling_texts_layout_frame-upperpanel-area.png" />
+<p class="caption"><span class="caption-text">Text Boxes panel.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<dl>
+<dt>Add Textbox</dt><dd><p>Inserts a new frame, just after the current one (in text flow order).
+The new frame will have the same size and position as the selected one.</p>
+</dd>
+<dt>Delete <code class="docutils literal notranslate"><span class="pre">X</span></code></dt><dd><p>Delete the current frame.</p>
+</dd>
+<dt>Overflow</dt><dd><p>How to handle text overflowing available space in the defined boxes.</p>
+<dl>
+<dt>Overflow</dt><dd><p>Just keep text running out of the last box.</p>
+</dd>
+<dt>Scale to Fit</dt><dd><p>Scale text to fit into the available space.</p>
+</dd>
+<dt>Truncate</dt><dd><p>Hide the end of the text that does not fit into the available space.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>It will only truncate in <em>Object Mode</em>,
+in <em>Edit Mode</em> the whole text remains visible (and overflows as needed).</p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>Size X/Y</dt><dd><p>Specifies the width and height of the text box, if set to <strong>zero</strong> no word-wrap happens
+(it is ignored, and the whole text box system is disabled if all are set to a null size).</p>
+</dd>
+<dt>Offset X/Y</dt><dd><p>Controls the <em>X</em> and <em>Y</em> offset of the frame, i.e. its position.</p>
+</dd>
+</dl>
+<div class="figure align-default" id="id5">
+<img alt="../../_images/modeling_texts_layout_frame-example4.png" src="../../_images/modeling_texts_layout_frame-example4.png" />
+<p class="caption"><span class="caption-text">Multiple columns, text flowing between boxes.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 
@@ -385,7 +563,7 @@ then using the <em>Underline</em> entry in the <em>Text</em> menu of the <em>3D 
         <a href="../empties.html" class="btn btn-neutral float-right" title="-- Empties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="layout.html" class="btn btn-neutral float-left" title="Text Layout" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="editing.html" class="btn btn-neutral float-left" title="Editing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

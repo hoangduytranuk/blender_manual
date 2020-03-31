@@ -131,41 +131,57 @@ Preferences
 
 .. _keymap-blender_default-prefs-select_with:
 
-Select With
------------
-
-Controls which mouse button, either right or left, is used to select items in Blender.
-If *Left* is selected the :kbd:`RMB` will be a context sensitive menu,
-if *Right* is selected the :kbd:`LMB` will place the 3D Cursor.
-
-
-Select All Toggles
-------------------
-
-Causes selection to deselect all when any selection exists.
-
+Select With Mouse Button
+   Controls which mouse button, either right or left, is used to select items in Blender.
+   If *Left* is selected the :kbd:`RMB` will be a context sensitive menu,
+   if *Right* is selected the :kbd:`LMB` will place the 3D Cursor.
 
 .. _keymap-blender_default-spacebar_action:
 
 Spacebar Action
----------------
+   Controls the action of :kbd:`Spacebar`.
+   These and other shortcuts can be modified in the :doc:`keymap preferences </editors/preferences/keymap>`.
 
-Controls the action of :kbd:`Spacebar`.
-These and other shortcuts can be modified in the :doc:`keymap preferences </editors/preferences/keymap>`.
+   Play
+      Starts playing through the :doc:`Timeline </editors/timeline>`,
+      this option is good for animation or video editing work.
+   Tools
+      Opens the Toolbar underneath the cursor to quickly change the active tool.
+      This option is good for if doing a lot of modeling or rigging work.
+   Search
+      Opens up the :doc:`operator search </interface/controls/templates/operator_search>`.
+      This option is good for someone who is new to Blender and is unfamiliar with the menus and shortcuts.
 
-Play
-   Starts playing through the :doc:`Timeline </editors/timeline>`,
-   this option is good for animation or video editing work.
-Tools
-   Opens the Toolbar underneath the cursor to quickly change the active tool.
-   This option is good for if doing a lot of modeling or rigging work.
-Search
-   Opens up the :doc:`operator search </interface/controls/templates/operator_search>`.
-   This option is good for someone who is new to Blender and is unfamiliar with the menus and shortcuts.
+Activate Gizmo Event
+   TODO.
+
+   Press
+      TODO
+   Drag
+      Todo
+
+Select All Toggles
+   Causes selection to deselect all when any selection exists.
 
 
 3D View
 -------
+
+Grave Accent / Tilde Action
+   Navigate
+      Navigation pie menu, useful on systems without a numeric keypad.
+   Gizmos
+      Transform gizmos pie menu, useful for quickly switching between transform gizmos.
+Middle Mouse Action
+   Orbit
+      Rotates the view around a pivot point, :kbd:`Shift-MMB` is used for panning the view.
+   Pan
+      Shifts the view towards the mouse, :kbd:`Shift-MMB` is used for orbiting the view.
+Alt Middle Mouse Drag Action
+   Relative
+      Set the view axis where each mouse direction maps to an axis relative to the current orientation.
+   Absolute
+      Set the view axis where each mouse direction always maps to the same axis.
 
 .. _keymap-pref-py_menu_on_drag:
 
@@ -185,19 +201,3 @@ Pie Menu on Drag
       :drag: View axis pie menu.
 Extra Shading Pie Menu Items
    Show additional items in the shading menu (:kbd:`Z` key).
-
-Tilde Action
-   Navigate
-      Navigation pie menu, useful on systems without a numeric keypad.
-   Gizmos
-      Transform gizmos pie menu, useful for quickly switching between transform gizmos.
-Middle Mouse Action
-   Orbit
-      Rotates the view around a pivot point, :kbd:`Shift-MMB` is used for panning the view.
-   Pan
-      Shifts the view towards the mouse, :kbd:`Shift-MMB` is used for orbiting the view.
-Alt Middle Mouse Drag Action
-   Relative
-      Set the view axis where each mouse direction maps to an axis relative to the current orientation.
-   Absolute
-      Set the view axis where each mouse direction always maps to the same axis.

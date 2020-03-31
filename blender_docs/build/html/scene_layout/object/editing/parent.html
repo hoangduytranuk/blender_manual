@@ -133,6 +133,7 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Vật Thể Phụ Huynh -- Parenting Objects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="relations.html">Relations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="make_links.html">Make Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shading.html">Shading</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convert.html">Convert To</a></li>
 <li class="toctree-l4"><a class="reference internal" href="show_hide.html">Show/Hide</a></li>
 <li class="toctree-l4"><a class="reference internal" href="delete.html">Delete</a></li>
@@ -247,14 +248,14 @@
 </dl>
 </div>
 <p>When modeling a complex object, such as a watch,
-you may choose to model the different parts as separate objects. However,
-all of the parts may be attached to each other. In these cases,
+you may choose to model the different parts as separate objects.
+Yet all the parts may be attached to each other. In these cases,
 you want to designate one object as the parent of all the children. Movement,
 rotation or scaling of the parent also affects the children.</p>
-<p>To parent objects, select at least two objects (select the child objects first,
-and select the parent object last), and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd>.
-The <em>Set Parent To</em> menu will pop up allowing you to select from one of several
-possible different parenting types.
+<p>To parent objects, select at least two objects
+(select the child objects first, and select the parent object last),
+and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd>. The <em>Set Parent To</em> menu will pop up allowing
+you to select from one of several possible different parenting types.
 Selecting one of the entries in <em>Set Parent To</em> confirms,
 and the child/children to parent relationship is created.</p>
 <p>The last object selected will be the active object (outlined in light orange),
@@ -266,10 +267,9 @@ they will all be children of the parent and will be at the same level of the hie
 the number of entries it displays can change depending on what objects are selected
 when the <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> shortcut is used.</p>
 <p>For parenting without <a class="reference internal" href="#parent-inverse">Parent Inverse</a>, use the <kbd class="kbd docutils literal notranslate">Shift-Ctrl-P</kbd> shortcut instead.</p>
-<p>Moving, rotating or scaling the parent will also usually move/rotate/scale the child/children.
-However, moving/rotating/scaling the child/children of the parent will not result in the parent
-moving/rotating/scaling. In other words,
-the direction of influence is from parent to child and not child to parent.</p>
+<p>Moving, rotating or scaling the parent will also usually transform the child/children.
+Yet transforming the child/children of the parent will not affect the parent.
+In other words, the direction of influence is from parent to child and not child to parent.</p>
 <p>In general when using <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> or <span class="menuselection">3D View Header ‣ Object ‣ Parent</span>
 to parent objects, the child objects can only have one parent object.
 If a child object already has a parent object and you give it another parent then
@@ -356,7 +356,7 @@ parent object that the child object keep any previous transformations
 it got from the old parent object; If instead when changing the parent object of the Monkey
 from &quot;EmptyA&quot; to &quot;EmptyB&quot; we had chosen parenting type <em>Object (Keep Transform)</em>,
 the Monkey would keep its scale information it obtained from the old parent &quot;EmptyA&quot;
-when it is assigned to the new parent &quot;EmptyB&quot;;</p>
+when it is assigned to the new parent &quot;EmptyB&quot;.</p>
 <div class="figure align-default" id="id4">
 <img alt="../../../_images/scene-layout_object_properties_relations_parents_keep-transform-d.png" src="../../../_images/scene-layout_object_properties_relations_parents_keep-transform-d.png" />
 <p class="caption"><span class="caption-text">The Object (Keep Transform) parent method.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
@@ -414,9 +414,9 @@ Notice that the child object does not move to the new location of the pose bone.
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
 <p>When using <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> to set parents, choosing &quot;Bone&quot; or &quot;Bone Relative&quot;
-will respectively clear and set the bone's &quot;Relative Parenting&quot; option. Since
-&quot;Relative Parenting&quot; is an option that is set per bone, this influences all
-child objects of that bone at once.</p>
+will respectively clear and set the bone's &quot;Relative Parenting&quot; option.
+Since &quot;Relative Parenting&quot; is an option that is set per bone, this influences
+all child objects of that bone at once.</p>
 </div>
 </div>
 </div>
@@ -468,7 +468,7 @@ the &quot;Vertex (Triangle)&quot; in the set parent context menu.</span><a class
 </td>
 <td><div class="figure align-default" id="id11">
 <a class="reference internal image-reference" href="../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-3.png"><img alt="../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-3.png" src="../../../_images/scene-layout_object_properties_relations_parents_object-mode-example-3.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Re-scaling the parent icosphere in Object Mode means the child cubes are also rescaled as expected.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Scaling the parent icosphere in Object Mode means the child cubes are also scaled as expected.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>

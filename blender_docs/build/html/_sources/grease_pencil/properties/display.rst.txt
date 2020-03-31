@@ -17,9 +17,6 @@ Display settings for Edit Lines in *Edit Mode* and *Sculpt Mode*.
 Edit Line Color
    Sets the color of the Edit Lines.
 
-Show Stroke Directions
-   Toggles the display of the strokes start point (green) and end point (red) to visualize the line direction.
-
 
 Canvas
 ======

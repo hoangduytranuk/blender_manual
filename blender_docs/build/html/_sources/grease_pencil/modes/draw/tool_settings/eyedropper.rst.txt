@@ -10,7 +10,7 @@ Eyedropper
    :Mode:      Draw Mode
    :Tool:      :menuselection:`Toolbar --> Eyedropper`
 
-The Eyedropper tool is used to create materials based on sampled colors in the 3D Viewport.
+The Eyedropper tool is used to create materials or palette color based on sampled colors in the 3D Viewport.
 
 
 Usage

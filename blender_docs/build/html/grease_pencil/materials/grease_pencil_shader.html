@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Grease Pencil</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../object.html">Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../primitives.html">Primitives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../selecting.html">Selecting</a></li>
@@ -229,8 +230,8 @@ they can be enabled with a checkbox on the panel header.</p>
 determined by closed lines (by connecting the lines start and end points).</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>The shader is not yet a BSDF capable shader to interact with Blender lights
-and can only be setting up on the Material Properties panel (it is not a shader node).</p>
+<p>The shader is not yet a BSDF capable shader and can only be setting up
+on the Material Properties panel (it is not a shader node).</p>
 </div>
 <div class="section" id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
@@ -246,8 +247,8 @@ The <em>Stroke</em> component controls how to render the edit lines.</p>
 <dt>Dots</dt><dd><p>Use a disk shape at each point in the stroke.
 The dots are not connected.</p>
 </dd>
-<dt>Boxes</dt><dd><p>Use a box shape at each point in the stroke.
-The boxes are not connected.</p>
+<dt>Squares</dt><dd><p>Use a square shape at each point in the stroke.
+The squares are not connected.</p>
 </dd>
 </dl>
 </dd>
@@ -255,35 +256,25 @@ The boxes are not connected.</p>
 <dl>
 <dt>Solid</dt><dd><p>Use a solid color.</p>
 <dl class="simple">
-<dt>Color</dt><dd><p>The color of the stroke.</p>
+<dt>Base Color</dt><dd><p>The base color of the stroke.</p>
 </dd>
 </dl>
 </dd>
 <dt>Texture</dt><dd><p>Use an image texture.</p>
-<dl>
+<dl class="simple">
+<dt>Base Color</dt><dd><p>The base color of the stroke.</p>
+</dd>
 <dt>Image</dt><dd><p>The image data-block used as an image source.</p>
+</dd>
+<dt>Blend</dt><dd><p>Texture and Base Color mixing amount.</p>
 </dd>
 <dt>UV Factor</dt><dd><p>The image size along the stroke.</p>
 </dd>
-<dt>Use As Stencil Mask</dt><dd><p>When enabled, use the image alpha as a stencil mask.</p>
-<dl class="simple">
-<dt>Color</dt><dd><p>Color to use on not transparent areas of the image.</p>
-</dd>
-</dl>
-</dd>
-<dt>Mix Color</dt><dd><p>When enabled, mix the image with a certain color.</p>
-<dl class="simple">
-<dt>Factor</dt><dd><p>Mixing amount.</p>
-</dd>
-<dt>Color</dt><dd><p>The color to mix.</p>
-</dd>
 </dl>
 </dd>
 </dl>
 </dd>
-</dl>
-</dd>
-<dt>Alignment</dt><dd><p>Defines how to align the <em>Dots</em> and <em>Boxes</em> along the drawing path and with the object's rotation.</p>
+<dt>Alignment</dt><dd><p>Defines how to align the <em>Dots</em> and <em>Squares</em> along the drawing path and with the object's rotation.</p>
 <dl class="simple">
 <dt>Path</dt><dd><p>Aligns to the drawing path and the object's rotation.</p>
 </dd>
@@ -292,6 +283,8 @@ The boxes are not connected.</p>
 <dt>Fixed</dt><dd><p>Aligns to the screen space; ignoring the drawing path and the object's rotation.</p>
 </dd>
 </dl>
+</dd>
+<dt>Self Overlap</dt><dd><p>Disables stencil and overlap self-intersections with alpha materials.</p>
 </dd>
 </dl>
 <table class="docutils align-default" id="id2">
@@ -326,10 +319,6 @@ The boxes are not connected.</p>
 </tr>
 </tbody>
 </table>
-<dl class="simple">
-<dt>Self Overlap</dt><dd><p>Disables stencil and overlap self-intersections with alpha materials.</p>
-</dd>
-</dl>
 </div>
 <div class="section" id="fill">
 <span id="bpy-types-materialgpencilstyle-use-fill-texture-mix"></span><span id="bpy-types-materialgpencilstyle-texture"></span><span id="bpy-types-materialgpencilstyle-pattern"></span><span id="bpy-types-materialgpencilstyle-flip"></span><span id="bpy-types-materialgpencilstyle-mix-factor"></span><span id="bpy-types-materialgpencilstyle-mix-color"></span><span id="bpy-types-materialgpencilstyle-fill-color"></span><span id="bpy-types-materialgpencilstyle-fill-style"></span><span id="bpy-types-materialgpencilstyle-show-fill"></span><h3>Fill<a class="headerlink" href="#fill" title="Permalink to this headline">¶</a></h3>
@@ -340,7 +329,7 @@ The <em>Fill</em> component control how to render the filled areas determined by
 <dl>
 <dt>Solid</dt><dd><p>Use solid color.</p>
 <dl class="simple">
-<dt>Color</dt><dd><p>The color of the fill.</p>
+<dt>Base Color</dt><dd><p>The base color of the fill.</p>
 </dd>
 </dl>
 </dd>
@@ -355,40 +344,21 @@ The <em>Fill</em> component control how to render the filled areas determined by
 </dl>
 </div></blockquote>
 <dl>
-<dt>Color.</dt><dd><p>The primary color.</p>
+<dt>Base Color</dt><dd><p>The primary color.</p>
 </dd>
-<dt>Secondary color.</dt><dd><p>The secondary color.</p>
+<dt>Secondary color</dt><dd><p>The secondary color.</p>
 </dd>
-<dt>Mix Factor</dt><dd><p>Primary and secondary colors mixing amount.</p>
+<dt>Blend</dt><dd><p>Base Color and Secondary Color mixing amount.</p>
 </dd>
-<dt>Flip colors</dt><dd><p>Flips the gradient, inverting the primary and secondary colors.</p>
+<dt>Flip colors</dt><dd><p>Flips the gradient, inverting the Base Color and Secondary Color.</p>
 </dd>
 <dt>Location</dt><dd><p>Shifts the gradient position.</p>
 <p>X, Y</p>
 </dd>
+<dt>Rotation</dt><dd><p>Rotates the gradient.</p>
+</dd>
 <dt>Scale</dt><dd><p>Scales the gradient.</p>
 <p>X, Y</p>
-</dd>
-<dt>Angle</dt><dd><p>Rotates the gradient.</p>
-</dd>
-</dl>
-</dd>
-<dt>Checkerboard</dt><dd><p>Use a checkered pattern.</p>
-<dl>
-<dt>Color.</dt><dd><p>The primary color.</p>
-</dd>
-<dt>Secondary color.</dt><dd><p>The secondary color.</p>
-</dd>
-<dt>Flip colors</dt><dd><p>Invert the primary and secondary colors.</p>
-</dd>
-<dt>Location</dt><dd><p>Shift the checkered pattern position.</p>
-<p>X, Y</p>
-</dd>
-<dt>Scale</dt><dd><p>Overall checkered pattern scale.</p>
-</dd>
-<dt>Angle</dt><dd><p>Rotate the checkered pattern.</p>
-</dd>
-<dt>Box Size</dt><dd><p>Sets the box size of the checkered pattern.</p>
 </dd>
 </dl>
 </dd>
@@ -396,31 +366,19 @@ The <em>Fill</em> component control how to render the filled areas determined by
 <dl>
 <dt>Image</dt><dd><p>The image data-block used as an image source.</p>
 </dd>
-<dt>Use As Stencil Mask</dt><dd><p>When enabled, use the image's alpha as a stencil mask.</p>
-<dl class="simple">
-<dt>Color</dt><dd><p>Color to use on not transparent areas of the image.</p>
+<dt>Base Color</dt><dd><p>The base color of the fill.</p>
 </dd>
-</dl>
+<dt>Blend</dt><dd><p>Texture and Base Color mixing amount.</p>
 </dd>
-<dt>Offset</dt><dd><p>Shifts the image position.</p>
+<dt>Location</dt><dd><p>Shifts the image position.</p>
 <p>X, Y</p>
+</dd>
+<dt>Rotation</dt><dd><p>Rotates the image.</p>
 </dd>
 <dt>Scale</dt><dd><p>Scales the image.</p>
 <p>X, Y</p>
 </dd>
-<dt>Angle</dt><dd><p>Rotates the image.</p>
-</dd>
-<dt>Opacity</dt><dd><p>The texture's transparency.</p>
-</dd>
 <dt>Clip Image</dt><dd><p>When enabled, show one image instance only (do not repeat).</p>
-</dd>
-<dt>Mix With Color</dt><dd><p>When enabled, mix the image with a certain color.</p>
-<dl class="simple">
-<dt>Factor</dt><dd><p>Mixing amount.</p>
-</dd>
-<dt>Color</dt><dd><p>Color to mix.</p>
-</dd>
-</dl>
 </dd>
 </dl>
 </dd>
@@ -443,12 +401,12 @@ The <em>Fill</em> component control how to render the filled areas determined by
 </td>
 <td><div class="figure align-default" id="id9">
 <a class="reference internal image-reference" href="../../_images/grease-pencil_materials_grease-pencil-shader_fill-gradient.png"><img alt="../../_images/grease-pencil_materials_grease-pencil-shader_fill-gradient.png" src="../../_images/grease-pencil_materials_grease-pencil-shader_fill-gradient.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Style: Gradient.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Style: Gradient (Linear).</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 <td><div class="figure align-default" id="id10">
-<a class="reference internal image-reference" href="../../_images/grease-pencil_materials_grease-pencil-shader_fill-checkerboard.png"><img alt="../../_images/grease-pencil_materials_grease-pencil-shader_fill-checkerboard.png" src="../../_images/grease-pencil_materials_grease-pencil-shader_fill-checkerboard.png" style="width: 130px;" /></a>
-<p class="caption"><span class="caption-text">Style: Checkerboard.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<a class="reference internal image-reference" href="../../_images/grease-pencil_materials_grease-pencil-shader_fill-gradient-radial.png"><img alt="../../_images/grease-pencil_materials_grease-pencil-shader_fill-gradient-radial.png" src="../../_images/grease-pencil_materials_grease-pencil-shader_fill-gradient-radial.png" style="width: 130px;" /></a>
+<p class="caption"><span class="caption-text">Style: Gradient (Radial).</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 <td><div class="figure align-default" id="id11">

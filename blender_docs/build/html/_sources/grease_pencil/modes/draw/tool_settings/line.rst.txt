@@ -19,7 +19,7 @@ Usage
 Selecting a Brush and Material
 ------------------------------
 
-In the Tool Settings select the brush and material to use with the tool.
+In the Tool Settings select the brush, material and color type to use with the tool.
 The Line tool uses *Draw Brush* types.
 See :ref:`grease-pencil-draw-common-options` for more information.
 

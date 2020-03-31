@@ -21,7 +21,7 @@ Each face in the UV map corresponds to a mesh face.
 Each face of a mesh can have many UV textures.
 Each UV texture can have an individual image assigned to it.
 When you unwrap a face to a UV texture in the UV Editor, each face of the mesh is
-automatically assigned *four UV coordinates:* These coordinates define the way an image or
+automatically assigned four UV coordinates: These coordinates define the way an image or
 a texture is mapped onto the face. These are 2D coordinates, which is why they are called UV,
 to distinguish them from XYZ coordinates.
 These coordinates can be used for rendering or for real-time viewport display as well.

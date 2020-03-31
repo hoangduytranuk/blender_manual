@@ -13,7 +13,7 @@ Name
    The track name can be changed with this field.
    Track names are used for linking tracking data to other areas, like a Follow Track constraint.
 Enable (eye icon)
-   This toggle controlled the marker's enabled flag.
+   This toggle controls if the marker is enabled.
    If a marker is disabled, its position is not used either by solver nor by constraints.
 Lock (padlock icon)
    The toggle controls whether the track is locked. Locked tracks cannot be edited at all.

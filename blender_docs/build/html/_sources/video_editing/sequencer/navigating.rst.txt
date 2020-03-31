@@ -12,6 +12,8 @@ Header
    Video Sequencer Header.
 
 
+.. _bpy.types.SpaceSequenceEditor.show_region_hud:
+
 View Menu
 ---------
 
@@ -19,6 +21,9 @@ As usual, the View Menu controls the editor's view settings.
 
 Sidebar :kbd:`N`
    Show or hide the :ref:`Sidebar <ui-region-sidebar>`.
+Adjust Last Operation
+   Displays a popup panel to alter properties of the last
+   completed operation see :ref:`ui-undo-redo-adjust-last-operation`.
 Preview as Backdrop
    Displays the current frame in the background of the main view like in the Compositor.
 Frame Selected :kbd:`NumpadPeriod`

@@ -483,8 +483,8 @@ class FindFilesHasPattern:
         if is_found:
             #pp(found_list)
             self.reportFind(data)
-            _("Found in:", file_path)
-            _("-" * 80)
+            # _("Found in:", file_path)
+            # _("-" * 80)
 
     def switchExistingTextsCase(self, txt):
         #print("switchExistingTextsCase", txt, type(txt))
@@ -534,7 +534,7 @@ class FindFilesHasPattern:
             if has_changed:
                 m.string = new_translation
                 changed = True
-                cm.showfilename()
+                showfilename()
                 print("Replaced:")
                 print(f'old msgstr \"{old_translation}\"')
                 print(f'new msgstr \"{new_translation}\"')

@@ -5,9 +5,20 @@ Damped Track Constraint
 ***********************
 
 The *Damped Track* constraint constrains one local axis of the owner to always point towards *Target*.
+This constraint uses a pure :term:`Swing` rotation, i.e. the shortest possible single axis rotation.
 In other 3D software you can find it with the name "Look at" constraint.
 
-This constraint uses a pure :term:`Swing` rotation, i.e. the shortest possible single axis rotation.
+Although usually associated with bones, Damped Track can align objects to point to (and follow) other
+objects or bones. It is important to note that the constraint aligns the origin's axes to point to the
+target's origin point. This is more easily explained with the figure below. In each case the objects
+are set as Damped Track to +X.
+
+.. figure:: /images/damped-track-axis.png
+   :align: center
+
+   A: Object verticies aligned along axis origin.
+   B: Object vertices aligned away from origin.
+
 
 
 Options

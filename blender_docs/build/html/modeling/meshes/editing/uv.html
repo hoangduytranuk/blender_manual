@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
-    <link rel="next" title="Misc" href="misc/index.html" />
+    <link rel="next" title="Tính Chất -- Properties" href="../properties/index.html" />
     <link rel="prev" title="Face Data" href="face/face_data.html" /> 
 </head>
 
@@ -130,7 +130,6 @@
 <li class="toctree-l4"><a class="reference internal" href="edge/index.html">Edge Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="face/index.html">Face Tools</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">UV Tools</a></li>
-<li class="toctree-l4"><a class="reference internal" href="misc/index.html">Misc</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Tính Chất -- Properties</a></li>
@@ -281,13 +280,13 @@ The more advanced methods can be used with more complex models, and have more sp
 Useful for organic shapes.</p>
 <p>Begin by selecting all faces to be unwrapped in the 3D View. With our faces selected, it is now time to unwrap them. In the 3D View, select <span class="menuselection">Khung Lưới (Mesh) ‣ Mở Gói UV (UV Unwrap) ‣ Mở Gói (Unwrap)</span> or <kbd class="kbd docutils literal notranslate">U</kbd> and select Unwrap.</p>
 <p>You can also do this from the UV Editor with <span class="menuselection">UVs ‣ Unwrap</span> or <kbd class="kbd docutils literal notranslate">E</kbd>.
-This method will unwrap all of the faces and reset previous work.
+This method will unwrap all faces and reset previous work.
 The UVs menu will appear in the UV Editor after unwrapping has been performed once.</p>
 <p>This tool unwraps the faces of the object to provide
 the &quot;best fit&quot; scenario based on how the faces are connected and will fit within the image,
 and takes into account any seams within the selected faces.
 If possible, each selected face gets its own different area of the image and is not overlapping any other faces UV's.
-If all faces of an object are selected, then each face is mapped to some portion of the image.</p>
+If all faces of an object are selected, then each face is mapped to a part of the image.</p>
 <div class="section" id="options">
 <h3>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
 <p>Blender has two ways of calculating the unwrapping.
@@ -333,8 +332,8 @@ and creates a UV map based on this information and settings that you supply.</p>
 the Smart Mapper mapped all of the faces of a cube to a neat arrangement of three sides on top,
 three sides on the bottom, for all six sides of the cube to fit squarely,
 just like the faces of the cube.</p>
-<p>For more complex mechanical objects, this tool can very quickly and easily create
-a very logical and straightforward UV layout for you.</p>
+<p>For more complex mechanical objects, this tool can quickly and easily create
+a regular and straightforward UV layout for you.</p>
 <div class="section" id="id1">
 <h3>Tùy Chọn -- Options<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference internal" href="../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel allows fine control over how the mesh is unwrapped:</p>
@@ -343,7 +342,7 @@ a very logical and straightforward UV layout for you.</p>
 while a lower limit will create fewer groups at the expense of more distortion.</p>
 </dd>
 <dt>Lề của Hải Đảo -- Island Margin</dt><dd><p>This controls how closely the UV islands are packed together.
-A higher number will add more space in between islands.</p>
+A higher number will add more space between islands.</p>
 </dd>
 <dt>Trọng Lượng Diện Tích -- Area Weight</dt><dd><p>Weight projection's vector by faces with larger areas.</p>
 </dd>
@@ -353,9 +352,9 @@ A higher number will add more space in between islands.</p>
 <div class="section" id="lightmap-pack">
 <span id="bpy-ops-uv-lightmap-pack"></span><h2>Đóng Gói Ánh Xạ Ánh Sáng -- Lightmap Pack<a class="headerlink" href="#lightmap-pack" title="Permalink to this headline">¶</a></h2>
 <p>Lightmap Pack takes each of a mesh's faces, or selected faces,
-and packs them into the UV bounds. Lightmaps are used primarily in gaming contexts,
+and packs them into the UV bounds. Lightmaps are used primarily in realtime rendering,
 where lighting information is baked onto texture maps,
-when it is essential to utilize as much UV space as possible.
+when it is needed to use as much UV space as possible.
 It can also work on several meshes at once.
 It has several options that appear in the Toolbar:</p>
 <p>You can set the tool to map just <em>Selected Faces</em> or <em>All Faces</em> if
@@ -381,7 +380,7 @@ See <a class="reference internal" href="../uv/uv_texture_spaces.html#uv-maps-pan
 <dt>Chất Lượng Đóng Gói -- Pack Quality</dt><dd><p>Pre-packing before the more complex Box packing.</p>
 </dd>
 <dt>Lề -- Margin</dt><dd><p>This controls how closely the UV islands are packed together.
-A higher number will add more space in between islands.</p>
+A higher number will add more space between islands.</p>
 </dd>
 </dl>
 </div>
@@ -460,7 +459,7 @@ to unwrap a sphere, view the sphere with the poles at the top and bottom. After 
 Blender will give you an equirectangular projection;
 the point at the equator facing you will be in the middle of the image.
 A polar view will give a very different but common projection map. Using an equirectangular projection
-map of the earth as the UV image will give a very nice planet mapping onto the sphere.</p>
+map of the earth as the UV image will give a good planet mapping onto the sphere.</p>
 <div class="section" id="id5">
 <h3>Tùy Chọn -- Options<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <dl>
@@ -490,7 +489,7 @@ map of the earth as the UV image will give a very nice planet mapping onto the s
 <span id="bpy-ops-uv-project-from-view"></span><h2>Phóng Chiếu Từ Góc Nhìn -- Project from View<a class="headerlink" href="#project-from-view" title="Permalink to this headline">¶</a></h2>
 <p>Project from View takes the current view in the 3D View and flattens the mesh as it appears.
 Use this option if you are using a picture of a real object as a UV Texture for an object that
-you have modeled. You will get some stretching in areas where the model recedes away from you.</p>
+you have modeled. You will get stretching in areas where the model recedes away from you.</p>
 <div class="section" id="id6">
 <h3>Tùy Chọn -- Options<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>See also <a class="reference internal" href="#common">Common</a> options.</p>
@@ -523,7 +522,7 @@ Use this unwrapping option to reset the map and undo any unwrapping (go back to 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="misc/index.html" class="btn btn-neutral float-right" title="Misc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../properties/index.html" class="btn btn-neutral float-right" title="Tính Chất -- Properties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="face/face_data.html" class="btn btn-neutral float-left" title="Face Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

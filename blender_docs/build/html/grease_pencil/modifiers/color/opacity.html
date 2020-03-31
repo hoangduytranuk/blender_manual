@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Grease Pencil</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../object.html">Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../structure.html">Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
@@ -233,16 +234,21 @@ The modifier can alter these values to go from totally transparent points to tot
 <p class="caption"><span class="caption-text">Opacity Modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <dl>
-<dt>Factor</dt><dd><p>Controls the Opacity (Alpha) value of the stroke points.</p>
-<p>A value of 1.0 respect the original alpha value of the points,
+<dt>Mode</dt><dd><p>The color transformation will be applied on the stroke/fill color or stroke Hardeness.
+When Hardeness is selected the opacity affect the stroke transparency (alpha) from the center to the border.</p>
+<p>Stroke and Fill, Stroke, Fill, Hardeness</p>
+</dd>
+<dt>Uniform Opacity</dt><dd><p>When enabled, makes the opacity equal for the entire strokes.</p>
+<dl class="simple">
+<dt>Strength</dt><dd><p>Absolute opacity for the stroke points.</p>
+</dd>
+</dl>
+</dd>
+<dt>Opacity Factor</dt><dd><p>Controls the opacity value of the stroke points.
+A value of 1.0 respect the original alpha value of the points,
 a shift less than 1.0 make the points more transparent than originally,
 and a shift greater than 1.0 make the points more opaque than originally.</p>
 <p>Sets value to 2.0 makes the points alpha fully opaque.</p>
-</dd>
-<dt>Create Materials</dt><dd><p>When applied, the modifier will create a new material that will keep the color transformation.</p>
-</dd>
-<dt>Mode</dt><dd><p>The color transformation will be applied on the stroke and/or the fill color.</p>
-<p>Both, Stroke, Fill</p>
 </dd>
 </dl>
 <div class="section" id="influence-filters">
@@ -253,7 +259,7 @@ and a shift greater than 1.0 make the points more opaque than originally.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Factor Opacity samples.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">Opacity Factor samples.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />

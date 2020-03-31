@@ -66,7 +66,7 @@ Restrict Frame range
       Determines the start and end frame for the build effect.
 
 
-Influence Filter
-----------------
+Influence Filters
+-----------------
 
 See :ref:`grease-pencil-modifier-influence-filters`.

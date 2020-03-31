@@ -41,37 +41,3 @@ the :doc:`Brush Settings </sculpt_paint/sculpting/tool_settings/brush_settings>`
 
 The brush can also change depending on the currently active :doc:`tool </sculpt_paint/sculpting/tools>`
 to better display how that tool works.
-
-
-Pivot Point
-===========
-
-Like Object and Edit Mode, Sculpt Mode also has a :term:`pivot point`.
-This is because the basic move, scale, rotate transforms are also possible in Sculpt Mode.
-
-.. seealso::
-
-   :doc:`Object and Edit Mode Pivot </editors/3dview/controls/pivot_point/index>`
-
-
-.. _bpy.ops.sculpt.set_pivot_position:
-
-Set Pivot
----------
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Mode:      Sculpt Mode
-   :Menu:      :menuselection:`Sculpt --> Set Pivot`
-
-Origin
-   Sets the pivot to the origin of the sculpt.
-Unmasked
-   Sets the pivot position to the average position of the unmasked vertices.
-Mask Border
-   Sets the pivot position to the center of the mask's border.
-Active Vertex
-   Sets the pivot position to the active vertex position.
-Surface
-   Sets the pivot position to the surface under the cursor.

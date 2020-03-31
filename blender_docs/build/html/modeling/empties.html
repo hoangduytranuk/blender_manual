@@ -123,7 +123,18 @@
 <li class="toctree-l2"><a class="reference internal" href="metas/index.html">Siêu Cầu -- Metaball</a></li>
 <li class="toctree-l2"><a class="reference internal" href="texts/index.html">Văn Bản -- Text</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">-- Empties</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#selecting-editing">Lựa Chọn &amp; Biên Soạn -- Selecting &amp; Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#primitives">Primitives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#plain-axes">Trục Tọa Độ -- Plain Axes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arrows">Đa Mũi Tên -- Arrows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#single-arrow">Đơn Mũi Tên -- Single Arrow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#circle">Hình Tròn -- Circle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cube">Lập Thể -- Cube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphere">Hình Cầu -- Sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cone">Hình Nón -- Cone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image">Hình Ảnh -- Image</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#editing">Editing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#properties">Tính Chất -- Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#usage">Sử Dụng -- Usage</a></li>
 </ul>
@@ -213,52 +224,48 @@
 <p>The &quot;empty&quot; is a single coordinate point with no additional geometry.
 Because an empty has no volume and surface, it cannot be rendered.
 Still it can be used as a handle for many purposes.</p>
-<div class="section" id="selecting-editing">
-<h2>Lựa Chọn &amp; Biên Soạn -- Selecting &amp; Editing<a class="headerlink" href="#selecting-editing" title="Permalink to this headline">¶</a></h2>
-<p>An empty can only be edited in Object Mode, which includes its transformation and parenting properties.
-For other tools see the <a class="reference internal" href="../scene_layout/object/index.html"><span class="doc">Object section</span></a>.</p>
-<dl class="simple">
-<dt>Áp Dụng Tỷ Lệ <kbd class="kbd docutils literal notranslate">Ctrl-A</kbd> -- Apply Scale <kbd class="kbd docutils literal notranslate">Ctrl-A</kbd></dt><dd><p>While empties don't exactly have any object data attached to them which can be used for supporting
-&quot;true&quot; apply scale (i.e. with non-uniform scaling), they do have <em>Display Size</em> which controls how
-large the empties are displayed (before scaling). This works by taking the scale factor on the most-scaled axis,
-and combines this with the existing empty <em>Display Size</em> to maintain the correct dimensions on that axis.</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="properties">
-<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="primitives">
+<h2>Primitives<a class="headerlink" href="#primitives" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../_images/modeling_empties_draw-types.png" src="../_images/modeling_empties_draw-types.png" />
 <p class="caption"><span class="caption-text">Empty Display Types.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<dl>
-<dt>Hiển Thị -- Display</dt><dd><dl>
-<dt>Trục Tọa Độ -- Plain Axes</dt><dd><p>Displays as six lines, initially with one pointing in each of the +X, -X, +Y, -Y, +Z, and -Z axis directions.</p>
-</dd>
-<dt>Đa Mũi Tên -- Arrows</dt><dd><p>Displays as arrows, initially pointing in the positive X, Y, and Z axis directions, each with a label.</p>
-</dd>
-<dt>Đơn Mũi Tên -- Single Arrow</dt><dd><p>Displays as a single arrow, initially pointing in the +Z axis direction.</p>
-</dd>
-<dt>Hình Tròn -- Circle</dt><dd><p>Displays as a circle initially in the XZ plane.</p>
-</dd>
-<dt>Lập Thể -- Cube</dt><dd><p>Displays as a cube, initially aligned to the XYZ axes.</p>
-</dd>
-<dt>Hình Cầu -- Sphere</dt><dd><p>Displays as an implied sphere defined by three circles.
+<div class="section" id="plain-axes">
+<h3>Trục Tọa Độ -- Plain Axes<a class="headerlink" href="#plain-axes" title="Permalink to this headline">¶</a></h3>
+<p>Displays as six lines, initially with one pointing in each of the +X, -X, +Y, -Y, +Z, and -Z axis directions.</p>
+</div>
+<div class="section" id="arrows">
+<h3>Đa Mũi Tên -- Arrows<a class="headerlink" href="#arrows" title="Permalink to this headline">¶</a></h3>
+<p>Displays as arrows, initially pointing in the positive X, Y, and Z axis directions, each with a label.</p>
+</div>
+<div class="section" id="single-arrow">
+<h3>Đơn Mũi Tên -- Single Arrow<a class="headerlink" href="#single-arrow" title="Permalink to this headline">¶</a></h3>
+<p>Displays as a single arrow, initially pointing in the +Z axis direction.</p>
+</div>
+<div class="section" id="circle">
+<h3>Hình Tròn -- Circle<a class="headerlink" href="#circle" title="Permalink to this headline">¶</a></h3>
+<p>Displays as a circle initially in the XZ plane.</p>
+</div>
+<div class="section" id="cube">
+<h3>Lập Thể -- Cube<a class="headerlink" href="#cube" title="Permalink to this headline">¶</a></h3>
+<p>Displays as a cube, initially aligned to the XYZ axes.</p>
+</div>
+<div class="section" id="sphere">
+<h3>Hình Cầu -- Sphere<a class="headerlink" href="#sphere" title="Permalink to this headline">¶</a></h3>
+<p>Displays as an implied sphere defined by three circles.
 Initially, the circles are aligned, one each, to the X, Y, and Z axes.</p>
-</dd>
-<dt>Hình Nón -- Cone</dt><dd><p>Displays as a cone, initially pointing in the +Y axis direction.</p>
-</dd>
-<dt>Hình Ảnh -- Image</dt><dd><p>Empties can display images. This can be used to create reference images,
+</div>
+<div class="section" id="cone">
+<h3>Hình Nón -- Cone<a class="headerlink" href="#cone" title="Permalink to this headline">¶</a></h3>
+<p>Displays as a cone, initially pointing in the +Y axis direction.</p>
+</div>
+<div class="section" id="image">
+<h3>Hình Ảnh -- Image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
+<p>Empties can display images. This can be used to create reference images,
 including blueprints or character sheets to model from.
 The image is displayed regardless of the 3D display mode.</p>
 <p>Empty Displays settings can be accessed from <span class="menuselection">Properties ‣ Object Data ‣ Empty</span> panel.</p>
 <dl>
-<dt>Use Alpha</dt><dd><p>Use alpha blending instead of alpha-test
-(blends with the background but can have depth sorting artifacts).</p>
-</dd>
-<dt>Opacity</dt><dd><p>Fade the image to make it transparent
-(uses the object <em>Color</em>'s alpha component).</p>
-</dd>
 <dt>Offset X, Y</dt><dd><p>Offset the image origin
 (where 1.0 represents the width/height of the image).</p>
 <dl class="field-list simple">
@@ -292,7 +299,7 @@ it can be useful to set the depth to <em>Front</em>, with a low <em>Opacity</em>
 </dd>
 <dt>Side</dt><dd><dl class="field-list simple">
 <dt class="field-odd">Both</dt>
-<dd class="field-odd"><p>Display both the front &amp; back of the empty.</p>
+<dd class="field-odd"><p>Display both the front and back of the empty.</p>
 </dd>
 <dt class="field-even">Front</dt>
 <dd class="field-even"><p>Only display the front of the image.</p>
@@ -320,10 +327,36 @@ so two empty images can be set only to show when viewed from the correct side.</
 <dt>Display Only Axis Aligned</dt><dd><p>Only displays the image contents when the view is aligned with the object's local axis.</p>
 </dd>
 </dl>
-</dd>
-<dt>Kích Thước -- Size</dt><dd><p>Controls the size of the empties visualization. This does not change its scale, but functions as an offset.</p>
+<div class="section" id="transparency">
+<span id="bpy-types-object-use-empty-image-alpha"></span><h4>Transparency<a class="headerlink" href="#transparency" title="Permalink to this headline">¶</a></h4>
+<p>Use alpha blending instead of alpha-test
+(blends with the background but can have depth sorting artifacts).</p>
+<dl class="simple">
+<dt>Opacity</dt><dd><p>Fade the image to make it transparent
+(uses the object <em>Color</em>'s alpha component).</p>
 </dd>
 </dl>
+</div>
+</div>
+</div>
+<div class="section" id="editing">
+<h2>Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h2>
+<p>An empty can only be edited in Object Mode, which includes its transformation and parenting properties.
+For other tools see the <a class="reference internal" href="../scene_layout/object/index.html"><span class="doc">Object section</span></a>.</p>
+<dl class="simple">
+<dt>Áp Dụng Tỷ Lệ <kbd class="kbd docutils literal notranslate">Ctrl-A</kbd> -- Apply Scale <kbd class="kbd docutils literal notranslate">Ctrl-A</kbd></dt><dd><p>While empties don't exactly have any object data attached to them which can be used for supporting
+&quot;true&quot; apply scale (i.e. with non-uniform scaling), they do have <em>Display Size</em> which controls how
+large the empties are displayed (before scaling). This works by taking the scale factor on the most-scaled axis,
+and combines this with the existing empty <em>Display Size</em> to maintain the correct dimensions on that axis.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="properties">
+<span id="bpy-types-object-empty-display-size"></span><span id="bpy-types-object-empty-display-type"></span><h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Display As</dt><dd><p>The <a class="reference internal" href="#primitives">Primitives</a> empty type to display in the 3D Viewport.</p>
+</dd>
+<dt>Kích Thước -- Size</dt><dd><p>Controls the size of the empties visualization. This does not change its scale, but functions as an offset.</p>
 </dd>
 </dl>
 </div>

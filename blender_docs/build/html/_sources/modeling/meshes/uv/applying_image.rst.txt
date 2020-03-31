@@ -20,8 +20,7 @@ If you set the 3D View into Textured viewport shading,
 you will immediately see any changes made in the UV Editor, and vice versa.
 This is because no real rendering is taking place; it is all just viewport shading.
 If you were to apply an image to UVs then render, the texture would not show up by default.
-
-To render an image however, you must:
+So to render an image, you must:
 
 - Create a Material for the object.
 - Tell Blender to use the UV textures on faces when rendering.
@@ -29,7 +28,7 @@ To render an image however, you must:
 To create a Material, you have to click *Add New* Material in the Shading context.
 
 There are two ways to tell Blender to use the UV texture when rendering:
-the Proper way and the Quick Way:
+The proper way and the quick way:
 
 
 Use UV Coordinates
@@ -46,7 +45,7 @@ In the Mapping section, choose UV from the Coordinates menu, and select the UV m
 Make sure it is mapped to Color in the Influence section as well
 (it will be mapped to Color by default, and the UV texture is named "UVTex" by default).
 If the image has an alpha channel and you want to use it,
-click "Use Alpha" in the Map Image panel.
+click *Use Alpha* in the Map Image panel.
 
 Full details of using Image textures are on
 the :doc:`Image Textures </render/materials/legacy_textures/types/image_movie>` page.

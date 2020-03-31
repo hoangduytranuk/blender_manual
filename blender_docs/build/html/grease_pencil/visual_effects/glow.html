@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
-    <link rel="next" title="Light Visual Effect" href="light.html" />
+    <link rel="next" title="Pixelate Visual Effect" href="pixelate.html" />
     <link rel="prev" title="Flip Visual Effect" href="flip.html" /> 
 </head>
 
@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Grease Pencil</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../object.html">Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../primitives.html">Primitives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../selecting.html">Selecting</a></li>
@@ -132,7 +133,6 @@
 <li class="toctree-l4"><a class="reference internal" href="colorize.html">Colorize Visual Effect</a></li>
 <li class="toctree-l4"><a class="reference internal" href="flip.html">Flip Visual Effect</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Glow Visual Effect</a></li>
-<li class="toctree-l4"><a class="reference internal" href="light.html">Light Visual Effect</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pixelate.html">Pixelate Visual Effect</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rim.html">Rim Visual Effect</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shadow.html">Shadow Visual Effect</a></li>
@@ -235,27 +235,35 @@
 </div>
 <dl>
 <dt>Mode</dt><dd><p>Determines the mode for the glow effect.</p>
-<dl class="simple">
+<dl>
 <dt>Luminance</dt><dd><p>The glow light illuminates the entire object.</p>
+<dl class="simple">
+<dt>Threshold</dt><dd><p>Limits the colors affected by the glow light. (A value of 1 means no colors affected.)</p>
+</dd>
+</dl>
 </dd>
 <dt>Color</dt><dd><p>The glow light only affect a single color.</p>
+<dl class="simple">
+<dt>Select Color</dt><dd><p>Allows to select a single color to apply the glow light.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd>
 <dt>Glow Color</dt><dd><p>Defines the glow color.</p>
-<dl class="simple">
-<dt>Color</dt><dd><p>When Color Mode is selected, allows to select a single color to apply the glow light.</p>
 </dd>
-<dt>Threshold</dt><dd><p>When Luminance Mode is selected, limits the colors affected by the glow light.
-(A value of 1 means no colors affected.)</p>
+<dt>Blend</dt><dd><p>The mask blending operation to perform. See <a class="reference internal" href="../../glossary/index.html#term-color-blend-modes"><span class="xref std std-term">Color Blend Modes</span></a>.</p>
 </dd>
-</dl>
+<dt>Opacity</dt><dd><p>Control the Opacity of the glow over the object.</p>
 </dd>
-<dt>Radius</dt><dd><p>Adds a blur effect to the glow. If 0 no blur is used.</p>
+<dt>Size</dt><dd><p>Control the glow scale in pixels on the X and Y axis.</p>
+<p>X, Y</p>
+</dd>
+<dt>Rotation</dt><dd><p>Control the Rotation of the glow.</p>
 </dd>
 <dt>Samples</dt><dd><p>Number of Blur samples (0 disabled the blur effect).</p>
 </dd>
-<dt>Use Alpha Mode</dt><dd><p>When enabled, glow only affects alpha areas.</p>
+<dt>Glow Under</dt><dd><p>When enabled, glow only affects alpha areas.</p>
 </dd>
 </dl>
 </div>
@@ -282,7 +290,7 @@
 </td>
 <td><div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../_images/grease-pencil_visual-effects_glow_luminance-alpha.png"><img alt="../../_images/grease-pencil_visual-effects_glow_luminance-alpha.png" src="../../_images/grease-pencil_visual-effects_glow_luminance-alpha.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text">Mode: Luminance (Alpha mode).</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Mode: Luminance (Glow Under).</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 <td><div class="figure align-default" id="id6">
@@ -304,7 +312,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="light.html" class="btn btn-neutral float-right" title="Light Visual Effect" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pixelate.html" class="btn btn-neutral float-right" title="Pixelate Visual Effect" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="flip.html" class="btn btn-neutral float-left" title="Flip Visual Effect" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

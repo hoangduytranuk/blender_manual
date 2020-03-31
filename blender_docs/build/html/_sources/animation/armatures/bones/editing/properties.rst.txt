@@ -33,9 +33,6 @@ Multiply Vertex Group by Envelope
 Inherit Rotation
    The bone automatically rotates together with its parent in *Pose Mode*. For more details,
    see the :ref:`relations page <bone-relations-parenting>`.
-Inherit Scale
-   The bone automatically scales together with its parent in *Pose Mode*. For more details,
-   see the :ref:`relations page <bone-relations-parenting>`.
 Lock
    (also :kbd:`Shift-W` :menuselection:`--> (Locked, ...)`)
    This will prevent all editing of the bone in *Edit Mode*;

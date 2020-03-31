@@ -52,7 +52,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.intersphinx',
     '404',
-    #'translate_po'
+    'translate_po'
 ]
 
 # Is there a better way to check for PDF building?

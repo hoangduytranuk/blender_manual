@@ -43,8 +43,8 @@ Usage
           Warp Angle 360.
 
 
-Cursor Position and View
-------------------------
+Cursor Position & View
+----------------------
 
 The location of the 3D cursor can be used to alter the results of the *Warp* transformation.
 As can be seen from the example in this section, the *Warp* radius

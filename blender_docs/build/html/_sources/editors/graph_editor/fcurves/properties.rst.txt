@@ -3,8 +3,8 @@
 Properties
 **********
 
-Active F-Curve Panel
-====================
+Active F-Curve
+==============
 
 .. admonition:: Reference
    :class: refbox
@@ -20,9 +20,11 @@ This panel displays properties for the active F-curve.
 Channel Name
    ID Type + Channel name (X Location).
 RNA Path
-   RNA Path to property + Array index.
-Color Mode
-   Color Mode for the active F-curve.
+   RNA Path to property.
+RNA Array Index
+   Index to the specific property affected by F-Curve if applicable.
+Display Color
+   The method used to determine the color of the F-Curve shown in the Graph Editor.
 
    Auto Rainbow
       Increment the hue of the F-curve color based on the channel index.
@@ -33,7 +35,7 @@ Color Mode
 
 .. _graph_editor-auto-handle-smoothing:
 
-Auto Handle Smoothing
+Handle Smoothing
    Selects the method used to compute :ref:`automatic Bézier handles <editors-graph-fcurves-settings-handles>`
    (*Automatic*, *Auto Clamped*, *Vector*).
 
@@ -74,8 +76,8 @@ Auto Handle Smoothing
    smoothing may not outweigh the workflow disruption from more extensive change propagation.
 
 
-Active Keyframe Panel
-=====================
+Active Keyframe
+===============
 
 .. admonition:: Reference
    :class: refbox
@@ -88,43 +90,12 @@ Active Keyframe Panel
 
 Interpolation
    Set the forward :ref:`editors-graph-fcurves-settings-interpolation` for the active keyframe.
-Easing
-   See :ref:`editors-graph-fcurves-settings-easing`.
-Key
-   Frame
-      Set the frame for the active keyframe.
-   Value
-      Set the value for the active keyframe.
-Left/Right Handle
+Key Value
+   Set the value for the active keyframe.
+Frame
+   Set the frame for the active keyframe.
+Left/Right Handle X/Y
    Set the position of the left/right interpolation handle for the active keyframe.
 
-   Handle Type
+   Type
       See :ref:`editors-graph-fcurves-settings-handles`.
-
-
-.. _bpy.types.SpaceGraphEditor.show_cursor:
-.. _graph_editor-view-properties:
-
-View Properties
-===============
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Panel:     :menuselection:`Sidebar region --> View --> View Properties`
-
-.. figure:: /images/editors_graph-editor_fcurves_properties_view-panel.png
-   :align: right
-
-   View Properties.
-
-Show Cursor
-   Toggles the visibility of the :ref:`2D Cursor <graph_editor-2d-cursor>`.
-Cursor from Selection
-   Places the 2D Cursor at the midpoint of the selected keyframes.
-Cursor Location
-   Moves the cursor to the specified frame (X value) and value (Y value).
-To Keys
-   Applies the current location of the 2D cursor to the selected keyframes.
-
-.. seealso:: Graph Editor's :ref:`graph-view-menu`.

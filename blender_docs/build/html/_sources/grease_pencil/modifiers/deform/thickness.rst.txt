@@ -15,16 +15,14 @@ Options
 
    Thickness Modifier.
 
+Uniform Thickness
+   When enabled, makes the thickness equal for the entire strokes.
+
+   Thickness
+      Absolute Thickness for the stroke points.
+
 Thickness Factor
-   Value to add or subtract to the points thickness.
-
-Normalize
-   When enabled, makes the thickness equal for the entire stroke
-   using the same thickness factor for every point.
-
-Custom Curve
-   When enabled, use a custom curve to change the profile of the stroke thickness
-   from start to end points.
+   Value to add or subtract to the actual points thickness.
 
 
 Influence Filters

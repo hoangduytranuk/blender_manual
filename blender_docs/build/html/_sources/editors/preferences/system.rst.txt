@@ -105,7 +105,7 @@ Channels
    *Mono*, *Stereo*, *4 Channels*, *5.1 Surround*, *7.1 Surround*.
 Mixing Buffer
    Sets the number of samples used by the audio mixing buffer. Available options are:
-   *512*, *1024*, *2048*, *4096*, *8192*, *16384*, and *32768*.
+   *512*, *1024*, *2048*, *4096*, *8192*, *16384*, and *32768 Samples*.
    Higher buffer sizes can cause latency issues,
    but if you hear clicks or other problems, try to increase the size.
 Sample Rate

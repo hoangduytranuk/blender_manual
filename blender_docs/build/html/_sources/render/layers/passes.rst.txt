@@ -30,22 +30,21 @@ Noisy Image
    If denoising is enabled, the original combined pass before denoising.
 
 Diffuse Direct
-   Direct lighting from diffuse BSDFs. We define direct lighting as coming from lights, emitting surfaces,
+   Direct lighting from diffuse and subsurface BSDFs.
+   We define direct lighting as coming from lights, emitting surfaces,
    the background, or ambient occlusion after a single reflection or transmission off a surface.
    BSDF color is not included in this pass.
 Diffuse Indirect
-   Indirect lighting from diffuse BSDFs. We define indirect lighting as coming from lights,
+   Indirect lighting from diffuse and subsurface BSDFs. We define indirect lighting as coming from lights,
    emitting surfaces or the background after more than one reflection or transmission off a surface.
    BSDF color is not included in this pass.
 Diffuse Color
-   Color weights of diffuse BSDFs. These weights are the color input socket for BSDF nodes,
+   Color weights of diffuse and subsurface BSDFs. These weights are the color input socket for BSDF nodes,
    modified by any Mix and Add Shader nodes.
 Glossy Direct, Indirect, Color
    Same as above, but for glossy BSDFs.
 Transmission Direct, Indirect, Color
    Same as above, but for transmission BSDFs.
-Subsurface Direct, Indirect, Color
-   Same as above, but for subsurface BSDFs.
 Emission
    Emission from directly visible surfaces.
 Environment

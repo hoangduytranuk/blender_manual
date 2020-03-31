@@ -25,7 +25,7 @@ Usage
 The tool is interactive and has two steps:
 
 
-Pre-visualizing the Cut
+Pre-Visualizing the Cut
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 After the tool is activated, move the cursor over a desired edge.

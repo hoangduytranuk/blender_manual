@@ -280,6 +280,8 @@ The output number ranges between zero and one.</p>
 <dl class="simple">
 <dt>Value</dt><dd><p>Output random value.</p>
 </dd>
+<dt>Color</dt><dd><p>Output random color.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="notes">
@@ -295,22 +297,36 @@ like unit boundaries, so simply adding an arbitrary value might solve the issue.
 <li><p>Taking the absolute value of the seed. In computing, zero may be positive or negative,
 so taking the absolute values unifies the zero into a single value.</p></li>
 </ul>
-<div class="figure align-default" id="id2">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_issue.png" src="../../../_images/render_shader-nodes_textures_white-noise_issue.png" />
 <p class="caption"><span class="caption-text">Precision issue due to signed zeros on the Z axis.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-default" id="id3">
+</td>
+<td><div class="figure align-default" id="id3">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_solution1.png" src="../../../_images/render_shader-nodes_textures_white-noise_solution1.png" />
 <p class="caption"><span class="caption-text">Mitigating the issue by eliminating the Z axis.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-default" id="id4">
+</td>
+</tr>
+<tr class="row-even"><td><div class="figure align-default" id="id4">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_solution2.png" src="../../../_images/render_shader-nodes_textures_white-noise_solution2.png" />
 <p class="caption"><span class="caption-text">Mitigating the issue by adding an arbitrary value.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-default" id="id5">
+</td>
+<td><div class="figure align-default" id="id5">
 <img alt="../../../_images/render_shader-nodes_textures_white-noise_solution3.png" src="../../../_images/render_shader-nodes_textures_white-noise_solution3.png" />
 <p class="caption"><span class="caption-text">Mitigating the issue by taking the absolute value.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>

@@ -18,6 +18,13 @@ Inputs
 Vector
    Texture coordinate to sample texture at;
    defaults to Generated texture coordinates if the socket is left unconnected.
+
+   .. warning::
+
+      This node can have precision issues with come vector inputs.
+      See the notes for the :doc:`White Noise Texture </render/shader_nodes/textures/white_noise>`
+      for ways to mitigate this issue.
+
 Color1, Color 2
    Color of the checkers.
 Scale

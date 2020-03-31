@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Grease Pencil</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../object.html">Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../structure.html">Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../primitives.html">Primitives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../selecting.html">Selecting</a></li>
@@ -140,6 +141,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../sculpting/index.html">Sculpt Mode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../edit/index.html">Edit Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vertex_paint/index.html">Vertex Paint Mode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../weight_paint/index.html">Weight Paint Mode</a></li>
 </ul>
 </li>
@@ -243,6 +245,11 @@ You can create many brushes, each with unique settings to get different artistic
 <dl>
 <dt>Add Brush</dt><dd><p>When you add a brush, the new brush is a clone of the current one.</p>
 </dd>
+<dt>Brush Specials</dt><dd><dl>
+<dt>Reset Brush</dt><dd><p>Reset the current brush to its default settings.</p>
+</dd>
+<dt>Reset All Brushes</dt><dd><p>Reset all brushes to their default settings.</p>
+</dd>
 <dt>Custom Icon</dt><dd><p>Allows definition of a custom brush icon.</p>
 <dl class="simple">
 <dt>Image Path</dt><dd><p>Defines the path to the image to use as custom icon.</p>
@@ -252,15 +259,19 @@ You can create many brushes, each with unique settings to get different artistic
 </dl>
 </dd>
 </dl>
+</dd>
+</dl>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>In order to save a custom brush, activate <em>Fake User</em>.</p>
+<p>In order to save a custom brush in a blend-user, enable <em>Fake User</em>.</p>
 </div>
 </div>
 </div>
 <div class="section" id="brush-settings">
 <h2>Brush Settings<a class="headerlink" href="#brush-settings" title="Permalink to this headline">¶</a></h2>
 <dl>
+<dt>Material</dt><dd><p>Data-block selector for the <a class="reference internal" href="../../../../materials/introduction.html"><span class="doc">material</span></a>.</p>
+</dd>
 <dt>Radius</dt><dd><p>The radius of the brush in pixels.</p>
 <p><kbd class="kbd docutils literal notranslate">F</kbd> allows you to change the brush size interactively by dragging the mouse/pen or
 by typing a number then confirm.</p>
@@ -299,7 +310,7 @@ See <a class="reference internal" href="../../../../../getting_started/configura
 </dd>
 </dl>
 </dd>
-<dt>Border Opacity Factor</dt><dd><p>Amount of transparency (alpha) to apply from the border of the point to the center.
+<dt>Hardness</dt><dd><p>Amount of transparency (alpha) to apply from the border of the point to the center.
 Works only when the brush is using stroke materials of <em>Dot</em> or <em>Box</em> style.</p>
 <dl>
 <dt>Aspect Ratio</dt><dd><p>Controls the width and height of the alpha gradient.</p>
@@ -323,34 +334,11 @@ You can toggle the use of post-processing using the checkbox in the section pane
 </dd>
 </dl>
 </dd>
-<dt>Smooth Thickness</dt><dd><p>Strength of smoothing process on the points thickness along the stroke.</p>
-<dl class="simple">
-<dt>Iterations</dt><dd><p>The number of smoothing iterations to apply to the stroke.</p>
-</dd>
-</dl>
-</dd>
 <dt>Subdivision Steps</dt><dd><p>Number of subdivisions to apply to newly created strokes.</p>
-<dl class="simple">
-<dt>Randomness</dt><dd><p>Amount of randomness to apply on the points location after subdivision.</p>
-</dd>
-</dl>
 </dd>
 <dt>Simplify</dt><dd><p>Reduces final points numbers in the stroke with an adaptive algorithm.</p>
 </dd>
 <dt>Trim Strokes End</dt><dd><p>Automatically trim intersection strokes ends.</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="stabilize-stroke">
-<span id="bpy-types-brush-smooth-stroke"></span><span id="bpy-types-brushgpencilsettings-use-settings-stabilizer"></span><span id="grease-pencil-draw-brushes-stabilizer"></span><h4>Stabilize Stroke<a class="headerlink" href="#stabilize-stroke" title="Permalink to this headline">¶</a></h4>
-<p><em>Stabilize Stroke</em> helps to reduce jitter of the strokes while drawing by
-delaying and correcting the location of points.
-You can toggle the use of <em>Stabilize Stroke</em> using the checkbox in the section panel header.</p>
-<dl class="simple">
-<dt>Radius</dt><dd><p>Minimum distance from the last point before the stroke continues.</p>
-</dd>
-<dt>Factor</dt><dd><p>A smooth factor, where higher values result in smoother strokes but the drawing sensation
-feels like as if you were pulling the stroke.</p>
 </dd>
 </dl>
 </div>
@@ -370,6 +358,19 @@ You can toggle the use of Randomize using the checkbox in the section panel head
 <dt>Use Pressure (pressure sensitivity icon)</dt><dd><p>Uses the stylus pressure to control how strong the effect is.</p>
 </dd>
 </dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="stabilize-stroke">
+<span id="bpy-types-brush-smooth-stroke"></span><span id="bpy-types-brushgpencilsettings-use-settings-stabilizer"></span><span id="grease-pencil-draw-brushes-stabilizer"></span><h4>Stabilize Stroke<a class="headerlink" href="#stabilize-stroke" title="Permalink to this headline">¶</a></h4>
+<p><em>Stabilize Stroke</em> helps to reduce jitter of the strokes while drawing by
+delaying and correcting the location of points.
+You can toggle the use of <em>Stabilize Stroke</em> using the checkbox in the section panel header.</p>
+<dl class="simple">
+<dt>Radius</dt><dd><p>Minimum distance from the last point before the stroke continues.</p>
+</dd>
+<dt>Factor</dt><dd><p>A smooth factor, where higher values result in smoother strokes but the drawing sensation
+feels like as if you were pulling the stroke.</p>
 </dd>
 </dl>
 </div>

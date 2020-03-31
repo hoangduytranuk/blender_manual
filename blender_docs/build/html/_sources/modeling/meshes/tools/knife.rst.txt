@@ -26,7 +26,7 @@ When using *Knife*, the cursor changes to an icon of a scalpel
 and the header changes to display options for the tool.
 You can draw connected straight lines by clicking :kbd:`LMB`,
 marked with small green squares. Red squares are already defined cuts.
-Surrounding red squares mean that there is a cut already in that very position,
+Surrounding red squares mean that there is a cut already in that position,
 so no additional vertex will be created (besides the first one).
 
 .. list-table::
@@ -99,8 +99,8 @@ Draw a continuous line: :kbd:`LMB` drag.
           Result of constraining cut angle.
 
 
-Confirming and Selection
-========================
+Confirming & Selection
+======================
 
 Pressing :kbd:`Esc` or :kbd:`RMB` at any time cancels the tool,
 and pressing :kbd:`LMB` or :kbd:`Return` confirms the cut, with the following options:

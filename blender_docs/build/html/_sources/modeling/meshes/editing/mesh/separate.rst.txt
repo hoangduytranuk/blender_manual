@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.separate:
 .. _object-separate:
 
 ********

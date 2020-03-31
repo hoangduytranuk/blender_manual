@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Grease Pencil</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../object.html">Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../structure.html">Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
@@ -226,7 +227,7 @@
             
   <div class="section" id="array-modifier">
 <span id="bpy-types-arraygpencilmodifier"></span><h1>Array Modifier<a class="headerlink" href="#array-modifier" title="Permalink to this headline">¶</a></h1>
-<p>The <em>Array</em> modifier creates an array of copies of the strokes, with each copy being offset from
+<p>The <em>Array</em> modifier creates an array of copies of the base object, with each copy being offset from
 the previous one in any of a number of possible ways.</p>
 <p>Useful for creating complex repetitive drawings.</p>
 <p>Multiple Array modifiers may be active for an object at the same time
@@ -238,17 +239,35 @@ the previous one in any of a number of possible ways.</p>
 <p class="caption"><span class="caption-text">The Array modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <dl class="simple">
-<dt>Count</dt><dd><p>Total number of items.</p>
+<dt>Count</dt><dd><p>Total number of copies.</p>
 </dd>
 </dl>
 <div class="section" id="offset">
 <h3>Offset<a class="headerlink" href="#offset" title="Permalink to this headline">¶</a></h3>
 <dl>
-<dt>Offset</dt><dd><p>Distance between items. X, Y and Z distances can be specified.</p>
+<dt>Constant Offset</dt><dd><p>Adds a constant translation component to the duplicate object's offset.
+X, Y and Z constant components can be specified.</p>
 <p>X, Y, Z</p>
 </dd>
-<dt>Object Offset</dt><dd><p>Use the location or rotation of another <em>Object</em> to determine the distance
-and rotational change between the arrayed items.</p>
+<dt>Relative Offset</dt><dd><p>Adds a translation equal to the object's bounding box size along each axis,
+multiplied by a scaling factor, to the offset. X, Y and Z scaling factors can be specified.</p>
+<p>X, Y, Z</p>
+</dd>
+<dt>Object Offset</dt><dd><p>Adds a transformation taken from an object (relative to the current object) to the offset.
+It is good practice to use an empty object centered or near to the initial object.</p>
+</dd>
+<dt>Random Offset</dt><dd><p>Add random offset values to the copies.</p>
+<p>X, Y, Z</p>
+</dd>
+<dt>Random Rotation</dt><dd><p>Add random rotation values to the copies.</p>
+<p>X, Y, Z</p>
+</dd>
+<dt>Random Scale</dt><dd><p>Add random scale values to the copies.</p>
+<p>X, Y, Z</p>
+</dd>
+<dt>Seed</dt><dd><p>Seed used by the pseudo-random number generator.</p>
+</dd>
+<dt>Material Override</dt><dd><p>Index of the material to use on duplicated strokes (0 use strokes original materials).</p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -257,43 +276,6 @@ and rotational change between the arrayed items.</p>
 the strokes visualization when using the Array modifier.
 See <a class="reference internal" href="../../properties/strokes.html"><span class="doc">Depth Order</span></a> for more information.</p>
 </div>
-</div>
-<div class="section" id="shift">
-<h3>Shift<a class="headerlink" href="#shift" title="Permalink to this headline">¶</a></h3>
-<dl>
-<dt>Shift</dt><dd><p>A shift on the X, Y and Z axes can be specified.</p>
-<p>X, Y, Z</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="rotation">
-<h3>Rotation<a class="headerlink" href="#rotation" title="Permalink to this headline">¶</a></h3>
-<dl>
-<dt>Rotation</dt><dd><p>Changes in rotation to apply to the duplicated items.</p>
-<p>X, Y, Z</p>
-</dd>
-<dt>Random factor</dt><dd><p>Toggle button and random value to apply to the rotation.</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="scale">
-<h3>Scale<a class="headerlink" href="#scale" title="Permalink to this headline">¶</a></h3>
-<dl>
-<dt>Scale</dt><dd><p>Changes in scale to apply to the duplicated items.</p>
-<p>X, Y, Z</p>
-</dd>
-<dt>Random factor</dt><dd><p>Toggle button and random value to apply to the scale.</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="material">
-<h3>Material<a class="headerlink" href="#material" title="Permalink to this headline">¶</a></h3>
-<dl class="simple">
-<dt>Material Index</dt><dd><p>Index of the material to use on duplicated strokes (0 use strokes original materials).</p>
-</dd>
-<dt>Keep original stroke on top</dt><dd><p>Maintains the original strokes used in the array on top of the duplicated ones.</p>
-</dd>
-</dl>
 </div>
 <div class="section" id="influence-filters">
 <h3>Influence Filters<a class="headerlink" href="#influence-filters" title="Permalink to this headline">¶</a></h3>

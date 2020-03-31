@@ -37,7 +37,7 @@ and scaling and managing them like any other UV map.
 See :doc:`/modeling/meshes/uv/workflows/layout` for information on laying out UVs.
 
 When the UVs are correctly set up across the multiple UV islands it is time to add proper textures the UDIM array.
-Currently, existing textures cannot be be added to a tile,
+Currently, existing textures cannot be added to a tile,
 to fill a tile with an existing texture you first must:
 
 #. Create the desired tiles.
@@ -68,7 +68,7 @@ new tiles can be added, tiles can be removed, or tiles can filled with a generat
 
 UDIM Tile List
    List all UDIM tiles associated with the main index (``1000`` tile).
-   Double clicking on the tile name allows you to alter the tiles *Label*
+   Double clicking on the tile name allows you to alter the tiles *Label*.
 
 Add Tile ``+``
    Adds new UDIM tiles to the group.

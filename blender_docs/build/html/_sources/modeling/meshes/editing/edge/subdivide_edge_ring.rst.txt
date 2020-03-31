@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.subdivide_edgering:
 
 *******************
 Subdivide Edge-Ring

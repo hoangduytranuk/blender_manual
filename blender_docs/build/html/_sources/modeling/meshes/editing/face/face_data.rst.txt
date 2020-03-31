@@ -1,3 +1,6 @@
+.. _bpy.ops.mesh.colors_rotate:
+.. _bpy.ops.mesh.colors_reverse:
+.. _bpy.ops.mesh.mark_freestyle_face:
 
 *********
 Face Data

@@ -135,6 +135,7 @@
 <li class="toctree-l4"><a class="reference internal" href="motion_blur.html">Làm Nhòe Chuyển Động -- Motion Blur</a></li>
 <li class="toctree-l4"><a class="reference internal" href="film.html">Phim -- Film</a></li>
 <li class="toctree-l4"><a class="reference internal" href="performance.html">Hiệu Suất Thi Hành -- Performance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debug.html">Debug</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../world_settings.html">World Settings</a></li>
@@ -278,6 +279,22 @@ the solution becomes less noisy and more accurate.</p>
 which are multiplied by the <a class="reference internal" href="#sub-samples">Sub Samples</a> and improve anti-aliasing.</p>
 </dd>
 <dt>Viewport</dt><dd><p>Number of samples for viewport rendering.</p>
+</dd>
+</dl>
+<dl id="render-cycles-settings-viewport-denoising">
+<dt>Viewport Denoising</dt><dd><p>Removes noise while previewing scenes in <em>Rendered</em> mode in the 3D Viewport.
+Denoising can also be enabled for the final render in the
+<a class="reference internal" href="../../layers/denoising.html#render-layers-denoising-optix"><span class="std std-ref">View Layer Properties</span></a>.
+The sample value which denoising can be applied on to can be configured in the
+<a class="reference internal" href="performance.html#render-cycles-settings-perfomance-viewport"><span class="std std-ref">Viewport Performance</span></a> properties.</p>
+<dl class="simple">
+<dt>None</dt><dd><p>Do not denoise the 3D Viewport.</p>
+</dd>
+<dt>OptiX AI-Accelerated</dt><dd><p>Uses an artificial intelligence algorithm to remove noise from renders.
+It is based on the <a class="reference internal" href="../gpu_rendering.html#render-cycles-gpu-optix"><span class="std std-ref">Optix</span></a> acceleration engine
+and therefore has the same GPU requirements as rendering with Optix.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <div class="section" id="sub-samples">

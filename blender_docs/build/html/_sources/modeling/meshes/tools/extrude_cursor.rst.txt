@@ -21,7 +21,7 @@ so the new vertex is placed at the depth of the 3D cursor.
 To create interconnected vertices, you can add a vertex and continuously make subsequent :kbd:`Ctrl-LMB`
 operations with the last vertex selected.
 This will link the last selected vertex with the vertex created at the mouse position with an edge
-(See Fig. :ref:`fig-mesh-basics-add-one`),
+(see Fig. :ref:`fig-mesh-basics-add-one`),
 and will continuously create and connect new vertices if you continue repeating this operation.
 
 .. _fig-mesh-basics-add-one:

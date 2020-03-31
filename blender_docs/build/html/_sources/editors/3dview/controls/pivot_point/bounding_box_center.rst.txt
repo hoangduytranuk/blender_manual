@@ -18,7 +18,7 @@ The image below shows how the object's bounding box size is determined by the si
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_bounding-box-center_demo.png
 
-   Relationship between an Object and its Bounding Box.
+   Relationship between an object and its bounding box.
 
 
 In Object Mode
@@ -41,7 +41,7 @@ When a single object is selected, the rotation takes place around its origin.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_bounding-box-center_object-mode.png
 
-   Shows the location of the Bounding Box (left) pivot point compared to the Median Point (right).
+   Shows the location of the bounding box (left) pivot point compared to the median point (right).
 
 The image above (left) shows that when multiple objects are selected,
 the pivot point is calculated based on the bounding box of all the selected objects.
@@ -51,7 +51,7 @@ More precisely, the centers of objects are taken into account.
 In Edit Mode
 ============
 
-This time it is the Object Data that is enclosed in the bounding box.
+This time it is the geometry that is enclosed in the bounding box.
 The bounding box in *Edit Mode* takes no account of the object(s) origins,
 only the center of the selected vertices.
 
@@ -62,4 +62,4 @@ only the center of the selected vertices.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_bounding-box-center_median-point.png
 
-   The Bounding Box center compared to the Median Point.
+   The bounding box center compared to the median point.

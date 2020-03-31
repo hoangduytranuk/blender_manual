@@ -17,7 +17,7 @@ Shearing is a form of movement where parallel surfaces move past one another. Du
 movement of the selected elements will occur along the horizontal axis of the current view.
 The axis location will be defined by
 the :doc:`Pivot Point </editors/3dview/controls/pivot_point/index>`.
-Everything that is "above" this axis will move (Shear)
+Everything that is "above" this axis will move (shear)
 in the same direction as your mouse pointer (but always parallel to the horizontal axis).
 Everything that is "below" the horizontal axis will move in the opposite direction.
 
@@ -33,7 +33,7 @@ Offset
    How far items are shifted from their original location.
 Axis
    Defines one axis of the imaginary shearing plane.
-Axis Ortho
+Axis Orthographic
    Defines the other axis of the imaginary shearing plane.
 Orientation
    See :doc:`Transform Orientations </editors/3dview/controls/orientation>`.
@@ -42,7 +42,7 @@ Proportional Editing
 
 .. warning::
 
-   The *Axis* and *Axis Ortho* cannot be the same axis,
+   The *Axis* and *Axis Orthographic* cannot be the same axis,
    else the imaginary plane is dimensionless and the objects will disappear into a point.
 
 
@@ -69,7 +69,7 @@ the selected vertices are moved to the right as they are below the horizontal ax
 
    The magnitude of the *Shear* transform applied to the selected elements is
    directly proportional to the distance from the horizontal axis.
-   i.e. the further from the axis, the greater the movement.
+   i.e. the further it is away from the axis, the greater the movement.
 
 .. figure:: /images/modeling_meshes_editing_transform_shear_objects.png
 

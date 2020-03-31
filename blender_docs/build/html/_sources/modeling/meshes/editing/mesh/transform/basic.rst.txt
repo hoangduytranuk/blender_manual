@@ -19,7 +19,7 @@ To move, rotate and scale selected components, either use the *Move*, *Rotate*, 
 the :doc:`transform gizmos </scene_layout/object/editing/transform/control/gizmos>`,
 or the shortcuts: :kbd:`G`, :kbd:`R`, and :kbd:`S` respectively.
 
-After moving a selection, the options in the :ref:`ui-undo-redo-adjust-last-operation` Panel allow you to
+After moving a selection, the options in the :ref:`ui-undo-redo-adjust-last-operation` panel allow you to
 fine-tune your changes, limit the effect to certain axes, turn Proportional Editing on and off, etc.
 
 Of course, when you move an element of a given type (e.g. an edge),

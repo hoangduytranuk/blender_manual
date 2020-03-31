@@ -18,6 +18,7 @@
    parent.rst
    relations.rst
    make_links.rst
+   shading.rst
    convert.rst
    show_hide.rst
    delete.rst

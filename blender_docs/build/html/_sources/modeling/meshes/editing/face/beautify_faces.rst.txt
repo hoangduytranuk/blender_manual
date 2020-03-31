@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.beautify_fill:
 
 **************
 Beautify Faces

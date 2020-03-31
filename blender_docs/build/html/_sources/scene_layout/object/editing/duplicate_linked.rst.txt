@@ -36,7 +36,7 @@ Linked
 .. _expl-object-link-duplicate:
 
 Examples
---------
+========
 
 .. figure:: /images/scene-layout_object_editing_duplication_linked-example.png
 
@@ -48,7 +48,7 @@ Though both these cubes are separate objects with unique names:
 
 - As a mesh is edited in *Edit Mode* in one object, the same occurs in
   the other cube as well. The mesh data are links, not copies.
-- In contrast, if one of these two cubes is rotated or rescaled in Object Mode,
+- In contrast, if one of these two cubes is rotated or scaled in *Object Mode*,
   the other remains unchanged. The transform properties are copied, not linked.
 - As in the previous example, the newly created cube has inherited
   the material of the original cube. The material properties are linked, not copied.

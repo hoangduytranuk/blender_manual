@@ -165,11 +165,11 @@ Frame Start/End
       then the :ref:`F-curve Extrapolation <editors-graph-fcurves-settings-extrapolation>` will be applied.
 
 Sync Length
-   Causes the "Start" and "End" Frames, above, to be reset to the
-   first and last keyframed frames of the Action.
+   Causes the *Start* and *End Frames*, above, to be reset to
+   the first and last keyframed frames of the Action.
 
    Now
-      Causes the "Start" and "End" Frames, above, to be reset
+      Causes the *Start* and *End Frames*, above, to be reset
       to the first and last keyframed frames of the Action.
 
 Playback Scale

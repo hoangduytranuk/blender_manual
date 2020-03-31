@@ -15,15 +15,12 @@ Layers List
 
 Grease Pencil objects each have a list of 2D layers for grouping and arranging strokes
 in a :ref:`List view <ui-list-view>`. Any stroke can only belong to a single 2D layer.
-
 There is always only one active layer in the list (the selected one).
 When you draw, the new strokes are added to the active layer.
-
 By default the view order of the layers in the viewport is top to bottom.
 
 Every layer correspond to a channel in the Dope Sheet editor (in Grease Pencil mode).
 See :doc:`Dope Sheet </editors/dope_sheet/grease_pencil>` for more information.
-
 Layers can also be used together with Modifiers to only affects part of your drawing.
 See :doc:`Modifiers </grease_pencil/modifiers/introduction>` for more information.
 
@@ -43,27 +40,16 @@ Next to the layer name there are four icons buttons that control common properti
 .. _bpy.types.GPencilLayer.use_solo_mode:
 
 Mask (mask icon)
-   When the mask is enabled, all the layers below the current one function as a single mask.
-   This mask hide any pixel in the current layer outside the mask created by the underlying layers.
+   Toggle the :doc:`Masks </grease_pencil/properties/masks>` visibility in the layer.
 
-   .. list-table::
-
-      * - .. figure:: /images/grease-pencil_properties_layers_mask-off.png
-
-             Red stroke on top layer without mask.
-
-        - .. figure:: /images/grease-pencil_properties_layers_mask-on.png
-
-             Red stroke on top layer with mask activated.
-
-Lock (padlock icon)
-   Toggle layer from being editable.
+Onion Skinning (onion skin icon)
+   Toggle the use the layer for :doc:`Onion Skinning </grease_pencil/properties/onion_skinning>`.
 
 Viewport/Render Visibility (eye icon)
    Toggle layer visibility in the viewport and in render.
 
-Onion Skinning (onion skin icon)
-   Toggle the use the layer for :doc:`Onion Skinning </grease_pencil/properties/onion_skinning>`.
+Lock (padlock icon)
+   Toggle layer from being editable.
 
 .. _bpy.types.GPencilLayer.blend_mode:
 .. _bpy.types.GPencilLayer.opacity:
@@ -75,6 +61,9 @@ Blend
 
 Opacity
    Used to set the opacity of the layer.
+
+Use Lights
+   When enabled, the layer is affected by lights.
 
 
 Specials
@@ -106,8 +95,8 @@ Copy Layer to Object
    Makes a copy of the layer and move it to the selected Grease Pencil object.
 
 
-Lock and Visibility General Controls
-------------------------------------
+Lock & Visibility General Controls
+----------------------------------
 
 Lock (padlock icon)
    Toggle whether the active layer is the only one that can be edited.
@@ -115,6 +104,12 @@ Lock (padlock icon)
 Visibility (screen icon)
    Toggle whether the active layer is the only one that can be edited and is visible.
 
+
+Masks
+======
+
+In a :ref:`List view <ui-list-view>` of layers affected by a layer mask.
+See :doc:`Masks </grease_pencil/properties/masks>` for more information.
 
 Adjustments
 ===========

@@ -42,4 +42,4 @@ Brushes
 
    .. note::
 
-      In order to save in a blend-user a custom brush, enable Fake User.
+      In order to save a custom brush in a blend-user, enable Fake User.

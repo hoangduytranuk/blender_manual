@@ -19,7 +19,7 @@ Complete
    While there is a canonical source of truth for each of Blender's key areas,
    this does not mean we have to document every small detail.
    The manual should provide information on what a feature is, how to use it, and its purpose.
-   Additional background information should be provided when necessary to give deeper understanding of a 3D pipeline.
+   More background information should be provided when necessary to give deeper understanding of a 3D pipeline.
 Concise
    Computer graphics is an incredibly interesting field,
    there are many rules, exceptions to the rules and interesting details.

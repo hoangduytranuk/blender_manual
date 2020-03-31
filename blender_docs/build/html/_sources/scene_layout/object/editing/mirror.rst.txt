@@ -11,7 +11,7 @@ Mirror
    :Menu:      :menuselection:`Object/Mesh --> Mirror`
    :Hotkey:    :kbd:`Ctrl-M`
 
-Mirroring an Object or Mesh selection will create a reversed version of the selection.
+Mirroring an object or mesh selection will create a reversed version of the selection.
 The position of the mirrored version of the selection is determined by
 the :doc:`Pivot Point </editors/3dview/controls/pivot_point/index>`.
 A common use of mirroring is to model half an object, duplicate it and then use
@@ -36,7 +36,7 @@ To mirror a selection along a particular global axis, press:
 The image :ref:`Mirroring a Selection <fig-mesh-duplicating-mirror-selection>`
 shows the results of this action after a mesh element has been duplicated.
 
-In Mesh mode, you can mirror the selection on the currently selected
+In mesh mode, you can mirror the selection on the currently selected
 :doc:`Transform Orientations </editors/3dview/controls/orientation>`
 by pressing the appropriate axis key a second time. For example,
 if the Transform Orientation is set to *Normal*, pressing:

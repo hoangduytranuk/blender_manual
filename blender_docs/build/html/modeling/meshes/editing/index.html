@@ -130,7 +130,6 @@
 <li class="toctree-l4"><a class="reference internal" href="edge/index.html">Edge Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="face/index.html">Face Tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="uv.html">UV Tools</a></li>
-<li class="toctree-l4"><a class="reference internal" href="misc/index.html">Misc</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Tính Chất -- Properties</a></li>
@@ -238,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="mesh/transform/index.html">Biến Hóa -- Transformation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/mirror.html">Đối Xứng Hóa/Gương -- Mirror</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/duplicate.html">Sao Chép -- Duplicate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/extrude.html">Extrude</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/split.html">Split</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/bisect.html">Phân Đôi -- Bisect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/knife_project.html">Knife Project</a></li>
@@ -245,9 +245,10 @@
 <li class="toctree-l2"><a class="reference internal" href="mesh/symmetrize.html">Đối Xứng Hóa -- Symmetrize</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/snap_symmetry.html">Snap to Symmetry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/normals.html">Pháp Tuyến -- Normals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/shading.html">Shading</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/sort_elements.html">Sort Elements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/separate.html">Separate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mesh/cleanup.html">Dọn Dẹp -- Clean up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh/cleanup.html">Clean Up</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mesh/delete.html">-- Deleting &amp; Dissolving</a></li>
 </ul>
 </li>
@@ -262,6 +263,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vertex/rip_vertices_extend.html">Rip Vertices and Extend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vertex/slide_vertices.html">Slide Vertices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vertex/smooth_vertices.html">Smooth Vertices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vertex/laplacian_smooth.html">Laplacian Smooth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vertex/blend_shape.html">Blend From Shape</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vertex/propagate_shapes.html">Propagate to Shapes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vertex/merge_vertices.html">Merge Vertices</a></li>
@@ -274,6 +276,7 @@
 <li class="toctree-l2"><a class="reference internal" href="edge/extrude_edges.html">Extrude Edges</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edge/bevel.html">Bevel Edges</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edge/bridge_edge_loops.html">Bridge Edge Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edge/screw.html">Screw</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edge/subdivide.html">Subdivide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edge/subdivide_edge_ring.html">Subdivide Edge-Ring</a></li>
 <li class="toctree-l2"><a class="reference internal" href="edge/unsubdivide.html">Un-Subdivide</a></li>
@@ -285,7 +288,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="face/index.html">Face Tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="face/extrude_faces.html">Extrude Faces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="face/extrude_faces_normal.html">Extrude Faces Along Normal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="face/extrude_faces_normal.html">Extrude Faces Along Normals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="face/extrude_individual_faces.html">Extrude Individual Faces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="face/inset_faces.html">Inset Faces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="face/poke_faces.html">Poke Faces</a></li>
@@ -313,12 +316,6 @@
 <li class="toctree-l2"><a class="reference internal" href="uv.html#project-from-view">Phóng Chiếu Từ Góc Nhìn -- Project from View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uv.html#project-from-view-bounds">Phóng Chiếu từ Góc Nhìn (Ranh Giới) -- Project from View (Bounds)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uv.html#reset">Hoàn Lại -- Reset</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="misc/index.html">Misc</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="misc/extrude_repeat_mesh.html">Extrude Repeat Mesh</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc/laplacian_smooth.html">Laplacian Smooth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc/screw.html">Screw Tool</a></li>
 </ul>
 </li>
 </ul>

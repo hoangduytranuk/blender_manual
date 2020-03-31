@@ -50,14 +50,14 @@ In the 3D View, select :menuselection:`Mesh --> UV Unwrap --> Unwrap` or
 :kbd:`U` and select Unwrap.
 
 You can also do this from the UV Editor with :menuselection:`UVs --> Unwrap` or :kbd:`E`.
-This method will unwrap all of the faces and reset previous work.
+This method will unwrap all faces and reset previous work.
 The UVs menu will appear in the UV Editor after unwrapping has been performed once.
 
 This tool unwraps the faces of the object to provide
 the "best fit" scenario based on how the faces are connected and will fit within the image,
 and takes into account any seams within the selected faces.
 If possible, each selected face gets its own different area of the image and is not overlapping any other faces UV's.
-If all faces of an object are selected, then each face is mapped to some portion of the image.
+If all faces of an object are selected, then each face is mapped to a part of the image.
 
 
 Options
@@ -115,8 +115,8 @@ the Smart Mapper mapped all of the faces of a cube to a neat arrangement of thre
 three sides on the bottom, for all six sides of the cube to fit squarely,
 just like the faces of the cube.
 
-For more complex mechanical objects, this tool can very quickly and easily create
-a very logical and straightforward UV layout for you.
+For more complex mechanical objects, this tool can quickly and easily create
+a regular and straightforward UV layout for you.
 
 
 Options
@@ -129,7 +129,7 @@ Angle Limit
    while a lower limit will create fewer groups at the expense of more distortion.
 Island Margin
    This controls how closely the UV islands are packed together.
-   A higher number will add more space in between islands.
+   A higher number will add more space between islands.
 Area Weight
    Weight projection's vector by faces with larger areas.
 
@@ -140,9 +140,9 @@ Lightmap Pack
 =============
 
 Lightmap Pack takes each of a mesh's faces, or selected faces,
-and packs them into the UV bounds. Lightmaps are used primarily in gaming contexts,
+and packs them into the UV bounds. Lightmaps are used primarily in realtime rendering,
 where lighting information is baked onto texture maps,
-when it is essential to utilize as much UV space as possible.
+when it is needed to use as much UV space as possible.
 It can also work on several meshes at once.
 It has several options that appear in the Toolbar:
 
@@ -173,7 +173,7 @@ Pack Quality
    Pre-packing before the more complex Box packing.
 Margin
    This controls how closely the UV islands are packed together.
-   A higher number will add more space in between islands.
+   A higher number will add more space between islands.
 
 
 .. _bpy.ops.uv.follow_active_quads:
@@ -267,7 +267,7 @@ to unwrap a sphere, view the sphere with the poles at the top and bottom. After 
 Blender will give you an equirectangular projection;
 the point at the equator facing you will be in the middle of the image.
 A polar view will give a very different but common projection map. Using an equirectangular projection
-map of the earth as the UV image will give a very nice planet mapping onto the sphere.
+map of the earth as the UV image will give a good planet mapping onto the sphere.
 
 
 Options
@@ -300,7 +300,7 @@ Project from View
 
 Project from View takes the current view in the 3D View and flattens the mesh as it appears.
 Use this option if you are using a picture of a real object as a UV Texture for an object that
-you have modeled. You will get some stretching in areas where the model recedes away from you.
+you have modeled. You will get stretching in areas where the model recedes away from you.
 
 
 Options

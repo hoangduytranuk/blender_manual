@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Grease Pencil</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../object.html">Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../primitives.html">Primitives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../selecting.html">Selecting</a></li>
@@ -128,7 +129,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../visual_effects/index.html">Visual Effects</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Materials</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#setting-up-materials">Setting up Materials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-up-materials">Setting Up Materials</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#grease-pencil-shader">Grease Pencil Shader</a></li>
 </ul>
 </li>
@@ -219,9 +220,12 @@
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>Materials control the appearance of the Grease Pencil object.
-They define the color and texture of the strokes and filled areas.</p>
+They define the base color and texture of the strokes and filled areas.</p>
 <p>There is always only one active material in the list (the selected one).
 When you draw, the new strokes use the active material.</p>
+<p>You can overrides the base material color using the tools in
+<a class="reference internal" href="../modes/vertex_paint/introduction.html"><span class="doc">Vertex Mode</span></a>
+or the Draw and Tint tool in Draw Mode.</p>
 <p>The material always remains linked to the strokes, this means that any change in a material will change
 the look of already drawn strokes.</p>
 <div class="figure align-default" id="id1">
@@ -229,7 +233,7 @@ the look of already drawn strokes.</p>
 <p class="caption"><span class="caption-text">Same stroke linked to different materials.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="setting-up-materials">
-<h2>Setting up Materials<a class="headerlink" href="#setting-up-materials" title="Permalink to this headline">¶</a></h2>
+<h2>Setting Up Materials<a class="headerlink" href="#setting-up-materials" title="Permalink to this headline">¶</a></h2>
 <p>Grease Pencil materials can be created in the <a class="reference internal" href="../../editors/properties_editor.html"><span class="doc">Material properties</span></a>
 as any other materials in Blender.
 See <a class="reference internal" href="../../render/materials/assignment.html"><span class="doc">Material assignment</span></a> for more information.</p>
@@ -268,10 +272,23 @@ that help to work with materials while drawing or editing lines.</p>
 </dd>
 <dt>Unlock All</dt><dd><p>Unlocks edition of all the materials in the list.</p>
 </dd>
+<dt>Lock Unselected</dt><dd><p>Locks all materials not used in the selected strokes.</p>
+</dd>
+<dt>Lock Unused</dt><dd><p>Locks and hide all unused materials.</p>
+</dd>
+<dt>Remove Unused slots</dt><dd><p>Remove all unused materials.</p>
+</dd>
+<dt>Merge Similar</dt><dd><p>Combines similar materials in the list and replace the strokes that use the one of
+the merged materials with the new one.</p>
+</dd>
+<dt>Convert Materials to Vertex Color</dt><dd><p>Only keeps necessary materials and convert all materials base color to vertex color.</p>
+</dd>
+<dt>Extract Palette from Vertex Color</dt><dd><p>Add all used vertex color to a new Color Palette. See <a class="reference internal" href="../../interface/controls/templates/color_palette.html#ui-color-palette"><span class="std std-ref">Color Palette</span></a>.</p>
+</dd>
 </dl>
 </div>
-<div class="section" id="lock-and-visibility-general-controls">
-<h3>Lock and Visibility General Controls<a class="headerlink" href="#lock-and-visibility-general-controls" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="lock-visibility-general-controls">
+<h3>Lock &amp; Visibility General Controls<a class="headerlink" href="#lock-visibility-general-controls" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
 <dt>Lock (padlock icon)</dt><dd><p>Toggle whether the active material is the only one that can be edited.</p>
 </dd>

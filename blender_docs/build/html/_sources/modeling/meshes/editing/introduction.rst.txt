@@ -12,17 +12,14 @@ as well as individual shortcut keys.
 .. note::
 
    All the "transform precision/snap" keys :kbd:`Ctrl` and/or :kbd:`Shift`
-   also work for all these advanced operations, however most of them do not have
-   :doc:`axis locking </scene_layout/object/editing/transform/control/axis_locking>` possibilities,
-   and some of them do not take into account
-   the :doc:`pivot point </editors/3dview/controls/pivot_point/index>` and/or
-   :doc:`transform orientation </editors/3dview/controls/orientation>`
-   either.
+   also work for all these advanced operations, but most of them do not have
+   :doc:`axis locking </scene_layout/object/editing/transform/control/axis_locking>`
+   possibilities, and some of them do not take into account
+   the :doc:`pivot point </editors/3dview/controls/pivot_point/index>`
+   and/or :doc:`transform orientation </editors/3dview/controls/orientation>` either.
 
-These transform tools are available
-in the *Transform* section of the *Mesh* menu in the header.
-Note that, some of these can also be used on other editable objects,
-like curves, surfaces, and lattices.
+These transform tools are available in the *Transform* section of the *Mesh* menu in the header.
+Note that, some of these can also be used on other editable objects, like curves, surfaces, and lattices.
 
 
 Accessing Mesh Tools

@@ -11,11 +11,16 @@ Diffusion
    :class: refbox
 
    :Type:      Domain
-   :Panel:     :menuselection:`Physics --> Fluid --> Viscosity`
+   :Panel:     :menuselection:`Physics --> Fluid --> Diffusion`
 
-Viscosity (todo).
+Liquid diffusion defines the physical properties of a liquid
+and in turn define how a liquid interacts with its environment.
+The main factors of diffusion are the *Viscosity* and *Surface Tension*.
+These properties can be adjusted to create virtual liquids that behave like water,
+oil, honey, or any other liquid. A couple presets exist to change the diffusion
+for different substances are predefined and can be changed in the preset menu.
 
-Viscosity Presets
+Viscosity
    The viscosity refers to the "thickness" of the fluid and actually the force needed to
    move an object of a certain surface area through it at a certain speed.
 
@@ -24,7 +29,10 @@ Viscosity Presets
    or in Poise units (P, equal to 0.1 Pa.s), and commonly centiPoise units (cP, equal to 0.001 Pa.s).
 
    Blender, on the other hand, uses the kinematic viscosity which is dynamic viscosity in Pa.s,
-   divided by the density in |kg.m-3|, unit |m2.s-1|.
+   divided by the density in |kg.m-3|, unit |m2.s-1|. So for example,
+   The viscosity of water at room temperature is 1.002 cP, or 0.001002 Pa.s; the density of water is
+   about 1000 |kg.m-3|, which gives a kinematic viscosity of 0.000001002 |m2.s-1| --
+   so the entry would be 1.002 times 10 to the minus six (1.002×10\ :sup:`-6` in scientific notation).
 
    The table below gives some examples of fluids together with their dynamic and kinematic viscosities.
 
@@ -54,19 +62,19 @@ Viscosity Presets
         - 1.0×10\ :sup:`15`
         - 1.0×10\ :sup:`0` (1.0)
 
-   Manual entries are specified by a floating point number and an exponent. These floating point and
-   exponent entry fields (scientific notation) simplify entering very small or large numbers.
+   To simplify the input of these numbers, the viscosity is changed by entering values
+   in scientific notation by entering a base value and the exponent of that number.
 
-   The viscosity of water at room temperature is 1.002 cP, or 0.001002 Pa.s; the density of water is
-   about 1000 |kg.m-3|, which gives a kinematic viscosity of 0.000001002 |m2.s-1| --
-   so the entry would be 1.002 times 10 to the minus six (1.002×10\ :sup:`-6` in scientific notation).
+.. _bpy.types.FluidDomainSettings.viscosity_base:
 
-   Hot glass and melting iron are fluids, but very thick; you should enter something like
-   1.0×10\ :sup:`0` (= 1.0) as its kinematic viscosity (indicating a value of 1.0×10\ :sup:`6`\ cP).
+   Base
+      The base of the viscosity value (e.g. 1.002 in the case of water (20 °C)).
 
-   Note that the simulator is not suitable for non-fluids, such as materials that do not "flow".
-   Simply setting the viscosity to very large values will not result in rigid body behavior,
-   but might cause instabilities.
+.. _bpy.types.FluidDomainSettings.viscosity_exponent:
+
+   Exponent
+      The exponent of the viscosity value that will be multiplied by 10\ :sup:`-6`
+      (e.g. 6 in the case of water (20 °C)).
 
    .. note:: Viscosity Varies
 
@@ -76,16 +84,11 @@ Viscosity Presets
       Oil viscosity varies by :abbr:`SAE (Society of Automobile Engineers)` rating.
       Glass at room temperature is basically a solid, but glass at 1500 °C flows (nearly) like water.
 
-.. _bpy.types.FluidDomainSettings.viscosity_base:
+   .. warning::
 
-Base
-   The base of the viscosity value (e.g. 1.002 in the case of water (20 °C)).
-
-.. _bpy.types.FluidDomainSettings.viscosity_exponent:
-
-Exponent
-   The exponent of the viscosity value that will be multiplied by 10\ :sup:`-6`
-   (e.g. 6 in the case of water (20 °C)).
+      The simulator is not suitable for non-fluids, such as materials that do not "flow".
+      Simply setting the viscosity to very large values will not result in rigid body behavior,
+      but might cause instabilities.
 
 .. _bpy.types.FluidDomainSettings.domain_size:
 

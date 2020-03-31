@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.83 Manual 2.83\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-22 15:32+0000\n"
+"POT-Creation-Date: 2020-03-30 21:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,11 @@ msgid "To use the option, enable it in the render layers tab of the Properties e
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:25
-msgid "See the other ways to reduce noise on the general :doc:`Noise Optimization </render/cycles/optimizations/reducing_noise>` page."
+msgid ":ref:`Viewport denoising <render-cycles-settings-viewport-denoising>`"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:26
+msgid ":doc:`Other ways to reduce noise </render/cycles/optimizations/reducing_noise>`."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:30
@@ -56,106 +60,106 @@ msgstr ""
 msgid "Denoising panel."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:53
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:55
 msgid "Optix AI Denoising"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:37
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:39
 msgid "Uses an artificial intelligence algorithm to remove noise from renders. It is based on the :ref:`render-cycles-gpu-optix` acceleration engine and therefore has the same GPU requirements as rendering with Optix."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:41
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:43
 msgid "*Optix AI Denoising* can be enabled when one or more compatible Optix GPUs are selected in the :ref:`System Preferences <editors_preferences_cycles>`."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:44
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:46
 msgid "This denoiser is less suited for animations, because it is not temporarily stable, but is considerably faster than the other denoising options and therefore especially useful to denoise previews or final single-frame images with high quality."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:53
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:55
 msgid "Input Passes"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:49
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:51
 msgid "Controls which :ref:`passes <render-cycles-passes>` the OptiX AI denoiser should use as input, which can have different effects on the denoised image. Generally, the more passes the denoiser has to denoise the better the result. It is recommended to at least use *Color + Albedo* as just *Color* can blur out details, especially at lower sample counts."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:61
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:63
 msgid "Radius"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:56
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:58
 msgid "Size of the image area that is used to denoise a pixel. Higher values are smoother, but might lose detail and are slower."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:59
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:61
 msgid "Setting the radius too high is generally not advisable. It increases denoising time a lot and, while the result might be smoother, it is not more accurate since there isn't any additional info coming out of the renderer. Beyond a radius of around 15, the additional rendering time is probably better spent on increasing the amount of samples."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:65
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:67
 msgid "Strength"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:64
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:66
 msgid "Controls how different the area around a neighbor pixel can look compared to the center pixel before it's no longer used for denoising. Lower values preserve more detail, but aren't as smooth."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:70
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:72
 msgid "Feature Strength"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:68
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:70
 msgid "Controls removal of noisy and redundant image feature passes before the actual denoising. This is required in some cases like :abbr:`DoF (Depth of Field)` or motion blur to avoid splotchy results, but might cause fine texture/geometrical detail to be lost. Lower values preserve more detail, but aren't as smooth."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:74
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:76
 msgid "Relative Filter"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:73
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:75
 msgid "When removing features that don't carry information, decide which to keep based on the total amount of information in the features. This can help to reduce artifacts, but might cause detail loss around edges."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:79
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:81
 msgid "Passes"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:77
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:79
 msgid "You can choose to selectively choose which :doc:`Render Passes </render/layers/passes>` you want to denoise."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:82
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:84
 msgid "Notes and Issues"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:84
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:86
 msgid "The denoiser will change in the future and some features are not implemented yet. If denoising fails to produce good results, more samples or clamping will often resolve the issue."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:87
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:89
 msgid "Denoising cannot be used for baking yet."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:88
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:90
 msgid "For animation denoising can be used, however it still requires high sample counts for good results. With low sample counts, low frequency (blurry) noise can be visible in animation frames, even if it is not immediately apparent in still images."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:91
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:93
 msgid "When using GPU rendering, the denoising (non Optix) process may use a significant amount of vRAM. If the GPU runs out of memory but renders fine without denoising, try reducing the tile size."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:96
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:98
 msgid "Examples"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:98
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:100
 msgid "Below is an example render by `The Pixelary <http://blog.thepixelary.com/post/160451378592/denoising-in-cycles-tested>`__."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:105
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:107
 msgid "Example render before denoising."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:109
+#: /Users/hoangduytran/blender_docs/manual/render/layers/denoising.rst:111
 msgid "Example render after denoising."
 msgstr ""

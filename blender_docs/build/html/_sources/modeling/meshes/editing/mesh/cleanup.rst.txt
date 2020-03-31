@@ -1,6 +1,6 @@
 
 ********
-Clean up
+Clean Up
 ********
 
 These tools are to help cleanup degenerate geometry and fill in missing areas of a mesh.
@@ -37,6 +37,8 @@ Symmetry
    This tool works similar to the :doc:`Decimate Modifier </modeling/modifiers/generate/decimate>`.
 
 
+.. _bpy.ops.mesh.fill_holes:
+
 Fill Holes
 ==========
 
@@ -55,6 +57,8 @@ This is different from the face creation operator in three important respects:
 #. Mesh data is copied from surrounding geometry (UVs, vertex colors, multi-res, all layers),
    since manually creating this data is very time-consuming.
 
+
+.. _bpy.ops.mesh.face_make_planar:
 
 Make Planar Faces
 =================
@@ -75,6 +79,8 @@ Iterations
    Number of times to repeat the operation.
 
 
+.. _bpy.ops.mesh.vert_connect_nonplanar:
+
 Split Non-Planar Faces
 ======================
 
@@ -84,9 +90,11 @@ Split Non-Planar Faces
    :Mode:      Edit Mode
    :Menu:      :menuselection:`Mesh --> Clean up --> Split Non-Planar Faces`
 
-This tool avoids ambiguous areas of geometry by splitting non-flat faces when they are bent
-beyond a given limit.
+This tool avoids ambiguous areas of geometry by splitting non-flat faces when they are bent beyond
+a given limit.
 
+
+.. _bpy.ops.mesh.vert_connect_concave:
 
 Split Concave Faces
 ===================
@@ -101,6 +109,8 @@ This tool can be used to convert any :term:`concave face` to convex
 by splitting the concave into two or more convex faces.
 
 
+.. _bpy.ops.mesh.delete_loose:
+
 Delete Loose Geometry
 =====================
 
@@ -112,6 +122,8 @@ Delete Loose Geometry
 
 This tool removes disconnected vertices and edges (optionally faces).
 
+
+.. _bpy.ops.mesh.dissolve_degenerate:
 
 Degenerate Dissolve
 ===================

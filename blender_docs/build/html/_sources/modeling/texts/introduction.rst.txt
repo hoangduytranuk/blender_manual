@@ -29,6 +29,12 @@ But, just like curves, you can extrude them,
 and apply :doc:`modifiers </modeling/modifiers/introduction>` to them
 (e.g. to make them :doc:`follow a curve </modeling/modifiers/deform/curve>`).
 
+Text in Blender can be laid out in some relatively advanced ways,
+defining columns or blocks of text, using different alignments, and so on.
+
+Those features are similar in concept to what you can find in :abbr:`DTP (DeskTop Publishing)` software
+(like `Scribus <https://www.scribus.net/>`__), although at a very basic level currently.
+
 .. tip::
 
    You can convert a text object, either to a curve, or directly to a mesh,

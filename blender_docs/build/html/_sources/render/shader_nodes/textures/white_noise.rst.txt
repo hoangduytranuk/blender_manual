@@ -46,6 +46,8 @@ Outputs
 
 Value
    Output random value.
+Color
+   Output random color.
 
 
 .. _shader-white-noise-notes:
@@ -64,21 +66,23 @@ Usually, we can mitigate this issue by:
 - Taking the absolute value of the seed. In computing, zero may be positive or negative,
   so taking the absolute values unifies the zero into a single value.
 
-.. figure:: /images/render_shader-nodes_textures_white-noise_issue.png
+.. list-table::
 
-   Precision issue due to signed zeros on the Z axis.
+   * - .. figure:: /images/render_shader-nodes_textures_white-noise_issue.png
 
-.. figure:: /images/render_shader-nodes_textures_white-noise_solution1.png
+          Precision issue due to signed zeros on the Z axis.
 
-   Mitigating the issue by eliminating the Z axis.
+     - .. figure:: /images/render_shader-nodes_textures_white-noise_solution1.png
 
-.. figure:: /images/render_shader-nodes_textures_white-noise_solution2.png
+          Mitigating the issue by eliminating the Z axis.
 
-   Mitigating the issue by adding an arbitrary value.
+   * - .. figure:: /images/render_shader-nodes_textures_white-noise_solution2.png
 
-.. figure:: /images/render_shader-nodes_textures_white-noise_solution3.png
+          Mitigating the issue by adding an arbitrary value.
 
-   Mitigating the issue by taking the absolute value.
+     - .. figure:: /images/render_shader-nodes_textures_white-noise_solution3.png
+
+          Mitigating the issue by taking the absolute value.
 
 
 Examples

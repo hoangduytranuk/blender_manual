@@ -22,8 +22,8 @@ to control the trade-off between a noise-free image, image details, and calculat
 
 .. seealso::
 
-   See the other ways to reduce noise on
-   the general :doc:`Noise Optimization </render/cycles/optimizations/reducing_noise>` page.
+   - :ref:`Viewport denoising <render-cycles-settings-viewport-denoising>`
+   - :doc:`Other ways to reduce noise </render/cycles/optimizations/reducing_noise>`.
 
 
 Options
@@ -32,6 +32,8 @@ Options
 .. figure:: /images/render_layers_denoising_panel.png
 
    Denoising panel.
+
+.. _render-layers-denoising-optix:
 
 Optix AI Denoising
    Uses an artificial intelligence algorithm to remove noise from renders.

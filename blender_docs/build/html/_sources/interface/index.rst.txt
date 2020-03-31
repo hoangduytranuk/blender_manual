@@ -68,6 +68,7 @@ Extended Controls
    controls/templates/list_presets.rst
    controls/templates/color_picker.rst
    controls/templates/color_ramp.rst
+   controls/templates/color_palette.rst
    controls/templates/curve.rst
    controls/templates/operator_search.rst
    controls/nodes/index.rst

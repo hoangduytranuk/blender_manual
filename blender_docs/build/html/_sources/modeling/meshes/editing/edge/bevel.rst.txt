@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.bevel:
 .. _tool-mesh-bevel:
 
 ***********
@@ -123,7 +124,7 @@ Clamp Overlap :kbd:`C`
    overlapping intersections with other geometry.
 
 Loop Slide
-   If there are unbeveled edges along with beveled edges into a vertex,
+   If there are un-beveled edges along with beveled edges into a vertex,
    the bevel tries to slide along those edges when possible.
    Turning the option off can lead to more even bevel widths.
 
@@ -224,14 +225,15 @@ Spread
    The value used to spread extra vertices apart for *Outer* and *Inner Miters*.
 
 Intersection Method :kbd:`N`
-   When more than two beveled edges meet at a vertex, a mesh is created as a way to complete the
-   intersection between the generated geometry. This option controls the method used to create that mesh.
+   When more than two beveled edges meet at a vertex, a mesh is created as
+   a way to complete the intersection between the generated geometry.
+   This option controls the method used to create that mesh.
 
    Grid Fill
-      The default method for building intersections, useful when a smooth continuation of the bevel
-      profile is desired. Without *Custom Profile* enabled, the curve of the profile continues through
-      the intersection, but with a custom profile it just creates a smooth grid within the
-      intersection's boundary.
+      The default method for building intersections, useful when a smooth continuation of
+      the bevel profile is desired. Without *Custom Profile* enabled, the curve of the profile
+      continues through the intersection, but with a custom profile it just creates a smooth grid within
+      the intersection's boundary.
    Cutoff
       Creates a cutoff face at the end of each beveled edge coming into the vertex. This is most
       useful for custom profiles when the new intersection is too complex for a smooth grid fill.
@@ -288,7 +290,6 @@ Custom Profile :kbd:`Z`
       because it still controls the shape of the miter profiles.
 
    Sampling
-
       Samples will first be added to each control point, then if there are enough samples,
       they will be divided evenly between the edges. The *Sample Straight Edges* option toggles whether
       the samples are added to edges with sharp control points on either side. If there aren't enough samples

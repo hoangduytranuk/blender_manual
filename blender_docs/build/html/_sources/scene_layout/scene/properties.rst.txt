@@ -15,6 +15,8 @@ Scene
 
    :Panel:     :menuselection:`Properties editor --> Scene --> Scene`
 
+.. _scene-camera:
+
 Camera
    Used to select which camera is used as the active camera.
    You can also set the active camera in the 3D View with :kbd:`Ctrl-0`.

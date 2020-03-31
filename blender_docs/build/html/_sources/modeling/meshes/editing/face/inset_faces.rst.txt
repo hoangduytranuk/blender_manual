@@ -1,3 +1,4 @@
+.. _bpy.ops.mesh.inset:
 .. _tool-mesh-inset_faces:
 
 ***********

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-sys.path.append('/Users/hoangduytran/PycharmProjects/potranslate')
+sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 print(sys.path)
 
 # sys.path.append('/home/htran/bin/python/PO')
@@ -122,14 +122,13 @@ def doctree_resolved(app, doctree, docname):
     new_po_cat = Catalog(
                 locale="vi",
                 header_comment=current_header,
-                project="Blender 2.8 Manual",
-                version="2.8",
+                project=current_po_cat.project,
+                version=current_po_cat.version,
                 copyright_holder=YOUR_ID,
                 creation_date=current_po_cat.creation_date,
                 revision_date=time_now,
                 last_translator=YOUR_ID,
-                language_team=YOUR_TRANSLATION_TEAM,
-                charset="UTF-8"
+                language_team=YOUR_TRANSLATION_TEAM
                 )
 
     _("#" * 80)
@@ -203,7 +202,7 @@ def doctree_resolved(app, doctree, docname):
         # #ref_list.dumpRefList(trans_finder.master_dic_backup_list)
         # return
 
-        msg = "LimbNode' FBX node, a regular joint between two bones..."
+        # msg = "LimbNode' FBX node, a regular joint between two bones..."
         tran = None
         orig_msg = str(msg)
 
@@ -216,6 +215,8 @@ def doctree_resolved(app, doctree, docname):
             has_translation = (msg in po_dic)
             if has_translation:
                 tran = po_dic[msg]
+                entry = {msg:tran}
+                trans_finder.master_dic_list.update(entry)
                 print("Got translation from PO file")
             else:
                 has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
@@ -235,21 +236,21 @@ def doctree_resolved(app, doctree, docname):
                 # print("tran old:", {msg:tran})
                 # print("tran new:", {msg:ref_list.getTranslation()})
 
-            change_trans_list={
-                "Sắc Thái":"Sắc Màu",
-                "Sắc Thể":"Sắc Màu",
-                "Sắc thái":"Sắc màu",
-                "Sắc thể":"Sắc màu",
-                "sắc thái":"sắc màu",
-                "sắc thể":"sắc màu",
-            }
-
-            has_translation = (tran is not None)
-            if has_translation:
-                for k, v in change_trans_list.items():
-                    if k in tran:
-                        tran = tran.replace(k, v)
-                        print(f'Translation CHANGED:", k, "=>", v, "in tran\n[{tran}]')
+            # change_trans_list={
+            #     "Sắc Thái":"Sắc Màu",
+            #     "Sắc Thể":"Sắc Màu",
+            #     "Sắc thái":"Sắc màu",
+            #     "Sắc thể":"Sắc màu",
+            #     "sắc thái":"sắc màu",
+            #     "sắc thể":"sắc màu",
+            # }
+            #
+            # has_translation = (tran is not None)
+            # if has_translation:
+            #     for k, v in change_trans_list.items():
+            #         if k in tran:
+            #             tran = tran.replace(k, v)
+            #             print(f'Translation CHANGED:", k, "=>", v, "in tran\n[{tran}]')
         # is_ignore = ig.isIgnored(msg)
         # if is_ignore:
         #     tran = None
@@ -300,9 +301,9 @@ def doctree_resolved(app, doctree, docname):
         else:
             print("msgstr \"\"")
 
-    # print("Output to the path:", new_po_cat, output_path)
-    # c.dump_po(output_path, new_po_cat)
-    #c.dump_po(output_path, new_po_cat, line_width=4096)
+    print("Output to the path:", new_po_cat, output_path)
+    c.dump_po(output_path, new_po_cat)
+    # c.dump_po(output_path, new_po_cat, line_width=4096)
 
 
 

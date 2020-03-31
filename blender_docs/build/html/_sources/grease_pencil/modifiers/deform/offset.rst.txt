@@ -4,7 +4,7 @@
 Offset Modifier
 ***************
 
-The *Offset* Modifier changes the strokes location, scale or rotation
+The *Offset* Modifier changes the strokes location, rotation or scale
 starting from the object origin.
 
 
@@ -21,13 +21,13 @@ Location
 
    X, Y, Z
 
-Scale
-   Sets strokes scale.
+Rotation
+   Sets strokes rotation.
 
    X, Y, Z
 
-Rotation
-   Sets strokes rotation.
+Scale
+   Sets strokes scale.
 
    X, Y, Z
 
