@@ -230,18 +230,18 @@
 <img alt="../../../_images/compositing_node-types_CompositorNodeValToRGB.png" src="../../../_images/compositing_node-types_CompositorNodeValToRGB.png" />
 <p class="caption"><span class="caption-text">Nút Dốc Màu.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>Nút Dốc Màu (Color Ramp) được sử dụng để ánh xạ các giá trị thành các màu với việc sử dụng một dốc màu (gradient).</p>
+<p>Nút Dốc Màu (<em>Color Ramp Node</em>) được sử dụng để ánh xạ các giá trị thành các màu, bằng cách sử dụng một dốc màu (<em>gradient</em>).</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Hệ Số -- Factor</dt><dd><p>Đầu vào Hệ Số (Factor) được sử dụng làm chỉ số (index) cho dốc màu.</p>
+<dt>Hệ Số -- Factor</dt><dd><p>Hệ Số (<em>Factor</em>) cung cấp ở đầu vào được sử dụng như một chỉ số (<em>index</em>) cho dốc màu.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Dốc Màu -- Color Ramp</dt><dd><p>Đối với các điều khiển, xin hãy xem <a class="reference internal" href="../../../interface/controls/templates/color_ramp.html#ui-color-ramp-widget"><span class="std std-ref">Thành Tố Dốc Màu -- Color Ramp Widget</span></a>.</p>
+<dt>Dốc Màu -- Color Ramp</dt><dd><p>Xin hãy xem <a class="reference internal" href="../../../interface/controls/templates/color_ramp.html#ui-color-ramp-widget"><span class="std std-ref">Thành Tố Dốc Màu -- Color Ramp Widget</span></a> để biết thêm chi tiết về các điều khiển.</p>
 </dd>
 </dl>
 </div>
@@ -258,26 +258,22 @@
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="creating-an-alpha-mask">
 <h3>Tạo Màn Chắn Alpha -- Creating an Alpha Mask<a class="headerlink" href="#creating-an-alpha-mask" title="Permalink to this headline">¶</a></h3>
-<p>Một tính năng mạnh mẽ nhưng thường bị bỏ qua của Dốc Màu (Color Ramp) là tạo ra một Màn Chắn Alpha (Alpha Mask), hoặc một màn chắn để phủ lên trên một hình ảnh khác, và giống như một màn chắn, cho phép phần nào của hình nền được nhìn thấy. Ví dụ bài trí dưới đây cho thấy cách sử dụng nút Dốc Màu (Color Ramp) để thực hiện điều này:</p>
+<p>Một tính năng mạnh mẽ, song thường bị lãng quên của Dốc Màu (<em>Color Ramp</em>), là tạo ra một Màn Chắn Alpha (<em>Alpha Mask</em>), hoặc một màn chắn đơn thuần để phủ chồng (<em>overlaid</em>) lên trên một hình ảnh khác, và như tính năng của một màn chắn, nó cho phép một phần nào đó của hình ở nền đằng sau nhìn thấy được. Ví dụ, bài trí dưới đây cho thấy cách sử dụng nút Dốc Màu (<em>Color Ramp</em>) để thực hiện việc này:</p>
 <div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_converter_color-ramp_create-alpha-mask.png"><img alt="../../../_images/compositing_types_converter_color-ramp_create-alpha-mask.png" src="../../../_images/compositing_types_converter_color-ramp_create-alpha-mask.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">Sử dụng nút Dốc Màu (Color Ramp) để tạo màn chắn alpha.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the map above, a black-and-white swirl image, which is lacking an alpha channel,
-is fed into the Color Ramp node as a <em>Factor</em>.
-(Technically, we should have converted the image to a value using the RGB to BW node,
-but hey, this works just as well since we are using a BW image as input.)</p>
-<p>Chúng ta đã thiết lập nút Dốc Màu (Color Ramp) với một màu hoàn toàn trong suốt ở đầu bên trái của quang phổ và màu hoàn toàn đỏ ở bên phải. Như thấy được trong nút xem hình, nút Dốc Màu đưa ra một màn chắn hoàn toàn trong suốt ở những nơi hình ảnh có màu đen. Màu đen là số không, vì vậy Dốc Màu sử dụng màu ở đầu bên trái của quang phổ, mà chúng ta đã đặt thành trong suốt. Hình ảnh Dốc Màu hoàn toàn là màu đỏ và những chỗ hình ảnh là màu trắng (1.00) thì hoàn toàn không trong.</p>
-<p>We verify that the output image mask is indeed transparent
-by overlaying it on top of another image.</p>
+<p>Trong sơ đồ trên, một hình ảnh luồng xoáy đen-trắng, không có kênh alpha, được đưa vào nút Dốc Màu (<em>Color Ramp</em>) dưới dạng một <em>Hệ Số -- Factor</em>. (Về mặt kỹ thuật mà nói, chúng ta đáng ra phải chuyển đổi hình ảnh thành một giá trị, bằng cách sử dụng nút Đỏ, Lục, Lam (<em>RGB</em>) sang Trắng/Đen (<em>RGB to BW</em>), song... bạn thấy chưa, cách này cũng hoạt động tốt đấy chứ, hả? Vì chúng ta đang sử dụng hình ảnh Trắng/Đen (<em>BW</em>) làm nguồn cung ứng cho đầu vào).</p>
+<p>Chúng ta đã thiết lập nút Dốc Màu (<em>Color Ramp</em>) với một màu hoàn toàn trong suốt ở đầu bên trái của quang phổ và một màu hoàn toàn đỏ ở bên phải. Như thấy được trong nút xem hình, nút Dốc Màu cho ra một màn chắn hoàn toàn trong suốt ở những nơi hình ảnh có màu đen. Màu đen là số không, vì vậy Dốc Màu sử dụng màu ở đầu bên trái của quang phổ mà chúng ta đã đặt thành trong suốt. Hình ảnh của Dốc Màu hoàn toàn là màu đỏ và những chỗ hình ảnh là màu trắng (1.00) thì hoàn toàn đục (không trong suốt).</p>
+<p>Chúng ta có thể xác minh rằng màn chắn của hình ảnh xuất ra thực sự là trong suốt, bằng cách lồng nó (<em>overlaying</em>) lên trên một hình ảnh khác.</p>
 </div>
 <div class="section" id="colorizing-an-image">
 <h3>Tô Màu một Hình Ảnh -- Colorizing an Image<a class="headerlink" href="#colorizing-an-image" title="Permalink to this headline">¶</a></h3>
-<p>Sức mạnh thực sự của Dốc Màu (Color Ramp) là nhiều màu sắc có thể được cho thêm vào quang phổ màu. Ví dụ sơ đồ tổng hợp này lấy một hình ảnh Trắng/Đen (BW) nhàm chán và làm cho nó thành một cơn lốc bốc lửa!</p>
+<p>Sức mạnh thực sự của Dốc Màu (<em>Color Ramp</em>) là ở chỗ nhiều màu sắc có thể được cho thêm vào quang phổ. Ví dụ sơ đồ tổng hợp này lấy một hình ảnh Trắng/Đen (BW) nhàm chán và làm cho nó thành một cơn lốc bốc lửa!</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_converter_color-ramp_colorizing-image.png"><img alt="../../../_images/compositing_types_converter_color-ramp_colorizing-image.png" src="../../../_images/compositing_types_converter_color-ramp_colorizing-image.png" style="width: 600px;" /></a>
 </div>
-<p>Trong ví dụ này, chúng ta ánh xạ các sắc thái của màu xám trong hình ảnh cung cấp thành ba màu, lam, vàng và đỏ, tất cả đều ở mức cực độ, hoàn toàn rõ ràng, không trong,  (Alpha = 1,00). Ở những chỗ hình ảnh có màu đen, Dốc Màu (Color Ramp) thay thế màu làm vào, màu hiện đang được chọn. Nơi nó có pha màu xám, Dốc Màu chọn một màu tương ứng từ quang phổ (hơi xanh lam, vàng, tới hơi đỏ). Ở chỗ nào hình ảnh có màu trắng hoàn toàn, Dốc Màu chọn màu đỏ.</p>
+<p>Trong ví dụ này, chúng ta ánh xạ các sắc thái của màu xám, trong hình ảnh được cung cấp, thành ba màu: lam, vàng và đỏ, tất cả đều ở mức cực độ, hoàn toàn đục, (<em>không trong -- fully opaque</em>), (Alpha = 1,00). Ở những chỗ hình ảnh có màu đen thì Dốc Màu thay thế màu lam vào đó, tức màu hiện đang được chọn. Nơi nào có màu xám pha vào thì Dốc Màu chọn một màu tương ứng trong quang phổ (từ hơi xanh lam, vàng, tới hơi đỏ). Ở những nơi mà hình ảnh có màu trắng hoàn toàn thì Dốc Màu chọn màu đỏ cho nó.</p>
 </div>
 </div>
 </div>

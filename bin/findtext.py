@@ -318,23 +318,6 @@ class FindFilesHasPattern:
 
 
     def find(self):
-        po_dir = os.environ['BLENDER_MAN_VI']
-        if po_dir:
-            po_dir = os.path.join(po_dir, "LC_MESSAGES")
-            _("po_dir:", po_dir)
-
-        rst_dir = os.environ['BLENDER_MAN_EN']
-        if rst_dir:
-            rst_dir = os.path.join(rst_dir, "manual")
-            _("rst_dir:", rst_dir)
-
-        py_dir = os.environ['LOCAL_PYTHON_3']
-        if py_dir:
-            _("py_dir:", py_dir)
-
-        src_dir = os.environ['BLENDER_SRC']
-        if src_dir:
-            _("src_dir:", src_dir)
 
         po_file_list=None
         rst_file_list=None
@@ -345,24 +328,42 @@ class FindFilesHasPattern:
             search_file_list.append(self.find_file)
         else:
             if (self.find_po):
+                po_dir = os.environ['BLENDER_MAN_VI']
+                if po_dir:
+                    po_dir = os.path.join(po_dir, "LC_MESSAGES")
+                    _("po_dir:", po_dir)
+
                 po_file_list = self.getFileList(po_dir, ".po")
                 _("po_file_list")
                 pp(po_file_list)
                 search_file_list.extend(po_file_list)
 
             if (self.find_rst):
+                rst_dir = os.environ['BLENDER_MAN_EN']
+                if rst_dir:
+                    rst_dir = os.path.join(rst_dir, "manual")
+                    _("rst_dir:", rst_dir)
+
                 rst_file_list = self.getFileList(rst_dir, ".rst")
                 _("rst_file_list")
-                cm.pp(rst_file_list)
+                pp(rst_file_list)
                 search_file_list.extend(rst_file_list)
 
             if (self.find_py):
+                py_dir = os.environ['LOCAL_PYTHON_3']
+                if py_dir:
+                    _("py_dir:", py_dir)
+
                 py_file_list = self.getFileList(py_dir, ".py")
                 _("py_file_list")
-                cm.pp(py_file_list)
+                pp(py_file_list)
                 search_file_list.extend(py_file_list)
 
             if (self.find_src):
+                src_dir = os.environ['BLENDER_SRC']
+                if src_dir:
+                    _("src_dir:", src_dir)
+                
                 py_list = self.getFileList(src_dir, ".py")
                 cc_list = self.getFileList(src_dir, ".cc")
                 cpp_list = self.getFileList(src_dir, ".cpp")

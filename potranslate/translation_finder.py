@@ -354,7 +354,7 @@ class TranslationFinder:
             return False
 
         if keep_orig:
-            repeat_form = "{} -- {}".format(v, k)
+            repeat_form = f'{v} -- {k}'
             normal_form = v
             has_original_in_tran = (k in v)
             if has_original_in_tran:

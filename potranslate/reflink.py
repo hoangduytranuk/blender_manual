@@ -726,9 +726,9 @@ class RefList(defaultdict):
             if self.keep_original:
                 has_original = (current_msg in current_tran)
                 if not has_original:
-                    txt = "{} -- {}".format(current_msg, current_tran)
+                    txt = f'{current_msg} -- {current_tran}'
                 else:
-                    txt = "-- {}".format(current_msg)
+                    txt = f'-- {current_msg}'
                 self.setTranslation(txt)
             else:
                 self.setTranslation(current_tran)
@@ -842,9 +842,9 @@ class RefList(defaultdict):
             tran, is_fuzzy = self.tf.translate(self.msg)
             has_tran = (tran is not None)
             if has_tran and self.keep_original:
-                tran = "{} -- {}".format(tran, self.msg)
+                tran = f"{tran} -- {self.msg}"
             elif not has_tran and self.keep_original:
-                tran = "-- {}".format(self.msg)
+                tran = f"-- {self.msg}"
             elif not has_tran and not self.keep_original:
                 tran = ""
             self.setTranslation(tran)
@@ -927,9 +927,9 @@ class RefList(defaultdict):
             return
 
         ref_txt = ref_item.getText()
-        is_debug = ("alias" in ref_txt.lower())
-        if is_debug:
-            _("DEBUG")
+        # is_debug = ("alias" in ref_txt.lower())
+        # if is_debug:
+        #     _("DEBUG")
 
         is_ignore = ig.isIgnored(ref_txt)
         if is_ignore:
@@ -998,7 +998,7 @@ class RefList(defaultdict):
             valid = (trans is not None)
             if valid:
                 if self.keep_original:
-                    tran_text = "{} -- {}".format(trans, self.msg)
+                    tran_text = f'{trans} -- {self.msg}'
                 else:
                     tran_text = trans
             else:

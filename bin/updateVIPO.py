@@ -21,6 +21,7 @@ from bisect import bisect_left
 from babel.messages import pofile
 from pprint import pprint as pp
 from collections import OrderedDict, defaultdict
+from argparse import ArgumentParser
 
 class Comparator(object):
 
@@ -47,13 +48,35 @@ class POCaseComp(Comparator):
         pass
 
 class UpdateVIPO:
-    from_vipo_path="/home/htran/blender_documentations/new_po/vi.po"
-    to_blender_pot_path="/home/htran/blender_documentations/blender.pot"
+    from_vipo_path="/Users/hoangduytran/blender_manual/gui/2.80/po/vi.po"
+    to_blender_pot_path="/Users/hoangduytran/po/po/vi.po"
+    default_out_file = "/Users/hoangduytran/new_vi.po"
 
     def __init__(self):
-        self.po_cat = c.load_po(UpdateVIPO.from_vipo_path)
-        self.pot_cat = c.load_po(UpdateVIPO.to_blender_pot_path)
+        self.po_cat = None
+        self.pot_cat = None
         self.sorted_po_cat = None
+        self.from_file = None
+        self.to_file = None
+        self.out_file = None
+        self.dry_run = False
+
+    def loadFiles(self):
+        self.po_cat = c.load_po(self.from_file)
+        self.pot_cat = c.load_po(self.to_file)
+        self.sorted_po_cat = None
+
+    def setVars(self, from_file, to_file, out_file, dry_run):
+        valid = (from_file is not None) and (os.path.isfile(from_file))
+        self.from_file = (from_file if valid else UpdateVIPO.from_vipo_path)
+
+        valid = (to_file is not None) and (os.path.isfile(to_file))
+        self.to_file = (to_file if valid else UpdateVIPO.to_blender_pot_path)
+
+        valid = (out_file is not None)
+        self.out_file = (out_file if valid else UpdateVIPO.default_out_file)
+
+        self.dry_run = (True if dry_run else False)
 
     def poCatToList(self, po_cat):
         l=[]
@@ -78,7 +101,7 @@ class UpdateVIPO:
             v = m
             entry={k:v}
             po_cat_dic.update(entry)
-            print("poCatToDic:", k, v)
+
             if not is_same_key:
                 lower_entry = {lower_k:v}
                 po_cat_dic.update(lower_entry)
@@ -140,9 +163,8 @@ class UpdateVIPO:
 
 
     def run(self):
-        #po_dic = self.poCatToList(self.po_cat)
-        #self.sorted_po_cat = sorted(po_dic, key = lambda x: "{}{}".format(x[0], x[1]))
-        #self.sorted_lower_po_cat = sorted(po_dic, key = lambda x: "{}{}".format(x[0].lower(), x[1]))
+
+        self.loadFiles()
 
         po_cat_dict = self.poCatToDic(self.po_cat)
         print("po_cat_dict")
@@ -180,51 +202,33 @@ class UpdateVIPO:
             print("Updating k[{}], v:[{}], fuzzy:[{}]".format(k,v, is_fuzzy))
             changed = True
 
-        #for index, pot_entry in enumerate(self.pot_cat):
-            #is_first_entry = (index == 0)
-            #if (is_first_entry):
-                #continue
 
-            ##print("id:{}, is_fuzzy:{}".format(po_entry.id, po_entry.fuzzy))
-
-            ##if (po_entry.fuzzy):
-                ##exit(0)
-            ##else:
-                ##continue
-
-            #k = pot_entry.id
-            #found_entry = self.binarySearch(self.sorted_po_cat, pot_entry)
-            #is_in = isinstance(found_entry, Message)
-
-            #if (not is_in):
-                #print("Find in lower case list: ", k)
-                #found_entry = self.binarySearch(self.sorted_lower_po_cat, pot_entry, is_lcase=True)
-                #is_in = isinstance(found_entry, Message)
-                #if (not is_in):
-                    #print("Not Found, NEW: {}".format(k))
-                    #continue
-
-            ##print("pot_entry:", pot_entry.id)
-            ##print("Found entry:", found_entry.id)
-            ##k, c, po_value = self.sorted_po_cat[po_value_index]
-            ##po_value = found_entry
-            #pot_entry.string = found_entry.string
-            #changed = True
-
-            ##print("is po_entry a Message:{}".format(isinstance(po_entry, Message)))
-            ##exit(0)
-            ##is_fuzzy = ('fuzzy' in po_entry.flags)
-            #if (found_entry.fuzzy):
-                #pot_entry.flags.add('fuzzy')
-
-            #print("pot_entry.id:{}, pot_entry.string:{}, pot_entry.fuzzy:{}".format(pot_entry.id, pot_entry.string, pot_entry.fuzzy))
-            #print("--"*5)
 
         if (changed):
-            new_po_file = "/home/htran/new_vi.po"
-            print("Saving content of new pot_cat to:{}".format(new_po_file))
-            self.dump_po(new_po_file, self.pot_cat)
+            if self.dry_run:
+                print(f'DRY_RUN: changed content IS NOT SAVED to:{self.out_file}')
+            else:
+                #new_po_file = "/Users/hoangduytran/new_vi.po"
+                print(f'Saving content of new pot_cat to:{self.out_file}')
+                c.dump_po(self.out_file, self.pot_cat, line_width=99)
 
+
+
+parser = ArgumentParser()
+#parser.add_argument("-c", "--clean", dest="clean_action", help="Clean before MAKE.", action='store_const', const=True)
+parser.add_argument("-f", "--from_file", dest="from_file", help="PO files from which translations are taken.")
+parser.add_argument("-t", "--to_file", dest="to_file", help="PO files to which translations are transfered to.")
+parser.add_argument("-o", "--output_file", dest="output_file", help="The file contains the merged output. DO NOT write to to_file parameter.")
+parser.add_argument("-r", "--dry_run", dest="dry_run", help="Test run, do not write changes.", action='store_const', const=True)
+
+args = parser.parse_args()
 
 x = UpdateVIPO();
+x.setVars(
+    args.from_file,
+    args.to_file,
+    args.output_file,
+    args.dry_run
+    )
+
 x.run()
