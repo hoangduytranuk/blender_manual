@@ -14,6 +14,7 @@ import re
 import os
 import io
 
+import json
 from sphinx_intl import catalog as c
 #from common import Common as cm
 from babel.messages.catalog import Message
@@ -22,6 +23,14 @@ from babel.messages import pofile
 from pprint import pprint as pp
 from collections import OrderedDict, defaultdict
 from argparse import ArgumentParser
+
+DEBUG = True
+
+def _(*args, **kwargs):
+    global DEBUG
+    if DEBUG:
+        print(args, kwargs)
+        print('-' * 30)
 
 class Comparator(object):
 
@@ -51,6 +60,7 @@ class UpdateVIPO:
     from_vipo_path="/Users/hoangduytran/blender_manual/gui/2.80/po/vi.po"
     to_blender_pot_path="/Users/hoangduytran/po/po/vi.po"
     default_out_file = "/Users/hoangduytran/new_vi.po"
+    default_dic_path = "/Users/hoangduytran/blender_manual/ref_dict_0001.json"
 
     def __init__(self):
         self.po_cat = None
@@ -60,23 +70,65 @@ class UpdateVIPO:
         self.to_file = None
         self.out_file = None
         self.dry_run = False
+        self.json_dic = None
+
+
+    def writeJSONDic(self, dict_list=None, file_name=None):
+        try:
+            file_path = file_name
+            dic = dict_list
+
+            with open(file_path, 'w', newline='\n', encoding='utf8') as out_file:
+                json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
+
+        except Exception as e:
+            _("Exception writeDictionary Length of read dictionary:{}".format(len(dic)))
+            raise e
+
+    def loadJSONDic(self, file_name=None):
+        local_dic = None
+        try:
+            file_path = file_name
+            dic = None
+            with open(file_path) as in_file:
+                dic = json.load(in_file)
+
+        except Exception as e:
+            _("Exception readDictionary Length of read dictionary:")
+            _(e)
+            raise e
+
+        return dic
+
 
     def loadFiles(self):
         self.po_cat = c.load_po(self.from_file)
-        self.pot_cat = c.load_po(self.to_file)
-        self.sorted_po_cat = None
 
-    def setVars(self, from_file, to_file, out_file, dry_run):
+        if self.update_dic:
+            self.json_dic = self.loadJSONDic(self.to_file)
+        else:
+            self.pot_cat = c.load_po(self.to_file)
+            self.sorted_po_cat = None
+
+    def setVars(self, from_file, to_file, out_file, dry_run, update_dic):
+        self.update_dic = (True if update_dic else False)
+
         valid = (from_file is not None) and (os.path.isfile(from_file))
         self.from_file = (from_file if valid else UpdateVIPO.from_vipo_path)
 
         valid = (to_file is not None) and (os.path.isfile(to_file))
-        self.to_file = (to_file if valid else UpdateVIPO.to_blender_pot_path)
 
-        valid = (out_file is not None)
-        self.out_file = (out_file if valid else UpdateVIPO.default_out_file)
+        if self.update_dic:
+            self.to_file = (to_file if valid else UpdateVIPO.default_dic_path)
+        else:
+            self.to_file = (to_file if valid else UpdateVIPO.to_blender_pot_path)
+
+        if not self.update_dic:
+            valid = (out_file is not None)
+            self.out_file = (out_file if valid else UpdateVIPO.default_out_file)
 
         self.dry_run = (True if dry_run else False)
+
 
     def poCatToList(self, po_cat):
         l=[]
@@ -93,18 +145,11 @@ class UpdateVIPO:
         for index, m in enumerate(po_cat):
             context = (m.context if m.context else "")
             #print("context:{}".format(context))
-            k = (m.id, context)
-            lower_k = (m.id.lower(), context.lower())
-
-            is_same_key = (k == lower_k)
-
+            #k = (m.id, context)
+            k = m.id
             v = m
             entry={k:v}
             po_cat_dic.update(entry)
-
-            if not is_same_key:
-                lower_entry = {lower_k:v}
-                po_cat_dic.update(lower_entry)
 
         return po_cat_dic
 
@@ -162,17 +207,66 @@ class UpdateVIPO:
             pofile.write_po(f, catalog, width=4096)
 
 
-    def run(self):
+    def updatePOtoDIC(self):
+        changed = False
+        po_cat_dict = self.poCatToDic(self.po_cat)
 
-        self.loadFiles()
+        ignore_list=[
+            "Volume"
+        ]
+
+        for k, v in po_cat_dict.items():
+            is_ignore = (k in ignore_list) or (len(k) < 2) 
+            if is_ignore:
+                print(f'in ignore list or len < 2 => IGNORED: {k}, {v}')
+                continue
+
+            v_string = v.string # this is the translation
+
+            has_string = (len(v_string) > 0)
+            if not has_string:
+                print(f'No Translation IGNORED: {k}, {v_string}')
+                continue
+
+            is_same = (k.lower() == v_string.lower())
+            if is_same:
+                print(f'Identical IGNORED: {k}, {v_string}')
+                continue
+
+            is_in_old_dict = (k in self.json_dic)
+            if not is_in_old_dict:
+                entry={k: v_string}
+                print(f'UPDATING NEW ENTRY {entry}')                
+                self.json_dic.update(entry)
+                changed = True
+            else:
+                old_v = self.json_dic[k]
+                is_diff = (old_v != v_string)
+                if is_diff:
+                    entry={k: v_string}
+                    print(f'UPDATING DIFF ENTRY {entry}')                
+                    self.json_dic.update(entry)
+                    changed = True
+                else:
+                    print(f'Already in the current dic, so IGNORED: {k}, {v_string}')
+
+
+        if changed:
+            if self.dry_run:
+                test_file = "/Users/hoangduytran/test_file.json"
+                print(f'DRY_RUN: changed content IS SAVING to:{test_file}')
+                self.writeJSONDic(self.json_dic, test_file) 
+            else:
+                #new_po_file = "/Users/hoangduytran/new_vi.po"
+                print(f'Saving content of changed dictionary to:{self.to_file}')
+                self.writeJSONDic(self.json_dic, self.to_file) 
+
+    def updatePOtoPO(self):
 
         po_cat_dict = self.poCatToDic(self.po_cat)
-        print("po_cat_dict")
-        pp(po_cat_dict)
-
         po_pot_dict = self.poCatToDic(self.pot_cat)
-        print("po_pot_dict")
-        pp(po_pot_dict)
+            # print("po_pot_dict")
+            # pp(po_pot_dict)
 
         #pp(self.sorted_po_cat)
         #exit(0)
@@ -213,6 +307,14 @@ class UpdateVIPO:
                 c.dump_po(self.out_file, self.pot_cat, line_width=99)
 
 
+    def run(self):
+
+        self.loadFiles()
+        if self.update_dic:
+            self.updatePOtoDIC()
+        else:
+            self.updatePOtoPO()
+
 
 parser = ArgumentParser()
 #parser.add_argument("-c", "--clean", dest="clean_action", help="Clean before MAKE.", action='store_const', const=True)
@@ -220,6 +322,7 @@ parser.add_argument("-f", "--from_file", dest="from_file", help="PO files from w
 parser.add_argument("-t", "--to_file", dest="to_file", help="PO files to which translations are transfered to.")
 parser.add_argument("-o", "--output_file", dest="output_file", help="The file contains the merged output. DO NOT write to to_file parameter.")
 parser.add_argument("-r", "--dry_run", dest="dry_run", help="Test run, do not write changes.", action='store_const', const=True)
+parser.add_argument("-D", "--dic", dest="update_dic", help="Update dictionary. 'From file' is the PO file where entries are taken from, 'To file' is the target JSON dictionary.", action='store_const', const=True)
 
 args = parser.parse_args()
 
@@ -228,7 +331,8 @@ x.setVars(
     args.from_file,
     args.to_file,
     args.output_file,
-    args.dry_run
+    args.dry_run,
+    args.update_dic
     )
 
 x.run()
