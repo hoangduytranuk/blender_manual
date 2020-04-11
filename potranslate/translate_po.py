@@ -36,6 +36,7 @@ import locale
 import datetime
 from time import gmtime, strftime, time
 from pytz import timezone
+import Levenshtein as LE
 
 try:
     import html
@@ -53,6 +54,23 @@ RUNNING_APP_ENVIRON_KEY='EXEC_TRANSLATE_PO'
 trans_finder = tf()
 
 def doctree_resolved(app, doctree, docname):
+
+    def tranRef(msg, is_keep_original):
+        ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
+        ref_list.parseMessage()
+        ref_list.translateRefList()
+        tran = ref_list.getTranslation()
+        print("Got translation from REF_LIST")
+        return tran
+
+    def fuzzyTextSimilar(txt1, txt2, accept_ratio):
+        try:
+            similar_ratio = LE.ratio(txt1, txt2)
+            is_similar = (similar_ratio >= accept_ratio)
+            return is_similar
+        except Exception as e:
+            print(e)
+            return False
 
     def getTimeNow(self):
         local_time=timezone('Europe/London')
@@ -215,80 +233,24 @@ def doctree_resolved(app, doctree, docname):
             has_translation = (msg in po_dic)
             if has_translation:
                 tran = po_dic[msg]
-                entry = {msg:tran}
-                trans_finder.master_dic_list.update(entry)
-                print("Got translation from PO file")
+                is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
+                if is_too_similar:
+                    tran = tranRef(msg, is_keep_original)
+                else:
+                    entry = {msg:tran}
+                    trans_finder.master_dic_list.update(entry)
+                    print("Got translation from PO file")
             else:
                 has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
                 if has_translation:
                     tran = trans_finder.master_dic_list[msg]
-                    print("Got translation from MASTER_DIC_LIST")
-
-            has_translation = (tran is not None)
-            if not has_translation:
-                ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
-                ref_list.parseMessage()
-                ref_list.translateRefList()
-                tran = ref_list.getTranslation()
-                print("Got translation from REF_LIST")
-                # ref_list.correctRefs(msg, tran)
-                # ref_list.transferTranslatedRefs(msg, tran)
-                # print("tran old:", {msg:tran})
-                # print("tran new:", {msg:ref_list.getTranslation()})
-
-            # change_trans_list={
-            #     "Sắc Thái":"Sắc Màu",
-            #     "Sắc Thể":"Sắc Màu",
-            #     "Sắc thái":"Sắc màu",
-            #     "Sắc thể":"Sắc màu",
-            #     "sắc thái":"sắc màu",
-            #     "sắc thể":"sắc màu",
-            # }
-            #
-            # has_translation = (tran is not None)
-            # if has_translation:
-            #     for k, v in change_trans_list.items():
-            #         if k in tran:
-            #             tran = tran.replace(k, v)
-            #             print(f'Translation CHANGED:", k, "=>", v, "in tran\n[{tran}]')
-        # is_ignore = ig.isIgnored(msg)
-        # if is_ignore:
-        #     tran = None
-        # else:
-        #     # print("Not ignore:", msg)
-        #     is_added = False
-        #     has_translation = (msg in po_dic)
-        #     if has_translation:
-        #         tran = po_dic[msg]
-        #         is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-        #         if is_added:
-        #             entry = (msg, tran)
-        #             print("found in PO, added entry:", entry)
-        #         dup_msg_in_tran = (is_keep_original) and (msg not in tran)
-        #         if dup_msg_in_tran:
-        #             tran = "{} -- {}".format(tran, msg)
-        #     else:
-        #         has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
-        #         if has_translation:
-        #             tran = trans_finder.master_dic_list[msg]
-        #             is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-        #             if is_added:
-        #                 entry = (msg, tran)
-        #                 print("found in master_dic_list, added entry:", entry)
-        #
-        #             dup_msg_in_tran = (is_keep_original) and (msg not in tran)
-        #             if dup_msg_in_tran:
-        #                 tran = "{} -- {}".format(tran, msg)
-        #         else:
-        #             ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-        #             ref_list.parseMessage()
-        #             ref_list.translateRefList()
-        #             tran = ref_list.getTranslation()
-        #             is_added = trans_finder.addEntryToDic(msg, tran, trans_finder.master_dic_backup_list)
-        #             if is_added:
-        #                 entry = (msg, tran)
-        #                 print("found in RefList, added entry:", entry)
-
+                    is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
+                    if is_too_similar:
+                        tran = tranRef(msg, is_keep_original)
+                    else:
+                        print("Got translation from MASTER_DIC_LIST")
+                else:
+                    tran = tranRef(msg, is_keep_original)
 
         if tran is not None:
             new_po_cat.add(msg, string=tran)
@@ -302,7 +264,7 @@ def doctree_resolved(app, doctree, docname):
             print("msgstr \"\"")
 
     print("Output to the path:", new_po_cat, output_path)
-    c.dump_po(output_path, new_po_cat)
+    c.dump_po(output_path, new_po_cat, line_width=1024)
     # c.dump_po(output_path, new_po_cat, line_width=4096)
 
 

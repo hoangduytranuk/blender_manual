@@ -491,7 +491,7 @@ class TranslationFinder:
             if is_lower:
                 msg = msg.lower()
             trans = self.master_dic_list[msg]
-            _(f'isInList:[{msg}], {is_lower}, [{trans}]')
+            # _(f'isInList:[{msg}], {is_lower}, [{trans}]')
             return trans
         except Exception as e:
             # if msg:
@@ -503,19 +503,19 @@ class TranslationFinder:
     def findTranslation(self, msg):
         trans = None
 
-        _("findTranslation:", msg)
+        # _("findTranslation:", msg)
         ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
         if (len(ex_ga_msg) > 0):
-            _("findTranslation - ex_ga_msg", msg, ex_ga_msg)
+            # _("findTranslation - ex_ga_msg", msg, ex_ga_msg)
             msg = ex_ga_msg[0]
 
         is_ignore = ig.isIgnored(msg)
         if (is_ignore):
             return None
 
-        is_debug = ('...' in msg.lower())
-        if is_debug:
-            _('DEBUG')
+        # is_debug = ('...' in msg.lower())
+        # if is_debug:
+        #     _('DEBUG')
 
         orig_msg = str(msg)
         begin_with_punctuations = (cm.BEGIN_PUNCTUAL.search(msg) is not None)
@@ -531,7 +531,7 @@ class TranslationFinder:
         #     list_name = "self.master_dic_list LOWER"
         #     trans = self.isInList(msg, is_lower=True)
 
-        _("Using", list_name)
+        # _("Using", list_name)
 
         has_tran = not (trans is None)
         has_len = (has_tran and (len(trans) > 0))
@@ -545,10 +545,8 @@ class TranslationFinder:
                 trans = orig_msg.replace(msg, trans)
         else:
             trans = None
-        if trans is not None:
-            _("found:", msg, trans)
-        else:
-            _("NOT found:", msg)
+        if trans is None:
+            _(f"NOT found: [{msg}]")
         return trans
 
     def findTranslationByFragment(self, msg):
