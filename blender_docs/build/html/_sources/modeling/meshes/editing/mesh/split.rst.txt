@@ -4,11 +4,14 @@
 Split
 *****
 
+Selection
+=========
+
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Mesh --> Split`
+   :Menu:      :menuselection:`Mesh --> Split --> Selection`
    :Hotkey:    :kbd:`Y`
 
 Splits (disconnects) the selection from the rest of the mesh.

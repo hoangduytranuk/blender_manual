@@ -13,5 +13,6 @@
    surfaces/index.rst
    metas/index.rst
    texts/index.rst
+   volumes/index.rst
    empties.rst
    modifiers/index.rst

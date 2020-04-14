@@ -1,3 +1,4 @@
+.. _bpy.types.RenderLayer:
 
 ******
 Passes
@@ -21,8 +22,57 @@ Passes can be used to split rendered images into colors, direct and indirect lig
 and also to extract data such as depth or normals.
 
 
-Lighting Passes
----------------
+Data
+----
+
+Z
+   Distance to any visible surfaces.
+
+   .. note::
+
+      The Z pass only uses one sample.
+      When depth values need to be blended in case of motion blur or :term:`Depth of Field`, use the mist pass.
+
+Mist
+   Distance to visible surfaces, mapped to the 0.0 - 1.0 range.
+   When enabled, settings are in :ref:`World tab <render-cycles-integrator-world-mist>`.
+   This pass can be used in compositing to fade out objects that are farther away.
+
+Normal
+   Surface normal used for shading.
+Vector
+   Motion vectors for the Vector Blur node. The four components consist of 2D vectors
+   giving the motion towards the next and previous frame position in pixel space.
+UV
+   Mapped UV coordinates, used to represent where on a mesh a texture gets mapped too.
+   This is represented through the red and green channels of the image.
+   The blue channel is encoded with a constant value of 1 but does not hold any information.
+Object Index
+   Creates a mask of the object that can be later read by
+   the :doc:`ID Mask Node </compositing/types/converter/id_mask>` in the Compositor.
+Material Index
+   Creates a mask of the material that can be later read by
+   the :doc:`ID Mask Node </compositing/types/converter/id_mask>` in the Compositor.
+Denoising Data
+   Passes needed by the denoiser, for performing animation denoising in a second pass
+   after rendering the entire animation. For still image denoising as part of
+   the render process these are not needed.
+Render Time
+   Render time in milliseconds per sample and pixel.
+Sample Count
+   Number of samples/camera rays per pixel.
+
+.. note:: The Z, Object Index and Material Index passes are not anti-aliased.
+
+Alpha Threshold
+   Z, Index, normal, UV and vector passes are
+   only affected by surfaces with alpha transparency equal to or higher than this threshold.
+   With value 0.0 the first surface hit will always write to these passes, regardless of transparency.
+   With higher values surfaces that are mostly transparent can be skipped until an opaque surface is encountered.
+
+
+Light
+-----
 
 Combined
    The final combination of render passes with everything included.
@@ -71,51 +121,6 @@ Combining
 All these lighting passes can be combined to produce the final image as follows:
 
 .. figure:: /images/render_layers_passes_combine.svg
-
-
-Data Passes
------------
-
-Z
-   Distance to any visible surfaces.
-
-   .. note::
-
-      The Z pass only uses one sample.
-      When depth values need to be blended in case of motion blur or :term:`Depth of Field`, use the mist pass.
-
-Mist
-   Distance to visible surfaces, mapped to the 0.0-1.0 range.
-   When enabled, settings are in :ref:`World tab <render-cycles-integrator-world-mist>`.
-   This pass can be used in compositing to fade out objects that are farther away.
-
-Normal
-   Surface normal used for shading.
-Vector
-   Motion vectors for the Vector Blur node. The four components consist of 2D vectors
-   giving the motion towards the next and previous frame position in pixel space.
-UV
-   Mapped UV coordinates, used to represent where on a mesh a texture gets mapped too.
-   This is represented through the red and green channels of the image,
-   the blue channel is encoded with a constant value of 1 but does not hold any information.
-Object Index
-   Creates a mask of the object that can be later read by
-   the :doc:`ID Mask Node </compositing/types/converter/id_mask>` in the Compositor.
-Material Index
-   Creates a mask of the material that can be later read by
-   the :doc:`ID Mask Node </compositing/types/converter/id_mask>` in the Compositor.
-Denoising Data
-   Passes needed by the denoiser, for performing animation denoising in a second pass
-   after rendering the entire animation. For still image denoising as part of
-   the render process these are not needed.
-
-.. note:: The Z, Object Index and Material Index passes are not anti-aliased.
-
-Alpha Threshold
-   Z, Index, normal, UV and vector passes are
-   only affected by surfaces with alpha transparency equal to or higher than this threshold.
-   With value 0.0 the first surface hit will always write to these passes, regardless of transparency.
-   With higher values surfaces that are mostly transparent can be skipped until an opaque surface is encountered.
 
 
 Cryptomatte

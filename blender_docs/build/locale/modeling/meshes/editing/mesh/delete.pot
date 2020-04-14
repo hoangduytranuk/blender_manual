@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.83 Manual 2.83\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 21:40+0100\n"
+"POT-Creation-Date: 2020-04-12 10:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr ""
 #: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:123
 #: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:137
 #: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:170
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:199
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:209
 msgid "Reference"
 msgstr ""
 
@@ -141,6 +141,7 @@ msgid "Removes selected geometry, but without creating holes, effectively turnin
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:56
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:0
 msgid "Dissolve Vertices"
 msgstr ""
 
@@ -265,77 +266,105 @@ msgid "Prevent faces from joining when they don't share certain properties (mate
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:168
-msgid "Edge Collapse"
+msgid "Collapse Edges & Faces"
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:174
-msgid ":menuselection:`Mesh --> Delete --> Edge Collapse`"
+msgid ":menuselection:`Mesh --> Delete --> Collapse Edges & Faces`"
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:175
-msgid ":kbd:`Alt-M`, :menuselection:`Collapse`"
+msgid ":kbd:`X`, :menuselection:`Collapse Edges & Faces`"
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:177
-msgid "Merges each edge into single vertices. This is useful for taking a ring of edges and collapsing it, removing the face loop it ran through."
+msgid "Collapse each isolated edge and face region into single vertices, with support for face data such as UVs and vertex colors."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:186
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:180
+msgid "This is useful for taking a ring of edges and collapsing it, removing the face loop it ran through."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:188
 msgid "Selected edge ring."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:191
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:193
 msgid "Edge ring collapsed."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:197
+msgid "This can be useful as a general way to remove detail, it has some advantages over:"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:0
+msgid "Delete Vertices"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:199
+msgid "Leaves holes."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:0
+msgid "Collapse Vertices"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:200
+msgid "Doesn't correct UVs, vertex colors, etc."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:201
+msgid "Often creates n-gons."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:207
 msgid "Edge Loops"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:202
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:212
 msgid "Edit Mode (Vertex or Edge select modes)"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:203
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:213
 msgid ":menuselection:`Mesh --> Delete --> Edge Loops`"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:204
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:214
 msgid ":kbd:`X` or :kbd:`Delete`, :menuselection:`Edge Loops`"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:206
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:216
 msgid "*Edge Loop* allows you to delete a selected edge loop if it is between two other edge loops. This will create one face loop where two previously existed."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:211
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:221
 msgid "The *Edge Loop* option is very different to the *Edges* option, even if you use it on edges that look like an edge loop. Deleting an edge loop merges the surrounding faces together to preserve the surface of the mesh. By deleting a chain of edges, the edges are removed, deleting the surrounding faces as well. This will leave holes in the mesh where the faces once were."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:219
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:229
 msgid "Example"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:221
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:231
 msgid "The selected edge loop on the UV Sphere has been deleted and the faces have been merged with the surrounding edges. If the edges had been deleted by choosing *Edges* from the *Delete* menu there would be an empty band of deleted faces all the way around the sphere instead."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:231
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:241
 msgid "Selected edge loop."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:236
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:246
 msgid "Edge loop deleted."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:240
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:250
 msgid ":ref:`Vertex merging <vertex-merging>`."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:241
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:251
 msgid ":ref:`mesh-faces-tristoquads`."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:242
+#: /Users/hoangduytran/blender_docs/manual/modeling/meshes/editing/mesh/delete.rst:252
 msgid ":ref:`mesh-unsubdivide`."
 msgstr ""

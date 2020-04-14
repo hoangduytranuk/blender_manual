@@ -1,9 +1,9 @@
 .. _bpy.types.CollisionModifier:
 .. _bpy.types.CollisionSettings:
 
-**********
-Collisions
-**********
+*********
+Collision
+*********
 
 .. admonition:: Reference
    :class: refbox

@@ -18,5 +18,5 @@ These can be combined so you can for example toggle the selection from an object
 
 .. note::
 
-   Right-click-select (see :ref:`keymap-blender_default-prefs-select_with` option) has the advantage that
-   selection is possible without having to switch to the select tool.
+   Right-click-select (see :ref:`Select With Mouse Button <keymap-blender_default-prefs-select_with>` option)
+   has the advantage that selection is possible without having to switch to the select tool.

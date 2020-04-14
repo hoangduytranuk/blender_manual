@@ -37,7 +37,7 @@ Location
 Rotation
    The object's orientation, relative to the global axes and its own origin.
 
-.. _rotation-modes:
+   .. _rotation-modes:
 
    Rotation Mode
       Method for calculating rotations, additional information can be found

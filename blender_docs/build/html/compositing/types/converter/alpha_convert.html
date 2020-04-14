@@ -213,9 +213,6 @@
       <li>Nút Chuyển Đổi Alpha -- Alpha Convert Node</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/compositing/types/converter/alpha_convert.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -230,9 +227,9 @@
 <img alt="../../../_images/compositing_node-types_CompositorNodePremulKey.png" src="../../../_images/compositing_node-types_CompositorNodePremulKey.png" />
 <p class="caption"><span class="caption-text">Nút Chuyển Đổi Alpha.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p><em>Nút Chuyển Đổi Alpha -- Alpha Convert Node</em> chuyển đổi định nghĩa kênh alpha của một hình ảnh.</p>
-<p>Đối với quá trình tổng hợp và kết xuất, alpha nhân trước là hình thức tiêu chuẩn của Blender. Các tầng lớp kết xuất sẽ được alpha nhân trước, đồng thời, các hình ảnh đã được nạp vào quá trình kết xuất hoặc vào quá trình tổng hợp đều sẽ được chuyển đổi sang thể dạng này.</p>
-<p>Nếu bạn muốn thi hành một thao tác tổng hợp với alpha thẳng (<em>không nhân trước, song nằm ở một kênh riêng</em>), thì bạn có thể sử dụng nút <em>Chuyển Đổi Alpha -- Alpha Convert</em>. Tiêu biểu nhất là thao tác chỉnh sửa lại màu sắc (<em>color correction</em>), nơi mà, sự làm việc với duy các kênh Đỏ, Lục, Lam (<em>RGB</em>) không thôi, không có alpha, có thể lại cho những kết quả tốt hơn. Nếu alpha được chuyển đổi sang thành alpha thẳng trong Trình Tổng Hợp, thì nó cần phải được chuyển đổi lại thành nhân trước, trước nút <em>Đầu Ra Tổng Hợp -- Composite Output</em>, nếu không, giả tượng (<em>artifacts</em>) có thể xảy ra.</p>
+<p>The <abbr title="Alpha Convert Node">Nút Chuyển Đổi Alpha</abbr> chuyển đổi sự phiên dịch về <abbr title="alpha channel">kênh alpha</abbr> của một hình ảnh.</p>
+<p><abbr title="premultiplied alpha">Alpha nhân trước</abbr> là tiêu chuẩn trong Blender đối với quá trình tổng hợp và kết xuất. Các <abbr title="Render layers">tầng Kết Xuất</abbr> sẽ được nhân trước alpha, cũng như các hình ảnh được nạp vào quá trình kết xuất, hoặc quá trình tổng hợp, tất cả đều sẽ được chuyển đổi thành <abbr title="Alpha nhân trước -- premultiplied alpha">cái này</abbr>.</p>
+<p>Nếu bạn muốn thi hành một thao tác tổng hợp với <abbr title="straight alpha">alpha thẳng</abbr> thì bạn có thể sử dụng nút <abbr title="Alpha Convert">Chuyển Đổi Alpha</abbr> để làm việc này. Một ví dụ tiêu biểu là thao tác <abbr title="color correction">sửa đổi màu sắc</abbr>. Trong thao tác này, làm việc với các kênh <abbr title="Đỏ,Lục,Lam">RGB</abbr>, không có alpha, có thể lại cho kết quả tốt hơn. Nếu kênh alpha được chuyển đổi thành <abbr title="straight alpha">thẳng</abbr> trong <abbr title="Compositor">Trình Tổng Hợp</abbr> thì nó cần phải được chuyển đổi trở lại dạng <abbr title="premultiplied">nhân trước</abbr>, trước vị trí của nút <abbr title="Composite Output">Đầu Ra Tổng Hợp</abbr>, nếu không <abbr title="artifacts">giả tượng</abbr> có thể xảy ra.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
@@ -244,7 +241,7 @@
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt>Ánh Xạ -- Mapping</dt><dd><dl class="simple">
-<dt>Thẳng sang Nhân Trước, Nhân Trước sang Thẳng -- Straight to Premul, Premul to Straight</dt><dd><p>Chuyển đổi trong cả hai chiều. Premul. có nghĩa là Nhân Trước (<em>Premultiplied</em>). Để biết thêm chi tiết về sự khác nhau giữa hai cách lưu trữ các giá trị của alpha, xin xem mục <a class="reference internal" href="../../../glossary/index.html#term-alpha-channel"><span class="xref std std-term">Kênh Alpha -- Alpha Channel</span></a>.</p>
+<dt>Thẳng sang Nhân Trước, Nhân Trước sang Thẳng -- Straight to Premul, Premul to Straight</dt><dd><p><abbr title="Conversion">Sự chuyển đổi</abbr> xảy ra trong cả <abbr title="both directions">hai chiều hướng</abbr>. <abbr title="viết tắt của Premultiply, nghĩa là Nhân Trước">Premul.</abbr> có nghĩa là Nhân Trước. Để biết thêm chi tiết về sự khác biệt giữa hai phương pháp lưu trữ các giá trị alpha, xin xem bài <a class="reference internal" href="../../../glossary/index.html#term-alpha-channel"><span class="xref std std-term">Kênh Alpha -- Alpha Channel</span></a>.</p>
 </dd>
 </dl>
 </dd>
@@ -282,7 +279,18 @@
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/compositing/types/converter/alpha_convert.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60compositing/types/converter/alpha_convert%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

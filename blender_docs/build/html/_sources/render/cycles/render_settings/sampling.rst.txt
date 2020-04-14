@@ -85,6 +85,26 @@ Volume
    Number of volume scattering samples to take for each AA sample.
 
 
+Adaptive Sampling
+=================
+
+*Adaptive Sampling* is a technique to speed up rendering
+by terminating sampling for a particular pixel early.
+This works by computing how much a pixel changes (the variance) while samples are computed,
+if the pixel does not change more than a certain amount,
+Cycles will stop computing samples for that pixel.
+*Adaptive Sampling* can be enabled/disabled with the checkbox in the panel header.
+
+Min Samples
+   The minimum AA samples that must be computed before checking for variance.
+   Zero is an automatic setting based on the total number of AA samples.
+
+Noise Threshold
+   The amount of variation between samples before terminating sampling.
+   Smaller values will give more accurate results, using more samples, but increase rendering times.
+   Zero is an automatic setting based on the total number of AA samples.
+
+
 Advanced
 ========
 
@@ -103,8 +123,15 @@ Pattern
       Uses a Sobol pattern to decide the random sampling pattern used by the integrator.
       See `Sobol sequence <https://en.wikipedia.org/wiki/Sobol_sequence>`__ on Wikipedia for more information.
    Correlated Multi-Jitter
-      Uses a Correlated Multi-Jitter pattern to decide the random sampling pattern used by the integrator.
-      See `this Pixar paper <http://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__
+      Uses a correlated multi-jitter pattern to decide the random sampling pattern used by the integrator.
+      See `this Pixar paper <https://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__
+      for more information.
+   Progressive Multi-Jitter
+      Uses a progressive multi-jitter pattern to decide the random sampling pattern used by the integrator.
+      Its advantage is to provide a well distribution of samples over iterating sample counts.
+      Because of its good distribution over a range of different sample counts,
+      this sample pattern is used for `Adaptive Sampling`_.
+      See `this Pixar paper <https://graphics.pixar.com/library/ProgressiveMultiJitteredSampling/paper.pdf>`__
       for more information.
 
 Square Samples

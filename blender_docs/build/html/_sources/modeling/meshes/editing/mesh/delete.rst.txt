@@ -164,17 +164,19 @@ Delimit
 
 .. _bpy.ops.mesh.edge_collapse:
 
-Edge Collapse
-=============
+Collapse Edges & Faces
+======================
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Mesh --> Delete --> Edge Collapse`
-   :Hotkey:    :kbd:`Alt-M`, :menuselection:`Collapse`
+   :Menu:      :menuselection:`Mesh --> Delete --> Collapse Edges & Faces`
+   :Hotkey:    :kbd:`X`, :menuselection:`Collapse Edges & Faces`
 
-Merges each edge into single vertices.
+Collapse each isolated edge and face region into single vertices,
+with support for face data such as UVs and vertex colors.
+
 This is useful for taking a ring of edges and collapsing it,
 removing the face loop it ran through.
 
@@ -189,6 +191,14 @@ removing the face loop it ran through.
           :width: 320px
 
           Edge ring collapsed.
+
+.. tip::
+
+   This can be useful as a general way to remove detail, it has some advantages over:
+
+   :Delete Vertices: Leaves holes.
+   :Collapse Vertices: Doesn't correct UVs, vertex colors, etc.
+   :Dissolve Vertices: Often creates n-gons.
 
 
 .. _bpy.ops.mesh.delete_edgeloop:

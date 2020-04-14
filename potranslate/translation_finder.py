@@ -127,10 +127,10 @@ class TranslationFinder:
         self.master_dic_backup_list = defaultdict(OrderedDict)
 
         self.master_dic_list = self.loadJSONDic(file_name=self.master_dic_file)
-        test_again = ('make' in self.master_dic_list)
-        if test_again:
-            test_again_trans = (self.master_dic_list['make'])
-            _(f'test_again_trans: make = {test_again_trans}')
+        # test_again = ('make' in self.master_dic_list)
+        # if test_again:
+        #     test_again_trans = (self.master_dic_list['make'])
+        #     _(f'test_again_trans: make = {test_again_trans}')
 
         self.vipo_dic_path = "/Users/hoangduytran/blender_manual/gui/2.80/po/vi.po"
         self.vipo_dic_list = None # not used
@@ -585,7 +585,7 @@ class TranslationFinder:
             must_mark = True
         return (trans, must_mark)
 
-    def translateKeyboard(self, msg):
+    def translateKeyboard(self, msg, is_reversed=False):
         orig = str(msg)
         trans = str(msg)
 
@@ -605,13 +605,43 @@ class TranslationFinder:
             trans = None
         return trans
 
-    def translateRefWithLink(self, msg): # for things like :doc:`something <link>`, and :term:`something <link>`
+    def checkIgnore(self, msg):
         is_pure_path = (cm.PURE_PATH.search(msg) is not None)
         is_pure_ref = (cm.PURE_REF.search(msg) is not None)
         is_api_ref = (cm.API_REF.search(msg) is not None)
         is_keep = (ig.isKeep(msg))
         is_keep_contain = (ig.isKeepContains(msg))
         is_ignore = (is_pure_path or is_pure_ref or is_api_ref) and (not(is_keep or is_keep_contain))
+        return is_ignore
+
+    def translateQuoted(self, msg, is_reversed=False):
+        is_ignore = self.checkIgnore(msg)
+        if is_ignore:
+            return None
+
+        tran, is_fuzzy = self.translate(msg)
+        tran_found = (tran is not None)
+
+        orig_msg = str(msg)
+        ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
+        if (len(ex_ga_msg) > 0):
+            msg = ex_ga_msg[0]
+
+        if tran_found:
+            orig_tran = str(tran)
+            ex_ga_msg = cm.EXCLUDE_GA.findall(tran)
+            if (len(ex_ga_msg) > 0):
+                tran = ex_ga_msg[0]
+
+            tran = f":abbr:`{tran} ({msg})`"
+        else:
+            tran = f":abbr:`{msg} ({msg})`"
+        print(f'translateQuoted: [{msg}] [{tran}]')
+        # exit(0)
+        return tran
+
+    def translateRefWithLink(self, msg, is_reversed=False): # for things like :doc:`something <link>`, and :term:`something <link>`
+        is_ignore = self.checkIgnore(msg)
         if is_ignore:
             return None
 
@@ -636,9 +666,16 @@ class TranslationFinder:
                 tran_txt = "{} -- {}".format(tran, orig_txt)
             else:
                 tran_txt = "-- {}".format(orig_txt)
+            # if tran_found:
+            #     tran_txt = f":abbr:`{tran} ({orig_txt})`"
+            # else:
+            #     tran_txt = f":abbr:`{orig_txt} ({orig_txt})`"
+            # print(f'translateRefWithLink: [{orig_txt}] [{tran_txt}]')
+            # exit(0)
+
         return tran_txt
 
-    def translateMenuSelection(self, msg):
+    def translateMenuSelection(self, msg, is_reversed=False):
         tran_txt = str(msg)
         word_list = cm.findInvert(cm.MENU_SEP, msg)
         for k, v in reversed(list(word_list.items())):
@@ -653,7 +690,7 @@ class TranslationFinder:
 
         return tran_txt
 
-    def translateAbbrev(self, msg):
+    def translateAbbrev(self, msg, is_reversed=False):
         tran_txt = str(msg)
         for orig, breakdown in cm.patternMatchAll(cm.ABBR_TEXT, tran_txt):
             os, oe, otxt = orig
@@ -672,7 +709,7 @@ class TranslationFinder:
                 e = oe + be
                 tran_txt = tran_txt[:s] + entry + tran_txt[e:]
 
-        return tran_txt
+        return tran_txt, orig
 
     def removeIgnoredEntries(self, dic_list):
         valid = (dic_list is not None) and (len(dic_list) > 0)

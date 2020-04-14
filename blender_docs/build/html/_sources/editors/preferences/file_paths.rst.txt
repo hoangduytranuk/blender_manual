@@ -24,7 +24,7 @@ Data
 ====
 
 Fonts
-   Default location to browse for :ref:`text object <modeling-text-index>` font files.
+   Default location to browse for :doc:`text object </modeling/texts/index>` font files.
 Textures
    Default location to browse for image textures.
 Scripts

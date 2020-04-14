@@ -13,7 +13,7 @@ import re
 from difflib import SequenceMatcher as SM
 #from fuzzywuzzy import fuzz as fz
 from pprint import pprint
-from bs4 import BeautifulSoup as BS
+#from bs4 import BeautifulSoup as BS
 import os
 import html
 from queue import Queue as Q
@@ -22,6 +22,9 @@ from collections import Counter
 
 #from subprocess import PIPE, Popen, run
 import subprocess as sub
+
+
+
 
 #import AdvancedHTMLParser as AH
 #from sphinx_intl import catalog as c
@@ -34,14 +37,57 @@ import subprocess as sub
 #GA_REF = re.compile(r'(:\w+:)*[\`]+([^\`\<\>\<\(\)]+)(((\s\<([^\<\>]+)\>)*)|(\(([^(]+)\))*)(?<!([\s\:]))([\`]+)([\_]+)*')
 #GA_REF = re.compile(r'[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`\<\>\(\)]+)(((\s\<([^\<\>]+)\>)*)|(\([^\(\)]+\)))[\`]+')
 
+ENDS_PUNCTUAL = re.compile(r'([\.\,\:\!\?\"\*\'\`]+$)')
+BEGIN_PUNCTUAL = re.compile(r'^([\.\,\:\!\?\"\*\'\`]+)')
+
+WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_\<\>]+)\b')
+
+# dictionary: {start_location: [[s, e, match_0],[(s, e, :type:), (s, e, text), (s, e, link if any), (s, e, text-within-link | or abbreviation) ]]}
+#SPECIAL_REF = re.compile(r'(:[\w]+:)*[\`\"\'\*]+(?![\s\)\.\(]+)([^\`\("\'\*\<\>]+)(((\<([\w\-\s]+)\>\*)*)|(\(([^(]+)\))*)(?<!([\s\:]))[\`\"\'\*]+')
+#SPECIAL_REF = re.compile(r'(:[\w]+:)*[\`]+([^\`])+(((\s\<([^\<\>]+)\>)*)|(\(([^\(\)]+)\))*)(?<!([\s\:]))[\`\]+([\_]+)*')
+#SPECIAL_REF = re.compile(r'[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`]+)[\`]+')
+#GA_REF = re.compile(r'[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
+#BRACKETED = re.compile(r'(?![\s]+)[\*\"\'\(\<]+(?![\s]+)([\w\s\-]+[^\`\*\"\'\)\(\<\>]+)(?<!([\s\:]))[\*\"\'\)\>]+')
+
+#LITERALS = re.compile(r'([]+)*(:\w+:)*[\`]+(?![\s]+)([^\`]+)[\`]+')
+
+#DOUBLE_GA_REF = re.compile(r'[\`]{2}(?![\s]+)([^\`]+)(?<!([\s]))[\`]{2}')
+#MENU_PART = re.compile(r'(?![\s]+)([^\-\>]+)(?<!([\s]))')
+#NORMAL_TEXT = re.compile(r'(?![\s\-\_\.]+)([\w\-\ \/\.\']+)(?<!([\s\-\_\.\,]))')
+#NORMAL_TEXT = re.compile(r'(?![\s\-\_\.\(\)]+)(([\w\-\_\'\ \.\/]+))(?<!([\s\.\,\(\)]))')
+#NORMAL_TEXT = re.compile(r'(?![\s\.\_])([\w\s\.\']+)(?<!([\s\.]))')
+
+#NORMAL_TEXT = re.compile(r'(?![\s])(?![\_\.\,\:]+[\s]+[\w])(([\w\s\'\<\>\/]+)(([\=\+\*\/\.\-][\w]+)*))+(?<!([\s]))')
+
+#BRACKETED = re.compile(r'(?![\s]+)[\*\"\']+(?![\s]+)([\w\s\-]+[^\`\*\"\']+)(?<!([\s\:]))[\*\"\']+')
+#BRACKETED = re.compile(r'[\*\"]+(?![\s\.\,]+)([^\`\*\"]+)[\*\"]+(?<!([\s\.\,]))')
+
+#NORMAL_TEXT = re.compile(r'(?![\s])(?![\_\.\,\:]+[\s]+[\w])(([\w\s\'\<\>\/]+)(([\=\+\*\/\.\-][\w]+)*))+(?<!([\s]))')
+#MENU_PART = re.compile(r'(?![\s]+)([^\-\>]+)(?<!([\s]))')
+#MENU_PART = re.compile(r'(?!([-]{2}\>))(.*)')
+#MENU_PART = re.compile(r'\b((?![\s]?[-]{2}[>]?[\s]+).)*\b') #working but with empty entries
+
 GA_REF = re.compile(r'[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
-#ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,\`]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
+GA_REF_ONLY = re.compile(r'^[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
+#ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
+
+# this (something ... ) can have other links inside of it as well as others
+# the greedy but more accurate is r'[\(]+(.*)?[\)]+'
+# ARCH_BRAKET_SINGLE_PARTS = re.compile(r'[\)]+([^\(]+)?[\(]+')
+# ARCH_BRAKET_SINGLE_FULL = re.compile(r'[\(]+([^\)]+)?[\)]+')
+#ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)?[\)]+')
+
+ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)[\)]+')
+
 AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
 DBL_QUOTE = re.compile(r'[\"]+(?![\s\.\,\`]+)([^\"]+)[\"]+(?<!([\s\.\,]))')
 SNG_QUOTE = re.compile(r'[\']+(?![\`\s\.(s|re|ll|t)]+)([^\']+)[\']+')
+DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
 
-LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+\w+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
+LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
 MENU_PART = re.compile(r'(?![\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
+MENU_PART_1 = re.compile(r'(?!\s)([^\->])+(?<!\s)')
+MENU_SEP = re.compile(r'[\s]?[\-]{2}\>[\s]?')
 
 WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
 
@@ -50,13 +96,26 @@ MENU_KEYBOARD = re.compile(r':(kbd|menuselection):')
 MENU_TYPE = re.compile(r'^([\`]*:menuselection:[\`]+([^\`]+)[\`]+)$')
 KEYBOARD_TYPE = re.compile(r'^([\`]*:kbd:[\`]+([^\`]+)[\`]+)$')
 KEYBOARD_SEP = re.compile(r'[^\-]+')
+SPECIAL_TERM = re.compile(r'^[\`\*\"\'\(]+(.*)[\`\*\"\'\)]+$')
+ALPHA_NUMERICAL = re.compile(r'[\w]+')
+EXCLUDE_GA= re.compile(r'^[\`\'\"\*\(]+?([^\`\`\'\"\*\(\)]+)[\`\`\'\"\*\)]+?$')
+OPTION_FLAG=re.compile(r'^[\-]{2}([^\`]+)')
+FILLER_CHAR='¶'
+NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
+NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
+ABBR_TEXT = re.compile(r'[\(]([^\)]+)[\)]')
+
+REF_LINK = re.compile(r'[\s]?[\<]([^\<\>]+)[\>][\s]?')
+PURE_PATH = re.compile(r'^(([\/\\][\w]+)([\/\\][\w]+)*)+[\/\\]?$')
+PURE_REF = re.compile(r'^([\w]+([\-][\w]+)+)+$')
+API_REF = re.compile(r'^blender_api:.*$')
 
 DEBUG=True
 
 
-def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
+def pp(object, stream=None, indent=1, width=80, depth=None, *args):
     if DEBUG:
-        pprint(object, stream=stream, indent=indent, width=width, depth=depth, *args, compact=compact)
+        pprint(object, stream=stream, indent=indent, width=width, depth=depth, *args)
         print('-' * 30)
 
 def _(*args, **kwargs):
@@ -1704,31 +1763,6 @@ class test(object):
             _(e)
         return original, break_down
 
-    #def patternMatchAll(self, pat, text):
-        #find_list= defaultdict(OrderedDict)
-        #try:
-            #for i, m in enumerate(pat.finditer(text)):
-                #s = m.start()
-                #e = m.end()
-                #orig = m.group(0)
-
-                #v=[(s, e, orig)]
-                #k = s
-                #entry={k:v}
-                #find_list.update(entry)
-                #for i, g in enumerate(m.groups()):
-                    #if g:
-                        #i_s = orig.find(g)
-                        #ss = i_s + s
-                        #ee = ss + len(g)
-                        #v=(ss, ee, g)
-                        #find_list[k].append(v)
-        #except Exception as e:
-            #_("patternMatchAll")
-            #_("pattern:", pat)
-            #_("text:", text)
-            #_(e)
-        #return find_list
 
     def getListOfLocation(self, find_list):
         loc_list={}
@@ -1917,52 +1951,7 @@ class test(object):
         return primary
 
 
-    #def checkParenth(self, str):
-        #stack = Stack()
-        #pushChars, popChars = "<({[", ">)}]"
-        #for c in str:
-            #if c in pushChars:
-                #stack.push(c)
-            #elif c in popChars:
-                #if stack.isEmpty():
-                    #return False
-                #else:
-                    #stackTop = stack.pop()
-                    ## Checks to see whether the opening bracket matches the closing one
-                    #balancingBracket = pushChars[popChars.index(c)]
-                    #if stackTop != balancingBracket:
-                        #return False
-            #else:
-                #return False
 
-        #return not stack.isEmpty()
-
-    #def parseArchedBrackets(self, msg:str, para_list:list):
-
-        #is_valid = self.checkParenth(msg)
-        #print("is_valid:", is_valid)
-        #return {}
-
-        ##ref_item: RefItem = None
-        ##para = []
-        ##end_loc = start_loc
-        ##msg_length = len(msg)
-        ##for i in range(start_loc, msg_length):
-            ##char = msg[i]
-            ##para.append(char)
-            ##print("char:", char, "i:", i)
-            ##is_open = ('(' == char)
-            ##is_close = (')' == char)
-            ##if is_open:
-                ##para.clear()
-                ##self.parseArchedBrackets(msg, i+1, para_list)
-            ##elif is_close:
-                ##end_loc = i
-                ##valid_close = (start_loc < end_loc) and (para is not None) and (len(para) > 0)
-                ##if valid_close:
-                    ##parsed_para = (start_loc, end_loc, "".join(para))
-                    ##para_list.append(parsed_para)
-                ##return
 
 
     def parsePair(self, open_char, close_char, msg):
@@ -2047,12 +2036,13 @@ class test(object):
 
         :menuselection:`File --> Import/Export --> X3D Extensible 3D (.x3d/.wrl)`
 
+        :abbr:`English (Tiếng Anh)`
 
         '''
 
-        t = '''
-        Selects all objects whose name matches a given pattern. Supported wild-cards: \* matches everything, ? matches any single character, [abc] matches characters in "abc", and [!abc] match any character not in "abc". As an example \*house\* matches any name that contains "house", while floor\* matches any name starting with "floor".
-        '''
+        # t = '''
+        # Selects all objects whose name matches a given pattern. Supported wild-cards: \* matches everything, ? matches any single character, [abc] matches characters in "abc", and [!abc] match any character not in "abc". As an example \*house\* matches any name that contains "house", while floor\* matches any name starting with "floor".
+        # '''
 
 
         #t = ":Menu:      :menuselection:`File --> Export --> Pointcache (.pc2)`"
@@ -2077,13 +2067,13 @@ class test(object):
         #t = ":doc:`modifier </modeling/modifiers/modify/data_transfer>`"
         #t = "Unit Circle <https://en.wikipedia.org/wiki/Unit_circle>"
 
-        t = "Transformations (without translation): ``Quaternion(...)``/ ``Euler(...)``"
-        t = "To clear (the mask of areas) with (the (Lasso Mask) tool), first invert the mask,"
-        t = '''(something glTF allows multiple animations per file, with animations targeted to particular objects at time of export. To ensure that an animation is included, either (a) make it the active Action on the object, (b) create a single-strip NLA track, or (c) stash the action.
+        # t = "Transformations (without translation): ``Quaternion(...)``/ ``Euler(...)``"
+        # t = "To clear (the mask of areas) with (the (Lasso Mask) tool), first invert the mask,"
+        # t = '''(something glTF allows multiple animations per file, with animations targeted to particular objects at time of export. To ensure that an animation is included, either (a) make it the active Action on the object, (b) create a single-strip NLA track, or (c) stash the action.
 
-        Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
+        # Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
 
-        3D View: (wip: ``VIEW``, ``VPORT``)'''
+        # 3D View: (wip: ``VIEW``, ``VPORT``)'''
 
 
         #elem_list=[]
@@ -2148,71 +2138,13 @@ class test(object):
         #with open(filename, encoding='utf8') as f:
             #t = f.read()
 
-        self.parseArchedBrackets(t)
-
-        #ref_list = self.patternMatchAll(ARCH_BRAKET, t)
-        #pp(ref_list)
-        #for k, v in ref_list.items():
-            #orig = v[0]
-            #print("orig:", orig)
-
-            #c = Counter(orig)
-            #brack_count = c['(']
-            #if (brack_count > 1):
-                #sub_ref_list = self.patternMatchAll(ARCH_BRAKET, t)
-                #for k, v in sub_ref_list.items():
-                    #sub_orig = v[0]
-                    #print("sub_orig:", sub_orig)
+        # self.parseArchedBrackets(t)
+        for orig, brk_down in self.patternMatchAll(GA_REF, t):
+            print(orig)
+            print(brk_down)
 
 
-        #pp(ref_list, width=4096, compact=False, indent=0)
 
-        #t = "Mr. James told me Dr. Brown is not available today. I will try tomorrow."
-        #t_list = sent_tokenize(t)
-        #pp(t_list)
-        #for par in t_list:
-            #print(par)
-            #print()
-
-        #t="1a + 2b - 3d / 400 = 5abc"
-
-        #t=":math:`((420 + 180) modulo 360) - 180 = 60 - ...`"
-        #is_ignore = self.isFormular(t)
-        #print(t, is_ignore)
-
-        #split_list = re.split(r'[\n][\s]+', t)
-        #print("split_list")
-        #pp(split_list)
-        #for t in split_list:
-            ##is_ignore = self.isIgnoredWord(t)
-            ##print(t, is_ignore)
-
-            #ref_list = self.patternMatchAll(GA_REF, t)
-            ##ref_list = self.patternMatchAll(PARAMS, t)
-            #print("ref_list")
-            #pp(ref_list)
-
-        ##norm_txt_list = self.patternMatchAll(NORMAL_TEXT, t)
-        ##pp(norm_txt_list)
-
-        ##filtered_txt_list = self.filteredTextList(ref_list, norm_txt_list)
-        ##print("filtered_txt_list")
-        ##pp(filtered_txt_list)
-
-            #ref_norm_list = self.refEntry(ref_list)
-            #print("ref_norm_list")
-            #pp(ref_norm_list)
-
-        #txt_norm_list = self.refEntry(filtered_txt_list)
-        #print("txt_norm_list")
-        #pp(txt_norm_list)
-
-        #pp(ref_list)
-        #pp(norm_list)
-
-        #filtered_list = self.refEntry(ref_list)
-        #print("filtered_list:")
-        #pp(filtered_list)
 
     def test_0031(self):
         t = "1,000,000.00"
@@ -2331,7 +2263,10 @@ class test(object):
             print("Wrote changed to:", changed_file)
 
     def run(self):
-        self.test_0036()
+
+        self.test_0030()
+
+
 
 
 x = test()

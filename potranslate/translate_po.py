@@ -55,8 +55,8 @@ trans_finder = tf()
 
 def doctree_resolved(app, doctree, docname):
 
-    def tranRef(msg, is_keep_original):
-        ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
+    def tranRef(msg, current_tran, is_keep_original, is_reversed=False):
+        ref_list = RefList(msg=msg, tran=current_tran, keep_orig=is_keep_original, tf=trans_finder, is_reverse=is_reversed)
         ref_list.parseMessage()
         ref_list.translateRefList()
         tran = ref_list.getTranslation()
@@ -220,37 +220,49 @@ def doctree_resolved(app, doctree, docname):
         # #ref_list.dumpRefList(trans_finder.master_dic_backup_list)
         # return
 
-        # msg = "LimbNode' FBX node, a regular joint between two bones..."
-        tran = None
+        # msg = "this is **ONE PATTERN** and this is *two pattern* and this is ``*three pattern*`` and ``**four pattern**``, then \"One\" and 'two' end of sentence."
+
+        # has_ast = (cm.AST_QUOTE.search(msg) is not None)
+        # if has_ast:
+        #     for orig, breakdown in cm.patternMatchAll(cm.AST_QUOTE, msg):
+        #         print(f"orig:{orig}")
+        #         print(f'breakdown: {breakdown}')
+
+        msg = "Spell checking is *strongly* recommended."
+        tran = "Spell checking là :abbr:`hết sức (strongly)` recommended."
+        # tran = None
         orig_msg = str(msg)
 
         is_ignore = ig.isIgnored(msg)
         if is_ignore:
             continue
         else:
-            # print("Not ignore:", msg)
-            is_added = False
-            has_translation = (msg in po_dic)
-            if has_translation:
-                tran = po_dic[msg]
-                is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
-                if is_too_similar:
-                    tran = tranRef(msg, is_keep_original)
-                else:
-                    entry = {msg:tran}
-                    trans_finder.master_dic_list.update(entry)
-                    print("Got translation from PO file")
-            else:
-                has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
-                if has_translation:
-                    tran = trans_finder.master_dic_list[msg]
-                    is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
-                    if is_too_similar:
-                        tran = tranRef(msg, is_keep_original)
-                    else:
-                        print("Got translation from MASTER_DIC_LIST")
-                else:
-                    tran = tranRef(msg, is_keep_original)
+            tran = tranRef(msg, tran, is_keep_original, is_reversed=True)
+
+        # exit(0)
+            # # print("Not ignore:", msg)
+            # is_added = False
+            # has_translation = (msg in po_dic)
+            # if has_translation:
+            #     tran = po_dic[msg]
+            #     is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
+            #     if is_too_similar:
+            #         tran = tranRef(msg, is_keep_original)
+            #     else:
+            #         entry = {msg:tran}
+            #         trans_finder.master_dic_list.update(entry)
+            #         print("Got translation from PO file")
+            # else:
+            #     has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
+            #     if has_translation:
+            #         tran = trans_finder.master_dic_list[msg]
+            #         is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
+            #         if is_too_similar:
+            #             tran = tranRef(msg, is_keep_original)
+            #         else:
+            #             print("Got translation from MASTER_DIC_LIST")
+            #     else:
+            #         tran = tranRef(msg, is_keep_original)
 
         if tran is not None:
             new_po_cat.add(msg, string=tran)
@@ -262,9 +274,9 @@ def doctree_resolved(app, doctree, docname):
             print("msgstr \"", tran, "\"")
         else:
             print("msgstr \"\"")
-
+        exit(0)
     print("Output to the path:", new_po_cat, output_path)
-    c.dump_po(output_path, new_po_cat, line_width=1024)
+    # c.dump_po(output_path, new_po_cat, line_width=1024)
     # c.dump_po(output_path, new_po_cat, line_width=4096)
 
 

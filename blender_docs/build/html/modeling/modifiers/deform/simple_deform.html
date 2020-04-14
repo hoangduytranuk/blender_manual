@@ -122,6 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu -- Metaball</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../empties.html">-- Empties</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh -- Modifiers</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
@@ -220,9 +221,6 @@
       <li>-- Simple Deform Modifier</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/deform/simple_deform.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -233,43 +231,158 @@
             
   <div class="section" id="simple-deform-modifier">
 <span id="bpy-types-simpledeformmodifier"></span><h1>-- Simple Deform Modifier<a class="headerlink" href="#simple-deform-modifier" title="Permalink to this headline">¶</a></h1>
-<p>The <em>Simple Deform</em> modifier allows easy application of a simple deformation to
-an object (meshes, lattices, curves, surfaces and texts are supported).</p>
-<p>Using another object, it is possible to define the axis and origin of the deformation,
-allowing application of very different effects.</p>
-<div class="section" id="options">
-<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-right" id="id1">
-<img alt="../../../_images/modeling_modifiers_deform_simple-deform_panel.png" src="../../../_images/modeling_modifiers_deform_simple-deform_panel.png" />
+<p>The <em>Simple Deform</em> modifier allows the application of a simple deformation to
+an object. Meshes, lattices, curves, surfaces and texts are supported objects.
+The deformation is either a rotation (Twist, Bend) or a scaling (Taper, Stretch).
+The amount of deformation is specified by the Deform Angle (rotation) or Deform Factor (scaling).</p>
+<div class="figure align-default" id="id1">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_intro.png" src="../../../_images/modeling_modifiers_deform_simple-deform_intro.png" />
 <p class="caption"><span class="caption-text">The Simple Deform modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
+<p>The deformation is calculated in the <em>local</em> coordinate space.
+Be aware that the local axes of an object can differ from the global ones.
+In the figure above, the global Z axis points up and the local Z axis points at 45°.
+The deformation is applied along a Deform axis, which can be set by selection from a list (X, Y or Z).
+By using the <em>Limits</em> field, the influence of the modifier can be restricted to a subset of the Deform axis.
+All distances are measured from the origin of the object.
+The vertices that are furthest away from the origin on the Deform axis
+represent the upper and lower limits.
+The origin of the object and the orientation of the local axes
+can be defined by an external Deform object (most of the time, an empty).</p>
+<div class="section" id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <dl>
-<dt>Chế Độ -- Mode</dt><dd><p>Defines the kind of deformation which will be applied.</p>
-<dl class="simple">
-<dt>Xoắn -- Twist</dt><dd><p>Rotates the mesh around the specified <em>Axis</em>.</p>
+<dt>Chế Độ -- Mode</dt><dd><p>Defines the kind of deformation which will be applied.
+The figure below shows the four modes, applied to a text object.
+The origin of the object is at the very left of the text.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_twist.png" src="../../../_images/modeling_modifiers_deform_simple-deform_twist.png" />
+<p class="caption"><span class="caption-text">Twist around X axis (180°).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id3">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend.png" />
+<p class="caption"><span class="caption-text">Bend around Z axis (180°).</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="figure align-default" id="id4">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_taper.png" src="../../../_images/modeling_modifiers_deform_simple-deform_taper.png" />
+<p class="caption"><span class="caption-text">Taper along X axis (factor = 2).</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id5">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_stretch.png" src="../../../_images/modeling_modifiers_deform_simple-deform_stretch.png" />
+<p class="caption"><span class="caption-text">Stretch along X axis (factor = 0.3).</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Xoắn -- Twist</dt><dd><p>Rotates the mesh around the specified <em>Axis</em>.
+Each vertex along the Deform axis is rotated around the object's origin.
+If the origin is inside the object, this results in a twisted appearance.
+Below the origin, there is a negative rotation and
+above the origin, the rotation is positive or clockwise.
+Vertices in the same plane as the origin are not rotated.</p>
+<p>The total amount of rotation is specified by the angle
+and the rotation at each vertex is thus weighted by the distance
+of the vertex to the origin of the object.
+Vertices that are furthest away from the object origin have max rotation,
+positive or negative.</p>
 </dd>
-<dt>Bẻ Cong -- Bend</dt><dd><p>Bends the mesh over the specified <em>Axis</em>.</p>
+<dt>Bẻ Cong -- Bend</dt><dd><p>Bends the mesh over the specified <em>Axis</em>.
+The Bend mode is more complex and less intuitive.
+The picture below shows the same plane but with different Deform and Bending axes.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id6">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend-1.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend-1.png" />
+<p class="caption"><span class="caption-text">Deform axis X or Y (a).</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id7">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend-2.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend-2.png" />
+<p class="caption"><span class="caption-text">Deform axis Z (b).</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="figure align-default" id="id8">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend-3.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend-3.png" />
+<p class="caption"><span class="caption-text">Deform axis X. Local axis Y points down (c).</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id9">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend-4.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend-4.png" />
+<p class="caption"><span class="caption-text">Deform axis X. Local axis Y points up (d).</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Using a mesh plane and setting the Deform axis to X or Y will not result in any deformation (Fig a).
+You expect that the bending should be something like Figure (c) or (d).
+In a 3D world however, selecting the X axis introduces an ambiguity because
+bending along the X axis could result in Figure (c) or (d).
+The following pairs describe the selected deform axis vs. the desired bending axis:
+X and Z, Y and Z, Z and X.</p>
+<p>In Fig (a), because of the Deform axis X, the Bending is along the Z.
+All vertices however have the same Z coordinate equal to the local origin.
+So, no deformation occurs. In Fig (d) the local axes are rotated around the Deform axis X,
+so that the Bending axis Z points to the left.
+So, all vertices are bend for their Z coordinate.
+The further away from the local origin, the more bending.</p>
+<p>This explains also the unexpected result of Fig (b).
+The Deform axis is set here to Z (pointing up).
+So, according to the pairs above, the Bending axis defaults to X.
+All vertices of the plane are bent in their X coordinate.
+The further away, the more rotation occurs.
+Negative X coordinates are rotated counterclockwise.</p>
 </dd>
-<dt>Vuốt Thon -- Taper</dt><dd><p>Linearly scales along the specified <em>Axis</em>.</p>
+<dt>Vuốt Thon -- Taper</dt><dd><p>Linearly scales along the specified <em>Axis</em>.
+The scaling factor is weighted by the distance from the origin of the object in the deform axis.
+No scaling occurs in the plane of the origin of the object.
+The maximum scaling occurs at the vertices that are furthest away from the local origin.
+This can be a positive or negative scaling, depending on the location of the origin.
+If the local origin is within the object, the deformed object appears tapered.</p>
 </dd>
-<dt>Kéo Giãn -- Stretch</dt><dd><p>Stretches the object along the specified <em>Axis</em> (negative <em>Factor</em> leads to squash),
-preserving volume by scaling inversely on the two other axes.</p>
+<dt>Kéo Giãn -- Stretch</dt><dd><p>Stretches the object along the specified <em>Axis</em>.
+If the local origin is within the object, the deformed mesh
+looks stretched like pulling a rubber from both sides.
+With a positive factor, the mesh gets longer in the deformed axis,
+wider at the borders and thinner at the origin than the original mesh.
+If the factor is negative, then the mesh is squashed in the deformed axis,
+thicker at the origin and thinner at the borders.</p>
 </dd>
 </dl>
 </dd>
-<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>The name of the vertex group that indicates whether and how much each vertex is influenced by the deformation.</p>
+<dt>Nhóm Điểm Đỉnh -- Vertex Group</dt><dd><p>The name of the vertex group that indicates whether
+and how much each vertex is influenced by the deformation.
+The amount of influence is determined by the weight in the Weight Paint map.</p>
 </dd>
-<dt>Axis, Origin</dt><dd><p>The name of an object that defines the origin and axis of deformation (usually an empty). This object can be:</p>
+<dt>Axis, Origin</dt><dd><p>The name of an object that defines the origin and axis of deformation (usually an empty).
+This object can be:</p>
 <ul class="simple">
 <li><p>Rotated to control the axis (its local <em>Axis</em> is now used as the deformation one).</p></li>
 <li><p>Moved to control the origin of the deformation.</p></li>
 <li><p>Scaled to change the deformation factor.</p></li>
 </ul>
 </dd>
-<dt>-- Angle/Factor</dt><dd><p>The amount of deformation. Can be negative to reverse the deformation.</p>
+<dt>Angle (Twist &amp; Bend)/Factor (Taper &amp; Stretch)</dt><dd><p>The total amount of deformation. Can be negative to reverse the deformation.</p>
 </dd>
-<dt>Giới Hạn -- Limits</dt><dd><p>These settings allow you to set the lower and upper limits of the deformation.
-The upper limit cannot be lower than the lower one.</p>
+<dt>Giới Hạn -- Limits</dt><dd><p>You to can set the lower and upper limits of the deformation.
+The upper limit cannot be lower than the lower one. These limits are mapped on the Deform axis.</p>
 </dd>
 <dt>Lock X/Y/Z (Twist, Taper and Stretch modes only)</dt><dd><p>These controls whether the coordinates along the two other axes are allowed to change or not.
 E.g. if you <em>Stretch</em> your object along its Z axis,
@@ -302,7 +415,18 @@ it is possible to squash along the X axis only, by locking the Y one.</p>
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/deform/simple_deform.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/deform/simple_deform%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

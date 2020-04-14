@@ -35,7 +35,7 @@ Header
 
 Show
    Only selected (mouse cursor icon)
-      Limits dope-sheet channels to only information about selected tracks.
+      Limits Dope Sheet channels to only information about selected tracks.
    Hidden (ghost icon)
       Includes information from hidden tracks.
 Sort Method

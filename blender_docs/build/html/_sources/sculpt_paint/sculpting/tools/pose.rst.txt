@@ -29,4 +29,4 @@ Pose IK Segments
    Controls how many :ref:`IK bones <bone-constraints-inverse-kinematics>`
    are going to be created for posing.
 Keep Anchor Point
-   Keeps the position of the last segment in the IK chain fixed
+   Keeps the position of the last segment in the IK chain fixed.

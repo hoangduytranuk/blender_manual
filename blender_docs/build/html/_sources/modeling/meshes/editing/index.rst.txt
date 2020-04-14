@@ -12,4 +12,3 @@
    edge/index.rst
    face/index.rst
    uv.rst
-   misc/index.rst

@@ -210,9 +210,6 @@
       <li>View Layers</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/layers/layers.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -222,7 +219,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="view-layers">
-<span id="render-layers"></span><span id="bpy-types-renderlayer"></span><span id="bpy-types-scenerenderlayer"></span><h1>View Layers<a class="headerlink" href="#view-layers" title="Permalink to this headline">¶</a></h1>
+<span id="render-layers"></span><span id="bpy-types-viewlayer"></span><span id="bpy-ops-scene-view-layer"></span><h1>View Layers<a class="headerlink" href="#view-layers" title="Permalink to this headline">¶</a></h1>
 <p>Renders can be separated into layers, to composite them back together afterwards.</p>
 <p>Some example usages are applying compositing effects to characters separately,
 blurring the background and foreground layers separately for depth of field,
@@ -236,9 +233,23 @@ allowing you to instead re-render only the layer(s) that you need.</p>
 <p class="caption"><span class="caption-text">View Layers.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the top of the screen there is a list of all the View Layers in the active scene.</p>
-<dl>
-<dt>Add View Layer</dt><dd><p>Will add a new view layer to the active scene.</p>
+<dl class="simple" id="bpy-types-viewlayer-name">
+<dt>Name</dt><dd><p>The name of the active view layer, double click to edit the name.</p>
 </dd>
+</dl>
+<dl id="bpy-ops-scene-view-layer-add">
+<dt>Add View Layer</dt><dd><p>Will add a new view layer to the active scene.</p>
+<dl class="simple">
+<dt>New</dt><dd><p>Adds a new view layer.</p>
+</dd>
+<dt>Copy Settings</dt><dd><p>Adds a new view layer with all the settings of current view layer.</p>
+</dd>
+<dt>Blank</dt><dd><p>Adds a new view layer with all collections disabled.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl id="bpy-ops-scene-view-layer-remove">
 <dt>Remove View Layer</dt><dd><p>Will remove the selected view layer from the active scene.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
@@ -337,22 +348,24 @@ however, sometimes it is useful to leave out some object influence for a particu
 </dl>
 </div>
 <div class="section" id="filter">
-<h3>Bộ/Thanh Lọc -- Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
+<span id="bpy-types-viewlayer-use-freestyle"></span><span id="bpy-types-viewlayer-use-volumes"></span><span id="bpy-types-viewlayer-use-strand"></span><span id="bpy-types-viewlayer-use-solid"></span><span id="bpy-types-viewlayer-use-ao"></span><span id="bpy-types-viewlayer-use-sky"></span><h3>Bộ/Thanh Lọc -- Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
-<dt>Dùng Môi Trường -- Use Environment</dt><dd><p>Disables rendering the <em>Environment</em> render pass in the final render.</p>
+<dt>Environment</dt><dd><p>Disables rendering the <em>Environment</em> render pass in the final render.</p>
 </dd>
-<dt>-- Use Ambient Occlusion</dt><dd><p>Disables rendering the <em>Ambient Occlusion</em> render pass in the final render.</p>
+<dt>Ambient Occlusion</dt><dd><p>Disables rendering the <em>Ambient Occlusion</em> render pass in the final render.</p>
 </dd>
-<dt>Dùng Bề Mặt -- Use Surfaces</dt><dd><p>Disables rendering object materials in the final render.</p>
+<dt>Surfaces</dt><dd><p>Disables rendering object materials in the final render.</p>
 </dd>
-<dt>Dùng Tóc -- Use Hair</dt><dd><p>Disables rendering hair strands in the final render.</p>
+<dt>Hair</dt><dd><p>Disables rendering hair strands in the final render.</p>
 </dd>
-<dt>-- Use Freestyle</dt><dd><p>Disables freestyle rendering in the final render.</p>
+<dt>Volume</dt><dd><p>Disables rendering <a class="reference internal" href="../../modeling/volumes/index.html"><span class="doc">Volumes</span></a> in the final render.</p>
+</dd>
+<dt>Freestyle</dt><dd><p>Disables Freestyle rendering in the final render.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="override">
-<h3>-- Override<a class="headerlink" href="#override" title="Permalink to this headline">¶</a></h3>
+<span id="bpy-types-viewlayer-samples"></span><span id="bpy-types-viewlayer-material-override"></span><h3>-- Override<a class="headerlink" href="#override" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
 <dt>Material Override</dt><dd><p>Overrides all materials in the render layer.</p>
 </dd>
@@ -387,7 +400,18 @@ Controlled by the <a class="reference internal" href="../cycles/render_settings/
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/layers/layers.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/layers/layers%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

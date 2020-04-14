@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-30 09:48+1000\n"
-"PO-Revision-Date: 2020-03-31 18:51+0100\n"
+"POT-Creation-Date: 2020-04-10 19:20+0100\n"
+"PO-Revision-Date: 2020-04-10 20:27+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\n"
 "Language: vi\n"
 "Language-Team: London, UK <hoangduytran1960@gmail.com>\n"
@@ -21,55 +21,91 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 msgid "Simple Deform Modifier"
-msgstr "-- Simple Deform Modifier"
+msgstr "Đơn Giản Biến Dạng Bộ Điều Chỉnh -- Simple Deform Modifier"
 
-msgid "The *Simple Deform* modifier allows easy application of a simple deformation to an object (meshes, lattices, curves, surfaces and texts are supported)."
-msgstr "The *Biến Dạng Đơn Giản -- Simple Deform* bộ điều chỉnh cho phép easy trình ứng dụng của a đơn giản biến dạng tới một vật thể (khung lưới, giàn lưới, đường cong, bề mặt và văn bản là hỗ trợ)."
-
-msgid "Using another object, it is possible to define the axis and origin of the deformation, allowing application of very different effects."
-msgstr "Sử Dụng/Dùng một cái/điều khác vật thể, it là có thể tới define the trục và tọa độ gốc của the biến dạng, allowing trình ứng dụng của very khác hiệu ứng."
-
-msgid "Options"
-msgstr "Tùy Chọn -- Options"
+msgid "The *Simple Deform* modifier allows the application of a simple deformation to an object. Meshes, lattices, curves, surfaces and texts are supported objects. The deformation is either a rotation (Twist, Bend) or a scaling (Taper, Stretch). The amount of deformation is specified by the Deform Angle (rotation) or Deform Factor (scaling)."
+msgstr "The *Biến Dạng Đơn Giản -- Simple Deform* bộ điều chỉnh cho phép the trình ứng dụng của a đơn giản biến dạng tới một vật thể. Khung Lưới, giàn lưới, đường cong, bề mặt và văn bản là hỗ trợ vật thể. The biến dạng là hoặc là a xoay chiều (Mức Xoắn/Xoáy, Uốn Cong) hoặc a tỷ lệ (Vuốt Thon, Co Giãn). The số/lượng của biến dạng là specified bằng cách the Biến Dạng Góc Độ (xoay chiều) hoặc Biến Dạng Hệ Số (tỷ lệ)."
 
 msgid "The Simple Deform modifier."
 msgstr "The Đơn Giản Biến Dạng bộ điều chỉnh."
 
+msgid "The deformation is calculated in the *local* coordinate space. Be aware that the local axes of an object can differ from the global ones. In the figure above, the global Z axis points up and the local Z axis points at 45°. The deformation is applied along a Deform axis, which can be set by selection from a list (X, Y or Z). By using the *Limits* field, the influence of the modifier can be restricted to a subset of the Deform axis. All distances are measured from the origin of the object. The vertices that are furthest away from the origin on the Deform axis represent the upper and lower limits. The origin of the object and the orientation of the local axes can be defined by an external Deform object (most of the time, an empty)."
+msgstr "The biến dạng là calculated vào the *địa phương -- local* coordinate cách/khoảng trống/không gian. Được/Là aware đó/mà the địa phương trục của một vật thể có thể differ từ the toàn cầu ones. Vào the figure above, the toàn cầu Z trục số điểm lên/trên và the địa phương Z trục số điểm tại 45°. The biến dạng là được áp dụng dọc theo a Biến Dạng trục, cái mà/tức có thể được/là đặt bằng cách lựa chọn từ a liệt kê (X, Y hoặc Z). Bằng Cách sử dụng/dùng the *Giới Hạn -- Limits* trường, the tác động/ảnh hưởng của the bộ điều chỉnh có thể được/là restricted tới a tập hợp con của the Biến Dạng trục. Toàn Bộ distances là measured từ the tọa độ gốc của the vật thể. The điểm đỉnh đó/mà là furthest away từ the tọa độ gốc bật the Biến Dạng trục represent the chữ hoa/bên trên và thường/dưới giới hạn. The tọa độ gốc của the vật thể và the định hướng của the địa phương trục có thể được/là defined bằng cách một bên ngoài Biến Dạng vật thể (most của the thời gian, một phần tử trống/rỗng)."
+
+msgid "Options"
+msgstr "Tùy Chọn -- Options"
+
 msgid "Mode"
 msgstr "Chế Độ -- Mode"
 
-msgid "Defines the kind of deformation which will be applied."
-msgstr "Defines the kind của biến dạng cái mà/tức sẽ được/là được áp dụng."
+msgid "Defines the kind of deformation which will be applied. The figure below shows the four modes, applied to a text object. The origin of the object is at the very left of the text."
+msgstr "Defines the kind của biến dạng cái mà/tức sẽ được/là được áp dụng. The figure below hiển thị/biểu hiện the bốn chế độ, được áp dụng tới a văn bản vật thể. The tọa độ gốc của the vật thể là tại the very trái của the văn bản."
+
+msgid "Twist around X axis (180°)."
+msgstr "Mức Xoắn/Xoáy chung quanh X trục (180°)."
+
+msgid "Bend around Z axis (180°)."
+msgstr "Uốn Cong chung quanh Z trục (180°)."
+
+msgid "Taper along X axis (factor = 2)."
+msgstr "Vuốt Thon dọc theo X trục (hệ số = 2)."
+
+msgid "Stretch along X axis (factor = 0.3)."
+msgstr "Co Giãn dọc theo X trục (hệ số = 0.3)."
 
 msgid "Twist"
 msgstr "Xoắn -- Twist"
 
-msgid "Rotates the mesh around the specified *Axis*."
-msgstr "Rotates the khung lưới chung quanh the specified *Trục -- Axis*."
+msgid "Rotates the mesh around the specified *Axis*. Each vertex along the Deform axis is rotated around the object's origin. If the origin is inside the object, this results in a twisted appearance. Below the origin, there is a negative rotation and above the origin, the rotation is positive or clockwise. Vertices in the same plane as the origin are not rotated."
+msgstr "Rotates the khung lưới chung quanh the specified *Trục -- Axis*. Each điểm đỉnh dọc theo the Biến Dạng trục là xoay chiều chung quanh the object's tọa độ gốc. Nếu the tọa độ gốc là bên trong the vật thể, cái/điều này đạt/những kết quả vào a twisted diện mạo. Below the tọa độ gốc, kia/có là a âm xoay chiều và above the tọa độ gốc, the xoay chiều là dương hoặc thuận chiều kim đồng hồ. Điểm Đỉnh vào the tương đồng/giống mặt phẳng tựa như the tọa độ gốc là đảo nghịch xoay chiều."
+
+msgid "The total amount of rotation is specified by the angle and the rotation at each vertex is thus weighted by the distance of the vertex to the origin of the object. Vertices that are furthest away from the object origin have max rotation, positive or negative."
+msgstr "The tổng cộng số/lượng của xoay chiều là specified bằng cách the góc độ và the xoay chiều tại each điểm đỉnh là thus weighted bằng cách the khoảng cách của the điểm đỉnh tới the tọa độ gốc của the vật thể. Điểm Đỉnh đó/mà là furthest away từ the vật thể tọa độ gốc có tối đa xoay chiều, dương hoặc âm."
 
 msgid "Bend"
 msgstr "Bẻ Cong -- Bend"
 
-msgid "Bends the mesh over the specified *Axis*."
-msgstr "Bends the khung lưới over the specified *Trục -- Axis*."
+msgid "Bends the mesh over the specified *Axis*. The Bend mode is more complex and less intuitive. The picture below shows the same plane but with different Deform and Bending axes."
+msgstr "Bends the khung lưới over the specified *Trục -- Axis*. The Uốn Cong chế độ là nhiều/lớn hơn phức tạp và ít/nhỏ hơn intuitive. The picture below hiển thị/biểu hiện the tương đồng/giống mặt phẳng but với khác Biến Dạng và Uốn Cong trục."
+
+msgid "Deform axis X or Y (a)."
+msgstr "Biến Dạng trục X hoặc Y (a)."
+
+msgid "Deform axis Z (b)."
+msgstr "Biến Dạng trục Z (b)."
+
+msgid "Deform axis X. Local axis Y points down (c)."
+msgstr "Biến Dạng trục X. Địa Phương trục Y số điểm xuống/dưới (c)."
+
+msgid "Deform axis X. Local axis Y points up (d)."
+msgstr "Biến Dạng trục X. Địa Phương trục Y số điểm lên/trên (d)."
+
+msgid "Using a mesh plane and setting the Deform axis to X or Y will not result in any deformation (Fig a). You expect that the bending should be something like Figure (c) or (d). In a 3D world however, selecting the X axis introduces an ambiguity because bending along the X axis could result in Figure (c) or (d). The following pairs describe the selected deform axis vs. the desired bending axis: X and Z, Y and Z, Z and X."
+msgstr "Sử Dụng/Dùng a khung lưới mặt phẳng và sắp đặt the Biến Dạng trục tới X hoặc Y sẽ đảo nghịch kết quả vào bất cứ biến dạng (Fig a). Bạn expect đó/mà the uốn cong cần phải được/là cái gì đó thích-giống như-tương tự Figure (c) hoặc (d). Vào a 3D thế giới however, lựa chọn the X trục introduces một ambiguity because uốn cong dọc theo the X trục could kết quả vào Figure (c) hoặc (d). The following pairs describe the cái được chọn biến dạng trục vs. the desired uốn cong trục: X và Z, Y và Z, Z và X."
+
+msgid "In Fig (a), because of the Deform axis X, the Bending is along the Z. All vertices however have the same Z coordinate equal to the local origin. So, no deformation occurs. In Fig (d) the local axes are rotated around the Deform axis X, so that the Bending axis Z points to the left. So, all vertices are bend for their Z coordinate. The further away from the local origin, the more bending."
+msgstr "Vào Fig (a), because của the Biến Dạng trục X, the Uốn Cong là dọc theo the Z. Toàn Bộ điểm đỉnh however có the tương đồng/giống Z coordinate bằng nhau tới the địa phương tọa độ gốc. Do Vậy/Đó, no biến dạng occurs. Vào Fig (d) the địa phương trục là xoay chiều chung quanh the Biến Dạng trục X, do vậy/đó đó/mà the Uốn Cong trục Z số điểm tới the trái. Do Vậy/Đó, toàn bộ điểm đỉnh là uốn cong dành cho/đối với/để của chúng/họ Z coordinate. The sâu/xa hơn away từ the địa phương tọa độ gốc, the nhiều/lớn hơn uốn cong."
+
+msgid "This explains also the unexpected result of Fig (b). The Deform axis is set here to Z (pointing up). So, according to the pairs above, the Bending axis defaults to X. All vertices of the plane are bent in their X coordinate. The further away, the more rotation occurs. Negative X coordinates are rotated counterclockwise."
+msgstr "Cái/Điều Này giải thích also the unexpected kết quả của Fig (b). The Biến Dạng trục là đặt here tới Z (pointing lên/trên). Do Vậy/Đó, according tới the pairs above, the Uốn Cong trục mặc định tới X. Toàn Bộ điểm đỉnh của the mặt phẳng là bent vào của chúng/họ X coordinate. The sâu/xa hơn away, the nhiều/lớn hơn xoay chiều occurs. Âm X tọa độ là xoay chiều counterclockwise."
 
 msgid "Taper"
 msgstr "Vuốt Thon -- Taper"
 
-msgid "Linearly scales along the specified *Axis*."
-msgstr "Linearly scales dọc theo the specified *Trục -- Axis*."
+msgid "Linearly scales along the specified *Axis*. The scaling factor is weighted by the distance from the origin of the object in the deform axis. No scaling occurs in the plane of the origin of the object. The maximum scaling occurs at the vertices that are furthest away from the local origin. This can be a positive or negative scaling, depending on the location of the origin. If the local origin is within the object, the deformed object appears tapered."
+msgstr "Linearly scales dọc theo the specified *Trục -- Axis*. The tỷ lệ hệ số là weighted bằng cách the khoảng cách từ the tọa độ gốc của the vật thể vào the biến dạng trục. No tỷ lệ occurs vào the mặt phẳng của the tọa độ gốc của the vật thể. The tối đa tỷ lệ occurs tại the điểm đỉnh đó/mà là furthest away từ the địa phương tọa độ gốc. Cái/Điều Này có thể được/là a dương hoặc âm tỷ lệ, depending bật the vị trí của the tọa độ gốc. Nếu the địa phương tọa độ gốc là within the vật thể, the deformed vật thể appears tapered."
 
 msgid "Stretch"
 msgstr "Kéo Giãn -- Stretch"
 
-msgid "Stretches the object along the specified *Axis* (negative *Factor* leads to squash), preserving volume by scaling inversely on the two other axes."
-msgstr "Stretches the vật thể dọc theo the specified *Trục -- Axis* (âm *Hệ Số -- Factor* leads tới nén ép), duy trì/bảo tồn âm lượng/thể tích bằng cách tỷ lệ inversely bật the hai cái/sắp đặt khác trục."
+msgid "Stretches the object along the specified *Axis*. If the local origin is within the object, the deformed mesh looks stretched like pulling a rubber from both sides. With a positive factor, the mesh gets longer in the deformed axis, wider at the borders and thinner at the origin than the original mesh. If the factor is negative, then the mesh is squashed in the deformed axis, thicker at the origin and thinner at the borders."
+msgstr "Stretches the vật thể dọc theo the specified *Trục -- Axis*. Nếu the địa phương tọa độ gốc là within the vật thể, the deformed khung lưới looks stretched thích-giống như-tương tự pulling a cao su từ cả hai số cạnh. Với a dương hệ số, the khung lưới gets longer vào the deformed trục, wider tại the khoanh ranh giới và thinner tại the tọa độ gốc than the gốc/nguyên bản khung lưới. Nếu the hệ số là âm, rồi/sau đó the khung lưới là squashed vào the deformed trục, thicker tại the tọa độ gốc và thinner tại the khoanh ranh giới."
 
 msgid "Vertex Group"
 msgstr "Nhóm Điểm Đỉnh -- Vertex Group"
 
-msgid "The name of the vertex group that indicates whether and how much each vertex is influenced by the deformation."
-msgstr "The tên của the điểm đỉnh nhóm đó/mà indicates whether và phương pháp/thế nào much each điểm đỉnh là influenced bằng cách the biến dạng."
+msgid "The name of the vertex group that indicates whether and how much each vertex is influenced by the deformation. The amount of influence is determined by the weight in the Weight Paint map."
+msgstr "The tên của the điểm đỉnh nhóm đó/mà indicates whether và phương pháp/thế nào much each điểm đỉnh là influenced bằng cách the biến dạng. The số/lượng của tác động/ảnh hưởng là determined bằng cách the trọng lượng vào the Trọng Lượng Sơn Vẽ ánh xạ."
 
 msgid "Axis, Origin"
 msgstr "Trục, Tọa Độ Gốc -- Axis, Origin"
@@ -86,17 +122,17 @@ msgstr "Được Chuyển tới điều khiển the tọa độ gốc của the 
 msgid "Scaled to change the deformation factor."
 msgstr "Scaled tới thay/chuyển/biến/đổi the biến dạng hệ số."
 
-msgid "Angle/Factor"
-msgstr "-- Angle/Factor"
+msgid "Angle (Twist & Bend)/Factor (Taper & Stretch)"
+msgstr "Góc Độ (Mức Xoắn/Xoáy & Uốn Cong)/Hệ Số (Vuốt Thon & Co Giãn) -- Angle (Twist & Bend)/Factor (Taper & Stretch)"
 
-msgid "The amount of deformation. Can be negative to reverse the deformation."
-msgstr "The số/lượng của biến dạng. Có Thể được/là âm tới đảo ngược the biến dạng."
+msgid "The total amount of deformation. Can be negative to reverse the deformation."
+msgstr "The tổng cộng số/lượng của biến dạng. Có Thể được/là âm tới đảo ngược the biến dạng."
 
 msgid "Limits"
 msgstr "Giới Hạn -- Limits"
 
-msgid "These settings allow you to set the lower and upper limits of the deformation. The upper limit cannot be lower than the lower one."
-msgstr "Những Điều/Cái/Việc Này sắp đặt cho phép bạn tới đặt the thường/dưới và chữ hoa/bên trên giới hạn của the biến dạng. The chữ hoa/bên trên giới hạn không thể được/là thường/dưới than the thường/dưới một."
+msgid "You to can set the lower and upper limits of the deformation. The upper limit cannot be lower than the lower one. These limits are mapped on the Deform axis."
+msgstr "Bạn tới có thể đặt the thường/dưới và chữ hoa/bên trên giới hạn của the biến dạng. The chữ hoa/bên trên giới hạn không thể được/là thường/dưới than the thường/dưới một. Những Điều/Cái/Việc Này giới hạn là ánh xạ bật the Biến Dạng trục."
 
 msgid "Lock X/Y/Z (Twist, Taper and Stretch modes only)"
 msgstr "Khóa X/Y/Z (Mức Xoắn/Xoáy, Vuốt Thon và Co Giãn chế độ duy/chỉ) -- Lock X/Y/Z (Twist, Taper and Stretch modes only)"

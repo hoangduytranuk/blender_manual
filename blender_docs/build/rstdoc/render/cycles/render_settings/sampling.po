@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-29 14:12-0400\n"
-"PO-Revision-Date: 2020-03-31 18:51+0100\n"
+"POT-Creation-Date: 2020-04-10 19:20+0100\n"
+"PO-Revision-Date: 2020-04-10 20:28+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\n"
 "Language: vi\n"
 "Language-Team: London, UK <hoangduytran1960@gmail.com>\n"
@@ -33,7 +33,7 @@ msgid ":menuselection:`Render --> Sampling`"
 msgstr ":menuselection:`Kết Xuất (Render) --> Lấy Mẫu Vật (Sampling)`"
 
 msgid "The integrator is the rendering algorithm used to compute the lighting. Cycles currently supports a path tracing integrator with direct light sampling. It works well for various lighting setups, but is not as suitable for caustics and some other complex lighting situations."
-msgstr "The tích phân là the kết xuất thuật toán sử dụng tới tính toán the bố trí ánh sáng. Cycles currently supports a đường/đi/dẫn tracing tích phân với trực tiếp nguồn/ánh sáng lấy mẫu vật. It works well dành cho/đối với/để khác nhau bố trí ánh sáng sắp đặt, but là đảo nghịch tựa như suitable dành cho/đối với/để tụ quang và some cái/sắp đặt khác phức tạp bố trí ánh sáng situations."
+msgstr "The tích phân là the kết xuất thuật toán sử dụng tới tính toán the bố trí ánh sáng. Cycles currently supports a đường/đi/dẫn tracing tích phân với trực tiếp nguồn/ánh sáng lấy mẫu vật. It làm/công việc well dành cho/đối với/để khác nhau bố trí ánh sáng sắp đặt, but là đảo nghịch tựa như suitable dành cho/đối với/để tụ quang và some cái/sắp đặt khác phức tạp bố trí ánh sáng situations."
 
 msgid "Rays are traced from the camera into the scene, bouncing around until they find a light source such as a light, an object emitting light, or the world background. To find lights and surfaces emitting light, both indirect light sampling (letting the ray follow the surface BSDF) and direct light sampling (picking a light source and tracing a ray towards it) are used."
 msgstr "Rays là traced từ the máy quay phim vào/trở thành the cảnh, bouncing chung quanh cho đến khi/cho tới lúc chúng/họ lùng tìm a nguồn/ánh sáng nguồn such tựa như a nguồn/ánh sáng, một vật thể emitting nguồn/ánh sáng, hoặc the thế giới màu/ảnh/nền. Tới lùng tìm nguồn/ánh sáng và bề mặt emitting nguồn/ánh sáng, cả hai gián tiếp nguồn/ánh sáng lấy mẫu vật (letting the ray đi theo the bề mặt BSDF) và trực tiếp nguồn/ánh sáng lấy mẫu vật (picking a nguồn/ánh sáng nguồn và tracing a ray towards it) là sử dụng."
@@ -140,6 +140,24 @@ msgstr "Thể Tích -- Volume"
 msgid "Number of volume scattering samples to take for each AA sample."
 msgstr "Số/Lượng của âm lượng/thể tích scattering lượng mẫu vật tới take dành cho/đối với/để each AA lấy mẫu vật."
 
+msgid "Adaptive Sampling"
+msgstr "Lấy Mẫu Vật Tùy Ứng -- Adaptive Sampling"
+
+msgid "*Adaptive Sampling* is a technique to speed up rendering by terminating sampling for a particular pixel early. This works by computing how much a pixel changes (the variance) while samples are computed, if the pixel does not change more than a certain amount, Cycles will stop computing samples for that pixel. *Adaptive Sampling* can be enabled/disabled with the checkbox in the panel header."
+msgstr "*Lấy Mẫu Vật Tùy Ứng -- Adaptive Sampling* là a technique tới tốc độ lên/trên kết xuất bằng cách terminating lấy mẫu vật dành cho/đối với/để a particular điểm ảnh early. Cái/Điều Này làm/công việc bằng cách computing phương pháp/thế nào much a điểm ảnh changes (the variance) trong khi lượng mẫu vật là tính toán, nếu the điểm ảnh does đảo nghịch thay/chuyển/biến/đổi nhiều/lớn hơn than a certain số/lượng, Cycles sẽ ngừng computing lượng mẫu vật dành cho/đối với/để đó/mà điểm ảnh. *Lấy Mẫu Vật Tùy Ứng -- Adaptive Sampling* có thể được/là bật/tắt với the hộp kiểm vào the bảng tiêu đề."
+
+msgid "Min Samples"
+msgstr "Lượng Mẫu Vật Tối Thiểu -- Min Samples"
+
+msgid "The minimum AA samples that must be computed before checking for variance. Zero is an automatic setting based on the total number of AA samples."
+msgstr "The tối thiểu AA lượng mẫu vật đó/mà nhất định được/là tính toán trước checking dành cho/đối với/để variance. 0 là một tự động sắp đặt dựa trêm nền tảng bật the tổng cộng số/lượng của AA lượng mẫu vật."
+
+msgid "Noise Threshold"
+msgstr "Ngưỡng Của Nhiễu -- Noise Threshold"
+
+msgid "The amount of variation between samples before terminating sampling. Smaller values will give more accurate results, using more samples, but increase rendering times. Zero is an automatic setting based on the total number of AA samples."
+msgstr "The số/lượng của variation giữa lượng mẫu vật trước terminating lấy mẫu vật. Smaller giá trị sẽ give nhiều/lớn hơn chính xác đạt/những kết quả, sử dụng/dùng nhiều/lớn hơn lượng mẫu vật, but gia tăng kết xuất times. 0 là một tự động sắp đặt dựa trêm nền tảng bật the tổng cộng số/lượng của AA lượng mẫu vật."
+
 msgid "Advanced"
 msgstr "Cao Cấp -- Advanced"
 
@@ -150,7 +168,7 @@ msgid "Seed value for integrator to get different noise patterns."
 msgstr "Giá trị hạt cho bộ tích phân kiết tạo các mẫu hình nhiễu khác nhau."
 
 msgid "Animate Seed (clock icon)"
-msgstr "-- Animate Seed (clock icon)"
+msgstr "Hoạt Họa giá trị Mầm (biểu tượng đồng hồ) -- Animate Seed (clock icon)"
 
 msgid "This button, which can be found on the right side of the *Seed* value, can be used to give different seed values. It is a good idea to enable this when making animation because in the real world each frame has a different noise pattern."
 msgstr "Cái/Điều Này nút bấm, cái mà/tức có thể được/là tìm thấy bật the phải bên/mặt của the *Mầm -- Seed* giá trị, có thể được/là sử dụng tới give khác mầm giá trị. It là a tốt ý tưởng tới bật cái/điều này khi làm cho hoạt họa because vào the thật/thực thế giới each khung hình có a khác nhiễu hoa văn/mẫu."
@@ -162,13 +180,19 @@ msgid "Random sampling pattern used by the integrator."
 msgstr "Mô hình mẫu vật ngẫu nhiên mà bộ tích phân sử dụng."
 
 msgid "Uses a Sobol pattern to decide the random sampling pattern used by the integrator. See `Sobol sequence <https://en.wikipedia.org/wiki/Sobol_sequence>`__ on Wikipedia for more information."
-msgstr "Uses a Sobol pattern to decide the random sampling pattern used by the integrator. See `Sobol sequence <https://en.wikipedia.org/wiki/Sobol_sequence>`__ on Wikipedia for more information."
+msgstr "Uses a Sobol hoa văn/mẫu tới decide the ngẫu nhiên lấy mẫu vật hoa văn/mẫu sử dụng bằng cách the tích phân. Xin Xem `Sobol trình tự -- Sobol sequence <https://en.wikipedia.org/wiki/Sobol_sequence>`__ bật Wikipedia dành cho/đối với/để nhiều/lớn hơn thông tin."
 
 msgid "Correlated Multi-Jitter"
 msgstr "Đa Biến Động Tương Quan -- Correlated Multi-Jitter"
 
-msgid "Uses a Correlated Multi-Jitter pattern to decide the random sampling pattern used by the integrator. See `this Pixar paper <http://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__ for more information."
-msgstr "Uses a Correlated Multi-Jitter pattern to decide the random sampling pattern used by the integrator. See `this Pixar paper <http://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__ for more information."
+msgid "Uses a correlated multi-jitter pattern to decide the random sampling pattern used by the integrator. See `this Pixar paper <https://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__ for more information."
+msgstr "Uses a correlated multi-jitter hoa văn/mẫu tới decide the ngẫu nhiên lấy mẫu vật hoa văn/mẫu sử dụng bằng cách the tích phân. Xin Xem `cái/điều này Pixar giấy -- this Pixar paper <https://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__ dành cho/đối với/để nhiều/lớn hơn thông tin."
+
+msgid "Progressive Multi-Jitter"
+msgstr "Đa Biến Động Lũy Tiến -- Progressive Multi-Jitter"
+
+msgid "Uses a progressive multi-jitter pattern to decide the random sampling pattern used by the integrator. Its advantage is to provide a well distribution of samples over iterating sample counts. Because of its good distribution over a range of different sample counts, this sample pattern is used for `Adaptive Sampling`_. See `this Pixar paper <https://graphics.pixar.com/library/ProgressiveMultiJitteredSampling/paper.pdf>`__ for more information."
+msgstr "Uses a progressive multi-jitter hoa văn/mẫu tới decide the ngẫu nhiên lấy mẫu vật hoa văn/mẫu sử dụng bằng cách the tích phân. Của Nó advantage là tới provide a well phân bổ của lượng mẫu vật over iterating lấy mẫu vật counts. Because của của nó tốt phân bổ over a phạm vi của khác lấy mẫu vật counts, cái/điều này lấy mẫu vật hoa văn/mẫu là sử dụng dành cho/đối với/để `Lấy Mẫu Vật Tùy Ứng -- Adaptive Sampling`_. Xin Xem `cái/điều này Pixar giấy -- this Pixar paper <https://graphics.pixar.com/library/ProgressiveMultiJitteredSampling/paper.pdf>`__ dành cho/đối với/để nhiều/lớn hơn thông tin."
 
 msgid "Square Samples"
 msgstr "Bình Phương Mẫu Vật -- Square Samples"

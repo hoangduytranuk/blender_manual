@@ -67,8 +67,8 @@ Advanced Mode
 
 In advanced mode you can additionally enter expressions and units.
 
-Use :kbd:`=` or :kbd:`NumpadAsterix` to enable advanced mode,
-and :kbd:`Ctrl-=` or :kbd:`Ctrl-NumpadAsterix` to switch back to simple mode.
+Use :kbd:`=` or :kbd:`NumpadAsterisk` to enable advanced mode,
+and :kbd:`Ctrl-=` or :kbd:`Ctrl-NumpadAsterisk` to switch back to simple mode.
 
 It features:
 

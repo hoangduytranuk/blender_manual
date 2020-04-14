@@ -207,9 +207,6 @@
       <li>Lượt -- Passes</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/layers/passes.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -219,7 +216,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="passes">
-<h1>Lượt -- Passes<a class="headerlink" href="#passes" title="Permalink to this headline">¶</a></h1>
+<span id="bpy-types-renderlayer"></span><h1>Lượt -- Passes<a class="headerlink" href="#passes" title="Permalink to this headline">¶</a></h1>
 <p>Passes can be used to split rendered images into colors, direct and indirect light to edit them individually,
 and also to extract data such as depth or normals.</p>
 <div class="section" id="cycles">
@@ -234,8 +231,58 @@ and also to extract data such as depth or normals.</p>
 </div>
 <p>Passes can be used to split rendered images into colors, direct and indirect light to edit them individually,
 and also to extract data such as depth or normals.</p>
-<div class="section" id="lighting-passes">
-<h3>Lượt về Ánh Sáng -- Lighting Passes<a class="headerlink" href="#lighting-passes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>Z</dt><dd><p>Distance to any visible surfaces.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The Z pass only uses one sample.
+When depth values need to be blended in case of motion blur or <a class="reference internal" href="../../glossary/index.html#term-depth-of-field"><span class="xref std std-term">Depth of Field</span></a>, use the mist pass.</p>
+</div>
+</dd>
+<dt>Sương Mù -- Mist</dt><dd><p>Distance to visible surfaces, mapped to the 0.0 - 1.0 range.
+When enabled, settings are in <a class="reference internal" href="../cycles/world_settings.html#render-cycles-integrator-world-mist"><span class="std std-ref">World tab</span></a>.
+This pass can be used in compositing to fade out objects that are farther away.</p>
+</dd>
+<dt>Pháp Tuyến -- Normal</dt><dd><p>Surface normal used for shading.</p>
+</dd>
+<dt>Vectơ -- Vector</dt><dd><p>Motion vectors for the Vector Blur node. The four components consist of 2D vectors
+giving the motion towards the next and previous frame position in pixel space.</p>
+</dd>
+<dt>UV</dt><dd><p>Mapped UV coordinates, used to represent where on a mesh a texture gets mapped too.
+This is represented through the red and green channels of the image.
+The blue channel is encoded with a constant value of 1 but does not hold any information.</p>
+</dd>
+<dt>Chỉ Số Vật Thể -- Object Index</dt><dd><p>Creates a mask of the object that can be later read by
+the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</p>
+</dd>
+<dt>Chỉ Số Nguyên Liệu -- Material Index</dt><dd><p>Creates a mask of the material that can be later read by
+the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</p>
+</dd>
+<dt>Dữ Liệu Chống Nhiễu -- Denoising Data</dt><dd><p>Passes needed by the denoiser, for performing animation denoising in a second pass
+after rendering the entire animation. For still image denoising as part of
+the render process these are not needed.</p>
+</dd>
+<dt>Render Time</dt><dd><p>Render time in milliseconds per sample and pixel.</p>
+</dd>
+<dt>Sample Count</dt><dd><p>Number of samples/camera rays per pixel.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The Z, Object Index and Material Index passes are not anti-aliased.</p>
+</div>
+<dl class="simple">
+<dt>Giới Hạn Alpha -- Alpha Threshold</dt><dd><p>Z, Index, normal, UV and vector passes are
+only affected by surfaces with alpha transparency equal to or higher than this threshold.
+With value 0.0 the first surface hit will always write to these passes, regardless of transparency.
+With higher values surfaces that are mostly transparent can be skipped until an opaque surface is encountered.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="light">
+<h3>Light<a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
 <dt>Tổng Hợp -- Combined</dt><dd><p>The final combination of render passes with everything included.</p>
 </dd>
@@ -282,52 +329,6 @@ for that a glass BSDF with index of refraction 1.0 can be used.</p>
 <div class="figure align-default">
 <img alt="../../_images/render_layers_passes_combine.svg" src="../../_images/render_layers_passes_combine.svg" /></div>
 </div>
-</div>
-<div class="section" id="data-passes">
-<h3>Lượt Dữ Liệu -- Data Passes<a class="headerlink" href="#data-passes" title="Permalink to this headline">¶</a></h3>
-<dl>
-<dt>Z</dt><dd><p>Distance to any visible surfaces.</p>
-<div class="admonition note">
-<p class="admonition-title">Ghi chú</p>
-<p>The Z pass only uses one sample.
-When depth values need to be blended in case of motion blur or <a class="reference internal" href="../../glossary/index.html#term-depth-of-field"><span class="xref std std-term">Depth of Field</span></a>, use the mist pass.</p>
-</div>
-</dd>
-<dt>Sương Mù -- Mist</dt><dd><p>Distance to visible surfaces, mapped to the 0.0-1.0 range.
-When enabled, settings are in <a class="reference internal" href="../cycles/world_settings.html#render-cycles-integrator-world-mist"><span class="std std-ref">World tab</span></a>.
-This pass can be used in compositing to fade out objects that are farther away.</p>
-</dd>
-<dt>Pháp Tuyến -- Normal</dt><dd><p>Surface normal used for shading.</p>
-</dd>
-<dt>Vectơ -- Vector</dt><dd><p>Motion vectors for the Vector Blur node. The four components consist of 2D vectors
-giving the motion towards the next and previous frame position in pixel space.</p>
-</dd>
-<dt>UV</dt><dd><p>Mapped UV coordinates, used to represent where on a mesh a texture gets mapped too.
-This is represented through the red and green channels of the image,
-the blue channel is encoded with a constant value of 1 but does not hold any information.</p>
-</dd>
-<dt>Chỉ Số Vật Thể -- Object Index</dt><dd><p>Creates a mask of the object that can be later read by
-the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</p>
-</dd>
-<dt>Chỉ Số Nguyên Liệu -- Material Index</dt><dd><p>Creates a mask of the material that can be later read by
-the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</p>
-</dd>
-<dt>Dữ Liệu Chống Nhiễu -- Denoising Data</dt><dd><p>Passes needed by the denoiser, for performing animation denoising in a second pass
-after rendering the entire animation. For still image denoising as part of
-the render process these are not needed.</p>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Ghi chú</p>
-<p>The Z, Object Index and Material Index passes are not anti-aliased.</p>
-</div>
-<dl class="simple">
-<dt>Giới Hạn Alpha -- Alpha Threshold</dt><dd><p>Z, Index, normal, UV and vector passes are
-only affected by surfaces with alpha transparency equal to or higher than this threshold.
-With value 0.0 the first surface hit will always write to these passes, regardless of transparency.
-With higher values surfaces that are mostly transparent can be skipped until an opaque surface is encountered.</p>
-</dd>
-</dl>
 </div>
 <div class="section" id="cryptomatte">
 <h3>Lớp Lồng Bí Mật -- Cryptomatte<a class="headerlink" href="#cryptomatte" title="Permalink to this headline">¶</a></h3>
@@ -397,8 +398,8 @@ A <em>Value</em> variable can be used for any single numerical value.</p>
 </div>
 <p>Passes can be used to split rendered images into colors and light to edit them individually,
 and also to extract data such as depth or normals.</p>
-<div class="section" id="id1">
-<h3>Lượt về Ánh Sáng -- Lighting Passes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="lighting-passes">
+<h3>Lượt về Ánh Sáng -- Lighting Passes<a class="headerlink" href="#lighting-passes" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
 <dt>Tổng Hợp -- Combined</dt><dd><p>The final combination of render passes with everything included.</p>
 </dd>
@@ -427,8 +428,8 @@ it gives a 'normalized' value between 0 and 1.</p>
 </dd>
 </dl>
 </div>
-<div class="section" id="id2">
-<h3>Lượt Dữ Liệu -- Data Passes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="data-passes">
+<h3>Lượt Dữ Liệu -- Data Passes<a class="headerlink" href="#data-passes" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
 <dt>Z</dt><dd><p>Distance to any visible surfaces.</p>
 </dd>
@@ -445,8 +446,8 @@ it gives a 'normalized' value between 0 and 1.</p>
 </dd>
 </dl>
 </div>
-<div class="section" id="id3">
-<h3>Tổng Hợp -- Combining<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Tổng Hợp -- Combining<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>The passes can be combined to produce the final image as follows:</p>
 <div class="figure align-default">
 <img alt="../../_images/render_layers_passes_eevee_combine.svg" src="../../_images/render_layers_passes_eevee_combine.svg" /></div>
@@ -489,7 +490,18 @@ the <a class="reference internal" href="../../compositing/types/filter/defocus.h
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/layers/passes.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/layers/passes%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

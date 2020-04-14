@@ -89,9 +89,9 @@ Pan :kbd:`MMB`
 Zoom :kbd:`Ctrl-MMB`, :kbd:`Wheel`
    Move the camera forwards and backwards.
 Frame Selected :kbd:`NumpadPeriod`
-   Adjusts the zooms to fit only the selected nodes in the display.
+   Adjusts the zooms to fit only the selected nodes in the view.
 View All :kbd:`Home`
-   Adjusts the zoom to fit all nodes in the display.
+   Adjusts the zoom to fit all nodes in the view.
 
 
 Adding Nodes

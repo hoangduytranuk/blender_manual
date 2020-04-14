@@ -78,23 +78,6 @@ Using :kbd:`Shift`-click, you can add to/remove from the selection.
 
 You also have some *advanced selection* options, based on their relations.
 
-You can select at once all the bones in the chain which the active (last selected)
-bone belongs to by using the *linked selection* tool, :kbd:`L`.
-
-.. list-table:: Linked bones selection.
-
-   * - .. figure:: /images/animation_armatures_bones_selecting_single-bone.png
-          :width: 320px
-
-          A single selected bone.
-
-     - .. figure:: /images/animation_armatures_bones_selecting_whole-chain.png
-          :width: 320px
-
-          Its whole chain selected with :kbd:`L`.
-
-Mirror :kbd:`Shift-Ctrl-M`
-   Flip the selection from one side to another.
 Pick Shortest Path :kbd:`Ctrl`-click
    Selects the path from the active bone to the bone under the mouse.
 
@@ -130,6 +113,19 @@ After :kbd:`Shift`-clicking "Bone.003":
   Since "Bone" is still selected, its tip is selected. Thus the root of "Bone.003" remains selected.
 
 
+Mirror
+======
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select`
+   :Hotkey:    :kbd:`Shift-Ctrl-M`
+
+Flip the selection from one side to another.
+
+
 More/Less
 =========
 
@@ -143,8 +139,18 @@ More :kbd:`Ctrl-NumpadPlus`
    Expand the current selection to the connected bones.
 Less :kbd:`Ctrl-NumpadMinus`
    Contrast the selection, deselect bones at the boundaries of each selection region.
+
+
+Parent/Child
+============
+
 Parent :kbd:`[`, Child :kbd:`]`
    You can deselect the active bone and select its immediate parent or one of its children.
+
+
+Extend Parent/Child
+===================
+
 Extend Parent :kbd:`Shift-[`, Extend Child :kbd:`Shift-]`
    Similar to *Parent*/*Child* but it keeps the active bone in the selection.
 
@@ -179,3 +185,9 @@ Group
    Select bones in the same group.
 Shape
    Select bones using the same shape object (in Pose Mode).
+
+
+Select Pattern
+==============
+
+Todo.

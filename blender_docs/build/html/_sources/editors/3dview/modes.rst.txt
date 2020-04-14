@@ -84,7 +84,7 @@ Object Mode List
    The cursor becomes a brush in :doc:`Paint and Sculpt Modes </sculpt_paint/index>`.
 
 We will not go into any more detail on mode usages here,
-because they are dealed with in their own sections.
+because they are dealt with in their own sections.
 
 .. hint::
 

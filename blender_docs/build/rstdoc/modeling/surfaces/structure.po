@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Blender 2.79 Manual 2.79\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-01-29 17:18-0500\n"
-"PO-Revision-Date: 2020-03-31 18:51+0100\n"
+"PO-Revision-Date: 2020-04-10 20:28+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\n"
 "Language: vi\n"
 "Language-Team: London, UK <hoangduytran1960@gmail.com>\n"
@@ -24,25 +24,25 @@ msgid "Structure"
 msgstr "Cấu Trúc -- Structure"
 
 msgid "Many of the concepts from :doc:`curves </modeling/curves/introduction>`, especially :ref:`NURBS <curve-nurbs>` ones, carry directly over to NURBS surfaces, such as control points, *Order*, *Weight*, *Resolution*, etc. Here we will just talk about the differences."
-msgstr "Many of the concepts from :doc:`curves </modeling/curves/introduction>`, especially :ref:`NURBS <curve-nurbs>` ones, carry directly over to NURBS surfaces, such as control points, *Order*, *Weight*, *Resolution*, etc. Here we will just talk about the differences."
+msgstr "Many của the concepts từ :doc:`đường cong -- curves </modeling/curves/introduction>`, especially :ref:`NURBS <curve-nurbs>` ones, carry directly over tới NURBS bề mặt, such tựa như điều khiển số điểm, *Theo Thứ Tự -- Order*, *Trọng Lượng -- Weight*, *Độ Phân Giải -- Resolution*, etc. Here we sẽ just talk giới thiệu the differences."
 
 msgid "It is very important to understand the difference between NURBS curves and NURBS surfaces: the first one has one dimension, the latter has two. Blender internally treats NURBS surfaces and NURBS curves completely differently. There are several attributes that separate them but the most important is that a NURBS curve has a single interpolation axis (U) and a NURBS surface has two interpolation axes (U and V)."
-msgstr "It is very important to understand the difference between NURBS curves and NURBS surfaces: the first one has one dimension, the latter has two. Blender internally treats NURBS surfaces and NURBS curves completely differently. There are several attributes that separate them but the most important is that a NURBS curve has a single interpolation axis (U) and a NURBS surface has two interpolation axes (U and V)."
+msgstr "It là very important tới understand the hiệu giữa NURBS đường cong và NURBS bề mặt: the đầu tiên/thứ nhất một có một kích thước, the latter có hai. Blender internally treats NURBS bề mặt và NURBS đường cong completely differently. Kia/Có là several thuộc tính đó/mà tách rời chúng/họ but the most important là đó/mà a NURBS đường cong có a đơn/một cánh nội suy trục (U) và a NURBS bề mặt có hai nội suy trục (U và V)."
 
 msgid "However, you can have \"2D\" surfaces made of curves (using the :doc:`extrusion tools </modeling/curves/properties/geometry>`, or, to a lesser extent, the filling of closed 2D curves). And you can have \"1D\" curves made of surfaces, like a NURBS surface with only one row (either in U or V direction) of control points produces only a curve..."
-msgstr "However, you can have \"2D\" surfaces made of curves (using the :doc:`extrusion tools </modeling/curves/properties/geometry>`, or, to a lesser extent, the filling of closed 2D curves). And you can have \"1D\" curves made of surfaces, like a NURBS surface with only one row (either in U or V direction) of control points produces only a curve..."
+msgstr "However, bạn có thể có \"2D\" bề mặt làm ra/cho/tạo của đường cong (sử dụng/dùng the :doc:`đẩy trồi/kéo ra công cụ -- extrusion tools </modeling/curves/properties/geometry>`, hoặc, tới a lesser extent, the filling của đóng/kín/gần 2D đường cong). Và bạn có thể có \"1D\" đường cong làm ra/cho/tạo của bề mặt, thích-giống như-tương tự a NURBS bề mặt với duy/chỉ một row (hoặc là vào U hoặc V chiều hướng) của điều khiển số điểm produces duy/chỉ a đường cong..."
 
 msgid "Visually you can tell which is which by entering Edit Mode and looking at the 3D View header: either the header shows *Surface* or *Curve* as one of the menu choices. Also, you can :doc:`extrude </modeling/curves/properties/geometry>` a whole NURBS surface curve to create a surface, but you cannot with a simple NURBS curve."
 msgstr "Visually bạn có thể tell cái mà/tức là cái mà/tức bằng cách entering Biên Soạn Chế Độ và looking tại the 3D Góc Nhìn tiêu đề: hoặc là the tiêu đề hiển thị/biểu hiện *Bề Mặt -- Surface* hoặc *Đường Cong -- Curve* tựa như một của the trình đơn choices. Also, bạn có thể :doc:`đẩy trồi/nới -- extrude </modeling/curves/properties/geometry>` a whole NURBS bề mặt đường cong tới kiến tạo a bề mặt, but bạn không thể với a đơn giản NURBS đường cong."
 
 msgid "Control Points, Rows and Grid"
-msgstr "-- Control Points, Rows and Grid"
+msgstr "Điều Khiển Số Điểm, Rows và Khung Lưới/Đồ Thị -- Control Points, Rows and Grid"
 
 msgid "Control points for NURBS surfaces are the same as for NURBS curves. However, their layout is quite constraining. The concept of \"segment\" disappears, replaced by \"rows\" and the overall \"grid\"."
 msgstr "Điều Khiển số điểm dành cho/đối với/để NURBS bề mặt là the tương đồng/giống tựa như dành cho/đối với/để NURBS đường cong. However, của chúng/họ bố trí là quite constraining. The concept của \"phân đoạn -- segment\" disappears, replaced bằng cách \"rows\" và the overall \"khung lưới/đồ thị -- grid\"."
 
 msgid "A \"row\" is a set of control points forming one \"line\" in one interpolation direction (a bit similar to :ref:`edge loops <modeling-mesh-structure-edge-loops>` for meshes). So you have \"U rows\" and \"V rows\" in a NURBS surface. The key point is that *all* rows of a given type (U or V) have the *same* number of control points. Each control point belongs to exactly one U row and one V row."
-msgstr "A \"row\" is a set of control points forming one \"line\" in one interpolation direction (a bit similar to :ref:`edge loops <modeling-mesh-structure-edge-loops>` for meshes). So you have \"U rows\" and \"V rows\" in a NURBS surface. The key point is that *all* rows of a given type (U or V) have the *same* number of control points. Each control point belongs to exactly one U row and one V row."
+msgstr "A \"row\" là a đặt của điều khiển số điểm forming một \"đường thẳng/dòng -- line\" vào một nội suy chiều hướng (a bit tương đồng tới :ref:`vòng mạch -- edge loops <modeling-mesh-structure-edge-loops>` dành cho/đối với/để khung lưới). Do Vậy/Đó bạn có \"U rows\" và \"V rows\" vào a NURBS bề mặt. The khóa điểm/chấm là đó/mà *toàn bộ -- all* rows của a given thể loại (U hoặc V) có the *tương đồng/giống -- same* số/lượng của điều khiển số điểm. Each điều khiển điểm/chấm belongs tới exactly một U row và một V row."
 
 msgid "All this forms a \"grid\", or \"cage\", the shape of which controls the shape of the NURBS surface. A bit like a :doc:`lattice </animation/lattice>`..."
 msgstr "Toàn Bộ cái/điều này forms a \"khung lưới/đồ thị -- grid\", hoặc \"khung lồng -- cage\", the hình dạng của cái mà/tức điều khiển the hình dạng của the NURBS bề mặt. A bit thích-giống như-tương tự a :doc:`lưới rào -- lattice </animation/lattice>`..."
@@ -57,7 +57,7 @@ msgid "Similar to :ref:`NURBS Splines <curve-nurbs>` NURBS Surface control point
 msgstr "Tương Đồng tới :ref:`NURBS Đường Cong Spline -- NURBS Splines <curve-nurbs>` NURBS Bề Mặt điều khiển số điểm có a trọng lượng tính chất. Cái/Điều Này trọng lượng tính chất điều khiển phương pháp/thế nào much tác động/ảnh hưởng the điều khiển điểm/chấm có bật the bề mặt. Cái/Điều Này trọng lượng cần phải đảo nghịch được/là confused với the :ref:`Đích Trọng Lượng -- Goal Weight <surface-goal-weight>`, cái mà/tức là sử dụng duy/chỉ dành cho/đối với/để mềm body simulations. The NURBS điều khiển điểm/chấm trọng lượng có thể được/là điều chỉnh vào the *W* số/lượng trường của the :doc:`Bảng Biến Hóa -- Transform panel </modeling/curves/editing/transform_panel>`."
 
 msgid "In Fig. :ref:`fig-surface-intro-weight` a single control point, labeled \"C\", has had its *Weight* set to 5.0 while all others are at their default of 1.0. As you can see, that control point *pulls* the surface towards it."
-msgstr "In Fig. :ref:`fig-surface-intro-weight` a single control point, labeled \"C\", has had its *Weight* set to 5.0 while all others are at their default of 1.0. As you can see, that control point *pulls* the surface towards it."
+msgstr "Vào Fig. :ref:`fig-surface-intro-weight` a đơn/một cánh điều khiển điểm/chấm, labeled \"C\", có đã/có của nó *Trọng Lượng -- Weight* đặt tới 5.0 trong khi toàn bộ những cái khác là tại của chúng/họ mặc định của 1.0. Tựa Như bạn có thể xin xem, đó/mà điều khiển điểm/chấm *pulls* the bề mặt towards it."
 
 msgid "One control point with a weight of 5."
 msgstr "Một điều khiển điểm/chấm với a trọng lượng của 5."
@@ -66,7 +66,7 @@ msgid "If all the control points have the same *Weight* then each effectively ca
 msgstr "Nếu toàn bộ the điều khiển số điểm có the tương đồng/giống *Trọng Lượng -- Weight* rồi/sau đó each effectively cancels each cái/sắp đặt khác ra. It là the hiệu vào the trọng lượng đó/mà cause the bề mặt tới di chuyển towards hoặc away từ a điều khiển điểm/chấm."
 
 msgid "Preset Weights"
-msgstr "-- Preset Weights"
+msgstr "Sắp Đặt Sẵn Trọng Lượng -- Preset Weights"
 
 msgid "NURBS can create pure shapes such as circles, cylinders, and spheres (note that a Bézier circle is not a pure circle). To create pure circles, spheres, or cylinders, you must set to specific values the weights of the control points. This is not intuitive, and you should read more on NURBS before trying this."
 msgstr "NURBS có thể kiến tạo pure hình dạng such tựa như vòng tròn, cylinders, và spheres (ghi chú đó/mà a Bézier hình/vòng/tròn là đảo nghịch a pure hình/vòng/tròn). Tới kiến tạo pure vòng tròn, spheres, hoặc cylinders, bạn nhất định đặt tới specific giá trị the trọng lượng của the điều khiển số điểm. Cái/Điều Này là đảo nghịch intuitive, và bạn cần phải read nhiều/lớn hơn bật NURBS trước trying cái/điều này."

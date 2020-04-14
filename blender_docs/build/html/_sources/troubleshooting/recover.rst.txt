@@ -60,7 +60,7 @@ See Fig. :ref:`fig-troubleshooting-file-browser`.
 
 .. figure:: /images/troubleshooting_recover_display-file-date.png
 
-   File Browser displaying a Vertical List.
+   File Browser displaying a vertical list.
 
 .. warning::
 

@@ -224,9 +224,6 @@
       <li>Lấy Mẫu Vật -- Sampling</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/cycles/render_settings/sampling.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -317,6 +314,24 @@ and therefore has the same GPU requirements as rendering with Optix.</p>
 </dd>
 </dl>
 </div>
+<div class="section" id="adaptive-sampling">
+<h2>Adaptive Sampling<a class="headerlink" href="#adaptive-sampling" title="Permalink to this headline">¶</a></h2>
+<p><em>Adaptive Sampling</em> is a technique to speed up rendering
+by terminating sampling for a particular pixel early.
+This works by computing how much a pixel changes (the variance) while samples are computed,
+if the pixel does not change more than a certain amount,
+Cycles will stop computing samples for that pixel.
+<em>Adaptive Sampling</em> can be enabled/disabled with the checkbox in the panel header.</p>
+<dl class="simple">
+<dt>Min Samples</dt><dd><p>The minimum AA samples that must be computed before checking for variance.
+Zero is an automatic setting based on the total number of AA samples.</p>
+</dd>
+<dt>Noise Threshold</dt><dd><p>The amount of variation between samples before terminating sampling.
+Smaller values will give more accurate results, using more samples, but increase rendering times.
+Zero is an automatic setting based on the total number of AA samples.</p>
+</dd>
+</dl>
+</div>
 <div class="section" id="advanced">
 <h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h2>
 <dl>
@@ -333,8 +348,15 @@ when making animation because in the real world each frame has a different noise
 <dt>Sobol</dt><dd><p>Uses a Sobol pattern to decide the random sampling pattern used by the integrator.
 See <a class="reference external" href="https://en.wikipedia.org/wiki/Sobol_sequence">Sobol sequence</a> on Wikipedia for more information.</p>
 </dd>
-<dt>Đa Biến Động Tương Quan -- Correlated Multi-Jitter</dt><dd><p>Uses a Correlated Multi-Jitter pattern to decide the random sampling pattern used by the integrator.
-See <a class="reference external" href="http://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf">this Pixar paper</a>
+<dt>Đa Biến Động Tương Quan -- Correlated Multi-Jitter</dt><dd><p>Uses a correlated multi-jitter pattern to decide the random sampling pattern used by the integrator.
+See <a class="reference external" href="https://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf">this Pixar paper</a>
+for more information.</p>
+</dd>
+<dt>Progressive Multi-Jitter</dt><dd><p>Uses a progressive multi-jitter pattern to decide the random sampling pattern used by the integrator.
+Its advantage is to provide a well distribution of samples over iterating sample counts.
+Because of its good distribution over a range of different sample counts,
+this sample pattern is used for <a class="reference internal" href="#adaptive-sampling">Adaptive Sampling</a>.
+See <a class="reference external" href="https://graphics.pixar.com/library/ProgressiveMultiJitteredSampling/paper.pdf">this Pixar paper</a>
 for more information.</p>
 </dd>
 </dl>
@@ -403,7 +425,18 @@ Disabling this can improve the performance, but will need a lot of <em>Samples</
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/cycles/render_settings/sampling.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/cycles/render_settings/sampling%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

@@ -30,7 +30,7 @@ Auto Boolean
       Add the selected objects to the active object.
    Difference :kbd:`Ctrl-NumpadMinus`
       Remove the objects to the active.
-   Intersection :kbd:`Ctrl-NumpadAsterix`
+   Intersection :kbd:`Ctrl-NumpadAsterisk`
       Apply a intersect operation between the selected objects and the active.
    Slice :kbd:`Ctrl-NumpadSlash`
       Todo.
@@ -55,7 +55,7 @@ Brush Boolean
       Apply direct Union to an object.
    Difference :kbd:`Shift-Ctrl-NumpadMinus`
       Apply direct Difference to an object.
-   Intersection :kbd:`Shift-Ctrl-NumpadAsterix`
+   Intersection :kbd:`Shift-Ctrl-NumpadAsterisk`
       Apply direct Intersection to an object.
    Slice :kbd:`Shift-Ctrl-NumpadSlash`
       Todo.

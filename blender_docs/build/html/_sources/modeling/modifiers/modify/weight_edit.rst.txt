@@ -44,19 +44,22 @@ Group Add
 Group Remove
    Removes vertices with a final weight below *Remove Threshold* from the vertex group.
 
-Falloff Type
-   Type of mapping:
+Falloff
+   Falloff Type
+      Type of mapping.
 
-   Linear
-      No mapping.
-   Custom Curve
-      Allows the user to manually define the mapping using a curve.
-   Sharp, Smooth, Root and Sphere
-      These are classical mapping functions, from spikiest to roundest.
-   Random
-      Uses a random value for each vertex.
-   Median Step
-      Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.
+      Linear
+         No mapping.
+      Custom Curve
+         Allows the user to manually define the mapping using a curve.
+      Sharp, Smooth, Root and Sphere
+         These are classical mapping functions, from spikiest to roundest.
+      Random
+         Uses a random value for each vertex.
+      Median Step
+         Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.
+   Invert ``<-->``
+      Inverts the falloff.
 
 
 .. _modeling-modifiers-weight-edit-influence-mask-options:
@@ -88,8 +91,7 @@ Here is an example of various effects achieved using *Vertex Weight Edit* modifi
 (together with the :doc:`Vertex Weight Proximity </modeling/modifiers/modify/weight_proximity>` modifier)
 to generate weights used by the :doc:`Displace </modeling/modifiers/deform/displace>` modifier.
 
-.. list-table::
-   *Curve Map* variations.
+.. list-table:: *Curve Map* variations.
 
    * - .. figure:: /images/modeling_modifiers_modify_weight-edit_mapping-concave.jpg
           :width: 400px

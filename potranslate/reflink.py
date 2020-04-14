@@ -74,7 +74,7 @@ class RefType(Enum):
 
 class RefItem:
 
-    def __init__(self, start=-1, end=-1, txt=None, ref_type=RefType.TEXT, keep_orig=False):
+    def __init__(self, start=-1, end=-1, txt=None, ref_type=RefType.TEXT, keep_orig=False, is_reverse=False):
         self.start:int = start
         self.end:int = end
         self.text:str = txt
@@ -84,6 +84,8 @@ class RefItem:
         self.translation_include_original: bool = keep_orig
         self.reftype:RefType = ref_type
         self.text_style:TextStyle = TextStyle.NORMAL
+        self.converted_to_abbr = False
+        self.reverse_tran = is_reverse # convert translated entry back to original, for corrections
 
     def __repr__(self):
         result = "(" + str(self.start) + ", " + \
@@ -244,10 +246,11 @@ class RefItem:
         return entry_list
 
 class RefRecord:
-    def __init__(self, origin:RefItem = None, reflist: list = [], pat=None):
+    def __init__(self, origin:RefItem = None, reflist: list = [], pat=None, is_reverse=False):
         self.origin: RefItem = origin
         self.reflist: list = reflist
         self.pattern: str = pat
+        self.reverse_tran = is_reverse
         #self.setOriginType()
 
     def __repr__(self):
@@ -381,13 +384,14 @@ class RefRecord:
 
 
 class RefList(defaultdict):
-    def __init__(self, msg=None, pat=None, keep_orig=False, tf=None):
+    def __init__(self, msg=None, tran=None, pat=None, keep_orig=False, tf=None, is_reverse=False):
         self.msg = msg
-        self.translation = None
+        self.translation = tran
         self.translation_state = TranslationState.FUZZY
         self.pattern = pat
         self.keep_original = keep_orig
         self.tf = tf
+        self.reverse_parse = is_reverse
 
     def __repr__(self):
         result = ""
@@ -543,7 +547,7 @@ class RefList(defaultdict):
                 o_ee = o_ss + len(orig)
                 orig_ref_item = RefItem(o_ss, o_ee, orig, ref_type=reftype, keep_orig=keep_original)
 
-                v = RefRecord(origin=orig_ref_item, reflist=None, pat=pattern)
+                v = RefRecord(origin=orig_ref_item, reflist=None, pat=pattern, is_reverse=self.reverse_parse)
                 entry={o_ss:v}
                 result_list.update(entry)
 
@@ -564,7 +568,7 @@ class RefList(defaultdict):
                     if not is_text:
                         orig_ref_item.setRefType(xtype)
                     else:
-                        ref_item = RefItem(ss, ee, g, keep_orig=keep_original) # should this take default reftype.TEXT????
+                        ref_item = RefItem(ss, ee, g, keep_orig=keep_original, is_reverse=self.reverse_parse) # should this take default reftype.TEXT????
                         new_ref_list.append(ref_item)
                 v.reflist = new_ref_list
 
@@ -849,35 +853,9 @@ class RefList(defaultdict):
                 tran = ""
             self.setTranslation(tran)
 
-        # arched_bracket_list = cm.parseMessageWithDelimiterPair('(', ')', self.msg)
-        # has_record = (len(arched_bracket_list) > 0)
-        # if has_record:
-        #     for s, e, txt in arched_bracket_list:
-        #         result_list: RefList = self.findOnePattern(txt, cm.ARCH_BRAKET_MULTI, start_loc=s)
-        #         for k, v in result_list.items():
-        #             orig = v.getOrigin()
-        #             o_s, o_e, o_txt = orig.getValues()
-        #             sub_ref_list = RefList(msg=o_txt)
-        #             sub_ref_list.findPattern(pattern_list)
-        #             has_sub_ref = (len(sub_ref_list) > 0)
-        #             if has_sub_ref:
-        #                 # sub_ref_list.finalizeList()
-        #                 v.getRefList().clear()
-        #                 for kk, vv in sub_ref_list.items():
-        #                     v.getRefList().append(vv)
-        #             ref_list_entry = {o_s:v}
-        #             self.update(ref_list_entry)
-
-        # sorted_list = sorted(self.items(), key=lambda t: t[0])
-        # self.clear()
-        # self.update(ref_list)
-
-        # pp(self.items())
-        # remove redundancies
-        # self.removeRedundancies()
-
     def mergeTranslationToOrigin(self, ref_rec:RefRecord):
         orig_item : RefItem = ref_rec.getOrigin()
+
         ref_list = ref_rec.getRefList()
         has_ref_list = (ref_list is not None) and (len(ref_list) > 0)
         if not has_ref_list:
@@ -891,6 +869,10 @@ class RefList(defaultdict):
             if is_ignore:
                 continue
 
+            is_ignore_left_right = (ref_item.converted_to_abbr == True)
+            # if is_ignore_left_right:
+            #     print('DEBUG')
+
             s, e = ref_item.getLocation()
             o_txt = ref_item.getText()
             tran_state = ref_item.getTranslationState()
@@ -899,8 +881,12 @@ class RefList(defaultdict):
             if not has_translation:
                 continue
 
-            tran_txt = tran_txt[:s] + tran + tran_txt[e:]
-
+            if is_ignore_left_right:
+                tran_txt = tran
+            else:
+                left_txt = tran_txt[:s]
+                right_txt = tran_txt[e:]
+                tran_txt = left_txt + tran + right_txt
         #is_same = (tran_txt == orig_item.getText())
         #if is_same:
             #tran_txt = ""
@@ -927,6 +913,8 @@ class RefList(defaultdict):
             return
 
         ref_txt = ref_item.getText()
+        tran_txt = ref_item.getTranslation()
+
         # is_debug = ("alias" in ref_txt.lower())
         # if is_debug:
         #     _("DEBUG")
@@ -939,17 +927,29 @@ class RefList(defaultdict):
         is_kbd = (ref_type == RefType.KBD)
         is_abbr = (ref_type == RefType.ABBR)
         is_menu = (ref_type == RefType.MENUSELECTION)
+        # ----------
+        is_ast = (ref_type == RefType.AST_QUOTE)
+        is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
+        is_sng_quote = (ref_type == RefType.SNG_QUOTE)
+        is_quoted = (is_ast or is_dbl_quote or is_sng_quote)
+
+        converted_to_abbr = False
         if is_kbd:
-            tran = self.tf.translateKeyboard(ref_txt)
+            tran = self.tf.translateKeyboard(ref_txt, is_reversed=ref_item.reverse_tran)
         elif is_abbr:
-            tran = self.tf.translateAbbrev(ref_txt)
+            tran = self.tf.translateAbbrev(ref_txt, is_reversed=ref_item.reverse_tran)
         elif is_menu:
-            tran = self.tf.translateMenuSelection(ref_txt)
+            tran = self.tf.translateMenuSelection(ref_txt, is_reversed=ref_item.reverse_tran)
+        elif is_quoted:
+            tran = self.tf.translateQuoted(ref_txt, is_reversed=ref_item.reverse_tran)
+            converted_to_abbr = True
         else:
-            tran = self.tf.translateRefWithLink(ref_txt)
+            # print(f"translateRefWithLink: [{ref_txt}]")
+            tran = self.tf.translateRefWithLink(ref_txt, is_reversed=ref_item.reverse_tran)
         has_tran = (tran is not None)
         if has_tran:
             ref_item.setTranlation(tran, state=TranslationState.ACCEPTABLE)
+            ref_item.converted_to_abbr = converted_to_abbr
         else:
             ref_item.setTranlation("", state=TranslationState.ACCEPTABLE)
 
@@ -980,6 +980,12 @@ class RefList(defaultdict):
             is_ignore = (is_math or is_class or is_sup)
             if is_ignore:
                 continue
+
+            # is_ast = (ref_type == RefType.AST_QUOTE)
+            # if is_ast:
+            #     self.translateRefItem(orig, ref_type)
+            # else:
+            #     self.translateRefItem(item, ref_type)
 
             self.translateRefItem(item, ref_type)
 

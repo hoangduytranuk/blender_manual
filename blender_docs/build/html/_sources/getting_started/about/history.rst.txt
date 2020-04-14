@@ -257,9 +257,9 @@ Version/Revision Milestones
    The Grease Pencil got a big overhaul and is now a full 2D drawing and animation system.
    Replacing the old layers, collections are a powerful way to organize objects.
    Other improvements: Cycles, Modeling, Animation, Import/Export, Dependency Graph.
-`2.80 <https://www.blender.org/download/releases/2-81/>`__ -- November 2019:
+`2.81 <https://www.blender.org/download/releases/2-81/>`__ -- November 2019:
    Revamped sculpting tools, Cycles OptiX accelerated rendering, denoising,
    many Eevee improvements, library overrides, UI improvements and much more.
-`2.80 <https://www.blender.org/download/releases/2-82/>`__ -- February 2020:
+`2.82 <https://www.blender.org/download/releases/2-82/>`__ -- February 2020:
    UDIM and USD support, Mantaflow for fluids and smoke simulation,
    AI denoising, Grease Pencil improvements, and much more.

@@ -13,73 +13,63 @@ Object Types
 
 New objects can be created with the *Add* menu in the 3D View's header.
 
-Mesh
-   :doc:`Meshes </modeling/meshes/introduction>` are objects
-   composed of Polygonal Faces, Edges and/or Vertices, and
-   can be edited extensively with Blender's mesh editing tools.
+:doc:`Mesh </modeling/meshes/introduction>`
+   Objects composed of vertices, edges and polygonal faces
+   and can be edited extensively with Blender's mesh editing tools.
    See :doc:`Mesh Primitives </modeling/meshes/primitives>`.
-Curve
-   :doc:`Curves </modeling/curves/introduction>` are mathematically defined objects
-   which can be manipulated with control handles or control points
-   (instead of vertices), to manage their length and curvature.
+:doc:`Curve </modeling/curves/introduction>`
+   Mathematically defined objects which can be manipulated with control handles
+   or control points (instead of vertices), to edit their length and curvature.
    See :doc:`Curves Primitives </modeling/curves/primitives>`.
-Surface
-   :doc:`Surfaces </modeling/surfaces/introduction>` are patches that are
-   also manipulated with control points. These are useful for simple rounded forms
-   and organic landscapes.
+:doc:`Surface </modeling/surfaces/introduction>`
+   Mathematically defined patches that are manipulated with control points.
+   These are useful for simple rounded forms and organic landscapes.
    See :doc:`Surfaces Primitives </modeling/surfaces/primitives>`.
-Metaball
-   :doc:`Meta Objects </modeling/metas/introduction>` (or metaballs) are objects
-   formed by a mathematical function (with no control points or vertices)
+:doc:`Metaball </modeling/metas/introduction>`
+   Objects formed by a mathematical function (with no vertices or control points)
    defining the 3D volume in which the object exists. Meta objects have a liquid-like quality
    where when two or more metaballs are brought together,
    they merge by smoothly rounding out the connection, appearing as one unified object.
    See :doc:`Meta Primitives </modeling/metas/primitives>`.
-Text
-   :doc:`Text Objects </modeling/texts/introduction>`
-   create a two-dimensional representation of a string of characters.
-Grease Pencil
-   :doc:`Grease Pencil Objects </grease_pencil/primitives>` are objects
-   created by painting strokes.
+:doc:`Text </modeling/texts/introduction>`
+   Create a two-dimensional representation of a string of characters.
+:doc:`Volume </modeling/volumes/introduction>`
+   Container for OpenVDB files that can be load files
+   from other software or Blender's :doc:`Fluid Simulator </physics/fluid/index>`.
+:doc:`Grease Pencil </grease_pencil/primitives>`
+   Objects created by painting strokes.
 
-Armature
-   :doc:`Armatures </animation/armatures/index>` are used for rigging 3D models
-   in order to make them poseable and animateable.
-Lattice
-   :doc:`Lattices </animation/lattice>` are non-renderable wireframes,
-   commonly used for taking additional control over other objects
+:doc:`Armature </animation/armatures/index>`
+   Used for rigging 3D models to make them poseable and animatable.
+:doc:`Lattice </animation/lattice>`
+   Non-renderable wireframes commonly used for the deformation of other objects
    with help of the :doc:`Lattice Modifier </modeling/modifiers/deform/lattice>`.
 
-Empty
-   :doc:`Empties </modeling/empties>` are null objects
-   that are simple visual transform nodes that do not render.
+:doc:`Empty </modeling/empties>`
+   Null objects that are simple visual transform nodes that do not render.
    They are useful for controlling the position or movement of other objects.
-Image
-   Images are :doc:`empty </modeling/empties>` objects that display images
-   in the 3D Viewport. These images can be used to support modeling and animating.
+:ref:`Image <bpy.types.Object.empty_image>`
+   Empty objects that display images in the 3D Viewport.
+   These images can be used to aid artists in modeling or animating.
 
-Light
-   :doc:`Lights </render/lights/light_object>` for lighting the scene in renders.
-Light Probe
-   :doc:`Lights </render/eevee/light_probes/introduction>` are used by
-   the Eevee render engine and record lighting information for indirect lighting.
+:doc:`Light </render/lights/light_object>`
+   Empty objects that emit light and are used for lighting the scene in renders.
+:doc:`Light Probe </render/eevee/light_probes/introduction>`
+   Used by the Eevee render engine to record lighting information for indirect lighting.
 
-Camera
+:doc:`Camera </render/cameras>`
    This is the virtual camera that is used to determine what appears in the render.
-   See Cameras in :doc:`Cycles </render/cameras>`.
 
-Speaker
-   :doc:`Speaker </render/output/audio/speaker>` brings a source of sound to the scene.
+:doc:`Speaker </render/output/audio/speaker>`
+   Empty objects that bring a source of sound to the scene.
 
-Force Field
-   :doc:`Force Fields </physics/forces/force_fields/index>` are used in physical simulations.
-   They give simulations external forces, creating movement, and
-   are represented in the 3D Viewport as small control objects.
+:doc:`Force Field </physics/forces/force_fields/index>`
+   Empty objects that give simulations external forces, creating movement,
+   and are represented in the 3D Viewport as small control objects.
 
-Collection Instance
+:doc:`Collection Instance </scene_layout/object/properties/instancing/collection>`
    Lets you select from a list of existing collections. Once selected, an empty object will be created,
    with an instance of the selected collection (collection instancing active).
-   See :doc:`/scene_layout/object/properties/instancing/collection`.
 
 
 .. _object-common-options:
@@ -91,7 +81,7 @@ You can change the options of the object in the :ref:`ui-undo-redo-adjust-last-o
 just after creating it:
 
 Type
-   Some objects let you change their type after creation with a selector.
+   You can change the type of some objects after their creation with a selector.
 Radius/Size
    Sets the starting size.
 
